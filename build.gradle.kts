@@ -22,6 +22,7 @@ allprojects {
     group = "org.jetbrains.kotlinx"
     version = ggdslVersion
     apply(plugin = "maven-publish")
+    apply(plugin = "kotlin")
 }
 
 subprojects {

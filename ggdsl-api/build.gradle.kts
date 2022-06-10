@@ -3,7 +3,6 @@ plugins {
     id("org.jetbrains.dokka") version "1.6.21"
     kotlin("jupyter.api")
     id("maven-publish")
-    id("io.codearte.nexus-staging")
 }
 
 repositories {
