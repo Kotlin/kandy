@@ -5,10 +5,6 @@ plugins {
     `maven-publish`
 }
 
-group = "com.andreikingsley"
-val ggDSLVersion = "0.6.5-3"
-version = ggDSLVersion
-
 repositories {
     mavenCentral()
 }
@@ -26,4 +22,3 @@ tasks {
         kotlinOptions.jvmTarget = "1.8"
     }
 }
-
