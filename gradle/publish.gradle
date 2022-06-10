@@ -18,7 +18,7 @@ nexusStaging {
     username sonatypeUser
     password sonatypePassword
     packageGroup project.group.toString()
-    repositoryDescription "kotlinx.multik staging repository, version: $version"
+    repositoryDescription "ggdsl staging repository, version: $version"
 }
 
 publishing {

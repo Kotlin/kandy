@@ -1,0 +1,29 @@
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "https://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "JetBrains"
+            name "Jetbrains Team"
+            organization "JetBrains"
+            organizationUrl "https://www.jetbrains.com"
+        }
+    }
+
+    scm {
+        url "https://github.com/AndreiKingsley/lib-ggdsl"
+    }
+}
+
+project.ext.configureMavenCentralMetadata = { pom ->
+    def root = asNode()
+    root.appendNode('name', project.name)
+    root.appendNode('description', 'Kotlin plotting DSL.')
+    root.appendNode('url', 'https://github.com/AndreiKingsley/lib-ggdsl')
+    root.children().last() + pomConfig
+}
