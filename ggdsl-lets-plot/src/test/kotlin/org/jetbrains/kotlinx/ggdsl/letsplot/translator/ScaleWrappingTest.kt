@@ -1,12 +1,11 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.ggdsl.ir.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.translator.wrap
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import jetbrains.letsPlot.intern.toSpec
-import jetbrains.letsPlot.letsPlot
+import org.jetbrains.kotlinx.ggdsl.ir.geom.CommonGeom
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -44,7 +43,7 @@ internal class ScaleWrappingTest {
 
     @Test
     fun testDefaults() {
-        val mockGeom = Geom("mock")
+        val mockGeom = CommonGeom("mock")
         assertNull(UnspecifiedDefaultScale.wrap(SYMBOL, mockGeom))
         assertNull(PositionalCategoricalDefaultScale.wrap(Y, mockGeom))
         assertNull(PositionalContinuousDefaultScale.wrap(Y, mockGeom))

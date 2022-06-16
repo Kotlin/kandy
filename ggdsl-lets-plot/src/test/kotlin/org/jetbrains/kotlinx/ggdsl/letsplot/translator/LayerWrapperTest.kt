@@ -2,23 +2,17 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.dsl.source
-import org.jetbrains.kotlinx.ggdsl.ir.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.POSITION_FEATURE_NAME
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
-import org.jetbrains.kotlinx.ggdsl.letsplot.translator.LayerWrapper
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import jetbrains.letsPlot.intern.GeomKind
-import jetbrains.letsPlot.intern.PosKind
-import jetbrains.letsPlot.intern.StatKind
 import jetbrains.letsPlot.intern.toSpec
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertEquals

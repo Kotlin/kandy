@@ -1,6 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.ir.Geom
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.symbol.Symbol
 
@@ -38,8 +38,8 @@ import org.jetbrains.kotlinx.ggdsl.util.symbol.Symbol
  *
  *  @see [BaseBindingContext]
  */
-inline fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.points(block: org.jetbrains.kotlinx.ggdsl.dsl.PointsContext.() -> Unit) {
-    layers.add(org.jetbrains.kotlinx.ggdsl.dsl.PointsContext(data).apply { copyFrom(this@points) }.apply(block).toLayer(Geom.POINT))
+inline fun PlotContext.points(block: PointsContext.() -> Unit) {
+    layers.add(PointsContext(data).apply { copyFrom(this@points) }.apply(block).toLayer(Geom.POINT))
 }
 
 /**
@@ -75,8 +75,8 @@ inline fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.points(block: org.jetbrai
  *
  *  @see [BaseBindingContext]
  */
-inline fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.bars(block: org.jetbrains.kotlinx.ggdsl.dsl.BarsContext.() -> Unit) {
-    layers.add(org.jetbrains.kotlinx.ggdsl.dsl.BarsContext(data).apply { copyFrom(this@bars) }.apply(block).toLayer(Geom.BAR))
+inline fun PlotContext.bars(block: BarsContext.() -> Unit) {
+    layers.add(BarsContext(data).apply { copyFrom(this@bars) }.apply(block).toLayer(Geom.BAR))
 }
 
 /**
@@ -111,6 +111,6 @@ inline fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.bars(block: org.jetbrains
  *
  *  @see [BaseBindingContext]
  */
-inline fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.line(block: org.jetbrains.kotlinx.ggdsl.dsl.LineContext.() -> Unit) {
-    layers.add(org.jetbrains.kotlinx.ggdsl.dsl.LineContext(data).apply { copyFrom(this@line) }.apply(block).toLayer(Geom.LINE))
+inline fun PlotContext.line(block: LineContext.() -> Unit) {
+    layers.add(LineContext(data).apply { copyFrom(this@line) }.apply(block).toLayer(Geom.LINE))
 }

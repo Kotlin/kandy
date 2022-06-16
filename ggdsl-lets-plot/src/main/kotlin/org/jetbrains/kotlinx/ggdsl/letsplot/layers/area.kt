@@ -1,12 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
-val AREA = Geom("area")
+val AREA = LetsPlotGeom("area")
 
 class AreaContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) : org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
     val color = COLOR

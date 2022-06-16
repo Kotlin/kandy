@@ -1,16 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.FATTEN
-import org.jetbrains.kotlinx.ggdsl.letsplot.MIDDLE
-import org.jetbrains.kotlinx.ggdsl.letsplot.Y_MAX
-import org.jetbrains.kotlinx.ggdsl.letsplot.Y_MIN
+import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 
-val CROSSBAR = Geom("crossbar")
+val CROSS_BAR = LetsPlotGeom("crossbar")
 
 class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) : org.jetbrains.kotlinx.ggdsl.dsl.LayerContext(){
     val yMin = Y_MIN
@@ -69,5 +65,5 @@ class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutable
  *  @see [BaseBindingContext]
  */
 fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.crossBar(block: CrossBarContext.() -> Unit) {
-    layers.add(CrossBarContext(data).apply { copyFrom(this@crossBar) }.apply(block).toLayer(CROSSBAR))
+    layers.add(CrossBarContext(data).apply { copyFrom(this@crossBar) }.apply(block).toLayer(CROSS_BAR))
 }

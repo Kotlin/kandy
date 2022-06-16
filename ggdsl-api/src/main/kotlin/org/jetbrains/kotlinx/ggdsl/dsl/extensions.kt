@@ -1,14 +1,14 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 
 /**
  * Creates a new [Layer] from this [LayerContext]
  *
  * @return new [Plot]
  */
-fun org.jetbrains.kotlinx.ggdsl.dsl.LayerContext.toLayer(geom: Geom): Layer {
+fun LayerContext.toLayer(geom: Geom): Layer {
     return Layer(
         data,
         geom,

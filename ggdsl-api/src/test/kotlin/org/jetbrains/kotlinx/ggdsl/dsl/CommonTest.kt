@@ -1,12 +1,10 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.ir.Geom
-import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
-import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale

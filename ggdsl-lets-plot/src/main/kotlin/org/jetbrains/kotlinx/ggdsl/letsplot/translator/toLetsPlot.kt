@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.*
-import org.jetbrains.kotlinx.ggdsl.ir.Geom
+import org.jetbrains.kotlinx.ggdsl.ir.geom.*
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.feature.*
@@ -19,8 +19,8 @@ import jetbrains.letsPlot.intern.Feature
 import jetbrains.letsPlot.intern.FeatureList
 import jetbrains.letsPlot.intern.layer.PosOptions
 import jetbrains.letsPlot.label.ggtitle
-import jetbrains.letsPlot.label.labs
 import jetbrains.letsPlot.scale.*
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 
 
 internal fun LayerFeature?.wrap(): PosOptions? {
@@ -99,7 +99,7 @@ val fillGeoms = setOf(
     Geom.POINT,
     BOXPLOT,
     AREA,
-    CROSSBAR,
+    CROSS_BAR,
     // TODO
     POINT_RANGE,
 )
@@ -119,7 +119,7 @@ internal fun Aes.toLPName(geom: Geom): String {
         if (geom == BOXPLOT) {
             return "width"
         }
-        if (geom == AREA || geom == CROSSBAR) {
+        if (geom == AREA || geom == CROSS_BAR) {
             return "size"
         }
         return "stroke"
@@ -147,8 +147,8 @@ internal fun Geom?.toLPGeom(defaultShape: Boolean = true): jetbrains.letsPlot.in
         Geom.LINE -> jetbrains.letsPlot.Geom.path()
         BOXPLOT -> jetbrains.letsPlot.Geom.boxplot()
         AREA -> jetbrains.letsPlot.Geom.area()
-        ERRORBAR -> jetbrains.letsPlot.Geom.errorbar()
-        CROSSBAR -> jetbrains.letsPlot.Geom.crossbar()
+        ERROR_BAR -> jetbrains.letsPlot.Geom.errorbar()
+        CROSS_BAR -> jetbrains.letsPlot.Geom.crossbar()
         LINE_RANGE-> jetbrains.letsPlot.Geom.linerange()
         POINT_RANGE -> jetbrains.letsPlot.Geom.pointrange()
         else -> TODO()
@@ -413,7 +413,7 @@ internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
     }
 }
 
-fun Plot.toLestPlot(): jetbrains.letsPlot.intern.Plot {
+fun Plot.toLetsPlot(): jetbrains.letsPlot.intern.Plot {
     val featureBuffer = buildList {
         layers.forEach { it.wrap(this) }
         features.forEach { it.value.wrap(this) }

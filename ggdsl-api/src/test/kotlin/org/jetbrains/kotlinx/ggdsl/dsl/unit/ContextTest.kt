@@ -1,10 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.unit
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.Geom
-import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
-import org.jetbrains.kotlinx.ggdsl.ir.Plot
+import org.jetbrains.kotlinx.ggdsl.ir.*
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals

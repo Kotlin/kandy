@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.*
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.Stack
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.*
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.*
-import org.jetbrains.kotlinx.ggdsl.ir.Geom
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*

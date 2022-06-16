@@ -1,14 +1,14 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import org.jetbrains.kotlinx.ggdsl.letsplot.Y_MAX
 import org.jetbrains.kotlinx.ggdsl.letsplot.Y_MIN
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 
-val ERRORBAR = Geom("errorbar")
+val ERROR_BAR = LetsPlotGeom("errorbar")
 
 class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) : org.jetbrains.kotlinx.ggdsl.dsl.LayerContext(){
     val yMin = Y_MIN
@@ -58,6 +58,6 @@ class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutable
  *
  *  @see [BaseBindingContext]
  */
-fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.errorBar(block: ErrorBarContext.() -> Unit) {
-    layers.add(ErrorBarContext(data).apply { copyFrom(this@errorBar) }.apply(block).toLayer(ERRORBAR))
+fun PlotContext.errorBar(block: ErrorBarContext.() -> Unit) {
+    layers.add(ErrorBarContext(data).apply { copyFrom(this@errorBar) }.apply(block).toLayer(ERROR_BAR))
 }

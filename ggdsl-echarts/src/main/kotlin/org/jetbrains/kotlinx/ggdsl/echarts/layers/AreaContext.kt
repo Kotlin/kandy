@@ -1,12 +1,11 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
-
-import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.Geom
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
+/*
+import org.jetbrains.kotlinx.ggdsl.ir.CommonGeom
 
 // todo echarts geom
-val AREA = Geom("area")
+val AREA = CommonGeom("area")
+
+ */
 /*
 class AreaContext : EchartsLayerContext() {
     val color = COLOR

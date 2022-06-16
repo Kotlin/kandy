@@ -5,7 +5,6 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
-import org.jetbrains.kotlinx.ggdsl.letsplot.translator.toLestPlot
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 import jetbrains.letsPlot.intern.toSpec
@@ -49,7 +48,7 @@ class ToLetsPlotTest {
                     )
                 ),
             ),
-            plot.toLestPlot().toSpec()
+            plot.toLetsPlot().toSpec()
         )
     }
 
@@ -81,7 +80,7 @@ class ToLetsPlotTest {
                 yOrder = OrderDirection.DESCENDING
             }
         }
-         println(plot.toLestPlot().toSpec())
+         println(plot.toLetsPlot().toSpec())
         assertEquals(
             mapOf<String, Any>(
                 "mapping" to mapOf<String, String>(),
@@ -144,7 +143,7 @@ class ToLetsPlotTest {
                     "y_order" to -1.0
                 )
             ),
-            plot.toLestPlot().toSpec()
+            plot.toLetsPlot().toSpec()
         )
     }
 }

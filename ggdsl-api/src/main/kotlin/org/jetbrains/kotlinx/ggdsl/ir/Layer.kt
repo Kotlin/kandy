@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 
 /**
  * Layer is a collection of data and mappings from it.

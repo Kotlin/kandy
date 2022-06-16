@@ -10,6 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.*
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.util.color.*
 import org.jetbrains.kotlinx.ggdsl.util.linetype.CommonLineType

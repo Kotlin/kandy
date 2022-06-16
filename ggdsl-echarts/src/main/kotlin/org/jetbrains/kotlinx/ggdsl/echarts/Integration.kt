@@ -8,6 +8,8 @@ import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.*
 import org.jetbrains.kotlinx.jupyter.api.libraries.*
 
+import org.jetbrains.kotlinx.ggdsl.ir.Plot
+
 import kotlinx.html.*
 import kotlinx.html.stream.createHTML
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -24,6 +26,8 @@ internal class Integration : JupyterIntegration() {
                 classPath("js/echarts.min.js")
             }
         }
+
+        render<Plot> { it.toOption() }
         render<Option> { HTML(it.toHTML(800 to 600), true) }
         render<MetaOption> { HTML(it.option.toHTML(it.size), true) }
         render<DataChangeAnimation> { HTML(it.toHTML(), true) }

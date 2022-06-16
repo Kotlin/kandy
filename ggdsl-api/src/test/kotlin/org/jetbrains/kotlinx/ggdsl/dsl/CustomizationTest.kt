@@ -1,9 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.ir.Geom
-import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
-import org.jetbrains.kotlinx.ggdsl.ir.Plot
+import org.jetbrains.kotlinx.ggdsl.ir.*
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.X
 import org.jetbrains.kotlinx.ggdsl.ir.aes.Y
@@ -12,6 +9,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.ggdsl.ir.geom.CommonGeom
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
 import kotlin.reflect.typeOf
@@ -21,7 +20,7 @@ import kotlin.test.assertEquals
 internal class CustomizationTest {
 
     companion object {
-        val customGeom = Geom("custom")
+        val customGeom = CommonGeom("custom")
         val SPECIFIC_AES = MappableNonPositionalAes<CustomGeomType>("customAes")
     }
 
