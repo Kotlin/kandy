@@ -12,7 +12,7 @@ plugins {
     // id("org.jetbrains.kotlin.jupyter.api") version "0.11.0-89-1"
 }
 
-val ggdslVersion = "0.1.1-dev-1"
+val ggdslVersion = "0.1.1-dev-2"
 
 allprojects {
     repositories {
