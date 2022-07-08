@@ -1,20 +1,19 @@
 package org.jetbrains.kotlinx.ggdsl.echarts
 
-import org.jetbrains.kotlinx.ggdsl.echarts.animation.DataChangeAnimation
-import org.jetbrains.kotlinx.ggdsl.echarts.animation.PlotChangeAnimation
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.toOption
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.wrap
-import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
-import org.jetbrains.kotlinx.jupyter.api.*
-import org.jetbrains.kotlinx.jupyter.api.libraries.*
-
-import org.jetbrains.kotlinx.ggdsl.ir.Plot
-
 import kotlinx.html.*
 import kotlinx.html.stream.createHTML
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.jetbrains.kotlinx.ggdsl.echarts.animation.DataChangeAnimation
+import org.jetbrains.kotlinx.ggdsl.echarts.animation.PlotChangeAnimation
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.toOption
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.wrap
+import org.jetbrains.kotlinx.ggdsl.ir.Plot
+import org.jetbrains.kotlinx.jupyter.api.HTML
+import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
+import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
+import org.jetbrains.kotlinx.jupyter.api.libraries.resources
 
 @JupyterLibrary
 internal class Integration : JupyterIntegration() {
@@ -38,6 +37,7 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.echarts.util.color.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.util.symbol.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.scale.guide.*")
+        import("org.jetbrains.kotlinx.ggdsl.echarts.scale.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.stack.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.translator.*")
         //todo import layers
@@ -114,7 +114,7 @@ fun DataChangeAnimation.toHTML(): String {
     val maxStates = 100
     // todo size
     val initOption = plot.toOption().option.toJSON().replace('\"', '\'')
-    var dataset = plot.dataset!!
+    var dataset = plot.dataset
     val datasets = mutableListOf<Dataset>()
     repeat(maxStates) {
         dataChange(dataset)

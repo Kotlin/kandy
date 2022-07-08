@@ -16,4 +16,4 @@ interface LineType {
  *
  * @param description the string describing this line type.
  */
-data class CommonLineType(val description: String): LineType
+data class CommonLineType(val description: String) : LineType

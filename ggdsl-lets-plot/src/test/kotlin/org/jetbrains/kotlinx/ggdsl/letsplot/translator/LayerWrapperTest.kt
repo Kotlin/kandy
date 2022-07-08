@@ -1,18 +1,20 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
+import jetbrains.letsPlot.intern.toSpec
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.dsl.source
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
+import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.POSITION_FEATURE_NAME
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import jetbrains.letsPlot.intern.toSpec
-import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -22,17 +24,17 @@ internal class LayerWrapperTest {
     fun testSimple() {
         val layer = Layer(
             mapOf(),
-            Geom.POINT,
+            POINT,
             mapOf(
-                COLOR to ScaledUnspecifiedDefaultMapping(
-                    COLOR,
+                FILL to ScaledUnspecifiedDefaultNonPositionalMapping(
+                    FILL,
                     source<Int>("F").scaled(),
                     typeOf<Int>()
                 )
             ),
             mapOf(
-                BORDER_COLOR to NonPositionalSetting(
-                    BORDER_COLOR,
+                COLOR to NonPositionalSetting(
+                    COLOR,
                     Color.RED
                 )
             ),
@@ -47,7 +49,7 @@ internal class LayerWrapperTest {
                 ),
                 "stat" to "identity",
                 "data" to mapOf<String, Any>(),
-                "shape" to 21.0,
+                //"shape" to 21.0,
                 "color" to "red",
                 "position" to "identity",
                 "geom" to "point"
@@ -84,9 +86,9 @@ internal class LayerWrapperTest {
          */
         val layer = Layer(
             mapOf(),
-            Geom.BAR,
+            BAR,
             mapOf(
-                X to ScaledUnspecifiedDefaultMapping(
+                X to ScaledUnspecifiedDefaultPositionalMapping(
                     X,
                     SourceScaledUnspecifiedDefault(
                         source<Float>("TIME_T")
@@ -97,12 +99,12 @@ internal class LayerWrapperTest {
                     Y,
                     SourceScaledPositionalDefault(
                         source<Double>("VAL_V"),
-                        PositionalContinuousDefaultScale
+                        PositionalContinuousDefaultScale()
                     ),
                     typeOf<Double>()
                 ),
-                COLOR to ScaledNonPositionalMapping(
-                    COLOR,
+                FILL to ScaledNonPositionalMapping(
+                    FILL,
                     SourceScaledNonPositional(
                         source<String>("BAFGA"),
                         NonPositionalCategoricalScale(
@@ -114,8 +116,8 @@ internal class LayerWrapperTest {
                 )
             ),
             mapOf(
-                BORDER_COLOR to NonPositionalSetting(
-                    BORDER_COLOR,
+                COLOR to NonPositionalSetting(
+                    COLOR,
                     Color.RED
                 ),
                 WIDTH to NonPositionalSetting(
@@ -129,7 +131,7 @@ internal class LayerWrapperTest {
         )
 
         val wrappedLayer = LayerWrapper(layer)
-println(wrappedLayer.toSpec())
+        println(wrappedLayer.toSpec())
         assertEquals(
             mapOf<String, Any>(
                 "mapping" to mapOf(

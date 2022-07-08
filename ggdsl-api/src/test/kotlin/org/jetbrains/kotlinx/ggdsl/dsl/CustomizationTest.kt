@@ -1,6 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.ir.*
+import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.Layout
+import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.X
 import org.jetbrains.kotlinx.ggdsl.ir.aes.Y
@@ -13,6 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.geom.CommonGeom
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
+import org.jetbrains.kotlinx.ggdsl.old.bars
 import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -26,33 +29,36 @@ internal class CustomizationTest {
 
     data class CustomGeomType(val name: String)
 
-    class CustomGeomContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) : org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
+    class CustomGeomContext(override var data: MutableNamedData) :
+        LayerContext() {
         val specificAes = SPECIFIC_AES
     }
 
-    fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.customLayer(block: CustomGeomContext.() -> Unit) {
+    fun PlotContext.customLayer(block: CustomGeomContext.() -> Unit) {
         layers.add(CustomGeomContext(data).apply { copyFrom(this@customLayer) }.apply(block).toLayer(customGeom))
     }
 
-    data class MockLayerFeature(val value: Int): LayerFeature {
+    data class MockLayerFeature(val value: Int) : LayerFeature {
         override val featureName = FEATURE_NAME
+
         companion object {
             val FEATURE_NAME = FeatureName("mock_layer_feature")
         }
     }
 
-    fun org.jetbrains.kotlinx.ggdsl.dsl.LayerContext.mockFeatureFunction(value: Int) {
+    fun LayerContext.mockFeatureFunction(value: Int) {
         features[MockLayerFeature.FEATURE_NAME] = MockLayerFeature(value)
     }
 
-    data class MockPlotFeature(val title: String): PlotFeature {
+    data class MockPlotFeature(val title: String) : PlotFeature {
         override val featureName = FEATURE_NAME
+
         companion object {
             val FEATURE_NAME = FeatureName("mock_plot_feature")
         }
     }
 
-    var org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.mockFeatureProp: String
+    var PlotContext.mockFeatureProp: String
         get() = ""
         set(value) {
             features[MockPlotFeature.FEATURE_NAME] = MockPlotFeature(value)
@@ -71,12 +77,14 @@ internal class CustomizationTest {
             y(mockSrcDouble)
             customLayer {
                 x(mockSrcFloat.scaled(continuousPos()))
-                specificAes(mockSrcString.scaled(
-                    categorical(
-                        listOf("A", "B"),
-                        listOf(CustomGeomType("x"), CustomGeomType("xxx"))
+                specificAes(
+                    mockSrcString.scaled(
+                        categorical(
+                            listOf("A", "B"),
+                            listOf(CustomGeomType("x"), CustomGeomType("xxx"))
+                        )
                     )
-                ))
+                )
             }
             customLayer {
                 x(mockSrcFloat)
@@ -93,10 +101,10 @@ internal class CustomizationTest {
                         mapOf(
                             X to ScaledPositionalDefaultMapping(
                                 X,
-                                SourceScaledPositionalDefault(mockSrcFloat, PositionalContinuousDefaultScale),
+                                SourceScaledPositionalDefault(mockSrcFloat, PositionalContinuousDefaultScale()),
                                 typeOf<Float>()
                             ),
-                            Y to ScaledUnspecifiedDefaultMapping(
+                            Y to ScaledUnspecifiedDefaultPositionalMapping(
                                 Y,
                                 SourceScaledUnspecifiedDefault(mockSrcDouble),
                                 typeOf<Double>()
@@ -121,12 +129,12 @@ internal class CustomizationTest {
                         dataset,
                         customGeom,
                         mapOf(
-                            X to ScaledUnspecifiedDefaultMapping(
+                            X to ScaledUnspecifiedDefaultPositionalMapping(
                                 X,
                                 SourceScaledUnspecifiedDefault(mockSrcFloat),
                                 typeOf<Float>()
                             ),
-                            Y to ScaledUnspecifiedDefaultMapping(
+                            Y to ScaledUnspecifiedDefaultPositionalMapping(
                                 Y,
                                 SourceScaledUnspecifiedDefault(mockSrcDouble),
                                 typeOf<Double>()

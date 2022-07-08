@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.stack
 
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
+import org.jetbrains.kotlinx.ggdsl.old.BarsContext
 
 /*
     val stackAd = Stack("Ad")
@@ -23,14 +24,16 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
  * @see <a href="https://echarts.apache.org/en/option.html#series-bar.stack">ECharts Dcoumentation</a>
  * @see stack
  */
-var org.jetbrains.kotlinx.ggdsl.dsl.BarsContext.stack: Stack
-get() = Stack("TODO")
-set(value) {
-    features[Stack.FEATURE_NAME] = value
-}
+
+// todo
+var BarsContext.stack: Stack
+    get() = Stack("TODO")
+    set(value) {
+        features[Stack.FEATURE_NAME] = value
+    }
 
 //todo
-data class Stack internal constructor(val name: String): LayerFeature {
+data class Stack internal constructor(val name: String) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
     companion object {

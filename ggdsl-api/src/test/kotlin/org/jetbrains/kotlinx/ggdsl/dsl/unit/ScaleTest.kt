@@ -13,7 +13,7 @@ internal class ScaleTest {
 
     @Test
     fun testContinuousPosDefault() {
-        assertEquals(PositionalContinuousDefaultScale, continuousPos())
+        assertEquals(PositionalContinuousDefaultScale(), continuousPos())
     }
 
     @Test
@@ -37,7 +37,7 @@ internal class ScaleTest {
 
     @Test
     fun testContinuousDefault() {
-        assertEquals(NonPositionalContinuousDefaultScale, continuous())
+        assertEquals(NonPositionalContinuousDefaultScale(), continuous())
     }
 
     @Test
@@ -53,7 +53,7 @@ internal class ScaleTest {
         assertEquals(NonPositionalCategoricalDefaultScale, categorical())
     }
 
-        @Test
+    @Test
     fun testCategorical() {
         val domainCategories = listOf(1, 3, 100, 999)
         val rangeCategories = listOf(Color.RED, Color.BLACK, Color.BLUE, Color.WHITE)

@@ -1,5 +1,7 @@
-package org.jetbrains.kotlinx.ggdsl.dsl
+package org.jetbrains.kotlinx.ggdsl.old
 
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.symbol.Symbol

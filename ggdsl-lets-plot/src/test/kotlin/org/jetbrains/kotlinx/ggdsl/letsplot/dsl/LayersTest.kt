@@ -4,7 +4,8 @@ import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Layout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.ir.aes.Y
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
@@ -17,22 +18,25 @@ import kotlin.test.assertEquals
 
 internal class LayersTest {
     @Test
-    fun testArea(){
+    fun testArea() {
         val time = source<Int>("time")
         val type = source<String>("type")
         val plot = plot {
             area {
                 y(time.scaled(continuousPos()))
-                color(type.scaled(
-                    categorical(
-                        rangeValues = listOf(Color.RED, Color.BLUE)
+                color(
+                    type.scaled(
+                        categorical(
+                            rangeValues = listOf(Color.RED, Color.BLUE)
+                        )
                     )
-                ))
-
+                )
+                // TODO
                 alpha(0.7)
-                borderWidth(2.0)
+                borderLine.width(2.0)
             }
         }
+        // TODO
         assertEquals(
             Plot(
                 mapOf(),
@@ -44,18 +48,19 @@ internal class LayersTest {
                             Y to ScaledPositionalDefaultMapping(
                                 Y, SourceScaledPositionalDefault(
                                     time,
-                                    PositionalContinuousDefaultScale
+                                    PositionalContinuousDefaultScale()
                                 ), typeOf<Int>()
                             ),
-                            COLOR to ScaledNonPositionalMapping(
-                                COLOR, SourceScaledNonPositional(
+                            FILL to ScaledNonPositionalMapping(
+                                FILL,
+                                SourceScaledNonPositional(
                                     type,
                                     NonPositionalCategoricalScale(
                                         rangeValues = listOf(Color.RED, Color.BLUE)
                                     )
                                 ),
                                 typeOf<String>(),
-                              //  typeOf<Color>()
+                                //  typeOf<Color>()
                             )
                         ),
                         mapOf(
@@ -63,8 +68,8 @@ internal class LayersTest {
                                 ALPHA,
                                 0.7
                             ),
-                            BORDER_WIDTH to NonPositionalSetting(
-                                BORDER_WIDTH,
+                            SIZE to NonPositionalSetting(
+                                SIZE,
                                 2.0
                             )
                         ),

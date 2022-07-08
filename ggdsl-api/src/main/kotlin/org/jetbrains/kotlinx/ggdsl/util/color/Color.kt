@@ -11,6 +11,7 @@ interface Color {
          * @param hexString the color in hexadecimal format
          */
         fun fromHex(hexString: String) = StandardColor(hexString)
+
         /**
          * Creates a new [StandardColor] from color name.
          *

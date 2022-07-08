@@ -1,27 +1,33 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
+import jetbrains.letsPlot.intern.toSpec
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bar
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.line
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.pointsFilled
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LetsPlotLineType
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.LetsPlotSymbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
-import jetbrains.letsPlot.intern.toSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ToLetsPlotTest {
     @Test
-    fun testSimple(){
+    fun testSimple() {
         val plot = plot {
             x(source<String>("origin"))
-            points {
+            pointsFilled {
                 y(source<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
+                symbol(LetsPlotSymbol.CIRCLE_FILLED)
                 color(Color.RED)
             }
         }
-      //  println(plot.toLestPlot().toSpec())
+        //  println(plot.toLestPlot().toSpec())
         assertEquals(
             mapOf<String, Any>(
                 "mapping" to mapOf<String, String>(),
@@ -53,16 +59,20 @@ class ToLetsPlotTest {
     }
 
     @Test
-    fun testComplex(){
+    fun testComplex() {
         val clM = source<Int>("clM")
         val plot = plot {
             x(source<Double>("time").scaled(continuousPos(limits = -12.0 to 4.4)))
             y(source<String>("svalue").scaled(categoricalPos(categories = listOf("A", "B", "C"))))
 
-            bars {
-                color(clM.scaled(categorical(
-                    rangeValues = listOf(Color.RED, Color.fromHex("#bb11aa"))
-                )))
+            bar {
+                color(
+                    clM.scaled(
+                        categorical(
+                            rangeValues = listOf(Color.RED, Color.fromHex("#bb11aa"))
+                        )
+                    )
+                )
                 width(0.5)
                 alpha(0.8)
 
@@ -70,7 +80,7 @@ class ToLetsPlotTest {
             }
             line {
                 width(2.2)
-                lineType(LineType.DOTTED)
+                type(LetsPlotLineType.DOTTED)
                 position = Position.Identity
             }
 
@@ -80,7 +90,7 @@ class ToLetsPlotTest {
                 yOrder = OrderDirection.DESCENDING
             }
         }
-         println(plot.toLetsPlot().toSpec())
+        println(plot.toLetsPlot().toSpec())
         assertEquals(
             mapOf<String, Any>(
                 "mapping" to mapOf<String, String>(),

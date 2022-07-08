@@ -20,6 +20,7 @@ sealed interface NonPositionalScale<DomainType : Any, RangeType : Any> : Scale
 data class NonPositionalContinuousScale<DomainType : Any, RangeType : Any>(
     val domainLimits: Pair<DomainType, DomainType>? = null,
     val rangeLimits: Pair<RangeType, RangeType>? = null,
+    override val transform: NonPositionalTransform? = null,
 ) : ContinuousScale, NonPositionalScale<DomainType, RangeType>
 
 /**
@@ -33,3 +34,6 @@ data class NonPositionalCategoricalScale<DomainType : Any, RangeType : Any>(
     val domainCategories: List<DomainType>? = null,
     val rangeValues: List<RangeType>? = null,
 ) : CategoricalScale, NonPositionalScale<DomainType, RangeType>
+
+interface CustomNonPositionalScale<DomainType : Any, RangeType : Any>
+    : NonPositionalScale<DomainType, RangeType>, CustomScale

@@ -1,8 +1,10 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
+import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.Y_MAX
 import org.jetbrains.kotlinx.ggdsl.letsplot.Y_MIN
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -10,16 +12,20 @@ import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 
 val ERROR_BAR = LetsPlotGeom("errorbar")
 
-class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) : org.jetbrains.kotlinx.ggdsl.dsl.LayerContext(){
+class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
+    org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
     val yMin = Y_MIN
     val yMax = Y_MAX
 
-    val size = SIZE
-    val color = COLOR
     val alpha = ALPHA
-
     val width = WIDTH
-    val lineType = LINE_TYPE
+
+    val borderLine = BorderLineSubContext()
+
+    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
+        apply(block)
+        this@ErrorBarContext.copyFrom(this, false)
+    }
 }
 
 /**

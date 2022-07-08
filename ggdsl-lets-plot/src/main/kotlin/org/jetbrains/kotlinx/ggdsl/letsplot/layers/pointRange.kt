@@ -8,23 +8,74 @@ import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 
 val POINT_RANGE = LetsPlotGeom("pointrange")
 
-class PointRangeContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) : org.jetbrains.kotlinx.ggdsl.dsl.LayerContext(){
+class InnerFilledPointSubContext : BindingContext() {
+    override var data: MutableNamedData = mutableMapOf()
+    val symbol = FILLED_SYMBOL
+    val color = FILL
+    val fatten = FATTEN
+}
+
+class InnerUnfilledPointSubContext : BindingContext() {
+    override var data: MutableNamedData = mutableMapOf()
+    val symbol = UNFILLED_SYMBOL
+    val fatten = FATTEN
+}
+
+class InnerLineSubContext : BindingContext() {
+    override var data: MutableNamedData = mutableMapOf()
+    val color = COLOR
+    val type = LINE_TYPE
+    val width = SIZE // TODO mappable???
+}
+
+class FilledPointRangeContext(override var data: MutableNamedData) : LayerContext() {
     val yMin = Y_MIN
     val yMax = Y_MAX
 
-    // TODO pointSize
-    val symbol = SYMBOL
+    val alpha = ALPHA
+    val color = FILL
+
+    // todo separate????
     val size = SIZE
-    val pointColor = COLOR
+
+    val innerPoint = InnerFilledPointSubContext()
+
+    inline operator fun InnerFilledPointSubContext.invoke(block: InnerFilledPointSubContext.() -> Unit) {
+        apply(block)
+        this@FilledPointRangeContext.copyFrom(this, false)
+    }
+
+    val innerLine = InnerLineSubContext()
+
+    inline operator fun InnerLineSubContext.invoke(block: InnerLineSubContext.() -> Unit) {
+        apply(block)
+        this@FilledPointRangeContext.copyFrom(this, false)
+    }
+}
+
+class UnfilledPointRangeContext(override var data: MutableNamedData) : LayerContext() {
+    val yMin = Y_MIN
+    val yMax = Y_MAX
 
     val alpha = ALPHA
+    val color = FILL
 
-    val fatten = FATTEN
+    // todo separate????
+    val size = SIZE
 
-    // todo
-    val lineColor = MAPPABLE_BORDER_COLOR
-   // val width = WIDTH
-    val lineType = LINE_TYPE
+    val innerPoint = InnerUnfilledPointSubContext()
+
+    inline operator fun InnerUnfilledPointSubContext.invoke(block: InnerUnfilledPointSubContext.() -> Unit) {
+        apply(block)
+        this@UnfilledPointRangeContext.copyFrom(this, false)
+    }
+
+    val innerLine = InnerLineSubContext()
+
+    inline operator fun InnerLineSubContext.invoke(block: InnerLineSubContext.() -> Unit) {
+        apply(block)
+        this@UnfilledPointRangeContext.copyFrom(this, false)
+    }
 }
 
 /**
@@ -64,6 +115,8 @@ class PointRangeContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutab
  *
  *  @see [BaseBindingContext]
  */
-fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.pointRange(block: PointRangeContext.() -> Unit) {
-    layers.add(PointRangeContext(data).apply { copyFrom(this@pointRange) }.apply(block).toLayer(POINT_RANGE))
+fun PlotContext.filledPointRange(block: FilledPointRangeContext.() -> Unit) {
+    layers.add(
+        FilledPointRangeContext(data).apply { copyFrom(this@filledPointRange) }.apply(block).toLayer(POINT_RANGE)
+    )
 }

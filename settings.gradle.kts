@@ -1,4 +1,3 @@
-
 rootProject.name = "ggdsl"
 include("ggdsl-api")
 include("ggdsl-lets-plot")

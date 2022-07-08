@@ -1,6 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.bars
+import org.jetbrains.kotlinx.ggdsl.old.bars
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.Stack
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.stack
@@ -12,7 +12,7 @@ internal class FeaturesTest {
 
     private fun Layer.checkStack(expectedStack: Stack?): Boolean {
         val stack = features[Stack.FEATURE_NAME]
-        return if(expectedStack == null) {
+        return if (expectedStack == null) {
             stack == null
         } else {
             stack?.equals(expectedStack) == true

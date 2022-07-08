@@ -14,7 +14,7 @@ sealed interface Setting
  * @property aes the non-positional aesthetic attribute to be set to
  * @property value the assigned value
  */
-data class NonPositionalSetting<T: Any>(
+data class NonPositionalSetting<T : Any>(
     val aes: NonPositionalAes<T>,
     val value: T,
-): Setting
+) : Setting

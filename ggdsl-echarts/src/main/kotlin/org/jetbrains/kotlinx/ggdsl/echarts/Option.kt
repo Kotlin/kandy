@@ -1,8 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.echarts
 
-import org.jetbrains.kotlinx.ggdsl.echarts.util.color.EchartsColorOption
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.util.color.EchartsColorOption
 
 @Serializable
 data class Option(
@@ -64,7 +64,7 @@ data class Series(
     val symbolSize: Int? = null,
     val symbol: String? = null,
     val lineStyle: LineStyle? = null,
-    val showSymbol:Boolean = false, //TODO
+    val showSymbol: Boolean = false, //TODO
     //val stack: String? = null,
     // TODO
     val universalTransition: Boolean = true,

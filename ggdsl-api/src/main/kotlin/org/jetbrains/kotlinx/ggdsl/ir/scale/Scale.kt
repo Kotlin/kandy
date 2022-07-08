@@ -10,10 +10,12 @@ sealed interface Scale
  * Continuous scale interface. Continuous scale wraps a function
  * that acts from one segment to another.
  */
-sealed interface ContinuousScale: Scale
+interface ContinuousScale : Scale {
+    val transform: Transform?
+}
 
 /**
  * Categorical scale interface. Categorical scale wraps a function
  * that acts from one finite set to another.
  */
-sealed interface CategoricalScale: Scale
+sealed interface CategoricalScale : Scale

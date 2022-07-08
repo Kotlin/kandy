@@ -5,4 +5,4 @@ package org.jetbrains.kotlinx.ggdsl.ir.geom
  *
  *  @param name the name of entity
  */
-data class CommonGeom(val name: String): Geom
+data class CommonGeom(val name: String) : Geom

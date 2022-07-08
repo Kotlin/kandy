@@ -1,50 +1,46 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
-import org.jetbrains.kotlinx.ggdsl.ir.scale.guide.Legend
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 sealed interface LegendType
 
-class None internal constructor(): LegendType
+class None internal constructor() : LegendType
 
 data class DiscreteLegend internal constructor(
     val nRow: Int? = null,
     val nCol: Int? = null,
     val byRow: Boolean? = null
-): LegendType
+) : LegendType
 
 data class ColorBar internal constructor(
     val barWidth: Double? = null,
     val barHeight: Double? = null,
     val nBin: Int? = null
-): LegendType
+) : LegendType
 
-class LetsPlotLegend<DomainType: Any, RangeType: Any>: Legend {
-    var name: String? = null
-    var breaks: List<DomainType>? = null
-    var labels: List<String>? = null // todo pair list and format
+data class Legend<DomainType : Any, RangeType : Any>(
+    var name: String? = null,
+    var breaks: List<DomainType>? = null,
+    var labels: List<String>? = null, // todo pair list and format
     // todo expand & trans
-    var legendType: LegendType? = null
-}
+    var legendType: LegendType? = null,
+)
 
-fun LetsPlotLegend<*, *>.none() = None()
+fun Legend<*, *>.none() = None()
 
-fun LetsPlotLegend<*,*>.discreteLegend(
+fun Legend<*, *>.discreteLegend(
     nRow: Int? = null,
     nCol: Int? = null,
     byRow: Boolean? = null
 ) = DiscreteLegend(nRow, nCol, byRow)
 
-fun LetsPlotLegend<*,Color>.colorBar(
+fun Legend<*, Color>.colorBar(
     barWidth: Double? = null,
     barHeight: Double? = null,
     nBin: Int? = null
 ) = ColorBar(barWidth, barHeight, nBin)
-/*
-inline fun<DomainType : Any, RangeType : Any> NonPositionalScaleContext<DomainType, RangeType>.
-        legend(block: LetsPlotLegend<DomainType, RangeType>.() -> Unit) {
-    legend = LetsPlotLegend<DomainType, RangeType>().apply(block)
+
+inline operator fun <DomainType : Any, RangeType : Any>
+        Legend<DomainType, RangeType>.invoke(block: Legend<DomainType, RangeType>.() -> Unit) {
+    apply(block)
 }
-
- */
-

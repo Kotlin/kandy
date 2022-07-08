@@ -21,10 +21,10 @@ internal class SourceScaledTest {
     @Test
     fun testScaledPositionalDefault() {
         val ds = DataSource<Double>("ds2", typeOf<Int>())
-        val continuousScaledSource = ds.scaled(PositionalContinuousDefaultScale)
+        val continuousScaledSource = ds.scaled(PositionalContinuousDefaultScale())
         val categoricalScaledSource = ds.scaled(PositionalCategoricalDefaultScale)
         assertEquals(
-            SourceScaledPositionalDefault(ds, PositionalContinuousDefaultScale),
+            SourceScaledPositionalDefault(ds, PositionalContinuousDefaultScale()),
             continuousScaledSource
         )
         assertEquals(
@@ -36,10 +36,10 @@ internal class SourceScaledTest {
     @Test
     fun testScaledNonPositionalDefault() {
         val ds = DataSource<Double>("ds3", typeOf<Int>())
-        val continuousScaledSource = ds.scaled(NonPositionalContinuousDefaultScale)
+        val continuousScaledSource = ds.scaled(NonPositionalContinuousDefaultScale())
         val categoricalScaledSource = ds.scaled(NonPositionalCategoricalDefaultScale)
         assertEquals(
-            SourceScaledNonPositionalDefault(ds, NonPositionalContinuousDefaultScale),
+            SourceScaledNonPositionalDefault(ds, NonPositionalContinuousDefaultScale()),
             continuousScaledSource
         )
         assertEquals(

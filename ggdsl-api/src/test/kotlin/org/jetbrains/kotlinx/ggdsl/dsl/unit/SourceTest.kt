@@ -8,7 +8,7 @@ import kotlin.test.assertEquals
 
 internal class SourceTest {
     @Test
-    fun testSource(){
+    fun testSource() {
         val id = "ID__X"
         val source = source<Int>(id)
         assertEquals(DataSource(id, typeOf<Int>()), source)

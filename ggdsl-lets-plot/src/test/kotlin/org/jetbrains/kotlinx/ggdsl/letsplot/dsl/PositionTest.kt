@@ -1,7 +1,11 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.*
+import org.jetbrains.kotlinx.ggdsl.old.bars
+import org.jetbrains.kotlinx.ggdsl.dsl.plot
+import org.jetbrains.kotlinx.ggdsl.old.points
+import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.Layout
+import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.POSITION_FEATURE_NAME
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
@@ -11,7 +15,7 @@ import kotlin.test.assertEquals
 
 internal class PositionTest {
     @Test
-    fun testSimple(){
+    fun testSimple() {
         val plot = plot {
             points {
                 position = Position.Identity
@@ -37,7 +41,7 @@ internal class PositionTest {
     }
 
     @Test
-    fun testComplex(){
+    fun testComplex() {
         val plot = plot {
             bars {
                 position = Position.Stack
@@ -65,8 +69,10 @@ internal class PositionTest {
                         Geom.POINT,
                         mapOf(),
                         mapOf(),
-                        mapOf(POSITION_FEATURE_NAME to
-                                Position.JitterDodge(2.0, 3.0, 1.0))
+                        mapOf(
+                            POSITION_FEATURE_NAME to
+                                    Position.JitterDodge(2.0, 3.0, 1.0)
+                        )
                     ),
                     Layer(
                         mapOf(),

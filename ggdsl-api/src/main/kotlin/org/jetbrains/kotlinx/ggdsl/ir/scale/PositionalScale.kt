@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.ir.scale
  *
  * @param DomainType the type of the domain.
  */
-sealed interface PositionalScale<DomainType: Any>: Scale
+sealed interface PositionalScale<DomainType : Any> : Scale
 
 /**
  * Positional continuous scale.
@@ -15,9 +15,10 @@ sealed interface PositionalScale<DomainType: Any>: Scale
  * @param DomainType the type of the domain.
  * @param limits the limits of the domain.
  */
-data class PositionalContinuousScale<DomainType: Any>(
+data class PositionalContinuousScale<DomainType : Any>(
     val limits: Pair<DomainType, DomainType>? = null,
-): ContinuousScale, PositionalScale<DomainType>
+    override val transform: PositionalTransform? = null,
+) : ContinuousScale, PositionalScale<DomainType>
 
 /**
  * Positional categorical scale.
@@ -25,6 +26,6 @@ data class PositionalContinuousScale<DomainType: Any>(
  * @param DomainType the type of the domain.
  * @param categories the list of the domain categories.
  */
-data class PositionalCategoricalScale<DomainType: Any>(
+data class PositionalCategoricalScale<DomainType : Any>(
     val categories: List<DomainType>? = null,
-): CategoricalScale, PositionalScale<DomainType>
+) : CategoricalScale, PositionalScale<DomainType>

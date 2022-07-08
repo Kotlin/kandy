@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.plot
+import org.jetbrains.kotlinx.ggdsl.dsl.source
 import org.jetbrains.kotlinx.ggdsl.ir.Layout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
@@ -48,11 +49,11 @@ class FacetTest {
                 listOf(),
                 Layout(),
                 mapOf(
-                    FacetGridFeature.FEATURE_NAME to FacetGridFeature().apply {
+                    FacetGridFeature.FEATURE_NAME to FacetGridFeature( xOrder = OrderDirection.ASCENDING,
+                            yOrder = OrderDirection.DESCENDING).apply {
                         mappings[FACET_X] = DataSource<String>("xArg", typeOf<String>())
                         mappings[FACET_Y] = DataSource<Int>("yArg", typeOf<Int>())
-                        xOrder = OrderDirection.ASCENDING
-                        yOrder = OrderDirection.DESCENDING
+
                     }
                 )
             ),

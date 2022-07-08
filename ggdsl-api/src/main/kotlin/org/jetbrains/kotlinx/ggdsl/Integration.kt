@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl
 
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
-import org.jetbrains.kotlinx.jupyter.api.libraries.*
+import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 
 @JupyterLibrary
 internal class Integration : JupyterIntegration() {

@@ -2,7 +2,10 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.ir.scale.*
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 
 /**
  *  TODO determines behavior

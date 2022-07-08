@@ -1,19 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.scale.guide
 
-import org.jetbrains.kotlinx.ggdsl.ir.scale.guide.Axis
 
-class EchartsAxis<DomainType: Any>: Axis {
+class Axis<DomainType : Any> {
     var show: Boolean? = true
     var name: String? = null
-   // var breaks: List<DomainType>? = null
-   // var labels: List<String>? = null // todo pair list and format
-    // fun overolad
-    // breaks(.... format = ) / labeledBreaks(0.0 to "0", 0.4 to ".4" ...)
-    // todo
-}
-/*
-fun<DomainType : Any> PositionalScaleContext<DomainType>.axis(block: EchartsAxis<DomainType>.() -> Unit) {
-    axis = EchartsAxis<DomainType>().apply(block)
 }
 
- */
+
+inline operator fun <DomainType : Any> Axis<DomainType>.invoke(block: Axis<DomainType>.() -> Unit) {
+    apply(block)
+}

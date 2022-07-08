@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.facet
 
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
@@ -10,17 +10,34 @@ class FacetAes(val name: String)
 val FACET_X = FacetAes("x")
 val FACET_Y = FacetAes("y")
 
-class OrderDirection internal constructor(val value: Int) {
+data class OrderDirection internal constructor(val value: Int) {
     companion object {
         val ASCENDING = OrderDirection(1)
         val DESCENDING = OrderDirection(-1)
     }
 }
 
+data class Direction internal constructor(val name: String) {
+    companion object {
+        val VERTICAL = Direction("v")
+        val HORIZONTAL = Direction("h")
+    }
+}
+
+data class ScalesSharing internal constructor(val name: String) {
+    companion object {
+        val FIXED = ScalesSharing("fixed")
+        val FREE = ScalesSharing("free")
+        val FREE_X = ScalesSharing("free_x")
+        val FREE_Y = ScalesSharing("free_y")
+    }
+}
+
 data class FacetGridFeature(
     val mappings: MutableMap<FacetAes, DataSource<*>> = mutableMapOf(),
-    var xOrder: OrderDirection = OrderDirection.ASCENDING,
-    var yOrder: OrderDirection = OrderDirection.ASCENDING
+    val scalesSharing: ScalesSharing = ScalesSharing.FIXED,
+    val xOrder: OrderDirection = OrderDirection.ASCENDING,
+    val yOrder: OrderDirection = OrderDirection.ASCENDING
 ) : PlotFeature {
     override val featureName: FeatureName = FEATURE_NAME
     /* TODO
@@ -35,16 +52,48 @@ data class FacetGridFeature(
 
 }
 
+data class FacetWrapFeature(
+    val facets: List<DataSource<*>> = listOf(),// TODO,
+    var nCol: Int? = null,
+    var nRow: Int? = null,
+    var order: OrderDirection = OrderDirection.ASCENDING,
+    val scalesSharing: ScalesSharing = ScalesSharing.FIXED,
+    val direction: Direction = Direction.HORIZONTAL
+) : PlotFeature {
+    override val featureName: FeatureName = FEATURE_NAME
+    /* TODO
+    val format: String? = null
+
+
+     */
+
+    companion object {
+        val FEATURE_NAME = FeatureName("FACET_WRAP_FEATURE")
+    }
+
+}
+
+
 class FacetGridContext {
     val mappings: MutableMap<FacetAes, DataSource<*>> = mutableMapOf()
     val x = FACET_X
     val y = FACET_Y
+    var scalesSharing = ScalesSharing.FIXED
     var xOrder: OrderDirection = OrderDirection.ASCENDING
     var yOrder: OrderDirection = OrderDirection.ASCENDING
 
     inline operator fun <reified DomainType : Any> FacetAes.invoke(dataSource: DataSource<DomainType>) {
         mappings[this] = dataSource
     }
+}
+
+class FacetWrapContext {
+    var facets: List<DataSource<*>> = listOf() //TODO
+    var nCol: Int? = null
+    var nRow: Int? = null
+    var order: OrderDirection = OrderDirection.ASCENDING
+    var scalesSharing: ScalesSharing = ScalesSharing.FIXED
+    val direction: Direction = Direction.HORIZONTAL
 }
 
 
@@ -70,13 +119,24 @@ class FacetGridContext {
  * }
  * ```
  */
-fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.facetGrid(block: FacetGridContext.() -> Unit) {
+fun PlotContext.facetGrid(block: FacetGridContext.() -> Unit) {
     features[FacetGridFeature.FEATURE_NAME] =
         with(FacetGridContext().apply(block)) {
             FacetGridFeature(
                 mappings,
+                scalesSharing,
                 xOrder,
                 yOrder
+            )
+        }
+}
+
+// todo fun instead context???
+fun PlotContext.facetWrap(block: FacetWrapContext.() -> Unit) {
+    features[FacetWrapFeature.FEATURE_NAME] =
+        with(FacetWrapContext().apply(block)) {
+            FacetWrapFeature(
+                facets, nCol, nRow, order, scalesSharing, direction
             )
         }
 }

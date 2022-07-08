@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.ir.*
+import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.Layout
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
@@ -16,7 +17,7 @@ class BindingCollector internal constructor() {
     val mappings: MutableMap<Aes, Mapping> = mutableMapOf()
     val settings: MutableMap<Aes, Setting> = mutableMapOf()
 
-    fun copyFrom(other: org.jetbrains.kotlinx.ggdsl.dsl.BindingCollector) {
+    fun copyFrom(other: BindingCollector) {
         mappings.putAll(other.mappings)
         settings.putAll(other.settings)
     }
@@ -30,18 +31,20 @@ class BindingCollector internal constructor() {
  *
  * @property data the mutual dataset context.
  */
-abstract class BaseBindingContext {
-    abstract var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
+abstract class BindingContext {
+    abstract var data: MutableNamedData
 
     // TODO remove or make internal
-    protected val bindingCollector = org.jetbrains.kotlinx.ggdsl.dsl.BindingCollector()
+    protected val bindingCollector = BindingCollector()
 
     // TODO remove or make internal
-    val bindingCollectorAccessor: org.jetbrains.kotlinx.ggdsl.dsl.BindingCollector
+    val bindingCollectorAccessor: BindingCollector
         get() = bindingCollector
 
-    fun copyFrom(other: org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext) {
-        data = other.data
+    fun copyFrom(other: BindingContext, copyData: Boolean = true) {
+        if (copyData) {
+            data = other.data
+        }
         bindingCollector.copyFrom(other.bindingCollector)
     }
 
@@ -71,14 +74,28 @@ abstract class BaseBindingContext {
      *
      * @param source the assigned raw data source.
      */
-    inline operator fun <reified DomainType : Any> ScalableAes.invoke(
+    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         source: DataSource<DomainType>
-    ) {
-        bindingCollectorAccessor.mappings[this] = ScaledUnspecifiedDefaultMapping(
+    ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
+        val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this,
             source.scaled(),
             typeOf<DomainType>()
         )
+        bindingCollectorAccessor.mappings[this] = mapping
+        return mapping
+    }
+
+    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+        source: DataSource<DomainType>
+    ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
+        val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
+            this,
+            source.scaled(),
+            typeOf<DomainType>()
+        )
+        bindingCollectorAccessor.mappings[this] = mapping
+        return mapping
     }
 
     /**
@@ -86,14 +103,28 @@ abstract class BaseBindingContext {
      *
      * @param sourceScaledDefault the assigned source scaled default.
      */
-    inline operator fun <reified DomainType : Any> ScalableAes.invoke(
+    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         sourceScaledDefault: SourceScaledUnspecifiedDefault<DomainType>
-    ) {
-        bindingCollectorAccessor.mappings[this] = ScaledUnspecifiedDefaultMapping(
+    ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
+        val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this,
             sourceScaledDefault,
             typeOf<DomainType>()
         )
+        bindingCollectorAccessor.mappings[this] = mapping
+        return mapping
+    }
+
+    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+        sourceScaledDefault: SourceScaledUnspecifiedDefault<DomainType>
+    ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
+        val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
+            this,
+            sourceScaledDefault,
+            typeOf<DomainType>()
+        )
+        bindingCollectorAccessor.mappings[this] = mapping
+        return mapping
     }
 
     /**
@@ -103,12 +134,14 @@ abstract class BaseBindingContext {
      */
     inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         sourceScaledDefault: SourceScaledPositionalDefault<DomainType>
-    ) {
-        bindingCollectorAccessor.mappings[this] = ScaledPositionalDefaultMapping(
+    ): ScaledPositionalDefaultMapping<DomainType> {
+        val mapping = ScaledPositionalDefaultMapping(
             this,
             sourceScaledDefault,
             typeOf<DomainType>()
         )
+        bindingCollectorAccessor.mappings[this] = mapping
+        return mapping
     }
 
     /**
@@ -116,14 +149,16 @@ abstract class BaseBindingContext {
      *
      * @param sourceScaledDefault the assigned source scaled unspecified non-positional.
      */
-    inline operator fun <reified DomainType : Any> MappableNonPositionalAes<*>.invoke(
+    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
         sourceScaledDefault: SourceScaledNonPositionalDefault<DomainType>
-    ) {
-        bindingCollectorAccessor.mappings[this] = ScaledNonPositionalDefaultMapping(
+    ): ScaledNonPositionalDefaultMapping<DomainType, RangeType> {
+        val mapping = ScaledNonPositionalDefaultMapping(
             this,
             sourceScaledDefault,
             typeOf<DomainType>()
         )
+        bindingCollectorAccessor.mappings[this] = mapping
+        return mapping
     }
 
     /**
@@ -133,12 +168,14 @@ abstract class BaseBindingContext {
      */
     inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         sourceScaledPositional: SourceScaledPositional<DomainType>
-    ) {
-        bindingCollectorAccessor.mappings[this] = ScaledPositionalMapping(
+    ): ScaledPositionalMapping<DomainType> {
+        val mapping = ScaledPositionalMapping(
             this,
             sourceScaledPositional,
             typeOf<DomainType>()
         )
+        bindingCollectorAccessor.mappings[this] = mapping
+        return mapping
     }
 
     /**
@@ -149,19 +186,21 @@ abstract class BaseBindingContext {
     inline operator fun <reified DomainType : Any, reified RangeType : Any>
             MappableNonPositionalAes<RangeType>.invoke(
         sourceScaledNonPositional: SourceScaledNonPositional<DomainType, RangeType>
-    ) {
-        bindingCollectorAccessor.mappings[this] = ScaledNonPositionalMapping(
+    ): ScaledNonPositionalMapping<DomainType, RangeType> {
+        val mapping = ScaledNonPositionalMapping(
             this,
             sourceScaledNonPositional,
-            typeOf<DomainType>(),
-           // typeOf<RangeType>()
+            typeOf<DomainType>()
         )
+        bindingCollectorAccessor.mappings[this] = mapping
+        return mapping
     }
 
-    // TODO other????
+}
+
+abstract class BaseBindingContext: BindingContext() {
     val x = X
     val y = Y
-
 }
 
 /**
@@ -169,45 +208,15 @@ abstract class BaseBindingContext {
  *
  * todo
  */
-abstract class LayerContext : org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext() {
+abstract class LayerContext : BaseBindingContext() {
 
     // todo hide
     val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 }
 
-class PointsContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) : org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
-    val size = SIZE
-    val color = COLOR
-    val alpha = ALPHA
+class PlotContext : BaseBindingContext() {
 
-    val borderWidth = BORDER_WIDTH
-    val borderColor = BORDER_COLOR
-
-    val symbol = SYMBOL
-}
-
-class LineContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) : org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
-    val color = COLOR
-    val alpha = ALPHA
-
-    val width = WIDTH
-
-    val lineType = LINE_TYPE
-}
-
-class BarsContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) : org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
-    val color = COLOR
-    val alpha = ALPHA
-
-    val width = WIDTH
-
-    val borderWidth = BORDER_WIDTH
-    val borderColor = BORDER_COLOR
-}
-
-class PlotContext : org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext() {
-
-    override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData = mutableMapOf()
+    override var data: MutableNamedData = mutableMapOf()
 
     val layout = Layout()
 

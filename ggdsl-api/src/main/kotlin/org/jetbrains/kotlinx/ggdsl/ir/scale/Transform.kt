@@ -1,3 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
-interface Transform
+sealed interface Transform
+
+interface PositionalTransform : Transform
+interface NonPositionalTransform : Transform

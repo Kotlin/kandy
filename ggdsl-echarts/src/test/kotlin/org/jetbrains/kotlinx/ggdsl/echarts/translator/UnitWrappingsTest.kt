@@ -5,14 +5,18 @@ import org.jetbrains.kotlinx.ggdsl.dsl.source
 import org.jetbrains.kotlinx.ggdsl.echarts.*
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.Stack
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.*
-import org.jetbrains.kotlinx.ggdsl.echarts.util.color.*
-import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
+import org.jetbrains.kotlinx.ggdsl.echarts.util.color.ColorStop
+import org.jetbrains.kotlinx.ggdsl.echarts.util.color.GradientOption
+import org.jetbrains.kotlinx.ggdsl.echarts.util.color.LinearGradientColor
+import org.jetbrains.kotlinx.ggdsl.echarts.util.color.SimpleColorOption
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.old.*
 import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
@@ -57,7 +61,7 @@ internal class UnitWrappingsTest {
                     ),
                     typeOf<Double>()
                 ),
-                Y to ScaledUnspecifiedDefaultMapping(
+                Y to ScaledUnspecifiedDefaultPositionalMapping(
                     Y,
                     SourceScaledUnspecifiedDefault(
                         source<Int>("yy")
@@ -94,7 +98,7 @@ internal class UnitWrappingsTest {
                 X to ScaledPositionalDefaultMapping(
                     X, SourceScaledPositionalDefault(
                         source<Float>("time"),
-                        PositionalContinuousDefaultScale
+                        PositionalContinuousDefaultScale()
                     ),
                     typeOf<Double>()
                 ),
@@ -172,7 +176,7 @@ internal class UnitWrappingsTest {
     fun testToAxisCont() {
         val range = -23.1f to 51.3f
         val scale = PositionalContinuousScale(range)
-        val axis = scale.toAxis( typeOf<Float>())
+        val axis = scale.toAxis(typeOf<Float>())
         assertEquals(
             Axis(
                 POS_CONT_NAME,
@@ -196,7 +200,7 @@ internal class UnitWrappingsTest {
 
     @Test
     fun testToAxisContDefault() {
-        val scale = PositionalContinuousDefaultScale
+        val scale = PositionalContinuousDefaultScale()
         assertEquals(
             Axis(
                 POS_CONT_NAME,
@@ -235,7 +239,7 @@ internal class UnitWrappingsTest {
                 type = NON_POS_CAT_NAME,
                 dimension = dim,
                 seriesIndex = seriesIndex,
-                categories = categories.map { it.toString() } ,// todo
+                categories = categories.map { it.toString() },// todo
                 inRange = InRange(
                     color = values.map { wrapColor(it) }
                 ),

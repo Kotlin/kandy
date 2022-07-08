@@ -1,13 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 val BOXPLOT = LetsPlotGeom("boxplot")
 
-class BoxplotContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) : org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
+class BoxplotContext(override var data: MutableNamedData) : LayerContext() {
 
     val lower = LOWER
     val upper = UPPER
@@ -15,11 +14,17 @@ class BoxplotContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableN
     val yMin = Y_MIN
     val yMax = Y_MAX
 
-    val color = COLOR
+    val fatten = FATTEN
+
+    val color = FILL
     val alpha = ALPHA
 
-    val borderWidth = BORDER_WIDTH
-    val borderColor = BORDER_COLOR
+    val borderLine = BorderLineSubContext()
+
+    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
+        apply(block)
+        this@BoxplotContext.copyFrom(this, false)
+    }
 }
 
 /**
@@ -60,6 +65,6 @@ class BoxplotContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableN
  *
  *  @see [BaseBindingContext]
  */
-fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.boxplot(block: BoxplotContext.() -> Unit) {
+fun PlotContext.boxplot(block: BoxplotContext.() -> Unit) {
     layers.add(BoxplotContext(data).apply { copyFrom(this@boxplot) }.apply(block).toLayer(BOXPLOT))
 }

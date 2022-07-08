@@ -1,19 +1,27 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 val AREA = LetsPlotGeom("area")
 
-class AreaContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) : org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
-    val color = COLOR
+
+
+class AreaContext(override var data: MutableNamedData) :
+    LayerContext() {
+    val color = FILL
     val alpha = ALPHA
 
-    val borderWidth = BORDER_WIDTH
-    val borderColor = BORDER_COLOR
+    val borderLine = BorderLineSubContext()
+
+    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
+        apply(block)
+        this@AreaContext.copyFrom(this, false)
+    }
 }
 
 /**
@@ -47,6 +55,6 @@ class AreaContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableName
  *
  *  @see [BaseBindingContext]
  */
-fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.area(block: AreaContext.() -> Unit) {
+fun PlotContext.area(block: AreaContext.() -> Unit) {
     layers.add(AreaContext(data).apply { copyFrom(this@area) }.apply(block).toLayer(AREA))
 }

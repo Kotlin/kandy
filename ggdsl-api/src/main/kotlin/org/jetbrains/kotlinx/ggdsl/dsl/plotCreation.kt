@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
  *
  * @return new [Plot]
  */
-fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.toPlot(): Plot {
+fun PlotContext.toPlot(): Plot {
     return Plot(data, layers, layout, features)
 }
 
@@ -46,8 +46,8 @@ fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.toPlot(): Plot {
  * @return new [Plot]
  * @see [BaseBindingContext]
  */
-inline fun plot(dataset: NamedData = mapOf(), block: org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.() -> Unit): Plot {
-    return org.jetbrains.kotlinx.ggdsl.dsl.PlotContext().apply{
+inline fun plot(dataset: NamedData = mapOf(), block: PlotContext.() -> Unit): Plot {
+    return PlotContext().apply {
         data = dataset.toMutableMap()
         block()
     }.toPlot()

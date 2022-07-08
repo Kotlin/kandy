@@ -3,18 +3,23 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator
 import org.jetbrains.kotlinx.ggdsl.echarts.*
 import org.jetbrains.kotlinx.ggdsl.echarts.animation.AnimationFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.Stack
-import org.jetbrains.kotlinx.ggdsl.echarts.util.color.*
+import org.jetbrains.kotlinx.ggdsl.echarts.util.color.EchartsColorOption
+import org.jetbrains.kotlinx.ggdsl.echarts.util.color.LinearGradientColor
+import org.jetbrains.kotlinx.ggdsl.echarts.util.color.RadialGradientColor
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.toEchartsColorOption
 import org.jetbrains.kotlinx.ggdsl.echarts.util.symbol.EchartsSymbol
-import org.jetbrains.kotlinx.ggdsl.ir.*
+import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
-import org.jetbrains.kotlinx.ggdsl.util.color.*
+import org.jetbrains.kotlinx.ggdsl.old.*
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
 import org.jetbrains.kotlinx.ggdsl.util.linetype.CommonLineType
-import org.jetbrains.kotlinx.ggdsl.util.symbol.*
+import org.jetbrains.kotlinx.ggdsl.util.symbol.CommonSymbol
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 

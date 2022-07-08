@@ -10,8 +10,8 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class BindingTest {
-    class TestContext() : org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext() {
-        override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData = mutableMapOf()
+    class TestContext : BaseBindingContext() {
+        override var data: MutableNamedData = mutableMapOf()
     }
 
     @Test
@@ -61,7 +61,7 @@ internal class BindingTest {
             mockAes(mockSource)
         }
         assertEquals<Map<Aes, Mapping>>(
-            mapOf(mockAes to ScaledUnspecifiedDefaultMapping(mockAes, mockSource.scaled(), typeOf<Int>())),
+            mapOf(mockAes to ScaledUnspecifiedDefaultNonPositionalMapping(mockAes, mockSource.scaled(), typeOf<Int>())),
             context.bindingCollectorAccessor.mappings
         )
     }
@@ -74,7 +74,11 @@ internal class BindingTest {
             mockAes(mockSource.scaled())
         }
         assertEquals<Map<Aes, Mapping>>(
-            mapOf(mockAes to ScaledUnspecifiedDefaultMapping(mockAes, mockSource.scaled(), typeOf<String>())),
+            mapOf(
+                mockAes to ScaledUnspecifiedDefaultPositionalMapping(
+                    mockAes, mockSource.scaled(), typeOf<String>()
+                )
+            ),
             context.bindingCollectorAccessor.mappings
         )
     }

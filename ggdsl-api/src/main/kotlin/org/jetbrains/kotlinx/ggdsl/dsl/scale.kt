@@ -5,15 +5,18 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 /**
  * Creates a new default continuous non-positional scale
  */
-fun continuous() = NonPositionalContinuousDefaultScale
+fun continuous(transform: NonPositionalTransform? = null) = NonPositionalContinuousDefaultScale(transform)
+
 /**
  * Creates a new default categorical non-positional scale
  */
 fun categorical() = NonPositionalCategoricalDefaultScale
+
 /**
  * Creates a new default continuous positional scale
  */
-fun continuousPos() = PositionalContinuousDefaultScale
+fun continuousPos(transform: PositionalTransform? = null) = PositionalContinuousDefaultScale(transform)
+
 /**
  * Creates a new default categorical positional scale
  */
@@ -26,8 +29,10 @@ fun categoricalPos() = PositionalCategoricalDefaultScale
  * @param limits segment defining the domain
  * @return new [PositionalContinuousScale] with given limits
  */
-fun <DomainType : Any> continuousPos(limits: Pair<DomainType, DomainType>? = null) =
-    PositionalContinuousScale(limits)
+fun <DomainType : Any> continuousPos(
+    limits: Pair<DomainType, DomainType>? = null,
+    transform: PositionalTransform? = null
+) = PositionalContinuousScale(limits, transform)
 
 /**
  * Creates a new continuous non-positional scale
@@ -41,7 +46,8 @@ fun <DomainType : Any> continuousPos(limits: Pair<DomainType, DomainType>? = nul
 fun <DomainType : Any, RangeType : Any> continuous(
     domainLimits: Pair<DomainType, DomainType>? = null,
     rangeLimits: Pair<RangeType, RangeType>? = null,
-) = NonPositionalContinuousScale(domainLimits, rangeLimits)
+    transform: NonPositionalTransform? = null
+) = NonPositionalContinuousScale(domainLimits, rangeLimits, transform)
 
 /**
  * Creates a new categorical positional scale

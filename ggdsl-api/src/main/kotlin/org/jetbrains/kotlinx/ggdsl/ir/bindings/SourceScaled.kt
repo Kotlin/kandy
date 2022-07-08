@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.*
  * @property source the source to which the scale is applied
  * @property scale applying scale
  */
-sealed interface SourceScaled<DomainType: Any> {
+sealed interface SourceScaled<DomainType : Any> {
     val source: DataSource<DomainType>
     val scale: Scale
 }
@@ -22,7 +22,7 @@ sealed interface SourceScaled<DomainType: Any> {
  * @property source the source to which the scale is applied
  * @property scale applying default scale
  */
-sealed interface SourceScaledDefault<DomainType: Any>: SourceScaled<DomainType> {
+sealed interface SourceScaledDefault<DomainType : Any> : SourceScaled<DomainType> {
     override val scale: DefaultScale
 }
 
@@ -33,9 +33,9 @@ sealed interface SourceScaledDefault<DomainType: Any>: SourceScaled<DomainType> 
  * @property source the source to which the scale is applied
  * @property scale applying unspecified default scale
  */
-data class SourceScaledUnspecifiedDefault<DomainType: Any>(
+data class SourceScaledUnspecifiedDefault<DomainType : Any>(
     override val source: DataSource<DomainType>,
-): SourceScaled<DomainType> {
+) : SourceScaled<DomainType> {
     override val scale = UnspecifiedDefaultScale
 }
 
@@ -46,10 +46,10 @@ data class SourceScaledUnspecifiedDefault<DomainType: Any>(
  * @property source the source to which the scale is applied
  * @property scale applying positional default scale
  */
-data class SourceScaledPositionalDefault<DomainType: Any>(
+data class SourceScaledPositionalDefault<DomainType : Any>(
     override val source: DataSource<DomainType>,
     override val scale: PositionalDefaultScale
-): SourceScaled<DomainType>
+) : SourceScaled<DomainType>
 
 /**
  * Scaled non-positional default source
@@ -58,10 +58,10 @@ data class SourceScaledPositionalDefault<DomainType: Any>(
  * @property source the source to which the scale is applied
  * @property scale applying non-positional default scale
  */
-data class SourceScaledNonPositionalDefault<DomainType: Any>(
+data class SourceScaledNonPositionalDefault<DomainType : Any>(
     override val source: DataSource<DomainType>,
     override val scale: NonPositionalDefaultScale
-): SourceScaled<DomainType>
+) : SourceScaled<DomainType>
 
 /**
  * Scaled positional source
@@ -70,10 +70,10 @@ data class SourceScaledNonPositionalDefault<DomainType: Any>(
  * @property source the source to which the scale is applied
  * @property scale applying positional scale
  */
-data class SourceScaledPositional<DomainType: Any>(
+data class SourceScaledPositional<DomainType : Any>(
     override val source: DataSource<DomainType>,
     override val scale: PositionalScale<DomainType>
-): SourceScaled<DomainType>
+) : SourceScaled<DomainType>
 
 /**
  * Scaled non-positional source
@@ -82,7 +82,7 @@ data class SourceScaledPositional<DomainType: Any>(
  * @property source the source to which the scale is applied
  * @property scale applying non-positional scale
  */
-data class SourceScaledNonPositional<DomainType: Any, RangeType: Any>(
+data class SourceScaledNonPositional<DomainType : Any, RangeType : Any>(
     override val source: DataSource<DomainType>,
     override val scale: NonPositionalScale<DomainType, RangeType>
-): SourceScaled<DomainType>
+) : SourceScaled<DomainType>

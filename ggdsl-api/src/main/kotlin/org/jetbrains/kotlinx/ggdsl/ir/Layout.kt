@@ -9,5 +9,5 @@ package org.jetbrains.kotlinx.ggdsl.ir
 data class Layout(
     var title: String? = null,
     // todo width height?
-    var size: Pair<Int, Int> ?= null
+    var size: Pair<Int, Int>? = null
 )

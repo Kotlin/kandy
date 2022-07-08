@@ -1,7 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.position
 
-import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
-
 /**
  * Position adjustment of this layer.
  *

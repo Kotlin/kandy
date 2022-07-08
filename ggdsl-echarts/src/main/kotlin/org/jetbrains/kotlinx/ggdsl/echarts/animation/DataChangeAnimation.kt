@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.animation
 
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 
 
 data class DataChangeAnimation internal constructor(

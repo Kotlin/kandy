@@ -1,6 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -8,22 +10,24 @@ import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 
 val CROSS_BAR = LetsPlotGeom("crossbar")
 
-class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) : org.jetbrains.kotlinx.ggdsl.dsl.LayerContext(){
+class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
+    org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
     val yMin = Y_MIN
     val yMax = Y_MAX
     val middle = MIDDLE
 
     val fatten = FATTEN
 
-    //val size = SIZE
+    val width = WIDTH
     val color = COLOR
     val alpha = ALPHA
 
-    val borderColor = BORDER_COLOR
+    val borderLine = BorderLineSubContext()
 
-    // TODO LINE WIDTH??? BORDER WIDTH??
-    val borderWidth = BORDER_WIDTH
-    val lineType = LINE_TYPE
+    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
+        apply(block)
+        this@CrossBarContext.copyFrom(this, false)
+    }
 }
 
 /**
@@ -64,6 +68,6 @@ class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutable
  *
  *  @see [BaseBindingContext]
  */
-fun org.jetbrains.kotlinx.ggdsl.dsl.PlotContext.crossBar(block: CrossBarContext.() -> Unit) {
+fun PlotContext.crossBar(block: CrossBarContext.() -> Unit) {
     layers.add(CrossBarContext(data).apply { copyFrom(this@crossBar) }.apply(block).toLayer(CROSS_BAR))
 }

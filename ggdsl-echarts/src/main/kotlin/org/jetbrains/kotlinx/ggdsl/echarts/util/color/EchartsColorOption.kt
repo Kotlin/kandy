@@ -11,9 +11,9 @@ import kotlinx.serialization.encoding.Encoder
 sealed class EchartsColorOption
 
 @kotlinx.serialization.Serializable
-data class SimpleColorOption(val name: String): EchartsColorOption()
+data class SimpleColorOption(val name: String) : EchartsColorOption()
 
-object EchartsColorOptionSerializer: KSerializer<EchartsColorOption> {
+object EchartsColorOptionSerializer : KSerializer<EchartsColorOption> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("color", PrimitiveKind.STRING)
 
@@ -23,7 +23,7 @@ object EchartsColorOptionSerializer: KSerializer<EchartsColorOption> {
     }
 
     override fun serialize(encoder: Encoder, value: EchartsColorOption) {
-        when(value) {
+        when (value) {
             is GradientOption -> {
                 encoder.encodeSerializableValue(GradientOption.serializer(), value)
             }
@@ -45,7 +45,7 @@ internal data class GradientOption(
     val r: Double? = null,
 
     val colorStops: List<ColorStop>
-): EchartsColorOption()
+) : EchartsColorOption()
 
 @kotlinx.serialization.Serializable
 internal data class ColorStop(

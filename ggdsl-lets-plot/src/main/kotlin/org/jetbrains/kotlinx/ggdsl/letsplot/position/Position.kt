@@ -33,8 +33,7 @@ sealed class Position private constructor(val name: String) : LayerFeature {
      * The jitter is added in both positive and negative directions,
      * so the total spread is twice the value specified here.
      */
-    data class Jitter(val width: Number? = null, val height: Number? = null)
-        : Position("jitter")
+    data class Jitter(val width: Number? = null, val height: Number? = null) : Position("jitter")
 
     /**
      * Nudge points a fixed distance.
@@ -42,8 +41,7 @@ sealed class Position private constructor(val name: String) : LayerFeature {
      * @param x the amount of vertical distance to move.
      * @param y the amount of horizontal distance to move.
      */
-    data class Nudge(val x: Number? = null, val y: Number? = null)
-        : Position("nudge")
+    data class Nudge(val x: Number? = null, val y: Number? = null) : Position("nudge")
 
     /**
      * Simultaneously dodge and jitter.

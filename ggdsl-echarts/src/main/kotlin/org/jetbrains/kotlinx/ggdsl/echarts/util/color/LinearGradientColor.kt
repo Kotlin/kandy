@@ -15,7 +15,7 @@ data class LinearGradientColor(
     val x2: Double = 0.0,
     val y2: Double = 1.0,
     val colors: List<Pair<Double, StandardColor>> = listOf(0.0 to Color.RED, 1.0 to Color.BLUE),
-): EchartsColor
+) : EchartsColor
 
 //internal fun SingleColor(color: StandardColor) = SimpleColor(color.description)
 internal fun StandardColor.toEchartsColorOption() = SimpleColorOption(description)
@@ -37,7 +37,7 @@ class RadialGradientColor(
     val y: Double = 0.5,
     val r: Double = 0.5,
     val colors: List<Pair<Double, StandardColor>> = listOf(0.0 to Color.RED, 1.0 to Color.BLUE),
-): EchartsColor
+) : EchartsColor
 
 internal fun RadialGradientColor.toEchartsColorOption() = GradientOption(
     "radial", x, y, null, null, r, colors.map { it.toColorStop() }

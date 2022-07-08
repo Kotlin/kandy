@@ -5,4 +5,4 @@ package org.jetbrains.kotlinx.ggdsl.util.symbol
  *
  * @param description the string describing this symbol.
  */
-data class CommonSymbol(val description: String): Symbol
+data class CommonSymbol(val description: String) : Symbol

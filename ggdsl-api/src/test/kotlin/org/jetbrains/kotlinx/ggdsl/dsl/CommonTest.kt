@@ -1,13 +1,18 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.ir.*
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.Layout
+import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
+import org.jetbrains.kotlinx.ggdsl.old.*
+import org.jetbrains.kotlinx.ggdsl.old.bars
+import org.jetbrains.kotlinx.ggdsl.old.points
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.typeOf
 import kotlin.test.Test
@@ -43,13 +48,13 @@ internal class CommonTest {
                         dataset,
                         Geom.POINT,
                         mappings = mapOf(
-                            X to ScaledUnspecifiedDefaultMapping(
+                            X to ScaledUnspecifiedDefaultPositionalMapping(
                                 X, SourceScaledUnspecifiedDefault(srcX), typeOf<Double>()
                             ),
-                            Y to ScaledUnspecifiedDefaultMapping(
+                            Y to ScaledUnspecifiedDefaultPositionalMapping(
                                 Y, SourceScaledUnspecifiedDefault(srcY), typeOf<Float>()
                             ),
-                            COLOR to ScaledUnspecifiedDefaultMapping(
+                            COLOR to ScaledUnspecifiedDefaultNonPositionalMapping(
                                 COLOR, SourceScaledUnspecifiedDefault(type), typeOf<String>()
                             ),
                         ),
@@ -103,7 +108,7 @@ internal class CommonTest {
         }
 
         val xMapping = ScaledPositionalDefaultMapping(
-            X, SourceScaledPositionalDefault(width, PositionalContinuousDefaultScale), typeOf<Double>()
+            X, SourceScaledPositionalDefault(width, PositionalContinuousDefaultScale()), typeOf<Double>()
         )
         val yMapping = ScaledPositionalMapping(
             Y, SourceScaledPositional(
@@ -136,7 +141,7 @@ internal class CommonTest {
                             X to xMapping,
                             Y to yMapping,
                             COLOR to colorMapping,
-                            SIZE to ScaledUnspecifiedDefaultMapping(
+                            SIZE to ScaledUnspecifiedDefaultNonPositionalMapping(
                                 SIZE, SourceScaledUnspecifiedDefault(noa), typeOf<Int>()
                             )
                         ),
@@ -161,7 +166,7 @@ internal class CommonTest {
     }
 
     @Test
-    fun datasetOverriding(){
+    fun datasetOverriding() {
         val emptyDataset: NamedData = mapOf()
         val realDataset: NamedData = mapOf(
             "name" to listOf("Tiny", "Pudge", "Spirit breaker"),
@@ -173,7 +178,7 @@ internal class CommonTest {
         val name = source<String>("name")
 
         val plot = plot(emptyDataset) {
-           // data = emptyDataset.toMutableMap()
+            // data = emptyDataset.toMutableMap()
             x(wr)
             y(iq)
             points {
@@ -189,13 +194,13 @@ internal class CommonTest {
                         realDataset,
                         Geom.POINT,
                         mappings = mapOf(
-                            X to ScaledUnspecifiedDefaultMapping(
+                            X to ScaledUnspecifiedDefaultPositionalMapping(
                                 X, SourceScaledUnspecifiedDefault(wr), typeOf<Double>()
                             ),
-                            Y to ScaledUnspecifiedDefaultMapping(
+                            Y to ScaledUnspecifiedDefaultPositionalMapping(
                                 Y, SourceScaledUnspecifiedDefault(iq), typeOf<Int>()
                             ),
-                            COLOR to ScaledUnspecifiedDefaultMapping(
+                            COLOR to ScaledUnspecifiedDefaultNonPositionalMapping(
                                 COLOR, SourceScaledUnspecifiedDefault(name), typeOf<String>()
                             ),
                         ),

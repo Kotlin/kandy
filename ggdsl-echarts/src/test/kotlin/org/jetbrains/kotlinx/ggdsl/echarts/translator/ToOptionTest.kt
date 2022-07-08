@@ -3,15 +3,14 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.echarts.*
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.stack
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.NON_POS_CAT_NAME
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.POS_CAT_NAME
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.POS_CONT_NAME
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.toOption
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.ColorStop
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.GradientOption
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.LinearGradientColor
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.SimpleColorOption
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.old.bars
+import org.jetbrains.kotlinx.ggdsl.old.line
+import org.jetbrains.kotlinx.ggdsl.old.points
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -93,24 +92,28 @@ internal class ToOptionTest {
 
 
         val plot = plot(dataset) {
-            x(time.scaled(
-                categoricalPos(
-                    listOf(1, 2, 3, 4)
+            x(
+                time.scaled(
+                    categoricalPos(
+                        listOf(1, 2, 3, 4)
+                    )
                 )
-            ))
+            )
             val minStack = stack("min")
             bars {
                 y(valMinMainPart)
-                color(typeMainPart.scaled(
-                    categorical(
-                        rangeValues = listOf(
-                            Color.fromHex("#002137"),
-                            LinearGradientColor(
-                                colors = listOf(0.0 to Color.WHITE, 1.0 to Color.fromHex("#008cf0"))
+                color(
+                    typeMainPart.scaled(
+                        categorical(
+                            rangeValues = listOf(
+                                Color.fromHex("#002137"),
+                                LinearGradientColor(
+                                    colors = listOf(0.0 to Color.WHITE, 1.0 to Color.fromHex("#008cf0"))
+                                )
                             )
                         )
                     )
-                ))
+                )
                 stack = minStack
             }
             bars {
@@ -120,12 +123,14 @@ internal class ToOptionTest {
             }
             bars {
                 y(valMax)
-                color(type.scaled(
-                    categorical(
-                        listOf("dynamic", "static"),
-                        listOf(Color.RED, Color.GREEN)
+                color(
+                    type.scaled(
+                        categorical(
+                            listOf("dynamic", "static"),
+                            listOf(Color.RED, Color.GREEN)
+                        )
                     )
-                ))
+                )
             }
             line {
                 y(valAvg)
@@ -142,11 +147,19 @@ internal class ToOptionTest {
                 Option(
                     dataset = Dataset(
                         listOf(
-                            listOf("time","val_max","val_min_main_part","val_min_rest","type","type_main_part","val_avg"),
-                            listOf("1","2.5","1.0","0.9","static","raw","2.0"),
-                            listOf("2","4.1","0.11","3.2","dynamic","dry","3.3"),
-                            listOf("3","3.8","2.0","2.0","dynamic","dry","2.9"),
-                            listOf("4","2.8","0.3","2.1","dynamic","raw","1.8")
+                            listOf(
+                                "time",
+                                "val_max",
+                                "val_min_main_part",
+                                "val_min_rest",
+                                "type",
+                                "type_main_part",
+                                "val_avg"
+                            ),
+                            listOf("1", "2.5", "1.0", "0.9", "static", "raw", "2.0"),
+                            listOf("2", "4.1", "0.11", "3.2", "dynamic", "dry", "3.3"),
+                            listOf("3", "3.8", "2.0", "2.0", "dynamic", "dry", "2.9"),
+                            listOf("4", "2.8", "0.3", "2.1", "dynamic", "raw", "1.8")
                         )
                     ),
                     xAxis = listOf(

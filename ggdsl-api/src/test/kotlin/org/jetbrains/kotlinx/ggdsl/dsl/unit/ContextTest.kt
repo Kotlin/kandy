@@ -1,7 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.unit
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.*
+import org.jetbrains.kotlinx.ggdsl.old.bars
+import org.jetbrains.kotlinx.ggdsl.old.line
+import org.jetbrains.kotlinx.ggdsl.dsl.plot
+import org.jetbrains.kotlinx.ggdsl.old.points
+import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.Layout
+import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
@@ -63,8 +68,8 @@ internal class ContextTest {
     }
 
     @Test
-    fun testPlotEmpty(){
-        val plot = plot {  }
+    fun testPlotEmpty() {
+        val plot = plot { }
         assertEquals(
             Plot(
                 mapOf(),
