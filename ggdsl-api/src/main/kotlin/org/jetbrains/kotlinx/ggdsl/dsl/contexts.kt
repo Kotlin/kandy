@@ -8,6 +8,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import kotlin.reflect.typeOf
 
 /**
@@ -33,6 +37,16 @@ class BindingCollector internal constructor() {
  */
 abstract class BindingContext {
     abstract var data: MutableNamedData
+
+    var counter = 0
+     fun generateID(): String = "*gen${counter++}"
+
+     inline fun<reified T: Any> Iterable<T>.toDataSource(): DataSource<T> {
+        val list = toList()
+        val id = generateID()
+        data[id] = list
+        return source(id)
+    }
 
     // TODO remove or make internal
     protected val bindingCollector = BindingCollector()
@@ -69,6 +83,13 @@ abstract class BindingContext {
             NonScalablePositionalMapping(this, source, typeOf<DomainType>())
     }
 
+    inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
+        data: Iterable<DomainType>
+    ) {
+        bindingCollectorAccessor.mappings[this] =
+            NonScalablePositionalMapping(this, data.toDataSource(), typeOf<DomainType>())
+    }
+
     /**
      * Mapping to an aesthetic attribute with default scale. TODO behavior
      *
@@ -86,12 +107,36 @@ abstract class BindingContext {
         return mapping
     }
 
+    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+        data: Iterable<DomainType>
+    ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
+        val mapping = ScaledUnspecifiedDefaultPositionalMapping(
+            this,
+            data.toDataSource().scaled(),
+            typeOf<DomainType>()
+        )
+        bindingCollectorAccessor.mappings[this] = mapping
+        return mapping
+    }
+
     inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
         source: DataSource<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
             this,
             source.scaled(),
+            typeOf<DomainType>()
+        )
+        bindingCollectorAccessor.mappings[this] = mapping
+        return mapping
+    }
+
+    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+        data: Iterable<DomainType>
+    ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
+        val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
+            this,
+            data.toDataSource().scaled(),
             typeOf<DomainType>()
         )
         bindingCollectorAccessor.mappings[this] = mapping
@@ -195,6 +240,27 @@ abstract class BindingContext {
         bindingCollectorAccessor.mappings[this] = mapping
         return mapping
     }
+
+
+    inline fun <reified DomainType : Any> Iterable<DomainType>.scaled() =
+        SourceScaledUnspecifiedDefault(this.toDataSource())
+
+    inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(scale: PositionalDefaultScale) =
+        SourceScaledPositionalDefault(this.toDataSource(), scale)
+
+
+    inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(scale: NonPositionalDefaultScale) =
+        SourceScaledNonPositionalDefault(this.toDataSource(), scale)
+
+
+    inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
+        scale: PositionalScale<DomainType>
+    ) = SourceScaledPositional(this.toDataSource(), scale)
+
+
+    inline fun <reified DomainType : Any, RangeType : Any> Iterable<DomainType>.scaled(
+        scale: NonPositionalScale<DomainType, RangeType>
+    ) = SourceScaledNonPositional(this.toDataSource(), scale)
 
 }
 
