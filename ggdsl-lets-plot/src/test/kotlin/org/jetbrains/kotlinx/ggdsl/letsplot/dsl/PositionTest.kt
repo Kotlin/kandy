@@ -7,7 +7,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Layout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
-import org.jetbrains.kotlinx.ggdsl.letsplot.position.POSITION_FEATURE_NAME
+
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
 import kotlin.test.Test
@@ -30,7 +30,7 @@ internal class PositionTest {
                         Geom.POINT,
                         mapOf(),
                         mapOf(),
-                        mapOf(POSITION_FEATURE_NAME to Position.Identity)
+                        mapOf(Position.FEATURE_NAME to Position.Identity)
                     )
                 ),
                 Layout(),
@@ -62,7 +62,7 @@ internal class PositionTest {
                         Geom.BAR,
                         mapOf(),
                         mapOf(),
-                        mapOf(POSITION_FEATURE_NAME to Position.Stack)
+                        mapOf(Position.FEATURE_NAME to Position.Stack)
                     ),
                     Layer(
                         mapOf(),
@@ -70,7 +70,7 @@ internal class PositionTest {
                         mapOf(),
                         mapOf(),
                         mapOf(
-                            POSITION_FEATURE_NAME to
+                            Position.FEATURE_NAME to
                                     Position.JitterDodge(2.0, 3.0, 1.0)
                         )
                     ),
@@ -79,7 +79,7 @@ internal class PositionTest {
                         Geom.POINT,
                         mapOf(),
                         mapOf(),
-                        mapOf(POSITION_FEATURE_NAME to Position.Dodge(0.9))
+                        mapOf(Position.FEATURE_NAME to Position.Dodge(0.9))
                     )
                 ),
                 Layout(),

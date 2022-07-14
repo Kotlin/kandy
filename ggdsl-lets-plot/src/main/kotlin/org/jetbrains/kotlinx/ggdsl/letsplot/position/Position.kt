@@ -4,7 +4,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
 sealed class Position private constructor(val name: String) : LayerFeature {
-    override val featureName: FeatureName = POSITION_FEATURE_NAME
+    override val featureName: FeatureName = FEATURE_NAME
+    companion object {
+        val FEATURE_NAME = FeatureName("POSITION")
+    }
 
     /**
      * Don't adjust position.

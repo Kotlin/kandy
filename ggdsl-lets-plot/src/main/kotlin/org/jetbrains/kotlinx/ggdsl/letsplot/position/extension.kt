@@ -8,5 +8,5 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.position
 var org.jetbrains.kotlinx.ggdsl.dsl.LayerContext.position: Position
     get() = Position.Identity // todo add backing property?
     set(pos) {
-        features[POSITION_FEATURE_NAME] = pos
+        features[Position.FEATURE_NAME] = pos
     }

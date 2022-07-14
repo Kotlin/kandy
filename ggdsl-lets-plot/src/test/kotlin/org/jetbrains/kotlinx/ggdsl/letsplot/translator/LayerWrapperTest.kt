@@ -12,7 +12,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
-import org.jetbrains.kotlinx.ggdsl.letsplot.position.POSITION_FEATURE_NAME
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.typeOf
@@ -126,7 +125,7 @@ internal class LayerWrapperTest {
                 ),
             ),
             mapOf(
-                POSITION_FEATURE_NAME to Position.Dodge(0.9)
+                Position.FEATURE_NAME to Position.Dodge(0.9)
             )
         )
 

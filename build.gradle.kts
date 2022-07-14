@@ -11,7 +11,7 @@ plugins {
     id("io.codearte.nexus-staging") version "0.22.0"
 }
 
-val ggdslVersion = "0.1.1-dev-4"
+val ggdslVersion = "0.1.1-dev-5"
 
 allprojects {
     repositories {

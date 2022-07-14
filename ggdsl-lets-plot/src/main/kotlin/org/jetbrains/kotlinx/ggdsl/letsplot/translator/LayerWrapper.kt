@@ -5,7 +5,8 @@ import jetbrains.letsPlot.Stat
 import jetbrains.letsPlot.intern.Options
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
-import org.jetbrains.kotlinx.ggdsl.letsplot.position.POSITION_FEATURE_NAME
+import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
+import org.jetbrains.kotlinx.ggdsl.letsplot.tooltip.LayerTooltips
 
 class LayerWrapper internal constructor(private val layer: Layer) :
     jetbrains.letsPlot.intern.layer.LayerBase(
@@ -15,7 +16,8 @@ class LayerWrapper internal constructor(private val layer: Layer) :
         geom = layer.geom.toLPGeom(/*!(layer.settings.containsKey(SYMBOL) || layer.mappings.containsKey(SYMBOL))*/
         ),
         stat = Stat.identity,
-        position = layer.features[POSITION_FEATURE_NAME]?.wrap() ?: Pos.identity, // TODO(Ok?)
+        tooltips = (layer.features[LayerTooltips.FEATURE_NAME] as? LayerTooltips)?.wrap(),
+        position = (layer.features[Position.FEATURE_NAME] as? Position)?.wrap() ?: Pos.identity,
         showLegend = true,
     ) {
     // TODO

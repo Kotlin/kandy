@@ -6,6 +6,9 @@ import jetbrains.letsPlot.facet.facetWrap
 import jetbrains.letsPlot.intern.Feature
 import jetbrains.letsPlot.intern.OptionsMap
 import jetbrains.letsPlot.intern.layer.PosOptions
+import jetbrains.letsPlot.tooltips.TooltipOptions
+import jetbrains.letsPlot.tooltips.layerTooltips
+import jetbrains.letsPlot.tooltips.tooltipsNone
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FACET_X
@@ -13,6 +16,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FACET_Y
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
+import org.jetbrains.kotlinx.ggdsl.letsplot.tooltip.LayerTooltips
 
 internal fun FacetGridFeature.wrap(): OptionsMap {
     return facetGrid(
@@ -57,8 +61,8 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
     //return featureBuffer
 }
 
-// todo
-internal fun LayerFeature?.wrap(): PosOptions? {
+
+internal fun Position.wrap(): PosOptions {
     return when (this) {
         is Position.Identity -> return Pos.identity
         is Position.Stack -> return Pos.stack
@@ -66,6 +70,28 @@ internal fun LayerFeature?.wrap(): PosOptions? {
         is Position.Jitter -> return positionJitter(width, height)
         is Position.Nudge -> return positionNudge(x, y)
         is Position.JitterDodge -> positionJitterDodge(dodgeWidth, jitterWidth, jitterHeight)
-        else -> null
     }
+}
+
+internal fun LayerTooltips.wrap(): TooltipOptions {
+    if (hide) {
+        return tooltipsNone
+    }
+    var buffer =  layerTooltips(*(variables.map { it.id }.toTypedArray()))
+    title?.let {
+        buffer = buffer.title(it)
+    }
+    anchor?.let {
+        buffer = buffer.anchor(it.value)
+    }
+    minWidth?.let {
+        buffer = buffer.minWidth(it)
+    }
+    formats.forEach {
+        buffer = buffer.format(it.first, it.second)
+    }
+    lines.forEach {
+        buffer = buffer.line(it)
+    }
+    return buffer
 }
