@@ -5,3 +5,5 @@
 Kotlin plotting DSL inspired
 by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Grammar_of_Graphics).
 
+[Examples(Jupyter notebook with a Kotlin Kernel)](https://github.com/AndreiKingsley/lib-ggdsl/tree/main/examples)
+

@@ -6,7 +6,7 @@ import jetbrains.letsPlot.intern.Options
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
-import org.jetbrains.kotlinx.ggdsl.letsplot.tooltip.LayerTooltips
+import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
 
 class LayerWrapper internal constructor(private val layer: Layer) :
     jetbrains.letsPlot.intern.layer.LayerBase(

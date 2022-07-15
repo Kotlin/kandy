@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.ggdsl.letsplot.tooltip
+package org.jetbrains.kotlinx.ggdsl.letsplot.tooltips
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.Aes
@@ -26,7 +26,7 @@ data class LayerTooltips(
             anchor: Anchor? = null,
             minWidth: Double? = null,
             hide: Boolean = false,
-            context: LayerTooltipContext
+            context: LayerTooltipsContext
         ): LayerTooltips {
             return LayerTooltips(
                 variables,
@@ -47,7 +47,7 @@ fun value(source: DataSource<*>): String {
 }
 
 
-class LayerTooltipContext {
+class LayerTooltipsContext {
     val lineBuffer = mutableListOf<String>()
     val formatBuffer = mutableListOf<Pair<String, String>>()
 
@@ -73,7 +73,7 @@ class LayerTooltipContext {
     }
 
     fun format(aes: Aes, template: String) {
-        formatBuffer.add(aes.name to template)
+        formatBuffer.add("^${aes.name}" to template)
     }
 }
 
@@ -97,7 +97,7 @@ inline fun LayerContext.tooltips(
     anchor: Anchor? = null,
     minWidth: Double? = null,
     hide: Boolean = false,
-    tooltipsContextAction: LayerTooltipContext.() -> Unit
+    tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
         variables.toList(),
@@ -105,6 +105,6 @@ inline fun LayerContext.tooltips(
         anchor,
         minWidth,
         hide,
-        LayerTooltipContext().apply(tooltipsContextAction)
+        LayerTooltipsContext().apply(tooltipsContextAction)
     )
 }

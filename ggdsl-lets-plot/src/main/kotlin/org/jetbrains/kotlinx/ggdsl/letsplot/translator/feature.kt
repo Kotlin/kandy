@@ -9,14 +9,13 @@ import jetbrains.letsPlot.intern.layer.PosOptions
 import jetbrains.letsPlot.tooltips.TooltipOptions
 import jetbrains.letsPlot.tooltips.layerTooltips
 import jetbrains.letsPlot.tooltips.tooltipsNone
-import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FACET_X
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FACET_Y
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
-import org.jetbrains.kotlinx.ggdsl.letsplot.tooltip.LayerTooltips
+import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
 
 internal fun FacetGridFeature.wrap(): OptionsMap {
     return facetGrid(
