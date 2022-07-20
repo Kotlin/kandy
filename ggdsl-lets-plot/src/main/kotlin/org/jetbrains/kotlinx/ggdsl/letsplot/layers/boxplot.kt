@@ -8,16 +8,16 @@ val BOXPLOT = LetsPlotGeom("boxplot")
 
 class BoxplotContext(override var data: MutableNamedData) : LayerContext() {
 
-    val lower = LOWER
-    val upper = UPPER
-    val middle = MIDDLE
-    val yMin = Y_MIN
-    val yMax = Y_MAX
+    val lower = LowerAes(this)
+    val upper = UpperAes(this)
+    val middle = MiddleAes(this)
+    val yMin = YMinAes(this)
+    val yMax = YMaxAes(this)
 
-    val fatten = FATTEN
+    val fatten = FattenAes(this)
 
-    val color = FILL
-    val alpha = ALPHA
+    val color = FillAes(this)
+    val alpha = AlphaAes(this)
 
     val borderLine = BorderLineSubContext()
 

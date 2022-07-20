@@ -12,15 +12,15 @@ val CROSS_BAR = LetsPlotGeom("crossbar")
 
 class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
     org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
-    val yMin = Y_MIN
-    val yMax = Y_MAX
-    val middle = MIDDLE
+    val yMin = YMinAes(this)
+    val yMax = YMaxAes(this)
+    val middle = MiddleAes(this)
 
-    val fatten = FATTEN
+    val fatten = FattenAes(this)
 
-    val width = WIDTH
-    val color = COLOR
-    val alpha = ALPHA
+    val width = WidthAes(this)
+    val color = FillAes(this)
+    val alpha = AlphaAes(this)
 
     val borderLine = BorderLineSubContext()
 

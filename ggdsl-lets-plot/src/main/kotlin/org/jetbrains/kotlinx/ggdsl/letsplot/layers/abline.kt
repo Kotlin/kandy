@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 val AB_LINE = LetsPlotGeom("abline")
-
+/*
 //todo
 val SLOPE = MappableNonPositionalAes<Double>("slope")
 val INTERCEPT = MappableNonPositionalAes<Double>("intercept")
@@ -57,3 +57,5 @@ class ABLineContext(override var data: MutableNamedData) :
 fun PlotContext.abLine(block: ABLineContext.() -> Unit) {
     layers.add(ABLineContext(data).apply { copyFrom(this@abLine) }.apply(block).toLayer(AB_LINE))
 }
+
+ */

@@ -10,11 +10,10 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 val AREA = LetsPlotGeom("area")
 
 
-
 class AreaContext(override var data: MutableNamedData) :
     LayerContext() {
-    val color = FILL
-    val alpha = ALPHA
+    val color = FillAes(this)
+    val alpha = AlphaAes(this)
 
     val borderLine = BorderLineSubContext()
 

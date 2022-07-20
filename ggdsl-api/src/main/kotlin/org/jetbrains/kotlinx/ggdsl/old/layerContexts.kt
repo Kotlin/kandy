@@ -4,33 +4,33 @@ import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
 import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
 
 class PointsContext(override var data: MutableNamedData) : LayerContext() {
-    val size = SIZE
-    val color = COLOR
-    val alpha = ALPHA
+    val size = SizeAes(this)
+    val color = ColorAes(this)
+    val alpha = AlphaAes(this)
 
-    val borderWidth = BORDER_WIDTH
-    val borderColor = BORDER_COLOR
+    val borderWidth = BorderWidthAes(this)
+    val borderColor = BorderColorAes(this)
 
-    val symbol = SYMBOL
+    val symbol = SymbolAes(this)
 }
 
 class LineContext(override var data: MutableNamedData) :
     LayerContext() {
-    val color = COLOR
-    val alpha = ALPHA
+    val color = ColorAes(this)
+    val alpha = AlphaAes(this)
 
-    val width = WIDTH
+    val width = WidthAes(this)
 
-    val lineType = LINE_TYPE
+    val lineType = LineTypeAes(this)
 }
 
 class BarsContext(override var data: MutableNamedData) :
     LayerContext() {
-    val color = COLOR
-    val alpha = ALPHA
+    val color = ColorAes(this)
+    val alpha = AlphaAes(this)
 
-    val width = WIDTH
+    val width = WidthAes(this)
 
-    val borderWidth = BORDER_WIDTH
-    val borderColor = BORDER_COLOR
+    val borderWidth = BorderWidthAes(this)
+    val borderColor = BorderColorAes(this)
 }

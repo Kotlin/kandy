@@ -15,9 +15,9 @@ val BAR = LetsPlotGeom("bar")
 
 class BarContext(override var data: MutableNamedData) : LayerContext() {
 
-    val color = FILL
-    val alpha = ALPHA
-    val width = WIDTH
+    val color = FillAes(this)
+    val alpha = AlphaAes(this)
+    val width = WidthAes(this)
 
     val borderLine = BorderLineSubContext()
 

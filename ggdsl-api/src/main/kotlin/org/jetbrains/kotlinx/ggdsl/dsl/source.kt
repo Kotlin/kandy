@@ -2,7 +2,8 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
-import org.jetbrains.kotlinx.ggdsl.ir.data.UnnamedDataSource
+import kotlin.reflect.KProperty
+import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 /**
@@ -14,6 +15,11 @@ import kotlin.reflect.typeOf
 inline fun <reified T : Any> source(id: String): DataSource<T> =
     DataSource(id, typeOf<T>())
 
+data class UnnamedDataSource<T : Any>(val type: KType) {
+    operator fun getValue(t: T?, property: KProperty<*>): DataSource<T> {
+        return DataSource<T>(property.name, type)
+    }
+}
 
 inline fun <reified T : Any> source(): UnnamedDataSource<T> =
     UnnamedDataSource(typeOf<T>())

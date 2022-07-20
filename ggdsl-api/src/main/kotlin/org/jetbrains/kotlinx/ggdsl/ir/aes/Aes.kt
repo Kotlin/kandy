@@ -1,5 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.ir.aes
 
+import org.jetbrains.kotlinx.ggdsl.dsl.BindingContext
+
 /**
  * Base interface for aesthetic attribute.
  *
@@ -7,6 +9,7 @@ package org.jetbrains.kotlinx.ggdsl.ir.aes
  */
 sealed interface Aes {
     val name: String
+    val context: BindingContext
 }
 
 /**
@@ -35,14 +38,14 @@ sealed interface PositionalAes : MappableAes
  *
  * @property name the name of this attribute
  */
-class ScalablePositionalAes(override val name: String) : PositionalAes, ScalableAes
+interface ScalablePositionalAes : PositionalAes, ScalableAes
 
 /**
  * Positional aesthetic attribute with an implicit scale ("sub-positional").
  *
  * @property name the name of this attribute
  */
-class NonScalablePositionalAes(override val name: String) : PositionalAes
+interface NonScalablePositionalAes : PositionalAes
 
 // todo interface and data
 /**
@@ -50,13 +53,13 @@ class NonScalablePositionalAes(override val name: String) : PositionalAes
  *
  * @property name the name of this attribute
  */
-open class NonPositionalAes<in T : Any>(override val name: String) : Aes
+interface NonPositionalAes<in T : Any> : Aes
 
 /**
  * Non-positional aesthetic attribute, that can be mapped to and have an explicit scale.
  *
  * @property name the name of this attribute
  */
-class MappableNonPositionalAes<in T : Any>(name: String) : NonPositionalAes<T>(name), ScalableAes
+interface MappableNonPositionalAes<in T : Any> : NonPositionalAes<T>, ScalableAes
 
 // TODO Other exists??? Todo Settable?

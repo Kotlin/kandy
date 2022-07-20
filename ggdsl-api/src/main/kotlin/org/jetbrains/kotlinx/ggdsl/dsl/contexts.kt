@@ -42,6 +42,7 @@ abstract class BindingContext {
     var counter = 0
      fun generateID(): String = "*gen${counter++}"
 
+    // todo add for arrays/others???
      inline fun<reified T: Any> Iterable<T>.toDataSource(): DataSource<T> {
         val list = toList()
         val id = generateID()
@@ -63,186 +64,8 @@ abstract class BindingContext {
         bindingCollector.copyFrom(other.bindingCollector)
     }
 
-    /**
-     * Setting, i.e. assigning some constant value to an non-positional aesthetic attribute.
-     *
-     * @param value the assigned value.
-     */
-    operator fun <T : Any> NonPositionalAes<T>.invoke(value: T) {
-        bindingCollector.settings[this] = NonPositionalSetting(this, value)
-    }
 
-    /**
-     * Mapping to non-scalable ("sub-positional") aesthetic attribute.
-     *
-     * @param source the assigned raw data source.
-     */
-    inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
-        source: DataSource<DomainType>
-    ) {
-        bindingCollectorAccessor.mappings[this] =
-            NonScalablePositionalMapping(this, source, typeOf<DomainType>())
-    }
-
-    inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
-        data: Iterable<DomainType>
-    ) {
-        bindingCollectorAccessor.mappings[this] =
-            NonScalablePositionalMapping(this, data.toDataSource(), typeOf<DomainType>())
-    }
-
-    /**
-     * Mapping to an aesthetic attribute with default scale. TODO behavior
-     *
-     * @param source the assigned raw data source.
-     */
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        source: DataSource<DomainType>
-    ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
-        val mapping = ScaledUnspecifiedDefaultPositionalMapping(
-            this,
-            source.scaled(),
-            typeOf<DomainType>()
-        )
-        bindingCollectorAccessor.mappings[this] = mapping
-        return mapping
-    }
-
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        data: Iterable<DomainType>
-    ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
-        val mapping = ScaledUnspecifiedDefaultPositionalMapping(
-            this,
-            data.toDataSource().scaled(),
-            typeOf<DomainType>()
-        )
-        bindingCollectorAccessor.mappings[this] = mapping
-        return mapping
-    }
-
-    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-        source: DataSource<DomainType>
-    ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
-        val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
-            this,
-            source.scaled(),
-            typeOf<DomainType>()
-        )
-        bindingCollectorAccessor.mappings[this] = mapping
-        return mapping
-    }
-
-    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-        data: Iterable<DomainType>
-    ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
-        val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
-            this,
-            data.toDataSource().scaled(),
-            typeOf<DomainType>()
-        )
-        bindingCollectorAccessor.mappings[this] = mapping
-        return mapping
-    }
-
-    /**
-     * Mapping to an aesthetic attribute with default scale. TODO behavior
-     *
-     * @param sourceScaledDefault the assigned source scaled default.
-     */
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        sourceScaledDefault: SourceScaledUnspecifiedDefault<DomainType>
-    ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
-        val mapping = ScaledUnspecifiedDefaultPositionalMapping(
-            this,
-            sourceScaledDefault,
-            typeOf<DomainType>()
-        )
-        bindingCollectorAccessor.mappings[this] = mapping
-        return mapping
-    }
-
-    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-        sourceScaledDefault: SourceScaledUnspecifiedDefault<DomainType>
-    ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
-        val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
-            this,
-            sourceScaledDefault,
-            typeOf<DomainType>()
-        )
-        bindingCollectorAccessor.mappings[this] = mapping
-        return mapping
-    }
-
-    /**
-     * Mapping to a positional aesthetic attribute with unspecified scale. TODO behavior
-     *
-     * @param sourceScaledDefault the assigned source scaled unspecified positional.
-     */
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        sourceScaledDefault: SourceScaledPositionalDefault<DomainType>
-    ): ScaledPositionalDefaultMapping<DomainType> {
-        val mapping = ScaledPositionalDefaultMapping(
-            this,
-            sourceScaledDefault,
-            typeOf<DomainType>()
-        )
-        bindingCollectorAccessor.mappings[this] = mapping
-        return mapping
-    }
-
-    /**
-     * Mapping to a non-positional aesthetic attribute with unspecified scale. TODO behavior
-     *
-     * @param sourceScaledDefault the assigned source scaled unspecified non-positional.
-     */
-    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-        sourceScaledDefault: SourceScaledNonPositionalDefault<DomainType>
-    ): ScaledNonPositionalDefaultMapping<DomainType, RangeType> {
-        val mapping = ScaledNonPositionalDefaultMapping(
-            this,
-            sourceScaledDefault,
-            typeOf<DomainType>()
-        )
-        bindingCollectorAccessor.mappings[this] = mapping
-        return mapping
-    }
-
-    /**
-     * Mapping to a positional aesthetic attribute.
-     *
-     * @param sourceScaledPositional the assigned source scaled positional.
-     */
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        sourceScaledPositional: SourceScaledPositional<DomainType>
-    ): ScaledPositionalMapping<DomainType> {
-        val mapping = ScaledPositionalMapping(
-            this,
-            sourceScaledPositional,
-            typeOf<DomainType>()
-        )
-        bindingCollectorAccessor.mappings[this] = mapping
-        return mapping
-    }
-
-    /**
-     * Mapping to a non-positional aesthetic attribute. TODO behavior
-     *
-     * @param sourceScaledNonPositional the assigned source scaled non-positional.
-     */
-    inline operator fun <reified DomainType : Any, reified RangeType : Any>
-            MappableNonPositionalAes<RangeType>.invoke(
-        sourceScaledNonPositional: SourceScaledNonPositional<DomainType, RangeType>
-    ): ScaledNonPositionalMapping<DomainType, RangeType> {
-        val mapping = ScaledNonPositionalMapping(
-            this,
-            sourceScaledNonPositional,
-            typeOf<DomainType>()
-        )
-        bindingCollectorAccessor.mappings[this] = mapping
-        return mapping
-    }
-
-
+    // todo move???
     inline fun <reified DomainType : Any> Iterable<DomainType>.scaled() =
         SourceScaledUnspecifiedDefault(this.toDataSource())
 
@@ -263,11 +86,193 @@ abstract class BindingContext {
         scale: NonPositionalScale<DomainType, RangeType>
     ) = SourceScaledNonPositional(this.toDataSource(), scale)
 
+
 }
 
+/**
+ * Setting, i.e. assigning some constant value to an non-positional aesthetic attribute.
+ *
+ * @param value the assigned value.
+ */
+operator fun <T : Any> NonPositionalAes<T>.invoke(value: T) {
+    context.bindingCollectorAccessor.settings[this] = NonPositionalSetting(this, value)
+}
+
+/**
+ * Mapping to non-scalable ("sub-positional") aesthetic attribute.
+ *
+ * @param source the assigned raw data source.
+ */
+inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
+    source: DataSource<DomainType>
+) {
+    context.bindingCollectorAccessor.mappings[this] =
+        NonScalablePositionalMapping(this, source, typeOf<DomainType>())
+}
+
+inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
+    data: Iterable<DomainType>
+) {
+    context.bindingCollectorAccessor.mappings[this] =
+        NonScalablePositionalMapping(this, with(context){ data.toDataSource()}, typeOf<DomainType>())
+}
+
+/**
+ * Mapping to an aesthetic attribute with default scale. TODO behavior
+ *
+ * @param source the assigned raw data source.
+ */
+inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    source: DataSource<DomainType>
+): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
+    val mapping = ScaledUnspecifiedDefaultPositionalMapping(
+        this,
+        source.scaled(),
+        typeOf<DomainType>()
+    )
+    context.bindingCollectorAccessor.mappings[this] = mapping
+    return mapping
+}
+
+inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    data: Iterable<DomainType>
+): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
+    val mapping = ScaledUnspecifiedDefaultPositionalMapping(
+        this,
+        with(context){ data.toDataSource()}.scaled(),
+        typeOf<DomainType>()
+    )
+    context.bindingCollectorAccessor.mappings[this] = mapping
+    return mapping
+}
+
+inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    source: DataSource<DomainType>
+): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
+    val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
+        this,
+        source.scaled(),
+        typeOf<DomainType>()
+    )
+    context.bindingCollectorAccessor.mappings[this] = mapping
+    return mapping
+}
+
+inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    data: Iterable<DomainType>
+): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
+    val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
+        this,
+        with(context){ data.toDataSource()}.scaled(),
+        typeOf<DomainType>()
+    )
+    context.bindingCollectorAccessor.mappings[this] = mapping
+    return mapping
+}
+
+/**
+ * Mapping to an aesthetic attribute with default scale. TODO behavior
+ *
+ * @param sourceScaledDefault the assigned source scaled default.
+ */
+inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    sourceScaledDefault: SourceScaledUnspecifiedDefault<DomainType>
+): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
+    val mapping = ScaledUnspecifiedDefaultPositionalMapping(
+        this,
+        sourceScaledDefault,
+        typeOf<DomainType>()
+    )
+    context.bindingCollectorAccessor.mappings[this] = mapping
+    return mapping
+}
+
+inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    sourceScaledDefault: SourceScaledUnspecifiedDefault<DomainType>
+): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
+    val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
+        this,
+        sourceScaledDefault,
+        typeOf<DomainType>()
+    )
+    context.bindingCollectorAccessor.mappings[this] = mapping
+    return mapping
+}
+
+/**
+ * Mapping to a positional aesthetic attribute with unspecified scale. TODO behavior
+ *
+ * @param sourceScaledDefault the assigned source scaled unspecified positional.
+ */
+inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    sourceScaledDefault: SourceScaledPositionalDefault<DomainType>
+): ScaledPositionalDefaultMapping<DomainType> {
+    val mapping = ScaledPositionalDefaultMapping(
+        this,
+        sourceScaledDefault,
+        typeOf<DomainType>()
+    )
+    context.bindingCollectorAccessor.mappings[this] = mapping
+    return mapping
+}
+
+/**
+ * Mapping to a non-positional aesthetic attribute with unspecified scale. TODO behavior
+ *
+ * @param sourceScaledDefault the assigned source scaled unspecified non-positional.
+ */
+inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    sourceScaledDefault: SourceScaledNonPositionalDefault<DomainType>
+): ScaledNonPositionalDefaultMapping<DomainType, RangeType> {
+    val mapping = ScaledNonPositionalDefaultMapping(
+        this,
+        sourceScaledDefault,
+        typeOf<DomainType>()
+    )
+    context.bindingCollectorAccessor.mappings[this] = mapping
+    return mapping
+}
+
+/**
+ * Mapping to a positional aesthetic attribute.
+ *
+ * @param sourceScaledPositional the assigned source scaled positional.
+ */
+inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    sourceScaledPositional: SourceScaledPositional<DomainType>
+): ScaledPositionalMapping<DomainType> {
+    val mapping = ScaledPositionalMapping(
+        this,
+        sourceScaledPositional,
+        typeOf<DomainType>()
+    )
+    context.bindingCollectorAccessor.mappings[this] = mapping
+    return mapping
+}
+
+/**
+ * Mapping to a non-positional aesthetic attribute. TODO behavior
+ *
+ * @param sourceScaledNonPositional the assigned source scaled non-positional.
+ */
+inline operator fun <reified DomainType : Any, reified RangeType : Any>
+        MappableNonPositionalAes<RangeType>.invoke(
+    sourceScaledNonPositional: SourceScaledNonPositional<DomainType, RangeType>
+): ScaledNonPositionalMapping<DomainType, RangeType> {
+    val mapping = ScaledNonPositionalMapping(
+        this,
+        sourceScaledNonPositional,
+        typeOf<DomainType>()
+    )
+    context.bindingCollectorAccessor.mappings[this] = mapping
+    return mapping
+}
+
+
+// todo
 abstract class BaseBindingContext: BindingContext() {
-    val x = X
-    val y = Y
+    val x = XAes(this)
+    val y = YAes(this)
 }
 
 /**
