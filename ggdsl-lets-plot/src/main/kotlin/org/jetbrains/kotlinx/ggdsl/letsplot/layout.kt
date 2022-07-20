@@ -9,6 +9,9 @@ data class LetsPlotLayout(
     var title: String? = null,
     var subtitle: String? = null,
     var caption: String? = null,
+    // todo remove
+    var xAxisLabel: String? = null,
+    var yAxisLabel: String? = null,
     var size: Pair<Int, Int>? = null
 ): Layout
 
