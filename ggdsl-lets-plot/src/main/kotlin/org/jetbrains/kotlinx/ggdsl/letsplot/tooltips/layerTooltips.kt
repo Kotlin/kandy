@@ -25,13 +25,15 @@ data class LayerTooltips(
             title: String? = null,
             anchor: Anchor? = null,
             minWidth: Double? = null,
+            valueFormats: Map<DataSource<*>, String> = mapOf(),
+            aesFormats: Map<Aes, String> = mapOf(),
             hide: Boolean = false,
             context: LayerTooltipsContext
         ): LayerTooltips {
             return LayerTooltips(
                 variables,
                 context.lineBuffer,
-                context.formatBuffer,
+                valueFormats.map { it.key.id to it.value } + aesFormats.map { it.key.name to it.value },
                 title, anchor, minWidth, hide
             )
         }
@@ -49,7 +51,7 @@ fun value(source: DataSource<*>): String {
 
 class LayerTooltipsContext {
     val lineBuffer = mutableListOf<String>()
-    val formatBuffer = mutableListOf<Pair<String, String>>()
+   // val formatBuffer = mutableListOf<Pair<String, String>>()
 
     fun line(string: String) {
         lineBuffer.add(string)
@@ -59,14 +61,15 @@ class LayerTooltipsContext {
         lineBuffer.add("${leftSide ?: ""}|${rightSide ?: ""}")
     }
 
-    fun lineDefault(source: DataSource<*>) {
+    fun line(source: DataSource<*>) {
         lineBuffer.add("@|@${source.id}")
     }
 
-    fun lineDefault(aes: Aes) {
+    fun line(aes: Aes) {
         lineBuffer.add("@|^${aes.name}")
     }
 
+    /*
     // todo type????
     fun format(source: DataSource<*>, template: String) {
         formatBuffer.add(source.id to template)
@@ -75,6 +78,8 @@ class LayerTooltipsContext {
     fun format(aes: Aes, template: String) {
         formatBuffer.add("^${aes.name}" to template)
     }
+
+     */
 }
 
 data class Anchor(val value: String) {
@@ -97,6 +102,8 @@ inline fun LayerContext.tooltips(
     anchor: Anchor? = null,
     minWidth: Double? = null,
     hide: Boolean = false,
+    valueFormats: Map<DataSource<*>, String> = mapOf(),
+    aesFormats: Map<Aes, String> = mapOf(),
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
@@ -104,6 +111,8 @@ inline fun LayerContext.tooltips(
         title,
         anchor,
         minWidth,
+        valueFormats,
+        aesFormats,
         hide,
         LayerTooltipsContext().apply(tooltipsContextAction)
     )

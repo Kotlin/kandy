@@ -23,7 +23,7 @@ data class Legend<DomainType : Any, RangeType : Any>(
     var breaks: List<DomainType>? = null,
     var labels: List<String>? = null, // todo pair list and format
     // todo expand & trans
-    var legendType: LegendType? = null,
+    var type: LegendType? = null,
 )
 
 fun Legend<*, *>.none() = None()

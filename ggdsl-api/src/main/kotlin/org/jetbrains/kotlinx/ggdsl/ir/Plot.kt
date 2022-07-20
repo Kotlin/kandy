@@ -15,6 +15,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 data class Plot(
     val dataset: NamedData, // todo remove???
     val layers: List<Layer>,
-    val layout: Layout,
+    val layout: Layout? = null,
     val features: Map<FeatureName, PlotFeature> = emptyMap()
 )

@@ -9,6 +9,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.util.color.LinearGradientColor
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.SimpleColorOption
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.old.bars
+import org.jetbrains.kotlinx.ggdsl.old.layout
 import org.jetbrains.kotlinx.ggdsl.old.line
 import org.jetbrains.kotlinx.ggdsl.old.points
 import org.jetbrains.kotlinx.ggdsl.util.color.Color

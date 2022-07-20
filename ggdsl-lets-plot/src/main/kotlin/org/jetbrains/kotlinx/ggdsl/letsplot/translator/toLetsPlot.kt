@@ -4,10 +4,10 @@ import jetbrains.letsPlot.ggsize
 import jetbrains.letsPlot.intern.Feature
 import jetbrains.letsPlot.intern.FeatureList
 import jetbrains.letsPlot.label.ggtitle
+import jetbrains.letsPlot.label.labs
 import jetbrains.letsPlot.letsPlot
 import jetbrains.letsPlot.scale.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.Aes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.X
@@ -27,9 +27,6 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.None
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LetsPlotLineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.LetsPlotSymbol
 import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
-import org.jetbrains.kotlinx.ggdsl.util.linetype.CommonLineType
-import org.jetbrains.kotlinx.ggdsl.util.symbol.CommonSymbol
-import org.jetbrains.kotlinx.ggdsl.util.symbol.Symbol
 
 internal fun Mapping.wrap(geom: Geom): Pair<String, String> {
     return when (this) {
@@ -226,7 +223,7 @@ internal fun Scale.wrap(
             val name = legend?.name
             val breaks = legend?.breaks
             val labels = legend?.labels
-            val legendType = legend?.legendType?.let {
+            val legendType = legend?.type?.let {
                 when (it) {
                     is None -> null
                     is ColorBar -> guideColorbar(
@@ -324,6 +321,27 @@ internal fun Scale.wrap(
                             guide = legendType
 
                         )
+                        SYMBOL -> if (rangeValues == null) {
+                            scaleShape(
+                                limits = domainCategories,
+
+                                name = name,
+                                breaks = breaks,
+                                labels = labels,
+                                guide = legendType
+                            )
+                        } else {
+                            scaleShapeManual(
+                                limits = domainCategories,
+                                values = rangeValues!!.map { (it as LetsPlotSymbol).shape },
+
+                                name = name,
+                                breaks = breaks,
+                                labels = labels,
+                                guide = legendType
+                            )
+                        }
+                        /*
                         FILLED_SYMBOL -> if (rangeValues == null) {
                             TODO()
                         } else {
@@ -360,6 +378,8 @@ internal fun Scale.wrap(
                             )
 
                         }
+
+                         */
 
 
                         else -> TODO()
@@ -512,20 +532,25 @@ internal fun Layer.wrap(featureBuffer: MutableList<Feature>) {
     }
 }
 
-internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
+internal fun LetsPlotLayout.wrap(featureBuffer: MutableList<Feature>) {
+    featureBuffer.add(labs(
+        title, subtitle, caption
+    ))
     size?.let {
         featureBuffer.add(ggsize(it.first, it.second))
     }
+/*
     title?.let {
         featureBuffer.add(ggtitle(it))
     }
+    */
 }
 
 fun Plot.toLetsPlot(): jetbrains.letsPlot.intern.Plot {
     val featureBuffer = buildList {
         layers.forEach { it.wrap(this) }
         features.forEach { it.value.wrap(this) }
-        layout.wrap(this)
+        (layout as? LetsPlotLayout)?.wrap(this) // todo
     }
     return letsPlot(dataset) + FeatureList(featureBuffer)
     //  var plotBuffer = letsPlot(dataset)

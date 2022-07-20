@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bar
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.line
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.pointsFilled
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LetsPlotLineType
@@ -21,13 +21,13 @@ class ToLetsPlotTest {
     fun testSimple() {
         val plot = plot {
             x(source<String>("origin"))
-            pointsFilled {
+            points {
                 y(source<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
                 symbol(LetsPlotSymbol.CIRCLE_FILLED)
-                color(Color.RED)
+                fillColor(Color.RED)
             }
         }
-        //  println(plot.toLestPlot().toSpec())
+
         assertEquals(
             mapOf<String, Any>(
                 "mapping" to mapOf<String, String>(),

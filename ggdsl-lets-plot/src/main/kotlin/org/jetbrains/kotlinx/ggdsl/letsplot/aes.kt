@@ -32,9 +32,12 @@ val WIDTH = MappableNonPositionalAes<Double>("width")
 val SIZE = MappableNonPositionalAes<Double>("size")
 val ALPHA = MappableNonPositionalAes<Double>("alpha")
 
-
+/*
 val FILLED_SYMBOL = MappableNonPositionalAes<LetsPlotSymbol.Filled>("shape")
 val UNFILLED_SYMBOL = MappableNonPositionalAes<LetsPlotSymbol.Unfilled>("shape")
+ */
+
+val SYMBOL = MappableNonPositionalAes<LetsPlotSymbol>("shape")
 
 val WIDTH_POS = NonScalablePositionalAes("width")
 val HEIGHT_POS = NonScalablePositionalAes("height")

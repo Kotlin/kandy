@@ -7,7 +7,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 
 val POINT_RANGE = LetsPlotGeom("pointrange")
-
+/*
 class InnerFilledPointSubContext : BindingContext() {
     override var data: MutableNamedData = mutableMapOf()
     val symbol = FILLED_SYMBOL
@@ -21,13 +21,22 @@ class InnerUnfilledPointSubContext : BindingContext() {
     val fatten = FATTEN
 }
 
+ */
+
+class InnerPointSubContext : BindingContext() {
+    override var data: MutableNamedData = mutableMapOf()
+    val symbol = SYMBOL
+    val fillColor = FILL
+    val fatten = FATTEN
+}
+
 class InnerLineSubContext : BindingContext() {
     override var data: MutableNamedData = mutableMapOf()
     val color = COLOR
     val type = LINE_TYPE
     val width = SIZE // TODO mappable???
 }
-
+/*
 class FilledPointRangeContext(override var data: MutableNamedData) : LayerContext() {
     val yMin = Y_MIN
     val yMax = Y_MAX
@@ -78,6 +87,34 @@ class UnfilledPointRangeContext(override var data: MutableNamedData) : LayerCont
     }
 }
 
+ */
+
+
+class PointRangeContext(override var data: MutableNamedData) : LayerContext() {
+    val yMin = Y_MIN
+    val yMax = Y_MAX
+
+    val alpha = ALPHA
+    val color = FILL
+
+    // todo separate????
+    val size = SIZE
+
+    val innerPoint = InnerPointSubContext()
+
+    inline operator fun InnerPointSubContext.invoke(block: InnerPointSubContext.() -> Unit) {
+        apply(block)
+        this@PointRangeContext.copyFrom(this, false)
+    }
+
+    val innerLine = InnerLineSubContext()
+
+    inline operator fun InnerLineSubContext.invoke(block: InnerLineSubContext.() -> Unit) {
+        apply(block)
+        this@PointRangeContext.copyFrom(this, false)
+    }
+}
+
 /**
  * Adds a new line range layer.
  *
@@ -115,8 +152,16 @@ class UnfilledPointRangeContext(override var data: MutableNamedData) : LayerCont
  *
  *  @see [BaseBindingContext]
  */
+fun PlotContext.pointRange(block: PointRangeContext.() -> Unit) {
+    layers.add(
+        PointRangeContext(data).apply { copyFrom(this@pointRange) }.apply(block).toLayer(POINT_RANGE)
+    )
+}
+/*
 fun PlotContext.filledPointRange(block: FilledPointRangeContext.() -> Unit) {
     layers.add(
         FilledPointRangeContext(data).apply { copyFrom(this@filledPointRange) }.apply(block).toLayer(POINT_RANGE)
     )
 }
+
+ */

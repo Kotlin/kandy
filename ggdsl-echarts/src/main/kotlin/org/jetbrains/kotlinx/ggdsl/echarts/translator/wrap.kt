@@ -459,7 +459,7 @@ fun Plot.toOption(): MetaOption {
         }
 
     }
-
+    //todo echarts layout
     return MetaOption(
         Option(
             dataset = Dataset(source.map { it.map { it.toString() } }),
@@ -467,7 +467,7 @@ fun Plot.toOption(): MetaOption {
             yAxis = listOf(yAxis),
             visualMap = visualMaps,
             series = layers.mapIndexed { index, layer -> layer.toSeries(layerToData[index]?.data) },
-            title = layout.title?.let { Title(it) }
+            title = (layout as? DefaultLayout)?.title?.let { Title(it) }
         ).apply {
             (features[AnimationFeature.FEATURE_NAME] as? AnimationFeature)?.let {
                 animation = true
@@ -476,6 +476,6 @@ fun Plot.toOption(): MetaOption {
                 animationEasing = it.easing.name
                 animationDelay = it.delay
             }
-        }, layout.size
+        }, (layout as? DefaultLayout)?.size
     )
 }

@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
+import org.jetbrains.kotlinx.ggdsl.old.DefaultLayout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
@@ -63,7 +63,7 @@ internal class CommonTest {
                         )
                     )
                 ),
-                Layout(),
+                null,
             ),
             plot
         )
@@ -159,7 +159,7 @@ internal class CommonTest {
                         )
                     )
                 ),
-                Layout(),
+                null,
             ),
             plot
         )
@@ -207,7 +207,7 @@ internal class CommonTest {
                         settings = mapOf()
                     )
                 ),
-                Layout(),
+                null,
             ),
             plot
         )

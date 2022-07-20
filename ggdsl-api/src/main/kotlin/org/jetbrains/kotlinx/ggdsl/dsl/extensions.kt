@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
+import org.jetbrains.kotlinx.ggdsl.old.DefaultLayout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 
@@ -28,9 +28,6 @@ operator fun <RangeType> Axis<RangeType>.invoke(block: Axis<RangeType>.() -> Uni
 
  */
 
-inline operator fun Layout.invoke(block: Layout.() -> Unit) {
-    this.apply(block)
-}
 
 /*
 operator fun Guide.invoke(block: Guide.() -> Unit) {

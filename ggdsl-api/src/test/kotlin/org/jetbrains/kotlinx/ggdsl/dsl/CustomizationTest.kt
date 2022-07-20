@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
+import org.jetbrains.kotlinx.ggdsl.old.DefaultLayout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.X
@@ -149,7 +149,7 @@ internal class CustomizationTest {
                         mapOf()
                     )
                 ),
-                Layout(),
+                null,
                 mapOf()
             ),
             plot
@@ -177,7 +177,7 @@ internal class CustomizationTest {
                         mapOf(MockLayerFeature.FEATURE_NAME to MockLayerFeature(14))
                     )
                 ),
-                Layout(),
+                null,
                 mapOf(MockPlotFeature.FEATURE_NAME to MockPlotFeature("amentes ineptias"))
             ),
             plot

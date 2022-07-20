@@ -46,7 +46,7 @@ internal class ScaleWrappingTest {
     @Test
     fun testDefaults() {
         val mockGeom = CommonGeom("mock")
-        assertNull(UnspecifiedDefaultScale.wrap(FILLED_SYMBOL))
+        assertNull(UnspecifiedDefaultScale.wrap(SYMBOL))
         assertNull(PositionalCategoricalDefaultScale.wrap(Y))
         assertNull(PositionalContinuousDefaultScale().wrap(Y))
         assertNull(NonPositionalCategoricalDefaultScale.wrap(COLOR))

@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.ggdsl.old.line
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.old.points
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
+import org.jetbrains.kotlinx.ggdsl.old.DefaultLayout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import kotlin.test.Test
@@ -74,7 +74,7 @@ internal class ContextTest {
             Plot(
                 mapOf(),
                 listOf(),
-                Layout(),
+                null,
                 mapOf()
             ),
             plot

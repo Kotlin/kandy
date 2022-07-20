@@ -4,7 +4,7 @@ import org.jetbrains.kotlinx.ggdsl.old.bars
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.old.points
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
+import org.jetbrains.kotlinx.ggdsl.old.DefaultLayout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 
@@ -33,7 +33,7 @@ internal class PositionTest {
                         mapOf(Position.FEATURE_NAME to Position.Identity)
                     )
                 ),
-                Layout(),
+                null,
                 mapOf()
             ),
             plot
@@ -82,7 +82,7 @@ internal class PositionTest {
                         mapOf(Position.FEATURE_NAME to Position.Dodge(0.9))
                     )
                 ),
-                Layout(),
+                null,
                 mapOf()
             ),
             plot
