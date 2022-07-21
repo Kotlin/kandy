@@ -71,7 +71,7 @@ internal val alphas = listOf(0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5)
 internal val symbols = listOf("circle", "rect", "triangle", "diamond", "roundRect", "pin", "arrow")
 
 // TODO better
-internal fun createInRange(aes: Aes, valuesString: List<Any>?, size: Int, isContinuous: Boolean): InRange {
+internal fun createInRange(aes: AesName, valuesString: List<Any>?, size: Int, isContinuous: Boolean): InRange {
     return when (aes) {
         COLOR -> InRange(
             color = valuesString?.map { it as EchartsColorOption }
@@ -143,7 +143,7 @@ internal fun defaultPiecewiseVisualMap(aes: Aes, dim: Int, seriesIndex: Int, dat
         //   show = true, // TODO
         dimension = dim,
         categories = categoriesString,
-        inRange = createInRange(aes, null, categoriesString.size, false),
+        inRange = createInRange(aes.name, null, categoriesString.size, false),
         seriesIndex = seriesIndex,
 
         right = 10,
@@ -199,7 +199,7 @@ internal fun Scale.toVisualMap(
             val valuesString = rangeValues?.map { value ->
                 wrapValue(value)
             }
-            val inRange = createInRange(aes, valuesString, categoriesString.size, isContinuous = false)
+            val inRange = createInRange(aes.name, valuesString, categoriesString.size, isContinuous = false)
             VisualMap(
                 /*
                 show = show,
@@ -479,3 +479,5 @@ fun Plot.toOption(): MetaOption {
         }, (layout as? DefaultLayout)?.size
     )
 }
+
+ */

@@ -6,12 +6,12 @@ buildscript {
 
 plugins {
     kotlin("jvm") version "1.6.0"
-    kotlin("jupyter.api") version "0.11.0-89-1"
+    kotlin("jupyter.api") version "0.11.0-134"
     id("maven-publish")
     id("io.codearte.nexus-staging") version "0.22.0"
 }
 
-val ggdslVersion = "0.1.1-dev-7"
+val ggdslVersion = "0.1.1-dev-8"
 
 allprojects {
     repositories {

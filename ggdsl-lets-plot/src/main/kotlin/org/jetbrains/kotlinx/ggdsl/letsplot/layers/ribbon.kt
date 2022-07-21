@@ -4,28 +4,19 @@ import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.Y_MAX
-import org.jetbrains.kotlinx.ggdsl.letsplot.Y_MIN
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 
 val RIBBON = LetsPlotGeom("ribbon")
 
 class RibbonContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
-    org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
-    val yMin = Y_MIN
-    val yMax = Y_MAX
+    WithBorderLineContext() {
+    val yMin = YMinAes(this)
+    val yMax = YMaxAes(this)
 
-    val color = FILL
-    val alpha = ALPHA
+    val color = FillAes(this)
+    val alpha = AlphaAes(this)
 
-    val borderLine =  BorderLineSubContext()
-
-    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
-        apply(block)
-        this@RibbonContext.copyFrom(this, false)
-    }
 }
 
 /**

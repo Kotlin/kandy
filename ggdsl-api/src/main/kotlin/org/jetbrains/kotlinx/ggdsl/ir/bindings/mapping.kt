@@ -11,7 +11,7 @@ import kotlin.reflect.KType
  * @property aes the aesthetic attribute to be mapped to.
  */
 sealed interface Mapping {
-    val aes: MappableAes
+    val aes: AesName
 }
 
 /**
@@ -22,7 +22,7 @@ sealed interface Mapping {
  * @property domainType the type of domain
  */
 data class NonScalablePositionalMapping<DomainType : Any>(
-    override val aes: NonScalablePositionalAes,
+    override val aes: AesName,
     val source: DataSource<DomainType>,
     val domainType: KType
 ) : Mapping
@@ -35,21 +35,21 @@ data class NonScalablePositionalMapping<DomainType : Any>(
  * @property domainType the type of domain
  */
 sealed interface ScaledMapping<DomainType : Any> : Mapping {
-    override val aes: ScalableAes
+    override val aes: AesName
     val sourceScaled: SourceScaled<DomainType>
     val domainType: KType
     var scaleParameters: ScaleParameters?
 }
 
 sealed interface BaseScaledPositionalMapping<DomainType : Any> : ScaledMapping<DomainType> {
-    override val aes: ScalablePositionalAes
+    override val aes: AesName
     override val sourceScaled: SourceScaled<DomainType>
     override val domainType: KType
     override var scaleParameters: ScaleParameters?
 }
 
 sealed interface BaseScaledNonPositionalMapping<DomainType : Any, RangeType : Any> : ScaledMapping<DomainType> {
-    override val aes: MappableNonPositionalAes<RangeType>
+    override val aes: AesName
     override val sourceScaled: SourceScaled<DomainType>
     override val domainType: KType
     override var scaleParameters: ScaleParameters?
@@ -63,14 +63,14 @@ sealed interface BaseScaledNonPositionalMapping<DomainType : Any, RangeType : An
  * @property domainType type of domain
  */
 sealed interface ScaledUnspecifiedDefaultMapping<DomainType : Any> : ScaledMapping<DomainType> {
-    override val aes: ScalableAes
+    override val aes: AesName
     override val sourceScaled: SourceScaledUnspecifiedDefault<DomainType>
     override val domainType: KType
     override var scaleParameters: ScaleParameters?
 }
 
 data class ScaledUnspecifiedDefaultPositionalMapping<DomainType : Any>(
-    override val aes: ScalablePositionalAes,
+    override val aes: AesName,
     override val sourceScaled: SourceScaledUnspecifiedDefault<DomainType>,
     override val domainType: KType
 ) : BaseScaledPositionalMapping<DomainType>, ScaledUnspecifiedDefaultMapping<DomainType> {
@@ -78,7 +78,7 @@ data class ScaledUnspecifiedDefaultPositionalMapping<DomainType : Any>(
 }
 
 data class ScaledUnspecifiedDefaultNonPositionalMapping<DomainType : Any, RangeType : Any>(
-    override val aes: MappableNonPositionalAes<RangeType>,
+    override val aes: AesName,
     override val sourceScaled: SourceScaledUnspecifiedDefault<DomainType>,
     override val domainType: KType
 ) : BaseScaledNonPositionalMapping<DomainType, RangeType>, ScaledUnspecifiedDefaultMapping<DomainType> {
@@ -93,7 +93,7 @@ data class ScaledUnspecifiedDefaultNonPositionalMapping<DomainType : Any, RangeT
  * @property domainType type of domain
  */
 data class ScaledPositionalDefaultMapping<DomainType : Any>(
-    override val aes: ScalablePositionalAes,
+    override val aes: AesName,
     override val sourceScaled: SourceScaledPositionalDefault<DomainType>,
     override val domainType: KType
 ) : BaseScaledPositionalMapping<DomainType> {
@@ -108,7 +108,7 @@ data class ScaledPositionalDefaultMapping<DomainType : Any>(
  * @property domainType type of domain
  */
 data class ScaledNonPositionalDefaultMapping<DomainType : Any, RangeType : Any>(
-    override val aes: MappableNonPositionalAes<RangeType>,
+    override val aes: AesName,
     override val sourceScaled: SourceScaledNonPositionalDefault<DomainType>,
     override val domainType: KType
 ) : BaseScaledNonPositionalMapping<DomainType, RangeType> {
@@ -123,7 +123,7 @@ data class ScaledNonPositionalDefaultMapping<DomainType : Any, RangeType : Any>(
  * @property domainType type of domain
  */
 data class ScaledPositionalMapping<DomainType : Any>(
-    override val aes: ScalablePositionalAes,
+    override val aes: AesName,
     override val sourceScaled: SourceScaledPositional<DomainType>,
     override val domainType: KType
 ) : BaseScaledPositionalMapping<DomainType> {
@@ -139,7 +139,7 @@ data class ScaledPositionalMapping<DomainType : Any>(
  * @property domainType type of domain
  */
 data class ScaledNonPositionalMapping<DomainType : Any, RangeType : Any>(
-    override val aes: MappableNonPositionalAes<RangeType>,
+    override val aes: AesName,
     override val sourceScaled: SourceScaledNonPositional<DomainType, RangeType>,
     override val domainType: KType,
 ) : BaseScaledNonPositionalMapping<DomainType, RangeType> {

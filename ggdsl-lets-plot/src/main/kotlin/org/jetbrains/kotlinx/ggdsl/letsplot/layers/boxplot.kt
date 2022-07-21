@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 val BOXPLOT = LetsPlotGeom("boxplot")
 
-class BoxplotContext(override var data: MutableNamedData) : LayerContext() {
+class BoxplotContext(override var data: MutableNamedData) : WithBorderLineContext() {
 
     val lower = LowerAes(this)
     val upper = UpperAes(this)
@@ -18,13 +18,6 @@ class BoxplotContext(override var data: MutableNamedData) : LayerContext() {
 
     val color = FillAes(this)
     val alpha = AlphaAes(this)
-
-    val borderLine = BorderLineSubContext()
-
-    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
-        apply(block)
-        this@BoxplotContext.copyFrom(this, false)
-    }
 }
 
 /**

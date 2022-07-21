@@ -12,21 +12,14 @@ val RECT = LetsPlotGeom("rect")
 
 
 class RectContext(override var data: MutableNamedData) :
-    LayerContext() {
-    val xMin = X_MIN
-    val xMax = X_MAX
-    val yMin = Y_MIN
-    val yMax = Y_MAX
+    WithBorderLineContext() {
+    val xMin = XMinAes(this)
+    val xMax = XMaxAes(this)
+    val yMin = YMinAes(this)
+    val yMax = YMaxAes(this)
 
-    val color = FILL
-    val alpha = ALPHA
-
-    val borderLine = BorderLineSubContext()
-
-    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
-        apply(block)
-        this@RectContext.copyFrom(this, false)
-    }
+    val color = FillAes(this)
+    val alpha = AlphaAes(this)
 }
 
 /**

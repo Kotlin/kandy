@@ -11,20 +11,13 @@ import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 val ERROR_BAR = LetsPlotGeom("errorbar")
 
 class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
-    org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
+    WithBorderLineContext() {
     val yMin = YMinAes(this)
     val yMax = YMaxAes(this)
 
     val alpha = AlphaAes(this)
     val width = WidthAes(this)
-
-    // todo just line???
-    val borderLine = BorderLineSubContext()
-
-    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
-        apply(block)
-        this@ErrorBarContext.copyFrom(this, false)
-    }
+    // todo line insyead borderline???
 }
 
 /**

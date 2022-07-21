@@ -3,15 +3,12 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 import jetbrains.letsPlot.ggsize
 import jetbrains.letsPlot.intern.Feature
 import jetbrains.letsPlot.intern.FeatureList
-import jetbrains.letsPlot.label.ggtitle
 import jetbrains.letsPlot.label.labs
 import jetbrains.letsPlot.letsPlot
 import jetbrains.letsPlot.scale.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.aes.Aes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.X
-import org.jetbrains.kotlinx.ggdsl.ir.aes.Y
+import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalablePositionalMapping
@@ -30,13 +27,13 @@ import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
 
 internal fun Mapping.wrap(geom: Geom): Pair<String, String> {
     return when (this) {
-        is NonScalablePositionalMapping<*> -> aes.toLPName(geom) to source.id
-        is ScaledMapping<*> -> aes.toLPName(geom) to sourceScaled.source.id
+        is NonScalablePositionalMapping<*> -> aes.name to source.id
+        is ScaledMapping<*> -> aes.name to sourceScaled.source.id
     }
 }
 
 internal fun NonPositionalSetting<*>.wrap(geom: Geom): Pair<String, Any> {
-    return aes.toLPName(geom) to wrapValue(value)
+    return aes.name to wrapValue(value)
 }
 /*
 // TODO
@@ -102,42 +99,10 @@ internal fun wrapSymbol(symbol: Symbol): Int {
 
  */
 
-// TODO
-internal fun Aes.toLPName(geom: Geom): String {
-    return name
-    /*
-    if (this == SYMBOL) {
-        return "shape"
-    }
-    if (this == LINE_TYPE) {
-        return "linetype"
-    }
-    if (geom in fillGeoms && this == COLOR) {
-        return "fill"
-    }
 
-    if (this == BORDER_WIDTH) {
-        if (geom == BOXPLOT) {
-            return "width"
-        }
-        if (geom == AREA || geom == CROSS_BAR) {
-            return "size"
-        }
-        return "stroke"
-    }
-    if (this == BORDER_COLOR || this == MAPPABLE_BORDER_COLOR) {
-        return "color"
-    }
-    if (geom == Geom.LINE && this == WIDTH) {
-        return "size"
-    }
-    return name
-
-     */
-}
 
 // TODO rewrite
-internal fun Geom.toLPGeom(defaultShape: Boolean = true): jetbrains.letsPlot.intern.layer.GeomOptions {
+internal fun Geom.toLPGeom(): jetbrains.letsPlot.intern.layer.GeomOptions {
     return when (this) {
         // TODO FILL SHAPES WITH SCALES
         AB_LINE -> jetbrains.letsPlot.Geom.abline()
@@ -163,7 +128,7 @@ internal fun Geom.toLPGeom(defaultShape: Boolean = true): jetbrains.letsPlot.int
 
 
 internal fun Scale.wrap(
-    aes: Aes,
+    aes: AesName,
     scaleParameters: ScaleParameters? = null
 ): jetbrains.letsPlot.intern.Scale? {
     return when (this) {
@@ -242,7 +207,7 @@ internal fun Scale.wrap(
             when (this) {
                 is NonPositionalCategoricalScale<*, *> -> {
                     when (aes) {
-
+                        // todo check all
                         SIZE, WIDTH, STROKE -> scaleSizeManual(
                             values = rangeValues?.map { it as Number } ?: TODO("default scale size discrete"),
                             limits = domainCategories,
@@ -321,7 +286,7 @@ internal fun Scale.wrap(
                             guide = legendType
 
                         )
-                        SYMBOL -> if (rangeValues == null) {
+                        SHAPE -> if (rangeValues == null) {
                             scaleShape(
                                 limits = domainCategories,
 
@@ -387,7 +352,7 @@ internal fun Scale.wrap(
                 }
                 is NonPositionalContinuousScale<*, *> -> {
                     when (aes) {
-
+                        // todo check all
                         SIZE, WIDTH, STROKE -> scaleSize(
                             limits = domainLimits.toLP(),
                             range = rangeLimits.toLP(),
@@ -533,9 +498,11 @@ internal fun Layer.wrap(featureBuffer: MutableList<Feature>) {
 }
 
 internal fun LetsPlotLayout.wrap(featureBuffer: MutableList<Feature>) {
-    featureBuffer.add(labs(
-        title, subtitle, caption
-    ))
+    featureBuffer.add(
+        labs(
+            title, subtitle, caption
+        )
+    )
     size?.let {
         featureBuffer.add(ggsize(it.first, it.second))
     }

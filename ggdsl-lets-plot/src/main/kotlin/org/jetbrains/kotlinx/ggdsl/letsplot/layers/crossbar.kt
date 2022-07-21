@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 val CROSS_BAR = LetsPlotGeom("crossbar")
 
 class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
-    org.jetbrains.kotlinx.ggdsl.dsl.LayerContext() {
+    WithBorderLineContext() {
     val yMin = YMinAes(this)
     val yMax = YMaxAes(this)
     val middle = MiddleAes(this)
@@ -22,12 +22,6 @@ class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutable
     val color = FillAes(this)
     val alpha = AlphaAes(this)
 
-    val borderLine = BorderLineSubContext()
-
-    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
-        apply(block)
-        this@CrossBarContext.copyFrom(this, false)
-    }
 }
 
 /**

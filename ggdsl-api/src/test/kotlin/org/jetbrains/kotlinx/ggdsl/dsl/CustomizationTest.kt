@@ -4,8 +4,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.old.DefaultLayout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.X
-import org.jetbrains.kotlinx.ggdsl.ir.aes.Y
+import org.jetbrains.kotlinx.ggdsl.ir.aes.*
+
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
@@ -15,6 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.geom.CommonGeom
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
+import org.jetbrains.kotlinx.ggdsl.old.BORDER_COLOR
 import org.jetbrains.kotlinx.ggdsl.old.bars
 import kotlin.reflect.typeOf
 import kotlin.test.Test
@@ -22,16 +23,20 @@ import kotlin.test.assertEquals
 
 internal class CustomizationTest {
 
+    class SpecificAes(override val context: BindingContext) : MappableNonPositionalAes<CustomGeomType>{
+        override val name = SPECIFIC_AES
+    }
+
     companion object {
         val customGeom = CommonGeom("custom")
-        val SPECIFIC_AES = MappableNonPositionalAes<CustomGeomType>("customAes")
+        val SPECIFIC_AES = AesName("customAes")
     }
 
     data class CustomGeomType(val name: String)
 
     class CustomGeomContext(override var data: MutableNamedData) :
         LayerContext() {
-        val specificAes = SPECIFIC_AES
+        val specificAes = SpecificAes(this)
     }
 
     fun PlotContext.customLayer(block: CustomGeomContext.() -> Unit) {
@@ -184,3 +189,5 @@ internal class CustomizationTest {
         )
     }
 }
+
+

@@ -4,8 +4,8 @@ import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.old.DefaultLayout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.ir.aes.Y
+import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
@@ -34,6 +34,7 @@ internal class LayersTest {
                 // TODO
                 alpha(0.7)
                 borderLine.width(2.0)
+
             }
         }
         // TODO
@@ -84,3 +85,4 @@ internal class LayersTest {
     }
     // todo others???
 }
+

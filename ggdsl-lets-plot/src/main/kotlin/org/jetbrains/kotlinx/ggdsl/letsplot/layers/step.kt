@@ -4,10 +4,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
 import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
-import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalablePositionalMapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 val STEP = LetsPlotGeom("step")
 
@@ -16,10 +13,10 @@ val STEP = LetsPlotGeom("step")
 class StepContext(override var data: MutableNamedData) :
     LayerContext() {
 
-    val color = COLOR
-    val alpha = ALPHA
-    val lineType = LINE_TYPE
-    val width = SIZE
+    val color = ColorAes(this)
+    val alpha = AlphaAes(this)
+    val lineType = LineTypeAes(this)
+    val width = SizeAes(this)
 
 }
 

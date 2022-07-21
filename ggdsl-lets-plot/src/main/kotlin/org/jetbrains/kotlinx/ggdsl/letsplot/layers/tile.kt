@@ -12,19 +12,13 @@ val TILE = LetsPlotGeom("tile")
 
 
 class TileContext(override var data: MutableNamedData) :
-    LayerContext() {
-    val color = FILL
-    val alpha = ALPHA
+    WithBorderLineContext() {
+    val color = FillAes(this)
+    val alpha = AlphaAes(this)
 
-    val width = WIDTH_POS
-    val height = HEIGHT_POS
+    val width = WidthPosAes(this)
+    val height = HeightPosAes(this)
 
-    val borderLine = BorderLineSubContext()
-
-    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
-        apply(block)
-        this@TileContext.copyFrom(this, false)
-    }
 }
 
 /**

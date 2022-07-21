@@ -33,7 +33,7 @@ data class LayerTooltips(
             return LayerTooltips(
                 variables,
                 context.lineBuffer,
-                valueFormats.map { it.key.id to it.value } + aesFormats.map { it.key.name to it.value },
+                valueFormats.map { it.key.id to it.value } + aesFormats.map { it.key.name.name to it.value },
                 title, anchor, minWidth, hide
             )
         }

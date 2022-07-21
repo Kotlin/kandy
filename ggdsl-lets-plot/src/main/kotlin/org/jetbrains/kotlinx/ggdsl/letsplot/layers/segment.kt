@@ -15,12 +15,12 @@ val SEGMENT = LetsPlotGeom("segment")
 // todo better names?
 class SegmentContext(override var data: MutableNamedData) :
     LayerContext() {
-    val xEnd = X_END
-    val yEnd = Y_END
-    val color = COLOR
-    val alpha = ALPHA
-    val lineType = LINE_TYPE
-    val width = SIZE
+    val xEnd = XEndAes(this)
+    val yEnd = YEndAes(this)
+    val color = ColorAes(this)
+    val alpha = AlphaAes(this)
+    val lineType = LineTypeAes(this)
+    val width = SizeAes(this)
 
     // todo speed and flow
 }

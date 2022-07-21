@@ -14,8 +14,8 @@ val RASTER = LetsPlotGeom("raster")
 class RasterContext(override var data: MutableNamedData) :
     LayerContext() {
 
-    val color = FILL
-    val alpha = ALPHA
+    val color = FillAes(this)
+    val alpha = AlphaAes(this)
 
 }
 

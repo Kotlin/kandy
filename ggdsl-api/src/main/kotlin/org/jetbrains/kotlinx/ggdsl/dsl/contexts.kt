@@ -19,8 +19,8 @@ import kotlin.reflect.typeOf
  * Internal collector of mappings and settings.
  */
 class BindingCollector internal constructor() {
-    val mappings: MutableMap<Aes, Mapping> = mutableMapOf()
-    val settings: MutableMap<Aes, Setting> = mutableMapOf()
+    val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
+    val settings: MutableMap<AesName, Setting> = mutableMapOf()
 
     fun copyFrom(other: BindingCollector) {
         mappings.putAll(other.mappings)
@@ -95,7 +95,7 @@ abstract class BindingContext {
  * @param value the assigned value.
  */
 operator fun <T : Any> NonPositionalAes<T>.invoke(value: T) {
-    context.bindingCollectorAccessor.settings[this] = NonPositionalSetting(this, value)
+    context.bindingCollectorAccessor.settings[this.name] = NonPositionalSetting(this.name, value)
 }
 
 /**
@@ -106,15 +106,15 @@ operator fun <T : Any> NonPositionalAes<T>.invoke(value: T) {
 inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
     source: DataSource<DomainType>
 ) {
-    context.bindingCollectorAccessor.mappings[this] =
-        NonScalablePositionalMapping(this, source, typeOf<DomainType>())
+    context.bindingCollectorAccessor.mappings[this.name] =
+        NonScalablePositionalMapping(this.name, source, typeOf<DomainType>())
 }
 
 inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
     data: Iterable<DomainType>
 ) {
-    context.bindingCollectorAccessor.mappings[this] =
-        NonScalablePositionalMapping(this, with(context){ data.toDataSource()}, typeOf<DomainType>())
+    context.bindingCollectorAccessor.mappings[this.name] =
+        NonScalablePositionalMapping(this.name, with(context){ data.toDataSource()}, typeOf<DomainType>())
 }
 
 /**
@@ -126,11 +126,11 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     source: DataSource<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
-        this,
+        this.name,
         source.scaled(),
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this] = mapping
+    context.bindingCollectorAccessor.mappings[this.name] = mapping
     return mapping
 }
 
@@ -138,35 +138,35 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     data: Iterable<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
-        this,
+        this.name,
         with(context){ data.toDataSource()}.scaled(),
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this] = mapping
+    context.bindingCollectorAccessor.mappings[this.name] = mapping
     return mapping
 }
 
 inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
     source: DataSource<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
-    val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
-        this,
+    val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
+        this.name,
         source.scaled(),
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this] = mapping
+    context.bindingCollectorAccessor.mappings[this.name] = mapping
     return mapping
 }
 
 inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
     data: Iterable<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
-    val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
-        this,
+    val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
+        this.name,
         with(context){ data.toDataSource()}.scaled(),
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this] = mapping
+    context.bindingCollectorAccessor.mappings[this.name] = mapping
     return mapping
 }
 
@@ -179,23 +179,23 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     sourceScaledDefault: SourceScaledUnspecifiedDefault<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
-        this,
+        this.name,
         sourceScaledDefault,
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this] = mapping
+    context.bindingCollectorAccessor.mappings[this.name] = mapping
     return mapping
 }
 
 inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
     sourceScaledDefault: SourceScaledUnspecifiedDefault<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
-    val mapping = ScaledUnspecifiedDefaultNonPositionalMapping(
-        this,
+    val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
+        this.name,
         sourceScaledDefault,
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this] = mapping
+    context.bindingCollectorAccessor.mappings[this.name] = mapping
     return mapping
 }
 
@@ -208,11 +208,11 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     sourceScaledDefault: SourceScaledPositionalDefault<DomainType>
 ): ScaledPositionalDefaultMapping<DomainType> {
     val mapping = ScaledPositionalDefaultMapping(
-        this,
+        this.name,
         sourceScaledDefault,
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this] = mapping
+    context.bindingCollectorAccessor.mappings[this.name] = mapping
     return mapping
 }
 
@@ -224,12 +224,12 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
 inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
     sourceScaledDefault: SourceScaledNonPositionalDefault<DomainType>
 ): ScaledNonPositionalDefaultMapping<DomainType, RangeType> {
-    val mapping = ScaledNonPositionalDefaultMapping(
-        this,
+    val mapping = ScaledNonPositionalDefaultMapping<DomainType, RangeType>(
+        this.name,
         sourceScaledDefault,
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this] = mapping
+    context.bindingCollectorAccessor.mappings[this.name] = mapping
     return mapping
 }
 
@@ -242,11 +242,11 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     sourceScaledPositional: SourceScaledPositional<DomainType>
 ): ScaledPositionalMapping<DomainType> {
     val mapping = ScaledPositionalMapping(
-        this,
+        this.name,
         sourceScaledPositional,
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this] = mapping
+    context.bindingCollectorAccessor.mappings[this.name] = mapping
     return mapping
 }
 
@@ -260,11 +260,11 @@ inline operator fun <reified DomainType : Any, reified RangeType : Any>
     sourceScaledNonPositional: SourceScaledNonPositional<DomainType, RangeType>
 ): ScaledNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledNonPositionalMapping(
-        this,
+        this.name,
         sourceScaledNonPositional,
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this] = mapping
+    context.bindingCollectorAccessor.mappings[this.name] = mapping
     return mapping
 }
 

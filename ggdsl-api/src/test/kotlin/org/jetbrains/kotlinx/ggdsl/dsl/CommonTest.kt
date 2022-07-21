@@ -54,7 +54,7 @@ internal class CommonTest {
                             Y to ScaledUnspecifiedDefaultPositionalMapping(
                                 Y, SourceScaledUnspecifiedDefault(srcY), typeOf<Float>()
                             ),
-                            COLOR to ScaledUnspecifiedDefaultNonPositionalMapping(
+                            COLOR to ScaledUnspecifiedDefaultNonPositionalMapping<String, Color>(
                                 COLOR, SourceScaledUnspecifiedDefault(type), typeOf<String>()
                             ),
                         ),
@@ -141,7 +141,7 @@ internal class CommonTest {
                             X to xMapping,
                             Y to yMapping,
                             COLOR to colorMapping,
-                            SIZE to ScaledUnspecifiedDefaultNonPositionalMapping(
+                            SIZE to ScaledUnspecifiedDefaultNonPositionalMapping<Int, Double>(
                                 SIZE, SourceScaledUnspecifiedDefault(noa), typeOf<Int>()
                             )
                         ),
@@ -178,7 +178,6 @@ internal class CommonTest {
         val name = source<String>("name")
 
         val plot = plot(emptyDataset) {
-            // data = emptyDataset.toMutableMap()
             x(wr)
             y(iq)
             points {
@@ -200,7 +199,7 @@ internal class CommonTest {
                             Y to ScaledUnspecifiedDefaultPositionalMapping(
                                 Y, SourceScaledUnspecifiedDefault(iq), typeOf<Int>()
                             ),
-                            COLOR to ScaledUnspecifiedDefaultNonPositionalMapping(
+                            COLOR to ScaledUnspecifiedDefaultNonPositionalMapping<String, Color>(
                                 COLOR, SourceScaledUnspecifiedDefault(name), typeOf<String>()
                             ),
                         ),
@@ -213,3 +212,4 @@ internal class CommonTest {
         )
     }
 }
+

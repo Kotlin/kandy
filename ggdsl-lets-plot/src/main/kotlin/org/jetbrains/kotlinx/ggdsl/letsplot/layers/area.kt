@@ -11,16 +11,9 @@ val AREA = LetsPlotGeom("area")
 
 
 class AreaContext(override var data: MutableNamedData) :
-    LayerContext() {
+    WithBorderLineContext() {
     val color = FillAes(this)
     val alpha = AlphaAes(this)
-
-    val borderLine = BorderLineSubContext()
-
-    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
-        apply(block)
-        this@AreaContext.copyFrom(this, false)
-    }
 }
 
 /**

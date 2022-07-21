@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.ir.bindings
 
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes
 
 /**
@@ -15,6 +16,6 @@ sealed interface Setting
  * @property value the assigned value
  */
 data class NonPositionalSetting<T : Any>(
-    val aes: NonPositionalAes<T>,
+    val aes: AesName,
     val value: T,
 ) : Setting

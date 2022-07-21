@@ -16,10 +16,10 @@ val PATH = LetsPlotGeom("path")
 
 class LineContext(override var data: MutableNamedData) :
     LayerContext() {
-    val color = COLOR
-    val alpha = ALPHA
-    val type = LINE_TYPE
-    val width = SIZE
+    val color = ColorAes(this)
+    val alpha = AlphaAes(this)
+    val type = LineTypeAes(this)
+    val width = SizeAes(this)
 }
 
 /**

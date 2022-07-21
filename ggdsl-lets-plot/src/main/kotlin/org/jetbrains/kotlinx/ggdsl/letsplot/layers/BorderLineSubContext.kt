@@ -1,12 +1,23 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
 import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 
-class BorderLineSubContext : BindingContext() {
+abstract class SubContext(val parentContext: BindingContext): BindingContext()
+
+class BorderLineSubContext(parentContext: BindingContext) : SubContext(parentContext) {
     override var data: MutableNamedData = mutableMapOf()
-    val color = ColorAes(this)
-    val type = LineTypeAes(this)
-    val width = SizeAes(this)
+    val color = ColorAes(parentContext)
+    val type = LineTypeAes(parentContext)
+    val width = SizeAes(parentContext)
+}
+
+abstract class WithBorderLineContext : LayerContext(){
+    val borderLine = BorderLineSubContext(this)
+
+    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
+        apply(block)
+    }
 }

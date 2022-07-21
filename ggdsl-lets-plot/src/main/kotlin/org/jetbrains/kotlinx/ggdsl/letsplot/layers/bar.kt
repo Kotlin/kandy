@@ -13,18 +13,12 @@ val BAR = LetsPlotGeom("bar")
 
 
 
-class BarContext(override var data: MutableNamedData) : LayerContext() {
+class BarContext(override var data: MutableNamedData) : WithBorderLineContext() {
 
     val color = FillAes(this)
     val alpha = AlphaAes(this)
     val width = WidthAes(this)
 
-    val borderLine = BorderLineSubContext()
-
-    inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
-        apply(block)
-        this@BarContext.copyFrom(this, false)
-    }
 }
 
 /**

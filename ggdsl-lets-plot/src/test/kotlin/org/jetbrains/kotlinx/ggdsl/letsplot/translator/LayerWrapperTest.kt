@@ -25,7 +25,7 @@ internal class LayerWrapperTest {
             mapOf(),
             POINT,
             mapOf(
-                FILL to ScaledUnspecifiedDefaultNonPositionalMapping(
+                FILL to ScaledUnspecifiedDefaultNonPositionalMapping<Int, Color>(
                     FILL,
                     source<Int>("F").scaled(),
                     typeOf<Int>()
@@ -174,3 +174,4 @@ internal class LayerWrapperTest {
          */
     }
 }
+

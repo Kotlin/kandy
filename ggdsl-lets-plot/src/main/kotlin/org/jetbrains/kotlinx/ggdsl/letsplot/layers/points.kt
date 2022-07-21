@@ -8,15 +8,15 @@ val POINT = LetsPlotGeom("point")
 // TODO add size unit???
 
 class PointsContext(override var data: MutableNamedData) : LayerContext() {
-    val symbol = SYMBOL
+    val symbol = ShapeAes(this)
 
-    val size = SIZE
-    val color = COLOR
-    val alpha = ALPHA
+    val size = SizeAes(this)
+    val color = ColorAes(this)
+    val alpha = AlphaAes(this)
 
     // FILL SHAPES only
-    val borderWidth = STROKE // TODO doesnt work lol
-    val fillColor = FILL
+    val borderWidth = StrokeAes(this) // TODO doesnt work lol
+    val fillColor = FillAes(this)
 
 }
 

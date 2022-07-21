@@ -1,78 +1,112 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
+import jetbrains.letsPlot.Stat
 import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.BindingContext
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LetsPlotLineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.LetsPlotSymbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 
+val LOWER = AesName("lower")
 data class LowerAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: String = "lower"
+    override val name= LOWER
 }
+
+val UPPER = AesName("upper")
 data class UpperAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: String = "upper"
+    override val name: AesName = UPPER
 }
+
+val MIDDLE = AesName("middle")
 data class MiddleAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: String = "middle"
+    override val name =MIDDLE
 }
+
+val X_MIN = AesName("xmin")
 data class XMinAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: String = "xmin"
+    override val name = X_MIN
 }
+
+val X_MAX = AesName("xmax")
 data class XMaxAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: String = "xmax"
+    override val name= X_MAX
 }
+
+val Y_MIN = AesName("ymin")
 data class YMinAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: String = "ymin"
+    override val name = Y_MIN
 }
+
+val Y_MAX = AesName("ymax")
 data class YMaxAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: String = "ymax"
+    override val name = Y_MAX
 }
+
+val X_END = AesName("xend")
 data class XEndAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: String = "xend"
+    override val name= X_END
 }
+
+val Y_END = AesName("yend")
 data class YEndAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: String = "yend"
+    override val name=Y_END
 }
+
+val WIDTH_POS = AesName("width")
 data class WidthPosAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: String = "width"
+    override val name=WIDTH_POS
 }
+
+val HEIGHT_POS = AesName("height")
 data class HeightPosAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: String = "height"
+    override val name=HEIGHT_POS
 }
 
+val COLOR = AesName("color")
 data class ColorAes(override val context: BindingContext): MappableNonPositionalAes<Color> {
-    override val name: String = "color"
+    override val name = COLOR
 }
+
+val FILL = AesName("fill")
 data class FillAes(override val context: BindingContext): MappableNonPositionalAes<Color> {
-    override val name: String = "fill"
+    override val name=FILL
 }
+
+val SHAPE = AesName("shape")
 data class ShapeAes(override val context: BindingContext): MappableNonPositionalAes<LetsPlotSymbol> {
-    override val name: String = "shape"
+    override val name=SHAPE
 }
+
+val LINE_TYPE = AesName("linetype")
 data class LineTypeAes(override val context: BindingContext): MappableNonPositionalAes<LetsPlotLineType> {
-    override val name: String = "linetype"
+    override val name=LINE_TYPE
 }
 
-data class SizeAes(override val context: BindingContext): MappableNonPositionalAes<Color> {
-    override val name: String = "size"
-}
-data class StrokeAes(override val context: BindingContext): MappableNonPositionalAes<Color> {
-    override val name: String = "stroke"
-}
-data class WidthAes(override val context: BindingContext): MappableNonPositionalAes<Color> {
-    override val name: String = "width"
-}
-data class AlphaAes(override val context: BindingContext): MappableNonPositionalAes<Color> {
-    override val name: String = "alpha"
+val SIZE = AesName("size")
+data class SizeAes(override val context: BindingContext): MappableNonPositionalAes<Double> {
+    override val name=SIZE
 }
 
+val STROKE = AesName("stroke")
+data class StrokeAes(override val context: BindingContext): MappableNonPositionalAes<Double> {
+    override val name=STROKE
+}
 
+val WIDTH = AesName("width")
+data class WidthAes(override val context: BindingContext): MappableNonPositionalAes<Double> {
+    override val name=WIDTH
+}
+
+val ALPHA = AesName("alpha")
+data class AlphaAes(override val context: BindingContext): MappableNonPositionalAes<Double> {
+    override val name=ALPHA
+}
+
+val FATTEN = AesName("fatten")
 data class FattenAes(override val context: BindingContext): NonPositionalAes<Double> {
-    override val name: String = "fatten"
+    override val name=FATTEN
 }
 
 // fix to positional non scalable???? or SubPositional

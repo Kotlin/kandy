@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.BindingContext
  * @property name the name of this attribute
  */
 sealed interface Aes {
-    val name: String
+    val name: AesName
     val context: BindingContext
 }
 

@@ -3,6 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.old.SymbolAes
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 
@@ -23,18 +24,18 @@ class InnerUnfilledPointSubContext : BindingContext() {
 
  */
 
-class InnerPointSubContext : BindingContext() {
+class InnerPointSubContext(parentContext: BindingContext) : SubContext(parentContext) {
     override var data: MutableNamedData = mutableMapOf()
-    val symbol = SYMBOL
-    val fillColor = FILL
-    val fatten = FATTEN
+    val symbol = SymbolAes(parentContext)
+    val fillColor = FillAes(parentContext)
+    val fatten = FattenAes(parentContext)
 }
 
-class InnerLineSubContext : BindingContext() {
+class InnerLineSubContext(parentContext: BindingContext) : SubContext(parentContext) {
     override var data: MutableNamedData = mutableMapOf()
-    val color = COLOR
-    val type = LINE_TYPE
-    val width = SIZE // TODO mappable???
+    val color = ColorAes(parentContext)
+    val type = LineTypeAes(parentContext)
+    //val width = SIZE // TODO mappable???
 }
 /*
 class FilledPointRangeContext(override var data: MutableNamedData) : LayerContext() {
@@ -91,27 +92,25 @@ class UnfilledPointRangeContext(override var data: MutableNamedData) : LayerCont
 
 
 class PointRangeContext(override var data: MutableNamedData) : LayerContext() {
-    val yMin = Y_MIN
-    val yMax = Y_MAX
+    val yMin = YMinAes(this)
+    val yMax = YMaxAes(this)
 
-    val alpha = ALPHA
-    val color = FILL
+    val alpha = AlphaAes(this)
+    val color = ColorAes(this)
 
     // todo separate????
-    val size = SIZE
+    val size = SizeAes(this)
 
-    val innerPoint = InnerPointSubContext()
+    val innerPoint = InnerPointSubContext(this)
 
     inline operator fun InnerPointSubContext.invoke(block: InnerPointSubContext.() -> Unit) {
         apply(block)
-        this@PointRangeContext.copyFrom(this, false)
     }
 
-    val innerLine = InnerLineSubContext()
+    val innerLine = InnerLineSubContext(this)
 
     inline operator fun InnerLineSubContext.invoke(block: InnerLineSubContext.() -> Unit) {
         apply(block)
-        this@PointRangeContext.copyFrom(this, false)
     }
 }
 
