@@ -3,7 +3,6 @@ plugins {
     id("org.jetbrains.dokka") version "1.6.21"
     kotlin("plugin.serialization") version "1.6.0"
     kotlin("jupyter.api")
-    id("maven-publish")
 }
 
 repositories {

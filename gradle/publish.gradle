@@ -14,13 +14,6 @@ task javadocJar(type: Jar) {
     from javadoc
 }
 
-nexusStaging {
-    username sonatypeUser
-    password sonatypePassword
-    packageGroup project.group.toString()
-    repositoryDescription "ggdsl staging repository, version: $version"
-}
-
 publishing {
     publications {
         maven(MavenPublication) {
