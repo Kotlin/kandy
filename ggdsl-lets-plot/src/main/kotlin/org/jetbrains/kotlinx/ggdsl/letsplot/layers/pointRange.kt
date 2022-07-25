@@ -3,7 +3,6 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.old.SymbolAes
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 
@@ -26,14 +25,14 @@ class InnerUnfilledPointSubContext : BindingContext() {
 
 class InnerPointSubContext(parentContext: BindingContext) : SubContext(parentContext) {
     override var data: MutableNamedData = mutableMapOf()
-    val symbol = SymbolAes(parentContext)
+    val symbol = ShapeAes(parentContext)
     val fillColor = FillAes(parentContext)
     val fatten = FattenAes(parentContext)
 }
 
 class InnerLineSubContext(parentContext: BindingContext) : SubContext(parentContext) {
     override var data: MutableNamedData = mutableMapOf()
-    val color = ColorAes(parentContext)
+ //   val color = ColorAes(parentContext)
     val type = LineTypeAes(parentContext)
     //val width = SIZE // TODO mappable???
 }
