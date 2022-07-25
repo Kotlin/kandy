@@ -498,11 +498,10 @@ internal fun Layer.wrap(featureBuffer: MutableList<Feature>) {
 }
 
 internal fun LetsPlotLayout.wrap(featureBuffer: MutableList<Feature>) {
-    featureBuffer.add(
-        labs(
-            title, subtitle, caption
-        )
+    val labs = labs(
+        title, subtitle, caption, xAxisLabel, yAxisLabel
     )
+    featureBuffer.add(labs)
     size?.let {
         featureBuffer.add(ggsize(it.first, it.second))
     }
