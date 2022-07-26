@@ -1,15 +1,16 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import jetbrains.letsPlot.Pos
-import jetbrains.letsPlot.Stat
-import jetbrains.letsPlot.intern.Options
+import org.jetbrains.letsPlot.Pos
+import org.jetbrains.letsPlot.Stat
+import org.jetbrains.letsPlot.intern.Options
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
+import org.jetbrains.letsPlot.intern.layer.LayerBase
 
 class LayerWrapper internal constructor(private val layer: Layer) :
-    jetbrains.letsPlot.intern.layer.LayerBase(
+    LayerBase(
         data = layer.data,
         mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap(layer.geom) }.toMap()),
         // todo handle with shapes

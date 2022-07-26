@@ -1,6 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import jetbrains.letsPlot.intern.toSpec
+import org.jetbrains.letsPlot.intern.toSpec
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.dsl.source
 import org.jetbrains.kotlinx.ggdsl.ir.Layer

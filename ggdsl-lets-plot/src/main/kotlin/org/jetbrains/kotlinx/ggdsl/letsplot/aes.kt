@@ -1,13 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
-import jetbrains.letsPlot.Stat
-import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.BindingContext
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
+import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LetsPlotLineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.LetsPlotSymbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
 
 val LOWER = AesName("lower")
 data class LowerAes(override val context: BindingContext): NonScalablePositionalAes {

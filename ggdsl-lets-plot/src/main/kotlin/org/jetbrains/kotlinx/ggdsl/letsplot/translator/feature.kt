@@ -1,14 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import jetbrains.letsPlot.*
-import jetbrains.letsPlot.facet.facetGrid
-import jetbrains.letsPlot.facet.facetWrap
-import jetbrains.letsPlot.intern.Feature
-import jetbrains.letsPlot.intern.OptionsMap
-import jetbrains.letsPlot.intern.layer.PosOptions
-import jetbrains.letsPlot.tooltips.TooltipOptions
-import jetbrains.letsPlot.tooltips.layerTooltips
-import jetbrains.letsPlot.tooltips.tooltipsNone
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FACET_X
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FACET_Y
@@ -16,6 +7,18 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
+import org.jetbrains.letsPlot.facet.facetGrid
+import org.jetbrains.letsPlot.facet.facetWrap
+import org.jetbrains.letsPlot.intern.Feature
+import org.jetbrains.letsPlot.intern.OptionsMap
+import org.jetbrains.letsPlot.intern.layer.PosOptions
+import org.jetbrains.letsPlot.pos.positionIdentity
+import org.jetbrains.letsPlot.pos.positionJitterDodge
+import org.jetbrains.letsPlot.pos.*
+import org.jetbrains.letsPlot.pos.positionStack
+import org.jetbrains.letsPlot.tooltips.TooltipOptions
+import org.jetbrains.letsPlot.tooltips.layerTooltips
+import org.jetbrains.letsPlot.tooltips.tooltipsNone
 
 internal fun FacetGridFeature.wrap(): OptionsMap {
     return facetGrid(
@@ -63,8 +66,8 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
 
 internal fun Position.wrap(): PosOptions {
     return when (this) {
-        is Position.Identity -> return Pos.identity
-        is Position.Stack -> return Pos.stack
+        is Position.Identity -> return positionIdentity
+        is Position.Stack -> return positionStack
         is Position.Dodge -> return positionDodge(width)
         is Position.Jitter -> return positionJitter(width, height)
         is Position.Nudge -> return positionNudge(x, y)

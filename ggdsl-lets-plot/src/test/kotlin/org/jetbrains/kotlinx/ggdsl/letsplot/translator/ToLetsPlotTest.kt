@@ -1,6 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import jetbrains.letsPlot.intern.toSpec
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
@@ -12,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LetsPlotLineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.LetsPlotSymbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
+import org.jetbrains.letsPlot.intern.toSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

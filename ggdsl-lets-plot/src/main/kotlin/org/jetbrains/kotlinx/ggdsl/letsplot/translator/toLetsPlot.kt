@@ -1,11 +1,11 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import jetbrains.letsPlot.ggsize
-import jetbrains.letsPlot.intern.Feature
-import jetbrains.letsPlot.intern.FeatureList
-import jetbrains.letsPlot.label.labs
-import jetbrains.letsPlot.letsPlot
-import jetbrains.letsPlot.scale.*
+import org.jetbrains.letsPlot.ggsize
+import org.jetbrains.letsPlot.intern.Feature
+import org.jetbrains.letsPlot.intern.FeatureList
+import org.jetbrains.letsPlot.label.labs
+import org.jetbrains.letsPlot.letsPlot
+import org.jetbrains.letsPlot.scale.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
@@ -102,26 +102,26 @@ internal fun wrapSymbol(symbol: Symbol): Int {
 
 
 // TODO rewrite
-internal fun Geom.toLPGeom(): jetbrains.letsPlot.intern.layer.GeomOptions {
+internal fun Geom.toLPGeom(): org.jetbrains.letsPlot.intern.layer.GeomOptions {
     return when (this) {
         // TODO FILL SHAPES WITH SCALES
-        AB_LINE -> jetbrains.letsPlot.Geom.abline()
-        AREA -> jetbrains.letsPlot.Geom.area()
-        BAR -> jetbrains.letsPlot.Geom.bar()
-        BOXPLOT -> jetbrains.letsPlot.Geom.boxplot()
-        CROSS_BAR -> jetbrains.letsPlot.Geom.crossbar()
-        ERROR_BAR -> jetbrains.letsPlot.Geom.errorbar()
+        AB_LINE -> org.jetbrains.letsPlot.Geom.abline()
+        AREA -> org.jetbrains.letsPlot.Geom.area()
+        BAR -> org.jetbrains.letsPlot.Geom.bar()
+        BOXPLOT -> org.jetbrains.letsPlot.Geom.boxplot()
+        CROSS_BAR -> org.jetbrains.letsPlot.Geom.crossbar()
+        ERROR_BAR -> org.jetbrains.letsPlot.Geom.errorbar()
         // TODO line/path
-        LINE, PATH -> jetbrains.letsPlot.Geom.path()
-        LINE_RANGE -> jetbrains.letsPlot.Geom.linerange()
-        POINT -> jetbrains.letsPlot.Geom.point()
-        POINT_RANGE -> jetbrains.letsPlot.Geom.pointrange()
-        RASTER -> jetbrains.letsPlot.Geom.raster()
-        RECT -> jetbrains.letsPlot.Geom.rect()
-        RIBBON -> jetbrains.letsPlot.Geom.ribbon()
-        SEGMENT -> jetbrains.letsPlot.Geom.segment()
-        STEP -> jetbrains.letsPlot.Geom.step()
-        TILE -> jetbrains.letsPlot.Geom.tile()
+        LINE, PATH -> org.jetbrains.letsPlot.Geom.path()
+        LINE_RANGE -> org.jetbrains.letsPlot.Geom.linerange()
+        POINT -> org.jetbrains.letsPlot.Geom.point()
+        POINT_RANGE -> org.jetbrains.letsPlot.Geom.pointrange()
+        RASTER -> org.jetbrains.letsPlot.Geom.raster()
+        RECT -> org.jetbrains.letsPlot.Geom.rect()
+        RIBBON -> org.jetbrains.letsPlot.Geom.ribbon()
+        SEGMENT -> org.jetbrains.letsPlot.Geom.segment()
+        STEP -> org.jetbrains.letsPlot.Geom.step()
+        TILE -> org.jetbrains.letsPlot.Geom.tile()
         else -> TODO()
     }
 }
@@ -130,7 +130,7 @@ internal fun Geom.toLPGeom(): jetbrains.letsPlot.intern.layer.GeomOptions {
 internal fun Scale.wrap(
     aes: AesName,
     scaleParameters: ScaleParameters? = null
-): jetbrains.letsPlot.intern.Scale? {
+): org.jetbrains.letsPlot.intern.Scale? {
     return when (this) {
         is PositionalScale<*> -> {
             val axis = (scaleParameters as PositionalParameters<*>?)?.axis
@@ -501,7 +501,7 @@ internal fun LetsPlotLayout.wrap(featureBuffer: MutableList<Feature>) {
     val labs = labs(
         title, subtitle, caption, xAxisLabel, yAxisLabel
     )
-    featureBuffer.add(labs)
+    featureBuffer.addAll(labs.elements)
     size?.let {
         featureBuffer.add(ggsize(it.first, it.second))
     }
@@ -512,7 +512,7 @@ internal fun LetsPlotLayout.wrap(featureBuffer: MutableList<Feature>) {
     */
 }
 
-fun Plot.toLetsPlot(): jetbrains.letsPlot.intern.Plot {
+fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
     val featureBuffer = buildList {
         layers.forEach { it.wrap(this) }
         features.forEach { it.value.wrap(this) }

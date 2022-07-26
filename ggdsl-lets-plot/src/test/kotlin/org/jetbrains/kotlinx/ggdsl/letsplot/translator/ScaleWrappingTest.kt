@@ -1,6 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import jetbrains.letsPlot.intern.toSpec
+import org.jetbrains.letsPlot.intern.toSpec
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.geom.CommonGeom
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
