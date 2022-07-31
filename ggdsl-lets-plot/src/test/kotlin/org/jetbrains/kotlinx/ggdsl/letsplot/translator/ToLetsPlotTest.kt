@@ -8,8 +8,8 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.line
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LetsPlotLineType
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.LetsPlotSymbol
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.intern.toSpec
 import kotlin.test.Test
@@ -22,7 +22,7 @@ class ToLetsPlotTest {
             x(source<String>("origin"))
             points {
                 y(source<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
-                symbol(LetsPlotSymbol.CIRCLE_FILLED)
+                symbol(Symbol.CIRCLE_FILLED)
                 fillColor(Color.RED)
             }
         }
@@ -79,7 +79,7 @@ class ToLetsPlotTest {
             }
             line {
                 width(2.2)
-                type(LetsPlotLineType.DOTTED)
+                type(LineType.DOTTED)
                 position = Position.Identity
             }
 

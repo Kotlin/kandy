@@ -21,8 +21,8 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.scales.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.ColorBar
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.DiscreteLegend
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.None
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LetsPlotLineType
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.LetsPlotSymbol
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
 
 internal fun Mapping.wrap(geom: Geom): Pair<String, String> {
@@ -62,7 +62,7 @@ internal fun wrapValue(value: Any): Any {
     }
 
      */
-    if (value is LetsPlotSymbol) {
+    if (value is Symbol) {
         return value.shape
     }
     /*
@@ -71,7 +71,7 @@ internal fun wrapValue(value: Any): Any {
     }
 
      */
-    if (value is LetsPlotLineType) {
+    if (value is LineType) {
         return value.description
     }
     return value
@@ -277,7 +277,7 @@ internal fun Scale.wrap(
 
                         LINE_TYPE -> scaleLinetypeManual(
                             limits = domainCategories,
-                            values = rangeValues?.map { (it as LetsPlotLineType).codeNumber }
+                            values = rangeValues?.map { (it as LineType).codeNumber }
                                 ?: TODO("default scale alpha discrete"),
 
                             name = name,
@@ -298,7 +298,7 @@ internal fun Scale.wrap(
                         } else {
                             scaleShapeManual(
                                 limits = domainCategories,
-                                values = rangeValues!!.map { (it as LetsPlotSymbol).shape },
+                                values = rangeValues!!.map { (it as Symbol).shape },
 
                                 name = name,
                                 breaks = breaks,

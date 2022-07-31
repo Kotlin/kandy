@@ -1,11 +1,11 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.unit
 
+import org.jetbrains.kotlinx.ggdsl.dsl.Symbol
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import org.jetbrains.kotlinx.ggdsl.util.symbol.Symbol
 import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertEquals

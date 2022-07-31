@@ -1,7 +1,7 @@
-package org.jetbrains.kotlinx.ggdsl.old
+package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
-import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
+import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.echarts.*
 
 class PointsContext(override var data: MutableNamedData) : LayerContext() {
     val size = SizeAes(this)

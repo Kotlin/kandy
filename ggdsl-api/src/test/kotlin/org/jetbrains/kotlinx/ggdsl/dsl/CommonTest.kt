@@ -1,18 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.old.DefaultLayout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
-import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
-import org.jetbrains.kotlinx.ggdsl.old.*
-import org.jetbrains.kotlinx.ggdsl.old.bars
-import org.jetbrains.kotlinx.ggdsl.old.points
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.typeOf
 import kotlin.test.Test
@@ -46,7 +41,7 @@ internal class CommonTest {
                 listOf(
                     Layer(
                         dataset,
-                        Geom.POINT,
+                        POINT,
                         mappings = mapOf(
                             X to ScaledUnspecifiedDefaultPositionalMapping(
                                 X, SourceScaledUnspecifiedDefault(srcX), typeOf<Double>()
@@ -136,7 +131,7 @@ internal class CommonTest {
                 listOf(
                     Layer(
                         dataset,
-                        Geom.POINT,
+                        POINT,
                         mappings = mapOf(
                             X to xMapping,
                             Y to yMapping,
@@ -149,7 +144,7 @@ internal class CommonTest {
                     ),
                     Layer(
                         dataset,
-                        Geom.BAR,
+                        BAR,
                         mappings = mapOf(
                             X to xMapping,
                             Y to yMapping,
@@ -191,7 +186,7 @@ internal class CommonTest {
                 listOf(
                     Layer(
                         realDataset,
-                        Geom.POINT,
+                        POINT,
                         mappings = mapOf(
                             X to ScaledUnspecifiedDefaultPositionalMapping(
                                 X, SourceScaledUnspecifiedDefault(wr), typeOf<Double>()

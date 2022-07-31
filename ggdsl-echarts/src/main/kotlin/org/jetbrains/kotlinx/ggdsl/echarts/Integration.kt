@@ -7,12 +7,14 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.jetbrains.kotlinx.ggdsl.echarts.animation.DataChangeAnimation
 import org.jetbrains.kotlinx.ggdsl.echarts.animation.PlotChangeAnimation
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.toOption
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.wrap
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
-/
+
 @JupyterLibrary
 internal class Integration : JupyterIntegration() {
 
@@ -34,6 +36,7 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.echarts.animation.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.util.color.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.util.symbol.*")
+        import("org.jetbrains.kotlinx.ggdsl.echarts.util.linetype.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.scale.guide.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.scale.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.stack.*")

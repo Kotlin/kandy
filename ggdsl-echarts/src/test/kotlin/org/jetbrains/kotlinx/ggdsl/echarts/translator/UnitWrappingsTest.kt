@@ -16,7 +16,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import org.jetbrains.kotlinx.ggdsl.old.*
 import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
@@ -51,7 +50,7 @@ internal class UnitWrappingsTest {
     fun testToSeriesSimple() {
         val layer = Layer(
             null,
-            Geom.POINT,
+            POINT,
             mapOf(
                 X to ScaledPositionalMapping(
                     X,
@@ -93,7 +92,7 @@ internal class UnitWrappingsTest {
     fun testToSeriesComplex() {
         val layer = Layer(
             null,
-            Geom.LINE,
+            LINE,
             mapOf(
                 X to ScaledPositionalDefaultMapping(
                     X, SourceScaledPositionalDefault(

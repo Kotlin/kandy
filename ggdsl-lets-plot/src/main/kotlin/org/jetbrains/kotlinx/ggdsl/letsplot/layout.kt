@@ -12,6 +12,7 @@ data class LetsPlotLayout(
     // todo remove?
     var xAxisLabel: String? = null,
     var yAxisLabel: String? = null,
+
     var size: Pair<Int, Int>? = null
 ): Layout
 

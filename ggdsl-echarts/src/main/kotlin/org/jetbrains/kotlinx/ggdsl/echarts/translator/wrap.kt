@@ -7,7 +7,8 @@ import org.jetbrains.kotlinx.ggdsl.echarts.util.color.EchartsColorOption
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.LinearGradientColor
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.RadialGradientColor
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.toEchartsColorOption
-import org.jetbrains.kotlinx.ggdsl.echarts.util.symbol.EchartsSymbol
+import org.jetbrains.kotlinx.ggdsl.echarts.util.linetype.LineType
+import org.jetbrains.kotlinx.ggdsl.echarts.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
@@ -15,11 +16,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
-import org.jetbrains.kotlinx.ggdsl.old.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
-import org.jetbrains.kotlinx.ggdsl.util.linetype.CommonLineType
-import org.jetbrains.kotlinx.ggdsl.util.symbol.CommonSymbol
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
@@ -56,9 +54,9 @@ internal fun NamedData.wrap(): DataInfo {
 
 internal fun Geom.toType(): String {
     return when (this) {
-        Geom.POINT -> "scatter"
-        Geom.BAR -> "bar"
-        Geom.LINE -> "line"
+       POINT -> "scatter"
+        BAR -> "bar"
+        LINE -> "line"
         else -> TODO()
     }
 }
@@ -118,9 +116,8 @@ internal fun createInRange(aes: AesName, valuesString: List<Any>?, size: Int, is
 //todo
 internal fun wrapValue(value: Any): Any {
     return when (value) {
-        is CommonLineType -> value.description
-        is CommonSymbol -> value.description
-        is EchartsSymbol -> value.name
+        is LineType -> value.name
+        is Symbol -> value.name
         is Color -> wrapColor(value)
         else -> value //.toString()
     }
@@ -130,7 +127,7 @@ internal fun wrapValue(value: Any): Any {
 
 internal var visualMapCounter = 0
 
-internal fun defaultPiecewiseVisualMap(aes: Aes, dim: Int, seriesIndex: Int, data: List<Any>): VisualMap {
+internal fun defaultPiecewiseVisualMap(aes: AesName, dim: Int, seriesIndex: Int, data: List<Any>): VisualMap {
     val categoriesString = data.toSet().map { it.toString() }
     return VisualMap(
         /*
@@ -143,7 +140,7 @@ internal fun defaultPiecewiseVisualMap(aes: Aes, dim: Int, seriesIndex: Int, dat
         //   show = true, // TODO
         dimension = dim,
         categories = categoriesString,
-        inRange = createInRange(aes.name, null, categoriesString.size, false),
+        inRange = createInRange(aes, null, categoriesString.size, false),
         seriesIndex = seriesIndex,
 
         right = 10,
@@ -151,7 +148,7 @@ internal fun defaultPiecewiseVisualMap(aes: Aes, dim: Int, seriesIndex: Int, dat
     )
 }
 
-internal fun defaultContinuousVisualMap(aes: Aes, dim: Int, seriesIndex: Int, data: List<Any>): VisualMap {
+internal fun defaultContinuousVisualMap(aes: AesName, dim: Int, seriesIndex: Int, data: List<Any>): VisualMap {
     return VisualMap(
         /*
         show = show,
@@ -173,7 +170,7 @@ internal fun defaultContinuousVisualMap(aes: Aes, dim: Int, seriesIndex: Int, da
 
 // TODO!!! seriesIndex
 internal fun Scale.toVisualMap(
-    aes: Aes,
+    aes: AesName,
     dim: Int,
     seriesIndex: Int,
     data: List<Any>,
@@ -199,7 +196,7 @@ internal fun Scale.toVisualMap(
             val valuesString = rangeValues?.map { value ->
                 wrapValue(value)
             }
-            val inRange = createInRange(aes.name, valuesString, categoriesString.size, isContinuous = false)
+            val inRange = createInRange(aes, valuesString, categoriesString.size, isContinuous = false)
             VisualMap(
                 /*
                 show = show,
@@ -334,7 +331,7 @@ internal fun Scale.toAxis(/*data: List<Any>,*/ domainType: KType): Axis {
 }
 
 
-internal fun <T : Any> Map<Aes, Setting>.getNPSValue(key: NonPositionalAes<T>): T? {
+internal fun <T : Any> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
     return (this[key] as? NonPositionalSetting<*>)?.value as? T
 }
 
@@ -342,14 +339,14 @@ internal fun Layer.toSeries(wrappedData: List<List<Any>>?): Series {
 
     // TODO STYLE, type series
 
-    val size = settings.getNPSValue(SIZE)
-    val color = settings.getNPSValue(COLOR)
-    val alpha = settings.getNPSValue(ALPHA)
-    val borderColor = settings.getNPSValue(BORDER_COLOR)
-    val borderWidth = settings.getNPSValue(BORDER_WIDTH)
-    val symbol = settings.getNPSValue(SYMBOL)
-    val width = settings.getNPSValue(WIDTH)
-    val lineType = settings.getNPSValue(LINE_TYPE)
+    val size = settings.getNPSValue<Double>(SIZE)
+    val color = settings.getNPSValue<Color>(COLOR)
+    val alpha = settings.getNPSValue<Double>(ALPHA)
+    val borderColor = settings.getNPSValue<Color>(BORDER_COLOR)
+    val borderWidth = settings.getNPSValue<Double>(BORDER_SIZE)
+    val symbol = settings.getNPSValue<Symbol>(SYMBOL)
+    val width = settings.getNPSValue<Double>(WIDTH)
+    val lineType = settings.getNPSValue<LineType>(LINE_TYPE)
 
     val stack = (features[Stack.FEATURE_NAME] as? Stack)?.name
 
@@ -360,7 +357,7 @@ internal fun Layer.toSeries(wrappedData: List<List<Any>>?): Series {
             y = mappings[Y]!!.sourceId()
         ),
         symbolSize = size?.let { it.toInt() * 4 }, // TODO
-        itemStyle = if (geom != Geom.LINE) {
+        itemStyle = if (geom != LINE) {
             ItemStyle(
                 color = color?.let { wrapColor(it) },
                 opacity = alpha,
@@ -372,16 +369,16 @@ internal fun Layer.toSeries(wrappedData: List<List<Any>>?): Series {
         },
         // TODO
         symbol = symbol?.let { wrapValue(it) as String },
-        barWidth = if (geom == Geom.BAR) {
+        barWidth = if (geom == BAR) {
             width
         } else {
             null
         },
-        lineStyle = if (geom == Geom.LINE) {
+        lineStyle = if (geom == LINE) {
             LineStyle(
                 width = width,
                 color = color?.let { wrapColor(it) },
-                type = lineType?.let { (it as CommonLineType).description } // todo add wrapper
+                type = lineType?.name // todo add wrapper
             )
         } else {
             null
@@ -467,7 +464,7 @@ fun Plot.toOption(): MetaOption {
             yAxis = listOf(yAxis),
             visualMap = visualMaps,
             series = layers.mapIndexed { index, layer -> layer.toSeries(layerToData[index]?.data) },
-            title = (layout as? DefaultLayout)?.title?.let { Title(it) }
+            title = (layout as? EChartsLayout)?.title?.let { Title(it) }
         ).apply {
             (features[AnimationFeature.FEATURE_NAME] as? AnimationFeature)?.let {
                 animation = true
@@ -476,8 +473,8 @@ fun Plot.toOption(): MetaOption {
                 animationEasing = it.easing.name
                 animationDelay = it.delay
             }
-        }, (layout as? DefaultLayout)?.size
+        }, (layout as? EChartsLayout)?.size
     )
 }
 
- */
+

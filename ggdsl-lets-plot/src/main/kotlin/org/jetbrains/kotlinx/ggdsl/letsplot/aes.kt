@@ -5,8 +5,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LetsPlotLineType
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.LetsPlotSymbol
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 val LOWER = AesName("lower")
@@ -75,12 +75,12 @@ data class FillAes(override val context: BindingContext): MappableNonPositionalA
 }
 
 val SHAPE = AesName("shape")
-data class ShapeAes(override val context: BindingContext): MappableNonPositionalAes<LetsPlotSymbol> {
+data class ShapeAes(override val context: BindingContext): MappableNonPositionalAes<Symbol> {
     override val name=SHAPE
 }
 
 val LINE_TYPE = AesName("linetype")
-data class LineTypeAes(override val context: BindingContext): MappableNonPositionalAes<LetsPlotLineType> {
+data class LineTypeAes(override val context: BindingContext): MappableNonPositionalAes<LineType> {
     override val name=LINE_TYPE
 }
 

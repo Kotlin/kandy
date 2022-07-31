@@ -1,12 +1,16 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
-import org.jetbrains.kotlinx.ggdsl.old.bars
+
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
-import org.jetbrains.kotlinx.ggdsl.old.points
+
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.old.DefaultLayout
+
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bar
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
 
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
@@ -27,7 +31,7 @@ internal class PositionTest {
                 listOf(
                     Layer(
                         mapOf(),
-                        Geom.POINT,
+                        POINT,
                         mapOf(),
                         mapOf(),
                         mapOf(Position.FEATURE_NAME to Position.Identity)
@@ -43,7 +47,7 @@ internal class PositionTest {
     @Test
     fun testComplex() {
         val plot = plot {
-            bars {
+            bar {
                 position = Position.Stack
             }
             points {
@@ -59,14 +63,14 @@ internal class PositionTest {
                 listOf(
                     Layer(
                         mapOf(),
-                        Geom.BAR,
+                        BAR,
                         mapOf(),
                         mapOf(),
                         mapOf(Position.FEATURE_NAME to Position.Stack)
                     ),
                     Layer(
                         mapOf(),
-                        Geom.POINT,
+                        POINT,
                         mapOf(),
                         mapOf(),
                         mapOf(
@@ -76,7 +80,7 @@ internal class PositionTest {
                     ),
                     Layer(
                         mapOf(),
-                        Geom.POINT,
+                        POINT,
                         mapOf(),
                         mapOf(),
                         mapOf(Position.FEATURE_NAME to Position.Dodge(0.9))

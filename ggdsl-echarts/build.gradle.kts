@@ -1,7 +1,6 @@
 plugins {
     kotlin("jvm")
-    id("org.jetbrains.dokka") version "1.6.21"
-    kotlin("plugin.serialization") version "1.6.0"
+    kotlin("plugin.serialization") version "1.7.10"
     kotlin("jupyter.api")
 }
 
@@ -19,9 +18,9 @@ dependencies {
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "11"
     }
     compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "11"
     }
 }

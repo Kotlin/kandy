@@ -23,7 +23,7 @@ class AreaContext(override var data: MutableNamedData) :
  * ```
  * area {
  *    x(source<Double>("time")) // mapping from data source to size value
- *    borderColor(Color.BLUE) // setting of constant color value
+ *    borderLine.color(Color.BLUE) // setting of constant color value
  * }
  * ```
  *
@@ -37,10 +37,10 @@ class AreaContext(override var data: MutableNamedData) :
  *  Initial mappings to positional attributes are inherited from the parent [PlotContext] (if they exist).
  *
  *   Non-positional:
- *  - [color][AreaContext.color] - this area fill color, of the type [Color], mappable TODO.
- *  - [alpha][AreaContext.alpha] - this area fill alpha, of the type [Double], mappable TODO.
- *  - [borderColor][AreaContext.borderColor] - this area border color, of the type [Color], non-mappable.
- *  - [borderWidth][AreaContext.borderWidth] - this area border width, of the type [Double], non-mappable.
+ *  - [color][AreaContext.color] - color of the area filling, of the type [Color], mappable.
+ *  - [alpha][AreaContext.alpha] - layer alpha, of the type [Double], mappable.
+ *  - [border.color][BorderLineSubContext.color] - color of , of the type [Color], non-mappable.
+ *  - [border.width][BorderLineSubContext.width] - this area border width, of the type [Double], non-mappable.
  *
  *  By default, the dataset inherited from the parent [PlotContext] is used,
  *  but can be overridden with an assignment to the [data][AreaContext.data].

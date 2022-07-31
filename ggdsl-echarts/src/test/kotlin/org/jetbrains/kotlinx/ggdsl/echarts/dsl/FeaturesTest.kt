@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.dsl
 
-import org.jetbrains.kotlinx.ggdsl.old.bars
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.bars
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.Stack
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.stack
 import org.jetbrains.kotlinx.ggdsl.ir.Layer

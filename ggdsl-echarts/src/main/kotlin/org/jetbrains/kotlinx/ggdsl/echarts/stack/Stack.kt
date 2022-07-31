@@ -1,8 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.stack
 
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.BarsContext
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
-import org.jetbrains.kotlinx.ggdsl.old.BarsContext
 
 /*
     val stackAd = Stack("Ad")

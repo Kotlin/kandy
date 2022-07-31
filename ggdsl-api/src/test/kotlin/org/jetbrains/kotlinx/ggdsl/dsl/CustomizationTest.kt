@@ -1,7 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.old.DefaultLayout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
@@ -11,12 +10,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.ggdsl.ir.geom.CommonGeom
-import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
-import org.jetbrains.kotlinx.ggdsl.old.BORDER_COLOR
-import org.jetbrains.kotlinx.ggdsl.old.bars
 import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -176,7 +171,7 @@ internal class CustomizationTest {
                 listOf(
                     Layer(
                         dataset,
-                        Geom.BAR,
+                        BAR,
                         mapOf(),
                         mapOf(),
                         mapOf(MockLayerFeature.FEATURE_NAME to MockLayerFeature(14))

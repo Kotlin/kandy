@@ -1,12 +1,13 @@
-package org.jetbrains.kotlinx.ggdsl.old
+package org.jetbrains.kotlinx.ggdsl.echarts
 
 import org.jetbrains.kotlinx.ggdsl.dsl.BindingContext
+import org.jetbrains.kotlinx.ggdsl.echarts.util.linetype.LineType
+import org.jetbrains.kotlinx.ggdsl.echarts.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import org.jetbrains.kotlinx.ggdsl.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.symbol.Symbol
+
 
 
 val SIZE = AesName("size")

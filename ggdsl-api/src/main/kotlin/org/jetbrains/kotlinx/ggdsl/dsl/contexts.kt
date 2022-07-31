@@ -2,7 +2,6 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Layout
-import org.jetbrains.kotlinx.ggdsl.old.DefaultLayout
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
@@ -290,7 +289,6 @@ class PlotContext : BaseBindingContext() {
 
     override var data: MutableNamedData = mutableMapOf()
 
-    //val layout = DefaultLayout()
     var layout: Layout? = null
 
     val layers: MutableList<Layer> = mutableListOf()
