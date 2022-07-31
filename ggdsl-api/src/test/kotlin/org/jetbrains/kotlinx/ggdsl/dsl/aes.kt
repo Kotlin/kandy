@@ -20,7 +20,7 @@ data class ColorAes(override val context: BindingContext) : MappableNonPositiona
 
 val ALPHA = AesName("alpha")
 
-data class AlphaAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+data class AlphaAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
     override val name = ALPHA
 }
 
@@ -32,7 +32,7 @@ data class BorderWidthAes(override val context: BindingContext) : NonPositionalA
 
 val BORDER_COLOR = AesName("border_color")
 
-data class BorderColorAes(override val context: BindingContext) : NonPositionalAes<Double> {
+data class BorderColorAes(override val context: BindingContext) : NonPositionalAes<Color> {
     override val name = BORDER_COLOR
 }
 

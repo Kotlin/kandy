@@ -33,6 +33,7 @@ internal class Integration : JupyterIntegration() {
         render<PlotChangeAnimation> { HTML(it.toHTML(), true) }
 
         import("org.jetbrains.kotlinx.ggdsl.echarts.*")
+        import("org.jetbrains.kotlinx.ggdsl.echarts.layers.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.animation.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.util.color.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.util.symbol.*")
