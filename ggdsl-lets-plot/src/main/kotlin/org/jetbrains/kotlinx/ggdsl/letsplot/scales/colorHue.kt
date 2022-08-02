@@ -3,6 +3,19 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
+/**
+ * Creates qualitative color scale with evenly spaced hues.
+ *
+ * @param DomainType type of domain
+ * @param domainLimits segment defining the domain
+ * @param huesRange a pair of numbers Range of hues, in [0,360]
+ * @param chroma numeric Chroma (intensity of color), maximum value varies depending on
+ * @param luminance numeric Luminance (lightness), in [0,100]
+ * @param hueStart list of two numbers Hue to start at
+ * @param direction numeric Direction to travel around the color wheel
+ * @param transform the transformation of scale
+ * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
+ */
 fun<DomainType: Any> continuousColorHue(
     domainLimits: Pair<DomainType, DomainType>? = null,
     huesRange: Pair<Int, Int>? = null,

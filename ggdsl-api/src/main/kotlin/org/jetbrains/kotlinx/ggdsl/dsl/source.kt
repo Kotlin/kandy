@@ -17,9 +17,10 @@ inline fun <reified T : Any> source(id: String): DataSource<T> =
 
 data class UnnamedDataSource<T : Any>(val type: KType) {
     operator fun getValue(t: T?, property: KProperty<*>): DataSource<T> {
-        return DataSource<T>(property.name, type)
+        return DataSource(property.name, type)
     }
 }
 
+// todo
 inline fun <reified T : Any> source(): UnnamedDataSource<T> =
     UnnamedDataSource(typeOf<T>())

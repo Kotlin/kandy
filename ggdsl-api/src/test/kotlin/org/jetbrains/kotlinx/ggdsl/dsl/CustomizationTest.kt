@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
 import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -101,7 +101,7 @@ internal class CustomizationTest {
                         mapOf(
                             X to ScaledPositionalDefaultMapping(
                                 X,
-                                SourceScaledPositionalDefault(mockSrcFloat, PositionalContinuousDefaultScale()),
+                                SourceScaledPositionalUnspecified(mockSrcFloat, PositionalContinuousUnspecifiedScale()),
                                 typeOf<Float>()
                             ),
                             Y to ScaledUnspecifiedDefaultPositionalMapping(

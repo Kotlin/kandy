@@ -241,15 +241,15 @@ internal fun Scale.toVisualMap(
             )
         }
 
-        is UnspecifiedDefaultScale -> {
+        is DefaultUnspecifiedScale -> {
             when (domainType) {
                 // todo other, date
                 typeOf<String>() -> defaultPiecewiseVisualMap(aes, dim, seriesIndex, data)
                 else -> defaultContinuousVisualMap(aes, dim, seriesIndex, data)
             }
         }
-        is NonPositionalCategoricalDefaultScale -> defaultPiecewiseVisualMap(aes, dim, seriesIndex, data)
-        is NonPositionalContinuousDefaultScale -> defaultContinuousVisualMap(aes, dim, seriesIndex, data)
+        is NonPositionalCategoricalUnspecifiedScale -> defaultPiecewiseVisualMap(aes, dim, seriesIndex, data)
+        is NonPositionalContinuousUnspecifiedScale -> defaultContinuousVisualMap(aes, dim, seriesIndex, data)
 
         else -> {
             TODO("error")
@@ -293,14 +293,14 @@ internal fun Scale.toAxis(/*data: List<Any>,*/ domainType: KType): Axis {
             )
         }
         // todo add axis here
-        is PositionalCategoricalDefaultScale -> {
+        is PositionalCategoricalUnspecifiedScale -> {
             Axis(type = "category")
         }
-        is PositionalContinuousDefaultScale -> {
+        is PositionalContinuousUnspecifiedScale -> {
             Axis(type = "value")
         }
 
-        is UnspecifiedDefaultScale -> {
+        is DefaultUnspecifiedScale -> {
             when (domainType) {
                 // todo other types
                 typeOf<String>() -> {

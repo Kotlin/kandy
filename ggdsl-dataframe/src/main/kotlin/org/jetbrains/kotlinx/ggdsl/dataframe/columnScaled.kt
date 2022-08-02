@@ -2,40 +2,39 @@ package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 
 /**
- *  TODO determines behavior
+ *  Apply default scale to this column
  */
 inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled() =
     SourceScaledUnspecifiedDefault(this.toDataSource())
 
 /**
- * Apply default positional scale to this [DataSource]
+ * Apply unspecified positional scale to this column
  *
  * @param DomainType type of domain
  * @param scale positional default scale
  * @return scaled source
  */
-inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: PositionalDefaultScale) =
-    SourceScaledPositionalDefault(this.toDataSource(), scale)
+inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
+    SourceScaledPositionalUnspecified(this.toDataSource(), scale)
 
 /**
- * Apply default non-positional scale to this [DataSource]
+ * Apply unspecified non-positional scale to this column
  *
  * @param DomainType type of domain
  * @param scale non-positional default scale
  * @return scaled source
  */
-inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: NonPositionalDefaultScale) =
-    SourceScaledNonPositionalDefault(this.toDataSource(), scale)
+inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
+    SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
 
 /**
- * Apply positional scale to this [DataSource]
+ * Apply positional scale to this column
  *
  * @param DomainType type of domain
  * @param scale positional scale
@@ -46,7 +45,7 @@ inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
 ) = SourceScaledPositional(this.toDataSource(), scale)
 
 /**
- * Apply non-positional scale to this [DataSource]
+ * Apply non-positional scale to this column
  *
  * @param DomainType type of domain
  * @param scale non-positional scale

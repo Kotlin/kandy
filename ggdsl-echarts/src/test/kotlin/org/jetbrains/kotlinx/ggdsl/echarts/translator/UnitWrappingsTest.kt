@@ -4,7 +4,6 @@ import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
 import org.jetbrains.kotlinx.ggdsl.dsl.source
 import org.jetbrains.kotlinx.ggdsl.echarts.*
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.Stack
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.*
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.ColorStop
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.GradientOption
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.LinearGradientColor
@@ -13,7 +12,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
-import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.typeOf
@@ -95,9 +93,9 @@ internal class UnitWrappingsTest {
             LINE,
             mapOf(
                 X to ScaledPositionalDefaultMapping(
-                    X, SourceScaledPositionalDefault(
+                    X, SourceScaledPositionalUnspecified(
                         source<Float>("time"),
-                        PositionalContinuousDefaultScale()
+                        PositionalContinuousUnspecifiedScale()
                     ),
                     typeOf<Double>()
                 ),
@@ -188,7 +186,7 @@ internal class UnitWrappingsTest {
 
     @Test
     fun testToAxisCatDefault() {
-        val scale = PositionalCategoricalDefaultScale
+        val scale = PositionalCategoricalUnspecifiedScale
         assertEquals(
             Axis(
                 POS_CAT_NAME,
@@ -199,7 +197,7 @@ internal class UnitWrappingsTest {
 
     @Test
     fun testToAxisContDefault() {
-        val scale = PositionalContinuousDefaultScale()
+        val scale = PositionalContinuousUnspecifiedScale()
         assertEquals(
             Axis(
                 POS_CONT_NAME,
@@ -214,13 +212,13 @@ internal class UnitWrappingsTest {
             Axis(
                 POS_CONT_NAME,
             ),
-            UnspecifiedDefaultScale.toAxis(typeOf<Int>())
+            DefaultUnspecifiedScale.toAxis(typeOf<Int>())
         )
         assertEquals(
             Axis(
                 POS_CAT_NAME,
             ),
-            UnspecifiedDefaultScale.toAxis(typeOf<String>())
+            DefaultUnspecifiedScale.toAxis(typeOf<String>())
         )
         // todo others?
     }

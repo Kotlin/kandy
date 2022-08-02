@@ -43,11 +43,11 @@ internal class ScaleWrappingTest {
 
     @Test
     fun testDefaults() {
-        assertNull(UnspecifiedDefaultScale.wrap(SHAPE))
-        assertNull(PositionalCategoricalDefaultScale.wrap(Y))
-        assertNull(PositionalContinuousDefaultScale().wrap(Y))
-        assertNull(NonPositionalCategoricalDefaultScale.wrap(COLOR))
-        assertNull(NonPositionalContinuousDefaultScale().wrap(SIZE))
+        assertNull(DefaultUnspecifiedScale.wrap(SHAPE))
+        assertNull(PositionalCategoricalUnspecifiedScale.wrap(Y))
+        assertNull(PositionalContinuousUnspecifiedScale().wrap(Y))
+        assertNull(NonPositionalCategoricalUnspecifiedScale.wrap(COLOR))
+        assertNull(NonPositionalContinuousUnspecifiedScale().wrap(SIZE))
     }
 }
 

@@ -5,10 +5,10 @@ import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 val RECT = LetsPlotGeom("rect")
-
 
 
 class RectContext(override var data: MutableNamedData) :
@@ -23,35 +23,46 @@ class RectContext(override var data: MutableNamedData) :
 }
 
 /**
- * Adds a new area layer.
+ * Adds a new rect layer.
  *
  * Creates a context in which you can create bindings using aesthetic attribute properties invocation:
  * ```
- * area {
+ * rect {
  *    x(source<Double>("time")) // mapping from data source to size value
- *    borderColor(Color.BLUE) // setting of constant color value
+ *    color(Color.BLUE) // setting of constant color value
  * }
  * ```
  *
  *  ### Aesthetic attributes:
  *
- *  Positional:
+ *  Sub-positional:
  *
- *  - [ x][AreaContext.x]
- *  - [y][AreaContext.y]
- *
- *  Initial mappings to positional attributes are inherited from the parent [PlotContext] (if they exist).
+ *  - [xMin][RectContext.xMin]
+ *  - [yMin][RectContext.yMin]
+ *  - [xMax][RectContext.xMax]
+ *  - [yMax][RectContext.yMax]
  *
  *   Non-positional:
- *  - [color][AreaContext.color] - this area fill color, of the type [Color], mappable TODO.
- *  - [alpha][AreaContext.alpha] - this area fill alpha, of the type [Double], mappable TODO.
- *  - [borderColor][AreaContext.borderColor] - this area border color, of the type [Color], non-mappable.
- *  - [borderWidth][AreaContext.borderWidth] - this area border width, of the type [Double], non-mappable.
+ *  - [color][RectContext.color] - color of the raster filling, of the type [Color], mappable
+ *  - [alpha][RectContext.alpha] - this layer alpha, of the type [Double], mappable
+ *  - [borderLine.color][BorderLineSubContext.color] - color of the borderline, of the type [Color], mappable.
+ *  - [borderLine.width][BorderLineSubContext.width] - width of the borderline, of the type [Double], mappable.
+ *  - [borderLine.type][BorderLineSubContext.type] - type of the borderline, of the type [LineType], mappable.
+
  *
  *  By default, the dataset inherited from the parent [PlotContext] is used,
- *  but can be overridden with an assignment to the [data][AreaContext.data].
+ *  but can be overridden with an assignment to the [data][RasterContext.data].
  *
- *  @see [BaseBindingContext]
+ * // TODO move data overriding to args
+ *  ```
+ *  rect {
+ *     borderLine {
+ *        color(Color.RED)
+ *        type(LineType.DOTTED)
+ *     }
+ *  }
+ *  ```
+ *  // TODO refer to bindings?
  */
 fun PlotContext.rect(block: RectContext.() -> Unit) {
     layers.add(RectContext(data).apply { copyFrom(this@rect) }.apply(block).toLayer(RECT))

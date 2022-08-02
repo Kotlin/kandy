@@ -6,11 +6,13 @@ import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
 
-// todo remove???
 val GROUP = AesName("group")
 data class GroupAes(override val context: BindingContext): NonScalablePositionalAes {
     override val name=GROUP
 }
 
+/**
+ * TODO
+ */
 val LayerContext.group: NonScalablePositionalAes
     get() = GroupAes(this)

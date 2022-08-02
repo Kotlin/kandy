@@ -21,7 +21,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
  * the series with the same stack name would be put on top of each other.
  *
  *
- * @see <a href="https://echarts.apache.org/en/option.html#series-bar.stack">ECharts Dcoumentation</a>
+ * @see <a href="https://echarts.apache.org/en/option.html#series-bar.stack">ECharts Documentation</a>
  * @see stack
  */
 

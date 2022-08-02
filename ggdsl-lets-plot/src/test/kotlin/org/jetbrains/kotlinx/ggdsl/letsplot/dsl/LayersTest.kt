@@ -7,7 +7,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.Y
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.AREA
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.area
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -46,9 +46,9 @@ internal class LayersTest {
                         AREA,
                         mapOf(
                             Y to ScaledPositionalDefaultMapping(
-                                Y, SourceScaledPositionalDefault(
+                                Y, SourceScaledPositionalUnspecified(
                                     time,
-                                    PositionalContinuousDefaultScale()
+                                    PositionalContinuousUnspecifiedScale()
                                 ), typeOf<Int>()
                             ),
                             FILL to ScaledNonPositionalMapping(

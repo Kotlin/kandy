@@ -465,7 +465,7 @@ internal fun Scale.wrap(
                     )
                     else -> TODO()
                 }
-                is DefaultScale -> {
+                is UnspecifiedScale -> {
                     // TODO
                     return null
                 }
@@ -474,7 +474,7 @@ internal fun Scale.wrap(
             }
         }
 
-        is DefaultScale -> {
+        is UnspecifiedScale -> {
             // TODO
             return null
         }

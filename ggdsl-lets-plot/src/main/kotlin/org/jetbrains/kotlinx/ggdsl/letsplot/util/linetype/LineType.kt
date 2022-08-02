@@ -1,5 +1,10 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype
 
+/**
+ * Type of line.
+ *
+ * TODO detailed?
+ */
 class LineType internal constructor(val description: String, val codeNumber: Int)  {
     companion object {
         val BLANK = LineType("blank", 0)

@@ -13,7 +13,7 @@ internal class ScaleTest {
 
     @Test
     fun testContinuousPosDefault() {
-        assertEquals(PositionalContinuousDefaultScale(), continuousPos())
+        assertEquals(PositionalContinuousUnspecifiedScale(), continuousPos())
     }
 
     @Test
@@ -25,7 +25,7 @@ internal class ScaleTest {
 
     @Test
     fun testCategoricalPosDefault() {
-        assertEquals(PositionalCategoricalDefaultScale, categoricalPos())
+        assertEquals(PositionalCategoricalUnspecifiedScale, categoricalPos())
     }
 
     @Test
@@ -37,7 +37,7 @@ internal class ScaleTest {
 
     @Test
     fun testContinuousDefault() {
-        assertEquals(NonPositionalContinuousDefaultScale(), continuous())
+        assertEquals(NonPositionalContinuousUnspecifiedScale(), continuous())
     }
 
     @Test
@@ -50,7 +50,7 @@ internal class ScaleTest {
 
     @Test
     fun testCategoricalDefault() {
-        assertEquals(NonPositionalCategoricalDefaultScale, categorical())
+        assertEquals(NonPositionalCategoricalUnspecifiedScale, categorical())
     }
 
     @Test

@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.typeOf
@@ -103,7 +103,7 @@ internal class CommonTest {
         }
 
         val xMapping = ScaledPositionalDefaultMapping(
-            X, SourceScaledPositionalDefault(width, PositionalContinuousDefaultScale()), typeOf<Double>()
+            X, SourceScaledPositionalUnspecified(width, PositionalContinuousUnspecifiedScale()), typeOf<Double>()
         )
         val yMapping = ScaledPositionalMapping(
             Y, SourceScaledPositional(

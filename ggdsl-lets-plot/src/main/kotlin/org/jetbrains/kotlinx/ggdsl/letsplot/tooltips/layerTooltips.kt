@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.Aes
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridContext
 
 data class LayerTooltips(
     val variables: List<DataSource<*>>,
@@ -40,46 +41,71 @@ data class LayerTooltips(
     }
 }
 
-fun value(aes: Aes): String {
-    return "^${aes.name}"
-}
 
-fun value(source: DataSource<*>): String {
-    return "@${source.id}"
-}
-
-
+/**
+ * Context created by [LayerContext.tooltips] method.
+ */
 class LayerTooltipsContext {
     val lineBuffer = mutableListOf<String>()
-   // val formatBuffer = mutableListOf<Pair<String, String>>()
 
+    /**
+     * Adds solid line to tooltips with given string value.
+     *
+     * @param string text of the line
+     */
     fun line(string: String) {
         lineBuffer.add(string)
     }
 
+    /**
+     * Adds two-sided line to tooltips with given string values.
+     *
+     * @param leftSide text of the left side of line
+     * @param rightSide text of the right side of line
+     */
     fun line(leftSide: String? = null, rightSide: String? = null) {
         lineBuffer.add("${leftSide ?: ""}|${rightSide ?: ""}")
     }
 
+    /**
+     * Adds standard line for given [DataSource]
+     * (name of source on the left side and corresponding value on the right side).
+     *
+     * @param source [DataSource]
+     */
     fun line(source: DataSource<*>) {
         lineBuffer.add("@|@${source.id}")
     }
 
+    /**
+     * Adds standard line for given aesthetic attribute
+     * (name of source mapped oh this aes on the left side and corresponding value on the right side).
+     *
+     * @param aes aesthetic attribute
+     */
     fun line(aes: Aes) {
         lineBuffer.add("@|^${aes.name}")
     }
 
-    /*
-    // todo type????
-    fun format(source: DataSource<*>, template: String) {
-        formatBuffer.add(source.id to template)
-    }
-
-    fun format(aes: Aes, template: String) {
-        formatBuffer.add("^${aes.name}" to template)
-    }
-
+    /**
+     * Insert value of given aesthetic attribute into format string.
+     *
+     * @param aes aesthetic attribute whose value will be inserted into the tooltip
+     * @return format string
      */
+    fun value(aes: Aes): String {
+        return "^${aes.name}"
+    }
+
+    /**
+     * Insert value of given [DataSource] into format string.
+     *
+     * @param source [DataSource] whose value will be inserted into the tooltip
+     * @return format string
+     */
+    fun value(source: DataSource<*>): String {
+        return "@${source.id}"
+    }
 }
 
 data class Anchor(val value: String) {
@@ -96,6 +122,25 @@ data class Anchor(val value: String) {
     }
 }
 
+/**
+ * Defines the format for displaying values of this layer.
+ *
+ * Creates a [LayerTooltipsContext]. In this context you can configure lines of tooltip
+ * by using line(..) methods.
+ *
+ * @see [LayerTooltipsContext].
+ *
+ * @param variables vararg of [DataSource] to crete a general multiline tooltip with.
+ * Useful for specifying the tooltip content quickly, instead of configuring it via the line(..) methods.
+ * @param title the string template to use as a title in the multi-line tooltip.
+ * @param anchor the fixed position for the general tooltip.
+ * @param minWidth minimum width of a general tooltip in pixels.
+ * @param hide flag of tooltips displaying.
+ * @param valueFormats map of [DataSource] to format string of its value.
+ * @param aesFormats map of [Aes] to format string of its value.
+ * The format will be applied to the mapped value in the default tooltip or to the corresponding
+ * value specified in the line template.
+ */
 inline fun LayerContext.tooltips(
     vararg variables: DataSource<*>,
     title: String? = null,

@@ -53,7 +53,7 @@ data class FacetGridFeature(
 }
 
 data class FacetWrapFeature(
-    val facets: List<DataSource<*>> = listOf(),// TODO,
+    val facets: List<DataSource<*>>,
     var nCol: Int? = null,
     var nRow: Int? = null,
     var order: OrderDirection = OrderDirection.ASCENDING,
@@ -96,6 +96,7 @@ class FacetWrapContext {
     val direction: Direction = Direction.HORIZONTAL
 }
 
+// TODO removecontext
 
 /**
  * Splits data by one or two faceting variables. For each data subset creates
@@ -131,12 +132,23 @@ fun PlotContext.facetGrid(block: FacetGridContext.() -> Unit) {
         }
 }
 
-// todo fun instead context???
-fun PlotContext.facetWrap(block: FacetWrapContext.() -> Unit) {
+/**
+ * Splits data by one or more faceting variables.
+ * For each data subset creates a plot panel and lays out panels according to the `nCol`, `nRow` and `direction` settings.
+ *
+ * TODO params
+ */
+fun PlotContext.facetWrap(
+    vararg facets: DataSource<*>,
+    nCol: Int? = null,
+    nRow: Int? = null,
+    order: OrderDirection = OrderDirection.ASCENDING,
+    scalesSharing: ScalesSharing = ScalesSharing.FIXED,
+    direction: Direction = Direction.HORIZONTAL
+) {
     features[FacetWrapFeature.FEATURE_NAME] =
-        with(FacetWrapContext().apply(block)) {
-            FacetWrapFeature(
-                facets, nCol, nRow, order, scalesSharing, direction
-            )
-        }
+        FacetWrapFeature(
+            facets.toList(), nCol, nRow, order, scalesSharing, direction
+        )
+
 }

@@ -1,5 +1,10 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol
 
+/**
+ * Shape of point.
+ *
+ * TODO detailed?
+ */
 data class Symbol(val shape: Int) {
     companion object {
         val SQUARE_OPEN = Symbol(0)

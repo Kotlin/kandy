@@ -94,7 +94,7 @@ data class ScaledUnspecifiedDefaultNonPositionalMapping<DomainType : Any, RangeT
  */
 data class ScaledPositionalDefaultMapping<DomainType : Any>(
     override val aes: AesName,
-    override val sourceScaled: SourceScaledPositionalDefault<DomainType>,
+    override val sourceScaled: SourceScaledPositionalUnspecified<DomainType>,
     override val domainType: KType
 ) : BaseScaledPositionalMapping<DomainType> {
     override var scaleParameters: ScaleParameters? = null
@@ -109,7 +109,7 @@ data class ScaledPositionalDefaultMapping<DomainType : Any>(
  */
 data class ScaledNonPositionalDefaultMapping<DomainType : Any, RangeType : Any>(
     override val aes: AesName,
-    override val sourceScaled: SourceScaledNonPositionalDefault<DomainType>,
+    override val sourceScaled: SourceScaledNonPositionalUnspecified<DomainType>,
     override val domainType: KType
 ) : BaseScaledNonPositionalMapping<DomainType, RangeType> {
     override var scaleParameters: ScaleParameters? = null

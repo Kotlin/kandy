@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
@@ -17,7 +18,7 @@ class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutable
 
     val alpha = AlphaAes(this)
     val width = WidthAes(this)
-    // todo line insyead borderline???
+    // todo just 'line' instead borderline???
 }
 
 /**
@@ -25,9 +26,9 @@ class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutable
  *
  * Creates a context in which you can create bindings using aesthetic attribute properties invocation:
  * ```
- * boxplot {
- *    x(source<Double>("time")) // mapping from data source to size value
- *    borderColor(Color.BLUE) // setting of constant color value
+ * errorBar {
+ *    x(source<Double>("time")) // mapping from data source to 'x' coordinate
+ *    borderLine.color(Color.BLUE) // setting of constant color value
  * }
  * ```
  *
@@ -36,25 +37,35 @@ class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutable
  *  Positional:
  *
  *  - [ x][ErrorBarContext.x]
- *  - [y][ErrorBarContext.y] // TODO - move to another geom???
  *
  *  Initial mappings to positional attributes are inherited from the parent [PlotContext] (if they exist).
  *
  *  Sub-positional:
- *  - [yMin][ErrorBarContext.yMin]
- *  - [yMax][ErrorBarContext.yMax]
+ *  - [yMin][ErrorBarContext.yMin] - lower bound of the error bar
+ *  - [yMax][ErrorBarContext.yMax] - upper bound of the error bar
  *
  *   Non-positional:
- *  - [color][ErrorBarContext.color] - this error bar color, of the type [Color], mappable.
- *  - [alpha][ErrorBarContext.alpha] - this error bar alpha, of the type [Double], mappable.
- *  - [size][ErrorBarContext.size] - this error bar size, of the type [Double], mappable.
- *  - [width][ErrorBarContext.width] - this error bar width, of the type [Double], mappable.
- *  - [lineType][ErrorBarContext.lineType] - this error bar border line type, of the type [LineType], non-mappable.
+ *  - [alpha][ErrorBarContext.alpha] - layer alpha, of the type [Double], mappable
+ *  - [width][ErrorBarContext.width] - with of the error bar, of the type [Double], mappable
+ *  - [borderLine.color][BorderLineSubContext.color] - color of the borderline, of the type [Color], mappable.
+ *  - [borderLine.width][BorderLineSubContext.width] - width of the borderline, of the type [Double], mappable.
+ *  - [borderLine.type][BorderLineSubContext.type] - type of the borderline, of the type [LineType], mappable.
  *
+ *  // TODO write about borderLine invocation?
+ *  ```
+ *  errorBar {
+ *     borderLine {
+ *        color(Color.RED)
+ *        type(LineType.DOTTED)
+ *     }
+ *  }
+ *  ```
+ *
+ * // TODO move data overriding to args
  *  By default, the dataset inherited from the parent [PlotContext] is used,
- *  but can be overridden with an assignment to the [data][ErrorBarContext.data].
+ *  but can be overridden with an assignment to the [data][CrossBarContext.data].
  *
- *  @see [BaseBindingContext]
+ *  // TODO refer to bindings?
  */
 fun PlotContext.errorBar(block: ErrorBarContext.() -> Unit) {
     layers.add(ErrorBarContext(data).apply { copyFrom(this@errorBar) }.apply(block).toLayer(ERROR_BAR))

@@ -2,36 +2,36 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 
 /**
- *  TODO determines behavior
+ *  Apply default scale to this [DataSource]
  */
 fun <DomainType : Any> DataSource<DomainType>.scaled() =
     SourceScaledUnspecifiedDefault(this)
 
 /**
- * Apply default positional scale to this [DataSource]
+ * Apply unspecified positional scale to this [DataSource]
  *
  * @param DomainType type of domain
  * @param scale positional default scale
  * @return scaled source
  */
-fun <DomainType : Any> DataSource<DomainType>.scaled(scale: PositionalDefaultScale) =
-    SourceScaledPositionalDefault(this, scale)
+fun <DomainType : Any> DataSource<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
+    SourceScaledPositionalUnspecified(this, scale)
 
 /**
- * Apply default non-positional scale to this [DataSource]
+ * Apply unspecified non-positional scale to this [DataSource]
  *
  * @param DomainType type of domain
  * @param scale non-positional default scale
  * @return scaled source
  */
-fun <DomainType : Any> DataSource<DomainType>.scaled(scale: NonPositionalDefaultScale) =
-    SourceScaledNonPositionalDefault(this, scale)
+fun <DomainType : Any> DataSource<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
+    SourceScaledNonPositionalUnspecified(this, scale)
 
 /**
  * Apply positional scale to this [DataSource]

@@ -21,14 +21,14 @@ internal class SourceScaledTest {
     @Test
     fun testScaledPositionalDefault() {
         val ds = DataSource<Double>("ds2", typeOf<Int>())
-        val continuousScaledSource = ds.scaled(PositionalContinuousDefaultScale())
-        val categoricalScaledSource = ds.scaled(PositionalCategoricalDefaultScale)
+        val continuousScaledSource = ds.scaled(PositionalContinuousUnspecifiedScale())
+        val categoricalScaledSource = ds.scaled(PositionalCategoricalUnspecifiedScale)
         assertEquals(
-            SourceScaledPositionalDefault(ds, PositionalContinuousDefaultScale()),
+            SourceScaledPositionalUnspecified(ds, PositionalContinuousUnspecifiedScale()),
             continuousScaledSource
         )
         assertEquals(
-            SourceScaledPositionalDefault(ds, PositionalCategoricalDefaultScale),
+            SourceScaledPositionalUnspecified(ds, PositionalCategoricalUnspecifiedScale),
             categoricalScaledSource
         )
     }
@@ -36,14 +36,14 @@ internal class SourceScaledTest {
     @Test
     fun testScaledNonPositionalDefault() {
         val ds = DataSource<Double>("ds3", typeOf<Int>())
-        val continuousScaledSource = ds.scaled(NonPositionalContinuousDefaultScale())
-        val categoricalScaledSource = ds.scaled(NonPositionalCategoricalDefaultScale)
+        val continuousScaledSource = ds.scaled(NonPositionalContinuousUnspecifiedScale())
+        val categoricalScaledSource = ds.scaled(NonPositionalCategoricalUnspecifiedScale)
         assertEquals(
-            SourceScaledNonPositionalDefault(ds, NonPositionalContinuousDefaultScale()),
+            SourceScaledNonPositionalUnspecified(ds, NonPositionalContinuousUnspecifiedScale()),
             continuousScaledSource
         )
         assertEquals(
-            SourceScaledNonPositionalDefault(ds, NonPositionalCategoricalDefaultScale),
+            SourceScaledNonPositionalUnspecified(ds, NonPositionalCategoricalUnspecifiedScale),
             categoricalScaledSource
         )
     }

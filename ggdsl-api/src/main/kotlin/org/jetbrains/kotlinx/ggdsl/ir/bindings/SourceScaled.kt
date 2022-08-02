@@ -14,7 +14,7 @@ sealed interface SourceScaled<DomainType : Any> {
     val source: DataSource<DomainType>
     val scale: Scale
 }
-
+/*
 /**
  * Scaled default source interface
  *
@@ -22,9 +22,11 @@ sealed interface SourceScaled<DomainType : Any> {
  * @property source the source to which the scale is applied
  * @property scale applying default scale
  */
-sealed interface SourceScaledDefault<DomainType : Any> : SourceScaled<DomainType> {
-    override val scale: DefaultScale
+sealed interface SourceScaledUnspecified<DomainType : Any> : SourceScaled<DomainType> {
+    override val scale: UnspecifiedScale
 }
+
+ */
 
 /**
  * Scaled unspecified default source
@@ -36,7 +38,7 @@ sealed interface SourceScaledDefault<DomainType : Any> : SourceScaled<DomainType
 data class SourceScaledUnspecifiedDefault<DomainType : Any>(
     override val source: DataSource<DomainType>,
 ) : SourceScaled<DomainType> {
-    override val scale = UnspecifiedDefaultScale
+    override val scale = DefaultUnspecifiedScale
 }
 
 /**
@@ -46,9 +48,9 @@ data class SourceScaledUnspecifiedDefault<DomainType : Any>(
  * @property source the source to which the scale is applied
  * @property scale applying positional default scale
  */
-data class SourceScaledPositionalDefault<DomainType : Any>(
+data class SourceScaledPositionalUnspecified<DomainType : Any>(
     override val source: DataSource<DomainType>,
-    override val scale: PositionalDefaultScale
+    override val scale: PositionalUnspecifiedScale
 ) : SourceScaled<DomainType>
 
 /**
@@ -58,9 +60,9 @@ data class SourceScaledPositionalDefault<DomainType : Any>(
  * @property source the source to which the scale is applied
  * @property scale applying non-positional default scale
  */
-data class SourceScaledNonPositionalDefault<DomainType : Any>(
+data class SourceScaledNonPositionalUnspecified<DomainType : Any>(
     override val source: DataSource<DomainType>,
-    override val scale: NonPositionalDefaultScale
+    override val scale: NonPositionalUnspecifiedScale
 ) : SourceScaled<DomainType>
 
 /**

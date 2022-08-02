@@ -6,9 +6,8 @@ import org.jetbrains.kotlinx.ggdsl.dsl.source
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
@@ -96,9 +95,9 @@ internal class LayerWrapperTest {
                 ),
                 Y to ScaledPositionalDefaultMapping(
                     Y,
-                    SourceScaledPositionalDefault(
+                    SourceScaledPositionalUnspecified(
                         source<Double>("VAL_V"),
-                        PositionalContinuousDefaultScale()
+                        PositionalContinuousUnspecifiedScale()
                     ),
                     typeOf<Double>()
                 ),
