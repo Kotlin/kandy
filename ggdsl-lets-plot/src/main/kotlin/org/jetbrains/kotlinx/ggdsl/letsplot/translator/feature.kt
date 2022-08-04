@@ -1,8 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FACET_X
-import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FACET_Y
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
@@ -22,42 +20,40 @@ import org.jetbrains.letsPlot.tooltips.tooltipsNone
 
 internal fun FacetGridFeature.wrap(): OptionsMap {
     return facetGrid(
-        x = mappings[FACET_X]?.id,
-        y = mappings[FACET_Y]?.id,
+        x = x,
+        y = y,
+        scales = scalesSharing?.name,
         xOrder = xOrder.value,
         yOrder = yOrder.value,
-        /* TODO
         xFormat = xFormat,
         yFormat = yFormat
-         */
     )
 }
 
 internal fun FacetWrapFeature.wrap(): OptionsMap {
     return facetWrap(
-        facets.map { it.id },
-        nCol,
-        nRow,
-        scalesSharing.name,
-        order.value,
-        /* TODO
-       format
-        */
+        facets = facets,
+        ncol = nCol,
+        nrow = nRow,
+        scales = scalesSharing.name,
+        order = order.value,
+        format = format,
         dir = direction.name
-
     )
 }
 
 internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
     // todo featureName
-    //TODO check is le feature
+    //TODO check is lp feature
     when (featureName) {
         FacetGridFeature.FEATURE_NAME -> {
             featureBuffer.add((this as FacetGridFeature).wrap())
         }
+
         FacetWrapFeature.FEATURE_NAME -> {
             featureBuffer.add((this as FacetWrapFeature).wrap())
         }
+
         else -> TODO()
     }
     //return featureBuffer
@@ -79,7 +75,7 @@ internal fun LayerTooltips.wrap(): TooltipOptions {
     if (hide) {
         return tooltipsNone
     }
-    var buffer =  layerTooltips(*(variables.map { it.id }.toTypedArray()))
+    var buffer = layerTooltips(*(variables.map { it.id }.toTypedArray()))
     title?.let {
         buffer = buffer.title(it)
     }

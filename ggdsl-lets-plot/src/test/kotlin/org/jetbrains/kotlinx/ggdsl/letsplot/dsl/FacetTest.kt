@@ -13,9 +13,9 @@ class FacetTest {
     @Test
     fun testSimpleFacet() {
         val plot = plot {
-            facetGrid {
-                x(source<String>("xSrc"))
-            }
+            facetGrid(
+                x = source<String>("xSrc")
+            )
         }
         assertEquals(
             Plot(
@@ -23,9 +23,9 @@ class FacetTest {
                 listOf(),
                 null,
                 mapOf(
-                    FacetGridFeature.FEATURE_NAME to FacetGridFeature().apply {
-                        mappings[FACET_X] = DataSource<String>("xSrc", typeOf<String>())
-                    }
+                    FacetGridFeature.FEATURE_NAME to FacetGridFeature(
+                     "xSrc"
+                    )
                 )
             ),
             plot
@@ -35,12 +35,12 @@ class FacetTest {
     @Test
     fun testComplexFacet() {
         val plot = plot {
-            facetGrid {
-                x(source<String>("xArg"))
-                y(source<Int>("yArg"))
-                xOrder = OrderDirection.ASCENDING
-                yOrder = OrderDirection.DESCENDING
-            }
+            facetGrid(
+                x = source<String>("xArg"),
+                y = source<Int>("yArg"),
+                xOrder = OrderDirection.ASCENDING,
+                yOrder = OrderDirection.DESCENDING,
+            )
         }
         assertEquals(
             Plot(
@@ -48,12 +48,12 @@ class FacetTest {
                 listOf(),
                 null,
                 mapOf(
-                    FacetGridFeature.FEATURE_NAME to FacetGridFeature( xOrder = OrderDirection.ASCENDING,
-                            yOrder = OrderDirection.DESCENDING).apply {
-                        mappings[FACET_X] = DataSource<String>("xArg", typeOf<String>())
-                        mappings[FACET_Y] = DataSource<Int>("yArg", typeOf<Int>())
-
-                    }
+                    FacetGridFeature.FEATURE_NAME to FacetGridFeature(
+                        x = "xArg",
+                        y = "yArg",
+                        xOrder = OrderDirection.ASCENDING,
+                        yOrder = OrderDirection.DESCENDING
+                    )
                 )
             ),
             plot

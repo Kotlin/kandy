@@ -5,7 +5,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.Aes
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
-import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridContext
 
 data class LayerTooltips(
     val variables: List<DataSource<*>>,
@@ -43,6 +42,27 @@ data class LayerTooltips(
 
 
 /**
+ * Inserts value of given [DataSource] into format string.
+ *
+ * @param source [DataSource] whose value will be inserted into the tooltip
+ * @return format string
+ */
+fun value(source: DataSource<*>): String {
+    return "@${source.id}"
+}
+
+/**
+ * Inserts value of given aesthetic attribute into format string.
+ *
+ * @param aes aesthetic attribute whose value will be inserted into the tooltip
+ * @return format string
+ */
+fun value(aes: Aes): String {
+    return "^${aes.name}"
+}
+
+
+/**
  * Context created by [LayerContext.tooltips] method.
  */
 class LayerTooltipsContext {
@@ -52,6 +72,7 @@ class LayerTooltipsContext {
      * Adds solid line to tooltips with given string value.
      *
      * @param string text of the line
+     * @see value
      */
     fun line(string: String) {
         lineBuffer.add(string)
@@ -62,6 +83,7 @@ class LayerTooltipsContext {
      *
      * @param leftSide text of the left side of line
      * @param rightSide text of the right side of line
+     * @see value
      */
     fun line(leftSide: String? = null, rightSide: String? = null) {
         lineBuffer.add("${leftSide ?: ""}|${rightSide ?: ""}")
@@ -87,25 +109,6 @@ class LayerTooltipsContext {
         lineBuffer.add("@|^${aes.name}")
     }
 
-    /**
-     * Insert value of given aesthetic attribute into format string.
-     *
-     * @param aes aesthetic attribute whose value will be inserted into the tooltip
-     * @return format string
-     */
-    fun value(aes: Aes): String {
-        return "^${aes.name}"
-    }
-
-    /**
-     * Insert value of given [DataSource] into format string.
-     *
-     * @param source [DataSource] whose value will be inserted into the tooltip
-     * @return format string
-     */
-    fun value(source: DataSource<*>): String {
-        return "@${source.id}"
-    }
 }
 
 data class Anchor(val value: String) {
@@ -140,6 +143,7 @@ data class Anchor(val value: String) {
  * @param aesFormats map of [Aes] to format string of its value.
  * The format will be applied to the mapped value in the default tooltip or to the corresponding
  * value specified in the line template.
+ * @see value
  */
 inline fun LayerContext.tooltips(
     vararg variables: DataSource<*>,

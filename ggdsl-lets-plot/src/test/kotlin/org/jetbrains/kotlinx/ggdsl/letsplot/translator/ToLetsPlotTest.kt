@@ -83,11 +83,11 @@ class ToLetsPlotTest {
                 position = Position.Identity
             }
 
-            facetGrid {
-                x(clM)
-                y(source<String>("clX"))
+            facetGrid(
+                x = clM,
+                y = source<String>("clX"),
                 yOrder = OrderDirection.DESCENDING
-            }
+            )
         }
         println(plot.toLetsPlot().toSpec())
         assertEquals(
