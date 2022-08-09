@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.HistogramContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color

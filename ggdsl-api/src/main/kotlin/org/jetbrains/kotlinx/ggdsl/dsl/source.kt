@@ -22,5 +22,9 @@ data class UnnamedDataSource<T : Any>(val type: KType) {
 }
 
 // todo
+inline fun <reified T : Any> String.invoke(): DataSource<T> =
+    DataSource(this, typeOf<T>())
+
+// todo
 inline fun <reified T : Any> source(): UnnamedDataSource<T> =
     UnnamedDataSource(typeOf<T>())

@@ -10,7 +10,8 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 // TODO
 
-val BAR = LetsPlotGeom("bar")
+@PublishedApi
+internal val BAR = LetsPlotGeom("bar")
 
 
 
@@ -66,6 +67,6 @@ class BarContext(override var data: MutableNamedData) : WithBorderLineContext() 
  *
  *  // TODO refer to bindings?
  */
-fun PlotContext.bar(block: BarContext.() -> Unit) {
+inline fun PlotContext.bar(block: BarContext.() -> Unit) {
     layers.add(BarContext(data).apply { copyFrom(this@bar) }.apply(block).toLayer(BAR))
 }
