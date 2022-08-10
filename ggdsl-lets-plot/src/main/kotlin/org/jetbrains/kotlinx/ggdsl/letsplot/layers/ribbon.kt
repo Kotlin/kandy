@@ -2,14 +2,16 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
-val RIBBON = LetsPlotGeom("ribbon")
-
+@PublishedApi
+internal val RIBBON = LetsPlotGeom("ribbon")
+@PlotDslMarker
 class RibbonContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
     WithBorderLineContext() {
     val yMin = YMinAes(this)
@@ -66,6 +68,6 @@ class RibbonContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNa
  *  ```
  *  // TODO refer to bindings?
  */
-fun PlotContext.ribbon(block: RibbonContext.() -> Unit) {
+inline fun PlotContext.ribbon(block: RibbonContext.() -> Unit) {
     layers.add(RibbonContext(data).apply { copyFrom(this@ribbon) }.apply(block).toLayer(RIBBON))
 }

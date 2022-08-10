@@ -17,7 +17,7 @@ import kotlin.reflect.typeOf
 inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
     columnRef: ColumnReference<DomainType>
 ) {
-    context.bindingCollectorAccessor.mappings[this.name] =
+    context.bindingCollector.mappings[this.name] =
         NonScalablePositionalMapping(this.name, columnRef.toDataSource(), typeOf<DomainType>())
 }
 
@@ -34,7 +34,7 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         columnRef.scaled(),
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this.name] = mapping
+    context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }
 
@@ -51,6 +51,6 @@ inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPosit
         columnRef.scaled(),
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this.name] = mapping
+    context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }

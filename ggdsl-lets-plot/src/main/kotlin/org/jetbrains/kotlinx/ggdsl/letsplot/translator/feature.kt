@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
@@ -92,4 +93,10 @@ internal fun LayerTooltips.wrap(): TooltipOptions {
         buffer = buffer.line(it)
     }
     return buffer
+}
+
+internal fun Reversed.wrap(): String = if (value) {
+    "y"
+} else {
+    "x"
 }

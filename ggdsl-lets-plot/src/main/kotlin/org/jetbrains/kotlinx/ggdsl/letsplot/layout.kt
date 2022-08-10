@@ -1,10 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.ir.Layout
 
 
 //todo
+@PlotDslMarker
 data class LetsPlotLayout(
     var title: String? = null,
     var subtitle: String? = null,

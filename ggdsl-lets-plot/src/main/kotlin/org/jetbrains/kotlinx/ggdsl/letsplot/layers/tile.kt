@@ -8,10 +8,11 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-val TILE = LetsPlotGeom("tile")
+@PublishedApi
+internal val TILE = LetsPlotGeom("tile")
 
 
-
+@PlotDslMarker
 class TileContext(override var data: MutableNamedData) :
     WithBorderLineContext() {
     val color = FillAes(this)
@@ -69,6 +70,6 @@ class TileContext(override var data: MutableNamedData) :
  *  ```
  *  // TODO refer to bindings?
  */
-fun PlotContext.tile(block: RectContext.() -> Unit) {
+inline fun PlotContext.tile(block: RectContext.() -> Unit) {
     layers.add(RectContext(data).apply { copyFrom(this@tile) }.apply(block).toLayer(TILE))
 }

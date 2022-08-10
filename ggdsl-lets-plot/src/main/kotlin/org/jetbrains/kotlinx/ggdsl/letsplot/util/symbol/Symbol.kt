@@ -5,7 +5,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol
  *
  * TODO detailed?
  */
-data class Symbol(val shape: Int) {
+data class Symbol internal constructor(val shape: Int) {
     companion object {
         val SQUARE_OPEN = Symbol(0)
         val CIRCLE_OPEN = Symbol(1)

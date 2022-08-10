@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 sealed interface LegendType
@@ -18,6 +19,7 @@ data class ColorBar internal constructor(
     val nBin: Int? = null
 ) : LegendType
 
+@PlotDslMarker
 data class Legend<DomainType : Any, RangeType : Any>(
     var name: String? = null,
     var breaks: List<DomainType>? = null,

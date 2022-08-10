@@ -11,7 +11,8 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-val SEGMENT = LetsPlotGeom("segment")
+@PublishedApi
+internal val SEGMENT = LetsPlotGeom("segment")
 
 /* TODO
 // todo better names?

@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.tooltips
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.ir.aes.Aes
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
@@ -65,8 +66,10 @@ fun value(aes: Aes): String {
 /**
  * Context created by [LayerContext.tooltips] method.
  */
+@PlotDslMarker
 class LayerTooltipsContext {
-    val lineBuffer = mutableListOf<String>()
+    // todo hide
+     val lineBuffer = mutableListOf<String>()
 
     /**
      * Adds solid line to tooltips with given string value.

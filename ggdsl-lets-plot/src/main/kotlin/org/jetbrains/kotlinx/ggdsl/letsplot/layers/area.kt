@@ -8,9 +8,10 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 
-val AREA = LetsPlotGeom("area")
+@PublishedApi
+internal val AREA = LetsPlotGeom("area")
 
-
+@PlotDslMarker
 class AreaContext(override var data: MutableNamedData) :
     WithBorderLineContext() {
     val color = FillAes(this)
@@ -60,6 +61,6 @@ class AreaContext(override var data: MutableNamedData) :
  *
  *  // TODO refer to bindings?
  */
-fun PlotContext.area(block: AreaContext.() -> Unit) {
+inline fun PlotContext.area(block: AreaContext.() -> Unit) {
     layers.add(AreaContext(data).apply { copyFrom(this@area) }.apply(block).toLayer(AREA))
 }

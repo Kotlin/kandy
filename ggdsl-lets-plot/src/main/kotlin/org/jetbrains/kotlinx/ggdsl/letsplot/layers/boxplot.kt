@@ -5,8 +5,9 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-val BOXPLOT = LetsPlotGeom("boxplot")
-
+@PublishedApi
+internal val BOXPLOT = LetsPlotGeom("boxplot")
+@PlotDslMarker
 class BoxplotContext(override var data: MutableNamedData) : WithBorderLineContext() {
 
     val lower = LowerAes(this)
@@ -71,6 +72,6 @@ class BoxplotContext(override var data: MutableNamedData) : WithBorderLineContex
  *
  *  // TODO refer to bindings?
  */
-fun PlotContext.boxplot(block: BoxplotContext.() -> Unit) {
+inline fun PlotContext.boxplot(block: BoxplotContext.() -> Unit) {
     layers.add(BoxplotContext(data).apply { copyFrom(this@boxplot) }.apply(block).toLayer(BOXPLOT))
 }

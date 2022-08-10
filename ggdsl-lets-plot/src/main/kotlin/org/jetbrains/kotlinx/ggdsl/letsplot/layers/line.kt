@@ -10,13 +10,14 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 
 // TODO
 
-val LINE = LetsPlotGeom("line")
-val PATH = LetsPlotGeom("path")
+@PublishedApi
+internal val LINE = LetsPlotGeom("line")
+@PublishedApi
+internal val PATH = LetsPlotGeom("path")
 
 
-
-class LineContext(override var data: MutableNamedData) :
-    LayerContext() {
+@PlotDslMarker
+class LineContext(override var data: MutableNamedData) : LayerContext() {
     val color = ColorAes(this)
     val alpha = AlphaAes(this)
     val type = LineTypeAes(this)
@@ -56,6 +57,10 @@ class LineContext(override var data: MutableNamedData) :
 
  *  // TODO refer to bindings?
  */
-fun PlotContext.line(block: LineContext.() -> Unit) {
-    layers.add(LineContext(data).apply { copyFrom(this@line) }.apply(block).toLayer(PATH))
+inline fun PlotContext.line(block: LineContext.() -> Unit) {
+    layers.add(LineContext(data).apply { copyFrom(this@line) }.apply(block).toLayer(LINE))
+}
+
+inline fun PlotContext.path(block: LineContext.() -> Unit) {
+    layers.add(LineContext(data).apply { copyFrom(this@path) }.apply(block).toLayer(PATH))
 }
