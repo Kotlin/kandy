@@ -1,67 +1,26 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.HistStat
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
+import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableOnlyNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledNonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
+import org.jetbrains.kotlinx.ggdsl.letsplot.AlphaAes
+import org.jetbrains.kotlinx.ggdsl.letsplot.ColorAes
+import org.jetbrains.kotlinx.ggdsl.letsplot.FillAes
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
-// TODO
-
-@PublishedApi
-internal val HISTOGRAM = LetsPlotGeom("histogram")
-
-internal val BINS = AesName("bins")
-
-data class BinsAes internal constructor(override val context: BindingContext) : NonPositionalAes<Int> {
-    override val name = BINS
-}
-
-internal val BIN_WIDTH = AesName("binWidth")
-
-data class BinWidthAes internal constructor(override val context: BindingContext) : NonPositionalAes<Double> {
-    override val name = BIN_WIDTH
-}
-
-
-
-val BOUNDARY = AesName("boundary")
-data class BoundaryAes internal constructor(override val context: BindingContext) : NonPositionalAes<Double> {
-    override val name = BOUNDARY
-}
-
-/*
-data class NonMappableColorAes internal constructor(override val context: BindingContext) : NonPositionalAes<Color> {
-    override val name = COLOR
-}
-
-data class NonMappableFillAes internal constructor(override val context: BindingContext) : NonPositionalAes<Color> {
-    override val name = FILL
-}
-
-data class MappableOnlyColorAes internal constructor(override val context: BindingContext) : MappableOnlyNonPositionalAes<Color> {
-    override val name = COLOR
-}
-
-data class MappableOnlyFillAes internal constructor(override val context: BindingContext) : MappableOnlyNonPositionalAes<Color> {
-    override val name = FILL
-}
-
- */
-
 @PlotDslMarker
 // todo move x/y?
-class HistogramContext(override var data: MutableNamedData) : LayerContext() {
+class BoxplotStatContext(override var data: MutableNamedData) : LayerContext() {
 
+    /* TODO
     data class Stat<T : Any> internal constructor(val name: String) {
         companion object {
             val count = Stat<Int>("..count..")
@@ -69,12 +28,15 @@ class HistogramContext(override var data: MutableNamedData) : LayerContext() {
         }
     }
 
+     */
+
     val alpha = AlphaAes(this)
     val fillColor = FillAes(this)
     val borderLineColor = ColorAes(this)
 
-    val boundary = BoundaryAes(this)
+  //  val boundary = BoundaryAes(this)
 
+    /*
     @PublishedApi
     internal inline fun <reified T : Any> Stat<T>.toDataSource(): DataSource<T> {
         return DataSource(name, typeOf<T>())
@@ -105,44 +67,15 @@ class HistogramContext(override var data: MutableNamedData) : LayerContext() {
         return mapping
     }
 
+     */
 
-    interface BinOption {
-        data class ByNumber(val number: Int) : BinOption
-        data class ByWidth(val width: Double) : BinOption
-    }
 
-    fun byNumber(number: Int) = BinOption.ByNumber(number)
-    fun byWidth(width: Double) = BinOption.ByWidth(width)
-
-    private val _bins = BinsAes(this)
-    private val binWidth = BinWidthAes(this)
-
-    var bins: BinOption? = null
-        set(value) {
-            when (value) {
-                is BinOption.ByNumber -> {
-                    bindingCollector.settings.remove(BIN_WIDTH)
-                    _bins(value.number)
-                }
-
-                is BinOption.ByWidth -> {
-                    bindingCollector.settings.remove(BINS)
-                    binWidth(value.width)
-                }
-
-                else -> {
-                    bindingCollector.settings.remove(BINS)
-                    bindingCollector.settings.remove(BIN_WIDTH)
-                }
-            }
-            field = null
-        }
 
     /*
     @PublishedApi
     internal var groupOptions: GroupContext<*>? = null
 
-    class GroupContext<T : Any>(val source: DataSource<T>, val type: KType, val context: HistogramContext) : BindingContext() {
+    class GroupContext<T : Any>(val source: DataSource<T>, val type: KType, val context: DensityContext) : BindingContext() {
         override var data: MutableNamedData = mutableMapOf()
 
         val fillColor = NonMappableFillAes(context)
@@ -162,6 +95,7 @@ class HistogramContext(override var data: MutableNamedData) : LayerContext() {
         }
     }
 
+
     @PlotDslMarker
     inline fun <reified T : Any> groupBy(source: DataSource<T>, block: GroupContext<T>.() -> Unit) {
         groupOptions = GroupContext(source, typeOf<T>(), this).apply(block)
@@ -171,14 +105,15 @@ class HistogramContext(override var data: MutableNamedData) : LayerContext() {
 
 }
 
-inline fun <reified T : Any> PlotContext.histogram(source: DataSource<T>, block: HistogramContext.() -> Unit) {
+inline fun <reified T:Any, reified R : Any> PlotContext.boxplot(sourceX: DataSource<T>, sourceY: DataSource<R>, block: DensityContext.() -> Unit) {
     layers.add(
-        HistogramContext(data)
+        DensityContext(data)
             .apply {
-                copyFrom(this@histogram)
-                x(source)
+                copyFrom(this@boxplot)
+                x(sourceX)
+                y(sourceY)
             }
             .apply(block)
-            .toLayer(HISTOGRAM)
+            .toLayer(BOXPLOT)
     )
 }

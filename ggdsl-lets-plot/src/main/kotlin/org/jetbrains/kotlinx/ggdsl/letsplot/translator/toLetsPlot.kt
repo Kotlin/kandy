@@ -111,8 +111,10 @@ internal fun Geom.toLPGeom(): org.jetbrains.letsPlot.intern.layer.GeomOptions {
         BOXPLOT -> org.jetbrains.letsPlot.Geom.boxplot()
         CROSS_BAR -> org.jetbrains.letsPlot.Geom.crossbar()
         ERROR_BAR -> org.jetbrains.letsPlot.Geom.errorbar()
+        HISTOGRAM -> org.jetbrains.letsPlot.Geom.histogram()
         // TODO line/path
-        LINE, PATH -> org.jetbrains.letsPlot.Geom.path()
+        LINE->org.jetbrains.letsPlot.Geom.line()
+         PATH -> org.jetbrains.letsPlot.Geom.path()
         LINE_RANGE -> org.jetbrains.letsPlot.Geom.linerange()
         POINT -> org.jetbrains.letsPlot.Geom.point()
         POINT_RANGE -> org.jetbrains.letsPlot.Geom.pointrange()

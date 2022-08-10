@@ -141,7 +141,7 @@ class ToLetsPlotTest {
                         "size" to 2.2,
                         "linetype" to "dotted",
                         "position" to "identity",
-                        "geom" to "path",
+                        "geom" to "line",
                     ),
                 ),
                 "facet" to mapOf<String, Any>(
