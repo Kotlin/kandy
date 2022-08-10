@@ -8,9 +8,10 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-val RECT = LetsPlotGeom("rect")
+@PublishedApi
+internal val RECT = LetsPlotGeom("rect")
 
-
+@PlotDslMarker
 class RectContext(override var data: MutableNamedData) :
     WithBorderLineContext() {
     val xMin = XMinAes(this)
@@ -64,6 +65,6 @@ class RectContext(override var data: MutableNamedData) :
  *  ```
  *  // TODO refer to bindings?
  */
-fun PlotContext.rect(block: RectContext.() -> Unit) {
+inline fun PlotContext.rect(block: RectContext.() -> Unit) {
     layers.add(RectContext(data).apply { copyFrom(this@rect) }.apply(block).toLayer(RECT))
 }

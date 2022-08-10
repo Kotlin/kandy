@@ -6,7 +6,8 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.data.*
 import kotlin.reflect.typeOf
 
-inline fun <reified T: Any> ColumnReference<T>.toDataSource(): DataSource<T> {
+@PublishedApi
+internal inline fun <reified T: Any> ColumnReference<T>.toDataSource(): DataSource<T> {
     return DataSource(name(), typeOf<T>())
 }
 

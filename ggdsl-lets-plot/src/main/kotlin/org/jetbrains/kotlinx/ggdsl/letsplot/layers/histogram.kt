@@ -4,10 +4,8 @@ import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.SourceScaledNonPositional
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalContinuousScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import kotlin.reflect.KType
@@ -15,9 +13,10 @@ import kotlin.reflect.typeOf
 
 // TODO
 
-val HISTOGRAM = LetsPlotGeom("histogram")
+@PublishedApi
+internal val HISTOGRAM = LetsPlotGeom("histogram")
 
-
+@PlotDslMarker
 class HistogramContext(override var data: MutableNamedData) : WithBorderLineContext() {
 
     interface BinOption {
@@ -46,7 +45,7 @@ class HistogramContext(override var data: MutableNamedData) : WithBorderLineCont
                 source.scaled(scale),
                 typeOf<RangeType>() // todo
             )
-            context.bindingCollectorAccessor.mappings[this.name] = mapping
+            context.bindingCollector.mappings[this.name] = mapping
             return mapping
         }
     }
@@ -58,7 +57,7 @@ class HistogramContext(override var data: MutableNamedData) : WithBorderLineCont
 
 }
 
-fun PlotContext.histogram(block: HistogramContext.() -> Unit) {
+inline fun PlotContext.histogram(block: HistogramContext.() -> Unit) {
     layers.add(
         HistogramContext(data)
         .apply { copyFrom(this@histogram) }

@@ -5,10 +5,11 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-val POINT = LetsPlotGeom("point")
+@PublishedApi
+internal val POINT = LetsPlotGeom("point")
 
 // TODO add size unit???
-
+@PlotDslMarker
 class PointsContext(override var data: MutableNamedData) : LayerContext() {
     val symbol = ShapeAes(this)
 
@@ -57,7 +58,7 @@ class PointsContext(override var data: MutableNamedData) : LayerContext() {
  *  // TODO refer to bindings?
  */
 // todo rename to point/scatter?
-fun PlotContext.points(block: PointsContext.() -> Unit) {
+inline fun PlotContext.points(block: PointsContext.() -> Unit) {
     layers.add(PointsContext(data).apply { copyFrom(this@points) }
         .apply(block).toLayer(POINT))
 }

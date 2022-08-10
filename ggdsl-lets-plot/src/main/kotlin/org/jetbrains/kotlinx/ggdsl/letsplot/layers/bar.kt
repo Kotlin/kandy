@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 internal val BAR = LetsPlotGeom("bar")
 
 
-
+@PlotDslMarker
 class BarContext(override var data: MutableNamedData) : WithBorderLineContext() {
 
     val color = FillAes(this)

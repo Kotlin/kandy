@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
+import kotlin.reflect.KProperty
 import kotlin.reflect.typeOf
 
 /**
@@ -14,7 +15,7 @@ import kotlin.reflect.typeOf
  * @param value the assigned value.
  */
 operator fun <T : Any> NonPositionalAes<T>.invoke(value: T) {
-    context.bindingCollectorAccessor.settings[this.name] = NonPositionalSetting(this.name, value)
+    context.bindingCollector.settings[this.name] = NonPositionalSetting(this.name, value)
 }
 
 /**
@@ -25,7 +26,7 @@ operator fun <T : Any> NonPositionalAes<T>.invoke(value: T) {
 inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
     source: DataSource<DomainType>
 ) {
-    context.bindingCollectorAccessor.mappings[this.name] =
+    context.bindingCollector.mappings[this.name] =
         NonScalablePositionalMapping(this.name, source, typeOf<DomainType>())
 }
 
@@ -37,8 +38,20 @@ inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
 inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
     data: Iterable<DomainType>
 ) {
-    context.bindingCollectorAccessor.mappings[this.name] =
+    context.bindingCollector.mappings[this.name] =
         NonScalablePositionalMapping(this.name, with(context) { data.toDataSource() }, typeOf<DomainType>())
+}
+
+/**
+ * Maps the given property to this non-scalable ("sub-positional") aesthetic attribute.
+ *
+ * @param property the mapped [KProperty].
+ */
+inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
+    property: KProperty<DomainType>
+) {
+    context.bindingCollector.mappings[this.name] =
+        NonScalablePositionalMapping(this.name, property.toDataSource(), typeOf<DomainType>())
 }
 
 /**
@@ -54,7 +67,7 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         source.scaled(),
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this.name] = mapping
+    context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }
 
@@ -71,7 +84,24 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         with(context) { data.toDataSource() }.scaled(),
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this.name] = mapping
+    context.bindingCollector.mappings[this.name] = mapping
+    return mapping
+}
+
+/**
+ * Maps the given property to this positional aesthetic attribute with default scale.
+ *
+ * @param property the mapped [KProperty].
+ */
+inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    property: KProperty<DomainType>
+): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
+    val mapping = ScaledUnspecifiedDefaultPositionalMapping(
+        this.name,
+        property.toDataSource().scaled(),
+        typeOf<DomainType>()
+    )
+    context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }
 
@@ -88,7 +118,7 @@ inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPosit
         source.scaled(),
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this.name] = mapping
+    context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }
 
@@ -105,7 +135,24 @@ inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPosit
         with(context) { data.toDataSource() }.scaled(),
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this.name] = mapping
+    context.bindingCollector.mappings[this.name] = mapping
+    return mapping
+}
+
+/**
+ * Maps the given property to this non-positional aesthetic attribute with default scale.
+ *
+ * @param property the mapped [KProperty].
+ */
+inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    property: KProperty<DomainType>
+): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
+    val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
+        this.name,
+        property.toDataSource().scaled(),
+        typeOf<DomainType>()
+    )
+    context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }
 
@@ -122,7 +169,7 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         sourceScaledDefault,
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this.name] = mapping
+    context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }
 
@@ -139,7 +186,7 @@ inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPosit
         sourceScaledDefault,
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this.name] = mapping
+    context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }
 
@@ -156,7 +203,7 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         sourceScaledDefault,
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this.name] = mapping
+    context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }
 
@@ -174,7 +221,7 @@ inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPosit
         sourceScaledDefault,
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this.name] = mapping
+    context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }
 
@@ -191,7 +238,7 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         sourceScaledPositional,
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this.name] = mapping
+    context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }
 
@@ -209,6 +256,6 @@ inline operator fun <reified DomainType : Any, reified RangeType : Any>
         sourceScaledNonPositional,
         typeOf<DomainType>()
     )
-    context.bindingCollectorAccessor.mappings[this.name] = mapping
+    context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }

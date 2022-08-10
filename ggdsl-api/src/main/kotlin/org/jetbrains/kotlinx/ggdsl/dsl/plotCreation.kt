@@ -8,7 +8,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
  *
  * @return new [Plot]
  */
-fun PlotContext.toPlot(): Plot {
+@PublishedApi
+internal fun PlotContext.toPlot(): Plot {
     return Plot(data, layers, layout, features)
 }
 

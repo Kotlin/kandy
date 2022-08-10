@@ -8,10 +8,11 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-val RASTER = LetsPlotGeom("raster")
+@PublishedApi
+internal val RASTER = LetsPlotGeom("raster")
 
 
-
+@PlotDslMarker
 class RasterContext(override var data: MutableNamedData) :
     LayerContext() {
 
@@ -50,6 +51,6 @@ class RasterContext(override var data: MutableNamedData) :
  * // TODO move data overriding to args
  *  // TODO refer to bindings?
  */
-fun PlotContext.raster(block: RasterContext.() -> Unit) {
+inline fun PlotContext.raster(block: RasterContext.() -> Unit) {
     layers.add(RasterContext(data).apply { copyFrom(this@raster) }.apply(block).toLayer(RASTER))
 }

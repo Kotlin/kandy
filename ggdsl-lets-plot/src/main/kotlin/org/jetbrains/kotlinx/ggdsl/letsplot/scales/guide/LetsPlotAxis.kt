@@ -1,6 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 
+@PlotDslMarker
 data class Axis<DomainType : Any>(
     var name: String? = null,
     var breaks: List<DomainType>? = null,

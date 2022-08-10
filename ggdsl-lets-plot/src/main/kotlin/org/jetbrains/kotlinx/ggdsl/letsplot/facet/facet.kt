@@ -29,7 +29,7 @@ data class ScalesSharing internal constructor(val name: String) {
     }
 }
 
-data class FacetGridFeature(
+data class FacetGridFeature  constructor(
     val x: String? = null,
     val y: String? = null,
     val scalesSharing: ScalesSharing? = null,
@@ -46,7 +46,7 @@ data class FacetGridFeature(
 
 }
 
-data class FacetWrapFeature(
+data class FacetWrapFeature  constructor(
     val facets: List<String>,
     var nCol: Int? = null,
     var nRow: Int? = null,

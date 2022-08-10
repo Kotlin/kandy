@@ -55,7 +55,7 @@ internal class BindingTest {
         }
         assertEquals<Map<AesName, Setting>>(
             mapOf(MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting(MOCK_AES_DOUBLE_NON_POS, valueDouble)),
-            context.bindingCollectorAccessor.settings.toMap()
+            context.bindingCollector.settings.toMap()
         )
 
         // val mockAesString = NonPositionalAes<String>("mock_aes_string")
@@ -68,7 +68,7 @@ internal class BindingTest {
                 MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting(MOCK_AES_DOUBLE_NON_POS, valueDouble),
                 MOCK_AES_STRING_MAP_NON_POS to NonPositionalSetting(MOCK_AES_STRING_MAP_NON_POS, valueString)
             ),
-            context.bindingCollectorAccessor.settings.toMap()
+            context.bindingCollector.settings.toMap()
         )
     }
 
@@ -87,7 +87,7 @@ internal class BindingTest {
                     typeOf<Double>()
                 )
             ),
-            context.bindingCollectorAccessor.mappings
+            context.bindingCollector.mappings
         )
     }
 
@@ -106,7 +106,7 @@ internal class BindingTest {
                     typeOf<Int>()
                 )
             ),
-            context.bindingCollectorAccessor.mappings
+            context.bindingCollector.mappings
         )
     }
 
@@ -123,7 +123,7 @@ internal class BindingTest {
                     MOCK_AES_SCLB_POS, mockSource.scaled(), typeOf<String>()
                 )
             ),
-            context.bindingCollectorAccessor.mappings
+            context.bindingCollector.mappings
         )
     }
 
@@ -142,7 +142,7 @@ internal class BindingTest {
                     ), typeOf<Float>()
                 )
             ),
-            context.bindingCollectorAccessor.mappings
+            context.bindingCollector.mappings
         )
     }
 
@@ -161,7 +161,7 @@ internal class BindingTest {
                     ), typeOf<String>()
                 )
             ),
-            context.bindingCollectorAccessor.mappings
+            context.bindingCollector.mappings
         )
     }
 
@@ -179,7 +179,7 @@ internal class BindingTest {
             mapOf(
                 MOCK_AES_SCLB_POS to ScaledPositionalMapping(MOCK_AES_SCLB_POS, mockSource.scaled(scale), typeOf<String>())
             ),
-            context.bindingCollectorAccessor.mappings
+            context.bindingCollector.mappings
         )
     }
 
@@ -202,7 +202,7 @@ internal class BindingTest {
                     //typeOf<Color>()
                 )
             ),
-            context.bindingCollectorAccessor.mappings
+            context.bindingCollector.mappings
         )
     }
 }

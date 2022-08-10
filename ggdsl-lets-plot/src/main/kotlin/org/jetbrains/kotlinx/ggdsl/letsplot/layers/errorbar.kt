@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
@@ -9,8 +10,9 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
-val ERROR_BAR = LetsPlotGeom("errorbar")
-
+@PublishedApi
+internal val ERROR_BAR = LetsPlotGeom("errorbar")
+@PlotDslMarker
 class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
     WithBorderLineContext() {
     val yMin = YMinAes(this)
@@ -67,6 +69,6 @@ class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutable
  *
  *  // TODO refer to bindings?
  */
-fun PlotContext.errorBar(block: ErrorBarContext.() -> Unit) {
+inline fun PlotContext.errorBar(block: ErrorBarContext.() -> Unit) {
     layers.add(ErrorBarContext(data).apply { copyFrom(this@errorBar) }.apply(block).toLayer(ERROR_BAR))
 }

@@ -14,7 +14,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
-import kotlin.reflect.typeOf
 
 /**
  * Internal collector of mappings and settings.
@@ -37,33 +36,34 @@ class BindingCollector internal constructor() {
  *
  * @property data the mutual dataset context.
  */
+@PlotDslMarker
 abstract class BindingContext {
     abstract var data: MutableNamedData
 
     //todo
-    var counter = 0
-    fun generateID(): String = "*gen${counter++}"
+    private var counter = 0
+
+    @PublishedApi
+    internal fun generateID(): String = "*gen${counter++}"
 
     // todo add for arrays/others???
-    inline fun <reified T : Any> Iterable<T>.toDataSource(): DataSource<T> {
+    @PublishedApi
+    internal inline fun <reified T : Any> Iterable<T>.toDataSource(): DataSource<T> {
         val list = toList()
         val id = generateID()
         data[id] = list
         return source(id)
     }
 
-    // TODO remove or make internal
-    protected val bindingCollector = BindingCollector()
+    // todo how to hide?
+    val bindingCollector = BindingCollector()
 
-    // TODO remove or make internal
-    val bindingCollectorAccessor: BindingCollector
-        get() = bindingCollector
-
+    // todo how to hide?
     fun copyFrom(other: BindingContext, copyData: Boolean = true) {
         if (copyData) {
             data = other.data
         }
-        bindingCollector.copyFrom(other.bindingCollector)
+        this.bindingCollector.copyFrom(other.bindingCollector)
     }
 
 
@@ -102,8 +102,8 @@ abstract class BaseBindingContext : BindingContext() {
  *
  * todo
  */
+@PlotDslMarker
 abstract class LayerContext : BaseBindingContext() {
-
     // todo hide?
     val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 }
@@ -117,18 +117,21 @@ fun LayerContext.toLayer(geom: Geom): Layer {
     return Layer(
         data,
         geom,
-        bindingCollectorAccessor.mappings,
-        bindingCollectorAccessor.settings,
+        this.bindingCollector.mappings,
+        this.bindingCollector.settings,
         features
     )
 }
 
 // todo
+@PlotDslMarker
 class PlotContext : BaseBindingContext() {
     override var data: MutableNamedData = mutableMapOf()
 
     var layout: Layout? = null
 
+    // todo how to hide?
     val layers: MutableList<Layer> = mutableListOf()
+    // todo how to hide?
     val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 }
