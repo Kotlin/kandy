@@ -34,7 +34,7 @@ class BoxplotStatContext(override var data: MutableNamedData) : LayerContext() {
     val fillColor = FillAes(this)
     val borderLineColor = ColorAes(this)
 
-  //  val boundary = BoundaryAes(this)
+    //  val boundary = BoundaryAes(this)
 
     /*
     @PublishedApi
@@ -68,7 +68,6 @@ class BoxplotStatContext(override var data: MutableNamedData) : LayerContext() {
     }
 
      */
-
 
 
     /*
@@ -105,7 +104,11 @@ class BoxplotStatContext(override var data: MutableNamedData) : LayerContext() {
 
 }
 
-inline fun <reified T:Any, reified R : Any> PlotContext.boxplot(sourceX: DataSource<T>, sourceY: DataSource<R>, block: BoxplotStatContext.() -> Unit) {
+inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
+    sourceX: DataSource<T>,
+    sourceY: DataSource<R>,
+    block: BoxplotStatContext.() -> Unit
+) {
     layers.add(
         BoxplotStatContext(data)
             .apply {

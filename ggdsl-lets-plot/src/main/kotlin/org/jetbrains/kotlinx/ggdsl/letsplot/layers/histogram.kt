@@ -15,9 +15,11 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
-
+/* TODO
 @PublishedApi
-internal val HISTOGRAM = LetsPlotGeom("histogram")
+
+ */
+val HISTOGRAM = LetsPlotGeom("histogram")
 
 internal val BINS = AesName("bins")
 
@@ -171,6 +173,18 @@ class HistogramContext(override var data: MutableNamedData) : LayerContext() {
 }
 
 inline fun <reified T : Any> PlotContext.histogram(source: DataSource<T>, block: HistogramContext.() -> Unit) {
+    layers.add(
+        HistogramContext(data)
+            .apply {
+                copyFrom(this@histogram)
+                x(source)
+            }
+            .apply(block)
+            .toLayer(HISTOGRAM)
+    )
+}
+
+inline fun <reified T : Any> PlotContext.histogram(source: Iterable<T>, block: HistogramContext.() -> Unit) {
     layers.add(
         HistogramContext(data)
             .apply {

@@ -5,8 +5,8 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-@PublishedApi
-internal val BOXPLOT = LetsPlotGeom("boxplot")
+
+ val BOXPLOT = LetsPlotGeom("boxplot")
 @PlotDslMarker
 class BoxplotContext(override var data: MutableNamedData) : WithBorderLineContext() {
 

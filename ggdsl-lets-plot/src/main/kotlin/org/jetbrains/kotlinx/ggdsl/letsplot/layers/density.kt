@@ -16,8 +16,8 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
-@PublishedApi
-internal val DENSITY = LetsPlotGeom("density")
+
+val DENSITY = LetsPlotGeom("density")
 @PlotDslMarker
 // todo move x/y?
 class DensityContext(override var data: MutableNamedData) : LayerContext() {
