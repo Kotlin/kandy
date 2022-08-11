@@ -15,7 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.FillAes
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
-
+/*
 @PublishedApi
 internal val DENSITY = LetsPlotGeom("density")
 @PlotDslMarker
@@ -118,3 +118,5 @@ inline fun <reified T : Any> PlotContext.density(source: DataSource<T>, block: D
             .toLayer(DENSITY)
     )
 }
+
+ */

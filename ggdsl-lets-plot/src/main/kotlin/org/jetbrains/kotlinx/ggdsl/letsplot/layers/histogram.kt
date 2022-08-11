@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
-
+/*
 // TODO
 
 @PublishedApi
@@ -182,3 +182,5 @@ inline fun <reified T : Any> PlotContext.histogram(source: DataSource<T>, block:
             .toLayer(HISTOGRAM)
     )
 }
+
+ */

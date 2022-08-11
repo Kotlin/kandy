@@ -110,8 +110,9 @@ internal fun Geom.toLPGeom(): org.jetbrains.letsPlot.intern.layer.GeomOptions {
         BAR -> org.jetbrains.letsPlot.Geom.bar()
         BOXPLOT -> org.jetbrains.letsPlot.Geom.boxplot()
         CROSS_BAR -> org.jetbrains.letsPlot.Geom.crossbar()
+        // todo density
         ERROR_BAR -> org.jetbrains.letsPlot.Geom.errorbar()
-        HISTOGRAM -> org.jetbrains.letsPlot.Geom.histogram()
+     //   HISTOGRAM -> org.jetbrains.letsPlot.Geom.histogram()
         // TODO line/path
         LINE->org.jetbrains.letsPlot.Geom.line()
          PATH -> org.jetbrains.letsPlot.Geom.path()

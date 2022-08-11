@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.intern.toSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
-
+/*
 class ToLetsPlotTest {
     @Test
     fun testSimple() {
@@ -156,3 +156,5 @@ class ToLetsPlotTest {
         )
     }
 }
+
+ */

@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.letsPlot.LetsPlot
 import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
-
+/*
 @JupyterLibrary
 internal class Integration : JupyterIntegration() {
 
@@ -44,3 +44,5 @@ internal class Integration : JupyterIntegration() {
     }
 
 }
+
+ */
