@@ -15,7 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.FillAes
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
-/*
+
 @PlotDslMarker
 // todo move x/y?
 class BoxplotStatContext(override var data: MutableNamedData) : LayerContext() {
@@ -105,9 +105,9 @@ class BoxplotStatContext(override var data: MutableNamedData) : LayerContext() {
 
 }
 
-inline fun <reified T:Any, reified R : Any> PlotContext.boxplot(sourceX: DataSource<T>, sourceY: DataSource<R>, block: DensityContext.() -> Unit) {
+inline fun <reified T:Any, reified R : Any> PlotContext.boxplot(sourceX: DataSource<T>, sourceY: DataSource<R>, block: BoxplotStatContext.() -> Unit) {
     layers.add(
-        DensityContext(data)
+        BoxplotStatContext(data)
             .apply {
                 copyFrom(this@boxplot)
                 x(sourceX)
@@ -118,4 +118,3 @@ inline fun <reified T:Any, reified R : Any> PlotContext.boxplot(sourceX: DataSou
     )
 }
 
- */

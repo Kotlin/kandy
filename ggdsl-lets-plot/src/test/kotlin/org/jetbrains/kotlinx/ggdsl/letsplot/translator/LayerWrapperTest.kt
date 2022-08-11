@@ -16,7 +16,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
-/*
+
 internal class LayerWrapperTest {
     @Test
     fun testSimple() {
@@ -174,5 +174,4 @@ internal class LayerWrapperTest {
     }
 }
 
- */
 

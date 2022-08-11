@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
 import org.jetbrains.letsPlot.intern.layer.LayerBase
 import org.jetbrains.letsPlot.pos.positionIdentity
-/*
+
 internal class LayerWrapper internal constructor(private val layer: Layer) :
     LayerBase(
         data = layer.data,
@@ -33,4 +33,3 @@ internal class LayerWrapper internal constructor(private val layer: Layer) :
     )
 }
 
- */

@@ -1,5 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
-/*
+
 import org.jetbrains.letsPlot.ggsize
 import org.jetbrains.letsPlot.intern.Feature
 import org.jetbrains.letsPlot.intern.FeatureList
@@ -24,6 +24,11 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.None
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
+import org.jetbrains.letsPlot.Stat
+import org.jetbrains.letsPlot.geom.geomDensity
+import org.jetbrains.letsPlot.geom.geomHistogram
+import org.jetbrains.letsPlot.intern.GeomKind
+import org.jetbrains.letsPlot.intern.layer.GeomOptions
 
 internal fun Mapping.wrap(geom: Geom): Pair<String, String> {
     return when (this) {
@@ -112,7 +117,8 @@ internal fun Geom.toLPGeom(): org.jetbrains.letsPlot.intern.layer.GeomOptions {
         CROSS_BAR -> org.jetbrains.letsPlot.Geom.crossbar()
         // todo density
         ERROR_BAR -> org.jetbrains.letsPlot.Geom.errorbar()
-     //   HISTOGRAM -> org.jetbrains.letsPlot.Geom.histogram()
+        DENSITY -> GeomOptions(GeomKind.DENSITY)
+        HISTOGRAM -> org.jetbrains.letsPlot.Geom.histogram()
         // TODO line/path
         LINE->org.jetbrains.letsPlot.Geom.line()
          PATH -> org.jetbrains.letsPlot.Geom.path()
@@ -547,6 +553,3 @@ fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
      */
 }
 
-
-
- */

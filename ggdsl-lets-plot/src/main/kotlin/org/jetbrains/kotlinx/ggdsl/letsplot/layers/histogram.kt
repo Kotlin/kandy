@@ -1,6 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.HistStat
+
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
@@ -14,8 +14,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
-/*
-// TODO
+
 
 @PublishedApi
 internal val HISTOGRAM = LetsPlotGeom("histogram")
@@ -183,4 +182,4 @@ inline fun <reified T : Any> PlotContext.histogram(source: DataSource<T>, block:
     )
 }
 
- */
+

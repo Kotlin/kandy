@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.*
 import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
-/*
+
 class FacetTest {
     @Test
     fun testSimpleFacet() {
@@ -60,5 +60,3 @@ class FacetTest {
         )
     }
 }
-
- */
