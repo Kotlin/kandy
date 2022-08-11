@@ -11,7 +11,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.5")
+    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.8.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
     api(project(":ggdsl-api"))
 }

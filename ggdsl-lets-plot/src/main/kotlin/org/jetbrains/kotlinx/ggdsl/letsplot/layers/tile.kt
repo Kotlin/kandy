@@ -70,6 +70,6 @@ class TileContext(override var data: MutableNamedData) :
  *  ```
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.tile(block: RectContext.() -> Unit) {
-    layers.add(RectContext(data).apply { copyFrom(this@tile) }.apply(block).toLayer(TILE))
+inline fun PlotContext.tile(block: TileContext.() -> Unit) {
+    layers.add(TileContext(data).apply { copyFrom(this@tile) }.apply(block).toLayer(TILE))
 }

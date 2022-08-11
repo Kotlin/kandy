@@ -5,13 +5,27 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.PlotBunch
 import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.PlotGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.wrap
+import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
+import org.jetbrains.letsPlot.LetsPlot
+import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
 
 @JupyterLibrary
 internal class Integration : JupyterIntegration() {
 
+    lateinit var frontendContext: NotebookFrontendContext
+
     override fun Builder.onLoaded() {
+
+        onLoaded {
+            frontendContext = LetsPlot.setupNotebook("2.4.0", false) {
+                display(HTML(it))
+            }
+            LetsPlot.apiVersion = "4.0.0"
+            display(HTML(frontendContext.getConfigureHtml()))
+        }
+
         import("org.jetbrains.kotlinx.ggdsl.letsplot.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.translator.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.facet.*")
@@ -24,9 +38,9 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.*")
 
-        render<Plot> { it.toLetsPlot() }
-        render<PlotBunch> { it.wrap() }
-        render<PlotGrid> { it.wrap() }
+        render<Plot> { frontendContext.getHtml(it.toLetsPlot()) }
+        render<PlotBunch> { frontendContext.getHtml(it.wrap()) }
+        render<PlotGrid> { frontendContext.getHtml(it.wrap()) }
     }
 
 }

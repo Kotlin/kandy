@@ -10,7 +10,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
-   // implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0") // todo remove
+    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.8.0")
     implementation("org.jetbrains.lets-plot:lets-plot-kotlin-jvm:4.0.0")
    // implementation("org.jetbrains.lets-plot:lets-plot-image-export:2.4.0") // todo remove?
     api(project(":ggdsl-api"))
