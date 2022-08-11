@@ -15,7 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.FillAes
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
-
+val BOXPLOT_STAT = LetsPlotGeom("boxplot")
 @PlotDslMarker
 // todo move x/y?
 class BoxplotStatContext(override var data: MutableNamedData) : LayerContext() {
@@ -117,7 +117,7 @@ inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
                 y(sourceY)
             }
             .apply(block)
-            .toLayer(BOXPLOT)
+            .toLayer(BOXPLOT_STAT)
     )
 }
 

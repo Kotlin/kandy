@@ -104,7 +104,15 @@ internal fun wrapSymbol(symbol: Symbol): Int {
 
  */
 
-
+// TODO
+internal fun Geom.toStat(): org.jetbrains.letsPlot.intern.layer.StatOptions {
+    return when(this) {
+        HISTOGRAM -> Stat.bin()
+        DENSITY -> Stat.density()
+        BOXPLOT_STAT -> Stat.boxplot()
+        else -> Stat.identity
+    }
+}
 
 // TODO rewrite
 internal fun Geom.toLPGeom(): org.jetbrains.letsPlot.intern.layer.GeomOptions {

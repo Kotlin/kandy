@@ -17,7 +17,7 @@ internal class LayerWrapper internal constructor(private val layer: Layer) :
         mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap(layer.geom) }.toMap()),
         // todo handle with shapes
         geom = layer.geom.toLPGeom(),
-        stat = Stat.identity,
+        stat = layer.geom.toStat(),
         tooltips = (layer.features[LayerTooltips.FEATURE_NAME] as? LayerTooltips)?.wrap(),
         position = (layer.features[Position.FEATURE_NAME] as? Position)?.wrap() ?: positionIdentity,
         showLegend = true,

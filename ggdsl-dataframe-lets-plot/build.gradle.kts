@@ -13,6 +13,7 @@ dependencies {
     testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlinx:dataframe:0.8.0")
     implementation("org.jetbrains.lets-plot:lets-plot-kotlin-jvm:4.0.0")
+    implementation("org.jetbrains.lets-plot:lets-plot-image-export:2.4.0")
     api(project(":ggdsl-lets-plot"))
     api(project(":ggdsl-dataframe"))
 }

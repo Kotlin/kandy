@@ -12,7 +12,7 @@ dependencies {
     testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.8.0")
     implementation("org.jetbrains.lets-plot:lets-plot-kotlin-jvm:4.0.0")
-   // implementation("org.jetbrains.lets-plot:lets-plot-image-export:2.4.0") // todo remove?
+    implementation("org.jetbrains.lets-plot:lets-plot-image-export:2.4.0")
     api(project(":ggdsl-api"))
 }
 

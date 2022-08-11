@@ -45,7 +45,7 @@ inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
                 y(sourceY)
             }
             .apply(block)
-            .toLayer(BOXPLOT)
+            .toLayer(BOXPLOT_STAT)
     )
 }
 
@@ -62,7 +62,7 @@ inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
                 y(sourceY)
             }
             .apply(block)
-            .toLayer(BOXPLOT)
+            .toLayer(BOXPLOT_STAT)
     )
 }
 
@@ -79,6 +79,6 @@ inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
                 y(sourceY)
             }
             .apply(block)
-            .toLayer(BOXPLOT)
+            .toLayer(BOXPLOT_STAT)
     )
 }
