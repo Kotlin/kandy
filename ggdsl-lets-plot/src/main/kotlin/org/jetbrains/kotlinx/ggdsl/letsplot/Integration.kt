@@ -19,7 +19,7 @@ internal class Integration : JupyterIntegration() {
     override fun Builder.onLoaded() {
 
         onLoaded {
-            frontendContext = LetsPlot.setupNotebook("2.4.0", false) {
+            frontendContext = LetsPlot.setupNotebook("2.4.0", true) {
                 display(HTML(it))
             }
             LetsPlot.apiVersion = "4.0.0"
@@ -38,9 +38,9 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.*")
 
-        render<Plot> { frontendContext.getHtml(it.toLetsPlot()) }
-        render<PlotBunch> { frontendContext.getHtml(it.wrap()) }
-        render<PlotGrid> { frontendContext.getHtml(it.wrap()) }
+        render<Plot> { HTML(frontendContext.getHtml(it.toLetsPlot())) }
+        render<PlotBunch> { HTML(frontendContext.getHtml(it.wrap())) }
+        render<PlotGrid> { HTML(frontendContext.getHtml(it.wrap())) }
     }
 
 }
