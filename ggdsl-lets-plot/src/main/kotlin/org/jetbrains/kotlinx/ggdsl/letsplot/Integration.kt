@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.PlotBunch
 import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.PlotGrid
-import org.jetbrains.kotlinx.ggdsl.letsplot.translator.toLetsPlot
+//import org.jetbrains.kotlinx.ggdsl.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.wrap
 import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
