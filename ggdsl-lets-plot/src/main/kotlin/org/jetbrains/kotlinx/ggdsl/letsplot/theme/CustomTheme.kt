@@ -98,7 +98,7 @@ data class AxisTooltip internal constructor(
 
 @PlotDslMarker
 data class Axis internal constructor(
-    var onTop: Boolean? = null,
+    var onTop: Boolean? = false,
     val title: TextParameters = TextParameters(),
     val text: TextParameters = TextParameters(),
     val ticks: LineParameters = LineParameters(),
@@ -150,15 +150,15 @@ data class Grid internal constructor(
     val majorLine: LineParameters = LineParameters(),
     val majorXLine: LineParameters = LineParameters(),
     val majorYLine: LineParameters = LineParameters(),
-    val minorLine: LineParameters = LineParameters(),
-    val minorXLine: LineParameters = LineParameters(),
-    val minorYLine: LineParameters = LineParameters(),
+    val minorLine: LineParameters = LineParameters(blank = true),
+    val minorXLine: LineParameters = LineParameters(blank = true),
+    val minorYLine: LineParameters = LineParameters(blank = true),
 ) : SelfInvocationContext
 
 @PlotDslMarker
 data class Panel internal constructor(
-    val background: BackgroundParameters = BackgroundParameters(),
-    val borderLine: LineParameters = LineParameters(),
+    val background: BackgroundParameters = BackgroundParameters(blank = true),
+    val borderLine: LineParameters = LineParameters(blank = true),
     val grid: Grid = Grid()
 ) : SelfInvocationContext
 
@@ -181,10 +181,13 @@ data class CustomTheme @PublishedApi internal constructor(
     val global: Global = Global(),
     val axis: Axis = Axis(),
     val xAxis: Axis = Axis(),
-    val yAxis: Axis = Axis(),
+    val yAxis: Axis = Axis().apply {
+        ticks.blank = true
+        line.blank = true
+    },
     val legend: Legend = Legend(),
     val panel: Panel = Panel(),
-    val plot: Plot = Plot(),
+    val plotCanvas: Plot = Plot(),
     val strip: Strip = Strip(),
     val layerTooltips: LayerTooltips = LayerTooltips()
 ) : Theme

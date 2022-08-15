@@ -65,10 +65,10 @@ fun CustomTheme.wrap(): theme {
         panelGridMinor = panel.grid.minorLine.wrap(),
         panelGridMinorX = panel.grid.minorXLine.wrap(),
         panelGridMinorY = panel.grid.minorYLine.wrap(),
-        plotBackground = plot.background.wrap(),
-        plotCaption = plot.caption.wrap(),
-        plotSubtitle = plot.subtitle.wrap(),
-        plotTitle = plot.title.wrap(),
+        plotBackground = plotCanvas.background.wrap(),
+        plotCaption = plotCanvas.caption.wrap(),
+        plotSubtitle = plotCanvas.subtitle.wrap(),
+        plotTitle = plotCanvas.title.wrap(),
         stripBackground = strip.background.wrap(),
         stripText = strip.text.wrap(),
         axisTooltip = axis.tooltip.background.wrap(),
@@ -80,6 +80,8 @@ fun CustomTheme.wrap(): theme {
         tooltip = layerTooltips.background.wrap(),
         tooltipText = layerTooltips.text.wrap(),
         tooltipTitleText = layerTooltips.title.wrap()
+        /*
+              */
     )
 }
 
