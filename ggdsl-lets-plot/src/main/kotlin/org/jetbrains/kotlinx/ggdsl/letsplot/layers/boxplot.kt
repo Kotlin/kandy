@@ -9,6 +9,8 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
  val BOXPLOT = LetsPlotGeom("boxplot")
 @PlotDslMarker
 class BoxplotContext(override var data: MutableNamedData) : WithBorderLineContext() {
+    val x = XAes(this)
+    val y = YAes(this)
 
     val lower = LowerAes(this)
     val upper = UpperAes(this)

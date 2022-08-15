@@ -1,13 +1,11 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.letsPlot.Pos
-import org.jetbrains.letsPlot.Stat
-import org.jetbrains.letsPlot.intern.Options
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.ggdsl.letsplot.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
+import org.jetbrains.letsPlot.intern.Options
 import org.jetbrains.letsPlot.intern.layer.LayerBase
 import org.jetbrains.letsPlot.pos.positionIdentity
 
@@ -28,7 +26,7 @@ internal class LayerWrapper internal constructor(private val layer: Layer) :
         layer.settings.map {
             // TODO(Other settings?)
                 (_, setting) ->
-            (setting as NonPositionalSetting<*>).wrap(layer.geom)
+            setting.wrap()
         }.toMap()
     )
 }

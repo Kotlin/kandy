@@ -4,7 +4,9 @@ import org.jetbrains.kotlinx.ggdsl.dsl.BindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
 import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.ColorAes
+import org.jetbrains.kotlinx.ggdsl.letsplot.LineTypeAes
+import org.jetbrains.kotlinx.ggdsl.letsplot.SizeAes
 
 abstract class SubContext(val parentContext: BindingContext): BindingContext()
 

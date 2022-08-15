@@ -37,8 +37,11 @@ internal class BindingTest {
         override val name: AesName = MOCK_AES_COLOR_MAP_NON_POS
     }
 
-    class TestContext : BaseBindingContext() {
+    class TestContext : BindingContext() {
         override var data: MutableNamedData = mutableMapOf()
+        val x = XAes(this)
+        val y = YAes(this)
+
         val mockAesDoubleNonPos = MockAesDoubleNonPos(this)
         val mockAesStringMapNonPos = MockAesStringMapNonPos(this)
         val mockAesColorMapNonPos = MockAesColorMapNonPos(this)

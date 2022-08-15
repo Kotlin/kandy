@@ -1,20 +1,19 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.CoordFlip
 import org.jetbrains.kotlinx.ggdsl.letsplot.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
+import org.jetbrains.letsPlot.coord.coordFlip
 import org.jetbrains.letsPlot.facet.facetGrid
 import org.jetbrains.letsPlot.facet.facetWrap
 import org.jetbrains.letsPlot.intern.Feature
 import org.jetbrains.letsPlot.intern.OptionsMap
 import org.jetbrains.letsPlot.intern.layer.PosOptions
-import org.jetbrains.letsPlot.pos.positionIdentity
-import org.jetbrains.letsPlot.pos.positionJitterDodge
 import org.jetbrains.letsPlot.pos.*
-import org.jetbrains.letsPlot.pos.positionStack
 import org.jetbrains.letsPlot.tooltips.TooltipOptions
 import org.jetbrains.letsPlot.tooltips.layerTooltips
 import org.jetbrains.letsPlot.tooltips.tooltipsNone
@@ -53,6 +52,10 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
 
         FacetWrapFeature.FEATURE_NAME -> {
             featureBuffer.add((this as FacetWrapFeature).wrap())
+        }
+
+        CoordFlip.FEATURE_NAME -> {
+            featureBuffer.add(coordFlip())
         }
 
         else -> TODO()

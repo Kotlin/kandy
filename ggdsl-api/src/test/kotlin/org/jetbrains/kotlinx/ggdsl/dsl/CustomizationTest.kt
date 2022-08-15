@@ -2,9 +2,8 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
-
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
@@ -31,6 +30,8 @@ internal class CustomizationTest {
 
     class CustomGeomContext(override var data: MutableNamedData) :
         LayerContext() {
+        val x = XAes(this)
+        val y = YAes(this)
         val specificAes = SpecificAes(this)
     }
 

@@ -1,18 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.letsPlot.ggsize
-import org.jetbrains.letsPlot.intern.Feature
-import org.jetbrains.letsPlot.intern.FeatureList
-import org.jetbrains.letsPlot.label.labs
-import org.jetbrains.letsPlot.letsPlot
-import org.jetbrains.letsPlot.scale.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalablePositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
@@ -25,10 +16,14 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
 import org.jetbrains.letsPlot.Stat
-import org.jetbrains.letsPlot.geom.geomDensity
-import org.jetbrains.letsPlot.geom.geomHistogram
+import org.jetbrains.letsPlot.ggsize
+import org.jetbrains.letsPlot.intern.Feature
+import org.jetbrains.letsPlot.intern.FeatureList
 import org.jetbrains.letsPlot.intern.GeomKind
 import org.jetbrains.letsPlot.intern.layer.GeomOptions
+import org.jetbrains.letsPlot.label.labs
+import org.jetbrains.letsPlot.letsPlot
+import org.jetbrains.letsPlot.scale.*
 
 internal fun Mapping.wrap(geom: Geom): Pair<String, String> {
     return when (this) {
@@ -37,8 +32,11 @@ internal fun Mapping.wrap(geom: Geom): Pair<String, String> {
     }
 }
 
-internal fun NonPositionalSetting<*>.wrap(geom: Geom): Pair<String, Any> {
-    return aes.name to wrapValue(value)
+internal fun Setting.wrap(): Pair<String, Any> {
+    return when (this) {
+        is NonPositionalSetting<*> -> aes.name to wrapValue(value)
+        is PositionalSetting<*> -> aes.name to wrapValue(value)
+    }
 }
 /*
 // TODO
@@ -521,6 +519,9 @@ internal fun LetsPlotLayout.wrap(featureBuffer: MutableList<Feature>) {
     featureBuffer.addAll(labs.elements)
     size?.let {
         featureBuffer.add(ggsize(it.first, it.second))
+    }
+    theme?.let {
+        featureBuffer.add(it.wrap())
     }
 /*
     title?.let {

@@ -1,6 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
@@ -14,6 +13,8 @@ internal val RIBBON = LetsPlotGeom("ribbon")
 @PlotDslMarker
 class RibbonContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
     WithBorderLineContext() {
+    val x = XAes(this)
+
     val yMin = YMinAes(this)
     val yMax = YMaxAes(this)
 

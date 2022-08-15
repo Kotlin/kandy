@@ -1,6 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
@@ -14,6 +13,9 @@ internal val AREA = LetsPlotGeom("area")
 @PlotDslMarker
 class AreaContext(override var data: MutableNamedData) :
     WithBorderLineContext() {
+    val x = XAes(this)
+    val y = YAes(this)
+
     val color = FillAes(this)
     val alpha = AlphaAes(this)
 }

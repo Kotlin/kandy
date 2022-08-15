@@ -1,9 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import kotlin.reflect.KProperty
@@ -16,6 +13,11 @@ import kotlin.reflect.typeOf
  */
 operator fun <T : Any> NonPositionalAes<T>.invoke(value: T) {
     context.bindingCollector.settings[this.name] = NonPositionalSetting(this.name, value)
+}
+
+// TODO
+operator fun <T : Any> PositionalAes.invoke(value: T) {
+    context.bindingCollector.settings[this.name] = PositionalSetting(this.name, value)
 }
 
 /**

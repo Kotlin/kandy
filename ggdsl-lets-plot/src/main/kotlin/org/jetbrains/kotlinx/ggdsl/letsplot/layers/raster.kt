@@ -1,11 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
@@ -15,6 +11,8 @@ internal val RASTER = LetsPlotGeom("raster")
 @PlotDslMarker
 class RasterContext(override var data: MutableNamedData) :
     LayerContext() {
+    val x = XAes(this)
+    val y = YAes(this)
 
     val color = FillAes(this)
     val alpha = AlphaAes(this)

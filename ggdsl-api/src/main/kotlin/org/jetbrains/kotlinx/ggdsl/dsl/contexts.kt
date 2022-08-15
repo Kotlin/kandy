@@ -3,17 +3,17 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Layout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
-import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 
 /**
  * Internal collector of mappings and settings.
@@ -90,20 +90,22 @@ abstract class BindingContext {
 
 
 }
-
+/*
 // todo
 abstract class BaseBindingContext : BindingContext() {
     val x = XAes(this)
     val y = YAes(this)
 }
 
+
+ */
 /**
  * Layer context interface.
  *
  * todo
  */
 @PlotDslMarker
-abstract class LayerContext : BaseBindingContext() {
+abstract class LayerContext : BindingContext() {
     // todo hide?
     val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 }
@@ -125,7 +127,7 @@ fun LayerContext.toLayer(geom: Geom): Layer {
 
 // todo
 @PlotDslMarker
-class PlotContext : BaseBindingContext() {
+class PlotContext : BindingContext() {
     override var data: MutableNamedData = mutableMapOf()
 
     var layout: Layout? = null

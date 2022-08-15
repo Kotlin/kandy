@@ -1,9 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.BaseBindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color

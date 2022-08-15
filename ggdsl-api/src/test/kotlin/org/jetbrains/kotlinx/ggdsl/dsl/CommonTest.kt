@@ -2,12 +2,11 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.typeOf
 import kotlin.test.Test
@@ -164,7 +163,7 @@ internal class CommonTest {
     fun datasetOverriding() {
         val emptyDataset: NamedData = mapOf()
         val realDataset: NamedData = mapOf(
-            "name" to listOf("Tiny", "Pudge", "Spirit breaker"),
+            "name" to listOf("Tiny", "Pudge", "Spirit Breaker"),
             "winRate" to listOf(100.0, 0.01, 50.0),
             "iq" to listOf(12, 12, 1000)
         )

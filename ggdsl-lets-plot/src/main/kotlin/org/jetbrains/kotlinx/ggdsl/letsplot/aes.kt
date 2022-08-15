@@ -1,13 +1,28 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
 import org.jetbrains.kotlinx.ggdsl.dsl.BindingContext
-import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+
+val X = AesName("x")
+data class XAes(override val context: BindingContext): ScalablePositionalAes {
+    override val name: AesName = X
+}
+
+val Y = AesName("y")
+data class YAes(override val context: BindingContext): ScalablePositionalAes {
+    override val name: AesName = Y
+}
+
+
+val PlotContext.x
+    get() = XAes(this)
+
+val PlotContext.y
+    get() = YAes(this)
 
 internal val LOWER = AesName("lower")
 

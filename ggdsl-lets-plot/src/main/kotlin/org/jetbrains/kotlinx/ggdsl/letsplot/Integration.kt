@@ -33,6 +33,7 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.scales.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.*")
+        import("org.jetbrains.kotlinx.ggdsl.letsplot.theme.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.position.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.*")

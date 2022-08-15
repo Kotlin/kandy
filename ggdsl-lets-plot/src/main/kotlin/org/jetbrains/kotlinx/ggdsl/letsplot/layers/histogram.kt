@@ -2,17 +2,14 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledNonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
+import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 /* TODO
@@ -59,16 +56,18 @@ data class MappableOnlyFillAes internal constructor(override val context: Bindin
 
  */
 
+data class HistogramStat<T : Any> internal constructor(val name: String) {
+    companion object {
+        val count = HistogramStat<Int>("..count..")
+        val density = HistogramStat<Double>("..density..")
+    }
+}
+
 @PlotDslMarker
 // todo move x/y?
 class HistogramContext(override var data: MutableNamedData) : LayerContext() {
-
-    data class Stat<T : Any> internal constructor(val name: String) {
-        companion object {
-            val count = Stat<Int>("..count..")
-            val density = Stat<Double>("..density..")
-        }
-    }
+    val x = XAes(this)
+    val y = YAes(this)
 
     val alpha = AlphaAes(this)
     val fillColor = FillAes(this)
@@ -77,12 +76,12 @@ class HistogramContext(override var data: MutableNamedData) : LayerContext() {
     val boundary = BoundaryAes(this)
 
     @PublishedApi
-    internal inline fun <reified T : Any> Stat<T>.toDataSource(): DataSource<T> {
+    internal inline fun <reified T : Any> HistogramStat<T>.toDataSource(): DataSource<T> {
         return DataSource(name, typeOf<T>())
     }
 
     inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        stat: Stat<DomainType>
+        stat: HistogramStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this.name,
@@ -95,7 +94,7 @@ class HistogramContext(override var data: MutableNamedData) : LayerContext() {
 
     inline operator fun <reified DomainType : Any, RangeType : Any>
             MappableNonPositionalAes<RangeType>.invoke(
-        stat: Stat<DomainType>
+        stat: HistogramStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
             this.name,

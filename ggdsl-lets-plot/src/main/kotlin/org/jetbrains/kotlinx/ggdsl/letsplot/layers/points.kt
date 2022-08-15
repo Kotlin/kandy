@@ -11,6 +11,9 @@ internal val POINT = LetsPlotGeom("point")
 // TODO add size unit???
 @PlotDslMarker
 class PointsContext(override var data: MutableNamedData) : LayerContext() {
+    val x = XAes(this)
+    val y = YAes(this)
+
     val symbol = ShapeAes(this)
 
     val size = SizeAes(this)

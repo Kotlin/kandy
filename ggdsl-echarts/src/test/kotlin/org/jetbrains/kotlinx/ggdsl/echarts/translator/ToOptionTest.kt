@@ -9,6 +9,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.util.color.ColorStop
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.GradientOption
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.LinearGradientColor
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.SimpleColorOption
+
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.test.Test

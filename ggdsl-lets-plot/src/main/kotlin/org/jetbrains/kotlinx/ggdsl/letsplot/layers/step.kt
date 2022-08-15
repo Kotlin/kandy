@@ -12,6 +12,8 @@ internal val STEP = LetsPlotGeom("step")
 @PlotDslMarker
 class StepContext(override var data: MutableNamedData) :
     LayerContext() {
+    val x = XAes(this)
+    val y = YAes(this)
 
     val color = ColorAes(this)
     val alpha = AlphaAes(this)

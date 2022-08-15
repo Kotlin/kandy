@@ -1,6 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 class PointsContext(override var data: MutableNamedData) : LayerContext() {
+    val x = XAes(this)
+    val y = YAes(this)
+
     val size = SizeAes(this)
     val color = ColorAes(this)
     val alpha = AlphaAes(this)
@@ -13,6 +16,9 @@ class PointsContext(override var data: MutableNamedData) : LayerContext() {
 
 class LineContext(override var data: MutableNamedData) :
     LayerContext() {
+    val x = XAes(this)
+    val y = YAes(this)
+
     val color = ColorAes(this)
     val alpha = AlphaAes(this)
 
@@ -23,6 +29,9 @@ class LineContext(override var data: MutableNamedData) :
 
 class BarsContext(override var data: MutableNamedData) :
     LayerContext() {
+    val x = XAes(this)
+    val y = YAes(this)
+
     val color = ColorAes(this)
     val alpha = AlphaAes(this)
 

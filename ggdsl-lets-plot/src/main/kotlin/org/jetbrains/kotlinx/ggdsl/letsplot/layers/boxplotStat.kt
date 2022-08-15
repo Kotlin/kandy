@@ -1,24 +1,15 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableOnlyNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
-import org.jetbrains.kotlinx.ggdsl.letsplot.AlphaAes
-import org.jetbrains.kotlinx.ggdsl.letsplot.ColorAes
-import org.jetbrains.kotlinx.ggdsl.letsplot.FillAes
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
-import kotlin.reflect.KType
-import kotlin.reflect.typeOf
+import org.jetbrains.kotlinx.ggdsl.letsplot.*
+
 val BOXPLOT_STAT = LetsPlotGeom("boxplot")
 @PlotDslMarker
 // todo move x/y?
 class BoxplotStatContext(override var data: MutableNamedData) : LayerContext() {
+    val x = XAes(this)
+    val y = YAes(this)
 
     /* TODO
     data class Stat<T : Any> internal constructor(val name: String) {

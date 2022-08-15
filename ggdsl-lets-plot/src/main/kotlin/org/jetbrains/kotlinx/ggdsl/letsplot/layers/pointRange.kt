@@ -1,9 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
@@ -26,6 +24,8 @@ class InnerLineSubContext(parentContext: BindingContext) : SubContext(parentCont
 
 @PlotDslMarker
 class PointRangeContext(override var data: MutableNamedData) : LayerContext() {
+    val x = XAes(this)
+    val y = YAes(this)
     val yMin = YMinAes(this)
     val yMax = YMaxAes(this)
 
