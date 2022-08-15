@@ -40,6 +40,12 @@ data class LineParameters internal constructor(
     var blank: Boolean = false,
 ) : LayoutParameters
 
+fun LineParameters.invoke(parameters: LineParameters) {
+    color = parameters.color
+    width = parameters.width
+    blank = parameters.blank
+}
+
 
 @PlotDslMarker
 data class TextParameters internal constructor(
@@ -48,6 +54,12 @@ data class TextParameters internal constructor(
     var blank: Boolean = false
 ) : LayoutParameters
 
+fun TextParameters.invoke(parameters: TextParameters) {
+    color = parameters.color
+    font = parameters.font
+    blank = parameters.blank
+}
+
 @PlotDslMarker
 data class BackgroundParameters internal constructor(
     var fillColor: Color? = null,
@@ -55,6 +67,13 @@ data class BackgroundParameters internal constructor(
     var borderLineWidth: Number? = null,
     var blank: Boolean = false
 ) : LayoutParameters
+
+fun BackgroundParameters.invoke(parameters: BackgroundParameters) {
+    fillColor = parameters.fillColor
+    borderLineColor = parameters.borderLineColor
+    borderLineWidth = parameters.borderLineWidth
+    blank = parameters.blank
+}
 
 @PlotDslMarker
 data class Global internal constructor(
