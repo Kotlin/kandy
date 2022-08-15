@@ -58,7 +58,7 @@ fun CustomTheme.wrap(): theme {
         legendTitle = legend.title.wrap(),
         panelBackground = panel.background.wrap(),
         panelBorder = panel.borderLine.wrap(),
-        panelGrid = panel.grid.lineGlobal.wrap(),
+     //   panelGrid = panel.grid.lineGlobal.wrap(),
         panelGridMajor = panel.grid.majorLine.wrap(),
         panelGridMajorX = panel.grid.majorXLine.wrap(),
         panelGridMajorY = panel.grid.majorYLine.wrap(),

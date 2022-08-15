@@ -146,14 +146,24 @@ data class Legend internal constructor(
 
 @PlotDslMarker
 data class Grid internal constructor(
-    val lineGlobal: LineParameters = LineParameters(),
+   // val lineGlobal: LineParameters = LineParameters(),
     val majorLine: LineParameters = LineParameters(),
     val majorXLine: LineParameters = LineParameters(),
     val majorYLine: LineParameters = LineParameters(),
     val minorLine: LineParameters = LineParameters(blank = true),
     val minorXLine: LineParameters = LineParameters(blank = true),
     val minorYLine: LineParameters = LineParameters(blank = true),
-) : SelfInvocationContext
+) : SelfInvocationContext {
+    var blank: Boolean = false
+        set(value) {
+            if (value) {
+                majorLine.blank = true
+                majorXLine.blank = true
+                majorYLine.blank = true
+            }
+            field = value
+        }
+}
 
 @PlotDslMarker
 data class Panel internal constructor(
