@@ -157,7 +157,7 @@ data class Grid internal constructor(
 
 @PlotDslMarker
 data class Panel internal constructor(
-    val background: BackgroundParameters = BackgroundParameters(blank = true),
+    val background: BackgroundParameters = BackgroundParameters(),
     val borderLine: LineParameters = LineParameters(blank = true),
     val grid: Grid = Grid()
 ) : SelfInvocationContext

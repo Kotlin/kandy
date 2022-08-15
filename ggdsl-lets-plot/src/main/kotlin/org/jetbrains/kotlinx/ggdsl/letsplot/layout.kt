@@ -17,8 +17,8 @@ data class LetsPlotLayout(
     var xAxisLabel: String? = null,
     var yAxisLabel: String? = null,
 
-    @PublishedApi
-    internal var theme: Theme? = null,
+   // @PublishedApi
+     var theme: Theme? = null,
 
     var size: Pair<Int, Int>? = null
 ) : Layout {
