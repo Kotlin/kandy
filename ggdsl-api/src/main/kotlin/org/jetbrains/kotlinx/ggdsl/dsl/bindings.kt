@@ -16,7 +16,7 @@ operator fun <T : Any> NonPositionalAes<T>.invoke(value: T) {
 }
 
 // TODO
-operator fun <T : Any> PositionalAes.invoke(value: T) {
+operator fun <T : Number> PositionalAes.invoke(value: T) {
     context.bindingCollector.settings[this.name] = PositionalSetting(this.name, value)
 }
 
