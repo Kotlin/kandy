@@ -205,7 +205,7 @@ internal fun Scale.wrap(
             val labels = legend?.labels
             val legendType = legend?.type?.let {
                 when (it) {
-                    is None -> null
+                    is None -> "none"
                     is ColorBar -> guideColorbar(
                         barHeight = it.barHeight,
                         barWidth = it.barWidth,
