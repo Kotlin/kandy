@@ -46,8 +46,6 @@ class RasterContext(override var data: MutableNamedData) :
  *  By default, the dataset inherited from the parent [PlotContext] is used,
  *  but can be overridden with an assignment to the [data][RasterContext.data].
  *
- * // TODO move data overriding to args
- *  // TODO refer to bindings?
  */
 inline fun PlotContext.raster(block: RasterContext.() -> Unit) {
     layers.add(RasterContext(data).apply { copyFrom(this@raster) }.apply(block).toLayer(RASTER))

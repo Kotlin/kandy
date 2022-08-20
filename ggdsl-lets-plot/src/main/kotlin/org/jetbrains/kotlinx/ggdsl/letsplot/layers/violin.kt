@@ -1,18 +1,26 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.ViolinScale
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.ViolinStat
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.BandWidth
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
+import kotlin.reflect.typeOf
 
 
-val DENSITY = LetsPlotGeom("density")
+val VIOLIN = LetsPlotGeom("violin")
 
 // todo stats
 @PlotDslMarker
-class DensityContext(
+class ViolinContext(
     override var data: MutableNamedData,
+    drawQuantiles: Boolean?,
+    scale: ViolinScale?,
     kernel: Kernel?,
     bandWidth: BandWidth?,
     pointsSampled: Int?,
@@ -23,12 +31,15 @@ class DensityContext(
 
     @PublishedApi
     internal val x = XAes(this)
+
     @PublishedApi
     internal val y = YAes(this)
 
 
     val alpha = AlphaAes(this)
     val fillColor = FillAes(this)
+    val width = WidthAes(this)
+    val violinWidth = ViolinWidthAes(this)
     val borderLineWidth = SizeAes(this)
     val borderLineColor = ColorAes(this)
     val borderLineType = LineTypeAes(this)
@@ -36,19 +47,39 @@ class DensityContext(
     // todo weight
 
     @PublishedApi
+    internal val drawQuantiles = DrawQuantilesAes(this)
+
+    @PublishedApi
+    internal val scale = ViolinScaleAes(this)
+
+    @PublishedApi
     internal val kernel = KernelAes(this)
+
     @PublishedApi
     internal val bw = BWAes(this)
+
     @PublishedApi
     internal val pointsSampled = NumberAes(this)
+
     @PublishedApi
     internal val trim = TrimAes(this)
+
     @PublishedApi
     internal val adjust = AdjustAes(this)
+
     @PublishedApi
     internal val fullScanMax = FullScanMaxAes(this)
 
     init {
+
+
+        drawQuantiles?.let {
+            drawQuantiles(it)
+        }
+        scale?.let {
+            scale(it.toString())
+        }
+
         kernel?.let {
             kernel(it)
         }
@@ -67,14 +98,10 @@ class DensityContext(
         fullScanMax?.let {
             fullScanMax(it)
         }
+
     }
     /*
-    @PublishedApi
-    internal inline fun <reified T : Any> Stat<T>.toDataSource(): DataSource<T> {
-        return DataSource(name, typeOf<T>())
-    }
-
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+       inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         stat: Stat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -85,10 +112,20 @@ class DensityContext(
         context.bindingCollector.mappings[this.name] = mapping
         return mapping
     }
+  */
+
+    object Statistics {
+        val VIOLIN_WIDTH = ViolinStat.ViolinWidth
+        val DENSITY = ViolinStat.Density
+        val SCALED = ViolinStat.Scaled
+        val COUNT = ViolinStat.Count
+    }
+
+    val Stat = Statistics
 
     inline operator fun <reified DomainType : Any, RangeType : Any>
             MappableNonPositionalAes<RangeType>.invoke(
-        stat: Stat<DomainType>
+        stat: ViolinStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
             this.name,
@@ -99,47 +136,55 @@ class DensityContext(
         return mapping
     }
 
-     */
+
 
 
 }
 
-inline fun <reified T : Any> PlotContext.density(
-    source: DataSource<T>,
+inline fun <reified T : Any, reified R : Any> PlotContext.violin(
+    sourceX: DataSource<T>,
+    sourceY: DataSource<R>,
+    drawQuantiles: Boolean? = null,
+    scale: ViolinScale? = null,
     kernel: Kernel? = null,
     bandWidth: BandWidth? = null,
     pointsSampled: Int? = null,
     trim: Boolean? = null,
     adjust: Double? = null,
     fullScanMax: Int? = null,
-    block: DensityContext.() -> Unit,
+    block: ViolinContext.() -> Unit,
 ) {
     layers.add(
-        DensityContext(data, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax)
+        ViolinContext(data, drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax)
             .apply {
-                copyFrom(this@density)
-                x(source)
+                copyFrom(this@violin)
+                x(sourceX)
+                y(sourceY)
             }
             .apply(block)
             .toLayer(DENSITY)
     )
 }
 
-inline fun <reified T : Any> PlotContext.density(
-    source: Iterable<T>,
+inline fun <reified T : Any, reified R : Any> PlotContext.violin(
+    sourceX: Iterable<T>,
+    sourceY: Iterable<R>,
+    drawQuantiles: Boolean? = null,
+    scale: ViolinScale? = null,
     kernel: Kernel? = null,
     bandWidth: BandWidth? = null,
     pointsSampled: Int? = null,
     trim: Boolean? = null,
     adjust: Double? = null,
     fullScanMax: Int? = null,
-    block: DensityContext.() -> Unit
+    block: ViolinContext.() -> Unit,
 ) {
     layers.add(
-        DensityContext(data, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax)
+        ViolinContext(data, drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax)
             .apply {
-                copyFrom(this@density)
-                x(source)
+                copyFrom(this@violin)
+                x(sourceX)
+                y(sourceY)
             }
             .apply(block)
             .toLayer(DENSITY)

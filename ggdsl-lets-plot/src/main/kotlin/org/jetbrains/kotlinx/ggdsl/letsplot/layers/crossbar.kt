@@ -14,7 +14,7 @@ internal val CROSS_BAR = LetsPlotGeom("crossbar")
 class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
     WithBorderLineContext() {
     val x = XAes(this)
-    val y = YAes(this)
+ //   val y = YAes(this)
     val yMin = YMinAes(this)
     val yMax = YMaxAes(this)
     val middle = MiddleAes(this)

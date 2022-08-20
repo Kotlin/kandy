@@ -13,6 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.ColorBar
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.DiscreteLegend
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.None
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.SimpleValueWrapper
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
 import org.jetbrains.letsPlot.Stat
@@ -38,105 +39,84 @@ internal fun Setting.wrap(): Pair<String, Any> {
         is PositionalSetting<*> -> aes.name to wrapValue(value)
     }
 }
-/*
-// TODO
-internal fun wrapBinding(aes: Aes, value: Any, geom: Geom): Pair<String, Any> {
-    /*
-    if (aes == SYMBOL) {
-        val ret = "shape" to wrapValue(value) // TODO scaling
-        // TODO
-        return ret
-    }
-
-     */
-    return aes.toLPName(geom) to wrapValue(value)
-}
-
- */
 
 // TODO
-internal fun wrapValue(value: Any): Any {
-    if (value is StandardColor) {
-        return value.description
+internal fun wrapValue(wrapper: Any): Any {
+    if (wrapper is SimpleValueWrapper) {
+        return wrapper.value
     }
-    /*
-    if (value is CommonSymbol) {
-        return wrapSymbol(value)
-    }
-
-     */
-    if (value is Symbol) {
-        return value.shape
-    }
-    /*
-    if (value is CommonLineType) {
-        return value.description
+    if (wrapper is StandardColor) {
+        return wrapper.description
     }
 
-     */
-    if (value is LineType) {
-        return value.description
+    if (wrapper is Symbol) {
+        return wrapper.shape
     }
-    return value
+
+    if (wrapper is LineType) {
+        return wrapper.description
+    }
+    return wrapper
 }
-/*
-internal fun commonSymbolToShape(symbol: CommonSymbol): Int {
-    return when (symbol) {
-        Symbol.RECTANGLE -> 22
-        Symbol.CIRCLE -> 21
-        Symbol.TRIANGLE -> 24
-        else -> TODO()
-    }
-}
-
-
- */
-/*
-internal fun wrapSymbol(symbol: Symbol): Int {
-    return when (symbol) {
-        is LetsPlotSymbol -> symbol.shape
-    //    is CommonSymbol -> commonSymbolToShape(symbol)
-        else -> TODO()
-    }
-}
-
- */
 
 // TODO
 internal fun Geom.toStat(): org.jetbrains.letsPlot.intern.layer.StatOptions {
-    return when(this) {
-        HISTOGRAM -> Stat.bin()
-        DENSITY -> Stat.density()
+    return when (this) {
+        BIN_2D -> Stat.bin2D()
         BOXPLOT_STAT -> Stat.boxplot()
+        CONTOUR -> Stat.contour()
+        CONTOUR_FILLED -> Stat.contourFilled()
+        DENSITY -> Stat.density()
+        DENSITY_2D -> Stat.density2D()
+        DENSITY_2D_FILLED -> Stat.density2DFilled()
+        FREQPOLY -> Stat.bin()
+        HISTOGRAM -> Stat.bin()
+        QQ -> Stat.qq()
+        QQ2 -> Stat.qq2()
+        QQ2_LINE -> Stat.qq2Line()
+        QQ_LINE -> Stat.qqLine()
+        SMOOTH -> Stat.smooth()
+        VIOLIN -> Stat.yDensity()
         else -> Stat.identity
     }
 }
 
 // TODO rewrite
-internal fun Geom.toLPGeom(): org.jetbrains.letsPlot.intern.layer.GeomOptions {
+internal fun Geom.toLPGeom(): GeomOptions {
     return when (this) {
-        // TODO FILL SHAPES WITH SCALES
         AB_LINE -> org.jetbrains.letsPlot.Geom.abline()
         AREA -> org.jetbrains.letsPlot.Geom.area()
         BAR -> org.jetbrains.letsPlot.Geom.bar()
+        BIN_2D -> org.jetbrains.letsPlot.Geom.tile()
         BOXPLOT -> org.jetbrains.letsPlot.Geom.boxplot()
+        BOXPLOT_STAT -> org.jetbrains.letsPlot.Geom.boxplot()
+        CONTOUR -> GeomOptions(GeomKind.CONTOUR)
+        CONTOUR_FILLED -> GeomOptions(GeomKind.CONTOURF)
         CROSS_BAR -> org.jetbrains.letsPlot.Geom.crossbar()
-        // todo density
-        ERROR_BAR -> org.jetbrains.letsPlot.Geom.errorbar()
         DENSITY -> GeomOptions(GeomKind.DENSITY)
+        DENSITY_2D -> GeomOptions(GeomKind.DENSITY2D)
+        DENSITY_2D_FILLED -> GeomOptions(GeomKind.DENSITY2DF)
+        ERROR_BAR -> org.jetbrains.letsPlot.Geom.errorbar()
+        FREQPOLY -> GeomOptions(GeomKind.FREQPOLY)
         HISTOGRAM -> org.jetbrains.letsPlot.Geom.histogram()
-        // TODO line/path
-        LINE->org.jetbrains.letsPlot.Geom.line()
-         PATH -> org.jetbrains.letsPlot.Geom.path()
+        H_LINE -> org.jetbrains.letsPlot.Geom.hline()
+        LINE -> org.jetbrains.letsPlot.Geom.line()
+        PATH -> org.jetbrains.letsPlot.Geom.path()
         LINE_RANGE -> org.jetbrains.letsPlot.Geom.linerange()
         POINT -> org.jetbrains.letsPlot.Geom.point()
         POINT_RANGE -> org.jetbrains.letsPlot.Geom.pointrange()
+        QQ -> GeomOptions(GeomKind.Q_Q)
+        QQ2 -> GeomOptions(GeomKind.Q_Q_2)
+        QQ_LINE -> GeomOptions(GeomKind.Q_Q_LINE)
+        QQ2_LINE -> GeomOptions(GeomKind.Q_Q_2_LINE)
         RASTER -> org.jetbrains.letsPlot.Geom.raster()
         RECT -> org.jetbrains.letsPlot.Geom.rect()
         RIBBON -> org.jetbrains.letsPlot.Geom.ribbon()
         SEGMENT -> org.jetbrains.letsPlot.Geom.segment()
         STEP -> org.jetbrains.letsPlot.Geom.step()
         TILE -> org.jetbrains.letsPlot.Geom.tile()
+        VIOLIN -> GeomOptions(GeomKind.VIOLIN)
+        V_LINE -> org.jetbrains.letsPlot.Geom.vline()
         else -> TODO()
     }
 }
@@ -163,15 +143,18 @@ internal fun Scale.wrap(
                             breaks = breaks,
                             labels = labels,
                         )
+
                         Y -> scaleYDiscrete(
                             limits = categories,
                             name = name,
                             breaks = breaks,
                             labels = labels,
                         )
+
                         else -> TODO("error")
                     }
                 }
+
                 is PositionalContinuousScale<*> -> {
                     when (aes) {
                         X -> scaleXContinuous(
@@ -182,6 +165,7 @@ internal fun Scale.wrap(
                             labels = labels,
 
                             )
+
                         Y -> scaleYContinuous(
                             limits = limits.toLP(),
 
@@ -190,9 +174,11 @@ internal fun Scale.wrap(
                             labels = labels,
 
                             )
+
                         else -> TODO()
                     }
                 }
+
                 is CustomScale -> TODO()
             }
         }
@@ -211,6 +197,7 @@ internal fun Scale.wrap(
                         barWidth = it.barWidth,
                         nbin = it.nBin
                     )
+
                     is DiscreteLegend -> guideLegend(
                         nrow = it.nRow,
                         ncol = it.nCol,
@@ -301,6 +288,7 @@ internal fun Scale.wrap(
                             guide = legendType
 
                         )
+
                         SHAPE -> if (rangeValues == null) {
                             scaleShape(
                                 limits = domainCategories,
@@ -365,6 +353,7 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
                 }
+
                 is NonPositionalContinuousScale<*, *> -> {
                     when (aes) {
                         // todo check all
@@ -443,6 +432,7 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
                 }
+
                 is CustomScale -> when (this) {
                     is ScaleContinuousColorHue<*> -> scaleColorHue(
                         huesRange,
@@ -457,6 +447,7 @@ internal fun Scale.wrap(
                         limits = domainLimits.toLP(),
                         trans = transform?.name
                     )
+
                     is ScaleContinuousColorGradient2<*> -> scaleColorGradient2(
                         (low as StandardColor).description,
                         (mid as StandardColor).description,
@@ -469,6 +460,7 @@ internal fun Scale.wrap(
                         limits = domainLimits.toLP(),
                         trans = transform?.name
                     )
+
                     is ScaleContinuousColorGradientN<*> -> scaleColorGradientN(
                         rangeColors.map { (it as StandardColor).description },
                         name = name,
@@ -478,8 +470,10 @@ internal fun Scale.wrap(
                         limits = domainLimits.toLP(),
                         trans = transform?.name
                     )
+
                     else -> TODO()
                 }
+
                 is UnspecifiedScale -> {
                     // TODO
                     return null
@@ -493,6 +487,7 @@ internal fun Scale.wrap(
             // TODO
             return null
         }
+
         else -> TODO()
     }
 
@@ -523,11 +518,11 @@ internal fun LetsPlotLayout.wrap(featureBuffer: MutableList<Feature>) {
     theme?.let {
         featureBuffer.add(it.wrap())
     }
-/*
-    title?.let {
-        featureBuffer.add(ggtitle(it))
-    }
-    */
+    /*
+        title?.let {
+            featureBuffer.add(ggtitle(it))
+        }
+        */
 }
 
 fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {

@@ -41,7 +41,8 @@ abstract class BindingContext {
     abstract var data: MutableNamedData
 
     //todo
-    private var counter = 0
+    @PublishedApi
+    internal var counter = 0
 
     @PublishedApi
     internal fun generateID(): String = "*gen${counter++}"

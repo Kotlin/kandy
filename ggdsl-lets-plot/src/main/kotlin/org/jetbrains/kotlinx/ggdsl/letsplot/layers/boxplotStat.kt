@@ -3,29 +3,52 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
-val BOXPLOT_STAT = LetsPlotGeom("boxplot")
+val BOXPLOT_STAT = LetsPlotGeom("boxplot_stat")
+
+
+@PlotDslMarker
+class OutlierSubContext(parentContext: BindingContext) : SubContext(parentContext), SelfInvocationContext {
+    override var data: MutableNamedData = mutableMapOf()
+    val color = OutlierColorAes(parentContext)
+    val fillColor = OutlierFillAes(parentContext)
+    val symbol = OutlierShapeAes(parentContext)
+    val size = OutlierSizeAes(parentContext)
+}
+
+// TODO Stats
 @PlotDslMarker
 // todo move x/y?
-class BoxplotStatContext(override var data: MutableNamedData) : LayerContext() {
-    val x = XAes(this)
-    val y = YAes(this)
-
-    /* TODO
-    data class Stat<T : Any> internal constructor(val name: String) {
-        companion object {
-            val count = Stat<Int>("..count..")
-            val density = Stat<Double>("..density..")
+class BoxplotStatContext(
+    override var data: MutableNamedData,
+    varWidth: Boolean?,
+) : LayerContext() {
+    init {
+        varWidth?.let {
+            varWidth(it)
         }
     }
-
-     */
+    @PublishedApi
+    internal val x = XAes(this)
+    @PublishedApi
+    internal val y = YAes(this)
 
     val alpha = AlphaAes(this)
     val fillColor = FillAes(this)
-    val borderLineColor = ColorAes(this)
 
-    //  val boundary = BoundaryAes(this)
+    val fatten = FattenAes(this)
+
+    val width = WidthAes(this)
+    /*  TODO*/
+    val borderLineColor = ColorAes(this)
+    val borderLineWidth = SizeAes(this)
+    val borderLineType = LineTypeAes(this)
+
+    val outlier = OutlierSubContext(this)
+
+    @PublishedApi
+    internal val varWidth = VarWidthAes(this)
 
     /*
     @PublishedApi
@@ -60,48 +83,34 @@ class BoxplotStatContext(override var data: MutableNamedData) : LayerContext() {
 
      */
 
-
-    /*
-    @PublishedApi
-    internal var groupOptions: GroupContext<*>? = null
-
-    class GroupContext<T : Any>(val source: DataSource<T>, val type: KType, val context: DensityContext) : BindingContext() {
-        override var data: MutableNamedData = mutableMapOf()
-
-        val fillColor = NonMappableFillAes(context)
-        val borderLineColor = NonMappableColorAes(context)
-
-        inline operator fun <reified RangeType : Any>
-                MappableOnlyNonPositionalAes<RangeType>.invoke(
-            scale: NonPositionalCategoricalScale<T, RangeType>
-        ): ScaledNonPositionalMapping<T, RangeType> {
-            val mapping = ScaledNonPositionalMapping(
-                this.name,
-                source.scaled(scale),
-                type
-            )
-            context.bindingCollector.mappings[this.name] = mapping
-            return mapping
-        }
-    }
-
-
-    @PlotDslMarker
-    inline fun <reified T : Any> groupBy(source: DataSource<T>, block: GroupContext<T>.() -> Unit) {
-        groupOptions = GroupContext(source, typeOf<T>(), this).apply(block)
-    }
-
-     */
-
 }
 
 inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
+    varWidth: Boolean? = null,
     block: BoxplotStatContext.() -> Unit
 ) {
     layers.add(
-        BoxplotStatContext(data)
+        BoxplotStatContext(data, varWidth)
+            .apply {
+                copyFrom(this@boxplot)
+                x(sourceX)
+                y(sourceY)
+            }
+            .apply(block)
+            .toLayer(BOXPLOT_STAT)
+    )
+}
+
+inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
+    sourceX: Iterable<T>,
+    sourceY: Iterable<R>,
+    varWidth: Boolean? = null,
+    block: BoxplotStatContext.() -> Unit
+) {
+    layers.add(
+        BoxplotStatContext(data, varWidth)
             .apply {
                 copyFrom(this@boxplot)
                 x(sourceX)

@@ -63,6 +63,8 @@ interface NonPositionalAes<in T : Any> : Aes
 interface MappableNonPositionalAes<in T : Any> : NonPositionalAes<T>, ScalableAes
 
 // TODO Other exists??? Todo Settable?
-
+/*
 // TODO
 interface MappableOnlyNonPositionalAes<in T : Any> :  ScalableAes
+
+ */

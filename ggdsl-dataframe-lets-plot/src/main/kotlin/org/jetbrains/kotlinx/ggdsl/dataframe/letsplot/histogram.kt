@@ -1,15 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
-import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.invoke
-import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
-import org.jetbrains.kotlinx.ggdsl.dataframe.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.*
-
-inline fun <reified T : Any> PlotContext.histogram(source: ColumnReference<T>, block: HistogramContext.() -> Unit) {
-    layers.add(
+/*
+inline fun <reified T : Any> PlotContext.histogram(column: ColumnReference<T>, block: HistogramContext.() -> Unit) {
+   /* layers.add(
         HistogramContext(data)
             .apply {
                 copyFrom(this@histogram)
@@ -17,7 +10,8 @@ inline fun <reified T : Any> PlotContext.histogram(source: ColumnReference<T>, b
             }
             .apply(block)
             .toLayer(HISTOGRAM) // TODO
-    )
+    )*/
+    return histogram(column.toDataSource(), block = block)
 }
 
 inline fun <reified T : Any> PlotContext.density(source: ColumnReference<T>, block: DensityContext.() -> Unit) {
@@ -82,3 +76,5 @@ inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
             .toLayer(BOXPLOT_STAT)
     )
 }
+
+ */

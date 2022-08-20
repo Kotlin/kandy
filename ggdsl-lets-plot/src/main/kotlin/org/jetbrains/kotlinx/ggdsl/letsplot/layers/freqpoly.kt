@@ -18,12 +18,12 @@ import kotlin.reflect.typeOf
 @PublishedApi
 
  */
-val HISTOGRAM = LetsPlotGeom("histogram")
+val FREQPOLY = LetsPlotGeom("freqpoly")
 
 
 @PlotDslMarker
 // todo move x/y?
-class HistogramContext(
+class FreqpolyContext(
     override var data: MutableNamedData,
     bins: Bins?,
     boundary: Double?,
@@ -37,14 +37,15 @@ class HistogramContext(
             center(it)
         }
     }
+
     @PublishedApi
     internal val x = XAes(this)
     val y = YAes(this)
 
     val alpha = AlphaAes(this)
-    val fillColor = FillAes(this)
-    val borderLineColor = ColorAes(this)
-    val borderLineWidth = SizeAes(this)
+    val lineColor = ColorAes(this)
+    val lineType = LineTypeAes(this)
+    val lineWidth = SizeAes(this)
 
     object Statistics {
         val COUNT = BinStat.Count
@@ -88,39 +89,45 @@ class HistogramContext(
 
 }
 
-inline fun <reified T : Any> PlotContext.histogram(
+inline fun <reified T : Any> PlotContext.freqpoly(
     source: DataSource<T>,
     bins: Bins? = null,
     boundary: Double? = null,
     center: Double? = null,
-    block: HistogramContext.() -> Unit
+    block: FreqpolyContext.() -> Unit
 ) {
     layers.add(
-        HistogramContext(data, bins, boundary, center)
+        FreqpolyContext(data, bins, boundary, center)
             .apply {
-                copyFrom(this@histogram)
+                copyFrom(this@freqpoly)
                 x(source)
             }
             .apply(block)
-            .toLayer(HISTOGRAM)
+            .toLayer(FREQPOLY)
     )
 }
 
-inline fun <reified T : Any> PlotContext.histogram(
+inline fun <reified T : Any> PlotContext.freqpoly(
     source: Iterable<T>,
     bins: Bins? = null,
     boundary: Double? = null,
     center: Double? = null,
-    block: HistogramContext.() -> Unit
+    block: FreqpolyContext.() -> Unit
 ) {
     layers.add(
-        HistogramContext(data, bins, boundary, center)
+        FreqpolyContext(data, bins, boundary, center)
             .apply {
-                copyFrom(this@histogram)
+                copyFrom(this@freqpoly)
                 x(source)
+                boundary?.let {
+                    boundary(it)
+                }
+                center?.let {
+                    center(it)
+                }
             }
             .apply(block)
-            .toLayer(HISTOGRAM)
+            .toLayer(FREQPOLY)
     )
 }
 

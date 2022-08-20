@@ -8,8 +8,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositi
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.BinStat
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Bins
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.ContourStat
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.WithBinsContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
 import kotlin.reflect.typeOf
@@ -18,52 +18,39 @@ import kotlin.reflect.typeOf
 @PublishedApi
 
  */
-val HISTOGRAM = LetsPlotGeom("histogram")
+val CONTOUR_FILLED = LetsPlotGeom("contour_filled")
+
 
 
 @PlotDslMarker
 // todo move x/y?
-class HistogramContext(
+class ContourFilledContext(
     override var data: MutableNamedData,
-    bins: Bins?,
-    boundary: Double?,
-    center: Double?,
+    bins: Bins?
 ) : WithBinsContext(bins) {
-    init {
-        boundary?.let {
-            boundary(it)
-        }
-        center?.let {
-            center(it)
-        }
-    }
     @PublishedApi
     internal val x = XAes(this)
-    val y = YAes(this)
+    @PublishedApi
+    internal val y = YAes(this)
+    @PublishedApi
+    internal val z = ZAes(this)
 
     val alpha = AlphaAes(this)
     val fillColor = FillAes(this)
-    val borderLineColor = ColorAes(this)
-    val borderLineWidth = SizeAes(this)
+    val lineColor = ColorAes(this)
+    val lineType = LineTypeAes(this)
+    val lineWidth = WidthAes(this)
+
+   // todo speed, flow
 
     object Statistics {
-        val COUNT = BinStat.Count
-        val DENSITY = BinStat.Density
+        val LEVEL = ContourStat.Level
     }
 
     val Stat = Statistics
 
-    // todo weight
-
-    @PublishedApi
-    internal val center = CenterAes(this)
-
-    @PublishedApi
-    internal val boundary = BoundaryAes(this)
-
-
     inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        stat: BinStat<DomainType>
+        stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this.name,
@@ -75,7 +62,7 @@ class HistogramContext(
     }
 
     inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-        stat: BinStat<DomainType>
+        stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
             this.name,
@@ -85,42 +72,45 @@ class HistogramContext(
         context.bindingCollector.mappings[this.name] = mapping
         return mapping
     }
-
 }
 
-inline fun <reified T : Any> PlotContext.histogram(
-    source: DataSource<T>,
-    bins: Bins? = null,
-    boundary: Double? = null,
-    center: Double? = null,
-    block: HistogramContext.() -> Unit
+inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+    sourceX: DataSource<TX>,
+    sourceY: DataSource<TY>,
+    sourceZ: DataSource<TZ>,
+    bins: Bins?,
+    block: ContourFilledContext.() -> Unit
 ) {
     layers.add(
-        HistogramContext(data, bins, boundary, center)
+        ContourFilledContext(data, bins)
             .apply {
-                copyFrom(this@histogram)
-                x(source)
+                copyFrom(this@contourFilled)
+                x(sourceX)
+                y(sourceY)
+                z(sourceZ)
             }
             .apply(block)
-            .toLayer(HISTOGRAM)
+            .toLayer(CONTOUR_FILLED)
     )
 }
 
-inline fun <reified T : Any> PlotContext.histogram(
-    source: Iterable<T>,
-    bins: Bins? = null,
-    boundary: Double? = null,
-    center: Double? = null,
-    block: HistogramContext.() -> Unit
+inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+    sourceX: Iterable<TX>,
+    sourceY: Iterable<TY>,
+    sourceZ: Iterable<TZ>,
+    bins: Bins?,
+    block: ContourFilledContext.() -> Unit
 ) {
     layers.add(
-        HistogramContext(data, bins, boundary, center)
+        ContourFilledContext(data, bins)
             .apply {
-                copyFrom(this@histogram)
-                x(source)
+                copyFrom(this@contourFilled)
+                x(sourceX)
+                y(sourceY)
+                z(sourceZ)
             }
             .apply(block)
-            .toLayer(HISTOGRAM)
+            .toLayer(CONTOUR_FILLED)
     )
 }
 

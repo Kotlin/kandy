@@ -4,21 +4,19 @@ import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
 import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
-import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalablePositionalMapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val SEGMENT = LetsPlotGeom("segment")
 
-/* TODO
-// todo better names?
+
 class SegmentContext(override var data: MutableNamedData) :
     LayerContext() {
-    // todo replace x and y with xBegin and yBegin?
+    // TODO
+    val xBegin = XAes(this)
+    val yBegin = YAes(this)
     val xEnd = XEndAes(this)
     val yEnd = YEndAes(this)
     val color = ColorAes(this)
@@ -78,5 +76,3 @@ class SegmentContext(override var data: MutableNamedData) :
 fun PlotContext.segment(block: SegmentContext.() -> Unit) {
     layers.add(SegmentContext(data).apply { copyFrom(this@segment) }.apply(block).toLayer(SEGMENT))
 }
-
- */

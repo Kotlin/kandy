@@ -1,16 +1,15 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.dataframe.api.asColumnGroup
 import org.jetbrains.kotlinx.dataframe.api.flatten
 import org.jetbrains.kotlinx.dataframe.api.toMap
-import org.jetbrains.kotlinx.dataframe.columns.ColumnGroup
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.ir.data.*
+import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import kotlin.reflect.typeOf
 
-@PublishedApi
-internal inline fun <reified T: Any> ColumnReference<T>.toDataSource(): DataSource<T> {
+// todo internal?
+inline fun <reified T: Any> ColumnReference<T>.toDataSource(): DataSource<T> {
     return DataSource(name(), typeOf<T>())
 }
 
