@@ -89,7 +89,7 @@ class FreqpolyContext(
 
 }
 
-inline fun <reified T : Any> PlotContext.freqpoly(
+inline fun <reified T : Any> PlotContext.freqPoly(
     source: DataSource<T>,
     bins: Bins? = null,
     boundary: Double? = null,
@@ -99,7 +99,7 @@ inline fun <reified T : Any> PlotContext.freqpoly(
     layers.add(
         FreqpolyContext(data, bins, boundary, center)
             .apply {
-                copyFrom(this@freqpoly)
+                copyFrom(this@freqPoly)
                 x(source)
             }
             .apply(block)
@@ -107,7 +107,7 @@ inline fun <reified T : Any> PlotContext.freqpoly(
     )
 }
 
-inline fun <reified T : Any> PlotContext.freqpoly(
+inline fun <reified T : Any> PlotContext.freqPoly(
     source: Iterable<T>,
     bins: Bins? = null,
     boundary: Double? = null,
@@ -117,7 +117,7 @@ inline fun <reified T : Any> PlotContext.freqpoly(
     layers.add(
         FreqpolyContext(data, bins, boundary, center)
             .apply {
-                copyFrom(this@freqpoly)
+                copyFrom(this@freqPoly)
                 x(source)
                 boundary?.let {
                     boundary(it)

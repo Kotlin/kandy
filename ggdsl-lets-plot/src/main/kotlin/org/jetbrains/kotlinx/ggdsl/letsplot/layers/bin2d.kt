@@ -157,5 +157,3 @@ inline fun <reified T : Any, reified R: Any> PlotContext.bin2D(
             .toLayer(BIN_2D)
     )
 }
-
-

@@ -6,9 +6,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.Aes
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Stat
 
 data class LayerTooltips(
-    val variables: List<DataSource<*>>,
+    val variables: List<String>,
     val lines: List<String>,
     val formats: List<Pair<String, String>>,
     val title: String? = null,
@@ -22,19 +23,33 @@ data class LayerTooltips(
         val FEATURE_NAME = FeatureName("layer_tooltips")
 
         fun fromContext(
-            variables: List<DataSource<*>>,
-            title: String? = null,
-            anchor: Anchor? = null,
-            minWidth: Double? = null,
-            valueFormats: Map<DataSource<*>, String> = mapOf(),
-            aesFormats: Map<Aes, String> = mapOf(),
-            hide: Boolean = false,
+            title: String?,
+            anchor: Anchor?,
+            minWidth: Double?,
+            hide: Boolean,
+            valueFormats: List<Pair<String, String>>,
             context: LayerTooltipsContext
         ): LayerTooltips {
             return LayerTooltips(
-                variables,
+                listOf(),
                 context.lineBuffer,
-                valueFormats.map { it.key.id to it.value } + aesFormats.map { it.key.name.name to it.value },
+                valueFormats,
+                title, anchor, minWidth, hide
+            )
+        }
+
+        fun fromVariables(
+            variables: List<String>,
+            title: String?,
+            anchor: Anchor?,
+            minWidth: Double?,
+            hide: Boolean,
+            valueFormats: List<Pair<String, String>>,
+        ): LayerTooltips {
+            return LayerTooltips(
+                variables,
+                listOf(),
+                valueFormats,
                 title, anchor, minWidth, hide
             )
         }
@@ -62,6 +77,16 @@ fun value(aes: Aes): String {
     return "^${aes.name}"
 }
 
+/**
+ * Inserts value of given statistics into format string.
+ *
+ * @param stat statistics whose value will be inserted into the tooltip
+ * @return format string
+ */
+fun value(stat: Stat<*>): String {
+    return "@${stat.name}"
+}
+
 
 /**
  * Context created by [LayerContext.tooltips] method.
@@ -69,7 +94,7 @@ fun value(aes: Aes): String {
 @PlotDslMarker
 class LayerTooltipsContext {
     // todo hide
-     val lineBuffer = mutableListOf<String>()
+    val lineBuffer = mutableListOf<String>()
 
     /**
      * Adds solid line to tooltips with given string value.
@@ -112,6 +137,16 @@ class LayerTooltipsContext {
         lineBuffer.add("@|^${aes.name}")
     }
 
+    /**
+     * Adds standard line for given statistics
+     * (name of source mapped oh this aes on the left side and corresponding value on the right side).
+     *
+     * @param stat statistics
+     */
+    fun line(stat: Stat<*>) {
+        lineBuffer.add("${stat.name.drop(2).dropLast(2)}|@${stat.name}")
+    }
+
 }
 
 data class Anchor(val value: String) {
@@ -128,7 +163,7 @@ data class Anchor(val value: String) {
     }
 }
 
-/**
+/** TODO
  * Defines the format for displaying values of this layer.
  *
  * Creates a [LayerTooltipsContext]. In this context you can configure lines of tooltip
@@ -148,24 +183,42 @@ data class Anchor(val value: String) {
  * value specified in the line template.
  * @see value
  */
-inline fun LayerContext.tooltips(
+fun LayerContext.tooltips(
     vararg variables: DataSource<*>,
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
     hide: Boolean = false,
     valueFormats: Map<DataSource<*>, String> = mapOf(),
-    aesFormats: Map<Aes, String> = mapOf(),
-    tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
-    features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
-        variables.toList(),
+    features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromVariables(
+        variables.map { it.id },
         title,
         anchor,
         minWidth,
-        valueFormats,
-        aesFormats,
         hide,
+        valueFormats.map { it.key.id to it.value },
+    )
+}
+
+inline fun LayerContext.tooltips(
+    title: String? = null,
+    anchor: Anchor? = null,
+    minWidth: Double? = null,
+    hide: Boolean = false,
+    valueFormats: Map<DataSource<*>, String> = mapOf(),
+    aesFormats: Map<Aes, String> = mapOf(),
+    statFormats: Map<Stat<*>, String> = mapOf(),
+    tooltipsContextAction: LayerTooltipsContext.() -> Unit
+) {
+    features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
+        title,
+        anchor,
+        minWidth,
+        hide,
+        valueFormats.map { it.key.id to it.value }
+                + aesFormats.map { it.key.name.name to it.value }
+                + statFormats.map { it.key.name to it.value },
         LayerTooltipsContext().apply(tooltipsContextAction)
     )
 }

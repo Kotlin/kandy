@@ -79,7 +79,7 @@ internal fun LayerTooltips.wrap(): TooltipOptions {
     if (hide) {
         return tooltipsNone
     }
-    var buffer = layerTooltips(*(variables.map { it.id }.toTypedArray()))
+    var buffer = layerTooltips(*(variables.toTypedArray()))
     title?.let {
         buffer = buffer.title(it)
     }

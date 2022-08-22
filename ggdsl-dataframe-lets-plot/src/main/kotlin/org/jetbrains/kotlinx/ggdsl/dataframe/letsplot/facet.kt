@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.*
 
 /**
@@ -34,6 +35,34 @@ fun PlotContext.facetGrid(
 
 }
 
+fun PlotContext.facetGrid(
+    x: DataSource<*>? = null,
+    y: ColumnReference<*>? = null,
+    scalesSharing: ScalesSharing? = null,
+    xOrder: OrderDirection = OrderDirection.ASCENDING,
+    yOrder: OrderDirection = OrderDirection.ASCENDING,
+    xFormat: String? = null,
+    yFormat: String? = null
+) {
+    features[FacetGridFeature.FEATURE_NAME] =
+        FacetGridFeature(x?.id, y?.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
+
+}
+
+fun PlotContext.facetGrid(
+    x: ColumnReference<*>? = null,
+    y: DataSource<*>? = null,
+    scalesSharing: ScalesSharing? = null,
+    xOrder: OrderDirection = OrderDirection.ASCENDING,
+    yOrder: OrderDirection = OrderDirection.ASCENDING,
+    xFormat: String? = null,
+    yFormat: String? = null
+) {
+    features[FacetGridFeature.FEATURE_NAME] =
+        FacetGridFeature(x?.name(), y?.id, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+
+}
+
 /**
  * Splits data by one or more faceting variables.
  * For each data subset creates a plot panel and lays out panels according to the `nCol`, `nRow` and `direction` settings.
@@ -42,7 +71,8 @@ fun PlotContext.facetGrid(
  * @see org.jetbrains.letsPlot.facet.facetWrap
  */
 fun PlotContext.facetWrap(
-    vararg facets: ColumnReference<*>,
+    facetsColumns: List<ColumnReference<*>>,
+    dsColumns: List<DataSource<*>>,
     nCol: Int? = null,
     nRow: Int? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
@@ -51,7 +81,8 @@ fun PlotContext.facetWrap(
 ) {
     features[FacetWrapFeature.FEATURE_NAME] =
         FacetWrapFeature(
-            facets.map { it.name() }, nCol, nRow, order, scalesSharing, direction
+            facetsColumns.map { it.name() } + dsColumns.map { it.id }
+            , nCol, nRow, order, scalesSharing, direction
         )
 
 }
