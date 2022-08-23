@@ -14,7 +14,7 @@ plugins {
     id("org.jetbrains.dokka") version "1.7.10"
 }
 
-val ggdslVersion = "0.1.4-dev-1"
+val ggdslVersion = "0.1.4-dev-2"
 
 allprojects {
     repositories {

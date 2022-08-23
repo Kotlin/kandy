@@ -11,8 +11,10 @@ interface Bins {
     data class ByNumber internal constructor(val number: Int) : Bins
     data class ByWidth internal constructor(val width: Double) : Bins
 
-    fun byNumber(number: Int) = ByNumber(number)
-    fun byWidth(width: Double) = ByWidth(width)
+    companion object {
+        fun byNumber(number: Int) = ByNumber(number)
+        fun byWidth(width: Double) = ByWidth(width)
+    }
 }
 
 abstract class WithBinsContext(bins: Bins?): LayerContext() {
