@@ -29,28 +29,11 @@ fun LayerTooltipsContext.line(column: ColumnReference<*>) {
     lineBuffer.add("@|@${column.name()}")
 }
 
-fun LayerContext.tooltips(
-    variablesDS: List<DataSource<*>> = listOf(),
-    columns: List<ColumnReference<*>> = listOf(),
-    title: String? = null,
-    anchor: Anchor? = null,
-    minWidth: Double? = null,
-    hide: Boolean = false,
-    dsFormats: Map<DataSource<*>, String> = mapOf(),
-    columnsFormats: Map<ColumnReference<*>, String> = mapOf(),
-) {
-    features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromVariables(
-        variablesDS.map { it.id } + columns.map { it.name() },
-        title,
-        anchor,
-        minWidth,
-        hide,
-        dsFormats.map { it.key.id to it.value }
-                + columnsFormats.map { it.key.name() to it.value },
-    )
-}
+
 
 inline fun LayerContext.tooltips(
+    columns: List<ColumnReference<*>> = listOf(),
+    variablesDS: List<DataSource<*>> = listOf(),
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
@@ -62,6 +45,7 @@ inline fun LayerContext.tooltips(
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
+        columns.map { it.name() } + variablesDS.map { it.id },
         title,
         anchor,
         minWidth,

@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Stat
 
-data class LayerTooltips(
+data class LayerTooltips internal constructor(
     val variables: List<String>,
     val lines: List<String>,
     val formats: List<Pair<String, String>>,
@@ -22,7 +22,9 @@ data class LayerTooltips(
     companion object {
         val FEATURE_NAME = FeatureName("layer_tooltips")
 
+
         fun fromContext(
+            variables: List<String>,
             title: String?,
             anchor: Anchor?,
             minWidth: Double?,
@@ -31,24 +33,8 @@ data class LayerTooltips(
             context: LayerTooltipsContext
         ): LayerTooltips {
             return LayerTooltips(
-                listOf(),
-                context.lineBuffer,
-                valueFormats,
-                title, anchor, minWidth, hide
-            )
-        }
-
-        fun fromVariables(
-            variables: List<String>,
-            title: String?,
-            anchor: Anchor?,
-            minWidth: Double?,
-            hide: Boolean,
-            valueFormats: List<Pair<String, String>>,
-        ): LayerTooltips {
-            return LayerTooltips(
                 variables,
-                listOf(),
+                context.lineBuffer,
                 valueFormats,
                 title, anchor, minWidth, hide
             )
@@ -163,7 +149,7 @@ data class Anchor(val value: String) {
     }
 }
 
-/** TODO
+/**
  * Defines the format for displaying values of this layer.
  *
  * Creates a [LayerTooltipsContext]. In this context you can configure lines of tooltip
@@ -183,25 +169,8 @@ data class Anchor(val value: String) {
  * value specified in the line template.
  * @see value
  */
-fun LayerContext.tooltips(
-    vararg variables: DataSource<*>,
-    title: String? = null,
-    anchor: Anchor? = null,
-    minWidth: Double? = null,
-    hide: Boolean = false,
-    valueFormats: Map<DataSource<*>, String> = mapOf(),
-) {
-    features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromVariables(
-        variables.map { it.id },
-        title,
-        anchor,
-        minWidth,
-        hide,
-        valueFormats.map { it.key.id to it.value },
-    )
-}
-
 inline fun LayerContext.tooltips(
+    variables: List<DataSource<*>>,
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
@@ -212,6 +181,7 @@ inline fun LayerContext.tooltips(
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
+        variables.map { it.id },
         title,
         anchor,
         minWidth,
