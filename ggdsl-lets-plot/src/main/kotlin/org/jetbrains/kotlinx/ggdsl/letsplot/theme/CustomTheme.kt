@@ -1,14 +1,10 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.theme
 
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.FontFace
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
-enum class Font {
-    PLAIN, ITALIC, BOLD, BOLD_ITALIC;
-
-    override fun toString(): String = super.toString().lowercase()
-}
 
 sealed interface LayoutParameters : SelfInvocationContext {
     companion object {
@@ -20,7 +16,7 @@ sealed interface LayoutParameters : SelfInvocationContext {
 
         fun text(
             color: Color? = null,
-            font: Font? = null,
+            font: FontFace? = null,
             blank: Boolean = false
         ) = TextParameters(color, font, blank)
 
@@ -50,7 +46,7 @@ fun LineParameters.invoke(parameters: LineParameters) {
 @PlotDslMarker
 data class TextParameters internal constructor(
     var color: Color? = null,
-    var font: Font? = null,
+    var font: FontFace? = null,
     var blank: Boolean = false
 ) : LayoutParameters
 

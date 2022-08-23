@@ -10,7 +10,8 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.x
+import org.jetbrains.kotlinx.ggdsl.letsplot.y
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.intern.toSpec
 import kotlin.test.Test
@@ -34,6 +35,9 @@ class ToLetsPlotTest {
                 "data" to mapOf<String, Any>(),
                 "kind" to "plot",
                 "scales" to listOf<Map<String, Any>>(
+                    mapOf(
+                        "aesthetic" to "x",
+                    ),
                     mapOf(
                         "aesthetic" to "y",
                         "limits" to listOf(1.0, 5.0)

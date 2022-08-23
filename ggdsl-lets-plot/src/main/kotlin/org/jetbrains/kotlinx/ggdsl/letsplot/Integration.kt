@@ -31,6 +31,8 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.letsplot.facet.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.*")
+        import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.*")
+        import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.label.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.scales.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.theme.*")
@@ -38,6 +40,8 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.letsplot.position.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.*")
+        import("org.jetbrains.kotlinx.ggdsl.letsplot.util.font.*")
+        import("org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.*")
 
         render<Plot> { HTML(frontendContext.getHtml(it.toLetsPlot())) }
         render<PlotBunch> { HTML(frontendContext.getHtml(it.wrap())) }

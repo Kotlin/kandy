@@ -1,17 +1,18 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val AREA = LetsPlotGeom("area")
 
 @PlotDslMarker
-class AreaContext(override var data: MutableNamedData) :
+class AreaContext (override var data: MutableNamedData) :
     WithBorderLineContext() {
     val x = XAes(this)
     val y = YAes(this)

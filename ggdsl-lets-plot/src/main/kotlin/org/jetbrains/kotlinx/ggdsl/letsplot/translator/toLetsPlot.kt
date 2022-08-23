@@ -8,6 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.label.TEXT
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.ColorBar
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.DiscreteLegend
@@ -25,6 +26,8 @@ import org.jetbrains.letsPlot.intern.layer.GeomOptions
 import org.jetbrains.letsPlot.label.labs
 import org.jetbrains.letsPlot.letsPlot
 import org.jetbrains.letsPlot.scale.*
+import kotlin.reflect.KType
+import kotlin.reflect.typeOf
 
 internal fun Mapping.wrap(geom: Geom): Pair<String, String> {
     return when (this) {
@@ -41,25 +44,26 @@ internal fun Setting.wrap(): Pair<String, Any> {
 }
 
 // TODO
-internal fun wrapValue(wrapper: Any): Any {
-    if (wrapper is SimpleValueWrapper) {
-        return wrapper.value
+internal fun wrapValue(value: Any): Any {
+    if (value is Enum<*>) {
+        return value.toString()
     }
-    if (wrapper is StandardColor) {
-        return wrapper.description
+    if (value is SimpleValueWrapper) {
+        return value.value
+    }
+    if (value is StandardColor) {
+        return value.description
     }
 
-    if (wrapper is Symbol) {
-        return wrapper.shape
+    if (value is Symbol) {
+        return value.shape
     }
-
-    if (wrapper is LineType) {
-        return wrapper.description
+    if (value is LineType) {
+        return value.description
     }
-    return wrapper
+    return value
 }
 
-// TODO
 internal fun Geom.toStat(): org.jetbrains.letsPlot.intern.layer.StatOptions {
     return when (this) {
         BIN_2D -> Stat.bin2D()
@@ -81,7 +85,6 @@ internal fun Geom.toStat(): org.jetbrains.letsPlot.intern.layer.StatOptions {
     }
 }
 
-// TODO rewrite
 internal fun Geom.toLPGeom(): GeomOptions {
     return when (this) {
         AB_LINE -> org.jetbrains.letsPlot.Geom.abline()
@@ -115,6 +118,7 @@ internal fun Geom.toLPGeom(): GeomOptions {
         SEGMENT -> org.jetbrains.letsPlot.Geom.segment()
         STEP -> org.jetbrains.letsPlot.Geom.step()
         TILE -> org.jetbrains.letsPlot.Geom.tile()
+        TEXT -> org.jetbrains.letsPlot.Geom.text()
         VIOLIN -> GeomOptions(GeomKind.VIOLIN)
         V_LINE -> org.jetbrains.letsPlot.Geom.vline()
         else -> TODO()
@@ -122,8 +126,15 @@ internal fun Geom.toLPGeom(): GeomOptions {
 }
 
 
+/**
+ * TODO
+ * 1) Unspecified
+ * 2) DateTime
+ * 3) trans = (transform as? Transformation)?.name
+ */
 internal fun Scale.wrap(
     aes: AesName,
+    domainType: KType,
     scaleParameters: ScaleParameters? = null
 ): org.jetbrains.letsPlot.intern.Scale? {
     return when (this) {
@@ -163,7 +174,7 @@ internal fun Scale.wrap(
                             name = name,
                             breaks = breaks?.map { it as Number }, // TODO() }
                             labels = labels,
-
+                            trans = (transform as? Transformation)?.name
                             )
 
                         Y -> scaleYContinuous(
@@ -172,8 +183,8 @@ internal fun Scale.wrap(
                             name = name,
                             breaks = breaks?.map { it as Number }, // TODO() }
                             labels = labels,
-
-                            )
+                            trans = (transform as? Transformation)?.name
+                        )
 
                         else -> TODO()
                     }
@@ -434,61 +445,181 @@ internal fun Scale.wrap(
                 }
 
                 is CustomScale -> when (this) {
-                    is ScaleContinuousColorHue<*> -> scaleColorHue(
-                        huesRange,
-                        chroma,
-                        luminance,
-                        hueStart,
-                        direction?.value,
-                        name = name,
-                        breaks = breaks?.map { it as Number }, // todo
-                        labels = labels,
-                        guide = legendType,
-                        limits = domainLimits.toLP(),
-                        trans = transform?.name
-                    )
+                    is ScaleContinuousColorHue<*> -> when (aes) {
+                        COLOR -> scaleColorHue(
+                            huesRange,
+                            chroma,
+                            luminance,
+                            hueStart,
+                            direction?.value,
+                            name = name,
+                            breaks = breaks?.map { it as Number }, // todo
+                            labels = labels,
+                            guide = legendType,
+                            limits = domainLimits.toLP(),
+                            trans = transform?.name
+                        )
 
-                    is ScaleContinuousColorGradient2<*> -> scaleColorGradient2(
-                        (low as StandardColor).description,
-                        (mid as StandardColor).description,
-                        (high as StandardColor).description,
-                        midpoint,
-                        name = name,
-                        breaks = breaks?.map { it as Number }, // todo
-                        labels = labels,
-                        guide = legendType,
-                        limits = domainLimits.toLP(),
-                        trans = transform?.name
-                    )
+                        FILL -> scaleFillHue(
+                            huesRange,
+                            chroma,
+                            luminance,
+                            hueStart,
+                            direction?.value,
+                            name = name,
+                            breaks = breaks?.map { it as Number }, // todo
+                            labels = labels,
+                            guide = legendType,
+                            limits = domainLimits.toLP(),
+                            trans = transform?.name
+                        )
 
-                    is ScaleContinuousColorGradientN<*> -> scaleColorGradientN(
-                        rangeColors.map { (it as StandardColor).description },
-                        name = name,
-                        breaks = breaks?.map { it as Number }, // todo
-                        labels = labels,
-                        guide = legendType,
-                        limits = domainLimits.toLP(),
-                        trans = transform?.name
-                    )
+                        else -> TODO()
+                    }
+
+                    is ScaleContinuousColorGradient2<*> -> when (aes) {
+                        COLOR -> scaleColorGradient2(
+                            (low as StandardColor).description,
+                            (mid as StandardColor).description,
+                            (high as StandardColor).description,
+                            midpoint,
+                            name = name,
+                            breaks = breaks?.map { it as Number }, // todo
+                            labels = labels,
+                            guide = legendType,
+                            limits = domainLimits.toLP(),
+                            trans = transform?.name
+                        )
+
+                        FILL -> scaleFillGradient2(
+                            (low as StandardColor).description,
+                            (mid as StandardColor).description,
+                            (high as StandardColor).description,
+                            midpoint,
+                            name = name,
+                            breaks = breaks?.map { it as Number }, // todo
+                            labels = labels,
+                            guide = legendType,
+                            limits = domainLimits.toLP(),
+                            trans = transform?.name
+                        )
+
+                        else -> TODO()
+                    }
+
+                    is ScaleContinuousColorGradientN<*> -> when (aes) {
+                        COLOR -> scaleColorGradientN(
+                            rangeColors.map { (it as StandardColor).description },
+                            name = name,
+                            breaks = breaks?.map { it as Number }, // todo
+                            labels = labels,
+                            guide = legendType,
+                            limits = domainLimits.toLP(),
+                            trans = transform?.name
+                        )
+
+                        FILL -> scaleFillGradientN(
+                            rangeColors.map { (it as StandardColor).description },
+                            name = name,
+                            breaks = breaks?.map { it as Number }, // todo
+                            labels = labels,
+                            guide = legendType,
+                            limits = domainLimits.toLP(),
+                            trans = transform?.name
+                        )
+
+                        else -> TODO()
+                    }
 
                     else -> TODO()
-                }
-
-                is UnspecifiedScale -> {
-                    // TODO
-                    return null
                 }
 
                 else -> TODO()
             }
         }
 
+        // TODO
         is UnspecifiedScale -> {
-            // TODO
-            return null
+            when (this) {
+                DefaultUnspecifiedScale -> when(aes) {
+                    // todo other types for unspecified categorical???
+                    X, Y -> if (domainType == typeOf<String>()){
+                        PositionalCategoricalUnspecifiedScale.wrap(aes, domainType, scaleParameters)
+                    } else {
+                        PositionalContinuousUnspecifiedScale().wrap(aes, domainType, scaleParameters)
+                    }
+                    else -> if (domainType == typeOf<String>()){
+                        NonPositionalCategoricalUnspecifiedScale.wrap(aes, domainType, scaleParameters)
+                    } else {
+                        NonPositionalContinuousUnspecifiedScale().wrap(aes, domainType, scaleParameters)
+                    }
+
+                }
+                // TODO!!!
+                is NonPositionalUnspecifiedScale -> {
+                    val legend = (scaleParameters as NonPositionalParameters<*, *>?)?.legend
+
+                    val name = legend?.name
+                    val breaks = legend?.breaks
+                    val labels = legend?.labels
+                    val legendType = legend?.type?.let {
+                        when (it) {
+                            is None -> "none"
+                            is ColorBar -> guideColorbar(
+                                barHeight = it.barHeight,
+                                barWidth = it.barWidth,
+                                nbin = it.nBin
+                            )
+
+                            is DiscreteLegend -> guideLegend(
+                                nrow = it.nRow,
+                                ncol = it.nCol,
+                                byRow = it.byRow
+                            )
+                        }
+                    }
+                    when (this) {
+                        NonPositionalCategoricalUnspecifiedScale -> null
+                        is NonPositionalContinuousUnspecifiedScale -> null
+                    }
+                }
+
+                is PositionalUnspecifiedScale -> {
+                    val axis = (scaleParameters as PositionalParameters<*>?)?.axis
+
+                    val name = axis?.name
+                    val breaks = axis?.breaks
+                    val labels = axis?.labels
+                    when (this) {
+                        PositionalCategoricalUnspecifiedScale -> when (aes) {
+                            X -> scaleXDiscrete(name = name, breaks = breaks, labels = labels,)
+                            Y -> scaleYDiscrete(name = name, breaks = breaks, labels = labels)
+                            else -> TODO()
+                        }
+
+                        is PositionalContinuousUnspecifiedScale -> when (aes) {
+                            X -> scaleXContinuous(
+                                name = name,
+                                breaks = breaks?.map { it as Number },
+                                labels = labels,
+                                trans = (transform as? Transformation)?.name
+                            )
+
+                            Y -> scaleYContinuous(
+                                name = name,
+                                breaks = breaks?.map { it as Number },
+                                labels = labels,
+                                trans = (transform as? Transformation)?.name
+                            )
+
+                            else -> TODO()
+                        }
+                    }
+                }
+            }
         }
 
-        else -> TODO()
+        else -> TODO("error")
     }
 
 }
@@ -500,7 +631,7 @@ internal fun Layer.wrap(featureBuffer: MutableList<Feature>) {
     featureBuffer.add(LayerWrapper(this))
     mappings.forEach { (aes, mapping) ->
         if (mapping is ScaledMapping<*>) {
-            mapping.sourceScaled.scale.wrap(aes, mapping.scaleParameters)?.let {
+            mapping.sourceScaled.scale.wrap(aes, mapping.domainType, mapping.scaleParameters)?.let {
                 featureBuffer.add(it)
             }
         }
