@@ -106,7 +106,7 @@ data class Axis internal constructor(
 ) : SelfInvocationContext
 
 interface LegendPosition {
-    companion object {
+
         object None : LegendPosition
         object Left : LegendPosition
         object Right : LegendPosition
@@ -114,14 +114,12 @@ interface LegendPosition {
         object Top : LegendPosition
 
         data class Custom (val x: Double, val y: Double) : LegendPosition
-    }
+
 }
 
 interface LegendJustification {
-    companion object {
-        object Center : LegendPosition
-        data class Custom(val x: Double, val y: Double) : LegendPosition
-    }
+    object Center : LegendJustification
+    data class Custom(val x: Double, val y: Double) : LegendJustification
 }
 
 enum class LegendDirection {
@@ -138,7 +136,29 @@ data class Legend internal constructor(
     var position: LegendPosition? = null,
     var justification: LegendJustification? = null,
     var direction: LegendDirection? = null,
-) : SelfInvocationContext
+) : SelfInvocationContext {
+    fun justification( x: Double,  y: Double) {
+        justification = LegendJustification.Custom(x, y)
+    }
+    /*
+    fun justification(value: LegendJustification) {
+        justification = value
+    }
+
+     */
+    fun position( x: Double,  y: Double) {
+        position = LegendPosition.Custom(x, y)
+    }
+    /*
+    fun position(value: LegendPosition) {
+        position = value
+    }
+    fun direction(value: LegendDirection) {
+        direction = value
+    }
+
+     */
+}
 
 @PlotDslMarker
 data class Grid internal constructor(
