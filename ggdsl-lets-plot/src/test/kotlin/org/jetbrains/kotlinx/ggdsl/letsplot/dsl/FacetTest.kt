@@ -3,9 +3,10 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.dsl.source
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.facet.*
-import kotlin.reflect.typeOf
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGridX
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -13,7 +14,7 @@ class FacetTest {
     @Test
     fun testSimpleFacet() {
         val plot = plot {
-            facetGrid(
+            facetGridX(
                 x = source<String>("xSrc")
             )
         }
