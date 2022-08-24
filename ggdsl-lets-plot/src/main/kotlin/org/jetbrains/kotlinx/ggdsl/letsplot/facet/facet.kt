@@ -81,20 +81,41 @@ data class FacetWrapFeature  constructor(
  * TODO params
  * @see org.jetbrains.letsPlot.facet.facetGrid
  */
-fun PlotContext.facetGrid(
-    x: DataSource<*>? = null,
-    y: DataSource<*>? = null,
+fun PlotContext.facetGridX(
+    x: DataSource<*>,
     scalesSharing: ScalesSharing? = null,
     xOrder: OrderDirection = OrderDirection.ASCENDING,
     yOrder: OrderDirection = OrderDirection.ASCENDING,
     xFormat: String? = null,
     yFormat: String? = null
 ) {
-
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x?.id, y?.id, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(x.id, null, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+}
 
+fun PlotContext.facetGridY(
+    y: DataSource<*>,
+    scalesSharing: ScalesSharing? = null,
+    xOrder: OrderDirection = OrderDirection.ASCENDING,
+    yOrder: OrderDirection = OrderDirection.ASCENDING,
+    xFormat: String? = null,
+    yFormat: String? = null
+) {
+    features[FacetGridFeature.FEATURE_NAME] =
+        FacetGridFeature(null, y.id, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+}
 
+fun PlotContext.facetGrid(
+    x: DataSource<*>,
+    y: DataSource<*>,
+    scalesSharing: ScalesSharing? = null,
+    xOrder: OrderDirection = OrderDirection.ASCENDING,
+    yOrder: OrderDirection = OrderDirection.ASCENDING,
+    xFormat: String? = null,
+    yFormat: String? = null
+) {
+    features[FacetGridFeature.FEATURE_NAME] =
+        FacetGridFeature(x.id, y.id, scalesSharing, xOrder, yOrder, xFormat, yFormat)
 }
 
 /**

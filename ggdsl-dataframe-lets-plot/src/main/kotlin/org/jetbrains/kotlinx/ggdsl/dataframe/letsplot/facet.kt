@@ -21,9 +21,8 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.*
  * TODO params
  * @see org.jetbrains.letsPlot.facet.facetGrid
  */
-fun PlotContext.facetGrid(
-    x: ColumnReference<*>? = null,
-    y: ColumnReference<*>? = null,
+fun PlotContext.facetGridX(
+    x: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     xOrder: OrderDirection = OrderDirection.ASCENDING,
     yOrder: OrderDirection = OrderDirection.ASCENDING,
@@ -31,13 +30,54 @@ fun PlotContext.facetGrid(
     yFormat: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x?.name(), y?.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(x.name(), null, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+
+}
+
+fun PlotContext.facetGridY(
+    y: ColumnReference<*>,
+    scalesSharing: ScalesSharing? = null,
+    xOrder: OrderDirection = OrderDirection.ASCENDING,
+    yOrder: OrderDirection = OrderDirection.ASCENDING,
+    xFormat: String? = null,
+    yFormat: String? = null
+) {
+    features[FacetGridFeature.FEATURE_NAME] =
+        FacetGridFeature(null, y.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
+
+}
+
+fun PlotContext.facetGridXY(
+    x: ColumnReference<*>,
+    y: ColumnReference<*>,
+    scalesSharing: ScalesSharing? = null,
+    xOrder: OrderDirection = OrderDirection.ASCENDING,
+    yOrder: OrderDirection = OrderDirection.ASCENDING,
+    xFormat: String? = null,
+    yFormat: String? = null
+) {
+    features[FacetGridFeature.FEATURE_NAME] =
+        FacetGridFeature(x.name(), y.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
+
+}
+
+fun PlotContext.facetGridXY(
+    x: ColumnReference<*>,
+    y: DataSource<*>,
+    scalesSharing: ScalesSharing? = null,
+    xOrder: OrderDirection = OrderDirection.ASCENDING,
+    yOrder: OrderDirection = OrderDirection.ASCENDING,
+    xFormat: String? = null,
+    yFormat: String? = null
+) {
+    features[FacetGridFeature.FEATURE_NAME] =
+        FacetGridFeature(x.name(), y.id, scalesSharing, xOrder, yOrder, xFormat, yFormat)
 
 }
 
 fun PlotContext.facetGrid(
-    x: DataSource<*>? = null,
-    y: ColumnReference<*>? = null,
+    x: DataSource<*>,
+    y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     xOrder: OrderDirection = OrderDirection.ASCENDING,
     yOrder: OrderDirection = OrderDirection.ASCENDING,
@@ -45,21 +85,7 @@ fun PlotContext.facetGrid(
     yFormat: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x?.id, y?.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
-
-}
-
-fun PlotContext.facetGrid(
-    x: ColumnReference<*>? = null,
-    y: DataSource<*>? = null,
-    scalesSharing: ScalesSharing? = null,
-    xOrder: OrderDirection = OrderDirection.ASCENDING,
-    yOrder: OrderDirection = OrderDirection.ASCENDING,
-    xFormat: String? = null,
-    yFormat: String? = null
-) {
-    features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x?.name(), y?.id, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(x.id, y.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
 
 }
 
