@@ -82,7 +82,27 @@ fun CustomTheme.wrap(): theme {
         tooltipTitleText = layerTooltips.title.wrap()
         /*
               */
-    )
+    ).apply {
+        when(val justification = this@wrap.legend.justification){
+            LegendJustification.Center -> legendJustificationCenter()
+            is LegendJustification.Custom -> legendJustification(justification.x, justification.y)
+            null -> {}
+        }
+        when(this@wrap.legend.direction){
+            LegendDirection.HORIZONTAL -> legendDirectionHorizontal()
+            LegendDirection.VERTICAL -> legendDirectionHorizontal()
+            null -> {}
+        }
+        when(val position = this@wrap.legend.position){
+            LegendPosition.Bottom -> legendPositionBottom()
+            is LegendPosition.Custom -> legendPosition(position.x, position.y)
+            LegendPosition.Left -> legendPositionLeft()
+            LegendPosition.None -> legendPositionNone()
+            LegendPosition.Right -> legendPositionRight()
+            LegendPosition.Top -> legendPositionTop()
+            null -> {}
+        }
+    }
 }
 
 fun Theme.wrap(): OptionsMap {

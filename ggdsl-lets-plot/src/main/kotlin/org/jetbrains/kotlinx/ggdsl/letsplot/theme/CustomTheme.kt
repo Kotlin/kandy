@@ -105,19 +105,19 @@ data class Axis internal constructor(
     //var blank: Boolean?
 ) : SelfInvocationContext
 
-interface LegendPosition {
+sealed interface LegendPosition {
 
-        object None : LegendPosition
-        object Left : LegendPosition
-        object Right : LegendPosition
-        object Bottom : LegendPosition
-        object Top : LegendPosition
+    object None : LegendPosition
+    object Left : LegendPosition
+    object Right : LegendPosition
+    object Bottom : LegendPosition
+    object Top : LegendPosition
 
-        data class Custom (val x: Double, val y: Double) : LegendPosition
+    data class Custom(val x: Double, val y: Double) : LegendPosition
 
 }
 
-interface LegendJustification {
+sealed interface LegendJustification {
     object Center : LegendJustification
     data class Custom(val x: Double, val y: Double) : LegendJustification
 }
@@ -137,16 +137,17 @@ data class Legend internal constructor(
     var justification: LegendJustification? = null,
     var direction: LegendDirection? = null,
 ) : SelfInvocationContext {
-    fun justification( x: Double,  y: Double) {
+    fun justification(x: Double, y: Double) {
         justification = LegendJustification.Custom(x, y)
     }
+
     /*
     fun justification(value: LegendJustification) {
         justification = value
     }
 
      */
-    fun position( x: Double,  y: Double) {
+    fun position(x: Double, y: Double) {
         position = LegendPosition.Custom(x, y)
     }
     /*
@@ -162,7 +163,7 @@ data class Legend internal constructor(
 
 @PlotDslMarker
 data class Grid internal constructor(
-   // val lineGlobal: LineParameters = LineParameters(),
+    // val lineGlobal: LineParameters = LineParameters(),
     val majorLine: LineParameters = LineParameters(),
     val majorXLine: LineParameters = LineParameters(),
     val majorYLine: LineParameters = LineParameters(),
