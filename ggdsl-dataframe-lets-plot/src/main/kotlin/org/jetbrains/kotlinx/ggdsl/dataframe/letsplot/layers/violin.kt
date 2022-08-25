@@ -27,8 +27,8 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     sourceY, drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
 
-inline fun <reified T : Any, reified R : Any> PlotContext.violin(
-    sourceY: ColumnReference<R>,
+inline fun <reified T : Any> PlotContext.violin(
+    sourceY: ColumnReference<T>,
     drawQuantiles: List<Double>? = null,
     scale: ViolinScale? = null,
     kernel: Kernel? = null,
