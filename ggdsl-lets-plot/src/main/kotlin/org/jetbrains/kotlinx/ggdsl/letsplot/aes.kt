@@ -351,7 +351,7 @@ data class ViolinScaleAes(override val context: BindingContext) : NonPositionalA
 
 val DRAW_QUANTILES = AesName("draw_quantiles")
 
-data class DrawQuantilesAes(override val context: BindingContext) : NonPositionalAes<Boolean> {
+data class DrawQuantilesAes(override val context: BindingContext) : NonPositionalAes<List<Double>> {
     override val name: AesName = DRAW_QUANTILES
 }
 

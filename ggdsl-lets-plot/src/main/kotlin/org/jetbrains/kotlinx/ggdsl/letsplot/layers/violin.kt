@@ -19,7 +19,7 @@ val VIOLIN = LetsPlotGeom("violin")
 @PlotDslMarker
 class ViolinContext(
     override var data: MutableNamedData,
-    drawQuantiles: Boolean?,
+    drawQuantiles: List<Double>?,
     scale: ViolinScale?,
     kernel: Kernel?,
     bandWidth: BandWidth?,
@@ -144,7 +144,7 @@ class ViolinContext(
 inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
-    drawQuantiles: Boolean? = null,
+    drawQuantiles: List<Double>? = null,
     scale: ViolinScale? = null,
     kernel: Kernel? = null,
     bandWidth: BandWidth? = null,
@@ -169,7 +169,7 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
 inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
-    drawQuantiles: Boolean? = null,
+    drawQuantiles: List<Double>? = null,
     scale: ViolinScale? = null,
     kernel: Kernel? = null,
     bandWidth: BandWidth? = null,
