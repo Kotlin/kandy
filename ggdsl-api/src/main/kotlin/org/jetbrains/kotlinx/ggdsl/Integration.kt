@@ -11,6 +11,8 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.ir.data.NamedData")
         import("org.jetbrains.kotlinx.ggdsl.util.color.*")
         import("org.jetbrains.kotlinx.ggdsl.util.context.*")
+
+        println("api")
     }
 
 }
