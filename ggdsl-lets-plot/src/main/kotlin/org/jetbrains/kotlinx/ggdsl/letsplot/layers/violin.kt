@@ -166,6 +166,29 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     )
 }
 
+inline fun <reified T : Any> PlotContext.violin(
+    sourceY: DataSource<T>,
+    drawQuantiles: List<Double>? = null,
+    scale: ViolinScale? = null,
+    kernel: Kernel? = null,
+    bandWidth: BandWidth? = null,
+    pointsSampled: Int? = null,
+    trim: Boolean? = null,
+    adjust: Double? = null,
+    fullScanMax: Int? = null,
+    block: ViolinContext.() -> Unit,
+) {
+    layers.add(
+        ViolinContext(data, drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax)
+            .apply {
+                copyFrom(this@violin)
+                y(sourceY)
+            }
+            .apply(block)
+            .toLayer(DENSITY)
+    )
+}
+
 inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,

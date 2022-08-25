@@ -28,6 +28,22 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
 )
 
 inline fun <reified T : Any, reified R : Any> PlotContext.violin(
+    sourceY: ColumnReference<R>,
+    drawQuantiles: List<Double>? = null,
+    scale: ViolinScale? = null,
+    kernel: Kernel? = null,
+    bandWidth: BandWidth? = null,
+    pointsSampled: Int? = null,
+    trim: Boolean? = null,
+    adjust: Double? = null,
+    fullScanMax: Int? = null,
+    block: ViolinContext.() -> Unit,
+) = violin(
+    sourceY.toDataSource(), drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
+)
+
+
+inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     sourceX: DataSource<T>,
     sourceY: ColumnReference<R>,
     drawQuantiles: List<Double>? = null,
