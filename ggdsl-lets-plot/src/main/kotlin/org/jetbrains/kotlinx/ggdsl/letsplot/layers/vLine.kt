@@ -20,6 +20,6 @@ class VLineContext(override var data: MutableNamedData) : LayerContext() {
 }
 
 
-inline fun PlotContext.vLine(block: HLineContext.() -> Unit) {
-    layers.add(HLineContext(data).apply { copyFrom(this@vLine) }.apply(block).toLayer(H_LINE))
+inline fun PlotContext.vLine(block: VLineContext.() -> Unit) {
+    layers.add(VLineContext(data).apply { copyFrom(this@vLine) }.apply(block).toLayer(V_LINE))
 }
