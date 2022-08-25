@@ -162,7 +162,7 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
                 y(sourceY)
             }
             .apply(block)
-            .toLayer(DENSITY)
+            .toLayer(VIOLIN)
     )
 }
 
@@ -185,7 +185,7 @@ inline fun <reified T : Any> PlotContext.violin(
                 y(sourceY)
             }
             .apply(block)
-            .toLayer(DENSITY)
+            .toLayer(VIOLIN)
     )
 }
 
@@ -210,6 +210,6 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
                 y(sourceY)
             }
             .apply(block)
-            .toLayer(DENSITY)
+            .toLayer(VIOLIN)
     )
 }
