@@ -403,3 +403,16 @@ data class VerticalJustificationAes internal constructor(override val context: B
     NonPositionalAes<VerticalJustification> {
     override val name = VERTICAL_JUSTIFICATION
 }
+
+val X_INTERCEPT = AesName("xintercept")
+// TODO
+class XInterceptAes(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = X_INTERCEPT
+}
+
+val Y_INTERCEPT = AesName("yintercept")
+
+// TODO
+class YInterceptAes(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = Y_INTERCEPT
+}

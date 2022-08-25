@@ -11,7 +11,7 @@ internal val V_LINE = LetsPlotGeom("vLine")
 
 @PlotDslMarker
 class VLineContext(override var data: MutableNamedData) : LayerContext() {
-    val x = XAes(this)
+    val x = XInterceptAes(this)
 
     val color = ColorAes(this)
     val alpha = AlphaAes(this)

@@ -12,7 +12,7 @@ internal val H_LINE = LetsPlotGeom("hLine")
 
 @PlotDslMarker
 class HLineContext(override var data: MutableNamedData) : LayerContext() {
-    val y = YAes(this)
+    val y = YInterceptAes(this)
 
     val color = ColorAes(this)
     val alpha = AlphaAes(this)
