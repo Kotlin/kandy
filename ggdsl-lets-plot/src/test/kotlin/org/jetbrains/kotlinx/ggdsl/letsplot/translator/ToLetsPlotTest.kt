@@ -135,6 +135,29 @@ class ToLetsPlotTest {
                         "width" to 0.5,
                         "position" to "stack",
                         "geom" to "bar",
+                        "data_meta" to mapOf<String, Any>(
+                            "mapping_annotations" to
+                                    listOf(
+                                        mapOf<String, Any>(
+                                            "aes" to "y",
+                                            "annotation" to "as_discrete",
+                                            "parameters" to mapOf<String, Any?>(
+                                                "label" to "svalue",
+                                                "order_by" to null,
+                                                "order" to null
+                                            )
+                                        ),
+                                        mapOf<String, Any>(
+                                            "aes" to "fill",
+                                            "annotation" to "as_discrete",
+                                            "parameters" to mapOf<String, Any?>(
+                                                "label" to "clM",
+                                                "order_by" to null,
+                                                "order" to null
+                                            )
+                                        )
+                                    )
+                        )
                     ),
                     mapOf<String, Any>(
                         "mapping" to mapOf<String, String>(
@@ -147,6 +170,20 @@ class ToLetsPlotTest {
                         "linetype" to "dotted",
                         "position" to "identity",
                         "geom" to "line",
+                        "data_meta" to mapOf<String, Any>(
+                            "mapping_annotations" to
+                                    listOf(
+                                        mapOf<String, Any>(
+                                            "aes" to "y",
+                                            "annotation" to "as_discrete",
+                                            "parameters" to mapOf<String, Any?>(
+                                                "label" to "svalue",
+                                                "order_by" to null,
+                                                "order" to null
+                                            )
+                                        )
+                                    )
+                        )
                     ),
                 ),
                 "facet" to mapOf<String, Any>(
@@ -155,7 +192,7 @@ class ToLetsPlotTest {
                     "y" to "clX",
                     "x_order" to 1.0,
                     "y_order" to -1.0
-                )
+                ),
             ),
             plot.toLetsPlot().toSpec()
         )

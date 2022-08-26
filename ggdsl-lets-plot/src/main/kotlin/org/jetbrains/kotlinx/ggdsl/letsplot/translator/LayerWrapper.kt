@@ -11,7 +11,7 @@ import org.jetbrains.letsPlot.pos.positionIdentity
 internal class LayerWrapper internal constructor(private val layer: Layer) :
     LayerBase(
         data = layer.data,
-        mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap(layer.geom) }.toMap()),
+        mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap() }.toMap()),
         geom = layer.geom.toLPGeom(),
         stat = layer.geom.toStat(),
         tooltips = (layer.features[LayerTooltips.FEATURE_NAME] as? LayerTooltips)?.wrap(),

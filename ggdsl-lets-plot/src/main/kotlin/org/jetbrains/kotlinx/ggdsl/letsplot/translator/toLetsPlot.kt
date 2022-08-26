@@ -18,6 +18,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.SimpleValueWrapp
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
 import org.jetbrains.letsPlot.Stat
+import org.jetbrains.letsPlot.asDiscrete
 import org.jetbrains.letsPlot.ggsize
 import org.jetbrains.letsPlot.intern.Feature
 import org.jetbrains.letsPlot.intern.FeatureList
@@ -29,10 +30,13 @@ import org.jetbrains.letsPlot.scale.*
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
-internal fun Mapping.wrap(geom: Geom): Pair<String, String> {
+internal fun Mapping.wrap(): Pair<String, Any> {
     return when (this) {
         is NonScalablePositionalMapping<*> -> aes.name to source.id
-        is ScaledMapping<*> -> aes.name to sourceScaled.source.id
+        is ScaledMapping<*> -> when(this.sourceScaled.scale) {
+            is CategoricalScale -> aes.name to asDiscrete(sourceScaled.source.id)
+            else -> aes.name to sourceScaled.source.id
+        }
     }
 }
 

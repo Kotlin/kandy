@@ -13,5 +13,6 @@ data class GroupAes(override val context: BindingContext): NonScalablePositional
 /**
  * TODO
  */
-val LayerContext.group: NonScalablePositionalAes
+val LayerContext.splitBy: NonScalablePositionalAes
     get() = GroupAes(this)
+

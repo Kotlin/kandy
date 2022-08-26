@@ -1,10 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.letsPlot.intern.toSpec
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.dsl.source
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
@@ -13,6 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.letsPlot.intern.toSpec
 import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -146,7 +145,21 @@ internal class LayerWrapperTest {
                     "width" to 0.9,
                     "kind" to "pos"
                 ),
-                "geom" to "bar"
+                "geom" to "bar",
+                "data_meta" to mapOf<String, Any>(
+                    "mapping_annotations" to
+                            listOf(
+                                mapOf<String, Any>(
+                                    "aes" to "fill",
+                                    "annotation" to "as_discrete",
+                                    "parameters" to mapOf<String, Any?>(
+                                        "label" to "BAFGA",
+                                        "order_by" to null,
+                                        "order" to null
+                                    )
+                                )
+                            )
+                )
             ),
             wrappedLayer.toSpec()
         )
