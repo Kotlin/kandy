@@ -26,3 +26,7 @@ tasks {
         kotlinOptions.jvmTarget = "11"
     }
 }
+
+tasks.processJupyterApiResources {
+    libraryProducers = listOf("org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.Integration")
+}
