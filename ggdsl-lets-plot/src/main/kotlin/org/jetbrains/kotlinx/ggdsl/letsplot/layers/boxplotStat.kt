@@ -30,9 +30,12 @@ class BoxplotStatContext(
         }
     }
     @PublishedApi
-    internal val x = XAes(this)
+    internal val _x = XAes(this)
     @PublishedApi
-    internal val y = YAes(this)
+    internal val _y = YAes(this)
+
+    val x = XDummyAes(this)
+    val y = YDummyAes(this)
 
     val alpha = AlphaAes(this)
     val fillColor = FillAes(this)
@@ -95,8 +98,8 @@ inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
         BoxplotStatContext(data, varWidth)
             .apply {
                 copyFrom(this@boxplot)
-                x(sourceX)
-                y(sourceY)
+                _x(sourceX)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(BOXPLOT_STAT)
@@ -113,8 +116,8 @@ inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
         BoxplotStatContext(data, varWidth)
             .apply {
                 copyFrom(this@boxplot)
-                x(sourceX)
-                y(sourceY)
+                _x(sourceX)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(BOXPLOT_STAT)

@@ -27,7 +27,9 @@ class QQContext(
         }
     }
     @PublishedApi
-    internal val sample = SampleAes(this)
+    internal val _sample = SampleAes(this)
+
+    val sample = SampleDummyAes(this)
 
     val alpha = AlphaAes(this)
     val fillColor = FillAes(this)
@@ -87,7 +89,7 @@ inline fun <reified T : Any> PlotContext.qq(
         QQContext(data, distribution)
             .apply {
                 copyFrom(this@qq)
-                sample(source)
+                _sample(source)
             }
             .apply(block)
             .toLayer(QQ)
@@ -103,7 +105,7 @@ inline fun <reified T : Any> PlotContext.qq(
         QQContext(data, distribution)
             .apply {
                 copyFrom(this@qq)
-                sample(source)
+                _sample(source)
             }
             .apply(block)
             .toLayer(QQ)

@@ -38,7 +38,9 @@ class HistogramContext(
         }
     }
     @PublishedApi
-    internal val x = XAes(this)
+    internal val _x = XAes(this)
+    val x = XDummyAes(this)
+
     val y = YAes(this)
 
     val alpha = AlphaAes(this)
@@ -99,7 +101,7 @@ inline fun <reified T : Any> PlotContext.histogram(
         HistogramContext(data, bins, boundary, center)
             .apply {
                 copyFrom(this@histogram)
-                x(source)
+                _x(source)
             }
             .apply(block)
             .toLayer(HISTOGRAM)
@@ -117,7 +119,7 @@ inline fun <reified T : Any> PlotContext.histogram(
         HistogramContext(data, bins, boundary, center)
             .apply {
                 copyFrom(this@histogram)
-                x(source)
+                _x(source)
             }
             .apply(block)
             .toLayer(HISTOGRAM)

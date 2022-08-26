@@ -30,10 +30,13 @@ class ViolinContext(
 ) : LayerContext() {
 
     @PublishedApi
-    internal val x = XAes(this)
+    internal val _x = XAes(this)
 
     @PublishedApi
-    internal val y = YAes(this)
+    internal val _y = YAes(this)
+
+    val x = XDummyAes(this)
+    val y = YDummyAes(this)
 
 
     val alpha = AlphaAes(this)
@@ -158,8 +161,8 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
         ViolinContext(data, drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax)
             .apply {
                 copyFrom(this@violin)
-                x(sourceX)
-                y(sourceY)
+                _x(sourceX)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(VIOLIN)
@@ -182,7 +185,7 @@ inline fun <reified T : Any> PlotContext.violin(
         ViolinContext(data, drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax)
             .apply {
                 copyFrom(this@violin)
-                y(sourceY)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(VIOLIN)
@@ -206,8 +209,8 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
         ViolinContext(data, drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax)
             .apply {
                 copyFrom(this@violin)
-                x(sourceX)
-                y(sourceY)
+                _x(sourceX)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(VIOLIN)

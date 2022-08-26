@@ -32,9 +32,12 @@ class Bin2DContext(
         }
     }
     @PublishedApi
-    internal val x = XAes(this)
+    internal val _x = XAes(this)
     @PublishedApi
-    internal val y = YAes(this)
+    internal val _y = YAes(this)
+
+    val x = XDummyAes(this)
+    val y = YDummyAes(this)
 
     val width = WidthPosAes(this)
     val height =  HeightPosAes(this)
@@ -131,8 +134,8 @@ inline fun <reified T : Any, reified R: Any> PlotContext.bin2D(
         Bin2DContext(data, bins, drop)
             .apply {
                 copyFrom(this@bin2D)
-                x(sourceX)
-                y(sourceY)
+                _x(sourceX)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(BIN_2D)
@@ -150,8 +153,8 @@ inline fun <reified T : Any, reified R: Any> PlotContext.bin2D(
         Bin2DContext(data, bins, drop)
             .apply {
                 copyFrom(this@bin2D)
-                x(sourceX)
-                y(sourceY)
+                _x(sourceX)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(BIN_2D)

@@ -23,17 +23,20 @@ val CONTOUR_FILLED = LetsPlotGeom("contour_filled")
 
 
 @PlotDslMarker
-// todo move x/y?
 class ContourFilledContext(
     override var data: MutableNamedData,
     bins: Bins?
 ) : WithBinsContext(bins) {
     @PublishedApi
-    internal val x = XAes(this)
+    internal val _x = XAes(this)
     @PublishedApi
-    internal val y = YAes(this)
+    internal val _y = YAes(this)
     @PublishedApi
-    internal val z = ZAes(this)
+    internal val _z = ZAes(this)
+
+    val x = XDummyAes(this)
+    val y = YDummyAes(this)
+    val z = ZDummyAes(this)
 
     val alpha = AlphaAes(this)
     val fillColor = FillAes(this)
@@ -85,9 +88,9 @@ inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.co
         ContourFilledContext(data, bins)
             .apply {
                 copyFrom(this@contourFilled)
-                x(sourceX)
-                y(sourceY)
-                z(sourceZ)
+                _x(sourceX)
+                _y(sourceY)
+                _z(sourceZ)
             }
             .apply(block)
             .toLayer(CONTOUR_FILLED)
@@ -105,9 +108,9 @@ inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.co
         ContourFilledContext(data, bins)
             .apply {
                 copyFrom(this@contourFilled)
-                x(sourceX)
-                y(sourceY)
-                z(sourceZ)
+                _x(sourceX)
+                _y(sourceY)
+                _z(sourceZ)
             }
             .apply(block)
             .toLayer(CONTOUR_FILLED)

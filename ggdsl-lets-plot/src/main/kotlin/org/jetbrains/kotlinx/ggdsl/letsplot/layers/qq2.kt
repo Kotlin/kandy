@@ -18,9 +18,12 @@ class QQ2Context(
     override var data: MutableNamedData,
 ) : LayerContext() {
     @PublishedApi
-    internal val x = XAes(this)
+    internal val _x = XAes(this)
     @PublishedApi
-    internal val y = XAes(this)
+    internal val _y = XAes(this)
+
+    val x = XDummyAes(this)
+    val y = YDummyAes(this)
 
     val alpha = AlphaAes(this)
     val fillColor = FillAes(this)
@@ -75,8 +78,8 @@ inline fun <reified T : Any, reified R: Any> PlotContext.qq2(
         QQ2Context(data)
             .apply {
                 copyFrom(this@qq2)
-                x(sourceX)
-                y(sourceY)
+                _x(sourceX)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(QQ2)
@@ -92,8 +95,8 @@ inline fun <reified T : Any, reified R: Any> PlotContext.qq2(
         QQ2Context(data)
             .apply {
                 copyFrom(this@qq2)
-                x(sourceX)
-                y(sourceY)
+                _x(sourceX)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(QQ2)

@@ -22,9 +22,12 @@ class DensityContext(
 ) : LayerContext() {
 
     @PublishedApi
-    internal val x = XAes(this)
+    internal val _x = XAes(this)
     @PublishedApi
-    internal val y = YAes(this)
+    internal val _y = YAes(this)
+
+    val x = XDummyAes(this)
+    val y = YDummyAes(this)
 
 
     val alpha = AlphaAes(this)
@@ -118,7 +121,7 @@ inline fun <reified T : Any> PlotContext.density(
         DensityContext(data, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax)
             .apply {
                 copyFrom(this@density)
-                x(source)
+                _x(source)
             }
             .apply(block)
             .toLayer(DENSITY)
@@ -139,7 +142,7 @@ inline fun <reified T : Any> PlotContext.density(
         DensityContext(data, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax)
             .apply {
                 copyFrom(this@density)
-                x(source)
+                _x(source)
             }
             .apply(block)
             .toLayer(DENSITY)

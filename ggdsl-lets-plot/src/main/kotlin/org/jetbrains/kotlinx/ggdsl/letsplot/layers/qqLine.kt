@@ -31,7 +31,9 @@ class QQLineContext(
         }
     }
     @PublishedApi
-    internal val sample = SampleAes(this)
+    internal val _sample = SampleAes(this)
+
+    val sample = SampleDummyAes(this)
 
     val alpha = AlphaAes(this)
     val color = ColorAes(this)
@@ -94,7 +96,7 @@ inline fun <reified T : Any> PlotContext.qqLine(
         QQLineContext(data, distribution, quantiles)
             .apply {
                 copyFrom(this@qqLine)
-                sample(source)
+                _sample(source)
             }
             .apply(block)
             .toLayer(QQ_LINE)
@@ -111,7 +113,7 @@ inline fun <reified T : Any> PlotContext.qqLine(
         QQLineContext(data, distribution, quantiles)
             .apply {
                 copyFrom(this@qqLine)
-                sample(source)
+                _sample(source)
             }
             .apply(block)
             .toLayer(QQ_LINE)

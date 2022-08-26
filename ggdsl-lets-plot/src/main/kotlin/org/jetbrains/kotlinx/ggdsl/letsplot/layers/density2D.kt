@@ -29,10 +29,13 @@ class Density2DContext(
 ) : LayerContext() {
     // todo internal
     @PublishedApi
-    internal val x = XAes(this)
+    internal val _x = XAes(this)
 
     @PublishedApi
-    internal val y = YAes(this)
+    internal val _y = YAes(this)
+
+    val x = XDummyAes(this)
+    val y = YDummyAes(this)
 
      object Statistics {
         val LEVEL = Density2DStat.Level
@@ -131,8 +134,8 @@ inline fun <reified T : Any, reified R: Any> PlotContext.density2D(
         Density2DContext(data, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax)
             .apply {
                 copyFrom(this@density2D)
-                x(sourceX)
-                y(sourceY)
+                _x(sourceX)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(DENSITY_2D)
@@ -154,8 +157,8 @@ inline fun <reified T : Any, reified R: Any> PlotContext.density2D(
         Density2DContext(data, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax)
             .apply {
                 copyFrom(this@density2D)
-                x(sourceX)
-                y(sourceY)
+                _x(sourceX)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(DENSITY_2D)

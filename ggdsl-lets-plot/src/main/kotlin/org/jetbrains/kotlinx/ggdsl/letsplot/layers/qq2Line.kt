@@ -24,9 +24,12 @@ class QQ2LineContext(
         }
     }
     @PublishedApi
-    internal val x = XAes(this)
+    internal val _x = XAes(this)
     @PublishedApi
-    internal val y = XAes(this)
+    internal val _y = XAes(this)
+
+    val x = XDummyAes(this)
+    val y = YDummyAes(this)
 
     val alpha = AlphaAes(this)
     val color = ColorAes(this)
@@ -84,8 +87,8 @@ inline fun <reified T : Any, reified R: Any> PlotContext.qq2Line(
         QQ2LineContext(data, quantiles)
             .apply {
                 copyFrom(this@qq2Line)
-                x(sourceX)
-                y(sourceY)
+                _x(sourceX)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(QQ2_LINE)
@@ -102,8 +105,8 @@ inline fun <reified T : Any, reified R: Any> PlotContext.qq2Line(
         QQ2LineContext(data, quantiles)
             .apply {
                 copyFrom(this@qq2Line)
-                x(sourceX)
-                y(sourceY)
+                _x(sourceX)
+                _y(sourceY)
             }
             .apply(block)
             .toLayer(QQ2_LINE)

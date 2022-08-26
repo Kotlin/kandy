@@ -39,7 +39,10 @@ class FreqpolyContext(
     }
 
     @PublishedApi
-    internal val x = XAes(this)
+    internal val _x = XAes(this)
+
+    val x = XDummyAes(this)
+
     val y = YAes(this)
 
     val alpha = AlphaAes(this)
@@ -100,7 +103,7 @@ inline fun <reified T : Any> PlotContext.freqPoly(
         FreqpolyContext(data, bins, boundary, center)
             .apply {
                 copyFrom(this@freqPoly)
-                x(source)
+                _x(source)
             }
             .apply(block)
             .toLayer(FREQPOLY)
@@ -118,7 +121,7 @@ inline fun <reified T : Any> PlotContext.freqPoly(
         FreqpolyContext(data, bins, boundary, center)
             .apply {
                 copyFrom(this@freqPoly)
-                x(source)
+                _x(source)
                 boundary?.let {
                     boundary(it)
                 }

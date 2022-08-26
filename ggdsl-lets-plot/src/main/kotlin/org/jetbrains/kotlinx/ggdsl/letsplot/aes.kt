@@ -38,6 +38,18 @@ class ZAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = Z
 }
 
+class XDummyAes(override val context: BindingContext) : ScalablePositionalAes {
+    override val name: AesName = X
+}
+
+class YDummyAes(override val context: BindingContext) : ScalablePositionalAes {
+    override val name: AesName = Y
+}
+
+class ZDummyAes(override val context: BindingContext) : ScalablePositionalAes {
+    override val name: AesName = Z
+}
+
 internal val LOWER = AesName("lower")
 
 class LowerAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
@@ -286,6 +298,10 @@ data class DParamsAes(override val context: BindingContext) : NonPositionalAes<L
 val SAMPLE = AesName("sample")
 
 class SampleAes(override val context: BindingContext) : ScalablePositionalAes {
+    override val name: AesName = SAMPLE
+}
+
+class SampleDummyAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = SAMPLE
 }
 
