@@ -78,7 +78,7 @@ class SmoothContext(
                     seed(it)
                 }
             }
-            null -> TODO()
+            null -> {}
         }
     }
 

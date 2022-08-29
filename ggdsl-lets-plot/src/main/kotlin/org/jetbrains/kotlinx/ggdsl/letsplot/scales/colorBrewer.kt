@@ -60,16 +60,16 @@ data class ScaleCategoricalColorBrewer<DomainType: Any>(
 
 
 fun<DomainType: Any> continuousColorBrewer(
-    domainLimits: Pair<DomainType, DomainType>? = null,
     type: BrewerType?,
+    domainLimits: Pair<DomainType, DomainType>? = null,
     transform: Transformation? = null
 ) = ScaleContinuousColorBrewer(
     domainLimits?.toList(), type, transform
 )
 
 fun<DomainType: Any> categoricalColorBrewer(
-    domainCategories: List<DomainType>? = null,
     type: BrewerType?,
+    domainCategories: List<DomainType>? = null,
 ) = ScaleCategoricalColorBrewer(
     domainCategories, type
 )
