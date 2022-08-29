@@ -194,7 +194,7 @@ internal fun Scale.wrap(
                     }
                 }
 
-                is CustomScale -> TODO()
+               // is CustomScale -> TODO()
             }
         }
 
@@ -449,7 +449,7 @@ internal fun Scale.wrap(
                 }
 
                 is CustomScale -> when (this) {
-                    is ScaleContinuousColorHue<*> -> when (aes) {
+                    is ScaleColorHue<*> -> when (aes) {
                         COLOR -> scaleColorHue(
                             huesRange,
                             chroma,
@@ -475,6 +475,32 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.toLP(),
+                            trans = transform?.name
+                        )
+
+                        else -> TODO()
+                    }
+
+                    is ScaleColorBrewer<*> -> when (aes) {
+                        COLOR -> scaleColorBrewer(
+                            type = type?.name,
+                            palette = type?.palette?.name,
+                            name = name,
+                            breaks = breaks?.map { it as Number }, // todo
+                            labels = labels,
+                            guide = legendType,
+                            limits = limits,
+                            trans = transform?.name
+                        )
+
+                        FILL -> scaleFillBrewer(
+                            type = type?.name,
+                            palette = type?.palette?.name,
+                            name = name,
+                            breaks = breaks?.map { it as Number }, // todo
+                            labels = labels,
+                            guide = legendType,
+                            limits = limits,
                             trans = transform?.name
                         )
 
@@ -628,6 +654,13 @@ internal fun Scale.wrap(
 
 }
 
+internal fun FreeScale.wrap(featureBuffer: MutableList<Feature>)  {
+    when(this) {
+        is FreePositionalScale<*> -> featureBuffer.add(scale.wrap(aes, domainType, scaleParameters)!!) // TODO
+        else -> TODO()
+    }
+}
+
 // TODO
 internal fun Pair<Any, Any>?.toLP() = this?.let { (it.first as Number) to (it.second as Number) }
 
@@ -663,6 +696,7 @@ internal fun LetsPlotLayout.wrap(featureBuffer: MutableList<Feature>) {
 fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
     val featureBuffer = buildList {
         layers.forEach { it.wrap(this) }
+        freeScales.forEach { it.value.wrap(this) }
         features.forEach { it.value.wrap(this) }
         (layout as? LetsPlotLayout)?.wrap(this) // todo
     }

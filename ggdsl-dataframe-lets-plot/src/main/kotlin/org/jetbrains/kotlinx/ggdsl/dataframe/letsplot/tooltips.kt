@@ -26,7 +26,7 @@ fun value(column: ColumnReference<*>): String {
  * @param column
  */
 fun LayerTooltipsContext.line(column: ColumnReference<*>) {
-    lineBuffer.add("@|@${column.name()}")
+    line("@|@${column.name()}")
 }
 
 

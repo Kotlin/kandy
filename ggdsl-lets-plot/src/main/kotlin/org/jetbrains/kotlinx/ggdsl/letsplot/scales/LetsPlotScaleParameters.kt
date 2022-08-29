@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.BaseScaledNonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.BaseScaledPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.scale.FreePositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ScaleParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Axis
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Legend
@@ -13,6 +14,12 @@ data class NonPositionalParameters<DomainType : Any, RangeType : Any>
     (val legend: Legend<DomainType, RangeType>) : LetsPlotScaleParameters
 
 fun <DomainType : Any> BaseScaledPositionalMapping<DomainType>.with(
+    block: PositionalParameters<DomainType>.() -> Unit
+) {
+    scaleParameters = PositionalParameters(Axis<DomainType>()).apply(block)
+}
+
+fun <DomainType : Any> FreePositionalScale<DomainType>.with(
     block: PositionalParameters<DomainType>.() -> Unit
 ) {
     scaleParameters = PositionalParameters(Axis<DomainType>()).apply(block)

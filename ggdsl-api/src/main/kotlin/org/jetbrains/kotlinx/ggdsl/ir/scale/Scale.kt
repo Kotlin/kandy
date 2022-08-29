@@ -18,4 +18,4 @@ interface ContinuousScale : Scale {
  * Categorical scale interface. Categorical scale wraps a function
  * that acts from one finite set to another.
  */
-sealed interface CategoricalScale : Scale
+interface CategoricalScale : Scale

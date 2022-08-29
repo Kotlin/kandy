@@ -10,10 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
-import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalUnspecifiedScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 
 /**
  * Internal collector of mappings and settings.
@@ -21,6 +18,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 class BindingCollector internal constructor() {
     val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
     val settings: MutableMap<AesName, Setting> = mutableMapOf()
+    val freeScales: MutableMap<AesName, FreeScale> = mutableMapOf()
 
     fun copyFrom(other: BindingCollector) {
         mappings.putAll(other.mappings)
@@ -137,4 +135,5 @@ class PlotContext : BindingContext() {
     val layers: MutableList<Layer> = mutableListOf()
     // todo how to hide?
     val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
+
 }

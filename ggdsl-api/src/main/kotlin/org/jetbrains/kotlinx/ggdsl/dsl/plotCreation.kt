@@ -3,14 +3,9 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 
-/**
- * Creates a new [Plot] from this [PlotContext]
- *
- * @return new [Plot]
- */
 @PublishedApi
 internal fun PlotContext.toPlot(): Plot {
-    return Plot(data, layers, layout, features)
+    return Plot(data, layers, layout, features, bindingCollector.freeScales)
 }
 
 /**
