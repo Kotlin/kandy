@@ -120,6 +120,7 @@ internal fun Geom.toLPGeom(): GeomOptions {
         RECT -> org.jetbrains.letsPlot.Geom.rect()
         RIBBON -> org.jetbrains.letsPlot.Geom.ribbon()
         SEGMENT -> org.jetbrains.letsPlot.Geom.segment()
+        SMOOTH -> GeomOptions(GeomKind.SMOOTH)
         STEP -> org.jetbrains.letsPlot.Geom.step()
         TILE -> org.jetbrains.letsPlot.Geom.tile()
         TEXT -> org.jetbrains.letsPlot.Geom.text()
