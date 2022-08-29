@@ -34,7 +34,7 @@ fun CustomTheme.wrap(): theme {
         rect = global.background?.wrap(),
         text = global.text?.wrap(),// TODO
         title = null,// TODO
-        axis = null,//TODO
+        axis = if (axis.blank == true) { "blank" } else null, //TODO
         axisOntop = axis.onTop,
         axisOntopX = xAxis.onTop,
         axisOntopY = yAxis.onTop,

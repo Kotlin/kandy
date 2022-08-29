@@ -139,8 +139,8 @@ data class Axis internal constructor(
     override var line: LineParameters? = null,
     val tooltip: AxisTooltip = AxisTooltip(),
     // TODO blank all??
-    //var blank: Boolean?
 ) : SelfInvocationContext, WithText, WithTitle, WithLine {
+    internal var blank: Boolean? = null
     fun ticks(block: LineParameters.() -> Unit) {
         ticks = LineParameters().apply(block)
     }
@@ -342,7 +342,11 @@ data class CustomTheme @PublishedApi internal constructor(
     val plotCanvas: Plot = Plot(),
     val strip: Strip = Strip(),
     val layerTooltips: LayerTooltips = LayerTooltips()
-) : Theme
+) : Theme {
+    fun blankAxes(){
+        axis.blank = true
+    }
+}
 
 inline fun theme(block: CustomTheme.() -> Unit): CustomTheme {
     return CustomTheme().apply(block)

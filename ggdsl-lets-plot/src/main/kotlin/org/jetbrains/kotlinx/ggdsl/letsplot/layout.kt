@@ -17,16 +17,18 @@ data class LetsPlotLayout(
     var xAxisLabel: String? = null,
     var yAxisLabel: String? = null,
 
-   // @PublishedApi
-     var theme: Theme? = null,
-
     var size: Pair<Int, Int>? = null
 ) : Layout {
 
-    fun theme(theme: Theme) {
-        this.theme = theme
-    }
+    @PublishedApi
+    internal var theme: Theme? = null
+    @PublishedApi
+    internal var customTheme: CustomTheme? = null
 
+    fun theme(theme: Theme, block: CustomTheme.() -> Unit = {}) {
+        this.theme = theme
+        customTheme = CustomTheme().apply(block)
+    }
 
     inline fun theme(block: CustomTheme.() -> Unit) {
         theme = CustomTheme().apply(block)
