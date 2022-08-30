@@ -81,7 +81,7 @@ inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.co
     sourceX: DataSource<TX>,
     sourceY: DataSource<TY>,
     sourceZ: DataSource<TZ>,
-    bins: Bins?,
+    bins: Bins? = null,
     block: ContourFilledContext.() -> Unit
 ) {
     layers.add(
@@ -101,7 +101,7 @@ inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.co
     sourceX: Iterable<TX>,
     sourceY: Iterable<TY>,
     sourceZ: Iterable<TZ>,
-    bins: Bins?,
+    bins: Bins? = null,
     block: ContourFilledContext.() -> Unit
 ) {
     layers.add(
