@@ -450,6 +450,30 @@ internal fun Scale.wrap(
                 }
 
                 is CustomScale -> when (this) {
+                    is ScaleColorGrey<*> -> when(aes) {
+                        COLOR -> scaleColorGrey(
+                            paletteRange?.first,
+                            paletteRange?.second,
+                            name = name,
+                            breaks = breaks?.map { it as Number }, // todo
+                            labels = labels,
+                            guide = legendType,
+                            limits = domainLimits.toLP(),
+                            trans = transform?.name
+                        )
+                        FILL -> scaleFillGrey(
+                            paletteRange?.first,
+                            paletteRange?.second,
+                            name = name,
+                            breaks = breaks?.map { it as Number }, // todo
+                            labels = labels,
+                            guide = legendType,
+                            limits = domainLimits.toLP(),
+                            trans = transform?.name
+                        )
+                        else -> TODO()
+                    }
+
                     is ScaleColorHue<*> -> when (aes) {
                         COLOR -> scaleColorHue(
                             huesRange,
