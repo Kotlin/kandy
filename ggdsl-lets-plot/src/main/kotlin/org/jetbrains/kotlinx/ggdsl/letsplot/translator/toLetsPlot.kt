@@ -687,11 +687,9 @@ internal fun LetsPlotLayout.wrap(featureBuffer: MutableList<Feature>) {
     theme?.let {
         featureBuffer.add(it.wrap())
     }
-    /*
-        title?.let {
-            featureBuffer.add(ggtitle(it))
-        }
-        */
+    customTheme?.let {
+        featureBuffer.add(it.wrap())
+    }
 }
 
 fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
