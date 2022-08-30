@@ -1,6 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.layoutAccessor
 import org.jetbrains.kotlinx.ggdsl.ir.Layout
 
 /**
@@ -17,5 +17,5 @@ data class DefaultLayout(
 
 
 inline fun PlotContext.layout(block: DefaultLayout.() -> Unit) {
-    layout = DefaultLayout().apply(block)
+    layoutAccessor = DefaultLayout().apply(block)
 }

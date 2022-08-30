@@ -129,7 +129,7 @@ fun LayerContext.toLayer(geom: Geom): Layer {
 class PlotContext : BindingContext() {
     override var data: MutableNamedData = mutableMapOf()
 
-    var layout: Layout? = null
+    internal var _layout: Layout? = null
 
     // todo how to hide?
     val layers: MutableList<Layer> = mutableListOf()

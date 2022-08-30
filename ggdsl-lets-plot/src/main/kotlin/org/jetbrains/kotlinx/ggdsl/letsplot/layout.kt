@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot
 
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.layoutAccessor
 import org.jetbrains.kotlinx.ggdsl.ir.Layout
 import org.jetbrains.kotlinx.ggdsl.letsplot.theme.CustomTheme
 import org.jetbrains.kotlinx.ggdsl.letsplot.theme.Theme
@@ -36,5 +37,13 @@ data class LetsPlotLayout(
 }
 
 inline fun PlotContext.layout(block: LetsPlotLayout.() -> Unit) {
-    layout = LetsPlotLayout().apply(block)
+    layoutAccessor = LetsPlotLayout().apply(block)
 }
+
+val PlotContext.layout: LetsPlotLayout
+    get() {
+        if(this.layoutAccessor == null) {
+            this.layoutAccessor = LetsPlotLayout()
+        }
+        return this.layoutAccessor as LetsPlotLayout
+    }

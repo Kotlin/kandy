@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 
 @PublishedApi
 internal fun PlotContext.toPlot(): Plot {
-    return Plot(data, layers, layout, features, bindingCollector.freeScales)
+    return Plot(data, layers, _layout, features, bindingCollector.freeScales)
 }
 
 /**
