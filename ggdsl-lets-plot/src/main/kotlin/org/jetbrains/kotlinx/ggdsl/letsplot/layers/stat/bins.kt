@@ -37,11 +37,13 @@ abstract class WithBinsContext(bins: Bins?): LayerContext() {
 }
 
 interface Bins2D {
-    data class ByNumber(val numberX: Int, val numberY: Int) : Bins2D
-    data class ByWidth(val widthX: Double, val widthY: Double) : Bins2D
+    data class ByNumber internal constructor(val numberX: Int, val numberY: Int) : Bins2D
+    data class ByWidth internal constructor (val widthX: Double, val widthY: Double) : Bins2D
 
-    fun byNumber(numberX: Int, numberY: Int) = ByNumber(numberX, numberY)
-    fun byWidth(widthX: Double, widthY: Double) = ByWidth(widthX, widthY)
+    companion object {
+        fun byNumber(numberX: Int, numberY: Int) = ByNumber(numberX, numberY)
+        fun byWidth(widthX: Double, widthY: Double) = ByWidth(widthX, widthY)
+    }
 }
 
 abstract class WithBins2DContext(bins: Bins2D?): LayerContext() {
