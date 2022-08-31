@@ -139,7 +139,7 @@ internal class BindingTest {
         }
         assertEquals<Map<AesName, Mapping>>(
             mapOf(
-                MOCK_AES_SCLB_POS to ScaledPositionalDefaultMapping(
+                MOCK_AES_SCLB_POS to ScaledPositionalUnspecifiedMapping(
                     MOCK_AES_SCLB_POS, mockSource.scaled(
                         continuousPos()
                     ), typeOf<Float>()

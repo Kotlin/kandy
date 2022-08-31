@@ -199,8 +199,8 @@ inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPosit
  */
 inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     sourceScaledDefault: SourceScaledPositionalUnspecified<DomainType>
-): ScaledPositionalDefaultMapping<DomainType> {
-    val mapping = ScaledPositionalDefaultMapping(
+): ScaledPositionalUnspecifiedMapping<DomainType> {
+    val mapping = ScaledPositionalUnspecifiedMapping(
         this.name,
         sourceScaledDefault,
         typeOf<DomainType>()

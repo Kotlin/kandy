@@ -100,7 +100,7 @@ internal class CustomizationTest {
                         dataset,
                         customGeom,
                         mapOf(
-                            X to ScaledPositionalDefaultMapping(
+                            X to ScaledPositionalUnspecifiedMapping(
                                 X,
                                 SourceScaledPositionalUnspecified(mockSrcFloat, PositionalContinuousUnspecifiedScale()),
                                 typeOf<Float>()

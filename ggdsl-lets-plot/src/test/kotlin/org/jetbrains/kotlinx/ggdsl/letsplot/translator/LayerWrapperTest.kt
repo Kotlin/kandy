@@ -92,7 +92,7 @@ internal class LayerWrapperTest {
                     ),
                     typeOf<Float>()
                 ),
-                Y to ScaledPositionalDefaultMapping(
+                Y to ScaledPositionalUnspecifiedMapping(
                     Y,
                     SourceScaledPositionalUnspecified(
                         source<Double>("VAL_V"),

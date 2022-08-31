@@ -44,7 +44,7 @@ internal class LayersTest {
                         mapOf(),
                         AREA,
                         mapOf(
-                            Y to ScaledPositionalDefaultMapping(
+                            Y to ScaledPositionalUnspecifiedMapping(
                                 Y, SourceScaledPositionalUnspecified(
                                     time,
                                     PositionalContinuousUnspecifiedScale()

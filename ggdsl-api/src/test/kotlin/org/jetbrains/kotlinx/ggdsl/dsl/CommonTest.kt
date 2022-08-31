@@ -101,7 +101,7 @@ internal class CommonTest {
             }
         }
 
-        val xMapping = ScaledPositionalDefaultMapping(
+        val xMapping = ScaledPositionalUnspecifiedMapping(
             X, SourceScaledPositionalUnspecified(width, PositionalContinuousUnspecifiedScale()), typeOf<Double>()
         )
         val yMapping = ScaledPositionalMapping(

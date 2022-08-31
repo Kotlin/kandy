@@ -9,7 +9,6 @@ import org.jetbrains.kotlinx.ggdsl.echarts.util.color.GradientOption
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.LinearGradientColor
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.SimpleColorOption
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
@@ -92,7 +91,7 @@ internal class UnitWrappingsTest {
             null,
             LINE,
             mapOf(
-                X to ScaledPositionalDefaultMapping(
+                X to ScaledPositionalUnspecifiedMapping(
                     X, SourceScaledPositionalUnspecified(
                         source<Float>("time"),
                         PositionalContinuousUnspecifiedScale()

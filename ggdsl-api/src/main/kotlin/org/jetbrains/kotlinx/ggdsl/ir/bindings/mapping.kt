@@ -92,7 +92,7 @@ data class ScaledUnspecifiedDefaultNonPositionalMapping<DomainType : Any, RangeT
  * @property sourceScaled the scaled default positional source to which the mapping is applied
  * @property domainType type of domain
  */
-data class ScaledPositionalDefaultMapping<DomainType : Any>(
+data class ScaledPositionalUnspecifiedMapping<DomainType : Any>(
     override val aes: AesName,
     override val sourceScaled: SourceScaledPositionalUnspecified<DomainType>,
     override val domainType: KType

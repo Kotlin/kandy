@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledPositionalUnspecifiedMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.BoxplotStat
@@ -63,13 +63,13 @@ class BoxplotStatContext(
 
     object Statistics {
         // todo Others
-        val LEVEL = BoxplotStat.Middle
+        val MIDDLE = BoxplotStat.Middle
     }
 
     val Stat = Statistics
 
     fun orderBy(stat: BoxplotStat<*>, descending: Boolean = false) {
-        val mapping = bindingCollector.mappings[X] as ScaledUnspecifiedDefaultPositionalMapping<*>
+        val mapping = bindingCollector.mappings[X] as ScaledPositionalUnspecifiedMapping<*>
         if (mapping.scaleParameters == null) {
             mapping.scaleParameters = PositionalParameters(Axis()).apply {
                 orderBy = OrderBy(
@@ -126,7 +126,7 @@ inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
         BoxplotStatContext(data, varWidth)
             .apply {
                 copyFrom(this@boxplot)
-                _x(sourceX)
+                _x(sourceX.scaled(categoricalPos()))
                 _y(sourceY)
             }
             .apply(block)
@@ -144,7 +144,7 @@ inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
         BoxplotStatContext(data, varWidth)
             .apply {
                 copyFrom(this@boxplot)
-                _x(sourceX)
+                _x(sourceX.scaled(categoricalPos()))
                 _y(sourceY)
             }
             .apply(block)
