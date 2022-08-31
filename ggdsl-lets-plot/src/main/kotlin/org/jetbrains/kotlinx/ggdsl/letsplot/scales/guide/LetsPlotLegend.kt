@@ -20,7 +20,7 @@ data class ColorBar internal constructor(
 ) : LegendType
 
 @PlotDslMarker
-data class Legend<DomainType : Any, RangeType : Any>(
+data class Legend<DomainType : Any, out RangeType : Any>(
     var name: String? = null,
     var breaks: List<DomainType>? = null,
     var labels: List<String>? = null, // todo pair list and format
