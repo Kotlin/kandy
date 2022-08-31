@@ -34,7 +34,11 @@ internal fun Mapping.wrap(): Pair<String, Any> {
     return when (this) {
         is NonScalablePositionalMapping<*> -> aes.name to source.id
         is ScaledMapping<*> -> when(this.sourceScaled.scale) {
-            is CategoricalScale -> aes.name to asDiscrete(sourceScaled.source.id)
+            is CategoricalScale -> aes.name to asDiscrete(
+                sourceScaled.source.id,
+                order = (scaleParameters as? PositionalParameters<*>)?.orderBy?.order,
+                orderBy = (scaleParameters as? PositionalParameters<*>)?.orderBy?.name
+            )
             else -> aes.name to sourceScaled.source.id
         }
     }

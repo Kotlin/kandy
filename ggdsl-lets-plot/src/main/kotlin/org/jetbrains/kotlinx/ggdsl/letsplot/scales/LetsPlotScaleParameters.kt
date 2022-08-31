@@ -9,7 +9,15 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Legend
 
 interface LetsPlotScaleParameters : ScaleParameters
 
-data class PositionalParameters<DomainType : Any>(val axis: Axis<DomainType>) : LetsPlotScaleParameters
+internal data class OrderBy(
+    val name: String,
+    val order: Int = 1
+)
+
+data class PositionalParameters<DomainType : Any>(
+    val axis: Axis<DomainType>) : LetsPlotScaleParameters {
+        internal var orderBy: OrderBy? = null
+    }
 data class NonPositionalParameters<DomainType : Any, RangeType : Any>
     (val legend: Legend<DomainType, RangeType>) : LetsPlotScaleParameters
 

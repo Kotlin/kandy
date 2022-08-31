@@ -1,8 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.BoxplotStat
+import org.jetbrains.kotlinx.ggdsl.letsplot.scales.OrderBy
+import org.jetbrains.kotlinx.ggdsl.letsplot.scales.PositionalParameters
+import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Axis
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
 val BOXPLOT_STAT = LetsPlotGeom("boxplot_stat")
@@ -29,8 +34,10 @@ class BoxplotStatContext(
             varWidth(it)
         }
     }
+
     @PublishedApi
     internal val _x = XAes(this)
+
     @PublishedApi
     internal val _y = YAes(this)
 
@@ -43,6 +50,7 @@ class BoxplotStatContext(
     val fatten = FattenAes(this)
 
     val width = WidthAes(this)
+
     /*  TODO*/
     val borderLineColor = ColorAes(this)
     val borderLineWidth = SizeAes(this)
@@ -52,6 +60,26 @@ class BoxplotStatContext(
 
     @PublishedApi
     internal val varWidth = VarWidthAes(this)
+
+    object Statistics {
+        // todo Others
+        val LEVEL = BoxplotStat.Middle
+    }
+
+    val Stat = Statistics
+
+    fun orderBy(stat: BoxplotStat<*>, descending: Boolean = false) {
+        val mapping = bindingCollector.mappings[X] as ScaledUnspecifiedDefaultPositionalMapping<*>
+        if (mapping.scaleParameters == null) {
+            mapping.scaleParameters = PositionalParameters(Axis()).apply {
+                orderBy = OrderBy(
+                    stat.name, if (descending) {
+                        -1
+                    } else 1
+                )
+            }
+        }
+    }
 
     /*
     @PublishedApi

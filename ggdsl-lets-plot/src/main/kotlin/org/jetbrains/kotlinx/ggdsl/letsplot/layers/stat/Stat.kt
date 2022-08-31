@@ -71,3 +71,9 @@ sealed interface ViolinStat<T> : Stat<T>{
     }
 }
 
+sealed interface BoxplotStat<T> : Stat<T>{
+    object Middle: BoxplotStat<Double> {
+        override val name = "..middle.."
+    }
+}
+
