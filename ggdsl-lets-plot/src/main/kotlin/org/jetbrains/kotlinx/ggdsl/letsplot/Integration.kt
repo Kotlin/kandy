@@ -27,12 +27,13 @@ internal class Integration : JupyterIntegration() {
         }
 
         import("org.jetbrains.kotlinx.ggdsl.letsplot.*")
-        import("org.jetbrains.kotlinx.ggdsl.letsplot.translator.*")
+        import("org.jetbrains.kotlinx.ggdsl.letsplot.export")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.facet.*")
-        import("org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.label.*")
+        import("org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.*")
+        import("org.jetbrains.kotlinx.ggdsl.letsplot.translator.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.scales.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.theme.*")
