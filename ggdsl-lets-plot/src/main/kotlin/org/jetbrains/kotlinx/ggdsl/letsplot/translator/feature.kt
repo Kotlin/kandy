@@ -36,8 +36,8 @@ internal fun FacetWrapFeature.wrap(): OptionsMap {
         ncol = nCol,
         nrow = nRow,
         scales = scalesSharing.name,
-        order = order.value,
-        format = format,
+        order = orders.map { it.value },
+        format = formats,
         dir = direction.name
     )
 }

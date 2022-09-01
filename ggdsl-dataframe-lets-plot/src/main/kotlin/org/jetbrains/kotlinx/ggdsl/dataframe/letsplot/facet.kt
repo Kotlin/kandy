@@ -1,9 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.ggdsl.dataframe.toDataSource
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.facet.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.ScalesSharing
 
 /**
  * Splits data by one or two faceting variables. For each data subset creates
@@ -89,26 +93,9 @@ fun PlotContext.facetGrid(
 
 }
 
-/**
- * Splits data by one or more faceting variables.
- * For each data subset creates a plot panel and lays out panels according to the `nCol`, `nRow` and `direction` settings.
- *
- * TODO params
- * @see org.jetbrains.letsPlot.facet.facetWrap
- */
-fun PlotContext.facetWrap(
-    facetsColumns: List<ColumnReference<*>>,
-    dsColumns: List<DataSource<*>> = listOf(),
-    nCol: Int? = null,
-    nRow: Int? = null,
+// todo
+inline fun<reified T: Any> FacetWrapContext.facet(
+    source: ColumnReference<T>,
     order: OrderDirection = OrderDirection.ASCENDING,
-    scalesSharing: ScalesSharing = ScalesSharing.FIXED,
-    direction: Direction = Direction.HORIZONTAL
-) {
-    features[FacetWrapFeature.FEATURE_NAME] =
-        FacetWrapFeature(
-            facetsColumns.map { it.name() } + dsColumns.map { it.id }
-            , nCol, nRow, order, scalesSharing, direction
-        )
-
-}
+    format: String? = null
+) = facet(source.toDataSource(), order, format)

@@ -25,7 +25,13 @@ class FacetTest {
                 null,
                 mapOf(
                     FacetGridFeature.FEATURE_NAME to FacetGridFeature(
-                     "xSrc"
+                     "xSrc",
+                        null,
+                        null,
+                        OrderDirection.ASCENDING,
+                        OrderDirection.ASCENDING,
+                        null,
+                        null
                     )
                 )
             ),
@@ -52,8 +58,11 @@ class FacetTest {
                     FacetGridFeature.FEATURE_NAME to FacetGridFeature(
                         x = "xArg",
                         y = "yArg",
+                        null,
                         xOrder = OrderDirection.ASCENDING,
-                        yOrder = OrderDirection.DESCENDING
+                        yOrder = OrderDirection.DESCENDING,
+                        null,
+                        null,
                     )
                 )
             ),
