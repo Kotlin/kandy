@@ -98,7 +98,7 @@ fun PlotContext.facetGrid(
  */
 fun PlotContext.facetWrap(
     facetsColumns: List<ColumnReference<*>>,
-    dsColumns: List<DataSource<*>>,
+    dsColumns: List<DataSource<*>> = listOf(),
     nCol: Int? = null,
     nRow: Int? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
