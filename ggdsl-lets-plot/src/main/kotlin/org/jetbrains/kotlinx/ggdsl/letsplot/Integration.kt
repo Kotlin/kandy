@@ -27,7 +27,7 @@ internal class Integration : JupyterIntegration() {
         }
 
         import("org.jetbrains.kotlinx.ggdsl.letsplot.*")
-        import("org.jetbrains.kotlinx.ggdsl.letsplot.export")
+        import("org.jetbrains.kotlinx.ggdsl.letsplot.export.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.facet.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.*")
