@@ -47,7 +47,7 @@ fun PlotContext.facetGridY(
 
 }
 
-fun PlotContext.facetGridXY(
+fun PlotContext.facetGrid(
     x: ColumnReference<*>,
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
@@ -61,7 +61,7 @@ fun PlotContext.facetGridXY(
 
 }
 
-fun PlotContext.facetGridXY(
+fun PlotContext.facetGrid(
     x: ColumnReference<*>,
     y: DataSource<*>,
     scalesSharing: ScalesSharing? = null,
