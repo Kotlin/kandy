@@ -137,7 +137,7 @@ class FacetWrapContext @PublishedApi internal constructor(){
         direction: Direction = Direction.HORIZONTAL,
     ) =
         FacetWrapFeature(
-            facets.map { it.toString() },
+            facets.map { it.id },
             nCol,
             nRow,
             orders,
