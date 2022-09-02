@@ -616,30 +616,13 @@ internal fun Scale.wrap(
                 }
                 // TODO!!!
                 is NonPositionalUnspecifiedScale -> {
-                    val legend = (scaleParameters as NonPositionalParameters<*, *>?)?.legend
-
-                    val name = legend?.name
-                    val breaks = legend?.breaks
-                    val labels = legend?.labels
-                    val legendType = legend?.type?.let {
-                        when (it) {
-                            is None -> "none"
-                            is ColorBar -> guideColorbar(
-                                barHeight = it.barHeight,
-                                barWidth = it.barWidth,
-                                nbin = it.nBin
-                            )
-
-                            is DiscreteLegend -> guideLegend(
-                                nrow = it.nRow,
-                                ncol = it.nCol,
-                                byRow = it.byRow
-                            )
-                        }
-                    }
                     when (this) {
-                        NonPositionalCategoricalUnspecifiedScale -> null
-                        is NonPositionalContinuousUnspecifiedScale -> null
+                        NonPositionalCategoricalUnspecifiedScale ->
+                            NonPositionalCategoricalScale<Any, Any>()
+                                .wrap(aes, domainType, scaleParameters)
+                        is NonPositionalContinuousUnspecifiedScale ->
+                            NonPositionalContinuousScale<Any, Any>(transform = transform)
+                                .wrap(aes, domainType, scaleParameters)
                     }
                 }
 
