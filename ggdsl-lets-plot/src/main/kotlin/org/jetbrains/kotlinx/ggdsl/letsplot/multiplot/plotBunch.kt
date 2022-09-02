@@ -18,7 +18,7 @@ class PlotBunchBuffer {
     @PublishedApi
     internal val items: MutableList<PlotBunch.Item> = mutableListOf()
 
-    fun add(plot: Plot, x: Int, y: Int, width: Int?, height: Int? = null) {
+    fun add(plot: Plot, x: Int, y: Int, width: Int? = null, height: Int? = null) {
         items.add(PlotBunch.Item(plot, x, y, width, height))
     }
 }
