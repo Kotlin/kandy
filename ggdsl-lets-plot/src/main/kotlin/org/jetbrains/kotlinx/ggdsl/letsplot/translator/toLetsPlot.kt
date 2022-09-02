@@ -153,6 +153,7 @@ internal fun Scale.wrap(
             val name = axis?.name
             val breaks = axis?.breaks
             val labels = axis?.labels
+            val format = axis?.format
 
             when (this) {
                 is PositionalCategoricalScale<*> -> {
@@ -162,6 +163,7 @@ internal fun Scale.wrap(
                             name = name,
                             breaks = breaks,
                             labels = labels,
+                            format = format
                         )
 
                         Y -> scaleYDiscrete(
@@ -169,6 +171,7 @@ internal fun Scale.wrap(
                             name = name,
                             breaks = breaks,
                             labels = labels,
+                            format = format
                         )
 
                         else -> TODO("error")
@@ -183,7 +186,8 @@ internal fun Scale.wrap(
                             name = name,
                             breaks = breaks?.map { it as Number }, // TODO() }
                             labels = labels,
-                            trans = (transform as? Transformation)?.name
+                            trans = (transform as? Transformation)?.name,
+                            format = format
                             )
 
                         Y -> scaleYContinuous(
@@ -192,7 +196,8 @@ internal fun Scale.wrap(
                             name = name,
                             breaks = breaks?.map { it as Number }, // TODO() }
                             labels = labels,
-                            trans = (transform as? Transformation)?.name
+                            trans = (transform as? Transformation)?.name,
+                            format = format
                         )
 
                         else -> TODO()
@@ -209,6 +214,7 @@ internal fun Scale.wrap(
             val name = legend?.name
             val breaks = legend?.breaks
             val labels = legend?.labels
+            val format = legend?.format
             val legendType = legend?.type?.let {
                 when (it) {
                     is None -> "none"
@@ -230,13 +236,14 @@ internal fun Scale.wrap(
                 is NonPositionalCategoricalScale<*, *> -> {
                     when (aes) {
                         // todo check all
-                        SIZE, WIDTH, STROKE -> scaleSizeManual(
+                        SIZE/*, WIDTH, STROKE*/ -> scaleSizeManual(
                             values = rangeValues?.map { it as Number } ?: TODO("default scale size discrete"),
                             limits = domainCategories,
                             name = name,
                             breaks = breaks,
                             labels = labels,
-                            guide = legendType
+                            guide = legendType,
+                            format = format
 
                         )
 
@@ -247,7 +254,8 @@ internal fun Scale.wrap(
                                     name = name,
                                     breaks = breaks,
                                     labels = labels,
-                                    guide = legendType
+                                    guide = legendType,
+                                    format = format
 
                                 )
                             } else {
@@ -257,7 +265,8 @@ internal fun Scale.wrap(
                                     name = name,
                                     breaks = breaks,
                                     labels = labels,
-                                    guide = legendType
+                                    guide = legendType,
+                                    format = format
 
                                 )
                             }
@@ -270,7 +279,8 @@ internal fun Scale.wrap(
                                     name = name,
                                     breaks = breaks,
                                     labels = labels,
-                                    guide = legendType
+                                    guide = legendType,
+                                    format = format
 
                                 )
                             } else {
@@ -280,7 +290,8 @@ internal fun Scale.wrap(
                                     name = name,
                                     breaks = breaks,
                                     labels = labels,
-                                    guide = legendType
+                                    guide = legendType,
+                                    format = format
 
                                 )
                             }
@@ -293,7 +304,8 @@ internal fun Scale.wrap(
                             name = name,
                             breaks = breaks,
                             labels = labels,
-                            guide = legendType
+                            guide = legendType,
+                            format = format
 
                         )
 
@@ -305,7 +317,8 @@ internal fun Scale.wrap(
                             name = name,
                             breaks = breaks,
                             labels = labels,
-                            guide = legendType
+                            guide = legendType,
+                            format = format
 
                         )
 
@@ -316,7 +329,8 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks,
                                 labels = labels,
-                                guide = legendType
+                                guide = legendType,
+                                format = format
                             )
                         } else {
                             scaleShapeManual(
@@ -326,49 +340,10 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks,
                                 labels = labels,
-                                guide = legendType
+                                guide = legendType,
+                                format = format
                             )
                         }
-                        /*
-                        FILLED_SYMBOL -> if (rangeValues == null) {
-                            TODO()
-                        } else {
-                            scaleShapeManual(
-                                limits = domainCategories,
-                                values = rangeValues!!.map { (it as LetsPlotSymbol).shape },
-
-                                name = name,
-                                breaks = breaks,
-                                labels = labels,
-                                guide = legendType
-                            )
-
-                        }
-
-                        UNFILLED_SYMBOL -> if (rangeValues == null) {
-                            scaleShape(
-                                limits = domainCategories,
-
-                                name = name,
-                                breaks = breaks,
-                                labels = labels,
-                                guide = legendType
-                            )
-                        } else {
-                            scaleShapeManual(
-                                limits = domainCategories,
-                                values = rangeValues!!.map { (it as LetsPlotSymbol).shape },
-
-                                name = name,
-                                breaks = breaks,
-                                labels = labels,
-                                guide = legendType
-                            )
-
-                        }
-
-                         */
-
 
                         else -> TODO()
                     }
@@ -377,7 +352,7 @@ internal fun Scale.wrap(
                 is NonPositionalContinuousScale<*, *> -> {
                     when (aes) {
                         // todo check all
-                        SIZE, WIDTH, STROKE -> scaleSize(
+                        SIZE /*, WIDTH, STROKE */-> scaleSize(
                             limits = domainLimits.toLP(),
                             range = rangeLimits.toLP(),
 
@@ -386,7 +361,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
 
-                            trans = (transform as Transformation?)?.name
+                            trans = (transform as Transformation?)?.name,
+                            format = format
                         )
 
 
@@ -406,7 +382,8 @@ internal fun Scale.wrap(
                                 labels = labels,
                                 guide = legendType,
 
-                                trans = (transform as Transformation?)?.name
+                                trans = (transform as Transformation?)?.name,
+                                format = format
 
                             )
 
@@ -428,7 +405,8 @@ internal fun Scale.wrap(
                                 labels = labels,
                                 guide = legendType,
 
-                                trans = (transform as Transformation?)?.name
+                                trans = (transform as Transformation?)?.name,
+                                format = format
 
                             )
 
@@ -445,7 +423,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
 
-                            trans = (transform as Transformation?)?.name
+                            trans = (transform as Transformation?)?.name,
+                            format = format
 
                         ) // TODO
                         // TODO  SYMBOL -> TODO("cant apply contunuous scale")
@@ -463,7 +442,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.toLP(),
-                            trans = transform?.name
+                            trans = transform?.name,
+                            format = format
                         )
                         FILL -> scaleFillGrey(
                             paletteRange?.first,
@@ -473,7 +453,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.toLP(),
-                            trans = transform?.name
+                            trans = transform?.name,
+                            format = format
                         )
                         else -> TODO()
                     }
@@ -490,7 +471,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.toLP(),
-                            trans = transform?.name
+                            trans = transform?.name,
+                            format = format
                         )
 
                         FILL -> scaleFillHue(
@@ -504,7 +486,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.toLP(),
-                            trans = transform?.name
+                            trans = transform?.name,
+                            format = format
                         )
 
                         else -> TODO()
@@ -519,7 +502,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             limits = limits,
-                            trans = transform?.name
+                            trans = transform?.name,
+                            format = format
                         )
 
                         FILL -> scaleFillBrewer(
@@ -530,7 +514,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             limits = limits,
-                            trans = transform?.name
+                            trans = transform?.name,
+                            format = format
                         )
 
                         else -> TODO()
@@ -547,7 +532,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.toLP(),
-                            trans = transform?.name
+                            trans = transform?.name,
+                            format = format
                         )
 
                         FILL -> scaleFillGradient2(
@@ -560,7 +546,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.toLP(),
-                            trans = transform?.name
+                            trans = transform?.name,
+                            format = format
                         )
 
                         else -> TODO()
@@ -574,7 +561,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.toLP(),
-                            trans = transform?.name
+                            trans = transform?.name,
+                            format = format
                         )
 
                         FILL -> scaleFillGradientN(
@@ -584,7 +572,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.toLP(),
-                            trans = transform?.name
+                            trans = transform?.name,
+                            format = format
                         )
 
                         else -> TODO()
@@ -626,16 +615,18 @@ internal fun Scale.wrap(
                     }
                 }
 
+                // TODO
                 is PositionalUnspecifiedScale -> {
                     val axis = (scaleParameters as PositionalParameters<*>?)?.axis
 
                     val name = axis?.name
                     val breaks = axis?.breaks
                     val labels = axis?.labels
+                    val format = axis?.format
                     when (this) {
                         PositionalCategoricalUnspecifiedScale -> when (aes) {
-                            X -> scaleXDiscrete(name = name, breaks = breaks, labels = labels,)
-                            Y -> scaleYDiscrete(name = name, breaks = breaks, labels = labels)
+                            X -> scaleXDiscrete(name = name, breaks = breaks, labels = labels, format = format)
+                            Y -> scaleYDiscrete(name = name, breaks = breaks, labels = labels, format = format)
                             else -> TODO()
                         }
 
@@ -644,14 +635,16 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks?.map { it as Number },
                                 labels = labels,
-                                trans = (transform as? Transformation)?.name
+                                trans = (transform as? Transformation)?.name,
+                                format = format
                             )
 
                             Y -> scaleYContinuous(
                                 name = name,
                                 breaks = breaks?.map { it as Number },
                                 labels = labels,
-                                trans = (transform as? Transformation)?.name
+                                trans = (transform as? Transformation)?.name,
+                                format = format
                             )
 
                             else -> TODO()
