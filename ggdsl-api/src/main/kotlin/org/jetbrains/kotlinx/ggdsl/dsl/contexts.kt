@@ -46,8 +46,9 @@ abstract class BindingContext {
     internal fun generateID(): String = "*gen${counter++}"
 
     // todo add for arrays/others???
-    @PublishedApi
-    internal inline fun <reified T : Any> Iterable<T>.toDataSource(): DataSource<T> {
+   /* @PublishedApi
+    internal */
+    inline fun <reified T : Any> Iterable<T>.toDataSource(): DataSource<T> {
         val list = toList()
         val id = generateID()
         data[id] = list
