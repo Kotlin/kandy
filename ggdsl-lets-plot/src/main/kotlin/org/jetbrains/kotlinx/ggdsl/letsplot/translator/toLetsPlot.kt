@@ -678,6 +678,7 @@ internal fun Pair<Any, Any>?.toLP() = this?.let { (it.first as Number) to (it.se
 
 internal fun Layer.wrap(featureBuffer: MutableList<Feature>) {
     featureBuffer.add(LayerWrapper(this))
+    freeScales.forEach { (_, freeScale) -> freeScale.wrap(featureBuffer) }
     mappings.forEach { (aes, mapping) ->
         if (mapping is ScaledMapping<*>) {
             mapping.sourceScaled.scale.wrap(aes, mapping.domainType, mapping.scaleParameters)?.let {
