@@ -72,8 +72,25 @@ sealed interface ViolinStat<T> : Stat<T>{
 }
 
 sealed interface BoxplotStat<T> : Stat<T>{
+
+    class X<T>: BoxplotStat<T> {
+        override val name = "..x.."
+    }
+
     object Middle: BoxplotStat<Double> {
         override val name = "..middle.."
+    }
+    object YMin: BoxplotStat<Double> {
+        override val name = "..ymin.."
+    }
+    object YMax: BoxplotStat<Double> {
+        override val name = "..ymax.."
+    }
+    object Lower: BoxplotStat<Double> {
+        override val name = "..lower.."
+    }
+    object Upper: BoxplotStat<Double> {
+        override val name = "..upper.."
     }
 }
 
