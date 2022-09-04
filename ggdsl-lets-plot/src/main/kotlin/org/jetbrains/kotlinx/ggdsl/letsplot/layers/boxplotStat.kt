@@ -77,7 +77,10 @@ class BoxplotStatContext<T>(
         if (mapping.scaleParameters == null) {
             mapping.scaleParameters = PositionalParameters(Axis()).apply {
                 orderBy = OrderBy(
-                    stat.name, if (descending) {
+                    if (stat is BoxplotStat.X) {
+                        null
+                    }  else stat.name,
+                    if (descending) {
                         -1
                     } else 1
                 )

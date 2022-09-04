@@ -10,8 +10,8 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Legend
 interface LetsPlotScaleParameters : ScaleParameters
 
 internal data class OrderBy(
-    val name: String,
-    val order: Int = 1
+    val name: String?,
+    val order: Int
 )
 
 data class PositionalParameters<DomainType : Any>(
