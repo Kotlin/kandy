@@ -142,7 +142,7 @@ internal fun Geom.toLPGeom(): GeomOptions {
  * 3) trans = (transform as? Transformation)?.name
  */
 internal fun Scale.wrap(
-    aes: AesName,
+    aesName: AesName,
     domainType: KType,
     scaleParameters: ScaleParameters? = null
 ): org.jetbrains.letsPlot.intern.Scale? {
@@ -157,7 +157,7 @@ internal fun Scale.wrap(
 
             when (this) {
                 is PositionalCategoricalScale<*> -> {
-                    when (aes) {
+                    when (aesName) {
                         X -> scaleXDiscrete(
                             limits = categories,
                             name = name,
@@ -179,7 +179,7 @@ internal fun Scale.wrap(
                 }
 
                 is PositionalContinuousScale<*> -> {
-                    when (aes) {
+                    when (aesName) {
                         X -> scaleXContinuous(
                             limits = limits.toLP(),
 
@@ -234,7 +234,7 @@ internal fun Scale.wrap(
 
             when (this) {
                 is NonPositionalCategoricalScale<*, *> -> {
-                    when (aes) {
+                    when (aesName) {
                         // todo check all
                         SIZE/*, WIDTH, STROKE*/ -> scaleSizeManual(
                             values = rangeValues?.map { it as Number } ?: TODO("default scale size discrete"),
@@ -350,7 +350,7 @@ internal fun Scale.wrap(
                 }
 
                 is NonPositionalContinuousScale<*, *> -> {
-                    when (aes) {
+                    when (aesName) {
                         // todo check all
                         SIZE /*, WIDTH, STROKE */-> scaleSize(
                             limits = domainLimits.toLP(),
@@ -433,7 +433,7 @@ internal fun Scale.wrap(
                 }
 
                 is CustomScale -> when (this) {
-                    is ScaleColorGrey<*> -> when(aes) {
+                    is ScaleColorGrey<*> -> when(aesName) {
                         COLOR -> scaleColorGrey(
                             paletteRange?.first,
                             paletteRange?.second,
@@ -459,7 +459,7 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleColorHue<*> -> when (aes) {
+                    is ScaleColorHue<*> -> when (aesName) {
                         COLOR -> scaleColorHue(
                             huesRange,
                             chroma,
@@ -493,7 +493,7 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleColorBrewer<*> -> when (aes) {
+                    is ScaleColorBrewer<*> -> when (aesName) {
                         COLOR -> scaleColorBrewer(
                             type = type?.name,
                             palette = type?.palette?.name,
@@ -521,7 +521,7 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleContinuousColorGradient2<*> -> when (aes) {
+                    is ScaleContinuousColorGradient2<*> -> when (aesName) {
                         COLOR -> scaleColorGradient2(
                             (low as StandardColor).description,
                             (mid as StandardColor).description,
@@ -553,7 +553,7 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleContinuousColorGradientN<*> -> when (aes) {
+                    is ScaleContinuousColorGradientN<*> -> when (aesName) {
                         COLOR -> scaleColorGradientN(
                             rangeColors.map { (it as StandardColor).description },
                             name = name,
@@ -589,18 +589,19 @@ internal fun Scale.wrap(
         // TODO
         is UnspecifiedScale -> {
             when (this) {
-                DefaultUnspecifiedScale -> when(aes) {
+                DefaultUnspecifiedScale -> when(aesName) {
                     // todo other types for unspecified categorical???
                     X, Y -> if (domainType == typeOf<String>()){
-                        PositionalCategoricalUnspecifiedScale.wrap(aes, domainType, scaleParameters)
+                        PositionalCategoricalUnspecifiedScale.wrap(aesName, domainType, scaleParameters)
                     } else {
-                        PositionalContinuousUnspecifiedScale().wrap(aes, domainType, scaleParameters)
+                        PositionalContinuousUnspecifiedScale().wrap(aesName, domainType, scaleParameters)
                     }
-                    else -> if (domainType == typeOf<String>()){
-                        NonPositionalCategoricalUnspecifiedScale.wrap(aes, domainType, scaleParameters)
+                    COLOR, FILL, SIZE, SHAPE, LINE_TYPE -> if (domainType == typeOf<String>()){
+                        NonPositionalCategoricalUnspecifiedScale.wrap(aesName, domainType, scaleParameters)
                     } else {
-                        NonPositionalContinuousUnspecifiedScale().wrap(aes, domainType, scaleParameters)
+                        NonPositionalContinuousUnspecifiedScale().wrap(aesName, domainType, scaleParameters)
                     }
+                    else -> null
 
                 }
                 // TODO!!!
@@ -608,10 +609,10 @@ internal fun Scale.wrap(
                     when (this) {
                         NonPositionalCategoricalUnspecifiedScale ->
                             NonPositionalCategoricalScale<Any, Any>()
-                                .wrap(aes, domainType, scaleParameters)
+                                .wrap(aesName, domainType, scaleParameters)
                         is NonPositionalContinuousUnspecifiedScale ->
                             NonPositionalContinuousScale<Any, Any>(transform = transform)
-                                .wrap(aes, domainType, scaleParameters)
+                                .wrap(aesName, domainType, scaleParameters)
                     }
                 }
 
@@ -624,13 +625,13 @@ internal fun Scale.wrap(
                     val labels = axis?.labels
                     val format = axis?.format
                     when (this) {
-                        PositionalCategoricalUnspecifiedScale -> when (aes) {
+                        PositionalCategoricalUnspecifiedScale -> when (aesName) {
                             X -> scaleXDiscrete(name = name, breaks = breaks, labels = labels, format = format)
                             Y -> scaleYDiscrete(name = name, breaks = breaks, labels = labels, format = format)
                             else -> TODO()
                         }
 
-                        is PositionalContinuousUnspecifiedScale -> when (aes) {
+                        is PositionalContinuousUnspecifiedScale -> when (aesName) {
                             X -> scaleXContinuous(
                                 name = name,
                                 breaks = breaks?.map { it as Number },
