@@ -26,7 +26,7 @@ class QQ2LineContext(
     @PublishedApi
     internal val _x = XAes(this)
     @PublishedApi
-    internal val _y = XAes(this)
+    internal val _y = YAes(this)
 
     val x = XDummyAes(this)
     val y = YDummyAes(this)
