@@ -105,8 +105,10 @@ data class Global internal constructor(
     override var line: LineParameters? = null,
     override var background: BackgroundParameters? = null,
     override var text: TextParameters? = null,
-    var axis: LineParameters? = null,
-) : SelfInvocationContext, WithLine, WithBackground, WithText {
+    override var title: TextParameters? = null,
+  // TODO  var axis: LineParameters? = null,
+) : SelfInvocationContext, WithLine, WithBackground, WithText, WithTitle {
+    /*
     fun axis(block: LineParameters.() -> Unit) {
         axis = LineParameters().apply(block)
     }
@@ -114,6 +116,8 @@ data class Global internal constructor(
     fun axis(parameters: LineParameters) {
         axis = parameters
     }
+
+     */
 }
 
 @PlotDslMarker
