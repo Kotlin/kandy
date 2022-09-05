@@ -2,9 +2,16 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.SmoothMethod
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.SmoothStat
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
+import kotlin.reflect.typeOf
 
 /* TODO
 @PublishedApi
@@ -83,17 +90,21 @@ class SmoothContext(
     }
 
     object Statistics {
-        // TODO
+        val X = SmoothStat.X
+        val Y = SmoothStat.Y
+        val Y_MAX = SmoothStat.YMax
+        val Y_MIN = SmoothStat.YMin
+        val SE = SmoothStat.SE
     }
 
     val Stat = Statistics
 
 
 
-  /*
+
 
     inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        stat: BinStat<DomainType>
+        stat: SmoothStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this.name,
@@ -105,7 +116,7 @@ class SmoothContext(
     }
 
     inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-        stat: BinStat<DomainType>
+        stat: SmoothStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
             this.name,
@@ -116,7 +127,7 @@ class SmoothContext(
         return mapping
     }
 
-   */
+
 
 }
 

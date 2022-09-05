@@ -1,10 +1,17 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.DensityStat
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.BandWidth
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
+import kotlin.reflect.typeOf
 
 
 val DENSITY = LetsPlotGeom("density")
@@ -71,14 +78,18 @@ class DensityContext(
             fullScanMax(it)
         }
     }
-    /*
-    @PublishedApi
-    internal inline fun <reified T : Any> Stat<T>.toDataSource(): DataSource<T> {
-        return DataSource(name, typeOf<T>())
+    object Statistics {
+        val X = DensityStat.X
+        val COUNT = DensityStat.Count
+        val DENSITY = DensityStat.Density
+        val SCALED = DensityStat.Scaled
     }
 
+    val Stat = Statistics
+
+
     inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        stat: Stat<DomainType>
+        stat: DensityStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this.name,
@@ -89,9 +100,11 @@ class DensityContext(
         return mapping
     }
 
+
+
     inline operator fun <reified DomainType : Any, RangeType : Any>
             MappableNonPositionalAes<RangeType>.invoke(
-        stat: Stat<DomainType>
+        stat: DensityStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
             this.name,
@@ -101,10 +114,6 @@ class DensityContext(
         context.bindingCollector.mappings[this.name] = mapping
         return mapping
     }
-
-     */
-
-
 }
 
 inline fun <reified T : Any> PlotContext.density(

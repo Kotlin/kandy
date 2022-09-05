@@ -45,7 +45,10 @@ class ContourContext(
     val lineWidth = WidthAes(this)
 
     object Statistics {
+        val X = ContourStat.X
+        val Y = ContourStat.Y
         val LEVEL = ContourStat.Level
+        val GROUP = ContourStat.Group
     }
 
     val Stat = Statistics

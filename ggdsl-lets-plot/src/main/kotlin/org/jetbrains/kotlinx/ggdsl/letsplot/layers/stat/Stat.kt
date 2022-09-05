@@ -12,8 +12,13 @@ internal inline fun <reified T : Any> Stat<T>.toDataSource(): DataSource<T> {
     return DataSource(name, typeOf<T>())
 }
 
+// TODO TYPES
+
 sealed interface BinStat<T> : Stat<T>{
-    object Count: BinStat<Int> {
+    object X: BinStat<Double> {
+        override val name = "..count.."
+    }
+    object Count: BinStat<Double> {
         override val name = "..count.."
     }
     object Density: BinStat<Double> {
@@ -21,21 +26,46 @@ sealed interface BinStat<T> : Stat<T>{
     }
 }
 
-sealed interface Density2DStat<T> : Stat<T>{
-    object Level: Density2DStat<Double> {
-        override val name = "..level.."
+sealed interface DensityStat<T> : Stat<T>{
+    object X: DensityStat<Double> {
+        override val name = "..x.."
+    }
+    object Count: DensityStat<Int> {
+        override val name = "..count.."
+    }
+    object Density: DensityStat<Double> {
+        override val name = "..density.."
+    }
+    object Scaled: DensityStat<Double> {
+        override val name = "..scaled.."
     }
 }
 
+
 sealed interface Bin2DStat<T> : Stat<T>{
+    object X: Bin2DStat<Double> {
+        override val name = "..x.."
+    }
+    object Y: Bin2DStat<Double> {
+        override val name = "..y.."
+    }
     object Density: Bin2DStat<Double> {
         override val name = "..density.."
     }
 }
 
 sealed interface ContourStat<T> : Stat<T>{
+    object X: ContourStat<Double> {
+        override val name = "..x.."
+    }
+    object Y: ContourStat<Double> {
+        override val name = "..y.."
+    }
     object Level: ContourStat<Double> {
         override val name = "..level.."
+    }
+    object Group: ContourStat<Double> {
+        override val name = "..group.."
     }
 }
 /* TODO
@@ -57,6 +87,12 @@ abstract class WithDensity2DStat {
  */
 
 sealed interface ViolinStat<T> : Stat<T>{
+    object X: ViolinStat<Double> {
+        override val name = "..x.."
+    }
+    object Y: ViolinStat<Double> {
+        override val name = "..y.."
+    }
     object ViolinWidth: ViolinStat<Double> {
         override val name = "..violinwidth.."
     }
@@ -91,6 +127,43 @@ sealed interface BoxplotStat<T> : Stat<T>{
     }
     object Upper: BoxplotStat<Double> {
         override val name = "..upper.."
+    }
+}
+
+
+sealed interface QQStat<T> : Stat<T>{
+    object Theoretical: QQStat<Double> {
+        override val name = "..theoretical.."
+    }
+    object Sample: QQStat<Double> {
+        override val name = "..sample.."
+    }
+}
+
+sealed interface QQ2Stat<T> : Stat<T>{
+    object X: QQ2Stat<Double> {
+        override val name = "..x.."
+    }
+    object Y: QQ2Stat<Double> {
+        override val name = "..y.."
+    }
+}
+
+sealed interface SmoothStat<T> : Stat<T>{
+    object X: SmoothStat<Double> {
+        override val name = "..x.."
+    }
+    object Y: SmoothStat<Double> {
+        override val name = "..y.."
+    }
+    object YMin: SmoothStat<Double> {
+        override val name = "..ymin.."
+    }
+    object YMax: SmoothStat<Double> {
+        override val name = "..ymax.."
+    }
+    object SE: SmoothStat<Double> {
+        override val name = "..se.."
     }
 }
 

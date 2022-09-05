@@ -49,6 +49,7 @@ class HistogramContext(
     val borderLineWidth = SizeAes(this)
 
     object Statistics {
+        val X = BinStat.X
         val COUNT = BinStat.Count
         val DENSITY = BinStat.Density
     }
