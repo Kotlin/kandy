@@ -119,7 +119,7 @@ class LayerTooltipsContext {
      * @param aes aesthetic attribute
      */
     fun line(aes: Aes) {
-        lineBuffer.add("@|^${aes.name}")
+        lineBuffer.add("@|^${aes.name.name}")
     }
 
     /**
