@@ -52,7 +52,7 @@ inline fun LayerContext.tooltips(
         hide,
         dsFormats.map { it.key.id to it.value }
                 + columnsFormats.map { it.key.name() to it.value }
-                + aesFormats.map { it.key.name.name to it.value }
+                + aesFormats.map { "^" + it.key.name.name to it.value }
                 + statFormats.map { it.key.name to it.value },
         LayerTooltipsContext().apply(tooltipsContextAction)
     )

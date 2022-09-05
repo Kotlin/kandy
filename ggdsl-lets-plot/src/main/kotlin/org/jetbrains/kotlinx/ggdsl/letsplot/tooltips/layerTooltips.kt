@@ -186,7 +186,7 @@ inline fun LayerContext.tooltips(
         minWidth,
         hide,
         valueFormats.map { it.key.id to it.value }
-                + aesFormats.map { it.key.name.name to it.value }
+                + aesFormats.map { "^" + it.key.name.name to it.value }
                 + statFormats.map { it.key.name to it.value },
         LayerTooltipsContext().apply(tooltipsContextAction)
     )
