@@ -26,7 +26,7 @@ data class LetsPlotLayout(
     @PublishedApi
     internal var customTheme: CustomTheme? = null
 
-    fun theme(theme: Theme, block: CustomTheme.() -> Unit = {}) {
+    inline fun theme(theme: Theme, block: CustomTheme.() -> Unit = {}) {
         this.theme = theme
         customTheme = CustomTheme().apply(block)
     }

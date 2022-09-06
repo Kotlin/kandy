@@ -15,8 +15,9 @@ import kotlin.reflect.typeOf
 inline fun <reified T : Any> source(id: String): DataSource<T> =
     DataSource(id, typeOf<T>())
 
+// TODO
 data class UnnamedDataSource<T : Any>(val type: KType) {
-    operator fun getValue(t: T?, property: KProperty<*>): DataSource<T> {
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): DataSource<T> {
         return DataSource(property.name, type)
     }
 }
