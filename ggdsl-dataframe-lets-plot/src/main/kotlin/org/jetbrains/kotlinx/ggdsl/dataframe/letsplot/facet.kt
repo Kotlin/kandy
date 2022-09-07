@@ -28,26 +28,22 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.ScalesSharing
 fun PlotContext.facetGridX(
     x: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
-    xOrder: OrderDirection = OrderDirection.ASCENDING,
-    yOrder: OrderDirection = OrderDirection.ASCENDING,
-    xFormat: String? = null,
-    yFormat: String? = null
+    order: OrderDirection = OrderDirection.ASCENDING,
+    format: String? = null,
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x.name(), null, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(x.name(), null, scalesSharing, order, OrderDirection.ASCENDING, format, null)
 
 }
 
 fun PlotContext.facetGridY(
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
-    xOrder: OrderDirection = OrderDirection.ASCENDING,
-    yOrder: OrderDirection = OrderDirection.ASCENDING,
-    xFormat: String? = null,
-    yFormat: String? = null
+    order: OrderDirection = OrderDirection.ASCENDING,
+    format: String? = null,
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(null, y.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(null, y.name(), scalesSharing,  OrderDirection.ASCENDING, order, null, format)
 
 }
 
