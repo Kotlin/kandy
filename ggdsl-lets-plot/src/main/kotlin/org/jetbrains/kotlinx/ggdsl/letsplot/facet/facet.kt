@@ -84,25 +84,23 @@ data class FacetWrapFeature constructor(
 fun PlotContext.facetGridX(
     x: DataSource<*>,
     scalesSharing: ScalesSharing? = null,
-    xOrder: OrderDirection = OrderDirection.ASCENDING,
-    yOrder: OrderDirection = OrderDirection.ASCENDING,
-    xFormat: String? = null,
-    yFormat: String? = null
+    order: OrderDirection = OrderDirection.ASCENDING,
+    format: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x.id, null, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(
+            x.id, null, scalesSharing, order, OrderDirection.ASCENDING, format, null
+        )
 }
 
 fun PlotContext.facetGridY(
     y: DataSource<*>,
     scalesSharing: ScalesSharing? = null,
-    xOrder: OrderDirection = OrderDirection.ASCENDING,
-    yOrder: OrderDirection = OrderDirection.ASCENDING,
-    xFormat: String? = null,
-    yFormat: String? = null
+    order: OrderDirection = OrderDirection.ASCENDING,
+    format: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(null, y.id, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(null, y.id, scalesSharing, OrderDirection.ASCENDING, order, null, format)
 }
 
 fun PlotContext.facetGrid(

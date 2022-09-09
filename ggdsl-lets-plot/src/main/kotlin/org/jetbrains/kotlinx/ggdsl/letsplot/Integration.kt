@@ -19,7 +19,7 @@ internal class Integration : JupyterIntegration() {
     override fun Builder.onLoaded() {
 
         onLoaded {
-            frontendContext = LetsPlot.setupNotebook("2.4.0", true) {
+            frontendContext = LetsPlot.setupNotebook("2.4.0", false) {
                 display(HTML(it))
             }
             LetsPlot.apiVersion = "4.0.0"

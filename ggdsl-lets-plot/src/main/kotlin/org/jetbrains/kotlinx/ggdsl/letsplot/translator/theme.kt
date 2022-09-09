@@ -33,7 +33,7 @@ fun CustomTheme.wrap(): theme {
         line = global.line?.wrap(),
         rect = global.background?.wrap(),
         text = global.text?.wrap(),// TODO
-        title = null,// TODO
+        title = global.title?.wrap(),// TODO
         axis = if (axis.blank == true) { "blank" } else null, //TODO
         axisOntop = axis.onTop,
         axisOntopX = xAxis.onTop,

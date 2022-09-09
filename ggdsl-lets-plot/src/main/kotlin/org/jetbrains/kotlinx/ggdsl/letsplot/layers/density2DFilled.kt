@@ -2,10 +2,12 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Density2DStat
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.ContourStat
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.BandWidth
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
@@ -37,9 +39,12 @@ class Density2DFilledContext(
     val x = XDummyAes(this)
     val y = YDummyAes(this)
 
-     object Statistics {
-        val LEVEL = Density2DStat.Level
-     }
+    object Statistics {
+        val X = ContourStat.X
+        val Y = ContourStat.Y
+        val LEVEL = ContourStat.Level
+        val GROUP = ContourStat.Group
+    }
 
      val Stat = Statistics
 
@@ -87,9 +92,9 @@ class Density2DFilledContext(
         }
     }
 
-/*
+
     inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        stat: Density2DStat<DomainType>
+        stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this.name,
@@ -100,11 +105,11 @@ class Density2DFilledContext(
         return mapping
     }
 
- */
+
 
     inline operator fun <reified DomainType : Any, RangeType : Any>
             MappableNonPositionalAes<RangeType>.invoke(
-        stat: Density2DStat<DomainType>
+        stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
             this.name,

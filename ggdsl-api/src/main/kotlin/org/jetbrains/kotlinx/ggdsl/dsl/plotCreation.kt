@@ -11,9 +11,9 @@ internal fun PlotContext.toPlot(): Plot {
 /**
  * Returns a new plot.
  *
- * Creates a [PlotContext]. In this context, functions for creating new layers are defined
- * (there are 3 in common API: [points], [bars] and [line]).
+ * Creates a [PlotContext]. In this context, functions for creating new layers are defined.
  *
+ * TODO
  * Also [x][PlotContext.x] and [y][PlotContext.y] aesthetic attributes are defined in a [PlotContext].
  * You can create global mappings on them, which will be inherited in following layers in this context.
  *

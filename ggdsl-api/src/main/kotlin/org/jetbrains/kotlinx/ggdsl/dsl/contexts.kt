@@ -121,7 +121,8 @@ fun LayerContext.toLayer(geom: Geom): Layer {
         geom,
         this.bindingCollector.mappings,
         this.bindingCollector.settings,
-        features
+        features,
+        this.bindingCollector.freeScales
     )
 }
 

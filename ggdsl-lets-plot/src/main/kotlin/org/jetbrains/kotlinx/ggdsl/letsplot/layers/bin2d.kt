@@ -56,6 +56,8 @@ class Bin2DContext(
     internal val drop = DropAes(this)
 
     object Statistics {
+        val X = Bin2DStat.X
+        val Y = Bin2DStat.Y
         val DENSITY = Bin2DStat.Density
     }
 

@@ -47,7 +47,10 @@ class ContourFilledContext(
    // todo speed, flow
 
     object Statistics {
+        val X = ContourStat.X
+        val Y = ContourStat.Y
         val LEVEL = ContourStat.Level
+        val GROUP = ContourStat.Group
     }
 
     val Stat = Statistics

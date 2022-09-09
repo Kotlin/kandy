@@ -25,7 +25,7 @@ class OutlierSubContext(parentContext: BindingContext) : SubContext(parentContex
 // TODO Stats
 @PlotDslMarker
 // todo move x/y?
-class BoxplotStatContext(
+class BoxplotStatContext<T>(
     override var data: MutableNamedData,
     varWidth: Boolean?,
 ) : LayerContext() {
@@ -62,8 +62,12 @@ class BoxplotStatContext(
     internal val varWidth = VarWidthAes(this)
 
     object Statistics {
-        // todo Others
+        val X = BoxplotStat.X<String>() // TODO!!!
         val MIDDLE = BoxplotStat.Middle
+        val Y_MIN = BoxplotStat.YMin
+        val Y_MAX = BoxplotStat.YMax
+        val LOWER = BoxplotStat.Lower
+        val UPPER = BoxplotStat.Upper
     }
 
     val Stat = Statistics
@@ -73,7 +77,10 @@ class BoxplotStatContext(
         if (mapping.scaleParameters == null) {
             mapping.scaleParameters = PositionalParameters(Axis()).apply {
                 orderBy = OrderBy(
-                    stat.name, if (descending) {
+                    if (stat is BoxplotStat.X) {
+                        null
+                    }  else stat.name,
+                    if (descending) {
                         -1
                     } else 1
                 )
@@ -81,49 +88,16 @@ class BoxplotStatContext(
         }
     }
 
-    /*
-    @PublishedApi
-    internal inline fun <reified T : Any> Stat<T>.toDataSource(): DataSource<T> {
-        return DataSource(name, typeOf<T>())
-    }
-
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        stat: Stat<DomainType>
-    ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
-        val mapping = ScaledUnspecifiedDefaultPositionalMapping(
-            this.name,
-            stat.toDataSource().scaled(),
-            typeOf<DomainType>()
-        )
-        context.bindingCollector.mappings[this.name] = mapping
-        return mapping
-    }
-
-    inline operator fun <reified DomainType : Any, RangeType : Any>
-            MappableNonPositionalAes<RangeType>.invoke(
-        stat: Stat<DomainType>
-    ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
-        val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
-            this.name,
-            stat.toDataSource().scaled(),
-            typeOf<DomainType>()
-        )
-        context.bindingCollector.mappings[this.name] = mapping
-        return mapping
-    }
-
-     */
-
 }
 
 inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
     varWidth: Boolean? = null,
-    block: BoxplotStatContext.() -> Unit
+    block: BoxplotStatContext<T>.() -> Unit
 ) {
     layers.add(
-        BoxplotStatContext(data, varWidth)
+        BoxplotStatContext<T>(data, varWidth)
             .apply {
                 copyFrom(this@boxplot)
                 _x(sourceX.scaled(categoricalPos()))
@@ -138,10 +112,10 @@ inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     varWidth: Boolean? = null,
-    block: BoxplotStatContext.() -> Unit
+    block: BoxplotStatContext<T>.() -> Unit
 ) {
     layers.add(
-        BoxplotStatContext(data, varWidth)
+        BoxplotStatContext<T>(data, varWidth)
             .apply {
                 copyFrom(this@boxplot)
                 _x(sourceX.scaled(categoricalPos()))

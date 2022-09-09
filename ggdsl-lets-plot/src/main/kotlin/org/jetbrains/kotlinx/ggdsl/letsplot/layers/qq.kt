@@ -2,10 +2,17 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Distribution
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.QQStat
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toList
+import kotlin.reflect.typeOf
 
 /* TODO
 @PublishedApi
@@ -37,12 +44,6 @@ class QQContext(
     val size = SizeAes(this)
     val symbol = ShapeAes(this)
 
-    object Statistics {
-        // TODO
-    }
-
-    val Stat = Statistics
-
     // todo weight
 
     @PublishedApi
@@ -51,9 +52,16 @@ class QQContext(
     @PublishedApi
     internal val dParams = DParamsAes(this)
 
-    /* TODO
+    object Statistics {
+        val SAMPLE = QQStat.Sample
+        val THEORETICAL = QQStat.Theoretical
+    }
+
+    val Stat = Statistics
+
+
     inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        stat: BinStat<DomainType>
+        stat: QQStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this.name,
@@ -65,7 +73,7 @@ class QQContext(
     }
 
     inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-        stat: BinStat<DomainType>
+        stat: QQStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
             this.name,
@@ -76,7 +84,7 @@ class QQContext(
         return mapping
     }
 
-     */
+
 
 }
 

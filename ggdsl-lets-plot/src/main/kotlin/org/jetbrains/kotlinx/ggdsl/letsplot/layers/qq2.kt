@@ -2,8 +2,15 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.QQ2Stat
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
+import kotlin.reflect.typeOf
 
 /* TODO
 @PublishedApi
@@ -20,7 +27,7 @@ class QQ2Context(
     @PublishedApi
     internal val _x = XAes(this)
     @PublishedApi
-    internal val _y = XAes(this)
+    internal val _y = YAes(this)
 
     val x = XDummyAes(this)
     val y = YDummyAes(this)
@@ -33,16 +40,15 @@ class QQ2Context(
     // todo stroke
 
     object Statistics {
-        // TODO
+        val X = QQ2Stat.X
+        val Y = QQ2Stat.Y
     }
 
     val Stat = Statistics
 
 
-
-    /* TODO
     inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        stat: BinStat<DomainType>
+        stat: QQ2Stat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this.name,
@@ -54,7 +60,7 @@ class QQ2Context(
     }
 
     inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-        stat: BinStat<DomainType>
+        stat: QQ2Stat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
             this.name,
@@ -64,8 +70,6 @@ class QQ2Context(
         context.bindingCollector.mappings[this.name] = mapping
         return mapping
     }
-
-     */
 
 }
 

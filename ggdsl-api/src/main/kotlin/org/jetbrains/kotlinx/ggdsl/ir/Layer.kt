@@ -1,6 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.ir
 
-import org.jetbrains.kotlinx.ggdsl.ir.aes.Aes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
@@ -8,6 +7,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
+import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
 
 /**
  * Layer is a collection of data and mappings from it.
@@ -27,5 +27,6 @@ data class Layer(
     val geom: Geom,
     val mappings: Map<AesName, Mapping>,
     val settings: Map<AesName, Setting>,
-    val features: Map<FeatureName, LayerFeature> = emptyMap()
+    val features: Map<FeatureName, LayerFeature> = emptyMap(),
+    val freeScales: Map<AesName, FreeScale> = emptyMap(),
 )

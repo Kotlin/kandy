@@ -6,11 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import kotlin.reflect.typeOf
 
-/**
- * Maps the given scaled source to this positional aesthetic attribute.
- *
- * @param sourceScaledPositional the mapped source scaled positional.
- */
+
 inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     scale: PositionalScale<DomainType>
 ): FreePositionalScale<DomainType> {

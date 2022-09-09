@@ -51,6 +51,7 @@ class FreqpolyContext(
     val lineWidth = SizeAes(this)
 
     object Statistics {
+        val X = BinStat.X
         val COUNT = BinStat.Count
         val DENSITY = BinStat.Density
     }

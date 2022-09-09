@@ -2,7 +2,9 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.ViolinScale
@@ -103,9 +105,21 @@ class ViolinContext(
         }
 
     }
-    /*
-       inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        stat: Stat<DomainType>
+
+
+    object Statistics {
+        val X = ViolinStat.X
+        val Y = ViolinStat.Y
+        val VIOLIN_WIDTH = ViolinStat.ViolinWidth
+        val DENSITY = ViolinStat.Density
+        val SCALED = ViolinStat.Scaled
+        val COUNT = ViolinStat.Count
+    }
+
+    val Stat = Statistics
+
+    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+        stat: ViolinStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this.name,
@@ -115,16 +129,6 @@ class ViolinContext(
         context.bindingCollector.mappings[this.name] = mapping
         return mapping
     }
-  */
-
-    object Statistics {
-        val VIOLIN_WIDTH = ViolinStat.ViolinWidth
-        val DENSITY = ViolinStat.Density
-        val SCALED = ViolinStat.Scaled
-        val COUNT = ViolinStat.Count
-    }
-
-    val Stat = Statistics
 
     inline operator fun <reified DomainType : Any, RangeType : Any>
             MappableNonPositionalAes<RangeType>.invoke(
