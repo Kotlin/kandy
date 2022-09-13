@@ -27,6 +27,11 @@ tasks {
     }
 }
 
+tasks.withType<JavaCompile> {
+    sourceCompatibility = JavaVersion.VERSION_11.toString()
+    targetCompatibility = JavaVersion.VERSION_11.toString()
+}
+
 tasks.processJupyterApiResources {
     libraryProducers = listOf("org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.Integration")
 }
