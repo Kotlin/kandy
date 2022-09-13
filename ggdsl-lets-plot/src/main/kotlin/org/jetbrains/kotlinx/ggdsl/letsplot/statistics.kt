@@ -1,13 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
-import org.jetbrains.kotlinx.ggdsl.dsl.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Bins
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import kotlin.reflect.typeOf
 
 interface Statistic<T> {
@@ -56,17 +56,25 @@ inline operator fun <reified DomainType : Any, RangeType : Any>
     return mapping
 }
 
-class BinStatisticContext<T: Any> @PublishedApi internal constructor(val sampleSource: DataSource<T>) {
+class BinStatisticContext<T: Any> @PublishedApi internal constructor(
+    val sampleSource: DataSource<T>,
+    inputData: NamedData,
+    ) {
+  //  val data = countBins(inputData, sampleSource)
     val STAT_BINS = BinStatistic.Bins<T>()
     val STAT_COUNT = BinStatistic.Count
     val STAT_DENSITY = BinStatistic.Density
 
 }
 
-inline fun<T: Any> statBin(sampleSource: DataSource<T>, block: BinStatisticContext<T>.() -> Unit) {
-    BinStatisticContext(sampleSource).apply(block)
+inline fun<T: Any> PlotContext.statBin(
+    sampleSource: DataSource<T>,
+    inputData: NamedData? = null,
+    block: BinStatisticContext<T>.() -> Unit) {
+    BinStatisticContext(sampleSource, inputData ?: data).apply(block)
 }
 
+/*
 inline fun<reified T: Any> BindingContext.statBin(
     sampleSource: Iterable<T>,
     binsOption: Bins? = null,
@@ -74,3 +82,5 @@ inline fun<reified T: Any> BindingContext.statBin(
 ) {
     BinStatisticContext(sampleSource.toDataSource()).apply(block)
 }
+
+ */
