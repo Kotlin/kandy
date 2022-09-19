@@ -25,6 +25,8 @@ allprojects {
     version = ggdslVersion
     apply(plugin = "kotlin")
     apply(plugin = "org.jetbrains.dokka")
+
+    kotlin.explicitApi()
 }
 
 subprojects {
