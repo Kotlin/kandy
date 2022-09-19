@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
  * Creates a scope with this [DataFrame] as a receiver. The [plot] function should be used to create plot with
  * this [DataFrame] as the data source. [ColumnReference] can be used instead of [DataSource] for mapping.
  *
- * Scope allows to use automatically generated as extension fields columns for mapping.
+ * Scope allows using automatically generated as extension field columns for mapping.
  * ```
  * val dfPlot = df.create {
  *    plot {
@@ -35,15 +35,15 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
  * @see <a href="https://kotlin.github.io/dataframe/schemas.html#dataschema-workflow-in-jupyter">Kotlin Dataframe Documentation</a>
  * @return new [Plot]
  */
-inline fun <T> DataFrame<T>.create(block: DataFrame<T>.() -> Plot): Plot {
+public inline fun <T> DataFrame<T>.create(block: DataFrame<T>.() -> Plot): Plot {
     return block()
 }
 
 /**
- * Creates new [Plot] with this [DataFrame] as data source.
+ * Creates new [Plot] with this [DataFrame] as a data source.
  *
  * @see [create]
  */
-inline fun<T> DataFrame<T>.plot(block: PlotContext.() -> Unit): Plot {
+public inline fun<T> DataFrame<T>.plot(block: PlotContext.() -> Unit): Plot {
     return plot(toNamedData(), block)
 }

@@ -14,7 +14,7 @@ import kotlin.reflect.typeOf
  *
  * @param columnRef the mapped column.
  */
-inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
     columnRef: ColumnReference<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =
@@ -22,11 +22,11 @@ inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
 }
 
 /**
- * Mapping the given column to this positional aesthetic attribute with default scale.
+ * Mapping the given column to this positional aesthetic attribute with a default scale.
  *
  * @param columnRef the mapped column.
  */
-inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     columnRef: ColumnReference<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -39,11 +39,11 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
 }
 
 /**
- * Mapping the given column to this non-positional aesthetic attribute with default scale.
+ * Mapping the given column to this non-positional aesthetic attribute with a default scale.
  *
  * @param columnRef the mapped column.
  */
-inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
     columnRef: ColumnReference<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
