@@ -9,25 +9,25 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import kotlin.reflect.KProperty
 
 /**
- *  Apply default scale to this [DataSource]
+ *  Apply a default scale to this [DataSource]
  */
-fun <DomainType : Any> DataSource<DomainType>.scaled() =
+public fun <DomainType : Any> DataSource<DomainType>.scaled(): SourceScaledUnspecifiedDefault<DomainType> =
     SourceScaledUnspecifiedDefault(this)
 
-inline fun <reified DomainType : Any> KProperty<DomainType>.scaled() =
+public inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(): SourceScaledUnspecifiedDefault<DomainType> =
     SourceScaledUnspecifiedDefault(this.toDataSource())
 
 /**
- * Apply unspecified positional scale to this [DataSource]
+ * Apply an unspecified positional scale to this [DataSource]
  *
  * @param DomainType type of domain
  * @param scale positional default scale
  * @return scaled source
  */
-fun <DomainType : Any> DataSource<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
+public fun <DomainType : Any> DataSource<DomainType>.scaled(scale: PositionalUnspecifiedScale): SourceScaledPositionalUnspecified<DomainType> =
     SourceScaledPositionalUnspecified(this, scale)
 
-inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
+public inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(scale: PositionalUnspecifiedScale): SourceScaledPositionalUnspecified<DomainType> =
     SourceScaledPositionalUnspecified(this.toDataSource(), scale)
 
 /**
@@ -37,38 +37,38 @@ inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(scale: Positi
  * @param scale non-positional default scale
  * @return scaled source
  */
-fun <DomainType : Any> DataSource<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
+public fun <DomainType : Any> DataSource<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): SourceScaledNonPositionalUnspecified<DomainType> =
     SourceScaledNonPositionalUnspecified(this, scale)
 
-inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
+public inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): SourceScaledNonPositionalUnspecified<DomainType> =
     SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
 
 /**
- * Apply positional scale to this [DataSource]
+ * Apply a positional scale to this [DataSource]
  *
  * @param DomainType type of domain
  * @param scale positional scale
  * @return scaled source
  */
-fun <DomainType : Any> DataSource<DomainType>.scaled(
+public fun <DomainType : Any> DataSource<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-) = SourceScaledPositional(this, scale)
+): SourceScaledPositional<DomainType> = SourceScaledPositional(this, scale)
 
-inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(
+public inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-) = SourceScaledPositional(this.toDataSource(), scale)
+): SourceScaledPositional<DomainType> = SourceScaledPositional(this.toDataSource(), scale)
 
 /**
- * Apply non-positional scale to this [DataSource]
+ * Apply a non-positional scale to this [DataSource]
  *
  * @param DomainType type of domain
  * @param scale non-positional scale
  * @return scaled source
  */
-fun <DomainType : Any, RangeType : Any> DataSource<DomainType>.scaled(
+public fun <DomainType : Any, RangeType : Any> DataSource<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-) = SourceScaledNonPositional(this, scale)
+): SourceScaledNonPositional<DomainType, RangeType> = SourceScaledNonPositional(this, scale)
 
-inline fun <reified DomainType : Any, RangeType : Any> KProperty<DomainType>.scaled(
+public inline fun <reified DomainType : Any, RangeType : Any> KProperty<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-) = SourceScaledNonPositional(this.toDataSource(), scale)
+): SourceScaledNonPositional<DomainType, RangeType> = SourceScaledNonPositional(this.toDataSource(), scale)

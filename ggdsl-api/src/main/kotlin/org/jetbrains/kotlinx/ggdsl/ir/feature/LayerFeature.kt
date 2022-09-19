@@ -5,6 +5,6 @@ package org.jetbrains.kotlinx.ggdsl.ir.feature
  *
  * @property featureName the name of feature
  */
-interface LayerFeature {
-    val featureName: FeatureName // todo remove?
+public interface LayerFeature {
+    public val featureName: FeatureName // todo remove?
 }

@@ -1,4 +1,4 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 @DslMarker
-annotation class PlotDslMarker
+public annotation class PlotDslMarker

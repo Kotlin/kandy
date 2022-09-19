@@ -56,7 +56,7 @@ internal class BindingTest {
         val context = TestContext().apply {
             mockAesDoubleNonPos(valueDouble)
         }
-        assertEquals<Map<AesName, Setting>>(
+        assertEquals(
             mapOf(MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting(MOCK_AES_DOUBLE_NON_POS, valueDouble)),
             context.bindingCollector.settings.toMap()
         )
@@ -66,7 +66,7 @@ internal class BindingTest {
         context.apply {
             mockAesStringMapNonPos(valueString)
         }
-        assertEquals<Map<AesName, Setting>>(
+        assertEquals(
             mapOf(
                 MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting(MOCK_AES_DOUBLE_NON_POS, valueDouble),
                 MOCK_AES_STRING_MAP_NON_POS to NonPositionalSetting(MOCK_AES_STRING_MAP_NON_POS, valueString)
