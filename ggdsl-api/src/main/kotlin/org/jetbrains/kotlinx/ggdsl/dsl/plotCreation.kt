@@ -46,7 +46,7 @@ internal fun PlotContext.toPlot(): Plot {
  * @return new [Plot]
  * @see [BaseBindingContext]
  */
-inline fun plot(dataset: NamedData = mapOf(), block: PlotContext.() -> Unit): Plot {
+public inline fun plot(dataset: NamedData = mapOf(), block: PlotContext.() -> Unit): Plot {
     return PlotContext().apply {
         data = dataset.toMutableMap()
         block()

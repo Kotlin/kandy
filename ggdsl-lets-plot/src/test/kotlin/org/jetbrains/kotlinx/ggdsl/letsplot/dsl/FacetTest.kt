@@ -29,7 +29,7 @@ class FacetTest {
                 null,
                 mapOf(
                     FacetGridFeature.FEATURE_NAME to FacetGridFeature(
-                     "xSrc",
+                        "xSrc",
                         null,
                         null,
                         OrderDirection.ASCENDING,

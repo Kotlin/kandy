@@ -10,4 +10,4 @@ package org.jetbrains.kotlinx.ggdsl.ir.data
  * Values are columns of data.
  * All values lists must be the same size.
  */
-typealias NamedData = Map<String, List<Any>>
+public typealias NamedData = Map<String, List<Any>>

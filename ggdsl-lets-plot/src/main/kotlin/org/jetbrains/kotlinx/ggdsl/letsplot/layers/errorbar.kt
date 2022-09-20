@@ -13,17 +13,18 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
 @PublishedApi
-internal val ERROR_BAR = LetsPlotGeom("errorbar")
+internal val ERROR_BAR: LetsPlotGeom = LetsPlotGeom("errorbar")
+
 @PlotDslMarker
-class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
+public class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
     WithBorderLineContext() {
-    val x = XAes(this)
+    public val x: XAes = XAes(this)
 
-    val yMin = YMinAes(this)
-    val yMax = YMaxAes(this)
+    public val yMin: YMinAes = YMinAes(this)
+    public val yMax: YMaxAes = YMaxAes(this)
 
-    val alpha = AlphaAes(this)
-    val width = WidthAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val width: WidthAes = WidthAes(this)
     // todo just 'line' instead borderline???
 }
 
@@ -73,6 +74,6 @@ class ErrorBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutable
  *
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.errorBar(block: ErrorBarContext.() -> Unit) {
+public inline fun PlotContext.errorBar(block: ErrorBarContext.() -> Unit) {
     layers.add(ErrorBarContext(data).apply { copyFrom(this@errorBar) }.apply(block).toLayer(ERROR_BAR))
 }

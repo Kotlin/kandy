@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.EchartsColorOption
 
 @Serializable
-data class Option(
+public data class Option(
     val dataset: Dataset,
     val xAxis: List<Axis>,
     val yAxis: List<Axis>,
@@ -25,18 +25,18 @@ data class Option(
 )
 
 @Serializable
-data class Title(
+public data class Title(
     val text: String
 )
 
 @Serializable
-data class Dataset(
+public data class Dataset(
     // TODO val source: List<List<@Contextual Any>>
     val source: List<List<String>>
 )
 
 @Serializable
-data class Axis(
+public data class Axis(
     val type: String,
 
     val show: Boolean? = null,
@@ -54,12 +54,12 @@ data class Axis(
 )
 
 @Serializable
-data class AxisTick(
+public data class AxisTick(
     val alignWithLabel: Boolean = true,
 )
 
 @Serializable
-data class Series(
+public data class Series(
     //  val name: String,
     val type: String,
     val encode: XYEncode,
@@ -78,13 +78,13 @@ data class Series(
 )
 
 @Serializable
-data class XYEncode(
+public data class XYEncode(
     val x: String,
     val y: String
 )
 
 @Serializable
-data class ItemStyle(
+public data class ItemStyle(
     val color: EchartsColorOption? = null,
     val opacity: Double? = null,
     //val borderColor: String? = null,
@@ -93,14 +93,14 @@ data class ItemStyle(
 )
 
 @Serializable
-data class LineStyle(
+public data class LineStyle(
     val color: EchartsColorOption? = null,
     val width: Double? = null,
     val type: String? = null,
 )
 
 @Serializable
-data class VisualMap(
+public data class VisualMap(
     val type: String,
 
     val show: Boolean? = null,
@@ -126,7 +126,7 @@ data class VisualMap(
 )
 
 @Serializable
-data class InRange(
+public data class InRange(
     // TODO
     val symbolSize: List<Double>? = null,
     val color: List<EchartsColorOption>? = null, // todo add gradient???

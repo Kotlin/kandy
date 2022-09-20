@@ -29,6 +29,14 @@ allprojects {
     version = ggdslVersion
     apply(plugin = "kotlin")
     apply(plugin = "org.jetbrains.dokka")
+
+    kotlin.explicitApi()
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            allWarningsAsErrors = true
+        }
+    }
 }
 
 subprojects {

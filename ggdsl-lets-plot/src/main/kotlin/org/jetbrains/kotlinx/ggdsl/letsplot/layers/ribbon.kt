@@ -13,17 +13,18 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
 @PublishedApi
-internal val RIBBON = LetsPlotGeom("ribbon")
+internal val RIBBON: LetsPlotGeom = LetsPlotGeom("ribbon")
+
 @PlotDslMarker
-class RibbonContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
+public class RibbonContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
     WithBorderLineContext() {
-    val x = XAes(this)
+    public val x: XAes = XAes(this)
 
-    val yMin = YMinAes(this)
-    val yMax = YMaxAes(this)
+    public val yMin: YMinAes = YMinAes(this)
+    public val yMax: YMaxAes = YMaxAes(this)
 
-    val color = FillAes(this)
-    val alpha = AlphaAes(this)
+    public val color: FillAes = FillAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 
 }
 
@@ -73,6 +74,6 @@ class RibbonContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNa
  *  ```
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.ribbon(block: RibbonContext.() -> Unit) {
+public inline fun PlotContext.ribbon(block: RibbonContext.() -> Unit) {
     layers.add(RibbonContext(data).apply { copyFrom(this@ribbon) }.apply(block).toLayer(RIBBON))
 }

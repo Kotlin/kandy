@@ -12,20 +12,20 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
-internal val TILE = LetsPlotGeom("tile")
+internal val TILE: LetsPlotGeom = LetsPlotGeom("tile")
 
 
 @PlotDslMarker
-class TileContext(override var data: MutableNamedData) :
+public class TileContext(override var data: MutableNamedData) :
     WithBorderLineContext() {
-    val x = XAes(this)
-    val y = YAes(this)
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val color = FillAes(this)
-    val alpha = AlphaAes(this)
+    public val color: FillAes = FillAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 
-    val width = WidthPosAes(this)
-    val height = HeightPosAes(this)
+    public val width: WidthPosAes = WidthPosAes(this)
+    public val height: HeightPosAes = HeightPosAes(this)
 
 }
 
@@ -76,6 +76,6 @@ class TileContext(override var data: MutableNamedData) :
  *  ```
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.tile(block: TileContext.() -> Unit) {
+public inline fun PlotContext.tile(block: TileContext.() -> Unit) {
     layers.add(TileContext(data).apply { copyFrom(this@tile) }.apply(block).toLayer(TILE))
 }

@@ -8,43 +8,43 @@ import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
 import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
 import org.jetbrains.kotlinx.ggdsl.echarts.*
 
-class PointsContext(override var data: MutableNamedData) : LayerContext() {
-    val x = XAes(this)
-    val y = YAes(this)
+public class PointsContext(override var data: MutableNamedData) : LayerContext() {
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val size = SizeAes(this)
-    val color = ColorAes(this)
-    val alpha = AlphaAes(this)
+    public val size: SizeAes = SizeAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 
-    val borderWidth = BorderWidthAes(this)
-    val borderColor = BorderColorAes(this)
+    public val borderWidth: BorderWidthAes = BorderWidthAes(this)
+    public val borderColor: BorderColorAes = BorderColorAes(this)
 
-    val symbol = SymbolAes(this)
+    public val symbol: SymbolAes = SymbolAes(this)
 }
 
-class LineContext(override var data: MutableNamedData) :
+public class LineContext(override var data: MutableNamedData) :
     LayerContext() {
-    val x = XAes(this)
-    val y = YAes(this)
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val color = ColorAes(this)
-    val alpha = AlphaAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 
-    val width = WidthAes(this)
+    public val width: WidthAes = WidthAes(this)
 
-    val lineType = LineTypeAes(this)
+    public val lineType: LineTypeAes = LineTypeAes(this)
 }
 
-class BarsContext(override var data: MutableNamedData) :
+public class BarsContext(override var data: MutableNamedData) :
     LayerContext() {
-    val x = XAes(this)
-    val y = YAes(this)
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val color = ColorAes(this)
-    val alpha = AlphaAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 
-    val width = WidthAes(this)
+    public val width: WidthAes = WidthAes(this)
 
-    val borderWidth = BorderWidthAes(this)
-    val borderColor = BorderColorAes(this)
+    public val borderWidth: BorderWidthAes = BorderWidthAes(this)
+    public val borderColor: BorderColorAes = BorderColorAes(this)
 }

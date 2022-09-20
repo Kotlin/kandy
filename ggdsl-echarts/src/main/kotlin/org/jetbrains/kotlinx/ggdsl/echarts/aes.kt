@@ -14,67 +14,69 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-val X = AesName("x")
-data class XAes(override val context: BindingContext): ScalablePositionalAes {
+public val X: AesName = AesName("x")
+
+public data class XAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = X
 }
 
-val Y = AesName("y")
-data class YAes(override val context: BindingContext): ScalablePositionalAes {
+public val Y: AesName = AesName("y")
+
+public data class YAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = Y
 }
 
-val PlotContext.x
+public val PlotContext.x: XAes
     get() = XAes(this)
 
-val PlotContext.y
+public val PlotContext.y: YAes
     get() = YAes(this)
 
 
-val SIZE = AesName("size")
+public val SIZE: AesName = AesName("size")
 
-data class SizeAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
-    override val name = SIZE
+public data class SizeAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+    override val name: AesName = SIZE
 }
 
-val COLOR = AesName("color")
+public val COLOR: AesName = AesName("color")
 
-data class ColorAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
-    override val name = COLOR
+public data class ColorAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+    override val name: AesName = COLOR
 }
 
-val ALPHA = AesName("alpha")
+public val ALPHA: AesName = AesName("alpha")
 
-data class AlphaAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
-    override val name = ALPHA
+public data class AlphaAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+    override val name: AesName = ALPHA
 }
 
-val BORDER_SIZE = AesName("border_size")
+public val BORDER_SIZE: AesName = AesName("border_size")
 
-data class BorderWidthAes(override val context: BindingContext) : NonPositionalAes<Double> {
-    override val name = BORDER_SIZE
+public data class BorderWidthAes(override val context: BindingContext) : NonPositionalAes<Double> {
+    override val name: AesName = BORDER_SIZE
 }
 
-val BORDER_COLOR = AesName("border_color")
+public val BORDER_COLOR: AesName = AesName("border_color")
 
-data class BorderColorAes(override val context: BindingContext) : NonPositionalAes<Color> {
-    override val name = BORDER_COLOR
+public data class BorderColorAes(override val context: BindingContext) : NonPositionalAes<Color> {
+    override val name: AesName = BORDER_COLOR
 }
 
-val WIDTH = AesName("width")
+public val WIDTH: AesName = AesName("width")
 
-data class WidthAes(override val context: BindingContext) : NonPositionalAes<Double> {
-    override val name = WIDTH
+public data class WidthAes(override val context: BindingContext) : NonPositionalAes<Double> {
+    override val name: AesName = WIDTH
 }
 
-val SYMBOL = AesName("symbol")
+public val SYMBOL: AesName = AesName("symbol")
 
-data class SymbolAes(override val context: BindingContext) : MappableNonPositionalAes<Symbol> {
-    override val name = SYMBOL
+public data class SymbolAes(override val context: BindingContext) : MappableNonPositionalAes<Symbol> {
+    override val name: AesName = SYMBOL
 }
 
-val LINE_TYPE = AesName("line_type")
+public val LINE_TYPE: AesName = AesName("line_type")
 
-data class LineTypeAes(override val context: BindingContext) : NonPositionalAes<LineType> {
-    override val name = LINE_TYPE
+public data class LineTypeAes(override val context: BindingContext) : NonPositionalAes<LineType> {
+    override val name: AesName = LINE_TYPE
 }

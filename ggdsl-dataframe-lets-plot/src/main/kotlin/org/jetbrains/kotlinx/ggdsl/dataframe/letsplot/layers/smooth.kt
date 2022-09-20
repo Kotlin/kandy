@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.SmoothContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.smooth
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.SmoothMethod
 
-inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
+public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
     sourceX: ColumnReference<T>,
     sourceY: DataSource<R>,
     method: SmoothMethod? = null,
@@ -20,9 +20,9 @@ inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
     se: Boolean? = null,
     level: Double? = null,
     block: SmoothContext.() -> Unit
-) = smooth(sourceX.toDataSource(), sourceY, method, pointsNumber, se, level, block)
+): Unit = smooth(sourceX.toDataSource(), sourceY, method, pointsNumber, se, level, block)
 
-inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
+public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
     sourceX: DataSource<T>,
     sourceY: ColumnReference<R>,
     method: SmoothMethod? = null,
@@ -30,9 +30,9 @@ inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
     se: Boolean? = null,
     level: Double? = null,
     block: SmoothContext.() -> Unit
-) = smooth(sourceX, sourceY.toDataSource(), method, pointsNumber, se, level, block)
+): Unit = smooth(sourceX, sourceY.toDataSource(), method, pointsNumber, se, level, block)
 
-inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
+public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
     sourceX: ColumnReference<T>,
     sourceY: ColumnReference<R>,
     method: SmoothMethod? = null,
@@ -40,4 +40,4 @@ inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
     se: Boolean? = null,
     level: Double? = null,
     block: SmoothContext.() -> Unit
-) = smooth(sourceX.toDataSource(), sourceY.toDataSource(), method, pointsNumber, se, level, block)
+): Unit = smooth(sourceX.toDataSource(), sourceY.toDataSource(), method, pointsNumber, se, level, block)

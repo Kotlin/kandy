@@ -4,30 +4,36 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat
 
-sealed interface Distribution {
-    val name: String
-    data class Norm(val mean: Double = 0.0, val std: Double = 1.0): Distribution {
-        override val name = "norm"
+public sealed interface Distribution {
+    public val name: String
+
+    public data class Norm(val mean: Double = 0.0, val std: Double = 1.0) : Distribution {
+        override val name: String = "norm"
     }
-    data class Uniform(val a: Double = 0.0, val b: Double = 1.0): Distribution{
-        override val name = "uniform"
+
+    public data class Uniform(val a: Double = 0.0, val b: Double = 1.0) : Distribution {
+        override val name: String = "uniform"
     }
-    data class T(val d: Int = 1): Distribution{
-        override val name = "t"
+
+    public data class T(val d: Int = 1) : Distribution {
+        override val name: String = "t"
     }
-    data class Gamma(val alpha: Double = 1.0, val beta: Double = 1.0): Distribution{
-        override val name = "gamma"
+
+    public data class Gamma(val alpha: Double = 1.0, val beta: Double = 1.0) : Distribution {
+        override val name: String = "gamma"
     }
-    data class Exp(val lambda: Double = 0.0): Distribution{
-        override val name = "exp"
+
+    public data class Exp(val lambda: Double = 0.0) : Distribution {
+        override val name: String = "exp"
     }
-    data class Chi2(val k: Int = 1): Distribution{
-        override val name = "chi2"
+
+    public data class Chi2(val k: Int = 1) : Distribution {
+        override val name: String = "chi2"
     }
 }
 
-fun Distribution.toList(): List<Number> {
-    return when(this) {
+public fun Distribution.toList(): List<Number> {
+    return when (this) {
         is Distribution.Norm -> listOf(mean, std)
         is Distribution.Chi2 -> listOf(k)
         is Distribution.Exp -> listOf(lambda)

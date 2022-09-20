@@ -11,24 +11,23 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 
 
-inline fun <reified DomainType : Any> Stat<DomainType>.scaled() =
+public inline fun <reified DomainType : Any> Stat<DomainType>.scaled(): SourceScaledUnspecifiedDefault<DomainType> =
     SourceScaledUnspecifiedDefault(this.toDataSource())
 
 
-inline fun <reified DomainType : Any> Stat<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
+public inline fun <reified DomainType : Any> Stat<DomainType>.scaled(scale: PositionalUnspecifiedScale): SourceScaledPositionalUnspecified<DomainType> =
     SourceScaledPositionalUnspecified(this.toDataSource(), scale)
 
 
-
-inline fun <reified DomainType : Any> Stat<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
+public inline fun <reified DomainType : Any> Stat<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): SourceScaledNonPositionalUnspecified<DomainType> =
     SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
 
 
-inline fun <reified DomainType : Any> Stat<DomainType>.scaled(
+public inline fun <reified DomainType : Any> Stat<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-) = SourceScaledPositional(this.toDataSource(), scale)
+): SourceScaledPositional<DomainType> = SourceScaledPositional(this.toDataSource(), scale)
 
 
-inline fun <reified DomainType : Any, RangeType : Any> Stat<DomainType>.scaled(
+public inline fun <reified DomainType : Any, RangeType : Any> Stat<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-) = SourceScaledNonPositional(this.toDataSource(), scale)
+): SourceScaledNonPositional<DomainType, RangeType> = SourceScaledNonPositional(this.toDataSource(), scale)

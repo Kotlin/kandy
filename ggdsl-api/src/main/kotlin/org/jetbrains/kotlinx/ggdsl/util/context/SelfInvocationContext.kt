@@ -4,6 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.util.context
 
-interface SelfInvocationContext
+public interface SelfInvocationContext
 
-operator fun <T : SelfInvocationContext> T.invoke(block: T.() -> Unit) = apply(block)
+public operator fun <T : SelfInvocationContext> T.invoke(block: T.() -> Unit): T = apply(block)

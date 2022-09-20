@@ -9,6 +9,6 @@ package org.jetbrains.kotlinx.ggdsl.ir.feature
  *
  * @property featureName the name of feature
  */
-interface PlotFeature {
-    val featureName: FeatureName
+public interface PlotFeature {
+    public val featureName: FeatureName
 }

@@ -10,21 +10,20 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 // TODO
 
 @PublishedApi
-internal val H_LINE = LetsPlotGeom("hLine")
-
+internal val H_LINE: LetsPlotGeom = LetsPlotGeom("hLine")
 
 
 @PlotDslMarker
-class HLineContext(override var data: MutableNamedData) : LayerContext() {
-    val y = YInterceptAes(this)
+public class HLineContext(override var data: MutableNamedData) : LayerContext() {
+    public val y: YInterceptAes = YInterceptAes(this)
 
-    val color = ColorAes(this)
-    val alpha = AlphaAes(this)
-    val type = LineTypeAes(this)
-    val width = SizeAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val type: LineTypeAes = LineTypeAes(this)
+    public val width: SizeAes = SizeAes(this)
 }
 
 
-inline fun PlotContext.hLine(block: HLineContext.() -> Unit) {
+public inline fun PlotContext.hLine(block: HLineContext.() -> Unit) {
     layers.add(HLineContext(data).apply { copyFrom(this@hLine) }.apply(block).toLayer(H_LINE))
 }

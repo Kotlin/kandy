@@ -6,10 +6,9 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-data class ScaleContinuousColorGradientN<DomainType : Any>(
+public data class ScaleContinuousColorGradientN<DomainType : Any>(
     val domainLimits: Pair<DomainType, DomainType>? = null,
     val rangeColors: List<Color>,
     override val transform: Transformation? = null
@@ -23,15 +22,15 @@ data class ScaleContinuousColorGradientN<DomainType : Any>(
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-fun <DomainType : Any> continuousColorGradientN(
+public fun <DomainType : Any> continuousColorGradientN(
     domainLimits: Pair<DomainType, DomainType>? = null,
     rangeColors: List<Color>,
     transform: Transformation? = null
-) = ScaleContinuousColorGradientN(
+): ScaleContinuousColorGradientN<DomainType> = ScaleContinuousColorGradientN(
     domainLimits, rangeColors, transform
 )
 
-data class ScaleContinuousColorGradient2<DomainType : Any>(
+public data class ScaleContinuousColorGradient2<DomainType : Any>(
     val domainLimits: Pair<DomainType, DomainType>? = null,
     val low: Color,
     val mid: Color,
@@ -49,13 +48,13 @@ data class ScaleContinuousColorGradient2<DomainType : Any>(
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-fun <DomainType : Any> continuousColorGradient2(
+public fun <DomainType : Any> continuousColorGradient2(
     domainLimits: Pair<DomainType, DomainType>? = null,
     low: Color,
     mid: Color,
     high: Color,
     midpoint: Double,
     transform: Transformation? = null
-) = ScaleContinuousColorGradient2(
+): ScaleContinuousColorGradient2<DomainType> = ScaleContinuousColorGradient2(
     domainLimits, low, mid, high, midpoint, transform
 )

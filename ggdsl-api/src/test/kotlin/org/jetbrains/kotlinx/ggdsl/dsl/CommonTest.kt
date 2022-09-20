@@ -110,10 +110,10 @@ internal class CommonTest {
         )
         val yMapping = ScaledPositionalMapping(
             Y, SourceScaledPositional(
-                height, PositionalContinuousScale(
-                    limits = 1f to 15f
-                )
-            ), typeOf<Float>()
+            height, PositionalContinuousScale(
+            limits = 1f to 15f
+        )
+        ), typeOf<Float>()
         )
         val colorMapping = ScaledNonPositionalMapping(
             COLOR,

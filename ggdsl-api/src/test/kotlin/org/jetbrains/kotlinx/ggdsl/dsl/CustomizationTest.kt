@@ -21,7 +21,7 @@ import kotlin.test.assertEquals
 
 internal class CustomizationTest {
 
-    class SpecificAes(override val context: BindingContext) : MappableNonPositionalAes<CustomGeomType>{
+    class SpecificAes(override val context: BindingContext) : MappableNonPositionalAes<CustomGeomType> {
         override val name = SPECIFIC_AES
     }
 
@@ -39,7 +39,7 @@ internal class CustomizationTest {
         val specificAes = SpecificAes(this)
     }
 
-    fun PlotContext.customLayer(block: CustomGeomContext.() -> Unit) {
+    private fun PlotContext.customLayer(block: CustomGeomContext.() -> Unit) {
         layers.add(CustomGeomContext(data).apply { copyFrom(this@customLayer) }.apply(block).toLayer(customGeom))
     }
 
@@ -51,7 +51,7 @@ internal class CustomizationTest {
         }
     }
 
-    fun LayerContext.mockFeatureFunction(value: Int) {
+    private fun LayerContext.mockFeatureFunction(value: Int) {
         features[MockLayerFeature.FEATURE_NAME] = MockLayerFeature(value)
     }
 
@@ -63,18 +63,18 @@ internal class CustomizationTest {
         }
     }
 
-    var PlotContext.mockFeatureProp: String
+    private var PlotContext.mockFeatureProp: String
         get() = ""
         set(value) {
             features[MockPlotFeature.FEATURE_NAME] = MockPlotFeature(value)
         }
 
-    val mockSrcDouble = source<Double>("mock_double")
-    val mockSrcInt = source<Int>("mock_int")
-    val mockSrcString = source<String>("mock_string")
-    val mockSrcFloat = source<Float>("mock_float")
+    private val mockSrcDouble = source<Double>("mock_double")
+    private val mockSrcInt = source<Int>("mock_int")
+    private val mockSrcString = source<String>("mock_string")
+    private val mockSrcFloat = source<Float>("mock_float")
 
-    val dataset: NamedData = mapOf()
+    private val dataset: NamedData = mapOf()
 
     @Test
     fun testCustomLayer() {

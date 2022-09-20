@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
  *
  * @see <a href = "https://echarts.apache.org/en/option.html#color">ECharts Dcoumentation</a>
  */
-data class LinearGradientColor(
+public data class LinearGradientColor(
     val x1: Double = 0.0,
     val y1: Double = 0.0,
     val x2: Double = 0.0,
@@ -36,11 +36,11 @@ internal fun Pair<Double, StandardColor>.toColorStop() =
  *
  * @see <a href = "https://echarts.apache.org/en/option.html#color">ECharts Dcoumentation</a>
  */
-class RadialGradientColor(
-    val x: Double = 0.5,
-    val y: Double = 0.5,
-    val r: Double = 0.5,
-    val colors: List<Pair<Double, StandardColor>> = listOf(0.0 to Color.RED, 1.0 to Color.BLUE),
+public class RadialGradientColor(
+    public val x: Double = 0.5,
+    public val y: Double = 0.5,
+    public val r: Double = 0.5,
+    public val colors: List<Pair<Double, StandardColor>> = listOf(0.0 to Color.RED, 1.0 to Color.BLUE),
 ) : EchartsColor
 
 internal fun RadialGradientColor.toEchartsColorOption() = GradientOption(

@@ -7,14 +7,15 @@ package org.jetbrains.kotlinx.ggdsl.ir.scale
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import kotlin.reflect.KType
 
-sealed interface FreeScale {
-    val aes: AesName
-    val scale: Scale
-    val domainType: KType
-    var scaleParameters: ScaleParameters?
+public sealed interface FreeScale {
+    public val aes: AesName
+    public val scale: Scale
+    public val domainType: KType
+    public var scaleParameters: ScaleParameters?
 }
 
-data class FreePositionalScale<DomainType: Any>(
+// TODO (Generic type)
+public data class FreePositionalScale<DomainType : Any>(
     override val aes: AesName,
     override val scale: Scale,
     override val domainType: KType,

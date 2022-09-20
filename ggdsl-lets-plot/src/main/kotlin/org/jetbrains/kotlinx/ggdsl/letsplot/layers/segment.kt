@@ -13,20 +13,20 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
-internal val SEGMENT = LetsPlotGeom("segment")
+internal val SEGMENT: LetsPlotGeom = LetsPlotGeom("segment")
 
 
-class SegmentContext(override var data: MutableNamedData) :
+public class SegmentContext(override var data: MutableNamedData) :
     LayerContext() {
     // TODO
-    val xBegin = XAes(this)
-    val yBegin = YAes(this)
-    val xEnd = XEndAes(this)
-    val yEnd = YEndAes(this)
-    val color = ColorAes(this)
-    val alpha = AlphaAes(this)
-    val lineType = LineTypeAes(this)
-    val width = SizeAes(this)
+    public val xBegin: XAes = XAes(this)
+    public val yBegin: YAes = YAes(this)
+    public val xEnd: XEndAes = XEndAes(this)
+    public val yEnd: YEndAes = YEndAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val lineType: LineTypeAes = LineTypeAes(this)
+    public val width: SizeAes = SizeAes(this)
 
     // todo speed and flow
 }
@@ -77,6 +77,6 @@ class SegmentContext(override var data: MutableNamedData) :
  *  ```
  *  // TODO refer to bindings?
  */
-fun PlotContext.segment(block: SegmentContext.() -> Unit) {
+public fun PlotContext.segment(block: SegmentContext.() -> Unit) {
     layers.add(SegmentContext(data).apply { copyFrom(this@segment) }.apply(block).toLayer(SEGMENT))
 }

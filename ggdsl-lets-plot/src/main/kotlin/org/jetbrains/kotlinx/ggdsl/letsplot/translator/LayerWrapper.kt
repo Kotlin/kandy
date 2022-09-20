@@ -25,8 +25,8 @@ internal class LayerWrapper internal constructor(private val layer: Layer) :
     ) {
     // TODO
     override fun seal() = Options(
-        layer.settings.map {
-                (_, setting) -> setting.wrap()
+        layer.settings.map { (_, setting) ->
+            setting.wrap()
         }.toMap()
     )
 }

@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.theme.Theme
 
 //todo
 @PlotDslMarker
-data class LetsPlotLayout(
+public data class LetsPlotLayout(
     var title: String? = null,
     var subtitle: String? = null,
     var caption: String? = null,
@@ -27,26 +27,27 @@ data class LetsPlotLayout(
 
     @PublishedApi
     internal var theme: Theme? = null
+
     @PublishedApi
     internal var customTheme: CustomTheme? = null
 
-    inline fun theme(theme: Theme, block: CustomTheme.() -> Unit = {}) {
+    public inline fun theme(theme: Theme, block: CustomTheme.() -> Unit = {}) {
         this.theme = theme
         customTheme = CustomTheme().apply(block)
     }
 
-    inline fun theme(block: CustomTheme.() -> Unit) {
+    public inline fun theme(block: CustomTheme.() -> Unit) {
         theme = CustomTheme().apply(block)
     }
 }
 
-inline fun PlotContext.layout(block: LetsPlotLayout.() -> Unit) {
+public inline fun PlotContext.layout(block: LetsPlotLayout.() -> Unit) {
     layoutAccessor = LetsPlotLayout().apply(block)
 }
 
-val PlotContext.layout: LetsPlotLayout
+public val PlotContext.layout: LetsPlotLayout
     get() {
-        if(this.layoutAccessor == null) {
+        if (this.layoutAccessor == null) {
             this.layoutAccessor = LetsPlotLayout()
         }
         return this.layoutAccessor as LetsPlotLayout

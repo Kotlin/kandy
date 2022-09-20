@@ -9,4 +9,4 @@ package org.jetbrains.kotlinx.ggdsl.ir.feature
  *
  * @property name the name of feature
  */
-data class FeatureName(val name: String)
+public data class FeatureName(val name: String)

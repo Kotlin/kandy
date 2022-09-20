@@ -18,7 +18,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
  * @param features the [Map] of the plot features; keys are feature names,
  * values are features with corresponding names.
  */
-data class Plot(
+public data class Plot(
     val dataset: NamedData, // todo remove???
     val layers: List<Layer>,
     val layout: Layout? = null,
