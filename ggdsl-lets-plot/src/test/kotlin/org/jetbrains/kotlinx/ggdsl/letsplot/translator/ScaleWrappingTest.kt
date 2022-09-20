@@ -41,15 +41,15 @@ internal class ScaleWrappingTest {
             wrappedScale.toSpec()
         )
     }
-/*
-    @Test
-    fun testDefaults() {
-        assertNull(DefaultUnspecifiedScale.wrap(SHAPE, mapping.domainType))
-        assertNull(PositionalCategoricalUnspecifiedScale.wrap(Y, mapping.domainType))
-        assertNull(PositionalContinuousUnspecifiedScale().wrap(Y, mapping.domainType))
-        assertNull(NonPositionalCategoricalUnspecifiedScale.wrap(COLOR, mapping.domainType))
-        assertNull(NonPositionalContinuousUnspecifiedScale().wrap(SIZE, mapping.domainType))
-    }
+    /*
+        @Test
+        fun testDefaults() {
+            assertNull(DefaultUnspecifiedScale.wrap(SHAPE, mapping.domainType))
+            assertNull(PositionalCategoricalUnspecifiedScale.wrap(Y, mapping.domainType))
+            assertNull(PositionalContinuousUnspecifiedScale().wrap(Y, mapping.domainType))
+            assertNull(NonPositionalCategoricalUnspecifiedScale.wrap(COLOR, mapping.domainType))
+            assertNull(NonPositionalContinuousUnspecifiedScale().wrap(SIZE, mapping.domainType))
+        }
 
- */
+     */
 }

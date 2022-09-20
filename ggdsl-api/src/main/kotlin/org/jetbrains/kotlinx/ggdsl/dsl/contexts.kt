@@ -79,7 +79,8 @@ public abstract class BindingContext {
 
     public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
         scale: NonPositionalUnspecifiedScale
-    ): SourceScaledNonPositionalUnspecified<DomainType> = SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
+    ): SourceScaledNonPositionalUnspecified<DomainType> =
+        SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
 
 
     public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(

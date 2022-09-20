@@ -7,12 +7,14 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 val X = AesName("x")
-data class XAes(override val context: BindingContext): ScalablePositionalAes {
+
+data class XAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = X
 }
 
 val Y = AesName("y")
-data class YAes(override val context: BindingContext): ScalablePositionalAes {
+
+data class YAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = Y
 }
 

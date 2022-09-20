@@ -2,7 +2,8 @@ package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 
@@ -44,6 +45,6 @@ public inline fun <T> DataFrame<T>.create(block: DataFrame<T>.() -> Plot): Plot 
  *
  * @see [create]
  */
-public inline fun<T> DataFrame<T>.plot(block: PlotContext.() -> Unit): Plot {
+public inline fun <T> DataFrame<T>.plot(block: PlotContext.() -> Unit): Plot {
     return plot(toNamedData(), block)
 }

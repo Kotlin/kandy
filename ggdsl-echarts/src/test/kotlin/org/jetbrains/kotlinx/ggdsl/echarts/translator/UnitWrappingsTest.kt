@@ -52,7 +52,7 @@ internal class UnitWrappingsTest {
                 X to ScaledPositionalMapping(
                     X,
                     SourceScaledPositional(
-                        source<Double>("srcX"),
+                        source("srcX"),
                         continuousPos(1.0 to 5.0)
                     ),
                     typeOf<Double>()
@@ -93,18 +93,18 @@ internal class UnitWrappingsTest {
             mapOf(
                 X to ScaledPositionalUnspecifiedMapping(
                     X, SourceScaledPositionalUnspecified(
-                        source<Float>("time"),
-                        PositionalContinuousUnspecifiedScale()
-                    ),
+                    source<Float>("time"),
+                    PositionalContinuousUnspecifiedScale()
+                ),
                     typeOf<Double>()
                 ),
                 Y to ScaledPositionalMapping(
                     Y, SourceScaledPositional(
-                        source<Float>("size"),
-                        PositionalContinuousScale(
-                            limits = 1f to 15f
-                        )
-                    ),
+                    source("size"),
+                    PositionalContinuousScale(
+                        limits = 1f to 15f
+                    )
+                ),
                     typeOf<Float>()
                 ),
             ),

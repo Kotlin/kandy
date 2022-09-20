@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.density2DFilled
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.BandWidth
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
 
-public inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
+public inline fun <reified T : Any, reified R : Any> PlotContext.density2DFilled(
     sourceX: ColumnReference<T>,
     sourceY: DataSource<R>,
     kernel: Kernel? = null,
@@ -23,7 +23,7 @@ public inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
     sourceX.toDataSource(), sourceY, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
 
-public inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
+public inline fun <reified T : Any, reified R : Any> PlotContext.density2DFilled(
     sourceX: DataSource<T>,
     sourceY: ColumnReference<R>,
     kernel: Kernel? = null,
@@ -37,7 +37,7 @@ public inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
     sourceX, sourceY.toDataSource(), kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
 
-public inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
+public inline fun <reified T : Any, reified R : Any> PlotContext.density2DFilled(
     sourceX: ColumnReference<T>,
     sourceY: ColumnReference<R>,
     kernel: Kernel? = null,

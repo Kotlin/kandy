@@ -14,7 +14,7 @@ public data class EChartsLayout(
     var title: String? = null,
     // todo width height?
     var size: Pair<Int, Int>? = null,
-): Layout
+) : Layout
 
 
 public inline fun PlotContext.layout(block: EChartsLayout.() -> Unit) {

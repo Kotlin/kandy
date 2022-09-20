@@ -27,6 +27,7 @@ public object EchartsColorOptionSerializer : KSerializer<EchartsColorOption> {
             is GradientOption -> {
                 encoder.encodeSerializableValue(GradientOption.serializer(), value)
             }
+
             is SimpleColorOption -> {
                 encoder.encodeString(value.name)
             }

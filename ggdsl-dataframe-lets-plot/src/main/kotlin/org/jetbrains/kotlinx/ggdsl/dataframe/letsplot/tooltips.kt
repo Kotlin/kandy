@@ -30,7 +30,6 @@ public fun LayerTooltipsContext.line(column: ColumnReference<*>) {
 }
 
 
-
 public inline fun LayerContext.tooltips(
     columns: List<ColumnReference<*>> = listOf(),
     variablesDS: List<DataSource<*>> = listOf(),
@@ -51,9 +50,9 @@ public inline fun LayerContext.tooltips(
         minWidth,
         hide,
         dsFormats.map { it.key.id to it.value }
-                + columnsFormats.map { it.key.name() to it.value }
-                + aesFormats.map { "^" + it.key.name.name to it.value }
-                + statFormats.map { it.key.name to it.value },
+            + columnsFormats.map { it.key.name() to it.value }
+            + aesFormats.map { "^" + it.key.name.name to it.value }
+            + statFormats.map { it.key.name to it.value },
         LayerTooltipsContext().apply(tooltipsContextAction)
     )
 }

@@ -10,6 +10,6 @@ public class Legend<DomainType : Any, RangeType : Any> {
 
 
 public inline operator fun <DomainType : Any, RangeType : Any>
-        Legend<DomainType, RangeType>.invoke(block: Legend<DomainType, RangeType>.() -> Unit) {
+    Legend<DomainType, RangeType>.invoke(block: Legend<DomainType, RangeType>.() -> Unit) {
     apply(block)
 }

@@ -62,6 +62,7 @@ public fun Option.toJSON(): String {
 
 }
 
+@OptIn(ExperimentalSerializationApi::class)
 public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
     val width = size?.first ?: 600
     val height = size?.second ?: 400
@@ -141,20 +142,22 @@ public fun DataChangeAnimation.toHTML(): String {
             }
             script {
                 type = "text/javascript"
-                +(
+                unsafe {
+                    +(
                         "\n        var myChart = echarts.init(document.getElementById('main'));\n" +
-                                "        var option = $initOption;\n" +
-                                "        myChart.setOption(option);\n" +
-                                "        var datasets = $encodedDatasets;\n" +
-                                "var nextState = 0;\n" +
-                                "var maxStates = $maxStates\n" +
-                                "setInterval(function () {\n" +
-                                "var newDataset = datasets[nextState];\n" +
-                                "option.dataset = newDataset;\n" +
-                                "nextState = Math.min(1 + nextState, maxStates-1); \n" +
-                                "  myChart.setOption(option, true);\n" +
-                                "}, $interval);\n"
+                            "        var option = $initOption;\n" +
+                            "        myChart.setOption(option);\n" +
+                            "        var datasets = $encodedDatasets;\n" +
+                            "var nextState = 0;\n" +
+                            "var maxStates = $maxStates\n" +
+                            "setInterval(function () {\n" +
+                            "var newDataset = datasets[nextState];\n" +
+                            "option.dataset = newDataset;\n" +
+                            "nextState = Math.min(1 + nextState, maxStates-1); \n" +
+                            "  myChart.setOption(option, true);\n" +
+                            "}, $interval);\n"
                         )
+                }
             }
         }
 
@@ -188,7 +191,8 @@ public fun PlotChangeAnimation.toHTML(): String {
             }
             script {
                 type = "text/javascript"
-                +("""
+                unsafe {
+                    +("""
                         var myChart = echarts.init(document.getElementById('main'));
                         var options = $encodedPlots;
                         var option = options[0];
@@ -202,6 +206,7 @@ public fun PlotChangeAnimation.toHTML(): String {
                         }, $interval);
                         """.trimIndent()
                         )
+                }
             }
         }
 

@@ -11,7 +11,7 @@ public interface EchartsScaleParameters : ScaleParameters
 
 public data class PositionalParameters<DomainType : Any>(val axis: Axis<DomainType>) : EchartsScaleParameters
 public data class NonPositionalParameters<DomainType : Any, RangeType : Any>
-    (val legend: Legend<DomainType, RangeType>) : EchartsScaleParameters
+(val legend: Legend<DomainType, RangeType>) : EchartsScaleParameters
 
 public fun <DomainType : Any> BaseScaledPositionalMapping<DomainType>.with(
     block: PositionalParameters<DomainType>.() -> Unit

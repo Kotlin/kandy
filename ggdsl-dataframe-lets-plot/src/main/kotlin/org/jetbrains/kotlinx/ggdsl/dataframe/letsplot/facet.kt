@@ -43,7 +43,7 @@ public fun PlotContext.facetGridY(
     format: String? = null,
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(null, y.name(), scalesSharing,  OrderDirection.ASCENDING, order, null, format)
+        FacetGridFeature(null, y.name(), scalesSharing, OrderDirection.ASCENDING, order, null, format)
 
 }
 
@@ -90,7 +90,7 @@ public fun PlotContext.facetGrid(
 }
 
 // todo
-public inline fun<reified T: Any> FacetWrapContext.facet(
+public inline fun <reified T : Any> FacetWrapContext.facet(
     source: ColumnReference<T>,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null

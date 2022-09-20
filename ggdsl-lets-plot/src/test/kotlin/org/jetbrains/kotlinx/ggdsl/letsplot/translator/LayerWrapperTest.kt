@@ -148,17 +148,17 @@ internal class LayerWrapperTest {
                 "geom" to "bar",
                 "data_meta" to mapOf<String, Any>(
                     "mapping_annotations" to
-                            listOf(
-                                mapOf(
-                                    "aes" to "fill",
-                                    "annotation" to "as_discrete",
-                                    "parameters" to mapOf<String, Any?>(
-                                        "label" to "BAFGA",
-                                        "order_by" to null,
-                                        "order" to null
-                                    )
+                        listOf(
+                            mapOf(
+                                "aes" to "fill",
+                                "annotation" to "as_discrete",
+                                "parameters" to mapOf<String, Any?>(
+                                    "label" to "BAFGA",
+                                    "order_by" to null,
+                                    "order" to null
                                 )
                             )
+                        )
                 )
             ),
             wrappedLayer.toSpec()

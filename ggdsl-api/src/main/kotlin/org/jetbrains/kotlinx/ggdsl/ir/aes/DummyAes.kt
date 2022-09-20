@@ -1,4 +1,4 @@
 package org.jetbrains.kotlinx.ggdsl.ir.aes
 
 // TODO
-internal interface DummyAes: Aes
+internal interface DummyAes : Aes

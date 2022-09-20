@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.Bin2DContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bin2D
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Bins2D
 
-public inline fun <reified T : Any, reified R: Any> PlotContext.bin2D(
+public inline fun <reified T : Any, reified R : Any> PlotContext.bin2D(
     sourceX: ColumnReference<T>,
     sourceY: DataSource<R>,
     bins: Bins2D? = null,
@@ -16,7 +16,7 @@ public inline fun <reified T : Any, reified R: Any> PlotContext.bin2D(
     block: Bin2DContext.() -> Unit
 ): Unit = bin2D(sourceX.toDataSource(), sourceY, bins, drop, block)
 
-public inline fun <reified T : Any, reified R: Any> PlotContext.bin2D(
+public inline fun <reified T : Any, reified R : Any> PlotContext.bin2D(
     sourceX: ColumnReference<T>,
     sourceY: ColumnReference<R>,
     bins: Bins2D? = null,
@@ -24,7 +24,7 @@ public inline fun <reified T : Any, reified R: Any> PlotContext.bin2D(
     block: Bin2DContext.() -> Unit
 ): Unit = bin2D(sourceX.toDataSource(), sourceY.toDataSource(), bins, drop, block)
 
-public inline fun <reified T : Any, reified R: Any> PlotContext.bin2D(
+public inline fun <reified T : Any, reified R : Any> PlotContext.bin2D(
     sourceX: DataSource<T>,
     sourceY: ColumnReference<R>,
     bins: Bins2D? = null,

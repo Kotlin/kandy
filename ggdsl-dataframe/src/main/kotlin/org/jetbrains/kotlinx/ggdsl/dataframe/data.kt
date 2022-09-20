@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import kotlin.reflect.typeOf
 
 // todo internal?
-public inline fun <reified T: Any> ColumnReference<T>.toDataSource(): DataSource<T> {
+public inline fun <reified T : Any> ColumnReference<T>.toDataSource(): DataSource<T> {
     return DataSource(name(), typeOf<T>())
 }
 

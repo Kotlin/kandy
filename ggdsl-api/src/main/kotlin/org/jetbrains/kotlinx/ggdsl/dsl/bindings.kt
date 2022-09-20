@@ -250,7 +250,7 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
  * @param sourceScaledNonPositional the mapped source scaled non-positional.
  */
 public inline operator fun <reified DomainType : Any, reified RangeType : Any>
-        MappableNonPositionalAes<RangeType>.invoke(
+    MappableNonPositionalAes<RangeType>.invoke(
     sourceScaledNonPositional: SourceScaledNonPositional<DomainType, RangeType>
 ): ScaledNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledNonPositionalMapping(

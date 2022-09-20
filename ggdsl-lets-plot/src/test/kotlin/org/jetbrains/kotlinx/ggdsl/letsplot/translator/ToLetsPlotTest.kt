@@ -137,26 +137,26 @@ class ToLetsPlotTest {
                         "geom" to "bar",
                         "data_meta" to mapOf<String, Any>(
                             "mapping_annotations" to
-                                    listOf(
-                                        mapOf(
-                                            "aes" to "y",
-                                            "annotation" to "as_discrete",
-                                            "parameters" to mapOf<String, Any?>(
-                                                "label" to "svalue",
-                                                "order_by" to null,
-                                                "order" to null
-                                            )
-                                        ),
-                                        mapOf(
-                                            "aes" to "fill",
-                                            "annotation" to "as_discrete",
-                                            "parameters" to mapOf<String, Any?>(
-                                                "label" to "clM",
-                                                "order_by" to null,
-                                                "order" to null
-                                            )
+                                listOf(
+                                    mapOf(
+                                        "aes" to "y",
+                                        "annotation" to "as_discrete",
+                                        "parameters" to mapOf<String, Any?>(
+                                            "label" to "svalue",
+                                            "order_by" to null,
+                                            "order" to null
+                                        )
+                                    ),
+                                    mapOf(
+                                        "aes" to "fill",
+                                        "annotation" to "as_discrete",
+                                        "parameters" to mapOf<String, Any?>(
+                                            "label" to "clM",
+                                            "order_by" to null,
+                                            "order" to null
                                         )
                                     )
+                                )
                         )
                     ),
                     mapOf(
@@ -172,17 +172,17 @@ class ToLetsPlotTest {
                         "geom" to "line",
                         "data_meta" to mapOf<String, Any>(
                             "mapping_annotations" to
-                                    listOf(
-                                        mapOf(
-                                            "aes" to "y",
-                                            "annotation" to "as_discrete",
-                                            "parameters" to mapOf<String, Any?>(
-                                                "label" to "svalue",
-                                                "order_by" to null,
-                                                "order" to null
-                                            )
+                                listOf(
+                                    mapOf(
+                                        "aes" to "y",
+                                        "annotation" to "as_discrete",
+                                        "parameters" to mapOf<String, Any?>(
+                                            "label" to "svalue",
+                                            "order_by" to null,
+                                            "order" to null
                                         )
                                     )
+                                )
                         )
                     ),
                 ),

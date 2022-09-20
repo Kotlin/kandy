@@ -17,7 +17,7 @@ import kotlin.test.assertEquals
 
 internal class CustomizationTest {
 
-    class SpecificAes(override val context: BindingContext) : MappableNonPositionalAes<CustomGeomType>{
+    class SpecificAes(override val context: BindingContext) : MappableNonPositionalAes<CustomGeomType> {
         override val name = SPECIFIC_AES
     }
 
