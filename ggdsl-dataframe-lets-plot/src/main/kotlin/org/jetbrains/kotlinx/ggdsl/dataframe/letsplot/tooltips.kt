@@ -15,7 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltipsContext
  * @param column column whose value will be inserted into the tooltip
  * @return format string
  */
-fun value(column: ColumnReference<*>): String {
+public fun value(column: ColumnReference<*>): String {
     return "@${column.name()}"
 }
 
@@ -25,13 +25,13 @@ fun value(column: ColumnReference<*>): String {
  *
  * @param column
  */
-fun LayerTooltipsContext.line(column: ColumnReference<*>) {
+public fun LayerTooltipsContext.line(column: ColumnReference<*>) {
     line("@|@${column.name()}")
 }
 
 
 
-inline fun LayerContext.tooltips(
+public inline fun LayerContext.tooltips(
     columns: List<ColumnReference<*>> = listOf(),
     variablesDS: List<DataSource<*>> = listOf(),
     title: String? = null,

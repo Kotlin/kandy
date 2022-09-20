@@ -9,59 +9,59 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.ContourFilledContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.contourFilled
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Bins
 
-inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
     sourceX: ColumnReference<TX>,
     sourceY: DataSource<TY>,
     sourceZ: DataSource<TZ>,
     bins: Bins? = null,
     block: ContourFilledContext.() -> Unit
-) = contourFilled(sourceX.toDataSource(), sourceY, sourceZ, bins, block)
+): Unit = contourFilled(sourceX.toDataSource(), sourceY, sourceZ, bins, block)
 
-inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
     sourceX: ColumnReference<TX>,
     sourceY: ColumnReference<TY>,
     sourceZ: DataSource<TZ>,
     bins: Bins? = null,
     block: ContourFilledContext.() -> Unit
-) = contourFilled(sourceX.toDataSource(), sourceY.toDataSource(), sourceZ, bins, block)
+): Unit = contourFilled(sourceX.toDataSource(), sourceY.toDataSource(), sourceZ, bins, block)
 
-inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
     sourceX: ColumnReference<TX>,
     sourceY: DataSource<TY>,
     sourceZ: ColumnReference<TZ>,
     bins: Bins? = null,
     block: ContourFilledContext.() -> Unit
-) = contourFilled(sourceX.toDataSource(), sourceY, sourceZ.toDataSource(), bins, block)
+): Unit = contourFilled(sourceX.toDataSource(), sourceY, sourceZ.toDataSource(), bins, block)
 
-inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
     sourceX: DataSource<TX>,
     sourceY: ColumnReference<TY>,
     sourceZ: DataSource<TZ>,
     bins: Bins? = null,
     block: ContourFilledContext.() -> Unit
-) = contourFilled(sourceX, sourceY.toDataSource(), sourceZ, bins, block)
+): Unit = contourFilled(sourceX, sourceY.toDataSource(), sourceZ, bins, block)
 
-inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
     sourceX: DataSource<TX>,
     sourceY: ColumnReference<TY>,
     sourceZ: ColumnReference<TZ>,
     bins: Bins? = null,
     block: ContourFilledContext.() -> Unit
-) = contourFilled(sourceX, sourceY.toDataSource(), sourceZ.toDataSource(), bins, block)
+): Unit = contourFilled(sourceX, sourceY.toDataSource(), sourceZ.toDataSource(), bins, block)
 
-inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
     sourceX: DataSource<TX>,
     sourceY: DataSource<TY>,
     sourceZ: ColumnReference<TZ>,
     bins: Bins? = null,
     block: ContourFilledContext.() -> Unit
-) = contourFilled(sourceX, sourceY, sourceZ.toDataSource(), bins, block)
+): Unit = contourFilled(sourceX, sourceY, sourceZ.toDataSource(), bins, block)
 
-inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
     sourceX: ColumnReference<TX>,
     sourceY: ColumnReference<TY>,
     sourceZ: ColumnReference<TZ>,
     bins: Bins? = null,
     block: ContourFilledContext.() -> Unit
-) = contourFilled(sourceX.toDataSource(), sourceY.toDataSource(), sourceZ.toDataSource(), bins, block)
+): Unit = contourFilled(sourceX.toDataSource(), sourceY.toDataSource(), sourceZ.toDataSource(), bins, block)
 

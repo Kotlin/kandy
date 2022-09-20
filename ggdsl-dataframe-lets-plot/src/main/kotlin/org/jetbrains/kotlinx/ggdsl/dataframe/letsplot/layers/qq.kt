@@ -7,8 +7,8 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.QQContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.qq
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Distribution
 
-inline fun <reified T : Any> PlotContext.qq(
+public inline fun <reified T : Any> PlotContext.qq(
     source: ColumnReference<T>,
     distribution: Distribution? = null,
     block: QQContext.() -> Unit
-) = qq(source.toDataSource(), distribution, block)
+): Unit = qq(source.toDataSource(), distribution, block)

@@ -25,7 +25,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.ScalesSharing
  * TODO params
  * @see org.jetbrains.letsPlot.facet.facetGrid
  */
-fun PlotContext.facetGridX(
+public fun PlotContext.facetGridX(
     x: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
@@ -36,7 +36,7 @@ fun PlotContext.facetGridX(
 
 }
 
-fun PlotContext.facetGridY(
+public fun PlotContext.facetGridY(
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
@@ -47,7 +47,7 @@ fun PlotContext.facetGridY(
 
 }
 
-fun PlotContext.facetGrid(
+public fun PlotContext.facetGrid(
     x: ColumnReference<*>,
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
@@ -61,7 +61,7 @@ fun PlotContext.facetGrid(
 
 }
 
-fun PlotContext.facetGrid(
+public fun PlotContext.facetGrid(
     x: ColumnReference<*>,
     y: DataSource<*>,
     scalesSharing: ScalesSharing? = null,
@@ -75,7 +75,7 @@ fun PlotContext.facetGrid(
 
 }
 
-fun PlotContext.facetGrid(
+public fun PlotContext.facetGrid(
     x: DataSource<*>,
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
@@ -90,8 +90,8 @@ fun PlotContext.facetGrid(
 }
 
 // todo
-inline fun<reified T: Any> FacetWrapContext.facet(
+public inline fun<reified T: Any> FacetWrapContext.facet(
     source: ColumnReference<T>,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
-) = facet(source.toDataSource(), order, format)
+): Unit = facet(source.toDataSource(), order, format)

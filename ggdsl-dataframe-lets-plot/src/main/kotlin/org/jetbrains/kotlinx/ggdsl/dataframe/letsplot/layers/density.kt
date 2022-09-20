@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.density
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.BandWidth
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
 
-inline fun <reified T : Any> PlotContext.density(
+public inline fun <reified T : Any> PlotContext.density(
     source: ColumnReference<T>,
     kernel: Kernel? = null,
     bandWidth: BandWidth? = null,
@@ -17,4 +17,4 @@ inline fun <reified T : Any> PlotContext.density(
     adjust: Double? = null,
     fullScanMax: Int? = null,
     block: DensityContext.() -> Unit,
-) = density(source.toDataSource(), kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block)
+): Unit = density(source.toDataSource(), kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block)

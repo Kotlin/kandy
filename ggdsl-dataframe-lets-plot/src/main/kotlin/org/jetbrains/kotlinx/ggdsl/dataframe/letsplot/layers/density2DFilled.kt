@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.density2DFilled
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.BandWidth
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
 
-inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
+public inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
     sourceX: ColumnReference<T>,
     sourceY: DataSource<R>,
     kernel: Kernel? = null,
@@ -19,11 +19,11 @@ inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
     adjust: Double? = null,
     fullScanMax: Int? = null,
     block: Density2DFilledContext.() -> Unit
-) = density2DFilled(
+): Unit = density2DFilled(
     sourceX.toDataSource(), sourceY, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
 
-inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
+public inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
     sourceX: DataSource<T>,
     sourceY: ColumnReference<R>,
     kernel: Kernel? = null,
@@ -33,11 +33,11 @@ inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
     adjust: Double? = null,
     fullScanMax: Int? = null,
     block: Density2DFilledContext.() -> Unit
-) = density2DFilled(
+): Unit = density2DFilled(
     sourceX, sourceY.toDataSource(), kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
 
-inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
+public inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
     sourceX: ColumnReference<T>,
     sourceY: ColumnReference<R>,
     kernel: Kernel? = null,
@@ -47,7 +47,7 @@ inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
     adjust: Double? = null,
     fullScanMax: Int? = null,
     block: Density2DFilledContext.() -> Unit
-) = density2DFilled(
+): Unit = density2DFilled(
     sourceX.toDataSource(),
     sourceY.toDataSource(),
     kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
