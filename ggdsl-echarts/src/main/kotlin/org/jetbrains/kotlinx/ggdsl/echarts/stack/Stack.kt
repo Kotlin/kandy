@@ -26,18 +26,18 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
  */
 
 // todo
-var BarsContext.stack: Stack
+public var BarsContext.stack: Stack
     get() = Stack("TODO")
     set(value) {
         features[Stack.FEATURE_NAME] = value
     }
 
 //todo
-data class Stack internal constructor(val name: String) : LayerFeature {
+public data class Stack internal constructor(val name: String) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
-    companion object {
-        val FEATURE_NAME = FeatureName("STACK_FEATURE")
+    public companion object {
+        public val FEATURE_NAME: FeatureName = FeatureName("STACK_FEATURE")
     }
 }
 
@@ -47,6 +47,6 @@ data class Stack internal constructor(val name: String) : LayerFeature {
  * @param name the stack name
  * @return [Stack]
  */
-fun stack(name: String) = Stack(name)
+public fun stack(name: String): Stack = Stack(name)
 
 

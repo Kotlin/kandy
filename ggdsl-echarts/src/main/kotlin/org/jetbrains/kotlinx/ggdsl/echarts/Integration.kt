@@ -46,10 +46,10 @@ internal class Integration : JupyterIntegration() {
     }
 }
 
-const val ECHARTS_SRC = "https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"
+public const val ECHARTS_SRC: String = "https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"
 
 @ExperimentalSerializationApi
-fun Option.toJSON(): String {
+public fun Option.toJSON(): String {
     /*return Klaxon().toJsonString(this)*/
 
     return Json {
@@ -62,7 +62,7 @@ fun Option.toJSON(): String {
 
 }
 
-fun Option.toHTML(size: Pair<Int, Int>? = null): String {
+public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
     val width = size?.first ?: 600
     val height = size?.second ?: 400
     return createHTML().html {
@@ -108,7 +108,7 @@ fun Option.toHTML(size: Pair<Int, Int>? = null): String {
 
 // todo sizes
 @OptIn(ExperimentalSerializationApi::class)
-fun DataChangeAnimation.toHTML(): String {
+public fun DataChangeAnimation.toHTML(): String {
     val encoder = Json {
         explicitNulls = false
         encodeDefaults = true
@@ -116,11 +116,11 @@ fun DataChangeAnimation.toHTML(): String {
     val maxStates = 100
     // todo size
     val initOption = plot.toOption().option.toJSON().replace('\"', '\'')
-    var dataset = plot.dataset
+    val dataset = plot.dataset
     val datasets = mutableListOf<Dataset>()
     repeat(maxStates) {
         dataChange(dataset)
-        datasets.add(Dataset(dataset.wrap().data.map { it.map { it.toString() } }))
+        datasets.add(Dataset(dataset.wrap().data.map { it.map { el -> el.toString() } }))
     }
     val encodedDatasets = encoder.encodeToString(datasets).replace('\"', '\'')
     return createHTML().html {
@@ -162,7 +162,7 @@ fun DataChangeAnimation.toHTML(): String {
 }
 
 @OptIn(ExperimentalSerializationApi::class)
-fun PlotChangeAnimation.toHTML(): String {
+public fun PlotChangeAnimation.toHTML(): String {
     val encoder = Json {
         explicitNulls = false
         encodeDefaults = true

@@ -384,7 +384,7 @@ internal fun Layer.toSeries(wrappedData: List<List<Any>>?): Series {
             null
         },
         stack = stack,
-        data = wrappedData?.map { it.map { it.toString() } }
+        data = wrappedData?.map { it.map { el -> el.toString() } }
     )
 }
 
@@ -405,7 +405,7 @@ internal fun wrapColor(color: Color): EchartsColorOption {
     }
 }
 
-fun Plot.toOption(): MetaOption {
+public fun Plot.toOption(): MetaOption {
     visualMapCounter = 0 // todo
     val (source, idToDim) = dataset.wrap()
     // TODO!!!
@@ -459,7 +459,7 @@ fun Plot.toOption(): MetaOption {
     //todo echarts layout
     return MetaOption(
         Option(
-            dataset = Dataset(source.map { it.map { it.toString() } }),
+            dataset = Dataset(source.map { it.map { el -> el.toString() } }),
             xAxis = listOf(xAxis),
             yAxis = listOf(yAxis),
             visualMap = visualMaps,

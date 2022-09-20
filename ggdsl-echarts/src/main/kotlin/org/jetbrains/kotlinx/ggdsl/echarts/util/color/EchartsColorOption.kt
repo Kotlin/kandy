@@ -8,12 +8,12 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 @kotlinx.serialization.Serializable(with = EchartsColorOptionSerializer::class)
-sealed class EchartsColorOption
+public sealed class EchartsColorOption
 
 @kotlinx.serialization.Serializable
-data class SimpleColorOption(val name: String) : EchartsColorOption()
+public data class SimpleColorOption(val name: String) : EchartsColorOption()
 
-object EchartsColorOptionSerializer : KSerializer<EchartsColorOption> {
+public object EchartsColorOptionSerializer : KSerializer<EchartsColorOption> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("color", PrimitiveKind.STRING)
 

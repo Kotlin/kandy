@@ -3,24 +3,24 @@ package org.jetbrains.kotlinx.ggdsl.echarts.animation
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
-class AnimationFeature(
-    var enable: Boolean = true,
-    var threshold: Int = 2000,
-    var duration: Int = 1000,
-    var easing: AnimationEasing = AnimationEasing.CUBIC_OUT,
-    var delay: Int = 0
+public class AnimationFeature(
+    public var enable: Boolean = true,
+    public var threshold: Int = 2000,
+    public var duration: Int = 1000,
+    public var easing: AnimationEasing = AnimationEasing.CUBIC_OUT,
+    public var delay: Int = 0
 ) : PlotFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
-    companion object {
-        val FEATURE_NAME = FeatureName("DATA_CHANGE_ANIMATION_FEATURE")
+    public companion object {
+        public val FEATURE_NAME: FeatureName = FeatureName("DATA_CHANGE_ANIMATION_FEATURE")
     }
 }
 
-class AnimationEasing internal constructor(val name: String) {
-    companion object {
+public class AnimationEasing internal constructor(public val name: String) {
+    public companion object {
         // todo others
-        val LINEAR = AnimationEasing("linear")
-        val CUBIC_OUT = AnimationEasing("cubicOut")
+        public val LINEAR: AnimationEasing = AnimationEasing("linear")
+        public val CUBIC_OUT: AnimationEasing = AnimationEasing("cubicOut")
     }
 }
