@@ -30,11 +30,11 @@ class ToLetsPlotTest {
         }
 
         assertEquals(
-            mapOf<String, Any>(
+            mapOf(
                 "mapping" to mapOf<String, String>(),
                 "data" to mapOf<String, Any>(),
                 "kind" to "plot",
-                "scales" to listOf<Map<String, Any>>(
+                "scales" to listOf(
                     mapOf(
                         "aesthetic" to "x",
                     ),
@@ -44,8 +44,8 @@ class ToLetsPlotTest {
                     )
                 ),
                 "layers" to listOf(
-                    mapOf<String, Any>(
-                        "mapping" to mapOf<String, String>(
+                    mapOf(
+                        "mapping" to mapOf(
                             "x" to "origin",
                             "y" to "mpg"
                         ),
@@ -96,11 +96,11 @@ class ToLetsPlotTest {
         }
         println(plot.toLetsPlot().toSpec())
         assertEquals(
-            mapOf<String, Any>(
+            mapOf(
                 "mapping" to mapOf<String, String>(),
                 "data" to mapOf<String, Any>(),
                 "kind" to "plot",
-                "scales" to listOf<Map<String, Any>>(
+                "scales" to listOf(
                     mapOf(
                         "aesthetic" to "x",
                         "limits" to listOf(-12.0, 4.4)
@@ -123,8 +123,8 @@ class ToLetsPlotTest {
                     ),
                 ),
                 "layers" to listOf(
-                    mapOf<String, Any>(
-                        "mapping" to mapOf<String, String>(
+                    mapOf(
+                        "mapping" to mapOf(
                             "x" to "time",
                             "y" to "svalue",
                             "fill" to "clM"
@@ -138,7 +138,7 @@ class ToLetsPlotTest {
                         "data_meta" to mapOf<String, Any>(
                             "mapping_annotations" to
                                     listOf(
-                                        mapOf<String, Any>(
+                                        mapOf(
                                             "aes" to "y",
                                             "annotation" to "as_discrete",
                                             "parameters" to mapOf<String, Any?>(
@@ -147,7 +147,7 @@ class ToLetsPlotTest {
                                                 "order" to null
                                             )
                                         ),
-                                        mapOf<String, Any>(
+                                        mapOf(
                                             "aes" to "fill",
                                             "annotation" to "as_discrete",
                                             "parameters" to mapOf<String, Any?>(
@@ -159,8 +159,8 @@ class ToLetsPlotTest {
                                     )
                         )
                     ),
-                    mapOf<String, Any>(
-                        "mapping" to mapOf<String, String>(
+                    mapOf(
+                        "mapping" to mapOf(
                             "x" to "time",
                             "y" to "svalue",
                         ),
@@ -173,7 +173,7 @@ class ToLetsPlotTest {
                         "data_meta" to mapOf<String, Any>(
                             "mapping_annotations" to
                                     listOf(
-                                        mapOf<String, Any>(
+                                        mapOf(
                                             "aes" to "y",
                                             "annotation" to "as_discrete",
                                             "parameters" to mapOf<String, Any?>(

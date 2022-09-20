@@ -1,10 +1,10 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.theme
 
-sealed interface Theme {
-    object Grey: Theme
-    object Light: Theme
-    object Classic: Theme
-    object Minimal: Theme
-    object Minimal2: Theme
-    object None: Theme
+public sealed interface Theme {
+    public object Grey : Theme
+    public object Light : Theme
+    public object Classic : Theme
+    public object Minimal : Theme
+    public object Minimal2 : Theme
+    public object None : Theme
 }

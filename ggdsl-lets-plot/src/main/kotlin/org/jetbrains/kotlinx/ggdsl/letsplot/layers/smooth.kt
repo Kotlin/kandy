@@ -17,11 +17,11 @@ import kotlin.reflect.typeOf
 @PublishedApi
 
  */
-val SMOOTH = LetsPlotGeom("smooth")
+public val SMOOTH: LetsPlotGeom = LetsPlotGeom("smooth")
 
 
 @PlotDslMarker
-class SmoothContext(
+public class SmoothContext(
     override var data: MutableNamedData,
     smoothMethod: SmoothMethod?,
     pointsNumber: Int?,
@@ -32,35 +32,43 @@ class SmoothContext(
     // todo min/max?
 
     @PublishedApi
-    internal val _x = XAes(this)
-    @PublishedApi
-    internal val _y = YAes(this)
-
-    val x = XDummyAes(this)
-    val y = YDummyAes(this)
-
-    val alpha = AlphaAes(this)
-    val fillColor = FillAes(this)
-    val lineColor = ColorAes(this)
-    val lineWidth = SizeAes(this)
-    val lineType = LineTypeAes(this)
+    internal val _x: XAes = XAes(this)
 
     @PublishedApi
-    internal val method = MethodAes(this)
+    internal val _y: YAes = YAes(this)
+
+    public val x: XDummyAes = XDummyAes(this)
+    public val y: YDummyAes = YDummyAes(this)
+
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val fillColor: FillAes = FillAes(this)
+    public val lineColor: ColorAes = ColorAes(this)
+    public val lineWidth: SizeAes = SizeAes(this)
+    public val lineType: LineTypeAes = LineTypeAes(this)
+
     @PublishedApi
-    internal val pointsNumber = NumberAes(this)
+    internal val method: MethodAes = MethodAes(this)
+
     @PublishedApi
-    internal val se = SEAes(this)
+    internal val pointsNumber: NumberAes = NumberAes(this)
+
     @PublishedApi
-    internal val level = LevelAes(this)
+    internal val se: SEAes = SEAes(this)
+
     @PublishedApi
-    internal val span = SpanAes(this)
+    internal val level: LevelAes = LevelAes(this)
+
     @PublishedApi
-    internal val deg = DegAes(this)
+    internal val span: SpanAes = SpanAes(this)
+
     @PublishedApi
-    internal val seed = SeedAes(this)
+    internal val deg: DegAes = DegAes(this)
+
     @PublishedApi
-    internal val maxN = MaxNAes(this)
+    internal val seed: SeedAes = SeedAes(this)
+
+    @PublishedApi
+    internal val maxN: MaxNAes = MaxNAes(this)
 
     init {
         se?.let {
@@ -72,11 +80,12 @@ class SmoothContext(
         level?.let {
             level(it)
         }
-        when(smoothMethod) {
+        when (smoothMethod) {
             is SmoothMethod.Linear -> {
                 method(smoothMethod.name)
                 deg(smoothMethod.degree)
             }
+
             is SmoothMethod.Loess -> {
                 method(smoothMethod.name)
                 span(smoothMethod.span)
@@ -85,25 +94,23 @@ class SmoothContext(
                     seed(it)
                 }
             }
+
             null -> {}
         }
     }
 
-    object Statistics {
-        val X = SmoothStat.X
-        val Y = SmoothStat.Y
-        val Y_MAX = SmoothStat.YMax
-        val Y_MIN = SmoothStat.YMin
-        val SE = SmoothStat.SE
+    public object Statistics {
+        public val X: SmoothStat.X = SmoothStat.X
+        public val Y: SmoothStat.Y = SmoothStat.Y
+        public val Y_MAX: SmoothStat.YMax = SmoothStat.YMax
+        public val Y_MIN: SmoothStat.YMin = SmoothStat.YMin
+        public val SE: SmoothStat.SE = SmoothStat.SE
     }
 
-    val Stat = Statistics
+    public val Stat: Statistics = Statistics
 
 
-
-
-
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         stat: SmoothStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -115,7 +122,7 @@ class SmoothContext(
         return mapping
     }
 
-    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
         stat: SmoothStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -128,10 +135,9 @@ class SmoothContext(
     }
 
 
-
 }
 
-inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
+public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
     method: SmoothMethod? = null,
@@ -152,7 +158,7 @@ inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
     )
 }
 
-inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
+public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     method: SmoothMethod? = null,

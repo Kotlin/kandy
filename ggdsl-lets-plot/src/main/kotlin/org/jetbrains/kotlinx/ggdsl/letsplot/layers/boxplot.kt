@@ -9,21 +9,22 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
- val BOXPLOT = LetsPlotGeom("boxplot")
+public val BOXPLOT: LetsPlotGeom = LetsPlotGeom("boxplot")
+
 @PlotDslMarker
-class BoxplotContext(override var data: MutableNamedData) : WithBorderLineContext() {
-    val x = XAes(this)
+public class BoxplotContext(override var data: MutableNamedData) : WithBorderLineContext() {
+    public val x: XAes = XAes(this)
 
-    val lower = LowerAes(this)
-    val upper = UpperAes(this)
-    val middle = MiddleAes(this)
-    val yMin = YMinAes(this)
-    val yMax = YMaxAes(this)
+    public val lower: LowerAes = LowerAes(this)
+    public val upper: UpperAes = UpperAes(this)
+    public val middle: MiddleAes = MiddleAes(this)
+    public val yMin: YMinAes = YMinAes(this)
+    public val yMax: YMaxAes = YMaxAes(this)
 
-    val fatten = FattenAes(this)
+    public val fatten: FattenAes = FattenAes(this)
 
-    val color = FillAes(this)
-    val alpha = AlphaAes(this)
+    public val color: FillAes = FillAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 }
 
 /**
@@ -76,6 +77,6 @@ class BoxplotContext(override var data: MutableNamedData) : WithBorderLineContex
  *
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.boxplot(block: BoxplotContext.() -> Unit) {
+public inline fun PlotContext.boxplot(block: BoxplotContext.() -> Unit) {
     layers.add(BoxplotContext(data).apply { copyFrom(this@boxplot) }.apply(block).toLayer(BOXPLOT))
 }

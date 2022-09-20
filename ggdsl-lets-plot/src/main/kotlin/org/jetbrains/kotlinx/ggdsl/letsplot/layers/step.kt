@@ -6,19 +6,19 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
-internal val STEP = LetsPlotGeom("step")
+internal val STEP: LetsPlotGeom = LetsPlotGeom("step")
 
 
 @PlotDslMarker
-class StepContext(override var data: MutableNamedData) :
+public class StepContext(override var data: MutableNamedData) :
     LayerContext() {
-    val x = XAes(this)
-    val y = YAes(this)
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val color = ColorAes(this)
-    val alpha = AlphaAes(this)
-    val lineType = LineTypeAes(this)
-    val width = SizeAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val lineType: LineTypeAes = LineTypeAes(this)
+    public val width: SizeAes = SizeAes(this)
 
 }
 
@@ -55,6 +55,6 @@ class StepContext(override var data: MutableNamedData) :
 
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.step(block: StepContext.() -> Unit) {
+public inline fun PlotContext.step(block: StepContext.() -> Unit) {
     layers.add(StepContext(data).apply { copyFrom(this@step) }.apply(block).toLayer(STEP))
 }

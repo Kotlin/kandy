@@ -5,14 +5,14 @@ import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
 import org.jetbrains.letsPlot.intern.OptionsMap
 import org.jetbrains.letsPlot.themes.*
 
-fun LineParameters.wrap(): Map<String, Any> {
+public fun LineParameters.wrap(): Map<String, Any> {
     return elementLine(
         (color as? StandardColor)?.description,
         width, blank
     )
 }
 
-fun BackgroundParameters.wrap(): Map<String, Any> {
+public fun BackgroundParameters.wrap(): Map<String, Any> {
     return elementRect(
         (fillColor as? StandardColor)?.description,
         (borderLineColor as? StandardColor)?.description,
@@ -20,7 +20,7 @@ fun BackgroundParameters.wrap(): Map<String, Any> {
     )
 }
 
-fun TextParameters.wrap(): Map<String, Any> {
+public fun TextParameters.wrap(): Map<String, Any> {
     return elementText(
         (color as? StandardColor)?.description,
         font?.toString(),
@@ -28,13 +28,15 @@ fun TextParameters.wrap(): Map<String, Any> {
     )
 }
 
-fun CustomTheme.wrap(): theme {
+public fun CustomTheme.wrap(): theme {
     var buffer = theme(
         line = global.line?.wrap(),
         rect = global.background?.wrap(),
         text = global.text?.wrap(),// TODO
         title = global.title?.wrap(),// TODO
-        axis = if (axis.blank == true) { "blank" } else null, //TODO
+        axis = if (axis.blank == true) {
+            "blank"
+        } else null, //TODO
         axisOntop = axis.onTop,
         axisOntopX = xAxis.onTop,
         axisOntopY = yAxis.onTop,
@@ -84,28 +86,31 @@ fun CustomTheme.wrap(): theme {
               */
     )
 
-    when(val justification = this@wrap.legend.justification){
+    when (val justification = this@wrap.legend.justification) {
         LegendJustification.Center -> {
             buffer = buffer.legendJustificationCenter()
         }
+
         is LegendJustification.Custom -> {
             buffer = buffer.legendJustification(justification.x, justification.y)
         }
+
         null -> {}
     }
 
-    when(this@wrap.legend.direction){
+    when (this@wrap.legend.direction) {
         LegendDirection.HORIZONTAL -> buffer = buffer.legendDirectionHorizontal()
         LegendDirection.VERTICAL -> buffer = buffer.legendDirectionHorizontal()
         null -> {}
     }
 
 
-    when(val position = this@wrap.legend.position){
+    when (val position = this@wrap.legend.position) {
         LegendPosition.Bottom -> buffer = buffer.legendPositionBottom()
         is LegendPosition.Custom -> {
             buffer = buffer.legendPosition(position.x, position.y)
         }
+
         LegendPosition.Left -> buffer = buffer.legendPositionLeft()
         LegendPosition.None -> buffer = buffer.legendPositionNone()
         LegendPosition.Right -> buffer = buffer.legendPositionRight()
@@ -116,7 +121,7 @@ fun CustomTheme.wrap(): theme {
     return buffer
 }
 
-fun Theme.wrap(): OptionsMap {
+public fun Theme.wrap(): OptionsMap {
     return when (this) {
         Theme.Grey -> themeGrey()
         Theme.Classic -> themeClassic()

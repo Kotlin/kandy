@@ -6,23 +6,23 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
-internal val POINT = LetsPlotGeom("point")
+internal val POINT: LetsPlotGeom = LetsPlotGeom("point")
 
 // TODO add size unit???
 @PlotDslMarker
-class PointsContext(override var data: MutableNamedData) : LayerContext() {
-    val x = XAes(this)
-    val y = YAes(this)
+public class PointsContext(override var data: MutableNamedData) : LayerContext() {
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val symbol = ShapeAes(this)
+    public val symbol: ShapeAes = ShapeAes(this)
 
-    val size = SizeAes(this)
-    val color = ColorAes(this)
-    val alpha = AlphaAes(this)
+    public val size: SizeAes = SizeAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 
     // FILL SHAPES only
-    val borderWidth = StrokeAes(this) // TODO doesnt work lol
-    val fillColor = FillAes(this)
+    public val borderWidth: StrokeAes = StrokeAes(this) // TODO doesnt work lol
+    public val fillColor: FillAes = FillAes(this)
 
 }
 
@@ -61,7 +61,7 @@ class PointsContext(override var data: MutableNamedData) : LayerContext() {
  *  // TODO refer to bindings?
  */
 // todo rename to point/scatter?
-inline fun PlotContext.points(block: PointsContext.() -> Unit) {
+public inline fun PlotContext.points(block: PointsContext.() -> Unit) {
     layers.add(PointsContext(data).apply { copyFrom(this@points) }
         .apply(block).toLayer(POINT))
 }

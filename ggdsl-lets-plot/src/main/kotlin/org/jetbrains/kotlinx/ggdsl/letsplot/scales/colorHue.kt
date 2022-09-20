@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 /**
- * Creates qualitative color scale with evenly spaced hues.
+ * Creates a qualitative color scale with evenly spaced hues.
  *
  * @param DomainType type of domain
  * @param domainLimits segment defining the domain
@@ -18,7 +18,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-fun<DomainType: Any> continuousColorHue(
+public fun <DomainType : Any> continuousColorHue(
     domainLimits: Pair<DomainType, DomainType>? = null,
     huesRange: Pair<Int, Int>? = null,
     chroma: Int? = null,
@@ -26,39 +26,39 @@ fun<DomainType: Any> continuousColorHue(
     hueStart: Int? = null,
     direction: WheelDirection? = null,
     transform: Transformation? = null
-) = ScaleContinuousColorHue(
+): ScaleContinuousColorHue<DomainType> = ScaleContinuousColorHue(
     domainLimits, huesRange, chroma, luminance, hueStart, direction, transform
 )
 
-fun<DomainType: Any> categoricalColorHue(
+public fun <DomainType : Any> categoricalColorHue(
     huesRange: Pair<Int, Int>? = null,
     chroma: Int? = null,
     luminance: Int? = null,
     hueStart: Int? = null,
     direction: WheelDirection? = null,
-) = ScaleCategoricalColorHue<DomainType>(
-   huesRange, chroma, luminance, hueStart, direction,
+): ScaleCategoricalColorHue<DomainType> = ScaleCategoricalColorHue<DomainType>(
+    huesRange, chroma, luminance, hueStart, direction,
 )
 
-data class WheelDirection internal constructor(val value: Int) {
-    companion object {
-        val CLOCKWISE = WheelDirection(1)
-        val COUNTER_CLOCKWISE = WheelDirection(-1)
+public data class WheelDirection internal constructor(val value: Int) {
+    public companion object {
+        public val CLOCKWISE: WheelDirection = WheelDirection(1)
+        public val COUNTER_CLOCKWISE: WheelDirection = WheelDirection(-1)
     }
 }
 
-sealed interface ScaleColorHue<DomainType: Any>{
-    val domainLimits: Pair<DomainType, DomainType>?
-    val huesRange: Pair<Int, Int>?
-    val chroma: Int?
-    val luminance: Int?
-    val hueStart: Int?
-    val direction: WheelDirection?
-    val transform: Transformation?
+public sealed interface ScaleColorHue<DomainType : Any> {
+    public val domainLimits: Pair<DomainType, DomainType>?
+    public val huesRange: Pair<Int, Int>?
+    public val chroma: Int?
+    public val luminance: Int?
+    public val hueStart: Int?
+    public val direction: WheelDirection?
+    public val transform: Transformation?
 }
 
 
-data class ScaleContinuousColorHue<DomainType: Any> internal constructor(
+public data class ScaleContinuousColorHue<DomainType : Any> internal constructor(
     override val domainLimits: Pair<DomainType, DomainType>? = null,
     override val huesRange: Pair<Int, Int>? = null,
     override val chroma: Int? = null,
@@ -66,15 +66,15 @@ data class ScaleContinuousColorHue<DomainType: Any> internal constructor(
     override val hueStart: Int? = null,
     override val direction: WheelDirection? = null,
     override val transform: Transformation? = null
-): ContinuousScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorHue<DomainType>
+) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorHue<DomainType>
 
-data class ScaleCategoricalColorHue<DomainType: Any> internal constructor(
+public data class ScaleCategoricalColorHue<DomainType : Any> internal constructor(
     override val huesRange: Pair<Int, Int>? = null,
     override val chroma: Int? = null,
     override val luminance: Int? = null,
     override val hueStart: Int? = null,
     override val direction: WheelDirection? = null,
-): CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorHue<DomainType> {
+) : CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorHue<DomainType> {
     override val domainLimits: Pair<DomainType, DomainType>?
         get() = null
     override val transform: Transformation?

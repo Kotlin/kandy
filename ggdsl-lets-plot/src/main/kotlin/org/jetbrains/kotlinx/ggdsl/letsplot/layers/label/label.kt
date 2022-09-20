@@ -5,34 +5,34 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.SubContext
 
 @PlotDslMarker
-class FontContext(
+public class FontContext(
     parentContext: LayerContext,
     override var data: MutableNamedData = mutableMapOf()
 ) : SubContext(parentContext) {
-    val color = ColorAes(parentContext)
-    val size = SizeAes(parentContext)
-    val family = FontFamilyAes(parentContext)
-    val face = FontFaceAes(parentContext)
+    public val color: ColorAes = ColorAes(parentContext)
+    public val size: SizeAes = SizeAes(parentContext)
+    public val family: FontFamilyAes = FontFamilyAes(parentContext)
+    public val face: FontFaceAes = FontFaceAes(parentContext)
 }
 
-val TEXT = LetsPlotGeom("text")
+public val TEXT: LetsPlotGeom = LetsPlotGeom("text")
 
 @PlotDslMarker
-class TextContext(override var data: MutableNamedData) : LayerContext() {
+public class TextContext(override var data: MutableNamedData) : LayerContext() {
     // todo sizeUnit
-    val x = XAes(this)
-    val y = YAes(this)
-    val label = LabelAes(this)
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
+    public val label: LabelAes = LabelAes(this)
 
-    val alpha = AlphaAes(this)
-    val angle = AngleAes(this)
-    val format = FormatAes(this)
-    val horizontalJustification = HorizontalJustificationAes(this)
-    val verticalJustification = VerticalJustificationAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val angle: AngleAes = AngleAes(this)
+    public val format: FormatAes = FormatAes(this)
+    public val horizontalJustification: HorizontalJustificationAes = HorizontalJustificationAes(this)
+    public val verticalJustification: VerticalJustificationAes = VerticalJustificationAes(this)
 
-    val font = FontContext(this)
+    public val font: FontContext = FontContext(this)
 }
 
-inline fun PlotContext.text(block: TextContext.() -> Unit) {
+public inline fun PlotContext.text(block: TextContext.() -> Unit) {
     layers.add(TextContext(data).apply { copyFrom(this@text) }.apply(block).toLayer(TEXT))
 }

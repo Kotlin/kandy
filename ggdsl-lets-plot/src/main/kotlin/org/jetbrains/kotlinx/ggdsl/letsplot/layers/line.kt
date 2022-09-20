@@ -8,20 +8,21 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 // TODO
 
 @PublishedApi
-internal val LINE = LetsPlotGeom("line")
+internal val LINE: LetsPlotGeom = LetsPlotGeom("line")
+
 @PublishedApi
-internal val PATH = LetsPlotGeom("path")
+internal val PATH: LetsPlotGeom = LetsPlotGeom("path")
 
 
 @PlotDslMarker
-class LineContext(override var data: MutableNamedData) : LayerContext() {
-    val x = XAes(this)
-    val y = YAes(this)
+public class LineContext(override var data: MutableNamedData) : LayerContext() {
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val color = ColorAes(this)
-    val alpha = AlphaAes(this)
-    val type = LineTypeAes(this)
-    val width = SizeAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val type: LineTypeAes = LineTypeAes(this)
+    public val width: SizeAes = SizeAes(this)
 }
 
 /**
@@ -57,10 +58,10 @@ class LineContext(override var data: MutableNamedData) : LayerContext() {
 
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.line(block: LineContext.() -> Unit) {
+public inline fun PlotContext.line(block: LineContext.() -> Unit) {
     layers.add(LineContext(data).apply { copyFrom(this@line) }.apply(block).toLayer(LINE))
 }
 
-inline fun PlotContext.path(block: LineContext.() -> Unit) {
+public inline fun PlotContext.path(block: LineContext.() -> Unit) {
     layers.add(LineContext(data).apply { copyFrom(this@path) }.apply(block).toLayer(PATH))
 }

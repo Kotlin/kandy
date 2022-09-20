@@ -2,12 +2,12 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.util.font
 
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.SimpleValueWrapper
 
-data class FontFamily internal constructor(override val value: String): SimpleValueWrapper{
-    companion object {
-        val SANS = FontFamily("sans")
-        val SERIF = FontFamily("serif")
-        val MONO = FontFamily("mono")
+public data class FontFamily internal constructor(override val value: String) : SimpleValueWrapper {
+    public companion object {
+        public val SANS: FontFamily = FontFamily("sans")
+        public val SERIF: FontFamily = FontFamily("serif")
+        public val MONO: FontFamily = FontFamily("mono")
 
-        fun custom(name: String) = FontFamily(name)
+        public fun custom(name: String): FontFamily = FontFamily(name)
     }
 }

@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.multiplot
 
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 
-data class PlotGrid(
+public data class PlotGrid(
     val items: List<Plot>,
     val nCol: Int,
     val cellWidth: Int,
@@ -12,7 +12,7 @@ data class PlotGrid(
     val fit: Boolean = false
 )
 
-fun plotGrid(
+public fun plotGrid(
     items: List<Plot>,
     nCol: Int,
     cellWidth: Int,
@@ -20,6 +20,6 @@ fun plotGrid(
     hGap: Int = 0,
     vGap: Int = 50,
     fit: Boolean = false
-) = PlotGrid(
+): PlotGrid = PlotGrid(
     items, nCol, cellWidth, cellHeight, hGap, vGap, fit
 )

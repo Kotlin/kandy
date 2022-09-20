@@ -19,7 +19,7 @@ internal class ScaleWrappingTest {
         val wrappedScale = scale.wrap(X, typeOf<Double>())
         assertNotNull(wrappedScale)
         assertEquals(
-            mapOf<String, Any>(
+            mapOf(
                 "aesthetic" to "x",
                 "limits" to listOf(2.0, 11.1)
             ),
@@ -34,7 +34,7 @@ internal class ScaleWrappingTest {
         val wrappedScale = scale.wrap(FILL, typeOf<String>())
         assertNotNull(wrappedScale)
         assertEquals(
-            mapOf<String, Any>(
+            mapOf(
                 "aesthetic" to "fill",
                 "values" to listOf("black", "red", "green")
             ),

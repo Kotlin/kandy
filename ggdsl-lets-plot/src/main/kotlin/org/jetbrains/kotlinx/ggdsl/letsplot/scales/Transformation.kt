@@ -3,11 +3,11 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalTransform
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalTransform
 
-data class Transformation internal constructor(val name: String) : PositionalTransform, NonPositionalTransform {
-    companion object {
-        val IDENTITY = Transformation("identity")
-        val LOG10 = Transformation("log10")
-        val REVERSE = Transformation("reverse")
-        val SQRT = Transformation("sqrt")
+public data class Transformation internal constructor(val name: String) : PositionalTransform, NonPositionalTransform {
+    public companion object {
+        public val IDENTITY: Transformation = Transformation("identity")
+        public val LOG10: Transformation = Transformation("log10")
+        public val REVERSE: Transformation = Transformation("reverse")
+        public val SQRT: Transformation = Transformation("sqrt")
     }
 }

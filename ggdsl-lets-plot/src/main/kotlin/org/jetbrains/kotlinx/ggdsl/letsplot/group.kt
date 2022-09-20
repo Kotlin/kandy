@@ -5,14 +5,15 @@ import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
 
-val GROUP = AesName("group")
-data class GroupAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name=GROUP
+public val GROUP: AesName = AesName("group")
+
+public data class GroupAes(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = GROUP
 }
 
 /**
  * TODO
  */
-val LayerContext.splitBy: NonScalablePositionalAes
+public val LayerContext.splitBy: NonScalablePositionalAes
     get() = GroupAes(this)
 

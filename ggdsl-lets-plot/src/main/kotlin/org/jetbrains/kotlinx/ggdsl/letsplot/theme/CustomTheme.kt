@@ -5,108 +5,107 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.FontFace
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
-sealed interface LayoutParameters {
-    companion object {
-        fun line(
+public sealed interface LayoutParameters {
+    public companion object {
+        public fun line(
             color: Color? = null,
             width: Number? = null, blank:
             Boolean = false
-        ) = LineParameters(color, width, blank)
+        ): LineParameters = LineParameters(color, width, blank)
 
-        fun text(
+        public fun text(
             color: Color? = null,
             font: FontFace? = null,
             blank: Boolean = false
-        ) = TextParameters(color, font, blank)
+        ): TextParameters = TextParameters(color, font, blank)
 
-        fun background(
+        public fun background(
             fillColor: Color? = null,
             borderLineColor: Color? = null,
             borderLineWidth: Number? = null,
             blank: Boolean = false
-        ) = BackgroundParameters(fillColor, borderLineColor, borderLineWidth, blank)
+        ): BackgroundParameters = BackgroundParameters(fillColor, borderLineColor, borderLineWidth, blank)
     }
 }
 
 @PlotDslMarker
-data class LineParameters internal constructor(
+public data class LineParameters internal constructor(
     var color: Color? = null,
     var width: Number? = null,
     var blank: Boolean = false,
 ) : LayoutParameters
 
 @PlotDslMarker
-data class TextParameters internal constructor(
+public data class TextParameters internal constructor(
     var color: Color? = null,
     var font: FontFace? = null,
     var blank: Boolean = false
 ) : LayoutParameters
 
 @PlotDslMarker
-data class BackgroundParameters internal constructor(
+public data class BackgroundParameters internal constructor(
     var fillColor: Color? = null,
     var borderLineColor: Color? = null,
     var borderLineWidth: Number? = null,
     var blank: Boolean = false
 ) : LayoutParameters
 
-interface WithBackground {
-    var background: BackgroundParameters?
+public interface WithBackground {
+    public var background: BackgroundParameters?
 
-    fun background(block: BackgroundParameters.() -> Unit) {
+    public fun background(block: BackgroundParameters.() -> Unit) {
         background = BackgroundParameters().apply(block)
     }
 
-    fun background(parameters: BackgroundParameters) {
+    public fun background(parameters: BackgroundParameters) {
         background = parameters
     }
 }
 
-interface WithLine {
-    var line: LineParameters?
+public interface WithLine {
+    public var line: LineParameters?
 
-    fun line(block: LineParameters.() -> Unit) {
+    public fun line(block: LineParameters.() -> Unit) {
         line = LineParameters().apply(block)
     }
 
-    fun line(parameters: LineParameters) {
+    public fun line(parameters: LineParameters) {
         line = parameters
     }
 }
 
-interface WithText {
-    var text: TextParameters?
+public interface WithText {
+    public var text: TextParameters?
 
-    fun text(block: TextParameters.() -> Unit) {
+    public fun text(block: TextParameters.() -> Unit) {
         text = TextParameters().apply(block)
     }
 
-    fun text(parameters: TextParameters) {
+    public fun text(parameters: TextParameters) {
         text = parameters
     }
 }
 
-interface WithTitle {
-    var title: TextParameters?
+public interface WithTitle {
+    public var title: TextParameters?
 
-    fun title(block: TextParameters.() -> Unit) {
+    public fun title(block: TextParameters.() -> Unit) {
         title = TextParameters().apply(block)
     }
 
-    fun title(parameters: TextParameters) {
+    public fun title(parameters: TextParameters) {
         title = parameters
     }
 }
 
 
-
 @PlotDslMarker
-data class Global internal constructor(
+public data class Global internal constructor(
     override var line: LineParameters? = null,
     override var background: BackgroundParameters? = null,
     override var text: TextParameters? = null,
     override var title: TextParameters? = null,
-  // TODO  var axis: LineParameters? = null,
+    // TODO  var axis: LineParameters? = null,
 ) : SelfInvocationContext, WithLine, WithBackground, WithText, WithTitle {
     /*
     fun axis(block: LineParameters.() -> Unit) {
@@ -121,20 +120,20 @@ data class Global internal constructor(
 }
 
 @PlotDslMarker
-data class LayerTooltips internal constructor(
+public data class LayerTooltips internal constructor(
     override var background: BackgroundParameters? = null,
     override var title: TextParameters? = null,
     override var text: TextParameters? = null,
 ) : SelfInvocationContext, WithBackground, WithText, WithTitle
 
 @PlotDslMarker
-data class AxisTooltip internal constructor(
+public data class AxisTooltip internal constructor(
     override var background: BackgroundParameters? = null,
     override var text: TextParameters? = null,
 ) : SelfInvocationContext, WithBackground, WithText
 
 @PlotDslMarker
-data class Axis internal constructor(
+public data class Axis internal constructor(
     var onTop: Boolean? = false,
     override var title: TextParameters? = null,
     override var text: TextParameters? = null,
@@ -145,39 +144,39 @@ data class Axis internal constructor(
     // TODO blank all??
 ) : SelfInvocationContext, WithText, WithTitle, WithLine {
     internal var blank: Boolean? = null
-    fun ticks(block: LineParameters.() -> Unit) {
+    public fun ticks(block: LineParameters.() -> Unit) {
         ticks = LineParameters().apply(block)
     }
 
-    fun ticks(parameters: LineParameters) {
+    public fun ticks(parameters: LineParameters) {
         ticks = parameters
     }
 }
 
-sealed interface LegendPosition {
+public sealed interface LegendPosition {
 
-    object None : LegendPosition
-    object Left : LegendPosition
-    object Right : LegendPosition
-    object Bottom : LegendPosition
-    object Top : LegendPosition
+    public object None : LegendPosition
+    public object Left : LegendPosition
+    public object Right : LegendPosition
+    public object Bottom : LegendPosition
+    public object Top : LegendPosition
 
-    data class Custom(val x: Double, val y: Double) : LegendPosition
+    public data class Custom(val x: Double, val y: Double) : LegendPosition
 
 }
 
-sealed interface LegendJustification {
-    object Center : LegendJustification
-    data class Custom(val x: Double, val y: Double) : LegendJustification
+public sealed interface LegendJustification {
+    public object Center : LegendJustification
+    public data class Custom(val x: Double, val y: Double) : LegendJustification
 }
 
-enum class LegendDirection {
+public enum class LegendDirection {
     HORIZONTAL,
     VERTICAL
 }
 
 @PlotDslMarker
-data class Legend internal constructor(
+public data class Legend internal constructor(
     override var background: BackgroundParameters? = null,
     override var title: TextParameters? = null,
     override var text: TextParameters? = null,
@@ -186,7 +185,7 @@ data class Legend internal constructor(
     var justification: LegendJustification? = null,
     var direction: LegendDirection? = null,
 ) : SelfInvocationContext, WithText, WithTitle, WithBackground {
-    fun justification(x: Double, y: Double) {
+    public fun justification(x: Double, y: Double) {
         justification = LegendJustification.Custom(x, y)
     }
 
@@ -196,7 +195,7 @@ data class Legend internal constructor(
     }
 
      */
-    fun position(x: Double, y: Double) {
+    public fun position(x: Double, y: Double) {
         position = LegendPosition.Custom(x, y)
     }
     /*
@@ -211,7 +210,7 @@ data class Legend internal constructor(
 }
 
 @PlotDslMarker
-data class Grid internal constructor(
+public data class Grid internal constructor(
     var lineGlobal: LineParameters? = null,
     var majorLine: LineParameters? = null,
     var majorXLine: LineParameters? = null,
@@ -220,59 +219,59 @@ data class Grid internal constructor(
     var minorXLine: LineParameters? = null,
     var minorYLine: LineParameters? = null,
 ) : SelfInvocationContext {
-    fun lineGlobal(block: LineParameters.() -> Unit) {
+    public fun lineGlobal(block: LineParameters.() -> Unit) {
         lineGlobal = LineParameters().apply(block)
     }
 
-    fun lineGlobal(parameters: LineParameters) {
+    public fun lineGlobal(parameters: LineParameters) {
         lineGlobal = parameters
     }
 
-    fun majorLine(block: LineParameters.() -> Unit) {
+    public fun majorLine(block: LineParameters.() -> Unit) {
         majorLine = LineParameters().apply(block)
     }
 
-    fun majorLine(parameters: LineParameters) {
+    public fun majorLine(parameters: LineParameters) {
         majorLine = parameters
     }
 
-    fun majorXLine(block: LineParameters.() -> Unit) {
+    public fun majorXLine(block: LineParameters.() -> Unit) {
         majorXLine = LineParameters().apply(block)
     }
 
-    fun majorXLine(parameters: LineParameters) {
+    public fun majorXLine(parameters: LineParameters) {
         majorXLine = parameters
     }
 
-    fun majorYLine(block: LineParameters.() -> Unit) {
+    public fun majorYLine(block: LineParameters.() -> Unit) {
         majorYLine = LineParameters().apply(block)
     }
 
-    fun majorYLine(parameters: LineParameters) {
+    public fun majorYLine(parameters: LineParameters) {
         majorYLine = parameters
     }
 
-    fun minorLine(block: LineParameters.() -> Unit) {
+    public fun minorLine(block: LineParameters.() -> Unit) {
         minorLine = LineParameters().apply(block)
     }
 
-    fun minorLine(parameters: LineParameters) {
+    public fun minorLine(parameters: LineParameters) {
         minorLine = parameters
     }
 
-    fun minorXLine(block: LineParameters.() -> Unit) {
+    public fun minorXLine(block: LineParameters.() -> Unit) {
         majorLine = LineParameters().apply(block)
     }
 
-    fun minorXLine(parameters: LineParameters) {
+    public fun minorXLine(parameters: LineParameters) {
         majorLine = parameters
     }
 
-    fun minorYLine(block: LineParameters.() -> Unit) {
+    public fun minorYLine(block: LineParameters.() -> Unit) {
         minorYLine = LineParameters().apply(block)
     }
 
-    fun minorYLine(parameters: LineParameters) {
+    public fun minorYLine(parameters: LineParameters) {
         minorYLine = parameters
     }
     // TODO
@@ -291,52 +290,52 @@ data class Grid internal constructor(
 }
 
 @PlotDslMarker
-data class Panel internal constructor(
+public data class Panel internal constructor(
     override var background: BackgroundParameters? = null,
     var borderLine: LineParameters? = null,
     val grid: Grid = Grid()
 ) : SelfInvocationContext, WithBackground {
-    fun borderLine(block: LineParameters.() -> Unit) {
+    public fun borderLine(block: LineParameters.() -> Unit) {
         borderLine = LineParameters().apply(block)
     }
 
-    fun borderLine(parameters: LineParameters) {
+    public fun borderLine(parameters: LineParameters) {
         borderLine = parameters
     }
 }
 
 @PlotDslMarker
-data class Plot internal constructor(
+public data class Plot internal constructor(
     override var background: BackgroundParameters? = null,
     override var title: TextParameters? = null,
     var subtitle: TextParameters? = null,
     var caption: TextParameters? = null,
 ) : SelfInvocationContext, WithBackground, WithTitle {
-    fun subtitle(block: TextParameters.() -> Unit) {
+    public fun subtitle(block: TextParameters.() -> Unit) {
         subtitle = TextParameters().apply(block)
     }
 
-    fun subtitle(parameters: TextParameters) {
+    public fun subtitle(parameters: TextParameters) {
         subtitle = parameters
     }
 
-    fun caption(block: TextParameters.() -> Unit) {
+    public fun caption(block: TextParameters.() -> Unit) {
         caption = TextParameters().apply(block)
     }
 
-    fun caption(parameters: TextParameters) {
+    public fun caption(parameters: TextParameters) {
         caption = parameters
     }
 }
 
 @PlotDslMarker
-data class Strip internal constructor(
+public data class Strip internal constructor(
     override var background: BackgroundParameters? = null,
     override var text: TextParameters? = null
 ) : SelfInvocationContext, WithText, WithBackground
 
 @PlotDslMarker
-data class CustomTheme @PublishedApi internal constructor(
+public data class CustomTheme @PublishedApi internal constructor(
     val global: Global = Global(),
     val axis: Axis = Axis(),
     val xAxis: Axis = Axis(),
@@ -347,11 +346,11 @@ data class CustomTheme @PublishedApi internal constructor(
     val strip: Strip = Strip(),
     val layerTooltips: LayerTooltips = LayerTooltips()
 ) : Theme {
-    fun blankAxes(){
+    public fun blankAxes() {
         axis.blank = true
     }
 }
 
-inline fun theme(block: CustomTheme.() -> Unit): CustomTheme {
+public inline fun theme(block: CustomTheme.() -> Unit): CustomTheme {
     return CustomTheme().apply(block)
 }

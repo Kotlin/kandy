@@ -3,8 +3,8 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat
 import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import kotlin.reflect.typeOf
 
-sealed interface Stat<T> {
-    val name: String
+public sealed interface Stat<T> {
+    public val name: String
 }
 
 @PublishedApi
@@ -14,58 +14,68 @@ internal inline fun <reified T : Any> Stat<T>.toDataSource(): DataSource<T> {
 
 // TODO TYPES
 
-sealed interface BinStat<T> : Stat<T>{
-    object X: BinStat<Double> {
-        override val name = "..count.."
+public sealed interface BinStat<T> : Stat<T> {
+    public object X : BinStat<Double> {
+        override val name: String = "..count.."
     }
-    object Count: BinStat<Double> {
-        override val name = "..count.."
+
+    public object Count : BinStat<Double> {
+        override val name: String = "..count.."
     }
-    object Density: BinStat<Double> {
-        override val name = "..density.."
+
+    public object Density : BinStat<Double> {
+        override val name: String = "..density.."
     }
 }
 
-sealed interface DensityStat<T> : Stat<T>{
-    object X: DensityStat<Double> {
-        override val name = "..x.."
+public sealed interface DensityStat<T> : Stat<T> {
+    public object X : DensityStat<Double> {
+        override val name: String = "..x.."
     }
-    object Count: DensityStat<Int> {
-        override val name = "..count.."
+
+    public object Count : DensityStat<Int> {
+        override val name: String = "..count.."
     }
-    object Density: DensityStat<Double> {
-        override val name = "..density.."
+
+    public object Density : DensityStat<Double> {
+        override val name: String = "..density.."
     }
-    object Scaled: DensityStat<Double> {
-        override val name = "..scaled.."
+
+    public object Scaled : DensityStat<Double> {
+        override val name: String = "..scaled.."
     }
 }
 
 
-sealed interface Bin2DStat<T> : Stat<T>{
-    object X: Bin2DStat<Double> {
-        override val name = "..x.."
+public sealed interface Bin2DStat<T> : Stat<T> {
+    public object X : Bin2DStat<Double> {
+        override val name: String = "..x.."
     }
-    object Y: Bin2DStat<Double> {
-        override val name = "..y.."
+
+    public object Y : Bin2DStat<Double> {
+        override val name: String = "..y.."
     }
-    object Density: Bin2DStat<Double> {
-        override val name = "..density.."
+
+    public object Density : Bin2DStat<Double> {
+        override val name: String = "..density.."
     }
 }
 
-sealed interface ContourStat<T> : Stat<T>{
-    object X: ContourStat<Double> {
-        override val name = "..x.."
+public sealed interface ContourStat<T> : Stat<T> {
+    public object X : ContourStat<Double> {
+        override val name: String = "..x.."
     }
-    object Y: ContourStat<Double> {
-        override val name = "..y.."
+
+    public object Y : ContourStat<Double> {
+        override val name: String = "..y.."
     }
-    object Level: ContourStat<Double> {
-        override val name = "..level.."
+
+    public object Level : ContourStat<Double> {
+        override val name: String = "..level.."
     }
-    object Group: ContourStat<Double> {
-        override val name = "..group.."
+
+    public object Group : ContourStat<Double> {
+        override val name: String = "..group.."
     }
 }
 /* TODO
@@ -86,84 +96,99 @@ abstract class WithDensity2DStat {
 
  */
 
-sealed interface ViolinStat<T> : Stat<T>{
-    object X: ViolinStat<Double> {
-        override val name = "..x.."
+public sealed interface ViolinStat<T> : Stat<T> {
+    public object X : ViolinStat<Double> {
+        override val name: String = "..x.."
     }
-    object Y: ViolinStat<Double> {
-        override val name = "..y.."
+
+    public object Y : ViolinStat<Double> {
+        override val name: String = "..y.."
     }
-    object ViolinWidth: ViolinStat<Double> {
-        override val name = "..violinwidth.."
+
+    public object ViolinWidth : ViolinStat<Double> {
+        override val name: String = "..violinwidth.."
     }
-    object Density: ViolinStat<Double> {
-        override val name = "..density.."
+
+    public object Density : ViolinStat<Double> {
+        override val name: String = "..density.."
     }
-    object Count: ViolinStat<Double> {
-        override val name = "..count.."
+
+    public object Count : ViolinStat<Double> {
+        override val name: String = "..count.."
     }
-    object Scaled: ViolinStat<Double> {
-        override val name = "..scaled.."
+
+    public object Scaled : ViolinStat<Double> {
+        override val name: String = "..scaled.."
     }
 }
 
-sealed interface BoxplotStat<T> : Stat<T>{
+public sealed interface BoxplotStat<T> : Stat<T> {
 
-    class X<T>: BoxplotStat<T> {
-        override val name = "..x.."
+    public class X<T> : BoxplotStat<T> {
+        override val name: String = "..x.."
     }
 
-    object Middle: BoxplotStat<Double> {
-        override val name = "..middle.."
+    public object Middle : BoxplotStat<Double> {
+        override val name: String = "..middle.."
     }
-    object YMin: BoxplotStat<Double> {
-        override val name = "..ymin.."
+
+    public object YMin : BoxplotStat<Double> {
+        override val name: String = "..ymin.."
     }
-    object YMax: BoxplotStat<Double> {
-        override val name = "..ymax.."
+
+    public object YMax : BoxplotStat<Double> {
+        override val name: String = "..ymax.."
     }
-    object Lower: BoxplotStat<Double> {
-        override val name = "..lower.."
+
+    public object Lower : BoxplotStat<Double> {
+        override val name: String = "..lower.."
     }
-    object Upper: BoxplotStat<Double> {
-        override val name = "..upper.."
+
+    public object Upper : BoxplotStat<Double> {
+        override val name: String = "..upper.."
     }
 }
 
 
-sealed interface QQStat<T> : Stat<T>{
-    object Theoretical: QQStat<Double> {
-        override val name = "..theoretical.."
+public sealed interface QQStat<T> : Stat<T> {
+    public object Theoretical : QQStat<Double> {
+        override val name: String = "..theoretical.."
     }
-    object Sample: QQStat<Double> {
-        override val name = "..sample.."
+
+    public object Sample : QQStat<Double> {
+        override val name: String = "..sample.."
     }
 }
 
-sealed interface QQ2Stat<T> : Stat<T>{
-    object X: QQ2Stat<Double> {
-        override val name = "..x.."
+public sealed interface QQ2Stat<T> : Stat<T> {
+    public object X : QQ2Stat<Double> {
+        override val name: String = "..x.."
     }
-    object Y: QQ2Stat<Double> {
-        override val name = "..y.."
+
+    public object Y : QQ2Stat<Double> {
+        override val name: String = "..y.."
     }
 }
 
-sealed interface SmoothStat<T> : Stat<T>{
-    object X: SmoothStat<Double> {
-        override val name = "..x.."
+public sealed interface SmoothStat<T> : Stat<T> {
+    public object X : SmoothStat<Double> {
+        override val name: String = "..x.."
     }
-    object Y: SmoothStat<Double> {
-        override val name = "..y.."
+
+    public object Y : SmoothStat<Double> {
+        override val name: String = "..y.."
     }
-    object YMin: SmoothStat<Double> {
-        override val name = "..ymin.."
+
+    public object YMin : SmoothStat<Double> {
+        override val name: String = "..ymin.."
     }
-    object YMax: SmoothStat<Double> {
-        override val name = "..ymax.."
+
+    public object YMax : SmoothStat<Double> {
+        override val name: String = "..ymax.."
     }
-    object SE: SmoothStat<Double> {
-        override val name = "..se.."
+
+    public object SE : SmoothStat<Double> {
+        override val name: String = "..se.."
     }
 }
 

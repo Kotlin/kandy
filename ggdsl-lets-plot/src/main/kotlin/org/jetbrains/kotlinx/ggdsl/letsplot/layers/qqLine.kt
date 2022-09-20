@@ -18,12 +18,12 @@ import kotlin.reflect.typeOf
 @PublishedApi
 
  */
-val QQ_LINE = LetsPlotGeom("qqLine")
+public val QQ_LINE: LetsPlotGeom = LetsPlotGeom("qqLine")
 
 
 @PlotDslMarker
 // todo move x/y?
-class QQLineContext(
+public class QQLineContext(
     override var data: MutableNamedData,
     distribution: Distribution?,
     quantiles: Pair<Double, Double>?,
@@ -37,38 +37,38 @@ class QQLineContext(
             quantiles(it)
         }
     }
+
     @PublishedApi
-    internal val _sample = SampleAes(this)
+    internal val _sample: SampleAes = SampleAes(this)
 
-    val sample = SampleDummyAes(this)
+    public val sample: SampleDummyAes = SampleDummyAes(this)
 
-    val alpha = AlphaAes(this)
-    val color = ColorAes(this)
-    val width = SizeAes(this)
-    val type = LineTypeAes(this)
-
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val width: SizeAes = SizeAes(this)
+    public val type: LineTypeAes = LineTypeAes(this)
 
 
     // todo weight
 
     @PublishedApi
-    internal val distribution = DistributionAes(this)
+    internal val distribution: DistributionAes = DistributionAes(this)
 
     @PublishedApi
-    internal val dParams = DParamsAes(this)
+    internal val dParams: DParamsAes = DParamsAes(this)
 
     @PublishedApi
-    internal val quantiles = QuantilesAes(this)
+    internal val quantiles: QuantilesAes = QuantilesAes(this)
 
-    object Statistics {
-        val SAMPLE = QQStat.Sample
-        val THEORETICAL = QQStat.Theoretical
+    public object Statistics {
+        public val SAMPLE: QQStat.Sample = QQStat.Sample
+        public val THEORETICAL: QQStat.Theoretical = QQStat.Theoretical
     }
 
-    val Stat = Statistics
+    public val Stat: Statistics = Statistics
 
 
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         stat: QQStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -80,7 +80,7 @@ class QQLineContext(
         return mapping
     }
 
-    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
         stat: QQStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -94,7 +94,7 @@ class QQLineContext(
 
 }
 
-inline fun <reified T : Any> PlotContext.qqLine(
+public inline fun <reified T : Any> PlotContext.qqLine(
     source: DataSource<T>,
     distribution: Distribution? = null,
     quantiles: Pair<Double, Double>? = null,
@@ -111,7 +111,7 @@ inline fun <reified T : Any> PlotContext.qqLine(
     )
 }
 
-inline fun <reified T : Any> PlotContext.qqLine(
+public inline fun <reified T : Any> PlotContext.qqLine(
     source: Iterable<T>,
     distribution: Distribution? = null,
     quantiles: Pair<Double, Double>? = null,

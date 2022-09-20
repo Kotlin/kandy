@@ -40,7 +40,7 @@ internal class LayerWrapperTest {
 
         val wrappedLayer = LayerWrapper(layer)
         assertEquals(
-            mapOf<String, Any>(
+            mapOf(
                 "mapping" to mapOf(
                     "fill" to "F"
                 ),
@@ -130,7 +130,7 @@ internal class LayerWrapperTest {
         val wrappedLayer = LayerWrapper(layer)
         println(wrappedLayer.toSpec())
         assertEquals(
-            mapOf<String, Any>(
+            mapOf(
                 "mapping" to mapOf(
                     "x" to "TIME_T",
                     "y" to "VAL_V",
@@ -149,7 +149,7 @@ internal class LayerWrapperTest {
                 "data_meta" to mapOf<String, Any>(
                     "mapping_annotations" to
                             listOf(
-                                mapOf<String, Any>(
+                                mapOf(
                                     "aes" to "fill",
                                     "annotation" to "as_discrete",
                                     "parameters" to mapOf<String, Any?>(
