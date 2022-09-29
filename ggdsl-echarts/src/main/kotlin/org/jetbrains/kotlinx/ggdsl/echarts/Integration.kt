@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.echarts
 
 import kotlinx.html.*
@@ -46,10 +50,10 @@ internal class Integration : JupyterIntegration() {
     }
 }
 
-const val ECHARTS_SRC = "https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"
+public const val ECHARTS_SRC: String = "https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"
 
 @ExperimentalSerializationApi
-fun Option.toJSON(): String {
+public fun Option.toJSON(): String {
     /*return Klaxon().toJsonString(this)*/
 
     return Json {
@@ -62,7 +66,8 @@ fun Option.toJSON(): String {
 
 }
 
-fun Option.toHTML(size: Pair<Int, Int>? = null): String {
+@OptIn(ExperimentalSerializationApi::class)
+public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
     val width = size?.first ?: 600
     val height = size?.second ?: 400
     return createHTML().html {
@@ -108,7 +113,7 @@ fun Option.toHTML(size: Pair<Int, Int>? = null): String {
 
 // todo sizes
 @OptIn(ExperimentalSerializationApi::class)
-fun DataChangeAnimation.toHTML(): String {
+public fun DataChangeAnimation.toHTML(): String {
     val encoder = Json {
         explicitNulls = false
         encodeDefaults = true
@@ -116,11 +121,11 @@ fun DataChangeAnimation.toHTML(): String {
     val maxStates = 100
     // todo size
     val initOption = plot.toOption().option.toJSON().replace('\"', '\'')
-    var dataset = plot.dataset
+    val dataset = plot.dataset
     val datasets = mutableListOf<Dataset>()
     repeat(maxStates) {
         dataChange(dataset)
-        datasets.add(Dataset(dataset.wrap().data.map { it.map { it.toString() } }))
+        datasets.add(Dataset(dataset.wrap().data.map { it.map { el -> el.toString() } }))
     }
     val encodedDatasets = encoder.encodeToString(datasets).replace('\"', '\'')
     return createHTML().html {
@@ -141,20 +146,22 @@ fun DataChangeAnimation.toHTML(): String {
             }
             script {
                 type = "text/javascript"
-                +(
+                unsafe {
+                    +(
                         "\n        var myChart = echarts.init(document.getElementById('main'));\n" +
-                                "        var option = $initOption;\n" +
-                                "        myChart.setOption(option);\n" +
-                                "        var datasets = $encodedDatasets;\n" +
-                                "var nextState = 0;\n" +
-                                "var maxStates = $maxStates\n" +
-                                "setInterval(function () {\n" +
-                                "var newDataset = datasets[nextState];\n" +
-                                "option.dataset = newDataset;\n" +
-                                "nextState = Math.min(1 + nextState, maxStates-1); \n" +
-                                "  myChart.setOption(option, true);\n" +
-                                "}, $interval);\n"
+                            "        var option = $initOption;\n" +
+                            "        myChart.setOption(option);\n" +
+                            "        var datasets = $encodedDatasets;\n" +
+                            "var nextState = 0;\n" +
+                            "var maxStates = $maxStates\n" +
+                            "setInterval(function () {\n" +
+                            "var newDataset = datasets[nextState];\n" +
+                            "option.dataset = newDataset;\n" +
+                            "nextState = Math.min(1 + nextState, maxStates-1); \n" +
+                            "  myChart.setOption(option, true);\n" +
+                            "}, $interval);\n"
                         )
+                }
             }
         }
 
@@ -162,7 +169,7 @@ fun DataChangeAnimation.toHTML(): String {
 }
 
 @OptIn(ExperimentalSerializationApi::class)
-fun PlotChangeAnimation.toHTML(): String {
+public fun PlotChangeAnimation.toHTML(): String {
     val encoder = Json {
         explicitNulls = false
         encodeDefaults = true
@@ -188,7 +195,8 @@ fun PlotChangeAnimation.toHTML(): String {
             }
             script {
                 type = "text/javascript"
-                +("""
+                unsafe {
+                    +("""
                         var myChart = echarts.init(document.getElementById('main'));
                         var options = $encodedPlots;
                         var option = options[0];
@@ -202,6 +210,7 @@ fun PlotChangeAnimation.toHTML(): String {
                         }, $interval);
                         """.trimIndent()
                         )
+                }
             }
         }
 

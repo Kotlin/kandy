@@ -1,23 +1,28 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.util.color
 
 /**
  * Color base interface.
  */
-interface Color {
-    companion object {
+// TODO(return type: Color or StandardColor?)
+public interface Color {
+    public companion object {
         /**
          * Creates a new [StandardColor] from hex value of color.
          *
          * @param hexString the color in hexadecimal format
          */
-        fun fromHex(hexString: String) = StandardColor(hexString)
+        public fun fromHex(hexString: String): StandardColor = StandardColor(hexString)
 
         /**
          * Creates a new [StandardColor] from color name.
          *
          * @param name the name of the color //todo enginges???
          */
-        fun fromName(name: String) = StandardColor(name)
+        public fun fromName(name: String): StandardColor = StandardColor(name)
 
         /**
          * Creates a new [StandardColor] from rgb value of color.
@@ -26,22 +31,22 @@ interface Color {
          * @param g the green component of the color
          * @param b the blue component of the color
          */
-        fun fromRGB(r: Int, g: Int, b: Int) = StandardColor(
+        public fun fromRGB(r: Int, g: Int, b: Int): StandardColor = StandardColor(
             String.format("#%02X%02X%02X", r, g, b)
         )
 
         // todo move to hex???
 
-        val RED = StandardColor("red")
-        val BLUE = StandardColor("blue")
-        val GREEN = StandardColor("green")
+        public val RED: StandardColor = StandardColor("red")
+        public val BLUE: StandardColor = StandardColor("blue")
+        public val GREEN: StandardColor = StandardColor("green")
 
-        val BLACK = StandardColor("black")
-        val WHITE = StandardColor("white")
-        val GREY = StandardColor("grey")
+        public val BLACK: StandardColor = StandardColor("black")
+        public val WHITE: StandardColor = StandardColor("white")
+        public val GREY: StandardColor = StandardColor("grey")
 
-        val YELLOW = StandardColor("yellow")
-        val ORANGE = StandardColor("orange")
+        public val YELLOW: StandardColor = StandardColor("yellow")
+        public val ORANGE: StandardColor = StandardColor("orange")
         /*
         //val PURPLE = StandardColor("purple")
 
@@ -52,7 +57,7 @@ interface Color {
 
          */
 
-        val PEACH = StandardColor("#ffe5b4")
+        public val PEACH: StandardColor = StandardColor("#ffe5b4")
     }
 }
 
@@ -62,4 +67,4 @@ interface Color {
  *
  * @param description the string describing this color.
  */
-data class StandardColor internal constructor(val description: String) : Color
+public data class StandardColor internal constructor(val description: String) : Color

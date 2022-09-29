@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
@@ -18,44 +22,45 @@ import kotlin.reflect.typeOf
 @PublishedApi
 
  */
-val CONTOUR_FILLED = LetsPlotGeom("contour_filled")
-
+public val CONTOUR_FILLED: LetsPlotGeom = LetsPlotGeom("contour_filled")
 
 
 @PlotDslMarker
-class ContourFilledContext(
+public class ContourFilledContext(
     override var data: MutableNamedData,
     bins: Bins?
 ) : WithBinsContext(bins) {
     @PublishedApi
-    internal val _x = XAes(this)
+    internal val _x: XAes = XAes(this)
+
     @PublishedApi
-    internal val _y = YAes(this)
+    internal val _y: YAes = YAes(this)
+
     @PublishedApi
-    internal val _z = ZAes(this)
+    internal val _z: ZAes = ZAes(this)
 
-    val x = XDummyAes(this)
-    val y = YDummyAes(this)
-    val z = ZDummyAes(this)
+    public val x: XDummyAes = XDummyAes(this)
+    public val y: YDummyAes = YDummyAes(this)
+    public val z: ZDummyAes = ZDummyAes(this)
 
-    val alpha = AlphaAes(this)
-    val fillColor = FillAes(this)
-    val lineColor = ColorAes(this)
-    val lineType = LineTypeAes(this)
-    val lineWidth = WidthAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val fillColor: FillAes = FillAes(this)
+    public val lineColor: ColorAes = ColorAes(this)
+    public val lineType: LineTypeAes = LineTypeAes(this)
+    public val lineWidth: WidthAes = WidthAes(this)
 
-   // todo speed, flow
+    // todo speed, flow
 
-    object Statistics {
-        val X = ContourStat.X
-        val Y = ContourStat.Y
-        val LEVEL = ContourStat.Level
-        val GROUP = ContourStat.Group
+    public object Statistics {
+        public val X: ContourStat.X = ContourStat.X
+        public val Y: ContourStat.Y = ContourStat.Y
+        public val LEVEL: ContourStat.Level = ContourStat.Level
+        public val GROUP: ContourStat.Group = ContourStat.Group
     }
 
-    val Stat = Statistics
+    public val Stat: Statistics = Statistics
 
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -67,7 +72,7 @@ class ContourFilledContext(
         return mapping
     }
 
-    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
         stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -80,7 +85,7 @@ class ContourFilledContext(
     }
 }
 
-inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
     sourceX: DataSource<TX>,
     sourceY: DataSource<TY>,
     sourceZ: DataSource<TZ>,
@@ -100,7 +105,7 @@ inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.co
     )
 }
 
-inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
     sourceX: Iterable<TX>,
     sourceY: Iterable<TY>,
     sourceZ: Iterable<TZ>,

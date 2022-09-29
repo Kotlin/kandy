@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
@@ -9,16 +13,16 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
-internal val AREA = LetsPlotGeom("area")
+internal val AREA: LetsPlotGeom = LetsPlotGeom("area")
 
 @PlotDslMarker
-class AreaContext (override var data: MutableNamedData) :
+public class AreaContext(override var data: MutableNamedData) :
     WithBorderLineContext() {
-    val x = XAes(this)
-    val y = YAes(this)
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val color = FillAes(this)
-    val alpha = AlphaAes(this)
+    public val color: FillAes = FillAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 }
 
 /**
@@ -64,6 +68,6 @@ class AreaContext (override var data: MutableNamedData) :
  *
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.area(block: AreaContext.() -> Unit) {
+public inline fun PlotContext.area(block: AreaContext.() -> Unit) {
     layers.add(AreaContext(data).apply { copyFrom(this@area) }.apply(block).toLayer(AREA))
 }

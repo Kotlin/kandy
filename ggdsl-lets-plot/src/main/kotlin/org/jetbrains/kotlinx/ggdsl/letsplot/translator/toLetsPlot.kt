@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
@@ -33,12 +37,13 @@ import kotlin.reflect.typeOf
 internal fun Mapping.wrap(): Pair<String, Any> {
     return when (this) {
         is NonScalablePositionalMapping<*> -> aes.name to source.id
-        is ScaledMapping<*> -> when(this.sourceScaled.scale) {
+        is ScaledMapping<*> -> when (this.sourceScaled.scale) {
             is CategoricalScale -> aes.name to asDiscrete(
                 sourceScaled.source.id,
                 order = (scaleParameters as? PositionalParameters<*>)?.orderBy?.order,
                 orderBy = (scaleParameters as? PositionalParameters<*>)?.orderBy?.name
             )
+
             else -> aes.name to sourceScaled.source.id
         }
     }
@@ -188,7 +193,7 @@ internal fun Scale.wrap(
                             labels = labels,
                             trans = (transform as? Transformation)?.name,
                             format = format
-                            )
+                        )
 
                         Y -> scaleYContinuous(
                             limits = limits.toLP(),
@@ -204,7 +209,7 @@ internal fun Scale.wrap(
                     }
                 }
 
-               // is CustomScale -> TODO()
+                // is CustomScale -> TODO()
             }
         }
 
@@ -352,7 +357,7 @@ internal fun Scale.wrap(
                 is NonPositionalContinuousScale<*, *> -> {
                     when (aesName) {
                         // todo check all
-                        SIZE /*, WIDTH, STROKE */-> scaleSize(
+                        SIZE /*, WIDTH, STROKE */ -> scaleSize(
                             limits = domainLimits.toLP(),
                             range = rangeLimits.toLP(),
 
@@ -433,7 +438,7 @@ internal fun Scale.wrap(
                 }
 
                 is CustomScale -> when (this) {
-                    is ScaleColorGrey<*> -> when(aesName) {
+                    is ScaleColorGrey<*> -> when (aesName) {
                         COLOR -> scaleColorGrey(
                             paletteRange?.first,
                             paletteRange?.second,
@@ -445,6 +450,7 @@ internal fun Scale.wrap(
                             trans = transform?.name,
                             format = format
                         )
+
                         FILL -> scaleFillGrey(
                             paletteRange?.first,
                             paletteRange?.second,
@@ -456,6 +462,7 @@ internal fun Scale.wrap(
                             trans = transform?.name,
                             format = format
                         )
+
                         else -> TODO()
                     }
 
@@ -589,18 +596,20 @@ internal fun Scale.wrap(
         // TODO
         is UnspecifiedScale -> {
             when (this) {
-                DefaultUnspecifiedScale -> when(aesName) {
+                DefaultUnspecifiedScale -> when (aesName) {
                     // todo other types for unspecified categorical???
-                    X, Y -> if (domainType == typeOf<String>()){
+                    X, Y -> if (domainType == typeOf<String>()) {
                         PositionalCategoricalUnspecifiedScale.wrap(aesName, domainType, scaleParameters)
                     } else {
                         PositionalContinuousUnspecifiedScale().wrap(aesName, domainType, scaleParameters)
                     }
-                    COLOR, FILL, SIZE, SHAPE, LINE_TYPE -> if (domainType == typeOf<String>()){
+
+                    COLOR, FILL, SIZE, SHAPE, LINE_TYPE -> if (domainType == typeOf<String>()) {
                         NonPositionalCategoricalUnspecifiedScale.wrap(aesName, domainType, scaleParameters)
                     } else {
                         NonPositionalContinuousUnspecifiedScale().wrap(aesName, domainType, scaleParameters)
                     }
+
                     else -> null
 
                 }
@@ -610,6 +619,7 @@ internal fun Scale.wrap(
                         NonPositionalCategoricalUnspecifiedScale ->
                             NonPositionalCategoricalScale<Any, Any>()
                                 .wrap(aesName, domainType, scaleParameters)
+
                         is NonPositionalContinuousUnspecifiedScale ->
                             NonPositionalContinuousScale<Any, Any>(transform = transform)
                                 .wrap(aesName, domainType, scaleParameters)
@@ -660,8 +670,8 @@ internal fun Scale.wrap(
 
 }
 
-internal fun FreeScale.wrap(featureBuffer: MutableList<Feature>)  {
-    when(this) {
+internal fun FreeScale.wrap(featureBuffer: MutableList<Feature>) {
+    when (this) {
         is FreePositionalScale<*> -> featureBuffer.add(scale.wrap(aes, domainType, scaleParameters)!!) // TODO
         else -> TODO()
     }
@@ -698,7 +708,7 @@ internal fun LetsPlotLayout.wrap(featureBuffer: MutableList<Feature>) {
     }
 }
 
-fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
+public fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
     val featureBuffer = buildList {
         layers.forEach { it.wrap(this) }
         freeScales.forEach { it.value.wrap(this) }

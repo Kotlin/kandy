@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
@@ -15,12 +19,14 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 /**
  * Internal collector of mappings and settings.
  */
-class BindingCollector internal constructor() {
-    val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
-    val settings: MutableMap<AesName, Setting> = mutableMapOf()
-    val freeScales: MutableMap<AesName, FreeScale> = mutableMapOf()
+public class BindingCollector internal constructor() {
+    public val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
+    internal val settings: MutableMap<AesName, Setting> = mutableMapOf()
 
-    fun copyFrom(other: BindingCollector) {
+    @PublishedApi
+    internal val freeScales: MutableMap<AesName, FreeScale> = mutableMapOf()
+
+    internal fun copyFrom(other: BindingCollector) {
         mappings.putAll(other.mappings)
         settings.putAll(other.settings)
     }
@@ -30,17 +36,16 @@ class BindingCollector internal constructor() {
  * Base class for binding context.
  *
  * In this context, the mechanism of bindings, that is, mappings and settings, is defined.
- * It is implemented with aesthetic attribute properties invocation with raw or scaled source as an argument.
+ * It is implemented with aesthetic attribute properties invocation with a raw or scaled source as an argument.
  *
  * @property data the mutual dataset context.
  */
 @PlotDslMarker
-abstract class BindingContext {
-    abstract var data: MutableNamedData
+public abstract class BindingContext {
+    public abstract var data: MutableNamedData
 
     //todo
-    @PublishedApi
-    internal var counter = 0
+    private var counter: Int = 0
 
     @PublishedApi
     internal fun generateID(): String = "*gen${counter++}"
@@ -55,10 +60,10 @@ abstract class BindingContext {
     }
 
     // todo how to hide?
-    val bindingCollector = BindingCollector()
+    public val bindingCollector: BindingCollector = BindingCollector()
 
     // todo how to hide?
-    fun copyFrom(other: BindingContext, copyData: Boolean = true) {
+    public fun copyFrom(other: BindingContext, copyData: Boolean = true) {
         if (copyData) {
             data = other.data
         }
@@ -67,25 +72,29 @@ abstract class BindingContext {
 
 
     // todo move???
-    inline fun <reified DomainType : Any> Iterable<DomainType>.scaled() =
+    // TODO(explicit return types?)
+    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(): SourceScaledUnspecifiedDefault<DomainType> =
         SourceScaledUnspecifiedDefault(this.toDataSource())
 
-    inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
-        SourceScaledPositionalUnspecified(this.toDataSource(), scale)
+    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
+        scale: PositionalUnspecifiedScale
+    ): SourceScaledPositionalUnspecified<DomainType> = SourceScaledPositionalUnspecified(this.toDataSource(), scale)
 
 
-    inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
+    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
+        scale: NonPositionalUnspecifiedScale
+    ): SourceScaledNonPositionalUnspecified<DomainType> =
         SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
 
 
-    inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
+    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
         scale: PositionalScale<DomainType>
-    ) = SourceScaledPositional(this.toDataSource(), scale)
+    ): SourceScaledPositional<DomainType> = SourceScaledPositional(this.toDataSource(), scale)
 
 
-    inline fun <reified DomainType : Any, RangeType : Any> Iterable<DomainType>.scaled(
+    public inline fun <reified DomainType : Any, RangeType : Any> Iterable<DomainType>.scaled(
         scale: NonPositionalScale<DomainType, RangeType>
-    ) = SourceScaledNonPositional(this.toDataSource(), scale)
+    ): SourceScaledNonPositional<DomainType, RangeType> = SourceScaledNonPositional(this.toDataSource(), scale)
 
 
 }
@@ -104,9 +113,9 @@ abstract class BaseBindingContext : BindingContext() {
  * todo
  */
 @PlotDslMarker
-abstract class LayerContext : BindingContext() {
+public abstract class LayerContext : BindingContext() {
     // todo hide?
-    val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
+    public val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 }
 
 /**
@@ -114,7 +123,7 @@ abstract class LayerContext : BindingContext() {
  *
  * @return new [Plot]
  */
-fun LayerContext.toLayer(geom: Geom): Layer {
+public fun LayerContext.toLayer(geom: Geom): Layer {
     return Layer(
         data,
         geom,
@@ -127,14 +136,15 @@ fun LayerContext.toLayer(geom: Geom): Layer {
 
 // todo
 @PlotDslMarker
-class PlotContext : BindingContext() {
+public class PlotContext : BindingContext() {
     override var data: MutableNamedData = mutableMapOf()
 
     internal var _layout: Layout? = null
 
     // todo how to hide?
-    val layers: MutableList<Layer> = mutableListOf()
+    public val layers: MutableList<Layer> = mutableListOf()
+
     // todo how to hide?
-    val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
+    public val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
 }

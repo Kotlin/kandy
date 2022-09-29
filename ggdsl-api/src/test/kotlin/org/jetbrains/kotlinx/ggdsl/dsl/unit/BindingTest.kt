@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dsl.unit
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
@@ -33,7 +37,7 @@ internal class BindingTest {
         override val name: AesName = MOCK_AES_SCLB_POS
     }
 
-    class MockAesColorMapNonPos(override val context: BindingContext) : MappableNonPositionalAes<Color>  {
+    class MockAesColorMapNonPos(override val context: BindingContext) : MappableNonPositionalAes<Color> {
         override val name: AesName = MOCK_AES_COLOR_MAP_NON_POS
     }
 
@@ -56,7 +60,7 @@ internal class BindingTest {
         val context = TestContext().apply {
             mockAesDoubleNonPos(valueDouble)
         }
-        assertEquals<Map<AesName, Setting>>(
+        assertEquals(
             mapOf(MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting(MOCK_AES_DOUBLE_NON_POS, valueDouble)),
             context.bindingCollector.settings.toMap()
         )
@@ -66,7 +70,7 @@ internal class BindingTest {
         context.apply {
             mockAesStringMapNonPos(valueString)
         }
-        assertEquals<Map<AesName, Setting>>(
+        assertEquals(
             mapOf(
                 MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting(MOCK_AES_DOUBLE_NON_POS, valueDouble),
                 MOCK_AES_STRING_MAP_NON_POS to NonPositionalSetting(MOCK_AES_STRING_MAP_NON_POS, valueString)
@@ -115,7 +119,7 @@ internal class BindingTest {
 
     @Test
     fun testMappingScaledUnspecified() {
-      //  val mockAes = ScalablePositionalAes("mock_aes")
+        //  val mockAes = ScalablePositionalAes("mock_aes")
         val mockSource = source<String>("mock_source")
         val context = TestContext().apply {
             mockAesSclbPos(mockSource.scaled())
@@ -132,7 +136,7 @@ internal class BindingTest {
 
     @Test
     fun testMappingScaledPositionalDefault() {
-       // val mockAes = ScalablePositionalAes("mock_aes")
+        // val mockAes = ScalablePositionalAes("mock_aes")
         val mockSource = source<Float>("mock_source")
         val context = TestContext().apply {
             mockAesSclbPos(mockSource.scaled(continuousPos()))
@@ -141,8 +145,8 @@ internal class BindingTest {
             mapOf(
                 MOCK_AES_SCLB_POS to ScaledPositionalUnspecifiedMapping(
                     MOCK_AES_SCLB_POS, mockSource.scaled(
-                        continuousPos()
-                    ), typeOf<Float>()
+                    continuousPos()
+                ), typeOf<Float>()
                 )
             ),
             context.bindingCollector.mappings
@@ -151,7 +155,7 @@ internal class BindingTest {
 
     @Test
     fun testMappingScaledNonPositionalDefault() {
-      //  val mockAes = MappableNonPositionalAes<LineType>("mock_aes")
+        //  val mockAes = MappableNonPositionalAes<LineType>("mock_aes")
         val mockSource = source<String>("mock_source")
         val context = TestContext().apply {
             mockAesStringMapNonPos(mockSource.scaled(categorical()))
@@ -160,8 +164,8 @@ internal class BindingTest {
             mapOf(
                 MOCK_AES_STRING_MAP_NON_POS to ScaledNonPositionalDefaultMapping<String, String>(
                     MOCK_AES_STRING_MAP_NON_POS, mockSource.scaled(
-                        categorical()
-                    ), typeOf<String>()
+                    categorical()
+                ), typeOf<String>()
                 )
             ),
             context.bindingCollector.mappings
@@ -170,7 +174,7 @@ internal class BindingTest {
 
     @Test
     fun testMappingScaledPositional() {
-       // val mockAes = ScalablePositionalAes("mock_aes")
+        // val mockAes = ScalablePositionalAes("mock_aes")
         val mockSource = source<String>("mock_source")
         val scale = categoricalPos(
             categories = listOf("cat1", "cat2", "cat3")
@@ -180,7 +184,11 @@ internal class BindingTest {
         }
         assertEquals<Map<AesName, Mapping>>(
             mapOf(
-                MOCK_AES_SCLB_POS to ScaledPositionalMapping(MOCK_AES_SCLB_POS, mockSource.scaled(scale), typeOf<String>())
+                MOCK_AES_SCLB_POS to ScaledPositionalMapping(
+                    MOCK_AES_SCLB_POS,
+                    mockSource.scaled(scale),
+                    typeOf<String>()
+                )
             ),
             context.bindingCollector.mappings
         )
@@ -188,7 +196,7 @@ internal class BindingTest {
 
     @Test
     fun testMappingScaledNonPositional() {
-      //  val mockAes = MappableNonPositionalAes<Color>("mock_aes")
+        //  val mockAes = MappableNonPositionalAes<Color>("mock_aes")
         val mockSource = source<Int>("mock_source")
         val scale = continuous<Int, Color>(
             rangeLimits = Color.fromRGB(1, 1, 1) to Color.fromRGB(1, 100, 100)

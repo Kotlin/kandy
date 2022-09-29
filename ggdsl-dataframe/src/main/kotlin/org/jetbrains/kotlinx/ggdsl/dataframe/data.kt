@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
@@ -9,7 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import kotlin.reflect.typeOf
 
 // todo internal?
-inline fun <reified T: Any> ColumnReference<T>.toDataSource(): DataSource<T> {
+public inline fun <reified T : Any> ColumnReference<T>.toDataSource(): DataSource<T> {
     return DataSource(name(), typeOf<T>())
 }
 
@@ -34,6 +38,6 @@ fun DataFrame<*>.toNamedData(): NamedData {
 
  */
 
-fun DataFrame<*>.toNamedData(): NamedData {
-    return flatten().toMap().map { it.key to it.value.map { it!! /*TODO*/ } }.toMap()
+public fun DataFrame<*>.toNamedData(): NamedData {
+    return flatten().toMap().map { it.key to it.value.map { el -> el!! /*TODO*/ } }.toMap()
 }

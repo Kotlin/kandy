@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
@@ -18,12 +22,12 @@ import kotlin.reflect.typeOf
 @PublishedApi
 
  */
-val HISTOGRAM = LetsPlotGeom("histogram")
+public val HISTOGRAM: LetsPlotGeom = LetsPlotGeom("histogram")
 
 
 @PlotDslMarker
 // todo move x/y?
-class HistogramContext(
+public class HistogramContext(
     override var data: MutableNamedData,
     bins: Bins?,
     boundary: Double?,
@@ -37,35 +41,36 @@ class HistogramContext(
             center(it)
         }
     }
+
     @PublishedApi
-    internal val _x = XAes(this)
-    val x = XDummyAes(this)
+    internal val _x: XAes = XAes(this)
+    public val x: XDummyAes = XDummyAes(this)
 
-    val y = YAes(this)
+    public val y: YAes = YAes(this)
 
-    val alpha = AlphaAes(this)
-    val fillColor = FillAes(this)
-    val borderLineColor = ColorAes(this)
-    val borderLineWidth = SizeAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val fillColor: FillAes = FillAes(this)
+    public val borderLineColor: ColorAes = ColorAes(this)
+    public val borderLineWidth: SizeAes = SizeAes(this)
 
-    object Statistics {
-        val X = BinStat.X
-        val COUNT = BinStat.Count
-        val DENSITY = BinStat.Density
+    public object Statistics {
+        public val X: BinStat.X = BinStat.X
+        public val COUNT: BinStat.Count = BinStat.Count
+        public val DENSITY: BinStat.Density = BinStat.Density
     }
 
-    val Stat = Statistics
+    public val Stat: Statistics = Statistics
 
     // todo weight
 
     @PublishedApi
-    internal val center = CenterAes(this)
+    internal val center: CenterAes = CenterAes(this)
 
     @PublishedApi
-    internal val boundary = BoundaryAes(this)
+    internal val boundary: BoundaryAes = BoundaryAes(this)
 
 
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         stat: BinStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -77,7 +82,7 @@ class HistogramContext(
         return mapping
     }
 
-    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
         stat: BinStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -91,7 +96,7 @@ class HistogramContext(
 
 }
 
-inline fun <reified T : Any> PlotContext.histogram(
+public inline fun <reified T : Any> PlotContext.histogram(
     source: DataSource<T>,
     bins: Bins? = null,
     boundary: Double? = null,
@@ -109,7 +114,7 @@ inline fun <reified T : Any> PlotContext.histogram(
     )
 }
 
-inline fun <reified T : Any> PlotContext.histogram(
+public inline fun <reified T : Any> PlotContext.histogram(
     source: Iterable<T>,
     bins: Bins? = null,
     boundary: Double? = null,

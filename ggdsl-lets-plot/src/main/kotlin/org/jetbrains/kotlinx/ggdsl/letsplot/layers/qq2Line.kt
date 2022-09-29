@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
@@ -16,12 +20,12 @@ import kotlin.reflect.typeOf
 @PublishedApi
 
  */
-val QQ2_LINE = LetsPlotGeom("qq2Line")
+public val QQ2_LINE: LetsPlotGeom = LetsPlotGeom("qq2Line")
 
 
 @PlotDslMarker
 // todo move x/y?
-class QQ2LineContext(
+public class QQ2LineContext(
     override var data: MutableNamedData,
     quantiles: Pair<Double, Double>?,
 ) : LayerContext() {
@@ -30,35 +34,37 @@ class QQ2LineContext(
             quantiles(it)
         }
     }
-    @PublishedApi
-    internal val _x = XAes(this)
-    @PublishedApi
-    internal val _y = YAes(this)
 
-    val x = XDummyAes(this)
-    val y = YDummyAes(this)
+    @PublishedApi
+    internal val _x: XAes = XAes(this)
 
-    val alpha = AlphaAes(this)
-    val color = ColorAes(this)
-    val width = SizeAes(this)
-    val type = LineTypeAes(this)
+    @PublishedApi
+    internal val _y: YAes = YAes(this)
+
+    public val x: XDummyAes = XDummyAes(this)
+    public val y: YDummyAes = YDummyAes(this)
+
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val width: SizeAes = SizeAes(this)
+    public val type: LineTypeAes = LineTypeAes(this)
 
 
     // todo speed flow
 
 
     @PublishedApi
-    internal val quantiles = QuantilesAes(this)
+    internal val quantiles: QuantilesAes = QuantilesAes(this)
 
-    object Statistics {
-        val X = QQ2Stat.X
-        val Y = QQ2Stat.Y
+    public object Statistics {
+        public val X: QQ2Stat.X = QQ2Stat.X
+        public val Y: QQ2Stat.Y = QQ2Stat.Y
     }
 
-    val Stat = Statistics
+    public val Stat: Statistics = Statistics
 
 
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         stat: QQ2Stat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -70,7 +76,7 @@ class QQ2LineContext(
         return mapping
     }
 
-    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
         stat: QQ2Stat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -84,7 +90,7 @@ class QQ2LineContext(
 
 }
 
-inline fun <reified T : Any, reified R: Any> PlotContext.qq2Line(
+public inline fun <reified T : Any, reified R : Any> PlotContext.qq2Line(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
     quantiles: Pair<Double, Double>? = null,
@@ -102,7 +108,7 @@ inline fun <reified T : Any, reified R: Any> PlotContext.qq2Line(
     )
 }
 
-inline fun <reified T : Any, reified R: Any> PlotContext.qq2Line(
+public inline fun <reified T : Any, reified R : Any> PlotContext.qq2Line(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     quantiles: Pair<Double, Double>? = null,

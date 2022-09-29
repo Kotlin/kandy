@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.ir
 
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -22,7 +26,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
  * @param features the [Map] of the layer features; keys are feature names,
  * values are features with corresponding names.
  */
-data class Layer(
+public data class Layer(
     val data: NamedData? = null,
     val geom: Geom,
     val mappings: Map<AesName, Mapping>,

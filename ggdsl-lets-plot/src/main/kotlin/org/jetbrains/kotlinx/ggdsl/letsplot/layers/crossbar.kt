@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
@@ -9,21 +13,23 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
 @PublishedApi
-internal val CROSS_BAR = LetsPlotGeom("crossbar")
+internal val CROSS_BAR: LetsPlotGeom = LetsPlotGeom("crossbar")
+
 @PlotDslMarker
-class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
+public class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
     WithBorderLineContext() {
-    val x = XAes(this)
- //   val y = YAes(this)
-    val yMin = YMinAes(this)
-    val yMax = YMaxAes(this)
-    val middle = MiddleAes(this)
+    public val x: XAes = XAes(this)
 
-    val fatten = FattenAes(this)
+    //   val y = YAes(this)
+    public val yMin: YMinAes = YMinAes(this)
+    public val yMax: YMaxAes = YMaxAes(this)
+    public val middle: MiddleAes = MiddleAes(this)
 
-    val width = WidthAes(this)
-    val color = FillAes(this)
-    val alpha = AlphaAes(this)
+    public val fatten: FattenAes = FattenAes(this)
+
+    public val width: WidthAes = WidthAes(this)
+    public val color: FillAes = FillAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 
 }
 
@@ -76,6 +82,6 @@ class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutable
  *
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.crossBar(block: CrossBarContext.() -> Unit) {
+public inline fun PlotContext.crossBar(block: CrossBarContext.() -> Unit) {
     layers.add(CrossBarContext(data).apply { copyFrom(this@crossBar) }.apply(block).toLayer(CROSS_BAR))
 }

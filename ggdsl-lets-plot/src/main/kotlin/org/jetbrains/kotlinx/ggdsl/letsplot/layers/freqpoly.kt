@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
@@ -18,11 +22,11 @@ import kotlin.reflect.typeOf
 @PublishedApi
 
  */
-val FREQPOLY = LetsPlotGeom("freqpoly")
+public val FREQPOLY: LetsPlotGeom = LetsPlotGeom("freqpoly")
 
 
 @PlotDslMarker
-// todo move x/y?
+public// todo move x/y?
 class FreqpolyContext(
     override var data: MutableNamedData,
     bins: Bins?,
@@ -39,35 +43,35 @@ class FreqpolyContext(
     }
 
     @PublishedApi
-    internal val _x = XAes(this)
+    internal val _x: XAes = XAes(this)
 
-    val x = XDummyAes(this)
+    public val x: XDummyAes = XDummyAes(this)
 
-    val y = YAes(this)
+    public val y: YAes = YAes(this)
 
-    val alpha = AlphaAes(this)
-    val lineColor = ColorAes(this)
-    val lineType = LineTypeAes(this)
-    val lineWidth = SizeAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val lineColor: ColorAes = ColorAes(this)
+    public val lineType: LineTypeAes = LineTypeAes(this)
+    public val lineWidth: SizeAes = SizeAes(this)
 
-    object Statistics {
-        val X = BinStat.X
-        val COUNT = BinStat.Count
-        val DENSITY = BinStat.Density
+    public object Statistics {
+        public val X: BinStat.X = BinStat.X
+        public val COUNT: BinStat.Count = BinStat.Count
+        public val DENSITY: BinStat.Density = BinStat.Density
     }
 
-    val Stat = Statistics
+    public val Stat: Statistics = Statistics
 
     // todo weight
 
     @PublishedApi
-    internal val center = CenterAes(this)
+    internal val center: CenterAes = CenterAes(this)
 
     @PublishedApi
-    internal val boundary = BoundaryAes(this)
+    internal val boundary: BoundaryAes = BoundaryAes(this)
 
 
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         stat: BinStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -79,7 +83,7 @@ class FreqpolyContext(
         return mapping
     }
 
-    inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
         stat: BinStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -93,7 +97,7 @@ class FreqpolyContext(
 
 }
 
-inline fun <reified T : Any> PlotContext.freqPoly(
+public inline fun <reified T : Any> PlotContext.freqPoly(
     source: DataSource<T>,
     bins: Bins? = null,
     boundary: Double? = null,
@@ -111,7 +115,7 @@ inline fun <reified T : Any> PlotContext.freqPoly(
     )
 }
 
-inline fun <reified T : Any> PlotContext.freqPoly(
+public inline fun <reified T : Any> PlotContext.freqPoly(
     source: Iterable<T>,
     bins: Bins? = null,
     boundary: Double? = null,

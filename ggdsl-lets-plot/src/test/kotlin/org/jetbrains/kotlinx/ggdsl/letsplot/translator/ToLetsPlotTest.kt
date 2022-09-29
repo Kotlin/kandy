@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
@@ -30,11 +34,11 @@ class ToLetsPlotTest {
         }
 
         assertEquals(
-            mapOf<String, Any>(
+            mapOf(
                 "mapping" to mapOf<String, String>(),
                 "data" to mapOf<String, Any>(),
                 "kind" to "plot",
-                "scales" to listOf<Map<String, Any>>(
+                "scales" to listOf(
                     mapOf(
                         "aesthetic" to "x",
                     ),
@@ -44,8 +48,8 @@ class ToLetsPlotTest {
                     )
                 ),
                 "layers" to listOf(
-                    mapOf<String, Any>(
-                        "mapping" to mapOf<String, String>(
+                    mapOf(
+                        "mapping" to mapOf(
                             "x" to "origin",
                             "y" to "mpg"
                         ),
@@ -96,11 +100,11 @@ class ToLetsPlotTest {
         }
         println(plot.toLetsPlot().toSpec())
         assertEquals(
-            mapOf<String, Any>(
+            mapOf(
                 "mapping" to mapOf<String, String>(),
                 "data" to mapOf<String, Any>(),
                 "kind" to "plot",
-                "scales" to listOf<Map<String, Any>>(
+                "scales" to listOf(
                     mapOf(
                         "aesthetic" to "x",
                         "limits" to listOf(-12.0, 4.4)
@@ -123,8 +127,8 @@ class ToLetsPlotTest {
                     ),
                 ),
                 "layers" to listOf(
-                    mapOf<String, Any>(
-                        "mapping" to mapOf<String, String>(
+                    mapOf(
+                        "mapping" to mapOf(
                             "x" to "time",
                             "y" to "svalue",
                             "fill" to "clM"
@@ -137,30 +141,30 @@ class ToLetsPlotTest {
                         "geom" to "bar",
                         "data_meta" to mapOf<String, Any>(
                             "mapping_annotations" to
-                                    listOf(
-                                        mapOf<String, Any>(
-                                            "aes" to "y",
-                                            "annotation" to "as_discrete",
-                                            "parameters" to mapOf<String, Any?>(
-                                                "label" to "svalue",
-                                                "order_by" to null,
-                                                "order" to null
-                                            )
-                                        ),
-                                        mapOf<String, Any>(
-                                            "aes" to "fill",
-                                            "annotation" to "as_discrete",
-                                            "parameters" to mapOf<String, Any?>(
-                                                "label" to "clM",
-                                                "order_by" to null,
-                                                "order" to null
-                                            )
+                                listOf(
+                                    mapOf(
+                                        "aes" to "y",
+                                        "annotation" to "as_discrete",
+                                        "parameters" to mapOf<String, Any?>(
+                                            "label" to "svalue",
+                                            "order_by" to null,
+                                            "order" to null
+                                        )
+                                    ),
+                                    mapOf(
+                                        "aes" to "fill",
+                                        "annotation" to "as_discrete",
+                                        "parameters" to mapOf<String, Any?>(
+                                            "label" to "clM",
+                                            "order_by" to null,
+                                            "order" to null
                                         )
                                     )
+                                )
                         )
                     ),
-                    mapOf<String, Any>(
-                        "mapping" to mapOf<String, String>(
+                    mapOf(
+                        "mapping" to mapOf(
                             "x" to "time",
                             "y" to "svalue",
                         ),
@@ -172,17 +176,17 @@ class ToLetsPlotTest {
                         "geom" to "line",
                         "data_meta" to mapOf<String, Any>(
                             "mapping_annotations" to
-                                    listOf(
-                                        mapOf<String, Any>(
-                                            "aes" to "y",
-                                            "annotation" to "as_discrete",
-                                            "parameters" to mapOf<String, Any?>(
-                                                "label" to "svalue",
-                                                "order_by" to null,
-                                                "order" to null
-                                            )
+                                listOf(
+                                    mapOf(
+                                        "aes" to "y",
+                                        "annotation" to "as_discrete",
+                                        "parameters" to mapOf<String, Any?>(
+                                            "label" to "svalue",
+                                            "order_by" to null,
+                                            "order" to null
                                         )
                                     )
+                                )
                         )
                     ),
                 ),

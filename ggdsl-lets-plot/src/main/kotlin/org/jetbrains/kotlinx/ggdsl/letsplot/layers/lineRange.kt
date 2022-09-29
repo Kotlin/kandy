@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
@@ -8,16 +12,17 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
-internal val LINE_RANGE = LetsPlotGeom("linerange")
+internal val LINE_RANGE: LetsPlotGeom = LetsPlotGeom("linerange")
+
 @PlotDslMarker
-class LineRangeContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
+public class LineRangeContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
     WithBorderLineContext() {
-    val x = XAes(this)
+    public val x: XAes = XAes(this)
 
-    val yMin = YMinAes(this)
-    val yMax = YMaxAes(this)
+    public val yMin: YMinAes = YMinAes(this)
+    public val yMax: YMaxAes = YMaxAes(this)
 
-    val alpha = AlphaAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 
 }
 
@@ -66,6 +71,6 @@ class LineRangeContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutabl
  *
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.lineRange(block: LineRangeContext.() -> Unit) {
+public inline fun PlotContext.lineRange(block: LineRangeContext.() -> Unit) {
     layers.add(LineRangeContext(data).apply { copyFrom(this@lineRange) }.apply(block).toLayer(LINE_RANGE))
 }

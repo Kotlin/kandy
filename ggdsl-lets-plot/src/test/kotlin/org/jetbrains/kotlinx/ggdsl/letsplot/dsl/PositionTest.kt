@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
 
@@ -6,7 +10,6 @@ import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bar
@@ -75,7 +78,7 @@ internal class PositionTest {
                         mapOf(),
                         mapOf(
                             Position.FEATURE_NAME to
-                                    Position.JitterDodge(2.0, 3.0, 1.0)
+                                Position.JitterDodge(2.0, 3.0, 1.0)
                         )
                     ),
                     Layer(

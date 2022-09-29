@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.ir.data
 
 /**
@@ -6,4 +10,4 @@ package org.jetbrains.kotlinx.ggdsl.ir.data
  * Values are columns of data.
  * All values lists must be the same size.
  */
-typealias NamedData = Map<String, List<Any>>
+public typealias NamedData = Map<String, List<Any>>

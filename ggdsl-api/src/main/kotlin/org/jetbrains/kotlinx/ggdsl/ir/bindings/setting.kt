@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.ir.bindings
 
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -5,7 +9,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 /**
  * Setting base interface.
  */
-sealed interface Setting
+public sealed interface Setting
 
 /**
  * Setting of a non-positional aesthetic attribute.
@@ -14,13 +18,13 @@ sealed interface Setting
  * @property aes the non-positional aesthetic attribute to be set to
  * @property value the assigned value
  */
-data class NonPositionalSetting<T : Any>(
+public data class NonPositionalSetting<T : Any>(
     val aes: AesName,
     val value: T,
 ) : Setting
 
 //TODO
-data class PositionalSetting<T : Any>(
+public data class PositionalSetting<T : Any>(
     val aes: AesName,
     val value: T,
 ) : Setting
