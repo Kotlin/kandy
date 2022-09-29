@@ -1,15 +1,14 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat
 
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import kotlin.reflect.typeOf
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 
 sealed interface Stat<T> {
     val name: String
 }
 
 @PublishedApi
-internal inline fun <reified T : Any> Stat<T>.toDataSource(): DataSource<T> {
-    return DataSource(name, typeOf<T>())
+internal inline fun <reified T : Any> Stat<T>.toColumnPointer(): ColumnPointer<T> {
+    return ColumnPointer(name)
 }
 
 // TODO TYPES

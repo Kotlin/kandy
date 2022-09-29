@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.BinWidth2DAes
 import org.jetbrains.kotlinx.ggdsl.letsplot.BinWidthAes
 import org.jetbrains.kotlinx.ggdsl.letsplot.Bins2DAes
 import org.jetbrains.kotlinx.ggdsl.letsplot.BinsAes
-
+/*
 interface Bins {
     data class ByNumber internal constructor(val number: Int) : Bins
     data class ByWidth internal constructor(val width: Double) : Bins
@@ -17,7 +17,7 @@ interface Bins {
     }
 }
 
-abstract class WithBinsContext(bins: Bins?): LayerContext() {
+abstract class WithBinsContext(bins: Bins?): LayerContext(parent) {
     private val bins = BinsAes(this)
     private val binWidth = BinWidthAes(this)
 
@@ -46,7 +46,7 @@ interface Bins2D {
     }
 }
 
-abstract class WithBins2DContext(bins: Bins2D?): LayerContext() {
+abstract class WithBins2DContext(bins: Bins2D?): LayerContext(parent) {
     private val bins = Bins2DAes(this)
     private val binWidth = BinWidth2DAes(this)
 
@@ -64,3 +64,5 @@ abstract class WithBins2DContext(bins: Bins2D?): LayerContext() {
         }
     }
 }
+
+ */

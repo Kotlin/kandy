@@ -1,18 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Bins
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.ContourStat
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.WithBinsContext
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
-import kotlin.reflect.typeOf
+import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 /* TODO
 @PublishedApi
@@ -20,11 +9,11 @@ import kotlin.reflect.typeOf
  */
 val CONTOUR_FILLED = LetsPlotGeom("contour_filled")
 
-
+/*
 
 @PlotDslMarker
 class ContourFilledContext(
-    override var data: MutableNamedData,
+    parent: LayerCollectorContext,
     bins: Bins?
 ) : WithBinsContext(bins) {
     @PublishedApi
@@ -81,9 +70,9 @@ class ContourFilledContext(
 }
 
 inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
-    sourceX: DataSource<TX>,
-    sourceY: DataSource<TY>,
-    sourceZ: DataSource<TZ>,
+    sourceX: ColumnPointer<TX>,
+    sourceY: ColumnPointer<TY>,
+    sourceZ: ColumnPointer<TZ>,
     bins: Bins? = null,
     block: ContourFilledContext.() -> Unit
 ) {
@@ -120,4 +109,6 @@ inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.co
     )
 }
 
+
+ */
 

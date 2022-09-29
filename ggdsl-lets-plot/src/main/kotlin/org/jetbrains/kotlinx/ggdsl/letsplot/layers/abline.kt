@@ -1,24 +1,14 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 
 val AB_LINE = LetsPlotGeom("abline")
 
-val SLOPE = AesName("slope")
-data class SlopeAes(override val context: BindingContext) :NonScalablePositionalAes{
-    override val name: AesName = SLOPE
-}
-val INTERCEPT = AesName("intercept")
-data class InterceptAes(override val context: BindingContext) :NonScalablePositionalAes {
-    override val name: AesName = INTERCEPT
-}
 
-
-class ABLineContext @PublishedApi internal constructor(override var data: MutableNamedData) :
-    LayerContext() {
+class ABLineContext @PublishedApi internal constructor(parent: LayerCollectorContext) :
+    LayerContext(parent) {
     val slope = SlopeAes(this)
     val intercept = InterceptAes(this)
 
@@ -28,8 +18,8 @@ class ABLineContext @PublishedApi internal constructor(override var data: Mutabl
     val width = WidthAes(this)
 }
 
-inline fun PlotContext.abLine(block: ABLineContext.() -> Unit) {
-    layers.add(ABLineContext(data).apply { copyFrom(this@abLine) }.apply(block).toLayer(AB_LINE))
+inline fun LayerCollectorContext.abLine(block: ABLineContext.() -> Unit) {
+    addLayer(ABLineContext(this).apply(block), AB_LINE)
 }
 
 

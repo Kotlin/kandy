@@ -104,6 +104,16 @@ class YEndAes internal constructor(override val context: BindingContext) : NonSc
     override val name = Y_END
 }
 
+val SLOPE = AesName("slope")
+data class SlopeAes(override val context: BindingContext) :NonScalablePositionalAes{
+    override val name: AesName = SLOPE
+}
+val INTERCEPT = AesName("intercept")
+data class InterceptAes(override val context: BindingContext) :NonScalablePositionalAes {
+    override val name: AesName = INTERCEPT
+}
+
+
 internal val WIDTH_POS = AesName("width")
 
 class WidthPosAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {

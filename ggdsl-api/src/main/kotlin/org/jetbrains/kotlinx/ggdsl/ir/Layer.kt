@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.ir
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
@@ -23,7 +23,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
  * values are features with corresponding names.
  */
 data class Layer(
-    val data: NamedData? = null,
+    val data: TableData?,
     val geom: Geom,
     val mappings: Map<AesName, Mapping>,
     val settings: Map<AesName, Setting>,

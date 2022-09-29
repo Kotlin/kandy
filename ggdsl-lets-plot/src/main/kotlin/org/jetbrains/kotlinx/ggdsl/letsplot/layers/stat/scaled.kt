@@ -8,23 +8,23 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 
 
 inline fun <reified DomainType : Any> Stat<DomainType>.scaled() =
-    SourceScaledUnspecifiedDefault(this.toDataSource())
+    SourceScaledUnspecifiedDefault(this.toColumnPointer())
 
 
 inline fun <reified DomainType : Any> Stat<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
-    SourceScaledPositionalUnspecified(this.toDataSource(), scale)
+    SourceScaledPositionalUnspecified(this.toColumnPointer(), scale)
 
 
 
 inline fun <reified DomainType : Any> Stat<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
-    SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
+    SourceScaledNonPositionalUnspecified(this.toColumnPointer(), scale)
 
 
 inline fun <reified DomainType : Any> Stat<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-) = SourceScaledPositional(this.toDataSource(), scale)
+) = SourceScaledPositional(this.toColumnPointer(), scale)
 
 
 inline fun <reified DomainType : Any, RangeType : Any> Stat<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-) = SourceScaledNonPositional(this.toDataSource(), scale)
+) = SourceScaledNonPositional(this.toColumnPointer(), scale)

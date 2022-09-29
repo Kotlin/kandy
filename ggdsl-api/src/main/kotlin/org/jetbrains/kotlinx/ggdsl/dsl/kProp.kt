@@ -1,9 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import kotlin.reflect.KProperty
-import kotlin.reflect.typeOf
 
-inline fun <reified T : Any> KProperty<T>.toDataSource(): DataSource<T> =
-    DataSource(this.name, typeOf<T>())
+inline fun <reified T : Any> KProperty<T>.toColumnPointer(): ColumnPointer<T> =
+    ColumnPointer(this.name)
 

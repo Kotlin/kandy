@@ -1,16 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.QQ2Stat
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
-import kotlin.reflect.typeOf
+import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 /* TODO
 @PublishedApi
@@ -18,13 +9,13 @@ import kotlin.reflect.typeOf
  */
 val QQ2_LINE = LetsPlotGeom("qq2Line")
 
-
+/*
 @PlotDslMarker
 // todo move x/y?
 class QQ2LineContext(
-    override var data: MutableNamedData,
+    parent: LayerCollectorContext,
     quantiles: Pair<Double, Double>?,
-) : LayerContext() {
+) : LayerContext(parent) {
     init {
         quantiles?.let {
             quantiles(it)
@@ -85,8 +76,8 @@ class QQ2LineContext(
 }
 
 inline fun <reified T : Any, reified R: Any> PlotContext.qq2Line(
-    sourceX: DataSource<T>,
-    sourceY: DataSource<R>,
+    sourceX: ColumnPointer<T>,
+    sourceY: ColumnPointer<R>,
     quantiles: Pair<Double, Double>? = null,
     block: QQ2LineContext.() -> Unit
 ) {
@@ -121,3 +112,5 @@ inline fun <reified T : Any, reified R: Any> PlotContext.qq2Line(
 }
 
 
+
+ */

@@ -7,7 +7,7 @@ val AREA = CommonGeom("area")
 
  */
 /*
-class AreaContext : EchartsLayerContext() {
+class AreaContext : EchartsLayerContext(parent) {
     val color = COLOR
     val alpha = ALPHA
 

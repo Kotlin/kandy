@@ -1,9 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -12,8 +11,8 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 internal val AREA = LetsPlotGeom("area")
 
 @PlotDslMarker
-class AreaContext (override var data: MutableNamedData) :
-    WithBorderLineContext() {
+class AreaContext @PublishedApi internal constructor(parent: LayerCollectorContext) :
+    WithBorderLineContext(parent) {
     val x = XAes(this)
     val y = YAes(this)
 
@@ -64,6 +63,6 @@ class AreaContext (override var data: MutableNamedData) :
  *
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.area(block: AreaContext.() -> Unit) {
-    layers.add(AreaContext(data).apply { copyFrom(this@area) }.apply(block).toLayer(AREA))
+inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
+    addLayer(AreaContext(this).apply(block), AREA)
 }

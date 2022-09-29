@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.CoordFlip
+import org.jetbrains.kotlinx.ggdsl.letsplot.Layout
 import org.jetbrains.kotlinx.ggdsl.letsplot.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
@@ -10,9 +11,11 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
 import org.jetbrains.letsPlot.coord.coordFlip
 import org.jetbrains.letsPlot.facet.facetGrid
 import org.jetbrains.letsPlot.facet.facetWrap
+import org.jetbrains.letsPlot.ggsize
 import org.jetbrains.letsPlot.intern.Feature
 import org.jetbrains.letsPlot.intern.OptionsMap
 import org.jetbrains.letsPlot.intern.layer.PosOptions
+import org.jetbrains.letsPlot.label.labs
 import org.jetbrains.letsPlot.pos.*
 import org.jetbrains.letsPlot.tooltips.TooltipOptions
 import org.jetbrains.letsPlot.tooltips.layerTooltips
@@ -42,6 +45,22 @@ internal fun FacetWrapFeature.wrap(): OptionsMap {
     )
 }
 
+internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
+    val labs = labs(
+        title, subtitle, caption, xAxisLabel, yAxisLabel
+    )
+    featureBuffer.addAll(labs.elements)
+    size?.let {
+        featureBuffer.add(ggsize(it.first, it.second))
+    }
+    theme?.let {
+        featureBuffer.add(it.wrap())
+    }
+    customTheme?.let {
+        featureBuffer.add(it.wrap())
+    }
+}
+
 internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
     // todo featureName
     //TODO check is lp feature
@@ -56,6 +75,10 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
 
         CoordFlip.FEATURE_NAME -> {
             featureBuffer.add(coordFlip())
+        }
+
+        Layout.NAME -> {
+            (this as Layout).wrap(featureBuffer)
         }
 
         else -> TODO()

@@ -1,6 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-class PointsContext(override var data: MutableNamedData) : LayerContext() {
+
+
+class PointsContext(parent: LayerCollectorContext) : LayerContext(parent) {
     val x = XAes(this)
     val y = YAes(this)
 
@@ -14,8 +16,8 @@ class PointsContext(override var data: MutableNamedData) : LayerContext() {
     val symbol = SymbolAes(this)
 }
 
-class LineContext(override var data: MutableNamedData) :
-    LayerContext() {
+class LineContext(parent: LayerCollectorContext) :
+    LayerContext(parent) {
     val x = XAes(this)
     val y = YAes(this)
 
@@ -27,8 +29,8 @@ class LineContext(override var data: MutableNamedData) :
     val lineType = LineTypeAes(this)
 }
 
-class BarsContext(override var data: MutableNamedData) :
-    LayerContext() {
+class BarsContext(parent: LayerCollectorContext) :
+    LayerContext(parent) {
     val x = XAes(this)
     val y = YAes(this)
 

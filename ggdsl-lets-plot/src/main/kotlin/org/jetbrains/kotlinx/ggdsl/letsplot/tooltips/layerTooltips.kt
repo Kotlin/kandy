@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.tooltips
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.Aes
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Stat
@@ -43,12 +43,12 @@ data class LayerTooltips internal constructor(
 
 
 /**
- * Inserts value of given [DataSource] into format string.
+ * Inserts value of given [ColumnPointer] into format string.
  *
- * @param source [DataSource] whose value will be inserted into the tooltip
+ * @param source [ColumnPointer] whose value will be inserted into the tooltip
  * @return format string
  */
-fun value(source: DataSource<*>): String {
+fun value(source: ColumnPointer<*>): String {
     return "@${source.id}"
 }
 
@@ -103,12 +103,12 @@ class LayerTooltipsContext {
     }
 
     /**
-     * Adds standard line for given [DataSource]
+     * Adds standard line for given [ColumnPointer]
      * (name of source on the left side and corresponding value on the right side).
      *
-     * @param source [DataSource]
+     * @param source [ColumnPointer]
      */
-    fun line(source: DataSource<*>) {
+    fun line(source: ColumnPointer<*>) {
         lineBuffer.add("@|@${source.id}")
     }
 
@@ -156,25 +156,25 @@ data class Anchor(val value: String) {
  *
  * @see [LayerTooltipsContext].
  *
- * @param variables vararg of [DataSource] to crete a general multiline tooltip with.
+ * @param variables vararg of [ColumnPointer] to crete a general multiline tooltip with.
  * Useful for specifying the tooltip content quickly, instead of configuring it via the line(..) methods.
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
  * @param hide flag of tooltips displaying.
- * @param valueFormats map of [DataSource] to format string of its value.
+ * @param valueFormats map of [ColumnPointer] to format string of its value.
  * @param aesFormats map of [Aes] to format string of its value.
  * The format will be applied to the mapped value in the default tooltip or to the corresponding
  * value specified in the line template.
  * @see value
  */
 inline fun LayerContext.tooltips(
-    variables: List<DataSource<*>>,
+    variables: List<ColumnPointer<*>>,
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
     hide: Boolean = false,
-    valueFormats: Map<DataSource<*>, String> = mapOf(),
+    valueFormats: Map<ColumnPointer<*>, String> = mapOf(),
     aesFormats: Map<Aes, String> = mapOf(),
     statFormats: Map<Stat<*>, String> = mapOf(),
     tooltipsContextAction: LayerTooltipsContext.() -> Unit

@@ -21,9 +21,9 @@ class ToLetsPlotTest {
     @Test
     fun testSimple() {
         val plot = plot {
-            x(source<String>("origin"))
+            x(columnPointer<String>("origin"))
             points {
-                y(source<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
+                y(columnPointer<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
                 symbol(Symbol.CIRCLE_FILLED)
                 fillColor(Color.RED)
             }
@@ -64,10 +64,10 @@ class ToLetsPlotTest {
 
     @Test
     fun testComplex() {
-        val clM = source<Int>("clM")
+        val clM = columnPointer<Int>("clM")
         val plot = plot {
-            x(source<Double>("time").scaled(continuousPos(limits = -12.0 to 4.4)))
-            y(source<String>("svalue").scaled(categoricalPos(categories = listOf("A", "B", "C"))))
+            x(columnPointer<Double>("time").scaled(continuousPos(limits = -12.0 to 4.4)))
+            y(columnPointer<String>("svalue").scaled(categoricalPos(categories = listOf("A", "B", "C"))))
 
             bar {
                 color(
@@ -90,7 +90,7 @@ class ToLetsPlotTest {
 
             facetGrid(
                 x = clM,
-                y = source<String>("clX"),
+                y = columnPointer<String>("clX"),
                 yOrder = OrderDirection.DESCENDING
             )
         }

@@ -3,7 +3,6 @@ package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.Aes
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Stat
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.Anchor
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
@@ -33,12 +32,12 @@ fun LayerTooltipsContext.line(column: ColumnReference<*>) {
 
 inline fun LayerContext.tooltips(
     columns: List<ColumnReference<*>> = listOf(),
-    variablesDS: List<DataSource<*>> = listOf(),
+    variablesDS: List<org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>> = listOf(),
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
     hide: Boolean = false,
-    dsFormats: Map<DataSource<*>, String> = mapOf(),
+    dsFormats: Map<org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>, String> = mapOf(),
     columnsFormats: Map<ColumnReference<*>, String> = mapOf(),
     aesFormats: Map<Aes, String> = mapOf(),
     statFormats: Map<Stat<*>, String> = mapOf(),

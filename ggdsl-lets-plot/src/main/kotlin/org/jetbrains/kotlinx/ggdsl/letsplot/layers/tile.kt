@@ -1,9 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -13,8 +12,8 @@ internal val TILE = LetsPlotGeom("tile")
 
 
 @PlotDslMarker
-class TileContext(override var data: MutableNamedData) :
-    WithBorderLineContext() {
+class TileContext(parent: LayerCollectorContext) :
+    WithBorderLineContext(parent) {
     val x = XAes(this)
     val y = YAes(this)
 
@@ -73,6 +72,6 @@ class TileContext(override var data: MutableNamedData) :
  *  ```
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.tile(block: TileContext.() -> Unit) {
-    layers.add(TileContext(data).apply { copyFrom(this@tile) }.apply(block).toLayer(TILE))
+inline fun LayerCollectorContext.tile(block: TileContext.() -> Unit) {
+    addLayer(TileContext(this).apply(block), TILE)
 }

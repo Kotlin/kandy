@@ -1,33 +1,54 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
-import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.scaled
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
-import kotlin.reflect.typeOf
+/*
 
 interface Statistic<T> {
     val name: String
 }
 
+inline fun <reified DomainType : Any> Statistic<DomainType>.scaled() =
+    SourceScaledUnspecifiedDefault(this.toDataSource())
+
+
+inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
+    SourceScaledPositionalUnspecified(this.toDataSource(), scale)
+
+
+
+inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
+    SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
+
+
+inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(
+    scale: PositionalScale<DomainType>
+) = SourceScaledPositional(this.toDataSource(), scale)
+
+
+inline fun <reified DomainType : Any, RangeType : Any> Stat<DomainType>.scaled(
+    scale: NonPositionalScale<DomainType, RangeType>
+) = SourceScaledNonPositional(this.toDataSource(), scale)
+
 @PublishedApi
-internal inline fun <reified T : Any> Statistic<T>.toDataSource(): DataSource<T> {
-    return DataSource(name, typeOf<T>())
+internal inline fun <reified T : Any> Statistic<T>.toDataSource(): ColumnPointer<T> {
+    return ColumnPointer(name, typeOf<T>())
 }
 
 sealed interface BinStatistic<T>: Statistic<T> {
     class Bins<R>: BinStatistic<R> {
-        override val name = "..x.."
+        override val name = NAME
+        companion object {
+            val NAME = "..x.."
+        }
     }
     object Count: BinStatistic<Int> {
-        override val name = "..count.."
+        val NAME = "..count.."
+        override val name = NAME
+
     }
     object Density: BinStatistic<Double> {
-        override val name = "..density.."
+        val NAME = "..density.."
+        override val name = NAME
+
     }
 }
 
@@ -56,11 +77,24 @@ inline operator fun <reified DomainType : Any, RangeType : Any>
     return mapping
 }
 
+internal fun<T: Any> countBins(data: NamedDataInterface, sampleSource: ColumnPointer<T>): NamedDataInterface {
+    // TODO
+    val inputDF = DataFrame.Builder().putNumeric(TransformVar.X, data[sampleSource.id] as List<Double>).build()
+    val ctx = SimpleStatContext(inputDF)
+    val countedDF = BinStat(5, null, BinStat.XPosKind.CENTER, 0.0).apply(inputDF, ctx)
+    return countedDF.let {
+        mapOf(
+            BinStatistic.Bins.NAME to countedDF[Stats.X] as List<Any>
+        )
+    }
+}
+
+@StatDslMarker
 class BinStatisticContext<T: Any> @PublishedApi internal constructor(
-    val sampleSource: DataSource<T>,
-    inputData: NamedData,
-    ) {
-  //  val data = countBins(inputData, sampleSource)
+    val inputData: MutableNamedData,
+    val sampleSource: ColumnPointer<T>,
+): LayerCollectorContext() {
+    override val data: MutableNamedData = countBins(inputData, sampleSource).toMutableMap() // TODO
     val STAT_BINS = BinStatistic.Bins<T>()
     val STAT_COUNT = BinStatistic.Count
     val STAT_DENSITY = BinStatistic.Density
@@ -68,19 +102,25 @@ class BinStatisticContext<T: Any> @PublishedApi internal constructor(
 }
 
 inline fun<T: Any> PlotContext.statBin(
-    sampleSource: DataSource<T>,
-    inputData: NamedData? = null,
-    block: BinStatisticContext<T>.() -> Unit) {
-    BinStatisticContext(sampleSource, inputData ?: data).apply(block)
-}
-
-/*
-inline fun<reified T: Any> BindingContext.statBin(
-    sampleSource: Iterable<T>,
-    binsOption: Bins? = null,
+    sampleSource: ColumnPointer<T>,
+    inputData: NamedDataInterface? = null,
     block: BinStatisticContext<T>.() -> Unit
 ) {
-    BinStatisticContext(sampleSource.toDataSource()).apply(block)
+    layers.addAll(
+        BinStatisticContext(inputData?.toMutableMap() ?: data, sampleSource).apply(block).layers
+    )
 }
+
+inline fun<reified T: Any> PlotContext.statBin(
+    sampleSource: Iterable<T>,
+    inputData: NamedDataInterface? = null,
+    block: BinStatisticContext<T>.() -> Unit
+) {
+    layers.addAll(
+        BinStatisticContext(inputData?.toMutableMap() ?: data, sampleSource.toDataSource()).apply(block).layers
+    )
+}
+
+
 
  */

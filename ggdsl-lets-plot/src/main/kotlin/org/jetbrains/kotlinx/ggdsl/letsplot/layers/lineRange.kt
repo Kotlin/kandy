@@ -1,8 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -10,8 +10,8 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 @PublishedApi
 internal val LINE_RANGE = LetsPlotGeom("linerange")
 @PlotDslMarker
-class LineRangeContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
-    WithBorderLineContext() {
+class LineRangeContext(parent: LayerCollectorContext) :
+    WithBorderLineContext(parent) {
     val x = XAes(this)
 
     val yMin = YMinAes(this)
@@ -66,6 +66,6 @@ class LineRangeContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutabl
  *
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.lineRange(block: LineRangeContext.() -> Unit) {
-    layers.add(LineRangeContext(data).apply { copyFrom(this@lineRange) }.apply(block).toLayer(LINE_RANGE))
+inline fun LayerCollectorContext.lineRange(block: LineRangeContext.() -> Unit) {
+    addLayer(LineRangeContext(this).apply(block), LINE_RANGE)
 }

@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
 import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
-import org.jetbrains.kotlinx.ggdsl.dsl.source
+import org.jetbrains.kotlinx.ggdsl.dsl.columnPointer
 import org.jetbrains.kotlinx.ggdsl.echarts.*
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.Stack
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.ColorStop
@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.util.color.LinearGradientColor
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.SimpleColorOption
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.typeOf
@@ -22,7 +22,7 @@ internal class UnitWrappingsTest {
     @Test
     fun testDataWrap() {
         val names = listOf("cabook123", "mamakeksa", "EREVAN2077")
-        val dataset: NamedData = mapOf(
+        val dataset: NamedDataInterface = mapOf(
             names[0] to listOf(1, 2, 4, 5),
             names[1] to listOf("keka", "meka", "shusha", "dusha"),
             names[2] to listOf(3.4, 11.1, 10.0, 100.4)
@@ -52,7 +52,7 @@ internal class UnitWrappingsTest {
                 X to ScaledPositionalMapping(
                     X,
                     SourceScaledPositional(
-                        source<Double>("srcX"),
+                        columnPointer<Double>("srcX"),
                         continuousPos(1.0 to 5.0)
                     ),
                     typeOf<Double>()
@@ -60,7 +60,7 @@ internal class UnitWrappingsTest {
                 Y to ScaledUnspecifiedDefaultPositionalMapping(
                     Y,
                     SourceScaledUnspecifiedDefault(
-                        source<Int>("yy")
+                        columnPointer<Int>("yy")
                     ),
                     typeOf<Int>()
                 )
@@ -93,14 +93,14 @@ internal class UnitWrappingsTest {
             mapOf(
                 X to ScaledPositionalUnspecifiedMapping(
                     X, SourceScaledPositionalUnspecified(
-                        source<Float>("time"),
+                        columnPointer<Float>("time"),
                         PositionalContinuousUnspecifiedScale()
                     ),
                     typeOf<Double>()
                 ),
                 Y to ScaledPositionalMapping(
                     Y, SourceScaledPositional(
-                        source<Float>("size"),
+                        columnPointer<Float>("size"),
                         PositionalContinuousScale(
                             limits = 1f to 15f
                         )

@@ -1,34 +1,23 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.ContourStat
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.BandWidth
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
-import kotlin.reflect.typeOf
+import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 
 val DENSITY_2D = LetsPlotGeom("density_2D")
 
-
+/*
 // todo stats
 @PlotDslMarker
 // todo move x/y?
 class Density2DContext(
-    override var data: MutableNamedData,
+    parent: LayerCollectorContext,
     kernel: Kernel?,
     bandWidth: BandWidth?,
     pointsSampled: Int?,
     trim: Boolean?,
     adjust: Double?,
     fullScanMax: Int?,
-) : LayerContext() {
+) : LayerContext(parent) {
     // todo internal
     @PublishedApi
     internal val _x = XAes(this)
@@ -125,8 +114,8 @@ class Density2DContext(
 }
 
 inline fun <reified T : Any, reified R: Any> PlotContext.density2D(
-    sourceX: DataSource<T>,
-    sourceY: DataSource<R>,
+    sourceX: ColumnPointer<T>,
+    sourceY: ColumnPointer<R>,
     kernel: Kernel? = null,
     bandWidth: BandWidth? = null,
     pointsSampled: Int? = null,
@@ -169,3 +158,5 @@ inline fun <reified T : Any, reified R: Any> PlotContext.density2D(
             .toLayer(DENSITY_2D)
     )
 }
+
+ */

@@ -1,9 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dataframe.toDataSource
+import org.jetbrains.kotlinx.ggdsl.dataframe.toColRef
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
@@ -63,7 +62,7 @@ fun PlotContext.facetGrid(
 
 fun PlotContext.facetGrid(
     x: ColumnReference<*>,
-    y: DataSource<*>,
+    y: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>,
     scalesSharing: ScalesSharing? = null,
     xOrder: OrderDirection = OrderDirection.ASCENDING,
     yOrder: OrderDirection = OrderDirection.ASCENDING,
@@ -76,7 +75,7 @@ fun PlotContext.facetGrid(
 }
 
 fun PlotContext.facetGrid(
-    x: DataSource<*>,
+    x: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>,
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     xOrder: OrderDirection = OrderDirection.ASCENDING,
@@ -94,4 +93,4 @@ inline fun<reified T: Any> FacetWrapContext.facet(
     source: ColumnReference<T>,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
-) = facet(source.toDataSource(), order, format)
+) = facet(source.toColRef(), order, format)

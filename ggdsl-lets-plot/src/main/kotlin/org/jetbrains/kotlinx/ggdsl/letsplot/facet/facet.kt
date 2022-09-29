@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.facet
 
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
@@ -82,7 +82,7 @@ data class FacetWrapFeature constructor(
  * @see org.jetbrains.letsPlot.facet.facetGrid
  */
 fun PlotContext.facetGridX(
-    x: DataSource<*>,
+    x: ColumnPointer<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
@@ -94,7 +94,7 @@ fun PlotContext.facetGridX(
 }
 
 fun PlotContext.facetGridY(
-    y: DataSource<*>,
+    y: ColumnPointer<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
@@ -104,8 +104,8 @@ fun PlotContext.facetGridY(
 }
 
 fun PlotContext.facetGrid(
-    x: DataSource<*>,
-    y: DataSource<*>,
+    x: ColumnPointer<*>,
+    y: ColumnPointer<*>,
     scalesSharing: ScalesSharing? = null,
     xOrder: OrderDirection = OrderDirection.ASCENDING,
     yOrder: OrderDirection = OrderDirection.ASCENDING,
@@ -118,11 +118,11 @@ fun PlotContext.facetGrid(
 
 @PlotDslMarker
 class FacetWrapContext @PublishedApi internal constructor(){
-    private val facets = mutableListOf<DataSource<*>>()
+    private val facets = mutableListOf<ColumnPointer<*>>()
     private val orders= mutableListOf<OrderDirection>()
     private val formats = mutableListOf<String?>()
 
-    fun facet(source: DataSource<*>, order: OrderDirection = OrderDirection.ASCENDING, format: String? = null) {
+    fun facet(source: ColumnPointer<*>, order: OrderDirection = OrderDirection.ASCENDING, format: String? = null) {
         facets.add(source)
         orders.add(order)
         formats.add(format)

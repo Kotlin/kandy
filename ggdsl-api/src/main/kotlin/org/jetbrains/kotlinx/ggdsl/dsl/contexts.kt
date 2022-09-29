@@ -1,11 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
@@ -34,9 +36,40 @@ class BindingCollector internal constructor() {
  *
  * @property data the mutual dataset context.
  */
-@PlotDslMarker
-abstract class BindingContext {
-    abstract var data: MutableNamedData
+//@PlotDslMarker
+
+interface BindingContext {
+    val bindingCollector: BindingCollector
+}
+
+abstract class SubBindingContext(parentalBindingCollector: BindingCollector?) : BindingContext {
+    override val bindingCollector = BindingCollector().apply {
+        parentalBindingCollector?.let {
+            copyFrom(it)
+        }
+    }
+}
+
+interface TableBindingContext : BindingContext {
+    val data: TableData?
+}
+
+abstract class SubTableBindingContext(parent: TableBindingContext) : TableBindingContext,
+    SubBindingContext(parent.bindingCollector) {
+    override val data = parent.data
+}
+
+interface NameDataBindingContext : TableBindingContext {
+    override val data: NamedDataInterface?
+
+    fun groupBy(vararg columnPointers: ColumnPointer<*>, block: GroupedBindingContext.() -> Unit)
+}
+
+
+/*
+abstract class BindingContext: BindingContext {
+    val data: MutableNamedData = mutableMapOf()
+    override val bindingCollector = BindingCollector()
 
     //todo
     @PublishedApi
@@ -48,7 +81,7 @@ abstract class BindingContext {
     // todo add for arrays/others???
    /* @PublishedApi
     internal */
-    inline fun <reified T : Any> Iterable<T>.toDataSource(): DataSource<T> {
+    inline fun <reified T : Any> Iterable<T>.toDataSource(): ColumnReference<T> {
         val list = toList()
         val id = generateID()
         data[id] = list
@@ -56,12 +89,13 @@ abstract class BindingContext {
     }
 
     // todo how to hide?
-    val bindingCollector = BindingCollector()
+   // val bindingCollector = BindingCollector()
 
     // todo how to hide?
     fun copyFrom(other: BindingContext, copyData: Boolean = true) {
         if (copyData) {
-            data = other.data
+            // TODO!!!
+            data.putAll(other.data)
         }
         this.bindingCollector.copyFrom(other.bindingCollector)
     }
@@ -90,52 +124,100 @@ abstract class BindingContext {
 
 
 }
-/*
-// todo
-abstract class BaseBindingContext : BindingContext() {
-    val x = XAes(this)
-    val y = YAes(this)
-}
 
 
  */
-/**
- * Layer context interface.
- *
- * todo
- */
-@PlotDslMarker
-abstract class LayerContext : BindingContext() {
-    // todo hide?
+abstract class LayerContext(parent: LayerCollectorContext) : TableBindingContext,
+    SubTableBindingContext(parent) {
     val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 }
+
+interface LayerCollectorContext : TableBindingContext {
+    val layers: MutableList<Layer>
+
+    fun addLayer(context: LayerContext, geom: Geom) {
+        layers.add(
+            Layer(
+                data,
+                geom,
+                context.bindingCollector.mappings,
+                context.bindingCollector.settings,
+                context.features,
+                context.bindingCollector.freeScales
+            )
+        )
+    }
+}
+
+open class GroupedBindingContext(
+    override val data: GroupedDataInterface,
+    override val layers: MutableList<Layer>,
+    parentalBindingCollector: BindingCollector?
+) : TableBindingContext, LayerCollectorContext, SubBindingContext(parentalBindingCollector)
+
+/*
+abstract class TableLayerContext : TableBindingContext, LayerContext {
+    // todo hide?
+    override val features = mutableMapOf<FeatureName, LayerFeature>()
+}
+*/
+
+/*
+abstract class MutableLayerContext : BindingContext(), LayerContext {
+    // todo hide?
+    override val features = mutableMapOf<FeatureName, LayerFeature>()
+}
+
+ */
 
 /**
  * Creates a new [Layer] from this [LayerContext]
  *
  * @return new [Plot]
  */
-fun LayerContext.toLayer(geom: Geom): Layer {
-    return Layer(
-        data,
-        geom,
-        this.bindingCollector.mappings,
-        this.bindingCollector.settings,
-        features,
-        this.bindingCollector.freeScales
-    )
-}
 
 // todo
+
+//@PlotDslMarker
+
+/*
+@StatDslMarker
 @PlotDslMarker
-class PlotContext : BindingContext() {
-    override var data: MutableNamedData = mutableMapOf()
 
-    internal var _layout: Layout? = null
-
-    // todo how to hide?
-    val layers: MutableList<Layer> = mutableListOf()
-    // todo how to hide?
-    val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
-
+ */
+interface PlotContext : LayerCollectorContext {
+    val features: MutableMap<FeatureName, PlotFeature>
+    fun toPlot(): Plot {
+        return Plot(data, layers, features, bindingCollector.freeScales)
+    }
 }
+
+class NamedDataPlotContext<T: NamedDataInterface>(
+    override val data: T,
+) : PlotContext, NameDataBindingContext {
+    override val bindingCollector = BindingCollector()
+    override val layers: MutableList<Layer> = mutableListOf()
+    override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
+
+    override inline fun groupBy(
+        vararg columnPointers: ColumnPointer<*>,
+        block: GroupedBindingContext.() -> Unit
+    ) {
+        GroupedBindingContext(
+            data.groupBy(*columnPointers),
+            layers,
+            bindingCollector
+        ).apply(block)
+    }
+}
+
+class GroupedDataPlotContext(
+    override val data: GroupedDataInterface,
+    override val layers: MutableList<Layer> = mutableListOf()
+) : PlotContext, GroupedBindingContext(data, layers, null) {
+    override val bindingCollector = BindingCollector()
+    override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
+}
+
+abstract class StatContext(parent: TableBindingContext) : LayerCollectorContext,
+    SubTableBindingContext(parent)

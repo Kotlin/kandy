@@ -1,21 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledPositionalUnspecifiedMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.BoxplotStat
-import org.jetbrains.kotlinx.ggdsl.letsplot.scales.OrderBy
-import org.jetbrains.kotlinx.ggdsl.letsplot.scales.PositionalParameters
-import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Axis
-import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 val BOXPLOT_STAT = LetsPlotGeom("boxplot_stat")
 
-
+/*
 @PlotDslMarker
 class OutlierSubContext(parentContext: BindingContext) : SubContext(parentContext), SelfInvocationContext {
-    override var data: MutableNamedData = mutableMapOf()
+    parent: LayerCollectorContext = mutableMapOf()
     val color = OutlierColorAes(parentContext)
     val fillColor = OutlierFillAes(parentContext)
     val symbol = OutlierShapeAes(parentContext)
@@ -26,9 +18,9 @@ class OutlierSubContext(parentContext: BindingContext) : SubContext(parentContex
 @PlotDslMarker
 // todo move x/y?
 class BoxplotStatContext<T>(
-    override var data: MutableNamedData,
+    parent: LayerCollectorContext,
     varWidth: Boolean?,
-) : LayerContext() {
+) : LayerContext(parent) {
     init {
         varWidth?.let {
             varWidth(it)
@@ -91,8 +83,8 @@ class BoxplotStatContext<T>(
 }
 
 inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
-    sourceX: DataSource<T>,
-    sourceY: DataSource<R>,
+    sourceX: ColumnPointer<T>,
+    sourceY: ColumnPointer<R>,
     varWidth: Boolean? = null,
     block: BoxplotStatContext<T>.() -> Unit
 ) {
@@ -125,4 +117,6 @@ inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
             .toLayer(BOXPLOT_STAT)
     )
 }
+
+ */
 

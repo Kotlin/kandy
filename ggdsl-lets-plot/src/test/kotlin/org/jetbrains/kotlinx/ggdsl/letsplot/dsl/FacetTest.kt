@@ -1,7 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
+import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
+import org.jetbrains.kotlinx.ggdsl.dsl.columnPointer
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
-import org.jetbrains.kotlinx.ggdsl.dsl.source
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
@@ -11,18 +12,18 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class FacetTest {
+    private val emptyDataset = NamedData(mapOf())
     @Test
     fun testSimpleFacet() {
-        val plot = plot {
+        val plot = plot(emptyDataset) {
             facetGridX(
-                x = source<String>("xSrc")
+                x = columnPointer<String>("xSrc")
             )
         }
         assertEquals(
             Plot(
-                mapOf(),
+                emptyDataset,
                 listOf(),
-                null,
                 mapOf(
                     FacetGridFeature.FEATURE_NAME to FacetGridFeature(
                      "xSrc",
@@ -41,19 +42,18 @@ class FacetTest {
 
     @Test
     fun testComplexFacet() {
-        val plot = plot {
+        val plot = plot(emptyDataset) {
             facetGrid(
-                x = source<String>("xArg"),
-                y = source<Int>("yArg"),
+                x = columnPointer<String>("xArg"),
+                y = columnPointer<Int>("yArg"),
                 xOrder = OrderDirection.ASCENDING,
                 yOrder = OrderDirection.DESCENDING,
             )
         }
         assertEquals(
             Plot(
-                mapOf(),
+                emptyDataset,
                 listOf(),
-                null,
                 mapOf(
                     FacetGridFeature.FEATURE_NAME to FacetGridFeature(
                         x = "xArg",

@@ -1,18 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Distribution
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.QQStat
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toList
-import kotlin.reflect.typeOf
+import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 /* TODO
 @PublishedApi
@@ -20,14 +9,14 @@ import kotlin.reflect.typeOf
  */
 val QQ_LINE = LetsPlotGeom("qqLine")
 
-
+/*
 @PlotDslMarker
 // todo move x/y?
 class QQLineContext(
-    override var data: MutableNamedData,
+    parent: LayerCollectorContext,
     distribution: Distribution?,
     quantiles: Pair<Double, Double>?,
-) : LayerContext() {
+) : LayerContext(parent) {
     init {
         distribution?.let {
             distribution(it.name)
@@ -95,7 +84,7 @@ class QQLineContext(
 }
 
 inline fun <reified T : Any> PlotContext.qqLine(
-    source: DataSource<T>,
+    source: ColumnPointer<T>,
     distribution: Distribution? = null,
     quantiles: Pair<Double, Double>? = null,
     block: QQLineContext.() -> Unit
@@ -127,5 +116,7 @@ inline fun <reified T : Any> PlotContext.qqLine(
             .toLayer(QQ_LINE)
     )
 }
+
+ */
 
 

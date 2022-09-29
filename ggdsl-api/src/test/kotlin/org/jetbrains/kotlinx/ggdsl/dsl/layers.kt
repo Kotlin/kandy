@@ -1,13 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-inline fun PlotContext.points(block: PointsContext.() -> Unit) {
-    layers.add(PointsContext(data).apply { copyFrom(this@points) }.apply(block).toLayer(POINT))
+inline fun LayerCollectorContext.points(block: PointsContext.() -> Unit) {
+    addLayer(PointsContext(this).apply(block), POINT)
 }
 
-inline fun PlotContext.bars(block: BarsContext.() -> Unit) {
-    layers.add(BarsContext(data).apply { copyFrom(this@bars) }.apply(block).toLayer(BAR))
+inline fun LayerCollectorContext.bars(block: BarsContext.() -> Unit) {
+    addLayer(BarsContext(this).apply(block), BAR)
 }
 
-inline fun PlotContext.line(block: LineContext.() -> Unit) {
-    layers.add(LineContext(data).apply { copyFrom(this@line) }.apply(block).toLayer(LINE))
+inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
+    addLayer(LineContext(this).apply(block), LINE)
 }

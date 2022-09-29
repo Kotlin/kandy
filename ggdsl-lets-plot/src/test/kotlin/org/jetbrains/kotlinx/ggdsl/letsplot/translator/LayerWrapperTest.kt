@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
-import org.jetbrains.kotlinx.ggdsl.dsl.source
+import org.jetbrains.kotlinx.ggdsl.dsl.columnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
@@ -25,7 +25,7 @@ internal class LayerWrapperTest {
             mapOf(
                 FILL to ScaledUnspecifiedDefaultNonPositionalMapping<Int, Color>(
                     FILL,
-                    source<Int>("F").scaled(),
+                    columnPointer<Int>("F").scaled(),
                     typeOf<Int>()
                 )
             ),
@@ -88,14 +88,14 @@ internal class LayerWrapperTest {
                 X to ScaledUnspecifiedDefaultPositionalMapping(
                     X,
                     SourceScaledUnspecifiedDefault(
-                        source<Float>("TIME_T")
+                        columnPointer<Float>("TIME_T")
                     ),
                     typeOf<Float>()
                 ),
                 Y to ScaledPositionalUnspecifiedMapping(
                     Y,
                     SourceScaledPositionalUnspecified(
-                        source<Double>("VAL_V"),
+                        columnPointer<Double>("VAL_V"),
                         PositionalContinuousUnspecifiedScale()
                     ),
                     typeOf<Double>()
@@ -103,7 +103,7 @@ internal class LayerWrapperTest {
                 FILL to ScaledNonPositionalMapping(
                     FILL,
                     SourceScaledNonPositional(
-                        source<String>("BAFGA"),
+                        columnPointer<String>("BAFGA"),
                         NonPositionalCategoricalScale(
                             rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY)
                         ),

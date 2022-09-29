@@ -1,6 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 
 // TODO
@@ -11,7 +13,7 @@ internal val H_LINE = LetsPlotGeom("hLine")
 
 
 @PlotDslMarker
-class HLineContext(override var data: MutableNamedData) : LayerContext() {
+class HLineContext(parent: LayerCollectorContext) : LayerContext(parent) {
     val y = YInterceptAes(this)
 
     val color = ColorAes(this)
@@ -21,6 +23,6 @@ class HLineContext(override var data: MutableNamedData) : LayerContext() {
 }
 
 
-inline fun PlotContext.hLine(block: HLineContext.() -> Unit) {
-    layers.add(HLineContext(data).apply { copyFrom(this@hLine) }.apply(block).toLayer(H_LINE))
+inline fun LayerCollectorContext.hLine(block: HLineContext.() -> Unit) {
+    addLayer(HLineContext(this).apply(block), H_LINE)
 }

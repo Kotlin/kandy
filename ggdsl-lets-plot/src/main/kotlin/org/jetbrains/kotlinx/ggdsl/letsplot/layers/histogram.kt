@@ -1,30 +1,19 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.BinStat
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Bins
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.WithBinsContext
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
-import kotlin.reflect.typeOf
+import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 /* TODO
 @PublishedApi
 
  */
 val HISTOGRAM = LetsPlotGeom("histogram")
-
+/*
 
 @PlotDslMarker
 // todo move x/y?
 class HistogramContext(
-    override var data: MutableNamedData,
+    parent: LayerCollectorContext,
     bins: Bins?,
     boundary: Double?,
     center: Double?,
@@ -92,7 +81,7 @@ class HistogramContext(
 }
 
 inline fun <reified T : Any> PlotContext.histogram(
-    source: DataSource<T>,
+    source: ColumnPointer<T>,
     bins: Bins? = null,
     boundary: Double? = null,
     center: Double? = null,
@@ -127,4 +116,6 @@ inline fun <reified T : Any> PlotContext.histogram(
     )
 }
 
+
+ */
 

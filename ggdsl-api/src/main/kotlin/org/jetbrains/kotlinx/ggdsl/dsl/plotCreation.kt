@@ -1,12 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
-
-@PublishedApi
-internal fun PlotContext.toPlot(): Plot {
-    return Plot(data, layers, _layout, features, bindingCollector.freeScales)
-}
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 
 /**
  * Returns a new plot.
@@ -42,9 +38,20 @@ internal fun PlotContext.toPlot(): Plot {
  * @return new [Plot]
  * @see [BaseBindingContext]
  */
-inline fun plot(dataset: NamedData = mapOf(), block: PlotContext.() -> Unit): Plot {
+inline fun <T: NamedDataInterface> plot(dataset: T, block: NamedDataPlotContext<T>.() -> Unit): Plot {
+    return NamedDataPlotContext(dataset).apply(block).toPlot()
+}
+
+inline fun plot(dataset: GroupedDataInterface, block: GroupedDataPlotContext.() -> Unit): Plot {
+    return GroupedDataPlotContext(dataset).apply(block).toPlot()
+}
+
+/*
+inline fun plot(block: PlotContext.() -> Unit): Plot {
     return PlotContext().apply {
-        data = dataset.toMutableMap()
+        data.putAll(dataset) // TODO
         block()
     }.toPlot()
 }
+
+ */

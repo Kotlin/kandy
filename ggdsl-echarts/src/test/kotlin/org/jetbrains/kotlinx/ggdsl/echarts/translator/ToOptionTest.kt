@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.util.color.GradientOption
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.LinearGradientColor
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.SimpleColorOption
 
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -19,7 +19,7 @@ internal class ToOptionTest {
 
     @Test
     fun testSimple() {
-        val simpleDataset: NamedData = mapOf(
+        val simpleDataset: NamedDataInterface = mapOf(
             "time" to listOf(1, 2, 3),
             "val" to listOf(2.0, 3.3, 2.9)
         )
@@ -69,7 +69,7 @@ internal class ToOptionTest {
 
     @Test
     fun testComplex() {
-        val dataset: NamedData = mapOf(
+        val dataset: NamedDataInterface = mapOf(
             "time" to listOf(1, 2, 3, 4),
             "val_max" to listOf(2.5, 4.1, 3.8, 2.8),
             "val_min_main_part" to listOf(1.0, 0.11, 2.0, 0.3),
@@ -79,13 +79,13 @@ internal class ToOptionTest {
             "val_avg" to listOf(2.0, 3.3, 2.9, 1.8)
         )
 
-        val time = source<Int>("time")
-        val valMax = source<Double>("val_max")
-        val valMinMainPart = source<Double>("val_min_main_part")
-        val valMinRest = source<Double>("val_min_rest")
-        val valAvg = source<Double>("val_avg")
-        val type = source<String>("type")
-        val typeMainPart = source<String>("type_main_part")
+        val time = columnPointer<Int>("time")
+        val valMax = columnPointer<Double>("val_max")
+        val valMinMainPart = columnPointer<Double>("val_min_main_part")
+        val valMinRest = columnPointer<Double>("val_min_rest")
+        val valAvg = columnPointer<Double>("val_avg")
+        val type = columnPointer<String>("type")
+        val typeMainPart = columnPointer<String>("type_main_part")
 
         val plotTitle = "Important plot"
         val plotSize = 800 to 600

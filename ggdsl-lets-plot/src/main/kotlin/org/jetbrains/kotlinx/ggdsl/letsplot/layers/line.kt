@@ -1,6 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -14,7 +17,7 @@ internal val PATH = LetsPlotGeom("path")
 
 
 @PlotDslMarker
-class LineContext(override var data: MutableNamedData) : LayerContext() {
+class LineContext(parent: LayerCollectorContext) : LayerContext(parent) {
     val x = XAes(this)
     val y = YAes(this)
 
@@ -57,10 +60,10 @@ class LineContext(override var data: MutableNamedData) : LayerContext() {
 
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.line(block: LineContext.() -> Unit) {
-    layers.add(LineContext(data).apply { copyFrom(this@line) }.apply(block).toLayer(LINE))
+inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
+    addLayer(LineContext(this).apply(block), LINE)
 }
 
-inline fun PlotContext.path(block: LineContext.() -> Unit) {
-    layers.add(LineContext(data).apply { copyFrom(this@path) }.apply(block).toLayer(PATH))
+inline fun LayerCollectorContext.path(block: LineContext.() -> Unit) {
+    addLayer(LineContext(this).apply(block), PATH)
 }

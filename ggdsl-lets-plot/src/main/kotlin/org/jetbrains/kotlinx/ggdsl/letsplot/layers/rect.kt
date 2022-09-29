@@ -1,9 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -12,8 +11,8 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 internal val RECT = LetsPlotGeom("rect")
 
 @PlotDslMarker
-class RectContext(override var data: MutableNamedData) :
-    WithBorderLineContext() {
+class RectContext(parent: LayerCollectorContext) :
+    WithBorderLineContext(parent) {
     val xMin = XMinAes(this)
     val xMax = XMaxAes(this)
     val yMin = YMinAes(this)
@@ -65,6 +64,6 @@ class RectContext(override var data: MutableNamedData) :
  *  ```
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.rect(block: RectContext.() -> Unit) {
-    layers.add(RectContext(data).apply { copyFrom(this@rect) }.apply(block).toLayer(RECT))
+inline fun LayerCollectorContext.rect(block: RectContext.() -> Unit) {
+    addLayer(RectContext(this).apply(block), RECT)
 }

@@ -1,31 +1,29 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import kotlin.reflect.KProperty
-import kotlin.reflect.KType
-import kotlin.reflect.typeOf
 
 /**
- * Returns a new [DataSource].
+ * Returns a new [ColumnPointer].
  *
  * @param T the type of source
- * @param id the name of source in [NamedData]
+ * @param id the name of source in [NamedDataInterface]
  */
-inline fun <reified T : Any> source(id: String): DataSource<T> =
-    DataSource(id, typeOf<T>())
+inline fun <reified T : Any> columnPointer(id: String): ColumnPointer<T> =
+    ColumnPointer(id)
 
 // TODO
-data class UnnamedDataSource<T : Any>(val type: KType) {
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): DataSource<T> {
-        return DataSource(property.name, type)
+class UnnamedColumnPointer<T : Any> {
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): ColumnPointer<T> {
+        return ColumnPointer(property.name)
     }
 }
 
 // todo
-inline operator fun <reified T : Any> String.invoke(): DataSource<T> =
-    DataSource(this, typeOf<T>())
+inline operator fun <reified T : Any> String.invoke(): ColumnPointer<T> =
+    ColumnPointer(this)
 
 // todo
-inline fun <reified T : Any> source(): UnnamedDataSource<T> =
-    UnnamedDataSource(typeOf<T>())
+inline fun <reified T : Any> columnPointer(): UnnamedColumnPointer<T> =
+    UnnamedColumnPointer()

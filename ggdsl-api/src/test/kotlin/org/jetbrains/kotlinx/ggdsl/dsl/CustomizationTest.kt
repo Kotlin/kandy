@@ -5,7 +5,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
@@ -22,21 +21,21 @@ internal class CustomizationTest {
     }
 
     companion object {
-        val customGeom = CommonGeom("custom")
+        val CUSTOM_GEOM = CommonGeom("custom")
         val SPECIFIC_AES = AesName("customAes")
     }
 
     data class CustomGeomType(val name: String)
 
-    class CustomGeomContext(override var data: MutableNamedData) :
-        LayerContext() {
+    class CustomGeomContext(parent: LayerCollectorContext) :
+        LayerContext(parent) {
         val x = XAes(this)
         val y = YAes(this)
         val specificAes = SpecificAes(this)
     }
 
-    fun PlotContext.customLayer(block: CustomGeomContext.() -> Unit) {
-        layers.add(CustomGeomContext(data).apply { copyFrom(this@customLayer) }.apply(block).toLayer(customGeom))
+    fun LayerCollectorContext.customLayer(block: CustomGeomContext.() -> Unit) {
+        addLayer(CustomGeomContext(this).apply(block), CUSTOM_GEOM)
     }
 
     data class MockLayerFeature(val value: Int) : LayerFeature {
@@ -65,12 +64,12 @@ internal class CustomizationTest {
             features[MockPlotFeature.FEATURE_NAME] = MockPlotFeature(value)
         }
 
-    val mockSrcDouble = source<Double>("mock_double")
-    val mockSrcInt = source<Int>("mock_int")
-    val mockSrcString = source<String>("mock_string")
-    val mockSrcFloat = source<Float>("mock_float")
+    val mockSrcDouble = columnPointer<Double>("mock_double")
+    val mockSrcInt = columnPointer<Int>("mock_int")
+    val mockSrcString = columnPointer<String>("mock_string")
+    val mockSrcFloat = columnPointer<Float>("mock_float")
 
-    val dataset: NamedData = mapOf()
+    val dataset = NamedData(mapOf())
 
     @Test
     fun testCustomLayer() {
@@ -98,7 +97,7 @@ internal class CustomizationTest {
                 listOf(
                     Layer(
                         dataset,
-                        customGeom,
+                        CUSTOM_GEOM,
                         mapOf(
                             X to ScaledPositionalUnspecifiedMapping(
                                 X,
@@ -128,7 +127,7 @@ internal class CustomizationTest {
                     ),
                     Layer(
                         dataset,
-                        customGeom,
+                        CUSTOM_GEOM,
                         mapOf(
                             X to ScaledUnspecifiedDefaultPositionalMapping(
                                 X,
@@ -150,7 +149,6 @@ internal class CustomizationTest {
                         mapOf()
                     )
                 ),
-                null,
                 mapOf()
             ),
             plot
@@ -178,7 +176,6 @@ internal class CustomizationTest {
                         mapOf(MockLayerFeature.FEATURE_NAME to MockLayerFeature(14))
                     )
                 ),
-                null,
                 mapOf(MockPlotFeature.FEATURE_NAME to MockPlotFeature("amentes ineptias"))
             ),
             plot

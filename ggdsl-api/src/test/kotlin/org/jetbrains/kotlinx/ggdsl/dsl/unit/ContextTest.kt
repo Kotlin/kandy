@@ -3,7 +3,6 @@ package org.jetbrains.kotlinx.ggdsl.dsl.unit
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
@@ -11,16 +10,16 @@ import kotlin.test.assertEquals
 internal class ContextTest {
     @Test
     fun testPoints() {
-        val context = PlotContext().apply {
+        val context = NamedDataPlotContext(NamedData(mapOf())).apply {
             points {}
         }
         assertContentEquals(
             listOf(
                 Layer(
-                    mapOf(),
+                    null,
                     POINT,
-                    mapOf(),
-                    mapOf()
+                    emptyMap(),
+                    emptyMap(),
                 )
             ),
             context.layers
@@ -29,16 +28,16 @@ internal class ContextTest {
 
     @Test
     fun testLine() {
-        val context = PlotContext().apply {
+        val context = NamedDataPlotContext(NamedData(mapOf())).apply {
             line {}
         }
         assertContentEquals(
             listOf(
                 Layer(
-                    mapOf(),
+                    null,
                     LINE,
-                    mapOf(),
-                    mapOf()
+                    emptyMap(),
+                    emptyMap(),
                 )
             ),
             context.layers
@@ -47,16 +46,16 @@ internal class ContextTest {
 
     @Test
     fun testBars() {
-        val context = PlotContext().apply {
+        val context = NamedDataPlotContext(NamedData(mapOf())).apply {
             bars {}
         }
         assertContentEquals(
             listOf(
                 Layer(
-                    mapOf(),
+                    null,
                     BAR,
-                    mapOf(),
-                    mapOf()
+                    emptyMap(),
+                    emptyMap(),
                 )
             ),
             context.layers
@@ -65,13 +64,13 @@ internal class ContextTest {
 
     @Test
     fun testPlotEmpty() {
-        val plot = plot { }
+        val plot = plot(NamedData(mapOf())) { }
         assertEquals(
             Plot(
-                mapOf(),
-                listOf(),
                 null,
-                mapOf()
+                listOf(),
+                emptyMap(),
+                emptyMap(),
             ),
             plot
         )

@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import kotlin.reflect.KProperty
 import kotlin.reflect.typeOf
 
@@ -21,17 +21,17 @@ operator fun <T : Number> PositionalAes.invoke(value: T) {
 }
 
 /**
- * Maps the given [DataSource] to this non-scalable ("sub-positional") aesthetic attribute.
+ * Maps the given [ColumnPointer] to this non-scalable ("sub-positional") aesthetic attribute.
  *
  * @param source the mapped raw data source.
  */
 inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
-    source: DataSource<DomainType>
+    source: ColumnPointer<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =
         NonScalablePositionalMapping(this.name, source, typeOf<DomainType>())
 }
-
+/*
 /**
  * Maps the given [Iterable] to this non-scalable ("sub-positional") aesthetic attribute.
  *
@@ -44,6 +44,8 @@ inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
         NonScalablePositionalMapping(this.name, with(context) { data.toDataSource() }, typeOf<DomainType>())
 }
 
+ */
+
 /**
  * Maps the given property to this non-scalable ("sub-positional") aesthetic attribute.
  *
@@ -53,16 +55,16 @@ inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
     property: KProperty<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =
-        NonScalablePositionalMapping(this.name, property.toDataSource(), typeOf<DomainType>())
+        NonScalablePositionalMapping(this.name, property.toColumnPointer(), typeOf<DomainType>())
 }
 
 /**
- * Maps the given [DataSource] to this positional aesthetic attribute with default scale.
+ * Maps the given [ColumnPointer] to this positional aesthetic attribute with default scale.
  *
  * @param source the mapped raw data source.
  */
 inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-    source: DataSource<DomainType>
+    source: ColumnPointer<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
         this.name,
@@ -78,6 +80,7 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
  *
  * @param data the mapped raw data.
  */
+/*
 inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     data: Iterable<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
@@ -90,6 +93,8 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     return mapping
 }
 
+ */
+
 /**
  * Maps the given property to this positional aesthetic attribute with default scale.
  *
@@ -100,7 +105,7 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
         this.name,
-        property.toDataSource().scaled(),
+        property.toColumnPointer().scaled(),
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping
@@ -108,12 +113,12 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
 }
 
 /**
- * Maps the given [DataSource] to this non-positional aesthetic attribute with default scale.
+ * Maps the given [ColumnPointer] to this non-positional aesthetic attribute with default scale.
  *
  * @param source the mapped raw data source.
  */
 inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-    source: DataSource<DomainType>
+    source: ColumnPointer<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
         this.name,
@@ -129,6 +134,7 @@ inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPosit
  *
  * @param data the mapped raw data.
  */
+/*
 inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
     data: Iterable<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
@@ -141,6 +147,8 @@ inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPosit
     return mapping
 }
 
+ */
+
 /**
  * Maps the given property to this non-positional aesthetic attribute with default scale.
  *
@@ -151,7 +159,7 @@ inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPosit
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
         this.name,
-        property.toDataSource().scaled(),
+        property.toColumnPointer().scaled(),
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping

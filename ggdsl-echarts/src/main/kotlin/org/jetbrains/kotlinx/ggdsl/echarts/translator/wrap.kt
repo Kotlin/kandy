@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -26,7 +26,7 @@ internal data class DataInfo(
     val header: Map<String, Int>
 )
 
-internal fun NamedData.wrap(): DataInfo {
+internal fun NamedDataInterface.wrap(): DataInfo {
     val header = keys.toList()
     val values = values.toList()
     val size = values.first().size

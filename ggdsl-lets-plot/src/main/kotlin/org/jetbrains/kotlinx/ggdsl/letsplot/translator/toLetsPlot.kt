@@ -19,12 +19,10 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
 import org.jetbrains.letsPlot.Stat
 import org.jetbrains.letsPlot.asDiscrete
-import org.jetbrains.letsPlot.ggsize
 import org.jetbrains.letsPlot.intern.Feature
 import org.jetbrains.letsPlot.intern.FeatureList
 import org.jetbrains.letsPlot.intern.GeomKind
 import org.jetbrains.letsPlot.intern.layer.GeomOptions
-import org.jetbrains.letsPlot.label.labs
 import org.jetbrains.letsPlot.letsPlot
 import org.jetbrains.letsPlot.scale.*
 import kotlin.reflect.KType
@@ -682,30 +680,15 @@ internal fun Layer.wrap(featureBuffer: MutableList<Feature>) {
     }
 }
 
-internal fun LetsPlotLayout.wrap(featureBuffer: MutableList<Feature>) {
-    val labs = labs(
-        title, subtitle, caption, xAxisLabel, yAxisLabel
-    )
-    featureBuffer.addAll(labs.elements)
-    size?.let {
-        featureBuffer.add(ggsize(it.first, it.second))
-    }
-    theme?.let {
-        featureBuffer.add(it.wrap())
-    }
-    customTheme?.let {
-        featureBuffer.add(it.wrap())
-    }
-}
 
 fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
     val featureBuffer = buildList {
         layers.forEach { it.wrap(this) }
         freeScales.forEach { it.value.wrap(this) }
         features.forEach { it.value.wrap(this) }
-        (layout as? LetsPlotLayout)?.wrap(this) // todo
+      //  (layout as? LetsPlotLayout)?.wrap(this) // todo
     }
-    return letsPlot(dataset) + FeatureList(featureBuffer)
+    return letsPlot(dataset?.wrap()) + FeatureList(featureBuffer)
     //  var plotBuffer = letsPlot(dataset)
     /*
     var plotBuffer = layers.fold(letsPlot(dataset)) { _buffer, layer ->

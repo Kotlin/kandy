@@ -3,7 +3,6 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
@@ -16,14 +15,14 @@ internal class CommonTest {
 
     @Test
     fun oneLayer() {
-        val dataset: NamedData = mapOf(
+        val dataset = NamedData(mapOf(
             "x" to listOf(1.0, 2.0, 3.0),
             "y" to listOf(3F, 12F, 5.5F),
             "type" to listOf("A", "B", "A")
-        )
-        val srcX = source<Double>("x")
-        val srcY = source<Float>("y")
-        val type = source<String>("type")
+        ))
+        val srcX = columnPointer<Double>("x")
+        val srcY = columnPointer<Float>("y")
+        val type = columnPointer<String>("type")
 
         val plot = plot(dataset) {
             x(srcX)
@@ -57,7 +56,6 @@ internal class CommonTest {
                         )
                     )
                 ),
-                null,
             ),
             plot
         )
@@ -65,16 +63,16 @@ internal class CommonTest {
 
     @Test
     fun severalLayersAndScales() {
-        val dataset: NamedData = mapOf(
+        val dataset = NamedData(mapOf(
             "width" to listOf(1.0, 2.0, 3.0, 3.0),
             "height" to listOf(3F, 12F, 5.5F, 8F),
             "type" to listOf("A", "B", "A", "B"),
             "number of attachments" to listOf(2, 5, 2, 4),
-        )
-        val width = source<Double>("width")
-        val height = source<Float>("height")
-        val type = source<String>("type")
-        val noa = source<Int>("number of attachments")
+        ))
+        val width = columnPointer<Double>("width")
+        val height = columnPointer<Float>("height")
+        val type = columnPointer<String>("type")
+        val noa = columnPointer<Int>("number of attachments")
 
         val plot = plot(dataset) {
             x(width.scaled(continuousPos()))
@@ -153,23 +151,22 @@ internal class CommonTest {
                         )
                     )
                 ),
-                null,
             ),
             plot
         )
     }
-
+/*
     @Test
     fun datasetOverriding() {
-        val emptyDataset: NamedData = mapOf()
-        val realDataset: NamedData = mapOf(
+        val emptyDataset = NamedData(mapOf())
+        val realDataset = NamedData(mapOf(
             "name" to listOf("Tiny", "Pudge", "Spirit Breaker"),
             "winRate" to listOf(100.0, 0.01, 50.0),
             "iq" to listOf(12, 12, 1000)
-        )
-        val wr = source<Double>("winRate")
-        val iq = source<Int>("iq")
-        val name = source<String>("name")
+        ))
+        val wr = columnPointer<Double>("winRate")
+        val iq = columnPointer<Int>("iq")
+        val name = columnPointer<String>("name")
 
         val plot = plot(emptyDataset) {
             x(wr)
@@ -205,5 +202,7 @@ internal class CommonTest {
             plot
         )
     }
+
+ */
 }
 

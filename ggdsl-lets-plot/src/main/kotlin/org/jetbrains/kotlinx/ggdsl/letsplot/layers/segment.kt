@@ -1,9 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
-import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -12,8 +11,8 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 internal val SEGMENT = LetsPlotGeom("segment")
 
 
-class SegmentContext(override var data: MutableNamedData) :
-    LayerContext() {
+class SegmentContext(parent: LayerCollectorContext) :
+    LayerContext(parent) {
     // TODO
     val xBegin = XAes(this)
     val yBegin = YAes(this)
@@ -73,6 +72,6 @@ class SegmentContext(override var data: MutableNamedData) :
  *  ```
  *  // TODO refer to bindings?
  */
-fun PlotContext.segment(block: SegmentContext.() -> Unit) {
-    layers.add(SegmentContext(data).apply { copyFrom(this@segment) }.apply(block).toLayer(SEGMENT))
+fun LayerCollectorContext.segment(block: SegmentContext.() -> Unit) {
+    addLayer(SegmentContext(this).apply(block), SEGMENT)
 }

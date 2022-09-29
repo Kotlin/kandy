@@ -42,7 +42,7 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.echarts.scale.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.stack.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.translator.*")
-        //todo import layers
+
     }
 }
 

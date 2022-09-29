@@ -8,22 +8,20 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 @PublishedApi
 internal val POINT_RANGE = LetsPlotGeom("pointrange")
 @PlotDslMarker
-class InnerPointSubContext(parentContext: BindingContext) : SubContext(parentContext) {
-    override var data: MutableNamedData = mutableMapOf()
+class InnerPointSubContext(parentContext: BindingContext) {
     val symbol = ShapeAes(parentContext)
     val fillColor = FillAes(parentContext)
     val fatten = FattenAes(parentContext)
 }
 @PlotDslMarker
-class InnerLineSubContext(parentContext: BindingContext) : SubContext(parentContext) {
-    override var data: MutableNamedData = mutableMapOf()
+class InnerLineSubContext(parentContext: BindingContext)  {
  //   val color = ColorAes(parentContext)
     val type = LineTypeAes(parentContext)
     //val width = SIZE // TODO mappable???
 }
 
 @PlotDslMarker
-class PointRangeContext(override var data: MutableNamedData) : LayerContext() {
+class PointRangeContext(parent: LayerCollectorContext) : LayerContext(parent) {
     val x = XAes(this)
     val y = YAes(this)
     val yMin = YMinAes(this)
@@ -103,8 +101,6 @@ class PointRangeContext(override var data: MutableNamedData) : LayerContext() {
  *
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.pointRange(block: PointRangeContext.() -> Unit) {
-    layers.add(
-        PointRangeContext(data).apply { copyFrom(this@pointRange) }.apply(block).toLayer(POINT_RANGE)
-    )
+inline fun LayerCollectorContext.pointRange(block: PointRangeContext.() -> Unit) {
+    addLayer(PointRangeContext(this).apply(block), POINT_RANGE)
 }

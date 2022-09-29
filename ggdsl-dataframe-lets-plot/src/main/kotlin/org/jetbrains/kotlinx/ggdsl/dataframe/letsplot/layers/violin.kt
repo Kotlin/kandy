@@ -1,9 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.layers
-
+/*
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dataframe.toDataSource
+import org.jetbrains.kotlinx.ggdsl.dataframe.toColRef
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.ViolinContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.ViolinScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.violin
@@ -12,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
 
 inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     sourceX: ColumnReference<T>,
-    sourceY: DataSource<R>,
+    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
     drawQuantiles: List<Double>? = null,
     scale: ViolinScale? = null,
     kernel: Kernel? = null,
@@ -23,7 +22,7 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     fullScanMax: Int? = null,
     block: ViolinContext.() -> Unit,
 ) = violin(
-    sourceX.toDataSource(),
+    sourceX.toColRef(),
     sourceY, drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
 
@@ -39,12 +38,12 @@ inline fun <reified T : Any> PlotContext.violin(
     fullScanMax: Int? = null,
     block: ViolinContext.() -> Unit,
 ) = violin(
-    sourceY.toDataSource(), drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
+    sourceY.toColRef(), drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
 
 
 inline fun <reified T : Any, reified R : Any> PlotContext.violin(
-    sourceX: DataSource<T>,
+    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
     sourceY: ColumnReference<R>,
     drawQuantiles: List<Double>? = null,
     scale: ViolinScale? = null,
@@ -57,7 +56,7 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     block: ViolinContext.() -> Unit,
 ) = violin(
     sourceX,
-    sourceY.toDataSource(),
+    sourceY.toColRef(),
     drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
 
@@ -74,7 +73,9 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     fullScanMax: Int? = null,
     block: ViolinContext.() -> Unit,
 ) = violin(
-    sourceX.toDataSource(),
-    sourceY.toDataSource(),
+    sourceX.toColRef(),
+    sourceY.toColRef(),
     drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
+
+ */

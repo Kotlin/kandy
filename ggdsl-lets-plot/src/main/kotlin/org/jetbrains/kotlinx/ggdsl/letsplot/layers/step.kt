@@ -1,6 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -10,8 +13,8 @@ internal val STEP = LetsPlotGeom("step")
 
 
 @PlotDslMarker
-class StepContext(override var data: MutableNamedData) :
-    LayerContext() {
+class StepContext(parent: LayerCollectorContext) :
+    LayerContext(parent) {
     val x = XAes(this)
     val y = YAes(this)
 
@@ -55,6 +58,6 @@ class StepContext(override var data: MutableNamedData) :
 
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.step(block: StepContext.() -> Unit) {
-    layers.add(StepContext(data).apply { copyFrom(this@step) }.apply(block).toLayer(STEP))
+inline fun LayerCollectorContext.step(block: StepContext.() -> Unit) {
+    addLayer(StepContext(this).apply(block), STEP)
 }

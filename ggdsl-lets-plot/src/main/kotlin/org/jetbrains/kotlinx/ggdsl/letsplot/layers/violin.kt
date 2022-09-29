@@ -1,26 +1,14 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.ViolinScale
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.ViolinStat
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.BandWidth
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
-import kotlin.reflect.typeOf
+import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 
 val VIOLIN = LetsPlotGeom("violin")
-
+/*
 // todo stats
 @PlotDslMarker
 class ViolinContext(
-    override var data: MutableNamedData,
+    parent: LayerCollectorContext,
     drawQuantiles: List<Double>?,
     scale: ViolinScale?,
     kernel: Kernel?,
@@ -29,7 +17,7 @@ class ViolinContext(
     trim: Boolean?,
     adjust: Double?,
     fullScanMax: Int?,
-) : LayerContext() {
+) : LayerContext(parent) {
 
     @PublishedApi
     internal val _x = XAes(this)
@@ -149,8 +137,8 @@ class ViolinContext(
 }
 
 inline fun <reified T : Any, reified R : Any> PlotContext.violin(
-    sourceX: DataSource<T>,
-    sourceY: DataSource<R>,
+    sourceX: ColumnPointer<T>,
+    sourceY: ColumnPointer<R>,
     drawQuantiles: List<Double>? = null,
     scale: ViolinScale? = null,
     kernel: Kernel? = null,
@@ -174,7 +162,7 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
 }
 
 inline fun <reified T : Any> PlotContext.violin(
-    sourceY: DataSource<T>,
+    sourceY: ColumnPointer<T>,
     drawQuantiles: List<Double>? = null,
     scale: ViolinScale? = null,
     kernel: Kernel? = null,
@@ -220,3 +208,5 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
             .toLayer(VIOLIN)
     )
 }
+
+ */

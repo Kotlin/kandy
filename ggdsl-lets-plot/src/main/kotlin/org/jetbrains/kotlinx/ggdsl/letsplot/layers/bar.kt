@@ -1,6 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -12,7 +14,7 @@ internal val BAR = LetsPlotGeom("bar")
 
 
 @PlotDslMarker
-class BarContext(override var data: MutableNamedData) : WithBorderLineContext() {
+class BarContext(parent: LayerCollectorContext) : WithBorderLineContext(parent) {
     val x = XAes(this)
     val y = YAes(this)
 
@@ -66,6 +68,6 @@ class BarContext(override var data: MutableNamedData) : WithBorderLineContext() 
  *
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.bar(block: BarContext.() -> Unit) {
-    layers.add(BarContext(data).apply { copyFrom(this@bar) }.apply(block).toLayer(BAR))
+inline fun LayerCollectorContext.bar(block: BarContext.() -> Unit) {
+    addLayer(BarContext(this).apply(block), BAR)
 }

@@ -1,17 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.SmoothMethod
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.SmoothStat
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
-import kotlin.reflect.typeOf
+import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 /* TODO
 @PublishedApi
@@ -19,15 +9,15 @@ import kotlin.reflect.typeOf
  */
 val SMOOTH = LetsPlotGeom("smooth")
 
-
+/*
 @PlotDslMarker
 class SmoothContext(
-    override var data: MutableNamedData,
+    parent: LayerCollectorContext,
     smoothMethod: SmoothMethod?,
     pointsNumber: Int?,
     se: Boolean?,
     level: Double?,
-) : LayerContext() {
+) : LayerContext(parent) {
 
     // todo min/max?
 
@@ -132,8 +122,8 @@ class SmoothContext(
 }
 
 inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
-    sourceX: DataSource<T>,
-    sourceY: DataSource<R>,
+    sourceX: ColumnPointer<T>,
+    sourceY: ColumnPointer<R>,
     method: SmoothMethod? = null,
     pointsNumber: Int? = null,
     se: Boolean? = null,
@@ -174,3 +164,5 @@ inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
 }
 
 
+
+ */

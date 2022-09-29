@@ -2,15 +2,15 @@ package org.jetbrains.kotlinx.ggdsl.letsplot
 
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.layoutAccessor
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
+import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
+import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.theme.CustomTheme
 import org.jetbrains.kotlinx.ggdsl.letsplot.theme.Theme
 
 
 //todo
 @PlotDslMarker
-data class LetsPlotLayout(
+data class Layout(
     var title: String? = null,
     var subtitle: String? = null,
     var caption: String? = null,
@@ -19,7 +19,7 @@ data class LetsPlotLayout(
     var yAxisLabel: String? = null,
 
     var size: Pair<Int, Int>? = null
-) : Layout {
+) : PlotFeature {
 
     @PublishedApi
     internal var theme: Theme? = null
@@ -34,16 +34,22 @@ data class LetsPlotLayout(
     inline fun theme(block: CustomTheme.() -> Unit) {
         theme = CustomTheme().apply(block)
     }
+
+    override val featureName: FeatureName = NAME
+
+    companion object {
+        val NAME = FeatureName("layout")
+    }
 }
 
-inline fun PlotContext.layout(block: LetsPlotLayout.() -> Unit) {
-    layoutAccessor = LetsPlotLayout().apply(block)
+inline fun PlotContext.layout(block: Layout.() -> Unit) {
+    features[Layout.NAME] = Layout().apply(block)
 }
 
-val PlotContext.layout: LetsPlotLayout
+val PlotContext.layout: Layout
     get() {
-        if(this.layoutAccessor == null) {
-            this.layoutAccessor = LetsPlotLayout()
+        if (features[Layout.NAME] == null) {
+            features[Layout.NAME] = Layout()
         }
-        return this.layoutAccessor as LetsPlotLayout
+        return features[Layout.NAME] as Layout
     }

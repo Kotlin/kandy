@@ -1,6 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -10,7 +13,7 @@ internal val POINT = LetsPlotGeom("point")
 
 // TODO add size unit???
 @PlotDslMarker
-class PointsContext(override var data: MutableNamedData) : LayerContext() {
+class PointsContext(parent: LayerCollectorContext) : LayerContext(parent) {
     val x = XAes(this)
     val y = YAes(this)
 
@@ -61,8 +64,7 @@ class PointsContext(override var data: MutableNamedData) : LayerContext() {
  *  // TODO refer to bindings?
  */
 // todo rename to point/scatter?
-inline fun PlotContext.points(block: PointsContext.() -> Unit) {
-    layers.add(PointsContext(data).apply { copyFrom(this@points) }
-        .apply(block).toLayer(POINT))
+inline fun LayerCollectorContext.points(block: PointsContext.() -> Unit) {
+    addLayer(PointsContext(this).apply(block), POINT)
 }
 

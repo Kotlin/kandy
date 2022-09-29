@@ -10,7 +10,7 @@ import org.jetbrains.letsPlot.pos.positionIdentity
 
 internal class LayerWrapper internal constructor(private val layer: Layer) :
     LayerBase(
-        data = layer.data,
+        data = layer.data?.wrap(),
         mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap() }.toMap()),
         geom = layer.geom.toLPGeom(),
         stat = layer.geom.toStat(),

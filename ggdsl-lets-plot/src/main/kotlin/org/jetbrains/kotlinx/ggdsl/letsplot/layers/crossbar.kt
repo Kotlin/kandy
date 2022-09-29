@@ -1,8 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -11,8 +11,8 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 @PublishedApi
 internal val CROSS_BAR = LetsPlotGeom("crossbar")
 @PlotDslMarker
-class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData) :
-    WithBorderLineContext() {
+class CrossBarContext(parent: LayerCollectorContext) :
+    WithBorderLineContext(parent) {
     val x = XAes(this)
  //   val y = YAes(this)
     val yMin = YMinAes(this)
@@ -76,6 +76,6 @@ class CrossBarContext(override var data: org.jetbrains.kotlinx.ggdsl.dsl.Mutable
  *
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.crossBar(block: CrossBarContext.() -> Unit) {
-    layers.add(CrossBarContext(data).apply { copyFrom(this@crossBar) }.apply(block).toLayer(CROSS_BAR))
+inline fun LayerCollectorContext.crossBar(block: CrossBarContext.() -> Unit) {
+    addLayer(CrossBarContext(this).apply(block), CROSS_BAR)
 }

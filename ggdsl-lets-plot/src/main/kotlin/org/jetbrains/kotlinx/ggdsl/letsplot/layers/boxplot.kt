@@ -1,17 +1,16 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.MutableNamedData
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.dsl.toLayer
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
- val BOXPLOT = LetsPlotGeom("boxplot")
+val BOXPLOT = LetsPlotGeom("boxplot")
 @PlotDslMarker
-class BoxplotContext(override var data: MutableNamedData) : WithBorderLineContext() {
+class BoxplotContext(parent: LayerCollectorContext) : WithBorderLineContext(parent) {
     val x = XAes(this)
 
     val lower = LowerAes(this)
@@ -76,6 +75,6 @@ class BoxplotContext(override var data: MutableNamedData) : WithBorderLineContex
  *
  *  // TODO refer to bindings?
  */
-inline fun PlotContext.boxplot(block: BoxplotContext.() -> Unit) {
-    layers.add(BoxplotContext(data).apply { copyFrom(this@boxplot) }.apply(block).toLayer(BOXPLOT))
+inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
+    addLayer(BoxplotContext(this).apply(block), BOXPLOT)
 }

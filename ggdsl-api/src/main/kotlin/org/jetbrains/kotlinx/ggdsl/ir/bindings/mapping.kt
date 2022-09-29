@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.ir.bindings
 
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ScaleParameters
 import kotlin.reflect.KType
 
@@ -23,7 +23,7 @@ sealed interface Mapping {
  */
 data class NonScalablePositionalMapping<DomainType : Any>(
     override val aes: AesName,
-    val source: DataSource<DomainType>,
+    val source: ColumnPointer<DomainType>,
     val domainType: KType
 ) : Mapping
 

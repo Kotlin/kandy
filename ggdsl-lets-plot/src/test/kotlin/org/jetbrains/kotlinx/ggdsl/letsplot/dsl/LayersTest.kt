@@ -17,8 +17,8 @@ import kotlin.test.assertEquals
 internal class LayersTest {
     @Test
     fun testArea() {
-        val time = source<Int>("time")
-        val type = source<String>("type")
+        val time = columnPointer<Int>("time")
+        val type = columnPointer<String>("type")
         val plot = plot {
             area {
                 y(time.scaled(continuousPos()))

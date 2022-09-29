@@ -1,6 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
@@ -9,8 +12,8 @@ internal val RASTER = LetsPlotGeom("raster")
 
 
 @PlotDslMarker
-class RasterContext(override var data: MutableNamedData) :
-    LayerContext() {
+class RasterContext(parent: LayerCollectorContext) :
+    LayerContext(parent) {
     val x = XAes(this)
     val y = YAes(this)
 
@@ -47,6 +50,6 @@ class RasterContext(override var data: MutableNamedData) :
  *  but can be overridden with an assignment to the [data][RasterContext.data].
  *
  */
-inline fun PlotContext.raster(block: RasterContext.() -> Unit) {
-    layers.add(RasterContext(data).apply { copyFrom(this@raster) }.apply(block).toLayer(RASTER))
+inline fun LayerCollectorContext.raster(block: RasterContext.() -> Unit) {
+    addLayer(RasterContext(this).apply(block), RASTER)
 }

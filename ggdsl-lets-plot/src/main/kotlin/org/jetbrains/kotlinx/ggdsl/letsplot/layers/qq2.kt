@@ -1,16 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.DataSource
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.QQ2Stat
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.toDataSource
-import kotlin.reflect.typeOf
+import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 /* TODO
 @PublishedApi
@@ -18,12 +9,12 @@ import kotlin.reflect.typeOf
  */
 val QQ2 = LetsPlotGeom("qq2")
 
-
+/*
 @PlotDslMarker
 // todo move x/y?
 class QQ2Context(
-    override var data: MutableNamedData,
-) : LayerContext() {
+    parent: LayerCollectorContext,
+) : LayerContext(parent) {
     @PublishedApi
     internal val _x = XAes(this)
     @PublishedApi
@@ -74,8 +65,8 @@ class QQ2Context(
 }
 
 inline fun <reified T : Any, reified R: Any> PlotContext.qq2(
-    sourceX: DataSource<T>,
-    sourceY: DataSource<R>,
+    sourceX: ColumnPointer<T>,
+    sourceY: ColumnPointer<R>,
     block: QQ2Context.() -> Unit
 ) {
     layers.add(
@@ -108,3 +99,5 @@ inline fun <reified T : Any, reified R: Any> PlotContext.qq2(
 }
 
 
+
+ */
