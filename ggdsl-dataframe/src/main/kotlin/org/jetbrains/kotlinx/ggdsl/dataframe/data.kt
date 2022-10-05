@@ -44,7 +44,7 @@ class GroupedDataFrameContext<T, G>(val groupBy: GroupBy<T, G>) {
 
     fun toLazy() = LazyGroupedDataFrame(
         groupKey.columns().map { it.name() },
-        DataFrameWrapper(column)
+        DataFrameWrapper(groupBy.groups.concat())
     )
 }
 
