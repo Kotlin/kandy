@@ -688,7 +688,7 @@ fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
         features.forEach { it.value.wrap(this) }
       //  (layout as? LetsPlotLayout)?.wrap(this) // todo
     }
-    return letsPlot(dataset?.wrap()) + FeatureList(featureBuffer)
+    return letsPlot(dataset.wrap()) + FeatureList(featureBuffer)
     //  var plotBuffer = letsPlot(dataset)
     /*
     var plotBuffer = layers.fold(letsPlot(dataset)) { _buffer, layer ->

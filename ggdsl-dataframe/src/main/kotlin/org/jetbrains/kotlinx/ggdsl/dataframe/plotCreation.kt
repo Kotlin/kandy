@@ -50,11 +50,11 @@ inline fun<T> DataFrame<T>.plot(block: NamedDataPlotContext<DataFrameWrapper>.()
     return plot(DataFrameWrapper(this), block)
 }
 
-inline fun <T, G> GroupBy<T, G>.create(block: GroupedDataFrame<T, G>.() -> Plot): Plot {
-    return GroupedDataFrame(this).block()
+inline fun <T, G> GroupBy<T, G>.create(block: GroupedDataFrameContext<T, G>.() -> Plot): Plot {
+    return GroupedDataFrameContext(this).block()
 }
 
 // TODO
-inline fun <T, G> GroupedDataFrame<T, G>.plot(block: GroupedDataPlotContext.() -> Unit): Plot {
+inline fun <T, G> GroupedDataFrameContext<T, G>.plot(block: GroupedDataPlotContext.() -> Unit): Plot {
     return plot(toLazy(), block)
 }

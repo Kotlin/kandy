@@ -1,6 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
+import org.jetbrains.kotlinx.ggdsl.letsplot.GROUP
+import org.jetbrains.kotlinx.ggdsl.letsplot.MERGED_GROUPS
 import org.jetbrains.kotlinx.ggdsl.letsplot.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
@@ -10,8 +13,12 @@ import org.jetbrains.letsPlot.pos.positionIdentity
 
 internal class LayerWrapper internal constructor(private val layer: Layer) :
     LayerBase(
-        data = layer.data?.wrap(),
-        mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap() }.toMap()),
+        data = layer.data.wrap(),
+        mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap() }.toMap().toMutableMap().apply {
+            if (layer.data is LazyGroupedDataInterface) {
+                this[GROUP.name] = MERGED_GROUPS
+            }
+        } ),
         geom = layer.geom.toLPGeom(),
         stat = layer.geom.toStat(),
         tooltips = (layer.features[LayerTooltips.FEATURE_NAME] as? LayerTooltips)?.wrap(),

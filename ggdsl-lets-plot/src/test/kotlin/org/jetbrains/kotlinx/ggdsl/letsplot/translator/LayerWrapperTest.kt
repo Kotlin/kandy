@@ -1,7 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.ggdsl.dsl.scaled
+import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
@@ -17,10 +18,11 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class LayerWrapperTest {
+    private val emptyDataset = NamedData(mapOf())
     @Test
     fun testSimple() {
         val layer = Layer(
-            mapOf(),
+            emptyDataset,
             POINT,
             mapOf(
                 FILL to ScaledUnspecifiedDefaultNonPositionalMapping<Int, Color>(
@@ -82,7 +84,7 @@ internal class LayerWrapperTest {
 
          */
         val layer = Layer(
-            mapOf(),
+            emptyDataset,
             BAR,
             mapOf(
                 X to ScaledUnspecifiedDefaultPositionalMapping(

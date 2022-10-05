@@ -18,9 +18,10 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ToLetsPlotTest {
+    private val emptyDataset = NamedData(mapOf())
     @Test
     fun testSimple() {
-        val plot = plot {
+        val plot = plot(emptyDataset) {
             x(columnPointer<String>("origin"))
             points {
                 y(columnPointer<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
@@ -65,7 +66,7 @@ class ToLetsPlotTest {
     @Test
     fun testComplex() {
         val clM = columnPointer<Int>("clM")
-        val plot = plot {
+        val plot = plot(emptyDataset) {
             x(columnPointer<Double>("time").scaled(continuousPos(limits = -12.0 to 4.4)))
             y(columnPointer<String>("svalue").scaled(categoricalPos(categories = listOf("A", "B", "C"))))
 

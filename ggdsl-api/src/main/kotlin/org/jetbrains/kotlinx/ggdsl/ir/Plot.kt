@@ -15,7 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
  * values are features with corresponding names.
  */
 data class Plot(
-    val dataset: TableData?, // todo remove???
+    val dataset: TableData, // todo remove???
     val layers: List<Layer>,
   //  val layout: Layout? = null,
     val features: Map<FeatureName, PlotFeature> = emptyMap(),

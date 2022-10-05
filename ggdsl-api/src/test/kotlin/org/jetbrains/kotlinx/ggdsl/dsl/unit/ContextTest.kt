@@ -8,15 +8,16 @@ import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
 internal class ContextTest {
+    private val emptyDataset = NamedData(mapOf())
     @Test
     fun testPoints() {
-        val context = NamedDataPlotContext(NamedData(mapOf())).apply {
+        val context = NamedDataPlotContext(emptyDataset).apply {
             points {}
         }
         assertContentEquals(
             listOf(
                 Layer(
-                    null,
+                    emptyDataset,
                     POINT,
                     emptyMap(),
                     emptyMap(),
@@ -28,13 +29,13 @@ internal class ContextTest {
 
     @Test
     fun testLine() {
-        val context = NamedDataPlotContext(NamedData(mapOf())).apply {
+        val context = NamedDataPlotContext(emptyDataset).apply {
             line {}
         }
         assertContentEquals(
             listOf(
                 Layer(
-                    null,
+                    emptyDataset,
                     LINE,
                     emptyMap(),
                     emptyMap(),
@@ -46,13 +47,13 @@ internal class ContextTest {
 
     @Test
     fun testBars() {
-        val context = NamedDataPlotContext(NamedData(mapOf())).apply {
+        val context = NamedDataPlotContext(emptyDataset).apply {
             bars {}
         }
         assertContentEquals(
             listOf(
                 Layer(
-                    null,
+                    emptyDataset,
                     BAR,
                     emptyMap(),
                     emptyMap(),
@@ -64,10 +65,10 @@ internal class ContextTest {
 
     @Test
     fun testPlotEmpty() {
-        val plot = plot(NamedData(mapOf())) { }
+        val plot = plot(emptyDataset) { }
         assertEquals(
             Plot(
-                null,
+                emptyDataset,
                 listOf(),
                 emptyMap(),
                 emptyMap(),

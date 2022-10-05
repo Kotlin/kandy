@@ -38,9 +38,12 @@ class BindingCollector internal constructor() {
  */
 //@PlotDslMarker
 
+
 interface BindingContext {
+    // todo hide
     val bindingCollector: BindingCollector
 }
+
 
 abstract class SubBindingContext(parentalBindingCollector: BindingCollector?) : BindingContext {
     override val bindingCollector = BindingCollector().apply {
@@ -50,9 +53,11 @@ abstract class SubBindingContext(parentalBindingCollector: BindingCollector?) : 
     }
 }
 
+
 interface TableBindingContext : BindingContext {
-    val data: TableData?
+    val data: TableData
 }
+
 
 abstract class SubTableBindingContext(parent: TableBindingContext) : TableBindingContext,
     SubBindingContext(parent.bindingCollector) {
@@ -60,9 +65,9 @@ abstract class SubTableBindingContext(parent: TableBindingContext) : TableBindin
 }
 
 interface NameDataBindingContext : TableBindingContext {
-    override val data: NamedDataInterface?
+    override val data: NamedDataInterface
 
-    fun groupBy(vararg columnPointers: ColumnPointer<*>, block: GroupedBindingContext.() -> Unit)
+    fun groupBy(vararg columnPointers: ColumnPointer<*>, block: WithGroupingBindingContext.() -> Unit)
 }
 
 
@@ -127,10 +132,12 @@ abstract class BindingContext: BindingContext {
 
 
  */
+
 abstract class LayerContext(parent: LayerCollectorContext) : TableBindingContext,
     SubTableBindingContext(parent) {
     val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 }
+
 
 interface LayerCollectorContext : TableBindingContext {
     val layers: MutableList<Layer>
@@ -149,11 +156,20 @@ interface LayerCollectorContext : TableBindingContext {
     }
 }
 
-open class GroupedBindingContext(
+abstract class SubLayerCollectorContext(parent: LayerCollectorContext) : TableBindingContext, LayerCollectorContext,
+    SubBindingContext(parent.bindingCollector) {
+    override val data = parent.data
+    override val layers = parent.layers
+}
+
+@PlotDslMarker
+@StatDSLMarker
+open class WithGroupingBindingContext constructor(
     override val data: GroupedDataInterface,
     override val layers: MutableList<Layer>,
     parentalBindingCollector: BindingCollector?
 ) : TableBindingContext, LayerCollectorContext, SubBindingContext(parentalBindingCollector)
+
 
 /*
 abstract class TableLayerContext : TableBindingContext, LayerContext {
@@ -178,13 +194,7 @@ abstract class MutableLayerContext : BindingContext(), LayerContext {
 
 // todo
 
-//@PlotDslMarker
 
-/*
-@StatDslMarker
-@PlotDslMarker
-
- */
 interface PlotContext : LayerCollectorContext {
     val features: MutableMap<FeatureName, PlotFeature>
     fun toPlot(): Plot {
@@ -192,6 +202,7 @@ interface PlotContext : LayerCollectorContext {
     }
 }
 
+@PlotDslMarker
 class NamedDataPlotContext<T: NamedDataInterface>(
     override val data: T,
 ) : PlotContext, NameDataBindingContext {
@@ -199,11 +210,11 @@ class NamedDataPlotContext<T: NamedDataInterface>(
     override val layers: MutableList<Layer> = mutableListOf()
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
-    override inline fun groupBy(
+    override fun groupBy(
         vararg columnPointers: ColumnPointer<*>,
-        block: GroupedBindingContext.() -> Unit
+        block: WithGroupingBindingContext.() -> Unit
     ) {
-        GroupedBindingContext(
+        WithGroupingBindingContext(
             data.groupBy(*columnPointers),
             layers,
             bindingCollector
@@ -211,13 +222,13 @@ class NamedDataPlotContext<T: NamedDataInterface>(
     }
 }
 
+
+@PlotDslMarker
 class GroupedDataPlotContext(
     override val data: GroupedDataInterface,
-    override val layers: MutableList<Layer> = mutableListOf()
-) : PlotContext, GroupedBindingContext(data, layers, null) {
+    override val layers: MutableList<Layer> = mutableListOf() // TODO
+) : PlotContext, WithGroupingBindingContext(data, layers, null) {
     override val bindingCollector = BindingCollector()
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 }
 
-abstract class StatContext(parent: TableBindingContext) : LayerCollectorContext,
-    SubTableBindingContext(parent)
