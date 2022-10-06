@@ -8,8 +8,8 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 
-import org.jetbrains.kotlinx.ggdsl.dsl.GroupedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.NamedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.GroupedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.NamedDataPlotContext
 
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Plot

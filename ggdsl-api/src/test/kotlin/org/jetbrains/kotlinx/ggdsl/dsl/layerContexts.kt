@@ -4,6 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
 
 
 class PointsContext(parent: LayerCollectorContext) : LayerContext(parent) {

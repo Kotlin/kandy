@@ -10,27 +10,27 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import kotlin.reflect.typeOf
 
-public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(): SourceScaledUnspecifiedDefault<DomainType> =
-    SourceScaledUnspecifiedDefault(this.toDataSource())
+public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
+    ColumnScaledUnspecifiedDefault(this.toDataSource())
 
 
-public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: PositionalUnspecifiedScale): SourceScaledPositionalUnspecified<DomainType> =
-    SourceScaledPositionalUnspecified(this.toDataSource(), scale)
+public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: PositionalUnspecifiedScale): ColumnScaledPositionalUnspecified<DomainType> =
+    ColumnScaledPositionalUnspecified(this.toDataSource(), scale)
 
 
 
-public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): SourceScaledNonPositionalUnspecified<DomainType> =
-    SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
+public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): ColumnScaledNonPositionalUnspecified<DomainType> =
+    ColumnScaledNonPositionalUnspecified(this.toDataSource(), scale)
 
 
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-): SourceScaledPositional<DomainType> = SourceScaledPositional(this.toDataSource(), scale)
+): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.toDataSource(), scale)
 
 
 public inline fun <reified DomainType : Any, RangeType : Any> Statistic<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-): SourceScaledNonPositional<DomainType, RangeType> = SourceScaledNonPositional(this.toDataSource(), scale)
+): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.toDataSource(), scale)
 
 public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     stat: Statistic<DomainType>

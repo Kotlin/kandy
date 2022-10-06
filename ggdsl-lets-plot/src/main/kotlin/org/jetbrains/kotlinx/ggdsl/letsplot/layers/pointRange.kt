@@ -5,6 +5,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color

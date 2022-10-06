@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.aes
 
-import org.jetbrains.kotlinx.ggdsl.dsl.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
 
 /**
  * Base interface for aesthetic attribute.

@@ -407,7 +407,7 @@ internal fun Layer.toSeries(wrappedData: List<List<Any>>?): Series {
 internal fun Mapping.sourceId(): String {
     return when (this) {
         is NonScalablePositionalMapping<*> -> source.id
-        is ScaledMapping<*> -> sourceScaled.source.id
+        is ScaledMapping<*> -> columnScaled.source.id
     }
 }
 
@@ -448,7 +448,7 @@ public fun Plot.toOption(): MetaOption {
     layers.forEachIndexed { index, layer ->
         layer.mappings.forEach { (aes, mapping) ->
             if (mapping is ScaledMapping<*>) {
-                val scale = mapping.sourceScaled.scale
+                val scale = mapping.columnScaled.scale
                 val srcId = layer.mappings[aes]!!.sourceId()
                 val data = (layer.data as NamedDataInterface).map[srcId] ?: (dataset as NamedDataInterface).map[srcId]!!
                 val seriesIndex = layerToData[index]?.header?.get(srcId) ?: idToDim[srcId]!!

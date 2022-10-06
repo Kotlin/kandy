@@ -53,14 +53,14 @@ internal class LayersTest {
                         AREA,
                         mapOf(
                             Y to ScaledPositionalUnspecifiedMapping(
-                                Y, SourceScaledPositionalUnspecified(
+                                Y, ColumnScaledPositionalUnspecified(
                                 time,
                                 PositionalContinuousUnspecifiedScale()
                             ), typeOf<Int>()
                             ),
                             FILL to ScaledNonPositionalMapping(
                                 FILL,
-                                SourceScaledNonPositional(
+                                ColumnScaledNonPositional(
                                     type,
                                     NonPositionalCategoricalScale(
                                         rangeValues = listOf(Color.RED, Color.BLUE)

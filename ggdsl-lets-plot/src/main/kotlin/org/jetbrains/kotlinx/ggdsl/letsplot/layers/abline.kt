@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 
 public val AB_LINE: LetsPlotGeom = LetsPlotGeom("abline")

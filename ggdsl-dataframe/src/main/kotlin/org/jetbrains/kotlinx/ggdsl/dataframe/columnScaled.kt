@@ -15,8 +15,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
  *  Apply a default scale to this column
  */
 
-public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(): SourceScaledUnspecifiedDefault<DomainType> =
-    SourceScaledUnspecifiedDefault(this.toColRef())
+public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
+    ColumnScaledUnspecifiedDefault(this.toColRef())
 
 /**
  * Apply an unspecified positional scale to this column
@@ -26,8 +26,8 @@ public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
  * @return scaled source
  */
 
-public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: PositionalUnspecifiedScale): SourceScaledPositionalUnspecified<DomainType> =
-    SourceScaledPositionalUnspecified(this.toColRef(), scale)
+public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: PositionalUnspecifiedScale): ColumnScaledPositionalUnspecified<DomainType> =
+    ColumnScaledPositionalUnspecified(this.toColRef(), scale)
 
 
 /**
@@ -38,8 +38,8 @@ public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
  * @return scaled source
  */
 
-public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): SourceScaledNonPositionalUnspecified<DomainType> =
-    SourceScaledNonPositionalUnspecified(this.toColRef(), scale)
+public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): ColumnScaledNonPositionalUnspecified<DomainType> =
+    ColumnScaledNonPositionalUnspecified(this.toColRef(), scale)
 
 
 /**
@@ -51,7 +51,7 @@ public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
  */
 public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-): SourceScaledPositional<DomainType> = SourceScaledPositional(this.toColRef(), scale)
+): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.toColRef(), scale)
 
 
 /**
@@ -63,5 +63,5 @@ public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
  */
 public inline fun <reified DomainType : Any, RangeType : Any> ColumnReference<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-): SourceScaledNonPositional<DomainType, RangeType> = SourceScaledNonPositional(this.toColRef(), scale)
+): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.toColRef(), scale)
 

@@ -93,14 +93,14 @@ internal class LayerWrapperTest {
             mapOf(
                 X to ScaledUnspecifiedDefaultPositionalMapping(
                     X,
-                    SourceScaledUnspecifiedDefault(
+                    ColumnScaledUnspecifiedDefault(
                         columnPointer<Float>("TIME_T")
                     ),
                     typeOf<Float>()
                 ),
                 Y to ScaledPositionalUnspecifiedMapping(
                     Y,
-                    SourceScaledPositionalUnspecified(
+                    ColumnScaledPositionalUnspecified(
                         columnPointer<Double>("VAL_V"),
                         PositionalContinuousUnspecifiedScale()
                     ),
@@ -108,7 +108,7 @@ internal class LayerWrapperTest {
                 ),
                 FILL to ScaledNonPositionalMapping(
                     FILL,
-                    SourceScaledNonPositional(
+                    ColumnScaledNonPositional(
                         columnPointer<String>("BAFGA"),
                         NonPositionalCategoricalScale(
                             rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY)

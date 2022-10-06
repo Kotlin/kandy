@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts
 
-import org.jetbrains.kotlinx.ggdsl.dsl.BindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
 import org.jetbrains.kotlinx.ggdsl.echarts.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName

@@ -35,14 +35,14 @@ import kotlin.reflect.typeOf
 internal fun Mapping.wrap(): Pair<String, Any> {
     return when (this) {
         is NonScalablePositionalMapping<*> -> aes.name to source.id
-        is ScaledMapping<*> -> when (this.sourceScaled.scale) {
+        is ScaledMapping<*> -> when (this.columnScaled.scale) {
             is CategoricalScale -> aes.name to asDiscrete(
-                sourceScaled.source.id,
+                columnScaled.source.id,
                 order = (scaleParameters as? PositionalParameters<*>)?.orderBy?.order,
                 orderBy = (scaleParameters as? PositionalParameters<*>)?.orderBy?.name
             )
 
-            else -> aes.name to sourceScaled.source.id
+            else -> aes.name to columnScaled.source.id
         }
     }
 }
@@ -683,7 +683,7 @@ internal fun Layer.wrap(featureBuffer: MutableList<Feature>) {
     freeScales.forEach { (_, freeScale) -> freeScale.wrap(featureBuffer) }
     mappings.forEach { (aes, mapping) ->
         if (mapping is ScaledMapping<*>) {
-            mapping.sourceScaled.scale.wrap(aes, mapping.domainType, mapping.scaleParameters)?.let {
+            mapping.columnScaled.scale.wrap(aes, mapping.domainType, mapping.scaleParameters)?.let {
                 featureBuffer.add(it)
             }
         }

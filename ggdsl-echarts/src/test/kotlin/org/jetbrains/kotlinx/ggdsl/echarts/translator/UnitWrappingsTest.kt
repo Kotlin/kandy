@@ -56,7 +56,7 @@ internal class UnitWrappingsTest {
             mapOf(
                 X to ScaledPositionalMapping(
                     X,
-                    SourceScaledPositional(
+                    ColumnScaledPositional(
                         columnPointer<Double>("srcX"),
                         continuousPos(1.0 to 5.0)
                     ),
@@ -64,7 +64,7 @@ internal class UnitWrappingsTest {
                 ),
                 Y to ScaledUnspecifiedDefaultPositionalMapping(
                     Y,
-                    SourceScaledUnspecifiedDefault(
+                    ColumnScaledUnspecifiedDefault(
                         columnPointer<Int>("yy")
                     ),
                     typeOf<Int>()
@@ -97,14 +97,14 @@ internal class UnitWrappingsTest {
             LINE,
             mapOf(
                 X to ScaledPositionalUnspecifiedMapping(
-                    X, SourceScaledPositionalUnspecified(
+                    X, ColumnScaledPositionalUnspecified(
                         columnPointer<Float>("time"),
                         PositionalContinuousUnspecifiedScale()
                     ),
                     typeOf<Double>()
                 ),
                 Y to ScaledPositionalMapping(
-                    Y, SourceScaledPositional(
+                    Y, ColumnScaledPositional(
                         columnPointer<Float>("size"),
                         PositionalContinuousScale(
                             limits = 1f to 15f

@@ -2,8 +2,10 @@
 * Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.ggdsl.dsl
+package org.jetbrains.kotlinx.ggdsl.dsl.contexts
 
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.StatDSLMarker
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -23,10 +25,9 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.*
  */
 public class BindingCollector internal constructor() {
     public val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
-    internal val settings: MutableMap<AesName, Setting> = mutableMapOf()
+    public val settings: MutableMap<AesName, Setting> = mutableMapOf()
 
-    @PublishedApi
-    internal val freeScales: MutableMap<AesName, FreeScale> = mutableMapOf()
+    public val freeScales: MutableMap<AesName, FreeScale> = mutableMapOf()
 
     internal fun copyFrom(other: BindingCollector) {
         mappings.putAll(other.mappings)
@@ -178,7 +179,8 @@ public interface LayerCollectorContext : TableBindingContext {
     }
 }
 
-public abstract class SubLayerCollectorContext(parent: LayerCollectorContext) : TableBindingContext, LayerCollectorContext,
+public abstract class SubLayerCollectorContext(parent: LayerCollectorContext) : TableBindingContext,
+    LayerCollectorContext,
     SubBindingContext(parent.bindingCollector) {
     override val data: TableData = parent.data
     override val layers: MutableList<Layer> = parent.layers

@@ -4,6 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.GroupedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.NamedDataPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface

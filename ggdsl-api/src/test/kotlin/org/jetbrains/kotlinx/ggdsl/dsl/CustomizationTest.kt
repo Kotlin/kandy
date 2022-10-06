@@ -4,6 +4,10 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -106,17 +110,17 @@ internal class CustomizationTest {
                         mapOf(
                             X to ScaledPositionalUnspecifiedMapping(
                                 X,
-                                SourceScaledPositionalUnspecified(mockSrcFloat, PositionalContinuousUnspecifiedScale()),
+                                ColumnScaledPositionalUnspecified(mockSrcFloat, PositionalContinuousUnspecifiedScale()),
                                 typeOf<Float>()
                             ),
                             Y to ScaledUnspecifiedDefaultPositionalMapping(
                                 Y,
-                                SourceScaledUnspecifiedDefault(mockSrcDouble),
+                                ColumnScaledUnspecifiedDefault(mockSrcDouble),
                                 typeOf<Double>()
                             ),
                             SPECIFIC_AES to ScaledNonPositionalMapping(
                                 SPECIFIC_AES,
-                                SourceScaledNonPositional(
+                                ColumnScaledNonPositional(
                                     mockSrcString,
                                     NonPositionalCategoricalScale(
                                         listOf("A", "B"),
@@ -136,12 +140,12 @@ internal class CustomizationTest {
                         mapOf(
                             X to ScaledUnspecifiedDefaultPositionalMapping(
                                 X,
-                                SourceScaledUnspecifiedDefault(mockSrcFloat),
+                                ColumnScaledUnspecifiedDefault(mockSrcFloat),
                                 typeOf<Float>()
                             ),
                             Y to ScaledUnspecifiedDefaultPositionalMapping(
                                 Y,
-                                SourceScaledUnspecifiedDefault(mockSrcDouble),
+                                ColumnScaledUnspecifiedDefault(mockSrcDouble),
                                 typeOf<Double>()
                             )
                         ),

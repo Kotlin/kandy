@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.layers
 /*
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dataframe.toColRef
-import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.ContourFilledContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.contourFilled
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Bins

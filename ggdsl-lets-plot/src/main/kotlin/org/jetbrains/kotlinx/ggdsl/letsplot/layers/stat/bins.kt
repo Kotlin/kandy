@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat
 /*
-import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
 import org.jetbrains.kotlinx.ggdsl.dsl.invoke
 import org.jetbrains.kotlinx.ggdsl.letsplot.BinWidth2DAes
 import org.jetbrains.kotlinx.ggdsl.letsplot.BinWidthAes

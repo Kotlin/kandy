@@ -13,12 +13,12 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-internal class SourceScaledTest {
+internal class ColumnScaledTest {
     @Test
     fun testScaledUnspecified() {
         val ds = ColumnPointer<Int>("ds1")
         val scaledSource = ds.scaled()
-        assertEquals(SourceScaledUnspecifiedDefault(ds), scaledSource)
+        assertEquals(ColumnScaledUnspecifiedDefault(ds), scaledSource)
     }
 
     @Test
@@ -27,11 +27,11 @@ internal class SourceScaledTest {
         val continuousScaledSource = ds.scaled(PositionalContinuousUnspecifiedScale())
         val categoricalScaledSource = ds.scaled(PositionalCategoricalUnspecifiedScale)
         assertEquals(
-            SourceScaledPositionalUnspecified(ds, PositionalContinuousUnspecifiedScale()),
+            ColumnScaledPositionalUnspecified(ds, PositionalContinuousUnspecifiedScale()),
             continuousScaledSource
         )
         assertEquals(
-            SourceScaledPositionalUnspecified(ds, PositionalCategoricalUnspecifiedScale),
+            ColumnScaledPositionalUnspecified(ds, PositionalCategoricalUnspecifiedScale),
             categoricalScaledSource
         )
     }
@@ -42,11 +42,11 @@ internal class SourceScaledTest {
         val continuousScaledSource = ds.scaled(NonPositionalContinuousUnspecifiedScale())
         val categoricalScaledSource = ds.scaled(NonPositionalCategoricalUnspecifiedScale)
         assertEquals(
-            SourceScaledNonPositionalUnspecified(ds, NonPositionalContinuousUnspecifiedScale()),
+            ColumnScaledNonPositionalUnspecified(ds, NonPositionalContinuousUnspecifiedScale()),
             continuousScaledSource
         )
         assertEquals(
-            SourceScaledNonPositionalUnspecified(ds, NonPositionalCategoricalUnspecifiedScale),
+            ColumnScaledNonPositionalUnspecified(ds, NonPositionalCategoricalUnspecifiedScale),
             categoricalScaledSource
         )
     }
@@ -57,7 +57,7 @@ internal class SourceScaledTest {
         val scale1 = PositionalContinuousScale(limits = 4.3F to 10F)
         val continuousScaledSource = ds1.scaled(scale1)
         assertEquals(
-            SourceScaledPositional(ds1, scale1),
+            ColumnScaledPositional(ds1, scale1),
             continuousScaledSource
         )
 
@@ -65,7 +65,7 @@ internal class SourceScaledTest {
         val scale2 = PositionalCategoricalScale(listOf<String>())
         val categoricalScaledSource = ds2.scaled(scale2)
         assertEquals(
-            SourceScaledPositional(ds2, scale2),
+            ColumnScaledPositional(ds2, scale2),
             categoricalScaledSource
         )
     }
@@ -79,7 +79,7 @@ internal class SourceScaledTest {
         )
         val continuousScaledSource = ds1.scaled(scale1)
         assertEquals(
-            SourceScaledNonPositional(ds1, scale1),
+            ColumnScaledNonPositional(ds1, scale1),
             continuousScaledSource
         )
 
@@ -89,7 +89,7 @@ internal class SourceScaledTest {
         )
         val categoricalScaledSource = ds2.scaled(scale2)
         assertEquals(
-            SourceScaledNonPositional(ds2, scale2),
+            ColumnScaledNonPositional(ds2, scale2),
             categoricalScaledSource
         )
     }

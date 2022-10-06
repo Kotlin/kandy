@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.stat
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dataframe.toColRef
-import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinXPos
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.Bins

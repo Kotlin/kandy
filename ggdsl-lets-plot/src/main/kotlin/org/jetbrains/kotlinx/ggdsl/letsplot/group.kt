@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
-import org.jetbrains.kotlinx.ggdsl.dsl.BindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
 

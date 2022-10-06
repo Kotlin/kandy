@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.Aes
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Stat

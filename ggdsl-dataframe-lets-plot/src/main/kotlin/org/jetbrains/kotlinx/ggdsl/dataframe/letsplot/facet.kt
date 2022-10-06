@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dataframe.toColRef
-import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection

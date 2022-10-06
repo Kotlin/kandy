@@ -7,8 +7,8 @@ package org.jetbrains.kotlinx.ggdsl.dataframe
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.NamedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.WithGroupingBindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.NamedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.WithGroupingBindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface

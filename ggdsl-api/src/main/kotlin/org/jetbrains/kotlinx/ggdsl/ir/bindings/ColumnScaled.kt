@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.*
  * @property source the source to which the scale is applied
  * @property scale applying scale
  */
-public sealed interface SourceScaled<DomainType : Any> {
+public sealed interface ColumnScaled<DomainType : Any> {
     public val source: ColumnPointer<DomainType>
     public val scale: Scale
 }
@@ -39,9 +39,9 @@ sealed interface SourceScaledUnspecified<DomainType : Any> : SourceScaled<Domain
  * @property source the source to which the scale is applied
  * @property scale applying unspecified default scale
  */
-public data class SourceScaledUnspecifiedDefault<DomainType : Any>(
+public data class ColumnScaledUnspecifiedDefault<DomainType : Any>(
     override val source: ColumnPointer<DomainType>,
-) : SourceScaled<DomainType> {
+) : ColumnScaled<DomainType> {
     override val scale: DefaultUnspecifiedScale = DefaultUnspecifiedScale
 }
 
@@ -52,10 +52,10 @@ public data class SourceScaledUnspecifiedDefault<DomainType : Any>(
  * @property source the source to which the scale is applied
  * @property scale applying positional default scale
  */
-public data class SourceScaledPositionalUnspecified<DomainType : Any>(
+public data class ColumnScaledPositionalUnspecified<DomainType : Any>(
     override val source: ColumnPointer<DomainType>,
     override val scale: PositionalUnspecifiedScale
-) : SourceScaled<DomainType>
+) : ColumnScaled<DomainType>
 
 /**
  * Scaled non-positional default source
@@ -64,10 +64,10 @@ public data class SourceScaledPositionalUnspecified<DomainType : Any>(
  * @property source the source to which the scale is applied
  * @property scale applying non-positional default scale
  */
-public data class SourceScaledNonPositionalUnspecified<DomainType : Any>(
+public data class ColumnScaledNonPositionalUnspecified<DomainType : Any>(
     override val source: ColumnPointer<DomainType>,
     override val scale: NonPositionalUnspecifiedScale
-) : SourceScaled<DomainType>
+) : ColumnScaled<DomainType>
 
 /**
  * Scaled positional source
@@ -76,10 +76,10 @@ public data class SourceScaledNonPositionalUnspecified<DomainType : Any>(
  * @property source the source to which the scale is applied
  * @property scale applying positional scale
  */
-public data class SourceScaledPositional<DomainType : Any>(
+public data class ColumnScaledPositional<DomainType : Any>(
     override val source: ColumnPointer<DomainType>,
     override val scale: PositionalScale<DomainType>
-) : SourceScaled<DomainType>
+) : ColumnScaled<DomainType>
 
 /**
  * Scaled a non-positional source
@@ -88,7 +88,7 @@ public data class SourceScaledPositional<DomainType : Any>(
  * @property source the source to which the scale is applied
  * @property scale applying non-positional scale
  */
-public data class SourceScaledNonPositional<DomainType : Any, RangeType : Any>(
+public data class ColumnScaledNonPositional<DomainType : Any, RangeType : Any>(
     override val source: ColumnPointer<DomainType>,
     override val scale: NonPositionalScale<DomainType, RangeType>
-) : SourceScaled<DomainType>
+) : ColumnScaled<DomainType>

@@ -46,13 +46,13 @@ internal class CommonTest {
                         POINT,
                         mappings = mapOf(
                             X to ScaledUnspecifiedDefaultPositionalMapping(
-                                X, SourceScaledUnspecifiedDefault(srcX), typeOf<Double>()
+                                X, ColumnScaledUnspecifiedDefault(srcX), typeOf<Double>()
                             ),
                             Y to ScaledUnspecifiedDefaultPositionalMapping(
-                                Y, SourceScaledUnspecifiedDefault(srcY), typeOf<Float>()
+                                Y, ColumnScaledUnspecifiedDefault(srcY), typeOf<Float>()
                             ),
                             COLOR to ScaledUnspecifiedDefaultNonPositionalMapping<String, Color>(
-                                COLOR, SourceScaledUnspecifiedDefault(type), typeOf<String>()
+                                COLOR, ColumnScaledUnspecifiedDefault(type), typeOf<String>()
                             ),
                         ),
                         settings = mapOf(
@@ -104,10 +104,10 @@ internal class CommonTest {
         }
 
         val xMapping = ScaledPositionalUnspecifiedMapping(
-            X, SourceScaledPositionalUnspecified(width, PositionalContinuousUnspecifiedScale()), typeOf<Double>()
+            X, ColumnScaledPositionalUnspecified(width, PositionalContinuousUnspecifiedScale()), typeOf<Double>()
         )
         val yMapping = ScaledPositionalMapping(
-            Y, SourceScaledPositional(
+            Y, ColumnScaledPositional(
             height, PositionalContinuousScale(
             limits = 1f to 15f
         )
@@ -115,7 +115,7 @@ internal class CommonTest {
         )
         val colorMapping = ScaledNonPositionalMapping(
             COLOR,
-            SourceScaledNonPositional(
+            ColumnScaledNonPositional(
                 type,
                 NonPositionalCategoricalScale(
                     domainCategories = listOf("A", "B"),
@@ -138,7 +138,7 @@ internal class CommonTest {
                             Y to yMapping,
                             COLOR to colorMapping,
                             SIZE to ScaledUnspecifiedDefaultNonPositionalMapping<Int, Double>(
-                                SIZE, SourceScaledUnspecifiedDefault(noa), typeOf<Int>()
+                                SIZE, ColumnScaledUnspecifiedDefault(noa), typeOf<Int>()
                             )
                         ),
                         settings = mapOf()

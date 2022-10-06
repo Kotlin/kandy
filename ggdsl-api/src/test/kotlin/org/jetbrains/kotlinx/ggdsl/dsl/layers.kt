@@ -4,6 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
+
 inline fun LayerCollectorContext.points(block: PointsContext.() -> Unit) {
     addLayer(PointsContext(this).apply(block), POINT)
 }
