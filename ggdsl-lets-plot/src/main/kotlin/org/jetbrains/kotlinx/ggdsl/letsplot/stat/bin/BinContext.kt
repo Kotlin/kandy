@@ -40,7 +40,7 @@ sealed interface BinXPos {
     }
 }
 
-inline fun LayerCollectorContext.countBin(
+inline fun LayerCollectorContext.statBin(
     column: ColumnPointer<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
