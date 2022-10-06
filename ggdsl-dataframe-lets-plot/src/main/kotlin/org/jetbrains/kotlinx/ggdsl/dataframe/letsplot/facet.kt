@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
@@ -24,7 +28,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.ScalesSharing
  * TODO params
  * @see org.jetbrains.letsPlot.facet.facetGrid
  */
-fun PlotContext.facetGridX(
+public fun PlotContext.facetGridX(
     x: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
@@ -35,18 +39,18 @@ fun PlotContext.facetGridX(
 
 }
 
-fun PlotContext.facetGridY(
+public fun PlotContext.facetGridY(
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null,
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(null, y.name(), scalesSharing,  OrderDirection.ASCENDING, order, null, format)
+        FacetGridFeature(null, y.name(), scalesSharing, OrderDirection.ASCENDING, order, null, format)
 
 }
 
-fun PlotContext.facetGrid(
+public fun PlotContext.facetGrid(
     x: ColumnReference<*>,
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
@@ -60,7 +64,7 @@ fun PlotContext.facetGrid(
 
 }
 
-fun PlotContext.facetGrid(
+public fun PlotContext.facetGrid(
     x: ColumnReference<*>,
     y: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>,
     scalesSharing: ScalesSharing? = null,
@@ -74,7 +78,8 @@ fun PlotContext.facetGrid(
 
 }
 
-fun PlotContext.facetGrid(
+
+public fun PlotContext.facetGrid(
     x: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>,
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
@@ -89,8 +94,8 @@ fun PlotContext.facetGrid(
 }
 
 // todo
-inline fun<reified T: Any> FacetWrapContext.facet(
+public inline fun <reified T : Any> FacetWrapContext.facet(
     source: ColumnReference<T>,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
-) = facet(source.toColRef(), order, format)
+): Unit = facet(source.toColRef(), order, format)

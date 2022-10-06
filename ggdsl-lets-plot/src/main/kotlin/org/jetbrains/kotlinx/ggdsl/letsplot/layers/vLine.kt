@@ -1,3 +1,6 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
@@ -8,20 +11,20 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 // TODO
 
 @PublishedApi
-internal val V_LINE = LetsPlotGeom("vLine")
+internal val V_LINE: LetsPlotGeom = LetsPlotGeom("vLine")
 
 
 @PlotDslMarker
-class VLineContext(parent: LayerCollectorContext) : LayerContext(parent) {
-    val x = XInterceptAes(this)
+public class VLineContext(parent: LayerCollectorContext) : LayerContext(parent) {
+    public val x: XInterceptAes = XInterceptAes(this)
 
-    val color = ColorAes(this)
-    val alpha = AlphaAes(this)
-    val type = LineTypeAes(this)
-    val width = SizeAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val type: LineTypeAes = LineTypeAes(this)
+    public val width: SizeAes = SizeAes(this)
 }
 
 
-inline fun LayerCollectorContext.vLine(block: VLineContext.() -> Unit) {
+public inline fun LayerCollectorContext.vLine(block: VLineContext.() -> Unit) {
     addLayer(VLineContext(this).apply(block), V_LINE)
 }

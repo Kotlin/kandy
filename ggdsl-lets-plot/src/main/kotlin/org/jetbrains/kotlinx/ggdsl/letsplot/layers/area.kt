@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
@@ -8,16 +12,17 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
-internal val AREA = LetsPlotGeom("area")
+internal val AREA: LetsPlotGeom = LetsPlotGeom("area")
 
 @PlotDslMarker
-class AreaContext @PublishedApi internal constructor(parent: LayerCollectorContext) :
+public class AreaContext @PublishedApi internal constructor(parent: LayerCollectorContext) :
     WithBorderLineContext(parent) {
-    val x = XAes(this)
-    val y = YAes(this)
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val color = FillAes(this)
-    val alpha = AlphaAes(this)
+
+    public val color: FillAes = FillAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 }
 
 /**
@@ -63,6 +68,7 @@ class AreaContext @PublishedApi internal constructor(parent: LayerCollectorConte
  *
  *  // TODO refer to bindings?
  */
-inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
+
+public inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
     addLayer(AreaContext(this).apply(block), AREA)
 }

@@ -2,21 +2,21 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin
 
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 
-sealed interface BinStatistic<T>: Statistic<T> {
+public sealed interface BinStatistic<T>: Statistic<T> {
     // todo type
-    object Bins: BinStatistic<Double> {
-        val NAME = "..x.."
-        override val name = NAME
+    public object Bins: BinStatistic<Double> {
+        public val NAME: String = "..x.."
+        override val name: String = NAME
 
     }
-    object Count: BinStatistic<Int> {
-        val NAME = "..count.."
-        override val name = NAME
+    public object Count: BinStatistic<Int> {
+        public val NAME: String = "..count.."
+        override val name: String = NAME
 
     }
-    object Density: BinStatistic<Double> {
-        val NAME = "..density.."
-        override val name = NAME
+    public object Density: BinStatistic<Double> {
+        public val NAME: String = "..density.."
+        override val name: String = NAME
 
     }
 }

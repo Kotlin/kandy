@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
@@ -6,42 +10,42 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
-internal val POINT_RANGE = LetsPlotGeom("pointrange")
+internal val POINT_RANGE: LetsPlotGeom = LetsPlotGeom("pointrange")
+
 @PlotDslMarker
-class InnerPointSubContext(parentContext: BindingContext) {
-    val symbol = ShapeAes(parentContext)
-    val fillColor = FillAes(parentContext)
-    val fatten = FattenAes(parentContext)
-}
-@PlotDslMarker
-class InnerLineSubContext(parentContext: BindingContext)  {
- //   val color = ColorAes(parentContext)
-    val type = LineTypeAes(parentContext)
-    //val width = SIZE // TODO mappable???
+public class InnerPointSubContext(parentContext: BindingContext) {
+    public val symbol: ShapeAes = ShapeAes(parentContext)
+    public val fillColor: FillAes = FillAes(parentContext)
+    public val fatten: FattenAes = FattenAes(parentContext)
 }
 
 @PlotDslMarker
-class PointRangeContext(parent: LayerCollectorContext) : LayerContext(parent) {
-    val x = XAes(this)
-    val y = YAes(this)
-    val yMin = YMinAes(this)
-    val yMax = YMaxAes(this)
+public class InnerLineSubContext(parentContext: BindingContext)  {
+    public val type: LineTypeAes = LineTypeAes(parentContext)
+}
 
-    val alpha = AlphaAes(this)
-    val color = ColorAes(this)
+@PlotDslMarker
+public class PointRangeContext(parent: LayerCollectorContext) : LayerContext(parent) {
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
+    public val yMin: YMinAes = YMinAes(this)
+    public val yMax: YMaxAes = YMaxAes(this)
+
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val color: ColorAes = ColorAes(this)
 
     // todo separate????
-    val size = SizeAes(this)
+    public val size: SizeAes = SizeAes(this)
 
-    val innerPoint = InnerPointSubContext(this)
+    public val innerPoint: InnerPointSubContext = InnerPointSubContext(this)
 
-    inline operator fun InnerPointSubContext.invoke(block: InnerPointSubContext.() -> Unit) {
+    public inline operator fun InnerPointSubContext.invoke(block: InnerPointSubContext.() -> Unit) {
         apply(block)
     }
 
-    val innerLine = InnerLineSubContext(this)
+    public val innerLine: InnerLineSubContext = InnerLineSubContext(this)
 
-    inline operator fun InnerLineSubContext.invoke(block: InnerLineSubContext.() -> Unit) {
+    public inline operator fun InnerLineSubContext.invoke(block: InnerLineSubContext.() -> Unit) {
         apply(block)
     }
 }
@@ -101,6 +105,7 @@ class PointRangeContext(parent: LayerCollectorContext) : LayerContext(parent) {
  *
  *  // TODO refer to bindings?
  */
-inline fun LayerCollectorContext.pointRange(block: PointRangeContext.() -> Unit) {
+
+public inline fun LayerCollectorContext.pointRange(block: PointRangeContext.() -> Unit) {
     addLayer(PointRangeContext(this).apply(block), POINT_RANGE)
 }

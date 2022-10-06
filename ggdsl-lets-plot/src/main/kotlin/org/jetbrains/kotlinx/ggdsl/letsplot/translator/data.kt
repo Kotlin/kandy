@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.letsplot.MERGED_GROUPS
 
-fun LazyGroupedDataInterface.mergedKeys(): List<String> = buildList {
+internal fun LazyGroupedDataInterface.mergedKeys(): List<String> = buildList {
     val map = this@mergedKeys.origin.map
     val size = map.values.first().size
     for (i in 0 until size) {
@@ -16,7 +16,7 @@ fun LazyGroupedDataInterface.mergedKeys(): List<String> = buildList {
     }
 }
 
-fun TableData.wrap(): Map<String, List<Any>> {
+internal fun TableData.wrap(): Map<String, List<Any>> {
     return when(this){
         is NamedDataInterface -> map
         is LazyGroupedDataInterface -> origin.map + (MERGED_GROUPS to mergedKeys())

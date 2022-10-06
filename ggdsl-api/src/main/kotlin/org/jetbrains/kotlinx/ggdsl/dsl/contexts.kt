@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
@@ -17,12 +21,14 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 /**
  * Internal collector of mappings and settings.
  */
-class BindingCollector internal constructor() {
-    val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
-    val settings: MutableMap<AesName, Setting> = mutableMapOf()
-    val freeScales: MutableMap<AesName, FreeScale> = mutableMapOf()
+public class BindingCollector internal constructor() {
+    public val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
+    internal val settings: MutableMap<AesName, Setting> = mutableMapOf()
 
-    fun copyFrom(other: BindingCollector) {
+    @PublishedApi
+    internal val freeScales: MutableMap<AesName, FreeScale> = mutableMapOf()
+
+    internal fun copyFrom(other: BindingCollector) {
         mappings.putAll(other.mappings)
         settings.putAll(other.settings)
     }
@@ -32,21 +38,22 @@ class BindingCollector internal constructor() {
  * Base class for binding context.
  *
  * In this context, the mechanism of bindings, that is, mappings and settings, is defined.
- * It is implemented with aesthetic attribute properties invocation with raw or scaled source as an argument.
+ * It is implemented with aesthetic attribute properties invocation with a raw or scaled source as an argument.
  *
  * @property data the mutual dataset context.
  */
+
 //@PlotDslMarker
 
 
-interface BindingContext {
+public interface BindingContext {
     // todo hide
-    val bindingCollector: BindingCollector
+    public val bindingCollector: BindingCollector
 }
 
 
-abstract class SubBindingContext(parentalBindingCollector: BindingCollector?) : BindingContext {
-    override val bindingCollector = BindingCollector().apply {
+public abstract class SubBindingContext(parentalBindingCollector: BindingCollector?) : BindingContext {
+    override val bindingCollector: BindingCollector = BindingCollector().apply {
         parentalBindingCollector?.let {
             copyFrom(it)
         }
@@ -54,20 +61,20 @@ abstract class SubBindingContext(parentalBindingCollector: BindingCollector?) : 
 }
 
 
-interface TableBindingContext : BindingContext {
-    val data: TableData
+public interface TableBindingContext : BindingContext {
+    public val data: TableData
 }
 
 
-abstract class SubTableBindingContext(parent: TableBindingContext) : TableBindingContext,
+public abstract class SubTableBindingContext(parent: TableBindingContext) : TableBindingContext,
     SubBindingContext(parent.bindingCollector) {
-    override val data = parent.data
+    override val data: TableData = parent.data
 }
 
-interface NameDataBindingContext : TableBindingContext {
+public interface NameDataBindingContext : TableBindingContext {
     override val data: NamedDataInterface
 
-    fun groupBy(vararg columnPointers: ColumnPointer<*>, block: WithGroupingBindingContext.() -> Unit)
+    public fun groupBy(vararg columnPointers: ColumnPointer<*>, block: WithGroupingBindingContext.() -> Unit)
 }
 
 
@@ -75,10 +82,14 @@ interface NameDataBindingContext : TableBindingContext {
 abstract class BindingContext: BindingContext {
     val data: MutableNamedData = mutableMapOf()
     override val bindingCollector = BindingCollector()
+=======
+@PlotDslMarker
+public abstract class BindingContext {
+    public abstract var data: MutableNamedData
+>>>>>>> main
 
     //todo
-    @PublishedApi
-    internal var counter = 0
+    private var counter: Int = 0
 
     @PublishedApi
     internal fun generateID(): String = "*gen${counter++}"
@@ -94,10 +105,14 @@ abstract class BindingContext: BindingContext {
     }
 
     // todo how to hide?
+<<<<<<< HEAD
    // val bindingCollector = BindingCollector()
+=======
+    public val bindingCollector: BindingCollector = BindingCollector()
+>>>>>>> main
 
     // todo how to hide?
-    fun copyFrom(other: BindingContext, copyData: Boolean = true) {
+    public fun copyFrom(other: BindingContext, copyData: Boolean = true) {
         if (copyData) {
             // TODO!!!
             data.putAll(other.data)
@@ -107,25 +122,29 @@ abstract class BindingContext: BindingContext {
 
 
     // todo move???
-    inline fun <reified DomainType : Any> Iterable<DomainType>.scaled() =
+    // TODO(explicit return types?)
+    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(): SourceScaledUnspecifiedDefault<DomainType> =
         SourceScaledUnspecifiedDefault(this.toDataSource())
 
-    inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
-        SourceScaledPositionalUnspecified(this.toDataSource(), scale)
+    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
+        scale: PositionalUnspecifiedScale
+    ): SourceScaledPositionalUnspecified<DomainType> = SourceScaledPositionalUnspecified(this.toDataSource(), scale)
 
 
-    inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
+    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
+        scale: NonPositionalUnspecifiedScale
+    ): SourceScaledNonPositionalUnspecified<DomainType> =
         SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
 
 
-    inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
+    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
         scale: PositionalScale<DomainType>
-    ) = SourceScaledPositional(this.toDataSource(), scale)
+    ): SourceScaledPositional<DomainType> = SourceScaledPositional(this.toDataSource(), scale)
 
 
-    inline fun <reified DomainType : Any, RangeType : Any> Iterable<DomainType>.scaled(
+    public inline fun <reified DomainType : Any, RangeType : Any> Iterable<DomainType>.scaled(
         scale: NonPositionalScale<DomainType, RangeType>
-    ) = SourceScaledNonPositional(this.toDataSource(), scale)
+    ): SourceScaledNonPositional<DomainType, RangeType> = SourceScaledNonPositional(this.toDataSource(), scale)
 
 
 }
@@ -133,16 +152,19 @@ abstract class BindingContext: BindingContext {
 
  */
 
-abstract class LayerContext(parent: LayerCollectorContext) : TableBindingContext,
+
+public abstract class LayerContext(parent: LayerCollectorContext) : TableBindingContext,
     SubTableBindingContext(parent) {
-    val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
+    public val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
+
 }
 
 
-interface LayerCollectorContext : TableBindingContext {
-    val layers: MutableList<Layer>
+public interface LayerCollectorContext : TableBindingContext {
+    public val layers: MutableList<Layer>
 
-    fun addLayer(context: LayerContext, geom: Geom) {
+    // todo hide
+    public fun addLayer(context: LayerContext, geom: Geom) {
         layers.add(
             Layer(
                 data,
@@ -156,15 +178,15 @@ interface LayerCollectorContext : TableBindingContext {
     }
 }
 
-abstract class SubLayerCollectorContext(parent: LayerCollectorContext) : TableBindingContext, LayerCollectorContext,
+public abstract class SubLayerCollectorContext(parent: LayerCollectorContext) : TableBindingContext, LayerCollectorContext,
     SubBindingContext(parent.bindingCollector) {
-    override val data = parent.data
-    override val layers = parent.layers
+    override val data: TableData = parent.data
+    override val layers: MutableList<Layer> = parent.layers
 }
 
 @PlotDslMarker
 @StatDSLMarker
-open class WithGroupingBindingContext constructor(
+public open class WithGroupingBindingContext constructor(
     override val data: GroupedDataInterface,
     override val layers: MutableList<Layer>,
     parentalBindingCollector: BindingCollector?
@@ -192,21 +214,23 @@ abstract class MutableLayerContext : BindingContext(), LayerContext {
  * @return new [Plot]
  */
 
+
 // todo
 
 
-interface PlotContext : LayerCollectorContext {
-    val features: MutableMap<FeatureName, PlotFeature>
-    fun toPlot(): Plot {
+public interface PlotContext : LayerCollectorContext {
+    // todo hide
+    public val features: MutableMap<FeatureName, PlotFeature>
+    public fun toPlot(): Plot {
         return Plot(data, layers, features, bindingCollector.freeScales)
     }
 }
 
 @PlotDslMarker
-class NamedDataPlotContext<T: NamedDataInterface>(
+public class NamedDataPlotContext<T: NamedDataInterface>(
     override val data: T,
 ) : PlotContext, NameDataBindingContext {
-    override val bindingCollector = BindingCollector()
+    override val bindingCollector: BindingCollector = BindingCollector()
     override val layers: MutableList<Layer> = mutableListOf()
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
@@ -224,11 +248,11 @@ class NamedDataPlotContext<T: NamedDataInterface>(
 
 
 @PlotDslMarker
-class GroupedDataPlotContext(
+public class GroupedDataPlotContext(
     override val data: GroupedDataInterface,
     override val layers: MutableList<Layer> = mutableListOf() // TODO
 ) : PlotContext, WithGroupingBindingContext(data, layers, null) {
-    override val bindingCollector = BindingCollector()
+    override val bindingCollector: BindingCollector = BindingCollector()
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 }
 

@@ -1,19 +1,19 @@
 package org.jetbrains.kotlinx.ggdsl.ir.data
 
-sealed interface GroupedDataInterface : TableData
+public sealed interface GroupedDataInterface : TableData
 
-interface LazyGroupedDataInterface : GroupedDataInterface {
-    val keys: List<String>
-    val origin: NamedDataInterface
+public interface LazyGroupedDataInterface : GroupedDataInterface {
+    public val keys: List<String>
+    public val origin: NamedDataInterface
 
-    fun count(): CountedGroupedDataInterface
+    public fun count(): CountedGroupedDataInterface
 }
 
-interface CountedGroupedDataInterface: GroupedDataInterface{
-    val keys: NamedDataInterface
-    val groups: List<NamedDataInterface>
+public interface CountedGroupedDataInterface: GroupedDataInterface{
+    public val keys: NamedDataInterface
+    public val groups: List<NamedDataInterface>
 
-    fun toLazy(): LazyGroupedDataInterface
+    public fun toLazy(): LazyGroupedDataInterface
 }
 
 

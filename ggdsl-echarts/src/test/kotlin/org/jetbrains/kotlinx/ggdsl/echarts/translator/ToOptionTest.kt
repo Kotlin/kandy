@@ -1,16 +1,25 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.echarts.*
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.bars
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.line
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.points
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.stack
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.ColorStop
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.GradientOption
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.LinearGradientColor
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.SimpleColorOption
+<<<<<<< HEAD
 
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+=======
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+>>>>>>> main
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals

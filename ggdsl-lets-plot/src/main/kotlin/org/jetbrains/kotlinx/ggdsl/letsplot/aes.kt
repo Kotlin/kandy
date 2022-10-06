@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
 import jetbrains.datalore.plot.config.Option
@@ -14,431 +18,434 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-val X = AesName("x")
+public val X: AesName = AesName("x")
 
-class XAes(override val context: BindingContext) : ScalablePositionalAes {
+public class XAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = X
 }
 
-val Y = AesName("y")
+public val Y: AesName = AesName("y")
 
-class YAes(override val context: BindingContext) : ScalablePositionalAes {
+public class YAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = Y
 }
 
-val PlotContext.x
+public val PlotContext.x: XAes
     get() = XAes(this)
 
-val PlotContext.y
+public val PlotContext.y: YAes
     get() = YAes(this)
 
-val Z = AesName("z")
+public val Z: AesName = AesName("z")
 
-class ZAes(override val context: BindingContext) : ScalablePositionalAes {
+public class ZAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = Z
 }
 
-class XDummyAes(override val context: BindingContext) : ScalablePositionalAes {
+public class XDummyAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = X
 }
 
-class YDummyAes(override val context: BindingContext) : ScalablePositionalAes {
+public class YDummyAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = Y
 }
 
-class ZDummyAes(override val context: BindingContext) : ScalablePositionalAes {
+public class ZDummyAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = Z
 }
 
 internal val LOWER = AesName("lower")
 
-class LowerAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name = LOWER
+public class LowerAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = LOWER
 }
 
 internal val UPPER = AesName("upper")
 
-class UpperAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
+public class UpperAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
     override val name: AesName = UPPER
 }
 
 internal val MIDDLE = AesName("middle")
 
-class MiddleAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name = MIDDLE
+public class MiddleAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = MIDDLE
 }
 
 internal val X_MIN = AesName("xmin")
 
-class XMinAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name = X_MIN
+public class XMinAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = X_MIN
 }
 
 internal val X_MAX = AesName("xmax")
 
-class XMaxAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name = X_MAX
+public class XMaxAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = X_MAX
 }
 
 internal val Y_MIN = AesName("ymin")
 
-class YMinAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name = Y_MIN
+public class YMinAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = Y_MIN
 }
 
 internal val Y_MAX = AesName("ymax")
 
-class YMaxAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name = Y_MAX
+public class YMaxAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = Y_MAX
 }
 
 internal val X_END = AesName("xend")
 
-class XEndAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name = X_END
+public class XEndAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = X_END
 }
 
 internal val Y_END = AesName("yend")
 
-class YEndAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name = Y_END
+public class YEndAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = Y_END
 }
 
-val SLOPE = AesName("slope")
-data class SlopeAes(override val context: BindingContext) :NonScalablePositionalAes{
+public val SLOPE: AesName = AesName("slope")
+public data class SlopeAes(override val context: BindingContext) :NonScalablePositionalAes{
     override val name: AesName = SLOPE
 }
-val INTERCEPT = AesName("intercept")
-data class InterceptAes(override val context: BindingContext) :NonScalablePositionalAes {
+public val INTERCEPT: AesName = AesName("intercept")
+public data class InterceptAes(override val context: BindingContext) :NonScalablePositionalAes {
     override val name: AesName = INTERCEPT
 }
 
 
 internal val WIDTH_POS = AesName("width")
 
-class WidthPosAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name = WIDTH_POS
+public class WidthPosAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = WIDTH_POS
 }
 
 internal val HEIGHT_POS = AesName("height")
 
-class HeightPosAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name = HEIGHT_POS
+public class HeightPosAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
+    override val name: AesName = HEIGHT_POS
 }
 
 internal val COLOR = AesName("color")
 
-class ColorAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Color> {
-    override val name = COLOR
+public class ColorAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+    override val name: AesName = COLOR
 }
 
 internal val FILL = AesName("fill")
 
-class FillAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Color> {
-    override val name = FILL
+public class FillAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+    override val name: AesName = FILL
 }
 
-val SHAPE = AesName("shape")
+public val SHAPE: AesName = AesName("shape")
 
-class ShapeAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Symbol> {
-    override val name = SHAPE
+public class ShapeAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Symbol> {
+    override val name: AesName = SHAPE
 }
 
 internal val LINE_TYPE = AesName("linetype")
 
-class LineTypeAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<LineType> {
-    override val name = LINE_TYPE
+public class LineTypeAes internal constructor(override val context: BindingContext) :
+    MappableNonPositionalAes<LineType> {
+    override val name: AesName = LINE_TYPE
 }
 
 internal val SIZE = AesName("size")
 
-class SizeAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Double> {
-    override val name = SIZE
+public class SizeAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+    override val name: AesName = SIZE
 }
 
 internal val STROKE = AesName("stroke")
 
-class StrokeAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Double> {
-    override val name = STROKE
+public class StrokeAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+    override val name: AesName = STROKE
 }
 
 internal val WIDTH = AesName("width")
 
-class WidthAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Double> {
-    override val name = WIDTH
+public class WidthAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+    override val name: AesName = WIDTH
 }
 
 internal val ALPHA = AesName("alpha")
 
-class AlphaAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Double> {
-    override val name = ALPHA
+public class AlphaAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+    override val name: AesName = ALPHA
 }
 
 internal val FATTEN = AesName("fatten")
 
-class FattenAes internal constructor(override val context: BindingContext) : NonPositionalAes<Double> {
-    override val name = FATTEN
+public class FattenAes internal constructor(override val context: BindingContext) : NonPositionalAes<Double> {
+    override val name: AesName = FATTEN
 }
 
 internal val BINS = AesName("bins")
 
-class BinsAes internal constructor(override val context: BindingContext) : NonPositionalAes<Int> {
-    override val name = BINS
+public class BinsAes internal constructor(override val context: BindingContext) : NonPositionalAes<Int> {
+    override val name: AesName = BINS
 }
 
 internal val BIN_WIDTH = AesName("binwidth")
 
-class BinWidthAes internal constructor(override val context: BindingContext) : NonPositionalAes<Double> {
-    override val name = BIN_WIDTH
+public class BinWidthAes internal constructor(override val context: BindingContext) : NonPositionalAes<Double> {
+    override val name: AesName = BIN_WIDTH
 }
 
 internal val BINS_2D = AesName("bins")
 
-class Bins2DAes internal constructor(override val context: BindingContext) : NonPositionalAes<Pair<Int, Int>> {
-    override val name = BINS_2D
+public class Bins2DAes internal constructor(override val context: BindingContext) : NonPositionalAes<Pair<Int, Int>> {
+    override val name: AesName = BINS_2D
 }
 
 internal val BIN_WIDTH_2D = AesName("binwidth")
 
-class BinWidth2DAes internal constructor(override val context: BindingContext) :
+public class BinWidth2DAes internal constructor(override val context: BindingContext) :
     NonPositionalAes<Pair<Double, Double>> {
-    override val name = BIN_WIDTH_2D
+    override val name: AesName = BIN_WIDTH_2D
 }
 
 internal val CENTER = AesName("center")
 
-class CenterAes internal constructor(override val context: BindingContext) : NonPositionalAes<Double> {
-    override val name = CENTER
+public class CenterAes internal constructor(override val context: BindingContext) : NonPositionalAes<Double> {
+    override val name: AesName = CENTER
 }
 
 
 internal val BOUNDARY = AesName("boundary")
 
-class BoundaryAes internal constructor(override val context: BindingContext) : NonPositionalAes<Double> {
-    override val name = BOUNDARY
+public class BoundaryAes internal constructor(override val context: BindingContext) : NonPositionalAes<Double> {
+    override val name: AesName = BOUNDARY
 }
 
 internal val DROP = AesName("drop")
 
-class DropAes internal constructor(override val context: BindingContext) : NonPositionalAes<Boolean> {
-    override val name = DROP
+public class DropAes internal constructor(override val context: BindingContext) : NonPositionalAes<Boolean> {
+    override val name: AesName = DROP
 }
 
-val OUTLIER_COLOR = AesName(Option.Geom.BoxplotOutlier.COLOR)
+public val OUTLIER_COLOR: AesName = AesName(Option.Geom.BoxplotOutlier.COLOR)
 
-data class OutlierColorAes(override val context: BindingContext) : NonPositionalAes<Color> {
+public data class OutlierColorAes(override val context: BindingContext) : NonPositionalAes<Color> {
     override val name: AesName = OUTLIER_COLOR
 }
 
-val OUTLIER_FILL = AesName(Option.Geom.BoxplotOutlier.FILL)
+public val OUTLIER_FILL: AesName = AesName(Option.Geom.BoxplotOutlier.FILL)
 
-data class OutlierFillAes(override val context: BindingContext) : NonPositionalAes<Color> {
+public data class OutlierFillAes(override val context: BindingContext) : NonPositionalAes<Color> {
     override val name: AesName = OUTLIER_FILL
 }
 
-val OUTLIER_SHAPE = AesName(Option.Geom.BoxplotOutlier.SHAPE)
+public val OUTLIER_SHAPE: AesName = AesName(Option.Geom.BoxplotOutlier.SHAPE)
 
-data class OutlierShapeAes(override val context: BindingContext) : NonPositionalAes<Symbol> {
+public data class OutlierShapeAes(override val context: BindingContext) : NonPositionalAes<Symbol> {
     override val name: AesName = OUTLIER_SHAPE
 }
 
-val OUTLIER_SIZE = AesName(Option.Geom.BoxplotOutlier.SIZE)
+public val OUTLIER_SIZE: AesName = AesName(Option.Geom.BoxplotOutlier.SIZE)
 
-data class OutlierSizeAes(override val context: BindingContext) : NonPositionalAes<Double> {
+public data class OutlierSizeAes(override val context: BindingContext) : NonPositionalAes<Double> {
     override val name: AesName = OUTLIER_SIZE
 }
 
 internal val VAR_WIDTH = AesName("varwidth")
 
-class VarWidthAes internal constructor(override val context: BindingContext) : NonPositionalAes<Boolean> {
-    override val name = VAR_WIDTH
+public class VarWidthAes internal constructor(override val context: BindingContext) : NonPositionalAes<Boolean> {
+    override val name: AesName = VAR_WIDTH
 }
 
 
-val BAND_WIDTH = AesName("bw")
+public val BAND_WIDTH: AesName = AesName("bw")
 
-data class BWAes(override val context: BindingContext) : NonPositionalAes<BandWidth> {
+public data class BWAes(override val context: BindingContext) : NonPositionalAes<BandWidth> {
     override val name: AesName = BAND_WIDTH
 }
 
 
-val KERNEL = AesName("kernel")
+public val KERNEL: AesName = AesName("kernel")
 
-data class KernelAes(override val context: BindingContext) : NonPositionalAes<Kernel> {
+public data class KernelAes(override val context: BindingContext) : NonPositionalAes<Kernel> {
     override val name: AesName = KERNEL
 }
 
-val NUMBER = AesName("n")
+public val NUMBER: AesName = AesName("n")
 
-data class NumberAes(override val context: BindingContext) : NonPositionalAes<Int> {
+public data class NumberAes(override val context: BindingContext) : NonPositionalAes<Int> {
     override val name: AesName = NUMBER
 }
 
-val TRIM = AesName("trim")
+public val TRIM: AesName = AesName("trim")
 
-data class TrimAes(override val context: BindingContext) : NonPositionalAes<Boolean> {
+public data class TrimAes(override val context: BindingContext) : NonPositionalAes<Boolean> {
     override val name: AesName = TRIM
 }
 
-val ADJUST = AesName("adjust")
+public val ADJUST: AesName = AesName("adjust")
 
-data class AdjustAes(override val context: BindingContext) : NonPositionalAes<Double> {
+public data class AdjustAes(override val context: BindingContext) : NonPositionalAes<Double> {
     override val name: AesName = ADJUST
 }
 
-val FULL_SCAN_MAX = AesName("fs_max")
+public val FULL_SCAN_MAX: AesName = AesName("fs_max")
 
-data class FullScanMaxAes(override val context: BindingContext) : NonPositionalAes<Int> {
+public data class FullScanMaxAes(override val context: BindingContext) : NonPositionalAes<Int> {
     override val name: AesName = FULL_SCAN_MAX
 }
 
 
-val DISTRIBUTION = AesName(Option.Stat.QQ.DISTRIBUTION)
+public val DISTRIBUTION: AesName = AesName(Option.Stat.QQ.DISTRIBUTION)
 
-data class DistributionAes(override val context: BindingContext) : NonPositionalAes<String> {
+public data class DistributionAes(override val context: BindingContext) : NonPositionalAes<String> {
     override val name: AesName = DISTRIBUTION
 }
 
-val D_PARAMS = AesName(Option.Stat.QQ.DISTRIBUTION_PARAMETERS)
+public val D_PARAMS: AesName = AesName(Option.Stat.QQ.DISTRIBUTION_PARAMETERS)
 
-data class DParamsAes(override val context: BindingContext) : NonPositionalAes<List<Number>> {
+public data class DParamsAes(override val context: BindingContext) : NonPositionalAes<List<Number>> {
     override val name: AesName = D_PARAMS
 }
 
-val SAMPLE = AesName("sample")
+public val SAMPLE: AesName = AesName("sample")
 
-class SampleAes(override val context: BindingContext) : ScalablePositionalAes {
+public class SampleAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = SAMPLE
 }
 
-class SampleDummyAes(override val context: BindingContext) : ScalablePositionalAes {
+public class SampleDummyAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = SAMPLE
 }
 
-val QUANTILES = AesName("quantiles")
+public val QUANTILES: AesName = AesName("quantiles")
 
-data class QuantilesAes(override val context: BindingContext) : NonPositionalAes<Pair<Double, Double>> {
+public data class QuantilesAes(override val context: BindingContext) : NonPositionalAes<Pair<Double, Double>> {
     override val name: AesName = QUANTILES
 }
 
-val METHOD = AesName("method")
+public val METHOD: AesName = AesName("method")
 
-data class MethodAes(override val context: BindingContext) : NonPositionalAes<String> {
+public data class MethodAes(override val context: BindingContext) : NonPositionalAes<String> {
     override val name: AesName = METHOD
 }
 
-val SE = AesName("se")
+public val SE: AesName = AesName("se")
 
-data class SEAes(override val context: BindingContext) : NonPositionalAes<Boolean> {
+public data class SEAes(override val context: BindingContext) : NonPositionalAes<Boolean> {
     override val name: AesName = SE
 }
 
-val LEVEL = AesName("level")
+public val LEVEL: AesName = AesName("level")
 
-data class LevelAes(override val context: BindingContext) : NonPositionalAes<Double> {
+public data class LevelAes(override val context: BindingContext) : NonPositionalAes<Double> {
     override val name: AesName = LEVEL
 }
 
-val SPAN = AesName("span")
+public val SPAN: AesName = AesName("span")
 
-data class SpanAes(override val context: BindingContext) : NonPositionalAes<Double> {
+public data class SpanAes(override val context: BindingContext) : NonPositionalAes<Double> {
     override val name: AesName = SPAN
 }
 
-val DEG = AesName("deg")
+public val DEG: AesName = AesName("deg")
 
-data class DegAes(override val context: BindingContext) : NonPositionalAes<Int> {
+public data class DegAes(override val context: BindingContext) : NonPositionalAes<Int> {
     override val name: AesName = DEG
 }
 
-val SEED = AesName("seed")
+public val SEED: AesName = AesName("seed")
 
-data class SeedAes(override val context: BindingContext) : NonPositionalAes<Long> {
+public data class SeedAes(override val context: BindingContext) : NonPositionalAes<Long> {
     override val name: AesName = SEED
 }
 
-val MAX_N = AesName("max_n")
+public val MAX_N: AesName = AesName("max_n")
 
-data class MaxNAes(override val context: BindingContext) : NonPositionalAes<Int> {
+public data class MaxNAes(override val context: BindingContext) : NonPositionalAes<Int> {
     override val name: AesName = MAX_N
 }
 
-val VIOLIN_WIDTH = AesName("violinwidth")
+public val VIOLIN_WIDTH: AesName = AesName("violinwidth")
 
-data class ViolinWidthAes(override val context: BindingContext) : NonPositionalAes<Double> {
+public data class ViolinWidthAes(override val context: BindingContext) : NonPositionalAes<Double> {
     override val name: AesName = VIOLIN_WIDTH
 }
 
-val VIOLIN_SCALE = AesName("scale")
+public val VIOLIN_SCALE: AesName = AesName("scale")
 
-data class ViolinScaleAes(override val context: BindingContext) : NonPositionalAes<String> {
+public data class ViolinScaleAes(override val context: BindingContext) : NonPositionalAes<String> {
     override val name: AesName = VIOLIN_SCALE
 }
 
-val DRAW_QUANTILES = AesName("draw_quantiles")
+public val DRAW_QUANTILES: AesName = AesName("draw_quantiles")
 
-data class DrawQuantilesAes(override val context: BindingContext) : NonPositionalAes<List<Double>> {
+public data class DrawQuantilesAes(override val context: BindingContext) : NonPositionalAes<List<Double>> {
     override val name: AesName = DRAW_QUANTILES
 }
 
 internal val LABEL = AesName("label")
 
-data class LabelAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<String> {
-    override val name = LABEL
+public data class LabelAes internal constructor(override val context: BindingContext) :
+    MappableNonPositionalAes<String> {
+    override val name: AesName = LABEL
 }
 
 internal val FONT_FACE = AesName("fontface")
 
-data class FontFaceAes internal constructor(override val context: BindingContext) :
+public data class FontFaceAes internal constructor(override val context: BindingContext) :
     MappableNonPositionalAes<FontFace> {
-    override val name = FONT_FACE
+    override val name: AesName = FONT_FACE
 }
 
 internal val FONT_FAMILY = AesName("family")
 
-data class FontFamilyAes internal constructor(override val context: BindingContext) :
+public data class FontFamilyAes internal constructor(override val context: BindingContext) :
     MappableNonPositionalAes<FontFamily> {
-    override val name = FONT_FAMILY
+    override val name: AesName = FONT_FAMILY
 }
 
 internal val ANGLE = AesName("angle")
 
-data class AngleAes internal constructor(override val context: BindingContext) :
+public data class AngleAes internal constructor(override val context: BindingContext) :
     MappableNonPositionalAes<Double> {
-    override val name = ANGLE
+    override val name: AesName = ANGLE
 }
 
 internal val LABEL_FORMAT = AesName(Option.Geom.Text.LABEL_FORMAT)
 
-data class FormatAes internal constructor(override val context: BindingContext) :
+public data class FormatAes internal constructor(override val context: BindingContext) :
     NonPositionalAes<String> {
-    override val name = LABEL_FORMAT
+    override val name: AesName = LABEL_FORMAT
 }
 
 
 internal val HORIZONTAL_JUSTIFICATION = AesName("hjust")
 
-data class HorizontalJustificationAes internal constructor(override val context: BindingContext) :
+public data class HorizontalJustificationAes internal constructor(override val context: BindingContext) :
     NonPositionalAes<HorizontalJustification> {
-    override val name = HORIZONTAL_JUSTIFICATION
+    override val name: AesName = HORIZONTAL_JUSTIFICATION
 }
 
 internal val VERTICAL_JUSTIFICATION = AesName("vjust")
 
-data class VerticalJustificationAes internal constructor(override val context: BindingContext) :
+public data class VerticalJustificationAes internal constructor(override val context: BindingContext) :
     NonPositionalAes<VerticalJustification> {
-    override val name = VERTICAL_JUSTIFICATION
+    override val name: AesName = VERTICAL_JUSTIFICATION
 }
 
-val X_INTERCEPT = AesName("xintercept")
+public val X_INTERCEPT: AesName = AesName("xintercept")
+
 // TODO
-class XInterceptAes(override val context: BindingContext) : NonScalablePositionalAes {
+public class XInterceptAes(override val context: BindingContext) : NonScalablePositionalAes {
     override val name: AesName = X_INTERCEPT
 }
 
-val Y_INTERCEPT = AesName("yintercept")
+public val Y_INTERCEPT: AesName = AesName("yintercept")
 
 // TODO
-class YInterceptAes(override val context: BindingContext) : NonScalablePositionalAes {
+public class YInterceptAes(override val context: BindingContext) : NonScalablePositionalAes {
     override val name: AesName = Y_INTERCEPT
 }

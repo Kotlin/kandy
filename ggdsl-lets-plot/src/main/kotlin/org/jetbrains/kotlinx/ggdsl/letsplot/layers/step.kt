@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
@@ -9,19 +13,19 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
-internal val STEP = LetsPlotGeom("step")
+internal val STEP: LetsPlotGeom = LetsPlotGeom("step")
 
 
 @PlotDslMarker
-class StepContext(parent: LayerCollectorContext) :
+public class StepContext(parent: LayerCollectorContext) :
     LayerContext(parent) {
-    val x = XAes(this)
-    val y = YAes(this)
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val color = ColorAes(this)
-    val alpha = AlphaAes(this)
-    val lineType = LineTypeAes(this)
-    val width = SizeAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val lineType: LineTypeAes = LineTypeAes(this)
+    public val width: SizeAes = SizeAes(this)
 
 }
 
@@ -58,6 +62,7 @@ class StepContext(parent: LayerCollectorContext) :
 
  *  // TODO refer to bindings?
  */
-inline fun LayerCollectorContext.step(block: StepContext.() -> Unit) {
+
+public inline fun LayerCollectorContext.step(block: StepContext.() -> Unit) {
     addLayer(StepContext(this).apply(block), STEP)
 }

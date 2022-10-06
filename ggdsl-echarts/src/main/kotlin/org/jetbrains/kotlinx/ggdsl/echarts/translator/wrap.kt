@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
 import org.jetbrains.kotlinx.ggdsl.echarts.*
@@ -11,7 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
@@ -34,11 +38,11 @@ internal fun NamedDataInterface.wrap(): DataInfo {
     val idToDim = header.mapIndexed { index, s -> s to index }.toMap()
 
     val source = listOf(header) +
-            ((0 until size).map { rowIndex ->
-                header.indices.map { columnIndex ->
-                    values.getOrNull(columnIndex)?.getOrNull(rowIndex)!!
-                }
-            })
+        ((0 until size).map { rowIndex ->
+            header.indices.map { columnIndex ->
+                values.getOrNull(columnIndex)?.getOrNull(rowIndex)!!
+            }
+        })
     //source.add(header)
     /*
     for (i in 0 until size) {
@@ -54,7 +58,7 @@ internal fun NamedDataInterface.wrap(): DataInfo {
 
 internal fun Geom.toType(): String {
     return when (this) {
-       POINT -> "scatter"
+        POINT -> "scatter"
         BAR -> "bar"
         LINE -> "line"
         else -> TODO()
@@ -83,6 +87,7 @@ internal fun createInRange(aes: AesName, valuesString: List<Any>?, size: Int, is
                     }
                 }
         )
+
         SIZE -> InRange(
             symbolSize = valuesString?.map { (it as Number).toDouble() }
                 ?: if (isContinuous) {
@@ -91,6 +96,7 @@ internal fun createInRange(aes: AesName, valuesString: List<Any>?, size: Int, is
                     sizes.take(size)
                 }
         )
+
         ALPHA -> InRange(
             colorAlpha = valuesString?.map { (it as Number).toDouble() }
                 ?: if (isContinuous) {
@@ -99,6 +105,7 @@ internal fun createInRange(aes: AesName, valuesString: List<Any>?, size: Int, is
                     alphas.take(size)
                 }
         )
+
         SYMBOL -> InRange(
             symbol = valuesString?.map { wrapValue(it) as String }
                 ?: if (isContinuous) {
@@ -107,6 +114,7 @@ internal fun createInRange(aes: AesName, valuesString: List<Any>?, size: Int, is
                     symbols.take(size)
                 }
         )
+
         else -> {
             TODO()
         }
@@ -148,6 +156,7 @@ internal fun defaultPiecewiseVisualMap(aes: AesName, dim: Int, seriesIndex: Int,
     )
 }
 
+@Suppress("UNUSED_PARAMETER")
 internal fun defaultContinuousVisualMap(aes: AesName, dim: Int, seriesIndex: Int, data: List<Any>): VisualMap {
     return VisualMap(
         /*
@@ -214,6 +223,7 @@ internal fun Scale.toVisualMap(
                 top = (visualMapCounter++) * 150
             )
         }
+
         is NonPositionalContinuousScale<*, *> -> {
             val min = domainLimits?.first?.toString()?.toDouble()
             val max = domainLimits?.second?.toString()?.toDouble()
@@ -248,6 +258,7 @@ internal fun Scale.toVisualMap(
                 else -> defaultContinuousVisualMap(aes, dim, seriesIndex, data)
             }
         }
+
         is NonPositionalCategoricalUnspecifiedScale -> defaultPiecewiseVisualMap(aes, dim, seriesIndex, data)
         is NonPositionalContinuousUnspecifiedScale -> defaultContinuousVisualMap(aes, dim, seriesIndex, data)
 
@@ -280,6 +291,7 @@ internal fun Scale.toAxis(/*data: List<Any>,*/ domainType: KType): Axis {
                 data = categories?.map { value -> value.toString() }//data.toSet().map { it.toString() }
             )
         }
+
         is PositionalContinuousScale<*> -> {
             Axis(
                 /*
@@ -296,6 +308,7 @@ internal fun Scale.toAxis(/*data: List<Any>,*/ domainType: KType): Axis {
         is PositionalCategoricalUnspecifiedScale -> {
             Axis(type = "category")
         }
+
         is PositionalContinuousUnspecifiedScale -> {
             Axis(type = "value")
         }
@@ -313,6 +326,7 @@ internal fun Scale.toAxis(/*data: List<Any>,*/ domainType: KType): Axis {
                         // data = data.toSet().map { it.toString() } // todo need ???
                     )
                 }
+
                 else -> {
                     Axis(/*
                     show = show,
@@ -323,6 +337,7 @@ internal fun Scale.toAxis(/*data: List<Any>,*/ domainType: KType): Axis {
                 }
             }
         }
+
         else -> {
             println(this)
             TODO()
@@ -331,6 +346,7 @@ internal fun Scale.toAxis(/*data: List<Any>,*/ domainType: KType): Axis {
 }
 
 
+@Suppress("UNCHECKED_CAST")
 internal fun <T : Any> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
     return (this[key] as? NonPositionalSetting<*>)?.value as? T
 }
@@ -384,7 +400,7 @@ internal fun Layer.toSeries(wrappedData: List<List<Any>>?): Series {
             null
         },
         stack = stack,
-        data = wrappedData?.map { it.map { it.toString() } }
+        data = wrappedData?.map { it.map { el -> el.toString() } }
     )
 }
 
@@ -405,7 +421,7 @@ internal fun wrapColor(color: Color): EchartsColorOption {
     }
 }
 
-fun Plot.toOption(): MetaOption {
+public fun Plot.toOption(): MetaOption {
     visualMapCounter = 0 // todo
     val (source, idToDim) = dataset.wrap()
     // TODO!!!
@@ -459,7 +475,7 @@ fun Plot.toOption(): MetaOption {
     //todo echarts layout
     return MetaOption(
         Option(
-            dataset = Dataset(source.map { it.map { it.toString() } }),
+            dataset = Dataset(source.map { it.map { el -> el.toString() } }),
             xAxis = listOf(xAxis),
             yAxis = listOf(yAxis),
             visualMap = visualMaps,

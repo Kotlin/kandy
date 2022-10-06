@@ -10,29 +10,29 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import kotlin.reflect.typeOf
 
-inline fun <reified DomainType : Any> Statistic<DomainType>.scaled() =
+public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(): SourceScaledUnspecifiedDefault<DomainType> =
     SourceScaledUnspecifiedDefault(this.toDataSource())
 
 
-inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
+public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: PositionalUnspecifiedScale): SourceScaledPositionalUnspecified<DomainType> =
     SourceScaledPositionalUnspecified(this.toDataSource(), scale)
 
 
 
-inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
+public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): SourceScaledNonPositionalUnspecified<DomainType> =
     SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
 
 
-inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(
+public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-) = SourceScaledPositional(this.toDataSource(), scale)
+): SourceScaledPositional<DomainType> = SourceScaledPositional(this.toDataSource(), scale)
 
 
-inline fun <reified DomainType : Any, RangeType : Any> Statistic<DomainType>.scaled(
+public inline fun <reified DomainType : Any, RangeType : Any> Statistic<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-) = SourceScaledNonPositional(this.toDataSource(), scale)
+): SourceScaledNonPositional<DomainType, RangeType> = SourceScaledNonPositional(this.toDataSource(), scale)
 
-inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     stat: Statistic<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -44,7 +44,7 @@ inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     return mapping
 }
 
-inline operator fun <reified DomainType : Any, RangeType : Any>
+public inline operator fun <reified DomainType : Any, RangeType : Any>
         MappableNonPositionalAes<RangeType>.invoke(
     stat: Statistic<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {

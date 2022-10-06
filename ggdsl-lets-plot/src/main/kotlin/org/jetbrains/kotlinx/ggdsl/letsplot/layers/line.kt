@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
@@ -11,20 +15,21 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 // TODO
 
 @PublishedApi
-internal val LINE = LetsPlotGeom("line")
+internal val LINE: LetsPlotGeom = LetsPlotGeom("line")
+
 @PublishedApi
-internal val PATH = LetsPlotGeom("path")
+internal val PATH: LetsPlotGeom = LetsPlotGeom("path")
 
 
 @PlotDslMarker
-class LineContext(parent: LayerCollectorContext) : LayerContext(parent) {
-    val x = XAes(this)
-    val y = YAes(this)
+public class LineContext(parent: LayerCollectorContext) : LayerContext(parent) {
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val color = ColorAes(this)
-    val alpha = AlphaAes(this)
-    val type = LineTypeAes(this)
-    val width = SizeAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val type: LineTypeAes = LineTypeAes(this)
+    public val width: SizeAes = SizeAes(this)
 }
 
 /**
@@ -60,10 +65,11 @@ class LineContext(parent: LayerCollectorContext) : LayerContext(parent) {
 
  *  // TODO refer to bindings?
  */
-inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
+
+public inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
     addLayer(LineContext(this).apply(block), LINE)
 }
 
-inline fun LayerCollectorContext.path(block: LineContext.() -> Unit) {
+public inline fun LayerCollectorContext.path(block: LineContext.() -> Unit) {
     addLayer(LineContext(this).apply(block), PATH)
 }

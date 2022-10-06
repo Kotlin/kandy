@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
@@ -8,49 +12,56 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 
 /**
- *  Apply default scale to this column
+ *  Apply a default scale to this column
  */
-inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled() =
+
+public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(): SourceScaledUnspecifiedDefault<DomainType> =
     SourceScaledUnspecifiedDefault(this.toColRef())
 
 /**
- * Apply unspecified positional scale to this column
+ * Apply an unspecified positional scale to this column
  *
  * @param DomainType type of domain
  * @param scale positional default scale
  * @return scaled source
  */
-inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
+
+public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: PositionalUnspecifiedScale): SourceScaledPositionalUnspecified<DomainType> =
     SourceScaledPositionalUnspecified(this.toColRef(), scale)
 
+
 /**
- * Apply unspecified non-positional scale to this column
+ * Apply an unspecified non-positional scale to this column
  *
  * @param DomainType type of domain
  * @param scale non-positional default scale
  * @return scaled source
  */
-inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
+
+public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): SourceScaledNonPositionalUnspecified<DomainType> =
     SourceScaledNonPositionalUnspecified(this.toColRef(), scale)
 
+
 /**
- * Apply positional scale to this column
+ * Apply a positional scale to this column
  *
  * @param DomainType type of domain
  * @param scale positional scale
  * @return scaled source
  */
-inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
+public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-) = SourceScaledPositional(this.toColRef(), scale)
+): SourceScaledPositional<DomainType> = SourceScaledPositional(this.toColRef(), scale)
+
 
 /**
- * Apply non-positional scale to this column
+ * Apply a non-positional scale to this column
  *
  * @param DomainType type of domain
  * @param scale non-positional scale
  * @return scaled source
  */
-inline fun <reified DomainType : Any, RangeType : Any> ColumnReference<DomainType>.scaled(
+public inline fun <reified DomainType : Any, RangeType : Any> ColumnReference<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-) = SourceScaledNonPositional(this.toColRef(), scale)
+): SourceScaledNonPositional<DomainType, RangeType> = SourceScaledNonPositional(this.toColRef(), scale)
+

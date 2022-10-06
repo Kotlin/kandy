@@ -1,3 +1,6 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
@@ -8,20 +11,22 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
-internal val TILE = LetsPlotGeom("tile")
+internal val TILE: LetsPlotGeom = LetsPlotGeom("tile")
 
 
 @PlotDslMarker
-class TileContext(parent: LayerCollectorContext) :
+
+public class TileContext(parent: LayerCollectorContext) :
     WithBorderLineContext(parent) {
-    val x = XAes(this)
-    val y = YAes(this)
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val color = FillAes(this)
-    val alpha = AlphaAes(this)
 
-    val width = WidthPosAes(this)
-    val height = HeightPosAes(this)
+    public val color: FillAes = FillAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+
+    public val width: WidthPosAes = WidthPosAes(this)
+    public val height: HeightPosAes = HeightPosAes(this)
 
 }
 
@@ -72,6 +77,8 @@ class TileContext(parent: LayerCollectorContext) :
  *  ```
  *  // TODO refer to bindings?
  */
-inline fun LayerCollectorContext.tile(block: TileContext.() -> Unit) {
+public
+inline
+fun LayerCollectorContext.tile(block: TileContext.() -> Unit) {
     addLayer(TileContext(this).apply(block), TILE)
 }

@@ -1,14 +1,26 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 
 
-val DENSITY = LetsPlotGeom("density")
+public val DENSITY: LetsPlotGeom = LetsPlotGeom("density")
 /*
 // todo stats
 @PlotDslMarker
 class DensityContext(
     parent: LayerCollectorContext,
+=======
+public val DENSITY: LetsPlotGeom = LetsPlotGeom("density")
+
+// todo stats
+@PlotDslMarker
+public class DensityContext(
+    override var data: MutableNamedData,
+>>>>>>> main
     kernel: Kernel?,
     bandWidth: BandWidth?,
     pointsSampled: Int?,
@@ -18,34 +30,40 @@ class DensityContext(
 ) : LayerContext(parent) {
 
     @PublishedApi
-    internal val _x = XAes(this)
+    internal val _x: XAes = XAes(this)
+
     @PublishedApi
-    internal val _y = YAes(this)
+    internal val _y: YAes = YAes(this)
 
-    val x = XDummyAes(this)
-    val y = YDummyAes(this)
+    public val x: XDummyAes = XDummyAes(this)
+    public val y: YDummyAes = YDummyAes(this)
 
 
-    val alpha = AlphaAes(this)
-    val fillColor = FillAes(this)
-    val borderLineWidth = SizeAes(this)
-    val borderLineColor = ColorAes(this)
-    val borderLineType = LineTypeAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val fillColor: FillAes = FillAes(this)
+    public val borderLineWidth: SizeAes = SizeAes(this)
+    public val borderLineColor: ColorAes = ColorAes(this)
+    public val borderLineType: LineTypeAes = LineTypeAes(this)
 
     // todo weight
 
     @PublishedApi
-    internal val kernel = KernelAes(this)
+    internal val kernel: KernelAes = KernelAes(this)
+
     @PublishedApi
-    internal val bw = BWAes(this)
+    internal val bw: BWAes = BWAes(this)
+
     @PublishedApi
-    internal val pointsSampled = NumberAes(this)
+    internal val pointsSampled: NumberAes = NumberAes(this)
+
     @PublishedApi
-    internal val trim = TrimAes(this)
+    internal val trim: TrimAes = TrimAes(this)
+
     @PublishedApi
-    internal val adjust = AdjustAes(this)
+    internal val adjust: AdjustAes = AdjustAes(this)
+
     @PublishedApi
-    internal val fullScanMax = FullScanMaxAes(this)
+    internal val fullScanMax: FullScanMaxAes = FullScanMaxAes(this)
 
     init {
         kernel?.let {
@@ -67,17 +85,18 @@ class DensityContext(
             fullScanMax(it)
         }
     }
-    object Statistics {
-        val X = DensityStat.X
-        val COUNT = DensityStat.Count
-        val DENSITY = DensityStat.Density
-        val SCALED = DensityStat.Scaled
+
+    public object Statistics {
+        public val X: DensityStat.X = DensityStat.X
+        public val COUNT: DensityStat.Count = DensityStat.Count
+        public val DENSITY: DensityStat.Density = DensityStat.Density
+        public val SCALED: DensityStat.Scaled = DensityStat.Scaled
     }
 
-    val Stat = Statistics
+    public val Stat: Statistics = Statistics
 
 
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         stat: DensityStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -90,9 +109,8 @@ class DensityContext(
     }
 
 
-
-    inline operator fun <reified DomainType : Any, RangeType : Any>
-            MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType : Any, RangeType : Any>
+        MappableNonPositionalAes<RangeType>.invoke(
         stat: DensityStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -105,8 +123,13 @@ class DensityContext(
     }
 }
 
+<<<<<<< HEAD
 inline fun <reified T : Any> PlotContext.density(
     source: ColumnPointer<T>,
+=======
+public inline fun <reified T : Any> PlotContext.density(
+    source: DataSource<T>,
+>>>>>>> main
     kernel: Kernel? = null,
     bandWidth: BandWidth? = null,
     pointsSampled: Int? = null,
@@ -126,7 +149,7 @@ inline fun <reified T : Any> PlotContext.density(
     )
 }
 
-inline fun <reified T : Any> PlotContext.density(
+public inline fun <reified T : Any> PlotContext.density(
     source: Iterable<T>,
     kernel: Kernel? = null,
     bandWidth: BandWidth? = null,

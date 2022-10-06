@@ -6,41 +6,41 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.StatContext
 
 @StatDSLMarker
-class BinContext(parent: LayerCollectorContext, override val data: TableData): StatContext(parent) {
-    val Stat = StatHolder
+public class BinContext(parent: LayerCollectorContext, override val data: TableData): StatContext(parent) {
+    public val Stat: StatHolder = StatHolder
 
-    object StatHolder {
-        val BINS = BinStatistic.Bins
-        val COUNT = BinStatistic.Count
-        val DENSITY = BinStatistic.Density
+    public object StatHolder {
+        public val BINS: BinStatistic.Bins = BinStatistic.Bins
+        public val COUNT: BinStatistic.Count = BinStatistic.Count
+        public val DENSITY: BinStatistic.Density = BinStatistic.Density
     }
 }
 
-sealed interface Bins {
-    data class ByNumber internal constructor(val number: Int) : Bins
-    data class ByWidth internal constructor(val width: Double) : Bins
+public sealed interface Bins {
+    public data class ByNumber internal constructor(val number: Int) : Bins
+    public data class ByWidth internal constructor(val width: Double) : Bins
 
-    companion object {
-        fun byNumber(number: Int) = ByNumber(number)
-        fun byWidth(width: Double) = ByWidth(width)
+    public companion object {
+        public fun byNumber(number: Int): ByNumber = ByNumber(number)
+        public fun byWidth(width: Double): ByWidth = ByWidth(width)
     }
 }
 
-sealed interface BinXPos {
-    val posValue: Double
+public sealed interface BinXPos {
+    public val posValue: Double
 
-    data class Center internal constructor(override val posValue: Double) : BinXPos
-    data class Boundary internal constructor(override val posValue: Double) : BinXPos
-    data class None internal constructor(override val posValue: Double) : BinXPos
+    public data class Center internal constructor(override val posValue: Double) : BinXPos
+    public data class Boundary internal constructor(override val posValue: Double) : BinXPos
+    public data class None internal constructor(override val posValue: Double) : BinXPos
 
-    companion object {
-        fun none(posValue: Double) = None(posValue)
-        fun center(posValue: Double) = Center(posValue)
-        fun boundary(posValue: Double) = Boundary(posValue)
+    public companion object {
+        public fun none(posValue: Double): None = None(posValue)
+        public fun center(posValue: Double): Center = Center(posValue)
+        public fun boundary(posValue: Double): Boundary = Boundary(posValue)
     }
 }
 
-inline fun LayerCollectorContext.statBin(
+public inline fun LayerCollectorContext.statBin(
     column: ColumnPointer<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),

@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.tooltips
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
@@ -7,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Stat
 
-data class LayerTooltips internal constructor(
+public data class LayerTooltips internal constructor(
     val variables: List<String>,
     val lines: List<String>,
     val formats: List<Pair<String, String>>,
@@ -18,11 +22,11 @@ data class LayerTooltips internal constructor(
 ) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
-    companion object {
-        val FEATURE_NAME = FeatureName("layer_tooltips")
+    public companion object {
+        public val FEATURE_NAME: FeatureName = FeatureName("layer_tooltips")
 
 
-        fun fromContext(
+        public fun fromContext(
             variables: List<String>,
             title: String?,
             anchor: Anchor?,
@@ -48,7 +52,8 @@ data class LayerTooltips internal constructor(
  * @param source [ColumnPointer] whose value will be inserted into the tooltip
  * @return format string
  */
-fun value(source: ColumnPointer<*>): String {
+
+public fun value(source: ColumnPointer<*>): String {
     return "@${source.id}"
 }
 
@@ -58,7 +63,7 @@ fun value(source: ColumnPointer<*>): String {
  * @param aes aesthetic attribute whose value will be inserted into the tooltip
  * @return format string
  */
-fun value(aes: Aes): String {
+public fun value(aes: Aes): String {
     return "^${aes.name.name}"
 }
 
@@ -68,7 +73,7 @@ fun value(aes: Aes): String {
  * @param stat statistics whose value will be inserted into the tooltip
  * @return format string
  */
-fun value(stat: Stat<*>): String {
+public fun value(stat: Stat<*>): String {
     return "@${stat.name}"
 }
 
@@ -77,7 +82,7 @@ fun value(stat: Stat<*>): String {
  * Context created by [LayerContext.tooltips] method.
  */
 //@PlotDslMarker
-class LayerTooltipsContext {
+public class LayerTooltipsContext {
     // todo hide
     internal val lineBuffer = mutableListOf<String>()
 
@@ -87,7 +92,7 @@ class LayerTooltipsContext {
      * @param string text of the line
      * @see value
      */
-    fun line(string: String) {
+    public fun line(string: String) {
         lineBuffer.add(string)
     }
 
@@ -98,60 +103,67 @@ class LayerTooltipsContext {
      * @param rightSide text of the right side of line
      * @see value
      */
-    fun line(leftSide: String? = null, rightSide: String? = null) {
+    public fun line(leftSide: String? = null, rightSide: String? = null) {
         lineBuffer.add("${leftSide ?: ""}|${rightSide ?: ""}")
     }
 
     /**
+<<<<<<< HEAD
      * Adds standard line for given [ColumnPointer]
      * (name of source on the left side and corresponding value on the right side).
+=======
+     * Adds standard line for given [DataSource]
+     * (name of the source on the left side and corresponding value on the right side).
+>>>>>>> main
      *
      * @param source [ColumnPointer]
      */
-    fun line(source: ColumnPointer<*>) {
+
+    public fun line(source: ColumnPointer<*>) {
+
         lineBuffer.add("@|@${source.id}")
     }
 
     /**
      * Adds standard line for given aesthetic attribute
-     * (name of source mapped oh this aes on the left side and corresponding value on the right side).
+     * (name of a source mapped oh this aes on the left side and corresponding value on the right side).
      *
      * @param aes aesthetic attribute
      */
-    fun line(aes: Aes) {
+    public fun line(aes: Aes) {
         lineBuffer.add("@|^${aes.name.name}")
     }
 
     /**
      * Adds standard line for given statistics
-     * (name of source mapped oh this aes on the left side and corresponding value on the right side).
+     * (name of a source mapped oh this aes on the left side and corresponding value on the right side).
      *
      * @param stat statistics
      */
-    fun line(stat: Stat<*>) {
+    public fun line(stat: Stat<*>) {
         lineBuffer.add("${stat.name.drop(2).dropLast(2)}|@${stat.name}")
     }
 
 }
 
-data class Anchor(val value: String) {
-    companion object {
-        val TOP_RIGHT = Anchor("top_right")
-        val TOP_CENTER = Anchor("top_center")
-        val TOP_LEFT = Anchor("top_left")
-        val BOTTOM_RIGHT = Anchor("bottom_right")
-        val BOTTOM_CENTER = Anchor("bottom_center")
-        val BOTTOM_LEFT = Anchor("bottom_left")
-        val MIDDLE_RIGHT = Anchor("middle_right")
-        val MIDDLE_CENTER = Anchor("middle_center")
-        val MIDDLE_LEFT = Anchor("middle_left")
+public data class Anchor(val value: String) {
+    public companion object {
+        public val TOP_RIGHT: Anchor = Anchor("top_right")
+        public val TOP_CENTER: Anchor = Anchor("top_center")
+        public val TOP_LEFT: Anchor = Anchor("top_left")
+        public val BOTTOM_RIGHT: Anchor = Anchor("bottom_right")
+        public val BOTTOM_CENTER: Anchor = Anchor("bottom_center")
+        public val BOTTOM_LEFT: Anchor = Anchor("bottom_left")
+        public val MIDDLE_RIGHT: Anchor = Anchor("middle_right")
+        public val MIDDLE_CENTER: Anchor = Anchor("middle_center")
+        public val MIDDLE_LEFT: Anchor = Anchor("middle_left")
     }
 }
 
 /**
  * Defines the format for displaying values of this layer.
  *
- * Creates a [LayerTooltipsContext]. In this context you can configure lines of tooltip
+ * Creates a [LayerTooltipsContext]. In this context, you can configure lines of tooltip
  * by using line(..) methods.
  *
  * @see [LayerTooltipsContext].
@@ -168,7 +180,8 @@ data class Anchor(val value: String) {
  * value specified in the line template.
  * @see value
  */
-inline fun LayerContext.tooltips(
+
+public inline fun LayerContext.tooltips(
     variables: List<ColumnPointer<*>>,
     title: String? = null,
     anchor: Anchor? = null,
@@ -186,8 +199,8 @@ inline fun LayerContext.tooltips(
         minWidth,
         hide,
         valueFormats.map { it.key.id to it.value }
-                + aesFormats.map { "^" + it.key.name.name to it.value }
-                + statFormats.map { it.key.name to it.value },
+            + aesFormats.map { "^" + it.key.name.name to it.value }
+            + statFormats.map { it.key.name to it.value },
         LayerTooltipsContext().apply(tooltipsContextAction)
     )
 }

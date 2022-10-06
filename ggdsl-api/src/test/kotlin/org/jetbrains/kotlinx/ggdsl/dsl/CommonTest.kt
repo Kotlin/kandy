@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
@@ -104,10 +108,10 @@ internal class CommonTest {
         )
         val yMapping = ScaledPositionalMapping(
             Y, SourceScaledPositional(
-                height, PositionalContinuousScale(
-                    limits = 1f to 15f
-                )
-            ), typeOf<Float>()
+            height, PositionalContinuousScale(
+            limits = 1f to 15f
+        )
+        ), typeOf<Float>()
         )
         val colorMapping = ScaledNonPositionalMapping(
             COLOR,

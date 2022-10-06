@@ -2,8 +2,8 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.stat
 
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 
-interface Statistic<T> {
-    val name: String
+public interface Statistic<T> {
+    public val name: String
 }
 
 @PublishedApi

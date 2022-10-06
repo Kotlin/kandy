@@ -1,14 +1,27 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 
-val VIOLIN = LetsPlotGeom("violin")
+
+public val VIOLIN: LetsPlotGeom = LetsPlotGeom("violin")
 /*
 // todo stats
 @PlotDslMarker
 class ViolinContext(
     parent: LayerCollectorContext,
+=======
+public val VIOLIN: LetsPlotGeom = LetsPlotGeom("violin")
+
+// todo stats
+@PlotDslMarker
+public class ViolinContext(
+    override var data: MutableNamedData,
+>>>>>>> main
     drawQuantiles: List<Double>?,
     scale: ViolinScale?,
     kernel: Kernel?,
@@ -20,48 +33,48 @@ class ViolinContext(
 ) : LayerContext(parent) {
 
     @PublishedApi
-    internal val _x = XAes(this)
+    internal val _x: XAes = XAes(this)
 
     @PublishedApi
-    internal val _y = YAes(this)
+    internal val _y: YAes = YAes(this)
 
-    val x = XDummyAes(this)
-    val y = YDummyAes(this)
+    public val x: XDummyAes = XDummyAes(this)
+    public val y: YDummyAes = YDummyAes(this)
 
 
-    val alpha = AlphaAes(this)
-    val fillColor = FillAes(this)
-    val width = WidthAes(this)
-    val violinWidth = ViolinWidthAes(this)
-    val borderLineWidth = SizeAes(this)
-    val borderLineColor = ColorAes(this)
-    val borderLineType = LineTypeAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val fillColor: FillAes = FillAes(this)
+    public val width: WidthAes = WidthAes(this)
+    public val violinWidth: ViolinWidthAes = ViolinWidthAes(this)
+    public val borderLineWidth: SizeAes = SizeAes(this)
+    public val borderLineColor: ColorAes = ColorAes(this)
+    public val borderLineType: LineTypeAes = LineTypeAes(this)
 
     // todo weight
 
     @PublishedApi
-    internal val drawQuantiles = DrawQuantilesAes(this)
+    internal val drawQuantiles: DrawQuantilesAes = DrawQuantilesAes(this)
 
     @PublishedApi
-    internal val scale = ViolinScaleAes(this)
+    internal val scale: ViolinScaleAes = ViolinScaleAes(this)
 
     @PublishedApi
-    internal val kernel = KernelAes(this)
+    internal val kernel: KernelAes = KernelAes(this)
 
     @PublishedApi
-    internal val bw = BWAes(this)
+    internal val bw: BWAes = BWAes(this)
 
     @PublishedApi
-    internal val pointsSampled = NumberAes(this)
+    internal val pointsSampled: NumberAes = NumberAes(this)
 
     @PublishedApi
-    internal val trim = TrimAes(this)
+    internal val trim: TrimAes = TrimAes(this)
 
     @PublishedApi
-    internal val adjust = AdjustAes(this)
+    internal val adjust: AdjustAes = AdjustAes(this)
 
     @PublishedApi
-    internal val fullScanMax = FullScanMaxAes(this)
+    internal val fullScanMax: FullScanMaxAes = FullScanMaxAes(this)
 
     init {
 
@@ -95,18 +108,18 @@ class ViolinContext(
     }
 
 
-    object Statistics {
-        val X = ViolinStat.X
-        val Y = ViolinStat.Y
-        val VIOLIN_WIDTH = ViolinStat.ViolinWidth
-        val DENSITY = ViolinStat.Density
-        val SCALED = ViolinStat.Scaled
-        val COUNT = ViolinStat.Count
+    public object Statistics {
+        public val X: ViolinStat.X = ViolinStat.X
+        public val Y: ViolinStat.Y = ViolinStat.Y
+        public val VIOLIN_WIDTH: ViolinStat.ViolinWidth = ViolinStat.ViolinWidth
+        public val DENSITY: ViolinStat.Density = ViolinStat.Density
+        public val SCALED: ViolinStat.Scaled = ViolinStat.Scaled
+        public val COUNT: ViolinStat.Count = ViolinStat.Count
     }
 
-    val Stat = Statistics
+    public val Stat: Statistics = Statistics
 
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         stat: ViolinStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -118,8 +131,8 @@ class ViolinContext(
         return mapping
     }
 
-    inline operator fun <reified DomainType : Any, RangeType : Any>
-            MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType : Any, RangeType : Any>
+        MappableNonPositionalAes<RangeType>.invoke(
         stat: ViolinStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -132,13 +145,17 @@ class ViolinContext(
     }
 
 
-
-
 }
 
+<<<<<<< HEAD
 inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     sourceX: ColumnPointer<T>,
     sourceY: ColumnPointer<R>,
+=======
+public inline fun <reified T : Any, reified R : Any> PlotContext.violin(
+    sourceX: DataSource<T>,
+    sourceY: DataSource<R>,
+>>>>>>> main
     drawQuantiles: List<Double>? = null,
     scale: ViolinScale? = null,
     kernel: Kernel? = null,
@@ -161,8 +178,13 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     )
 }
 
+<<<<<<< HEAD
 inline fun <reified T : Any> PlotContext.violin(
     sourceY: ColumnPointer<T>,
+=======
+public inline fun <reified T : Any> PlotContext.violin(
+    sourceY: DataSource<T>,
+>>>>>>> main
     drawQuantiles: List<Double>? = null,
     scale: ViolinScale? = null,
     kernel: Kernel? = null,
@@ -184,7 +206,7 @@ inline fun <reified T : Any> PlotContext.violin(
     )
 }
 
-inline fun <reified T : Any, reified R : Any> PlotContext.violin(
+public inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     drawQuantiles: List<Double>? = null,

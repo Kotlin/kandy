@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
@@ -28,8 +32,8 @@ internal class LayerWrapper internal constructor(private val layer: Layer) :
     ) {
     // TODO
     override fun seal() = Options(
-        layer.settings.map {
-                (_, setting) -> setting.wrap()
+        layer.settings.map { (_, setting) ->
+            setting.wrap()
         }.toMap()
     )
 }

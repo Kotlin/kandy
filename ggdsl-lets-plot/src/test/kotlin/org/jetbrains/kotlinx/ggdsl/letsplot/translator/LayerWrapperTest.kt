@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
@@ -42,7 +46,7 @@ internal class LayerWrapperTest {
 
         val wrappedLayer = LayerWrapper(layer)
         assertEquals(
-            mapOf<String, Any>(
+            mapOf(
                 "mapping" to mapOf(
                     "fill" to "F"
                 ),
@@ -132,7 +136,7 @@ internal class LayerWrapperTest {
         val wrappedLayer = LayerWrapper(layer)
         println(wrappedLayer.toSpec())
         assertEquals(
-            mapOf<String, Any>(
+            mapOf(
                 "mapping" to mapOf(
                     "x" to "TIME_T",
                     "y" to "VAL_V",
@@ -150,17 +154,17 @@ internal class LayerWrapperTest {
                 "geom" to "bar",
                 "data_meta" to mapOf<String, Any>(
                     "mapping_annotations" to
-                            listOf(
-                                mapOf<String, Any>(
-                                    "aes" to "fill",
-                                    "annotation" to "as_discrete",
-                                    "parameters" to mapOf<String, Any?>(
-                                        "label" to "BAFGA",
-                                        "order_by" to null,
-                                        "order" to null
-                                    )
+                        listOf(
+                            mapOf(
+                                "aes" to "fill",
+                                "annotation" to "as_discrete",
+                                "parameters" to mapOf<String, Any?>(
+                                    "label" to "BAFGA",
+                                    "order_by" to null,
+                                    "order" to null
                                 )
                             )
+                        )
                 )
             ),
             wrappedLayer.toSpec()

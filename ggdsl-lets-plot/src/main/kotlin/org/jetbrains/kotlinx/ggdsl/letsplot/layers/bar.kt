@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
@@ -10,17 +14,17 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 // TODO
 
 @PublishedApi
-internal val BAR = LetsPlotGeom("bar")
+internal val BAR: LetsPlotGeom = LetsPlotGeom("bar")
 
 
 @PlotDslMarker
-class BarContext(parent: LayerCollectorContext) : WithBorderLineContext(parent) {
-    val x = XAes(this)
-    val y = YAes(this)
+public class BarContext(parent: LayerCollectorContext) : WithBorderLineContext(parent) {
+    public val x: XAes = XAes(this)
+    public val y: YAes = YAes(this)
 
-    val color = FillAes(this)
-    val alpha = AlphaAes(this)
-    val width = WidthAes(this)
+    public val color: FillAes = FillAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val width: WidthAes = WidthAes(this)
 
 }
 
@@ -68,6 +72,6 @@ class BarContext(parent: LayerCollectorContext) : WithBorderLineContext(parent) 
  *
  *  // TODO refer to bindings?
  */
-inline fun LayerCollectorContext.bar(block: BarContext.() -> Unit) {
+public inline fun LayerCollectorContext.bar(block: BarContext.() -> Unit) {
     addLayer(BarContext(this).apply(block), BAR)
 }

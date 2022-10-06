@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
@@ -8,16 +12,18 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
-internal val LINE_RANGE = LetsPlotGeom("linerange")
+internal val LINE_RANGE: LetsPlotGeom = LetsPlotGeom("linerange")
+
 @PlotDslMarker
-class LineRangeContext(parent: LayerCollectorContext) :
+public class LineRangeContext(parent: LayerCollectorContext) :
     WithBorderLineContext(parent) {
-    val x = XAes(this)
+    public val x: XAes = XAes(this)
 
-    val yMin = YMinAes(this)
-    val yMax = YMaxAes(this)
 
-    val alpha = AlphaAes(this)
+    public val yMin: YMinAes = YMinAes(this)
+    public val yMax: YMaxAes = YMaxAes(this)
+
+    public val alpha: AlphaAes = AlphaAes(this)
 
 }
 
@@ -66,6 +72,6 @@ class LineRangeContext(parent: LayerCollectorContext) :
  *
  *  // TODO refer to bindings?
  */
-inline fun LayerCollectorContext.lineRange(block: LineRangeContext.() -> Unit) {
+public inline fun LayerCollectorContext.lineRange(block: LineRangeContext.() -> Unit) {
     addLayer(LineRangeContext(this).apply(block), LINE_RANGE)
 }

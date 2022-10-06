@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
@@ -16,7 +20,7 @@ import kotlin.test.assertEquals
 
 internal class CustomizationTest {
 
-    class SpecificAes(override val context: BindingContext) : MappableNonPositionalAes<CustomGeomType>{
+    class SpecificAes(override val context: BindingContext) : MappableNonPositionalAes<CustomGeomType> {
         override val name = SPECIFIC_AES
     }
 
@@ -46,7 +50,7 @@ internal class CustomizationTest {
         }
     }
 
-    fun LayerContext.mockFeatureFunction(value: Int) {
+    private fun LayerContext.mockFeatureFunction(value: Int) {
         features[MockLayerFeature.FEATURE_NAME] = MockLayerFeature(value)
     }
 
@@ -58,11 +62,12 @@ internal class CustomizationTest {
         }
     }
 
-    var PlotContext.mockFeatureProp: String
+    private var PlotContext.mockFeatureProp: String
         get() = ""
         set(value) {
             features[MockPlotFeature.FEATURE_NAME] = MockPlotFeature(value)
         }
+
 
     val mockSrcDouble = columnPointer<Double>("mock_double")
     val mockSrcInt = columnPointer<Int>("mock_int")

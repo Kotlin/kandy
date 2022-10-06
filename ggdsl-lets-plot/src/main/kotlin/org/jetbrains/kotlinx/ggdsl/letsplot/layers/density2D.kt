@@ -1,16 +1,25 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 
-val DENSITY_2D = LetsPlotGeom("density_2D")
+public val DENSITY_2D: LetsPlotGeom = LetsPlotGeom("density_2D")
 
 /*
 // todo stats
 @PlotDslMarker
 // todo move x/y?
+<<<<<<< HEAD
 class Density2DContext(
     parent: LayerCollectorContext,
+=======
+public class Density2DContext(
+    override var data: MutableNamedData,
+>>>>>>> main
     kernel: Kernel?,
     bandWidth: BandWidth?,
     pointsSampled: Int?,
@@ -20,45 +29,51 @@ class Density2DContext(
 ) : LayerContext(parent) {
     // todo internal
     @PublishedApi
-    internal val _x = XAes(this)
+    internal val _x: XAes = XAes(this)
 
     @PublishedApi
-    internal val _y = YAes(this)
+    internal val _y: YAes = YAes(this)
 
-    val x = XDummyAes(this)
-    val y = YDummyAes(this)
+    public val x: XDummyAes = XDummyAes(this)
+    public val y: YDummyAes = YDummyAes(this)
 
-    object Statistics {
-        val X = ContourStat.X
-        val Y = ContourStat.Y
-        val LEVEL = ContourStat.Level
-        val GROUP = ContourStat.Group
+    public object Statistics {
+        public val X: ContourStat.X = ContourStat.X
+        public val Y: ContourStat.Y = ContourStat.Y
+        public val LEVEL: ContourStat.Level = ContourStat.Level
+        public val GROUP: ContourStat.Group = ContourStat.Group
     }
 
-     val Stat = Statistics
+    public val Stat: Statistics = Statistics
 
 
-    val alpha = AlphaAes(this)
-   // val fillColor = FillAes(this)
-    val borderLineWidth = SizeAes(this)
-    val borderLineColor = ColorAes(this)
-    val borderLineType = LineTypeAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+
+    // val fillColor = FillAes(this)
+    public val borderLineWidth: SizeAes = SizeAes(this)
+    public val borderLineColor: ColorAes = ColorAes(this)
+    public val borderLineType: LineTypeAes = LineTypeAes(this)
 
     // todo weight
 // TODO params
 
     @PublishedApi
-    internal val kernel = KernelAes(this)
+    internal val kernel: KernelAes = KernelAes(this)
+
     @PublishedApi
-    internal val bw = BWAes(this)
+    internal val bw: BWAes = BWAes(this)
+
     @PublishedApi
-    internal val pointsSampled = NumberAes(this)
+    internal val pointsSampled: NumberAes = NumberAes(this)
+
     @PublishedApi
-    internal val trim = TrimAes(this)
+    internal val trim: TrimAes = TrimAes(this)
+
     @PublishedApi
-    internal val adjust = AdjustAes(this)
+    internal val adjust: AdjustAes = AdjustAes(this)
+
     @PublishedApi
-    internal val fullScanMax = FullScanMaxAes(this)
+    internal val fullScanMax: FullScanMaxAes = FullScanMaxAes(this)
 
     init {
         kernel?.let {
@@ -82,7 +97,7 @@ class Density2DContext(
     }
 
 
-    inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -95,9 +110,8 @@ class Density2DContext(
     }
 
 
-
-    inline operator fun <reified DomainType : Any, RangeType : Any>
-            MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType : Any, RangeType : Any>
+        MappableNonPositionalAes<RangeType>.invoke(
         stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -110,12 +124,17 @@ class Density2DContext(
     }
 
 
-
 }
 
+<<<<<<< HEAD
 inline fun <reified T : Any, reified R: Any> PlotContext.density2D(
     sourceX: ColumnPointer<T>,
     sourceY: ColumnPointer<R>,
+=======
+public inline fun <reified T : Any, reified R : Any> PlotContext.density2D(
+    sourceX: DataSource<T>,
+    sourceY: DataSource<R>,
+>>>>>>> main
     kernel: Kernel? = null,
     bandWidth: BandWidth? = null,
     pointsSampled: Int? = null,
@@ -136,7 +155,7 @@ inline fun <reified T : Any, reified R: Any> PlotContext.density2D(
     )
 }
 
-inline fun <reified T : Any, reified R: Any> PlotContext.density2D(
+public inline fun <reified T : Any, reified R : Any> PlotContext.density2D(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     kernel: Kernel? = null,

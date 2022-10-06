@@ -9,5 +9,5 @@ package org.jetbrains.kotlinx.ggdsl.ir.data
  * @property type reified type of data
  */
 
-data class ColumnPointer<T : Any>(val id: String, /*val type: KType*/)
+public data class ColumnPointer<T : Any>(val id: String, /*val type: KType*/)
 

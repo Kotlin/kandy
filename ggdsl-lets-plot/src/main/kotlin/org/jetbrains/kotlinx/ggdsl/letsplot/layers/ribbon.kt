@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
@@ -9,17 +13,18 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
 @PublishedApi
-internal val RIBBON = LetsPlotGeom("ribbon")
+internal val RIBBON: LetsPlotGeom = LetsPlotGeom("ribbon")
+
 @PlotDslMarker
-class RibbonContext(parent: LayerCollectorContext) :
+public class RibbonContext(parent: LayerCollectorContext) :
     WithBorderLineContext(parent) {
-    val x = XAes(this)
+    public val x: XAes = XAes(this)
 
-    val yMin = YMinAes(this)
-    val yMax = YMaxAes(this)
+    public val yMin: YMinAes = YMinAes(this)
+    public val yMax: YMaxAes = YMaxAes(this)
 
-    val color = FillAes(this)
-    val alpha = AlphaAes(this)
+    public val color: FillAes = FillAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 
 }
 
@@ -69,6 +74,6 @@ class RibbonContext(parent: LayerCollectorContext) :
  *  ```
  *  // TODO refer to bindings?
  */
-inline fun LayerCollectorContext.ribbon(block: RibbonContext.() -> Unit) {
+public inline fun LayerCollectorContext.ribbon(block: RibbonContext.() -> Unit) {
     addLayer(RibbonContext(this).apply(block), RIBBON)
 }

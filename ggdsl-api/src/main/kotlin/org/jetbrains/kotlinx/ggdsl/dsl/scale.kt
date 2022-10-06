@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
@@ -7,24 +11,27 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.*
  *
  * @param transform the transformation of scale
  */
-fun continuous(transform: NonPositionalTransform? = null) = NonPositionalContinuousUnspecifiedScale(transform)
+public fun continuous(transform: NonPositionalTransform? = null): NonPositionalContinuousUnspecifiedScale =
+    NonPositionalContinuousUnspecifiedScale(transform)
 
 /**
  * Creates a new default categorical non-positional scale
  */
-fun categorical() = NonPositionalCategoricalUnspecifiedScale
+public fun categorical(): NonPositionalCategoricalUnspecifiedScale = NonPositionalCategoricalUnspecifiedScale
 
 /**
  * Creates a new default continuous positional scale
  *
  * @param transform the transformation of scale
  */
-fun continuousPos(transform: PositionalTransform? = null) = PositionalContinuousUnspecifiedScale(transform)
+public fun continuousPos(transform: PositionalTransform? = null): PositionalContinuousUnspecifiedScale =
+    PositionalContinuousUnspecifiedScale(transform)
 
 /**
  * Creates a new default categorical positional scale
  */
-fun categoricalPos() = PositionalCategoricalUnspecifiedScale
+public fun categoricalPos(): PositionalCategoricalUnspecifiedScale =
+    PositionalCategoricalUnspecifiedScale
 
 /**
  * Creates a new continuous positional scale
@@ -34,10 +41,10 @@ fun categoricalPos() = PositionalCategoricalUnspecifiedScale
  * @param transform the transformation of scale
  * @return new [PositionalContinuousScale] with given limits
  */
-fun <DomainType : Any> continuousPos(
+public fun <DomainType : Any> continuousPos(
     limits: Pair<DomainType, DomainType>? = null,
     transform: PositionalTransform? = null
-) = PositionalContinuousScale(limits, transform)
+): PositionalContinuousScale<DomainType> = PositionalContinuousScale(limits, transform)
 
 /**
  * Creates a new continuous non-positional scale
@@ -49,11 +56,12 @@ fun <DomainType : Any> continuousPos(
  * @param transform the transformation of scale
  * @return new [NonPositionalContinuousScale] with given limits
  */
-fun <DomainType : Any, RangeType : Any> continuous(
+public fun <DomainType : Any, RangeType : Any> continuous(
     domainLimits: Pair<DomainType, DomainType>? = null,
     rangeLimits: Pair<RangeType, RangeType>? = null,
     transform: NonPositionalTransform? = null
-) = NonPositionalContinuousScale(domainLimits, rangeLimits, transform)
+): NonPositionalContinuousScale<DomainType, RangeType> =
+    NonPositionalContinuousScale(domainLimits, rangeLimits, transform)
 
 /**
  * Creates a new categorical positional scale
@@ -62,7 +70,7 @@ fun <DomainType : Any, RangeType : Any> continuous(
  * @param categories [List] defining the domain
  * @return new [PositionalCategoricalScale] with given categories
  */
-fun <DomainType : Any> categoricalPos(categories: List<DomainType>? = null) =
+public fun <DomainType : Any> categoricalPos(categories: List<DomainType>? = null): PositionalCategoricalScale<DomainType> =
     PositionalCategoricalScale(categories)
 
 /**
@@ -74,7 +82,7 @@ fun <DomainType : Any> categoricalPos(categories: List<DomainType>? = null) =
  * @param rangeValues [List] defining the range
  * @return new [NonPositionalCategoricalScale] with given limits
  */
-fun <DomainType : Any, RangeType : Any> categorical(
+public fun <DomainType : Any, RangeType : Any> categorical(
     domainCategories: List<DomainType>? = null,
     rangeValues: List<RangeType>? = null,
-) = NonPositionalCategoricalScale(domainCategories, rangeValues)
+): NonPositionalCategoricalScale<DomainType, RangeType> = NonPositionalCategoricalScale(domainCategories, rangeValues)

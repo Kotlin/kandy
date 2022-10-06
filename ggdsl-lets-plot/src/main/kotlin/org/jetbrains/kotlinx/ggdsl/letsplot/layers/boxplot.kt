@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
@@ -8,21 +12,22 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
-val BOXPLOT = LetsPlotGeom("boxplot")
+
+public val BOXPLOT: LetsPlotGeom = LetsPlotGeom("boxplot")
 @PlotDslMarker
-class BoxplotContext(parent: LayerCollectorContext) : WithBorderLineContext(parent) {
-    val x = XAes(this)
+public class BoxplotContext(parent: LayerCollectorContext) : WithBorderLineContext(parent) {
+    public val x: XAes = XAes(this)
 
-    val lower = LowerAes(this)
-    val upper = UpperAes(this)
-    val middle = MiddleAes(this)
-    val yMin = YMinAes(this)
-    val yMax = YMaxAes(this)
+    public val lower: LowerAes = LowerAes(this)
+    public val upper: UpperAes = UpperAes(this)
+    public val middle: MiddleAes = MiddleAes(this)
+    public val yMin: YMinAes = YMinAes(this)
+    public val yMax: YMaxAes = YMaxAes(this)
 
-    val fatten = FattenAes(this)
+    public val fatten: FattenAes = FattenAes(this)
 
-    val color = FillAes(this)
-    val alpha = AlphaAes(this)
+    public val color: FillAes = FillAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 }
 
 /**
@@ -75,6 +80,6 @@ class BoxplotContext(parent: LayerCollectorContext) : WithBorderLineContext(pare
  *
  *  // TODO refer to bindings?
  */
-inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
+public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
     addLayer(BoxplotContext(this).apply(block), BOXPLOT)
 }

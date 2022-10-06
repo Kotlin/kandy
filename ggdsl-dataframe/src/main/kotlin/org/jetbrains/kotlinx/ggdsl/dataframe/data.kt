@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
@@ -11,7 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 
 // todo internal?
-fun <T : Any> ColumnReference<T>.toColRef(): ColumnPointer<T> {
+public fun <T : Any> ColumnReference<T>.toColRef(): ColumnPointer<T> {
     return ColumnPointer(name())
 }
 
@@ -20,46 +24,46 @@ internal fun DataFrame<*>.toNamedData(): Map<String, List<Any>> {
     return flatten().toMap().map { it.key to it.value.map { it!! /*TODO*/ } }.toMap()
 }
 
-class LazyGroupedDataFrame(
+public class LazyGroupedDataFrame(
     override val keys: List<String>,
     override val origin: DataFrameWrapper,
 ) : LazyGroupedDataInterface {
-    override fun count() = GroupedByWrapper(origin.df.groupBy(cols = keys.toTypedArray() ))
+    override fun count(): GroupedByWrapper<Any?, Any?> = GroupedByWrapper(origin.df.groupBy(cols = keys.toTypedArray() ))
 }
 
-class GroupedByWrapper<T, G>(val groupBy: GroupBy<T, G>): CountedGroupedDataInterface {
-    override val keys = DataFrameWrapper(groupBy.keys)
-    override val groups = groupBy.groups.map { DataFrameWrapper(it) }.toList()
+public class GroupedByWrapper<T, G>(public val groupBy: GroupBy<T, G>): CountedGroupedDataInterface {
+    override val keys: DataFrameWrapper = DataFrameWrapper(groupBy.keys)
+    override val groups: List<DataFrameWrapper> = groupBy.groups.map { DataFrameWrapper(it) }.toList()
 
-    override fun toLazy() = LazyGroupedDataFrame(
+    override fun toLazy(): LazyGroupedDataFrame = LazyGroupedDataFrame(
         keys.df.columnNames(),
         DataFrameWrapper(groupBy.groups.concat())
     )
 }
 
 
-class GroupedDataFrameContext<T, G>(val groupBy: GroupBy<T, G>) {
-    public val groupKey = groupBy.keys
+public class GroupedDataFrameContext<T, G>(public val groupBy: GroupBy<T, G>) {
+    public val groupKey: DataFrame<T> = groupBy.keys
     public val column: DataFrame<G> = groupBy.groups.first() // TODO
 
-    fun toLazy() = LazyGroupedDataFrame(
+    public fun toLazy(): LazyGroupedDataFrame = LazyGroupedDataFrame(
         groupKey.columns().map { it.name() },
         DataFrameWrapper(groupBy.groups.concat())
     )
 }
 
 
-class DataFrameWrapper(val df: DataFrame<*>) : NamedDataInterface {
+public class DataFrameWrapper(public val df: DataFrame<*>) : NamedDataInterface {
     override val map: Map<String, List<Any>> = df.toNamedData()
     override fun groupBy(vararg columnPointers: ColumnPointer<*>): LazyGroupedDataFrame {
         return LazyGroupedDataFrame(columnPointers.map { it.id }, this)
     }
 
-    fun groupBy(vararg columnReferences: ColumnReference<*>): LazyGroupedDataFrame {
+    public fun groupBy(vararg columnReferences: ColumnReference<*>): LazyGroupedDataFrame {
         return LazyGroupedDataFrame(columnReferences.map { it.name() }, this)
     }
 
-    fun groupBy(
+    public fun groupBy(
         columnReferences: List<ColumnReference<*>>,
         columnPointers: List<ColumnPointer<*>> = listOf()
     ): LazyGroupedDataFrame {
@@ -67,7 +71,7 @@ class DataFrameWrapper(val df: DataFrame<*>) : NamedDataInterface {
     }
 }
 
-inline fun NamedDataPlotContext<DataFrameWrapper>.groupBy(
+public inline fun NamedDataPlotContext<DataFrameWrapper>.groupBy(
     vararg columnReferences: ColumnReference<*>,
     block: WithGroupingBindingContext.() -> Unit
 ) {
@@ -78,7 +82,7 @@ inline fun NamedDataPlotContext<DataFrameWrapper>.groupBy(
     ).apply(block)
 }
 
-inline fun NamedDataPlotContext<DataFrameWrapper>.groupBy(
+public inline fun NamedDataPlotContext<DataFrameWrapper>.groupBy(
     columnReferences: List<ColumnReference<*>>,
     columnPointers: List<ColumnPointer<*>> = listOf(),
     block: WithGroupingBindingContext.() -> Unit

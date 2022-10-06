@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -7,12 +11,14 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 val X = AesName("x")
-data class XAes(override val context: BindingContext): ScalablePositionalAes {
+
+data class XAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = X
 }
 
 val Y = AesName("y")
-data class YAes(override val context: BindingContext): ScalablePositionalAes {
+
+data class YAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = Y
 }
 

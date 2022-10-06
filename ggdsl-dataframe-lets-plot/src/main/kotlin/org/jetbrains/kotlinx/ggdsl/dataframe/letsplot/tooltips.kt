@@ -1,8 +1,13 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.Aes
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Stat
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.Anchor
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
@@ -14,7 +19,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltipsContext
  * @param column column whose value will be inserted into the tooltip
  * @return format string
  */
-fun value(column: ColumnReference<*>): String {
+public fun value(column: ColumnReference<*>): String {
     return "@${column.name()}"
 }
 
@@ -24,20 +29,19 @@ fun value(column: ColumnReference<*>): String {
  *
  * @param column
  */
-fun LayerTooltipsContext.line(column: ColumnReference<*>) {
+public fun LayerTooltipsContext.line(column: ColumnReference<*>) {
     line("@|@${column.name()}")
 }
 
 
-
-inline fun LayerContext.tooltips(
+public inline fun LayerContext.tooltips(
     columns: List<ColumnReference<*>> = listOf(),
     variablesDS: List<org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>> = listOf(),
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
     hide: Boolean = false,
-    dsFormats: Map<org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>, String> = mapOf(),
+    dsFormats: Map<ColumnPointer<*>, String> = mapOf(),
     columnsFormats: Map<ColumnReference<*>, String> = mapOf(),
     aesFormats: Map<Aes, String> = mapOf(),
     statFormats: Map<Stat<*>, String> = mapOf(),
@@ -50,9 +54,9 @@ inline fun LayerContext.tooltips(
         minWidth,
         hide,
         dsFormats.map { it.key.id to it.value }
-                + columnsFormats.map { it.key.name() to it.value }
-                + aesFormats.map { "^" + it.key.name.name to it.value }
-                + statFormats.map { it.key.name to it.value },
+            + columnsFormats.map { it.key.name() to it.value }
+            + aesFormats.map { "^" + it.key.name.name to it.value }
+            + statFormats.map { it.key.name to it.value },
         LayerTooltipsContext().apply(tooltipsContextAction)
     )
 }

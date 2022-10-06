@@ -21,7 +21,7 @@ internal fun BinXPos.toKind():BinStat.XPosKind = when(this) {
 }
 
 // TODO
-fun splitByGroup(data: DataFrame, groups: (Int) -> Int): List<DataFrame> {
+internal fun splitByGroup(data: DataFrame, groups: (Int) -> Int): List<DataFrame> {
     return GroupUtil.indicesByGroup(data.rowCount(), groups).values.map { indices ->
         data.variables().fold(DataFrame.Builder()) { b, variable ->
             when (data.isNumeric(variable)) {

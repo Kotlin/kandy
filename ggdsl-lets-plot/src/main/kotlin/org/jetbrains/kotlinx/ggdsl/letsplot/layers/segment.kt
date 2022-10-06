@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
@@ -8,20 +12,20 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
-internal val SEGMENT = LetsPlotGeom("segment")
+internal val SEGMENT: LetsPlotGeom = LetsPlotGeom("segment")
 
 
-class SegmentContext(parent: LayerCollectorContext) :
+public class SegmentContext(parent: LayerCollectorContext) :
     LayerContext(parent) {
     // TODO
-    val xBegin = XAes(this)
-    val yBegin = YAes(this)
-    val xEnd = XEndAes(this)
-    val yEnd = YEndAes(this)
-    val color = ColorAes(this)
-    val alpha = AlphaAes(this)
-    val lineType = LineTypeAes(this)
-    val width = SizeAes(this)
+    public val xBegin: XAes = XAes(this)
+    public val yBegin: YAes = YAes(this)
+    public val xEnd: XEndAes = XEndAes(this)
+    public val yEnd: YEndAes = YEndAes(this)
+    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
+    public val lineType: LineTypeAes = LineTypeAes(this)
+    public val width: SizeAes = SizeAes(this)
 
     // todo speed and flow
 }
@@ -72,6 +76,6 @@ class SegmentContext(parent: LayerCollectorContext) :
  *  ```
  *  // TODO refer to bindings?
  */
-fun LayerCollectorContext.segment(block: SegmentContext.() -> Unit) {
+public fun LayerCollectorContext.segment(block: SegmentContext.() -> Unit) {
     addLayer(SegmentContext(this).apply(block), SEGMENT)
 }

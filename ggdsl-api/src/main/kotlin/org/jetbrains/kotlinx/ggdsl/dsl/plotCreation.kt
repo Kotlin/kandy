@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
@@ -38,16 +42,20 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
  * @return new [Plot]
  * @see [BaseBindingContext]
  */
-inline fun <T: NamedDataInterface> plot(dataset: T, block: NamedDataPlotContext<T>.() -> Unit): Plot {
+
+public inline fun <T: NamedDataInterface> plot(dataset: T, block: NamedDataPlotContext<T>.() -> Unit): Plot {
     return NamedDataPlotContext(dataset).apply(block).toPlot()
 }
 
-inline fun plot(dataset: GroupedDataInterface, block: GroupedDataPlotContext.() -> Unit): Plot {
+public inline fun plot(dataset: GroupedDataInterface, block: GroupedDataPlotContext.() -> Unit): Plot {
     return GroupedDataPlotContext(dataset).apply(block).toPlot()
 }
 
 /*
 inline fun plot(block: PlotContext.() -> Unit): Plot {
+=======
+public inline fun plot(dataset: NamedData = mapOf(), block: PlotContext.() -> Unit): Plot {
+>>>>>>> main
     return PlotContext().apply {
         data.putAll(dataset) // TODO
         block()

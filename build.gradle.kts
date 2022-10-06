@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 import java.time.Duration
 
 buildscript {
@@ -14,7 +18,7 @@ plugins {
     id("org.jetbrains.dokka") version "1.7.10"
 }
 
-val ggdslVersion = "0.2.0-alpha-5"
+val ggdslVersion = "0.2.1"
 
 allprojects {
     repositories {
@@ -25,6 +29,14 @@ allprojects {
     version = ggdslVersion
     apply(plugin = "kotlin")
     apply(plugin = "org.jetbrains.dokka")
+
+    kotlin.explicitApi()
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            allWarningsAsErrors = true
+        }
+    }
 }
 
 subprojects {
