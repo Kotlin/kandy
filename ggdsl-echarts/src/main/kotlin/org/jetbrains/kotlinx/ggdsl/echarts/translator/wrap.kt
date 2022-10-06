@@ -31,8 +31,8 @@ internal data class DataInfo(
 )
 
 internal fun NamedDataInterface.wrap(): DataInfo {
-    val header = keys.toList()
-    val values = values.toList()
+    val header = map.keys.toList()
+    val values = map.values.toList()
     val size = values.first().size
 
     val idToDim = header.mapIndexed { index, s -> s to index }.toMap()
@@ -423,7 +423,8 @@ internal fun wrapColor(color: Color): EchartsColorOption {
 
 public fun Plot.toOption(): MetaOption {
     visualMapCounter = 0 // todo
-    val (source, idToDim) = dataset.wrap()
+    dataset as NamedDataInterface //TODO!!!
+    val (source, idToDim) = (dataset as NamedDataInterface).wrap()
     // TODO!!!
 
     val visualMaps = mutableListOf<VisualMap>()
@@ -440,7 +441,7 @@ public fun Plot.toOption(): MetaOption {
         index to if (layer.data === dataset) {
             null
         } else {
-            layer.data?.wrap()
+            (layer.data as NamedDataInterface).wrap()
         }
     }.toMap()
 
@@ -449,7 +450,7 @@ public fun Plot.toOption(): MetaOption {
             if (mapping is ScaledMapping<*>) {
                 val scale = mapping.sourceScaled.scale
                 val srcId = layer.mappings[aes]!!.sourceId()
-                val data = layer.data?.get(srcId) ?: dataset[srcId]!!
+                val data = (layer.data as NamedDataInterface).map[srcId] ?: (dataset as NamedDataInterface).map[srcId]!!
                 val seriesIndex = layerToData[index]?.header?.get(srcId) ?: idToDim[srcId]!!
                 val domainType = mapping.domainType
                 when (aes) {
@@ -480,7 +481,7 @@ public fun Plot.toOption(): MetaOption {
             yAxis = listOf(yAxis),
             visualMap = visualMaps,
             series = layers.mapIndexed { index, layer -> layer.toSeries(layerToData[index]?.data) },
-            title = (layout as? EChartsLayout)?.title?.let { Title(it) }
+           //todo title = (layout as? EChartsLayout)?.title?.let { Title(it) }
         ).apply {
             (features[AnimationFeature.FEATURE_NAME] as? AnimationFeature)?.let {
                 animation = true
@@ -489,7 +490,8 @@ public fun Plot.toOption(): MetaOption {
                 animationEasing = it.easing.name
                 animationDelay = it.delay
             }
-        }, (layout as? EChartsLayout)?.size
+        },
+        null // todo
     )
 }
 

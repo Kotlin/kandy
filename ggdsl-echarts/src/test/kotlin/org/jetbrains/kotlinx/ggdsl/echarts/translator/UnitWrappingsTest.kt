@@ -4,8 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
-import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
+import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
 import org.jetbrains.kotlinx.ggdsl.echarts.*
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.Stack
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.ColorStop
@@ -26,11 +27,11 @@ internal class UnitWrappingsTest {
     @Test
     fun testDataWrap() {
         val names = listOf("cabook123", "mamakeksa", "EREVAN2077")
-        val dataset: NamedDataInterface = mapOf(
+        val dataset: NamedDataInterface = NamedData(mapOf(
             names[0] to listOf(1, 2, 4, 5),
             names[1] to listOf("keka", "meka", "shusha", "dusha"),
             names[2] to listOf(3.4, 11.1, 10.0, 100.4)
-        )
+        ))
         val (wrappedData, idToDim) = dataset.wrap()
         assertContentEquals(
             listOf(
@@ -50,17 +51,13 @@ internal class UnitWrappingsTest {
     @Test
     fun testToSeriesSimple() {
         val layer = Layer(
-            null,
+            NamedData(mapOf()),
             POINT,
             mapOf(
                 X to ScaledPositionalMapping(
                     X,
                     SourceScaledPositional(
-<<<<<<< HEAD
                         columnPointer<Double>("srcX"),
-=======
-                        source("srcX"),
->>>>>>> main
                         continuousPos(1.0 to 5.0)
                     ),
                     typeOf<Double>()
@@ -96,37 +93,23 @@ internal class UnitWrappingsTest {
     @Test
     fun testToSeriesComplex() {
         val layer = Layer(
-            null,
+            NamedData(mapOf()),
             LINE,
             mapOf(
                 X to ScaledPositionalUnspecifiedMapping(
                     X, SourceScaledPositionalUnspecified(
-<<<<<<< HEAD
                         columnPointer<Float>("time"),
                         PositionalContinuousUnspecifiedScale()
                     ),
-=======
-                    source<Float>("time"),
-                    PositionalContinuousUnspecifiedScale()
-                ),
->>>>>>> main
                     typeOf<Double>()
                 ),
                 Y to ScaledPositionalMapping(
                     Y, SourceScaledPositional(
-<<<<<<< HEAD
                         columnPointer<Float>("size"),
                         PositionalContinuousScale(
                             limits = 1f to 15f
                         )
                     ),
-=======
-                    source("size"),
-                    PositionalContinuousScale(
-                        limits = 1f to 15f
-                    )
-                ),
->>>>>>> main
                     typeOf<Float>()
                 ),
             ),

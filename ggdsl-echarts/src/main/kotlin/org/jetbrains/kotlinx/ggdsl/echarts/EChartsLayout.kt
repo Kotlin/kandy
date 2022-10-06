@@ -4,8 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts
 
-import org.jetbrains.kotlinx.ggdsl.dsl.PlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.layoutAccessor
 import org.jetbrains.kotlinx.ggdsl.ir.Layout
 
 /**
@@ -20,7 +18,9 @@ public data class EChartsLayout(
     var size: Pair<Int, Int>? = null,
 ) : Layout
 
-
+/*
 public inline fun PlotContext.layout(block: EChartsLayout.() -> Unit) {
     layoutAccessor = EChartsLayout().apply(block)
 }
+
+ */

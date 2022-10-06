@@ -14,6 +14,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.animation.PlotChangeAnimation
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.toOption
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.wrap
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
@@ -124,7 +125,7 @@ public fun DataChangeAnimation.toHTML(): String {
     val dataset = plot.dataset
     val datasets = mutableListOf<Dataset>()
     repeat(maxStates) {
-        dataChange(dataset)
+        dataChange(dataset as NamedDataInterface)
         datasets.add(Dataset(dataset.wrap().data.map { it.map { el -> el.toString() } }))
     }
     val encodedDatasets = encoder.encodeToString(datasets).replace('\"', '\'')

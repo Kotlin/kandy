@@ -14,12 +14,9 @@ import org.jetbrains.kotlinx.ggdsl.echarts.util.color.ColorStop
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.GradientOption
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.LinearGradientColor
 import org.jetbrains.kotlinx.ggdsl.echarts.util.color.SimpleColorOption
-<<<<<<< HEAD
 
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
-=======
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
->>>>>>> main
+
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -28,13 +25,13 @@ internal class ToOptionTest {
 
     @Test
     fun testSimple() {
-        val simpleDataset: NamedDataInterface = mapOf(
+        val simpleDataset: NamedDataInterface = NamedData(mapOf(
             "time" to listOf(1, 2, 3),
             "val" to listOf(2.0, 3.3, 2.9)
-        )
+        ))
         val plot = plot(simpleDataset) {
-            x(source<Int>("time"))
-            y(source<Int>("val"))
+            x(columnPointer<Int>("time"))
+            y(columnPointer<Int>("val"))
             points {
                 color(Color.RED)
             }
@@ -78,7 +75,7 @@ internal class ToOptionTest {
 
     @Test
     fun testComplex() {
-        val dataset: NamedDataInterface = mapOf(
+        val dataset: NamedDataInterface = NamedData(mapOf(
             "time" to listOf(1, 2, 3, 4),
             "val_max" to listOf(2.5, 4.1, 3.8, 2.8),
             "val_min_main_part" to listOf(1.0, 0.11, 2.0, 0.3),
@@ -86,7 +83,7 @@ internal class ToOptionTest {
             "type" to listOf("static", "dynamic", "dynamic", "dynamic"),
             "type_main_part" to listOf("raw", "dry", "dry", "raw"),
             "val_avg" to listOf(2.0, 3.3, 2.9, 1.8)
-        )
+        ))
 
         val time = columnPointer<Int>("time")
         val valMax = columnPointer<Double>("val_max")
@@ -96,8 +93,11 @@ internal class ToOptionTest {
         val type = columnPointer<String>("type")
         val typeMainPart = columnPointer<String>("type_main_part")
 
+        /*
         val plotTitle = "Important plot"
         val plotSize = 800 to 600
+
+         */
 
 
         val plot = plot(dataset) {
@@ -146,10 +146,13 @@ internal class ToOptionTest {
                 width(4.0)
                 color(Color.fromRGB(200, 0, 200))
             }
+            /*
             layout {
                 title = plotTitle
                 size = plotSize
             }
+
+             */
         }
         assertEquals(
             MetaOption(
@@ -258,11 +261,15 @@ internal class ToOptionTest {
                             ),
                         )
                     ),
+                    /*
                     title = Title(
                         text = "Important plot"
                     )
+
+                     */
                 ),
-                plotSize
+                null
+               // plotSize
             ),
             plot.toOption()
         )

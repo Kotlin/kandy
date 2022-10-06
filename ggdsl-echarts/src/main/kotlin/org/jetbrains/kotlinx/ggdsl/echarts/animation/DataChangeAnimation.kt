@@ -16,11 +16,6 @@ public data class DataChangeAnimation internal constructor(
 
 public fun Plot.withDataChangeAnimation(
     interval: Int,
-<<<<<<< HEAD
     dataChange: NamedDataInterface.() -> Unit
-) = DataChangeAnimation(this, interval, dataChange)
-=======
-    dataChange: NamedData.() -> Unit
 ): DataChangeAnimation = DataChangeAnimation(this, interval, dataChange)
->>>>>>> main
 

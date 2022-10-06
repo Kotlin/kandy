@@ -4,19 +4,14 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.dsl.LayerContext
-import org.jetbrains.kotlinx.ggdsl.dsl.data.MutableNamedData
 import org.jetbrains.kotlinx.ggdsl.echarts.*
 
-<<<<<<< HEAD
-class PointsContext(parent: LayerCollectorContext) : LayerContext(parent) {
-    val x = XAes(this)
-    val y = YAes(this)
-=======
-public class PointsContext(override var data: MutableNamedData) : LayerContext() {
+public class PointsContext(parent: LayerCollectorContext) : LayerContext(parent) {
     public val x: XAes = XAes(this)
     public val y: YAes = YAes(this)
->>>>>>> main
+
 
     public val size: SizeAes = SizeAes(this)
     public val color: ColorAes = ColorAes(this)
@@ -28,17 +23,11 @@ public class PointsContext(override var data: MutableNamedData) : LayerContext()
     public val symbol: SymbolAes = SymbolAes(this)
 }
 
-<<<<<<< HEAD
-class LineContext(parent: LayerCollectorContext) :
+
+public class LineContext(parent: LayerCollectorContext) :
     LayerContext(parent) {
-    val x = XAes(this)
-    val y = YAes(this)
-=======
-public class LineContext(override var data: MutableNamedData) :
-    LayerContext() {
     public val x: XAes = XAes(this)
     public val y: YAes = YAes(this)
->>>>>>> main
 
     public val color: ColorAes = ColorAes(this)
     public val alpha: AlphaAes = AlphaAes(this)
@@ -48,17 +37,12 @@ public class LineContext(override var data: MutableNamedData) :
     public val lineType: LineTypeAes = LineTypeAes(this)
 }
 
-<<<<<<< HEAD
-class BarsContext(parent: LayerCollectorContext) :
+
+public class BarsContext(parent: LayerCollectorContext) :
     LayerContext(parent) {
-    val x = XAes(this)
-    val y = YAes(this)
-=======
-public class BarsContext(override var data: MutableNamedData) :
-    LayerContext() {
     public val x: XAes = XAes(this)
     public val y: YAes = YAes(this)
->>>>>>> main
+
 
     public val color: ColorAes = ColorAes(this)
     public val alpha: AlphaAes = AlphaAes(this)

@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.dsl
 
+import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.bars
 import org.jetbrains.kotlinx.ggdsl.echarts.stack.Stack
@@ -27,7 +28,7 @@ internal class FeaturesTest {
     fun testStack() {
         val stack1 = Stack("Stack #1")
         val stack2 = Stack("staCk №2")
-        val plot = plot {
+        val plot = plot(NamedData(mapOf())) {
             bars {
                 stack = stack1
             }
