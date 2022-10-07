@@ -15,7 +15,7 @@ import kotlin.reflect.KProperty
  * @param id the name of source in [NamedDataInterface]
  */
 
-public inline fun <reified T : Any> columnPointer(id: String): ColumnPointer<T> =
+public  fun < T : Any> columnPointer(id: String): ColumnPointer<T> =
     ColumnPointer(id)
 
 // TODO

@@ -36,20 +36,6 @@ public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.i
     context.bindingCollector.mappings[this.name] =
         NonScalablePositionalMapping(this.name, source, typeOf<DomainType>())
 }
-/*
-/**
- * Maps the given [Iterable] to this non-scalable ("sub-positional") aesthetic attribute.
- *
- * @param data the mapped raw data.
- */
-public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
-    data: Iterable<DomainType>
-) {
-    context.bindingCollector.mappings[this.name] =
-        NonScalablePositionalMapping(this.name, with(context) { data.toDataSource() }, typeOf<DomainType>())
-}
-
- */
 
 /**
  * Maps the given property to this non-scalable ("sub-positional") aesthetic attribute.
@@ -85,23 +71,7 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
  *
  * @param data the mapped raw data.
  */
-/*
-inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-=======
-public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
->>>>>>> main
-    data: Iterable<DomainType>
-): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
-    val mapping = ScaledUnspecifiedDefaultPositionalMapping(
-        this.name,
-        with(context) { data.toDataSource() }.scaled(),
-        typeOf<DomainType>()
-    )
-    context.bindingCollector.mappings[this.name] = mapping
-    return mapping
-}
 
- */
 
 /**
  * Maps the given property to this positional aesthetic attribute with a default scale.
@@ -144,23 +114,6 @@ public inline operator fun <reified DomainType : Any, RangeType : Any> MappableN
  * @param data the mapped raw data.
  */
 
-/*
-inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-=======
-public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
->>>>>>> main
-    data: Iterable<DomainType>
-): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
-    val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
-        this.name,
-        with(context) { data.toDataSource() }.scaled(),
-        typeOf<DomainType>()
-    )
-    context.bindingCollector.mappings[this.name] = mapping
-    return mapping
-}
-
- */
 
 /**
  * Maps the given property to this non-positional aesthetic attribute with a default scale.

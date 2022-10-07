@@ -79,81 +79,6 @@ public interface NameDataBindingContext : TableBindingContext {
 }
 
 
-/*
-abstract class BindingContext: BindingContext {
-    val data: MutableNamedData = mutableMapOf()
-    override val bindingCollector = BindingCollector()
-=======
-@PlotDslMarker
-public abstract class BindingContext {
-    public abstract var data: MutableNamedData
->>>>>>> main
-
-    //todo
-    private var counter: Int = 0
-
-    @PublishedApi
-    internal fun generateID(): String = "*gen${counter++}"
-
-    // todo add for arrays/others???
-   /* @PublishedApi
-    internal */
-    inline fun <reified T : Any> Iterable<T>.toDataSource(): ColumnReference<T> {
-        val list = toList()
-        val id = generateID()
-        data[id] = list
-        return source(id)
-    }
-
-    // todo how to hide?
-<<<<<<< HEAD
-   // val bindingCollector = BindingCollector()
-=======
-    public val bindingCollector: BindingCollector = BindingCollector()
->>>>>>> main
-
-    // todo how to hide?
-    public fun copyFrom(other: BindingContext, copyData: Boolean = true) {
-        if (copyData) {
-            // TODO!!!
-            data.putAll(other.data)
-        }
-        this.bindingCollector.copyFrom(other.bindingCollector)
-    }
-
-
-    // todo move???
-    // TODO(explicit return types?)
-    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(): SourceScaledUnspecifiedDefault<DomainType> =
-        SourceScaledUnspecifiedDefault(this.toDataSource())
-
-    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
-        scale: PositionalUnspecifiedScale
-    ): SourceScaledPositionalUnspecified<DomainType> = SourceScaledPositionalUnspecified(this.toDataSource(), scale)
-
-
-    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
-        scale: NonPositionalUnspecifiedScale
-    ): SourceScaledNonPositionalUnspecified<DomainType> =
-        SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
-
-
-    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
-        scale: PositionalScale<DomainType>
-    ): SourceScaledPositional<DomainType> = SourceScaledPositional(this.toDataSource(), scale)
-
-
-    public inline fun <reified DomainType : Any, RangeType : Any> Iterable<DomainType>.scaled(
-        scale: NonPositionalScale<DomainType, RangeType>
-    ): SourceScaledNonPositional<DomainType, RangeType> = SourceScaledNonPositional(this.toDataSource(), scale)
-
-
-}
-
-
- */
-
-
 public abstract class LayerContext(parent: LayerCollectorContext) : TableBindingContext,
     SubTableBindingContext(parent) {
     public val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
@@ -193,22 +118,6 @@ public open class WithGroupingBindingContext constructor(
     override val layers: MutableList<Layer>,
     parentalBindingCollector: BindingCollector?
 ) : TableBindingContext, LayerCollectorContext, SubBindingContext(parentalBindingCollector)
-
-
-/*
-abstract class TableLayerContext : TableBindingContext, LayerContext {
-    // todo hide?
-    override val features = mutableMapOf<FeatureName, LayerFeature>()
-}
-*/
-
-/*
-abstract class MutableLayerContext : BindingContext(), LayerContext {
-    // todo hide?
-    override val features = mutableMapOf<FeatureName, LayerFeature>()
-}
-
- */
 
 /**
  * Creates a new [Layer] from this [LayerContext]
