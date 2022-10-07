@@ -11,7 +11,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlinx:dataframe:0.8.0")
+    implementation("org.jetbrains.kotlinx:dataframe:0.9.0-dev-1139")
     implementation(project(":ggdsl-api"))
 }
 
