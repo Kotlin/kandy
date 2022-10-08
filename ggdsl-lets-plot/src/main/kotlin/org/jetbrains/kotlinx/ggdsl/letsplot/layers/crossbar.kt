@@ -18,19 +18,19 @@ internal val CROSS_BAR: LetsPlotGeom = LetsPlotGeom("crossbar")
 @PlotDslMarker
 public class CrossBarContext(parent: LayerCollectorContext) :
     WithBorderLineContext(parent) {
-    public val x: XAes = XAes(this)
+    public val x: XAes get() = XAes(this)
     //todo
-    public val y: YDummyAes = YDummyAes(this)
+    public val y: YDummyAes get() = YDummyAes(this)
 
-    public val yMin: YMinAes = YMinAes(this)
-    public val yMax: YMaxAes = YMaxAes(this)
-    public val middle: MiddleAes = MiddleAes(this)
+    public val yMin: YMinAes get() = YMinAes(this)
+    public val yMax: YMaxAes get() = YMaxAes(this)
+    public val middle: MiddleAes get() = MiddleAes(this)
 
-    public val fatten: FattenAes = FattenAes(this)
+    public val fatten: FattenAes get() = FattenAes(this)
 
-    public val width: WidthAes = WidthAes(this)
-    public val color: FillAes = FillAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
+    public val width: WidthAes get() = WidthAes(this)
+    public val color: FillAes get() = FillAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
 
 }
 

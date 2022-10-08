@@ -29,24 +29,24 @@ public class InnerLineSubContext(parentContext: BindingContext)  {
 
 @PlotDslMarker
 public class PointRangeContext(parent: LayerCollectorContext) : LayerContext(parent) {
-    public val x: XAes = XAes(this)
-    public val y: YAes = YAes(this)
-    public val yMin: YMinAes = YMinAes(this)
-    public val yMax: YMaxAes = YMaxAes(this)
+    public val x: XAes get() = XAes(this)
+    public val y: YAes get() = YAes(this)
+    public val yMin: YMinAes get() = YMinAes(this)
+    public val yMax: YMaxAes get() = YMaxAes(this)
 
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val color: ColorAes = ColorAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val color: ColorAes get() = ColorAes(this)
 
     // todo separate????
-    public val size: SizeAes = SizeAes(this)
+    public val size: SizeAes get() = SizeAes(this)
 
-    public val innerPoint: InnerPointSubContext = InnerPointSubContext(this)
+    public val innerPoint: InnerPointSubContext get() = InnerPointSubContext(this)
 
     public inline operator fun InnerPointSubContext.invoke(block: InnerPointSubContext.() -> Unit) {
         apply(block)
     }
 
-    public val innerLine: InnerLineSubContext = InnerLineSubContext(this)
+    public val innerLine: InnerLineSubContext get() = InnerLineSubContext(this)
 
     public inline operator fun InnerLineSubContext.invoke(block: InnerLineSubContext.() -> Unit) {
         apply(block)

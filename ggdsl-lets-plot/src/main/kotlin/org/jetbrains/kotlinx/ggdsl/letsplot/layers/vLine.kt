@@ -16,12 +16,12 @@ internal val V_LINE: LetsPlotGeom = LetsPlotGeom("vLine")
 
 @PlotDslMarker
 public class VLineContext(parent: LayerCollectorContext) : LayerContext(parent) {
-    public val x: XInterceptAes = XInterceptAes(this)
+    public val x: XInterceptAes get() = XInterceptAes(this)
 
-    public val color: ColorAes = ColorAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val type: LineTypeAes = LineTypeAes(this)
-    public val width: SizeAes = SizeAes(this)
+    public val color: ColorAes get() = ColorAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val type: LineTypeAes get() = LineTypeAes(this)
+    public val width: SizeAes get() = SizeAes(this)
 }
 
 

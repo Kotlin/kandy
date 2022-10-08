@@ -19,12 +19,12 @@ internal val BAR: LetsPlotGeom = LetsPlotGeom("bar")
 
 @PlotDslMarker
 public class BarContext(parent: LayerCollectorContext) : WithBorderLineContext(parent) {
-    public val x: XAes = XAes(this)
-    public val y: YAes = YAes(this)
+    public val x: XAes get() = XAes(this)
+    public val y: YAes get() = YAes(this)
 
-    public val color: FillAes = FillAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val width: WidthAes = WidthAes(this)
+    public val color: FillAes get() = FillAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val width: WidthAes get() = WidthAes(this)
 
 }
 

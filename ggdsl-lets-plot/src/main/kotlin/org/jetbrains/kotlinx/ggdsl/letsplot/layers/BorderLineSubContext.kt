@@ -22,7 +22,7 @@ public class BorderLineSubContext(parentContext: BindingContext)  {
 
 public abstract class WithBorderLineContext(parent: LayerCollectorContext) : LayerContext(parent){
     // todo fix????
-    public val borderLine: BorderLineSubContext = BorderLineSubContext(this)
+    public val borderLine: BorderLineSubContext get() = BorderLineSubContext(this)
 
     public inline operator fun BorderLineSubContext.invoke(block: BorderLineSubContext.() -> Unit) {
         apply(block)

@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.stat
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dataframe.toColRef
+import org.jetbrains.kotlinx.ggdsl.dataframe.toColumnPointer
 import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinXPos
@@ -13,4 +13,5 @@ public inline fun<T:Any> LayerCollectorContext.statBin(
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinContext.() -> Unit
-): Unit = this@statBin.statBin(column.toColRef(), bins, binXPos, block)
+): Unit = this@statBin.statBin(column.toColumnPointer(), bins, binXPos, block)
+

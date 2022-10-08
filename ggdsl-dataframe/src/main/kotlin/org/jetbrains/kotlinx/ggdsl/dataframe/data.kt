@@ -15,12 +15,12 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 
 // todo internal?
-public fun <T : Any> ColumnReference<T>.toColRef(): ColumnPointer<T> {
+public fun <T : Any> ColumnReference<T>.toColumnPointer(): ColumnPointer<T> {
     return ColumnPointer(name())
 }
 
 
-internal fun DataFrame<*>.toNamedData(): Map<String, List<Any>> {
+public fun DataFrame<*>.toNamedData(): Map<String, List<Any>> {
     return flatten().toMap().map { it.key to it.value.map { it!! /*TODO*/ } }.toMap()
 }
 

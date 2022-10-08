@@ -86,11 +86,14 @@ public abstract class LayerContext(parent: LayerCollectorContext) : TableBinding
 }
 
 
-public interface LayerCollectorContext : TableBindingContext {
+public interface LayerCollectorContextInterface: BindingContext  {
     public val layers: MutableList<Layer>
 
+}
+
+public interface LayerCollectorContext: LayerCollectorContextInterface,TableBindingContext {
     // todo hide
-    public fun addLayer(context: LayerContext, geom: Geom) {
+    public  fun addLayer(context: LayerContext, geom: Geom) {
         layers.add(
             Layer(
                 data,
@@ -104,10 +107,9 @@ public interface LayerCollectorContext : TableBindingContext {
     }
 }
 
-public abstract class SubLayerCollectorContext(parent: LayerCollectorContext) : TableBindingContext,
+public abstract class SubLayerCollectorContext(parent: LayerCollectorContextInterface) : TableBindingContext,
     LayerCollectorContext,
     SubBindingContext(parent.bindingCollector) {
-    override val data: TableData = parent.data
     override val layers: MutableList<Layer> = parent.layers
 }
 
@@ -129,7 +131,7 @@ public open class WithGroupingBindingContext constructor(
 // todo
 
 
-public interface PlotContext : LayerCollectorContext {
+public interface PlotContext : LayerCollectorContextInterface, TableBindingContext {
     // todo hide
     public val features: MutableMap<FeatureName, PlotFeature>
     public fun toPlot(): Plot {
@@ -140,7 +142,7 @@ public interface PlotContext : LayerCollectorContext {
 @PlotDslMarker
 public class NamedDataPlotContext<T: NamedDataInterface>(
     override val data: T,
-) : PlotContext, NameDataBindingContext {
+) : PlotContext, NameDataBindingContext, LayerCollectorContext {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val layers: MutableList<Layer> = mutableListOf()
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()

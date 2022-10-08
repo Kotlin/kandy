@@ -4,20 +4,20 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.echarts.BAR
 import org.jetbrains.kotlinx.ggdsl.echarts.LINE
 import org.jetbrains.kotlinx.ggdsl.echarts.POINT
 
 
-public inline fun PlotContext.points(block: PointsContext.() -> Unit) {
+public inline fun LayerCollectorContext.points(block: PointsContext.() -> Unit) {
     addLayer(PointsContext(this).apply(block), POINT)
 }
 
-public inline fun PlotContext.bars(block: BarsContext.() -> Unit) {
+public inline fun LayerCollectorContext.bars(block: BarsContext.() -> Unit) {
     addLayer(BarsContext(this).apply(block), BAR)
 }
 
-public inline fun PlotContext.line(block: LineContext.() -> Unit) {
+public inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
     addLayer(LineContext(this).apply(block), LINE)
 }

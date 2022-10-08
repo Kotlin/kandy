@@ -22,7 +22,7 @@ public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.i
     columnRef: ColumnReference<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =
-        NonScalablePositionalMapping(this.name, columnRef.toColRef(), typeOf<DomainType>())
+        NonScalablePositionalMapping(this.name, columnRef.toColumnPointer(), typeOf<DomainType>())
 }
 
 /**

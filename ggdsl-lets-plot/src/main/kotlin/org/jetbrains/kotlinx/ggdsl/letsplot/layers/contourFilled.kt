@@ -29,23 +29,23 @@ public class ContourFilledContext(
     bins: Bins?
 ) : WithBinsContext(bins) {
     @PublishedApi
-    internal val _x: XAes = XAes(this)
+    internal val _x: XAes get() = XAes(this)
 
     @PublishedApi
-    internal val _y: YAes = YAes(this)
+    internal val _y: YAes get() = YAes(this)
 
     @PublishedApi
-    internal val _z: ZAes = ZAes(this)
+    internal val _z: ZAes get() = ZAes(this)
 
-    public val x: XDummyAes = XDummyAes(this)
-    public val y: YDummyAes = YDummyAes(this)
-    public val z: ZDummyAes = ZDummyAes(this)
+    public val x: XDummyAes get() = XDummyAes(this)
+    public val y: YDummyAes get() = YDummyAes(this)
+    public val z: ZDummyAes get() = ZDummyAes(this)
 
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val fillColor: FillAes = FillAes(this)
-    public val lineColor: ColorAes = ColorAes(this)
-    public val lineType: LineTypeAes = LineTypeAes(this)
-    public val lineWidth: WidthAes = WidthAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val fillColor: FillAes get() = FillAes(this)
+    public val lineColor: ColorAes get() = ColorAes(this)
+    public val lineType: LineTypeAes get() = LineTypeAes(this)
+    public val lineWidth: WidthAes get() = WidthAes(this)
 
     // todo speed, flow
 

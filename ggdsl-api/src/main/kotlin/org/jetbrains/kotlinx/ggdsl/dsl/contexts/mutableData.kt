@@ -4,6 +4,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.columnPointer
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
@@ -108,7 +109,7 @@ public abstract class SubMutableDataContext(parent: MutableDataBindingContext): 
     }
 }
 
-public abstract class LayerCollectorMutableDataContext: LayerCollectorContext, MutableDataBindingContext() {
+public abstract class LayerCollectorMutableDataContext: MutableDataBindingContext(), LayerCollectorContextInterface {
     public fun addLayer(context: LayerMutableDataContext, geom: Geom) {
         layers.add(
             Layer(
@@ -131,4 +132,8 @@ public abstract class LayerMutableDataContext(parent: MutableDataBindingContext)
 public class PlotMutableDataContext(): PlotContext, LayerCollectorMutableDataContext(){
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
     override val layers: MutableList<Layer> = mutableListOf()
+}
+
+public inline fun plot(block: PlotMutableDataContext.() -> Unit): Plot {
+    return PlotMutableDataContext().apply(block).toPlot()
 }

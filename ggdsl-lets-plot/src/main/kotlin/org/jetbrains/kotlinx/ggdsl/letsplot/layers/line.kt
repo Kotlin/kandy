@@ -23,13 +23,13 @@ internal val PATH: LetsPlotGeom = LetsPlotGeom("path")
 
 @PlotDslMarker
 public class LineContext(parent: LayerCollectorContext) : LayerContext(parent) {
-    public val x: XAes = XAes(this)
-    public val y: YAes = YAes(this)
+    public val x: XAes get() = XAes(this)
+    public val y: YAes get() = YAes(this)
 
-    public val color: ColorAes = ColorAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val type: LineTypeAes = LineTypeAes(this)
-    public val width: SizeAes = SizeAes(this)
+    public val color: ColorAes get() = ColorAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val type: LineTypeAes get() = LineTypeAes(this)
+    public val width: SizeAes get() = SizeAes(this)
 }
 
 /**

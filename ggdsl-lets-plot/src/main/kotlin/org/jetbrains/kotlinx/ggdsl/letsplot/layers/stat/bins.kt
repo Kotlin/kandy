@@ -33,8 +33,8 @@ abstract class WithBinsContext(bins: Bins?): LayerContext(parent) {
 =======
 public abstract class WithBinsContext(bins: Bins?) : LayerContext() {
 >>>>>>> main
-    private val bins = BinsAes(this)
-    private val binWidth = BinWidthAes(this)
+    private val bins get() = BinsAes(this)
+    private val binWidth get() = BinWidthAes(this)
 
     init {
         bins?.let {
@@ -66,8 +66,8 @@ abstract class WithBins2DContext(bins: Bins2D?): LayerContext(parent) {
 =======
 public abstract class WithBins2DContext(bins: Bins2D?) : LayerContext() {
 >>>>>>> main
-    private val bins = Bins2DAes(this)
-    private val binWidth = BinWidth2DAes(this)
+    private val bins get() = Bins2DAes(this)
+    private val binWidth get() = BinWidth2DAes(this)
 
     init {
         bins?.let {
