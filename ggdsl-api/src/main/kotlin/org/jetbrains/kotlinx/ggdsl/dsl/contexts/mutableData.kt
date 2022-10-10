@@ -1,8 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.contexts
 
-import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
-import org.jetbrains.kotlinx.ggdsl.dsl.columnPointer
-import org.jetbrains.kotlinx.ggdsl.dsl.scaled
+import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
@@ -29,6 +27,9 @@ public data class MutableNamedData(
     }
 }
 
+@PlotDslMarker
+@GatherDslMarker
+@StatDSLMarker
 public abstract class MutableDataBindingContext : TableBindingContext {
     override val bindingCollector: BindingCollector = BindingCollector()
     public open val dataBuffer: MutableNamedData = MutableNamedData(mutableMapOf())

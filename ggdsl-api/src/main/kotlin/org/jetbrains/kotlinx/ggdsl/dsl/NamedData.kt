@@ -9,6 +9,17 @@ public data class NamedData(override val map: Map<String, List<Any>>) : NamedDat
     override fun groupBy(vararg columnPointers: ColumnPointer<*>): LazyGroupedData {
         return LazyGroupedData(columnPointers.map { it.id }, this)
     }
+
+    override fun <T : Any> gather(
+        valuesColumnName: String,
+        keysColumnName: String,
+        firstColumn: ColumnPointer<T>,
+        secondColumn: ColumnPointer<T>,
+        vararg columns: ColumnPointer<T>
+    ): NamedDataInterface {
+        TODO("Not yet implemented")
+    }
+
 }
 
 public data class LazyGroupedData(

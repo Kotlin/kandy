@@ -10,3 +10,7 @@ public annotation class StatDSLMarker
 
 @DslMarker
 public annotation class PlotDslMarker
+
+
+@DslMarker
+public annotation class GatherDslMarker

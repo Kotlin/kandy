@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl.contexts
 
+import org.jetbrains.kotlinx.ggdsl.dsl.GatherDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.StatDSLMarker
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
@@ -74,8 +75,6 @@ public abstract class SubTableBindingContext(parent: TableBindingContext) : Tabl
 
 public interface NameDataBindingContext : TableBindingContext {
     override val data: NamedDataInterface
-
-    public fun groupBy(vararg columnPointers: ColumnPointer<*>, block: WithGroupingBindingContext.() -> Unit)
 }
 
 
@@ -86,14 +85,14 @@ public abstract class LayerContext(parent: LayerCollectorContext) : TableBinding
 }
 
 
-public interface LayerCollectorContextInterface: BindingContext  {
+public interface LayerCollectorContextInterface : BindingContext {
     public val layers: MutableList<Layer>
 
 }
 
-public interface LayerCollectorContext: LayerCollectorContextInterface,TableBindingContext {
+public interface LayerCollectorContext : LayerCollectorContextInterface, TableBindingContext {
     // todo hide
-    public  fun addLayer(context: LayerContext, geom: Geom) {
+    public fun addLayer(context: LayerContext, geom: Geom) {
         layers.add(
             Layer(
                 data,
@@ -113,6 +112,18 @@ public abstract class SubLayerCollectorContext(parent: LayerCollectorContextInte
     override val layers: MutableList<Layer> = parent.layers
 }
 
+@GatherDslMarker
+public class GatheredNamedDataContext<T : Any>(
+    parent: LayerCollectorContextInterface,
+    override val data: NamedDataInterface,
+    valuesColumnName: String,
+    keysColumnName: String,
+) : NameDataBindingContext, SubLayerCollectorContext(parent) {
+    public val GATHER_VALUES: ColumnPointer<T> = ColumnPointer<T>(valuesColumnName)
+    public val GATHER_KEYS: ColumnPointer<String> = ColumnPointer<String>(keysColumnName)
+}
+
+
 @PlotDslMarker
 @StatDSLMarker
 public open class WithGroupingBindingContext constructor(
@@ -120,15 +131,6 @@ public open class WithGroupingBindingContext constructor(
     override val layers: MutableList<Layer>,
     parentalBindingCollector: BindingCollector?
 ) : TableBindingContext, LayerCollectorContext, SubBindingContext(parentalBindingCollector)
-
-/**
- * Creates a new [Layer] from this [LayerContext]
- *
- * @return new [Plot]
- */
-
-
-// todo
 
 
 public interface PlotContext : LayerCollectorContextInterface, TableBindingContext {
@@ -140,14 +142,16 @@ public interface PlotContext : LayerCollectorContextInterface, TableBindingConte
 }
 
 @PlotDslMarker
-public class NamedDataPlotContext<T: NamedDataInterface>(
+@GatherDslMarker
+@StatDSLMarker
+public class NamedDataPlotContext<T : NamedDataInterface>(
     override val data: T,
 ) : PlotContext, NameDataBindingContext, LayerCollectorContext {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val layers: MutableList<Layer> = mutableListOf()
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
-    override fun groupBy(
+    public inline fun groupBy(
         vararg columnPointers: ColumnPointer<*>,
         block: WithGroupingBindingContext.() -> Unit
     ) {
@@ -156,6 +160,23 @@ public class NamedDataPlotContext<T: NamedDataInterface>(
             layers,
             bindingCollector
         ).apply(block)
+    }
+
+    public inline fun <T : Any> gather(
+        valuesColumnName: String,
+        keysColumnName: String,
+        firstColumn: ColumnPointer<T>,
+        secondColumn: ColumnPointer<T>,
+        vararg columnPointers: ColumnPointer<T>,
+        block: GatheredNamedDataContext<T>.() -> Unit
+    ) {
+        GatheredNamedDataContext<T>(
+            this,
+            data.gather(valuesColumnName, keysColumnName, firstColumn, secondColumn, *columnPointers),
+            valuesColumnName,
+            keysColumnName
+        ).apply(block)
+        TODO("Not yet implemented")
     }
 }
 

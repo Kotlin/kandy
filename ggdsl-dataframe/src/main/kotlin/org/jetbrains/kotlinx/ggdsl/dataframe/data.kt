@@ -59,6 +59,22 @@ public class DataFrameWrapper(public val df: DataFrame<*>) : NamedDataInterface 
         return LazyGroupedDataFrame(columnPointers.map { it.id }, this)
     }
 
+    public override fun <T: Any> gather(
+        valuesColumnName: String,
+        keysColumnName: String,
+        firstColumn: ColumnPointer<T>,
+        secondColumn: ColumnPointer<T>,
+        vararg columns: ColumnPointer<T>,
+    ): DataFrameWrapper {
+        return DataFrameWrapper(
+            df.gather(*(
+                    listOf(firstColumn.id, secondColumn.id) + (columns).map { it.id }).toTypedArray()).into(
+                valuesColumnName,
+                keysColumnName
+            )
+        )
+    }
+
     public fun groupBy(vararg columnReferences: ColumnReference<*>): LazyGroupedDataFrame {
         return LazyGroupedDataFrame(columnReferences.map { it.name() }, this)
     }

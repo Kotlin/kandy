@@ -5,9 +5,11 @@ public interface NamedDataInterface : TableData {
 
     public fun groupBy(vararg columnPointers: ColumnPointer<*>): LazyGroupedDataInterface
 
-    public fun gather(
-        vararg columnPointers: ColumnPointer<*>,
-        valuesColumns: String,
-        keysColumns: String
+    public fun <T: Any> gather(
+        valuesColumnName: String,
+        keysColumnName: String,
+        firstColumn: ColumnPointer<T>,
+        secondColumn: ColumnPointer<T>,
+        vararg columns: ColumnPointer<T>,
     ): NamedDataInterface
 }
