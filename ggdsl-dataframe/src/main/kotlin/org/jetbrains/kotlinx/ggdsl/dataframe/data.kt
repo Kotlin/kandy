@@ -20,8 +20,10 @@ public fun <T : Any> ColumnReference<T>.toColumnPointer(): ColumnPointer<T> {
 }
 
 
+@Suppress("UNCHECKED_CAST")
 public fun DataFrame<*>.toNamedData(): Map<String, List<Any>> {
-    return flatten().toMap().map { it.key to it.value.map { it!! /*TODO*/ } }.toMap()
+    // TODO (change convert df to map)
+    return dropNulls().flatten().toMap().map { it.key to (it.value as List<Any>) }.toMap()
 }
 
 public class LazyGroupedDataFrame(
