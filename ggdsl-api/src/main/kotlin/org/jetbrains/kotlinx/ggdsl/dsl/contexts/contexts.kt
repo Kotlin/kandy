@@ -10,7 +10,8 @@ import org.jetbrains.kotlinx.ggdsl.dsl.StatDSLMarker
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
@@ -19,7 +20,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
-import org.jetbrains.kotlinx.ggdsl.ir.scale.*
+import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
 
 /**
  * Internal collector of mappings and settings.
@@ -37,23 +38,16 @@ public class BindingCollector internal constructor() {
 }
 
 /**
- * Base class for binding context.
- *
- * In this context, the mechanism of bindings, that is, mappings and settings, is defined.
- * It is implemented with aesthetic attribute properties invocation with a raw or scaled source as an argument.
- *
- * @property data the mutual dataset context.
+ * Base interface for context with bindings.
  */
-
-//@PlotDslMarker
-
-
 public interface BindingContext {
     // todo hide
     public val bindingCollector: BindingCollector
 }
 
-
+/**
+ * Base class for nested contexts that inherit bindings from parents.
+ */
 public abstract class SubBindingContext(parentalBindingCollector: BindingCollector?) : BindingContext {
     override val bindingCollector: BindingCollector = BindingCollector().apply {
         parentalBindingCollector?.let {
@@ -62,34 +56,50 @@ public abstract class SubBindingContext(parentalBindingCollector: BindingCollect
     }
 }
 
-
+/**
+ * Interface for contexts with [TableData] as dataset.
+ */
 public interface TableBindingContext : BindingContext {
     public val data: TableData
 }
 
-
+/**
+ * TODO should be optimized
+ * Nested contexts that inherit bindings and data from parents.
+ */
 public abstract class SubTableBindingContext(parent: TableBindingContext) : TableBindingContext,
     SubBindingContext(parent.bindingCollector) {
     override val data: TableData = parent.data
 }
 
+/**
+ * Interface for contexts with [NamedDataInterface] as dataset.
+ */
 public interface NameDataBindingContext : TableBindingContext {
     override val data: NamedDataInterface
 }
 
 
+/**
+ * Interface for contexts for building layers.
+ */
 public abstract class LayerContext(parent: LayerCollectorContext) : TableBindingContext,
     SubTableBindingContext(parent) {
     public val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 
 }
 
-
+/**
+ * Interface for contexts for collecting layers.
+ */
 public interface LayerCollectorContextInterface : BindingContext {
     public val layers: MutableList<Layer>
 
 }
 
+/**
+ * Interface for contexts for collecting layers with [TableData].
+ */
 public interface LayerCollectorContext : LayerCollectorContextInterface, TableBindingContext {
     // todo hide
     public fun addLayer(context: LayerContext, geom: Geom) {
@@ -106,6 +116,9 @@ public interface LayerCollectorContext : LayerCollectorContextInterface, TableBi
     }
 }
 
+/**
+ * Interface for nested [LayerCollectorContext].
+ */
 public abstract class SubLayerCollectorContext(parent: LayerCollectorContextInterface) : TableBindingContext,
     LayerCollectorContext,
     SubBindingContext(parent.bindingCollector) {

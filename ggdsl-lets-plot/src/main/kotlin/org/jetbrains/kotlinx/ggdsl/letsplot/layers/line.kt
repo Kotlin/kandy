@@ -4,10 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -21,8 +19,7 @@ internal val LINE: LetsPlotGeom = LetsPlotGeom("line")
 internal val PATH: LetsPlotGeom = LetsPlotGeom("path")
 
 
-@PlotDslMarker
-public class LineContext(parent: LayerCollectorContext) : LayerContext(parent) {
+public interface LineContextInterface : BindingContext {
     public val x: XAes get() = XAes(this)
     public val y: YAes get() = YAes(this)
 
@@ -32,6 +29,12 @@ public class LineContext(parent: LayerCollectorContext) : LayerContext(parent) {
     public val width: SizeAes get() = SizeAes(this)
 }
 
+@PlotDslMarker
+public class LineContext(parent: LayerCollectorContext): LayerContext(parent), LineContextInterface
+
+@PlotDslMarker
+public class LineMutableContext(parent: LayerCollectorMutableDataContext):
+    LayerMutableDataContext(parent), LineContextInterface
 /**
  * Adds a new line layer.
  *
@@ -72,4 +75,12 @@ public inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
 
 public inline fun LayerCollectorContext.path(block: LineContext.() -> Unit) {
     addLayer(LineContext(this).apply(block), PATH)
+}
+
+public inline fun LayerCollectorMutableDataContext.line(block: LineMutableContext.() -> Unit) {
+    addLayer(LineMutableContext(this).apply(block), LINE)
+}
+
+public inline fun LayerCollectorMutableDataContext.path(block: LineMutableContext.() -> Unit) {
+    addLayer(LineMutableContext(this).apply(block), PATH)
 }

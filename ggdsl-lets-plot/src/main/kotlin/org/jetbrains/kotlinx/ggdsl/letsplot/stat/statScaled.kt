@@ -11,33 +11,33 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import kotlin.reflect.typeOf
 
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
-    ColumnScaledUnspecifiedDefault(this.toDataSource())
+    ColumnScaledUnspecifiedDefault(this.tColumnPointer())
 
 
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: PositionalUnspecifiedScale): ColumnScaledPositionalUnspecified<DomainType> =
-    ColumnScaledPositionalUnspecified(this.toDataSource(), scale)
+    ColumnScaledPositionalUnspecified(this.tColumnPointer(), scale)
 
 
 
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): ColumnScaledNonPositionalUnspecified<DomainType> =
-    ColumnScaledNonPositionalUnspecified(this.toDataSource(), scale)
+    ColumnScaledNonPositionalUnspecified(this.tColumnPointer(), scale)
 
 
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.toDataSource(), scale)
+): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.tColumnPointer(), scale)
 
 
 public inline fun <reified DomainType : Any, RangeType : Any> Statistic<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.toDataSource(), scale)
+): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.tColumnPointer(), scale)
 
 public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     stat: Statistic<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
         this.name,
-        stat.toDataSource().scaled(),
+        stat.tColumnPointer().scaled(),
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping
@@ -50,7 +50,7 @@ public inline operator fun <reified DomainType : Any, RangeType : Any>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
         this.name,
-        stat.toDataSource().scaled(),
+        stat.tColumnPointer().scaled(),
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping
