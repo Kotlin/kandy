@@ -7,6 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.dsl.contexts
 import org.jetbrains.kotlinx.ggdsl.dsl.GatherDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.StatDSLMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.columnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -137,14 +138,22 @@ public class GatheredNamedDataContext<T : Any>(
 }
 
 
-@PlotDslMarker
-@StatDSLMarker
+
 public open class WithGroupingBindingContext constructor(
     override val data: GroupedDataInterface,
     override val layers: MutableList<Layer>,
     parentalBindingCollector: BindingCollector?
 ) : TableBindingContext, LayerCollectorContext, SubBindingContext(parentalBindingCollector)
 
+public class GatheredAndGroupedContext<T : Any>(
+    data: GroupedDataInterface,
+    parent: LayerCollectorContextInterface,
+    valuesColumnName: String,
+    keysColumnName: String,
+) : WithGroupingBindingContext(data, parent.layers, parent.bindingCollector) {
+    public val GATHER_VALUES: ColumnPointer<T> = ColumnPointer<T>(valuesColumnName)
+    public val GATHER_GROUP_KEYS: ColumnPointer<String> = ColumnPointer<String>(keysColumnName)
+}
 
 public interface PlotContext : LayerCollectorContextInterface, TableBindingContext {
     // todo hide
@@ -189,8 +198,34 @@ public class NamedDataPlotContext<T : NamedDataInterface>(
             valuesColumnName,
             keysColumnName
         ).apply(block)
-        TODO("Not yet implemented")
     }
+
+    public inline fun <T : Any> gatherAndGroup(
+        valuesColumnName: String,
+        keysColumnName: String,
+        firstColumn: ColumnPointer<T>,
+        secondColumn: ColumnPointer<T>,
+        vararg columnPointers: ColumnPointer<T>,
+        block: GatheredAndGroupedContext<T>.() -> Unit
+    ) {
+        //todo
+        GatheredAndGroupedContext<T>(
+            data.gather(valuesColumnName, keysColumnName, firstColumn, secondColumn, *columnPointers).groupBy(
+                columnPointer<String>(keysColumnName)
+            ),
+            this,
+            valuesColumnName,
+            keysColumnName
+        ).apply(block)
+    }
+
+    public inline fun <T : Any> gatherAndGroup(
+        firstColumn: ColumnPointer<T>,
+        secondColumn: ColumnPointer<T>,
+        vararg columnPointers: ColumnPointer<T>,
+        block: GatheredAndGroupedContext<T>.() -> Unit
+    ): Unit = gatherAndGroup("valuesColumnName", "keysColumnName", firstColumn, secondColumn,
+        columnPointers = columnPointers, block)
 }
 
 

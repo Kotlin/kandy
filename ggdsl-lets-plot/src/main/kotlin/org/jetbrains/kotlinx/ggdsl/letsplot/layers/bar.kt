@@ -32,7 +32,8 @@ public class BarContext(parent: LayerCollectorContext): LayerContext(parent), Ba
 
 @PlotDslMarker
 public class BarMutableContext(parent: LayerCollectorMutableDataContext):
-    LayerMutableDataContext(parent), BarContextInterface
+    LayerMutableDataContext(parent), BarContextInterface {
+}
 
 /**
  * Adds a new bar layer.

@@ -8,6 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
@@ -18,11 +19,30 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import kotlin.reflect.typeOf
 
-public data class MutableNamedData(
-    val map: MutableMap<String, List<Any>> = mutableMapOf<String, List<Any>>()
-) {
-    public fun toNamedData(): NamedData {
+public interface MutableTableData {
+    public val map: MutableMap<String, List<Any>>
+
+    public fun toTableData(): TableData
+}
+
+public open class MutableNamedData(
+    public override val map: MutableMap<String, List<Any>> = mutableMapOf<String, List<Any>>()
+): MutableTableData {
+    public override fun toTableData(): NamedData {
         return NamedData(map.toMap())
+    }
+
+    public fun groupBy(keys: List<String>): MutableLazyGroupedData {
+        return MutableLazyGroupedData(map.toMutableMap(), keys)
+    }
+}
+
+public open class MutableLazyGroupedData(
+    public override val map: MutableMap<String, List<Any>> = mutableMapOf<String, List<Any>>(),
+    public val keys: List<String>
+): MutableTableData {
+    public override fun toTableData(): LazyGroupedData {
+        return LazyGroupedData(keys, NamedData(map.toMap()))
     }
 }
 
@@ -30,24 +50,28 @@ public data class MutableNamedData(
 internal fun NamedData.toMutableNamedData(): MutableNamedData = MutableNamedData(map.toMutableMap())
 
 public interface MutableDataBindingContextInterface : TableBindingContext {
-    public val dataBuffer: MutableNamedData
+    public val dataBuffer: MutableTableData
+    public val multiplier: Int
     public fun <T : Any> Iterable<T>.toColumnPointer(): ColumnPointer<T>
+    public fun <T : Any> Iterable<T>.toColumnPointer(id: String): ColumnPointer<T>
 }
 
 
 public abstract class MutableDataBindingContext : MutableDataBindingContextInterface {
     override val bindingCollector: BindingCollector = BindingCollector()
-    public override val dataBuffer: MutableNamedData = MutableNamedData(mutableMapOf())
-    override val data: NamedData
-        get() = dataBuffer.toNamedData()
+    public abstract override val dataBuffer: MutableTableData
+    override val data: TableData
+        get() = dataBuffer.toTableData()
 
-    public var counter: Int = 0
-    public fun generateID(): String = "*gen${counter++}"
+    private var counter: Int = 0
+    private fun generateID(): String = "*gen${counter++}"
 
-    public override fun <T : Any> Iterable<T>.toColumnPointer(): ColumnPointer<T> {
+
+    public override fun <T : Any> Iterable<T>.toColumnPointer(): ColumnPointer<T> = toColumnPointer(generateID())
+
+    public override fun <T : Any> Iterable<T>.toColumnPointer(id: String): ColumnPointer<T> {
         val list = toList()
-        val id = generateID()
-        dataBuffer.map[id] = list
+        dataBuffer.map[id] = List(multiplier){list}.flatten()
         return columnPointer(id)
     }
 
@@ -94,6 +118,18 @@ public abstract class MutableDataBindingContext : MutableDataBindingContextInter
         return mapping
     }
 
+    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+        dataToName: Pair<Iterable<DomainType>, String>
+    ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
+        val mapping = ScaledUnspecifiedDefaultPositionalMapping(
+            this.name,
+            dataToName.first.toColumnPointer(dataToName.second).scaled(),
+            typeOf<DomainType>()
+        )
+        context.bindingCollector.mappings[this.name] = mapping
+        return mapping
+    }
+
     public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
         data: Iterable<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
@@ -108,10 +144,11 @@ public abstract class MutableDataBindingContext : MutableDataBindingContextInter
 }
 
 public abstract class SubMutableDataContext(parent: MutableDataBindingContextInterface) : MutableDataBindingContext() {
-    override val dataBuffer: MutableNamedData = MutableNamedData(parent.dataBuffer.map.toMutableMap())
+    override val dataBuffer: MutableTableData = MutableNamedData(parent.dataBuffer.map.toMutableMap())
     override val bindingCollector: BindingCollector = BindingCollector().apply {
         copyFrom(parent.bindingCollector)
     }
+    override val multiplier: Int = parent.multiplier
 }
 
 public interface LayerCollectorMutableDataContext : LayerCollectorContextInterface, MutableDataBindingContextInterface {
@@ -143,21 +180,13 @@ public abstract class LayerMutableDataContext(parent: LayerCollectorMutableDataC
 @GatherDslMarker
 public class GatheredMutableDataContext<T : Any>(
     parent: LayerCollectorMutableDataContext,
-    override val dataBuffer: MutableNamedData,
+    override val dataBuffer: MutableTableData,
     valuesColumnName: String,
     keysColumnName: String,
-    private val multiplier: Int,
+    override val multiplier: Int,
 ) : SubLayerCollectorMutableDataContext(parent) {
-
-    public override fun <T : Any> Iterable<T>.toColumnPointer(): ColumnPointer<T> {
-        val list = toList()
-        val id = generateID()
-        dataBuffer.map[id] = List(multiplier) { list }.flatten()
-        return columnPointer(id)
-    }
-
     public val GATHER_VALUES: ColumnPointer<T> = ColumnPointer<T>(valuesColumnName)
-    public val GATHER_KEYS: ColumnPointer<String> = ColumnPointer<String>(keysColumnName)
+    public val GATHER_GROUP_KEYS: ColumnPointer<String> = ColumnPointer<String>(keysColumnName)
 }
 
 @PlotDslMarker
@@ -166,12 +195,8 @@ public class GatheredMutableDataContext<T : Any>(
 public class PlotMutableDataContext() : PlotContext, LayerCollectorMutableDataContext, MutableDataBindingContext() {
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
     override val layers: MutableList<Layer> = mutableListOf()
-
-    public fun <T : Any> Iterable<T>.toColumnPointer(id: String): ColumnPointer<T> {
-        val list = toList()
-        dataBuffer.map[id] = list
-        return columnPointer(id)
-    }
+    override val dataBuffer: MutableNamedData = MutableNamedData(mutableMapOf())
+    override val multiplier: Int = 1
 
     public inline fun <T : Any> gather(
         valuesColumnName: String,
@@ -186,7 +211,7 @@ public class PlotMutableDataContext() : PlotContext, LayerCollectorMutableDataCo
         val others = columnPointers.map { it.toColumnPointer() }
         GatheredMutableDataContext<T>(
             this,
-            dataBuffer.toNamedData().gather(
+            dataBuffer.toTableData().gather(
                 valuesColumnName,
                 keysColumnName,
                 fC,
@@ -212,7 +237,7 @@ public class PlotMutableDataContext() : PlotContext, LayerCollectorMutableDataCo
         val others = columnPointers.map { it.first.toColumnPointer(it.second) }
         GatheredMutableDataContext<T>(
             this,
-            dataBuffer.toNamedData().gather(
+            dataBuffer.toTableData().gather(
                 valuesColumnName,
                 keysColumnName,
                 fC,
@@ -224,6 +249,40 @@ public class PlotMutableDataContext() : PlotContext, LayerCollectorMutableDataCo
             others.size + 2,
         ).apply(block)
     }
+
+    public inline fun <T : Any> gatherAndGroup(
+        valuesColumnName: String,
+        keysColumnName: String,
+        firstColumn: Pair<Iterable<T>, String>,
+        secondColumn: Pair<Iterable<T>, String>,
+        vararg columnPointers: Pair<Iterable<T>, String>,
+        block: GatheredMutableDataContext<T>.() -> Unit
+    ) {
+        //todo
+        val fC = firstColumn.first.toColumnPointer(firstColumn.second)
+        val sC = secondColumn.first.toColumnPointer(secondColumn.second)
+        val others = columnPointers.map { it.first.toColumnPointer(it.second) }
+        GatheredMutableDataContext<T>(
+            this,
+            dataBuffer.toTableData().gather(
+                valuesColumnName,
+                keysColumnName,
+                fC,
+                sC,
+                *others.toTypedArray(),
+            ).toMutableNamedData().groupBy(listOf(keysColumnName)),
+            valuesColumnName,
+            keysColumnName,
+            others.size + 2,
+        ).apply(block)
+    }
+
+    public inline fun <T : Any> gatherAndGroup(
+        firstColumn: Pair<Iterable<T>, String>,
+        secondColumn: Pair<Iterable<T>, String>,
+        vararg columnPointers: Pair<Iterable<T>, String>,
+        block: GatheredMutableDataContext<T>.() -> Unit
+    ): Unit = gatherAndGroup("valuesColumnName", "keysColumnName", firstColumn, secondColumn, columnPointers= columnPointers, block)
 }
 
 public inline fun plot(block: PlotMutableDataContext.() -> Unit): Plot {
