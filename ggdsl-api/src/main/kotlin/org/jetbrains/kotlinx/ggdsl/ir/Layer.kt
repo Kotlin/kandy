@@ -28,7 +28,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
  */
 
 public data class Layer(
-    val data: TableData,
+    val data: TableData?,
     val geom: Geom,
     val mappings: Map<AesName, Mapping>,
     val settings: Map<AesName, Setting>,

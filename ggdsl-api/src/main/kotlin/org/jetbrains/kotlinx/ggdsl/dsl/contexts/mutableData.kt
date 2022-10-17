@@ -50,6 +50,7 @@ public open class MutableLazyGroupedData(
 internal fun NamedData.toMutableNamedData(): MutableNamedData = MutableNamedData(map.toMutableMap())
 
 public interface MutableDataBindingContextInterface : TableBindingContext {
+    override val data: TableData
     public val dataBuffer: MutableTableData
     public val multiplier: Int
     public fun <T : Any> Iterable<T>.toColumnPointer(): ColumnPointer<T>

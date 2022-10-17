@@ -61,7 +61,7 @@ public abstract class SubBindingContext(parentalBindingCollector: BindingCollect
  * Interface for contexts with [TableData] as dataset.
  */
 public interface TableBindingContext : BindingContext {
-    public val data: TableData
+    public val data: TableData?
 }
 
 /**
@@ -70,7 +70,7 @@ public interface TableBindingContext : BindingContext {
  */
 public abstract class SubTableBindingContext(parent: TableBindingContext) : TableBindingContext,
     SubBindingContext(parent.bindingCollector) {
-    override val data: TableData = parent.data
+    override val data: TableData? = parent.data
 }
 
 /**
@@ -86,8 +86,12 @@ public interface NameDataBindingContext : TableBindingContext {
  */
 public abstract class LayerContext(parent: LayerCollectorContext) : TableBindingContext,
     SubTableBindingContext(parent) {
+    override val data: TableData? = if (parent is PlotContext){
+        null
+    } else {
+        parent.data
+    }
     public val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
-
 }
 
 /**
@@ -103,6 +107,7 @@ public interface LayerCollectorContextInterface : BindingContext {
  */
 public interface LayerCollectorContext : LayerCollectorContextInterface, TableBindingContext {
     // todo hide
+    override val data: TableData
     public fun addLayer(context: LayerContext, geom: Geom) {
         layers.add(
             Layer(
@@ -157,6 +162,7 @@ public class GatheredAndGroupedContext<T : Any>(
 
 public interface PlotContext : LayerCollectorContextInterface, TableBindingContext {
     // todo hide
+    override val data: TableData
     public val features: MutableMap<FeatureName, PlotFeature>
     public fun toPlot(): Plot {
         return Plot(data, layers, features, bindingCollector.freeScales)
