@@ -4,14 +4,24 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
+import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
+import org.jetbrains.kotlinx.ggdsl.dsl.categorical
+import org.jetbrains.kotlinx.ggdsl.dsl.invoke
+import org.jetbrains.kotlinx.ggdsl.dsl.scaled
+import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledNonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.ggdsl.letsplot.CoordFlip
-import org.jetbrains.kotlinx.ggdsl.letsplot.Layout
-import org.jetbrains.kotlinx.ggdsl.letsplot.Reversed
+import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.COLOR
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.gather.Gathering
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.gather.GatheringList
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.coord.coordFlip
 import org.jetbrains.letsPlot.facet.facetGrid
 import org.jetbrains.letsPlot.facet.facetWrap
@@ -24,6 +34,7 @@ import org.jetbrains.letsPlot.pos.*
 import org.jetbrains.letsPlot.tooltips.TooltipOptions
 import org.jetbrains.letsPlot.tooltips.layerTooltips
 import org.jetbrains.letsPlot.tooltips.tooltipsNone
+import kotlin.reflect.typeOf
 
 internal fun FacetGridFeature.wrap(): OptionsMap {
     return facetGrid(
@@ -85,9 +96,69 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
             (this as Layout).wrap(featureBuffer)
         }
 
+        GatheringList.FEATURE_NAME -> {
+            (this as GatheringList).gatheringList.forEach {
+                it.toLayer().wrap(featureBuffer)
+            }
+        }
+
         else -> TODO()
     }
     //return featureBuffer
+}
+
+internal fun Gathering.toLayer(): Layer {
+    val size = data.map.values.first().size
+    val xBuffer = mutableListOf<Any>()
+    val yBuffer = mutableListOf<Any>()
+    val labelBuffer = mutableListOf<String>()
+    val scaleBuffer = mutableListOf<String>() to mutableListOf<Color>()
+
+    series.forEach {series ->
+        xBuffer.addAll(data.map[series.mappings[X]!!.wrap().second]!!)
+        yBuffer.addAll(data.map[series.mappings[Y]!!.wrap().second]!!)
+        labelBuffer.addAll(List(size){series.label})
+        scaleBuffer.apply {
+            first.add(series.label)
+            second.add((series.settings[COLOR]!! as NonPositionalSetting<*>).value as Color)
+        }
+    }
+
+    val newData = NamedData(
+        mapOf(
+            "x" to xBuffer,
+            "y" to yBuffer,
+            "label" to labelBuffer
+        )
+    )
+    return Layer(
+        newData,
+        geom,
+        mapOf(
+            X to ScaledUnspecifiedDefaultPositionalMapping<Any>(
+                X,
+                "x"<Any>().scaled(),
+                typeOf<Any>()
+            ),
+            Y to ScaledUnspecifiedDefaultPositionalMapping<Any>(
+                Y,
+                "y"<Any>().scaled(),
+                typeOf<Any>()
+            ),
+            COLOR to ScaledNonPositionalMapping<String, Color>(
+                COLOR,
+                "label"<String>().scaled(
+                    categorical(
+                        scaleBuffer.first,
+                        scaleBuffer.second
+                    )
+                ),
+                typeOf<String>()
+            )
+        ),
+        globalSettings,
+        mapOf(Position.FEATURE_NAME to position)
+    )
 }
 
 

@@ -12,4 +12,5 @@ public interface NamedDataInterface : TableData {
         secondColumn: ColumnPointer<T>,
         vararg columns: ColumnPointer<T>,
     ): NamedDataInterface
+
 }
