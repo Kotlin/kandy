@@ -80,7 +80,9 @@ public class LineSeriesContext(parent: LineGatheringContext): SubTableBindingCon
     }
 }
 
-public fun NamedDataPlotContext<*>.lineGather(position: Position = Position.Identity, block: LineGatheringContext.() -> Unit) {
+public fun NamedDataPlotContext<*>.lineGather(
+    position: Position = Position.Identity,
+    block: LineGatheringContext.() -> Unit) {
     (features.getOrPut(GatheringList.FEATURE_NAME) {
         GatheringList()
     } as GatheringList).gatheringList.add(
