@@ -165,7 +165,7 @@ public interface PlotContext : LayerCollectorContextInterface, TableBindingConte
     override val data: TableData
     public val features: MutableMap<FeatureName, PlotFeature>
     public fun toPlot(): Plot {
-        return Plot(data, layers, features, bindingCollector.freeScales)
+        return Plot(data, layers, bindingCollector.mappings, features, bindingCollector.freeScales)
     }
 }
 
