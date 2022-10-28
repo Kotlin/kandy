@@ -9,9 +9,8 @@ import org.jetbrains.kotlinx.ggdsl.dsl.categorical
 import org.jetbrains.kotlinx.ggdsl.dsl.invoke
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
@@ -106,21 +105,49 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
     //return featureBuffer
 }
 
+//internal val palette = listOf(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE)
+
 internal fun Gathering.toLayer(): Layer {
     val size = data.map.values.first().size
+    val mappingAesNames = series.first().settings.keys
     val xBuffer = mutableListOf<Any>()
     val yBuffer = mutableListOf<Any>()
     val labelBuffer = mutableListOf<String>()
-    val scaleBuffer = mutableListOf<String>() to mutableListOf<Color>()
+    val scaleBuffer = mappingAesNames.associateWith {
+        mutableListOf<String>() to mutableListOf<Any>()
+    }
 
     series.forEach {series ->
         xBuffer.addAll(data.map[series.mappings[X]!!.wrap().second]!!)
         yBuffer.addAll(data.map[series.mappings[Y]!!.wrap().second]!!)
         labelBuffer.addAll(List(size){series.label})
-        scaleBuffer.apply {
-            first.add(series.label)
-            second.add((series.settings[COLOR]!! as NonPositionalSetting<*>).value as Color)
+        series.settings.forEach { (aesName, setting) ->
+            scaleBuffer[aesName]!!.let {
+                it.first.add(series.label)
+                it.second.add((setting as NonPositionalSetting<*>).value)
+            }
         }
+    }
+
+    val nonPosScales: Map<AesName, Mapping> = if (scaleBuffer.isEmpty()) {
+        mapOf(COLOR to ScaledNonPositionalDefaultMapping<String, Color>(
+            COLOR,
+            "label"<String>().scaled(categorical()),
+            typeOf<String>()
+        ))
+    } else {
+        scaleBuffer.map { (aesName, buffer) ->
+            aesName to ScaledNonPositionalMapping<String, Any>(
+                aesName,
+                "label"<String>().scaled(
+                    categorical(
+                        buffer.first,
+                        buffer.second
+                    )
+                ),
+                typeOf<String>()
+            )
+        }.toMap()
     }
 
     val newData = NamedData(
@@ -143,18 +170,8 @@ internal fun Gathering.toLayer(): Layer {
                 Y,
                 "y"<Any>().scaled(),
                 typeOf<Any>()
-            ),
-            COLOR to ScaledNonPositionalMapping<String, Color>(
-                COLOR,
-                "label"<String>().scaled(
-                    categorical(
-                        scaleBuffer.first,
-                        scaleBuffer.second
-                    )
-                ),
-                typeOf<String>()
             )
-        ),
+        ) + nonPosScales,
         globalSettings,
         mapOf(Position.FEATURE_NAME to position)
     )
