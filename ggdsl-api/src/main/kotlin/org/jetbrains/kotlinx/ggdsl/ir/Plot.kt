@@ -22,8 +22,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
 public data class Plot(
     val dataset: TableData, // todo remove???
     val layers: List<Layer>,
-    val mappings: Map<AesName, Mapping>,
-  //  val layout: Layout? = null,
+    val globalMappings: Map<AesName, Mapping>,
     val features: Map<FeatureName, PlotFeature> = emptyMap(),
     val freeScales: Map<AesName, FreeScale> = emptyMap(),
 )

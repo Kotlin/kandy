@@ -60,6 +60,11 @@ internal class CommonTest {
                         )
                     )
                 ),
+                mapOf(
+                    X to ScaledUnspecifiedDefaultPositionalMapping(
+                        X, ColumnScaledUnspecifiedDefault(srcX), typeOf<Double>()
+                    ),
+                )
             ),
             plot
         )
@@ -155,6 +160,10 @@ internal class CommonTest {
                         )
                     )
                 ),
+                mapOf(
+                    X to xMapping,
+                    Y to yMapping,
+                )
             ),
             plot
         )
