@@ -1,31 +1,17 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.gather
 
-import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
-import org.jetbrains.kotlinx.ggdsl.dsl.categorical
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingCollector
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.dsl.contexts.NamedDataPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.contexts.SubTableBindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.invoke
-import org.jetbrains.kotlinx.ggdsl.dsl.scaled
-import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
-import org.jetbrains.kotlinx.ggdsl.ir.scale.DefaultUnspecifiedScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
-import org.jetbrains.kotlinx.ggdsl.letsplot.COLOR
-import org.jetbrains.kotlinx.ggdsl.letsplot.X
-import org.jetbrains.kotlinx.ggdsl.letsplot.Y
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.LINE
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.LineContextInterface
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
-import org.jetbrains.kotlinx.ggdsl.letsplot.translator.wrap
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.typeOf
 
 public data class Gathering(
@@ -51,7 +37,12 @@ public data class Series(
     val label: String,
 )
 
-public class LineGatheringContext(parent: NamedDataPlotContext<*>, private val position: Position): SubTableBindingContext(parent), LineContextInterface {
+public interface GatherContext {
+    public fun toGathering(): Gathering
+}
+
+public class LineGatheringContext(parent: NamedDataPlotContext<*>, private val position: Position):
+    SubTableBindingContext(parent), LineContextInterface, GatherContext {
     override val data: NamedDataInterface = parent.data
     public val seriesCollector: MutableList<Series> = mutableListOf<Series>()
 
@@ -59,7 +50,7 @@ public class LineGatheringContext(parent: NamedDataPlotContext<*>, private val p
         seriesCollector.add(LineSeriesContext(this).apply(block).toSeries(label))
     }
 
-    public fun toGathering(): Gathering {
+    public override fun toGathering(): Gathering {
         return Gathering(
             LINE,
             data,
@@ -80,12 +71,26 @@ public class LineSeriesContext(parent: LineGatheringContext): SubTableBindingCon
     }
 }
 
-public fun NamedDataPlotContext<*>.lineGather(
+public inline fun NamedDataPlotContext<*>.lineGather(
     position: Position = Position.Identity,
-    block: LineGatheringContext.() -> Unit) {
+    block: LineGatheringContext.() -> Unit
+) {
     (features.getOrPut(GatheringList.FEATURE_NAME) {
         GatheringList()
     } as GatheringList).gatheringList.add(
         LineGatheringContext(this, position).apply(block).toGathering()
     )
+}
+
+public typealias Line = LineGatheringContext
+
+@Suppress("UNCHECKED_CAST")
+public inline fun< reified T: GatherContext> NamedDataPlotContext<*>.gather(
+    position: Position = Position.Identity,
+    noinline block: T.() -> Unit
+) {
+    //todo
+    when(typeOf<T>()) {
+        typeOf<LineGatheringContext>() -> lineGather(position, block as (LineGatheringContext.() -> Unit))
+    }
 }

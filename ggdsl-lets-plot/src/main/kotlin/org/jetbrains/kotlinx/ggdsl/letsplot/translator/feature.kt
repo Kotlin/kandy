@@ -14,7 +14,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledNonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.COLOR
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.gather.Gathering
