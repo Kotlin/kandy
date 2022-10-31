@@ -23,10 +23,10 @@ internal class Integration : JupyterIntegration() {
     override fun Builder.onLoaded() {
 
         onLoaded {
-            frontendContext = LetsPlot.setupNotebook("2.4.0", false) {
+            frontendContext = LetsPlot.setupNotebook("2.5.0", false) {
                 display(HTML(it))
             }
-            LetsPlot.apiVersion = "4.0.0"
+            LetsPlot.apiVersion = "4.1.0"
             display(HTML(frontendContext.getConfigureHtml()))
         }
 
@@ -36,6 +36,7 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.label.*")
+        import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.gather.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.translator.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.scales.*")
