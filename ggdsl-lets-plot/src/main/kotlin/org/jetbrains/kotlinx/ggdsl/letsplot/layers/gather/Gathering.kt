@@ -1,7 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.gather
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.NamedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.SubTableBindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.*
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
@@ -41,14 +40,11 @@ public interface GatherContext {
     public fun toGathering(): Gathering
 }
 
-public class LineGatheringContext(parent: NamedDataPlotContext<*>, private val position: Position):
-    SubTableBindingContext(parent), LineContextInterface, GatherContext {
-    override val data: NamedDataInterface = parent.data
-    public val seriesCollector: MutableList<Series> = mutableListOf<Series>()
-
-    public inline fun series(label: String, block: LineSeriesContext.() -> Unit){
-        seriesCollector.add(LineSeriesContext(this).apply(block).toSeries(label))
-    }
+public interface LineGatheringContextInterface:
+     LineContextInterface, GatherContext {
+    public val data: NamedDataInterface
+    public val seriesCollector: MutableList<Series>
+    public val position: Position
 
     public override fun toGathering(): Gathering {
         return Gathering(
@@ -61,7 +57,36 @@ public class LineGatheringContext(parent: NamedDataPlotContext<*>, private val p
     }
 }
 
+public class LineGatheringContext(parent: NamedDataPlotContext<*>, override val position: Position)
+    : SubTableBindingContext(parent), LineGatheringContextInterface {
+    override val data: NamedDataInterface = parent.data
+    override val seriesCollector: MutableList<Series> = mutableListOf()
+
+    public fun series(label: String, block: LineSeriesContext.() -> Unit){
+        seriesCollector.add(LineSeriesContext(this).apply(block).toSeries(label))
+    }
+}
 public class LineSeriesContext(parent: LineGatheringContext): SubTableBindingContext(parent), LineContextInterface {
+    public fun toSeries(label: String): Series {
+        return Series(
+            bindingCollector.mappings,
+            bindingCollector.settings,
+            label
+        )
+    }
+}
+public class LineGatheringMutableContext(parent: MutableDataBindingContextInterface, override val position: Position)
+    : SubMutableDataContext(parent), LineGatheringContextInterface {
+    override val data: NamedDataInterface
+        get ()= super.data as NamedDataInterface
+    override val seriesCollector: MutableList<Series> = mutableListOf()
+
+    public fun series(label: String, block: LineSeriesMutableContext.() -> Unit){
+        seriesCollector.add(LineSeriesMutableContext(this).apply(block).toSeries(label))
+    }
+}
+
+public class LineSeriesMutableContext(parent: LineGatheringMutableContext): SubMutableDataContext(parent, false, ), LineContextInterface {
     public fun toSeries(label: String): Series {
         return Series(
             bindingCollector.mappings,
@@ -94,3 +119,27 @@ public inline fun< reified T: GatherContext> NamedDataPlotContext<*>.gather(
         typeOf<LineGatheringContext>() -> lineGather(position, block as (LineGatheringContext.() -> Unit))
     }
 }
+
+public inline fun PlotMutableDataContext.lineGather(
+    position: Position = Position.Identity,
+    block: LineGatheringMutableContext.() -> Unit
+) {
+    (features.getOrPut(GatheringList.FEATURE_NAME) {
+        GatheringList()
+    } as GatheringList).gatheringList.add(
+        LineGatheringMutableContext(this, position).apply(block).toGathering()
+    )
+}
+/*
+@Suppress("UNCHECKED_CAST")
+public inline fun< reified T: GatherContext> PlotMutableDataContext.gather(
+    position: Position = Position.Identity,
+    noinline block: T.() -> Unit
+) {
+    //todo
+    when(typeOf<T>()) {
+        typeOf<LineGatheringMutableContext>() -> lineGather(position, block as (LineGatheringMutableContext.() -> Unit))
+    }
+}
+
+ */

@@ -129,6 +129,7 @@ internal fun Gathering.toLayer(): Layer {
         }
     }
 
+
     val nonPosScales: Map<AesName, Mapping> = if (scaleBuffer.isEmpty()) {
         mapOf(COLOR to ScaledNonPositionalDefaultMapping<String, Color>(
             COLOR,

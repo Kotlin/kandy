@@ -53,10 +53,10 @@ public interface MutableDataBindingContextInterface : TableBindingContext {
     override val data: TableData
     public val dataBuffer: MutableTableData
     public val multiplier: Int
+    public fun generateID(): String
     public fun <T : Any> Iterable<T>.toColumnPointer(): ColumnPointer<T>
     public fun <T : Any> Iterable<T>.toColumnPointer(id: String): ColumnPointer<T>
 }
-
 
 public abstract class MutableDataBindingContext : MutableDataBindingContextInterface {
     override val bindingCollector: BindingCollector = BindingCollector()
@@ -65,7 +65,7 @@ public abstract class MutableDataBindingContext : MutableDataBindingContextInter
         get() = dataBuffer.toTableData()
 
     private var counter: Int = 0
-    private fun generateID(): String = "*gen${counter++}"
+    public override fun generateID(): String = "*gen${counter++}"
 
 
     public override fun <T : Any> Iterable<T>.toColumnPointer(): ColumnPointer<T> = toColumnPointer(generateID())
@@ -144,11 +144,22 @@ public abstract class MutableDataBindingContext : MutableDataBindingContextInter
     }
 }
 
-public abstract class SubMutableDataContext(parent: MutableDataBindingContextInterface) : MutableDataBindingContext() {
-    override val dataBuffer: MutableTableData = MutableNamedData(parent.dataBuffer.map.toMutableMap())
-    override val bindingCollector: BindingCollector = BindingCollector().apply {
-        copyFrom(parent.bindingCollector)
+public abstract class SubMutableDataContext(
+    public val parent: MutableDataBindingContextInterface,
+    private val separated: Boolean = true,
+) : MutableDataBindingContext() {
+    override val dataBuffer: MutableTableData = if (separated){
+        MutableNamedData(parent.dataBuffer.map.toMutableMap())
+    } else {
+        parent.dataBuffer
     }
+    override val bindingCollector: BindingCollector =
+        BindingCollector().apply {
+            copyFrom(parent.bindingCollector)
+        }
+
+    override fun generateID(): String = parent.generateID()
+
     override val multiplier: Int = parent.multiplier
 }
 
