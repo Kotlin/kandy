@@ -23,6 +23,6 @@ public data class Plot(
     val dataset: TableData, // todo remove???
     val layers: List<Layer>,
     val globalMappings: Map<AesName, Mapping>,
-    val features: Map<FeatureName, PlotFeature> = emptyMap(),
-    val freeScales: Map<AesName, FreeScale> = emptyMap(),
+    val features: Map<FeatureName, PlotFeature>,
+    val freeScales: Map<AesName, FreeScale>,
 )

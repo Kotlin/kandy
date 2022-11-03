@@ -162,7 +162,9 @@ internal class CustomizationTest {
                     Y,
                     ColumnScaledUnspecifiedDefault(mockSrcDouble),
                     typeOf<Double>()
-                ),)
+                ),),
+                emptyMap(),
+                emptyMap()
             ),
             plot
         )
@@ -190,7 +192,8 @@ internal class CustomizationTest {
                     )
                 ),
                 mapOf(),
-                mapOf(MockPlotFeature.FEATURE_NAME to MockPlotFeature("amentes ineptias"))
+                mapOf(MockPlotFeature.FEATURE_NAME to MockPlotFeature("amentes ineptias")),
+                emptyMap()
             ),
             plot
         )

@@ -26,7 +26,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
 /**
  * Internal collector of mappings and settings.
  */
-public class BindingCollector internal constructor() {
+public class BindingCollector  constructor() {
     public val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
     public val settings: MutableMap<AesName, Setting> = mutableMapOf()
 
@@ -160,11 +160,17 @@ public class GatheredAndGroupedContext<T : Any>(
     public val GATHER_GROUP_KEYS: ColumnPointer<String> = ColumnPointer<String>(keysColumnName)
 }
 
-public interface PlotContext : LayerCollectorContextInterface, TableBindingContext {
+public interface PlotContextBase: TableBindingContext {
     // todo hide
     override val data: TableData
     public val features: MutableMap<FeatureName, PlotFeature>
-    public fun toPlot(): Plot {
+    public fun toPlot(): Plot
+}
+
+public interface PlotContext : LayerCollectorContextInterface, PlotContextBase {
+    // todo hide
+    override val data: TableData
+    public override fun toPlot(): Plot {
         return Plot(data, layers, bindingCollector.mappings, features, bindingCollector.freeScales)
     }
 }

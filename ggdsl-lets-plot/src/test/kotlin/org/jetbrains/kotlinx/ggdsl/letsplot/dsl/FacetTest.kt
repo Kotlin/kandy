@@ -39,7 +39,8 @@ class FacetTest {
                         null,
                         null
                     )
-                )
+                ),
+                emptyMap(),
             ),
             plot
         )
@@ -70,7 +71,8 @@ class FacetTest {
                         null,
                         null,
                     )
-                )
+                ),
+                emptyMap()
             ),
             plot
         )

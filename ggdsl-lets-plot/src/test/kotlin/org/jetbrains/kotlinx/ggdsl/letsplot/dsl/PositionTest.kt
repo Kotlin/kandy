@@ -39,8 +39,9 @@ internal class PositionTest {
                         mapOf(Position.FEATURE_NAME to Position.Identity)
                     )
                 ),
-
-                mapOf()
+                emptyMap(),
+                mapOf(),
+                emptyMap()
             ),
             plot
         )
@@ -88,7 +89,9 @@ internal class PositionTest {
                         mapOf(Position.FEATURE_NAME to Position.Dodge(0.9))
                     )
                 ),
-                mapOf()
+                mapOf(),
+                emptyMap(),
+                emptyMap()
             ),
             plot
         )

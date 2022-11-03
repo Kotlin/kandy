@@ -83,7 +83,7 @@ internal class LayersTest {
                         mapOf()
                     )
                 ),
-                mapOf()
+                mapOf(),emptyMap(),emptyMap()
             ),
             plot
         )
