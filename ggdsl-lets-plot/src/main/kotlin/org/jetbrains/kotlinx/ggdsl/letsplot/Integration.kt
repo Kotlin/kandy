@@ -36,7 +36,7 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.label.*")
-        import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.gather.*")
+        import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.series.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.translator.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.scales.*")
