@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.stack
 
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.BarsContext
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
@@ -30,11 +29,11 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
  */
 
 // todo
-public var BarsContext.stack: Stack
-    get() = Stack("TODO")
-    set(value) {
-        features[Stack.FEATURE_NAME] = value
-    }
+//public var BarsContext.stack: Stack
+//    get() = Stack("TODO")
+//    set(value) {
+//        features[Stack.FEATURE_NAME] = value
+//    }
 
 //todo
 public data class Stack internal constructor(val name: String) : LayerFeature {
