@@ -105,3 +105,21 @@ public abstract class GatheringPlotMutableContextBase(
         }
     }
 }
+
+public abstract class SeriesMutableContextBase(parent: MutableDataBindingContextInterface) :
+    SubMutableDataContext(parent, false) {
+    public fun toSeries(label: String): Series {
+        return Series(
+            bindingCollector.mappings,
+            bindingCollector.settings,
+            label
+        )
+    }
+}
+
+@PublishedApi
+internal fun PlotContext.addGathering(gathering: Gathering) {
+    (features.getOrPut(GatheringList.FEATURE_NAME) {
+        GatheringList()
+    } as GatheringList).gatheringList.add(gathering)
+}

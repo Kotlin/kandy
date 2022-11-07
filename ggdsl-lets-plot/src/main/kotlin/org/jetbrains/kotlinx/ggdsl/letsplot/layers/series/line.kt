@@ -1,6 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.series
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.*
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.MutableDataBindingContextInterface
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.NamedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotMutableDataContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.TableBindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
@@ -53,17 +56,6 @@ public class LineGatheringPlotMutableContext(
     }
 }
 
-public abstract class SeriesMutableContextBase(parent: MutableDataBindingContextInterface) :
-    SubMutableDataContext(parent, false) {
-    public fun toSeries(label: String): Series {
-        return Series(
-            bindingCollector.mappings,
-            bindingCollector.settings,
-            label
-        )
-    }
-}
-
 public class LineSeriesMutableContext(parent: MutableDataBindingContextInterface) :
     SeriesMutableContextBase(parent), LineContextInterface
 
@@ -73,12 +65,6 @@ public inline fun linePlot(
     block: LineGatheringPlotMutableContext.() -> Unit,
 ): Plot {
     return LineGatheringPlotMutableContext(position).apply(block).toPlot()
-}
-
-public fun PlotContext.addGathering(gathering: Gathering) {
-    (features.getOrPut(GatheringList.FEATURE_NAME) {
-        GatheringList()
-    } as GatheringList).gatheringList.add(gathering)
 }
 
 

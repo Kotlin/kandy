@@ -15,5 +15,6 @@ public inline fun <reified T : GatheringContextInterface> NamedDataPlotContext<*
     //todo
     when (typeOf<T>()) {
         typeOf<LineGatheringContext>() -> lineGather(position, block as (LineGatheringContext.() -> Unit))
+        typeOf<PointGatheringContext>() -> pointGather(position, block as (PointGatheringContext.() -> Unit))
     }
 }
