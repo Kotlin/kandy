@@ -26,7 +26,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
 /**
  * Internal collector of mappings and settings.
  */
-public class BindingCollector  constructor() {
+public class BindingCollector(private val copySettings: Boolean = true) {
     public val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
     public val settings: MutableMap<AesName, Setting> = mutableMapOf()
 
@@ -34,7 +34,7 @@ public class BindingCollector  constructor() {
 
     internal fun copyFrom(other: BindingCollector) {
         mappings.putAll(other.mappings)
-        settings.putAll(other.settings)
+        if (other.copySettings) settings.putAll(other.settings)
     }
 }
 
@@ -49,7 +49,9 @@ public interface BindingContext {
 /**
  * Base class for nested contexts that inherit bindings from parents.
  */
-public abstract class SubBindingContext(parentalBindingCollector: BindingCollector?) : BindingContext {
+public abstract class SubBindingContext
+    (parentalBindingCollector: BindingCollector?
+) : BindingContext {
     override val bindingCollector: BindingCollector = BindingCollector().apply {
         parentalBindingCollector?.let {
             copyFrom(it)

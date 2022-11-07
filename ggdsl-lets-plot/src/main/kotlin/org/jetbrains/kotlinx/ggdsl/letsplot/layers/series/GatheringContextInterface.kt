@@ -21,14 +21,16 @@ public interface GatheringContextInterface: TableBindingContext {
             seriesCollector,
             bindingCollector.settings,
             position
-        )
+        ).apply {
+            println(this)
+        }
     }
 }
 
 public abstract class SeriesPlotContextBase: PlotContextBase, GatheringContextInterface {
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
     override val seriesCollector: MutableList<Series> = mutableListOf()
-    override val bindingCollector: BindingCollector = BindingCollector()
+    override val bindingCollector: BindingCollector = BindingCollector(false)
     override fun toPlot(): Plot {
         gather()
         return Plot(
@@ -96,7 +98,7 @@ public abstract class GatheringPlotMutableContextBase(
     }
 
     override val seriesCollector: MutableList<Series> = mutableListOf()
-    override val bindingCollector: BindingCollector = BindingCollector()
+    override val bindingCollector: BindingCollector = BindingCollector(false)
 
     @PublishedApi
     internal fun gather() {
