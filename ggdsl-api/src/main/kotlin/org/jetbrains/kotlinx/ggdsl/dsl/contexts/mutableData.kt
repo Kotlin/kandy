@@ -64,6 +64,8 @@ public abstract class MutableDataBindingContext : MutableDataBindingContextInter
     override val data: TableData
         get() = dataBuffer.toTableData()
 
+    override val multiplier: Int = 1
+
     private var counter: Int = 0
     public override fun generateID(): String = "*gen${counter++}"
 

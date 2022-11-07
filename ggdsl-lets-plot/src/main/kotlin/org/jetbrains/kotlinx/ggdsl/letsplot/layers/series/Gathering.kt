@@ -1,6 +1,5 @@
-package org.jetbrains.kotlinx.ggdsl.letsplot.layers.gather
+package org.jetbrains.kotlinx.ggdsl.letsplot.layers.series
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
@@ -33,20 +32,4 @@ public data class Series(
     val label: String,
 )
 
-public interface GatherContext: BindingContext {
-    public val data: NamedDataInterface
-    public val seriesCollector: MutableList<Series>
-    public val position: Position
-    public val geom: Geom
-
-    public fun toGathering(): Gathering {
-        return Gathering(
-            geom,
-            data,
-            seriesCollector,
-            bindingCollector.settings,
-            position
-        )
-    }
-}
 

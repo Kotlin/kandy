@@ -15,8 +15,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.gather.Gathering
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.gather.GatheringList
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.series.Gathering
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.series.GatheringList
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
