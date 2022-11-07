@@ -59,23 +59,6 @@ internal class LayerWrapperTest {
             ),
             wrappedLayer.toSpec()
         )
-        /*
-        println(wrappedLayer.toSpec())
-
-        LayerAssert.assertThat(wrappedLayer)
-            .aes("fill", "F")
-            .parameter("color", "red")
-            .geom()
-            .kind(GeomKind.POINT)
-            .noMapping()
-        LayerAssert.assertThat(wrappedLayer)
-            .stat()
-            .kind(StatKind.IDENTITY)
-        LayerAssert.assertThat(wrappedLayer)
-            .position(PosKind.IDENTITY)
-
-         */
-
     }
 
     @Test
@@ -134,7 +117,7 @@ internal class LayerWrapperTest {
         )
 
         val wrappedLayer = LayerWrapper(layer)
-        println(wrappedLayer.toSpec())
+
         assertEquals(
             mapOf(
                 "mapping" to mapOf(

@@ -21,9 +21,7 @@ public interface GatheringContextInterface: TableBindingContext {
             seriesCollector,
             bindingCollector.settings,
             position
-        ).apply {
-            println(this)
-        }
+        )
     }
 }
 

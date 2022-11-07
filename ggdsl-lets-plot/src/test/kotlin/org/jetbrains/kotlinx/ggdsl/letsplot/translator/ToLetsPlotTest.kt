@@ -99,7 +99,6 @@ class ToLetsPlotTest {
                 yOrder = OrderDirection.DESCENDING
             )
         }
-        println(plot.toLetsPlot().toSpec())
         assertEquals(
             mapOf(
                 "mapping" to mapOf<String, String>(),
