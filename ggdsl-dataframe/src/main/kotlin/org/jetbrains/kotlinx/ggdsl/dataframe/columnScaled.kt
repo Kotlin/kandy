@@ -16,7 +16,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
  */
 
 public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
-    ColumnScaledUnspecifiedDefault(this.toColRef())
+    ColumnScaledUnspecifiedDefault(this.toColumnPointer())
 
 /**
  * Apply an unspecified positional scale to this column
@@ -27,7 +27,7 @@ public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
  */
 
 public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: PositionalUnspecifiedScale): ColumnScaledPositionalUnspecified<DomainType> =
-    ColumnScaledPositionalUnspecified(this.toColRef(), scale)
+    ColumnScaledPositionalUnspecified(this.toColumnPointer(), scale)
 
 
 /**
@@ -39,7 +39,7 @@ public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
  */
 
 public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): ColumnScaledNonPositionalUnspecified<DomainType> =
-    ColumnScaledNonPositionalUnspecified(this.toColRef(), scale)
+    ColumnScaledNonPositionalUnspecified(this.toColumnPointer(), scale)
 
 
 /**
@@ -51,7 +51,7 @@ public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
  */
 public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.toColRef(), scale)
+): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.toColumnPointer(), scale)
 
 
 /**
@@ -63,5 +63,5 @@ public inline fun <reified DomainType : Any> ColumnReference<DomainType>.scaled(
  */
 public inline fun <reified DomainType : Any, RangeType : Any> ColumnReference<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.toColRef(), scale)
+): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.toColumnPointer(), scale)
 

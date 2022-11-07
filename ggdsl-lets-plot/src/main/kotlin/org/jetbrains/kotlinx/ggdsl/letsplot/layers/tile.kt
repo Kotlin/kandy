@@ -18,15 +18,15 @@ internal val TILE: LetsPlotGeom = LetsPlotGeom("tile")
 
 public class TileContext(parent: LayerCollectorContext) :
     WithBorderLineContext(parent) {
-    public val x: XAes = XAes(this)
-    public val y: YAes = YAes(this)
+    public val x: XAes get() = XAes(this)
+    public val y: YAes get() = YAes(this)
 
 
-    public val color: FillAes = FillAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
+    public val color: FillAes get() = FillAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
 
-    public val width: WidthPosAes = WidthPosAes(this)
-    public val height: HeightPosAes = HeightPosAes(this)
+    public val width: WidthPosAes get() = WidthPosAes(this)
+    public val height: HeightPosAes get() = HeightPosAes(this)
 
 }
 

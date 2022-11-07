@@ -23,17 +23,17 @@ public val TEXT: LetsPlotGeom = LetsPlotGeom("text")
 @PlotDslMarker
 public class TextContext(parent: LayerCollectorContext) : LayerContext(parent) {
     // todo sizeUnit
-    public val x: XAes = XAes(this)
-    public val y: YAes = YAes(this)
-    public val label: LabelAes = LabelAes(this)
+    public val x: XAes get() = XAes(this)
+    public val y: YAes get() = YAes(this)
+    public val label: LabelAes get() = LabelAes(this)
 
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val angle: AngleAes = AngleAes(this)
-    public val format: FormatAes = FormatAes(this)
-    public val horizontalJustification: HorizontalJustificationAes = HorizontalJustificationAes(this)
-    public val verticalJustification: VerticalJustificationAes = VerticalJustificationAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val angle: AngleAes get() = AngleAes(this)
+    public val format: FormatAes get() = FormatAes(this)
+    public val horizontalJustification: HorizontalJustificationAes get() = HorizontalJustificationAes(this)
+    public val verticalJustification: VerticalJustificationAes get() = VerticalJustificationAes(this)
 
-    public val font: FontContext = FontContext(this)
+    public val font: FontContext get() = FontContext(this)
 }
 
 public inline fun LayerCollectorContext.text(block: TextContext.() -> Unit) {

@@ -13,13 +13,13 @@ public val AB_LINE: LetsPlotGeom = LetsPlotGeom("abline")
 
 public class ABLineContext @PublishedApi internal constructor(parent: LayerCollectorContext) :
     LayerContext(parent) {
-    public val slope: SlopeAes = SlopeAes(this)
-    public val intercept: InterceptAes = InterceptAes(this)
+    public val slope: SlopeAes get() = SlopeAes(this)
+    public val intercept: InterceptAes get() = InterceptAes(this)
 
-    public val color: ColorAes = ColorAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val type: LineTypeAes = LineTypeAes(this)
-    public val width: WidthAes = WidthAes(this)
+    public val color: ColorAes get() = ColorAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val type: LineTypeAes get() = LineTypeAes(this)
+    public val width: WidthAes get() = WidthAes(this)
 }
 
 public inline fun LayerCollectorContext.abLine(block: ABLineContext.() -> Unit) {

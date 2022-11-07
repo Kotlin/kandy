@@ -15,13 +15,15 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 
 // todo internal?
-public fun <T : Any> ColumnReference<T>.toColRef(): ColumnPointer<T> {
+public fun <T : Any> ColumnReference<T>.toColumnPointer(): ColumnPointer<T> {
     return ColumnPointer(name())
 }
 
 
-internal fun DataFrame<*>.toNamedData(): Map<String, List<Any>> {
-    return flatten().toMap().map { it.key to it.value.map { it!! /*TODO*/ } }.toMap()
+@Suppress("UNCHECKED_CAST")
+public fun DataFrame<*>.toNamedData(): Map<String, List<Any>> {
+    // TODO (change convert df to map)
+    return dropNulls().flatten().toMap().map { it.key to (it.value as List<Any>) }.toMap()
 }
 
 public class LazyGroupedDataFrame(
@@ -57,6 +59,22 @@ public class DataFrameWrapper(public val df: DataFrame<*>) : NamedDataInterface 
     override val map: Map<String, List<Any>> = df.toNamedData()
     override fun groupBy(vararg columnPointers: ColumnPointer<*>): LazyGroupedDataFrame {
         return LazyGroupedDataFrame(columnPointers.map { it.id }, this)
+    }
+
+    public override fun <T: Any> gather(
+        valuesColumnName: String,
+        keysColumnName: String,
+        firstColumn: ColumnPointer<T>,
+        secondColumn: ColumnPointer<T>,
+        vararg columns: ColumnPointer<T>,
+    ): DataFrameWrapper {
+        return DataFrameWrapper(
+            df.gather(*(
+                    listOf(firstColumn.id, secondColumn.id) + (columns).map { it.id }).toTypedArray()).into(
+                valuesColumnName,
+                keysColumnName
+            )
+        )
     }
 
     public fun groupBy(vararg columnReferences: ColumnReference<*>): LazyGroupedDataFrame {

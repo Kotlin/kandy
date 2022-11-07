@@ -4,9 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -18,14 +17,22 @@ internal val BAR: LetsPlotGeom = LetsPlotGeom("bar")
 
 
 @PlotDslMarker
-public class BarContext(parent: LayerCollectorContext) : WithBorderLineContext(parent) {
-    public val x: XAes = XAes(this)
-    public val y: YAes = YAes(this)
+public interface BarContextInterface: BindingContext {
+    public val x: XAes get() = XAes(this)
+    public val y: YAes get() = YAes(this)
 
-    public val color: FillAes = FillAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val width: WidthAes = WidthAes(this)
+    public val color: FillAes get() = FillAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val width: WidthAes get() = WidthAes(this)
 
+}
+
+@PlotDslMarker
+public class BarContext(parent: LayerCollectorContext): LayerContext(parent), BarContextInterface
+
+@PlotDslMarker
+public class BarMutableContext(parent: LayerCollectorMutableDataContext):
+    LayerMutableDataContext(parent), BarContextInterface {
 }
 
 /**
@@ -74,4 +81,8 @@ public class BarContext(parent: LayerCollectorContext) : WithBorderLineContext(p
  */
 public inline fun LayerCollectorContext.bar(block: BarContext.() -> Unit) {
     addLayer(BarContext(this).apply(block), BAR)
+}
+
+public inline fun LayerCollectorMutableDataContext.bar(block: BarMutableContext.() -> Unit) {
+    addLayer(BarMutableContext(this).apply(block), BAR)
 }

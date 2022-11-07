@@ -18,14 +18,14 @@ internal val SEGMENT: LetsPlotGeom = LetsPlotGeom("segment")
 public class SegmentContext(parent: LayerCollectorContext) :
     LayerContext(parent) {
     // TODO
-    public val xBegin: XAes = XAes(this)
-    public val yBegin: YAes = YAes(this)
-    public val xEnd: XEndAes = XEndAes(this)
-    public val yEnd: YEndAes = YEndAes(this)
-    public val color: ColorAes = ColorAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val lineType: LineTypeAes = LineTypeAes(this)
-    public val width: SizeAes = SizeAes(this)
+    public val xBegin: XAes get() = XAes(this)
+    public val yBegin: YAes get() = YAes(this)
+    public val xEnd: XEndAes get() = XEndAes(this)
+    public val yEnd: YEndAes get() = YEndAes(this)
+    public val color: ColorAes get() = ColorAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val lineType: LineTypeAes get() = LineTypeAes(this)
+    public val width: SizeAes get() = SizeAes(this)
 
     // todo speed and flow
 }

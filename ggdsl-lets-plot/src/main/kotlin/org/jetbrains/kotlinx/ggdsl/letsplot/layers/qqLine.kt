@@ -37,26 +37,26 @@ public class QQLineContext(
     }
 
     @PublishedApi
-    internal val _sample: SampleAes = SampleAes(this)
+    internal val _sample: SampleAes get() = SampleAes(this)
 
-    public val sample: SampleDummyAes = SampleDummyAes(this)
+    public val sample: SampleDummyAes get() = SampleDummyAes(this)
 
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val color: ColorAes = ColorAes(this)
-    public val width: SizeAes = SizeAes(this)
-    public val type: LineTypeAes = LineTypeAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val color: ColorAes get() = ColorAes(this)
+    public val width: SizeAes get() = SizeAes(this)
+    public val type: LineTypeAes get() = LineTypeAes(this)
 
 
     // todo weight
 
     @PublishedApi
-    internal val distribution: DistributionAes = DistributionAes(this)
+    internal val distribution: DistributionAes get() = DistributionAes(this)
 
     @PublishedApi
-    internal val dParams: DParamsAes = DParamsAes(this)
+    internal val dParams: DParamsAes get() = DParamsAes(this)
 
     @PublishedApi
-    internal val quantiles: QuantilesAes = QuantilesAes(this)
+    internal val quantiles: QuantilesAes get() = QuantilesAes(this)
 
     public object Statistics {
         public val SAMPLE: QQStat.Sample = QQStat.Sample

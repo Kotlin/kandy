@@ -16,18 +16,18 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 public val BOXPLOT: LetsPlotGeom = LetsPlotGeom("boxplot")
 @PlotDslMarker
 public class BoxplotContext(parent: LayerCollectorContext) : WithBorderLineContext(parent) {
-    public val x: XAes = XAes(this)
+    public val x: XAes get() = XAes(this)
 
-    public val lower: LowerAes = LowerAes(this)
-    public val upper: UpperAes = UpperAes(this)
-    public val middle: MiddleAes = MiddleAes(this)
-    public val yMin: YMinAes = YMinAes(this)
-    public val yMax: YMaxAes = YMaxAes(this)
+    public val lower: LowerAes get() = LowerAes(this)
+    public val upper: UpperAes get() = UpperAes(this)
+    public val middle: MiddleAes get() = MiddleAes(this)
+    public val yMin: YMinAes get() = YMinAes(this)
+    public val yMax: YMaxAes get() = YMaxAes(this)
 
-    public val fatten: FattenAes = FattenAes(this)
+    public val fatten: FattenAes get() = FattenAes(this)
 
-    public val color: FillAes = FillAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
+    public val color: FillAes get() = FillAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
 }
 
 /**

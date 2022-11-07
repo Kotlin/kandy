@@ -33,23 +33,23 @@ public class QQContext(
     }
 
     @PublishedApi
-    internal val _sample: SampleAes = SampleAes(this)
+    internal val _sample: SampleAes get() = SampleAes(this)
 
-    public val sample: SampleDummyAes = SampleDummyAes(this)
+    public val sample: SampleDummyAes get() = SampleDummyAes(this)
 
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val fillColor: FillAes = FillAes(this)
-    public val color: ColorAes = ColorAes(this)
-    public val size: SizeAes = SizeAes(this)
-    public val symbol: ShapeAes = ShapeAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val fillColor: FillAes get() = FillAes(this)
+    public val color: ColorAes get() = ColorAes(this)
+    public val size: SizeAes get() = SizeAes(this)
+    public val symbol: ShapeAes get() = ShapeAes(this)
 
     // todo weight
 
     @PublishedApi
-    internal val distribution: DistributionAes = DistributionAes(this)
+    internal val distribution: DistributionAes get() = DistributionAes(this)
 
     @PublishedApi
-    internal val dParams: DParamsAes = DParamsAes(this)
+    internal val dParams: DParamsAes get() = DParamsAes(this)
 
     public object Statistics {
         public val SAMPLE: QQStat.Sample = QQStat.Sample

@@ -4,34 +4,58 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
+public interface PointsContextInterface: BindingContext {
+    public val x: XAes get() = XAes(this)
+    public val y: YAes get() = YAes(this)
+
+    public val symbol: ShapeAes get() = ShapeAes(this)
+
+    public val size: SizeAes get() = SizeAes(this)
+    public val color: ColorAes get() = ColorAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+
+    // FILL SHAPES only
+    public val borderWidth: StrokeAes  // TODO doesnt work lol
+    get() = StrokeAes(this)
+    public val fillColor: FillAes
+ get() = FillAes(this)
+}
+
+@PlotDslMarker
+public class PointsContext(parent: LayerCollectorContext): LayerContext(parent), PointsContextInterface
+
+@PlotDslMarker
+public class PointsMutableContext(parent: LayerCollectorMutableDataContext):
+    LayerMutableDataContext(parent), PointsContextInterface
+
 @PublishedApi
 internal val POINT: LetsPlotGeom = LetsPlotGeom("point")
-
+/*
 // TODO add size unit???
 @PlotDslMarker
 public class PointsContext(parent: LayerCollectorContext) : LayerContext(parent) {
-    public val x: XAes = XAes(this)
-    public val y: YAes = YAes(this)
+    public val x: XAes get() = XAes(this)
+    public val y: YAes get() = YAes(this)
 
-    public val symbol: ShapeAes = ShapeAes(this)
+    public val symbol: ShapeAes get() = ShapeAes(this)
 
-    public val size: SizeAes = SizeAes(this)
-    public val color: ColorAes = ColorAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
+    public val size: SizeAes get() = SizeAes(this)
+    public val color: ColorAes get() = ColorAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
 
     // FILL SHAPES only
-    public val borderWidth: StrokeAes = StrokeAes(this) // TODO doesnt work lol
-    public val fillColor: FillAes = FillAes(this)
+    public val borderWidth: StrokeAes get() = StrokeAes(this) // TODO doesnt work lol
+    public val fillColor: FillAes get() = FillAes(this)
 
 }
+
+ */
 
 /**
  * Adds a new point layer.
@@ -71,4 +95,9 @@ public class PointsContext(parent: LayerCollectorContext) : LayerContext(parent)
 public inline fun LayerCollectorContext.points(block: PointsContext.() -> Unit) {
     addLayer(PointsContext(this).apply(block), POINT)
 }
+
+public inline fun LayerCollectorMutableDataContext.points(block: PointsMutableContext.() -> Unit) {
+    addLayer(PointsMutableContext(this).apply(block), POINT)
+}
+
 

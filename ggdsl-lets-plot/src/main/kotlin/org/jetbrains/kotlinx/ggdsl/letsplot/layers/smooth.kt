@@ -31,43 +31,43 @@ public class SmoothContext(
     // todo min/max?
 
     @PublishedApi
-    internal val _x: XAes = XAes(this)
+    internal val _x: XAes get() = XAes(this)
 
     @PublishedApi
-    internal val _y: YAes = YAes(this)
+    internal val _y: YAes get() = YAes(this)
 
-    public val x: XDummyAes = XDummyAes(this)
-    public val y: YDummyAes = YDummyAes(this)
+    public val x: XDummyAes get() = XDummyAes(this)
+    public val y: YDummyAes get() = YDummyAes(this)
 
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val fillColor: FillAes = FillAes(this)
-    public val lineColor: ColorAes = ColorAes(this)
-    public val lineWidth: SizeAes = SizeAes(this)
-    public val lineType: LineTypeAes = LineTypeAes(this)
-
-    @PublishedApi
-    internal val method: MethodAes = MethodAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val fillColor: FillAes get() = FillAes(this)
+    public val lineColor: ColorAes get() = ColorAes(this)
+    public val lineWidth: SizeAes get() = SizeAes(this)
+    public val lineType: LineTypeAes get() = LineTypeAes(this)
 
     @PublishedApi
-    internal val pointsNumber: NumberAes = NumberAes(this)
+    internal val method: MethodAes get() = MethodAes(this)
 
     @PublishedApi
-    internal val se: SEAes = SEAes(this)
+    internal val pointsNumber: NumberAes get() = NumberAes(this)
 
     @PublishedApi
-    internal val level: LevelAes = LevelAes(this)
+    internal val se: SEAes get() = SEAes(this)
 
     @PublishedApi
-    internal val span: SpanAes = SpanAes(this)
+    internal val level: LevelAes get() = LevelAes(this)
 
     @PublishedApi
-    internal val deg: DegAes = DegAes(this)
+    internal val span: SpanAes get() = SpanAes(this)
 
     @PublishedApi
-    internal val seed: SeedAes = SeedAes(this)
+    internal val deg: DegAes get() = DegAes(this)
 
     @PublishedApi
-    internal val maxN: MaxNAes = MaxNAes(this)
+    internal val seed: SeedAes get() = SeedAes(this)
+
+    @PublishedApi
+    internal val maxN: MaxNAes get() = MaxNAes(this)
 
     init {
         se?.let {

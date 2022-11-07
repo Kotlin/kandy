@@ -18,13 +18,13 @@ internal val ERROR_BAR: LetsPlotGeom = LetsPlotGeom("errorbar")
 @PlotDslMarker
 public class ErrorBarContext(parent: LayerCollectorContext) :
     WithBorderLineContext(parent) {
-    public val x: XAes = XAes(this)
+    public val x: XAes get() = XAes(this)
 
-    public val yMin: YMinAes = YMinAes(this)
-    public val yMax: YMaxAes = YMaxAes(this)
+    public val yMin: YMinAes get() = YMinAes(this)
+    public val yMax: YMaxAes get() = YMaxAes(this)
 
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val width: WidthAes = WidthAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val width: WidthAes get() = WidthAes(this)
     // todo just 'line' instead borderline???
 }
 

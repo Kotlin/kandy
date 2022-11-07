@@ -32,25 +32,25 @@ public class QQ2LineContext(
     }
 
     @PublishedApi
-    internal val _x: XAes = XAes(this)
+    internal val _x: XAes get() = XAes(this)
 
     @PublishedApi
-    internal val _y: YAes = YAes(this)
+    internal val _y: YAes get() = YAes(this)
 
-    public val x: XDummyAes = XDummyAes(this)
-    public val y: YDummyAes = YDummyAes(this)
+    public val x: XDummyAes get() = XDummyAes(this)
+    public val y: YDummyAes get() = YDummyAes(this)
 
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val color: ColorAes = ColorAes(this)
-    public val width: SizeAes = SizeAes(this)
-    public val type: LineTypeAes = LineTypeAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val color: ColorAes get() = ColorAes(this)
+    public val width: SizeAes get() = SizeAes(this)
+    public val type: LineTypeAes get() = LineTypeAes(this)
 
 
     // todo speed flow
 
 
     @PublishedApi
-    internal val quantiles: QuantilesAes = QuantilesAes(this)
+    internal val quantiles: QuantilesAes get() = QuantilesAes(this)
 
     public object Statistics {
         public val X: QQ2Stat.X = QQ2Stat.X

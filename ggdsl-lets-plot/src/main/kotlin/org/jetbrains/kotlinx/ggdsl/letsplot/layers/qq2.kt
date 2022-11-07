@@ -26,19 +26,19 @@ public class QQ2Context(
 ) : LayerContext() {
 >>>>>>> main
     @PublishedApi
-    internal val _x: XAes = XAes(this)
+    internal val _x: XAes get() = XAes(this)
 
     @PublishedApi
-    internal val _y: YAes = YAes(this)
+    internal val _y: YAes get() = YAes(this)
 
-    public val x: XDummyAes = XDummyAes(this)
-    public val y: YDummyAes = YDummyAes(this)
+    public val x: XDummyAes get() = XDummyAes(this)
+    public val y: YDummyAes get() = YDummyAes(this)
 
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val fillColor: FillAes = FillAes(this)
-    public val color: ColorAes = ColorAes(this)
-    public val size: SizeAes = SizeAes(this)
-    public val symbol: ShapeAes = ShapeAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val fillColor: FillAes get() = FillAes(this)
+    public val color: ColorAes get() = ColorAes(this)
+    public val size: SizeAes get() = SizeAes(this)
+    public val symbol: ShapeAes get() = ShapeAes(this)
     // todo stroke
 
     public object Statistics {

@@ -17,7 +17,7 @@ import org.jetbrains.letsPlot.pos.positionIdentity
 
 internal class LayerWrapper internal constructor(private val layer: Layer) :
     LayerBase(
-        data = layer.data.wrap(),
+        data = layer.data?.wrap(),
         mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap() }.toMap().toMutableMap().apply {
             if (layer.data is LazyGroupedDataInterface) {
                 this[GROUP.name] = MERGED_GROUPS

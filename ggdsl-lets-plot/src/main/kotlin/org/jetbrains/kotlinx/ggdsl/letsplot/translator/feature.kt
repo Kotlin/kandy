@@ -4,14 +4,22 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
+import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
+import org.jetbrains.kotlinx.ggdsl.dsl.categorical
+import org.jetbrains.kotlinx.ggdsl.dsl.invoke
+import org.jetbrains.kotlinx.ggdsl.dsl.scaled
+import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.ggdsl.letsplot.CoordFlip
-import org.jetbrains.kotlinx.ggdsl.letsplot.Layout
-import org.jetbrains.kotlinx.ggdsl.letsplot.Reversed
+import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.series.Gathering
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.series.GatheringList
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.coord.coordFlip
 import org.jetbrains.letsPlot.facet.facetGrid
 import org.jetbrains.letsPlot.facet.facetWrap
@@ -24,6 +32,7 @@ import org.jetbrains.letsPlot.pos.*
 import org.jetbrains.letsPlot.tooltips.TooltipOptions
 import org.jetbrains.letsPlot.tooltips.layerTooltips
 import org.jetbrains.letsPlot.tooltips.tooltipsNone
+import kotlin.reflect.typeOf
 
 internal fun FacetGridFeature.wrap(): OptionsMap {
     return facetGrid(
@@ -85,9 +94,88 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
             (this as Layout).wrap(featureBuffer)
         }
 
+        GatheringList.FEATURE_NAME -> {
+            (this as GatheringList).gatheringList.forEach {
+                it.toLayer().wrap(featureBuffer)
+            }
+        }
+
         else -> TODO()
     }
     //return featureBuffer
+}
+
+//internal val palette = listOf(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE)
+
+internal fun Gathering.toLayer(): Layer {
+    val size = data.map.values.first().size
+    val mappingAesNames = series.first().settings.keys
+    val xBuffer = mutableListOf<Any>()
+    val yBuffer = mutableListOf<Any>()
+    val labelBuffer = mutableListOf<String>()
+    val scaleBuffer = mappingAesNames.associateWith {
+        mutableListOf<String>() to mutableListOf<Any>()
+    }
+
+    series.forEach {series ->
+        xBuffer.addAll(data.map[series.mappings[X]!!.wrap().second]!!)
+        yBuffer.addAll(data.map[series.mappings[Y]!!.wrap().second]!!)
+        labelBuffer.addAll(List(size){series.label})
+        series.settings.forEach { (aesName, setting) ->
+            scaleBuffer[aesName]!!.let {
+                it.first.add(series.label)
+                it.second.add((setting as NonPositionalSetting<*>).value)
+            }
+        }
+    }
+
+
+    val nonPosScales: Map<AesName, Mapping> = if (scaleBuffer.isEmpty()) {
+        mapOf(COLOR to ScaledNonPositionalDefaultMapping<String, Color>(
+            COLOR,
+            "label"<String>().scaled(categorical()),
+            typeOf<String>()
+        ))
+    } else {
+        scaleBuffer.map { (aesName, buffer) ->
+            aesName to ScaledNonPositionalMapping<String, Any>(
+                aesName,
+                "label"<String>().scaled(
+                    categorical(
+                        buffer.first,
+                        buffer.second
+                    )
+                ),
+                typeOf<String>()
+            )
+        }.toMap()
+    }
+
+    val newData = NamedData(
+        mapOf(
+            "x" to xBuffer,
+            "y" to yBuffer,
+            "label" to labelBuffer
+        )
+    )
+    return Layer(
+        newData,
+        geom,
+        mapOf(
+            X to ScaledUnspecifiedDefaultPositionalMapping<Any>(
+                X,
+                "x"<Any>().scaled(),
+                typeOf<Any>()
+            ),
+            Y to ScaledUnspecifiedDefaultPositionalMapping<Any>(
+                Y,
+                "y"<Any>().scaled(),
+                typeOf<Any>()
+            )
+        ) + nonPosScales,
+        globalSettings,
+        mapOf(Position.FEATURE_NAME to position)
+    )
 }
 
 

@@ -33,48 +33,48 @@ public class ViolinContext(
 ) : LayerContext(parent) {
 
     @PublishedApi
-    internal val _x: XAes = XAes(this)
+    internal val _x: XAes get() = XAes(this)
 
     @PublishedApi
-    internal val _y: YAes = YAes(this)
+    internal val _y: YAes get() = YAes(this)
 
-    public val x: XDummyAes = XDummyAes(this)
-    public val y: YDummyAes = YDummyAes(this)
+    public val x: XDummyAes get() = XDummyAes(this)
+    public val y: YDummyAes get() = YDummyAes(this)
 
 
-    public val alpha: AlphaAes = AlphaAes(this)
-    public val fillColor: FillAes = FillAes(this)
-    public val width: WidthAes = WidthAes(this)
-    public val violinWidth: ViolinWidthAes = ViolinWidthAes(this)
-    public val borderLineWidth: SizeAes = SizeAes(this)
-    public val borderLineColor: ColorAes = ColorAes(this)
-    public val borderLineType: LineTypeAes = LineTypeAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
+    public val fillColor: FillAes get() = FillAes(this)
+    public val width: WidthAes get() = WidthAes(this)
+    public val violinWidth: ViolinWidthAes get() = ViolinWidthAes(this)
+    public val borderLineWidth: SizeAes get() = SizeAes(this)
+    public val borderLineColor: ColorAes get() = ColorAes(this)
+    public val borderLineType: LineTypeAes get() = LineTypeAes(this)
 
     // todo weight
 
     @PublishedApi
-    internal val drawQuantiles: DrawQuantilesAes = DrawQuantilesAes(this)
+    internal val drawQuantiles: DrawQuantilesAes get() = DrawQuantilesAes(this)
 
     @PublishedApi
-    internal val scale: ViolinScaleAes = ViolinScaleAes(this)
+    internal val scale: ViolinScaleAes get() = ViolinScaleAes(this)
 
     @PublishedApi
-    internal val kernel: KernelAes = KernelAes(this)
+    internal val kernel: KernelAes get() = KernelAes(this)
 
     @PublishedApi
-    internal val bw: BWAes = BWAes(this)
+    internal val bw: BWAes get() = BWAes(this)
 
     @PublishedApi
-    internal val pointsSampled: NumberAes = NumberAes(this)
+    internal val pointsSampled: NumberAes get() = NumberAes(this)
 
     @PublishedApi
-    internal val trim: TrimAes = TrimAes(this)
+    internal val trim: TrimAes get() = TrimAes(this)
 
     @PublishedApi
-    internal val adjust: AdjustAes = AdjustAes(this)
+    internal val adjust: AdjustAes get() = AdjustAes(this)
 
     @PublishedApi
-    internal val fullScanMax: FullScanMaxAes = FullScanMaxAes(this)
+    internal val fullScanMax: FullScanMaxAes get() = FullScanMaxAes(this)
 
     init {
 

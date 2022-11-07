@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dataframe.toColRef
+import org.jetbrains.kotlinx.ggdsl.dataframe.toColumnPointer
 import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapContext
@@ -98,4 +98,4 @@ public inline fun <reified T : Any> FacetWrapContext.facet(
     source: ColumnReference<T>,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
-): Unit = facet(source.toColRef(), order, format)
+): Unit = facet(source.toColumnPointer(), order, format)

@@ -17,13 +17,13 @@ internal val RECT: LetsPlotGeom = LetsPlotGeom("rect")
 @PlotDslMarker
 public class RectContext(parent: LayerCollectorContext) :
     WithBorderLineContext(parent) {
-    public val xMin: XMinAes = XMinAes(this)
-    public val xMax: XMaxAes = XMaxAes(this)
-    public val yMin: YMinAes = YMinAes(this)
-    public val yMax: YMaxAes = YMaxAes(this)
+    public val xMin: XMinAes get() = XMinAes(this)
+    public val xMax: XMaxAes get() = XMaxAes(this)
+    public val yMin: YMinAes get() = YMinAes(this)
+    public val yMax: YMaxAes get() = YMaxAes(this)
 
-    public val color: FillAes = FillAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
+    public val color: FillAes get() = FillAes(this)
+    public val alpha: AlphaAes get() = AlphaAes(this)
 }
 
 /**
