@@ -14,10 +14,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
 
 /**
- * Layer is a collection of data and mappings from it.
+ * [Layer] is a collection of data and mappings from it.
  * It is characterized by its [Geom].
  *
- * @param data the dataset of this layer.
+ * @param dataset the dataset of this layer.
  * @param geom the [Geom] that describes this layer.
  * @param mappings the [Map] of the mappings; keys are aesthetic attributes,
  * values are mappings on corresponding attributes.
@@ -28,7 +28,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
  */
 
 public data class Layer(
-    val data: TableData?,
+    val dataset: TableData?,
     val geom: Geom,
     val mappings: Map<AesName, Mapping>,
     val settings: Map<AesName, Setting>,

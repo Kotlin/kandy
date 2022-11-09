@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot
 import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.aes.NonScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.NonScalablePositionalAes
 
 public const val MERGED_GROUPS: String = "&merged_groups"
 

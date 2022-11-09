@@ -70,7 +70,8 @@ public fun <DomainType : Any, RangeType : Any> continuous(
  * @param categories [List] defining the domain
  * @return new [PositionalCategoricalScale] with given categories
  */
-public fun <DomainType : Any> categoricalPos(categories: List<DomainType>? = null): PositionalCategoricalScale<DomainType> =
+public fun <DomainType : Any> categoricalPos(categories: List<DomainType>? = null)
+        : PositionalCategoricalScale<DomainType> =
     PositionalCategoricalScale(categories)
 
 /**

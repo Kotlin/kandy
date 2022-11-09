@@ -438,10 +438,10 @@ public fun Plot.toOption(): MetaOption {
     //val series = mutableListOf<Series>()
 
     val layerToData = layers.mapIndexed { index, layer ->
-        index to if (layer.data === dataset) {
+        index to if (layer.dataset === dataset) {
             null
         } else {
-            (layer.data as NamedDataInterface).wrap()
+            (layer.dataset as NamedDataInterface).wrap()
         }
     }.toMap()
 
@@ -450,7 +450,7 @@ public fun Plot.toOption(): MetaOption {
             if (mapping is ScaledMapping<*>) {
                 val scale = mapping.columnScaled.scale
                 val srcId = layer.mappings[aes]!!.sourceId()
-                val data = (layer.data as NamedDataInterface).map[srcId] ?: (dataset as NamedDataInterface).map[srcId]!!
+                val data = (layer.dataset as NamedDataInterface).map[srcId] ?: (dataset as NamedDataInterface).map[srcId]!!
                 val seriesIndex = layerToData[index]?.header?.get(srcId) ?: idToDim[srcId]!!
                 val domainType = mapping.domainType
                 when (aes) {

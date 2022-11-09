@@ -5,6 +5,10 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
 import jetbrains.datalore.plot.config.Option
+import org.jetbrains.kotlinx.ggdsl.dsl.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.NonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.NonScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
@@ -109,11 +113,11 @@ public class YEndAes internal constructor(override val context: BindingContext) 
 }
 
 public val SLOPE: AesName = AesName("slope")
-public data class SlopeAes(override val context: BindingContext) :NonScalablePositionalAes{
+public data class SlopeAes(override val context: BindingContext) : NonScalablePositionalAes {
     override val name: AesName = SLOPE
 }
 public val INTERCEPT: AesName = AesName("intercept")
-public data class InterceptAes(override val context: BindingContext) :NonScalablePositionalAes {
+public data class InterceptAes(override val context: BindingContext) : NonScalablePositionalAes {
     override val name: AesName = INTERCEPT
 }
 

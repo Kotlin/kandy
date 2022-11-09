@@ -4,8 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
-
 /**
  * Plot layout settings
  *
@@ -16,9 +14,9 @@ data class DefaultLayout(
     var title: String? = null,
     // todo width height?
     var size: Pair<Int, Int>? = null,
-) : Layout
+)
 
-/*
+/* TODO
 inline fun PlotContext.layout(block: DefaultLayout.() -> Unit) {
     layoutAccessor = DefaultLayout().apply(block)
 }

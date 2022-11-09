@@ -50,8 +50,7 @@ public interface BindingContext {
  * Base class for nested contexts that inherit bindings from parents.
  */
 public abstract class SubBindingContext
-    (parentalBindingCollector: BindingCollector?
-) : BindingContext {
+    (parentalBindingCollector: BindingCollector?) : BindingContext {
     override val bindingCollector: BindingCollector = BindingCollector().apply {
         parentalBindingCollector?.let {
             copyFrom(it)
@@ -88,7 +87,7 @@ public interface NameDataBindingContext : TableBindingContext {
  */
 public abstract class LayerContext(parent: LayerCollectorContext) : TableBindingContext,
     SubTableBindingContext(parent) {
-    override val data: TableData? = if (parent is PlotContext){
+    override val data: TableData? = if (parent is PlotContext) {
         null
     } else {
         parent.data
@@ -144,6 +143,7 @@ public class GatheredNamedDataContext<T : Any>(
     public val GATHER_KEYS: ColumnPointer<String> = ColumnPointer<String>(keysColumnName)
 }
 
+public interface WithGroupingBindingContextInterface : TableBindingContext, LayerCollectorContext
 
 
 public open class WithGroupingBindingContext constructor(
@@ -162,7 +162,7 @@ public class GatheredAndGroupedContext<T : Any>(
     public val GATHER_GROUP_KEYS: ColumnPointer<String> = ColumnPointer<String>(keysColumnName)
 }
 
-public interface PlotContextBase: TableBindingContext {
+public interface PlotContextBase : TableBindingContext {
     // todo hide
     override val data: TableData
     public val features: MutableMap<FeatureName, PlotFeature>
@@ -238,8 +238,10 @@ public class NamedDataPlotContext<T : NamedDataInterface>(
         secondColumn: ColumnPointer<T>,
         vararg columnPointers: ColumnPointer<T>,
         block: GatheredAndGroupedContext<T>.() -> Unit
-    ): Unit = gatherAndGroup("valuesColumnName", "keysColumnName", firstColumn, secondColumn,
-        columnPointers = columnPointers, block)
+    ): Unit = gatherAndGroup(
+        "valuesColumnName", "keysColumnName", firstColumn, secondColumn,
+        columnPointers = columnPointers, block
+    )
 }
 
 
