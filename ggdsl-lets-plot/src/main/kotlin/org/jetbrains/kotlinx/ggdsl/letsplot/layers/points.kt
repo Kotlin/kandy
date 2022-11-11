@@ -22,9 +22,9 @@ public interface PointsContextInterface: BindingContext {
 
     // FILL SHAPES only
     public val borderWidth: StrokeAes  // TODO doesnt work lol
-    get() = StrokeAes(this)
+        get() = StrokeAes(this)
     public val fillColor: FillAes
- get() = FillAes(this)
+        get() = FillAes(this)
 }
 
 @PlotDslMarker

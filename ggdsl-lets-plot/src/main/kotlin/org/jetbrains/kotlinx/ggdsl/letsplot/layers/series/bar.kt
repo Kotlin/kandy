@@ -56,10 +56,8 @@ public class BarGatheringPlotMutableContext(
     }
 }
 
-
 public class BarSeriesMutableContext(parent: MutableDataBindingContextInterface) :
     SeriesMutableContextBase(parent), BarContextInterface
-
 
 public inline fun barPlot(
     position: Position = Position.Identity,
@@ -67,7 +65,6 @@ public inline fun barPlot(
 ): Plot {
     return BarGatheringPlotMutableContext(position).apply(block).toPlot()
 }
-
 
 public inline fun NamedDataPlotContext<*>.barGather(
     position: Position = Position.Identity,
@@ -77,7 +74,6 @@ public inline fun NamedDataPlotContext<*>.barGather(
         BarGatheringContext(this, position).apply(block).toGathering()
     )
 }
-
 
 public inline fun PlotMutableDataContext.barGather(
     position: Position = Position.Identity,

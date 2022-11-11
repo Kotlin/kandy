@@ -75,6 +75,10 @@ internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
 }
 
 internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
+    if (this is ExternalLetsPlotFeature) {
+        featureBuffer += wrap()
+        return
+    }
     // todo featureName
     //TODO check is lp feature
     when (featureName) {
