@@ -22,7 +22,7 @@ internal class ContextTest {
         assertContentEquals(
             listOf(
                 Layer(
-                    emptyDataset,
+                    null,
                     POINT,
                     emptyMap(),
                     emptyMap(),
@@ -40,7 +40,7 @@ internal class ContextTest {
         assertContentEquals(
             listOf(
                 Layer(
-                    emptyDataset,
+                    null,
                     LINE,
                     emptyMap(),
                     emptyMap(),
@@ -58,7 +58,7 @@ internal class ContextTest {
         assertContentEquals(
             listOf(
                 Layer(
-                    emptyDataset,
+                    null,
                     BAR,
                     emptyMap(),
                     emptyMap(),

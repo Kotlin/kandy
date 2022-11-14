@@ -22,11 +22,11 @@ public interface BarContextInterface : WithBorderLineContextInterface {
 }
 
 @PlotDslMarker
-public class BarContextImmutable(parent: LayerCollectorContextImmutable) :
+public open class BarContextImmutable(parent: LayerCollectorContextImmutable) :
     LayerWithBorderLineContextImmutable(parent), BarContextInterface
 
 @PlotDslMarker
-public class BarContextMutable(parent: LayerCollectorContextMutable)
+public open class BarContextMutable(parent: LayerCollectorContextMutable)
     : LayerWithBorderLineContextMutable(parent), BarContextInterface
 
 public inline fun LayerCollectorContextImmutable.bar(block: BarContextImmutable.() -> Unit) {

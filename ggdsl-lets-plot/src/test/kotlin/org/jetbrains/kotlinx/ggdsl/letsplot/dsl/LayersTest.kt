@@ -49,7 +49,7 @@ internal class LayersTest {
                 emptyDataset,
                 listOf(
                     Layer(
-                        emptyDataset,
+                        null,
                         AREA,
                         mapOf(
                             Y to ScaledPositionalUnspecifiedMapping(

@@ -42,7 +42,7 @@ internal class CommonTest {
                 dataset,
                 listOf(
                     Layer(
-                        dataset,
+                        null,
                         POINT,
                         mappings = mapOf(
                             X to ScaledUnspecifiedDefaultPositionalMapping(
@@ -138,7 +138,7 @@ internal class CommonTest {
                 dataset,
                 listOf(
                     Layer(
-                        dataset,
+                        null,
                         POINT,
                         mappings = mapOf(
                             X to xMapping,
@@ -151,7 +151,7 @@ internal class CommonTest {
                         settings = mapOf()
                     ),
                     Layer(
-                        dataset,
+                        null,
                         BAR,
                         mappings = mapOf(
                             X to xMapping,

@@ -32,7 +32,7 @@ internal class PositionTest {
                 emptyDataset,
                 listOf(
                     Layer(
-                        emptyDataset,
+                        null,
                         POINT,
                         mapOf(),
                         mapOf(),
@@ -65,14 +65,14 @@ internal class PositionTest {
                 emptyDataset,
                 listOf(
                     Layer(
-                        emptyDataset,
+                        null,
                         BAR,
                         mapOf(),
                         mapOf(),
                         mapOf(Position.FEATURE_NAME to Position.Stack)
                     ),
                     Layer(
-                        emptyDataset,
+                        null,
                         POINT,
                         mapOf(),
                         mapOf(),
@@ -82,7 +82,7 @@ internal class PositionTest {
                         )
                     ),
                     Layer(
-                        emptyDataset,
+                        null,
                         POINT,
                         mapOf(),
                         mapOf(),

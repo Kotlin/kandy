@@ -32,9 +32,9 @@ public class LineContextMutable(parent: LayerCollectorContextMutable):
     LayerContextMutable(parent), LineContextInterface
 
 public inline fun LayerCollectorContextImmutable.line(block: LineContextImmutable.() -> Unit) {
-    addLayer(LineContextImmutable(this).apply(block), H_LINE)
+    addLayer(LineContextImmutable(this).apply(block), LINE)
 }
 
 public inline fun LayerCollectorContextMutable.line(block: LineContextMutable.() -> Unit) {
-    addLayer(LineContextMutable(this).apply(block), H_LINE)
+    addLayer(LineContextMutable(this).apply(block), LINE)
 }

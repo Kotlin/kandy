@@ -55,7 +55,7 @@ class ToLetsPlotTest {
                             "y" to "mpg"
                         ),
                         "stat" to "identity",
-                        "data" to mapOf<String, Any>(),
+                   //     "data" to mapOf<String, Any>(),
                         "shape" to 21.0,
                         "position" to "identity",
                         "geom" to "point",
@@ -134,7 +134,7 @@ class ToLetsPlotTest {
                             "fill" to "clM"
                         ),
                         "stat" to "identity",
-                        "data" to mapOf<String, Any>(),
+                  //      "data" to mapOf<String, Any>(),
                         "alpha" to 0.8,
                         "width" to 0.5,
                         "position" to "stack",
@@ -169,7 +169,7 @@ class ToLetsPlotTest {
                             "y" to "svalue",
                         ),
                         "stat" to "identity",
-                        "data" to mapOf<String, Any>(),
+                      //  "data" to mapOf<String, Any>(),
                         "size" to 2.2,
                         "linetype" to "dotted",
                         "position" to "identity",

@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.tooltips
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.ggdsl.dsl.Aes
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
@@ -181,7 +181,7 @@ public data class Anchor(val value: String) {
  * @see value
  */
 
-public inline fun LayerContext.tooltips(
+public inline fun LayerContextInterface.tooltips(
     variables: List<ColumnPointer<*>>,
     title: String? = null,
     anchor: Anchor? = null,

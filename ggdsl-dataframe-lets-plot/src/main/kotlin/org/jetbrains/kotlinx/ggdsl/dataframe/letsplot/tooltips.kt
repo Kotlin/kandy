@@ -5,8 +5,8 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.ggdsl.dsl.Aes
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Stat
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.Anchor
@@ -34,7 +34,7 @@ public fun LayerTooltipsContext.line(column: ColumnReference<*>) {
 }
 
 
-public inline fun LayerContext.tooltips(
+public inline fun LayerContextInterface.tooltips(
     columns: List<ColumnReference<*>> = listOf(),
     variablesDS: List<org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>> = listOf(),
     title: String? = null,

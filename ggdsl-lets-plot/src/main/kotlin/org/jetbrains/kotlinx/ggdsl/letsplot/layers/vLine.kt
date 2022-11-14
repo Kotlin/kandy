@@ -3,9 +3,8 @@
 */
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 
 // TODO
@@ -13,9 +12,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 @PublishedApi
 internal val V_LINE: LetsPlotGeom = LetsPlotGeom("vLine")
 
-
-@PlotDslMarker
-public class VLineContext(parent: LayerCollectorContext) : LayerContext(parent) {
+public interface VLineContextInterface: BindingContext {
     public val x: XInterceptAes get() = XInterceptAes(this)
 
     public val color: ColorAes get() = ColorAes(this)
@@ -24,7 +21,19 @@ public class VLineContext(parent: LayerCollectorContext) : LayerContext(parent) 
     public val width: SizeAes get() = SizeAes(this)
 }
 
+@PlotDslMarker
+public class VLineContextImmutable(parent: LayerCollectorContextImmutable)
+    : LayerContextImmutable(parent), VLineContextInterface
 
-public inline fun LayerCollectorContext.vLine(block: VLineContext.() -> Unit) {
-    addLayer(VLineContext(this).apply(block), V_LINE)
+@PlotDslMarker
+public class VLineContextMutable(parent: LayerCollectorContextMutable):
+    LayerContextMutable(parent), VLineContextInterface
+
+public inline fun LayerCollectorContextImmutable.vLine(block: VLineContextImmutable.() -> Unit) {
+    addLayer(VLineContextImmutable(this).apply(block), V_LINE)
 }
+
+public inline fun LayerCollectorContextMutable.vLine(block: VLineContextMutable.() -> Unit) {
+    addLayer(VLineContextMutable(this).apply(block), V_LINE)
+}
+

@@ -8,9 +8,9 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 internal val PATH: LetsPlotGeom = LetsPlotGeom("path")
 
 public inline fun LayerCollectorContextImmutable.path(block: LineContextImmutable.() -> Unit) {
-    addLayer(LineContextImmutable(this).apply(block), H_LINE)
+    addLayer(LineContextImmutable(this).apply(block), PATH)
 }
 
 public inline fun LayerCollectorContextMutable.path(block: LineContextMutable.() -> Unit) {
-    addLayer(LineContextMutable(this).apply(block), H_LINE)
+    addLayer(LineContextMutable(this).apply(block), PATH)
 }

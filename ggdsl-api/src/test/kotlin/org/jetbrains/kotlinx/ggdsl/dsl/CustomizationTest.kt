@@ -101,7 +101,7 @@ internal class CustomizationTest {
                 dataset,
                 listOf(
                     Layer(
-                        dataset,
+                        null,
                         CUSTOM_GEOM,
                         mapOf(
                             X to ScaledPositionalUnspecifiedMapping(
@@ -131,7 +131,7 @@ internal class CustomizationTest {
                         mapOf()
                     ),
                     Layer(
-                        dataset,
+                        null,
                         CUSTOM_GEOM,
                         mapOf(
                             X to ScaledUnspecifiedDefaultPositionalMapping(
@@ -180,7 +180,7 @@ internal class CustomizationTest {
                 dataset,
                 listOf(
                     Layer(
-                        dataset,
+                        null,
                         BAR,
                         mapOf(),
                         mapOf(),

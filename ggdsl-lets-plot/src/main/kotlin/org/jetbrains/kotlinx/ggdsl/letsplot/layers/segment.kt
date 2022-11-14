@@ -4,20 +4,19 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val SEGMENT: LetsPlotGeom = LetsPlotGeom("segment")
 
+public interface SegmentContextInterface : LayerContextInterface {
+    public val xDummyAes: XDummyAes get() = XDummyAes(this)
+    public val yDummyAes: YDummyAes get() = YDummyAes(this)
 
-public class SegmentContext(parent: LayerCollectorContext) :
-    LayerContext(parent) {
-    // TODO
     public val xBegin: XAes get() = XAes(this)
     public val yBegin: YAes get() = YAes(this)
     public val xEnd: XEndAes get() = XEndAes(this)
@@ -30,52 +29,18 @@ public class SegmentContext(parent: LayerCollectorContext) :
     // todo speed and flow
 }
 
-/**
- * Adds a new ribbon layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation:
- * ```
- * ribbon {
- *    x(source<Double>("time")) // mapping from data source to size value
- *    color(Color.BLUE) // setting of constant color value
- * }
- * ```
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [ x][PointRangeContext.x]
- *
- *  Initial mappings to positional attributes are inherited from the parent [LayerPlotContext] (if they exist).
+@PlotDslMarker
+public class SegmentContextImmutable(parent: LayerCollectorContextImmutable) :
+    LayerWithBorderLineContextImmutable(parent), SegmentContextInterface
 
- *  Sub-positional:
- *
- *  - [yMin][RibbonContext.yMin]
- *  - [yMax][RibbonContext.yMax]
- *
- *   Non-positional:
- *  - [color][RibbonContext.color] - color of the raster filling, of the type [Color], mappable
- *  - [alpha][RibbonContext.alpha] - this layer alpha, of the type [Double], mappable
- *  - [borderLine.color][BorderLineSubContext.color] - color of the borderline, of the type [Color], mappable.
- *  - [borderLine.width][BorderLineSubContext.width] - width of the borderline, of the type [Double], mappable.
- *  - [borderLine.type][BorderLineSubContext.type] - type of the borderline, of the type [LineType], mappable.
+@PlotDslMarker
+public class SegmentContextMutable(parent: LayerCollectorContextMutable)
+    : LayerWithBorderLineContextMutable(parent), SegmentContextInterface
 
- *
- *  By default, the dataset inherited from the parent [LayerPlotContext] is used,
- *  but can be overridden with an assignment to the [data][RibbonContext.data].
- *
- * // TODO move data overriding to args
- *  ```
- *  ribbon {
- *     borderLine {
- *        color(Color.RED)
- *        type(LineType.DOTTED)
- *     }
- *  }
- *  ```
- *  // TODO refer to bindings?
- */
-public fun LayerCollectorContext.segment(block: SegmentContext.() -> Unit) {
-    addLayer(SegmentContext(this).apply(block), SEGMENT)
+public inline fun LayerCollectorContextImmutable.segment(block: SegmentContextImmutable.() -> Unit) {
+    addLayer(SegmentContextImmutable(this).apply(block), SEGMENT)
+}
+
+public inline fun LayerCollectorContextMutable.segment(block: SegmentContextMutable.() -> Unit) {
+    addLayer(SegmentContextMutable(this).apply(block), SEGMENT)
 }

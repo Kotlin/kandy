@@ -12,8 +12,8 @@ import org.jetbrains.kotlinx.ggdsl.dsl.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.label.HorizontalJustification
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.label.VerticalJustification
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.HorizontalJustification
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.VerticalJustification
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.FontFace
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.FontFamily
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
