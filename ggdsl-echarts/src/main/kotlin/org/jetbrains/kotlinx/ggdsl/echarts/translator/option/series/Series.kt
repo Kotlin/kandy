@@ -21,8 +21,8 @@ public sealed class Series {
     public abstract val encode: Encode?
     public abstract val dataGroupId: String?
     public abstract val data: List<List<String>>? // TODO!!! Data
-    public abstract val markPoint: MarkPoint?
-    public abstract val markLine: MarkLine?
+    public abstract val markPoint: EchartsMarkPoint?
+    public abstract val markLine: EchartsMarkLine?
     public abstract val markArea: MarkArea?
     public abstract val zlevel: Int?
     public abstract val z: Int?

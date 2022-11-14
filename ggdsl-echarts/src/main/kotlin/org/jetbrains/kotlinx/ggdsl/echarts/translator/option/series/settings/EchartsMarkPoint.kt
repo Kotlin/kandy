@@ -3,7 +3,17 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class MarkPoint(
+public data class DataMarkPoint(
+    val name: String? = null,
+    val type: String? = null,
+    val value: String? = null,
+    val coord: List<Double>? = null, // TODO(add Contextual Number (Int and Float))
+    val x: String? = null,
+    val y: String? = null,
+)
+
+@Serializable
+public data class EchartsMarkPoint(
     val symbol: String? = null,
     val symbolSize: Int? = null,
     val symbolRotate: Int? = null,
@@ -14,7 +24,7 @@ public data class MarkPoint(
     val itemStyle: ItemStyle? = null,
     val emphasis: Emphasis? = null,
     val blur: Blur? = null,
-    val data: List<List<String>>? = null,
+    val data: List<DataMarkPoint>? = null,
     val animation: Boolean? = null,
     val animationThreshold: Int? = null,
     val animationDuration: Int? = null,

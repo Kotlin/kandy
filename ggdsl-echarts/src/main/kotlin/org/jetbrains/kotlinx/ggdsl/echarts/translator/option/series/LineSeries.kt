@@ -105,8 +105,8 @@ public class LineSeries(
     public val datasetIndex: Int? = null,
     public override val dataGroupId: String? = null,
     public override val data: List<List<String>>? = null, // TODO!!! Data
-    public override val markPoint: MarkPoint? = null,
-    public override val markLine: MarkLine? = null,
+    public override val markPoint: EchartsMarkPoint? = null,
+    public override val markLine: EchartsMarkLine? = null,
     public override val markArea: MarkArea? = null,
     public override val zlevel: Int? = null,
     public override val z: Int? = null,
