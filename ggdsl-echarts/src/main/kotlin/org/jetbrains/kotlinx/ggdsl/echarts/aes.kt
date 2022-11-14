@@ -43,6 +43,12 @@ public data class SymbolAes(override val context: BindingContext) : MappableNonP
     override val name: AesName = SYMBOL
 }
 
+internal val SMOOTH: AesName = AesName("smooth")
+
+public data class SmoothAes(override val context: BindingContext) : NonPositionalAes<Boolean> {
+    override val name: AesName = SMOOTH
+}
+
 
 //public val SIZE: AesName = AesName("size")
 //

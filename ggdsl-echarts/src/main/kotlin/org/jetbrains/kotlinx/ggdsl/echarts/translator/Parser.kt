@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.BarSeries
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.LineSeries
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.Series
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Encode
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.toLineSeries
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -22,6 +23,10 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import kotlin.reflect.typeOf
+
+internal fun <T : Any> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
+    return (this[key] as? NonPositionalSetting<*>)?.value as? T
+}
 
 internal class Parser(plot: Plot) {
     private val data = (plot.dataset as NamedDataInterface).map
@@ -67,7 +72,7 @@ internal class Parser(plot: Plot) {
                     if (yAxis == null && aes == Y)
                         yAxis = mapping.toAxis()
 
-                    source.putIfAbsent(mapping.getId(), data[mapping.getId()]!!)
+                    source.putIfAbsent(mapping.getId(), data[mapping.getId()]!!) // TODO(missing columns?)
                 }
             }
             layer.toSeries()
@@ -134,28 +139,17 @@ internal class Parser(plot: Plot) {
         )
     }
 
-    private fun <T : Any> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
-        return (this[key] as? NonPositionalSetting<*>)?.value as? T
-    }
-
     private fun Layer.toSeries(): Series {
         val encode =
             Encode((this.mappings[X] as ScaledMapping<*>).getId(), (this.mappings[Y] as ScaledMapping<*>).getId())
         val name = settings.getNPSValue<String>(NAME)
-        val symbol = settings.getNPSValue<Symbol>(SYMBOL)
+//        val symbol = settings.getNPSValue<Symbol>(SYMBOL)
+//        val smooth = settings.getNPSValue<Boolean>(SMOOTH)
 
         return when (geom) {
             LINE -> {
-                LineSeries(
-                    name = name,
-                    symbol = symbol?.name,
-                    symbolSize = symbol?.size,
-                    symbolRotate = symbol?.rotate,
-                    showSymbol = symbol != null,
-                    encode = encode,
-                )
+                this.toLineSeries(name, encode)
             }
-
             BAR -> {
                 BarSeries(name = name, encode = encode)
             }

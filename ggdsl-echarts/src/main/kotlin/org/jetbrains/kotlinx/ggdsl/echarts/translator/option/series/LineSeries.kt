@@ -96,7 +96,7 @@ public class LineSeries(
     public override val blur: Blur? = null,
     public override val select: Select? = null,
     public override val selectedMode: String? = null, // string boolean
-    public val smooth: String? = null, // boolean number
+    public val smooth: Boolean? = null, // boolean number
     public val smoothMonotone: String? = null,
     public val sampling: String? = null,
     public override val dimensions: List<Dimension>? = null,
