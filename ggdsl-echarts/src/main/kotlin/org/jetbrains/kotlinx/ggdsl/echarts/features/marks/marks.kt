@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.ggdsl.echarts.features.markPoint
+package org.jetbrains.kotlinx.ggdsl.echarts.features.marks
 
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContext
 
