@@ -48,7 +48,8 @@ public abstract class SeriesPlotContextBase : PlotContextBase, GatheringContextI
     }
 }
 
-public abstract class SeriesContextImmutable(parent: TableDataContext) : BindingSubContextImmutable(parent) {
+public abstract class SeriesContextImmutable(parent: TableDataContext) :
+    BindingSubContextImmutable(parent, copySettings = false) {
     public fun toSeries(label: String): Series {
         return Series(
             bindingCollector.mappings,

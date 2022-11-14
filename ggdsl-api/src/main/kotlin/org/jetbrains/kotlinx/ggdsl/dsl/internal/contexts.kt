@@ -65,7 +65,7 @@ public abstract class BindingSubContextImmutable(
     override val bindingCollector: BindingCollector = if (cloneBindings) {
         BindingCollector(parent.bindingCollector, copyMappings, copySettings)
     } else {
-        parent.bindingCollector
+        BindingCollector()
     }
 }
 
