@@ -4,7 +4,10 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-/*
-sealed class EchartsLayerContext: LayerContext(parent)
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
+import org.jetbrains.kotlinx.ggdsl.echarts.NameAes
 
- */
+public sealed class EchartsLayerContext(parent: LayerCollectorContext) : LayerContext(parent) {
+    public val name: NameAes = NameAes(this)
+}
