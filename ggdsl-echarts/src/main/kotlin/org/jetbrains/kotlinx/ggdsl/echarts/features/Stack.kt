@@ -2,8 +2,9 @@
 * Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.ggdsl.echarts.stack
+package org.jetbrains.kotlinx.ggdsl.echarts.features
 
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContext
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
@@ -43,6 +44,12 @@ public data class Stack internal constructor(val name: String) : LayerFeature {
         public val FEATURE_NAME: FeatureName = FeatureName("STACK_FEATURE")
     }
 }
+
+public var LineContext.stack: Stack // TODO(change api for stack!)
+    get() = Stack("TODO")
+    set(value) {
+        features[Stack.FEATURE_NAME] = value
+    }
 
 /**
  * Returns new stack.

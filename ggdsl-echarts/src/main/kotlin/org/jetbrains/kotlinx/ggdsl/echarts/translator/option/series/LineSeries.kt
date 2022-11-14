@@ -1,7 +1,64 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.SMOOTH
+import org.jetbrains.kotlinx.ggdsl.echarts.SYMBOL
+import org.jetbrains.kotlinx.ggdsl.echarts.features.Stack
+import org.jetbrains.kotlinx.ggdsl.echarts.features.markPoint.MarkLineFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.features.markPoint.MarkPointFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.Symbol
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
+import org.jetbrains.kotlinx.ggdsl.ir.Layer
+
+internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
+    val symbol = settings.getNPSValue<Symbol>(SYMBOL)
+    val smooth = settings.getNPSValue<Boolean>(SMOOTH)
+    val stack = (features[Stack.FEATURE_NAME] as? Stack)?.name
+    val dataMarkPoints = (features[MarkPointFeature.FEATURE_NAME] as? MarkPointFeature)?.points?.map {
+        DataMarkPoint(it.name, it.type, it.valueMP, it.coord?.toList(), it.x, it.y)
+    }
+    val dataMarkLines = (features[MarkLineFeature.FEATURE_NAME] as? MarkLineFeature)?.lines?.map {
+        DataMarkLine(
+            it.nameML,
+            it.typeML,
+            it.xAxis,
+            it.yAxis,
+            if (it.point1 != null)
+                listOf(
+                    DataMarkPoint(
+                        it.nameML,
+                        it.point1?.type,
+                        it.point1?.valueMP,
+                        it.point1?.coord?.toList(),
+                        it.point1?.x,
+                        it.point1?.y
+                    ),
+                    DataMarkPoint(
+                        null,
+                        it.point2?.type,
+                        it.point2?.valueMP,
+                        it.point2?.coord?.toList(),
+                        it.point2?.x,
+                        it.point2?.y
+                    )
+                ) else null
+        )
+    }
+
+    return LineSeries(
+        name = name,
+        symbol = symbol?.name,
+        symbolSize = symbol?.size,
+        symbolRotate = symbol?.rotate,
+        showSymbol = symbol != null,
+        stack = stack,
+        smooth = smooth,
+        encode = encode,
+        markPoint = EchartsMarkPoint(data = dataMarkPoints),
+        markLine = EchartsMarkLine(data = dataMarkLines)
+    )
+}
 
 @Serializable
 public class LineSeries(

@@ -6,19 +6,9 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
 import org.jetbrains.kotlinx.ggdsl.echarts.*
 //import org.jetbrains.kotlinx.ggdsl.echarts.animation.AnimationFeature
-import org.jetbrains.kotlinx.ggdsl.echarts.stack.Stack
-import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
-import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
-import java.lang.Exception
-import kotlin.reflect.KType
-import kotlin.reflect.typeOf
 
 internal data class DataInfo(
     val data: List<List<Any>>,
