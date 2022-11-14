@@ -1,9 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.series
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.MutableDataBindingContextInterface
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.NamedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotMutableDataContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.TableBindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContextMutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableBindingContextInterfaceMutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableDataContext
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
@@ -17,12 +17,12 @@ public interface PointGatheringContextInterface :
         get() = POINT
 }
 
-public inline fun PointGatheringContextInterface.series(label: String, block: PointSeriesContext.() -> Unit) {
-    seriesCollector.add(PointSeriesContext(this).apply(block).toSeries(label))
+public inline fun PointGatheringContextInterface.series(label: String, block: PointSeriesContextImmutable.() -> Unit) {
+    seriesCollector.add(PointSeriesContextImmutable(this).apply(block).toSeries(label))
 }
 
-public class PointGatheringContext(parent: NamedDataPlotContext<*>, position: Position) :
-    GatheringContextBase(parent, position), PointGatheringContextInterface
+public class PointGatheringContextImmutable(parent: NamedDataPlotContext, position: Position) :
+    GatheringContextBaseImmutable(parent, position), PointGatheringContextInterface
 
 public class PointSeriesPlotContext(
     override val data: NamedDataInterface,
@@ -37,53 +37,53 @@ public inline fun pointPlot(
     return PointSeriesPlotContext(dataset, position).apply(block).toPlot()
 }
 
-public class PointSeriesContext(parent: TableBindingContext) : SeriesContext(parent), PointsContextInterface
+public class PointSeriesContextImmutable(parent: TableDataContext) : SeriesContextImmutable(parent), PointsContextInterface
 
-public class PointGatheringMutableContext(parent: MutableDataBindingContextInterface, position: Position) :
-    GatheringMutableContextBase(parent, position), PointGatheringContextInterface {
+public class PointMutableGatheringSubContext(parent: TableBindingContextInterfaceMutable, position: Position) :
+    GatheringSubContextMutable(parent, position), PointGatheringContextInterface {
     public inline fun series(
-        label: String, block: PointSeriesMutableContext.() -> Unit
+        label: String, block: PointMutableSeriesContextMutable.() -> Unit
     ) {
-        seriesCollector.add(PointSeriesMutableContext(this).apply(block).toSeries(label))
+        seriesCollector.add(PointMutableSeriesContextMutable(this).apply(block).toSeries(label))
     }
 }
 
-public class PointGatheringPlotMutableContext(
+public class PointMutableMutableSeriesPlotContext(
     position: Position,
-) : GatheringPlotMutableContextBase(position) {
-    public fun series(label: String, block: PointSeriesMutableContext.() -> Unit) {
-        seriesCollector.add(PointSeriesMutableContext(this).apply(block).toSeries(label))
+) : SeriesPlotContextMutable(position), PointGatheringContextInterface {
+    public fun series(label: String, block: PointMutableSeriesContextMutable.() -> Unit) {
+        seriesCollector.add(PointMutableSeriesContextMutable(this).apply(block).toSeries(label))
     }
 }
 
 
-public class PointSeriesMutableContext(parent: MutableDataBindingContextInterface) :
-    SeriesMutableContextBase(parent), PointsContextInterface
+public class PointMutableSeriesContextMutable(parent: TableBindingContextInterfaceMutable) :
+    SeriesContextMutable(parent), PointsContextInterface
 
 
-public inline fun PointPlot(
+public inline fun pointPlot(
     position: Position = Position.Identity,
-    block: PointGatheringPlotMutableContext.() -> Unit,
+    block: PointMutableMutableSeriesPlotContext.() -> Unit,
 ): Plot {
-    return PointGatheringPlotMutableContext(position).apply(block).toPlot()
+    return PointMutableMutableSeriesPlotContext(position).apply(block).toPlot()
 }
 
 
-public inline fun NamedDataPlotContext<*>.pointGather(
+public inline fun NamedDataPlotContext.pointGather(
     position: Position = Position.Identity,
-    block: PointGatheringContext.() -> Unit
+    block: PointGatheringContextImmutable.() -> Unit
 ) {
     addGathering(
-        PointGatheringContext(this, position).apply(block).toGathering()
+        PointGatheringContextImmutable(this, position).apply(block).toGathering()
     )
 }
 
 
-public inline fun PlotMutableDataContext.pointGather(
+public inline fun PlotContextMutable.pointGather(
     position: Position = Position.Identity,
-    block: PointGatheringMutableContext.() -> Unit
+    block: PointMutableGatheringSubContext.() -> Unit
 ) {
     addGathering(
-        PointGatheringMutableContext(this, position).apply(block).toGathering()
+        PointMutableGatheringSubContext(this, position).apply(block).toGathering()
     )
 }

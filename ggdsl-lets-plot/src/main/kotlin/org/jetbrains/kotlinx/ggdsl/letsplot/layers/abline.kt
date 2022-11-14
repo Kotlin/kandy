@@ -4,15 +4,14 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 
-public val AB_LINE: LetsPlotGeom = LetsPlotGeom("abline")
+@PublishedApi
+internal val AB_LINE: LetsPlotGeom = LetsPlotGeom("abline")
 
-
-public class ABLineContext @PublishedApi internal constructor(parent: LayerCollectorContext) :
-    LayerContext(parent) {
+public interface ABLineContextInterface: BindingContext {
     public val slope: SlopeAes get() = SlopeAes(this)
     public val intercept: InterceptAes get() = InterceptAes(this)
 
@@ -22,8 +21,18 @@ public class ABLineContext @PublishedApi internal constructor(parent: LayerColle
     public val width: WidthAes get() = WidthAes(this)
 }
 
-public inline fun LayerCollectorContext.abLine(block: ABLineContext.() -> Unit) {
-    addLayer(ABLineContext(this).apply(block), AB_LINE)
+@PlotDslMarker
+public class ABLineContextImmutable(parent: LayerCollectorContextImmutable)
+    : LayerContextImmutable(parent), ABLineContextInterface
+
+@PlotDslMarker
+public class ABLineContextMutable(parent: LayerCollectorContextMutable):
+    LayerContextMutable(parent), ABLineContextInterface
+
+public inline fun LayerCollectorContextImmutable.abLine(block: ABLineContextImmutable.() -> Unit) {
+    addLayer(ABLineContextImmutable(this).apply(block), AB_LINE)
 }
 
-
+public inline fun LayerCollectorContextMutable.abLine(block: ABLineContextMutable.() -> Unit) {
+    addLayer(ABLineContextMutable(this).apply(block), AB_LINE)
+}

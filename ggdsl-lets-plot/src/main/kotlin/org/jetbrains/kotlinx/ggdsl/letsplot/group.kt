@@ -4,10 +4,10 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
-import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.dsl.NonScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 
 public const val MERGED_GROUPS: String = "&merged_groups"
 
@@ -20,6 +20,6 @@ public data class GroupAes(override val context: BindingContext): NonScalablePos
 /**
  * TODO
  */
-public val LayerContext.splitBy: NonScalablePositionalAes
+public val LayerContextInterface.splitBy: NonScalablePositionalAes
     get() = GroupAes(this)
 

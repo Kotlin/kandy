@@ -2,8 +2,8 @@ package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.stat
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dataframe.toColumnPointer
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinLayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinLayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinXPos
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.Bins
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.statBin
@@ -14,7 +14,7 @@ public inline fun LayerCollectorContext.statBin(
     column: ColumnReference<Any>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
-    block: BinLayerCollectorContext.() -> Unit
+    block: BinLayerCollectorContextImmutable.() -> Unit
 ): Unit = statBin(column.toColumnPointer(), bins, binXPos, block)
 
 //todo type

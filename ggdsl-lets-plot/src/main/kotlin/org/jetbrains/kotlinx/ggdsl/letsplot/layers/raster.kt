@@ -4,9 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -44,13 +44,13 @@ public class RasterContext(parent: LayerCollectorContext) :
  *  - [ x][RasterContext.x]
  *  - [y][RasterContext.y]
  *
- *  Initial mappings to positional attributes are inherited from the parent [PlotContext] (if they exist).
+ *  Initial mappings to positional attributes are inherited from the parent [LayerPlotContext] (if they exist).
  *
  *   Non-positional:
  *  - [color][RasterContext.color] - color of the raster filling, of the type [Color], mappable
  *  - [alpha][RasterContext.alpha] - this layer alpha, of the type [Double], mappable
  *
- *  By default, the dataset inherited from the parent [PlotContext] is used
+ *  By default, the dataset inherited from the parent [LayerPlotContext] is used
  *  but can be overridden with an assignment to the [data][RasterContext.data].
  *
  */

@@ -4,9 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -47,7 +47,7 @@ public class SegmentContext(parent: LayerCollectorContext) :
  *
  *  - [ x][PointRangeContext.x]
  *
- *  Initial mappings to positional attributes are inherited from the parent [PlotContext] (if they exist).
+ *  Initial mappings to positional attributes are inherited from the parent [LayerPlotContext] (if they exist).
 
  *  Sub-positional:
  *
@@ -62,7 +62,7 @@ public class SegmentContext(parent: LayerCollectorContext) :
  *  - [borderLine.type][BorderLineSubContext.type] - type of the borderline, of the type [LineType], mappable.
 
  *
- *  By default, the dataset inherited from the parent [PlotContext] is used,
+ *  By default, the dataset inherited from the parent [LayerPlotContext] is used,
  *  but can be overridden with an assignment to the [data][RibbonContext.data].
  *
  * // TODO move data overriding to args

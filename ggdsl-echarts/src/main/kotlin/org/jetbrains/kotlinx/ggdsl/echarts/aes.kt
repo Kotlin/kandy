@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.echarts.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -26,10 +26,10 @@ public data class YAes(override val context: BindingContext) : ScalablePositiona
     override val name: AesName = Y
 }
 
-public val PlotContext.x: XAes
+public val LayerPlotContext.x: XAes
     get() = XAes(this)
 
-public val PlotContext.y: YAes
+public val LayerPlotContext.y: YAes
     get() = YAes(this)
 
 

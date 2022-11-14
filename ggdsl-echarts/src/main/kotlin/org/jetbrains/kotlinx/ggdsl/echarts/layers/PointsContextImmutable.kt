@@ -4,11 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextImmutable
 import org.jetbrains.kotlinx.ggdsl.echarts.*
 
-public class PointsContext(parent: LayerCollectorContext) : LayerContext(parent) {
+public class PointsContextImmutable(parent: LayerCollectorContextImmutable) : LayerContextImmutable(parent) {
     public val x: XAes = XAes(this)
     public val y: YAes = YAes(this)
 
@@ -24,8 +24,8 @@ public class PointsContext(parent: LayerCollectorContext) : LayerContext(parent)
 }
 
 
-public class LineContext(parent: LayerCollectorContext) :
-    LayerContext(parent) {
+public class LineContextImmutable(parent: LayerCollectorContextImmutable) :
+    LayerContextImmutable(parent) {
     public val x: XAes = XAes(this)
     public val y: YAes = YAes(this)
 
@@ -38,8 +38,8 @@ public class LineContext(parent: LayerCollectorContext) :
 }
 
 
-public class BarsContext(parent: LayerCollectorContext) :
-    LayerContext(parent) {
+public class BarsContextImmutable(parent: LayerCollectorContextImmutable) :
+    LayerContextImmutable(parent) {
     public val x: XAes = XAes(this)
     public val y: YAes = YAes(this)
 

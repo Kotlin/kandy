@@ -4,9 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 
 // TODO
@@ -14,9 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.*
 @PublishedApi
 internal val H_LINE: LetsPlotGeom = LetsPlotGeom("hLine")
 
-
-@PlotDslMarker
-public class HLineContext(parent: LayerCollectorContext) : LayerContext(parent) {
+public interface HLineContextInterface: BindingContext {
     public val y: YInterceptAes get() = YInterceptAes(this)
 
     public val color: ColorAes get() = ColorAes(this)
@@ -25,7 +22,18 @@ public class HLineContext(parent: LayerCollectorContext) : LayerContext(parent) 
     public val width: SizeAes get() = SizeAes(this)
 }
 
+@PlotDslMarker
+public class HLineContextImmutable(parent: LayerCollectorContextImmutable)
+    : LayerContextImmutable(parent), HLineContextInterface
 
-public inline fun LayerCollectorContext.hLine(block: HLineContext.() -> Unit) {
-    addLayer(HLineContext(this).apply(block), H_LINE)
+@PlotDslMarker
+public class HLineContextMutable(parent: LayerCollectorContextMutable):
+    LayerContextMutable(parent), HLineContextInterface
+
+public inline fun LayerCollectorContextImmutable.hLine(block: HLineContextImmutable.() -> Unit) {
+    addLayer(HLineContextImmutable(this).apply(block), H_LINE)
+}
+
+public inline fun LayerCollectorContextMutable.hLine(block: HLineContextMutable.() -> Unit) {
+    addLayer(HLineContextMutable(this).apply(block), H_LINE)
 }

@@ -4,16 +4,16 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 
-inline fun LayerCollectorContext.points(block: PointsContext.() -> Unit) {
-    addLayer(PointsContext(this).apply(block), POINT)
+inline fun LayerCollectorContextImmutable.points(block: PointsContextImmutable.() -> Unit) {
+    addLayer(PointsContextImmutable(this).apply(block), POINT)
 }
 
-inline fun LayerCollectorContext.bars(block: BarsContext.() -> Unit) {
-    addLayer(BarsContext(this).apply(block), BAR)
+inline fun LayerCollectorContextImmutable.bars(block: BarsContextImmutable.() -> Unit) {
+    addLayer(BarsContextImmutable(this).apply(block), BAR)
 }
 
-inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
-    addLayer(LineContext(this).apply(block), LINE)
+inline fun LayerCollectorContextImmutable.line(block: LineContextImmutable.() -> Unit) {
+    addLayer(LineContextImmutable(this).apply(block), LINE)
 }

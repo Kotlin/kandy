@@ -4,9 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
@@ -47,7 +47,7 @@ public class StepContext(parent: LayerCollectorContext) :
  *  - [ x][StepContext.x]
  *  - [y][StepContext.y]
  *
- *  Initial mappings to positional attributes are inherited from the parent [PlotContext] (if they exist).
+ *  Initial mappings to positional attributes are inherited from the parent [LayerPlotContext] (if they exist).
  *
  *   Non-positional:
  *  - [color][StepContext.color] - this line color, of the type [Color], mappable
@@ -55,7 +55,7 @@ public class StepContext(parent: LayerCollectorContext) :
  *  - [lineType][StepContext.lineType] - this line type, of the type [LineType], mappable
  *  - [width][StepContext.width] - this line width, of the type [Double], mappable
  *
- *  By default, the dataset inherited from the parent [PlotContext] is used,
+ *  By default, the dataset inherited from the parent [LayerPlotContext] is used,
  *  but can be overridden with an assignment to the [data][StepContext.data].
  *
  * // TODO move data overriding to args

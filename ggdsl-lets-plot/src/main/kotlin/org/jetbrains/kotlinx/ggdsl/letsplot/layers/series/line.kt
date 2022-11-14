@@ -1,9 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.series
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.MutableDataBindingContextInterface
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.NamedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotMutableDataContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.TableBindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContextMutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableBindingContextInterfaceMutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableDataContext
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
@@ -17,12 +17,12 @@ public interface LineGatheringContextInterface :
         get() = LINE
 }
 
-public inline fun LineGatheringContextInterface.series(label: String, block: LineSeriesContext.() -> Unit) {
-    seriesCollector.add(LineSeriesContext(this).apply(block).toSeries(label))
+public inline fun LineGatheringContextInterface.series(label: String, block: LineSeriesContextImmutable.() -> Unit) {
+    seriesCollector.add(LineSeriesContextImmutable(this).apply(block).toSeries(label))
 }
 
-public class LineGatheringContext(parent: NamedDataPlotContext<*>, position: Position) :
-    GatheringContextBase(parent, position), LineGatheringContextInterface
+public class LineGatheringContextImmutable(parent: NamedDataPlotContext, position: Position) :
+    GatheringContextBaseImmutable(parent, position), LineGatheringContextInterface
 
 public class LineSeriesPlotContext(
     override val data: NamedDataInterface,
@@ -37,65 +37,52 @@ public inline fun linePlot(
     return LineSeriesPlotContext(dataset, position).apply(block).toPlot()
 }
 
-public class LineSeriesContext(parent: TableBindingContext) : SeriesContext(parent), LineContextInterface
+public class LineSeriesContextImmutable(parent: TableDataContext) : SeriesContextImmutable(parent), LineContextInterface
 
-public class LineGatheringMutableContext(parent: MutableDataBindingContextInterface, position: Position) :
-    GatheringMutableContextBase(parent, position), LineGatheringContextInterface {
+public class LineMutableGatheringSubContext(parent: TableBindingContextInterfaceMutable, position: Position) :
+    GatheringSubContextMutable(parent, position), LineGatheringContextInterface {
     public inline fun series(
-        label: String, block: LineSeriesMutableContext.() -> Unit
+        label: String, block: LineMutableSeriesContextMutable.() -> Unit
     ) {
-        seriesCollector.add(LineSeriesMutableContext(this).apply(block).toSeries(label))
+        seriesCollector.add(LineMutableSeriesContextMutable(this).apply(block).toSeries(label))
     }
 }
 
-public class LineGatheringPlotMutableContext(
+public class LineMutableMutableSeriesPlotContext(
     position: Position,
-) : GatheringPlotMutableContextBase(position) {
-    public fun series(label: String, block: LineSeriesMutableContext.() -> Unit) {
-        seriesCollector.add(LineSeriesMutableContext(this).apply(block).toSeries(label))
+) : SeriesPlotContextMutable(position), LineGatheringContextInterface {
+    public fun series(label: String, block: LineMutableSeriesContextMutable.() -> Unit) {
+        seriesCollector.add(LineMutableSeriesContextMutable(this).apply(block).toSeries(label))
     }
 }
 
-public class LineSeriesMutableContext(parent: MutableDataBindingContextInterface) :
-    SeriesMutableContextBase(parent), LineContextInterface
+public class LineMutableSeriesContextMutable(parent: TableBindingContextInterfaceMutable) :
+    SeriesContextMutable(parent), LineContextInterface
 
 
 public inline fun linePlot(
     position: Position = Position.Identity,
-    block: LineGatheringPlotMutableContext.() -> Unit,
+    block: LineMutableMutableSeriesPlotContext.() -> Unit,
 ): Plot {
-    return LineGatheringPlotMutableContext(position).apply(block).toPlot()
+    return LineMutableMutableSeriesPlotContext(position).apply(block).toPlot()
 }
 
 
-public inline fun NamedDataPlotContext<*>.lineGather(
+public inline fun NamedDataPlotContext.lineGather(
     position: Position = Position.Identity,
-    block: LineGatheringContext.() -> Unit
+    block: LineGatheringContextImmutable.() -> Unit
 ) {
     addGathering(
-        LineGatheringContext(this, position).apply(block).toGathering()
+        LineGatheringContextImmutable(this, position).apply(block).toGathering()
     )
 }
 
 
-public inline fun PlotMutableDataContext.lineGather(
+public inline fun PlotContextMutable.lineGather(
     position: Position = Position.Identity,
-    block: LineGatheringMutableContext.() -> Unit
+    block: LineMutableGatheringSubContext.() -> Unit
 ) {
     addGathering(
-        LineGatheringMutableContext(this, position).apply(block).toGathering()
+        LineMutableGatheringSubContext(this, position).apply(block).toGathering()
     )
 }
-/*
-@Suppress("UNCHECKED_CAST")
-public inline fun< reified T: GatherContext> PlotMutableDataContext.gather(
-    position: Position = Position.Identity,
-    noinline block: T.() -> Unit
-) {
-    //todo
-    when(typeOf<T>()) {
-        typeOf<LineGatheringMutableContext>() -> lineGather(position, block as (LineGatheringMutableContext.() -> Unit))
-    }
-}
-
- */

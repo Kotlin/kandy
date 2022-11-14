@@ -8,8 +8,8 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.GroupedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.NamedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.GroupedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
 
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
@@ -53,7 +53,7 @@ public inline fun <T> DataFrame<T>.create(block: DataFrame<T>.() -> Plot): Plot 
  * @see [create]
  */
 
-public inline fun<T> DataFrame<T>.plot(block: NamedDataPlotContext<DataFrameWrapper>.() -> Unit): Plot {
+public inline fun DataFrame<*>.plot(block: NamedDataPlotContext.() -> Unit): Plot {
     return plot(DataFrameWrapper(this), block)
 }
 

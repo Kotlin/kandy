@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.theme.CustomTheme
@@ -47,11 +47,11 @@ public data class Layout(
     }
 }
 
-public inline fun PlotContext.layout(block: Layout.() -> Unit) {
+public inline fun LayerPlotContext.layout(block: Layout.() -> Unit) {
     features[Layout.NAME] = Layout().apply(block)
 }
 
-public val PlotContext.layout: Layout
+public val LayerPlotContext.layout: Layout
     get() {
         if (features[Layout.NAME] == null) {
             features[Layout.NAME] = Layout()

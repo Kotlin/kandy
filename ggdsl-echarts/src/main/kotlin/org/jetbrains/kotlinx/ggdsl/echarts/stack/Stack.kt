@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.stack
 
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.BarsContext
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.BarsContextImmutable
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
@@ -30,7 +30,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
  */
 
 // todo
-public var BarsContext.stack: Stack
+public var BarsContextImmutable.stack: Stack
     get() = Stack("TODO")
     set(value) {
         features[Stack.FEATURE_NAME] = value
