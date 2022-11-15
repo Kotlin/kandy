@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bar
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.line
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.point
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
@@ -27,7 +27,7 @@ class ToLetsPlotTest {
     fun testSimple() {
         val plot = plot(emptyDataset) {
             x(columnPointer<String>("origin"))
-            points {
+            point {
                 y(columnPointer<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
                 symbol(Symbol.CIRCLE_FILLED)
                 fillColor(Color.RED)

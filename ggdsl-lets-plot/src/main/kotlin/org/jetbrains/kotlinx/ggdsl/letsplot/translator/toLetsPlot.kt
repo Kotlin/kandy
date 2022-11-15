@@ -4,6 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
+import kotlinx.datetime.Instant
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -138,6 +141,11 @@ internal fun Geom.toLPGeom(): GeomOptions {
 }
 
 
+
+internal val dateTimeTypes = setOf(
+    typeOf<Instant>(), typeOf<LocalDateTime>(), typeOf<LocalDate>()
+)
+
 /**
  * TODO
  * 1) Unspecified
@@ -157,6 +165,29 @@ internal fun Scale.wrap(
             val breaks = axis?.breaks
             val labels = axis?.labels
             val format = axis?.format
+
+
+            if(domainType in dateTimeTypes) {
+                return when (aesName) {
+                    X -> scaleXDateTime(
+                      //  limits = limits.toLP(),
+                        name = name,
+                        breaks = breaks?.map { it as Number }, // TODO() }
+                        labels = labels,
+                     //   trans = (transform as? Transformation)?.name,
+                        format = format
+                    )
+                    Y -> scaleYDateTime(
+                        //limits = categories,
+                        name = name,
+                        breaks = breaks,
+                        labels = labels,
+                        format = format
+                    )
+
+                    else -> TODO()
+                }
+            }
 
             when (this) {
                 is PositionalCategoricalScale<*> -> {
@@ -596,9 +627,10 @@ internal fun Scale.wrap(
             when (this) {
                 DefaultUnspecifiedScale -> when (aesName) {
                     // todo other types for unspecified categorical???
+
                     X, Y -> if (domainType == typeOf<String>()) {
                         PositionalCategoricalUnspecifiedScale.wrap(aesName, domainType, scaleParameters)
-                    } else {
+                    }  else {
                         PositionalContinuousUnspecifiedScale().wrap(aesName, domainType, scaleParameters)
                     }
 
@@ -632,6 +664,28 @@ internal fun Scale.wrap(
                     val breaks = axis?.breaks
                     val labels = axis?.labels
                     val format = axis?.format
+
+                    if(domainType in dateTimeTypes) {
+                        return when (aesName) {
+                            X -> scaleXDateTime(
+                                //  limits = limits.toLP(),
+                                name = name,
+                                breaks = breaks?.map { it as Number }, // TODO() }
+                                labels = labels,
+                                //   trans = (transform as? Transformation)?.name,
+                                format = format
+                            )
+                            Y -> scaleYDateTime(
+                                //limits = categories,
+                                name = name,
+                                breaks = breaks,
+                                labels = labels,
+                                format = format
+                            )
+
+                            else -> TODO()
+                        }
+                    }
                     when (this) {
                         PositionalCategoricalUnspecifiedScale -> when (aesName) {
                             X -> scaleXDiscrete(name = name, breaks = breaks, labels = labels, format = format)

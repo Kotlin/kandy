@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 @PublishedApi
 internal val POINT: LetsPlotGeom = LetsPlotGeom("point")
 
-public interface PointsContextInterface : BindingContext {
+public interface PointContextInterface : BindingContext {
     public val x: XAes get() = XAes(this)
     public val y: YAes get() = YAes(this)
 
@@ -31,12 +31,12 @@ public interface PointsContextInterface : BindingContext {
 }
 
 @PlotDslMarker
-public class PointsContextImmutable(parent: LayerCollectorContextImmutable) :
-    LayerContextImmutable(parent), PointsContextInterface
+public class PointContextImmutable(parent: LayerCollectorContextImmutable) :
+    LayerContextImmutable(parent), PointContextInterface
 
 @PlotDslMarker
-public class PointsMutableMutableContextMutable(parent: LayerCollectorContextMutable) :
-    LayerContextMutable(parent), PointsContextInterface
+public class PointMutableMutableContextMutable(parent: LayerCollectorContextMutable) :
+    LayerContextMutable(parent), PointContextInterface
 
 
 /**
@@ -54,32 +54,32 @@ public class PointsMutableMutableContextMutable(parent: LayerCollectorContextMut
  *
  *  Positional:
  *
- *  - [ x][PointsContextImmutable.x]
- *  - [y][PointsContextImmutable.y]
+ *  - [ x][PointContextImmutable.x]
+ *  - [y][PointContextImmutable.y]
  *
  *  Initial mappings to positional attributes are inherited from the parent [LayerPlotContext] (if they exist).
  *
  *   Non-positional:
- *  - [color][PointsContextImmutable.color] - color of the point (color of the point border for "FILLED" symbols), of the type [Color], mappable
- *  - [alpha][PointsContextImmutable.alpha] - this layer alpha, of the type [Double], mappable
- *  - [symbol][PointsContextImmutable.symbol] - symbol of the point, of the type [Symbol], mappable
- *  - [size][PointsContextImmutable.size] - this point size, of the type [Double], mappable
- *  - [fillColor][PointsContextImmutable.fillColor] - color of the point filling (for "FILLED" symbols), of the type [Color], mappable
- *  - [borderWidth][PointsContextImmutable.borderWidth] - width of the point border (for "FILLED" symbols), of the type [Double], mappable
+ *  - [color][PointContextImmutable.color] - color of the point (color of the point border for "FILLED" symbols), of the type [Color], mappable
+ *  - [alpha][PointContextImmutable.alpha] - this layer alpha, of the type [Double], mappable
+ *  - [symbol][PointContextImmutable.symbol] - symbol of the point, of the type [Symbol], mappable
+ *  - [size][PointContextImmutable.size] - this point size, of the type [Double], mappable
+ *  - [fillColor][PointContextImmutable.fillColor] - color of the point filling (for "FILLED" symbols), of the type [Color], mappable
+ *  - [borderWidth][PointContextImmutable.borderWidth] - width of the point border (for "FILLED" symbols), of the type [Double], mappable
  *
  * // TODO move data overriding to args
  *  By default, the dataset inherited from the parent [LayerPlotContext] is used,
- *  but can be overridden with an assignment to the [data][PointsContextImmutable.data].
+ *  but can be overridden with an assignment to the [data][PointContextImmutable.data].
  *
  *  // TODO refer to bindings?
  */
 // todo rename to point/scatter?
-public inline fun LayerCollectorContextImmutable.points(block: PointsContextImmutable.() -> Unit) {
-    addLayer(PointsContextImmutable(this).apply(block), POINT)
+public inline fun LayerCollectorContextImmutable.point(block: PointContextImmutable.() -> Unit) {
+    addLayer(PointContextImmutable(this).apply(block), POINT)
 }
 
-public inline fun LayerCollectorContextMutable.points(block: PointsMutableMutableContextMutable.() -> Unit) {
-    addLayer(PointsMutableMutableContextMutable(this).apply(block), POINT)
+public inline fun LayerCollectorContextMutable.point(block: PointMutableMutableContextMutable.() -> Unit) {
+    addLayer(PointMutableMutableContextMutable(this).apply(block), POINT)
 }
 
 
