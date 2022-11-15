@@ -1,6 +1,10 @@
-package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings
+package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Blur
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Emphasis
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.ItemStyle
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Label
 
 @Serializable
 public data class MarkArea(

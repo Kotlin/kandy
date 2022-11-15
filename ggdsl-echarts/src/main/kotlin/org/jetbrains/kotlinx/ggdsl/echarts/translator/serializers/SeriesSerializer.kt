@@ -8,7 +8,7 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.*
 
-internal class SeriesSerializer : KSerializer<Series> {
+internal object SeriesSerializer : KSerializer<Series> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("series", PrimitiveKind.STRING)
 
     override fun deserialize(decoder: Decoder): Series {

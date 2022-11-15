@@ -1,8 +1,13 @@
-package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings
+package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Blur
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Emphasis
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Label
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.LineStyle
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.DataMarkLineSerializer
 
-@Serializable
+@Serializable(with = DataMarkLineSerializer::class)
 public data class DataMarkLine(
     val name: String? = null,
     val type: String? = null,

@@ -2,6 +2,9 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.EchartsMarkLine
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.EchartsMarkPoint
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.MarkArea
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.SeriesSerializer
 
 @Serializable(with = SeriesSerializer::class)

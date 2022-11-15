@@ -4,46 +4,71 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.SMOOTH
 import org.jetbrains.kotlinx.ggdsl.echarts.SYMBOL
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Stack
-import org.jetbrains.kotlinx.ggdsl.echarts.features.markPoint.MarkLineFeature
-import org.jetbrains.kotlinx.ggdsl.echarts.features.markPoint.MarkPointFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkLineFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkPointFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.Symbol
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 
 internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
     val symbol = settings.getNPSValue<Symbol>(SYMBOL)
     val smooth = settings.getNPSValue<Boolean>(SMOOTH)
     val stack = (features[Stack.FEATURE_NAME] as? Stack)?.name
+
     val dataMarkPoints = (features[MarkPointFeature.FEATURE_NAME] as? MarkPointFeature)?.points?.map {
-        DataMarkPoint(it.name, it.type, it.valueMP, it.coord?.toList(), it.x, it.y)
+        DataMarkPoint(it.name, it.type?.type, it.valueMP, it.coord?.toList(), it.x, it.y)
     }
+
     val dataMarkLines = (features[MarkLineFeature.FEATURE_NAME] as? MarkLineFeature)?.lines?.map {
-        DataMarkLine(
-            it.nameML,
-            it.typeML,
-            it.xAxis,
-            it.yAxis,
-            if (it.point1 != null)
+        if (it.point1 == null) {
+            DataMarkLine(it.nameML, it.typeML?.type, it.xAxis, it.yAxis)
+        } else {
+            val (point1X, point1XAxis) = if (it.point1.x == "max" || it.point1.x == "min" || it.point1.x == "average")
+                null to it.point1.x
+            else
+                it.point1.x to null
+            val (point1Y, point1YAxis) = if (it.point1.y == "max" || it.point1.y == "min" || it.point1.y == "average")
+                null to it.point1.y
+            else
+                it.point1.y to null
+
+            val (point2X, point2XAxis) = if (it.point2?.x == "max" || it.point2?.x == "min" || it.point2?.x == "average")
+                null to it.point2?.x
+            else
+                it.point2?.x to null
+            val (point2Y, point2YAxis) = if (it.point2?.y == "max" || it.point2?.y == "min" || it.point2?.y == "average")
+                null to it.point2.y
+            else
+                it.point2?.y to null
+
+            DataMarkLine(
+                listOfPoints =
                 listOf(
                     DataMarkPoint(
                         it.nameML,
-                        it.point1?.type,
-                        it.point1?.valueMP,
-                        it.point1?.coord?.toList(),
-                        it.point1?.x,
-                        it.point1?.y
+                        it.point1.type?.type,
+                        it.point1.valueMP,
+                        it.point1.coord?.toList(),
+                        point1X,
+                        point1Y,
+                        point1XAxis,
+                        point1YAxis
                     ),
                     DataMarkPoint(
                         null,
-                        it.point2?.type,
+                        it.point2?.type?.type,
                         it.point2?.valueMP,
                         it.point2?.coord?.toList(),
-                        it.point2?.x,
-                        it.point2?.y
+                        point2X,
+                        point2Y,
+                        point2XAxis,
+                        point2YAxis
                     )
-                ) else null
-        )
+                )
+            )
+        }
     }
 
     return LineSeries(

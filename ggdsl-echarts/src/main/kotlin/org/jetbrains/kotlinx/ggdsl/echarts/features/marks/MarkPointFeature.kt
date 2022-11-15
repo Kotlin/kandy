@@ -20,21 +20,21 @@ public class MarkPointFeature(
 
 public class MarkPoint private constructor(
     internal val name: String? = null,
-    internal val type: String? = null,
-    internal val coord: Pair<Double, Double>? = null,
+    internal val type: MarkType? = null,
+    internal val coord: Pair<Number, Number>? = null,
     internal val x: String? = null,
     internal val y: String? = null,
     internal val valueMP: String? = null,
 ) {
-    public constructor(point: Pair<String, String>, value: String? = null) : this(
+    public constructor(point: Pair<String, MarkType>, value: String? = null) : this(
         point.first,
         type = point.second,
         valueMP = value
     )
 
-    public constructor(type: String, value: String? = null) : this(type = type, valueMP = value)
+    public constructor(type: MarkType, value: String? = null) : this(type = type, valueMP = value)
 
-    public constructor(name: String? = null, coord: Pair<Double, Double>, value: String? = null) : this(
+    public constructor(name: String? = null, coord: Pair<Number, Number>, value: String? = null) : this(
         name = name,
         coord = coord,
         valueMP = value

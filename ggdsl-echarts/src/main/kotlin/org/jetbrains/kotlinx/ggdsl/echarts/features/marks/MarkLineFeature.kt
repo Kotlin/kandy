@@ -15,13 +15,13 @@ public class MarkLineFeature(
 
 public class MarkLine private constructor(
     internal val nameML: String,
-    internal val typeML: String? = null,
+    internal val typeML: MarkType? = null,
     internal val xAxis: Double? = null,
     internal val yAxis: Double? = null,
     internal val point1: MarkPoint? = null,
     internal val point2: MarkPoint? = null
 ) {
-    public constructor(name: String, type: String) : this(nameML = name, typeML = type)
+    public constructor(name: String, type: MarkType) : this(nameML = name, typeML = type)
 
     public constructor(name: String, point1: MarkPoint, point2: MarkPoint) : this(
         nameML = name,
