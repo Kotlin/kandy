@@ -1,8 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.echarts.SMOOTH
-import org.jetbrains.kotlinx.ggdsl.echarts.SYMBOL
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.SMOOTH
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Stack
 import org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkLineFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkPointFeature

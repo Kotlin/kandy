@@ -5,9 +5,6 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.echarts.BAR
-import org.jetbrains.kotlinx.ggdsl.echarts.LINE
-import org.jetbrains.kotlinx.ggdsl.echarts.POINT
 
 
 //public inline fun LayerCollectorContext.points(block: PointsContext.() -> Unit) {

@@ -5,11 +5,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
 public class MarkPointFeature(
     public var points: List<MarkPoint>? = null
-//    public var enable: Boolean = true,
-//    public var threshold: Int = 2000,
-//    public var duration: Int = 1000,
-//    public var easing: AnimationEasing = AnimationEasing.CUBIC_OUT,
-//    public var delay: Int = 0
 ) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 

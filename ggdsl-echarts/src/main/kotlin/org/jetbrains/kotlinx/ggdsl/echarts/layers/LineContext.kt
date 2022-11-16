@@ -1,9 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
-import org.jetbrains.kotlinx.ggdsl.echarts.*
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.CoordinateSystem
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.*
 
 public class LineContext(parent: LayerCollectorContext) : EchartsLayerContext(parent) {
     public val x: XAes = XAes(this)

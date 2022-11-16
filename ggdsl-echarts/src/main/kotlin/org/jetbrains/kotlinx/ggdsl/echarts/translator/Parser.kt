@@ -1,9 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
-import org.jetbrains.kotlinx.ggdsl.echarts.*
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.NAME
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.BAR
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.EchartsGeom
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.LINE
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.BarSeries
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.LineSeries
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.Series
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Encode
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.toLineSeries

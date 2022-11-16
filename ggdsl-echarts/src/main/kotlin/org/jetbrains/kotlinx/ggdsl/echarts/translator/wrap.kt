@@ -4,8 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
-import org.jetbrains.kotlinx.ggdsl.echarts.*
-//import org.jetbrains.kotlinx.ggdsl.echarts.animation.AnimationFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.BAR
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.LINE
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.POINT
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
