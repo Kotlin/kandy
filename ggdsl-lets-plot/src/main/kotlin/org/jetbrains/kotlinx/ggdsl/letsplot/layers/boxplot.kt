@@ -34,8 +34,7 @@ public class BoxplotContextImmutable(parent: LayerCollectorContextImmutable)
 
 @PlotDslMarker
 public class BoxplotContextMutable(parent: LayerCollectorContextMutable):
-    LayerWithBorderLineContextMutable(parent), BoxplotContextInterface {
-}
+    LayerWithBorderLineContextMutable(parent), BoxplotContextInterface
 
 public inline fun LayerCollectorContextImmutable.boxplot(block: BoxplotContextImmutable.() -> Unit) {
     addLayer(BoxplotContextImmutable(this).apply(block), BOXPLOT)

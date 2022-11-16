@@ -43,7 +43,7 @@ internal class BindingTest {
         override val name: AesName = MOCK_AES_COLOR_MAP_NON_POS
     }
 
-    class TestContext() : BindingContext {
+    class TestContext : BindingContext {
         override val bindingCollector: BindingCollector = BindingCollector()
         val x = XAes(this)
         val y = YAes(this)

@@ -23,7 +23,7 @@ public interface TableBindingContextInterfaceMutable : TableDataContext {
     public fun <T : Any> Iterable<T>.toColumnPointer(id: String): ColumnPointer<T>
 }
 
-public abstract class TableContextMutableBase() : TableBindingContextInterfaceMutable {
+public abstract class TableContextMutableBase : TableBindingContextInterfaceMutable {
     override val bindingCollector: BindingCollector = BindingCollector()
     public abstract override val dataBuffer: MutableTableData
     override val data: TableData
@@ -147,7 +147,7 @@ public abstract class LayerContextMutable(parent: LayerCollectorContextMutable) 
 
 @PlotDslMarker
 @StatDSLMarker
-public class PlotContextMutable() : LayerPlotContext, LayerCollectorContextMutable, TableContextMutableBase() {
+public class PlotContextMutable : LayerPlotContext, LayerCollectorContextMutable, TableContextMutableBase() {
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
     override val layers: MutableList<Layer> = mutableListOf()
     override val dataBuffer: MutableNamedData = MutableNamedData(mutableMapOf())

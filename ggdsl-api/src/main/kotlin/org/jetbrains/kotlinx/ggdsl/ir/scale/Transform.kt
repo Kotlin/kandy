@@ -4,7 +4,10 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
-// TODO
+/**
+ * A basic interface for [Scale] transformation
+ * (that is, a function that transforms a scale via composition)
+ */
 public sealed interface Transform
 
 public interface PositionalTransform : Transform

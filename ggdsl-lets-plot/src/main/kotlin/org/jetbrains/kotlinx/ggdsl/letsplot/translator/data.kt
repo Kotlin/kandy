@@ -18,8 +18,8 @@ internal fun LazyGroupedDataInterface.mergedKeys(): List<String> = buildList {
 }
 
 internal object DateTimeMaster {
-    var hasXDateTime: Boolean = false
-    var hasYDateTime: Boolean = false
+  //  var hasXDateTime: Boolean = false
+//    var hasYDateTime: Boolean = false
 
     internal fun postProcess(data: Map<String, List<Any>>): Map<String, List<Any>> {
         return data.map { (key, value) ->

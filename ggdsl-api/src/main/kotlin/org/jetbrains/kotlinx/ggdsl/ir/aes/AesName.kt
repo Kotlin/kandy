@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.aes
 
-
+/**
+ *  Wrapper of aesthetic attribute name.
+ */
 public data class AesName(val name: String)
-

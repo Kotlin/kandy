@@ -33,8 +33,7 @@ public class ErrorBarContextImmutable(parent: LayerCollectorContextImmutable)
 
 @PlotDslMarker
 public class ErrorBarContextMutable(parent: LayerCollectorContextMutable):
-    LayerWithBorderLineContextMutable(parent), ErrorBarContextInterface {
-}
+    LayerWithBorderLineContextMutable(parent), ErrorBarContextInterface
 
 public inline fun LayerCollectorContextImmutable.errorBar(block: ErrorBarContextImmutable.() -> Unit) {
     addLayer(ErrorBarContextImmutable(this).apply(block), ERROR_BAR)

@@ -17,7 +17,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
  * [Layer] is a collection of data and mappings from it.
  * It is characterized by its [Geom].
  *
- * @param dataset the dataset of this layer.
+ * @param dataset the dataset of this layer. In case it is null,
+ * the data for this layer is taken from the dataset of the [Plot]
  * @param geom the [Geom] that describes this layer.
  * @param mappings the [Map] of the mappings; keys are aesthetic attributes,
  * values are mappings on corresponding attributes.

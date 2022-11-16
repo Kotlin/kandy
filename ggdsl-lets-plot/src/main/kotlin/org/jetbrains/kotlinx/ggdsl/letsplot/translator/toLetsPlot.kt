@@ -141,7 +141,6 @@ internal fun Geom.toLPGeom(): GeomOptions {
 }
 
 
-
 internal val dateTimeTypes = setOf(
     typeOf<Instant>(), typeOf<LocalDateTime>(), typeOf<LocalDate>()
 )
@@ -166,17 +165,19 @@ internal fun Scale.wrap(
             val labels = axis?.labels
             val format = axis?.format
 
-
-            if(domainType in dateTimeTypes) {
+            // todo discrete datetime
+            /*
+            if (domainType in dateTimeTypes) {
                 return when (aesName) {
                     X -> scaleXDateTime(
-                      //  limits = limits.toLP(),
+                        //  limits = limits.toLP(),
                         name = name,
                         breaks = breaks?.map { it as Number }, // TODO() }
                         labels = labels,
-                     //   trans = (transform as? Transformation)?.name,
+                        //   trans = (transform as? Transformation)?.name,
                         format = format
                     )
+
                     Y -> scaleYDateTime(
                         //limits = categories,
                         name = name,
@@ -188,6 +189,8 @@ internal fun Scale.wrap(
                     else -> TODO()
                 }
             }
+
+             */
 
             when (this) {
                 is PositionalCategoricalScale<*> -> {
@@ -214,25 +217,43 @@ internal fun Scale.wrap(
 
                 is PositionalContinuousScale<*> -> {
                     when (aesName) {
-                        X -> scaleXContinuous(
-                            limits = limits.toLP(),
+                        X -> if (domainType !in dateTimeTypes) {
+                            scaleXContinuous(
+                                limits = limits.toLP(),
+                                name = name,
+                                breaks = breaks?.map { it as Number }, // TODO() }
+                                labels = labels,
+                                trans = (transform as? Transformation)?.name,
+                                format = format
+                            )
+                        } else {
+                            scaleXDateTime(
+                                limits = limits.toLP(),
+                                name = name,
+                                breaks = breaks,
+                                labels = labels,
+                                format = format
+                            )
+                        }
 
-                            name = name,
-                            breaks = breaks?.map { it as Number }, // TODO() }
-                            labels = labels,
-                            trans = (transform as? Transformation)?.name,
-                            format = format
-                        )
-
-                        Y -> scaleYContinuous(
-                            limits = limits.toLP(),
-
-                            name = name,
-                            breaks = breaks?.map { it as Number }, // TODO() }
-                            labels = labels,
-                            trans = (transform as? Transformation)?.name,
-                            format = format
-                        )
+                        Y -> if (domainType !in dateTimeTypes) {
+                            scaleYContinuous(
+                                limits = limits.toLP(),
+                                name = name,
+                                breaks = breaks?.map { it as Number }, // TODO() }
+                                labels = labels,
+                                trans = (transform as? Transformation)?.name,
+                                format = format
+                            )
+                        } else {
+                            scaleYDateTime(
+                                limits = limits.toLP(),
+                                name = name,
+                                breaks = breaks,
+                                labels = labels,
+                                format = format
+                            )
+                        }
 
                         else -> TODO()
                     }
@@ -630,7 +651,7 @@ internal fun Scale.wrap(
 
                     X, Y -> if (domainType == typeOf<String>()) {
                         PositionalCategoricalUnspecifiedScale.wrap(aesName, domainType, scaleParameters)
-                    }  else {
+                    } else {
                         PositionalContinuousUnspecifiedScale().wrap(aesName, domainType, scaleParameters)
                     }
 
@@ -665,7 +686,7 @@ internal fun Scale.wrap(
                     val labels = axis?.labels
                     val format = axis?.format
 
-                    if(domainType in dateTimeTypes) {
+                    if (domainType in dateTimeTypes) {
                         return when (aesName) {
                             X -> scaleXDateTime(
                                 //  limits = limits.toLP(),
@@ -675,6 +696,7 @@ internal fun Scale.wrap(
                                 //   trans = (transform as? Transformation)?.name,
                                 format = format
                             )
+
                             Y -> scaleYDateTime(
                                 //limits = categories,
                                 name = name,
@@ -750,7 +772,7 @@ public fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
         layers.forEach { it.wrap(this) }
         freeScales.forEach { it.value.wrap(this) }
         features.forEach { it.value.wrap(this) }
-      //  (layout as? LetsPlotLayout)?.wrap(this) // todo
+        //  (layout as? LetsPlotLayout)?.wrap(this) // todo
     }
     return letsPlot(dataset.wrap()) + FeatureList(featureBuffer)
     //  var plotBuffer = letsPlot(dataset)

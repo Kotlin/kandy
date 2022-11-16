@@ -36,8 +36,7 @@ public class CrossBarContextImmutable(parent: LayerCollectorContextImmutable)
 
 @PlotDslMarker
 public class CrossBarContextMutable(parent: LayerCollectorContextMutable):
-    LayerWithBorderLineContextMutable(parent), CrossBarContextInterface {
-}
+    LayerWithBorderLineContextMutable(parent), CrossBarContextInterface
 
 public inline fun LayerCollectorContextImmutable.crossBar(block: CrossBarContextImmutable.() -> Unit) {
     addLayer(CrossBarContextImmutable(this).apply(block), CROSS_BAR)

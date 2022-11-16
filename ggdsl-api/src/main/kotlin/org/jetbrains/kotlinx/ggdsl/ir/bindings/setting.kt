@@ -24,7 +24,6 @@ public data class NonPositionalSetting<T : Any>(
 ) : Setting
 
 /**
- * TODO
  * Setting of a positional aesthetic attribute.
  *
  * @param T the type of set value.

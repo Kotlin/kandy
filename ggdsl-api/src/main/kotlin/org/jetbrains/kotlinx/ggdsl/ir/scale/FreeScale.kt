@@ -7,6 +7,9 @@ package org.jetbrains.kotlinx.ggdsl.ir.scale
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import kotlin.reflect.KType
 
+/**
+ * TODO: will be redesigned in the near future.
+ */
 public sealed interface FreeScale {
     public val aes: AesName
     public val scale: Scale
@@ -14,7 +17,9 @@ public sealed interface FreeScale {
     public var scaleParameters: ScaleParameters?
 }
 
-// TODO (Generic type)
+/**
+ * TODO: will be redesigned in the near future.
+ */
 public data class FreePositionalScale<DomainType : Any>(
     override val aes: AesName,
     override val scale: Scale,

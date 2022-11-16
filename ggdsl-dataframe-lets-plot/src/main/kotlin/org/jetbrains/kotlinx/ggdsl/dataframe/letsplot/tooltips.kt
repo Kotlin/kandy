@@ -36,7 +36,7 @@ public fun LayerTooltipsContext.line(column: ColumnReference<*>) {
 
 public inline fun LayerContextInterface.tooltips(
     columns: List<ColumnReference<*>> = listOf(),
-    variablesDS: List<org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>> = listOf(),
+    variablesDS: List<ColumnPointer<*>> = listOf(),
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,

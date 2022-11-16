@@ -18,19 +18,6 @@ public sealed interface ColumnScaled<DomainType : Any> {
     public val source: ColumnPointer<DomainType>
     public val scale: Scale
 }
-/*
-/**
- * Scaled default source interface
- *
- * @property DomainType the type of domain
- * @property source the source to which the scale is applied
- * @property scale applying default scale
- */
-sealed interface SourceScaledUnspecified<DomainType : Any> : SourceScaled<DomainType> {
-    override val scale: UnspecifiedScale
-}
-
- */
 
 /**
  * Scaled unspecified default source

@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.ggdsl.ir.data
  *
  * @param T a type of column
  * @property id the name of column in the table
- * @property type reified type of data TODO
+ * @property type reified type of data TODO: was removed
  */
 
 public data class ColumnPointer<T : Any>(val id: String, /* TODO val type: KType*/)
