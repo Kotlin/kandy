@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.ggdsl.letsplot.layers.series
+package org.jetbrains.kotlinx.ggdsl.letsplot.series
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableBindingContextInterfaceMutable

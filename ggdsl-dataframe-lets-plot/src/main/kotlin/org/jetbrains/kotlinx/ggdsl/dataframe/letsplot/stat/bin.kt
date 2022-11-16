@@ -26,4 +26,3 @@ public inline fun LayerCollectorContextImmutable.histogram(
 ) {
     histogram(sample.toColumnPointer(), bins, binXPos, block)
 }
-
