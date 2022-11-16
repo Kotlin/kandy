@@ -17,10 +17,6 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
     val smooth = settings.getNPSValue<Boolean>(SMOOTH)
     val stack = (features[Stack.FEATURE_NAME] as? Stack)?.name
 
-    val dataMarkPoints = (features[MarkPointFeature.FEATURE_NAME] as? MarkPointFeature)?.points?.map {
-        DataMarkPoint(it.name, it.type?.type, it.valueMP, it.coord?.toList(), it.x, it.y)
-    }
-
     val dataMarkLines = (features[MarkLineFeature.FEATURE_NAME] as? MarkLineFeature)?.lines?.map {
         if (it.point1 == null) {
             DataMarkLine(it.nameML, it.typeML?.type, it.xAxis, it.yAxis)
@@ -80,8 +76,8 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
         stack = stack,
         smooth = smooth,
         encode = encode,
-        markPoint = EchartsMarkPoint(data = dataMarkPoints),
-        markLine = EchartsMarkLine(data = dataMarkLines)
+        markPoint = features.toEchartsMarkPoint(),
+        markLine = features.toEchartsMarkLine()
     )
 }
 

@@ -1,12 +1,26 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkPointFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Blur
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Emphasis
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.ItemStyle
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Label
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.DataMarkPointSerializer
+import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
+import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
+
+internal fun Map<FeatureName, LayerFeature>.toEchartsMarkPoint(): EchartsMarkPoint? {
+    val dataMarkPoints = (this[MarkPointFeature.FEATURE_NAME] as? MarkPointFeature)?.points?.map {
+        DataMarkPoint(it.name, it.type?.type, it.valueMP, it.coord?.toList(), it.x, it.y)
+    }
+
+    return if (dataMarkPoints != null) {
+        EchartsMarkPoint(data = dataMarkPoints)
+    } else {
+        null
+    }
+}
 
 @Serializable(with = DataMarkPointSerializer::class)
 public data class DataMarkPoint(
