@@ -35,12 +35,12 @@ public data class Title(
     val top: @Contextual Any?,
     val right: @Contextual Any?,
     val bottom: @Contextual Any?,
-    val backgroundColor: Color?,
-    val borderColor: Color?,
+    val backgroundColor: EchartsColor?,
+    val borderColor: EchartsColor?,
     val borderWidth: Int?,
     val borderRadius: @Contextual Any?, // number, array
     val shadowBlur: Int?,
-    val shadowColor: Color?,
+    val shadowColor: EchartsColor?,
     val shadowOffsetX: Int?,
     val shadowOffsetY: Int?
 )

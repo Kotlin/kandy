@@ -50,19 +50,19 @@ legend.animationDurationUpdate
     val symbolRotate: @Contextual Any?, // number string
     val formatter: @Contextual Any?, // может быть функцией, надо подумать
     val selectedMode: @Contextual Any?, // boolean string
-    val inactiveColor: Color?,
-    val inactiveBorderColor: Color?,
-    val inactiveBorderWidth: Color?,
+    val inactiveColor: EchartsColor?,
+    val inactiveBorderColor: EchartsColor?,
+    val inactiveBorderWidth: EchartsColor?,
     val selected: Map<String, Boolean>?, // таблица состояний для серий
 //    val textStyle: TextStyle?,
 //    val tooltip: Tooltip?,
     val icon: String?, // может быть ссылкой
 //    val data: List<LegendData>?,
-    val backgroundColor: Color?,
-    val borderColor: Color?,
+    val backgroundColor: EchartsColor?,
+    val borderColor: EchartsColor?,
     val borderRadius: @Contextual Any?, // number Array
     val shadowBlur: Int?,
-    val shadowColor: Color?,
+    val shadowColor: EchartsColor?,
     val shadowOffsetX: Int?,
     val shadowOffsetY: Int?, // This property works only if show: true configured.
     val scrollDataIndex: Int?,

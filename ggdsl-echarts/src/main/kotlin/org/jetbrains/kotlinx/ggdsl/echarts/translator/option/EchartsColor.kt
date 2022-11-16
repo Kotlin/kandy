@@ -5,32 +5,9 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.ColorSerialize
 import kotlin.math.round
 
 @Serializable(with = ColorSerializer::class)
-public interface Color
+public interface EchartsColor
 
-internal class BaseColor private constructor() : Color {
-    lateinit var hex: String
-
-    constructor(r: Byte, g: Byte, b: Byte, a: Double) : this() {
-        hex = buildString {
-            append("#")
-            append(r.toString(16))
-            append(g.toString(16))
-            append(b.toString(16))
-            if (a != 1.0) {
-                append(
-                    (round(a * 255).toInt() or (1 shr 8)).toString(16) // ~ [0..1)
-                )
-            }
-        }
-    }
-
-    constructor(r: Byte, g: Byte, b: Byte) : this(r, g, b, 1.0)
-
-    constructor(colorName: String) : this() {
-        hex = "#ccc"
-        TODO("сопоставление!")
-    }
-}
+internal class BaseColor internal constructor(val hex: String) : EchartsColor
 
 @Serializable
 internal sealed class GradientColor(
@@ -42,7 +19,7 @@ internal sealed class GradientColor(
     val r: Double?,
     val colorStops: List<ColorStop>?,
     val global: Boolean?
-) : Color
+) : EchartsColor
 
 internal class LinearGradientColor(
     x: Double?,

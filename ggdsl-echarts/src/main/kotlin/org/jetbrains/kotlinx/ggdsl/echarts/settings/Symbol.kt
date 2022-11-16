@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
+package org.jetbrains.kotlinx.ggdsl.echarts.settings
 
 import java.net.URI
 import java.net.URL

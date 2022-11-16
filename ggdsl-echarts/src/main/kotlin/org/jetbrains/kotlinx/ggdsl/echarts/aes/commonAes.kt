@@ -6,8 +6,8 @@ package org.jetbrains.kotlinx.ggdsl.echarts.aes
 
 import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.Color
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.Symbol
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Color
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes

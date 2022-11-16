@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.Color
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsColor
 
 @Serializable
 public data class Label(
@@ -11,7 +11,7 @@ public data class Label(
     val rotate: Int? = null,
     val offset: Pair<String, String>? = null,
     val formatter: String? = null,
-    val color: Color? = null,
+    val color: EchartsColor? = null,
     val fontStyle: String? = null, // TODO (Font style)
     val fontWeight: String? = null, // TODO (FontSeight)
     val fontFamily: String? = null,
@@ -19,24 +19,24 @@ public data class Label(
     val align: String? = null, // TODO (align)
     val verticalAlign: String? = null, // TODO(vertical align)
     val lineHeight: Int? = null,
-    val backgroundColor: Color? = null,
-    val borderColor: Color? = null,
+    val backgroundColor: EchartsColor? = null,
+    val borderColor: EchartsColor? = null,
     val borderWidth: Int? = null,
     val borderType: String? = null, // TODO (BorderType)
     val borderDashOffset: Int? = null,
     val borderRadius: Int? = null,
     val padding: Int? = null,
-    val shadowColor: Color? = null,
+    val shadowColor: EchartsColor? = null,
     val shadowBlur: Int? = null,
     val shadowOffsetX: Int? = null,
     val shadowOffsetY: Int? = null,
     val width: Int? = null,
     val height: Int? = null,
-    val textBorderColor: Color? = null,
+    val textBorderColor: EchartsColor? = null,
     val textBorderWidth: Int? = null,
     val textBorderType: String? = null, // TODO (TextDorderType)
     val textBorderDashOffset: Int? = null,
-    val textShadowColor: Color? = null,
+    val textShadowColor: EchartsColor? = null,
     val textShadowBlur: Int? = null,
     val textShadowOffsetX: Int? = null,
     val textShadowOffsetY: Int? = null,

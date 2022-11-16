@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.aes.SMOOTH
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Stack
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.Symbol
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
@@ -22,6 +22,7 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
         symbolRotate = symbol?.rotate,
         showSymbol = symbol != null,
         stack = stack,
+        lineStyle = settings.toLineStyle(),
         smooth = smooth,
         encode = encode,
         markPoint = features.toEchartsMarkPoint(),
