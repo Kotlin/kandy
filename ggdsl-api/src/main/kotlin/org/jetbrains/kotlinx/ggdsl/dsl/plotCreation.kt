@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 
-/**
+/** TODO
  * Returns a new plot.
  *
  * Creates a [PlotContext]. In this context, functions for creating new layers are defined.
@@ -48,6 +48,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 
 public inline fun plot(dataset: NamedDataInterface, block: NamedDataPlotContext.() -> Unit): Plot {
     return NamedDataPlotContext(dataset).apply(block).toPlot()
+}
+
+public inline fun plot(dataset: Map<String, List<Any>>, block: NamedDataPlotContext.() -> Unit): Plot {
+    return NamedDataPlotContext(NamedData(dataset)).apply(block).toPlot()
 }
 
 public inline fun plot(dataset: GroupedDataInterface, block: GroupedDataPlotContext.() -> Unit): Plot {

@@ -4,8 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl.internal
 
-import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.dsl.StatDSLMarker
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -179,7 +177,7 @@ public interface LayerPlotContext : LayerCollectorContextInterface, PlotContextB
 }
 
 @PlotDslMarker
-@StatDSLMarker
+//@StatDSLMarker
 public class NamedDataPlotContext(
     override val data: NamedDataInterface,
 ) : LayerPlotContext, LayerCollectorContextImmutable {

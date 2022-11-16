@@ -5,12 +5,18 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 
+/**
+ * Standard [NamedDataInterface] implementation.
+ */
 public data class NamedData(override val map: Map<String, List<Any>>) : NamedDataInterface {
     override fun groupBy(vararg columnPointers: ColumnPointer<*>): LazyGroupedData {
         return LazyGroupedData(columnPointers.map { it.id }, this)
     }
 }
 
+/**
+ * Standard [LazyGroupedDataInterface] implementation.
+ */
 public data class LazyGroupedData(
     override val keys: List<String>,
     override val origin: NamedData

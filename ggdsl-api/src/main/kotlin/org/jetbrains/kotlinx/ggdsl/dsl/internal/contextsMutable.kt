@@ -146,7 +146,7 @@ public abstract class LayerContextMutable(parent: LayerCollectorContextMutable) 
 }
 
 @PlotDslMarker
-@StatDSLMarker
+//@StatDSLMarker
 public class PlotContextMutable : LayerPlotContext, LayerCollectorContextMutable, TableContextMutableBase() {
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
     override val layers: MutableList<Layer> = mutableListOf()

@@ -9,7 +9,13 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import kotlin.reflect.typeOf
 
-
+/**
+ * TODO: will be redesigned in the near future.
+ * Apply given [PositionalScale] for this aes (as [FreePositionalScale]).
+ *
+ * @param scale positional scale.
+ * @return [FreePositionalScale]
+ */
 public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     scale: PositionalScale<DomainType>
 ): FreePositionalScale<DomainType> {
@@ -22,6 +28,13 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
     return freeScale
 }
 
+/**
+ * TODO: will be redesigned in the near future.
+ * Apply given [PositionalUnspecifiedScale] for this aes (as [FreePositionalScale]).
+ *
+ * @param scale positional unspecified scale.
+ * @return [FreePositionalScale]
+ */
 public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     scale: PositionalUnspecifiedScale
 ): FreePositionalScale<DomainType> {

@@ -14,24 +14,26 @@ import kotlin.reflect.KProperty
  * @param T the type of source
  * @param id the name of source in [NamedDataInterface]
  */
-
 public  fun < T : Any> columnPointer(id: String): ColumnPointer<T> =
     ColumnPointer(id)
+
+/**
+ * Returns a new [ColumnPointer].
+ *
+ * @receiver the name of source in [NamedDataInterface]
+ * @param T the type of source
+ */
+public inline operator fun <reified T : Any> String.invoke(): ColumnPointer<T> =
+    ColumnPointer(this)
+
 
 // TODO
 public class UnnamedColumnPointer<T : Any> {
     public operator fun getValue(thisRef: Any?, property: KProperty<*>): ColumnPointer<T> {
         return ColumnPointer(property.name)
-
     }
 }
 
 // todo
-
-public inline operator fun <reified T : Any> String.invoke(): ColumnPointer<T> =
-    ColumnPointer(this)
-
-// todo
 public inline fun <reified T : Any> columnPointer(): UnnamedColumnPointer<T> =
     UnnamedColumnPointer()
-

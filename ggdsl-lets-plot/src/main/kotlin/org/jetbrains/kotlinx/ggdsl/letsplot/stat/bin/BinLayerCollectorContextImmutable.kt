@@ -1,6 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin
 
-import org.jetbrains.kotlinx.ggdsl.dsl.StatDSLMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.ir.data.*
@@ -18,12 +17,12 @@ public interface BinStatContext {
     }
 }
 
-@StatDSLMarker
+//@StatDSLMarker
 public class BinLayerCollectorContextImmutable(parent: LayerCollectorContextImmutable, override val data: TableData)
     : StatLayerCollectorContextImmutable(parent), BinStatContext
 
 // TODO!!!
-@StatDSLMarker
+//StatDSLMarker
 public class BinLayerCollectorContextMutable(parent: LayerCollectorContextMutable, override val data: TableData)
     : StatLayerCollectorContextMutable(parent), BinStatContext
 

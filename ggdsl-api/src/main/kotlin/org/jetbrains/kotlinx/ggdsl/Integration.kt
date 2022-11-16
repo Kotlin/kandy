@@ -17,4 +17,3 @@ internal class Integration : JupyterIntegration() {
     }
 
 }
-
