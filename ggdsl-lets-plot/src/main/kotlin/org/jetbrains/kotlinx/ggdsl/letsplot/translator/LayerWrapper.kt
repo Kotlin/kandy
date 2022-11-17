@@ -23,7 +23,7 @@ internal class LayerWrapper internal constructor(private val layer: Layer) :
                 this[GROUP.name] = MERGED_GROUPS
             }
         } ),
-        geom = layer.geom.toLPGeom(),
+        geom = layer.geom.wrap(),
         stat = layer.geom.toStat(),
         tooltips = (layer.features[LayerTooltips.FEATURE_NAME] as? LayerTooltips)?.wrap(),
         position = (layer.features[Position.FEATURE_NAME] as? Position)?.wrap() ?: positionIdentity,

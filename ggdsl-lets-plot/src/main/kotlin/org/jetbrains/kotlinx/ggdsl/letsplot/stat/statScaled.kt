@@ -1,8 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat
 
-import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.dsl.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.ScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalUnspecifiedScale
@@ -13,20 +13,15 @@ import kotlin.reflect.typeOf
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
     ColumnScaledUnspecifiedDefault(this.tColumnPointer())
 
-
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: PositionalUnspecifiedScale): ColumnScaledPositionalUnspecified<DomainType> =
     ColumnScaledPositionalUnspecified(this.tColumnPointer(), scale)
-
-
 
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): ColumnScaledNonPositionalUnspecified<DomainType> =
     ColumnScaledNonPositionalUnspecified(this.tColumnPointer(), scale)
 
-
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(
     scale: PositionalScale<DomainType>
 ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.tColumnPointer(), scale)
-
 
 public inline fun <reified DomainType : Any, RangeType : Any> Statistic<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>

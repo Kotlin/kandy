@@ -1,10 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.ir.data.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.StatLayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.stat.StatLayerCollectorContextMutable
 
 public interface BinStatContext {
     public val Stat: StatHolder
@@ -21,10 +19,11 @@ public interface BinStatContext {
 public class BinLayerCollectorContextImmutable(parent: LayerCollectorContextImmutable, override val data: TableData)
     : StatLayerCollectorContextImmutable(parent), BinStatContext
 
-// TODO!!!
-//StatDSLMarker
+/* TODO!!!
 public class BinLayerCollectorContextMutable(parent: LayerCollectorContextMutable, override val data: TableData)
     : StatLayerCollectorContextMutable(parent), BinStatContext
+
+ */
 
 public sealed interface Bins {
     public data class ByNumber internal constructor(val number: Int) : Bins
@@ -80,7 +79,7 @@ internal inline fun statBinImpl(
     }
     BinLayerCollectorContextImmutable(contextParent, newData).apply(block)
 }
-
+/*
 @PublishedApi
 internal inline fun statBinImpl(
     contextParent: LayerCollectorContextMutable,
@@ -98,6 +97,8 @@ internal inline fun statBinImpl(
     BinLayerCollectorContextMutable(contextParent, newData).apply(block)
 }
 
+ */
+
 //todo type
 public inline fun LayerCollectorContextImmutable.statBin(
     column: ColumnPointer<*>,
@@ -106,6 +107,7 @@ public inline fun LayerCollectorContextImmutable.statBin(
     block: BinLayerCollectorContextImmutable.() -> Unit
 ): Unit = statBinImpl(this, data, column, bins, binXPos, block)
 
+/*
 public inline fun<T:Any> LayerCollectorContextMutable.statBin(
     source: Iterable<T>,
     bins: Bins = Bins.byNumber(20),
@@ -115,3 +117,5 @@ public inline fun<T:Any> LayerCollectorContextMutable.statBin(
     val columnPointer = source.toColumnPointer()
     statBinImpl(this, data, columnPointer, bins, binXPos, block)
 }
+
+ */

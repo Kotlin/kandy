@@ -39,7 +39,7 @@ public inline fun LayerCollectorContextImmutable.histogram(
         }.apply(block), BAR)
     }
 }
-
+/*
 public inline fun <T:Any> LayerCollectorContextMutable.histogram(
     sample: Iterable<T>,
     bins: Bins = Bins.byNumber(20),
@@ -53,3 +53,5 @@ public inline fun <T:Any> LayerCollectorContextMutable.histogram(
         }.apply(block), BAR)
     }
 }
+
+ */

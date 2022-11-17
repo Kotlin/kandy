@@ -19,7 +19,6 @@ public fun <T : Any> ColumnReference<T>.toColumnPointer(): ColumnPointer<T> {
     return ColumnPointer(name())
 }
 
-
 @Suppress("UNCHECKED_CAST")
 public fun DataFrame<*>.toNamedData(): Map<String, List<Any>> {
     // TODO (change convert df to map)
