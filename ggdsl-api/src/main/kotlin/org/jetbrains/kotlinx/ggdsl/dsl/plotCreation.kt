@@ -4,13 +4,14 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.GroupedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.NamedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.GroupedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContextMutable
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 
-/**
+/** TODO
  * Returns a new plot.
  *
  * Creates a [PlotContext]. In this context, functions for creating new layers are defined.
@@ -45,23 +46,18 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
  * @see [BaseBindingContext]
  */
 
-public inline fun <T: NamedDataInterface> plot(dataset: T, block: NamedDataPlotContext<T>.() -> Unit): Plot {
+public inline fun plot(dataset: NamedDataInterface, block: NamedDataPlotContext.() -> Unit): Plot {
     return NamedDataPlotContext(dataset).apply(block).toPlot()
+}
+
+public inline fun plot(dataset: Map<String, List<Any>>, block: NamedDataPlotContext.() -> Unit): Plot {
+    return NamedDataPlotContext(NamedData(dataset)).apply(block).toPlot()
 }
 
 public inline fun plot(dataset: GroupedDataInterface, block: GroupedDataPlotContext.() -> Unit): Plot {
     return GroupedDataPlotContext(dataset).apply(block).toPlot()
 }
 
-/*
-inline fun plot(block: PlotContext.() -> Unit): Plot {
-=======
-public inline fun plot(dataset: NamedData = mapOf(), block: PlotContext.() -> Unit): Plot {
->>>>>>> main
-    return PlotContext().apply {
-        data.putAll(dataset) // TODO
-        block()
-    }.toPlot()
+public inline fun plot(block: PlotContextMutable.() -> Unit): Plot {
+    return PlotContextMutable().apply(block).toPlot()
 }
-
- */

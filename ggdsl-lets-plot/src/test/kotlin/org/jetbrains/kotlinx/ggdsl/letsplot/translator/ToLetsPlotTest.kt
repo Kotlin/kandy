@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bar
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.line
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.point
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
@@ -27,7 +27,7 @@ class ToLetsPlotTest {
     fun testSimple() {
         val plot = plot(emptyDataset) {
             x(columnPointer<String>("origin"))
-            points {
+            point {
                 y(columnPointer<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
                 symbol(Symbol.CIRCLE_FILLED)
                 fillColor(Color.RED)
@@ -55,7 +55,7 @@ class ToLetsPlotTest {
                             "y" to "mpg"
                         ),
                         "stat" to "identity",
-                        "data" to mapOf<String, Any>(),
+                   //     "data" to mapOf<String, Any>(),
                         "shape" to 21.0,
                         "position" to "identity",
                         "geom" to "point",
@@ -99,7 +99,6 @@ class ToLetsPlotTest {
                 yOrder = OrderDirection.DESCENDING
             )
         }
-        println(plot.toLetsPlot().toSpec())
         assertEquals(
             mapOf(
                 "mapping" to mapOf<String, String>(),
@@ -135,7 +134,7 @@ class ToLetsPlotTest {
                             "fill" to "clM"
                         ),
                         "stat" to "identity",
-                        "data" to mapOf<String, Any>(),
+                  //      "data" to mapOf<String, Any>(),
                         "alpha" to 0.8,
                         "width" to 0.5,
                         "position" to "stack",
@@ -170,7 +169,7 @@ class ToLetsPlotTest {
                             "y" to "svalue",
                         ),
                         "stat" to "identity",
-                        "data" to mapOf<String, Any>(),
+                      //  "data" to mapOf<String, Any>(),
                         "size" to 2.2,
                         "linetype" to "dotted",
                         "position" to "identity",

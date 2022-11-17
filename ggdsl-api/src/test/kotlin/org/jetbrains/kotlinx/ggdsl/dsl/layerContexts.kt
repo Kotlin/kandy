@@ -4,11 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextImmutable
 
 
-class PointsContext(parent: LayerCollectorContext) : LayerContext(parent) {
+class PointsContextImmutable(parent: LayerCollectorContextImmutable) : LayerContextImmutable(parent) {
     val x = XAes(this)
     val y = YAes(this)
 
@@ -22,8 +22,8 @@ class PointsContext(parent: LayerCollectorContext) : LayerContext(parent) {
     val symbol = SymbolAes(this)
 }
 
-class LineContext(parent: LayerCollectorContext) :
-    LayerContext(parent) {
+class LineContextImmutable(parent: LayerCollectorContextImmutable) :
+    LayerContextImmutable(parent) {
     val x = XAes(this)
     val y = YAes(this)
 
@@ -35,8 +35,8 @@ class LineContext(parent: LayerCollectorContext) :
     val lineType = LineTypeAes(this)
 }
 
-class BarsContext(parent: LayerCollectorContext) :
-    LayerContext(parent) {
+class BarsContextImmutable(parent: LayerCollectorContextImmutable) :
+    LayerContextImmutable(parent) {
     val x = XAes(this)
     val y = YAes(this)
 

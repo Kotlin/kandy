@@ -4,14 +4,10 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
@@ -35,15 +31,15 @@ internal class CustomizationTest {
 
     data class CustomGeomType(val name: String)
 
-    class CustomGeomContext(parent: LayerCollectorContext) :
-        LayerContext(parent) {
+    class CustomGeomContextImmutable(parent: LayerCollectorContextImmutable) :
+        LayerContextImmutable(parent) {
         val x = XAes(this)
         val y = YAes(this)
         val specificAes = SpecificAes(this)
     }
 
-    fun LayerCollectorContext.customLayer(block: CustomGeomContext.() -> Unit) {
-        addLayer(CustomGeomContext(this).apply(block), CUSTOM_GEOM)
+    fun LayerCollectorContextImmutable.customLayer(block: CustomGeomContextImmutable.() -> Unit) {
+        addLayer(CustomGeomContextImmutable(this).apply(block), CUSTOM_GEOM)
     }
 
     data class MockLayerFeature(val value: Int) : LayerFeature {
@@ -54,7 +50,7 @@ internal class CustomizationTest {
         }
     }
 
-    private fun LayerContext.mockFeatureFunction(value: Int) {
+    private fun LayerContextInterface.mockFeatureFunction(value: Int) {
         features[MockLayerFeature.FEATURE_NAME] = MockLayerFeature(value)
     }
 
@@ -66,7 +62,7 @@ internal class CustomizationTest {
         }
     }
 
-    private var PlotContext.mockFeatureProp: String
+    private var LayerPlotContext.mockFeatureProp: String
         get() = ""
         set(value) {
             features[MockPlotFeature.FEATURE_NAME] = MockPlotFeature(value)
@@ -105,7 +101,7 @@ internal class CustomizationTest {
                 dataset,
                 listOf(
                     Layer(
-                        dataset,
+                        null,
                         CUSTOM_GEOM,
                         mapOf(
                             X to ScaledPositionalUnspecifiedMapping(
@@ -135,7 +131,7 @@ internal class CustomizationTest {
                         mapOf()
                     ),
                     Layer(
-                        dataset,
+                        null,
                         CUSTOM_GEOM,
                         mapOf(
                             X to ScaledUnspecifiedDefaultPositionalMapping(
@@ -184,7 +180,7 @@ internal class CustomizationTest {
                 dataset,
                 listOf(
                     Layer(
-                        dataset,
+                        null,
                         BAR,
                         mapOf(),
                         mapOf(),

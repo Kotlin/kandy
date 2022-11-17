@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features.animation
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContext
 
 /**
@@ -17,7 +17,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContext
  * - [easing][AnimationFeature.easing] -the easing method used for the first animation.
  * - [delay][AnimationFeature.delay] - the delay before updating the first animation.
  */
-public fun PlotContext.animation(block: AnimationPlotFeature.() -> Unit) {
+public fun LayerPlotContext.animation(block: AnimationPlotFeature.() -> Unit) {
     features[AnimationPlotFeature.FEATURE_NAME] = AnimationPlotFeature().apply(block)
 }
 

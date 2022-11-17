@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
@@ -16,7 +16,7 @@ public data class Reversed(val value: Boolean) : LayerFeature {
     }
 }
 
-public var LayerContext.reversed: Boolean
+public var LayerContextInterface.reversed: Boolean
     get() = true
     set(value) {
         features[Reversed.FEATURE_NAME] = Reversed(value)

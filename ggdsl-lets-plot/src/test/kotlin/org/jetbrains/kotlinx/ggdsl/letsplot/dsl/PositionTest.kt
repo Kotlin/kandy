@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bar
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.point
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
 import kotlin.test.Test
@@ -23,7 +23,7 @@ internal class PositionTest {
     @Test
     fun testSimple() {
         val plot = plot(emptyDataset) {
-            points {
+            point {
                 position = Position.Identity
             }
         }
@@ -32,7 +32,7 @@ internal class PositionTest {
                 emptyDataset,
                 listOf(
                     Layer(
-                        emptyDataset,
+                        null,
                         POINT,
                         mapOf(),
                         mapOf(),
@@ -53,10 +53,10 @@ internal class PositionTest {
             bar {
                 position = Position.Stack
             }
-            points {
+            point {
                 position = Position.JitterDodge(2.0, 3.0, 1.0)
             }
-            points {
+            point {
                 position = Position.Dodge(0.9)
             }
         }
@@ -65,14 +65,14 @@ internal class PositionTest {
                 emptyDataset,
                 listOf(
                     Layer(
-                        emptyDataset,
+                        null,
                         BAR,
                         mapOf(),
                         mapOf(),
                         mapOf(Position.FEATURE_NAME to Position.Stack)
                     ),
                     Layer(
-                        emptyDataset,
+                        null,
                         POINT,
                         mapOf(),
                         mapOf(),
@@ -82,7 +82,7 @@ internal class PositionTest {
                         )
                     ),
                     Layer(
-                        emptyDataset,
+                        null,
                         POINT,
                         mapOf(),
                         mapOf(),

@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.facet
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
@@ -86,7 +86,7 @@ public data class FacetWrapFeature constructor(
  * @see org.jetbrains.letsPlot.facet.facetGrid
  */
 
-public fun PlotContext.facetGridX(
+public fun LayerPlotContext.facetGridX(
     x: ColumnPointer<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
@@ -99,7 +99,7 @@ public fun PlotContext.facetGridX(
 }
 
 
-public fun PlotContext.facetGridY(
+public fun LayerPlotContext.facetGridY(
     y: ColumnPointer<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
@@ -110,7 +110,7 @@ public fun PlotContext.facetGridY(
 }
 
 
-public fun PlotContext.facetGrid(
+public fun LayerPlotContext.facetGrid(
     x: ColumnPointer<*>,
     y: ColumnPointer<*>,
     scalesSharing: ScalesSharing? = null,
@@ -159,7 +159,7 @@ public class FacetWrapContext @PublishedApi internal constructor(){
  * TODO params
  * @see org.jetbrains.letsPlot.facet.facetWrap
  */
-public fun PlotContext.facetWrap(
+public fun LayerPlotContext.facetWrap(
     nCol: Int? = null,
     nRow: Int? = null,
     scalesSharing: ScalesSharing = ScalesSharing.FIXED,

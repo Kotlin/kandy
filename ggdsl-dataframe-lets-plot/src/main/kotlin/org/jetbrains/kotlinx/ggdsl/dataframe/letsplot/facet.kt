@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dataframe.toColumnPointer
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
@@ -28,7 +28,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.ScalesSharing
  * TODO params
  * @see org.jetbrains.letsPlot.facet.facetGrid
  */
-public fun PlotContext.facetGridX(
+public fun LayerPlotContext.facetGridX(
     x: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
@@ -39,7 +39,7 @@ public fun PlotContext.facetGridX(
 
 }
 
-public fun PlotContext.facetGridY(
+public fun LayerPlotContext.facetGridY(
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
@@ -50,7 +50,7 @@ public fun PlotContext.facetGridY(
 
 }
 
-public fun PlotContext.facetGrid(
+public fun LayerPlotContext.facetGrid(
     x: ColumnReference<*>,
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
@@ -64,7 +64,7 @@ public fun PlotContext.facetGrid(
 
 }
 
-public fun PlotContext.facetGrid(
+public fun LayerPlotContext.facetGrid(
     x: ColumnReference<*>,
     y: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>,
     scalesSharing: ScalesSharing? = null,
@@ -79,7 +79,7 @@ public fun PlotContext.facetGrid(
 }
 
 
-public fun PlotContext.facetGrid(
+public fun LayerPlotContext.facetGrid(
     x: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>,
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,

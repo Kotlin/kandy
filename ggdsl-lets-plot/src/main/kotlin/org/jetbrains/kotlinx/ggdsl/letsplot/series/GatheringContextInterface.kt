@@ -1,6 +1,6 @@
-package org.jetbrains.kotlinx.ggdsl.letsplot.layers.series
+package org.jetbrains.kotlinx.ggdsl.letsplot.series
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.*
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 
-public interface GatheringContextInterface: TableBindingContext {
+public interface GatheringContextInterface : TableDataContext {
     public override val data: NamedDataInterface
     public val seriesCollector: MutableList<Series>
     public val position: Position
@@ -25,7 +25,7 @@ public interface GatheringContextInterface: TableBindingContext {
     }
 }
 
-public abstract class SeriesPlotContextBase: PlotContextBase, GatheringContextInterface {
+public abstract class SeriesPlotContextBase : PlotContextBase, GatheringContextInterface {
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
     override val seriesCollector: MutableList<Series> = mutableListOf()
     override val bindingCollector: BindingCollector = BindingCollector()
@@ -39,6 +39,7 @@ public abstract class SeriesPlotContextBase: PlotContextBase, GatheringContextIn
             bindingCollector.freeScales /*TODO free scales*/
         )
     }
+
     @PublishedApi
     internal fun gather() {
         features[GatheringList.FEATURE_NAME] = GatheringList().apply {
@@ -47,7 +48,8 @@ public abstract class SeriesPlotContextBase: PlotContextBase, GatheringContextIn
     }
 }
 
-public abstract class SeriesContext(parent: TableBindingContext) : SubTableBindingContext(parent) {
+public abstract class SeriesContextImmutable(parent: TableDataContext) :
+    BindingSubContextImmutable(parent, copySettings = false) {
     public fun toSeries(label: String): Series {
         return Series(
             bindingCollector.mappings,
@@ -57,30 +59,28 @@ public abstract class SeriesContext(parent: TableBindingContext) : SubTableBindi
     }
 }
 
-public abstract class GatheringContextBase(
-    parent: NamedDataPlotContext<*>,
-    override val position: Position
-) : SubTableBindingContext(parent), GatheringContextInterface {
+public abstract class GatheringContextBaseImmutable(
+    parent: NamedDataPlotContext, override val position: Position
+) : TableSubContextImmutable(parent), GatheringContextInterface {
     override val data: NamedDataInterface = parent.data
     override val seriesCollector: MutableList<Series> = mutableListOf()
 }
 
+public interface GatheringContextMutable : TableBindingContextInterfaceMutable, GatheringContextInterface
 
-public interface GatheringMutableContext : MutableDataBindingContextInterface, GatheringContextInterface
-
-public abstract class GatheringMutableContextBase(
-    parent: MutableDataBindingContextInterface,
+public abstract class GatheringSubContextMutable(
+    parent: TableBindingContextInterfaceMutable,
     override val position: Position
 ) :
-    SubMutableDataContext(parent), GatheringMutableContext {
+    TableSubContextMutable(parent), GatheringContextMutable {
     override val data: NamedDataInterface
         get() = super.data as NamedDataInterface
     override val seriesCollector: MutableList<Series> = mutableListOf()
 }
 
-public abstract class GatheringPlotMutableContextBase(
-    override val position: Position,
-) : PlotContextBase, LineGatheringContextInterface, MutableDataBindingContext() {
+public abstract class SeriesPlotContextMutable(
+    public override val position: Position,
+) : PlotContextBase, GatheringContextInterface, TableContextMutableBase() {
     override val dataBuffer: MutableTableData = MutableNamedData()
     override val data: NamedDataInterface get() = super.data as NamedDataInterface
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
@@ -95,7 +95,7 @@ public abstract class GatheringPlotMutableContextBase(
         )
     }
 
-    override val seriesCollector: MutableList<Series> = mutableListOf()
+    public override val seriesCollector: MutableList<Series> = mutableListOf()
     override val bindingCollector: BindingCollector = BindingCollector()
 
     @PublishedApi
@@ -106,8 +106,8 @@ public abstract class GatheringPlotMutableContextBase(
     }
 }
 
-public abstract class SeriesMutableContextBase(parent: MutableDataBindingContextInterface) :
-    SubMutableDataContext(parent, false) {
+public abstract class SeriesContextMutable(parent: TableBindingContextInterfaceMutable) :
+    TableSubContextMutable(parent, false) {
     public fun toSeries(label: String): Series {
         return Series(
             bindingCollector.mappings,
@@ -118,7 +118,7 @@ public abstract class SeriesMutableContextBase(parent: MutableDataBindingContext
 }
 
 @PublishedApi
-internal fun PlotContext.addGathering(gathering: Gathering) {
+internal fun LayerPlotContext.addGathering(gathering: Gathering) {
     (features.getOrPut(GatheringList.FEATURE_NAME) {
         GatheringList()
     } as GatheringList).gatheringList.add(gathering)

@@ -414,25 +414,28 @@ internal val symbols = listOf("circle", "rect", "triangle", "diamond", "roundRec
     //val series = mutableListOf<Series>()
 
 //    val layerToData = layers.mapIndexed { index, layer ->
-//        index to if (layer.data === dataset) {
+//        index to layer.dataset?.let {
+//            (it as NamedDataInterface).wrap()
+//        } /*if (layer.dataset === dataset) {
 //            null
 //        } else {
-//            (layer.data as NamedDataInterface).wrap()
+//            (layer.dataset as NamedDataInterface).wrap()
 //        }
+//        */
+//
 //    }.toMap()
-
+//
 //    layers.forEachIndexed { index, layer ->
 //        layer.mappings.forEach { (aes, mapping) ->
 //            if (mapping is ScaledMapping<*>) {
 //                val scale = mapping.columnScaled.scale
 //                val srcId = layer.mappings[aes]!!.sourceId()
-//                val data = (layer.data as NamedDataInterface).map[srcId] ?: (dataset as NamedDataInterface).map[srcId]!!
+//                val data = ((layer.dataset)?.let { it  as NamedDataInterface } )?.map?.get(srcId) ?: (dataset as NamedDataInterface).map[srcId]!!
 //                val seriesIndex = layerToData[index]?.header?.get(srcId) ?: idToDim[srcId]!!
 //                val domainType = mapping.domainType
 //                when (aes) {
 //                    X -> xAxis = scale.toAxis(domainType)
 //                    Y -> yAxis = scale.toAxis(domainType)
-//                    else -> throw Exception("")
 //                    else -> visualMaps.add(
 //                        scale.toVisualMap(
 //                            aes,

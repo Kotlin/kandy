@@ -17,13 +17,13 @@ import org.jetbrains.letsPlot.pos.positionIdentity
 
 internal class LayerWrapper internal constructor(private val layer: Layer) :
     LayerBase(
-        data = layer.data?.wrap(),
+        data = layer.dataset?.wrap(),
         mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap() }.toMap().toMutableMap().apply {
-            if (layer.data is LazyGroupedDataInterface) {
+            if (layer.dataset is LazyGroupedDataInterface) {
                 this[GROUP.name] = MERGED_GROUPS
             }
         } ),
-        geom = layer.geom.toLPGeom(),
+        geom = layer.geom.wrap(),
         stat = layer.geom.toStat(),
         tooltips = (layer.features[LayerTooltips.FEATURE_NAME] as? LayerTooltips)?.wrap(),
         position = (layer.features[Position.FEATURE_NAME] as? Position)?.wrap() ?: positionIdentity,

@@ -5,17 +5,17 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 public sealed interface BinStatistic<T>: Statistic<T> {
     // todo type
     public object Bins: BinStatistic<Double> {
-        public val NAME: String = "..x.."
+        public const val NAME: String = "..x.."
         override val id: String = NAME
 
     }
     public object Count: BinStatistic<Int> {
-        public val NAME: String = "..count.."
+        public const val NAME: String = "..count.."
         override val id: String = NAME
 
     }
     public object Density: BinStatistic<Double> {
-        public val NAME: String = "..density.."
+        public const val NAME: String = "..density.."
         override val id: String = NAME
 
     }

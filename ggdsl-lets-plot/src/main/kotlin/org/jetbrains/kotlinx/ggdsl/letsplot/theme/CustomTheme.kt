@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.theme
 
-import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.FontFace
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext

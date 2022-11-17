@@ -4,8 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts
 
-import org.jetbrains.kotlinx.ggdsl.ir.Layout
-
 /**
  * Plot layout settings
  *
@@ -16,7 +14,7 @@ public data class EChartsLayout(
     var title: String? = null,
     // todo width height?
     var size: Pair<Int, Int>? = null,
-) : Layout
+)
 
 /*
 public inline fun PlotContext.layout(block: EChartsLayout.() -> Unit) {

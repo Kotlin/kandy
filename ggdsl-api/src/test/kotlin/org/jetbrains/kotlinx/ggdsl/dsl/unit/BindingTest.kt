@@ -5,8 +5,8 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.unit
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingCollector
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingCollector
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -43,7 +43,7 @@ internal class BindingTest {
         override val name: AesName = MOCK_AES_COLOR_MAP_NON_POS
     }
 
-    class TestContext() : BindingContext {
+    class TestContext : BindingContext {
         override val bindingCollector: BindingCollector = BindingCollector()
         val x = XAes(this)
         val y = YAes(this)

@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.bindings
 
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ScaleParameters
 import kotlin.reflect.KType
@@ -16,10 +16,11 @@ import kotlin.reflect.KType
  */
 public sealed interface Mapping {
     public val aes: AesName
+    public val domainType: KType
 }
 
 /**
- * Mapping with an implicit scale.
+ * Mapping without an individual scale.
  *
  * @property aes the aesthetic attribute to be mapped to
  * @property source the source to which the mapping is applied
@@ -28,11 +29,11 @@ public sealed interface Mapping {
 public data class NonScalablePositionalMapping<DomainType : Any>(
     override val aes: AesName,
     val source: ColumnPointer<DomainType>,
-    val domainType: KType
+    override val domainType: KType
 ) : Mapping
 
 /**
- * Mapping interface with an explicit scale.
+ * Mapping interface with an individual scale.
  *
  * @property aes the aesthetic attribute to be mapped to
  * @property columnScaled the scaled source to which the mapping is applied
@@ -41,10 +42,17 @@ public data class NonScalablePositionalMapping<DomainType : Any>(
 public sealed interface ScaledMapping<DomainType : Any> : Mapping {
     override val aes: AesName
     public val columnScaled: ColumnScaled<DomainType>
-    public val domainType: KType
+    public override val domainType: KType
     public var scaleParameters: ScaleParameters?
 }
 
+/**
+ * Positional mapping interface with an individual scale.
+ *
+ * @property aes the aesthetic attribute to be mapped to
+ * @property columnScaled the scaled source to which the mapping is applied
+ * @property domainType the type of domain
+ */
 public sealed interface BaseScaledPositionalMapping<DomainType : Any> : ScaledMapping<DomainType> {
     override val aes: AesName
     override val columnScaled: ColumnScaled<DomainType>
@@ -52,6 +60,13 @@ public sealed interface BaseScaledPositionalMapping<DomainType : Any> : ScaledMa
     override var scaleParameters: ScaleParameters?
 }
 
+/**
+ * Non-positional mapping interface with an individual scale.
+ *
+ * @property aes the aesthetic attribute to be mapped to
+ * @property columnScaled the scaled source to which the mapping is applied
+ * @property domainType the type of domain
+ */
 public sealed interface BaseScaledNonPositionalMapping<DomainType : Any, RangeType : Any> : ScaledMapping<DomainType> {
     override val aes: AesName
     override val columnScaled: ColumnScaled<DomainType>
@@ -60,7 +75,7 @@ public sealed interface BaseScaledNonPositionalMapping<DomainType : Any, RangeTy
 }
 
 /**
- * Mapping with an unspecified default scale.
+ * Mapping interface with an unspecified default scale.
  *
  * @property aes the aesthetic attribute to be mapped to
  * @property columnScaled the scaled default unspecified source to which the mapping is applied
@@ -73,6 +88,13 @@ public sealed interface ScaledUnspecifiedDefaultMapping<DomainType : Any> : Scal
     override var scaleParameters: ScaleParameters?
 }
 
+/**
+ * Positional mapping with an unspecified default scale.
+ *
+ * @property aes the aesthetic attribute to be mapped to
+ * @property columnScaled the scaled default unspecified source to which the mapping is applied
+ * @property domainType type of domain
+ */
 public data class ScaledUnspecifiedDefaultPositionalMapping<DomainType : Any>(
     override val aes: AesName,
     override val columnScaled: ColumnScaledUnspecifiedDefault<DomainType>,
@@ -81,6 +103,13 @@ public data class ScaledUnspecifiedDefaultPositionalMapping<DomainType : Any>(
     override var scaleParameters: ScaleParameters? = null
 }
 
+/**
+ * Non-positional mapping with an unspecified default scale.
+ *
+ * @property aes the aesthetic attribute to be mapped to
+ * @property columnScaled the scaled default unspecified source to which the mapping is applied
+ * @property domainType type of domain
+ */
 public data class ScaledUnspecifiedDefaultNonPositionalMapping<DomainType : Any, RangeType : Any>(
     override val aes: AesName,
     override val columnScaled: ColumnScaledUnspecifiedDefault<DomainType>,
@@ -90,7 +119,7 @@ public data class ScaledUnspecifiedDefaultNonPositionalMapping<DomainType : Any,
 }
 
 /**
- * Mapping with a positional default scale.
+ * Positional mapping with a default scale.
  *
  * @property aes the aesthetic attribute to be mapped to
  * @property columnScaled the scaled default positional source to which the mapping is applied
@@ -105,7 +134,7 @@ public data class ScaledPositionalUnspecifiedMapping<DomainType : Any>(
 }
 
 /**
- * Mapping with a non-positional default scale.
+ * Non-positional mapping with a default scale.
  *
  * @property aes the aesthetic attribute to be mapped to
  * @property columnScaled the scaled default non-positional source to which the mapping is applied
@@ -120,7 +149,7 @@ public data class ScaledNonPositionalDefaultMapping<DomainType : Any, RangeType 
 }
 
 /**
- * Mapping with a positional scale.
+ * Positional mapping with an explicit scale.
  *
  * @property aes the aesthetic attribute to be mapped to
  * @property columnScaled the scaled positional source to which the mapping is applied
@@ -136,7 +165,7 @@ public data class ScaledPositionalMapping<DomainType : Any>(
 
 
 /**
- * Mapping with a non-positional scale.
+ * Non-positional mapping with an explicit scale.
  *
  * @property aes the aesthetic attribute to be mapped to
  * @property columnScaled the scaled non-positional source to which the mapping is applied

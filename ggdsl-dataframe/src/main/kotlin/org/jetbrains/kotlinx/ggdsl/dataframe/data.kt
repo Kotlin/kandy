@@ -7,8 +7,8 @@ package org.jetbrains.kotlinx.ggdsl.dataframe
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.NamedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.WithGroupingBindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.GroupedDataSubContextImmutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
@@ -18,7 +18,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 public fun <T : Any> ColumnReference<T>.toColumnPointer(): ColumnPointer<T> {
     return ColumnPointer(name())
 }
-
 
 @Suppress("UNCHECKED_CAST")
 public fun DataFrame<*>.toNamedData(): Map<String, List<Any>> {
@@ -61,22 +60,6 @@ public class DataFrameWrapper(public val df: DataFrame<*>) : NamedDataInterface 
         return LazyGroupedDataFrame(columnPointers.map { it.id }, this)
     }
 
-    public override fun <T: Any> gather(
-        valuesColumnName: String,
-        keysColumnName: String,
-        firstColumn: ColumnPointer<T>,
-        secondColumn: ColumnPointer<T>,
-        vararg columns: ColumnPointer<T>,
-    ): DataFrameWrapper {
-        return DataFrameWrapper(
-            df.gather(*(
-                    listOf(firstColumn.id, secondColumn.id) + (columns).map { it.id }).toTypedArray()).into(
-                valuesColumnName,
-                keysColumnName
-            )
-        )
-    }
-
     public fun groupBy(vararg columnReferences: ColumnReference<*>): LazyGroupedDataFrame {
         return LazyGroupedDataFrame(columnReferences.map { it.name() }, this)
     }
@@ -89,25 +72,27 @@ public class DataFrameWrapper(public val df: DataFrame<*>) : NamedDataInterface 
     }
 }
 
-public inline fun NamedDataPlotContext<DataFrameWrapper>.groupBy(
+// TODO fix groupBy!!!
+
+public inline fun NamedDataPlotContext.groupBy(
     vararg columnReferences: ColumnReference<*>,
-    block: WithGroupingBindingContext.() -> Unit
+    block: GroupedDataSubContextImmutable.() -> Unit
 ) {
-    WithGroupingBindingContext(
-        data.groupBy(*columnReferences),
+    GroupedDataSubContextImmutable(
+        (data as DataFrameWrapper).groupBy(*columnReferences),
         layers,
-        bindingCollector
+        this
     ).apply(block)
 }
 
-public inline fun NamedDataPlotContext<DataFrameWrapper>.groupBy(
+public inline fun NamedDataPlotContext.groupBy(
     columnReferences: List<ColumnReference<*>>,
     columnPointers: List<ColumnPointer<*>> = listOf(),
-    block: WithGroupingBindingContext.() -> Unit
+    block: GroupedDataSubContextImmutable.() -> Unit
 ) {
-    WithGroupingBindingContext(
-        data.groupBy(columnReferences, columnPointers),
+    GroupedDataSubContextImmutable(
+        (data as DataFrameWrapper).groupBy(columnReferences, columnPointers),
         layers,
-        bindingCollector
+        this
     ).apply(block)
 }

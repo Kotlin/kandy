@@ -15,6 +15,6 @@ import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
 //    addLayer(BarsContext(this).apply(block), BAR)
 //}
 
-public inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
-    addLayer(LineContext(this).apply(block), LINE)
+public inline fun LayerCollectorContextImmutable.line(block: LineContextImmutable.() -> Unit) {
+    addLayer(LineContextImmutable(this).apply(block), LINE)
 }

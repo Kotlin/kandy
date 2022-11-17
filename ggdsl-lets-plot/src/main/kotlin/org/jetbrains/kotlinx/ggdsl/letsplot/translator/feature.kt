@@ -15,8 +15,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.series.Gathering
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.series.GatheringList
+import org.jetbrains.kotlinx.ggdsl.letsplot.series.Gathering
+import org.jetbrains.kotlinx.ggdsl.letsplot.series.GatheringList
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -75,6 +75,10 @@ internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
 }
 
 internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
+    if (this is ExternalLetsPlotFeature) {
+        featureBuffer += wrap()
+        return
+    }
     // todo featureName
     //TODO check is lp feature
     when (featureName) {
@@ -116,6 +120,9 @@ internal fun Gathering.toLayer(): Layer {
     val scaleBuffer = mappingAesNames.associateWith {
         mutableListOf<String>() to mutableListOf<Any>()
     }
+
+    val xType = series.first().mappings[X]!!.domainType
+    val yType = series.first().mappings[Y]!!.domainType
 
     series.forEach {series ->
         xBuffer.addAll(data.map[series.mappings[X]!!.wrap().second]!!)
@@ -165,12 +172,12 @@ internal fun Gathering.toLayer(): Layer {
             X to ScaledUnspecifiedDefaultPositionalMapping<Any>(
                 X,
                 "x"<Any>().scaled(),
-                typeOf<Any>()
+                xType
             ),
             Y to ScaledUnspecifiedDefaultPositionalMapping<Any>(
                 Y,
                 "y"<Any>().scaled(),
-                typeOf<Any>()
+                yType
             )
         ) + nonPosScales,
         globalSettings,

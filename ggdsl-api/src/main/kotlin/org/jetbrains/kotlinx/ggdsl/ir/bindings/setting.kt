@@ -23,7 +23,13 @@ public data class NonPositionalSetting<T : Any>(
     val value: T,
 ) : Setting
 
-//TODO
+/**
+ * Setting of a positional aesthetic attribute.
+ *
+ * @param T the type of set value.
+ * @property aes the positional aesthetic attribute to be set to
+ * @property value the assigned value
+ */
 public data class PositionalSetting<T : Any>(
     val aes: AesName,
     val value: T,

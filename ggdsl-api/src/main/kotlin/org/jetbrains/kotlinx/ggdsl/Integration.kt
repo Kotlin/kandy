@@ -12,10 +12,8 @@ internal class Integration : JupyterIntegration() {
 
     override fun Builder.onLoaded() {
         import("org.jetbrains.kotlinx.ggdsl.dsl.*")
-        import("org.jetbrains.kotlinx.ggdsl.dsl.contexts.*")
         import("org.jetbrains.kotlinx.ggdsl.util.color.*")
         import("org.jetbrains.kotlinx.ggdsl.util.context.*")
     }
 
 }
-

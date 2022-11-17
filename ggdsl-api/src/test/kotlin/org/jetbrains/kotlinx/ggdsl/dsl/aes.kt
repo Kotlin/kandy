@@ -4,12 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 val X = AesName("x")
@@ -24,10 +21,10 @@ data class YAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = Y
 }
 
-val PlotContext.x
+val LayerPlotContext.x
     get() = XAes(this)
 
-val PlotContext.y
+val LayerPlotContext.y
     get() = YAes(this)
 
 val SIZE = AesName("size")

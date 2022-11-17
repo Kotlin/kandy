@@ -30,7 +30,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
  */
 
 // todo
-//public var BarsContext.stack: Stack
+//public var BarsContextImmutable.stack: Stack
 //    get() = Stack("TODO")
 //    set(value) {
 //        features[Stack.FEATURE_NAME] = value
