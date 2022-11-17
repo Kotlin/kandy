@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SMOOTH
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Stack
+import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLineFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
@@ -14,6 +15,7 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
     val symbol = settings.getNPSValue<Symbol>(SYMBOL)
     val smooth = settings.getNPSValue<Boolean>(SMOOTH)
     val stack = (features[Stack.FEATURE_NAME] as? Stack)?.name
+    val animation = (features[AnimationLineFeature.FEATURE_NAME] as? AnimationLineFeature)
 
     return LineSeries(
         name = name,
@@ -26,7 +28,12 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
         smooth = smooth,
         encode = encode,
         markPoint = features.toEchartsMarkPoint(),
-        markLine = features.toEchartsMarkLine()
+        markLine = features.toEchartsMarkLine(),
+        animation = animation?.enable,
+        animationThreshold = animation?.threshold,
+        animationDuration = animation?.duration,
+        animationEasing = animation?.easing?.name,
+        animationDelay = animation?.delay,
     )
 }
 

@@ -91,7 +91,12 @@ internal class Parser(plot: Plot) {
 
         val dataset = Dataset(source = datasetSource)
 
-        return Option(title, legend, grid, xAxis, yAxis, polar, radiusAxis, angleAxis, radar, dataset, series)
+        val animation = (features[AnimationPlotFeature.FEATURE_NAME] as? AnimationPlotFeature)
+
+        return Option(
+            title, legend, grid, xAxis, yAxis, polar, radiusAxis, angleAxis, radar, dataset, series,
+            animation?.enable, animation?.threshold, animation?.duration, animation?.easing?.name, animation?.delay
+        )
     }
 
     private fun Geom.getType(): String = (this as EchartsGeom).name
