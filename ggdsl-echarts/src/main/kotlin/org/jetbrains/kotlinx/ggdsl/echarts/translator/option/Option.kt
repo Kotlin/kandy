@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.Series
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.TextStyle
 
 @Serializable
 public data class Option(
@@ -32,7 +33,7 @@ public data class Option(
 //    val darkMode: Boolean,
 //    val color: Color,
 //    val backgroundColor: Color,
-//    val textStyle: TextStyle,
+    val textStyle: TextStyle? = null,
     val animation: Boolean? = null,
     val animationThreshold: Int? = null,
     val animationDuration: Int? = null,

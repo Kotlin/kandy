@@ -167,6 +167,7 @@ public interface PlotContextBase: TableBindingContext {
     public fun toPlot(): Plot
 }
 
+@PlotDslMarker
 public interface PlotContext : LayerCollectorContextInterface, PlotContextBase {
     // todo hide
     override val data: TableData

@@ -3,6 +3,9 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.NAME
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
+import org.jetbrains.kotlinx.ggdsl.echarts.features.TextStyleFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.features.TitleFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationPlotFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.EchartsGeom
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.LINE
@@ -44,13 +47,26 @@ internal class Parser(plot: Plot) {
 
 
     internal fun parse(): Option {
-        val title: Title? = null
         val legend: Legend? = null
         val grid: Grid? = null
         val polar: Polar? = null
         val radiusAxis: RadiusAxis? = null
         val angleAxis: AngleAxis? = null
         val radar: Radar? = null
+
+        val title = (features[TitleFeature.FEATURE_NAME] as? TitleFeature)?.let {
+            Title(
+                text = it.text,
+                textStyle = it.textStyle?.toTextStyle(),
+                subtext = it.subtext,
+                subtextStyle = it.subtextStyle?.toTextStyle(),
+                textAlign = it.align?.align,
+                textVerticalAlign = it.verticalAlign?.align,
+                backgroundColor = it.backgroundColor?.let { col -> BaseColor(col.hex) },
+                borderColor = it.borderColor?.let { col -> BaseColor(col.hex) },
+                borderWidth = it.borderWidth
+            )
+        }
 
         globalMappings.forEach { (aes, mapping) ->
             if (mapping is ScaledMapping<*>) {
@@ -91,10 +107,12 @@ internal class Parser(plot: Plot) {
 
         val dataset = Dataset(source = datasetSource)
 
+        val textStyle = (features[TextStyleFeature.FEATURE_NAME] as? TextStyleFeature)?.toTextStyle()
+
         val animation = (features[AnimationPlotFeature.FEATURE_NAME] as? AnimationPlotFeature)
 
         return Option(
-            title, legend, grid, xAxis, yAxis, polar, radiusAxis, angleAxis, radar, dataset, series,
+            title, legend, grid, xAxis, yAxis, polar, radiusAxis, angleAxis, radar, dataset, series, textStyle,
             animation?.enable, animation?.threshold, animation?.duration, animation?.easing?.name, animation?.delay
         )
     }
@@ -152,13 +170,12 @@ internal class Parser(plot: Plot) {
         val encode =
             Encode((this.mappings[X] as ScaledMapping<*>).getId(), (this.mappings[Y] as ScaledMapping<*>).getId())
         val name = settings.getNPSValue<String>(NAME)
-//        val symbol = settings.getNPSValue<Symbol>(SYMBOL)
-//        val smooth = settings.getNPSValue<Boolean>(SMOOTH)
 
         return when (geom) {
             LINE -> {
                 this.toLineSeries(name, encode)
             }
+
             BAR -> {
                 BarSeries(name = name, encode = encode)
             }

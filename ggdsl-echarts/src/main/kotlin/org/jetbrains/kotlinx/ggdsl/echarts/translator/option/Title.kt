@@ -2,15 +2,11 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.TextStyle
 
 @Serializable
 public enum class TitleTarget(public val target: String) {
     SELF("self"), BLANK("blank")
-}
-
-@Serializable
-public enum class TextAlign(public val align: String) {
-    AUTO("auto"), LEFT("left"), RIGHT("right"), CENTER("center")
 }
 
 @Serializable
@@ -20,27 +16,28 @@ public data class Title(
     val text: String? = null,
     val link: String? = null,
     val target: TitleTarget? = null,
-//    val textStyle: TextStyle? = null,
+    val textStyle: TextStyle? = null,
     val subtext: String? = null,
     val sublink: String? = null,
     val subtarget: TitleTarget? = null,
-//    val subtextStyle: TextStyle? = null,
-    val textAlign: TextAlign? = null,
-    val triggerEvent: Boolean?,
-    val padding: @Contextual Any?,  // 4 максимум [5, 10, 5, 10] number, array
-    val itemGap: Int?,
-    val zlevel: Int?,
-    val z: Int?,
-    val left: @Contextual Any?, // string, number
-    val top: @Contextual Any?,
-    val right: @Contextual Any?,
-    val bottom: @Contextual Any?,
-    val backgroundColor: EchartsColor?,
-    val borderColor: EchartsColor?,
-    val borderWidth: Int?,
-    val borderRadius: @Contextual Any?, // number, array
-    val shadowBlur: Int?,
-    val shadowColor: EchartsColor?,
-    val shadowOffsetX: Int?,
-    val shadowOffsetY: Int?
+    val subtextStyle: TextStyle? = null,
+    val textAlign: String? = null,
+    val textVerticalAlign: String? = null,
+    val triggerEvent: Boolean? = null,
+    val padding: @Contextual Any? = null,  // 4 максимум [5, 10, 5, 10] number, array
+    val itemGap: Int? = null,
+    val zlevel: Int? = null,
+    val z: Int? = null,
+    val left: @Contextual Any? = null, // string, number
+    val top: @Contextual Any? = null,
+    val right: @Contextual Any? = null,
+    val bottom: @Contextual Any? = null,
+    val backgroundColor: EchartsColor? = null,
+    val borderColor: EchartsColor? = null,
+    val borderWidth: Int? = null,
+    val borderRadius: @Contextual Any? = null, // number, array
+    val shadowBlur: Int? = null,
+    val shadowColor: EchartsColor? = null,
+    val shadowOffsetX: Int? = null,
+    val shadowOffsetY: Int? = null
 )
