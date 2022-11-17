@@ -4,14 +4,15 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.aes
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.BindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
-import org.jetbrains.kotlinx.ggdsl.echarts.settings.Color
-import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.aes.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.NonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.ir.aes.ScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.NonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.ScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
+
 
 internal val X: AesName = AesName("x")
 
@@ -25,10 +26,10 @@ public data class YAes(override val context: BindingContext) : ScalablePositiona
     override val name: AesName = Y
 }
 
-public val PlotContext.x: XAes
+public val LayerPlotContext.x: XAes
     get() = XAes(this)
 
-public val PlotContext.y: YAes
+public val LayerPlotContext.y: YAes
     get() = YAes(this)
 
 internal val NAME: AesName = AesName("name")

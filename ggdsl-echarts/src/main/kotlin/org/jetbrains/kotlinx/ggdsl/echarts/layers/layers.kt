@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 
 
 //public inline fun LayerCollectorContext.points(block: PointsContext.() -> Unit) {

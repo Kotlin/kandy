@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.features.animation
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContext
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContextImmutable
 
 /**
  * Animation options settings.
@@ -22,6 +22,6 @@ public fun LayerPlotContext.animation(block: AnimationPlotFeature.() -> Unit) {
 }
 
 
-public fun LineContext.animation(block: AnimationLineFeature.() -> Unit) {
+public fun LineContextImmutable.animation(block: AnimationLineFeature.() -> Unit) {
     features[AnimationLineFeature.FEATURE_NAME] = AnimationLineFeature().apply(block)
 }

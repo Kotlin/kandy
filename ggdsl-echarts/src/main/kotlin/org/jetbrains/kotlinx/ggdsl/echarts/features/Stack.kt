@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features
 
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContext
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContextImmutable
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
@@ -45,7 +45,7 @@ public data class Stack internal constructor(val name: String) : LayerFeature {
     }
 }
 
-public var LineContext.stack: Stack // TODO(change api for stack!)
+public var LineContextImmutable.stack: Stack // TODO(change api for stack!)
     get() = Stack("TODO")
     set(value) {
         features[Stack.FEATURE_NAME] = value

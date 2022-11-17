@@ -1,8 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.features
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.dsl.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Color
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
@@ -12,7 +12,7 @@ public enum class TextAlign(public val align: String) {
     AUTO("auto"), LEFT("left"), RIGHT("right"), CENTER("center")
 }
 
-public inline fun PlotContext.title(crossinline block: TitleFeature.() -> Unit) {
+public inline fun LayerPlotContext.title(crossinline block: TitleFeature.() -> Unit) {
     features[TitleFeature.FEATURE_NAME] = TitleFeature().apply(block)
 }
 
