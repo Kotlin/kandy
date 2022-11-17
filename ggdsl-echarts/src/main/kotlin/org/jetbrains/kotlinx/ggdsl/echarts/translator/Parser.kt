@@ -17,15 +17,10 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.toLineSeries
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
-import org.jetbrains.kotlinx.ggdsl.ir.scale.CategoricalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.UnspecifiedScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -122,15 +117,24 @@ internal class Parser(plot: Plot) {
     private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.id
 
     private fun ScaledMapping<*>.toAxis(): Axis {
+        val scaleMap = this.columnScaled.scale
         val show: Boolean = true
         val grid: Int? = null
         val alignTicks: Boolean? = null
         val position: Position? = null
         val offset: Int? = null
-        val type: AxisType = when (this) { // TODO match Mapping
-            is CategoricalScale -> AxisType.CATEGORY
-            is ContinuousScale -> AxisType.VALUE
-            is ScaledUnspecifiedDefaultPositionalMapping, is UnspecifiedScale -> {
+        var min: String? = null
+        var max: String? = null
+        val type: AxisType = when (scaleMap) { // TODO match Mapping
+            is PositionalCategoricalScale<*> -> AxisType.CATEGORY
+            is PositionalContinuousScale<*> -> {
+                min = scaleMap.limits?.first?.toString()
+                max = scaleMap.limits?.second?.toString()
+                AxisType.VALUE
+            }
+            is PositionalCategoricalUnspecifiedScale -> AxisType.CATEGORY
+            is PositionalContinuousUnspecifiedScale -> AxisType.VALUE
+            is DefaultUnspecifiedScale, is UnspecifiedScale -> {
                 when (this.domainType) {
                     typeOf<String>(), typeOf<Char>() -> AxisType.CATEGORY
                     typeOf<Number>() -> AxisType.VALUE
@@ -147,8 +151,6 @@ internal class Parser(plot: Plot) {
         val nameRotate: Int? = null
         val inverse: Boolean? = null
         val boundaryGap: Any? = null
-        val min: String? = null
-        val max: String? = null
         val scale: Boolean? = null
         val splitNumber: Int? = null
         val minInterval: Int? = null
