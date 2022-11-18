@@ -38,14 +38,15 @@ internal class Integration : JupyterIntegration() {
 //        render<PlotChangeAnimation> { HTML(it.toHTML(), true) }
 
         import("org.jetbrains.kotlinx.ggdsl.echarts.*")
+        import("org.jetbrains.kotlinx.ggdsl.echarts.aes.*")
+        import("org.jetbrains.kotlinx.ggdsl.echarts.features.*")
+        import("org.jetbrains.kotlinx.ggdsl.echarts.features.animation.*")
+        import("org.jetbrains.kotlinx.ggdsl.echarts.features.marks.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.layers.*")
+        import("org.jetbrains.kotlinx.ggdsl.echarts.settings.*")
 //        import("org.jetbrains.kotlinx.ggdsl.echarts.animation.*")
-        import("org.jetbrains.kotlinx.ggdsl.echarts.util.color.*")
-        import("org.jetbrains.kotlinx.ggdsl.echarts.util.symbol.*")
-        import("org.jetbrains.kotlinx.ggdsl.echarts.util.linetype.*")
-        import("org.jetbrains.kotlinx.ggdsl.echarts.scale.guide.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.scale.*")
-        import("org.jetbrains.kotlinx.ggdsl.echarts.stack.*")
+        import("org.jetbrains.kotlinx.ggdsl.echarts.scale.guide.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.translator.*")
 
     }
