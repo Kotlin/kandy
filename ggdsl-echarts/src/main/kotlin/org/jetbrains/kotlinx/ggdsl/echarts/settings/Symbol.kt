@@ -30,9 +30,10 @@ public class Symbol private constructor(internal val name: String) {
         public fun fromPath(path: String): Symbol = Symbol("path://$path")
     }
 
-    public fun set(size: Int, rotate: Int? = null) {
+    public fun set(size: Int, rotate: Int? = null): Symbol {
         this.size = size
         this.rotate = rotate
+        return this
     }
 
 //    public fun set(size: List<Int>, rotate: Int? = null) {
