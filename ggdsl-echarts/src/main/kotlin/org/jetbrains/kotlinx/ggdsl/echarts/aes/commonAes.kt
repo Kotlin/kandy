@@ -44,13 +44,6 @@ public data class SymbolAes(override val context: BindingContext) : MappableNonP
     override val name: AesName = SYMBOL
 }
 
-internal val SMOOTH: AesName = AesName("smooth")
-
-public data class SmoothAes(override val context: BindingContext) : NonPositionalAes<Boolean> {
-    override val name: AesName = SMOOTH
-}
-
-
 //public val SIZE: AesName = AesName("size")
 //
 //public data class SizeAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
@@ -63,12 +56,6 @@ public data class ColorAes(override val context: BindingContext) : MappableNonPo
     override val name: AesName = COLOR
 }
 
-//public val ALPHA: AesName = AesName("alpha")
-//
-//public data class AlphaAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
-//    override val name: AesName = ALPHA
-//}
-
 //public val BORDER_SIZE: AesName = AesName("border_size")
 
 //public data class BorderWidthAes(override val context: BindingContext) : NonPositionalAes<Double> {
@@ -79,22 +66,4 @@ public data class ColorAes(override val context: BindingContext) : MappableNonPo
 //
 //public data class BorderColorAes(override val context: BindingContext) : NonPositionalAes<Color> {
 //    override val name: AesName = BORDER_COLOR
-//}
-//
-//public val WIDTH: AesName = AesName("width")
-//
-//public data class WidthAes(override val context: BindingContext) : NonPositionalAes<Double> {
-//    override val name: AesName = WIDTH
-//}
-//
-//public val SYMBOL: AesName = AesName("symbol")
-
-//public data class SymbolAes(override val context: BindingContext) : MappableNonPositionalAes<Symbol> {
-//    override val name: AesName = SYMBOL
-//}
-//
-//public val LINE_TYPE: AesName = AesName("line_type")
-//
-//public data class LineTypeAes(override val context: BindingContext) : NonPositionalAes<LineType> {
-//    override val name: AesName = LINE_TYPE
 //}

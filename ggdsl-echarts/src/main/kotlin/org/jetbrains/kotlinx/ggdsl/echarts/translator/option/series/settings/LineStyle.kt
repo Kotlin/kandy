@@ -2,7 +2,10 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.COLOR
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.LINE_TYPE
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.WIDTH
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Color
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.BaseColor
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsColor
@@ -11,9 +14,11 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 
 internal fun Map<AesName, Setting>.toLineStyle(): LineStyle? {
     val hex = this.getNPSValue<Color>(COLOR)?.hex
+    val width = this.getNPSValue<Int>(WIDTH)
+    val type = this.getNPSValue<LineType>(LINE_TYPE)?.type
 
-    return if (hex != null) {
-        LineStyle(color = BaseColor(hex))
+    return if (hex != null || width != null || type != null) {
+        LineStyle(color = hex?.let { BaseColor(hex) }, width = width, type = type)
     } else {
         null
     }
