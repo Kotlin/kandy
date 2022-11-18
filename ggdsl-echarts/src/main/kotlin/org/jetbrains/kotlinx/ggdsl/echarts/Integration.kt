@@ -58,6 +58,7 @@ internal fun Plot.toOption(): Option {
     return parser.parse()
 }
 
+@OptIn(ExperimentalSerializationApi::class)
 private val json = Json {
     explicitNulls = false
     encodeDefaults = true
