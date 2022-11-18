@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm")
     kotlin("jupyter.api")
+    kotlin("plugin.serialization")
 }
 
 repositories {

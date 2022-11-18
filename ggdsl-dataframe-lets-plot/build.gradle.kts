@@ -1,7 +1,7 @@
 plugins {
     kotlin("jvm")
     kotlin("jupyter.api")
-   // kotlin("plugin.serialization") version "1.7.20"
+    kotlin("plugin.serialization")
 }
 
 repositories {
@@ -11,6 +11,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
     implementation("org.jetbrains.kotlinx:dataframe:0.9.0-dev-1139")
     implementation("org.jetbrains.lets-plot:lets-plot-kotlin-jvm:4.1.0")
     implementation("org.jetbrains.lets-plot:lets-plot-image-export:2.5.0")
