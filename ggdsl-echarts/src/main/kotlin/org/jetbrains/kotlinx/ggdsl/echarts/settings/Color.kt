@@ -5,7 +5,7 @@ import kotlin.math.round
 public class Color private constructor() {
     internal lateinit var hex: String
 
-    public constructor(r: Byte, g: Byte, b: Byte, a: Double) : this() {
+    public constructor(r: Int, g: Int, b: Int, a: Double) : this() {
         hex = buildString {
             append("#")
             append(r.toString(16))
@@ -19,7 +19,7 @@ public class Color private constructor() {
         }
     }
 
-    public constructor(r: Byte, g: Byte, b: Byte) : this(r, g, b, 1.0)
+    public constructor(r: Int, g: Int, b: Int) : this(r, g, b, 1.0)
 
     public constructor(color: String) : this() {
         // TODO("validate")
