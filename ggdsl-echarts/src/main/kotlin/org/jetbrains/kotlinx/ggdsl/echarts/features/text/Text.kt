@@ -1,8 +1,9 @@
-package org.jetbrains.kotlinx.ggdsl.echarts.features
+package org.jetbrains.kotlinx.ggdsl.echarts.features.text
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Color
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.BaseColor
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.TextStyle
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
@@ -13,19 +14,38 @@ public fun LayerPlotContext.textStyle(block: TextStyleFeature.() -> Unit) {
     features[TextStyleFeature.FEATURE_NAME] = TextStyleFeature().apply(block)
 }
 
+public enum class FontStyle(public val style: String) {
+    NORMAL("normal"), ITALIC("italic"), OBLIQUE("oblique")
+}
+
+public class FontWeight private constructor(public val weight: String) {
+    public companion object {
+        public val NORMAL: FontWeight = FontWeight("normal")
+        public val BOLD: FontWeight = FontWeight("bold")
+        public val BOLDER: FontWeight = FontWeight("bolder")
+        public val LIGHTER: FontWeight = FontWeight("lighter")
+
+        public fun px(px: Int): FontWeight = FontWeight(px.toString())
+    }
+}
+
+public enum class FontFamily(public val family: String) {
+    SANS_SERIF("sans-serif"), SERIF("serif"), MONOSPACE("monospace")
+}
+
 @PlotDslMarker
 public class TextStyleFeature(
     public var color: Color? = null,
-    public var fontStyle: String? = null,
-    public var fontWeight: String? = null,
-    public var fontFamily: String? = null,
+    public var fontStyle: FontStyle? = null,
+    public var fontWeight: FontWeight? = null,
+    public var fontFamily: FontFamily? = null,
     public var fontSize: Int? = null,
     public var lineHeight: Int? = null,
     public var width: Int? = null,
     public var height: Int? = null,
     public var textBorderColor: Color? = null,
     public var textBorderWidth: Int? = null,
-    public var textBorderType: String? = null
+    public var textBorderType: LineType? = null
 ) : PlotFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
@@ -44,16 +64,16 @@ public class TextStyleFeature(
         else
             TextStyle(
                 color = color?.let { BaseColor(it.hex) },
-                fontStyle = fontStyle,
-                fontWeight = fontWeight,
-                fontFamily = fontFamily,
+                fontStyle = fontStyle?.style,
+                fontWeight = fontWeight?.weight,
+                fontFamily = fontFamily?.family,
                 fontSize = fontSize,
                 lineHeight = lineHeight,
                 width = width,
                 height = height,
                 textBorderColor = textBorderColor?.let { BaseColor(it.hex) },
                 textBorderWidth = textBorderWidth,
-                textBorderType = textBorderType
+                textBorderType = textBorderType?.type
             )
     }
 }
