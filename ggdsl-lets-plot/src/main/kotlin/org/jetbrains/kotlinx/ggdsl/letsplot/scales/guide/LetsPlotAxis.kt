@@ -5,6 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
 @PlotDslMarker
 public data class Axis<DomainType : Any>(
@@ -15,9 +16,4 @@ public data class Axis<DomainType : Any>(
     // fun overload?
     // breaks(.... format = ) / labeledBreaks(0.0 to "0", 0.4 to ".4" ...)
     // todo expand & trans
-)
-
-public inline operator fun <DomainType : Any> Axis<DomainType>.invoke(block: Axis<DomainType>.() -> Unit) {
-    apply(block)
-}
-
+) : SelfInvocationContext
