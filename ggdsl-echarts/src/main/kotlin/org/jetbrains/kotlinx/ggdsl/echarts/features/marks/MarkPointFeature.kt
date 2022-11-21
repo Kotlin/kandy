@@ -21,9 +21,9 @@ public class MarkPoint private constructor(
     internal val y: String? = null,
     internal val valueMP: String? = null,
 ) {
-    public constructor(point: Pair<String, MarkType>, value: String? = null) : this(
-        point.first,
-        type = point.second,
+    public constructor(name: String, type: MarkType, value: String? = null) : this(
+        name = name,
+        type = type,
         valueMP = value
     )
 
