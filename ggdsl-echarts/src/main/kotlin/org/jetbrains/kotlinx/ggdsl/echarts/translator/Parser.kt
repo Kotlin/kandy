@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.NAME
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
-import org.jetbrains.kotlinx.ggdsl.echarts.features.TextStyleFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyleFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.TitleFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationPlotFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.BAR
