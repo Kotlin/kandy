@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.Aes
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Stat
+import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.Anchor
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltipsContext
@@ -44,7 +44,7 @@ public inline fun LayerContextInterface.tooltips(
     dsFormats: Map<ColumnPointer<*>, String> = mapOf(),
     columnsFormats: Map<ColumnReference<*>, String> = mapOf(),
     aesFormats: Map<Aes, String> = mapOf(),
-    statFormats: Map<Stat<*>, String> = mapOf(),
+    statFormats: Map<Statistic<*>, String> = mapOf(),
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
@@ -56,7 +56,7 @@ public inline fun LayerContextInterface.tooltips(
         dsFormats.map { it.key.id to it.value }
             + columnsFormats.map { it.key.name() to it.value }
             + aesFormats.map { "^" + it.key.name.name to it.value }
-            + statFormats.map { it.key.name to it.value },
+            + statFormats.map { it.key.id to it.value },
         LayerTooltipsContext().apply(tooltipsContextAction)
     )
 }

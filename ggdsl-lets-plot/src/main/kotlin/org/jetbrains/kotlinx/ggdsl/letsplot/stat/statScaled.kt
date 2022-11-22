@@ -11,28 +11,28 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import kotlin.reflect.typeOf
 
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
-    ColumnScaledUnspecifiedDefault(this.tColumnPointer())
+    ColumnScaledUnspecifiedDefault(this.toColumnPointer())
 
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: PositionalUnspecifiedScale): ColumnScaledPositionalUnspecified<DomainType> =
-    ColumnScaledPositionalUnspecified(this.tColumnPointer(), scale)
+    ColumnScaledPositionalUnspecified(this.toColumnPointer(), scale)
 
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): ColumnScaledNonPositionalUnspecified<DomainType> =
-    ColumnScaledNonPositionalUnspecified(this.tColumnPointer(), scale)
+    ColumnScaledNonPositionalUnspecified(this.toColumnPointer(), scale)
 
 public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.tColumnPointer(), scale)
+): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.toColumnPointer(), scale)
 
 public inline fun <reified DomainType : Any, RangeType : Any> Statistic<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.tColumnPointer(), scale)
+): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.toColumnPointer(), scale)
 
 public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     stat: Statistic<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
         this.name,
-        stat.tColumnPointer().scaled(),
+        stat.toColumnPointer().scaled(),
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping
@@ -45,7 +45,7 @@ public inline operator fun <reified DomainType : Any, RangeType : Any>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
         this.name,
-        stat.tColumnPointer().scaled(),
+        stat.toColumnPointer().scaled(),
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping
