@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.features.text
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.EChartsLayout
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Color
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.BaseColor
@@ -10,8 +10,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
 
-public fun LayerPlotContext.textStyle(block: TextStyleFeature.() -> Unit) {
-    features[TextStyleFeature.FEATURE_NAME] = TextStyleFeature().apply(block)
+public fun EChartsLayout.textStyle(block: TextStyleFeature.() -> Unit) {
+    this.textStyle = TextStyleFeature().apply(block)
 }
 
 public enum class FontStyle(public val style: String) {

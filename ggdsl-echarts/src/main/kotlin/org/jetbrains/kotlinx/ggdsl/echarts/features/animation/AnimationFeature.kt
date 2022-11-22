@@ -17,8 +17,8 @@ public class AnimationPlotFeature(
 ) : PlotFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
-    public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("ANIMATION_PLOT_FEATURE")
+    internal companion object {
+        val FEATURE_NAME: FeatureName = FeatureName("ANIMATION_PLOT_FEATURE")
     }
 }
 
@@ -31,8 +31,8 @@ public class AnimationLineFeature(
 ) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
-    public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("ANIMATION_LINE_FEATURE")
+    internal companion object {
+        val FEATURE_NAME: FeatureName = FeatureName("ANIMATION_LINE_FEATURE")
     }
 }
 

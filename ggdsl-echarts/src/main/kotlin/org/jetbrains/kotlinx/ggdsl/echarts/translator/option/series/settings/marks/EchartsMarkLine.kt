@@ -25,7 +25,7 @@ internal fun Map<FeatureName, LayerFeature>.toEchartsMarkLine(): EchartsMarkLine
                 it.point1.y to null
 
             val (point2X, point2XAxis) = if (it.point2?.x == "max" || it.point2?.x == "min" || it.point2?.x == "average")
-                null to it.point2?.x
+                null to it.point2.x
             else
                 it.point2?.x to null
             val (point2Y, point2YAxis) = if (it.point2?.y == "max" || it.point2?.y == "min" || it.point2?.y == "average")

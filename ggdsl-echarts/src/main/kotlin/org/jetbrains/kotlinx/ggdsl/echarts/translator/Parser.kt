@@ -6,12 +6,12 @@ import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
 import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyleFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.TitleFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationPlotFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.EchartsGeom
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.LINE
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.*
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.BarSeries
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.Series
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Encode
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.toLineSeries
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
@@ -50,19 +50,7 @@ internal class Parser(plot: Plot) {
         val angleAxis: AngleAxis? = null
         val radar: Radar? = null
 
-        val title = (features[TitleFeature.FEATURE_NAME] as? TitleFeature)?.let {
-            Title(
-                text = it.text,
-                textStyle = it.textStyle?.toTextStyle(),
-                subtext = it.subtext,
-                subtextStyle = it.subtextStyle?.toTextStyle(),
-                textAlign = it.align?.align,
-                textVerticalAlign = it.verticalAlign?.align,
-                backgroundColor = it.backgroundColor?.let { col -> BaseColor(col.hex) },
-                borderColor = it.borderColor?.let { col -> BaseColor(col.hex) },
-                borderWidth = it.borderWidth
-            )
-        }
+        val layout = (features[EChartsLayout.FEATURE_NAME] as? EChartsLayout)
 
         globalMappings.forEach { (aes, mapping) ->
             if (mapping is ScaledMapping<*>) {
@@ -103,7 +91,21 @@ internal class Parser(plot: Plot) {
 
         val dataset = Dataset(source = datasetSource)
 
-        val textStyle = (features[TextStyleFeature.FEATURE_NAME] as? TextStyleFeature)?.toTextStyle()
+        val title = layout?.titleFeature?.let {
+            Title(
+                text = it.text,
+                textStyle = it.textStyle?.toTextStyle(),
+                subtext = it.subtext,
+                subtextStyle = it.subtextStyle?.toTextStyle(),
+                textAlign = it.align?.align,
+                textVerticalAlign = it.verticalAlign?.align,
+                backgroundColor = it.backgroundColor?.let { col -> BaseColor(col.hex) },
+                borderColor = it.borderColor?.let { col -> BaseColor(col.hex) },
+                borderWidth = it.borderWidth
+            )
+        }
+
+        val textStyle = layout?.textStyle?.toTextStyle()
 
         val animation = (features[AnimationPlotFeature.FEATURE_NAME] as? AnimationPlotFeature)
 
