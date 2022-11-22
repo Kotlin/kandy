@@ -1,10 +1,24 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLineFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.EchartsMarkLine
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.EchartsMarkPoint
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.MarkArea
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.*
+import org.jetbrains.kotlinx.ggdsl.ir.Layer
+
+internal fun Layer.toBoxplotSeries(name: String?, encode: Encode?): BoxplotSeries {
+    val animation = (features[AnimationLineFeature.FEATURE_NAME] as? AnimationLineFeature)
+
+    return BoxplotSeries(
+        name = name,
+        encode = encode,
+        markPoint = features.toEchartsMarkPoint(),
+        markLine = features.toEchartsMarkLine(),
+        animationDuration = animation?.duration,
+        animationEasing = animation?.easing?.name,
+        animationDelay = animation?.delay,
+    )
+}
 
 @Serializable
 public class BoxplotSeries(

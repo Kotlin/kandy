@@ -3,17 +3,11 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.NAME
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
-import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyleFeature
-import org.jetbrains.kotlinx.ggdsl.echarts.features.TitleFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationPlotFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.BAR
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.EchartsGeom
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.LINE
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Encode
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.toLineSeries
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -177,17 +171,13 @@ internal class Parser(plot: Plot) {
         val name = settings.getNPSValue<String>(NAME)
 
         return when (geom) {
-            LINE -> {
-                this.toLineSeries(name, encode)
-            }
-
-            BAR -> {
-                BarSeries(name = name, encode = encode)
-            }
-//            SCATTER -> {}
-//            BOXPLOT -> {}
-//            PIE -> {}
-//            CANDLESTICK -> {}
+            LINE -> this.toLineSeries(name, encode)
+            AREA -> this.toAreaSeries(name, encode)
+            BAR -> this.toBarSeries(name, encode)
+            PIE -> this.toPieSeries(name, encode)
+            POINT -> this.toPointSeries(name, encode)
+            CANDLESTICK -> this.toCandlestickSeries(name, encode)
+            BOXPLOT -> this.toBoxplotSeries(name, encode)
             else -> TODO("exception?")
         }
 

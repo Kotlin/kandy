@@ -37,6 +37,32 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
     )
 }
 
+internal fun Layer.toAreaSeries(name: String?, encode: Encode?): LineSeries {
+    val symbol = settings.getNPSValue<Symbol>(SYMBOL)
+    val smooth = settings.getNPSValue<Boolean>(SMOOTH)
+    val stack = (features[Stack.FEATURE_NAME] as? Stack)?.name
+    val animation = (features[AnimationLineFeature.FEATURE_NAME] as? AnimationLineFeature)
+
+    return LineSeries(
+        name = name,
+        symbol = symbol?.name,
+        symbolSize = symbol?.size,
+        symbolRotate = symbol?.rotate,
+        showSymbol = symbol != null,
+        stack = stack,
+        areaStyle = settings.toAreaStyle(),
+        smooth = smooth,
+        encode = encode,
+        markPoint = features.toEchartsMarkPoint(),
+        markLine = features.toEchartsMarkLine(),
+        animation = animation?.enable,
+        animationThreshold = animation?.threshold,
+        animationDuration = animation?.duration,
+        animationEasing = animation?.easing?.name,
+        animationDelay = animation?.delay,
+    )
+}
+
 @Serializable
 public class LineSeries(
     public override val type: String = "line",

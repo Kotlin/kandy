@@ -1,10 +1,32 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
+import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLineFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.EchartsMarkLine
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.EchartsMarkPoint
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.MarkArea
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.*
+import org.jetbrains.kotlinx.ggdsl.ir.Layer
+
+internal fun Layer.toPointSeries(name: String?, encode: Encode?): ScatterSeries {
+    val symbol = settings.getNPSValue<Symbol>(SYMBOL)
+    val animation = (features[AnimationLineFeature.FEATURE_NAME] as? AnimationLineFeature)
+
+    return ScatterSeries(
+        name = name,
+        symbol = symbol?.name,
+        symbolRotate = symbol?.rotate,
+        encode = encode,
+        markPoint = features.toEchartsMarkPoint(),
+        markLine = features.toEchartsMarkLine(),
+        animation = animation?.enable,
+        animationThreshold = animation?.threshold,
+        animationDuration = animation?.duration,
+        animationEasing = animation?.easing?.name,
+        animationDelay = animation?.delay,
+    )
+}
 
 @Serializable
 public class ScatterSeries(
