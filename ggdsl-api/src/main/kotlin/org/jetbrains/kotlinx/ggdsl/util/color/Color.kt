@@ -25,7 +25,7 @@ public sealed interface Color {
 
     public data class RGBA internal constructor(val rgb: RGB, val a: Double) : Color {
         public fun toRGB(): RGB = rgb.copy()
-        public fun toHexA(): HexA = HexA(
+        public fun toHex(): Hex = Hex(
             buildString {
                 append(rgb.toHex())
                 append(((a * 255).roundToInt() or (1 shr 8)).toString(16))
@@ -37,7 +37,7 @@ public sealed interface Color {
 
     public data class Hex internal constructor(val hex: String) : Color
 
-    public data class HexA internal constructor(val hexA: String) : Color
+    //public data class HexA internal constructor(val hexA: String) : Color
 
 
     public companion object {
@@ -46,23 +46,23 @@ public sealed interface Color {
         public fun named(name: String): Named = Named(name)
         public fun hex(hexString: String): Hex = Hex(hexString)
         public fun hex(hexInt: Int): Hex = Hex('#' + hexInt.toString(16))
-        public fun hexA(hexAString: String): HexA = HexA(hexAString)
+        //public fun hexA(hexAString: String): HexA = HexA(hexAString)
 
-        public val RED: Hex = hex("#ee6666")
-        public val BLUE: Hex = hex("#5470c6")
-        public val GREEN: Hex = hex("#3ba272")
-        public val YELLOW: Hex = hex("#fac858")
-        public val ORANGE: Hex = hex("#fc8452")
-        public val PURPLE: Hex = hex("#9a60b4")
+        public val RED: Hex = Hex("#ee6666")
+        public val BLUE: Hex = Hex("#5470c6")
+        public val GREEN: Hex = Hex("#3ba272")
+        public val YELLOW: Hex = Hex("#fac858")
+        public val ORANGE: Hex = Hex("#fc8452")
+        public val PURPLE: Hex = Hex("#9a60b4")
 
-        public val LIGHT_BLUE: Hex = hex("#73c0de")
-        public val LIGHT_GREEN: Hex = hex("#91cc75")
-        public val LIGHT_PURPLE: Hex = hex("#ea7ccc")
+        public val LIGHT_BLUE: Hex = Hex("#73c0de")
+        public val LIGHT_GREEN: Hex = Hex("#91cc75")
+        public val LIGHT_PURPLE: Hex = Hex("#ea7ccc")
 
-        public val BLACK: Hex = hex("#000")
-        public val WHITE: Hex = hex("#fff")
-        public val GREY: Hex = hex("#a39999")
+        public val BLACK: Hex = Hex("#000")
+        public val WHITE: Hex = Hex("#fff")
+        public val GREY: Hex = Hex("#a39999")
 
-        public val PEACH: Hex = hex("#ffe5b4")
+        public val PEACH: Hex = Hex("#ffe5b4")
     }
 }

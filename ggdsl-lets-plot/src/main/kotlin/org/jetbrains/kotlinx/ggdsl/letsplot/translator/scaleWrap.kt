@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.DiscreteLegend
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.None
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
-import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.scale.*
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
@@ -192,7 +192,7 @@ internal fun Scale.wrap(
                             } else {
                                 scaleColorManual(
                                     limits = domainCategories,
-                                    values = rangeValues!!.map { (it as StandardColor).description },
+                                    values = rangeValues!!.map { (it as Color).wrap() },
                                     name = name,
                                     breaks = breaks,
                                     labels = labels,
@@ -217,7 +217,7 @@ internal fun Scale.wrap(
                             } else {
                                 scaleFillManual(
                                     limits = domainCategories,
-                                    values = rangeValues!!.map { (it as StandardColor).description },
+                                    values = rangeValues!!.map { (it as Color).wrap() },
                                     name = name,
                                     breaks = breaks,
                                     labels = labels,
@@ -299,7 +299,7 @@ internal fun Scale.wrap(
 
                         COLOR -> {
                             val (lowColor, highColor) = rangeLimits.let {
-                                (it?.first as? StandardColor)?.description to (it?.second as? StandardColor)?.description
+                                (it?.first as? Color)?.wrap() to (it?.second as? Color)?.wrap()
                             }
                             val limits = domainLimits.wrap() // todo datetime here
 
@@ -322,7 +322,7 @@ internal fun Scale.wrap(
 
                         FILL -> {
                             val (lowColor, highColor) = rangeLimits.let {
-                                (it?.first as? StandardColor)?.description to (it?.second as? StandardColor)?.description
+                                (it?.first as? Color)?.wrap() to (it?.second as? Color)?.wrap()
                             }
                             val limits = domainLimits.wrap() // todo datetime here
 
@@ -456,9 +456,9 @@ internal fun Scale.wrap(
 
                     is ScaleContinuousColorGradient2<*> -> when (aesName) {
                         COLOR -> scaleColorGradient2(
-                            (low as StandardColor).description,
-                            (mid as StandardColor).description,
-                            (high as StandardColor).description,
+                            low.wrap(),
+                            mid.wrap(),
+                            high.wrap(),
                             midpoint,
                             name = name,
                             breaks = breaks?.map { it as Number }, // todo
@@ -470,9 +470,9 @@ internal fun Scale.wrap(
                         )
 
                         FILL -> scaleFillGradient2(
-                            (low as StandardColor).description,
-                            (mid as StandardColor).description,
-                            (high as StandardColor).description,
+                            low.wrap(),
+                            mid.wrap(),
+                            high.wrap(),
                             midpoint,
                             name = name,
                             breaks = breaks?.map { it as Number }, // todo
@@ -488,7 +488,7 @@ internal fun Scale.wrap(
 
                     is ScaleContinuousColorGradientN<*> -> when (aesName) {
                         COLOR -> scaleColorGradientN(
-                            rangeColors.map { (it as StandardColor).description },
+                            rangeColors.map { it.wrap() },
                             name = name,
                             breaks = breaks?.map { it as Number }, // todo
                             labels = labels,
@@ -499,7 +499,7 @@ internal fun Scale.wrap(
                         )
 
                         FILL -> scaleFillGradientN(
-                            rangeColors.map { (it as StandardColor).description },
+                            rangeColors.map { it.wrap() },
                             name = name,
                             breaks = breaks?.map { it as Number }, // todo
                             labels = labels,
