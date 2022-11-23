@@ -13,8 +13,8 @@ public sealed interface LayoutParameters {
     public companion object {
         public fun line(
             color: Color? = null,
-            width: Number? = null, blank:
-            Boolean = false
+            width: Number? = null,
+            blank: Boolean = false
         ): LineParameters = LineParameters(color, width, blank)
 
         public fun text(

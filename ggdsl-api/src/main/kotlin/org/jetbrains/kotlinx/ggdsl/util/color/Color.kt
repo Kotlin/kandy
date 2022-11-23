@@ -4,67 +4,64 @@
 
 package org.jetbrains.kotlinx.ggdsl.util.color
 
+import kotlin.math.roundToInt
+
 /**
  * Color base interface.
  */
-// TODO(return type: Color or StandardColor?)
-public interface Color {
-    public companion object {
-        /**
-         * Creates a new [StandardColor] from hex value of color.
-         *
-         * @param hexString the color in hexadecimal format
-         */
-        public fun fromHex(hexString: String): StandardColor = StandardColor(hexString)
+public sealed interface Color {
 
-        /**
-         * Creates a new [StandardColor] from color name.
-         *
-         * @param name the name of the color //todo enginges???
-         */
-        public fun fromName(name: String): StandardColor = StandardColor(name)
-
-        /**
-         * Creates a new [StandardColor] from rgb value of color.
-         *
-         * @param r the red component of the color
-         * @param g the green component of the color
-         * @param b the blue component of the color
-         */
-        public fun fromRGB(r: Int, g: Int, b: Int): StandardColor = StandardColor(
-            String.format("#%02X%02X%02X", r, g, b)
+    public data class RGB internal constructor(val r: Int, val g: Int, val b: Int) : Color {
+        public fun toRGBA(a: Double = 1.0): RGBA = RGBA(this.copy(), a)
+        public fun toHex(): Hex = Hex(
+            buildString {
+                append("#")
+                append(r.toString(16))
+                append(g.toString(16))
+                append(b.toString(16))
+            }
         )
+    }
 
-        // todo move to hex???
+    public data class RGBA internal constructor(val rgb: RGB, val a: Double) : Color {
+        public fun toHex(): Hex = Hex(
+            buildString {
+                append(rgb.toHex())
+                append(((a * 255).roundToInt() or (1 shr 8)).toString(16))
+            }
+        )
+    }
 
-        public val RED: StandardColor = StandardColor("red")
-        public val BLUE: StandardColor = StandardColor("blue")
-        public val GREEN: StandardColor = StandardColor("green")
+    public data class Named internal constructor(val name: String) : Color
 
-        public val BLACK: StandardColor = StandardColor("black")
-        public val WHITE: StandardColor = StandardColor("white")
-        public val GREY: StandardColor = StandardColor("grey")
+    public data class Hex internal constructor(val hex: String) : Color
 
-        public val YELLOW: StandardColor = StandardColor("yellow")
-        public val ORANGE: StandardColor = StandardColor("orange")
-        /*
-        //val PURPLE = StandardColor("purple")
+    public data class HexA internal constructor(val hexA: String) : Color
 
-        // todo not work in echarts
-        val DARK_RED = StandardColor("dark_red")
-        val DARK_BLUE = StandardColor("dark_blue")
-        val DARK_GREEN = StandardColor("dark_green")
 
-         */
+    public companion object {
+        public fun rgb(r: Int, g: Int, b: Int): RGB = RGB(r, g, b)
+        public fun rgba(r: Int, g: Int, b: Int, a: Double): RGBA = RGBA(RGB(r, g, b), a)
+        public fun named(name: String): Named = Named(name)
+        public fun hex(hexString: String): Hex = Hex(hexString)
+        public fun hex(hexInt: Int): Hex = Hex('#' + hexInt.toString(16))
+        public fun hexA(hexAString: String): HexA = HexA(hexAString)
 
-        public val PEACH: StandardColor = StandardColor("#ffe5b4")
+        public val RED: Hex = hex("#ee6666")
+        public val BLUE: Hex = hex("#5470c6")
+        public val GREEN: Hex = hex("#3ba272")
+        public val YELLOW: Hex = hex("#fac858")
+        public val ORANGE: Hex = hex("#fc8452")
+        public val PURPLE: Hex = hex("#9a60b4")
+
+        public val LIGHT_BLUE: Hex = hex("#73c0de")
+        public val LIGHT_GREEN: Hex = hex("#91cc75")
+        public val LIGHT_PURPLE: Hex = hex("#ea7ccc")
+
+        public val BLACK: Hex = hex("#000")
+        public val WHITE: Hex = hex("#fff")
+        public val GREY: Hex = hex("#a39999")
+
+        public val PEACH: Hex = hex("#ffe5b4")
     }
 }
-
-//TODO
-/**
- * Color described by one string.
- *
- * @param description the string describing this color.
- */
-public data class StandardColor internal constructor(val description: String) : Color
