@@ -75,7 +75,7 @@ internal class ColumnScaledTest {
         val ds1 = ColumnPointer<Char>("dsX")
         val scale1 = NonPositionalContinuousScale(
             'a' to 'e',
-            Color.fromHex("#000000") to Color.fromName("red")
+            Color.hex("#000000") to Color.named("red")
         )
         val continuousScaledSource = ds1.scaled(scale1)
         assertEquals(
