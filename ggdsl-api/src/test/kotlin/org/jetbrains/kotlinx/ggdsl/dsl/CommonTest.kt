@@ -99,7 +99,7 @@ internal class CommonTest {
                     type.scaled(
                         categorical(
                             domainCategories = listOf("A", "B"),
-                            rangeValues = listOf(Color.RED, Color.fromName("blue"))
+                            rangeValues = listOf(Color.RED, Color.named("blue"))
                         )
                     )
                 )
@@ -126,7 +126,7 @@ internal class CommonTest {
                 type,
                 NonPositionalCategoricalScale(
                     domainCategories = listOf("A", "B"),
-                    rangeValues = listOf(Color.RED, Color.fromName("blue"))
+                    rangeValues = listOf(Color.RED, Color.named("blue"))
                 )
             ),
             typeOf<String>(),

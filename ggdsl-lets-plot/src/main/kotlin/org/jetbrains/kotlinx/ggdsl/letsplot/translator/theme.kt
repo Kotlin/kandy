@@ -5,28 +5,27 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.letsplot.theme.*
-import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
 import org.jetbrains.letsPlot.intern.OptionsMap
 import org.jetbrains.letsPlot.themes.*
 
 public fun LineParameters.wrap(): Map<String, Any> {
     return elementLine(
-        (color as? StandardColor)?.description,
+        color ?.wrap(),
         width, blank
     )
 }
 
 public fun BackgroundParameters.wrap(): Map<String, Any> {
     return elementRect(
-        (fillColor as? StandardColor)?.description,
-        (borderLineColor as? StandardColor)?.description,
+        fillColor?.wrap(),
+        borderLineColor?.wrap(),
         borderLineWidth, blank
     )
 }
 
 public fun TextParameters.wrap(): Map<String, Any> {
     return elementText(
-        (color as? StandardColor)?.description,
+        color?.wrap(),
         font?.toString(),
         blank
     )
