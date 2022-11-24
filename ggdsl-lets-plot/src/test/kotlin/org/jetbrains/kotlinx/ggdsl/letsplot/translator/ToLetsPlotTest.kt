@@ -59,7 +59,7 @@ class ToLetsPlotTest {
                         "shape" to 21.0,
                         "position" to "identity",
                         "geom" to "point",
-                        "fill" to "red"
+                        "fill" to "#ee6666"
                     )
                 ),
             ),
@@ -78,7 +78,7 @@ class ToLetsPlotTest {
                 color(
                     clM.scaled(
                         categorical(
-                            rangeValues = listOf(Color.RED, Color.fromHex("#bb11aa"))
+                            rangeValues = listOf(Color.RED, Color.hex("#bb11aa"))
                         )
                     )
                 )
@@ -115,7 +115,7 @@ class ToLetsPlotTest {
                     ),
                     mapOf(
                         "aesthetic" to "fill",
-                        "values" to listOf("red", "#bb11aa")
+                        "values" to listOf("#ee6666", "#bb11aa")
                     ),
                     mapOf(
                         "aesthetic" to "x",

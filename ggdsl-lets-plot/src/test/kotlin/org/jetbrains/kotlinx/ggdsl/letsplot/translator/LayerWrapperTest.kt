@@ -53,7 +53,7 @@ internal class LayerWrapperTest {
                 "stat" to "identity",
                 "data" to mapOf<String, Any>(),
                 //"shape" to 21.0,
-                "color" to "red",
+                "color" to "#ee6666",
                 "position" to "identity",
                 "geom" to "point"
             ),
@@ -128,7 +128,7 @@ internal class LayerWrapperTest {
                 "stat" to "identity",
                 "data" to mapOf<String, Any>(),
                 "width" to 5.0,
-                "color" to "red",
+                "color" to "#ee6666",
                 "position" to mapOf(
                     "name" to "dodge",
                     "width" to 0.9,
