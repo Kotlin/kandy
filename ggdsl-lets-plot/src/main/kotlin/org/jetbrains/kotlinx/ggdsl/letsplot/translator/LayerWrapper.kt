@@ -5,6 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.letsplot.GROUP
 import org.jetbrains.kotlinx.ggdsl.letsplot.MERGED_GROUPS
@@ -15,11 +16,11 @@ import org.jetbrains.letsPlot.intern.Options
 import org.jetbrains.letsPlot.intern.layer.LayerBase
 import org.jetbrains.letsPlot.pos.positionIdentity
 
-internal class LayerWrapper internal constructor(private val layer: Layer) :
+internal class LayerWrapper internal constructor(private val layer: Layer, groupedDataPlot: Boolean) :
     LayerBase(
         data = layer.dataset?.wrap(),
         mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap() }.toMap().toMutableMap().apply {
-            if (layer.dataset is LazyGroupedDataInterface) {
+            if (groupedDataPlot || layer.dataset is GroupedDataInterface) {
                 this[GROUP.name] = MERGED_GROUPS
             }
         } ),
