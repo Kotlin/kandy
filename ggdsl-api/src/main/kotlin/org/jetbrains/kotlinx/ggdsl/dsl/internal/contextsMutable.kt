@@ -32,7 +32,6 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
     private var counter: Int = 0
     public override fun generateID(): String = "*gen${counter++}"
 
-
     public override fun <T : Any> Iterable<T>.toColumnPointer(): ColumnPointer<T> = toColumnPointer(generateID())
 
     public override fun <T : Any> Iterable<T>.toColumnPointer(id: String): ColumnPointer<T> {
@@ -40,30 +39,48 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
         return columnPointer(id)
     }
 
-
     public fun <DomainType : Any> Iterable<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
         ColumnScaledUnspecifiedDefault(toColumnPointer())
+
+    public fun <DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
+        ColumnScaledUnspecifiedDefault(first.toColumnPointer(second))
 
     public fun <DomainType : Any> Iterable<DomainType>.scaled(
         scale: PositionalUnspecifiedScale
     ): ColumnScaledPositionalUnspecified<DomainType> = ColumnScaledPositionalUnspecified(toColumnPointer(), scale)
 
 
+    public fun <DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
+        scale: PositionalUnspecifiedScale
+    ): ColumnScaledPositionalUnspecified<DomainType> = ColumnScaledPositionalUnspecified(first.toColumnPointer(second), scale)
+
     public fun <DomainType : Any> Iterable<DomainType>.scaled(
         scale: NonPositionalUnspecifiedScale
     ): ColumnScaledNonPositionalUnspecified<DomainType> =
         ColumnScaledNonPositionalUnspecified(toColumnPointer(), scale)
 
+    public fun <DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
+        scale: NonPositionalUnspecifiedScale
+    ): ColumnScaledNonPositionalUnspecified<DomainType> =
+        ColumnScaledNonPositionalUnspecified(first.toColumnPointer(second), scale)
 
     public fun <DomainType : Any> Iterable<DomainType>.scaled(
         scale: PositionalScale<DomainType>
     ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(toColumnPointer(), scale)
 
+    public fun <DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
+        scale: PositionalScale<DomainType>
+    ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(first.toColumnPointer(second), scale)
 
     public fun <DomainType : Any, RangeType : Any> Iterable<DomainType>.scaled(
         scale: NonPositionalScale<DomainType, RangeType>
     ): ColumnScaledNonPositional<DomainType, RangeType> =
         ColumnScaledNonPositional(toColumnPointer(), scale)
+
+    public fun <DomainType : Any, RangeType : Any> Pair<Iterable<DomainType>, String>.scaled(
+        scale: NonPositionalScale<DomainType, RangeType>
+    ): ColumnScaledNonPositional<DomainType, RangeType> =
+        ColumnScaledNonPositional(first.toColumnPointer(second), scale)
 
     public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
         data: Iterable<DomainType>
