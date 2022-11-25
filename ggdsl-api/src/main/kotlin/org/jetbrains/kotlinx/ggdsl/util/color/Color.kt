@@ -59,8 +59,8 @@ public sealed interface Color {
         public val LIGHT_GREEN: Hex = Hex("#91cc75")
         public val LIGHT_PURPLE: Hex = Hex("#ea7ccc")
 
-        public val BLACK: Hex = Hex("#000")
-        public val WHITE: Hex = Hex("#fff")
+        public val BLACK: Hex = Hex("#000000")
+        public val WHITE: Hex = Hex("#ffffff")
         public val GREY: Hex = Hex("#a39999")
 
         public val PEACH: Hex = Hex("#ffe5b4")
