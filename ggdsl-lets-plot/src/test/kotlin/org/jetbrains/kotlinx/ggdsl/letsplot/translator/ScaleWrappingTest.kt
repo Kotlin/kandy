@@ -40,7 +40,7 @@ internal class ScaleWrappingTest {
         assertEquals(
             mapOf(
                 "aesthetic" to "fill",
-                "values" to listOf("#000", "#ee6666", "#3ba272")
+                "values" to listOf("#000000", "#ee6666", "#3ba272")
             ),
             wrappedScale.toSpec()
         )
