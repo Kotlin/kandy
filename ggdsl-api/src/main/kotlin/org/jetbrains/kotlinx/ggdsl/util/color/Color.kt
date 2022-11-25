@@ -14,12 +14,7 @@ public sealed interface Color {
     public data class RGB internal constructor(val r: Int, val g: Int, val b: Int) : Color {
         public fun toRGBA(a: Double = 1.0): RGBA = RGBA(this.copy(), a)
         public fun toHex(): Hex = Hex(
-            buildString {
-                append("#")
-                append(r.toString(16))
-                append(g.toString(16))
-                append(b.toString(16))
-            }
+            String.format("#%02X%02X%02X", r, g, b)
         )
     }
 
