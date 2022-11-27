@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Stat
+import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 
 public data class LayerTooltips internal constructor(
     val variables: List<String>,
@@ -73,8 +73,8 @@ public fun value(aes: Aes): String {
  * @param stat statistics whose value will be inserted into the tooltip
  * @return format string
  */
-public fun value(stat: Stat<*>): String {
-    return "@${stat.name}"
+public fun value(stat: Statistic<*>): String {
+    return "@${stat.id}"
 }
 
 
@@ -140,8 +140,8 @@ public class LayerTooltipsContext {
      *
      * @param stat statistics
      */
-    public fun line(stat: Stat<*>) {
-        lineBuffer.add("${stat.name.drop(2).dropLast(2)}|@${stat.name}")
+    public fun line(stat: Statistic<*>) {
+        lineBuffer.add("${stat.id.drop(2).dropLast(2)}|@${stat.id}")
     }
 
 }
@@ -189,7 +189,7 @@ public inline fun LayerContextInterface.tooltips(
     hide: Boolean = false,
     valueFormats: Map<ColumnPointer<*>, String> = mapOf(),
     aesFormats: Map<Aes, String> = mapOf(),
-    statFormats: Map<Stat<*>, String> = mapOf(),
+    statFormats: Map<Statistic<*>, String> = mapOf(),
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
@@ -200,7 +200,7 @@ public inline fun LayerContextInterface.tooltips(
         hide,
         valueFormats.map { it.key.id to it.value }
             + aesFormats.map { "^" + it.key.name.name to it.value }
-            + statFormats.map { it.key.name to it.value },
+            + statFormats.map { it.key.id to it.value },
         LayerTooltipsContext().apply(tooltipsContextAction)
     )
 }

@@ -7,7 +7,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BarContextImmutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BarContextInterface
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BarContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinStatContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinXPos
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.Bins
@@ -20,10 +19,12 @@ public interface HistogramContextInterface: BarContextInterface, BinStatContext,
 
 public class HistogramContextImmutable(parent: LayerCollectorContextImmutable) :
     BarContextImmutable(parent), HistogramContextInterface
-
+/*
 //todo
 public class HistogramContextMutable(parent: LayerCollectorContextMutable) :
     BarContextMutable(parent), HistogramContextInterface
+
+ */
 
 //todo type
 public inline fun LayerCollectorContextImmutable.histogram(
@@ -39,19 +40,18 @@ public inline fun LayerCollectorContextImmutable.histogram(
         }.apply(block), BAR)
     }
 }
-/*
+
 public inline fun <T:Any> LayerCollectorContextMutable.histogram(
     sample: Iterable<T>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
-    block: HistogramContextMutable.() -> Unit = {}
+    block: HistogramContextImmutable.() -> Unit = {}
 ) {
     statBin(sample, bins, binXPos) {
-        addLayer(HistogramContextMutable(this).apply {
+        addLayer(HistogramContextImmutable(this).apply {
             x(Stat.BINS)
             y(Stat.COUNT)
         }.apply(block), BAR)
     }
 }
 
- */

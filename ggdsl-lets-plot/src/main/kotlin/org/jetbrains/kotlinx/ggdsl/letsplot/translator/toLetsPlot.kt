@@ -5,12 +5,14 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
 import org.jetbrains.letsPlot.intern.FeatureList
 import org.jetbrains.letsPlot.letsPlot
 
 public fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
     val featureBuffer = buildList {
-        layers.forEach { it.wrap(this) }
+        layers.forEach { it.wrap(this, dataset is GroupedDataInterface) }
         freeScales.forEach { it.value.wrap(this) }
         features.forEach { it.value.wrap(this) }
         //  (layout as? LetsPlotLayout)?.wrap(this) // todo
