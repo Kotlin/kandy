@@ -2,13 +2,13 @@ package org.jetbrains.kotlinx.ggdsl.echarts.features.text
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.EChartsLayout
-import org.jetbrains.kotlinx.ggdsl.echarts.settings.Color
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.toHexString
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.BaseColor
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.TextStyle
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
-
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 public fun EChartsLayout.textStyle(block: TextStyleFeature.() -> Unit) {
     this.textStyle = TextStyleFeature().apply(block)
@@ -63,7 +63,7 @@ public class TextStyleFeature(
             null
         else
             TextStyle(
-                color = color?.let { BaseColor(it.hex) },
+                color = color?.let { BaseColor(it.toHexString()) },
                 fontStyle = fontStyle?.style,
                 fontWeight = fontWeight?.weight,
                 fontFamily = fontFamily?.family,
@@ -71,7 +71,7 @@ public class TextStyleFeature(
                 lineHeight = lineHeight,
                 width = width,
                 height = height,
-                textBorderColor = textBorderColor?.let { BaseColor(it.hex) },
+                textBorderColor = textBorderColor?.let { BaseColor(it.toHexString()) },
                 textBorderWidth = textBorderWidth,
                 textBorderType = textBorderType?.type
             )

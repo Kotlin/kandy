@@ -4,9 +4,9 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyleFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.EChartsLayout
-import org.jetbrains.kotlinx.ggdsl.echarts.settings.Color
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 public inline fun EChartsLayout.title(crossinline block: TitleFeature.() -> Unit) {
     this.titleFeature = TitleFeature().apply(block)
