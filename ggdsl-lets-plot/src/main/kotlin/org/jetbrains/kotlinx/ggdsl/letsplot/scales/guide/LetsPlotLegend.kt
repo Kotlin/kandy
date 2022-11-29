@@ -27,12 +27,23 @@ public data class ColorBar internal constructor(
 @PlotDslMarker
 public data class Legend<DomainType : Any, out RangeType : Any>(
     var name: String? = null,
-    var breaks: List<DomainType>? = null,
-    var labels: List<String>? = null, // todo pair list and format
-    var format: String? = null,
     // todo expand & trans
     var type: LegendType? = null,
-) : SelfInvocationContext
+) : SelfInvocationContext {
+    internal var breaks: List<DomainType>? = null
+    internal var labels: List<String>? = null
+    internal var format: String? = null
+
+    public fun breaks(breaks: List<DomainType>?, format: String?) {
+        this.breaks = breaks
+        this.format = format
+    }
+
+    public fun breaksLabeled(breaksToLabels: List<Pair<DomainType, String>>) {
+        breaks = breaksToLabels.map { it.first }
+        labels = breaksToLabels.map { it.second }
+    }
+}
 
 public fun Legend<*, *>.none(): None = None()
 
