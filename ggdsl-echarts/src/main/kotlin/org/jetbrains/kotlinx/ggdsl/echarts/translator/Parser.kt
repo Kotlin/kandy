@@ -5,9 +5,6 @@ import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationPlotFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.BAR
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.EchartsGeom
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.LINE
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.toHexString
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.*
@@ -17,7 +14,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -57,14 +53,12 @@ internal class Parser(plot: Plot) {
                 when (aes) {
                     X -> {
                         xAxis = mapping.toAxis()
-                        source[mapping.columnScaled.source.id] = data[mapping.columnScaled.source.id]!!
-                        countDimension++
+                        source[mapping.getId()] = data[mapping.getId()]!!
                     }
 
                     Y -> {
                         yAxis = mapping.toAxis()
-                        source[mapping.columnScaled.source.id] = data[mapping.columnScaled.source.id]!!
-                        countDimension++
+                        source[mapping.getId()] = data[mapping.getId()]!!
                     }
                 }
             }
@@ -78,19 +72,18 @@ internal class Parser(plot: Plot) {
                         (yAxis == null && aes == Y) -> yAxis = mapping.toAxis()
                         aes != X && aes != Y -> {
                             val sourceId = mapping.getId()
-                            visualMaps.add(mapping.columnScaled.scale.toVisualMap(aes,
-                                sourceId, index,
-                                (layer.dataset as? NamedDataInterface)?.map?.get(sourceId) ?: data[sourceId],
-                                visualMaps.size,
-                                mapping.domainType))
+                            visualMaps.add(
+                                mapping.columnScaled.scale.toVisualMap(
+                                    aes,
+                                    sourceId, index,
+                                    (layer.dataset as? NamedDataInterface)?.map?.get(sourceId) ?: data[sourceId],
+                                    visualMaps.size,
+                                    mapping.domainType
+                                )
+                            )
                         }
                     }
-                    source.getOrPut(mapping.getId()) {
-                        countDimension++
-                        data[mapping.getId()]!!// TODO(missing columns?)
-                    }
-
-//                    source.putIfAbsent(mapping.getId(), data[mapping.getId()]!!)
+                    source.getOrPut(mapping.getId()) { data[mapping.getId()]!! } // TODO(missing columns?)
                 }
             }
             layer.toSeries()
@@ -124,8 +117,24 @@ internal class Parser(plot: Plot) {
         val animation = (features[AnimationPlotFeature.FEATURE_NAME] as? AnimationPlotFeature)
 
         return Option(
-            title, legend, grid, xAxis, yAxis, polar, radiusAxis, angleAxis, radar, visualMaps, dataset, series, textStyle,
-            animation?.enable, animation?.threshold, animation?.duration, animation?.easing?.name, animation?.delay
+            title,
+            legend,
+            grid,
+            xAxis,
+            yAxis,
+            polar,
+            radiusAxis,
+            angleAxis,
+            radar,
+            visualMaps,
+            dataset,
+            series,
+            textStyle,
+            animation?.enable,
+            animation?.threshold,
+            animation?.duration,
+            animation?.easing?.name,
+            animation?.delay
         )
     }
 
@@ -147,6 +156,7 @@ internal class Parser(plot: Plot) {
                 max = scaleMap.limits?.second?.toString()
                 AxisType.VALUE
             }
+
             is PositionalCategoricalUnspecifiedScale -> AxisType.CATEGORY
             is PositionalContinuousUnspecifiedScale -> AxisType.VALUE
             is DefaultUnspecifiedScale, is UnspecifiedScale -> {
