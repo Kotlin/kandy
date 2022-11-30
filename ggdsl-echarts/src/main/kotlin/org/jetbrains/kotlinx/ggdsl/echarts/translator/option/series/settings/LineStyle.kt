@@ -6,19 +6,19 @@ import org.jetbrains.kotlinx.ggdsl.echarts.aes.LINE_TYPE
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.WIDTH
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.BaseColor
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsColor
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.toEchartsColor
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
-import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 internal fun Map<AesName, Setting>.toLineStyle(): LineStyle? {
-    val hex = this.getNPSValue<StandardColor>(COLOR)?.description
+    val color = this.getNPSValue<Color>(COLOR)?.toEchartsColor()
     val width = this.getNPSValue<Int>(WIDTH)
     val type = this.getNPSValue<LineType>(LINE_TYPE)?.type
 
-    return if (hex != null || width != null || type != null) {
-        LineStyle(color = hex?.let { BaseColor(hex) }, width = width, type = type)
+    return if (color != null || width != null || type != null) {
+        LineStyle(color = color, width = width, type = type)
     } else {
         null
     }

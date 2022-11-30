@@ -9,12 +9,12 @@ import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.TextStyle
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.RangeSerializer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
 internal fun createInRange(aes: AesName, valuesString: List<Any>?): Range {
     return when (aes) {
-        COLOR -> Range(color = valuesString?.map { BaseColor((it as StandardColor).description) })
+        COLOR -> Range(color = valuesString?.map { (it as Color).toEchartsColor() })
         SIZE -> Range(symbolSize = valuesString)
         ALPHA -> Range(colorAlpha = valuesString)
         SYMBOL -> Range(symbol = valuesString)

@@ -5,7 +5,6 @@ import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationPlotFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
-import org.jetbrains.kotlinx.ggdsl.echarts.settings.toHexString
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Encode
@@ -43,7 +42,6 @@ internal class Parser(plot: Plot) {
         val radiusAxis: RadiusAxis? = null
         val angleAxis: AngleAxis? = null
         val radar: Radar? = null
-        var countDimension = 0
         val visualMaps = mutableListOf<VisualMap>()
 
         val layout = (features[EChartsLayout.FEATURE_NAME] as? EChartsLayout)
@@ -106,8 +104,8 @@ internal class Parser(plot: Plot) {
                 subtextStyle = it.subtextStyle?.toTextStyle(),
                 textAlign = it.align?.align,
                 textVerticalAlign = it.verticalAlign?.align,
-                backgroundColor = it.backgroundColor?.let { col -> BaseColor(col.toHexString()) },
-                borderColor = it.borderColor?.let { col -> BaseColor(col.toHexString()) },
+                backgroundColor = it.backgroundColor?.toEchartsColor(),
+                borderColor = it.borderColor?.toEchartsColor(),
                 borderWidth = it.borderWidth
             )
         }
