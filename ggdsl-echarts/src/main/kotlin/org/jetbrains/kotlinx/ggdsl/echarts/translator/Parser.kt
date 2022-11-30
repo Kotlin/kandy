@@ -43,6 +43,8 @@ internal class Parser(plot: Plot) {
         val radiusAxis: RadiusAxis? = null
         val angleAxis: AngleAxis? = null
         val radar: Radar? = null
+        var countDimension = 0
+        val visualMaps = mutableListOf<VisualMap>()
 
         val layout = (features[EChartsLayout.FEATURE_NAME] as? EChartsLayout)
 
@@ -52,25 +54,39 @@ internal class Parser(plot: Plot) {
                     X -> {
                         xAxis = mapping.toAxis()
                         source[mapping.columnScaled.source.id] = data[mapping.columnScaled.source.id]!!
+                        countDimension++
                     }
 
                     Y -> {
                         yAxis = mapping.toAxis()
                         source[mapping.columnScaled.source.id] = data[mapping.columnScaled.source.id]!!
+                        countDimension++
                     }
                 }
             }
         }
 
-        val series = layers.map { layer ->
+        val series = layers.mapIndexed { index, layer -> // TODO(layout???)
             layer.mappings.forEach { (aes, mapping) ->
                 if (mapping is ScaledMapping<*>) {
-                    if (xAxis == null && aes == X)
-                        xAxis = mapping.toAxis()
-                    if (yAxis == null && aes == Y)
-                        yAxis = mapping.toAxis()
+                    when {
+                        (xAxis == null && aes == X) -> xAxis = mapping.toAxis()
+                        (yAxis == null && aes == Y) -> yAxis = mapping.toAxis()
+                        aes != X && aes != Y -> {
+                            val sourceId = mapping.getId()
+                            visualMaps.add(mapping.columnScaled.scale.toVisualMap(aes,
+                                sourceId, index,
+                                (layer.dataset as? NamedDataInterface)?.map?.get(sourceId) ?: data[sourceId],
+                                visualMaps.size,
+                                mapping.domainType))
+                        }
+                    }
+                    source.getOrPut(mapping.getId()) {
+                        countDimension++
+                        data[mapping.getId()]!!// TODO(missing columns?)
+                    }
 
-                    source.putIfAbsent(mapping.getId(), data[mapping.getId()]!!) // TODO(missing columns?)
+//                    source.putIfAbsent(mapping.getId(), data[mapping.getId()]!!)
                 }
             }
             layer.toSeries()
@@ -104,12 +120,10 @@ internal class Parser(plot: Plot) {
         val animation = (features[AnimationPlotFeature.FEATURE_NAME] as? AnimationPlotFeature)
 
         return Option(
-            title, legend, grid, xAxis, yAxis, polar, radiusAxis, angleAxis, radar, dataset, series, textStyle,
+            title, legend, grid, xAxis, yAxis, polar, radiusAxis, angleAxis, radar, visualMaps, dataset, series, textStyle,
             animation?.enable, animation?.threshold, animation?.duration, animation?.easing?.name, animation?.delay
         )
     }
-
-    private fun Geom.getType(): String = (this as EchartsGeom).name
 
     private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.id
 
@@ -129,6 +143,7 @@ internal class Parser(plot: Plot) {
                 max = scaleMap.limits?.second?.toString()
                 AxisType.VALUE
             }
+
             is PositionalCategoricalUnspecifiedScale -> AxisType.CATEGORY
             is PositionalContinuousUnspecifiedScale -> AxisType.VALUE
             is DefaultUnspecifiedScale, is UnspecifiedScale -> {

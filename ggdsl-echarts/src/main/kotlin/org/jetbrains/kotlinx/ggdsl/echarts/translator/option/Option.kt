@@ -16,7 +16,7 @@ public data class Option(
     val angleAxis: AngleAxis? = null,
     val radar: Radar? = null,
 //    val dataZoom: List<DataZoom>,
-//    val visualMap: List<VisualMap>,
+    val visualMap: List<VisualMap>,
 //    val tooltip: Tooltip,
 //    val axisPointer: AxisPointer,
 //    val toolbox: Toolbox,

@@ -4,16 +4,16 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.COLOR
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.LINE_TYPE
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.WIDTH
-import org.jetbrains.kotlinx.ggdsl.echarts.settings.Color
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.BaseColor
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsColor
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
+import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
 
 internal fun Map<AesName, Setting>.toLineStyle(): LineStyle? {
-    val hex = this.getNPSValue<Color>(COLOR)?.hex
+    val hex = this.getNPSValue<StandardColor>(COLOR)?.description
     val width = this.getNPSValue<Int>(WIDTH)
     val type = this.getNPSValue<LineType>(LINE_TYPE)?.type
 

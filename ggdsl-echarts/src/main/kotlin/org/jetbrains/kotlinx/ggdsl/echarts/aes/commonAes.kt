@@ -56,6 +56,10 @@ public data class ColorAes(override val context: BindingContext) : MappableNonPo
     override val name: AesName = COLOR
 }
 
+internal val SIZE: AesName = AesName("size")
+
+internal val ALPHA: AesName = AesName("alpha")
+
 //public val BORDER_SIZE: AesName = AesName("border_size")
 
 //public data class BorderWidthAes(override val context: BindingContext) : NonPositionalAes<Double> {
