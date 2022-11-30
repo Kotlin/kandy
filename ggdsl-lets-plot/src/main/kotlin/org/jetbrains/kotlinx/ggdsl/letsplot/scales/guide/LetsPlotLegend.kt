@@ -6,6 +6,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
 public sealed interface LegendType
 
@@ -26,12 +27,23 @@ public data class ColorBar internal constructor(
 @PlotDslMarker
 public data class Legend<DomainType : Any, out RangeType : Any>(
     var name: String? = null,
-    var breaks: List<DomainType>? = null,
-    var labels: List<String>? = null, // todo pair list and format
-    var format: String? = null,
     // todo expand & trans
     var type: LegendType? = null,
-)
+) : SelfInvocationContext {
+    internal var breaks: List<DomainType>? = null
+    internal var labels: List<String>? = null
+    internal var format: String? = null
+
+    public fun breaks(breaks: List<DomainType>?, format: String?) {
+        this.breaks = breaks
+        this.format = format
+    }
+
+    public fun breaksLabeled(breaksToLabels: List<Pair<DomainType, String>>) {
+        breaks = breaksToLabels.map { it.first }
+        labels = breaksToLabels.map { it.second }
+    }
+}
 
 public fun Legend<*, *>.none(): None = None()
 
@@ -46,8 +58,3 @@ public fun Legend<*, Color>.colorBar(
     barHeight: Double? = null,
     nBin: Int? = null
 ): ColorBar = ColorBar(barWidth, barHeight, nBin)
-
-public inline operator fun <DomainType : Any, RangeType : Any>
-    Legend<DomainType, RangeType>.invoke(block: Legend<DomainType, RangeType>.() -> Unit) {
-    apply(block)
-}

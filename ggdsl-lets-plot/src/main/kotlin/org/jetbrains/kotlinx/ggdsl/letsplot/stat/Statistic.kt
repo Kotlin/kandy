@@ -7,6 +7,6 @@ public interface Statistic<T> {
 }
 
 @PublishedApi
-internal inline fun <reified T : Any> Statistic<T>.tColumnPointer(): ColumnPointer<T> {
+internal inline fun <reified T : Any> Statistic<T>.toColumnPointer(): ColumnPointer<T> {
     return ColumnPointer(this.id)
 }

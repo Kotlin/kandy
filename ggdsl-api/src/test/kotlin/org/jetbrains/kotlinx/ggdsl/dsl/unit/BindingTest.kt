@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.dsl.unit
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingCollector
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.reflect.typeOf
@@ -202,7 +202,7 @@ internal class BindingTest {
       //  val mockAes = MappableNonPositionalAes<Color>("mock_aes")
         val mockSource = columnPointer<Int>("mock_source")
         val scale = continuous<Int, Color>(
-            rangeLimits = Color.fromRGB(1, 1, 1) to Color.fromRGB(1, 100, 100)
+            rangeLimits = Color.rgb(1, 1, 1) to Color.rgb(1, 100, 100)
         )
         val context = TestContext().apply {
             mockAesColorMapNonPos(mockSource.scaled(scale))

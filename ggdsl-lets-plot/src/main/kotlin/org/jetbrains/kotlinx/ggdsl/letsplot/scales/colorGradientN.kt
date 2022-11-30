@@ -23,8 +23,8 @@ public data class ScaleContinuousColorGradientN<DomainType : Any>(
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
 public fun <DomainType : Any> continuousColorGradientN(
-    domainLimits: Pair<DomainType, DomainType>? = null,
     rangeColors: List<Color>,
+    domainLimits: Pair<DomainType, DomainType>? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradientN<DomainType> = ScaleContinuousColorGradientN(
     domainLimits, rangeColors, transform
@@ -49,11 +49,11 @@ public data class ScaleContinuousColorGradient2<DomainType : Any>(
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
 public fun <DomainType : Any> continuousColorGradient2(
-    domainLimits: Pair<DomainType, DomainType>? = null,
     low: Color,
     mid: Color,
     high: Color,
     midpoint: Double,
+    domainLimits: Pair<DomainType, DomainType>? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradient2<DomainType> = ScaleContinuousColorGradient2(
     domainLimits, low, mid, high, midpoint, transform

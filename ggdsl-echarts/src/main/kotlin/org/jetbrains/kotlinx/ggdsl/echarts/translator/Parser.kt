@@ -5,6 +5,10 @@ import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationPlotFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.BAR
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.EchartsGeom
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.LINE
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.toHexString
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Encode
@@ -109,8 +113,8 @@ internal class Parser(plot: Plot) {
                 subtextStyle = it.subtextStyle?.toTextStyle(),
                 textAlign = it.align?.align,
                 textVerticalAlign = it.verticalAlign?.align,
-                backgroundColor = it.backgroundColor?.let { col -> BaseColor(col.hex) },
-                borderColor = it.borderColor?.let { col -> BaseColor(col.hex) },
+                backgroundColor = it.backgroundColor?.let { col -> BaseColor(col.toHexString()) },
+                borderColor = it.borderColor?.let { col -> BaseColor(col.toHexString()) },
                 borderWidth = it.borderWidth
             )
         }
@@ -143,7 +147,6 @@ internal class Parser(plot: Plot) {
                 max = scaleMap.limits?.second?.toString()
                 AxisType.VALUE
             }
-
             is PositionalCategoricalUnspecifiedScale -> AxisType.CATEGORY
             is PositionalContinuousUnspecifiedScale -> AxisType.VALUE
             is DefaultUnspecifiedScale, is UnspecifiedScale -> {

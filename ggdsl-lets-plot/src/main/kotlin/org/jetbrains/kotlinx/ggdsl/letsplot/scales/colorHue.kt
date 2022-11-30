@@ -23,17 +23,18 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
 public fun <DomainType : Any> continuousColorHue(
-    domainLimits: Pair<DomainType, DomainType>? = null,
     huesRange: Pair<Int, Int>? = null,
     chroma: Int? = null,
     luminance: Int? = null,
     hueStart: Int? = null,
     direction: WheelDirection? = null,
+    domainLimits: Pair<DomainType, DomainType>? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorHue<DomainType> = ScaleContinuousColorHue(
     domainLimits, huesRange, chroma, luminance, hueStart, direction, transform
 )
 
+// todo(LP) categories support
 public fun <DomainType : Any> categoricalColorHue(
     huesRange: Pair<Int, Int>? = null,
     chroma: Int? = null,
@@ -63,21 +64,21 @@ public sealed interface ScaleColorHue<DomainType : Any> {
 
 
 public data class ScaleContinuousColorHue<DomainType : Any> internal constructor(
-    override val domainLimits: Pair<DomainType, DomainType>? = null,
-    override val huesRange: Pair<Int, Int>? = null,
-    override val chroma: Int? = null,
-    override val luminance: Int? = null,
-    override val hueStart: Int? = null,
-    override val direction: WheelDirection? = null,
-    override val transform: Transformation? = null
+    override val domainLimits: Pair<DomainType, DomainType>?,
+    override val huesRange: Pair<Int, Int>?,
+    override val chroma: Int?,
+    override val luminance: Int?,
+    override val hueStart: Int?,
+    override val direction: WheelDirection?,
+    override val transform: Transformation?
 ) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorHue<DomainType>
 
 public data class ScaleCategoricalColorHue<DomainType : Any> internal constructor(
-    override val huesRange: Pair<Int, Int>? = null,
-    override val chroma: Int? = null,
-    override val luminance: Int? = null,
-    override val hueStart: Int? = null,
-    override val direction: WheelDirection? = null,
+    override val huesRange: Pair<Int, Int>?,
+    override val chroma: Int?,
+    override val luminance: Int?,
+    override val hueStart: Int?,
+    override val direction: WheelDirection?,
 ) : CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorHue<DomainType> {
     override val domainLimits: Pair<DomainType, DomainType>?
         get() = null
