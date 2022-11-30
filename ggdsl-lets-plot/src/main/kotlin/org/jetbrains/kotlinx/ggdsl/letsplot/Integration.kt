@@ -24,10 +24,10 @@ internal class Integration : JupyterIntegration() {
 
         onLoaded {
             frontendContext = LetsPlot.setupNotebook("2.5.0", null) {
-                display(HTML(it))
+                display(HTML(it), null)
             }
             LetsPlot.apiVersion = "4.1.0"
-            display(HTML(frontendContext.getConfigureHtml()))
+            display(HTML(frontendContext.getConfigureHtml()), null)
         }
 
         import("org.jetbrains.kotlinx.ggdsl.letsplot.*")

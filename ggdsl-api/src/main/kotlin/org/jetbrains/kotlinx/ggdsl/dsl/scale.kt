@@ -87,3 +87,11 @@ public fun <DomainType : Any, RangeType : Any> categorical(
     domainCategories: List<DomainType>? = null,
     rangeValues: List<RangeType>? = null,
 ): NonPositionalCategoricalScale<DomainType, RangeType> = NonPositionalCategoricalScale(domainCategories, rangeValues)
+
+/**
+ * TODO
+ */
+public fun <DomainType : Any, RangeType : Any> categorical(
+    categoriesToValues: List<Pair<DomainType, RangeType>>
+): NonPositionalCategoricalScale<DomainType, RangeType> =
+    NonPositionalCategoricalScale(categoriesToValues.map { it.first }, categoriesToValues.map { it.second })

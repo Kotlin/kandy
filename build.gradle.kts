@@ -13,13 +13,13 @@ buildscript {
 plugins {
     kotlin("jvm") version "1.7.10"
     //kotlin("plugin.serialization") version "1.7.10"
-    kotlin("jupyter.api") version "0.11.0-183-1"
+    kotlin("jupyter.api") version "0.11.0-187"
     id("maven-publish")
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
     id("org.jetbrains.dokka") version "1.7.10"
 }
 
-val ggdslVersion = "0.2.3-dev-14"
+val ggdslVersion = "0.2.4-dev-1"
 
 allprojects {
     repositories {
