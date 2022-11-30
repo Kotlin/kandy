@@ -1,10 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.ALPHA
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SMOOTH
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.STEP
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Stack
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLineFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Step
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
@@ -14,6 +17,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.Layer
 internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
     val symbol = settings.getNPSValue<Symbol>(SYMBOL)
     val smooth = settings.getNPSValue<Boolean>(SMOOTH)
+    val step = settings.getNPSValue<Step>(STEP)?.type
     val stack = (features[Stack.FEATURE_NAME] as? Stack)?.name
     val animation = (features[AnimationLineFeature.FEATURE_NAME] as? AnimationLineFeature)
 
@@ -24,6 +28,7 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
         symbolRotate = symbol?.rotate,
         showSymbol = symbol != null,
         stack = stack,
+        step = step,
         lineStyle = settings.toLineStyle(),
         smooth = smooth,
         encode = encode,

@@ -11,7 +11,11 @@ public class LineContextImmutable(parent: LayerCollectorContextImmutable) : Echa
     public val color: ColorAes = ColorAes(this)
     public val symbol: SymbolAes = SymbolAes(this)
     public val smooth: SmoothAes = SmoothAes(this)
-//    public val alpha: AlphaAes = AlphaAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
     public val width: WidthAes = WidthAes(this)
     public val lineType: LineTypeAes = LineTypeAes(this)
+    public val step: StepAes = StepAes(this)
+    public val cap: CapAes = CapAes(this)
+    public val shadowColor: ShadowColorAes = ShadowColorAes(this)
+    public val shadowBlur: ShadowBlurAes = ShadowBlurAes(this)
 }
