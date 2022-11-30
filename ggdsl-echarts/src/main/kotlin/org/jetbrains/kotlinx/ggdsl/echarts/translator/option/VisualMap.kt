@@ -2,7 +2,6 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.echarts.aes.ALPHA
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.COLOR
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SIZE
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
@@ -16,7 +15,7 @@ internal fun createInRange(aes: AesName, valuesString: List<Any>?): Range {
     return when (aes) {
         COLOR -> Range(color = valuesString?.map { (it as Color).toEchartsColor() })
         SIZE -> Range(symbolSize = valuesString)
-        ALPHA -> Range(colorAlpha = valuesString)
+//        ALPHA -> Range(colorAlpha = valuesString)
         SYMBOL -> Range(symbol = valuesString)
         else -> TODO()
     }

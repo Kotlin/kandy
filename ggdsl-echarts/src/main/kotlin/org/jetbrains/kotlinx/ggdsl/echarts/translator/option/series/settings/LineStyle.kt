@@ -12,13 +12,13 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 internal fun Map<AesName, Setting>.toLineStyle(): LineStyle? {
-    val color = this.getNPSValue<Color>(COLOR)?.toEchartsColor()
+    val color = this.getNPSValue<Color>(LINE_COLOR)?.toEchartsColor()
     val width = this.getNPSValue<Double>(WIDTH)
     val type = this.getNPSValue<LineType>(LINE_TYPE)?.type
     val cap = this.getNPSValue<Cap>(CAP)?.type
-    val shadowBlur = this.getNPSValue<Int>(SHADOW_BLUR)
-    val shadowColor = this.getNPSValue<Color>(SHADOW_COLOR)?.toEchartsColor()
-    val opacity = this.getNPSValue<Double>(ALPHA)
+    val shadowBlur = this.getNPSValue<Int>(LINE_SHADOW_BLUR)
+    val shadowColor = this.getNPSValue<Color>(LINE_SHADOW_COLOR)?.toEchartsColor()
+    val opacity = this.getNPSValue<Double>(LINE_ALPHA)
 
     val lineStyle = LineStyle(
         color = color,

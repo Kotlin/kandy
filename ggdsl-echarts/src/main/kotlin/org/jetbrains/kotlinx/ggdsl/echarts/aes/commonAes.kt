@@ -10,7 +10,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.dsl.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.NonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.ScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 

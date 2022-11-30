@@ -1,7 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.echarts.aes.ALPHA
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SMOOTH
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.STEP
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
@@ -55,6 +54,7 @@ internal fun Layer.toAreaSeries(name: String?, encode: Encode?): LineSeries {
         symbolRotate = symbol?.rotate,
         showSymbol = symbol != null,
         stack = stack,
+        lineStyle = settings.toLineStyle(),
         areaStyle = settings.toAreaStyle(),
         smooth = smooth,
         encode = encode,
