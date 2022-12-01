@@ -4,11 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl.internal
 
+import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
@@ -18,6 +18,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
+import kotlin.reflect.typeOf
 
 /**
  * Internal collector of mappings and settings.
@@ -160,7 +161,34 @@ public open class GroupedDataSubContextImmutable constructor(
     override val data: GroupedDataInterface,
     override val layers: MutableList<Layer>,
     parent: BindingContext,
-) : GroupedDataContextInterface, BindingSubContextImmutable(parent)
+) : GroupedDataContextInterface, BindingSubContextImmutable(parent) {
+/*
+    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+        column: ColumnPointer<DomainType>
+    ): ScaledPositionalUnspecifiedMapping<DomainType> {
+        val mapping = ScaledPositionalUnspecifiedMapping<DomainType>(
+            this.name,
+            column.scaled(categoricalPos()),
+            typeOf<DomainType>()
+        )
+        context.bindingCollector.mappings[this.name] = mapping
+        return mapping
+    }
+
+    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+        column: ColumnPointer<DomainType>
+    ): ScaledNonPositionalDefaultMapping<DomainType, RangeType> {
+        val mapping = ScaledNonPositionalDefaultMapping<DomainType, RangeType>(
+            this.name,
+            column.scaled(categorical()),
+            typeOf<DomainType>()
+        )
+        context.bindingCollector.mappings[this.name] = mapping
+        return mapping
+    }
+
+ */
+}
 
 public interface PlotContextBase : TableDataContext {
     // todo hide
