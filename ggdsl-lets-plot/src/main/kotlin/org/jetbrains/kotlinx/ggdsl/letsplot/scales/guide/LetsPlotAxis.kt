@@ -10,10 +10,19 @@ import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 @PlotDslMarker
 public data class Axis<DomainType : Any>(
     var name: String? = null,
-    var breaks: List<DomainType>? = null,
-    var labels: List<String>? = null, // todo pair list and format
-    var format: String? = null
-    // fun overload?
-    // breaks(.... format = ) / labeledBreaks(0.0 to "0", 0.4 to ".4" ...)
     // todo expand & trans
-) : SelfInvocationContext
+) : SelfInvocationContext {
+    internal var breaks: List<DomainType>? = null
+    internal var labels: List<String>? = null
+    internal var format: String? = null
+
+    public fun breaks(breaks: List<DomainType>?, format: String?) {
+        this.breaks = breaks
+        this.format = format
+    }
+
+    public fun breaksLabeled(breaksToLabels: List<Pair<DomainType, String>>) {
+        breaks = breaksToLabels.map { it.first }
+        labels = breaksToLabels.map { it.second }
+    }
+}

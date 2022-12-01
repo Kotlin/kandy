@@ -1,5 +1,5 @@
 /*
-* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+* Copyright 2020-2022 JetBrains s.r.o. Use of this column code is governed by the Apache 2.0 license.
 */
 
 package org.jetbrains.kotlinx.ggdsl.dsl
@@ -29,27 +29,27 @@ public operator fun <T : Number> PositionalAes.invoke(value: T) {
 /**
  * Maps the given [ColumnPointer] to this non-scalable ("sub-positional") aesthetic attribute.
  *
- * @param source the mapped raw data source.
+ * @param column the mapped raw data column.
  */
 
 public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
-    source: ColumnPointer<DomainType>
+    column: ColumnPointer<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =
-        NonScalablePositionalMapping(this.name, source, typeOf<DomainType>())
+        NonScalablePositionalMapping(this.name, column, typeOf<DomainType>())
 }
 
 /**
  * Maps the given [ColumnPointer] to this positional aesthetic attribute with default scale.
  *
- * @param source the mapped raw data source.
+ * @param column the mapped raw data column.
  */
 public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-    source: ColumnPointer<DomainType>
+    column: ColumnPointer<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping<DomainType>(
         this.name,
-        source.scaled(),
+        column.scaled(),
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping
@@ -59,14 +59,14 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
 /**
  * Maps the given [ColumnPointer] to this non-positional aesthetic attribute with default scale.
  *
- * @param source the mapped raw data source.
+ * @param column the mapped raw data column.
  */
 public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-    source: ColumnPointer<DomainType>
+    column: ColumnPointer<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
         this.name,
-        source.scaled(),
+        column.scaled(),
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping
@@ -74,16 +74,16 @@ public inline operator fun <reified DomainType : Any, RangeType : Any> MappableN
 }
 
 /**
- * Maps the given scaled source to this positional aesthetic attribute with an unspecified scale.
+ * Maps the given scaled column to this positional aesthetic attribute with an unspecified scale.
  *
- * @param sourceScaledDefault the mapped source scaled default.
+ * @param columnScaledDefault the mapped column scaled default.
  */
 public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-    sourceScaledDefault: ColumnScaledUnspecifiedDefault<DomainType>
+    columnScaledDefault: ColumnScaledUnspecifiedDefault<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
         this.name,
-        sourceScaledDefault,
+        columnScaledDefault,
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping
@@ -91,16 +91,16 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
 }
 
 /**
- * Maps the given scaled source to this non-positional aesthetic attribute with an unspecified scale.
+ * Maps the given scaled column to this non-positional aesthetic attribute with an unspecified scale.
  *
- * @param sourceScaledDefault the mapped source scaled default.
+ * @param columnScaledDefault the mapped column scaled default.
  */
 public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-    sourceScaledDefault: ColumnScaledUnspecifiedDefault<DomainType>
+    columnScaledDefault: ColumnScaledUnspecifiedDefault<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
         this.name,
-        sourceScaledDefault,
+        columnScaledDefault,
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping
@@ -108,16 +108,16 @@ public inline operator fun <reified DomainType : Any, RangeType : Any> MappableN
 }
 
 /**
- * Maps the given scaled source to this positional aesthetic attribute with a default scale.
+ * Maps the given scaled column to this positional aesthetic attribute with a default scale.
  *
- * @param sourceScaledDefault the mapped source scaled unspecified positional.
+ * @param columnScaledDefault the mapped column scaled unspecified positional.
  */
 public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-    sourceScaledDefault: ColumnScaledPositionalUnspecified<DomainType>
+    columnScaledDefault: ColumnScaledPositionalUnspecified<DomainType>
 ): ScaledPositionalUnspecifiedMapping<DomainType> {
     val mapping = ScaledPositionalUnspecifiedMapping(
         this.name,
-        sourceScaledDefault,
+        columnScaledDefault,
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping
@@ -126,9 +126,9 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
 
 
 /**
- * Maps the given scaled source to this non-positional aesthetic attribute with an unspecified scale.
+ * Maps the given scaled column to this non-positional aesthetic attribute with an unspecified scale.
  *
- * @param columnScaledDefault the mapped source scaled unspecified non-positional.
+ * @param columnScaledDefault the mapped column scaled unspecified non-positional.
  */
 public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
     columnScaledDefault: ColumnScaledNonPositionalUnspecified<DomainType>
@@ -143,9 +143,9 @@ public inline operator fun <reified DomainType : Any, RangeType : Any> MappableN
 }
 
 /**
- * Maps the given scaled source to this positional aesthetic attribute.
+ * Maps the given scaled column to this positional aesthetic attribute.
  *
- * @param columnScaledPositional the mapped source scaled positional.
+ * @param columnScaledPositional the mapped column scaled positional.
  */
 public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     columnScaledPositional: ColumnScaledPositional<DomainType>
@@ -160,9 +160,9 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
 }
 
 /**
- * Maps the given scaled source to this non-positional aesthetic attribute.
+ * Maps the given scaled column to this non-positional aesthetic attribute.
  *
- * @param columnScaledNonPositional the mapped source scaled non-positional.
+ * @param columnScaledNonPositional the mapped column scaled non-positional.
  */
 public inline operator fun <reified DomainType : Any, reified RangeType : Any>
         MappableNonPositionalAes<RangeType>.invoke(
