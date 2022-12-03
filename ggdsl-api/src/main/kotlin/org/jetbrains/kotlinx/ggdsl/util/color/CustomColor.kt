@@ -1,3 +1,3 @@
 package org.jetbrains.kotlinx.ggdsl.util.color
 
-public interface CustomColor
+public interface CustomColor: Color
