@@ -11,6 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
@@ -112,7 +113,7 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
 //internal val palette = listOf(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE)
 
 internal fun Gathering.toLayer(): Layer {
-    val size = data.map.values.first().size
+    val size = data.nameToValues.values.first().values.size
     val mappingAesNames = series.first().settings.keys
     val xBuffer = mutableListOf<Any>()
     val yBuffer = mutableListOf<Any>()
@@ -125,8 +126,8 @@ internal fun Gathering.toLayer(): Layer {
     val yType = series.first().mappings[Y]!!.domainType
 
     series.forEach {series ->
-        xBuffer.addAll(data.map[series.mappings[X]!!.wrap().second]!!)
-        yBuffer.addAll(data.map[series.mappings[Y]!!.wrap().second]!!)
+        xBuffer.addAll(data.nameToValues[series.mappings[X]!!.wrap().second]!!.values)
+        yBuffer.addAll(data.nameToValues[series.mappings[Y]!!.wrap().second]!!.values)
         labelBuffer.addAll(List(size){series.label})
         series.settings.forEach { (aesName, setting) ->
             scaleBuffer[aesName]!!.let {
@@ -138,7 +139,7 @@ internal fun Gathering.toLayer(): Layer {
 
 
     val nonPosScales: Map<AesName, Mapping> = if (scaleBuffer.isEmpty()) {
-        mapOf(COLOR to ScaledNonPositionalDefaultMapping<String, Color>(
+        mapOf(COLOR to ScaledNonPositionalUnspecifiedMapping<String, Color>(
             COLOR,
             "label"<String>().scaled(categorical()),
             typeOf<String>()
@@ -160,9 +161,9 @@ internal fun Gathering.toLayer(): Layer {
 
     val newData = NamedData(
         mapOf(
-            "x" to xBuffer,
-            "y" to yBuffer,
-            "label" to labelBuffer
+            "x" to TypedList(typeOf<Double>(), xBuffer),
+            "y" to TypedList(typeOf<Double>(), yBuffer),
+            "label" to TypedList(typeOf<String>(), labelBuffer)
         )
     )
     return Layer(

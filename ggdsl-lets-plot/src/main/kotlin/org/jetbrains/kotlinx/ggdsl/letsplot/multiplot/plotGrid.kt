@@ -3,8 +3,10 @@
 */
 package org.jetbrains.kotlinx.ggdsl.letsplot.multiplot
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 
+@Serializable
 public data class PlotGrid(
     val items: List<Plot>,
     val nCol: Int,

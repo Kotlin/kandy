@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.bindings
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 
 /**
@@ -18,6 +19,7 @@ public sealed interface Setting
  * @property aes the non-positional aesthetic attribute to be set to
  * @property value the assigned value
  */
+@Serializable
 public data class NonPositionalSetting<T : Any>(
     val aes: AesName,
     val value: T,
@@ -30,6 +32,7 @@ public data class NonPositionalSetting<T : Any>(
  * @property aes the positional aesthetic attribute to be set to
  * @property value the assigned value
  */
+@Serializable
 public data class PositionalSetting<T : Any>(
     val aes: AesName,
     val value: T,

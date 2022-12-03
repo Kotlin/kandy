@@ -4,9 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.position
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
+@Serializable
 public sealed class Position private constructor(public val name: String) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
@@ -17,11 +19,13 @@ public sealed class Position private constructor(public val name: String) : Laye
     /**
      * Don't adjust position.
      */
+    @Serializable
     public object Identity : Position("identity")
 
     /**
      * Stack overlapping objects on top of each another
      */
+    @Serializable
     public object Stack : Position("stack")
 
     /**
@@ -29,7 +33,8 @@ public sealed class Position private constructor(public val name: String) : Laye
      *
      * @param width the dodging width, when different to the width of the individual elements.
      */
-    public data class Dodge(val width: Number? = null) : Position("dodge")
+    @Serializable
+    public data class Dodge(val width: Double? = null) : Position("dodge")
 
     /**
      * Jitter points to avoid overplotting.
@@ -41,7 +46,8 @@ public sealed class Position private constructor(public val name: String) : Laye
      * The jitter is added in both positive and negative directions,
      * so the total spread is twice the value specified here.
      */
-    public data class Jitter(val width: Number? = null, val height: Number? = null) : Position("jitter")
+    @Serializable
+    public data class Jitter(val width: Double? = null, val height: Double? = null) : Position("jitter")
 
     /**
      * Nudge points a fixed distance.
@@ -49,7 +55,8 @@ public sealed class Position private constructor(public val name: String) : Laye
      * @param x the amount of vertical distance to move.
      * @param y the amount of horizontal distance to move.
      */
-    public data class Nudge(val x: Number? = null, val y: Number? = null) : Position("nudge")
+    @Serializable
+    public data class Nudge(val x: Double? = null, val y: Double? = null) : Position("nudge")
 
     /**
      * Simultaneously, dodge and jitter.
@@ -58,9 +65,10 @@ public sealed class Position private constructor(public val name: String) : Laye
      * @param jitterWidth the degree of jitter in the x direction.
      * @param jitterHeight the degree of jitter in the y direction.
      */
+    @Serializable
     public data class JitterDodge(
-        val dodgeWidth: Number? = null,
-        val jitterWidth: Number? = null,
-        val jitterHeight: Number? = null,
+        val dodgeWidth: Double? = null,
+        val jitterWidth: Double? = null,
+        val jitterHeight: Double? = null,
     ) : Position("jitter_dodge")
 }

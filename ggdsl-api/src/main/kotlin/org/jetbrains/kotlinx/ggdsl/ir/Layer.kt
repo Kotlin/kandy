@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
@@ -27,7 +28,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
  * @param features the [Map] of the layer features; keys are feature names,
  * values are features with corresponding names.
  */
-
+@Serializable
 public data class Layer(
     val dataset: TableData?,
     val geom: Geom,

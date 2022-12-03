@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
@@ -30,14 +31,17 @@ public sealed interface BrewerType {
     public val palette: Palette?
     public val name: String
 
+    @Serializable
     public data class Sequential(override val palette: SequentialPalette? = null) : BrewerType {
         override val name: String = "seq"
     }
 
+    @Serializable
     public data class Diverging(override val palette: DivergingPalette? = null) : BrewerType {
         override val name: String = "div"
     }
 
+    @Serializable
     public data class Qualitative(override val palette: QualitativePalette? = null) : BrewerType {
         override val name: String = "qual"
     }
@@ -51,6 +55,7 @@ public sealed interface ScaleColorBrewer<DomainType : Any> {
     public val transform: Transformation?
 }
 
+@Serializable
 public data class ScaleContinuousColorBrewer<DomainType : Any>(
     override val limits: List<DomainType>?,
     override val type: BrewerType?,
@@ -58,6 +63,7 @@ public data class ScaleContinuousColorBrewer<DomainType : Any>(
     override val transform: Transformation?,
 ) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorBrewer<DomainType>
 
+@Serializable
 public data class ScaleCategoricalColorBrewer<DomainType : Any>(
     override val limits: List<DomainType>?,
     override val type: BrewerType?,

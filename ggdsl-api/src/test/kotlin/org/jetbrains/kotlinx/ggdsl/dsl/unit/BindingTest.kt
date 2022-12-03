@@ -164,7 +164,7 @@ internal class BindingTest {
         }
         assertEquals<Map<AesName, Mapping>>(
             mapOf(
-                MOCK_AES_STRING_MAP_NON_POS to ScaledNonPositionalDefaultMapping<String, String>(
+                MOCK_AES_STRING_MAP_NON_POS to ScaledNonPositionalUnspecifiedMapping<String, String>(
                     MOCK_AES_STRING_MAP_NON_POS, mockSource.scaled(
                     categorical()
                 ), typeOf<String>()

@@ -7,6 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.GroupedDataPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContextMutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.toTyped
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
@@ -51,7 +52,7 @@ public inline fun plot(dataset: NamedDataInterface, block: NamedDataPlotContext.
 }
 
 public inline fun plot(dataset: Map<String, List<Any>>, block: NamedDataPlotContext.() -> Unit): Plot {
-    return NamedDataPlotContext(NamedData(dataset)).apply(block).toPlot()
+    return NamedDataPlotContext(NamedData.fromUntyped(dataset)).apply(block).toPlot()
 }
 
 public inline fun plot(dataset: GroupedDataInterface, block: GroupedDataPlotContext.() -> Unit): Plot {

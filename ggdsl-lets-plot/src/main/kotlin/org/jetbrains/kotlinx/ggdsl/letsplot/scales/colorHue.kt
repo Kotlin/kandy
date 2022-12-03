@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
@@ -45,6 +46,7 @@ public fun <DomainType : Any> categoricalColorHue(
     huesRange, chroma, luminance, hueStart, direction,
 )
 
+@Serializable
 public data class WheelDirection internal constructor(val value: Int) {
     public companion object {
         public val CLOCKWISE: WheelDirection = WheelDirection(1)
@@ -62,7 +64,7 @@ public sealed interface ScaleColorHue<DomainType : Any> {
     public val transform: Transformation?
 }
 
-
+@Serializable
 public data class ScaleContinuousColorHue<DomainType : Any> internal constructor(
     override val domainLimits: Pair<DomainType, DomainType>?,
     override val huesRange: Pair<Int, Int>?,
@@ -73,6 +75,7 @@ public data class ScaleContinuousColorHue<DomainType : Any> internal constructor
     override val transform: Transformation?
 ) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorHue<DomainType>
 
+@Serializable
 public data class ScaleCategoricalColorHue<DomainType : Any> internal constructor(
     override val huesRange: Pair<Int, Int>?,
     override val chroma: Int?,

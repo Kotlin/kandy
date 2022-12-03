@@ -4,27 +4,28 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.facet
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
-
+@Serializable
 public data class OrderDirection internal constructor(val value: Int) {
     public companion object {
         public val ASCENDING: OrderDirection = OrderDirection(1)
         public val DESCENDING: OrderDirection = OrderDirection(-1)
     }
 }
-
+@Serializable
 public data class Direction internal constructor(val name: String) {
     public companion object {
         public val VERTICAL: Direction = Direction("v")
         public val HORIZONTAL: Direction = Direction("h")
     }
 }
-
+@Serializable
 public data class ScalesSharing internal constructor(val name: String) {
     public companion object {
         public val FIXED: ScalesSharing = ScalesSharing("fixed")
@@ -34,6 +35,7 @@ public data class ScalesSharing internal constructor(val name: String) {
     }
 }
 
+@Serializable
 public data class FacetGridFeature constructor(
     val x: String?,
     val y: String?,
@@ -51,6 +53,7 @@ public data class FacetGridFeature constructor(
 
 }
 
+@Serializable
 public data class FacetWrapFeature constructor(
     val facets: List<String>,
     var nCol: Int?,
@@ -94,7 +97,7 @@ public fun LayerPlotContext.facetGridX(
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
         FacetGridFeature(
-            x.id, null, scalesSharing, order, OrderDirection.ASCENDING, format, null
+            x.name, null, scalesSharing, order, OrderDirection.ASCENDING, format, null
         )
 }
 
@@ -106,7 +109,7 @@ public fun LayerPlotContext.facetGridY(
     format: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(null, y.id, scalesSharing, OrderDirection.ASCENDING, order, null, format)
+        FacetGridFeature(null, y.name, scalesSharing, OrderDirection.ASCENDING, order, null, format)
 }
 
 
@@ -120,7 +123,7 @@ public fun LayerPlotContext.facetGrid(
     yFormat: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x.id, y.id, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(x.name, y.name, scalesSharing, xOrder, yOrder, xFormat, yFormat)
 }
 
 @PlotDslMarker
@@ -142,7 +145,7 @@ public class FacetWrapContext @PublishedApi internal constructor(){
         direction: Direction = Direction.HORIZONTAL,
     ) =
         FacetWrapFeature(
-            facets.map { it.id },
+            facets.map { it.name },
             nCol,
             nRow,
             orders,

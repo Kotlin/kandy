@@ -12,7 +12,7 @@ buildscript {
 
 plugins {
     kotlin("jvm") version "1.7.10"
-    //kotlin("plugin.serialization") version "1.7.10"
+    kotlin("plugin.serialization") version "1.7.10"
     kotlin("jupyter.api") version "0.11.0-187"
     id("maven-publish")
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"

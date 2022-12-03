@@ -4,6 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
+import kotlinx.serialization.Serializable
+
 //TODO behavior
 
 /**
@@ -14,6 +16,7 @@ public sealed interface UnspecifiedScale : Scale
 /**
  * Default unspecified scale
  */
+@Serializable
 public object DefaultUnspecifiedScale : UnspecifiedScale
 
 /**
@@ -29,21 +32,25 @@ public sealed interface NonPositionalUnspecifiedScale : UnspecifiedScale
 /**
  * Positional continuous scale with an unspecified domain.
  */
+@Serializable
 public data class PositionalContinuousUnspecifiedScale(override val transform: PositionalTransform? = null) :
     PositionalUnspecifiedScale, ContinuousScale
 
 /**
  * Positional categorical scale with an unspecified domain.
  */
+@Serializable
 public object PositionalCategoricalUnspecifiedScale : PositionalUnspecifiedScale, CategoricalScale
 
 /**
  * Non-positional continuous scale with an unspecified domain and range.
  */
+@Serializable
 public data class NonPositionalContinuousUnspecifiedScale(override val transform: NonPositionalTransform? = null) :
     NonPositionalUnspecifiedScale, ContinuousScale
 
 /**
  * Non-positional categorical scale with an unspecified domain and range.
  */
+@Serializable
 public object NonPositionalCategoricalUnspecifiedScale : NonPositionalUnspecifiedScale, CategoricalScale

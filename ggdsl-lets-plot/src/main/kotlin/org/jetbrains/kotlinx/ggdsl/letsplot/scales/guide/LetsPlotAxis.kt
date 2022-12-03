@@ -4,10 +4,13 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
+//todo
 @PlotDslMarker
+@Serializable
 public data class Axis<DomainType : Any>(
     var name: String? = null,
     // todo expand & trans

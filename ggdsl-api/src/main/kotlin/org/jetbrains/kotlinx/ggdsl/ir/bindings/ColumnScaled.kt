@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.bindings
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 
@@ -26,6 +27,7 @@ public sealed interface ColumnScaled<DomainType : Any> {
  * @property source the source to which the scale is applied
  * @property scale applying unspecified default scale
  */
+@Serializable
 public data class ColumnScaledUnspecifiedDefault<DomainType : Any>(
     override val source: ColumnPointer<DomainType>,
 ) : ColumnScaled<DomainType> {
@@ -39,6 +41,7 @@ public data class ColumnScaledUnspecifiedDefault<DomainType : Any>(
  * @property source the source to which the scale is applied
  * @property scale applying positional default scale
  */
+@Serializable
 public data class ColumnScaledPositionalUnspecified<DomainType : Any>(
     override val source: ColumnPointer<DomainType>,
     override val scale: PositionalUnspecifiedScale
@@ -51,6 +54,7 @@ public data class ColumnScaledPositionalUnspecified<DomainType : Any>(
  * @property source the source to which the scale is applied
  * @property scale applying non-positional default scale
  */
+@Serializable
 public data class ColumnScaledNonPositionalUnspecified<DomainType : Any>(
     override val source: ColumnPointer<DomainType>,
     override val scale: NonPositionalUnspecifiedScale
@@ -63,6 +67,7 @@ public data class ColumnScaledNonPositionalUnspecified<DomainType : Any>(
  * @property source the source to which the scale is applied
  * @property scale applying positional scale
  */
+@Serializable
 public data class ColumnScaledPositional<DomainType : Any>(
     override val source: ColumnPointer<DomainType>,
     override val scale: PositionalScale<DomainType>
@@ -75,6 +80,7 @@ public data class ColumnScaledPositional<DomainType : Any>(
  * @property source the source to which the scale is applied
  * @property scale applying non-positional scale
  */
+@Serializable
 public data class ColumnScaledNonPositional<DomainType : Any, RangeType : Any>(
     override val source: ColumnPointer<DomainType>,
     override val scale: NonPositionalScale<DomainType, RangeType>

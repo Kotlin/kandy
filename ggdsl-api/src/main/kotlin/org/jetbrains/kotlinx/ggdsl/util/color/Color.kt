@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.util.color
 
+import kotlinx.serialization.Serializable
 import kotlin.math.roundToInt
 
 /**
@@ -11,6 +12,7 @@ import kotlin.math.roundToInt
  */
 public sealed interface Color {
 
+    @Serializable
     public data class RGB internal constructor(val r: Int, val g: Int, val b: Int) : Color {
         public fun toRGBA(a: Double = 1.0): RGBA = RGBA(this.copy(), a)
         public fun toHex(): Hex = Hex(
@@ -18,6 +20,7 @@ public sealed interface Color {
         )
     }
 
+    @Serializable
     public data class RGBA internal constructor(val rgb: RGB, val a: Double) : Color {
         public fun toRGB(): RGB = rgb.copy()
         public fun toHex(): Hex = Hex(
@@ -28,8 +31,10 @@ public sealed interface Color {
         )
     }
 
+    @Serializable
     public data class Named internal constructor(val name: String) : Color
 
+    @Serializable
     public data class Hex internal constructor(val hex: String) : Color
 
     //public data class HexA internal constructor(val hexA: String) : Color
