@@ -1,86 +1,62 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
-public enum class LegendType(public val type: String) {
-    PLAIN("plain"), SCROLL("scroll")
-}
-
-@Serializable
-public enum class Orient(public val type: String) {
-    HORIZONTAL("horizontal"), VERTICAL("vertical")
-}
-
-@Serializable
 public data class Legend(
-    val type: LegendType?, /* для scroll можно использовать
-legend.scrollDataIndex
-legend.pageButtonItemGap
-legend.pageButtonGap
-legend.pageButtonPosition
-legend.pageFormatter
-legend.pageIcons
-legend.pageIconColor
-legend.pageIconInactiveColor
-legend.pageIconSize
-legend.pageTextStyle
-legend.animation
-legend.animationDurationUpdate
-     */
-    val id: String?,
-    val show: Boolean?,
-    val zlevel: Int?,
-    val z: Int?,
-    val left: @Contextual Any?, // string number
-    val top: @Contextual Any?,
-    val right: @Contextual Any?,
-    val bottom: @Contextual Any?,
-    val width: @Contextual Any?, // string number
-    val height: @Contextual Any?,
-    val orient: Orient?,
-    val align: String?, // 'auto', 'left', 'right'
-    val padding: @Contextual Any?, // number array
-    val itemGap: Int?,
-    val itemWidth: Int?,
-    val itemHeight: Int?,
+    val type: String? = null,
+    val id: String? = null,
+    val show: Boolean? = null,
+    val zlevel: Int? = null,
+    val z: Int? = null,
+    val left: Int? = null, // string number
+    val top: Int? = null,
+    val right: Int? = null,
+    val bottom: Int? = null,
+    val width: Int? = null, // string number
+    val height: Int? = null,
+    val orient: String? = null,
+    val align: String? = null, // 'auto', 'left', 'right'
+    val padding: Int? = null, // number array
+    val itemGap: Int? = null,
+    val itemWidth: Int? = null,
+    val itemHeight: Int? = null,
 //    val itemStyle: ItemStyle?,
 //    val lineStyle: LineStyle?,
-    val symbolRotate: @Contextual Any?, // number string
-    val formatter: @Contextual Any?, // может быть функцией, надо подумать
-    val selectedMode: @Contextual Any?, // boolean string
-    val inactiveColor: EchartsColor?,
-    val inactiveBorderColor: EchartsColor?,
-    val inactiveBorderWidth: EchartsColor?,
-    val selected: Map<String, Boolean>?, // таблица состояний для серий
+    val symbolRotate: Int? = null, // number string
+    val formatter: String? = null,
+    val selectedMode: String? = null, // boolean string
+    val inactiveColor: EchartsColor? = null,
+    val inactiveBorderColor: EchartsColor? = null,
+    val inactiveBorderWidth: EchartsColor? = null,
+    val selected: Map<String, Boolean>? = null, // таблица состояний для серий
 //    val textStyle: TextStyle?,
 //    val tooltip: Tooltip?,
-    val icon: String?, // может быть ссылкой
+    val icon: String? = null,
 //    val data: List<LegendData>?,
-    val backgroundColor: EchartsColor?,
-    val borderColor: EchartsColor?,
-    val borderRadius: @Contextual Any?, // number Array
-    val shadowBlur: Int?,
-    val shadowColor: EchartsColor?,
-    val shadowOffsetX: Int?,
-    val shadowOffsetY: Int?, // This property works only if show: true configured.
-    val scrollDataIndex: Int?,
-    val pageButtonItemGap: Int?,
-    val pageButtonGap: Int?,
-    val pageButtonPosition: String?, // Start End
-    val pageFormatter: Int?, // function???
-    val pageIcons: List<@Contextual Any>?, // ????
-    val pageIconColor: String?,
-    val pageIconInactiveColor: String?,
-    val pageIconSize: @Contextual Any?,
+    val backgroundColor: EchartsColor? = null,
+    val borderColor: EchartsColor? = null,
+    val borderRadius: Int? = null, // number Array
+    val shadowBlur: Int? = null,
+    val shadowColor: EchartsColor? = null,
+    val shadowOffsetX: Int? = null,
+    val shadowOffsetY: Int? = null, // This property works only if show: true configured.
+    val scrollDataIndex: Int? = null,
+    val pageButtonItemGap: Int? = null,
+    val pageButtonGap: Int? = null,
+    val pageButtonPosition: String? = null, // Start End
+    val pageFormatter: Int? = null,
+    val pageIcons: List<String>? = null,
+    val pageIconColor: String? = null,
+    val pageIconInactiveColor: String? = null,
+    val pageIconSize: Int? = null,
 //    val pageTextStyle: TextStyle?,
-    val animation: Boolean?,
-    val animationDurationUpdate: Int?,
+    val animation: Boolean? = null,
+    val animationDurationUpdate: Int? = null,
 //    val emphasis: Object<SelectorLabel>?,
-    val selector: @Contextual Any?,
+    val selector: String? = null,
 //    val selectorLabel: SelectorLabel?,
-    val selectorPosition: String?,
-    val selectorItemGap: Int?,
-    val selectorButtonGap: Int?
+    val selectorPosition: String? = null,
+    val selectorItemGap: Int? = null,
+    val selectorButtonGap: Int? = null
 )

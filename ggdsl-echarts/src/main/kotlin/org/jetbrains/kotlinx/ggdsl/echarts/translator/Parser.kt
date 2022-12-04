@@ -36,7 +36,6 @@ internal class Parser(plot: Plot) {
 
 
     internal fun parse(): Option {
-        val legend: Legend? = null
         val grid: Grid? = null
         val polar: Polar? = null
         val radiusAxis: RadiusAxis? = null
@@ -95,6 +94,20 @@ internal class Parser(plot: Plot) {
         }
 
         val dataset = Dataset(source = datasetSource)
+
+        val legend = layout?.legend?.let {
+            Legend(
+                type = it.type?.type,
+                left = it.left,
+                top = it.top,
+                right = it.right,
+                bottom = it.bottom,
+                width = it.width,
+                height = it.height,
+                orient = it.orient?.type,
+                formatter = it.formatter
+            )
+        }
 
         val title = layout?.titleFeature?.let {
             Title(
@@ -192,9 +205,10 @@ internal class Parser(plot: Plot) {
     }
 
     private fun Layer.toSeries(): Series {
-        val encode =
-            Encode((this.mappings[X] as ScaledMapping<*>).getId(), (this.mappings[Y] as ScaledMapping<*>).getId())
-        val name = settings.getNPSValue<String>(NAME)
+        val x = (this.mappings[X] as ScaledMapping<*>).getId()
+        val y = (this.mappings[Y] as ScaledMapping<*>).getId()
+        val encode = Encode(x, y)
+        val name = settings.getNPSValue(NAME) ?: "$x $y"
 
         return when (geom) {
             LINE -> this.toLineSeries(name, encode)

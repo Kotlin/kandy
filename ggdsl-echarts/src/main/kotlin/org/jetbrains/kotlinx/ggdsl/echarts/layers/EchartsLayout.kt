@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.ggdsl.echarts.features.LegendFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.TitleFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyleFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
@@ -48,6 +49,9 @@ public class EChartsLayout : PlotFeature {
 
     @PublishedApi
     internal var textStyle: TextStyleFeature? = null
+
+    @PublishedApi
+    internal var legend: LegendFeature? = null
 
     @PublishedApi
     internal companion object {
