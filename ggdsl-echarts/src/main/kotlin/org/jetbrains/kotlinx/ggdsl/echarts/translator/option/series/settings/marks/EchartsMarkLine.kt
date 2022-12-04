@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.DataMarkLineSe
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
-internal fun Map<FeatureName, LayerFeature>.toEchartsMarkLine(): EchartsMarkLine? {
+internal fun Map<FeatureName, LayerFeature>.getEchartsMarkLine(): EchartsMarkLine? {
     val dataMarkLines = (this[MarkLineFeature.FEATURE_NAME] as? MarkLineFeature)?.lines?.map {
         if (it.point1 == null) {
             DataMarkLine(it.nameML, it.typeML?.type, it.xAxis, it.yAxis)

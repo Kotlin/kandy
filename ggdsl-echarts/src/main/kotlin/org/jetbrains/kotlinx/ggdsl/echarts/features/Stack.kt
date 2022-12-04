@@ -4,20 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features
 
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.AreaContextImmutable
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.BarContextImmutable
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContextImmutable
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
-
-/*
-    val stackAd = Stack("Ad")
-
-    bar {
-        stack = stackAd
-        stack with stackAd
-        stack(stackAd)
-    }
- */
-/**/
 
 // todo in others contexts??
 /**
@@ -28,14 +19,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
  * @see <a href="https://echarts.apache.org/en/option.html#series-bar.stack">ECharts Documentation</a>
  * @see stack
  */
-
-// todo
-//public var BarsContextImmutable.stack: Stack
-//    get() = Stack("TODO")
-//    set(value) {
-//        features[Stack.FEATURE_NAME] = value
-//    }
-
 //todo
 public data class Stack internal constructor(val name: String) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
@@ -46,7 +29,19 @@ public data class Stack internal constructor(val name: String) : LayerFeature {
 }
 
 public var LineContextImmutable.stack: Stack // TODO(change api for stack!)
-    get() = Stack("TODO")
+    get() = features[Stack.FEATURE_NAME] as Stack
+    set(value) {
+        features[Stack.FEATURE_NAME] = value
+    }
+
+public var AreaContextImmutable.stack: Stack
+    get() = features[Stack.FEATURE_NAME] as Stack
+    set(value) {
+        features[Stack.FEATURE_NAME] = value
+    }
+
+public var BarContextImmutable.stack: Stack
+    get() = features[Stack.FEATURE_NAME] as Stack
     set(value) {
         features[Stack.FEATURE_NAME] = value
     }

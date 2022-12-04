@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-internal fun Map<AesName, Setting>.toAreaStyle(): AreaStyle {
+internal fun Map<AesName, Setting>.getAreaStyle(): AreaStyle {
     val color = this.getNPSValue<Color>(AREA_COLOR)?.toEchartsColor()
     val origin = this.getNPSValue<AreaPosition>(AREA_POSITION)?.let { it.position ?: it.number.toString() }
     val shadowBlur = this.getNPSValue<Int>(AREA_SHADOW_BLUR)

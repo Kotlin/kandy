@@ -12,8 +12,8 @@ internal fun Layer.toBoxplotSeries(name: String?, encode: Encode?): BoxplotSerie
     return BoxplotSeries(
         name = name,
         encode = encode,
-        markPoint = features.toEchartsMarkPoint(),
-        markLine = features.toEchartsMarkLine(),
+        markPoint = features.getEchartsMarkPoint(),
+        markLine = features.getEchartsMarkLine(),
         animationDuration = animation?.duration,
         animationEasing = animation?.easing?.name,
         animationDelay = animation?.delay,

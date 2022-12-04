@@ -10,13 +10,18 @@ import org.jetbrains.kotlinx.ggdsl.ir.Layer
 internal fun Layer.toBarSeries(name: String?, encode: Encode?): BarSeries {
     val stack = (features[Stack.FEATURE_NAME] as? Stack)?.name
     val animation = (features[AnimationLineFeature.FEATURE_NAME] as? AnimationLineFeature)
+    val backgroundStyle = settings.getBackgroundStyle()
+
 
     return BarSeries(
         name = name,
         stack = stack,
+        showBackground = if (backgroundStyle != null) true else null,
+        backgroundStyle = backgroundStyle,
+        itemStyle = settings.getItemStyle(),
         encode = encode,
-        markPoint = features.toEchartsMarkPoint(),
-        markLine = features.toEchartsMarkLine(),
+        markPoint = features.getEchartsMarkPoint(),
+        markLine = features.getEchartsMarkLine(),
         animation = animation?.enable,
         animationThreshold = animation?.threshold,
         animationDuration = animation?.duration,
@@ -34,8 +39,8 @@ public class BarSeries(
     public override val legendHoverLink: Boolean? = null,
     public override val coordinateSystem: CoordinateSystem? = null,
     public val xAxisIndex: Int? = null,
-    public val yAxisIndex:Int? = null,
-    public val polarIndex:Int? = null,
+    public val yAxisIndex: Int? = null,
+    public val polarIndex: Int? = null,
     public val roundCap: Boolean? = null,
     public val realtimeSort: Boolean? = null,
     public val showBackground: Boolean? = null,

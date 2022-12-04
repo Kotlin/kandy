@@ -7,8 +7,8 @@ import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Stack
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLineFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Step
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
@@ -28,11 +28,11 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
         showSymbol = symbol != null,
         stack = stack,
         step = step,
-        lineStyle = settings.toLineStyle(),
+        lineStyle = settings.getLineStyle(),
         smooth = smooth,
         encode = encode,
-        markPoint = features.toEchartsMarkPoint(),
-        markLine = features.toEchartsMarkLine(),
+        markPoint = features.getEchartsMarkPoint(),
+        markLine = features.getEchartsMarkLine(),
         animation = animation?.enable,
         animationThreshold = animation?.threshold,
         animationDuration = animation?.duration,
@@ -54,12 +54,12 @@ internal fun Layer.toAreaSeries(name: String?, encode: Encode?): LineSeries {
         symbolRotate = symbol?.rotate,
         showSymbol = symbol != null,
         stack = stack,
-        lineStyle = settings.toLineStyle(),
-        areaStyle = settings.toAreaStyle(),
+        lineStyle = settings.getLineStyle(),
+        areaStyle = settings.getAreaStyle(),
         smooth = smooth,
         encode = encode,
-        markPoint = features.toEchartsMarkPoint(),
-        markLine = features.toEchartsMarkLine(),
+        markPoint = features.getEchartsMarkPoint(),
+        markLine = features.getEchartsMarkLine(),
         animation = animation?.enable,
         animationThreshold = animation?.threshold,
         animationDuration = animation?.duration,

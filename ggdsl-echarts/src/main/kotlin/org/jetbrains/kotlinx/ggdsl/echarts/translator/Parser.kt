@@ -124,7 +124,7 @@ internal class Parser(plot: Plot) {
             radiusAxis,
             angleAxis,
             radar,
-            visualMaps,
+            visualMaps.ifEmpty { null },
             dataset,
             series,
             textStyle,

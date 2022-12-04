@@ -10,16 +10,12 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.DataMarkPointS
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
-internal fun Map<FeatureName, LayerFeature>.toEchartsMarkPoint(): EchartsMarkPoint? {
+internal fun Map<FeatureName, LayerFeature>.getEchartsMarkPoint(): EchartsMarkPoint? {
     val dataMarkPoints = (this[MarkPointFeature.FEATURE_NAME] as? MarkPointFeature)?.points?.map {
         DataMarkPoint(it.name, it.type?.type, it.valueMP, it.coord?.toList(), it.x, it.y)
     }
 
-    return if (dataMarkPoints != null) {
-        EchartsMarkPoint(data = dataMarkPoints)
-    } else {
-        null
-    }
+    return EchartsMarkPoint(data = dataMarkPoints).takeIf { dataMarkPoints != null }
 }
 
 @Serializable(with = DataMarkPointSerializer::class)

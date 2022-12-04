@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-internal fun Map<AesName, Setting>.toLineStyle(): LineStyle? {
+internal fun Map<AesName, Setting>.getLineStyle(): LineStyle? {
     val color = this.getNPSValue<Color>(LINE_COLOR)?.toEchartsColor()
     val width = this.getNPSValue<Double>(WIDTH)
     val type = this.getNPSValue<LineType>(LINE_TYPE)?.type
