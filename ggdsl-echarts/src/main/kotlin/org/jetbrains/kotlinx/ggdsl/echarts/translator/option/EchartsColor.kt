@@ -6,12 +6,10 @@ import org.jetbrains.kotlinx.ggdsl.echarts.settings.LinearGradient
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.RadialGradient
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.ColorSerializer
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
 
 internal fun Color.toEchartsColor(): EchartsColor = when (this) {
-    is Color.Hex -> BaseColor(this.hex)
-    is Color.RGB -> BaseColor(this.toHex().hex)
-    is Color.RGBA -> BaseColor(this.toHex().hex)
-    is Color.Named -> BaseColor(this.name)
+    is StandardColor -> BaseColor(this.description)
     is LinearGradient -> LinearGradientColor(x, y, x2, y2, colorStops)
     is RadialGradient -> RadialGradientColor(x, y, r, colorStops)
     else -> BaseColor(this.toString()) // TODO?
