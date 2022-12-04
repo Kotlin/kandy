@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.SIZE
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLineFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
@@ -12,11 +13,14 @@ import org.jetbrains.kotlinx.ggdsl.ir.Layer
 internal fun Layer.toPointSeries(name: String?, encode: Encode?): ScatterSeries {
     val symbol = settings.getNPSValue<Symbol>(SYMBOL)
     val animation = (features[AnimationLineFeature.FEATURE_NAME] as? AnimationLineFeature)
+    val size = settings.getNPSValue(SIZE) ?: symbol?.size
 
     return ScatterSeries(
         name = name,
         symbol = symbol?.name,
+        symbolSize = size,
         symbolRotate = symbol?.rotate,
+        itemStyle = settings.getItemStyle(),
         encode = encode,
         markPoint = features.getEchartsMarkPoint(),
         markLine = features.getEchartsMarkLine(),
@@ -42,7 +46,7 @@ public class ScatterSeries(
     public val calendarIndex: Int? = null,
     public override val legendHoverLink: Boolean? = null,
     public val symbol: String? = null,
-    public val symbolSyze: Int? = null,
+    public val symbolSize: Double? = null,
     public val symbolRotate: Int? = null,
     public val symbolKeepAspect: Boolean? = null,
     public val symbolOffset: Int? = null,

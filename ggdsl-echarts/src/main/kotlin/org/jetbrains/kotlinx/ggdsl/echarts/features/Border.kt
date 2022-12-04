@@ -6,10 +6,15 @@ import org.jetbrains.kotlinx.ggdsl.echarts.aes.BorderRadiusAes
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.BorderTypeAes
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.BorderWidthAes
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.BarContextImmutable
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.PointContextImmutable
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
 public fun BarContextImmutable.border(block: BorderFeature.() -> Unit) {
+    BorderFeature(this).apply(block)
+}
+
+public fun PointContextImmutable.border(block: BorderFeature.() -> Unit) {
     BorderFeature(this).apply(block)
 }
 
@@ -22,6 +27,6 @@ public class BorderFeature(context: BindingContext) : LayerFeature {
     public val radius: BorderRadiusAes = BorderRadiusAes(context)
 
     public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("BAR_BORDER_FEATURE")
+        public val FEATURE_NAME: FeatureName = FeatureName("BORDER_FEATURE")
     }
 }

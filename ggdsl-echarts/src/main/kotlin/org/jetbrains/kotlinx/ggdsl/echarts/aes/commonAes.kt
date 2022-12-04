@@ -39,9 +39,9 @@ public data class NameAes(override val context: BindingContext) : NonPositionalA
 
 internal val SIZE: AesName = AesName("size")
 
-//public data class SizeAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
-//    override val name: AesName = SIZE
-//}
+public data class SizeAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+    override val name: AesName = SIZE
+}
 
 internal val COLOR: AesName = AesName("color")
 

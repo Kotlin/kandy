@@ -2,7 +2,9 @@ package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.echarts.aes.*
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.ColorAes
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.XAes
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.YAes
 
 @PlotDslMarker
 public class BarContextImmutable(parent: LayerCollectorContextImmutable) : EchartsLayerContextImmutable(parent) {

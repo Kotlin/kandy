@@ -14,7 +14,7 @@ public inline fun LayerCollectorContextImmutable.area(block: AreaContextImmutabl
     addLayer(AreaContextImmutable(this).apply(block), AREA)
 }
 
-public inline fun LayerCollectorContextImmutable.bar(block: BarContextImmutable.() -> Unit) {
+public inline fun LayerCollectorContextImmutable.bars(block: BarContextImmutable.() -> Unit) {
     addLayer(BarContextImmutable(this).apply(block), BAR)
 }
 

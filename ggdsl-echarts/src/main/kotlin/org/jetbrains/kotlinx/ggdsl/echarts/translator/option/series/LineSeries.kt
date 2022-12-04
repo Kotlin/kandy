@@ -79,7 +79,7 @@ public class LineSeries(
     public val yAxisIndex: Int? = null,
     public val polarIndex: Int? = null,
     public val symbol: String? = null,
-    public val symbolSize: Int? = null,
+    public val symbolSize: Double? = null,
     public val symbolRotate: Int? = null,
     public val symbolKeepAspect: Boolean? = null,
     public val symbolOffset: Pair<String, String>? = null,
