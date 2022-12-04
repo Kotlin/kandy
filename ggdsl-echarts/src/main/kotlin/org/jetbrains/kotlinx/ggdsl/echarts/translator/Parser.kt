@@ -8,6 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Encode
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Tooltip
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -109,6 +110,13 @@ internal class Parser(plot: Plot) {
             )
         }
 
+        val tooltip = layout?.tooltip?.let {
+            Tooltip(
+                trigger = it.trigger?.type,
+                formatter = it.formatter
+            )
+        }
+
         val title = layout?.titleFeature?.let {
             Title(
                 text = it.text,
@@ -138,6 +146,7 @@ internal class Parser(plot: Plot) {
             angleAxis,
             radar,
             visualMaps.ifEmpty { null },
+            tooltip,
             dataset,
             series,
             textStyle,

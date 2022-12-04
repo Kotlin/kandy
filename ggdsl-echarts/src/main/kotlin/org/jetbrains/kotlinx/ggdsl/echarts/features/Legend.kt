@@ -1,6 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.features
 
-import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.EChartsLayout
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
@@ -10,7 +9,6 @@ public inline fun EChartsLayout.legend(crossinline block: LegendFeature.() -> Un
     this.legend = LegendFeature().apply(block)
 }
 
-@Serializable
 public enum class LegendAlign(public val align: String) {
     AUTO("auto"), LEFT("left"), RIGHT("right")
 }

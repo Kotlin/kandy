@@ -4,6 +4,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.features.LegendFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.TitleFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.features.TooltipFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyleFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
@@ -54,6 +55,9 @@ public class EChartsLayout : PlotFeature {
 
     @PublishedApi
     internal var legend: LegendFeature? = null
+
+    @PublishedApi
+    internal var tooltip: TooltipFeature? = null
 
     @PublishedApi
     internal companion object {

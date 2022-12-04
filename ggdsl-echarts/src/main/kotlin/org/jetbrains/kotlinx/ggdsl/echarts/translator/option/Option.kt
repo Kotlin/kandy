@@ -3,6 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.Series
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.TextStyle
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Tooltip
 
 @Serializable
 public data class Option(
@@ -17,7 +18,7 @@ public data class Option(
     val radar: Radar? = null,
 //    val dataZoom: List<DataZoom>,
     val visualMap: List<VisualMap>? = null,
-//    val tooltip: Tooltip,
+    val tooltip: Tooltip? = null,
 //    val axisPointer: AxisPointer,
 //    val toolbox: Toolbox,
 //    val brush: Brush,
