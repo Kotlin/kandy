@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.features.LegendFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.TitleFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyleFeature
@@ -17,6 +18,7 @@ public inline fun LayerPlotContext.layout(block: EChartsLayout.() -> Unit) {
  * @param title the title of this plot
  * @param size the size of this plot
  */
+@PlotDslMarker
 public class EChartsLayout : PlotFeature {
 
     public var title: String? = null
