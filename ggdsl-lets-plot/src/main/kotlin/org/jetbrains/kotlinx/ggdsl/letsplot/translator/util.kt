@@ -4,13 +4,14 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.SimpleValueWrapper
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
 
 internal fun Color.wrap(): String {
     return when(this) {
-        is Color.Hex -> hex
-        is Color.Named -> name
-        is Color.RGB -> toHex().hex
-        is Color.RGBA -> TODO()
+        is StandardColor.Hex -> hexString
+        is StandardColor.Named -> name
+        is StandardColor.RGB -> hexString
+        is StandardColor.RGBA -> TODO()
         else -> TODO()
     }
 }
