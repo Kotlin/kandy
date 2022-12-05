@@ -16,7 +16,8 @@ internal fun Map<AesName, Setting>.getItemStyle(): ItemStyle? {
     val borderWidth = this.getNPSValue<Double>(BORDER_WIDTH)
     val borderType = this.getNPSValue<LineType>(BORDER_TYPE)?.type
     val borderRadius = this.getNPSValue<Double>(BORDER_RADIUS)
-    return ItemStyle(color, borderColor, borderWidth, borderType, borderRadius).takeIf { !it.isEmpty() }
+    val opacity = this.getNPSValue<Double>(ALPHA)
+    return ItemStyle(color, borderColor, borderWidth, borderType, borderRadius, opacity = opacity).takeIf { !it.isEmpty() }
 }
 
 @Serializable
@@ -34,7 +35,7 @@ public data class ItemStyle(
     val shadowColor: EchartsColor? = null,
     val shadowOffsetX: Int? = null,
     val shadowOffsetY: Int? = null,
-    val opacity: Float? = null,
+    val opacity: Double? = null,
 //    val decal: Decal? = null, // TODO
 ) {
 

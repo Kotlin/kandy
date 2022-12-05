@@ -2,7 +2,10 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.*
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.ALPHA
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.COLOR
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.LINE_ALPHA
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SIZE
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.TextStyle
@@ -11,12 +14,20 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
-internal fun createInRange(aes: AesName, valuesString: List<Any>?): Range {
+// TODO(move to pallets and theme settings)
+private val colors = listOf("#5470c6", "#91cc75", "#fac858", "#ee6666", "#73c0de", "#3ba272", "#fc8452", "#9a60b4", "#ea7ccc")
+private val sizes = listOf(20.0, 28.0, 36.0, 44.0, 52.0, 60.0, 68.0)
+private val alphas = listOf(0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5)
+private val symbols = listOf("circle", "rect", "triangle", "diamond", "roundRect", "pin", "arrow")
+
+
+internal fun createInRange(aes: AesName, valuesString: List<Any>?, size: Int = -1, isContinuous: Boolean = false): Range {
     return when (aes) {
-        COLOR -> Range(color = valuesString?.map { (it as Color).toEchartsColor() })
-        SIZE -> Range(symbolSize = valuesString)
-//        ALPHA -> Range(colorAlpha = valuesString)
-        SYMBOL -> Range(symbol = valuesString)
+        COLOR ->
+            Range(color = valuesString?.map { (it as Color).toEchartsColor() } ?: List(size) { BaseColor(colors[it]) })
+        SIZE -> Range(symbolSize = valuesString ?: if (isContinuous) listOf(20.0, 60.0) else sizes.take(size))
+        ALPHA, LINE_ALPHA, AREA_ALPHA -> Range(colorAlpha = valuesString ?: if (isContinuous) listOf(20.0, 60.0) else alphas.take(size))
+        SYMBOL -> Range(symbol = valuesString ?: symbols.take(size))
         else -> TODO()
     }
 }

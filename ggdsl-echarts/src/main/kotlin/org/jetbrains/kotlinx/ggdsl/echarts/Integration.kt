@@ -53,7 +53,7 @@ internal class Integration : JupyterIntegration() {
     }
 }
 
-internal fun Plot.toOption(): Option {
+public fun Plot.toOption(): Option {
     val parser = Parser(this)
 
     return parser.parse()
