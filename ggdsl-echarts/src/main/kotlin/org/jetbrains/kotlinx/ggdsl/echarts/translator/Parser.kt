@@ -154,7 +154,8 @@ internal class Parser(plot: Plot) {
             animation?.threshold,
             animation?.duration,
             animation?.easing?.name,
-            animation?.delay
+            animation?.delay,
+            plotSize = layout?.size ?: (800 to 600)
         )
     }
 

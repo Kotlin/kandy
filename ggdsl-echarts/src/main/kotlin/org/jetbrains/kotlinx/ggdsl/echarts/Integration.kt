@@ -32,8 +32,7 @@ internal class Integration : JupyterIntegration() {
         }
 
         render<Plot> { it.toOption() }
-        render<Option> { HTML(it.toHTML(800 to 600), true) }
-//        render<MetaOption> { HTML(it.option.toHTML(it.size), true) } // TODO (size?)
+        render<Option> { HTML(it.toHTML(it.plotSize), true) }
 //        render<DataChangeAnimation> { HTML(it.toHTML(), true) }
 //        render<PlotChangeAnimation> { HTML(it.toHTML(), true) }
 
@@ -45,7 +44,6 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.echarts.features.text.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.layers.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.settings.*")
-//        import("org.jetbrains.kotlinx.ggdsl.echarts.animation.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.scale.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.scale.guide.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.translator.*")
@@ -53,7 +51,7 @@ internal class Integration : JupyterIntegration() {
     }
 }
 
-public fun Plot.toOption(): Option {
+private fun Plot.toOption(): Option {
     val parser = Parser(this)
 
     return parser.parse()
@@ -63,13 +61,14 @@ public fun Plot.toOption(): Option {
 private val json = Json {
     explicitNulls = false
     encodeDefaults = true
+    prettyPrint = true
 //    useArrayPolymorphism = true
     isLenient = true
 }
 
-public fun Option.toJSON(): String {
-    return json.encodeToString(this)
-}
+public fun Plot.toJson(): String = this.toOption().toJSON()
+
+private fun Option.toJSON(): String = json.encodeToString(this)
 
 public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
     val width = size?.first ?: 600
@@ -79,7 +78,7 @@ public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
             meta {
                 charset = "utf-8"
             }
-            title("MY BEAUTIFUL PLOT") // TODO (this.title)
+            this@toHTML.title?.text?.let { title(it) }
             script {
                 type = "text/javascript"
                 src = ECHARTS_SRC
@@ -107,7 +106,6 @@ public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
 
 }
 
-/// TODO!!! UNSAFE!!!
 
 // todo sizes
 //public fun DataChangeAnimation.toHTML(): String {
