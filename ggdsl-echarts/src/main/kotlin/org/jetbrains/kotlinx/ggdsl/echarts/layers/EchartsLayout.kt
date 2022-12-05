@@ -42,13 +42,12 @@ public class EChartsLayout : PlotFeature {
             field = value
         }
 
+    public var size: Pair<Int, Int>? = null
+
     override val featureName: FeatureName = FEATURE_NAME
 
     @PublishedApi
     internal var titleFeature: TitleFeature? = null
-
-    @PublishedApi
-    internal var size: Pair<Int, Int>? = null
 
     @PublishedApi
     internal var textStyle: TextStyleFeature? = null

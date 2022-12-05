@@ -11,6 +11,7 @@ import kotlinx.html.stream.createHTML
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.PlotChangeAnimation
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.Parser
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.Option
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
@@ -34,7 +35,7 @@ internal class Integration : JupyterIntegration() {
         render<Plot> { it.toOption() }
         render<Option> { HTML(it.toHTML(it.plotSize), true) }
 //        render<DataChangeAnimation> { HTML(it.toHTML(), true) }
-//        render<PlotChangeAnimation> { HTML(it.toHTML(), true) }
+        render<PlotChangeAnimation> { HTML(it.toHTML(), true) }
 
         import("org.jetbrains.kotlinx.ggdsl.echarts.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.aes.*")
@@ -57,7 +58,6 @@ private fun Plot.toOption(): Option {
     return parser.parse()
 }
 
-@OptIn(ExperimentalSerializationApi::class)
 private val json = Json {
     explicitNulls = false
     encodeDefaults = true
@@ -107,15 +107,13 @@ public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
 }
 
 
-// todo sizes
 //public fun DataChangeAnimation.toHTML(): String {
 //    val encoder = Json {
 //        explicitNulls = false
 //        encodeDefaults = true
 //    }
 //    val maxStates = 100
-//    // todo size
-//    val initOption = plot.toOption().option.toJSON().replace('\"', '\'')
+//    val initOption = plot.toOption().toJSON().replace('\"', '\'')
 //    val dataset = plot.dataset
 //    val datasets = mutableListOf<Dataset>()
 //    repeat(maxStates) {
@@ -163,52 +161,49 @@ public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
 //    }
 //}
 
-//public fun PlotChangeAnimation.toHTML(): String {
-//    val encoder = Json {
-//        explicitNulls = false
-//        encodeDefaults = true
-//    }
-//
-//    val encodedPlots = encoder.encodeToString(plots.map { it.toOption().option }).replace('\"', '\'')
-//    val size = plots.size
-//    return createHTML().html {
-//        head {
-//            meta {
-//                charset = "utf-8"
-//            }
-//            title("MY BEAUTIFUL PLOT")
-//            script {
-//                type = "text/javascript"
-//                src = ECHARTS_SRC
-//            }
-//        }
-//        body {
-//            div {
-//                id = "main" // TODO!!!
-//                style = "width: 1000px;height:800px;background: white"
-//            }
-//            script {
-//                type = "text/javascript"
-//                unsafe {
-//                    +("""
-//                        var myChart = echarts.init(document.getElementById('main'));
-//                        var options = $encodedPlots;
-//                        var option = options[0];
-//                        myChart.setOption(option);
-//                        var maxStates = $size;
-//                        var nextState = 1 % maxStates;
-//                        setInterval(function () {
-//                            option = options[nextState];
-//                            nextState = (nextState + 1) % maxStates;
-//                            myChart.setOption(option, true);
-//                        }, $interval);
-//                        """.trimIndent()
-//                        )
-//                }
-//            }
-//        }
-//
-//    }
-//}
+public fun PlotChangeAnimation.toHTML(): String {
+    val encoder = Json {
+        explicitNulls = false
+        encodeDefaults = true
+    }
 
+    val encodedPlots = encoder.encodeToString(plots.map { it.toOption() }).replace('\"', '\'')
+    val size = plots.size
+    return createHTML().html {
+        head {
+            meta {
+                charset = "utf-8"
+            }
+            script {
+                type = "text/javascript"
+                src = ECHARTS_SRC
+            }
+        }
+        body {
+            div {
+                id = "main"
+                style = "width: 1000px;height:800px;background: white"
+            }
+            script {
+                type = "text/javascript"
+                unsafe {
+                    +("""
+                        var myChart = echarts.init(document.getElementById('main'));
+                        var options = $encodedPlots;
+                        var option = options[0];
+                        myChart.setOption(option);
+                        var maxStates = $size;
+                        var nextState = 1 % maxStates;
+                        setInterval(function () {
+                            option = options[nextState];
+                            nextState = (nextState + 1) % maxStates;
+                            myChart.setOption(option, true);
+                        }, $interval);
+                        """.trimIndent()
+                        )
+                }
+            }
+        }
 
+    }
+}
