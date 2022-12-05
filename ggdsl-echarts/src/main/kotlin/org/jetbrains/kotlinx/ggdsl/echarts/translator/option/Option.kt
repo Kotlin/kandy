@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.Series
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.TextStyle
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Tooltip
@@ -40,6 +41,7 @@ public data class Option(
     val animationDuration: Int? = null,
     val animationEasing: String? = null,
     val animationDelay: Int? = null,
+    @Transient val plotSize: Pair<Int, Int> = 800 to 600
 //    val animationDurationUpdate: Int,
 //    val animationEasingUpdate: String,
 //    val animationDelayUpdate: 0,
