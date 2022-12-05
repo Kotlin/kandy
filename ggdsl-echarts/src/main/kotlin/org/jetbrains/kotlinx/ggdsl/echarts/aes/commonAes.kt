@@ -4,12 +4,12 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.aes
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.dsl.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.NonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.ScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
@@ -47,4 +47,10 @@ internal val COLOR: AesName = AesName("color")
 
 public data class ColorAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
     override val name: AesName = COLOR
+}
+
+internal val ALPHA: AesName = AesName("line_alpha")
+
+public data class AlphaAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+    override val name: AesName = ALPHA
 }

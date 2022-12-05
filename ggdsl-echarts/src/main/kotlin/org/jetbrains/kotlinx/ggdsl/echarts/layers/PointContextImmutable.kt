@@ -11,4 +11,5 @@ public class PointContextImmutable(parent: LayerCollectorContextImmutable) : Ech
     public val color: ColorAes = ColorAes(this)
     public val symbol: SymbolAes = SymbolAes(this)
     public val size: SizeAes = SizeAes(this)
+    public val alpha: AlphaAes = AlphaAes(this)
 }
