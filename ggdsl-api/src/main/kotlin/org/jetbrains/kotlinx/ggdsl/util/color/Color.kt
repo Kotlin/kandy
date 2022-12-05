@@ -12,41 +12,12 @@ import kotlin.math.roundToInt
  */
 public sealed interface Color {
 
-    @Serializable
-    public data class RGB internal constructor(val r: Int, val g: Int, val b: Int) : Color {
-        public fun toRGBA(a: Double = 1.0): RGBA = RGBA(this.copy(), a)
-        public fun toHex(): Hex = Hex(
-            String.format("#%02X%02X%02X", r, g, b)
-        )
-    }
-
-    @Serializable
-    public data class RGBA internal constructor(val rgb: RGB, val a: Double) : Color {
-        public fun toRGB(): RGB = rgb.copy()
-        public fun toHex(): Hex = Hex(
-            buildString {
-                append(rgb.toHex())
-                append(((a * 255).roundToInt() or (1 shr 8)).toString(16))
-            }
-        )
-    }
-
-    @Serializable
-    public data class Named internal constructor(val name: String) : Color
-
-    @Serializable
-    public data class Hex internal constructor(val hex: String) : Color
-
-    //public data class HexA internal constructor(val hexA: String) : Color
-
-
     public companion object {
-        public fun rgb(r: Int, g: Int, b: Int): RGB = RGB(r, g, b)
+        public fun rgb(r: Int, g: Int, b: Int): StandardColor.RGB = StandardColor.RGB(r, g, b)
         public fun rgba(r: Int, g: Int, b: Int, a: Double): RGBA = RGBA(RGB(r, g, b), a)
         public fun named(name: String): Named = Named(name)
         public fun hex(hexString: String): Hex = Hex(hexString)
         public fun hex(hexInt: Int): Hex = Hex('#' + hexInt.toString(16))
-        //public fun hexA(hexAString: String): HexA = HexA(hexAString)
 
         public val RED: Hex = Hex("#ee6666")
         public val BLUE: Hex = Hex("#5470c6")

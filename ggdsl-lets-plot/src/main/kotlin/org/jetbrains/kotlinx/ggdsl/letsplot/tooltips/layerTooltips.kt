@@ -110,13 +110,8 @@ public class LayerTooltipsContext {
     }
 
     /**
-<<<<<<< HEAD
      * Adds standard line for given [ColumnPointer]
-     * (name of source on the left side and corresponding value on the right side).
-=======
-     * Adds standard line for given [DataSource]
-     * (name of the source on the left side and corresponding value on the right side).
->>>>>>> main
+     * (name of the column on the left side and the corresponding value on the right side).
      *
      * @param source [ColumnPointer]
      */
@@ -128,7 +123,7 @@ public class LayerTooltipsContext {
 
     /**
      * Adds standard line for given aesthetic attribute
-     * (name of a source mapped oh this aes on the left side and corresponding value on the right side).
+     * (name of the column mapped oh this aes on the left side and the corresponding value on the right side).
      *
      * @param aes aesthetic attribute
      */
@@ -138,9 +133,9 @@ public class LayerTooltipsContext {
 
     /**
      * Adds standard line for given statistics
-     * (name of a source mapped oh this aes on the left side and corresponding value on the right side).
+     * (name of the source mapped oh this aes on the left side and the corresponding value on the right side).
      *
-     * @param stat statistics
+     * @param stat a statistic to display
      */
     public fun line(stat: Statistic<*>) {
         lineBuffer.add("${stat.id.drop(2).dropLast(2)}|@${stat.id}")
