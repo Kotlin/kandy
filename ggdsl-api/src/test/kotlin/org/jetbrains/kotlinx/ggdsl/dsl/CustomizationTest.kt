@@ -118,9 +118,9 @@ internal class CustomizationTest {
                                 SPECIFIC_AES,
                                 ColumnScaledNonPositional(
                                     mockSrcString,
-                                    NonPositionalCategoricalScale(
-                                        listOf("A", "B"),
-                                        listOf(CustomGeomType("x"), CustomGeomType("xxx"))
+                                    NonPositionalCategoricalScale<String, CustomGeomType>(
+                                        listOf("A", "B").typedList(),
+                                        listOf(CustomGeomType("x"), CustomGeomType("xxx")).typedList()
                                     )
                                 ),
                                 typeOf<String>(),
@@ -146,9 +146,9 @@ internal class CustomizationTest {
                             )
                         ),
                         mapOf(
-                            SPECIFIC_AES to NonPositionalSetting(
+                            SPECIFIC_AES to NonPositionalSetting<CustomGeomType>(
                                 SPECIFIC_AES,
-                                CustomGeomType("yy")
+                                CustomGeomType("yy").typed()
                             )
                         ),
                         mapOf()

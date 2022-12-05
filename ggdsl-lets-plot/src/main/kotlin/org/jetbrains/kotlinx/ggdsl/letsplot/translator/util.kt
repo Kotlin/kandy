@@ -4,16 +4,20 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.SimpleValueWrapper
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
+import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
 internal fun Color.wrap(): String {
     return when(this) {
-        is Color.Hex -> hex
-        is Color.Named -> name
-        is Color.RGB -> toHex().hex
-        is Color.RGBA -> TODO()
+        is StandardColor.Hex -> hexString
+        is StandardColor.Named -> name
+        is StandardColor.RGB -> hexString
+        is StandardColor.RGBA -> TODO()
         else -> TODO()
     }
 }
+
+internal fun TypedValue.wrap(): Any = wrapValue(value)
 
 // TODO
 internal fun wrapValue(value: Any): Any {
@@ -26,7 +30,6 @@ internal fun wrapValue(value: Any): Any {
     if (value is Color) {
         return value.wrap()
     }
-
     if (value is Symbol) {
         return value.shape
     }
@@ -37,4 +40,4 @@ internal fun wrapValue(value: Any): Any {
 }
 
 // TODO
-internal fun Pair<Any, Any>?.wrap() = this?.let { (it.first as Number) to (it.second as Number) }
+internal fun  Pair<TypedValue, TypedValue>?.wrap() = this?.let { (it.first.value as Number) to (it.second.value as Number) }

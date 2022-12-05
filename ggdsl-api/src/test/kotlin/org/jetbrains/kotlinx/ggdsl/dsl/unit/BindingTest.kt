@@ -7,6 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.dsl.unit
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingCollector
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -63,7 +64,7 @@ internal class BindingTest {
             mockAesDoubleNonPos(valueDouble)
         }
         assertEquals(
-            mapOf(MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting(MOCK_AES_DOUBLE_NON_POS, valueDouble)),
+            mapOf(MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting<Double>(MOCK_AES_DOUBLE_NON_POS, valueDouble.typed())),
             context.bindingCollector.settings.toMap()
         )
 
@@ -74,8 +75,8 @@ internal class BindingTest {
         }
         assertEquals(
             mapOf(
-                MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting(MOCK_AES_DOUBLE_NON_POS, valueDouble),
-                MOCK_AES_STRING_MAP_NON_POS to NonPositionalSetting(MOCK_AES_STRING_MAP_NON_POS, valueString)
+                MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting<Double>(MOCK_AES_DOUBLE_NON_POS, valueDouble.typed()),
+                MOCK_AES_STRING_MAP_NON_POS to NonPositionalSetting<Double>(MOCK_AES_STRING_MAP_NON_POS, valueString.typed())
             ),
             context.bindingCollector.settings.toMap()
         )

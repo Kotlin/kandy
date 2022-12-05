@@ -72,17 +72,17 @@ internal fun Scale.wrap(
                 is PositionalCategoricalScale<*> -> {
                     when (aesName) {
                         X -> scaleXDiscrete(
-                            limits = categories,
+                            limits = categories?.values,
                             name = name,
-                            breaks = breaks,
+                            breaks = breaks?.values,
                             labels = labels,
                             format = format
                         )
 
                         Y -> scaleYDiscrete(
-                            limits = categories,
+                            limits = categories?.values,
                             name = name,
-                            breaks = breaks,
+                            breaks = breaks?.values,
                             labels = labels,
                             format = format
                         )
@@ -97,7 +97,7 @@ internal fun Scale.wrap(
                             scaleXContinuous(
                                 limits = limits.wrap(),
                                 name = name,
-                                breaks = breaks?.map { it as Number }, // TODO() }
+                                breaks = breaks?.values?.map { it as Number }, // TODO() }
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
                                 format = format
@@ -106,7 +106,7 @@ internal fun Scale.wrap(
                             scaleXDateTime(
                                 limits = limits.wrap(),
                                 name = name,
-                                breaks = breaks,
+                                breaks = breaks?.values,
                                 labels = labels,
                                 format = format
                             )
@@ -116,7 +116,7 @@ internal fun Scale.wrap(
                             scaleYContinuous(
                                 limits = limits.wrap(),
                                 name = name,
-                                breaks = breaks?.map { it as Number }, // TODO() }
+                                breaks = breaks?.values?.map { it as Number }, // TODO() }
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
                                 format = format
@@ -125,7 +125,7 @@ internal fun Scale.wrap(
                             scaleYDateTime(
                                 limits = limits.wrap(),
                                 name = name,
-                                breaks = breaks,
+                                breaks = breaks?.values,
                                 labels = labels,
                                 format = format
                             )
@@ -168,8 +168,8 @@ internal fun Scale.wrap(
                     when (aesName) {
                         // todo check all
                         SIZE/*, WIDTH, STROKE*/ -> scaleSizeManual(
-                            values = rangeValues?.map { it as Number } ?: TODO("default scale size discrete"),
-                            limits = domainCategories,
+                            values = rangeValues?.values?.map { it as Number } ?: TODO("default scale size discrete"),
+                            limits = domainCategories?.values,
                             name = name,
                             breaks = breaks,
                             labels = labels,
@@ -181,7 +181,7 @@ internal fun Scale.wrap(
                         COLOR -> {
                             if (rangeValues == null) {
                                 scaleColorDiscrete(
-                                    limits = domainCategories,
+                                    limits = domainCategories?.values,
                                     name = name,
                                     breaks = breaks,
                                     labels = labels,
@@ -191,8 +191,8 @@ internal fun Scale.wrap(
                                 )
                             } else {
                                 scaleColorManual(
-                                    limits = domainCategories,
-                                    values = rangeValues!!.map { (it as Color).wrap() },
+                                    limits = domainCategories?.values,
+                                    values = rangeValues!!.values.map { (it as Color).wrap() }, //todo
                                     name = name,
                                     breaks = breaks,
                                     labels = labels,
@@ -206,7 +206,7 @@ internal fun Scale.wrap(
                         FILL -> {
                             if (rangeValues == null) {
                                 scaleFillDiscrete(
-                                    limits = domainCategories,
+                                    limits = domainCategories?.values,
                                     name = name,
                                     breaks = breaks,
                                     labels = labels,
@@ -216,8 +216,8 @@ internal fun Scale.wrap(
                                 )
                             } else {
                                 scaleFillManual(
-                                    limits = domainCategories,
-                                    values = rangeValues!!.map { (it as Color).wrap() },
+                                    limits = domainCategories?.values,
+                                    values = rangeValues!!.values.map { (it as Color).wrap() },
                                     name = name,
                                     breaks = breaks,
                                     labels = labels,
@@ -229,8 +229,8 @@ internal fun Scale.wrap(
                         }
                         // TODO
                         ALPHA -> scaleAlphaManual(
-                            limits = domainCategories,
-                            values = rangeValues?.map { it as Double } ?: TODO("default scale alpha discrete"),
+                            limits = domainCategories?.values,
+                            values = rangeValues?.values?.map { it as Double } ?: TODO("default scale alpha discrete"),
 
                             name = name,
                             breaks = breaks,
@@ -241,8 +241,8 @@ internal fun Scale.wrap(
                         )
 
                         LINE_TYPE -> scaleLinetypeManual(
-                            limits = domainCategories,
-                            values = rangeValues?.map { (it as LineType).codeNumber }
+                            limits = domainCategories?.values,
+                            values = rangeValues?.values?.map { (it as LineType).codeNumber }
                                 ?: TODO("default scale alpha discrete"),
 
                             name = name,
@@ -255,8 +255,7 @@ internal fun Scale.wrap(
 
                         SHAPE -> if (rangeValues == null) {
                             scaleShape(
-                                limits = domainCategories,
-
+                                limits = domainCategories?.values,
                                 name = name,
                                 breaks = breaks,
                                 labels = labels,
@@ -265,8 +264,8 @@ internal fun Scale.wrap(
                             )
                         } else {
                             scaleShapeManual(
-                                limits = domainCategories,
-                                values = rangeValues!!.map { (it as Symbol).shape },
+                                limits = domainCategories?.values,
+                                values = rangeValues!!.values.map { (it as Symbol).shape },
 
                                 name = name,
                                 breaks = breaks,
@@ -567,7 +566,7 @@ internal fun Scale.wrap(
                             X -> scaleXDateTime(
                                 //  limits = limits.toLP(),
                                 name = name,
-                                breaks = breaks?.map { it as Number }, // TODO() }
+                                breaks = breaks?.values?.map { it as Number }, // TODO() }
                                 labels = labels,
                                 //   trans = (transform as? Transformation)?.name,
                                 format = format
@@ -576,7 +575,7 @@ internal fun Scale.wrap(
                             Y -> scaleYDateTime(
                                 //limits = categories,
                                 name = name,
-                                breaks = breaks,
+                                breaks = breaks?.values,
                                 labels = labels,
                                 format = format
                             )
@@ -586,15 +585,15 @@ internal fun Scale.wrap(
                     }
                     when (this) {
                         PositionalCategoricalUnspecifiedScale -> when (aesName) {
-                            X -> scaleXDiscrete(name = name, breaks = breaks, labels = labels, format = format)
-                            Y -> scaleYDiscrete(name = name, breaks = breaks, labels = labels, format = format)
+                            X -> scaleXDiscrete(name = name, breaks = breaks?.values, labels = labels, format = format)
+                            Y -> scaleYDiscrete(name = name, breaks = breaks?.values, labels = labels, format = format)
                             else -> TODO()
                         }
 
                         is PositionalContinuousUnspecifiedScale -> when (aesName) {
                             X -> scaleXContinuous(
                                 name = name,
-                                breaks = breaks?.map { it as Number },
+                                breaks = breaks?.values?.map { it as Number },
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
                                 format = format
@@ -602,7 +601,7 @@ internal fun Scale.wrap(
 
                             Y -> scaleYContinuous(
                                 name = name,
-                                breaks = breaks?.map { it as Number },
+                                breaks = breaks?.values?.map { it as Number },
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
                                 format = format

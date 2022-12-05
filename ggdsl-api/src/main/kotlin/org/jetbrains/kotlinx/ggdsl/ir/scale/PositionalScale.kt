@@ -5,6 +5,8 @@
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
+import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
 /**
  * Positional scale interface. Positional scale is used in case
@@ -23,7 +25,7 @@ public sealed interface PositionalScale<DomainType : Any> : Scale
  */
 @Serializable
 public data class PositionalContinuousScale<DomainType : Any>(
-    val limits: Pair<DomainType, DomainType>? = null,
+    val limits: Pair<TypedValue, TypedValue>? = null,
     override val transform: PositionalTransform? = null,
 ) : ContinuousScale, PositionalScale<DomainType>
 
@@ -35,5 +37,5 @@ public data class PositionalContinuousScale<DomainType : Any>(
  */
 @Serializable
 public data class PositionalCategoricalScale<DomainType : Any>(
-    val categories: List<DomainType>? = null,
+    val categories: TypedList? = null,
 ) : CategoricalScale, PositionalScale<DomainType>

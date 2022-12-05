@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import kotlin.reflect.typeOf
@@ -13,8 +14,8 @@ import kotlin.reflect.typeOf
  *
  * @param value the assigned value.
  */
-public operator fun <T : Any> NonPositionalAes<T>.invoke(value: T) {
-    context.bindingCollector.settings[this.name] = NonPositionalSetting(this.name, value)
+public inline operator fun <reified T : Any> NonPositionalAes<T>.invoke(value: T) {
+    context.bindingCollector.settings[this.name] = NonPositionalSetting<T>(this.name, value.typed())
 }
 
 /**
@@ -22,8 +23,8 @@ public operator fun <T : Any> NonPositionalAes<T>.invoke(value: T) {
  *
  * @param value the assigned value.
  */
-public operator fun <T : Number> PositionalAes.invoke(value: T) {
-    context.bindingCollector.settings[this.name] = PositionalSetting(this.name, value)
+public inline operator fun <reified T : Number> PositionalAes.invoke(value: T) {
+    context.bindingCollector.settings[this.name] = PositionalSetting<T>(this.name, value.typed())
 }
 
 /**
