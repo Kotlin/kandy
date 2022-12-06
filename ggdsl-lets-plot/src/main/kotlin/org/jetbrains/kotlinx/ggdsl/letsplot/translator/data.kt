@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.letsplot.MERGED_GROUPS
+import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.ExperimentalTime
@@ -46,6 +47,14 @@ internal object DateTimeMaster {
     }
 }
 
+internal fun TableData.columnTypes(): Map<String, KType> {
+    return (when (this) {
+        is NamedDataInterface -> nameToValues.map { it.key to it.value.kType }.toMap()
+        is LazyGroupedDataInterface -> origin.nameToValues.map { it.key to it.value.kType }.toMap() + (MERGED_GROUPS to typeOf<String>())
+        is CountedGroupedDataInterface -> toLazy().origin.nameToValues.map { it.key to it.value.kType }.toMap()
+        else -> TODO()
+    })
+}
 
 
 internal fun TableData.wrap(): Map<String, List<Any>> {

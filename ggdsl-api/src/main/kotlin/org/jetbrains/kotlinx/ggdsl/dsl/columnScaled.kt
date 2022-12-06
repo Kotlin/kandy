@@ -36,7 +36,8 @@ public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(scale: Positional
  * @return scaled source
  */
 
-public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): ColumnScaledNonPositionalUnspecified<DomainType> =
+public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(scale: NonPositionalUnspecifiedScale):
+        ColumnScaledNonPositionalUnspecified<DomainType> =
     ColumnScaledNonPositionalUnspecified(this, scale)
 
 /**

@@ -36,25 +36,25 @@ public fun LayerTooltipsContext.line(column: ColumnReference<*>) {
 
 public inline fun LayerContextInterface.tooltips(
     columns: List<ColumnReference<*>> = listOf(),
-    variablesDS: List<ColumnPointer<*>> = listOf(),
+  //  variablesDS: List<ColumnPointer<*>> = listOf(),
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
     hide: Boolean = false,
-    dsFormats: Map<ColumnPointer<*>, String> = mapOf(),
+  //  dsFormats: Map<ColumnPointer<*>, String> = mapOf(),
     columnsFormats: Map<ColumnReference<*>, String> = mapOf(),
     aesFormats: Map<Aes, String> = mapOf(),
     statFormats: Map<Statistic<*>, String> = mapOf(),
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
-        columns.map { it.name() } + variablesDS.map { it.name },
+        columns.map { it.name() } /*+ variablesDS.map { it.name }*/,
         title,
         anchor,
         minWidth,
         hide,
-        dsFormats.map { it.key.name to it.value }
-            + columnsFormats.map { it.key.name() to it.value }
+        /*dsFormats.map { it.key.name to it.value }
+            +*/ columnsFormats.map { it.key.name() to it.value }
             + aesFormats.map { "^" + it.key.name.name to it.value }
             + statFormats.map { it.key.id to it.value },
         LayerTooltipsContext().apply(tooltipsContextAction)

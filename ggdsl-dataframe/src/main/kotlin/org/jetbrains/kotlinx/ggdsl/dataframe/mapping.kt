@@ -5,6 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnPointer
 import org.jetbrains.kotlinx.ggdsl.dsl.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.NonScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.ScalablePositionalAes

@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.categorical
-import org.jetbrains.kotlinx.ggdsl.dsl.invoke
+import org.jetbrains.kotlinx.ggdsl.dsl.column.invoke
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -33,6 +33,7 @@ import org.jetbrains.letsPlot.pos.*
 import org.jetbrains.letsPlot.tooltips.TooltipOptions
 import org.jetbrains.letsPlot.tooltips.layerTooltips
 import org.jetbrains.letsPlot.tooltips.tooltipsNone
+import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 internal fun FacetGridFeature.wrap(): OptionsMap {
@@ -75,7 +76,7 @@ internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
     }
 }
 
-internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
+internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>, columnTypes: Map<String, KType>) {
     if (this is ExternalLetsPlotFeature) {
         featureBuffer += wrap()
         return
@@ -101,7 +102,7 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
 
         GatheringList.FEATURE_NAME -> {
             (this as GatheringList).gatheringList.forEach {
-                it.toLayer().wrap(featureBuffer, false)
+                it.toLayer().wrap(featureBuffer, false, columnTypes)
             }
         }
 

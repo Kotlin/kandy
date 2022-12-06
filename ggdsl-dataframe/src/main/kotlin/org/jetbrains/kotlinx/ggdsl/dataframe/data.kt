@@ -6,16 +6,16 @@ package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
+import org.jetbrains.kotlinx.dataframe.columns.ColumnAccessor
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.dataframe.values
+import org.jetbrains.kotlinx.ggdsl.dsl.column.invoke
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.GroupedDataSubContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.data.*
 
-// todo internal?
-public fun <T : Any> ColumnReference<T>.toColumnPointer(): ColumnPointer<T> {
-    return ColumnPointer(name())
-}
+public inline operator fun <reified T : Any> String.invoke(): ColumnReference<T> =
+    column(this)
 
 @Suppress("UNCHECKED_CAST")
 public fun DataFrame<*>.toTypedDataMap(): Map<String, TypedList> {
