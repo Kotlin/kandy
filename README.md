@@ -17,13 +17,7 @@ by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Gra
 * [Modules](#modules)
 * [Using in your projects](#using-in-your-projects)
     * [Gradle](#gradle)
-        * [Using the `plugins` block](#using-the-plugins-block)
-        * [Using `apply plugin` (the old way)](#using-apply-plugin-the-old-way)
-        * [Dependency on the JSON library](#dependency-on-the-json-library)
-    * [Android](#android)
-    * [Multiplatform (Common, JS, Native)](#multiplatform-common-js-native)
-    * [Maven](#maven)
-    * [Bazel](#bazel)
+    * [Kotlin Jupyter Notebook](#kotlin-jupyter-notebook)
 
 <!--- END -->
 
