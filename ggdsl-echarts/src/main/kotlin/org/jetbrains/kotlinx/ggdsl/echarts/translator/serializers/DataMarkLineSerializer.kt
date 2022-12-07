@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.mar
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.DataMarkPoint
 
 @OptIn(kotlinx.serialization.ExperimentalSerializationApi::class)
-public object DataMarkLineSerializer : KSerializer<DataMarkLine> {
+internal object DataMarkLineSerializer : KSerializer<DataMarkLine> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("DataMarkLine") {
         element<String>("name")
         element<String>("type")

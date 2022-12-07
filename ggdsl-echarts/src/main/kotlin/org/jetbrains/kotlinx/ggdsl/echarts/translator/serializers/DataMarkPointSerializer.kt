@@ -11,7 +11,7 @@ import kotlinx.serialization.encoding.encodeStructure
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.DataMarkPoint
 
 @OptIn(ExperimentalSerializationApi::class)
-public object DataMarkPointSerializer : KSerializer<DataMarkPoint> {
+internal object DataMarkPointSerializer : KSerializer<DataMarkPoint> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("DataMarkPoint") {
         element<String>("name")
         element<String>("type")
