@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.*
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.TextStyle
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.EchartsTextStyle
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.RangeSerializer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -99,7 +99,7 @@ internal data class ContinuousVisualMap(
     val borderColor: EchartsColor? = null,
     val borderWidth: Int? = null,
     val color: List<EchartsColor>? = null,
-    val textStyle: TextStyle? = null,
+    val textStyle: EchartsTextStyle? = null,
     val formatter: String? = null,
     val handleIcon: String? = null,
     val handleSize: String? = null,
@@ -150,6 +150,6 @@ internal data class PiecewiseVisualMap(
     val borderColor: EchartsColor? = null,
     val borderWidth: Int? = null,
     val color: List<EchartsColor>? = null,
-    val textStyle: TextStyle? = null,
+    val textStyle: EchartsTextStyle? = null,
     val formatter: String? = null
 ) : VisualMap

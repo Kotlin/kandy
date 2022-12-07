@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsColor
 
 @Serializable
-internal data class TextStyle(
+internal data class EchartsTextStyle(
     val color: EchartsColor? = null,
     val fontStyle: String? = null,
     val fontWeight: String? = null,

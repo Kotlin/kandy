@@ -3,12 +3,12 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.Series
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.TextStyle
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.EchartsTextStyle
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Tooltip
 
 @Serializable
 internal data class Option(
-    val title: Title? = null,
+    val title: EchartsTitle? = null,
     val legend: Legend? = null,
     val grid: Grid? = null,
     val xAxis: Axis? = null,
@@ -35,7 +35,7 @@ internal data class Option(
 //    val darkMode: Boolean,
 //    val color: Color,
 //    val backgroundColor: Color,
-    val textStyle: TextStyle? = null,
+    val textStyle: EchartsTextStyle? = null,
     val animation: Boolean? = null,
     val animationThreshold: Int? = null,
     val animationDuration: Int? = null,
