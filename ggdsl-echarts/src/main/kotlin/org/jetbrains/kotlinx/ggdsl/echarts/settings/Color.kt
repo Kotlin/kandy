@@ -4,8 +4,11 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.color.CustomColor
 
-private fun List<Color>.toColorStops(): List<ColorStop> = List(size) {
-    ColorStop(it * (1.0 / (size - 1.0)), this[it].toEchartsColor())
+private fun List<Color>.toColorStops(): List<ColorStop> {
+    require(size > 1) { "size must be greater than 1" }
+    return List(size) {
+        ColorStop(it * (1.0 / (size - 1.0)), this[it].toEchartsColor())
+    }
 }
 
 public class LinearGradient private constructor(
