@@ -46,7 +46,7 @@ internal object DateTimeMaster {
         }.toMap()
     }
 }
-
+/*
 internal fun TableData.columnTypes(): Map<String, KType> {
     return (when (this) {
         is NamedDataInterface -> nameToValues.map { it.key to it.value.kType }.toMap()
@@ -55,6 +55,8 @@ internal fun TableData.columnTypes(): Map<String, KType> {
         else -> TODO()
     })
 }
+
+ */
 
 
 internal fun TableData.wrap(): Map<String, List<Any>> {

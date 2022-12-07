@@ -61,7 +61,6 @@ public object TypedValueSerializer : KSerializer<TypedValue> {
 
 }
 
-// I don't understand what's wrong with that
 @Serializable(TypedValueSerializer::class)
 public data class TypedValue(
     val kType: KType,

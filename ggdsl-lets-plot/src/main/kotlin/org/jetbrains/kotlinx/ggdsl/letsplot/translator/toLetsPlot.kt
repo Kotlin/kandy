@@ -11,15 +11,10 @@ import org.jetbrains.letsPlot.intern.FeatureList
 import org.jetbrains.letsPlot.letsPlot
 
 public fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
-    val columnTypes = dataset.columnTypes()
     val featureBuffer = buildList {
-        layers.forEach { it.wrap(this, dataset is GroupedDataInterface, if (it.dataset == null) {
-            columnTypes
-        } else {
-            null
-        }) }
+        layers.forEach { it.wrap(this, dataset is GroupedDataInterface) }
         freeScales.forEach { it.value.wrap(this) }
-        features.forEach { it.value.wrap(this, columnTypes) }
+        features.forEach { it.value.wrap(this) }
         //  (layout as? LetsPlotLayout)?.wrap(this) // todo
     }
     return letsPlot(dataset.wrap()) + FeatureList(featureBuffer)

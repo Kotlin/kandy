@@ -76,7 +76,7 @@ internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
     }
 }
 
-internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>, columnTypes: Map<String, KType>) {
+internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
     if (this is ExternalLetsPlotFeature) {
         featureBuffer += wrap()
         return
@@ -102,7 +102,7 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>, columnTypes: 
 
         GatheringList.FEATURE_NAME -> {
             (this as GatheringList).gatheringList.forEach {
-                it.toLayer().wrap(featureBuffer, false, columnTypes)
+                it.toLayer().wrap(featureBuffer, false)
             }
         }
 

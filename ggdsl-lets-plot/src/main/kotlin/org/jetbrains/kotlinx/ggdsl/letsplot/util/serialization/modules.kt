@@ -14,16 +14,13 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
-import org.jetbrains.kotlinx.ggdsl.letsplot.scales.LetsPlotScaleParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.NonPositionalParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.PositionalParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.Transformation
-import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Legend
-import org.jetbrains.kotlinx.ggdsl.letsplot.series.Gathering
 import org.jetbrains.kotlinx.ggdsl.letsplot.series.GatheringList
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
 
-public val modules: SerializersModule
+public val letsPlotModules: SerializersModule
     get() = SerializersModule() {
         polymorphic(PlotFeature::class) {
             subclass(FacetGridFeature::class)
