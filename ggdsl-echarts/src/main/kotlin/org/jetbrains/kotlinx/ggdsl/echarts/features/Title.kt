@@ -2,15 +2,11 @@ package org.jetbrains.kotlinx.ggdsl.echarts.features
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyleFeature
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.EChartsLayout
-import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
-import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyle
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsTitle
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.toEchartsColor
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-
-public inline fun EChartsLayout.title(crossinline block: TitleFeature.() -> Unit) {
-    this.titleFeature = TitleFeature().apply(block)
-}
+import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
 @Serializable
 public enum class TextAlign(public val align: String) {
@@ -18,30 +14,28 @@ public enum class TextAlign(public val align: String) {
 }
 
 @PlotDslMarker
-public class TitleFeature(
+public class Title(
     public var text: String? = null,
     public var subtext: String? = null,
     public var align: TextAlign? = null,
     public var verticalAlign: TextAlign? = null,
     public var backgroundColor: Color? = null,
     public var borderColor: Color? = null,
-    public var borderWidth: Int? = null
-) : PlotFeature {
-    override val featureName: FeatureName = FEATURE_NAME
+    public var borderWidth: Int? = null,
+    public var textStyle: TextStyle = TextStyle(),
+    public var subtextStyle: TextStyle = TextStyle()
+) : SelfInvocationContext {
 
-    internal var textStyle: TextStyleFeature? = null
-
-    internal var subtextStyle: TextStyleFeature? = null
-
-    public fun textStyle(body: TextStyleFeature.() -> Unit) {
-        textStyle = TextStyleFeature().apply(body)
-    }
-
-    public fun subtextStyle(body: TextStyleFeature.() -> Unit) {
-        subtextStyle = TextStyleFeature().apply(body)
-    }
-
-    public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("TITLE_PLOT_FEATURE")
-    }
+    internal fun toEchartsTitle(): EchartsTitle? =
+        EchartsTitle(
+            text = text,
+            textStyle = textStyle.toTextStyle(),
+            subtext = subtext,
+            subtextStyle = subtextStyle.toTextStyle(),
+            textAlign = align?.align,
+            textVerticalAlign = verticalAlign?.align,
+            backgroundColor = backgroundColor?.toEchartsColor(),
+            borderColor = borderColor?.toEchartsColor(),
+            borderWidth = borderWidth
+        ).takeIf { !it.isEmpty() }
 }

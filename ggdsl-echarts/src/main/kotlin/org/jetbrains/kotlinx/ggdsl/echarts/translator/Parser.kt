@@ -117,20 +117,7 @@ internal class Parser(plot: Plot) {
             )
         }
 
-        val title = layout?.titleFeature?.let {
-            Title(
-                text = it.text,
-                textStyle = it.textStyle?.toTextStyle(),
-                subtext = it.subtext,
-                subtextStyle = it.subtextStyle?.toTextStyle(),
-                textAlign = it.align?.align,
-                textVerticalAlign = it.verticalAlign?.align,
-                backgroundColor = it.backgroundColor?.toEchartsColor(),
-                borderColor = it.borderColor?.toEchartsColor(),
-                borderWidth = it.borderWidth
-            )
-        }
-
+        val title = layout?.title?.toEchartsTitle()
         val textStyle = layout?.textStyle?.toTextStyle()
 
         val animation = (features[AnimationPlotFeature.FEATURE_NAME] as? AnimationPlotFeature)
