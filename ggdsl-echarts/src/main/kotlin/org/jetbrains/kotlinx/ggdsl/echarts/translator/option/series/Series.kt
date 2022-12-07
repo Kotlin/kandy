@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.EchartsMarkLine
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.EchartsMarkPoint
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.MarkArea
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.EchartsMarkArea
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.SeriesSerializer
 
 @Serializable(with = SeriesSerializer::class)
@@ -26,7 +26,7 @@ internal sealed class Series {
     abstract val data: List<List<String>>? // TODO!!! Data
     abstract val markPoint: EchartsMarkPoint?
     abstract val markLine: EchartsMarkLine?
-    abstract val markArea: MarkArea?
+    abstract val markArea: EchartsMarkArea?
     abstract val zlevel: Int?
     abstract val z: Int?
     abstract val silent: Boolean?

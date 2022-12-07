@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkPoint
 import org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkPointFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Blur
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Emphasis
@@ -16,6 +17,19 @@ internal fun Map<FeatureName, LayerFeature>.getEchartsMarkPoint(): EchartsMarkPo
     }
 
     return EchartsMarkPoint(data = dataMarkPoints).takeIf { dataMarkPoints != null }
+}
+
+internal fun MarkPoint.toDataMarkPoint(otherName: String? = null): DataMarkPoint {
+    val (x1, xAxis1) = if (x == "max" || x == "min" || x == "average")
+        null to x
+    else
+        x to null
+    val (y1, yAxis1) = if (y == "max" || y == "min" || y == "average")
+        null to y
+    else
+        y to null
+
+    return DataMarkPoint(otherName ?: name, type?.type, valueMP, coord?.toList(), x1, y1, xAxis1, yAxis1)
 }
 
 @Serializable(with = DataMarkPointSerializer::class)

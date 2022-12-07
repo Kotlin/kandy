@@ -1,8 +1,10 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.features.marks
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
+@PlotDslMarker
 public class MarkPointFeature(
     public var points: List<MarkPoint>? = null
 ) : LayerFeature {
