@@ -88,7 +88,7 @@ internal class Parser(plot: Plot) {
         }
 
         val headersOfData = source.keys.toList()
-        val datasetSource = listOf(headersOfData) + List(source.values.first().size) { i ->
+        val datasetSource = listOf(headersOfData) + List(source.values.firstOrNull()?.size ?: 0) { i ->
             List(headersOfData.size) { j ->
                 source[headersOfData[j]]?.get(i).toString()
             }
@@ -202,10 +202,15 @@ internal class Parser(plot: Plot) {
     }
 
     private fun Layer.toSeries(): Series {
-        val x = (this.mappings[X] as ScaledMapping<*>).getId()
-        val y = (this.mappings[Y] as ScaledMapping<*>).getId()
+        val x = (this.mappings[X] as? ScaledMapping<*>)?.getId()
+        val y = (this.mappings[Y] as? ScaledMapping<*>)?.getId()
         val encode = Encode(x, y)
-        val name = settings.getNPSValue(NAME) ?: "$x $y"
+        val name = settings.getNPSValue(NAME) ?: when {
+            x != null && y != null -> "$x $y"
+            x == null && y != null -> y
+            x != null && y == null -> x
+            else -> null
+        }
 
         return when (geom) {
             LINE -> this.toLineSeries(name, encode)
@@ -217,6 +222,5 @@ internal class Parser(plot: Plot) {
             BOXPLOT -> this.toBoxplotSeries(name, encode)
             else -> TODO("exception?")
         }
-
     }
 }
