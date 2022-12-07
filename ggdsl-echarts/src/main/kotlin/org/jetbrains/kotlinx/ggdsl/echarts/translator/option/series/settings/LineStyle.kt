@@ -38,7 +38,7 @@ internal fun Map<AesName, Setting>.getLineStyle(): LineStyle? {
 }
 
 @Serializable
-public data class LineStyle(
+internal data class LineStyle(
     val color: EchartsColor? = null,
     val width: Double? = null,
     val type: String? = null,

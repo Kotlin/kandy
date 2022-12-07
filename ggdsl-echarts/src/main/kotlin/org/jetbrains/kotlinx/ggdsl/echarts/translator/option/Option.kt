@@ -7,7 +7,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Tex
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Tooltip
 
 @Serializable
-public data class Option(
+internal data class Option(
     val title: Title? = null,
     val legend: Legend? = null,
     val grid: Grid? = null,

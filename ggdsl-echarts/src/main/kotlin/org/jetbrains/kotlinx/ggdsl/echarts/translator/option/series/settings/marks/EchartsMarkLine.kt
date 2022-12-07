@@ -69,7 +69,7 @@ internal fun Map<FeatureName, LayerFeature>.getEchartsMarkLine(): EchartsMarkLin
 }
 
 @Serializable(with = DataMarkLineSerializer::class)
-public data class DataMarkLine(
+internal data class DataMarkLine(
     val name: String? = null,
     val type: String? = null,
     val xAxis: Double? = null,
@@ -78,7 +78,7 @@ public data class DataMarkLine(
 )
 
 @Serializable
-public data class EchartsMarkLine(
+internal data class EchartsMarkLine(
     val silent: Boolean? = null,
     val symbol: String? = null,
     val symbolSize: Int? = null,

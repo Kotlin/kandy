@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsColor
 
 @Serializable
-public data class Label(
+internal data class Label(
     val show: Boolean? = null,
     val position: String? = null, // TODO (string array)
     val distance: Int? = null,

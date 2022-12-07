@@ -21,7 +21,7 @@ internal fun Map<AesName, Setting>.getAreaStyle(): AreaStyle {
 }
 
 @Serializable
-public data class AreaStyle(
+internal data class AreaStyle(
     val color: EchartsColor? = null,
     val origin: String? = null,
     val shadowBlur: Int? = null,

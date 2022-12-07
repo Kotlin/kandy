@@ -5,39 +5,46 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-public enum class Position {
+internal enum class Position {
     @SerialName("top")
     TOP,
+
     @SerialName("bottom")
     BOTTOM
 }
 
 @Serializable
-public enum class AxisType {
+internal enum class AxisType {
     @SerialName("value")
     VALUE,
+
     @SerialName("category")
     CATEGORY,
+
     @SerialName("time")
     TIME,
+
     @SerialName("log")
     LOG,
 }
 
 @Serializable
-public enum class NameLocation {
+internal enum class NameLocation {
     @SerialName("start")
     START,
+
     @SerialName("middle")
     MIDDLE,
+
     @SerialName("center")
     CENTER,
+
     @SerialName("end")
     END
 }
 
 @Serializable
-public data class Axis(
+internal data class Axis(
     val id: String? = null,
     val show: Boolean? = null,
     val gridIndex: Int? = null,

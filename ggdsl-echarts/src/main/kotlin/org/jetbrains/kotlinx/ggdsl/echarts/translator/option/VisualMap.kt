@@ -3,37 +3,24 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.*
-import org.jetbrains.kotlinx.ggdsl.echarts.aes.ALPHA
-import org.jetbrains.kotlinx.ggdsl.echarts.aes.COLOR
-import org.jetbrains.kotlinx.ggdsl.echarts.aes.LINE_ALPHA
-import org.jetbrains.kotlinx.ggdsl.echarts.aes.SIZE
-import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.TextStyle
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.RangeSerializer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-
-// TODO(move to pallets and theme settings)
-private val colors = listOf("#5470c6", "#91cc75", "#fac858", "#ee6666", "#73c0de", "#3ba272", "#fc8452", "#9a60b4", "#ea7ccc")
-private val sizes = listOf(20.0, 28.0, 36.0, 44.0, 52.0, 60.0, 68.0)
-private val alphas = listOf(0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5)
-private val symbols = listOf("circle", "rect", "triangle", "diamond", "roundRect", "pin", "arrow")
-
-
-internal fun createInRange(aes: AesName, valuesString: List<Any>?, size: Int = -1, isContinuous: Boolean = false): Range {
+internal fun createInRange(aes: AesName, valuesString: List<Any>?): Range? {
+    if (valuesString.isNullOrEmpty()) return null
     return when (aes) {
-        COLOR ->
-            Range(color = valuesString?.map { (it as Color).toEchartsColor() } ?: List(size) { BaseColor(colors[it]) })
-        SIZE -> Range(symbolSize = valuesString ?: if (isContinuous) listOf(20.0, 60.0) else sizes.take(size))
-        ALPHA, LINE_ALPHA, AREA_ALPHA -> Range(colorAlpha = valuesString ?: if (isContinuous) listOf(20.0, 60.0) else alphas.take(size))
-        SYMBOL -> Range(symbol = valuesString ?: symbols.take(size))
+        COLOR, LINE_COLOR, AREA_COLOR -> Range(color = valuesString.map { (it as Color).toEchartsColor() })
+        SIZE -> Range(symbolSize = valuesString)
+        ALPHA, LINE_ALPHA, AREA_ALPHA -> Range(colorAlpha = valuesString)
+        SYMBOL -> Range(symbol = valuesString)
         else -> TODO()
     }
 }
 
 @Serializable(with = RangeSerializer::class)
-public data class Range(
+internal data class Range(
     val symbol: List<Any>? = null,
     val symbolSize: List<Any>? = null,
     val color: List<EchartsColor>? = null,
@@ -45,7 +32,7 @@ public data class Range(
 )
 
 @Serializable
-public data class Piece(
+internal data class Piece(
     val min: Int? = null,
     val max: Int? = null,
     val label: String? = null,
@@ -55,10 +42,10 @@ public data class Piece(
 
 
 @Serializable
-public data class Controller(val inRange: Range? = null, val outOfRange: Range? = null)
+internal data class Controller(val inRange: Range? = null, val outOfRange: Range? = null)
 
 @Serializable
-public data class VMStyle(
+internal data class VMStyle(
     val color: EchartsColor? = null,
     val borderColor: EchartsColor? = null,
     val borderWidth: Int? = null,
@@ -75,11 +62,11 @@ public data class VMStyle(
 )
 
 @Serializable
-public sealed interface VisualMap
+internal sealed interface VisualMap
 
 @Serializable
 @SerialName("continuous")
-public data class ContinuousVisualMap(
+internal data class ContinuousVisualMap(
     val id: String? = null,
     val min: Double? = null,
     val max: Double? = null,
@@ -124,7 +111,7 @@ public data class ContinuousVisualMap(
 
 @Serializable
 @SerialName("piecewise")
-public data class PiecewiseVisualMap(
+internal data class PiecewiseVisualMap(
     val id: String? = null,
     val splitNumber: Int? = null,
     val pieces: List<Piece>? = null,

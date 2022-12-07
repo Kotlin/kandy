@@ -4,7 +4,7 @@ import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class AngleAxis(
+internal data class AngleAxis(
     val id: String?,
     val polarIndex: Int?,
     val startAngle: Int?,

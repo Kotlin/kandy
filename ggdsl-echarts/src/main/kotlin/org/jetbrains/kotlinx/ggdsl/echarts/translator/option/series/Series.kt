@@ -8,31 +8,31 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.mar
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.SeriesSerializer
 
 @Serializable(with = SeriesSerializer::class)
-public sealed class Series {
-    public abstract val type: String
-    public abstract val id: String?
-    public abstract val name: String?
-    public abstract val colorBy: String? // TODO (need groupBy)
-    public abstract val coordinateSystem: CoordinateSystem? // TODO (другая система для Pie)
-    public abstract val legendHoverLink: Boolean?
-    public abstract val itemStyle: ItemStyle?
-    public abstract val emphasis: Emphasis?
-    public abstract val blur: Blur?
-    public abstract val select: Select?
-    public abstract val selectedMode: String?
-    public abstract val dimensions: List<Dimension>?
-    public abstract val encode: Encode?
-    public abstract val dataGroupId: String?
-    public abstract val data: List<List<String>>? // TODO!!! Data
-    public abstract val markPoint: EchartsMarkPoint?
-    public abstract val markLine: EchartsMarkLine?
-    public abstract val markArea: MarkArea?
-    public abstract val zlevel: Int?
-    public abstract val z: Int?
-    public abstract val silent: Boolean?
-    public abstract val animationDuration: Int?
-    public abstract val animationEasing: String?
-    public abstract val animationDelay: Int?
-    public abstract val universalTransition: UniversalTransition?
-    public abstract val tooltip: Tooltip?
+internal sealed class Series {
+    abstract val type: String
+    abstract val id: String?
+    abstract val name: String?
+    abstract val colorBy: String? // TODO (need groupBy)
+    abstract val coordinateSystem: CoordinateSystem? // TODO (другая система для Pie)
+    abstract val legendHoverLink: Boolean?
+    abstract val itemStyle: ItemStyle?
+    abstract val emphasis: Emphasis?
+    abstract val blur: Blur?
+    abstract val select: Select?
+    abstract val selectedMode: String?
+    abstract val dimensions: List<Dimension>?
+    abstract val encode: Encode?
+    abstract val dataGroupId: String?
+    abstract val data: List<List<String>>? // TODO!!! Data
+    abstract val markPoint: EchartsMarkPoint?
+    abstract val markLine: EchartsMarkLine?
+    abstract val markArea: MarkArea?
+    abstract val zlevel: Int?
+    abstract val z: Int?
+    abstract val silent: Boolean?
+    abstract val animationDuration: Int?
+    abstract val animationEasing: String?
+    abstract val animationDelay: Int?
+    abstract val universalTransition: UniversalTransition?
+    abstract val tooltip: Tooltip?
 }

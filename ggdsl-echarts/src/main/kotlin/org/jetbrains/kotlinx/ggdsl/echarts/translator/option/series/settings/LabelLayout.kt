@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class LabelLayout(
+internal data class LabelLayout(
     val hideOverlap: Boolean? = null,
     val moveOverlap: String? = null, // Todo
     val x: String? = null,

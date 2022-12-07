@@ -21,7 +21,7 @@ public interface EchartsColor
 internal class BaseColor internal constructor(val hex: String) : EchartsColor
 
 @Serializable
-internal sealed interface GradientColor: EchartsColor {
+internal sealed interface GradientColor : EchartsColor {
     val x: Double?
     val y: Double?
     val colorStops: List<ColorStop>?

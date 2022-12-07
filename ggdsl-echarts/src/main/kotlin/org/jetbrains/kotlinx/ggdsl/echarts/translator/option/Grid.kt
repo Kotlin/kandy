@@ -4,7 +4,7 @@ import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class Grid(
+internal data class Grid(
     val id: String?,
     val show: Boolean?,
     val zlevel: Int?,

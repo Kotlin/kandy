@@ -7,7 +7,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Ite
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Label
 
 @Serializable
-public data class MarkArea(
+internal data class MarkArea(
     val silent: Boolean? = null,
     val label: Label? = null,
     val itemStyle: ItemStyle? = null,

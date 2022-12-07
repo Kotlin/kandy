@@ -4,7 +4,7 @@ import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class Polar(
+internal data class Polar(
     val id: String?,
     val zlevel: Int?,
     val z: Int?,

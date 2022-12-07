@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class Emphasis(
+internal data class Emphasis(
     val disabled: Boolean? = null,
     val scale: String? = null,
     val focus: String? = null, // TODO (Focus)

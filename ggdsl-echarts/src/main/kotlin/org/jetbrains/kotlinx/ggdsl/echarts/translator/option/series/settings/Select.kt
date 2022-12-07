@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class Select(
+internal data class Select(
     val disabled: Boolean? = null,
     val label: Label? = null,
     val labelLine: LabelLine? = null,

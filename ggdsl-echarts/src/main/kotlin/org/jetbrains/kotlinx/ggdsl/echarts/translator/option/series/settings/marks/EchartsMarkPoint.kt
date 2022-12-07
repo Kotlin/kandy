@@ -19,7 +19,7 @@ internal fun Map<FeatureName, LayerFeature>.getEchartsMarkPoint(): EchartsMarkPo
 }
 
 @Serializable(with = DataMarkPointSerializer::class)
-public data class DataMarkPoint(
+internal data class DataMarkPoint(
     val name: String? = null,
     val type: String? = null,
     val value: String? = null,
@@ -31,7 +31,7 @@ public data class DataMarkPoint(
 )
 
 @Serializable
-public data class EchartsMarkPoint(
+internal data class EchartsMarkPoint(
     val symbol: String? = null,
     val symbolSize: Int? = null,
     val symbolRotate: Int? = null,

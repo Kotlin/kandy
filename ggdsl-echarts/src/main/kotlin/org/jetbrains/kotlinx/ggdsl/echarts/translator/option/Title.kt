@@ -5,12 +5,12 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.TextStyle
 
 @Serializable
-public enum class TitleTarget(public val target: String) {
+internal enum class TitleTarget(public val target: String) {
     SELF("self"), BLANK("blank")
 }
 
 @Serializable
-public data class Title(
+internal data class Title(
     val id: String? = null,
     val show: Boolean? = null,
     val text: String? = null,

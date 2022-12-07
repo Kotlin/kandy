@@ -3,8 +3,8 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class Dimension(
+internal data class Dimension(
     val name: String? = null,
-    val type: String? = null, // todo(TypeDimension)
+    val type: String? = null,
     val displayName: String? = null
 )

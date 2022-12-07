@@ -4,7 +4,7 @@ import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class RadiusAxis(
+internal data class RadiusAxis(
     val id: String?,
     val polarIndex: Int?,
     val type: AxisType?,

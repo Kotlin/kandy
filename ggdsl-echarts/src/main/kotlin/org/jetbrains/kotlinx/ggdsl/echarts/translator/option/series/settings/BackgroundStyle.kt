@@ -29,7 +29,7 @@ internal fun Map<AesName, Setting>.getBackgroundStyle(): BackgroundStyle? {
 }
 
 @Serializable
-public data class BackgroundStyle(
+internal data class BackgroundStyle(
     val color: EchartsColor? = null,
     val borderColor: EchartsColor? = null,
     val borderWidth: Double? = null,

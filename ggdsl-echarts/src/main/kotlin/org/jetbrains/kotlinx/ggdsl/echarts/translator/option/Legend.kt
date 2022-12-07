@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class Legend(
+internal data class Legend(
     val type: String? = null,
     val id: String? = null,
     val show: Boolean? = null,

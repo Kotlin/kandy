@@ -4,7 +4,7 @@ import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class Radar(
+internal data class Radar(
     val id: String?,
     val zlevel: Int?,
     val z: Int?,
