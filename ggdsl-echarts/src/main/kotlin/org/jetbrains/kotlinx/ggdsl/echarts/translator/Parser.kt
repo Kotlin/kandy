@@ -90,7 +90,7 @@ internal class Parser(plot: Plot) {
         val headersOfData = source.keys.toList()
         val datasetSource = listOf(headersOfData) + List(source.values.first().size) { i ->
             List(headersOfData.size) { j ->
-                source[headersOfData[j]]!![i].toString()
+                source[headersOfData[j]]?.get(i).toString()
             }
         }
 

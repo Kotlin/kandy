@@ -17,7 +17,7 @@ internal fun Scale.toVisualMap(
         is NonPositionalCategoricalScale<*, *> -> {
             val categoriesString =
                 domainCategories?.map { value -> value.toString() } ?: data?.toSet()?.map { it.toString() }
-            val inRange = createInRange(aes, rangeValues, categoriesString?.size ?: -1)
+            val inRange = createInRange(aes, rangeValues)
             PiecewiseVisualMap(
                 dimension = dim,
                 categories = categoriesString,
@@ -34,7 +34,7 @@ internal fun Scale.toVisualMap(
 
             val valuesString = rangeLimits?.let { listOf(it.first, it.second) }
 
-            val inRange = createInRange(aes, valuesString, isContinuous = true)
+            val inRange = createInRange(aes, valuesString)
             ContinuousVisualMap(
                 dimension = dim,
                 min = min,
@@ -49,21 +49,16 @@ internal fun Scale.toVisualMap(
         is DefaultUnspecifiedScale -> {
             when (domainType) {
 //                 todo other, date
-                typeOf<String>() -> {
-                    val categories = data?.toSet()?.map { it.toString() }
-                    PiecewiseVisualMap(
-                        dimension = dim,
-                        categories = categories,
-                        inRange = createInRange(aes, null, categories?.size ?: -1),
-                        seriesIndex = seriesIndex,
-                        right = 10,
-                        top = visualMapSize * 100
-                    )
-                }
+                typeOf<String>() -> PiecewiseVisualMap(
+                    dimension = dim,
+                    categories = data?.toSet()?.map { it.toString() },
+                    seriesIndex = seriesIndex,
+                    right = 10,
+                    top = visualMapSize * 100
+                )
 
                 else -> ContinuousVisualMap(
                     dimension = dim,
-                    inRange = createInRange(aes, null, isContinuous = true),
                     seriesIndex = seriesIndex,
                     right = 10,
                     top = visualMapSize * 100
@@ -71,21 +66,16 @@ internal fun Scale.toVisualMap(
             }
         }
 
-        is NonPositionalCategoricalUnspecifiedScale -> {
-            val categories = data?.toSet()?.map { it.toString() }
-            PiecewiseVisualMap(
-                dimension = dim,
-                categories = categories,
-                inRange = createInRange(aes, null, categories?.size ?: -1),
-                seriesIndex = seriesIndex,
-                right = 10,
-                top = visualMapSize * 100
-            )
-        }
+        is NonPositionalCategoricalUnspecifiedScale -> PiecewiseVisualMap(
+            dimension = dim,
+            categories = data?.toSet()?.map { it.toString() },
+            seriesIndex = seriesIndex,
+            right = 10,
+            top = visualMapSize * 100
+        )
 
         is NonPositionalContinuousUnspecifiedScale -> ContinuousVisualMap(
             dimension = dim,
-            inRange = createInRange(aes, null, isContinuous = true),
             seriesIndex = seriesIndex,
             right = 10,
             top = visualMapSize * 100

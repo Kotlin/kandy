@@ -2,8 +2,6 @@
 * Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-@file:OptIn(ExperimentalSerializationApi::class)
-
 package org.jetbrains.kotlinx.ggdsl.echarts
 
 import kotlinx.html.*
@@ -58,6 +56,7 @@ private fun Plot.toOption(): Option {
     return parser.parse()
 }
 
+@OptIn(ExperimentalSerializationApi::class)
 private val json = Json {
     explicitNulls = false
     encodeDefaults = true
@@ -70,7 +69,7 @@ public fun Plot.toJson(): String = this.toOption().toJSON()
 
 private fun Option.toJSON(): String = json.encodeToString(this)
 
-public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
+internal fun Option.toHTML(size: Pair<Int, Int>? = null): String {
     val width = size?.first ?: 600
     val height = size?.second ?: 400
     return createHTML().html {
@@ -161,7 +160,8 @@ public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
 //    }
 //}
 
-public fun PlotChangeAnimation.toHTML(): String {
+@OptIn(ExperimentalSerializationApi::class)
+internal fun PlotChangeAnimation.toHTML(): String {
     val encoder = Json {
         explicitNulls = false
         encodeDefaults = true
