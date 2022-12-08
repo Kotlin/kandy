@@ -26,7 +26,7 @@ internal fun <T : Any> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
 }
 
 internal class Parser(plot: Plot) {
-    private val data = (plot.dataset as NamedDataInterface).map
+    private val data = (plot.dataset as NamedDataInterface).nameToValues
     private val globalMappings = plot.globalMappings
     private val layers = plot.layers
     private val features = plot.features
@@ -51,12 +51,12 @@ internal class Parser(plot: Plot) {
                 when (aes) {
                     X -> {
                         xAxis = mapping.toAxis()
-                        source[mapping.getId()] = data[mapping.getId()]!!
+                        source[mapping.getId()] = data[mapping.getId()]!!.values
                     }
 
                     Y -> {
                         yAxis = mapping.toAxis()
-                        source[mapping.getId()] = data[mapping.getId()]!!
+                        source[mapping.getId()] = data[mapping.getId()]!!.values
                     }
                 }
             }
@@ -74,14 +74,15 @@ internal class Parser(plot: Plot) {
                                 mapping.columnScaled.scale.toVisualMap(
                                     aes,
                                     sourceId, index,
-                                    (layer.dataset as? NamedDataInterface)?.map?.get(sourceId) ?: data[sourceId],
+                                    (layer.dataset as? NamedDataInterface)?.nameToValues?.get(sourceId)?.values
+                                        ?: data[sourceId]?.values,
                                     visualMaps.size,
                                     mapping.domainType
                                 )
                             )
                         }
                     }
-                    source.getOrPut(mapping.getId()) { data[mapping.getId()]!! } // TODO(missing columns?)
+                    source.getOrPut(mapping.getId()) { data[mapping.getId()]!!.values } // TODO(missing columns?)
                 }
             }
             layer.toSeries()
@@ -139,7 +140,7 @@ internal class Parser(plot: Plot) {
         )
     }
 
-    private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.id
+    private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.name
 
     private fun ScaledMapping<*>.toAxis(): Axis {
         val scaleMap = this.columnScaled.scale

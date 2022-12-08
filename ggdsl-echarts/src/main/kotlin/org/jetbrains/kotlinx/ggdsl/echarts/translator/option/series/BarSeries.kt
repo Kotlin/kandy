@@ -2,13 +2,14 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Stack
+import org.jetbrains.kotlinx.ggdsl.echarts.features.StackFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLayerFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 
 internal fun Layer.toBarSeries(name: String?, encode: Encode?): BarSeries {
-    val stack = (features[Stack.FEATURE_NAME] as? Stack)?.name
+    val stack = (features[StackFeature.FEATURE_NAME] as? StackFeature)?.name
     val animation = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
     val backgroundStyle = settings.getBackgroundStyle()
 
