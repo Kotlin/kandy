@@ -11,6 +11,7 @@ internal fun Layer.toCandlestickSeries(name: String?, encode: Encode?): Candlest
 
     return CandlestickSeries(
         name = name,
+        itemStyle = settings.getItemStyle(),
         encode = encode,
         markPoint = features.getEchartsMarkPoint(),
         markLine = features.getEchartsMarkLine(),

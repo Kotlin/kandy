@@ -11,6 +11,8 @@ internal fun Layer.toPieSeries(name: String?, encode: Encode?): PieSeries {
 
     return PieSeries(
         name = name,
+        label = features.getLabel(),
+        itemStyle = settings.getItemStyle(),
         encode = encode,
         markPoint = features.getEchartsMarkPoint(),
         markLine = features.getEchartsMarkLine(),

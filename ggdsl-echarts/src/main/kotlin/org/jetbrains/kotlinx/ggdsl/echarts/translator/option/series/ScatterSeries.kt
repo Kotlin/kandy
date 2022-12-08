@@ -20,6 +20,7 @@ internal fun Layer.toPointSeries(name: String?, encode: Encode?): ScatterSeries 
         symbol = symbol?.name,
         symbolSize = size,
         symbolRotate = symbol?.rotate,
+        label = features.getLabel(),
         itemStyle = settings.getItemStyle(),
         encode = encode,
         markPoint = features.getEchartsMarkPoint(),

@@ -41,10 +41,12 @@ public class TextStyle(
     public var textBorderType: LineType? = null
 ) : SelfInvocationContext {
 
-    private fun isEmpty(): Boolean =
+    internal fun isEmpty(): Boolean =
         color == null && fontStyle == null && fontWeight == null && fontFamily == null
             && fontSize == null && lineHeight == null && width == null && height == null
             && textBorderColor == null && textBorderWidth == null && textBorderType == null
+
+    internal fun isNotEmpty(): Boolean = !isEmpty()
 
     internal fun toTextStyle(): EchartsTextStyle? {
         return if (this.isEmpty())

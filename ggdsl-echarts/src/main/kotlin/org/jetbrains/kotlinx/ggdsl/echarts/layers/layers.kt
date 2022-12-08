@@ -5,6 +5,11 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
+
+public inline fun LayerPlotContext.layout(block: EChartsLayout.() -> Unit) {
+    features[EChartsLayout.FEATURE_NAME] = EChartsLayout().apply(block)
+}
 
 public inline fun LayerCollectorContextImmutable.line(block: LineContextImmutable.() -> Unit) {
     addLayer(LineContextImmutable(this).apply(block), LINE)

@@ -9,10 +9,6 @@ import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyle
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
-public inline fun LayerPlotContext.layout(block: EChartsLayout.() -> Unit) {
-    features[EChartsLayout.FEATURE_NAME] = EChartsLayout().apply(block)
-}
-
 /**
  * Plot layout settings
  *

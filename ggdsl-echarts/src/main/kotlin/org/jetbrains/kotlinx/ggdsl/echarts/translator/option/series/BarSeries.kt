@@ -18,6 +18,7 @@ internal fun Layer.toBarSeries(name: String?, encode: Encode?): BarSeries {
         stack = stack,
         showBackground = if (backgroundStyle != null) true else null,
         backgroundStyle = backgroundStyle,
+        label = features.getLabel(),
         itemStyle = settings.getItemStyle(),
         encode = encode,
         markPoint = features.getEchartsMarkPoint(),
