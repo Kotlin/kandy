@@ -115,7 +115,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
     }
 
     public inline operator fun <reified DomainType : Any, RangeType : Any>
-            MappableNonPositionalAes<RangeType>.invoke(
+            ScalableNonPositionalAes<RangeType>.invoke(
         data: Iterable<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(

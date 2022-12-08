@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.dataframe.io.readJsonStr
 import org.jetbrains.kotlinx.dataframe.io.toJson
 
 public object DataFrameSerializer: KSerializer<DataFrame<*>> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("dataframe", PrimitiveKind.STRING)
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("DataFrame", PrimitiveKind.STRING)
 
     override fun deserialize(decoder: Decoder): DataFrame<*> {
         val jsonDataFrame = decoder.decodeString()

@@ -102,7 +102,7 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
 
         GatheringList.FEATURE_NAME -> {
             (this as GatheringList).gatheringList.forEach {
-                it.toLayer().wrap(featureBuffer, false)
+                it.toLayer().wrap(featureBuffer, null)
             }
         }
 

@@ -5,10 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
 import jetbrains.datalore.plot.config.Option
-import org.jetbrains.kotlinx.ggdsl.dsl.MappableNonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.dsl.NonPositionalAes
-import org.jetbrains.kotlinx.ggdsl.dsl.NonScalablePositionalAes
-import org.jetbrains.kotlinx.ggdsl.dsl.ScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.*
@@ -136,50 +133,50 @@ public class HeightPosAes internal constructor(override val context: BindingCont
 
 internal val COLOR = AesName("color")
 
-public class ColorAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+public class ColorAes internal constructor(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
     override val name: AesName = COLOR
 }
 
 internal val FILL = AesName("fill")
 
-public class FillAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+public class FillAes internal constructor(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
     override val name: AesName = FILL
 }
 
 public val SHAPE: AesName = AesName("shape")
 
-public class ShapeAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Symbol> {
+public class ShapeAes internal constructor(override val context: BindingContext) : ScalableNonPositionalAes<Symbol> {
     override val name: AesName = SHAPE
 }
 
 internal val LINE_TYPE = AesName("linetype")
 
 public class LineTypeAes internal constructor(override val context: BindingContext) :
-    MappableNonPositionalAes<LineType> {
+    ScalableNonPositionalAes<LineType> {
     override val name: AesName = LINE_TYPE
 }
 
 internal val SIZE = AesName("size")
 
-public class SizeAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+public class SizeAes internal constructor(override val context: BindingContext) : ScalableNonPositionalAes<Double> {
     override val name: AesName = SIZE
 }
 
 internal val STROKE = AesName("stroke")
 
-public class StrokeAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+public class StrokeAes internal constructor(override val context: BindingContext) : ScalableNonPositionalAes<Double> {
     override val name: AesName = STROKE
 }
 
 internal val WIDTH = AesName("width")
 
-public class WidthAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+public class WidthAes internal constructor(override val context: BindingContext) : NonScalableNonPositionalAes<Double> {
     override val name: AesName = WIDTH
 }
 
 internal val ALPHA = AesName("alpha")
 
-public class AlphaAes internal constructor(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+public class AlphaAes internal constructor(override val context: BindingContext) : ScalableNonPositionalAes<Double> {
     override val name: AesName = ALPHA
 }
 
@@ -393,28 +390,28 @@ public data class DrawQuantilesAes(override val context: BindingContext) : NonPo
 internal val LABEL = AesName("label")
 
 public data class LabelAes internal constructor(override val context: BindingContext) :
-    MappableNonPositionalAes<String> {
+    ScalableNonPositionalAes<String> {
     override val name: AesName = LABEL
 }
 
 internal val FONT_FACE = AesName("fontface")
 
 public data class FontFaceAes internal constructor(override val context: BindingContext) :
-    MappableNonPositionalAes<FontFace> {
+    ScalableNonPositionalAes<FontFace> {
     override val name: AesName = FONT_FACE
 }
 
 internal val FONT_FAMILY = AesName("family")
 
 public data class FontFamilyAes internal constructor(override val context: BindingContext) :
-    MappableNonPositionalAes<FontFamily> {
+    ScalableNonPositionalAes<FontFamily> {
     override val name: AesName = FONT_FAMILY
 }
 
 internal val ANGLE = AesName("angle")
 
 public data class AngleAes internal constructor(override val context: BindingContext) :
-    MappableNonPositionalAes<Double> {
+    ScalableNonPositionalAes<Double> {
     override val name: AesName = ANGLE
 }
 

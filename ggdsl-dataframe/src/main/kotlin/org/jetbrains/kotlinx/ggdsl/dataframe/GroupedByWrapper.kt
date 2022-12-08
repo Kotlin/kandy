@@ -9,8 +9,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.*
 
 // TODO @Serializable
 public data class GroupedByWrapper<T, G>(public val groupBy: GroupBy<T, G>): CountedGroupedDataInterface {
-    override val keys: DataFrameWrapper = DataFrameWrapper(groupBy.keys)
-    override val groups: List<DataFrameWrapper> = groupBy.groups.map { DataFrameWrapper(it) }.toList()
+    override val keys: DataFrameWrapper
+        get ()= DataFrameWrapper(groupBy.keys)
+    override val groups: List<DataFrameWrapper>
+        get() = groupBy.groups.map { DataFrameWrapper(it) }.toList()
 
     override fun toLazy(): LazyGroupedDataFrame = LazyGroupedDataFrame(
         keys.df.columnNames(),

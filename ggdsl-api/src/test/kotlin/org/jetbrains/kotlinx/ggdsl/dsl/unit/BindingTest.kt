@@ -29,7 +29,7 @@ internal class BindingTest {
         override val name: AesName = MOCK_AES_DOUBLE_NON_POS
     }
 
-    class MockAesStringMapNonPos(override val context: BindingContext) : MappableNonPositionalAes<String> {
+    class MockAesStringMapNonPos(override val context: BindingContext) : ScalableNonPositionalAes<String> {
         override val name: AesName = MOCK_AES_STRING_MAP_NON_POS
     }
 
@@ -41,7 +41,7 @@ internal class BindingTest {
         override val name: AesName = MOCK_AES_SCLB_POS
     }
 
-    class MockAesColorMapNonPos(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+    class MockAesColorMapNonPos(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
         override val name: AesName = MOCK_AES_COLOR_MAP_NON_POS
     }
 
