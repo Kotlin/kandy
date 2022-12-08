@@ -4,6 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
+import kotlinx.serialization.Serializable
+
 /**
  * Non-positional scale interface. Non-positional scale is used in case
  * of mapping to non-positional aesthetic attribute.
@@ -21,6 +23,7 @@ public sealed interface NonPositionalScale<DomainType : Any, RangeType : Any> : 
  * @param domainLimits the limits of the domain.
  * @param rangeLimits the limits of the range.
  */
+@Serializable
 public data class NonPositionalContinuousScale<DomainType : Any, RangeType : Any>(
     val domainLimits: Pair<DomainType, DomainType>? = null,
     val rangeLimits: Pair<RangeType, RangeType>? = null,
@@ -34,6 +37,7 @@ public data class NonPositionalContinuousScale<DomainType : Any, RangeType : Any
  * @param domainCategories the list of the domain categories.
  * @param rangeValues the list of the range values.
  */
+@Serializable
 public data class NonPositionalCategoricalScale<DomainType : Any, RangeType : Any>(
     val domainCategories: List<DomainType>? = null,
     val rangeValues: List<RangeType>? = null,

@@ -1,7 +1,7 @@
 plugins {
     kotlin("jvm")
     kotlin("jupyter.api")
-    //kotlin("plugin.serialization") version "1.7.10"
+    kotlin("plugin.serialization")
 }
 
 repositories {
@@ -11,6 +11,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 }
 
 tasks {

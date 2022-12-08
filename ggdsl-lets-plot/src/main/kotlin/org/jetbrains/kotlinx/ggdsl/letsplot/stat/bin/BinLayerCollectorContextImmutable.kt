@@ -1,9 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingCollector
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextInterface
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.StatLayerCollectorContext
 
@@ -123,12 +120,12 @@ public inline fun LayerCollectorContextImmutable.statBin(
 ): Unit = statBinImpl(this, data, column, bins, binXPos, block)
 
 
-public inline fun<T:Any> LayerCollectorContextMutable.statBin(
+public inline fun<reified T:Any> LayerCollectorContextMutable.statBin(
     source: Iterable<T>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ) {
-    val columnPointer = source.toColumnPointer()
+    val columnPointer = toColumnPointer(source)
     statBinImpl(this, data, columnPointer, bins, binXPos, block)
 }

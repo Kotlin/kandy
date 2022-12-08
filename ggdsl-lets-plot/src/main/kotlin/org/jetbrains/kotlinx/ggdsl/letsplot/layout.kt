@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
@@ -14,6 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.theme.Theme
 
 //todo
 @PlotDslMarker
+@Serializable
 public data class Layout(
     var title: String? = null,
     var subtitle: String? = null,

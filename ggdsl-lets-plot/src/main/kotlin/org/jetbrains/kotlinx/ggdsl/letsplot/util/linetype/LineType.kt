@@ -4,12 +4,15 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype
 
+import kotlinx.serialization.Serializable
+
 /**
  * Type of line.
  *
  * TODO detailed?
  */
-public class LineType internal constructor(public val description: String, public val codeNumber: Int) {
+@Serializable
+public data class LineType internal constructor(public val description: String, public val codeNumber: Int) {
     public companion object {
         public val BLANK: LineType = LineType("blank", 0)
         public val SOLID: LineType = LineType("solid", 1)

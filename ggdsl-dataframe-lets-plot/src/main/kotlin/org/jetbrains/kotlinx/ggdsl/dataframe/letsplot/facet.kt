@@ -74,7 +74,7 @@ public fun LayerPlotContext.facetGrid(
     yFormat: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x.name(), y.id, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(x.name(), y.name, scalesSharing, xOrder, yOrder, xFormat, yFormat)
 
 }
 
@@ -89,7 +89,7 @@ public fun LayerPlotContext.facetGrid(
     yFormat: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x.id, y.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(x.name, y.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
 
 }
 

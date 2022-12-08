@@ -19,7 +19,7 @@ internal class CommonTest {
 
     @Test
     fun oneLayer() {
-        val dataset = NamedData(mapOf(
+        val dataset = NamedData.fromUntyped(mapOf(
             "x" to listOf(1.0, 2.0, 3.0),
             "y" to listOf(3F, 12F, 5.5F),
             "type" to listOf("A", "B", "A")
@@ -74,7 +74,7 @@ internal class CommonTest {
 
     @Test
     fun severalLayersAndScales() {
-        val dataset = NamedData(mapOf(
+        val dataset = NamedData.fromUntyped(mapOf(
             "width" to listOf(1.0, 2.0, 3.0, 3.0),
             "height" to listOf(3F, 12F, 5.5F, 8F),
             "type" to listOf("A", "B", "A", "B"),

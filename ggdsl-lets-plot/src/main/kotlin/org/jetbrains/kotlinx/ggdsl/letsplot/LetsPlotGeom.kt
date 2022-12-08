@@ -4,6 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 
+@Serializable
 public data class LetsPlotGeom(val name: String) : Geom

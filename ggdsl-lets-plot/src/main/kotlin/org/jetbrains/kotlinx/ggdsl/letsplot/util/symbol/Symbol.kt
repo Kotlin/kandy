@@ -4,11 +4,14 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol
 
+import kotlinx.serialization.Serializable
+
 /**
  * Shape of point.
  *
  * TODO detailed?
  */
+@Serializable
 public data class Symbol internal constructor(val shape: Int) {
     public companion object {
         public val SQUARE_OPEN: Symbol = Symbol(0)

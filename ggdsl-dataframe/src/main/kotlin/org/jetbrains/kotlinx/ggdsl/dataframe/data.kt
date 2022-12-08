@@ -7,12 +7,10 @@ package org.jetbrains.kotlinx.ggdsl.dataframe
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.dataframe.values
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.GroupedDataSubContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
-import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.*
 
 // todo internal?
 public fun <T : Any> ColumnReference<T>.toColumnPointer(): ColumnPointer<T> {
@@ -20,9 +18,11 @@ public fun <T : Any> ColumnReference<T>.toColumnPointer(): ColumnPointer<T> {
 }
 
 @Suppress("UNCHECKED_CAST")
-public fun DataFrame<*>.toNamedData(): Map<String, List<Any>> {
+public fun DataFrame<*>.toTypedDataMap(): Map<String, TypedList> {
     // TODO (change convert df to map)
-    return dropNulls().flatten().toMap().map { it.key to (it.value as List<Any>) }.toMap()
+    return dropNulls().flatten().columns().map {
+        it.name() to TypedList(it.type(), it.values.toList() as List<Any>)
+    }.toMap()
 }
 
 public class LazyGroupedDataFrame(
@@ -42,7 +42,6 @@ public class GroupedByWrapper<T, G>(public val groupBy: GroupBy<T, G>): CountedG
     )
 }
 
-
 public class GroupedDataFrameContext<T, G>(public val groupBy: GroupBy<T, G>) {
     public val groupKey: DataFrame<T> = groupBy.keys
     public val column: DataFrame<G> = groupBy.groups.first() // TODO
@@ -53,11 +52,10 @@ public class GroupedDataFrameContext<T, G>(public val groupBy: GroupBy<T, G>) {
     )
 }
 
-
 public class DataFrameWrapper(public val df: DataFrame<*>) : NamedDataInterface {
-    override val map: Map<String, List<Any>> = df.toNamedData()
+    override val nameToValues: Map<String, TypedList> = df.toTypedDataMap()
     override fun groupBy(vararg columnPointers: ColumnPointer<*>): LazyGroupedDataFrame {
-        return LazyGroupedDataFrame(columnPointers.map { it.id }, this)
+        return LazyGroupedDataFrame(columnPointers.map { it.name }, this)
     }
 
     public fun groupBy(vararg columnReferences: ColumnReference<*>): LazyGroupedDataFrame {
@@ -68,7 +66,7 @@ public class DataFrameWrapper(public val df: DataFrame<*>) : NamedDataInterface 
         columnReferences: List<ColumnReference<*>>,
         columnPointers: List<ColumnPointer<*>> = listOf()
     ): LazyGroupedDataFrame {
-        return LazyGroupedDataFrame(columnReferences.map { it.name() } + columnPointers.map { it.id }, this)
+        return LazyGroupedDataFrame(columnReferences.map { it.name() } + columnPointers.map { it.name }, this)
     }
 }
 

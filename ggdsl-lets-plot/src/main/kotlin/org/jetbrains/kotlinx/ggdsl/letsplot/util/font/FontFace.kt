@@ -4,6 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.util.font
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 public enum class FontFace {
     PLAIN, ITALIC, BOLD, BOLD_ITALIC;
 
