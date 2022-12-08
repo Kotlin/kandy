@@ -1,22 +1,27 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
-import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.toTyped
+import org.jetbrains.kotlinx.ggdsl.ir.data.*
 
 /**
  * Standard [NamedDataInterface] implementation.
  */
-public data class NamedData(override val map: Map<String, List<Any>>) : NamedDataInterface {
+@Serializable
+public data class NamedData(override val nameToValues: Map<String, TypedList>) : NamedDataInterface {
     override fun groupBy(vararg columnPointers: ColumnPointer<*>): LazyGroupedData {
-        return LazyGroupedData(columnPointers.map { it.id }, this)
+        return LazyGroupedData(columnPointers.map { it.name }, this)
+    }
+    public companion object {
+        @PublishedApi
+        internal fun fromUntyped(untypedMap: Map<String, List<Any>>): NamedData = NamedData(untypedMap.toTyped())
     }
 }
 
 /**
  * Standard [LazyGroupedDataInterface] implementation.
  */
+@Serializable
 public data class LazyGroupedData(
     override val keys: List<String>,
     override val origin: NamedData

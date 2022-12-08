@@ -48,12 +48,12 @@ public inline fun LayerContextInterface.tooltips(
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
-        columns.map { it.name() } + variablesDS.map { it.id },
+        columns.map { it.name() } + variablesDS.map { it.name },
         title,
         anchor,
         minWidth,
         hide,
-        dsFormats.map { it.key.id to it.value }
+        dsFormats.map { it.key.name to it.value }
             + columnsFormats.map { it.key.name() to it.value }
             + aesFormats.map { "^" + it.key.name.name to it.value }
             + statFormats.map { it.key.id to it.value },

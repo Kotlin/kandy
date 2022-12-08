@@ -4,10 +4,12 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
+@Serializable
 public data class ScaleContinuousColorGradientN<DomainType : Any>(
     val domainLimits: Pair<DomainType, DomainType>? = null,
     val rangeColors: List<Color>,
@@ -30,6 +32,7 @@ public fun <DomainType : Any> continuousColorGradientN(
     domainLimits, rangeColors, transform
 )
 
+@Serializable
 public data class ScaleContinuousColorGradient2<DomainType : Any>(
     val domainLimits: Pair<DomainType, DomainType>? = null,
     val low: Color,

@@ -12,9 +12,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 public const val MERGED_GROUPS: String = "&merged_groups"
 
 public val GROUP: AesName = AesName("group")
+
+//TODO
 public data class GroupAes(override val context: BindingContext): NonScalablePositionalAes {
     override val name: AesName =GROUP
-
 }
 
 /**

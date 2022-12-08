@@ -4,7 +4,10 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.aes
 
+import kotlinx.serialization.Serializable
+
 /**
  *  Wrapper of aesthetic attribute name.
  */
+@Serializable
 public data class AesName(val name: String)

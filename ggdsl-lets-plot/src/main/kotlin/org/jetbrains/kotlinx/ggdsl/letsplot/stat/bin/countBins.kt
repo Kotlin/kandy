@@ -9,7 +9,8 @@ import jetbrains.datalore.plot.builder.data.GroupUtil
 import jetbrains.datalore.plot.builder.data.GroupingContext
 import jetbrains.datalore.plot.common.data.SeriesUtil
 import org.jetbrains.kotlinx.ggdsl.dsl.LazyGroupedData
-import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
+import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.toTyped
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
@@ -47,11 +48,12 @@ internal fun countBinsImpl(
     val df = data.toDataFrame(column, listOf())
     val statContext = SimpleStatContext(df)
     val dfCounted = stat.apply(df, statContext)
-    return NamedData(mapOf(
-        BinStatistic.Bins.NAME to dfCounted[Stats.X].map { it as Any },
-        BinStatistic.Count.NAME to dfCounted[Stats.COUNT].map { it as Any },
-        BinStatistic.Density.NAME to dfCounted[Stats.DENSITY].map { it as Any }
-    ))
+
+    return dataOf {
+        BinStatistic.Bins.NAME to dfCounted[Stats.X].map { it as Double }
+        BinStatistic.Count.NAME to dfCounted[Stats.COUNT].map { it as Double }
+        BinStatistic.Density.NAME to dfCounted[Stats.DENSITY].map { it as Double }
+    }
 }
 
 @PublishedApi
@@ -95,7 +97,7 @@ internal fun countBinsImpl(
 
     return LazyGroupedData(
         data.keys,
-        NamedData(buffer)
+        NamedData(buffer.toTyped())
     )
 }
 
@@ -104,10 +106,11 @@ internal fun NamedDataInterface.toDataFrame(
     column: ColumnPointer<*>,
     variables: List<DataFrame.Variable>,
 ): DataFrame {
+    println(nameToValues)
     var builder =
-        DataFrame.Builder().putNumeric(TransformVar.X, map[column.id]!!.map { (it as Number).toDouble() })
+        DataFrame.Builder().putNumeric(TransformVar.X, nameToValues[column.name]!!.values.map { (it as Number).toDouble() })
     variables.forEach {
-        builder = builder.putDiscrete(it, map[it.name]!!)
+        builder = builder.putDiscrete(it, nameToValues[it.name]!!.values)
     }
 
 

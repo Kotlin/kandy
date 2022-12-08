@@ -4,26 +4,32 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
 public sealed interface LegendType
 
+@Serializable
 public class None internal constructor() : LegendType
 
+@Serializable
 public data class DiscreteLegend internal constructor(
     val nRow: Int? = null,
     val nCol: Int? = null,
     val byRow: Boolean? = null
 ) : LegendType
 
+@Serializable
 public data class ColorBar internal constructor(
     val barWidth: Double? = null,
     val barHeight: Double? = null,
     val nBin: Int? = null
 ) : LegendType
 
+// TODO
+@Serializable
 @PlotDslMarker
 public data class Legend<DomainType : Any, out RangeType : Any>(
     var name: String? = null,
