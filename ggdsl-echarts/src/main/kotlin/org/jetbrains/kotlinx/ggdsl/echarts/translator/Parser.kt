@@ -31,7 +31,7 @@ internal fun <T : Any> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
 }
 
 internal class Parser(plot: Plot) {
-    private val data = (plot.dataset as NamedDataInterface).map
+    private val data = (plot.dataset as NamedDataInterface).nameToValues
     private val globalMappings = plot.globalMappings
     private val layers = plot.layers
     private val features = plot.features
@@ -56,12 +56,12 @@ internal class Parser(plot: Plot) {
                 when (aes) {
                     X -> {
                         xAxis = mapping.toAxis()
-                        source[mapping.columnScaled.source.id] = data[mapping.columnScaled.source.id]!!
+                        source[mapping.columnScaled.source.name] = data[mapping.columnScaled.source.name]!!.values
                     }
 
                     Y -> {
                         yAxis = mapping.toAxis()
-                        source[mapping.columnScaled.source.id] = data[mapping.columnScaled.source.id]!!
+                        source[mapping.columnScaled.source.name] = data[mapping.columnScaled.source.name]!!.values
                     }
                 }
             }
@@ -75,7 +75,7 @@ internal class Parser(plot: Plot) {
                     if (yAxis == null && aes == Y)
                         yAxis = mapping.toAxis()
 
-                    source.putIfAbsent(mapping.getId(), data[mapping.getId()]!!) // TODO(missing columns?)
+                    source.putIfAbsent(mapping.getId(), data[mapping.getId()]!!.values) // TODO(missing columns?)
                 }
             }
             layer.toSeries()
@@ -116,7 +116,7 @@ internal class Parser(plot: Plot) {
 
     private fun Geom.getType(): String = (this as EchartsGeom).name
 
-    private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.id
+    private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.name
 
     private fun ScaledMapping<*>.toAxis(): Axis {
         val scaleMap = this.columnScaled.scale
