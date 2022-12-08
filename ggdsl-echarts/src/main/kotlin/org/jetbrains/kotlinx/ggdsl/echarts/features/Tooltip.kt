@@ -2,11 +2,9 @@ package org.jetbrains.kotlinx.ggdsl.echarts.features
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.EChartsLayout
-import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
-import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
-public inline fun EChartsLayout.tooltip(crossinline block: TooltipFeature.() -> Unit) {
-    this.tooltip = TooltipFeature().apply(block)
+public inline fun EChartsLayout.tooltip(crossinline block: Tooltip.() -> Unit) {
+    this.tooltip = Tooltip().apply(block)
 }
 
 public enum class Trigger(public val type: String) {
@@ -14,13 +12,12 @@ public enum class Trigger(public val type: String) {
 }
 
 @PlotDslMarker
-public class TooltipFeature(
+public class Tooltip(
     public var trigger: Trigger? = null,
     public var formatter: String? = null
-) : PlotFeature {
-    override val featureName: FeatureName = FEATURE_NAME
+) {
+    internal fun isEmpty(): Boolean =
+        trigger == null && formatter == null
 
-    public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("TOOLTIP_FEATURE")
-    }
+    internal fun isNotEmpty(): Boolean = !isEmpty()
 }

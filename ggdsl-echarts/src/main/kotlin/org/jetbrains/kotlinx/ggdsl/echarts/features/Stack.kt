@@ -20,30 +20,32 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
  * @see stack
  */
 //todo
-public data class Stack internal constructor(val name: String) : LayerFeature {
+public data class Stack internal constructor(val name: String)
+
+internal data class StackFeature internal constructor(val name: String) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
-    public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("STACK_FEATURE")
+    companion object {
+        val FEATURE_NAME: FeatureName = FeatureName("STACK_FEATURE")
     }
 }
 
 public var LineContextImmutable.stack: Stack // TODO(change api for stack!)
-    get() = features[Stack.FEATURE_NAME] as Stack
+    get() = Stack((features[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
-        features[Stack.FEATURE_NAME] = value
+        features[StackFeature.FEATURE_NAME] = StackFeature(value.name)
     }
 
 public var AreaContextImmutable.stack: Stack
-    get() = features[Stack.FEATURE_NAME] as Stack
+    get() = Stack((features[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
-        features[Stack.FEATURE_NAME] = value
+        features[StackFeature.FEATURE_NAME] = StackFeature(value.name)
     }
 
 public var BarContextImmutable.stack: Stack
-    get() = features[Stack.FEATURE_NAME] as Stack
+    get() = Stack((features[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
-        features[Stack.FEATURE_NAME] = value
+        features[StackFeature.FEATURE_NAME] = StackFeature(value.name)
     }
 
 /**

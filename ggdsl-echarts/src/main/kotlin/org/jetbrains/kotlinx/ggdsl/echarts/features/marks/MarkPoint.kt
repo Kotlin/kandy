@@ -5,13 +5,20 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
 @PlotDslMarker
-public class MarkPointFeature(
+public class MarkPointContext(
     public var points: List<MarkPoint>? = null
+) {
+    internal fun toMarkPointFeature(): MarkPointFeature =
+        MarkPointFeature(points)
+}
+
+internal class MarkPointFeature(
+    var points: List<MarkPoint>? = null
 ) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
-    public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("MARK_POINT_FEATURE")
+    companion object {
+        val FEATURE_NAME: FeatureName = FeatureName("MARK_POINT_FEATURE")
     }
 }
 

@@ -1,10 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.echarts.features.LegendFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.features.Legend
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Title
-import org.jetbrains.kotlinx.ggdsl.echarts.features.TooltipFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.features.Tooltip
 import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyle
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
@@ -26,10 +25,10 @@ public class EChartsLayout : PlotFeature {
     public var textStyle: TextStyle = TextStyle()
 
     @PublishedApi
-    internal var legend: LegendFeature? = null
+    internal var legend: Legend? = null
 
     @PublishedApi
-    internal var tooltip: TooltipFeature? = null
+    internal var tooltip: Tooltip? = null
 
     @PublishedApi
     internal companion object {

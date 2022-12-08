@@ -4,15 +4,21 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
-
 @PlotDslMarker
-public class MarkAreaFeature(
+public class MarkAreaContext(
+    public var areas: List<MarkArea>? = null
+) {
+    internal fun toMarkAreaFeature(): MarkAreaFeature =
+        MarkAreaFeature(areas)
+}
+
+internal class MarkAreaFeature(
     public var areas: List<MarkArea>? = null
 ) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
-    public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("MARK_AREA_FEATURE")
+    companion object {
+        val FEATURE_NAME: FeatureName = FeatureName("MARK_AREA_FEATURE")
     }
 }
 

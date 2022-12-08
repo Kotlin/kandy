@@ -98,15 +98,8 @@ internal class Parser(plot: Plot) {
 
         val legend = layout?.legend?.let {
             Legend(
-                type = it.type?.type,
-                left = it.left,
-                top = it.top,
-                right = it.right,
-                bottom = it.bottom,
-                width = it.width,
-                height = it.height,
-                orient = it.orient?.type,
-                formatter = it.formatter
+                type = it.type?.type, left = it.left, top = it.top, right = it.right, bottom = it.bottom,
+                width = it.width, height = it.height, orient = it.orient?.type, formatter = it.formatter
             )
         }
 
