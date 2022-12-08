@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.aes.SMOOTH
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.STEP
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Stack
-import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLineFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLayerFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Step
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
@@ -18,7 +18,7 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
     val smooth = settings.getNPSValue<Boolean>(SMOOTH)
     val step = settings.getNPSValue<Step>(STEP)?.type
     val stack = (features[Stack.FEATURE_NAME] as? Stack)?.name
-    val animation = (features[AnimationLineFeature.FEATURE_NAME] as? AnimationLineFeature)
+    val animation = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
 
     return LineSeries(
         name = name,
@@ -39,7 +39,7 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
         animation = animation?.enable,
         animationThreshold = animation?.threshold,
         animationDuration = animation?.duration,
-        animationEasing = animation?.easing?.name,
+        animationEasing = animation?.easing,
         animationDelay = animation?.delay,
     )
 }
@@ -48,7 +48,7 @@ internal fun Layer.toAreaSeries(name: String?, encode: Encode?): LineSeries {
     val symbol = settings.getNPSValue<Symbol>(SYMBOL)
     val smooth = settings.getNPSValue<Boolean>(SMOOTH)
     val stack = (features[Stack.FEATURE_NAME] as? Stack)?.name
-    val animation = (features[AnimationLineFeature.FEATURE_NAME] as? AnimationLineFeature)
+    val animation = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
 
     return LineSeries(
         name = name,
@@ -69,7 +69,7 @@ internal fun Layer.toAreaSeries(name: String?, encode: Encode?): LineSeries {
         animation = animation?.enable,
         animationThreshold = animation?.threshold,
         animationDuration = animation?.duration,
-        animationEasing = animation?.easing?.name,
+        animationEasing = animation?.easing,
         animationDelay = animation?.delay,
     )
 }

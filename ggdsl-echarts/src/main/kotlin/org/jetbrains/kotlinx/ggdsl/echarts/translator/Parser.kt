@@ -140,7 +140,7 @@ internal class Parser(plot: Plot) {
             animation?.enable,
             animation?.threshold,
             animation?.duration,
-            animation?.easing?.name,
+            animation?.easing,
             animation?.delay,
             plotSize = layout?.size ?: (800 to 600)
         )

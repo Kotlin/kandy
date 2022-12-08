@@ -1,13 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLineFeature
+import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLayerFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 
 internal fun Layer.toBoxplotSeries(name: String?, encode: Encode?): BoxplotSeries {
-    val animation = (features[AnimationLineFeature.FEATURE_NAME] as? AnimationLineFeature)
+    val animation = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
 
     return BoxplotSeries(
         name = name,
@@ -17,7 +17,7 @@ internal fun Layer.toBoxplotSeries(name: String?, encode: Encode?): BoxplotSerie
         markLine = features.getEchartsMarkLine(),
         markArea = features.getEchartsMarkArea(),
         animationDuration = animation?.duration,
-        animationEasing = animation?.easing?.name,
+        animationEasing = animation?.easing,
         animationDelay = animation?.delay,
     )
 }
