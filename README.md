@@ -13,6 +13,7 @@ by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Gra
 
 <!--- TOC -->
 
+* [What does it offer?](#what-does-it-offer)
 * [What does it look-and-feel like?](#what-does-it-look-and-feel-like)
    * [Lets-Plot](#lets-plot)
    * [ECharts](#echarts)
@@ -20,10 +21,17 @@ by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Gra
 * [Using in your projects](#using-in-your-projects)
     * [Gradle](#gradle)
     * [Kotlin Jupyter Notebook](#kotlin-jupyter-notebook)
+* [Examples and documentation](#examples-and-documentation)
 * [Contributing](#contributing)
-* [About the name](#about-the-name)
 
 <!--- END -->
+
+## What does it offer?
+
+1) Convenient, universal and readable DSL for plotting in Kotlin.
+2) Multi-engine support &mdash; DSL for different engines have a common base (which makes porting the source code easy), 
+but at the same time you can use all the possibilities of engines with DSL features.
+3) Simple add-ons and superstructures making for your needs. 
 
 ## What does it look-and-feel like?
 
@@ -80,7 +88,7 @@ with additional DSL and IR features.
 
 ### Gradle 
 
-Kotlin DSL:
+#### Kotlin DSL:
 
 - Add the Maven Central repository if it is not already there:
 
@@ -93,11 +101,27 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation("org.jetbrains.kotlinx:ggdsl-dataframe-lets-plot:$todo_release_version")
+    implementation("org.jetbrains.kotlinx:ggdsl-dataframe-lets-plot:$ggdsl_version")
 }
 ```
 
-TODO: GroovyDSL?
+#### Groovy DSL:
+
+- Add the Maven Central repository if it is not already there:
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+```
+- Add one of the api/implementation dependency:
+
+```groovy
+dependencies {
+    implementation "org.jetbrains.kotlinx:ggdsl-dataframe-lets-plot:$ggdsl_version"
+}
+```
+
 
 ### Kotlin Jupyter Notebook
 
@@ -107,7 +131,7 @@ or just visit to [Datalore](https://datalore.jetbrains.com/).
 
 You can include all necessary dependencies, imports and renders to a notebook with "line magic":
 
-``%use ggdsl($version)``
+``%use ggdsl($ggdsl_version)``
 
 Use
 ```
@@ -126,25 +150,19 @@ Available descriptors:
 
 ## Examples and documentation
 
-TODO 
+
+Examples can be found [here](https://github.com/AndreiKingsley/lib-ggdsl/tree/main/examples).
+
 
 ## Contributing
 
-If the library does not provide any functionality that you need, you can create an issue.
+If the library does not provide any functionality that you need, you can [create an issue](https://github.com/AndreiKingsley/lib-ggdsl/issues).
 
 You are welcome to contribute &mdash; you can provide an IR translation for a new render engine or create add-ons for 
 an existing one.
 
 
-// TODO contribution guide
-
-## *About the name*
+## *Note:*
 
 *The name of the library is temporary and should be changed soon. We will be very happy with suggestions.*
-
-
-
-
-
-[Examples(Jupyter notebook with a Kotlin Kernel)](https://github.com/AndreiKingsley/lib-ggdsl/tree/main/examples)
 
