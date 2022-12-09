@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.util.color
 
+import kotlinx.serialization.Serializable
 import kotlin.math.roundToInt
 
 /**

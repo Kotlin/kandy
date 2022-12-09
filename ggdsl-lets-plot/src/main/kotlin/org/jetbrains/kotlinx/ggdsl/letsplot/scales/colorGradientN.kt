@@ -4,12 +4,16 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 
+import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedPair
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
+@Serializable
 public data class ScaleContinuousColorGradientN<DomainType : Any>(
-    val domainLimits: Pair<DomainType, DomainType>? = null,
+    val domainLimits: Pair<TypedValue, TypedValue>? = null,
     val rangeColors: List<Color>,
     override val transform: Transformation? = null
 ) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>
@@ -22,16 +26,17 @@ public data class ScaleContinuousColorGradientN<DomainType : Any>(
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-public fun <DomainType : Any> continuousColorGradientN(
+public inline fun <reified DomainType : Any> continuousColorGradientN(
     rangeColors: List<Color>,
     domainLimits: Pair<DomainType, DomainType>? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradientN<DomainType> = ScaleContinuousColorGradientN(
-    domainLimits, rangeColors, transform
+    domainLimits?.typedPair(), rangeColors, transform
 )
 
+@Serializable
 public data class ScaleContinuousColorGradient2<DomainType : Any>(
-    val domainLimits: Pair<DomainType, DomainType>? = null,
+    val domainLimits: Pair<TypedValue, TypedValue>? = null,
     val low: Color,
     val mid: Color,
     val high: Color,
@@ -48,7 +53,7 @@ public data class ScaleContinuousColorGradient2<DomainType : Any>(
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-public fun <DomainType : Any> continuousColorGradient2(
+public inline fun <reified DomainType : Any> continuousColorGradient2(
     low: Color,
     mid: Color,
     high: Color,
@@ -56,5 +61,5 @@ public fun <DomainType : Any> continuousColorGradient2(
     domainLimits: Pair<DomainType, DomainType>? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradient2<DomainType> = ScaleContinuousColorGradient2(
-    domainLimits, low, mid, high, midpoint, transform
+    domainLimits?.typedPair(), low, mid, high, midpoint, transform
 )

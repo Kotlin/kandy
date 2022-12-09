@@ -61,15 +61,16 @@ public interface NonScalablePositionalAes : PositionalAes
 public interface NonPositionalAes<in T : Any> : Aes
 
 /**
- * Non-positional aesthetic attribute, that can be mapped to and have an explicit scale.
+ * Non-positional aesthetic attribute, that can be mapped and have an explicit scale.
  *
  * @property name the name of this attribute
  */
-public interface MappableNonPositionalAes<in T : Any> : NonPositionalAes<T>, ScalableAes
+public interface ScalableNonPositionalAes<in T : Any> : NonPositionalAes<T>, ScalableAes
 
-// TODO Other exists??? Todo Settable?
-/*
-// TODO
-interface MappableOnlyNonPositionalAes<in T : Any> :  ScalableAes
 
+/**
+ * Non-positional aesthetic attribute, that can be mapped but without an explicit scale.
+ *
+ * @property name the name of this attribute
  */
+public interface NonScalableNonPositionalAes<in T : Any> :  NonPositionalAes<T>, MappableAes

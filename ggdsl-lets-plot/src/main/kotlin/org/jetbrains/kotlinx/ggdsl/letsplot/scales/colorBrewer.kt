@@ -4,6 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 
+import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
+import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
@@ -30,36 +33,41 @@ public sealed interface BrewerType {
     public val palette: Palette?
     public val name: String
 
+    @Serializable
     public data class Sequential(override val palette: SequentialPalette? = null) : BrewerType {
         override val name: String = "seq"
     }
 
+    @Serializable
     public data class Diverging(override val palette: DivergingPalette? = null) : BrewerType {
         override val name: String = "div"
     }
 
+    @Serializable
     public data class Qualitative(override val palette: QualitativePalette? = null) : BrewerType {
         override val name: String = "qual"
     }
 }
 
 public sealed interface ScaleColorBrewer<DomainType : Any> {
-    public val limits: List<DomainType>?
+    public val limits: TypedList?
     public val type: BrewerType?
 
     // todo direction
     public val transform: Transformation?
 }
 
+@Serializable
 public data class ScaleContinuousColorBrewer<DomainType : Any>(
-    override val limits: List<DomainType>?,
+    override val limits: TypedList?,
     override val type: BrewerType?,
     // todo direction
     override val transform: Transformation?,
 ) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorBrewer<DomainType>
 
+@Serializable
 public data class ScaleCategoricalColorBrewer<DomainType : Any>(
-    override val limits: List<DomainType>?,
+    override val limits: TypedList?,
     override val type: BrewerType?,
     // todo direction
 ) : CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorBrewer<DomainType> {
@@ -67,17 +75,17 @@ public data class ScaleCategoricalColorBrewer<DomainType : Any>(
 }
 
 
-public fun <DomainType : Any> continuousColorBrewer(
+public inline fun <reified DomainType : Any> continuousColorBrewer(
     type: BrewerType?,
     domainLimits: Pair<DomainType, DomainType>? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorBrewer<DomainType> = ScaleContinuousColorBrewer(
-    domainLimits?.toList(), type, transform
+    domainLimits?.toList()?.typedList(), type, transform
 )
 
-public fun <DomainType : Any> categoricalColorBrewer(
+public inline fun <reified DomainType : Any> categoricalColorBrewer(
     type: BrewerType?,
     domainCategories: List<DomainType>? = null,
 ): ScaleCategoricalColorBrewer<DomainType> = ScaleCategoricalColorBrewer(
-    domainCategories, type
+    domainCategories?.typedList(), type
 )

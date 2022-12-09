@@ -4,23 +4,28 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.util.font
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.SimpleValueWrapper
 
-public data class HorizontalJustification internal constructor(override val value: Any) : SimpleValueWrapper {
+//TODO
+
+@Serializable
+public data class HorizontalJustification internal constructor(override val value: Double) : SimpleValueWrapper {
     public companion object {
-        public val LEFT: HorizontalJustification = HorizontalJustification("left")
-        public val MIDDLE: HorizontalJustification = HorizontalJustification("middle")
-        public val RIGHT: HorizontalJustification = HorizontalJustification("right")
+        public val LEFT: HorizontalJustification = HorizontalJustification(0.0)
+        public val MIDDLE: HorizontalJustification = HorizontalJustification(0.5)
+        public val RIGHT: HorizontalJustification = HorizontalJustification(1.0)
 
         public fun custom(value: Double): HorizontalJustification = HorizontalJustification(value)
     }
 }
 
-public data class VerticalJustification internal constructor(override val value: Any) : SimpleValueWrapper {
+@Serializable
+public data class VerticalJustification internal constructor(override val value: Double) : SimpleValueWrapper {
     public companion object {
-        public val BOTTOM: VerticalJustification = VerticalJustification("bottom")
-        public val CENTER: VerticalJustification = VerticalJustification("center")
-        public val TOP: VerticalJustification = VerticalJustification("top")
+        public val BOTTOM: VerticalJustification = VerticalJustification(0.0)
+        public val CENTER: VerticalJustification = VerticalJustification(0.5)
+        public val TOP: VerticalJustification = VerticalJustification(1.0)
 
         public fun custom(value: Double): VerticalJustification = VerticalJustification(value)
     }

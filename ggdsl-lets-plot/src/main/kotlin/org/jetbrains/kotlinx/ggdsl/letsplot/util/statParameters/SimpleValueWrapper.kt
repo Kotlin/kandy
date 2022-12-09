@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters
 
-// TODO
+// TODO to Inline Type???
 public interface SimpleValueWrapper {
     public val value: Any
 }

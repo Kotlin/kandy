@@ -5,7 +5,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
-import org.jetbrains.kotlinx.ggdsl.dsl.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
@@ -36,9 +38,9 @@ internal class LayerWrapperTest {
                 )
             ),
             mapOf(
-                COLOR to NonPositionalSetting(
+                COLOR to NonPositionalSetting<Color>(
                     COLOR,
-                    Color.RED
+                    Color.RED.typed()
                 )
             ),
             mapOf()
@@ -93,8 +95,8 @@ internal class LayerWrapperTest {
                     FILL,
                     ColumnScaledNonPositional(
                         columnPointer<String>("BAFGA"),
-                        NonPositionalCategoricalScale(
-                            rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY)
+                        NonPositionalCategoricalScale<String, Color>(
+                            rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY).typedList()
                         ),
                     ),
                     typeOf<String>(),
@@ -102,13 +104,13 @@ internal class LayerWrapperTest {
                 )
             ),
             mapOf(
-                COLOR to NonPositionalSetting(
+                COLOR to NonPositionalSetting<Color>(
                     COLOR,
-                    Color.RED
+                    Color.RED.typed()
                 ),
-                WIDTH to NonPositionalSetting(
+                WIDTH to NonPositionalSetting<Color>(
                     WIDTH,
-                    5.0
+                    5.0.typed()
                 ),
             ),
             mapOf(

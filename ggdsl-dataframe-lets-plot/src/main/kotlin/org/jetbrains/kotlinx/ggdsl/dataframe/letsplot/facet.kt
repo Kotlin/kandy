@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dataframe.toColumnPointer
+import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnPointer
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapContext
@@ -63,7 +63,7 @@ public fun LayerPlotContext.facetGrid(
         FacetGridFeature(x.name(), y.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
 
 }
-
+/*
 public fun LayerPlotContext.facetGrid(
     x: ColumnReference<*>,
     y: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<*>,
@@ -74,7 +74,7 @@ public fun LayerPlotContext.facetGrid(
     yFormat: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x.name(), y.id, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(x.name(), y.name, scalesSharing, xOrder, yOrder, xFormat, yFormat)
 
 }
 
@@ -89,9 +89,11 @@ public fun LayerPlotContext.facetGrid(
     yFormat: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x.id, y.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(x.name, y.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
 
 }
+
+ */
 
 // todo
 public inline fun <reified T : Any> FacetWrapContext.facet(

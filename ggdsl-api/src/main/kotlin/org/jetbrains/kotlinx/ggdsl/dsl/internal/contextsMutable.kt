@@ -1,10 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.internal
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
+import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
@@ -19,8 +21,15 @@ public interface TableBindingContextInterfaceMutable : TableDataContext {
     public override val data: TableData
     public val dataBuffer: MutableTableData
     public fun generateID(): String
-    public fun <T : Any> Iterable<T>.toColumnPointer(): ColumnPointer<T>
-    public fun <T : Any> Iterable<T>.toColumnPointer(id: String): ColumnPointer<T>
+
+}
+
+public inline fun <reified T : Any> TableBindingContextInterfaceMutable.toColumnPointer(iterable: Iterable<T>)
+    : ColumnPointer<T> = toColumnPointer(iterable, generateID())
+
+public inline fun <reified T : Any> TableBindingContextInterfaceMutable.toColumnPointer(iterable: Iterable<T>, id: String): ColumnPointer<T> {
+    dataBuffer.map[id] = TypedList(typeOf<T>(), iterable.toList())
+    return columnPointer(id)
 }
 
 public abstract class TableContextMutableBase : TableBindingContextInterfaceMutable {
@@ -32,61 +41,53 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
     private var counter: Int = 0
     public override fun generateID(): String = "*gen${counter++}"
 
-    public override fun <T : Any> Iterable<T>.toColumnPointer(): ColumnPointer<T> = toColumnPointer(generateID())
+    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
+        ColumnScaledUnspecifiedDefault(toColumnPointer(this))
 
-    public override fun <T : Any> Iterable<T>.toColumnPointer(id: String): ColumnPointer<T> {
-        dataBuffer.map[id] = toList()
-        return columnPointer(id)
-    }
+    public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
+        ColumnScaledUnspecifiedDefault(toColumnPointer(first, second))
 
-    public fun <DomainType : Any> Iterable<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
-        ColumnScaledUnspecifiedDefault(toColumnPointer())
-
-    public fun <DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
-        ColumnScaledUnspecifiedDefault(first.toColumnPointer(second))
-
-    public fun <DomainType : Any> Iterable<DomainType>.scaled(
+    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
         scale: PositionalUnspecifiedScale
-    ): ColumnScaledPositionalUnspecified<DomainType> = ColumnScaledPositionalUnspecified(toColumnPointer(), scale)
+    ): ColumnScaledPositionalUnspecified<DomainType> = ColumnScaledPositionalUnspecified(toColumnPointer(this), scale)
 
-
-    public fun <DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
+    public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
         scale: PositionalUnspecifiedScale
-    ): ColumnScaledPositionalUnspecified<DomainType> = ColumnScaledPositionalUnspecified(first.toColumnPointer(second), scale)
+    ): ColumnScaledPositionalUnspecified<DomainType> = ColumnScaledPositionalUnspecified(toColumnPointer(first, second), scale)
 
-    public fun <DomainType : Any> Iterable<DomainType>.scaled(
+    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
         scale: NonPositionalUnspecifiedScale
     ): ColumnScaledNonPositionalUnspecified<DomainType> =
-        ColumnScaledNonPositionalUnspecified(toColumnPointer(), scale)
+        ColumnScaledNonPositionalUnspecified(toColumnPointer(this), scale)
 
-    public fun <DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
+    public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
         scale: NonPositionalUnspecifiedScale
     ): ColumnScaledNonPositionalUnspecified<DomainType> =
-        ColumnScaledNonPositionalUnspecified(first.toColumnPointer(second), scale)
+        ColumnScaledNonPositionalUnspecified(toColumnPointer(first, second), scale)
 
-    public fun <DomainType : Any> Iterable<DomainType>.scaled(
+    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
         scale: PositionalScale<DomainType>
-    ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(toColumnPointer(), scale)
+    ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(toColumnPointer(this), scale)
 
-    public fun <DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
+    public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
         scale: PositionalScale<DomainType>
-    ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(first.toColumnPointer(second), scale)
+    ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(toColumnPointer(first, second), scale)
 
-    public fun <DomainType : Any, RangeType : Any> Iterable<DomainType>.scaled(
+    public inline fun <reified DomainType : Any, RangeType : Any> Iterable<DomainType>.scaled(
         scale: NonPositionalScale<DomainType, RangeType>
     ): ColumnScaledNonPositional<DomainType, RangeType> =
-        ColumnScaledNonPositional(toColumnPointer(), scale)
+        ColumnScaledNonPositional(toColumnPointer(this), scale)
 
-    public fun <DomainType : Any, RangeType : Any> Pair<Iterable<DomainType>, String>.scaled(
+    public inline fun <reified DomainType : Any, RangeType : Any> Pair<Iterable<DomainType>, String>.scaled(
         scale: NonPositionalScale<DomainType, RangeType>
     ): ColumnScaledNonPositional<DomainType, RangeType> =
-        ColumnScaledNonPositional(first.toColumnPointer(second), scale)
+        ColumnScaledNonPositional(toColumnPointer(first, second), scale)
 
     public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
         data: Iterable<DomainType>
     ) {
         context.bindingCollector.mappings[this.name] =
-            NonScalablePositionalMapping<DomainType>(this.name, data.toColumnPointer(), typeOf<DomainType>())
+            NonScalablePositionalMapping<DomainType>(this.name, toColumnPointer(data), typeOf<DomainType>())
     }
 
     public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
@@ -94,7 +95,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this.name,
-            data.toColumnPointer().scaled(),
+            toColumnPointer(data).scaled(),
             typeOf<DomainType>()
         )
         context.bindingCollector.mappings[this.name] = mapping
@@ -106,7 +107,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this.name,
-            dataToName.first.toColumnPointer(dataToName.second).scaled(),
+            toColumnPointer(dataToName.first, dataToName.second).scaled(),
             typeOf<DomainType>()
         )
         context.bindingCollector.mappings[this.name] = mapping
@@ -114,12 +115,12 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
     }
 
     public inline operator fun <reified DomainType : Any, RangeType : Any>
-            MappableNonPositionalAes<RangeType>.invoke(
+            ScalableNonPositionalAes<RangeType>.invoke(
         data: Iterable<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
             this.name,
-            data.toColumnPointer().scaled(),
+            toColumnPointer(data).scaled(),
             typeOf<DomainType>()
         )
         context.bindingCollector.mappings[this.name] = mapping

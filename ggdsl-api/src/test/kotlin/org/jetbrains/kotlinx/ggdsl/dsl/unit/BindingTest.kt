@@ -5,8 +5,10 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.unit
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingCollector
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -27,7 +29,7 @@ internal class BindingTest {
         override val name: AesName = MOCK_AES_DOUBLE_NON_POS
     }
 
-    class MockAesStringMapNonPos(override val context: BindingContext) : MappableNonPositionalAes<String> {
+    class MockAesStringMapNonPos(override val context: BindingContext) : ScalableNonPositionalAes<String> {
         override val name: AesName = MOCK_AES_STRING_MAP_NON_POS
     }
 
@@ -39,7 +41,7 @@ internal class BindingTest {
         override val name: AesName = MOCK_AES_SCLB_POS
     }
 
-    class MockAesColorMapNonPos(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+    class MockAesColorMapNonPos(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
         override val name: AesName = MOCK_AES_COLOR_MAP_NON_POS
     }
 
@@ -63,7 +65,7 @@ internal class BindingTest {
             mockAesDoubleNonPos(valueDouble)
         }
         assertEquals(
-            mapOf(MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting(MOCK_AES_DOUBLE_NON_POS, valueDouble)),
+            mapOf(MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting<Double>(MOCK_AES_DOUBLE_NON_POS, valueDouble.typed())),
             context.bindingCollector.settings.toMap()
         )
 
@@ -74,8 +76,8 @@ internal class BindingTest {
         }
         assertEquals(
             mapOf(
-                MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting(MOCK_AES_DOUBLE_NON_POS, valueDouble),
-                MOCK_AES_STRING_MAP_NON_POS to NonPositionalSetting(MOCK_AES_STRING_MAP_NON_POS, valueString)
+                MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting<Double>(MOCK_AES_DOUBLE_NON_POS, valueDouble.typed()),
+                MOCK_AES_STRING_MAP_NON_POS to NonPositionalSetting<Double>(MOCK_AES_STRING_MAP_NON_POS, valueString.typed())
             ),
             context.bindingCollector.settings.toMap()
         )
@@ -164,7 +166,7 @@ internal class BindingTest {
         }
         assertEquals<Map<AesName, Mapping>>(
             mapOf(
-                MOCK_AES_STRING_MAP_NON_POS to ScaledNonPositionalDefaultMapping<String, String>(
+                MOCK_AES_STRING_MAP_NON_POS to ScaledNonPositionalUnspecifiedMapping<String, String>(
                     MOCK_AES_STRING_MAP_NON_POS, mockSource.scaled(
                     categorical()
                 ), typeOf<String>()

@@ -4,6 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 
 /**
@@ -41,10 +43,12 @@ public fun categoricalPos(): PositionalCategoricalUnspecifiedScale =
  * @param transform the transformation of scale
  * @return new [PositionalContinuousScale] with given limits
  */
-public fun <DomainType : Any> continuousPos(
+public inline fun <reified DomainType : Any> continuousPos(
     limits: Pair<DomainType, DomainType>? = null,
     transform: PositionalTransform? = null
-): PositionalContinuousScale<DomainType> = PositionalContinuousScale(limits, transform)
+): PositionalContinuousScale<DomainType> = PositionalContinuousScale(limits?.let {
+    it.first.typed() to it.second.typed()
+}, transform)
 
 /**
  * Creates a new continuous non-positional scale
@@ -56,12 +60,16 @@ public fun <DomainType : Any> continuousPos(
  * @param transform the transformation of scale
  * @return new [NonPositionalContinuousScale] with given limits
  */
-public fun <DomainType : Any, RangeType : Any> continuous(
+public inline fun <reified DomainType : Any, reified RangeType : Any> continuous(
     domainLimits: Pair<DomainType, DomainType>? = null,
     rangeLimits: Pair<RangeType, RangeType>? = null,
     transform: NonPositionalTransform? = null
 ): NonPositionalContinuousScale<DomainType, RangeType> =
-    NonPositionalContinuousScale(domainLimits, rangeLimits, transform)
+    NonPositionalContinuousScale(domainLimits?.let {
+        it.first.typed() to it.second.typed()
+    }, rangeLimits?.let {
+        it.first.typed() to it.second.typed()
+    }, transform)
 
 /**
  * Creates a new categorical positional scale
@@ -70,9 +78,9 @@ public fun <DomainType : Any, RangeType : Any> continuous(
  * @param categories [List] defining the domain
  * @return new [PositionalCategoricalScale] with given categories
  */
-public fun <DomainType : Any> categoricalPos(categories: List<DomainType>? = null)
+public inline fun <reified DomainType : Any> categoricalPos(categories: List<DomainType>? = null)
         : PositionalCategoricalScale<DomainType> =
-    PositionalCategoricalScale(categories)
+    PositionalCategoricalScale(categories?.typedList())
 
 /**
  * Creates a new categorical non-positional scale
@@ -83,15 +91,19 @@ public fun <DomainType : Any> categoricalPos(categories: List<DomainType>? = nul
  * @param rangeValues [List] defining the range
  * @return new [NonPositionalCategoricalScale] with given limits
  */
-public fun <DomainType : Any, RangeType : Any> categorical(
+public inline fun <reified DomainType : Any, reified RangeType : Any> categorical(
     domainCategories: List<DomainType>? = null,
     rangeValues: List<RangeType>? = null,
-): NonPositionalCategoricalScale<DomainType, RangeType> = NonPositionalCategoricalScale(domainCategories, rangeValues)
+): NonPositionalCategoricalScale<DomainType, RangeType> =
+    NonPositionalCategoricalScale(domainCategories?.typedList(), rangeValues?.typedList())
 
 /**
  * TODO
  */
-public fun <DomainType : Any, RangeType : Any> categorical(
+public inline fun <reified DomainType : Any, reified RangeType : Any> categorical(
     categoriesToValues: List<Pair<DomainType, RangeType>>
 ): NonPositionalCategoricalScale<DomainType, RangeType> =
-    NonPositionalCategoricalScale(categoriesToValues.map { it.first }, categoriesToValues.map { it.second })
+    NonPositionalCategoricalScale(
+        categoriesToValues.map { it.first }.typedList(),
+        categoriesToValues.map { it.second }.typedList()
+    )

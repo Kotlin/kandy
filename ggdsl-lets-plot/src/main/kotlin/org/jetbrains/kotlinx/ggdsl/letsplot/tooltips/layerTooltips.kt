@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.tooltips
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.Aes
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
@@ -11,6 +12,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 
+@Serializable
 public data class LayerTooltips internal constructor(
     val variables: List<String>,
     val lines: List<String>,
@@ -54,7 +56,7 @@ public data class LayerTooltips internal constructor(
  */
 
 public fun value(source: ColumnPointer<*>): String {
-    return "@${source.id}"
+    return "@${source.name}"
 }
 
 /**
@@ -116,7 +118,7 @@ public class LayerTooltipsContext {
 
     public fun line(source: ColumnPointer<*>) {
 
-        lineBuffer.add("@|@${source.id}")
+        lineBuffer.add("@|@${source.name}")
     }
 
     /**
@@ -141,6 +143,7 @@ public class LayerTooltipsContext {
 
 }
 
+@Serializable
 public data class Anchor(val value: String) {
     public companion object {
         public val TOP_RIGHT: Anchor = Anchor("top_right")
@@ -188,12 +191,12 @@ public inline fun LayerContextInterface.tooltips(
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
-        variables.map { it.id },
+        variables.map { it.name },
         title,
         anchor,
         minWidth,
         hide,
-        valueFormats.map { it.key.id to it.value }
+        valueFormats.map { it.key.name to it.value }
             + aesFormats.map { "^" + it.key.name.name to it.value }
             + statFormats.map { it.key.id to it.value },
         LayerTooltipsContext().apply(tooltipsContextAction)

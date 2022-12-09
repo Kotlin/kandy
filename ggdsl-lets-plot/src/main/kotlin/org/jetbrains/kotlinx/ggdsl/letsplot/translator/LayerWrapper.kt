@@ -12,20 +12,21 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.MERGED_GROUPS
 import org.jetbrains.kotlinx.ggdsl.letsplot.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
+import org.jetbrains.letsPlot.Stat
 import org.jetbrains.letsPlot.intern.Options
 import org.jetbrains.letsPlot.intern.layer.LayerBase
 import org.jetbrains.letsPlot.pos.positionIdentity
 
-internal class LayerWrapper internal constructor(private val layer: Layer, groupedDataPlot: Boolean) :
+internal class LayerWrapper internal constructor(private val layer: Layer, addGroups: Boolean) :
     LayerBase(
         data = layer.dataset?.wrap(),
         mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap() }.toMap().toMutableMap().apply {
-            if (groupedDataPlot || layer.dataset is GroupedDataInterface) {
+            if (addGroups) {
                 this[GROUP.name] = MERGED_GROUPS
             }
         } ),
         geom = layer.geom.wrap(),
-        stat = layer.geom.toStat(),
+        stat = Stat.identity,
         tooltips = (layer.features[LayerTooltips.FEATURE_NAME] as? LayerTooltips)?.wrap(),
         position = (layer.features[Position.FEATURE_NAME] as? Position)?.wrap() ?: positionIdentity,
         showLegend = true,
