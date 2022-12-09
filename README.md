@@ -5,7 +5,6 @@
 
 # GGDSL
 
-
 Kotlin plotting DSL (and more!) inspired
 by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Grammar_of_Graphics). 
 *Currently, JVM-only*.
@@ -14,10 +13,15 @@ by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Gra
 
 <!--- TOC -->
 
+* [What does it look-and-feel like?](#what-does-it-look-and-feel-like)
+   * [Lets-Plot](#lets-plot)
+   * [ECharts](#echarts)
 * [Modules](#modules)
 * [Using in your projects](#using-in-your-projects)
     * [Gradle](#gradle)
     * [Kotlin Jupyter Notebook](#kotlin-jupyter-notebook)
+* [Contributing](#contributing)
+* [About the name](#about-the-name)
 
 <!--- END -->
 
@@ -27,7 +31,41 @@ Seeing is believing; One look is worth a thousand words.
 
 ### Lets-Plot
 
+```kotlin
+val simpleDataset = mapOf(
+    "time" to listOf(0, 1, 2, 4, 5, 7, 8, 9),
+    "temperature" to listOf(12.0, 14.2, 15.1, 15.9, 17.9, 15.6, 14.2, 24.3),
+    "humidity" to listOf(0.5, 0.32, 0.11, 0.89, 0.68, 0.57, 0.56, 0.5)
+)
 
+plot(simpleDataset) {
+  x("time"<Int>())
+  y("temperature"<Double>().scaled(
+    continuousPos(0.0 to 25.5)
+  ))
+
+  bar {
+    color("humidity"<Double>().scaled(continuous(
+      rangeLimits = Color.YELLOW to Color.RED
+    )))
+    borderLine.width(0.0)
+  }
+
+  line {
+    width(3.0)
+    color(Color.hex("#6e5596"))
+    type(LineType.DOTDASH)
+  }
+
+  layout {
+    title = "Simple plot with lets-plot"
+    caption = "See `examples` section for more\n complicated and interesting examples!"
+  }
+}
+```
+![GGDSL example via Lets-plot](examples/images/lets_plot_simple.png)
+
+### ECharts
 
 ## Modules
 * `ggdsl-api` &mdash; contains `Plot` intermediate representation (IR), base plotting DSL and internal API.
@@ -85,6 +123,10 @@ Available descriptors:
 * `ggdsl-lets-plot` &mdash; api, Lets-Plot implementation & DSL features.
 * `ggdsl-dataframe` &mdash; api, DataFrame integration (todo remove???).
 * `ggdsl-echarts` &mdash; api, ECharts implementation & DSL features. // todo with dataframe???
+
+## Examples and documentation
+
+TODO 
 
 ## Contributing
 
