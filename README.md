@@ -5,10 +5,10 @@
 
 # GGDSL
 
-*The name of the library is temporary and should be changed soon. We will be very happy with suggestions.*
 
-Kotlin plotting DSL inspired
-by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Grammar_of_Graphics). *Currently, JVM-only*.
+Kotlin plotting DSL (and more!) inspired
+by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Grammar_of_Graphics). 
+*Currently, JVM-only*.
 
 ## Table of contents
 
@@ -20,6 +20,14 @@ by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Gra
     * [Kotlin Jupyter Notebook](#kotlin-jupyter-notebook)
 
 <!--- END -->
+
+## What does it look-and-feel like?
+
+Seeing is believing; One look is worth a thousand words.
+
+### Lets-Plot
+
+
 
 ## Modules
 * `ggdsl-api` &mdash; contains `Plot` intermediate representation (IR), base plotting DSL and internal API.
@@ -87,6 +95,11 @@ an existing one.
 
 
 // TODO contribution guide
+
+## *About the name*
+
+*The name of the library is temporary and should be changed soon. We will be very happy with suggestions.*
+
 
 
 
