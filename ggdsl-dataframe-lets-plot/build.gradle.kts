@@ -8,14 +8,21 @@ repositories {
     mavenCentral()
 }
 
+val kotlin_version: String by System.getProperties()
+val serialization_version: String by project
+val dataframe_version: String by project
+val lets_plot_kotlin_version: String by project
+val lets_plot_image_version: String by project
+
+
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.20")
-    implementation("org.jetbrains.kotlinx:dataframe:0.9.0-dev-1139")
-    implementation("org.jetbrains.lets-plot:lets-plot-kotlin-jvm:4.1.0")
-    implementation("org.jetbrains.lets-plot:lets-plot-image-export:2.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin_version")
+    implementation("org.jetbrains.kotlinx:dataframe:$dataframe_version")
+    implementation("org.jetbrains.lets-plot:lets-plot-kotlin-jvm:$lets_plot_kotlin_version")
+    implementation("org.jetbrains.lets-plot:lets-plot-image-export:$lets_plot_image_version")
     api(project(":ggdsl-lets-plot"))
     api(project(":ggdsl-dataframe"))
 }

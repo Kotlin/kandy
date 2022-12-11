@@ -8,10 +8,12 @@ repositories {
     mavenCentral()
 }
 
+val datetime_version: String by project
+
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:$datetime_version")
 }
 
 tasks {
