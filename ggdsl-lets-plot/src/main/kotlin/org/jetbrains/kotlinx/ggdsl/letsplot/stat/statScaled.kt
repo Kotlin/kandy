@@ -1,6 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat
 
-import org.jetbrains.kotlinx.ggdsl.dsl.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.ScalableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
@@ -40,7 +40,7 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
 }
 
 public inline operator fun <reified DomainType : Any, RangeType : Any>
-        MappableNonPositionalAes<RangeType>.invoke(
+        ScalableNonPositionalAes<RangeType>.invoke(
     stat: Statistic<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(

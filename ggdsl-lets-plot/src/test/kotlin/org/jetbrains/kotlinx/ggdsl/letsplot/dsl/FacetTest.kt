@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
 import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
-import org.jetbrains.kotlinx.ggdsl.dsl.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature

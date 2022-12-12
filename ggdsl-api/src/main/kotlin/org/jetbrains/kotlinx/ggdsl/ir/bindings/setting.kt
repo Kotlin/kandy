@@ -6,6 +6,7 @@ package org.jetbrains.kotlinx.ggdsl.ir.bindings
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
+import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
 /**
  * Setting base interface.
@@ -22,7 +23,7 @@ public sealed interface Setting
 @Serializable
 public data class NonPositionalSetting<T : Any>(
     val aes: AesName,
-    val value: T,
+    val value: TypedValue,
 ) : Setting
 
 /**
@@ -35,5 +36,5 @@ public data class NonPositionalSetting<T : Any>(
 @Serializable
 public data class PositionalSetting<T : Any>(
     val aes: AesName,
-    val value: T,
+    val value: TypedValue,
 ) : Setting

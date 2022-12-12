@@ -5,10 +5,12 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedPair
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
 /**
  * Creates a qualitative color scale with evenly spaced hues.
@@ -23,7 +25,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-public fun <DomainType : Any> continuousColorHue(
+public inline fun <reified DomainType : Any> continuousColorHue(
     huesRange: Pair<Int, Int>? = null,
     chroma: Int? = null,
     luminance: Int? = null,
@@ -32,7 +34,7 @@ public fun <DomainType : Any> continuousColorHue(
     domainLimits: Pair<DomainType, DomainType>? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorHue<DomainType> = ScaleContinuousColorHue(
-    domainLimits, huesRange, chroma, luminance, hueStart, direction, transform
+    domainLimits?.typedPair(), huesRange, chroma, luminance, hueStart, direction, transform
 )
 
 // todo(LP) categories support
@@ -55,7 +57,7 @@ public data class WheelDirection internal constructor(val value: Int) {
 }
 
 public sealed interface ScaleColorHue<DomainType : Any> {
-    public val domainLimits: Pair<DomainType, DomainType>?
+    public val domainLimits: Pair<TypedValue, TypedValue>?
     public val huesRange: Pair<Int, Int>?
     public val chroma: Int?
     public val luminance: Int?
@@ -65,8 +67,8 @@ public sealed interface ScaleColorHue<DomainType : Any> {
 }
 
 @Serializable
-public data class ScaleContinuousColorHue<DomainType : Any> internal constructor(
-    override val domainLimits: Pair<DomainType, DomainType>?,
+public data class ScaleContinuousColorHue<DomainType : Any> @PublishedApi internal constructor(
+    override val domainLimits: Pair<TypedValue, TypedValue>?,
     override val huesRange: Pair<Int, Int>?,
     override val chroma: Int?,
     override val luminance: Int?,
@@ -76,14 +78,14 @@ public data class ScaleContinuousColorHue<DomainType : Any> internal constructor
 ) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorHue<DomainType>
 
 @Serializable
-public data class ScaleCategoricalColorHue<DomainType : Any> internal constructor(
+public data class ScaleCategoricalColorHue<DomainType : Any> @PublishedApi internal constructor(
     override val huesRange: Pair<Int, Int>?,
     override val chroma: Int?,
     override val luminance: Int?,
     override val hueStart: Int?,
     override val direction: WheelDirection?,
 ) : CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorHue<DomainType> {
-    override val domainLimits: Pair<DomainType, DomainType>?
+    override val domainLimits: Pair<TypedValue, TypedValue>?
         get() = null
     override val transform: Transformation?
         get() = null

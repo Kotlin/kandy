@@ -8,6 +8,8 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
+import kotlin.reflect.KType
+import kotlin.reflect.typeOf
 
 public sealed interface LegendType
 
@@ -31,11 +33,12 @@ public data class ColorBar internal constructor(
 // TODO
 @Serializable
 @PlotDslMarker
-public data class Legend<DomainType : Any, out RangeType : Any>(
-    var name: String? = null,
-    // todo expand & trans
-    var type: LegendType? = null,
+public data class Legend<DomainType : Any, out RangeType : Any> @PublishedApi internal constructor(
+    var kType: KType,
 ) : SelfInvocationContext {
+    var name: String? = null
+    // todo expand & trans
+    var type: LegendType? = null
     internal var breaks: List<DomainType>? = null
     internal var labels: List<String>? = null
     internal var format: String? = null
@@ -48,6 +51,11 @@ public data class Legend<DomainType : Any, out RangeType : Any>(
     public fun breaksLabeled(breaksToLabels: List<Pair<DomainType, String>>) {
         breaks = breaksToLabels.map { it.first }
         labels = breaksToLabels.map { it.second }
+    }
+
+    public companion object {
+        @PublishedApi
+        internal inline fun<reified DomainType: Any, RangeType: Any> create(): Legend<DomainType, RangeType> = Legend(typeOf<DomainType>())
     }
 }
 

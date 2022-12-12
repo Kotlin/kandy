@@ -5,7 +5,8 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.MappableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.ScalableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.NonScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalablePositionalMapping
@@ -47,7 +48,7 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
  *
  * @param columnRef the mapped column.
  */
-public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableNonPositionalAes<RangeType>.invoke(
     columnRef: ColumnReference<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(

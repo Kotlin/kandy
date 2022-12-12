@@ -31,20 +31,20 @@ public data class PositionalParameters<DomainType : Any>(
 public data class NonPositionalParameters<DomainType : Any, RangeType : Any>(val legend: Legend<DomainType, RangeType>)
     : LetsPlotScaleParameters
 
-public fun <DomainType : Any> BaseScaledPositionalMapping<DomainType>.with(
+public inline fun <reified DomainType : Any> BaseScaledPositionalMapping<DomainType>.with(
     block: PositionalParameters<DomainType>.() -> Unit
 ) {
-    scaleParameters = PositionalParameters(Axis<DomainType>()).apply(block)
+    scaleParameters = PositionalParameters(Axis.create<DomainType>()).apply(block)
 }
 
-public fun <DomainType : Any> FreePositionalScale<DomainType>.with(
+public inline fun <reified DomainType : Any> FreePositionalScale<DomainType>.with(
     block: PositionalParameters<DomainType>.() -> Unit
 ) {
-    scaleParameters = PositionalParameters(Axis<DomainType>()).apply(block)
+    scaleParameters = PositionalParameters(Axis.create<DomainType>()).apply(block)
 }
 
-public fun <DomainType : Any, RangeType : Any> BaseScaledNonPositionalMapping<DomainType, RangeType>.with(
+public inline fun <reified DomainType : Any, RangeType : Any> BaseScaledNonPositionalMapping<DomainType, RangeType>.with(
     block: NonPositionalParameters<DomainType, RangeType>.() -> Unit
 ) {
-    scaleParameters = NonPositionalParameters(Legend<DomainType, RangeType>()).apply(block)
+    scaleParameters = NonPositionalParameters(Legend.create<DomainType, RangeType>()).apply(block)
 }

@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.stat
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dataframe.toColumnPointer
+import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnPointer
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinLayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinXPos

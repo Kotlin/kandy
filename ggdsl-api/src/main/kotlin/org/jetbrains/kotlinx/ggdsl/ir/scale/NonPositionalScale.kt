@@ -5,6 +5,8 @@
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
+import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
 /**
  * Non-positional scale interface. Non-positional scale is used in case
@@ -25,8 +27,8 @@ public sealed interface NonPositionalScale<DomainType : Any, RangeType : Any> : 
  */
 @Serializable
 public data class NonPositionalContinuousScale<DomainType : Any, RangeType : Any>(
-    val domainLimits: Pair<DomainType, DomainType>? = null,
-    val rangeLimits: Pair<RangeType, RangeType>? = null,
+    val domainLimits: Pair<TypedValue, TypedValue>? = null,
+    val rangeLimits: Pair<TypedValue, TypedValue>? = null,
     override val transform: NonPositionalTransform? = null,
 ) : ContinuousScale, NonPositionalScale<DomainType, RangeType>
 
@@ -39,8 +41,8 @@ public data class NonPositionalContinuousScale<DomainType : Any, RangeType : Any
  */
 @Serializable
 public data class NonPositionalCategoricalScale<DomainType : Any, RangeType : Any>(
-    val domainCategories: List<DomainType>? = null,
-    val rangeValues: List<RangeType>? = null,
+    val domainCategories: TypedList? = null,
+    val rangeValues: TypedList? = null,
 ) : CategoricalScale, NonPositionalScale<DomainType, RangeType>
 
 public interface CustomNonPositionalScale<DomainType : Any, RangeType : Any>

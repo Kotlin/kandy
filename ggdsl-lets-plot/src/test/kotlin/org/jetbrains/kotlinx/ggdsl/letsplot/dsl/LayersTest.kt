@@ -5,6 +5,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
@@ -62,8 +65,8 @@ internal class LayersTest {
                                 FILL,
                                 ColumnScaledNonPositional(
                                     type,
-                                    NonPositionalCategoricalScale(
-                                        rangeValues = listOf(Color.RED, Color.BLUE)
+                                    NonPositionalCategoricalScale<String, Color>(
+                                        rangeValues = listOf(Color.RED, Color.BLUE).typedList()
                                     )
                                 ),
                                 typeOf<String>(),
@@ -71,13 +74,13 @@ internal class LayersTest {
                             )
                         ),
                         mapOf(
-                            ALPHA to NonPositionalSetting(
+                            ALPHA to NonPositionalSetting<Double>(
                                 ALPHA,
-                                0.7
+                                0.7.typed()
                             ),
-                            SIZE to NonPositionalSetting(
+                            SIZE to NonPositionalSetting<Double>(
                                 SIZE,
-                                2.0
+                                2.0.typed()
                             )
                         ),
                         mapOf()
