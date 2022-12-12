@@ -1,22 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 
 import kotlinx.serialization.Contextual
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
-internal enum class AxisType {
-    @SerialName("value")
-    VALUE,
-
-    @SerialName("category")
-    CATEGORY,
-
-    @SerialName("time")
-    TIME,
-
-    @SerialName("log")
-    LOG,
+internal enum class AxisType(val value: String) {
+    VALUE("value"),
+    CATEGORY("category"),
+    TIME("time"),
+    LOG("log"),
 }
 
 @Serializable
@@ -27,7 +18,7 @@ internal data class Axis(
     val alignTicks: Boolean? = null,
     val position: String? = null,
     val offset: Int? = null,
-    val type: AxisType,
+    val type: String,
     val name: String? = null,
     val nameLocation: String? = null,
 //    val nameTextStyle: TextStyle?,

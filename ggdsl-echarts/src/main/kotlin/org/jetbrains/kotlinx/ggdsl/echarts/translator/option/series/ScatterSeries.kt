@@ -41,7 +41,7 @@ internal class ScatterSeries(
     override val id: String? = null,
     override val name: String? = null,
     override val colorBy: String? = null,
-    override val coordinateSystem: CoordinateSystem? = null,
+    override val coordinateSystem: String? = null,
     val xAxisIndex: Int? = null,
     val yAxisIndex: Int? = null,
     val polarIndex: Int? = null,

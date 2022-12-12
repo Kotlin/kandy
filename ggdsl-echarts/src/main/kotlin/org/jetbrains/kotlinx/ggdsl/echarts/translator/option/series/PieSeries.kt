@@ -33,7 +33,7 @@ internal class PieSeries(
     override val name: String? = null,
     override val colorBy: String? = null,
     override val legendHoverLink: Boolean? = null,
-    override val coordinateSystem: CoordinateSystem? = null,
+    override val coordinateSystem: String? = null,
     val geoIndex: Int? = null,
     val calendarIndex: Int? = null,
     override val selectedMode: String? = null,

@@ -81,7 +81,7 @@ internal class LineSeries(
     override val id: String? = null,
     override val name: String? = null,
     override val colorBy: String? = null, // TODO (need groupBy)
-    override val coordinateSystem: CoordinateSystem? = null,
+    override val coordinateSystem: String? = null,
     val xAxisIndex: Int? = null,
     val yAxisIndex: Int? = null,
     val polarIndex: Int? = null,
@@ -94,7 +94,7 @@ internal class LineSeries(
     val showAllSymbol: String? = null, // auto true false,
     override val legendHoverLink: Boolean? = null,
     val stack: String? = null, // TODO
-    val stackStrategy: StackStrategy? = null,
+    val stackStrategy: String? = null,
     val cursor: String? = null,
     val connectNulls: Boolean? = null, // TODO
     val clip: Boolean? = null,

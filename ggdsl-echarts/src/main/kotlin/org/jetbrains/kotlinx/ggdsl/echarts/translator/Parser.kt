@@ -136,7 +136,7 @@ internal class Parser(plot: Plot) {
         val offset: Int? = null
         var min: String? = null
         var max: String? = null
-        val type: AxisType = when (scaleMap) { // TODO match Mapping
+        val type: String = when (scaleMap) { // TODO match Mapping
             is PositionalCategoricalScale<*> -> AxisType.CATEGORY
             is PositionalContinuousScale<*> -> {
                 min = scaleMap.limits?.first?.value?.toString()
@@ -156,7 +156,7 @@ internal class Parser(plot: Plot) {
             }
 
             else -> AxisType.VALUE
-        }
+        }.value
         val name: String? = null
         val nameLocation: String? = null
         val nameGap: Int? = null

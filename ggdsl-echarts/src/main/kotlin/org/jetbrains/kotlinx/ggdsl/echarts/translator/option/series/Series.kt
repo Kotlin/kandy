@@ -13,7 +13,7 @@ internal sealed class Series {
     abstract val id: String?
     abstract val name: String?
     abstract val colorBy: String? // TODO (need groupBy)
-    abstract val coordinateSystem: CoordinateSystem? // TODO (другая система для Pie)
+    abstract val coordinateSystem: String? // TODO (другая система для Pie)
     abstract val legendHoverLink: Boolean?
     abstract val itemStyle: ItemStyle?
     abstract val emphasis: Emphasis?

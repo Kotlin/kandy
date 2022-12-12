@@ -26,7 +26,7 @@ internal fun Layer.toCandlestickSeries(name: String?, encode: Encode?): Candlest
 internal class CandlestickSeries(
     override val type: String = "candlestick",
     override val id: String? = null,
-    override val coordinateSystem: CoordinateSystem? = null,
+    override val coordinateSystem: String? = null,
     val xAxisIndex: Int? = null,
     val yAxisIndex: Int? = null,
     override val name: String? = null,
