@@ -4,6 +4,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.NonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Pixel
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
@@ -27,7 +28,7 @@ public data class BorderTypeAes(override val context: BindingContext) : NonPosit
 
 internal val BORDER_RADIUS: AesName = AesName("border_radius")
 
-public data class BorderRadiusAes(override val context: BindingContext) : NonPositionalAes<Double> {
+public data class BorderRadiusAes(override val context: BindingContext) : NonPositionalAes<Pixel> {
     override val name: AesName = BORDER_RADIUS
 }
 

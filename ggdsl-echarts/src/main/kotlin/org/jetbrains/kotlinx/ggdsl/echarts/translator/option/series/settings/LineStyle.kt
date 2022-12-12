@@ -7,6 +7,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsColor
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.toEchartsColor
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringNumberArray
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -14,7 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 internal fun Map<AesName, Setting>.getLineStyle(): LineStyle? {
     val color = this.getNPSValue<Color>(LINE_COLOR)?.toEchartsColor()
     val width = this.getNPSValue<Double>(WIDTH)
-    val type = this.getNPSValue<LineType>(LINE_TYPE)?.type
+    val type = this.getNPSValue<LineType>(LINE_TYPE)?.value
     val cap = this.getNPSValue<Cap>(CAP)?.type
     val shadowBlur = this.getNPSValue<Int>(LINE_SHADOW_BLUR)
     val shadowColor = this.getNPSValue<Color>(LINE_SHADOW_COLOR)?.toEchartsColor()
@@ -41,7 +42,7 @@ internal fun Map<AesName, Setting>.getLineStyle(): LineStyle? {
 internal data class LineStyle(
     val color: EchartsColor? = null,
     val width: Double? = null,
-    val type: String? = null,
+    val type: StringNumberArray? = null,
     val dashOffset: Int? = null,
     val cap: String? = null,
     val join: String? = null,

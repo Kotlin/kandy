@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsColor
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.toEchartsColor
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringNumberArray
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -14,7 +15,7 @@ internal fun Map<AesName, Setting>.getBackgroundStyle(): BackgroundStyle? {
     val color = this.getNPSValue<Color>(BACKGROUND_COLOR)?.toEchartsColor()
     val borderColor = this.getNPSValue<Color>(BACKGROUND_BORDER_COLOR)?.toEchartsColor()
     val borderWidth = this.getNPSValue<Double>(BACKGROUND_BORDER_WIDTH)
-    val borderType = this.getNPSValue<LineType>(BACKGROUND_BORDER_TYPE)?.type
+    val borderType = this.getNPSValue<LineType>(BACKGROUND_BORDER_TYPE)?.value
     val borderRadius = this.getNPSValue<Double>(BACKGROUND_BORDER_RADIUS)
     val shadowBlur = this.getNPSValue<Double>(BACKGROUND_SHADOW_BLUR)
     val shadowColor = this.getNPSValue<Color>(BACKGROUND_SHADOW_COLOR)?.toEchartsColor()
@@ -25,7 +26,6 @@ internal fun Map<AesName, Setting>.getBackgroundStyle(): BackgroundStyle? {
         borderRadius, shadowBlur, shadowColor,
         opacity = opacity
     ).takeIf { !it.isEmpty() }
-//    return BackgroundStyle()
 }
 
 @Serializable
@@ -33,7 +33,7 @@ internal data class BackgroundStyle(
     val color: EchartsColor? = null,
     val borderColor: EchartsColor? = null,
     val borderWidth: Double? = null,
-    val borderType: String? = null,
+    val borderType: StringNumberArray? = null,
     val borderRadius: Double? = null,
     val shadowBlur: Double? = null,
     val shadowColor: EchartsColor? = null,

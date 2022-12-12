@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.SizeUnit
 
 @Serializable
 internal data class Legend(
@@ -9,10 +10,10 @@ internal data class Legend(
     val show: Boolean? = null,
     val zlevel: Int? = null,
     val z: Int? = null,
-    val left: Int? = null, // string number
-    val top: Int? = null,
-    val right: Int? = null,
-    val bottom: Int? = null,
+    val left: SizeUnit? = null, // string number
+    val top: SizeUnit? = null,
+    val right: SizeUnit? = null,
+    val bottom: SizeUnit? = null,
     val width: Int? = null, // string number
     val height: Int? = null,
     val orient: String? = null,

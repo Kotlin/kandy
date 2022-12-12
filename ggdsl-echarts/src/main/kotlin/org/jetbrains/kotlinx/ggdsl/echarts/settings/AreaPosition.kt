@@ -1,14 +1,17 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.settings
 
-public class AreaPosition private constructor(
-    internal val position: String? = null,
-    internal val number: Int? = null,
-) {
-    public constructor(value: Int) : this(number = value)
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringNumberArray
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringValue
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.singleOf
 
+public class AreaPosition private constructor(
+    internal val position: StringNumberArray
+) {
     public companion object {
-        public val AUTO: AreaPosition = AreaPosition("auto")
-        public val START: AreaPosition = AreaPosition("start")
-        public val END: AreaPosition = AreaPosition("end")
+        public val AUTO: AreaPosition = AreaPosition(StringValue("auto"))
+        public val START: AreaPosition = AreaPosition(StringValue("start"))
+        public val END: AreaPosition = AreaPosition(StringValue("end"))
+        public fun number(number: Int): AreaPosition = AreaPosition(singleOf(number))
+        public fun number(number: Double): AreaPosition = AreaPosition(singleOf(number))
     }
 }

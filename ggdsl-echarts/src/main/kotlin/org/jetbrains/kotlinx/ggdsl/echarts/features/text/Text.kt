@@ -2,8 +2,12 @@ package org.jetbrains.kotlinx.ggdsl.echarts.features.text
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Pixel
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.EchartsTextStyle
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.toEchartsColor
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringNumberArray
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringValue
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.singleOf
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
@@ -11,14 +15,14 @@ public enum class FontStyle(public val style: String) {
     NORMAL("normal"), ITALIC("italic"), OBLIQUE("oblique")
 }
 
-public class FontWeight private constructor(public val weight: String) {
+public class FontWeight private constructor(internal val weight: StringNumberArray) {
     public companion object {
-        public val NORMAL: FontWeight = FontWeight("normal")
-        public val BOLD: FontWeight = FontWeight("bold")
-        public val BOLDER: FontWeight = FontWeight("bolder")
-        public val LIGHTER: FontWeight = FontWeight("lighter")
+        public val NORMAL: FontWeight = FontWeight(StringValue("normal"))
+        public val BOLD: FontWeight = FontWeight(StringValue("bold"))
+        public val BOLDER: FontWeight = FontWeight(StringValue("bolder"))
+        public val LIGHTER: FontWeight = FontWeight(StringValue("lighter"))
 
-        public fun px(px: Int): FontWeight = FontWeight(px.toString())
+        public fun px(px: Pixel): FontWeight = FontWeight(singleOf(px))
     }
 }
 
@@ -63,7 +67,7 @@ public class TextStyle(
                 height = height,
                 textBorderColor = textBorderColor?.toEchartsColor(),
                 textBorderWidth = textBorderWidth,
-                textBorderType = textBorderType?.type
+                textBorderType = textBorderType?.value
             )
     }
 }

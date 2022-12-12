@@ -12,6 +12,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.*
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.Measurement
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 
 internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
@@ -24,7 +25,7 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
     return LineSeries(
         name = name,
         symbol = symbol?.name,
-        symbolSize = symbol?.size,
+        symbolSize = symbol?.getSize(),
         symbolRotate = symbol?.rotate,
         showSymbol = symbol != null,
         stack = stack,
@@ -54,7 +55,7 @@ internal fun Layer.toAreaSeries(name: String?, encode: Encode?): LineSeries {
     return LineSeries(
         name = name,
         symbol = symbol?.name,
-        symbolSize = symbol?.size,
+        symbolSize = symbol?.getSize(),
         symbolRotate = symbol?.rotate,
         showSymbol = symbol != null,
         stack = stack,
@@ -86,7 +87,7 @@ internal class LineSeries(
     val yAxisIndex: Int? = null,
     val polarIndex: Int? = null,
     val symbol: String? = null,
-    val symbolSize: Double? = null,
+    val symbolSize: Measurement? = null,
     val symbolRotate: Int? = null,
     val symbolKeepAspect: Boolean? = null,
     val symbolOffset: Pair<String, String>? = null,

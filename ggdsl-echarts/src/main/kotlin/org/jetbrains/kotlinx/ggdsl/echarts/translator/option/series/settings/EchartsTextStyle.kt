@@ -2,12 +2,13 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsColor
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringNumberArray
 
 @Serializable
 internal data class EchartsTextStyle(
     val color: EchartsColor? = null,
     val fontStyle: String? = null,
-    val fontWeight: String? = null,
+    val fontWeight: StringNumberArray? = null,
     val fontFamily: String? = null,
     val fontSize: Int? = null,
     val lineHeight: Int? = null,
@@ -15,7 +16,7 @@ internal data class EchartsTextStyle(
     val height: Int? = null,
     val textBorderColor: EchartsColor? = null,
     val textBorderWidth: Int? = null,
-    val textBorderType: String? = null,
+    val textBorderType: StringNumberArray? = null,
     val textBorderDashOffset: Int? = null,
     val textShadowColor: EchartsColor? = null,
     val textShadowBlur: Int? = null,

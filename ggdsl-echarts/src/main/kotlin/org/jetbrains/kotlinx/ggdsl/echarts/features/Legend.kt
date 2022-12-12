@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.features
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.EChartsLayout
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.SizeUnit
 
 public inline fun EChartsLayout.legend(crossinline block: Legend.() -> Unit) {
     this.legend = Legend().apply(block)
@@ -22,10 +23,10 @@ public enum class Orient(public val type: String) {
 @PlotDslMarker
 public class Legend(
     public var type: LegendType? = null,
-    public var left: Int? = null,
-    public var top: Int? = null,
-    public var right: Int? = null,
-    public var bottom: Int? = null,
+    public var left: SizeUnit? = null,
+    public var top: SizeUnit? = null,
+    public var right: SizeUnit? = null,
+    public var bottom: SizeUnit? = null,
     public var width: Int? = null,
     public var height: Int? = null,
     public var orient: Orient? = null,

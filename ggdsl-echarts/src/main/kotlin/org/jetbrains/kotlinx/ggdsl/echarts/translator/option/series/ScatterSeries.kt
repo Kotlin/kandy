@@ -8,12 +8,13 @@ import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.*
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.Measurement
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 
 internal fun Layer.toPointSeries(name: String?, encode: Encode?): ScatterSeries {
     val symbol = settings.getNPSValue<Symbol>(SYMBOL)
     val animation = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
-    val size = settings.getNPSValue(SIZE) ?: symbol?.size
+    val size = settings.getNPSValue(SIZE) ?: symbol?.getSize()
 
     return ScatterSeries(
         name = name,
@@ -48,7 +49,7 @@ internal class ScatterSeries(
     val calendarIndex: Int? = null,
     override val legendHoverLink: Boolean? = null,
     val symbol: String? = null,
-    val symbolSize: Double? = null,
+    val symbolSize: Measurement? = null,
     val symbolRotate: Int? = null,
     val symbolKeepAspect: Boolean? = null,
     val symbolOffset: Int? = null,

@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsColor
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.toEchartsColor
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringNumberArray
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -14,7 +15,7 @@ internal fun Map<AesName, Setting>.getItemStyle(): ItemStyle? {
     val color = this.getNPSValue<Color>(COLOR)?.toEchartsColor()
     val borderColor = this.getNPSValue<Color>(BORDER_COLOR)?.toEchartsColor()
     val borderWidth = this.getNPSValue<Double>(BORDER_WIDTH)
-    val borderType = this.getNPSValue<LineType>(BORDER_TYPE)?.type
+    val borderType = this.getNPSValue<LineType>(BORDER_TYPE)?.value
     val borderRadius = this.getNPSValue<Double>(BORDER_RADIUS)
     val opacity = this.getNPSValue<Double>(ALPHA)
     return ItemStyle(
@@ -32,7 +33,7 @@ internal data class ItemStyle(
     val color: EchartsColor? = null,
     val borderColor: EchartsColor? = null,
     val borderWidth: Double? = null,
-    val borderType: String? = null,
+    val borderType: StringNumberArray? = null,
     val borderRadius: Double? = null,
     val borderDashOffset: Int? = null,
     val borderGap: String? = null,

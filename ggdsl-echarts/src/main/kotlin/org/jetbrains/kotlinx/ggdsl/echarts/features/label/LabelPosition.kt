@@ -1,33 +1,31 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.features.label
 
-public class LabelPosition private constructor() {
-    internal var name: String? = null
-        private set
-    internal var distance: Int? = null
-        private set
-    internal var rotate: Int? = null
-        private set
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.SizeUnit
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringNumberArray
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringValue
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.pairOf
 
-//    internal var pxPos: List<Int>? = null TODO()
-//        private set
-//
-//    internal var percPos: List<String>? = null
-//        private set
+public class LabelPosition private constructor(
+    private val name: String?,
+    private val pos: Pair<SizeUnit, SizeUnit>?,
+    internal val distance: Int?,
+    internal val rotate: Int?
+) {
 
+    private constructor(name: String, distance: Int? = null, rotate: Int? = null) : this(
+        name, null, distance, rotate
+    )
 
-    private constructor(name: String, distance: Int? = null, rotate: Int? = null) : this() {
-        this.name = name
-        this.distance = distance
-        this.rotate = rotate
-    }
+    private constructor(pos: Pair<SizeUnit, SizeUnit>, rotate: Int? = null) : this(
+        null, pos, null, rotate
+    )
 
-//    public constructor(pos: Pair<Int, Int>) : this() {// absolute pixel values TODO(pixel size units)
-//        pxPos = pos.toList()
-//    }
-//
-//    public constructor(pos: Pair<String, String>) : this() {// relative percentage TODO(percentage size units)
-//        percPos = pos.toList()
-//    }
+    internal fun getPosition(): StringNumberArray? =
+        when {
+            name != null -> StringValue(name)
+            pos != null -> pairOf(pos.first, pos.second)
+            else -> null
+        }
 
     public companion object {
         public val TOP: LabelPosition = LabelPosition("top")
