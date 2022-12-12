@@ -197,6 +197,7 @@ public interface PlotContextBase : TableDataContext {
     public fun toPlot(): Plot
 }
 
+@PlotDslMarker
 public interface LayerPlotContext : LayerCollectorContextInterface, PlotContextBase {
     // todo hide
     public override fun toPlot(): Plot {

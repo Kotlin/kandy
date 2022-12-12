@@ -5,18 +5,15 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.echarts.BAR
-import org.jetbrains.kotlinx.ggdsl.echarts.LINE
-import org.jetbrains.kotlinx.ggdsl.echarts.POINT
 
 
-public inline fun LayerCollectorContextImmutable.points(block: PointsContextImmutable.() -> Unit) {
-    addLayer(PointsContextImmutable(this).apply(block), POINT)
-}
+//public inline fun LayerCollectorContext.points(block: PointsContext.() -> Unit) {
+//    addLayer(PointsContext(this).apply(block), POINT)
+//}
 
-public inline fun LayerCollectorContextImmutable.bars(block: BarsContextImmutable.() -> Unit) {
-    addLayer(BarsContextImmutable(this).apply(block), BAR)
-}
+//public inline fun LayerCollectorContext.bars(block: BarsContext.() -> Unit) {
+//    addLayer(BarsContext(this).apply(block), BAR)
+//}
 
 public inline fun LayerCollectorContextImmutable.line(block: LineContextImmutable.() -> Unit) {
     addLayer(LineContextImmutable(this).apply(block), LINE)
