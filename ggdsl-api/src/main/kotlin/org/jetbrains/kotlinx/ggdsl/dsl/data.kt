@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.validate
 import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import kotlin.reflect.typeOf
 

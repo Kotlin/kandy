@@ -130,66 +130,39 @@ public interface LayerCollectorContextImmutable : LayerCollectorContextInterface
 /**
  * Interface for contexts for building layers.
  */
+@PlotDslMarker
 public interface LayerContextInterface : TableDataContext, TableSubContextInterface {
     public val features: MutableMap<FeatureName, LayerFeature>
 }
 
+@PlotDslMarker
 public abstract class LayerContextImmutable(parent: LayerCollectorContextImmutable) : LayerContextInterface,
     TableSubContextImmutable(parent, parent !is LayerPlotContext) {
     public override val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 }
 
-
-/**
- * Interface for contexts for collecting layers with [TableData].
- */
-
 /**
  * Interface for nested [LayerCollectorContextImmutable].
  */
+@PlotDslMarker
 public abstract class SubLayerCollectorContextImmutable(parent: LayerCollectorContextImmutable) : TableDataContext,
     LayerCollectorContextImmutable,
     BindingSubContextImmutable(parent) {
     override val layers: MutableList<Layer> = parent.layers
 }
 
+@PlotDslMarker
 public interface GroupedDataContextInterface : TableDataContext, LayerCollectorContextImmutable {
     override val data: GroupedDataInterface
 }
-
+@PlotDslMarker
 public open class GroupedDataSubContextImmutable constructor(
     override val data: GroupedDataInterface,
     override val layers: MutableList<Layer>,
     parent: BindingContext,
-) : GroupedDataContextInterface, BindingSubContextImmutable(parent) {
-/*
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        column: ColumnPointer<DomainType>
-    ): ScaledPositionalUnspecifiedMapping<DomainType> {
-        val mapping = ScaledPositionalUnspecifiedMapping<DomainType>(
-            this.name,
-            column.scaled(categoricalPos()),
-            typeOf<DomainType>()
-        )
-        context.bindingCollector.mappings[this.name] = mapping
-        return mapping
-    }
+) : GroupedDataContextInterface, BindingSubContextImmutable(parent)
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
-        column: ColumnPointer<DomainType>
-    ): ScaledNonPositionalDefaultMapping<DomainType, RangeType> {
-        val mapping = ScaledNonPositionalDefaultMapping<DomainType, RangeType>(
-            this.name,
-            column.scaled(categorical()),
-            typeOf<DomainType>()
-        )
-        context.bindingCollector.mappings[this.name] = mapping
-        return mapping
-    }
-
- */
-}
-
+@PlotDslMarker
 public interface PlotContextBase : TableDataContext {
     // todo hide
     override val data: TableData
@@ -206,7 +179,6 @@ public interface LayerPlotContext : LayerCollectorContextInterface, PlotContextB
 }
 
 @PlotDslMarker
-//@StatDSLMarker
 public class NamedDataPlotContext(
     override val data: NamedDataInterface,
 ) : LayerPlotContext, LayerCollectorContextImmutable {
