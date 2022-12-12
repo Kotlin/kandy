@@ -43,7 +43,7 @@ internal fun TableData.columns(): Map<String, KType> {
         is CountedGroupedDataInterface -> this.toLazy().columns()
     }
 }
-/*
+/* TODO
 internal fun Map<AesName, Mapping>.validateGroups(groupKys: Set<String>) {
     forEach { (_, mapping) ->
         if (mapping is BaseScaledNonPositionalMapping<*, *>) {
