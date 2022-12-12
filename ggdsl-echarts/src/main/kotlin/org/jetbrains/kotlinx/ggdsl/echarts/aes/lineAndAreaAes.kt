@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.aes
 
-import org.jetbrains.kotlinx.ggdsl.dsl.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.NonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.ScalableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.*
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 internal val LINE_COLOR: AesName = AesName("line_color")
 
-public data class LineColorAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+public data class LineColorAes(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
     override val name: AesName = LINE_COLOR
 }
 
@@ -32,7 +32,7 @@ public data class WidthAes(override val context: BindingContext) : NonPositional
 // opacity parameter for line
 internal val LINE_ALPHA: AesName = AesName("line_alpha")
 
-public data class LineAlphaAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+public data class LineAlphaAes(override val context: BindingContext) : ScalableNonPositionalAes<Double> {
     override val name: AesName = LINE_ALPHA
 }
 
@@ -45,19 +45,19 @@ public data class LineTypeAes(override val context: BindingContext) : NonPositio
 
 internal val SYMBOL: AesName = AesName("symbol")
 
-public data class SymbolAes(override val context: BindingContext) : MappableNonPositionalAes<Symbol> {
+public data class SymbolAes(override val context: BindingContext) : ScalableNonPositionalAes<Symbol> {
     override val name: AesName = SYMBOL
 }
 
 internal val LINE_SHADOW_COLOR: AesName = AesName("line_shadow_color")
 
-public data class LineShadowColorAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+public data class LineShadowColorAes(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
     override val name: AesName = LINE_SHADOW_COLOR
 }
 
 internal val LINE_SHADOW_BLUR: AesName = AesName("line_shadow_blur")
 
-public data class LineShadowBlurAes(override val context: BindingContext) : MappableNonPositionalAes<Int> {
+public data class LineShadowBlurAes(override val context: BindingContext) : ScalableNonPositionalAes<Int> {
     override val name: AesName = LINE_SHADOW_BLUR
 }
 
@@ -77,32 +77,32 @@ public data class CapAes(override val context: BindingContext) : NonPositionalAe
 
 internal val AREA_COLOR: AesName = AesName("area_color")
 
-public data class AreaColorAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+public data class AreaColorAes(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
     override val name: AesName = AREA_COLOR
 }
 
 // origin position of area
 internal val AREA_POSITION: AesName = AesName("area_position")
 
-public data class PositionAes(override val context: BindingContext) : MappableNonPositionalAes<AreaPosition> {
+public data class PositionAes(override val context: BindingContext) : ScalableNonPositionalAes<AreaPosition> {
     override val name: AesName = AREA_POSITION
 }
 
 // opacity parameter for area
 internal val AREA_ALPHA: AesName = AesName("area_alpha")
 
-public data class AreaAlphaAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+public data class AreaAlphaAes(override val context: BindingContext) : ScalableNonPositionalAes<Double> {
     override val name: AesName = AREA_ALPHA
 }
 
 internal val AREA_SHADOW_COLOR: AesName = AesName("area_shadow_color")
 
-public data class AreaShadowColorAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+public data class AreaShadowColorAes(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
     override val name: AesName = AREA_SHADOW_COLOR
 }
 
 internal val AREA_SHADOW_BLUR: AesName = AesName("area_shadow_blur")
 
-public data class AreaShadowBlurAes(override val context: BindingContext) : MappableNonPositionalAes<Int> {
+public data class AreaShadowBlurAes(override val context: BindingContext) : ScalableNonPositionalAes<Int> {
     override val name: AesName = AREA_SHADOW_BLUR
 }

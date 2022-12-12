@@ -191,7 +191,7 @@ internal fun Gathering.toLayer(): Layer {
 internal fun Position.wrap(): PosOptions {
     return when (this) {
         is Position.Identity -> return positionIdentity
-        is Position.Stack -> return positionStack
+        is Position.Stack -> return positionStack()
         is Position.Dodge -> return positionDodge(width)
         is Position.Jitter -> return positionJitter(width, height)
         is Position.Nudge -> return positionNudge(x, y)

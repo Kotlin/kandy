@@ -21,7 +21,7 @@ import kotlin.reflect.typeOf
 
 @Suppress("UNCHECKED_CAST")
 internal fun <T : Any> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
-    return (this[key] as? NonPositionalSetting<*>)?.value as? T
+    return (this[key] as? NonPositionalSetting<*>)?.value?.value as? T
 }
 
 internal class Parser(plot: Plot) {
@@ -132,15 +132,15 @@ internal class Parser(plot: Plot) {
         val show: Boolean = true
         val grid: Int? = null
         val alignTicks: Boolean? = null
-        val position: Position? = null
+        val position: String? = null
         val offset: Int? = null
         var min: String? = null
         var max: String? = null
         val type: AxisType = when (scaleMap) { // TODO match Mapping
             is PositionalCategoricalScale<*> -> AxisType.CATEGORY
             is PositionalContinuousScale<*> -> {
-                min = scaleMap.limits?.first?.toString()
-                max = scaleMap.limits?.second?.toString()
+                min = scaleMap.limits?.first?.value?.toString()
+                max = scaleMap.limits?.second?.value?.toString()
                 AxisType.VALUE
             }
 
@@ -158,7 +158,7 @@ internal class Parser(plot: Plot) {
             else -> AxisType.VALUE
         }
         val name: String? = null
-        val nameLocation: NameLocation? = null
+        val nameLocation: String? = null
         val nameGap: Int? = null
         val nameRotate: Int? = null
         val inverse: Boolean? = null

@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.aes
 
-import org.jetbrains.kotlinx.ggdsl.dsl.MappableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.NonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.ScalableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Pixel
@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 internal val BORDER_COLOR: AesName = AesName("border_color")
 
-public data class BorderColorAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+public data class BorderColorAes(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
     override val name: AesName = BORDER_COLOR
 }
 
@@ -36,13 +36,13 @@ public data class BorderRadiusAes(override val context: BindingContext) : NonPos
 // _______________________________________Background Bar Style_______________________________________
 internal val BACKGROUND_COLOR: AesName = AesName("background_color")
 
-public data class BackgroundColorAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+public data class BackgroundColorAes(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
     override val name: AesName = BACKGROUND_COLOR
 }
 
 internal val BACKGROUND_BORDER_COLOR: AesName = AesName("background_border_color")
 
-public data class BackgroundBorderColorAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+public data class BackgroundBorderColorAes(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
     override val name: AesName = BACKGROUND_BORDER_COLOR
 }
 
@@ -73,7 +73,7 @@ public data class BackgroundShadowBlurAes(override val context: BindingContext) 
 
 internal val BACKGROUND_SHADOW_COLOR: AesName = AesName("background_shadow_color")
 
-public data class BackgroundShadowColorAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+public data class BackgroundShadowColorAes(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
     override val name: AesName = BACKGROUND_SHADOW_COLOR
 }
 

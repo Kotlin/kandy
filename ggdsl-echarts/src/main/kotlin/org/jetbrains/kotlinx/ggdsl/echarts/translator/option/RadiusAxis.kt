@@ -9,7 +9,7 @@ internal data class RadiusAxis(
     val polarIndex: Int?,
     val type: AxisType?,
     val name: String?,
-    val nameLocation: NameLocation?,
+    val nameLocation: String?,
 //    val nameTextStyle: TextStyle?,
     val nameGap: Int?,
     val nameRotate: Int?,

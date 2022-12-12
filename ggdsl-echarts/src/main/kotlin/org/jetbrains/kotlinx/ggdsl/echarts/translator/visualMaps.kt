@@ -16,8 +16,8 @@ internal fun Scale.toVisualMap(
     return when (this) {
         is NonPositionalCategoricalScale<*, *> -> {
             val categoriesString =
-                domainCategories?.map { value -> value.toString() } ?: data?.toSet()?.map { it.toString() }
-            val inRange = createInRange(aes, rangeValues)
+                domainCategories?.values?.map { value -> value.toString() } ?: data?.toSet()?.map { it.toString() }
+            val inRange = createInRange(aes, rangeValues?.values)
             PiecewiseVisualMap(
                 dimension = dim,
                 categories = categoriesString,
@@ -29,8 +29,10 @@ internal fun Scale.toVisualMap(
         }
 
         is NonPositionalContinuousScale<*, *> -> {
-            val min = domainLimits?.first?.toString()?.toDouble()
-            val max = domainLimits?.second?.toString()?.toDouble()
+            val min =
+                domainLimits?.first?.value?.toString()?.toDouble() ?: data?.minOfOrNull { (it as Number).toDouble() }
+            val max =
+                domainLimits?.second?.value?.toString()?.toDouble() ?: data?.maxOfOrNull { (it as Number).toDouble() }
 
             val valuesString = rangeLimits?.let { listOf(it.first, it.second) }
 
