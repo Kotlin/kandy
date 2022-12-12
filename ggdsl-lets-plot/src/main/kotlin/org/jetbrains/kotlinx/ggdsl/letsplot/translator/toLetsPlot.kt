@@ -12,7 +12,7 @@ import org.jetbrains.letsPlot.letsPlot
 
 public fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
     val featureBuffer = buildList {
-        layers.forEach { it.wrap(this, dataset is GroupedDataInterface) }
+        layers.forEach { it.wrap(this, dataset) }
         freeScales.forEach { it.value.wrap(this) }
         features.forEach { it.value.wrap(this) }
         //  (layout as? LetsPlotLayout)?.wrap(this) // todo

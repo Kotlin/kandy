@@ -30,7 +30,6 @@ public val commonModules: SerializersModule
             subclass(PositionalCategoricalUnspecifiedScale::class)
             subclass(PositionalContinuousUnspecifiedScale::class)
         }
-        //todo same nonpos
         polymorphic(PositionalUnspecifiedScale::class) {
             subclass(PositionalContinuousUnspecifiedScale::class)
             subclass(PositionalCategoricalUnspecifiedScale::class)
@@ -38,6 +37,14 @@ public val commonModules: SerializersModule
         polymorphic(PositionalScale::class) {
             subclass(PositionalContinuousScale.serializer(PolymorphicSerializer(Any::class)))
             subclass(PositionalCategoricalScale.serializer(PolymorphicSerializer(Any::class)))
+        }
+        polymorphic(NonPositionalUnspecifiedScale::class) {
+            subclass(NonPositionalContinuousUnspecifiedScale::class)
+            subclass(NonPositionalCategoricalUnspecifiedScale::class)
+        }
+        polymorphic(NonPositionalScale::class) {
+            subclass(NonPositionalContinuousScale.serializer(PolymorphicSerializer(Any::class), PolymorphicSerializer(Any::class)))
+            subclass(NonPositionalCategoricalScale.serializer(PolymorphicSerializer(Any::class), PolymorphicSerializer(Any::class)))
         }
         polymorphic(ColumnScaled::class) {
             subclass(ColumnScaledUnspecifiedDefault.serializer(PolymorphicSerializer(Any::class)))

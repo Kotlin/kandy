@@ -15,12 +15,13 @@ public val GROUP: AesName = AesName("group")
 
 //TODO
 public data class GroupAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: AesName =GROUP
+    override val name: AesName = GROUP
 }
 
 /**
  * TODO
- */
+
 public val LayerContextInterface.splitBy: NonScalablePositionalAes
     get() = GroupAes(this)
 
+*/

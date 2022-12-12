@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl.unit
 
-import org.jetbrains.kotlinx.ggdsl.dsl.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import kotlin.test.Test
 import kotlin.test.assertEquals

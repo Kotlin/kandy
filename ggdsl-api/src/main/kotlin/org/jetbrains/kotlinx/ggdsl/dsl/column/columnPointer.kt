@@ -2,7 +2,7 @@
 * Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.ggdsl.dsl
+package org.jetbrains.kotlinx.ggdsl.dsl.column
 
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
@@ -37,3 +37,6 @@ public class UnnamedColumnPointer<T : Any> {
 // todo
 public inline fun <reified T : Any> columnPointer(): UnnamedColumnPointer<T> =
     UnnamedColumnPointer()
+
+@PublishedApi
+internal fun<T: Any> String.toColumnPointer(): ColumnPointer<T> = ColumnPointer(this)

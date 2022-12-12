@@ -4,6 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
+import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
@@ -56,7 +59,7 @@ internal class CommonTest {
                             ),
                         ),
                         settings = mapOf(
-                            SIZE to NonPositionalSetting(SIZE, 4.5)
+                            SIZE to NonPositionalSetting<Double>(SIZE, 4.5.typed())
                         )
                     )
                 ),
@@ -115,8 +118,8 @@ internal class CommonTest {
         )
         val yMapping = ScaledPositionalMapping(
             Y, ColumnScaledPositional(
-            height, PositionalContinuousScale(
-            limits = 1f to 15f
+            height, PositionalContinuousScale<Float>(
+            limits = 1f.typed() to 15f.typed()
         )
         ), typeOf<Float>()
         )
@@ -124,9 +127,9 @@ internal class CommonTest {
             COLOR,
             ColumnScaledNonPositional(
                 type,
-                NonPositionalCategoricalScale(
-                    domainCategories = listOf("A", "B"),
-                    rangeValues = listOf(Color.RED, Color.named("blue"))
+                NonPositionalCategoricalScale<String, Color>(
+                    domainCategories = listOf("A", "B").typedList(),
+                    rangeValues = listOf(Color.RED, Color.named("blue")).typedList()
                 )
             ),
             typeOf<String>(),
@@ -158,7 +161,7 @@ internal class CommonTest {
                             Y to yMapping,
                         ),
                         settings = mapOf(
-                            WIDTH to NonPositionalSetting(WIDTH, 5.0)
+                            WIDTH to NonPositionalSetting<Double>(WIDTH, 5.0.typed())
                         )
                     )
                 ),

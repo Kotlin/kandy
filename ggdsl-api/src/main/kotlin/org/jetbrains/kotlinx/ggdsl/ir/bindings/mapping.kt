@@ -33,6 +33,13 @@ public data class NonScalablePositionalMapping<DomainType : Any>(
     override val aes: AesName,
     val source: ColumnPointer<DomainType>,
     @Serializable(KTypeSerializer::class) override val domainType: KType
+): Mapping
+
+@Serializable
+public data class NonScalableNonPositionalMapping<DomainType : Any>(
+    override val aes: AesName,
+    val source: ColumnPointer<DomainType>,
+    @Serializable(KTypeSerializer::class) override val domainType: KType
 ) : Mapping
 
 /**

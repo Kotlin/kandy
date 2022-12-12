@@ -29,19 +29,19 @@ val LayerPlotContext.y
 
 val SIZE = AesName("size")
 
-data class SizeAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+data class SizeAes(override val context: BindingContext) : ScalableNonPositionalAes<Double> {
     override val name = SIZE
 }
 
 val COLOR = AesName("color")
 
-data class ColorAes(override val context: BindingContext) : MappableNonPositionalAes<Color> {
+data class ColorAes(override val context: BindingContext) : ScalableNonPositionalAes<Color> {
     override val name = COLOR
 }
 
 val ALPHA = AesName("alpha")
 
-data class AlphaAes(override val context: BindingContext) : MappableNonPositionalAes<Double> {
+data class AlphaAes(override val context: BindingContext) : ScalableNonPositionalAes<Double> {
     override val name = ALPHA
 }
 
@@ -65,7 +65,7 @@ data class WidthAes(override val context: BindingContext) : NonPositionalAes<Dou
 
 val SYMBOL = AesName("symbol")
 
-data class SymbolAes(override val context: BindingContext) : MappableNonPositionalAes<Symbol> {
+data class SymbolAes(override val context: BindingContext) : ScalableNonPositionalAes<Symbol> {
     override val name = SYMBOL
 }
 

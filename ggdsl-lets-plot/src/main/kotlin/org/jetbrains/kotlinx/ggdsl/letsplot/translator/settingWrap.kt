@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 
 internal fun Setting.wrap(): Pair<String, Any> {
     return when (this) {
-        is NonPositionalSetting<*> -> aes.name to wrapValue(value)
-        is PositionalSetting<*> -> aes.name to wrapValue(value)
+        is NonPositionalSetting<*> -> aes.name to value.wrap()
+        is PositionalSetting<*> -> aes.name to value.wrap()
     }
 }
