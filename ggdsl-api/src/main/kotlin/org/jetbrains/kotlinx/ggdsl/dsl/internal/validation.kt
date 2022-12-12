@@ -11,6 +11,9 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import kotlin.reflect.KType
 
 public fun NamedData.validate() {
+    if (nameToValues.isEmpty()) {
+        return
+    }
     val valuesLists = nameToValues.values
     val firstSize = valuesLists.first().values.size
     require(valuesLists.all {

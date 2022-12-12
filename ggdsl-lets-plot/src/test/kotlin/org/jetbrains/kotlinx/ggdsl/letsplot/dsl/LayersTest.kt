@@ -25,7 +25,10 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class LayersTest {
-    val emptyDataset = NamedData(mapOf())
+    val emptyDataset = dataOf {
+        "time" to listOf<Int>()
+        "type" to listOf<String>()
+    }
     @Test
     fun testArea() {
         val time = columnPointer<Int>("time")
