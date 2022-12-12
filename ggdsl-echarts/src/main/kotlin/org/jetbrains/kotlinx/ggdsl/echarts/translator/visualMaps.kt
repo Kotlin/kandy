@@ -61,6 +61,8 @@ internal fun Scale.toVisualMap(
 
                 else -> ContinuousVisualMap(
                     dimension = dim,
+                    min = data?.minOfOrNull { (it as Number).toDouble() },
+                    max = data?.maxOfOrNull { (it as Number).toDouble() },
                     seriesIndex = seriesIndex,
                     right = 10,
                     top = visualMapSize * 100
@@ -78,6 +80,8 @@ internal fun Scale.toVisualMap(
 
         is NonPositionalContinuousUnspecifiedScale -> ContinuousVisualMap(
             dimension = dim,
+            min = data?.minOfOrNull { (it as Number).toDouble() },
+            max = data?.maxOfOrNull { (it as Number).toDouble() },
             seriesIndex = seriesIndex,
             right = 10,
             top = visualMapSize * 100
