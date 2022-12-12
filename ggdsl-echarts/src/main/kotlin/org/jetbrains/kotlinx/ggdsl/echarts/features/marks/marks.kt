@@ -11,5 +11,5 @@ public fun EchartsLayerContextImmutable.markLine(block: MarkLineContext.() -> Un
 }
 
 public fun EchartsLayerContextImmutable.markArea(block: MarkAreaContext.() -> Unit) {
-    features[MarkLineFeature.FEATURE_NAME] = MarkAreaContext().apply(block).toMarkAreaFeature()
+    features[MarkAreaFeature.FEATURE_NAME] = MarkAreaContext().apply(block).toMarkAreaFeature()
 }
