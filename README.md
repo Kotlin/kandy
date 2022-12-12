@@ -75,6 +75,44 @@ plot(simpleDataset) {
 
 ### ECharts
 
+```kotlin
+val dataset = mapOf(
+        "days_of_week" to listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
+        "evaporation" to listOf(2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6),
+        "precipitation" to listOf(2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6),
+        "temp" to listOf(2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3)
+)
+
+plot(dataset) {
+  x("days_of_week"<String>())
+  
+  bars {
+    name("Precipitation")
+    y("precipitation"<Double>().scaled(continuousPos(0.0 to 200.0)))
+    color("temp"<Double>().scaled(continuous(rangeLimits = Color.GREY to Color.BLUE)))
+    label {
+      position = LabelPosition.TOP
+      formatter = "{@precipitation} ml"
+    }
+  }
+  
+  line {
+    name("Evaporation")
+    y("evaporation"<Double>())
+    symbol(Symbol.diamond(20.0))
+  }
+  
+  layout {
+    title.text = "Precipitation and evaporation per week"
+    legend {
+      left = 50.pct
+      bottom = 0.px
+    }
+  }
+}
+```
+![GGDSL example echarts](examples/images/echarts_readme_sample.png)
+
 ## Modules
 * `ggdsl-api` &mdash; contains `Plot` intermediate representation (IR), base plotting DSL and internal API.
 * `ggdsl-lets-plot` &mdash; plot render implementation for [Lets-Plot](https://github.com/JetBrains/lets-plot) 
