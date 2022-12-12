@@ -106,7 +106,7 @@ internal fun NamedDataInterface.toDataFrame(
     column: ColumnPointer<*>,
     variables: List<DataFrame.Variable>,
 ): DataFrame {
-    println(nameToValues)
+    //println(nameToValues)
     var builder =
         DataFrame.Builder().putNumeric(TransformVar.X, nameToValues[column.name]!!.values.map { (it as Number).toDouble() })
     variables.forEach {

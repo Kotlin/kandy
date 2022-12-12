@@ -4,10 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.GroupedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContextMutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.toTyped
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
@@ -48,17 +45,25 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
  */
 
 public inline fun plot(dataset: NamedDataInterface, block: NamedDataPlotContext.() -> Unit): Plot {
-    return NamedDataPlotContext(dataset).apply(block).toPlot()
+    return NamedDataPlotContext(dataset).apply(block).toPlot().also {
+        it.validate()
+    }
 }
 
 public inline fun plot(dataset: Map<String, List<Any>>, block: NamedDataPlotContext.() -> Unit): Plot {
-    return NamedDataPlotContext(NamedData.fromUntyped(dataset)).apply(block).toPlot()
+    return NamedDataPlotContext(NamedData.fromUntyped(dataset)).apply(block).toPlot().also {
+        it.validate()
+    }
 }
 
 public inline fun plot(dataset: GroupedDataInterface, block: GroupedDataPlotContext.() -> Unit): Plot {
-    return GroupedDataPlotContext(dataset).apply(block).toPlot()
+    return GroupedDataPlotContext(dataset).apply(block).toPlot().also {
+        it.validate()
+    }
 }
 
 public inline fun plot(block: PlotContextMutable.() -> Unit): Plot {
-    return PlotContextMutable().apply(block).toPlot()
+    return PlotContextMutable().apply(block).toPlot().also {
+        it.validate()
+    }
 }
