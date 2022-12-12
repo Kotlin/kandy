@@ -7,6 +7,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.*
+import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import kotlin.reflect.KType
 
 public fun NamedData.validate() {
@@ -42,6 +43,18 @@ internal fun TableData.columns(): Map<String, KType> {
         is CountedGroupedDataInterface -> this.toLazy().columns()
     }
 }
+/*
+internal fun Map<AesName, Mapping>.validateGroups(groupKys: Set<String>) {
+    forEach { (_, mapping) ->
+        if (mapping is BaseScaledNonPositionalMapping<*, *>) {
+            val columnName = mapping.columnScaled.source.name
+            val scale = mapping.columnScaled.scale
+            if (scale is Categor)
+        }
+    }
+}
+
+ */
 
 internal fun Map<AesName, Mapping>.validate(columns: Map<String, KType>) {
     val columnNames = columns.keys
