@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsColor
 
 @Serializable
-internal data class Tooltip(
+internal data class EchartsTooltip(
     val trigger: String? = null,
     val position: String? = null,
     val formatter: String? = null,

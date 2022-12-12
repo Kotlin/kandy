@@ -87,5 +87,5 @@ internal class PieSeries(
     val animationEasingUpdate: String? = null,
     val animationDelayUpdate: Int? = null,
     override val universalTransition: UniversalTransition? = null,
-    override val tooltip: Tooltip? = null
+    override val tooltip: EchartsTooltip? = null
 ) : Series()

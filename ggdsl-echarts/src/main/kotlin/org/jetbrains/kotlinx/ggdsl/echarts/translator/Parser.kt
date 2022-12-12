@@ -8,7 +8,6 @@ import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Encode
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Tooltip
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -37,7 +36,6 @@ internal class Parser(plot: Plot) {
 
 
     internal fun parse(): Option {
-        val grid: Grid? = null
         val polar: Polar? = null
         val radiusAxis: RadiusAxis? = null
         val angleAxis: AngleAxis? = null
@@ -45,6 +43,12 @@ internal class Parser(plot: Plot) {
         val visualMaps = mutableListOf<VisualMap>()
 
         val layout = (features[EChartsLayout.FEATURE_NAME] as? EChartsLayout)
+        val title = layout?.title?.toEchartsTitle()
+        val legend = layout?.legend?.toEchartsLegend()
+        val grid = layout?.grid?.toEchartsGrid()
+        val tooltip = layout?.tooltip?.toEchartsTooltip()
+        val textStyle = layout?.textStyle?.toTextStyle()
+        val animation = (features[AnimationPlotFeature.FEATURE_NAME] as? AnimationPlotFeature)
 
         globalMappings.forEach { (aes, mapping) ->
             if (mapping is ScaledMapping<*>) {
@@ -96,25 +100,6 @@ internal class Parser(plot: Plot) {
         }
 
         val dataset = Dataset(source = datasetSource)
-
-        val legend = layout?.legend?.let {
-            Legend(
-                type = it.type?.type, left = it.left, top = it.top, right = it.right, bottom = it.bottom,
-                width = it.width, height = it.height, orient = it.orient?.type, formatter = it.formatter
-            )
-        }
-
-        val tooltip = layout?.tooltip?.let {
-            Tooltip(
-                trigger = it.trigger?.type,
-                formatter = it.formatter
-            )
-        }
-
-        val title = layout?.title?.toEchartsTitle()
-        val textStyle = layout?.textStyle?.toTextStyle()
-
-        val animation = (features[AnimationPlotFeature.FEATURE_NAME] as? AnimationPlotFeature)
 
         return Option(
             title,

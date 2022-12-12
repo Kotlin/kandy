@@ -54,5 +54,5 @@ internal class BoxplotSeries(
     override val animationEasing: String? = null,
     override val animationDelay: Int? = null,
     override val universalTransition: UniversalTransition? = null,
-    override val tooltip: Tooltip? = null
+    override val tooltip: EchartsTooltip? = null
 ) : Series()

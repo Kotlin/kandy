@@ -4,13 +4,13 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.Series
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.EchartsTextStyle
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Tooltip
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.EchartsTooltip
 
 @Serializable
 internal data class Option(
     val title: EchartsTitle? = null,
-    val legend: Legend? = null,
-    val grid: Grid? = null,
+    val legend: EchartsLegend? = null,
+    val grid: EchartsGrid? = null,
     val xAxis: Axis? = null,
     val yAxis: Axis? = null,
     val polar: Polar? = null,
@@ -19,7 +19,7 @@ internal data class Option(
     val radar: Radar? = null,
 //    val dataZoom: List<DataZoom>,
     val visualMap: List<VisualMap>? = null,
-    val tooltip: Tooltip? = null,
+    val tooltip: EchartsTooltip? = null,
 //    val axisPointer: AxisPointer,
 //    val toolbox: Toolbox,
 //    val brush: Brush,

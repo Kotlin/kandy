@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.SizeUnit
 
 @Serializable
-internal data class Legend(
+internal data class EchartsLegend(
     val type: String? = null,
     val id: String? = null,
     val show: Boolean? = null,
@@ -14,8 +14,8 @@ internal data class Legend(
     val top: SizeUnit? = null,
     val right: SizeUnit? = null,
     val bottom: SizeUnit? = null,
-    val width: Int? = null, // string number
-    val height: Int? = null,
+    val width: SizeUnit? = null, // string number
+    val height: SizeUnit? = null,
     val orient: String? = null,
     val align: String? = null, // 'auto', 'left', 'right'
     val padding: Int? = null, // number array

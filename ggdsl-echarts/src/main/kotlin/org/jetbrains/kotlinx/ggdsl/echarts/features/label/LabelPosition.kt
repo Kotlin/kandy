@@ -1,5 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.features.label
 
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Percentage
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Pixel
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.SizeUnit
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringNumberArray
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringValue
@@ -79,5 +81,16 @@ public class LabelPosition private constructor(
         public val INSIDE_BOTTOM_RIGHT: LabelPosition = LabelPosition("insideBottomRight")
         public fun insideBottomRight(distance: Int? = null, rotate: Int? = null): LabelPosition =
             LabelPosition("insideBottomRight", distance, rotate)
+
+        public fun fromPx(pair: Pair<Pixel, Pixel>, rotate: Int? = null): LabelPosition = LabelPosition(pair, rotate)
+
+        public fun fromPx(first: Pixel, second: Pixel, rotate: Int? = null): LabelPosition =
+            LabelPosition(first to second, rotate)
+
+        public fun fromPct(pair: Pair<Percentage, Percentage>, rotate: Int? = null): LabelPosition =
+            LabelPosition(pair, rotate)
+
+        public fun fromPct(first: Percentage, second: Percentage, rotate: Int? = null): LabelPosition =
+            LabelPosition(first to second, rotate)
     }
 }

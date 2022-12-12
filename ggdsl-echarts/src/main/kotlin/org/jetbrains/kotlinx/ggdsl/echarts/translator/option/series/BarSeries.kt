@@ -1,7 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.echarts.features.Stack
 import org.jetbrains.kotlinx.ggdsl.echarts.features.StackFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLayerFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
@@ -94,5 +93,5 @@ internal class BarSeries(
     val animationEasingUpdate: String? = null,
     val animationDelayUpdate: Int? = null,
     override val universalTransition: UniversalTransition? = null,
-    override val tooltip: Tooltip? = null
+    override val tooltip: EchartsTooltip? = null
 ) : Series()

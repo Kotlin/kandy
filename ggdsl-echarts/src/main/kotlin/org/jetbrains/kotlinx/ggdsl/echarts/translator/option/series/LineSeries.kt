@@ -4,7 +4,6 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SMOOTH
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.STEP
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.SYMBOL
-import org.jetbrains.kotlinx.ggdsl.echarts.features.Stack
 import org.jetbrains.kotlinx.ggdsl.echarts.features.StackFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLayerFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Step
@@ -135,5 +134,5 @@ internal class LineSeries(
     val animationDurationUpdate: Int? = null,
     val animationDelayUpdate: Int? = null,
     override val universalTransition: UniversalTransition? = null,
-    override val tooltip: Tooltip? = null
+    override val tooltip: EchartsTooltip? = null
 ) : Series()

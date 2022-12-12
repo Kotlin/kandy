@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.echarts.features.Grid
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Legend
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Title
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Tooltip
@@ -23,6 +24,8 @@ public class EChartsLayout : PlotFeature {
     public var title: Title = Title()
 
     public var textStyle: TextStyle = TextStyle()
+
+    public var grid: Grid = Grid()
 
     @PublishedApi
     internal var legend: Legend? = null

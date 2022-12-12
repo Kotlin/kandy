@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.features
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.EChartsLayout
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.EchartsTooltip
 
 public inline fun EChartsLayout.tooltip(crossinline block: Tooltip.() -> Unit) {
     this.tooltip = Tooltip().apply(block)
@@ -20,4 +21,10 @@ public class Tooltip(
         trigger == null && formatter == null
 
     internal fun isNotEmpty(): Boolean = !isEmpty()
+
+    internal fun toEchartsTooltip(): EchartsTooltip =
+        EchartsTooltip(
+            trigger = trigger?.type,
+            formatter = formatter
+        )
 }

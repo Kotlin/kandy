@@ -34,5 +34,5 @@ internal sealed class Series {
     abstract val animationEasing: String?
     abstract val animationDelay: Int?
     abstract val universalTransition: UniversalTransition?
-    abstract val tooltip: Tooltip?
+    abstract val tooltip: EchartsTooltip?
 }
