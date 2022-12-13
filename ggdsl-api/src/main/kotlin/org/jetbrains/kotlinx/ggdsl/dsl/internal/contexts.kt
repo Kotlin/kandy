@@ -22,6 +22,9 @@ import kotlin.reflect.typeOf
 
 /**
  * Internal collector of mappings and settings.
+ *
+ * @property mappings [MutableMap] of aesthetic names to mappings.
+ * @property settings [MutableMap] of aesthetic names to settings   .
  */
 public class BindingCollector() {
     public val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
@@ -30,6 +33,13 @@ public class BindingCollector() {
     // todo
     public val freeScales: MutableMap<AesName, FreeScale> = mutableMapOf()
 
+    /**
+     * Constructor with copying bindings from other collector.
+     *
+     * @param other inherited [BindingCollector].
+     * @param copyMappings whether to inherit the mappings.
+     * @param copySettings whether to inherit the settings.
+     */
     public constructor(
         other: BindingCollector,
         copyMappings: Boolean = true,
@@ -42,18 +52,27 @@ public class BindingCollector() {
 
 /**
  * Base interface for context with bindings.
+ *
+ * @property bindingCollector [BindingCollector] of this context.
  */
 public interface BindingContext {
     // todo hide
     public val bindingCollector: BindingCollector
 }
 
-public interface SubBindingContextInterface : BindingContext {
-  //  public val parent: BindingContext
-}
+/**
+ * Interface for nested binding context.
+ */
+public interface SubBindingContextInterface : BindingContext
 
 /**
- * Base class for nested contexts that inherit bindings from parents.
+ * Base class for nested contexts (that can inherit bindings from parent) with immutable bindings.
+ *
+ * @constructor Constructor with copying bindings from parent collector.
+ * @param parent parental context.
+ * @param cloneBindings whether to inherit bindings from parental context.
+ * @param copyMappings whether to inherit the mappings.
+ * @param copySettings whether to inherit the settings.
  */
 public abstract class BindingSubContextImmutable(
     parent: BindingContext,
@@ -69,16 +88,28 @@ public abstract class BindingSubContextImmutable(
 }
 
 /**
- * Interface for contexts with [TableData] as dataset.
+ * Interface for bindings contexts with [TableData] as dataset.
+ *
+ * @property data context dataset of type [TableData] (nullable).
  */
 public interface TableDataContext : BindingContext {
     public val data: TableData?
 }
 
+/**
+ * Interface for nested bindings contexts with [TableData] as dataset.
+ */
 public interface TableSubContextInterface : TableDataContext, SubBindingContextInterface
 
 /**
- * Nested contexts that inherit bindings and data from parents.
+ * Nested context that can inherit bindings and data from parents.
+ *
+ * @constructor Constructor with copying bindings from parent collector.
+ * @param parent parental context.
+ * @param copyData whether to inherit dataset from parental context.
+ * @param cloneBindings whether to inherit bindings from parental context.
+ * @param copyMappings whether to inherit the mappings.
+ * @param copySettings whether to inherit the settings.
  */
 public abstract class TableSubContextImmutable(
     parent: TableDataContext,
@@ -92,25 +123,25 @@ public abstract class TableSubContextImmutable(
     } else null
 }
 
-/* TODO
-/**
- * Interface for contexts with [NamedDataInterface] as dataset.
- */
-public interface NameDataBindingContext : TableBindingContext {
-    override val data: NamedDataInterface
-}
-
- */
-
 
 /**
- * Interface for contexts that collect layers.
+ * Context with layer collecting.
+ *
+ * @property layers layers buffer.
+ * @property data context dataset.
+ * @property addLayer creates a new layer from layer context.
  */
-
 public interface LayerCollectorContextInterface : TableDataContext {
     // todo hide
     public val layers: MutableList<Layer>
     override val data: TableData
+
+    /**
+     * Creates and adds to the buffer a new layer from a layer context.
+     *
+     * @param context [LayerContextInterface] with bindings of a new layer.
+     * @param geom [Geom] of a new layer.
+     */
     public fun addLayer(context: LayerContextInterface, geom: Geom) {
         layers.add(
             Layer(
@@ -125,16 +156,26 @@ public interface LayerCollectorContextInterface : TableDataContext {
     }
 }
 
+/**
+ * Layer collector context with immutable bindings.
+ */
 public interface LayerCollectorContextImmutable : LayerCollectorContextInterface
 
 /**
- * Interface for contexts for building layers.
+ * Layer building contexts.
+ *
+ * @property features [MutableMap] of feature names to layer features.
  */
 @PlotDslMarker
 public interface LayerContextInterface : TableDataContext, TableSubContextInterface {
     public val features: MutableMap<FeatureName, LayerFeature>
 }
 
+/**
+ * Layer context with immutable bindings.
+ *
+ * @property features [MutableMap] of feature names to layer features.
+ */
 @PlotDslMarker
 public abstract class LayerContextImmutable(parent: LayerCollectorContextImmutable) : LayerContextInterface,
     TableSubContextImmutable(parent, parent !is LayerPlotContext) {
@@ -142,19 +183,31 @@ public abstract class LayerContextImmutable(parent: LayerCollectorContextImmutab
 }
 
 /**
- * Interface for nested [LayerCollectorContextImmutable].
+ * Nested layer collector context with immutable bindings.
+ *
+ * @property layers layers buffer, inherited from a parent.
  */
 @PlotDslMarker
-public abstract class SubLayerCollectorContextImmutable(parent: LayerCollectorContextImmutable) : TableDataContext,
-    LayerCollectorContextImmutable,
-    BindingSubContextImmutable(parent) {
+public abstract class SubLayerCollectorContextImmutable(parent: LayerCollectorContextImmutable)
+    : TableDataContext, LayerCollectorContextImmutable, BindingSubContextImmutable(parent) {
     override val layers: MutableList<Layer> = parent.layers
 }
 
+/**
+ * Context with a grouped data.
+ *
+ * @property data dataset of type [GroupedDataInterface].
+ */
 @PlotDslMarker
 public interface GroupedDataContextInterface : TableDataContext, LayerCollectorContextImmutable {
     override val data: GroupedDataInterface
 }
+
+/**
+ * Context with a grouped data with immutable bindings.
+ *
+ * @property data dataset of type [GroupedDataInterface].
+ */
 @PlotDslMarker
 public open class GroupedDataSubContextImmutable constructor(
     override val data: GroupedDataInterface,
@@ -162,6 +215,14 @@ public open class GroupedDataSubContextImmutable constructor(
     parent: BindingContext,
 ) : GroupedDataContextInterface, BindingSubContextImmutable(parent)
 
+
+/**
+ * Plot creating context.
+ *
+ * @property data plot dataset.
+ * @property features [MutableMap] of feature names to plot features.
+ * @property toPlot creates a new plot from this context.
+ */
 @PlotDslMarker
 public interface PlotContextBase : TableDataContext {
     // todo hide
@@ -170,6 +231,9 @@ public interface PlotContextBase : TableDataContext {
     public fun toPlot(): Plot
 }
 
+/**
+ * Plot with an explicit layers creating context.
+ */
 @PlotDslMarker
 public interface LayerPlotContext : LayerCollectorContextInterface, PlotContextBase {
     // todo hide
@@ -178,6 +242,9 @@ public interface LayerPlotContext : LayerCollectorContextInterface, PlotContextB
     }
 }
 
+/**
+ * Layer plot with a dataset of type [NamedDataInterface] context.
+ */
 @PlotDslMarker
 public class NamedDataPlotContext(
     override val data: NamedDataInterface,
@@ -198,6 +265,9 @@ public class NamedDataPlotContext(
     }
 }
 
+/**
+ * Layer plot with a dataset of type [GroupedDataContextInterface] context.
+ */
 @PlotDslMarker
 public class GroupedDataPlotContext(
     override val data: GroupedDataInterface,

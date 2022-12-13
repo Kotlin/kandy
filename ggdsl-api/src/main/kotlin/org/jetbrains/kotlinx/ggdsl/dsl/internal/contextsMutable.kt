@@ -21,13 +21,15 @@ public interface TableBindingContextInterfaceMutable : TableDataContext {
     public override val data: TableData
     public val dataBuffer: MutableTableData
     public fun generateID(): String
-
 }
 
 public inline fun <reified T : Any> TableBindingContextInterfaceMutable.toColumnPointer(iterable: Iterable<T>)
     : ColumnPointer<T> = toColumnPointer(iterable, generateID())
 
-public inline fun <reified T : Any> TableBindingContextInterfaceMutable.toColumnPointer(iterable: Iterable<T>, id: String): ColumnPointer<T> {
+public inline fun <reified T : Any> TableBindingContextInterfaceMutable.toColumnPointer(
+    iterable: Iterable<T>,
+    id: String
+): ColumnPointer<T> {
     dataBuffer.map[id] = TypedList(typeOf<T>(), iterable.toList())
     return columnPointer(id)
 }
@@ -129,7 +131,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
 }
 
 public abstract class TableSubContextMutable(
-    public open val parent: TableBindingContextInterfaceMutable,
+    public val parent: TableBindingContextInterfaceMutable,
     separatedData: Boolean = true,
     copy: Boolean = true,
     copyMappings: Boolean = true,
