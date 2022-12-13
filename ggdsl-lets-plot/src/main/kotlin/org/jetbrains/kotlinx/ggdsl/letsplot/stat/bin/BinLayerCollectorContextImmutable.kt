@@ -117,7 +117,10 @@ public inline fun LayerCollectorContextImmutable.statBin(
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
-): Unit = statBinImpl(this, data, column, bins, binXPos, block)
+) {
+    data.validateColumn(column.name)
+    statBinImpl(this, data, column, bins, binXPos, block)
+}
 
 
 public inline fun<reified T:Any> LayerCollectorContextMutable.statBin(

@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.toTyped
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.validate
 import org.jetbrains.kotlinx.ggdsl.ir.data.*
 
 /**
@@ -9,6 +10,9 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.*
  */
 @Serializable
 public data class NamedData(override val nameToValues: Map<String, TypedList>) : NamedDataInterface {
+    init {
+        validate()
+    }
     override fun groupBy(vararg columnPointers: ColumnPointer<*>): LazyGroupedData {
         return LazyGroupedData(columnPointers.map { it.name }, this)
     }
@@ -26,6 +30,9 @@ public data class LazyGroupedData(
     override val keys: List<String>,
     override val origin: NamedData
 ) : LazyGroupedDataInterface {
+    init {
+        validate()
+    }
     override fun count(): CountedGroupedDataInterface {
         TODO("Not yet implemented")
     }

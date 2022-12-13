@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 
 public sealed interface BinStatistic<T>: Statistic<T> {
-    // todo type
+    // todo types
     @Serializable
     public object Bins: BinStatistic<Double> {
         public const val NAME: String = "..x.."
@@ -13,7 +13,7 @@ public sealed interface BinStatistic<T>: Statistic<T> {
     }
 
     @Serializable
-    public object Count: BinStatistic<Int> {
+    public object Count: BinStatistic<Double> {
         public const val NAME: String = "..count.."
         override val id: String = NAME
 

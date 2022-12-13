@@ -13,6 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.line
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.point
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
+import org.jetbrains.kotlinx.ggdsl.letsplot.toSimple
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.letsplot.x
@@ -23,10 +24,14 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ToLetsPlotTest {
-    private val emptyDataset = NamedData(mapOf())
+
     @Test
     fun testSimple() {
-        val plot = plot(emptyDataset) {
+        val dataset = dataOf {
+            "origin" to listOf<String>()
+            "mpg" to listOf<Double>()
+        }
+        val plot = plot(dataset) {
             x(columnPointer<String>("origin"))
             point {
                 y(columnPointer<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
@@ -38,7 +43,7 @@ class ToLetsPlotTest {
         assertEquals(
             mapOf(
                 "mapping" to mapOf<String, String>(),
-                "data" to mapOf<String, Any>(),
+                "data" to dataset.toSimple(),
                 "kind" to "plot",
                 "scales" to listOf(
                     mapOf(
@@ -70,8 +75,14 @@ class ToLetsPlotTest {
 
     @Test
     fun testComplex() {
+        val dataset = dataOf {
+            "svalue" to listOf<String>()
+            "time" to listOf<Double>()
+            "clM" to listOf<Int>()
+            "clX" to listOf<String>()
+        }
         val clM = columnPointer<Int>("clM")
-        val plot = plot(emptyDataset) {
+        val plot = plot(dataset) {
             x(columnPointer<Double>("time").scaled(continuousPos(limits = -12.0 to 4.4)))
             y(columnPointer<String>("svalue").scaled(categoricalPos(categories = listOf("A", "B", "C"))))
 
@@ -103,7 +114,7 @@ class ToLetsPlotTest {
         assertEquals(
             mapOf(
                 "mapping" to mapOf<String, String>(),
-                "data" to mapOf<String, Any>(),
+                "data" to dataset.toSimple(),
                 "kind" to "plot",
                 "scales" to listOf(
                     mapOf(

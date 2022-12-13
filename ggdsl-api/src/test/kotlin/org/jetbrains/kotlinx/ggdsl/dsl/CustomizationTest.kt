@@ -75,7 +75,13 @@ internal class CustomizationTest {
     val mockSrcString = columnPointer<String>("mock_string")
     val mockSrcFloat = columnPointer<Float>("mock_float")
 
-    val dataset = NamedData(mapOf())
+    val dataset =
+        dataOf {
+            "mock_double" to listOf<Double>()
+            "mock_int" to listOf<Int>()
+            "mock_string" to listOf<String>()
+            "mock_float" to listOf<Float>()
+        }
 
     @Test
     fun testCustomLayer() {

@@ -7,6 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.facet
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.validateColumn
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
