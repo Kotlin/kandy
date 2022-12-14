@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.features.label
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyle
+import org.jetbrains.kotlinx.ggdsl.echarts.features.TextStyle
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 

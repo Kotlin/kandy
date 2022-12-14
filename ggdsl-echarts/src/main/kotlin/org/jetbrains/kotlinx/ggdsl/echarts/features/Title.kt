@@ -6,7 +6,6 @@ package org.jetbrains.kotlinx.ggdsl.echarts.features
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyle
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsTitle
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.toEchartsColor
 import org.jetbrains.kotlinx.ggdsl.util.color.Color

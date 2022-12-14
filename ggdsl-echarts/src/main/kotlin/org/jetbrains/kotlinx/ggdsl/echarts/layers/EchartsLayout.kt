@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.features.Grid
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Legend
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Title
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Tooltip
-import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyle
+import org.jetbrains.kotlinx.ggdsl.echarts.features.TextStyle
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
