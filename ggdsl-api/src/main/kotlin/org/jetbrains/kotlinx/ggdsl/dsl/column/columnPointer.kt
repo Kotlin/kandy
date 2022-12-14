@@ -5,7 +5,6 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.column
 
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import kotlin.reflect.KProperty
 
@@ -33,9 +32,23 @@ public inline operator fun <reified T : Any> String.invoke(): ColumnPointer<T> =
 
 
 /**
- * [ColumnPointer] delegate. It stores a type of the column. TODO
+ * [ColumnPointer] delegate. It stores a type of the column.
+ *
+ * Can be delegated to create a [ColumnPointer] with the same type and the name of the variable as a
+ * column name:
+ *
+ * ```
+ * // equals to
+ * // val timeVar = columnPointer<Int>("timeVar")
+ * val timeVar by columnPointer<Int>()
+ * ```
+ *
+ * @property T the type of the column.
  */
 public class UnnamedColumnPointer<T : Any> @PublishedApi internal constructor(){
+    /**
+     * Creates a [ColumnPointer] with `T` type and property name as a column name.
+     */
     public operator fun getValue(thisRef: Any?, property: KProperty<*>): ColumnPointer<T> {
         return ColumnPointer(property.name)
     }
@@ -43,7 +56,14 @@ public class UnnamedColumnPointer<T : Any> @PublishedApi internal constructor(){
 
 /**
  * Returns a new typed [UnnamedColumnPointer] with the given type.
- * TODO
+ *
+ * Can be delegated to create a [ColumnPointer] with the same type and the name of the variable as a
+ * column name:
+ *
+ * ```
+ * // equals to
+ * // val timeVar = columnPointer<Int>("timeVar")
+ * val timeVar by columnPointer<Int>()
  *
  * @param T the type of the column
  */

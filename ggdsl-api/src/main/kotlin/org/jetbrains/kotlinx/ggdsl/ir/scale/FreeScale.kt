@@ -10,6 +10,7 @@ import kotlin.reflect.KType
 
 /**
  * TODO: will be redesigned in the near future.
+ * Free scale, i.e scale without a mapping.
  */
 public sealed interface FreeScale {
     public val aes: AesName
@@ -20,6 +21,7 @@ public sealed interface FreeScale {
 
 /**
  * TODO: will be redesigned in the near future.
+ * Free positional scale, i.e scale without a mapping.
  */
 @Serializable
 public data class FreePositionalScale<DomainType : Any>(

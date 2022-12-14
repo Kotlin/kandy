@@ -5,11 +5,19 @@ import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.*
-import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalableNonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalablePositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
+import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import kotlin.reflect.KType
 
+/**
+ * Checks if all columns of dataset are the same size.
+ */
 public fun NamedData.validate() {
     if (nameToValues.isEmpty()) {
         return
@@ -24,6 +32,9 @@ public fun NamedData.validate() {
     }
 }
 
+/**
+ * Checks if all group keys are the column names.
+ */
 public fun LazyGroupedData.validate() {
     keys.forEach {
         require(it in origin.nameToValues.keys) {
@@ -32,16 +43,20 @@ public fun LazyGroupedData.validate() {
     }
 }
 
+/**
+ * Validates layers: validates all mappings in a layer.
+ */
 public fun Layer.validate(plotDataset: TableData) {
     val columns = (dataset ?: plotDataset).columns()
     mappings.validate(columns)
 }
 
 internal fun TableData.columns(): Map<String, KType> {
-    return when(this) {
+    return when (this) {
         is NamedDataInterface -> nameToValues.map {
             it.key to it.value.kType
         }.toMap()
+
         is LazyGroupedDataInterface -> origin.columns()
         is CountedGroupedDataInterface -> this.toLazy().columns()
     }
@@ -62,7 +77,7 @@ internal fun Map<AesName, Mapping>.validateGroups(groupKys: Set<String>) {
 internal fun Map<AesName, Mapping>.validate(columns: Map<String, KType>) {
     val columnNames = columns.keys
     forEach { (_, mapping) ->
-        val columnName = when(mapping) {
+        val columnName = when (mapping) {
             is ScaledMapping<*> -> mapping.columnScaled.source.name
             is NonScalableNonPositionalMapping<*> -> mapping.source.name
             is NonScalablePositionalMapping<*> -> mapping.source.name
@@ -78,6 +93,9 @@ internal fun Map<AesName, Mapping>.validate(columns: Map<String, KType>) {
     }
 }
 
+/**
+ * Checks presence of column with a given name.
+ */
 public fun TableData.validateColumn(columnName: String) {
     val columns = columns()
     require(columnName in columns) {
@@ -85,6 +103,9 @@ public fun TableData.validateColumn(columnName: String) {
     }
 }
 
+/**
+ * Validates plot: validates all global mappings and layers.
+ */
 public fun Plot.validate() {
     globalMappings.validate(dataset.columns())
     layers.forEach {

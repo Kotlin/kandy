@@ -4,15 +4,15 @@
 
 package org.jetbrains.kotlinx.ggdsl.util.color
 
-import kotlinx.serialization.Serializable
-import kotlin.math.roundToInt
-
 /**
  * Color base interface.
  */
 public sealed interface Color {
 
     public companion object {
+        /**
+         *
+         */
         public fun rgb(r: Int, g: Int, b: Int): StandardColor.RGB = StandardColor.RGB(r, g, b)
         public fun rgba(r: Int, g: Int, b: Int, a: Double): StandardColor.RGBA = StandardColor.RGBA(StandardColor.RGB(r, g, b), a)
         public fun named(name: String): StandardColor.Named = StandardColor.Named(name)

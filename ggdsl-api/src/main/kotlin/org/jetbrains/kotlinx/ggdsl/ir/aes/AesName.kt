@@ -7,7 +7,9 @@ package org.jetbrains.kotlinx.ggdsl.ir.aes
 import kotlinx.serialization.Serializable
 
 /**
- *  Wrapper of aesthetic attribute name.
+ * Wrapper over an aesthetic attribute name.
+ *
+ * @property name attribute name.
  */
 @Serializable
 public data class AesName(val name: String)

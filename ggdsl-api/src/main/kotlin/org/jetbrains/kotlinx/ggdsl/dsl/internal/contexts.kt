@@ -4,11 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl.internal
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
@@ -18,7 +18,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
-import kotlin.reflect.typeOf
 
 /**
  * Internal collector of mappings and settings.
@@ -66,7 +65,8 @@ public interface BindingContext {
 public interface SubBindingContextInterface : BindingContext
 
 /**
- * Base class for nested contexts (that can inherit bindings from parent) with immutable bindings.
+ * Base class for nested contexts (that can inherit bindings from parent) with immutable mappings
+ * (i.e. mappings from existing columns on prepared dataset).
  *
  * @constructor Constructor with copying bindings from parent collector.
  * @param parent parental context.
@@ -157,7 +157,7 @@ public interface LayerCollectorContextInterface : TableDataContext {
 }
 
 /**
- * Layer collector context with immutable bindings.
+ * Layer collector context with immutable mappings.
  */
 public interface LayerCollectorContextImmutable : LayerCollectorContextInterface
 
@@ -172,7 +172,7 @@ public interface LayerContextInterface : TableDataContext, TableSubContextInterf
 }
 
 /**
- * Layer context with immutable bindings.
+ * Layer context with immutable mappings.
  *
  * @property features [MutableMap] of feature names to layer features.
  */
@@ -183,7 +183,7 @@ public abstract class LayerContextImmutable(parent: LayerCollectorContextImmutab
 }
 
 /**
- * Nested layer collector context with immutable bindings.
+ * Nested layer collector context with immutable mappings.
  *
  * @property layers layers buffer, inherited from a parent.
  */
@@ -204,7 +204,7 @@ public interface GroupedDataContextInterface : TableDataContext, LayerCollectorC
 }
 
 /**
- * Context with a grouped data with immutable bindings.
+ * Context with a grouped data with immutable mappings.
  *
  * @property data dataset of type [GroupedDataInterface].
  */

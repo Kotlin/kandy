@@ -11,7 +11,7 @@ import kotlin.reflect.typeOf
 
 /**
  * TODO: will be redesigned in the near future.
- * Apply given [PositionalScale] for this aes (as [FreePositionalScale]).
+ * Applies given [PositionalScale] for this aes (as [FreePositionalScale]).
  *
  * @param scale positional scale.
  * @return [FreePositionalScale]
@@ -30,7 +30,7 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
 
 /**
  * TODO: will be redesigned in the near future.
- * Apply given [PositionalUnspecifiedScale] for this aes (as [FreePositionalScale]).
+ * Applies given [PositionalUnspecifiedScale] for this aes (as [FreePositionalScale]).
  *
  * @param scale positional unspecified scale.
  * @return [FreePositionalScale]

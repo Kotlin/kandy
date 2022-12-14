@@ -3,10 +3,14 @@ package org.jetbrains.kotlinx.ggdsl.ir.data
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
-import kotlinx.serialization.*
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.descriptors.*
-import kotlinx.serialization.encoding.*
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
+import kotlinx.serialization.encoding.decodeStructure
+import kotlinx.serialization.encoding.encodeStructure
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
@@ -125,6 +129,13 @@ public object TypedListSerializer : KSerializer<TypedList> {
 
 }
 
+/**
+ * Special wrapper that stores a list of elements of some type and that type
+ * in the reified representation.
+ *
+ * @property kType type of list elements.
+ * @property values [List] of values.
+ */
 @Serializable(with = TypedListSerializer::class)
 public data class TypedList(
     val kType: KType,
