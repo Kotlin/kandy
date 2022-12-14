@@ -9,6 +9,17 @@ import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
+/**
+ * Border settings.
+ *
+ * @property color border [color][Color].
+ * @property width border width. By default `0`.
+ * @property type border [type][LineType]. By default `solid`.
+ * @property radius border radius. By default `0`.
+ *
+ * @see Color
+ * @see LineType
+ */
 @PlotDslMarker
 public class Border(
     public var color: Color? = null,
