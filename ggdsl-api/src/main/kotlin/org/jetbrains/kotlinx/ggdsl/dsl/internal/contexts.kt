@@ -253,6 +253,12 @@ public class NamedDataPlotContext(
     override val layers: MutableList<Layer> = mutableListOf()
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
+    /**
+     * Performs grouping of this plot dataset by given columns.
+     * Creates [GroupedDataSubContextImmutable].
+     *
+     * @param columnPointers pointers to grouping keys columns.
+     */
     public inline fun groupBy(
         vararg columnPointers: ColumnPointer<*>,
         block: GroupedDataSubContextImmutable.() -> Unit

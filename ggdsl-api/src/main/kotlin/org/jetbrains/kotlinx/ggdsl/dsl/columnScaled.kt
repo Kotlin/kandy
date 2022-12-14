@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 
 /**
- * Applies default (i.e. without specifying the type and parameters;
+ * Applies the default (i.e. without specifying the type and parameters;
  * they will be defined automatically; can be both used for positional and non-positional
  * mappings) scale to this [ColumnPointer].
  *
@@ -23,7 +23,7 @@ public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(): ColumnScaledUn
     ColumnScaledUnspecifiedDefault(this)
 
 /**
- * Applies unspecified (i.e. without specifying the type and parameters;
+ * Applies an unspecified (i.e. without specifying the type and parameters;
  * they will be defined automatically) positional scale to this [ColumnPointer].
  *
  * @param DomainType type of the domain.
@@ -35,20 +35,19 @@ public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(scale: Positional
     ColumnScaledPositionalUnspecified(this, scale)
 
 /**
- * Applies unspecified non-positional (i.e. without specifying the type and parameters;
- * they will be defined automatically) scale to this [ColumnPointer].
+ * Applies an unspecified (i.e. without specifying the type and parameters;
+ * they will be defined automatically) non-positional scale to this [ColumnPointer].
  *
  * @param DomainType type of the domain.
  * @param scale non-positional default scale.
  * @return scaled source.
  */
-
 public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(scale: NonPositionalUnspecifiedScale):
         ColumnScaledNonPositionalUnspecified<DomainType> =
     ColumnScaledNonPositionalUnspecified(this, scale)
 
 /**
- * Applies positional scale to this [ColumnPointer].
+ * Applies a positional scale to this [ColumnPointer].
  *
  * @param DomainType type of the domain.
  * @param scale positional scale.
@@ -59,7 +58,7 @@ public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(
 ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this, scale)
 
 /**
- * Applies non-positional scale to this [ColumnPointer].
+ * Applies a non-positional scale to this [ColumnPointer].
  *
  * @param DomainType type of the domain.
  * @param scale non-positional scale.

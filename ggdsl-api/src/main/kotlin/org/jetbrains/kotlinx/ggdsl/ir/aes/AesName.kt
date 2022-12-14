@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.ir.aes
 import kotlinx.serialization.Serializable
 
 /**
- * Wrapper over an aesthetic attribute name.
+ * Wrapper for an aesthetic attribute name.
  *
  * @property name attribute name.
  */

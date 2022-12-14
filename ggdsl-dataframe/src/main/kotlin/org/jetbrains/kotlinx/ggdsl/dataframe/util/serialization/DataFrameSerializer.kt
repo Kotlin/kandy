@@ -1,7 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.util.serialization
 
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.descriptors.*
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
@@ -9,6 +10,9 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.io.readJsonStr
 import org.jetbrains.kotlinx.dataframe.io.toJson
 
+/**
+ * TODO temporary [DataFrame] serializer
+ */
 public object DataFrameSerializer: KSerializer<DataFrame<*>> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("DataFrame", PrimitiveKind.STRING)
 

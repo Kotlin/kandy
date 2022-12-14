@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.ir.feature
 import kotlinx.serialization.Serializable
 
 /**
- * Wrapper over a feature name.
+ * Wrapper for a feature name.
  *
  * @property name the name of feature
  */

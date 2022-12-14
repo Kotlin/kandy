@@ -1,15 +1,18 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.util.serialization
 
-import kotlinx.serialization.PolymorphicSerializer
 import kotlinx.serialization.modules.SerializersModule
-import kotlinx.serialization.modules.*
-import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.ggdsl.dataframe.*
+import kotlinx.serialization.modules.polymorphic
+import kotlinx.serialization.modules.subclass
+import org.jetbrains.kotlinx.ggdsl.dataframe.data.DataFrameWrapper
+import org.jetbrains.kotlinx.ggdsl.dataframe.data.LazyGroupedDataFrame
 import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 
+/**
+ * [SerializersModule] for IR elements from DataFrame API.
+ */
 public val dataframeModule: SerializersModule
     get() = SerializersModule {
         polymorphic(TableData::class) {

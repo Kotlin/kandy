@@ -2,8 +2,9 @@ package org.jetbrains.kotlinx.ggdsl.dataframe.util.serialization
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.descriptors.*
 import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.descriptors.buildClassSerialDescriptor
+import kotlinx.serialization.descriptors.element
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.encoding.decodeStructure
@@ -12,6 +13,9 @@ import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.groupBy
 import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 
+/**
+ * TODO temporary [GroupBy] serializer
+ */
 public object GroupBySerializer: KSerializer<GroupBy<*, *>> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("GroupBy") {
         element<String>("keys")

@@ -11,9 +11,9 @@ public interface NamedDataInterface : TableData {
     public val nameToValues: Map<String, TypedList>
 
     /**
-     * Groups this dataframe by given columns.
+     * Performs grouping of this dataframe by given columns.
      *
-     * @param columnPointers pointers to columns to group them by.
+     * @param columnPointers pointers to grouping keys columns.
      */
     public fun groupBy(vararg columnPointers: ColumnPointer<*>): LazyGroupedDataInterface
 }
