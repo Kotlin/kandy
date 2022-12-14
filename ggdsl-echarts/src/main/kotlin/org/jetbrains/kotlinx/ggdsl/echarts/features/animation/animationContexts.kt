@@ -6,6 +6,25 @@ package org.jetbrains.kotlinx.ggdsl.echarts.features.animation
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 
+/**
+ * Animation settings for [Plot][org.jetbrains.kotlinx.ggdsl.ir.Plot] and layers.
+ *
+ * @property enable responsible for enabling animation. By default `true`.
+ * @property threshold sets a graphic number threshold for animation.
+ * Animation will be disabled when graphic number exceeds a threshold.
+ * By default `2000`.
+ * @property duration duration of the first animation. By default `1000`.
+ * @property easing [easing effect][AnimationEasing] used for the first animation. By default `cubicOut`.
+ * @property delay delay before updating the first animation. By default `0`.
+ *
+ * @see AnimationEasing
+ * @see org.jetbrains.kotlinx.ggdsl.ir.Plot
+ * @see org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.AreaContextImmutable
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContextImmutable
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.PointContextImmutable
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.BarContextImmutable
+ */
 @PlotDslMarker
 public class AnimationContext(
     public var enable: Boolean? = null,
@@ -35,10 +54,36 @@ public class AnimationContext(
             null
 }
 
+/**
+ * Animation type used in pie plot.
+ *
+ * @property EXPANSION Default expansion animation.
+ * @property SCALE scale animation. Can use it with `easing = AnimationEasing.CUBIC_OUT` to have popup effect.
+ *
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.pie
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.features.animation.animation
+ * @see AnimationPieContext
+ */
 public enum class AnimationType(public val type: String) {
     EXPANSION("expansion"), SCALE("scale")
 }
 
+/**
+ * Animation settings for [Pie][org.jetbrains.kotlinx.ggdsl.echarts.layers.PieContextImmutable] plot.
+ *
+ * @property enable responsible for enabling animation. By default `true`.
+ * @property type initial [animation type][AnimationType]. By default `expansion`.
+ * @property threshold sets a graphic number threshold for animation.
+ * Animation will be disabled when graphic number exceeds a threshold.
+ * By default `2000`.
+ * @property duration Duration of the first animation. By default `1000`.
+ * @property easing [easing effect][AnimationEasing] used for the first animation. By default `cubicOut`.
+ * @property delay delay before updating the first animation. By default `0`.
+ *
+ * @see AnimationType
+ * @see AnimationEasing
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.PieContextImmutable
+ */
 @PlotDslMarker
 public class AnimationPieContext(
     public var enable: Boolean? = null,
@@ -61,6 +106,18 @@ public class AnimationPieContext(
             null
 }
 
+/**
+ * Animation settings for [Boxplot][org.jetbrains.kotlinx.ggdsl.echarts.layers.BoxplotContextImmutable]
+ * and [Candlestick][org.jetbrains.kotlinx.ggdsl.echarts.layers.CandlestickContextImmutable].
+ *
+ * @property duration Duration of the first animation. By default `1000`.
+ * @property easing [easing effect][AnimationEasing] used for the first animation. By default `cubicOut`.
+ * @property delay delay before updating the first animation. By default `0`.
+ *
+ * @see AnimationEasing
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.BoxplotContextImmutable
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.CandlestickContextImmutable
+ */
 @PlotDslMarker
 public class AnimationBoxplotCandlestickContext(
     public var duration: Int? = null,

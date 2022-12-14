@@ -4,6 +4,13 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features.animation
 
+/**
+ * Animation easing effects.
+ *
+ * @property LINEAR
+ * @property CUBIC_OUT by default
+ * @property ELASTIC_OUT
+ */
 public class AnimationEasing private constructor(public val name: String) {
     public companion object {
         // todo (add function?)
