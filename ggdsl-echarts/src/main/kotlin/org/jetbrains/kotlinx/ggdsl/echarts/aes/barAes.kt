@@ -83,7 +83,12 @@ public data class BackgroundShadowColorAes(override val context: BindingContext)
 
 internal val BACKGROUND_ALPHA: AesName = AesName("background_opacity")
 
-public data class BackgroundAlphaAes(override val context: BindingContext) : NonPositionalAes<Color> {
+/**
+ * Aesthetic attribute for background opacity.
+ *
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.features.BackgroundStyle
+ */
+public data class BackgroundAlphaAes(override val context: BindingContext) : NonPositionalAes<Double> {
     override val name: AesName = BACKGROUND_ALPHA
 }
 

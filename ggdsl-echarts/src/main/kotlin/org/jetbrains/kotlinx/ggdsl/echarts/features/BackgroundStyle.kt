@@ -22,4 +22,5 @@ public class BackgroundStyle(context: BindingContext) {
     public val borderRadius: BackgroundBorderRadiusAes = BackgroundBorderRadiusAes(context)
     public val shadowBlur: BackgroundShadowBlurAes = BackgroundShadowBlurAes(context)
     public val shadowColor: BackgroundShadowColorAes = BackgroundShadowColorAes(context)
+    public val alpha: BackgroundAlphaAes = BackgroundAlphaAes(context)
 }
