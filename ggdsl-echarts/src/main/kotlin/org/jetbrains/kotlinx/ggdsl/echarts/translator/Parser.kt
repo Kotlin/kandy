@@ -103,7 +103,7 @@ internal class Parser(plot: Plot) {
             }
         }
 
-        val dataset = Dataset(source = datasetSource)
+        val dataset = Dataset(source = datasetSource).takeIf { it.isNotEmpty() }
 
         return Option(
             title,
@@ -118,7 +118,7 @@ internal class Parser(plot: Plot) {
             visualMaps.ifEmpty { null },
             tooltip,
             dataset,
-            series,
+            series.ifEmpty { null },
             textStyle,
             animation?.enable,
             animation?.threshold,
@@ -187,7 +187,7 @@ internal class Parser(plot: Plot) {
     private fun Layer.toSeries(): Series {
         val x = (this.mappings[X] as? ScaledMapping<*>)?.getId()
         val y = (this.mappings[Y] as? ScaledMapping<*>)?.getId()
-        val encode = Encode(x, y)
+        val encode = Encode(x, y).takeIf { it.isNotEmpty() }
         val name = settings.getNPSValue(NAME) ?: when {
             x != null && y != null -> "$x $y"
             x == null && y != null -> y

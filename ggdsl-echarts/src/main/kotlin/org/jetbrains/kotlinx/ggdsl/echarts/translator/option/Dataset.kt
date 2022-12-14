@@ -15,4 +15,11 @@ internal data class Dataset(
     val fromDatasetIndex: Int? = null,
     val fromDatasetId: String? = null,
     val fromTransformResult: Int? = null
-)
+) {
+
+    fun isEmpty(): Boolean =
+        id == null && source?.all { it.isEmpty() } ?: true && sourceHeader == null && fromDatasetIndex == null
+            && fromDatasetId == null && fromTransformResult == null
+
+    fun isNotEmpty(): Boolean = !this.isEmpty()
+}
