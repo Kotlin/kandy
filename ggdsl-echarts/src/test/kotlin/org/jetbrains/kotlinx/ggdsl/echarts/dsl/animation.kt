@@ -122,6 +122,31 @@ class AnimationTests {
     private var animationDelay: Int = 0
 
     @Test
+    fun `empty animation`() {
+        val actual = plot {
+            animation {  }
+        }
+        val expected = """
+            {
+            }
+        """.trimIndent()
+        assertEquals(expected, actual.toJson())
+    }
+
+    @Test
+    fun `false animation`() {
+        val actual = plot {
+            animation { enable = false }
+        }
+        val expected = """
+            {
+                "animation": false
+            }
+        """.trimIndent()
+        assertEquals(expected, actual.toJson())
+    }
+
+    @Test
     fun `animation of plot`() {
         val actual = plot {
             animation {
