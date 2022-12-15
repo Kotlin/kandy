@@ -8,6 +8,20 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
+/**
+ * The mark area settings for layers.
+ *
+ * @property areas list of [mark area][MarkArea]
+ *
+ * @see MarkArea
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.line
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.area
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.bars
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.points
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.pie
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.boxplot
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.candlestick
+ */
 @PlotDslMarker
 public class MarkAreaContext(
     public var areas: List<MarkArea>? = null
@@ -26,8 +40,17 @@ internal class MarkAreaFeature(
     }
 }
 
+/**
+ * The mark area. Describes the area mark on a plot.
+ *
+ * @param name name of the mark area
+ * @param point1 the first point defining the mark area
+ * @param point2 the second point defining the mark area
+ *
+ * @see MarkPoint
+ */
 public class MarkArea constructor(
-    internal val name: String,
-    internal val point1: MarkPoint,
-    internal val point2: MarkPoint
+    public val name: String,
+    public val point1: MarkPoint,
+    public val point2: MarkPoint
 )

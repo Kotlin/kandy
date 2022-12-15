@@ -8,6 +8,20 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
+/**
+ * The mark line settings for layers.
+ *
+ * @property lines list of [mark line][MarkLine]
+ *
+ * @see MarkLine
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.line
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.area
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.bars
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.points
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.pie
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.boxplot
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.candlestick
+ */
 @PlotDslMarker
 public class MarkLineContext(
     public var lines: List<MarkLine>? = null
@@ -26,6 +40,12 @@ internal class MarkLineFeature(
     }
 }
 
+/**
+ * The mark line. Describes the line mark on a plot.
+ *
+ * @see MarkType
+ * @see MarkType
+ */
 public class MarkLine private constructor(
     internal val nameML: String,
     internal val typeML: MarkType? = null,
@@ -34,8 +54,19 @@ public class MarkLine private constructor(
     internal val point1: MarkPoint? = null,
     internal val point2: MarkPoint? = null
 ) {
+    /**
+     * Returns the [mark line][MarkLine] of a selected [type] with a [name].
+     *
+     * [MarkType]:
+     * - MAX
+     * - MIN
+     * - AVERAGE
+     */
     public constructor(name: String, type: MarkType) : this(nameML = name, typeML = type)
 
+    /**
+     * Returns the [mark line][MarkLine] with [name]. The line is drawn between the [point1] and [point2].
+     */
     public constructor(name: String, point1: MarkPoint, point2: MarkPoint) : this(
         nameML = name,
         point1 = point1,
@@ -43,9 +74,14 @@ public class MarkLine private constructor(
     )
 
     public companion object {
+        /**
+         * Returns a horizontal line along a point on the y-axis.
+         */
         public fun horizontal(name: String, yAxis: Number): MarkLine = MarkLine(nameML = name, xAxis = yAxis.toDouble())
+
+        /**
+         * Returns a horizontal line along a point on the x-axis.
+         */
         public fun vertical(name: String, xAxis: Number): MarkLine = MarkLine(nameML = name, xAxis = xAxis.toDouble())
-
-
     }
 }

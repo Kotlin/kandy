@@ -4,6 +4,17 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features.marks
 
+/**
+ * Mark type. Used in [mark point][MarkPoint] and [mark line][MarkLine].
+ *
+ * @property MAX maximum value
+ * @property MIN minimum value
+ * @property MAX average value
+ *
+ *
+ * @see MarkPoint
+ * @see MarkLine
+ */
 public enum class MarkType(public val type: String) {
     MAX("max"), MIN("min"), AVERAGE("average")
 }
