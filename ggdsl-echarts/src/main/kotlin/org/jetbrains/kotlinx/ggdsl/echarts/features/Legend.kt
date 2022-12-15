@@ -9,12 +9,44 @@ import org.jetbrains.kotlinx.ggdsl.echarts.layers.EChartsLayout
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.SizeUnit
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsLegend
 
+/**
+ * Shows name, symbol and color of different layers.
+ *
+ * - [type][Legend.type] - [type][LegendType] of legend. `plain` is default.
+ * - [left][Legend.left] - distance between a legend component and the left side of the container. `auto` by default.
+ * - [top][Legend.top] - distance between a legend component and the top side of the container. `auto` by default.
+ * - [right][Legend.right] - distance between a legend component and the right side of the container. `auto` by default.
+ * - [bottom][Legend.bottom] - distance between a legend component and the bottom side of the container. `auto` by default.
+ * - [width][Legend.width] - width of a legend component. `auto` by default.
+ * - [height][Legend.height] - height of a legend component. `auto` by default.
+ * - [orient][Legend.orient] - the layout [orientation][Orient] of legend. `horizontal` by default.
+ * - [formatter][Legend.formatter] - formatter is used to format label of legend.
+ *
+ * ```kotlin
+ * plot(mapOf()) {
+ *     layout {
+ *         legend {
+ *             type = LegendType.PLAIN
+ *             left = 10.pct
+ *             top = 60.px
+ *             right = 10.pct
+ *             bottom = 60.px
+ *             width = 300.px
+ *             height = 10.pct
+ *             orient = Orient.VERTICAL
+ *             formatter = "Legend {name}"
+ *         }
+ *     }
+ * }
+ * ```
+ *
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.layout
+ * @see SizeUnit
+ * @see LegendType
+ * @see Orient
+ */
 public inline fun EChartsLayout.legend(crossinline block: Legend.() -> Unit) {
     this.legend = Legend().apply(block)
-}
-
-public enum class LegendAlign(public val align: String) {
-    AUTO("auto"), LEFT("left"), RIGHT("right")
 }
 
 public enum class LegendType(public val type: String) {
@@ -25,6 +57,23 @@ public enum class Orient(public val type: String) {
     HORIZONTAL("horizontal"), VERTICAL("vertical")
 }
 
+/**
+ * Legend settings for plot.
+ *
+ * @property type [type][LegendType] of legend. `plain` is default.
+ * @property left distance between a legend component and the left side of the container. `auto` by default.
+ * @property top distance between a legend component and the top side of the container. `auto` by default.
+ * @property right distance between a legend component and the right side of the container. `auto` by default.
+ * @property bottom distance between a legend component and the bottom side of the container. `auto` by default.
+ * @property width width of a legend component. `auto` by default.
+ * @property height height of a legend component. `auto` by default.
+ * @property orient the layout [orientation][Orient] of legend. `horizontal` by default.
+ * @property formatter formatter is used to format label of legend.
+ *
+ * @see LegendType
+ * @see Orient
+ * @see SizeUnit
+ */
 @PlotDslMarker
 public class Legend(
     public var type: LegendType? = null,
