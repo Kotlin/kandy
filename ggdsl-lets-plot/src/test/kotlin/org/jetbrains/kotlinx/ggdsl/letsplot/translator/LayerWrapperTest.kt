@@ -13,7 +13,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.COLOR
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.FILL
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.WIDTH
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position

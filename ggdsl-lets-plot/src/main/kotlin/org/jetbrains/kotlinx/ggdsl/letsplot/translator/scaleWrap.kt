@@ -6,7 +6,12 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.ALPHA
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.COLOR
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.FILL
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LINE_TYPE
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.SIZE
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.ColorBar
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.DiscreteLegend

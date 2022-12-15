@@ -4,82 +4,88 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.PointContextImmutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.PointContextInterface
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.PointMutableMutableContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val POINT: LetsPlotGeom = LetsPlotGeom("point")
 
-public interface PointContextInterface : BindingContext {
-    public val x: XAes get() = XAes(this)
-    public val y: YAes get() = YAes(this)
-
-    public val symbol: ShapeAes get() = ShapeAes(this)
-
-    public val size: SizeAes get() = SizeAes(this)
-    public val color: ColorAes get() = ColorAes(this)
-    public val alpha: AlphaAes get() = AlphaAes(this)
-
-    // FILL SHAPES only
-    public val borderWidth: StrokeAes  // TODO doesnt work lol
-        get() = StrokeAes(this)
-    public val fillColor: FillAes
-        get() = FillAes(this)
-}
-
-@PlotDslMarker
-public class PointContextImmutable(parent: LayerCollectorContextImmutable) :
-    LayerContextImmutable(parent), PointContextInterface
-
-@PlotDslMarker
-public class PointMutableMutableContextMutable(parent: LayerCollectorContextMutable) :
-    LayerContextMutable(parent), PointContextInterface
-
-
 /**
  * Adds a new point layer.
  *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation:
- * ```
- * point {
- *    x(source<Double>("time")) // mapping from data source to size value
- *    color(Color.BLUE) // setting of constant color value
- * }
- * ```
+ * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
  *
  *  ### Aesthetic attributes:
  *
  *  Positional:
  *
- *  - [ x][PointContextImmutable.x]
- *  - [y][PointContextImmutable.y]
+ *  - [ x][PointContextInterface.x]
+ *  - [y][PointContextInterface.y]
  *
  *  Initial mappings to positional attributes are inherited from the parent [LayerPlotContext] (if they exist).
  *
  *   Non-positional:
- *  - [color][PointContextImmutable.color] - color of the point (color of the point border for "FILLED" symbols), of the type [Color], mappable
- *  - [alpha][PointContextImmutable.alpha] - this layer alpha, of the type [Double], mappable
- *  - [symbol][PointContextImmutable.symbol] - symbol of the point, of the type [Symbol], mappable
- *  - [size][PointContextImmutable.size] - this point size, of the type [Double], mappable
- *  - [fillColor][PointContextImmutable.fillColor] - color of the point filling (for "FILLED" symbols), of the type [Color], mappable
- *  - [borderWidth][PointContextImmutable.borderWidth] - width of the point border (for "FILLED" symbols), of the type [Double], mappable
+ *  - [color][PointContextInterface.color] - color of the point (color of the point border for "FILLED" symbols),
+ *  of the type [Color], mappable
+ *  - [alpha][PointContextInterface.alpha] - this layer alpha, of the type [Double], mappable
+ *  - [symbol][PointContextInterface.symbol] - symbol of the point, of the type [Symbol], mappable
+ *  - [size][PointContextInterface.size] - this point size, of the type [Double], mappable
+ *  - [fillColor][PointContextInterface.fillColor] - color of the point filling (for "FILLED" symbols),
+ *  of the type [Color], mappable
+ *  - [borderWidth][PointContextInterface.borderWidth] - width of the point border (for "FILLED" symbols),
+ *  of the type [Double], mappable without an explicit scale.
  *
- * // TODO move data overriding to args
- *  By default, the dataset inherited from the parent [LayerPlotContext] is used,
- *  but can be overridden with an assignment to the [data][PointContextImmutable.data].
- *
- *  // TODO refer to bindings?
+ * ```
+ * point {
+ *    x(time) // mapping from `time` column to `X` with default scale.
+ *    color(Color.BLUE) // setting of constant `color` value
+ * }
+ * ```
  */
-// todo rename to point/scatter?
 public inline fun LayerCollectorContextImmutable.point(block: PointContextImmutable.() -> Unit) {
     addLayer(PointContextImmutable(this).apply(block), POINT)
 }
 
+/**
+ * Adds a new point layer.
+ *
+ * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
+ *
+ *  ### Aesthetic attributes:
+ *
+ *  Positional:
+ *
+ *  - [ x][PointContextInterface.x]
+ *  - [y][PointContextInterface.y]
+ *
+ *  Initial mappings to positional attributes are inherited from the parent [LayerPlotContext] (if they exist).
+ *
+ *   Non-positional:
+ *  - [color][PointContextInterface.color] - color of the point (color of the point border for "FILLED" symbols),
+ *  of the type [Color], mappable
+ *  - [alpha][PointContextInterface.alpha] - this layer alpha, of the type [Double], mappable
+ *  - [symbol][PointContextInterface.symbol] - symbol of the point, of the type [Symbol], mappable
+ *  - [size][PointContextInterface.size] - this point size, of the type [Double], mappable
+ *  - [fillColor][PointContextInterface.fillColor] - color of the point filling (for "FILLED" symbols),
+ *  of the type [Color], mappable
+ *  - [borderWidth][PointContextInterface.borderWidth] - width of the point border (for "FILLED" symbols),
+ *  of the type [Double], mappable without an explicit scale.
+ *
+ * ```
+ * point {
+ *    x(listOf(3.4, 2.2, 10.0)) // mapping from list to `X` with default scale.
+ *    color(Color.BLUE) // setting of constant `color` value
+ * }
+ * ```
+ */
 public inline fun LayerCollectorContextMutable.point(block: PointMutableMutableContextMutable.() -> Unit) {
     addLayer(PointMutableMutableContextMutable(this).apply(block), POINT)
 }
-
-

@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol
 import kotlinx.serialization.Serializable
 
 /**
- * Shape of point.
+ * Point symbol.
  *
  * TODO detailed?
  */

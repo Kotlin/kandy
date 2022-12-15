@@ -5,13 +5,11 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
-
 /* TODO
 @PublishedApi
 
  */
-public val CONTOUR_FILLED: LetsPlotGeom = LetsPlotGeom("contour_filled")
+//public val CONTOUR_FILLED: LetsPlotGeom = LetsPlotGeom("contour_filled")
 
 /*
 

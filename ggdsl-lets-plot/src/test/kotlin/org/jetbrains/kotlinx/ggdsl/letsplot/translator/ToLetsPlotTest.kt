@@ -16,8 +16,8 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
 import org.jetbrains.kotlinx.ggdsl.letsplot.toSimple
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
-import org.jetbrains.kotlinx.ggdsl.letsplot.x
-import org.jetbrains.kotlinx.ggdsl.letsplot.y
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.x
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.y
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.intern.toSpec
 import kotlin.test.Test

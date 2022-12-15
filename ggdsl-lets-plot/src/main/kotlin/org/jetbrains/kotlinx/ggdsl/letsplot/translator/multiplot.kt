@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.PlotBunch
-import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.PlotGrid
+import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model.PlotBunch
+import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model.PlotGrid
 import org.jetbrains.letsPlot.GGBunch
 import org.jetbrains.letsPlot.gggrid
 

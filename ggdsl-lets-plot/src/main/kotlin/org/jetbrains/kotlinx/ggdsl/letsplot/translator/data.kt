@@ -5,11 +5,9 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
-import org.jetbrains.kotlinx.ggdsl.letsplot.MERGED_GROUPS
-import kotlin.reflect.KType
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.MERGED_GROUPS
 import kotlin.reflect.typeOf
 import kotlin.time.Duration.Companion.nanoseconds
-import kotlin.time.ExperimentalTime
 
 internal fun LazyGroupedDataInterface.mergedKeys(): List<String> = buildList {
     val map = this@mergedKeys.origin.nameToValues

@@ -3,7 +3,7 @@
 */
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat
-
+/*
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 
 public sealed interface Stat<T> {
@@ -195,3 +195,5 @@ public sealed interface SmoothStat<T> : Stat<T> {
     }
 }
 
+
+ */

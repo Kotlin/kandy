@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGridX

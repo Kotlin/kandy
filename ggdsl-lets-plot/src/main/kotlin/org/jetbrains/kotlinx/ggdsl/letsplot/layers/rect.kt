@@ -4,38 +4,92 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextImmutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RectContextImmutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RectContextInterface
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RectContextMutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val RECT: LetsPlotGeom = LetsPlotGeom("rect")
 
-public interface RectContextInterface : WithBorderLineContextInterface {
-    public val y: YDummyAes get() = YDummyAes(this)
-
-    public val xMin: XMinAes get() = XMinAes(this)
-    public val xMax: XMaxAes get() = XMaxAes(this)
-    public val yMin: YMinAes get() = YMinAes(this)
-    public val yMax: YMaxAes get() = YMaxAes(this)
-
-    public val color: FillAes get() = FillAes(this)
-    public val alpha: AlphaAes get() = AlphaAes(this)
-}
-
-@PlotDslMarker
-public class RectContextImmutable(parent: LayerCollectorContextImmutable) :
-    LayerWithBorderLineContextImmutable(parent), RectContextInterface
-
-@PlotDslMarker
-public class RectContextMutable(parent: LayerCollectorContextMutable)
-    : LayerWithBorderLineContextMutable(parent), RectContextInterface
-
+/**
+ * Adds a new rect layer.
+ *
+ * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ *
+ *  ### Aesthetic attributes:
+ *
+ *  Positional:
+ *
+ *  - [xMin][RectContextInterface.xMin]
+ *  - [yMin][RectContextInterface.yMin]
+ *  - [xMax][RectContextInterface.xMax]
+ *  - [yMax][RectContextInterface.yMax]
+ *  // TODO y
+ *
+ *   Non-positional:
+ *  - [color][RectContextInterface.color] - rect fill color, of the type [Color], mappable. (TODO grouping)
+ *  - [alpha][RectContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
+ *  - [borderLine.type][BorderLineContextImmutable.type] - borderline type, of the type [LineType], mappable.
+ *  (TODO grouping)
+ *  - [borderLine.width][BorderLineContextImmutable.width] - borderline width, of the type [Double], mappable.
+ *  (TODO grouping)
+ *  - [borderLine.color][BorderLineContextImmutable.color] - borderline width, of the type [Double], mappable.
+ *  (TODO grouping)
+ * ```
+ * rect {
+ *    yMin(leftDown) // mapping from `leftDown` column to `yMin`
+ *
+ *    borderLine {
+ *       width(2.5) // // setting of constant `borderLine.width` value
+ *    }
+ * }
+ * ```
+ */
 public inline fun LayerCollectorContextImmutable.rect(block: RectContextImmutable.() -> Unit) {
     addLayer(RectContextImmutable(this).apply(block), RECT)
 }
 
+/**
+ * Adds a new rect layer.
+ *
+ * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
+ *
+ *  ### Aesthetic attributes:
+ *
+ *  Positional:
+ *
+ *  - [xMin][RectContextInterface.xMin]
+ *  - [yMin][RectContextInterface.yMin]
+ *  - [xMax][RectContextInterface.xMax]
+ *  - [yMax][RectContextInterface.yMax]
+ *  // TODO y
+ *
+ *   Non-positional:
+ *  - [color][RectContextInterface.color] - rect fill color, of the type [Color], mappable. (TODO grouping)
+ *  - [alpha][RectContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
+ *  - [borderLine.type][BorderLineContextImmutable.type] - borderline type, of the type [LineType], mappable.
+ *  (TODO grouping)
+ *  - [borderLine.width][BorderLineContextImmutable.width] - borderline width, of the type [Double], mappable.
+ *  (TODO grouping)
+ *  - [borderLine.color][BorderLineContextImmutable.color] - borderline width, of the type [Double], mappable.
+ *  (TODO grouping)
+ * ```
+ * rect {
+ *    yMin(listOf(1, 1, 2, 2)) // mapping from list to `yMin`
+ *
+ *    borderLine {
+ *       width(2.5) // // setting of constant `borderLine.width` value
+ *    }
+ * }
+ * ```
+ */
 public inline fun LayerCollectorContextMutable.rect(block: RectContextMutable.() -> Unit) {
     addLayer(RectContextMutable(this).apply(block), RECT)
 }

@@ -3,7 +3,7 @@
 */
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat
-
+/*
 public sealed interface Distribution {
     public val name: String
 
@@ -42,3 +42,4 @@ public fun Distribution.toList(): List<Number> {
         is Distribution.Uniform -> listOf(a, b)
     }
 }
+ */
