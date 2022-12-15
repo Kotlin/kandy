@@ -11,6 +11,26 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.toEchartsColor
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
+/**
+ * Grid settings.
+ *
+ * @property left distance between a grid component and the left side of the container. `10%` by default.
+ * @property top distance between a grid component and the top side of the container. `60` by default.
+ * @property right distance between a grid component and the right side of the container. `10%` by default.
+ * @property bottom distance between a grid component and the bottom side of the container. `60` by default.
+ * @property width width of a grid component. Adaptive by default.
+ * @property height height of a grid component. Adaptive by default.
+ * @property backgroundColor background [color][Color] of the grid.
+ * @property borderColor border [color][Color] of the grid.
+ * @property borderWidth border width of the grid. `0` by default.
+ * @property shadowBlur the size of shadow blur.
+ * @property shadowColor shadow [color][Color].
+ * @property tooltip [tooltip][Tooltip] settings in the coordinate system component.
+ *
+ * @see SizeUnit
+ * @see Color
+ * @see Tooltip
+ */
 @PlotDslMarker
 public class Grid(
     public var left: SizeUnit? = null,
