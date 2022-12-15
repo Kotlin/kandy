@@ -5,6 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.aes
 
 import org.jetbrains.kotlinx.ggdsl.dsl.NonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.NonScalableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.ScalableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.*
@@ -179,7 +180,7 @@ internal val AREA_POSITION: AesName = AesName("area_position")
  * @see AreaPosition
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.AreaContextImmutable
  */
-public data class PositionAes(override val context: BindingContext) : ScalableNonPositionalAes<AreaPosition> {
+public data class PositionAes(override val context: BindingContext) : NonScalableNonPositionalAes<AreaPosition> {
     override val name: AesName = AREA_POSITION
 }
 
