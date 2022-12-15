@@ -10,16 +10,11 @@ import org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContextImmutable
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
-// todo in others contexts??
 /**
- * Name of stack. On the same category axis,
- * the series with the same stack name would be put on top of each other.
+ * Name of stack. On the same category axis, the series with the same stack name would be put on top of each other.
  *
- *
- * @see <a href="https://echarts.apache.org/en/option.html#series-bar.stack">ECharts Documentation</a>
  * @see stack
  */
-//todo
 public data class Stack internal constructor(val name: String)
 
 internal data class StackFeature internal constructor(val name: String) : LayerFeature {
@@ -30,18 +25,27 @@ internal data class StackFeature internal constructor(val name: String) : LayerF
     }
 }
 
-public var LineContextImmutable.stack: Stack // TODO(change api for stack!)
+/**
+ * Stack property for [line][org.jetbrains.kotlinx.ggdsl.echarts.layers.line].
+ */
+public var LineContextImmutable.stack: Stack
     get() = Stack((features[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
         features[StackFeature.FEATURE_NAME] = StackFeature(value.name)
     }
 
+/**
+ * Stack property for [area][org.jetbrains.kotlinx.ggdsl.echarts.layers.area].
+ */
 public var AreaContextImmutable.stack: Stack
     get() = Stack((features[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
         features[StackFeature.FEATURE_NAME] = StackFeature(value.name)
     }
 
+/**
+ * Stack property for [bars][org.jetbrains.kotlinx.ggdsl.echarts.layers.bars].
+ */
 public var BarContextImmutable.stack: Stack
     get() = Stack((features[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
