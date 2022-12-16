@@ -49,7 +49,7 @@ internal val POINT: LetsPlotGeom = LetsPlotGeom("point")
  * }
  * ```
  */
-public inline fun LayerCollectorContextImmutable.point(block: PointContextImmutable.() -> Unit) {
+public inline fun LayerCollectorContextImmutable.points(block: PointContextImmutable.() -> Unit) {
     addLayer(PointContextImmutable(this).apply(block), POINT)
 }
 
@@ -86,6 +86,6 @@ public inline fun LayerCollectorContextImmutable.point(block: PointContextImmuta
  * }
  * ```
  */
-public inline fun LayerCollectorContextMutable.point(block: PointMutableMutableContextMutable.() -> Unit) {
+public inline fun LayerCollectorContextMutable.points(block: PointMutableMutableContextMutable.() -> Unit) {
     addLayer(PointMutableMutableContextMutable(this).apply(block), POINT)
 }

@@ -6,31 +6,16 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BarContextImmutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BarContextMutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextImmutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val BAR: LetsPlotGeom = LetsPlotGeom("bar")
-
-public interface BarContextInterface : WithBorderLineContextInterface {
-    public val x: XAes get() = XAes(this)
-    public val y: YAes get() = YAes(this)
-
-    public val color: FillAes get() = FillAes(this)
-    public val alpha: AlphaAes get() = AlphaAes(this)
-    public val width: WidthAes get() = WidthAes(this)
-}
-
-@PlotDslMarker
-public open class BarContextImmutable(parent: LayerCollectorContextImmutable) :
-    LayerWithBorderLineContextImmutable(parent), BarContextInterface
-
-@PlotDslMarker
-public open class BarContextMutable(parent: LayerCollectorContextMutable)
-    : LayerWithBorderLineContextMutable(parent), BarContextInterface
 
 /**
  * Adds a new bars layer.
@@ -64,7 +49,7 @@ public open class BarContextMutable(parent: LayerCollectorContextMutable)
  * }
  * ```
  */
-public inline fun LayerCollectorContextImmutable.bar(block: BarContextImmutable.() -> Unit) {
+public inline fun LayerCollectorContextImmutable.bars(block: BarContextImmutable.() -> Unit) {
     addLayer(BarContextImmutable(this).apply(block), BAR)
 }
 
@@ -100,6 +85,6 @@ public inline fun LayerCollectorContextImmutable.bar(block: BarContextImmutable.
  * }
  * ```
  */
-public inline fun LayerCollectorContextMutable.bar(block: BarContextMutable.() -> Unit) {
+public inline fun LayerCollectorContextMutable.bars(block: BarContextMutable.() -> Unit) {
     addLayer(BarContextMutable(this).apply(block), BAR)
 }

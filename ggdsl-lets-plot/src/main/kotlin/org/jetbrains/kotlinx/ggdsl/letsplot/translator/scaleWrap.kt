@@ -7,11 +7,6 @@ import kotlinx.datetime.LocalDateTime
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.ALPHA
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.COLOR
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.FILL
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LINE_TYPE
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.SIZE
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.ColorBar
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.DiscreteLegend
@@ -19,7 +14,6 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.None
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import org.jetbrains.letsPlot.intern.toSpec
 import org.jetbrains.letsPlot.scale.*
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
@@ -175,7 +169,7 @@ internal fun Scale.wrap(
                             values = rangeValues!!.values.map { it as Number },
                             limits = domainCategories?.values,
                             name = name,
-                            breaks = breaks,
+                            breaks = breaks?.values,
                             labels = labels,
                             guide = legendType,
                             format = format
@@ -184,7 +178,7 @@ internal fun Scale.wrap(
                                 Aes.SIZE,
                                 limits = domainCategories?.values,
                                 name = name,
-                                breaks = breaks,
+                                breaks = breaks?.values,
                                 labels = labels,
                                 guide = legendType,
                                 format = format
@@ -196,7 +190,7 @@ internal fun Scale.wrap(
                                 scaleColorDiscrete(
                                     limits = domainCategories?.values,
                                     name = name,
-                                    breaks = breaks,
+                                    breaks = breaks?.values,
                                     labels = labels,
                                     guide = legendType,
                                     format = format
@@ -206,7 +200,7 @@ internal fun Scale.wrap(
                                     limits = domainCategories?.values,
                                     values = rangeValues!!.values.map { (it as Color).wrap() }, //todo
                                     name = name,
-                                    breaks = breaks,
+                                    breaks = breaks?.values,
                                     labels = labels,
                                     guide = legendType,
                                     format = format
@@ -219,7 +213,7 @@ internal fun Scale.wrap(
                                 scaleFillDiscrete(
                                     limits = domainCategories?.values,
                                     name = name,
-                                    breaks = breaks,
+                                    breaks = breaks?.values,
                                     labels = labels,
                                     guide = legendType,
                                     format = format
@@ -229,7 +223,7 @@ internal fun Scale.wrap(
                                     limits = domainCategories?.values,
                                     values = rangeValues!!.values.map { (it as Color).wrap() },
                                     name = name,
-                                    breaks = breaks,
+                                    breaks = breaks?.values,
                                     labels = labels,
                                     guide = legendType,
                                     format = format
@@ -241,7 +235,7 @@ internal fun Scale.wrap(
                             limits = domainCategories?.values,
                             values = rangeValues!!.values.map { it as Double },
                             name = name,
-                            breaks = breaks,
+                            breaks = breaks?.values,
                             labels = labels,
                             guide = legendType,
                             format = format
@@ -250,7 +244,7 @@ internal fun Scale.wrap(
                                 Aes.ALPHA,
                                 limits = domainCategories?.values,
                                 name = name,
-                                breaks = breaks,
+                                breaks = breaks?.values,
                                 labels = labels,
                                 guide = legendType,
                                 format = format
@@ -262,7 +256,7 @@ internal fun Scale.wrap(
                                 limits = domainCategories?.values,
                                 values = rangeValues!!.values.map { (it as LineType).codeNumber },
                                 name = name,
-                                breaks = breaks,
+                                breaks = breaks?.values,
                                 labels = labels,
                                 guide = legendType,
                                 format = format
@@ -273,7 +267,7 @@ internal fun Scale.wrap(
                                 Aes.LINETYPE,
                                 limits = domainCategories?.values,
                                 name = name,
-                                breaks = breaks,
+                                breaks = breaks?.values,
                                 labels = labels,
                                 guide = legendType,
                                 format = format
@@ -284,7 +278,7 @@ internal fun Scale.wrap(
                             scaleShape(
                                 limits = domainCategories?.values,
                                 name = name,
-                                breaks = breaks,
+                                breaks = breaks?.values,
                                 labels = labels,
                                 guide = legendType,
                                 format = format
@@ -295,7 +289,7 @@ internal fun Scale.wrap(
                                 values = rangeValues!!.values.map { (it as Symbol).shape },
 
                                 name = name,
-                                breaks = breaks,
+                                breaks = breaks?.values,
                                 labels = labels,
                                 guide = legendType,
                                 format = format
@@ -313,7 +307,7 @@ internal fun Scale.wrap(
                             limits = domainLimits.wrap(),
                             range = rangeLimits.wrap(),
                             name = name,
-                            breaks = breaks?.map { it as Number },
+                            breaks = breaks?.values?.map { it as Number },
                             labels = labels,
                             guide = legendType,
                             trans = (transform as Transformation?)?.name,
@@ -332,7 +326,7 @@ internal fun Scale.wrap(
                                 high = highColor,
                                 limits = limits,
                                 name = name,
-                                breaks = breaks?.map { it as Number },
+                                breaks = breaks?.values?.map { it as Number },
                                 labels = labels,
                                 guide = legendType,
                                 trans = (transform as Transformation?)?.name,
@@ -353,7 +347,7 @@ internal fun Scale.wrap(
                                 high = highColor,
                                 limits = limits,
                                 name = name,
-                                breaks = breaks?.map { it as Number },
+                                breaks = breaks?.values?.map { it as Number },
                                 labels = labels,
                                 guide = legendType,
                                 trans = (transform as Transformation?)?.name,
@@ -366,7 +360,7 @@ internal fun Scale.wrap(
                             limits = domainLimits.wrap(),
                             range = rangeLimits.wrap(),
                             name = name,
-                            breaks = breaks?.map { it as Number },
+                            breaks = breaks?.values?.map { it as Number },
                             labels = labels,
                             guide = legendType,
                             trans = (transform as Transformation?)?.name,
@@ -383,7 +377,7 @@ internal fun Scale.wrap(
                             paletteRange?.first,
                             paletteRange?.second,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            breaks = breaks?.values?.map { it as Number }, // todo
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -395,7 +389,7 @@ internal fun Scale.wrap(
                             paletteRange?.first,
                             paletteRange?.second,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            breaks = breaks?.values?.map { it as Number }, // todo
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -414,7 +408,7 @@ internal fun Scale.wrap(
                             hueStart,
                             direction?.value,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            breaks = breaks?.values?.map { it as Number }, // todo
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -429,7 +423,7 @@ internal fun Scale.wrap(
                             hueStart,
                             direction?.value,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            breaks = breaks?.values?.map { it as Number }, // todo
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -445,7 +439,7 @@ internal fun Scale.wrap(
                             type = type?.name,
                             palette = type?.palette?.name,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            breaks = breaks?.values?.map { it as Number }, // todo
                             labels = labels,
                             guide = legendType,
                             limits = limits,
@@ -457,7 +451,7 @@ internal fun Scale.wrap(
                             type = type?.name,
                             palette = type?.palette?.name,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            breaks = breaks?.values?.map { it as Number }, // todo
                             labels = labels,
                             guide = legendType,
                             limits = limits,
@@ -475,7 +469,7 @@ internal fun Scale.wrap(
                             high.wrap(),
                             midpoint,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            breaks = breaks?.values?.map { it as Number }, // todo
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -489,7 +483,7 @@ internal fun Scale.wrap(
                             high.wrap(),
                             midpoint,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            breaks = breaks?.values?.map { it as Number }, // todo
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -504,7 +498,7 @@ internal fun Scale.wrap(
                         COLOR -> scaleColorGradientN(
                             rangeColors.map { it.wrap() },
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            breaks = breaks?.values?.map { it as Number }, // todo
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -515,7 +509,7 @@ internal fun Scale.wrap(
                         FILL -> scaleFillGradientN(
                             rangeColors.map { it.wrap() },
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            breaks = breaks?.values?.map { it as Number }, // todo
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
