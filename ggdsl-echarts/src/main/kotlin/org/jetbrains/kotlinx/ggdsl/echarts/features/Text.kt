@@ -15,10 +15,25 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.singleOf
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
+/**
+ * Font style.
+ *
+ * @property NORMAL
+ * @property ITALIC
+ * @property OBLIQUE
+ */
 public enum class FontStyle(public val style: String) {
     NORMAL("normal"), ITALIC("italic"), OBLIQUE("oblique")
 }
 
+/**
+ * Font thick weight.
+ *
+ * @property NORMAL
+ * @property BOLD
+ * @property BOLDER
+ * @property LIGHTER
+ */
 public class FontWeight private constructor(internal val weight: StringNumberArray) {
     public companion object {
         public val NORMAL: FontWeight = FontWeight(StringValue("normal"))
@@ -26,14 +41,39 @@ public class FontWeight private constructor(internal val weight: StringNumberArr
         public val BOLDER: FontWeight = FontWeight(StringValue("bolder"))
         public val LIGHTER: FontWeight = FontWeight(StringValue("lighter"))
 
+        /**
+         * Sets the text width in pixels: `100 | 200 | 300 | 400...`
+         */
         public fun px(px: Pixel): FontWeight = FontWeight(singleOf(px))
     }
 }
 
+/**
+ * Font Family.
+ *
+ * @property SANS_SERIF
+ * @property SERIF
+ * @property MONOSPACE
+ */
 public enum class FontFamily(public val family: String) {
     SANS_SERIF("sans-serif"), SERIF("serif"), MONOSPACE("monospace")
 }
 
+/**
+ * Font style settings.
+ *
+ * @property color text [color][Color]
+ * @property fontStyle [font style][FontStyle]
+ * @property fontWeight [font weight][FontWeight]
+ * @property fontFamily [font family][FontFamily]
+ * @property fontSize font size
+ * @property lineHeight line height of the text fragment
+ * @property width width of the text block
+ * @property height height of the text block
+ * @property textBorderColor stroke [color][Color] of the text
+ * @property textBorderWidth stroke line width of the text
+ * @property textBorderType stroke [line type][LineType] of the text
+ */
 @PlotDslMarker
 public class TextStyle(
     public var color: Color? = null,
