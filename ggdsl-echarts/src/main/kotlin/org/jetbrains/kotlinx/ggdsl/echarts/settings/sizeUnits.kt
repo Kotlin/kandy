@@ -13,13 +13,22 @@ public val Int.px: Pixel get() = Pixel(this)
 
 public val Int.pct: Percentage get() = Percentage(this)
 
+/**
+ * Interface for size units.
+ */
 @Serializable(with = SizeUnitSerializer::class)
 public sealed interface SizeUnit
 
+/**
+ * Absolute pixel values.
+ */
 @Serializable
 @JvmInline
 public value class Pixel(public val pixels: Int) : SizeUnit
 
+/**
+ * Relative percentage.
+ */
 @Serializable(with = PercentageSerializer::class)
 @JvmInline
 public value class Percentage(public val percentage: Int) : SizeUnit

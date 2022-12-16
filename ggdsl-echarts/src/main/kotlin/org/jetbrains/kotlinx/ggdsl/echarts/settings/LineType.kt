@@ -9,6 +9,16 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.StringValue
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.pairOf
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.singleOf
 
+/**
+ * Line type.
+ *
+ * @property SOLID
+ * @property DASHED
+ * @property DOTTED
+ *
+ * @property px
+ * @property pairPxOf
+ */
 public class LineType private constructor(internal val value: StringNumberArray) {
     public companion object {
         public val SOLID: LineType = LineType(StringValue("solid"))

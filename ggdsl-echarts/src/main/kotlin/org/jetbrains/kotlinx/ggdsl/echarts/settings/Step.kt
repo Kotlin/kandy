@@ -4,7 +4,16 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.settings
 
-
+/**
+ * Step line.
+ * Stepped line turning point settings.
+ *
+ * @property TRUE
+ * @property FALSE
+ * @property START
+ * @property MIDDLE
+ * @property END
+ */
 public enum class Step(internal val type: String) {
     TRUE("true"), FALSE("false"), START("start"), MIDDLE("middle"), END("end")
 }
