@@ -19,6 +19,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.None
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.letsPlot.intern.toSpec
 import org.jetbrains.letsPlot.scale.*
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
@@ -307,6 +308,7 @@ internal fun Scale.wrap(
 
                 is NonPositionalContinuousScale<*, *> -> {
                     when (aesName) {
+
                         SIZE -> scaleSize(
                             limits = domainLimits.wrap(),
                             range = rangeLimits.wrap(),
@@ -321,7 +323,7 @@ internal fun Scale.wrap(
 
                         COLOR -> {
                             val (lowColor, highColor) = rangeLimits.let {
-                                (it?.first as? Color)?.wrap() to (it?.second as? Color)?.wrap()
+                                (it?.first?.value as? Color)?.wrap() to (it?.second?.value as? Color)?.wrap()
                             }
                             val limits = domainLimits.wrap() // todo datetime support here
 
@@ -342,7 +344,7 @@ internal fun Scale.wrap(
 
                         FILL -> {
                             val (lowColor, highColor) = rangeLimits.let {
-                                (it?.first as? Color)?.wrap() to (it?.second as? Color)?.wrap()
+                                (it?.first?.value as? Color)?.wrap() to (it?.second?.value as? Color)?.wrap()
                             }
                             val limits = domainLimits.wrap() //todo datetime support here
 
@@ -356,7 +358,6 @@ internal fun Scale.wrap(
                                 guide = legendType,
                                 trans = (transform as Transformation?)?.name,
                                 format = format
-
                             )
 
                         }
