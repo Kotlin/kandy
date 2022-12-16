@@ -14,15 +14,29 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
 /**
- * Plot layout settings
+ * Plot layout settings.
  *
- * @param title the title of this plot
- * @param size the size of this plot
+ * @property size - plot size.
+ * @property title - [title][org.jetbrains.kotlinx.ggdsl.echarts.features.Title] of plot.
+ * @property textStyle - [font style][org.jetbrains.kotlinx.ggdsl.echarts.features.TextStyle].
+ * @property grid - [grid][org.jetbrains.kotlinx.ggdsl.echarts.features.Grid] settings.
+ * @property legend - [legend][org.jetbrains.kotlinx.ggdsl.echarts.features.Legend].
+ * @property tooltip - [tooltip][org.jetbrains.kotlinx.ggdsl.echarts.features.Tooltip].
+ *
+ * @see EChartsLayout
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.features.Title
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.features.TextStyle
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.features.Grid
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.features.Legend
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.features.Tooltip
  */
 @PlotDslMarker
 public class EChartsLayout : PlotFeature {
     public var size: Pair<Int, Int>? = null
 
+    /**
+     * @suppress
+     */
     override val featureName: FeatureName = FEATURE_NAME
 
     public var title: Title = Title()

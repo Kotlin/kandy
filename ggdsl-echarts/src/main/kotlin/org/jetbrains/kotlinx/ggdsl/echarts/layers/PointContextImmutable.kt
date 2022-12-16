@@ -8,6 +8,20 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.*
 
+/**
+ * Point settings.
+ *
+ * @property x mapping data on the x-axis.
+ * @property y mapping data on the y-axis.
+ * @property color points [color][org.jetbrains.kotlinx.ggdsl.util.color.Color].
+ * @property symbol [symbol][org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol] of points. `circle` by default.
+ * @property size [symbol][org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol] size. `10` by default.
+ * @property alpha opacity of points.
+ *
+ * @see points
+ * @see org.jetbrains.kotlinx.ggdsl.util.color.Color
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
+ */
 @PlotDslMarker
 public class PointContextImmutable(parent: LayerCollectorContextImmutable) : EchartsLayerContextImmutable(parent) {
     public val x: XAes = XAes(this)

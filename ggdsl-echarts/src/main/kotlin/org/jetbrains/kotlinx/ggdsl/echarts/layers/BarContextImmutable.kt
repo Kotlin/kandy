@@ -11,6 +11,17 @@ import org.jetbrains.kotlinx.ggdsl.echarts.aes.ColorAes
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.XAes
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.YAes
 
+/**
+ * Bar settings.
+ *
+ * @property x mapping data on the x-axis.
+ * @property y mapping data on the y-axis.
+ * @property color bars [color][org.jetbrains.kotlinx.ggdsl.util.color.Color].
+ * @property alpha bars opacity.
+ *
+ * @see bars
+ * @see org.jetbrains.kotlinx.ggdsl.util.color.Color
+ */
 @PlotDslMarker
 public class BarContextImmutable(parent: LayerCollectorContextImmutable) : EchartsLayerContextImmutable(parent) {
     public val x: XAes = XAes(this)

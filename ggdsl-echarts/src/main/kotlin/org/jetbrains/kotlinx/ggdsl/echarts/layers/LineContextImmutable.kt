@@ -8,6 +8,29 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.*
 
+/**
+ * Line settings.
+ *
+ * @property x mapping data on the x-axis.
+ * @property y mapping data on the y-axis.
+ * @property color line [color][org.jetbrains.kotlinx.ggdsl.util.color.Color].
+ * @property symbol [symbol][org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol] on line.
+ * Symbols are not shown by default.
+ * @property smooth smooth curve. `false` by default.
+ * @property alpha line opacity.
+ * @property width line width. `2` by default.
+ * @property lineType [line type][org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType]. `solid` by default.
+ * @property step step line. `false` by default.
+ * @property cap [end points][org.jetbrains.kotlinx.ggdsl.echarts.settings.Cap] of line. `butt` by default.
+ * @property shadowColor shadow color of line.
+ * @property shadowBlur shadow blur size of line.
+ *
+ * @see line
+ * @see org.jetbrains.kotlinx.ggdsl.util.color.Color
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.settings.Cap
+ */
 @PlotDslMarker
 public class LineContextImmutable(parent: LayerCollectorContextImmutable) : EchartsLayerContextImmutable(parent) {
     public val x: XAes = XAes(this)
