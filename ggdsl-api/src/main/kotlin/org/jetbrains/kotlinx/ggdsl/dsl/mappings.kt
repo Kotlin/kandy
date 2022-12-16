@@ -4,35 +4,15 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import kotlin.reflect.typeOf
 
 /**
- * Sets the given constant value to this non-positional aesthetic attribute.
- *
- * @param value the assigned value.
- */
-public inline operator fun <reified T : Any> NonPositionalAes<T>.invoke(value: T) {
-    context.bindingCollector.settings[this.name] = NonPositionalSetting<T>(this.name, value.typed())
-}
-
-/**
- * Sets the given constant value to this positional aesthetic attribute.
- *
- * @param value the assigned value.
- */
-public inline operator fun <reified T : Number> PositionalAes.invoke(value: T) {
-    context.bindingCollector.settings[this.name] = PositionalSetting<T>(this.name, value.typed())
-}
-
-/**
- * Maps the given [ColumnPointer] to this non-scalable ("sub-positional") aesthetic attribute.
+ * Maps the given [ColumnPointer] to this non-scalable positional ("sub-positional") aesthetic attribute.
  *
  * @param column the mapped raw data column.
  */
-
 public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
     column: ColumnPointer<DomainType>
 ) {
@@ -41,7 +21,20 @@ public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.i
 }
 
 /**
- * Maps the given [ColumnPointer] to this positional aesthetic attribute with default scale.
+ * Maps the given [ColumnPointer] to this non-scalable non-positional aesthetic attribute.
+ *
+ * @param column the mapped raw data column.
+ */
+public inline operator fun <reified DomainType : Any, RangeType: Any> NonScalableNonPositionalAes<RangeType>.invoke(
+    column: ColumnPointer<DomainType>
+) {
+    context.bindingCollector.mappings[this.name] =
+        NonScalableNonPositionalMapping(this.name, column, typeOf<DomainType>())
+}
+
+/**
+ * Maps the given [ColumnPointer] to this positional aesthetic attribute with an unspecified
+ * (i.e. without specifying the type and parameters; they will be defined automatically) scale.
  *
  * @param column the mapped raw data column.
  */
@@ -58,7 +51,8 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
 }
 
 /**
- * Maps the given [ColumnPointer] to this non-positional aesthetic attribute with default scale.
+ * Maps the given [ColumnPointer] to this non-positional aesthetic attribute with an unspecified
+ * (i.e. without specifying the type and parameters; they will be defined automatically) scale.
  *
  * @param column the mapped raw data column.
  */
@@ -75,7 +69,8 @@ public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableN
 }
 
 /**
- * Maps the given scaled column to this positional aesthetic attribute with an unspecified scale.
+ * Maps the given scaled column to this positional aesthetic attribute with an unspecified
+ * (i.e. without specifying the type and parameters; they will be defined automatically) scale.
  *
  * @param columnScaledDefault the mapped column scaled default.
  */
@@ -92,7 +87,8 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
 }
 
 /**
- * Maps the given scaled column to this non-positional aesthetic attribute with an unspecified scale.
+ * Maps the given scaled column to this non-positional aesthetic attribute with an unspecified
+ * (i.e. without specifying the type and parameters; they will be defined automatically) scale.
  *
  * @param columnScaledDefault the mapped column scaled default.
  */
@@ -109,7 +105,8 @@ public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableN
 }
 
 /**
- * Maps the given scaled column to this positional aesthetic attribute with a default scale.
+ * Maps the given scaled column to this positional aesthetic attribute with a default
+ * (i.e. without specifying the type and parameters; they will be defined automatically) scale.
  *
  * @param columnScaledDefault the mapped column scaled unspecified positional.
  */
@@ -127,7 +124,8 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
 
 
 /**
- * Maps the given scaled column to this non-positional aesthetic attribute with an unspecified scale.
+ * Maps the given scaled column to this non-positional aesthetic attribute with an unspecified
+ * (i.e. without specifying the type and parameters; they will be defined automatically) scale.
  *
  * @param columnScaledDefault the mapped column scaled unspecified non-positional.
  */
@@ -176,11 +174,4 @@ public inline operator fun <reified DomainType : Any, reified RangeType : Any>
     )
     context.bindingCollector.mappings[this.name] = mapping
     return mapping
-}
-
-public inline operator fun <reified DomainType : Any, RangeType: Any> NonScalableNonPositionalAes<RangeType>.invoke(
-    column: ColumnPointer<DomainType>
-) {
-    context.bindingCollector.mappings[this.name] =
-        NonScalableNonPositionalMapping(this.name, column, typeOf<DomainType>())
 }

@@ -5,8 +5,11 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.util.font
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.SimpleValueWrapper
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.SimpleValueWrapper
 
+/**
+ * Font family.
+ */
 @Serializable
 public data class FontFamily internal constructor(override val value: String) : SimpleValueWrapper {
     public companion object {

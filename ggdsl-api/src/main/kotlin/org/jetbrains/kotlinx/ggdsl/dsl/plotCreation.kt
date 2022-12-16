@@ -4,64 +4,64 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.GroupedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContextMutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.validate
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 
-/** TODO
- * Returns a new plot.
+/**
+ * Returns a new [Plot].
  *
- * Creates a [PlotContext]. In this context, functions for creating new layers are defined.
+ * Creates a plotting context [NamedDataPlotContext], in which you can configure a plot.
+ * Possible configuration parameters depend on the engine.
  *
- * TODO
- * Also [x][PlotContext.x] and [y][PlotContext.y] aesthetic attributes are defined in a [PlotContext].
- * You can create global mappings on them, which will be inherited in following layers in this context.
- *
- * In a [PlotContext], the dataset can be overridden with an assignment to the [PlotContext.data]
- * (for example, to use one dataset for some layers and another for others).
- *
- *```
- * plot {
- *   data = datasetA
- *   x(srcX1)
- *   y(srcY1)
- *   points {
- *      x(srcX2)
- *   }
- *   points {
- *      data = datasetB
- *   }
- *   data = datasetC
- *   y(srcY2)
- *   bars { }
- *   line { }
- * }
- * ```
- *
- * @param dataset the initial plot dataset
- * @return new [Plot]
- * @see [BaseBindingContext]
+ * @param dataset plot dataset.
  */
-
 public inline fun plot(dataset: NamedDataInterface, block: NamedDataPlotContext.() -> Unit): Plot {
     return NamedDataPlotContext(dataset).apply(block).toPlot().also {
         it.validate()
     }
 }
 
+/**
+ * Returns a new [Plot].
+ *
+ * Creates a plotting context [NamedDataPlotContext], in which you can configure a plot.
+ * Possible configuration parameters depend on the engine.
+ *
+ * @param dataset plot dataset.
+ */
 public inline fun plot(dataset: Map<String, List<Any>>, block: NamedDataPlotContext.() -> Unit): Plot {
     return NamedDataPlotContext(NamedData.fromUntyped(dataset)).apply(block).toPlot().also {
         it.validate()
     }
 }
 
+/**
+ * Returns a new [Plot].
+ *
+ * Creates a plotting with grouping context [GroupedDataPlotContext], in which you can configure a plot.
+ * Possible configuration parameters depend on the engine.
+ *
+ * @param dataset plot dataset.
+ */
 public inline fun plot(dataset: GroupedDataInterface, block: GroupedDataPlotContext.() -> Unit): Plot {
     return GroupedDataPlotContext(dataset).apply(block).toPlot().also {
         it.validate()
     }
 }
 
+/**
+ * Returns a new [Plot].
+ *
+ * Creates a plotting with mutable data (i.e. with dynamic dataset change - usage
+ * iterable instead of prepared columns)
+ * context [PlotContextMutable], in which you can configure a plot.
+ * Possible configuration parameters depend on the engine.
+ */
 public inline fun plot(block: PlotContextMutable.() -> Unit): Plot {
     return PlotContextMutable().apply(block).toPlot().also {
         it.validate()

@@ -6,6 +6,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 import kotlin.reflect.KType
@@ -39,17 +40,30 @@ public data class Legend<DomainType : Any, out RangeType : Any> @PublishedApi in
     var name: String? = null
     // todo expand & trans
     var type: LegendType? = null
-    internal var breaks: List<DomainType>? = null
+    internal var breaks: TypedList? = null
     internal var labels: List<String>? = null
     internal var format: String? = null
 
-    public fun breaks(breaks: List<DomainType>?, format: String?) {
-        this.breaks = breaks
+    /**
+     * Sets legend breaks with formatting.
+     *
+     * @param breaks list of breaks.
+     * @param format format string.
+     */
+    public fun breaks(breaks: List<DomainType>? = null, format: String? = null) {
+        this.breaks = breaks?.let {
+            TypedList(kType, it)
+        }
         this.format = format
     }
 
+    /**
+     * Sets legend breaks with labels.
+     *
+     * @param breaksToLabels list of breaks with corresponding labels.
+     */
     public fun breaksLabeled(breaksToLabels: List<Pair<DomainType, String>>) {
-        breaks = breaksToLabels.map { it.first }
+        breaks = TypedList(kType, breaksToLabels.map { it.first })
         labels = breaksToLabels.map { it.second }
     }
 

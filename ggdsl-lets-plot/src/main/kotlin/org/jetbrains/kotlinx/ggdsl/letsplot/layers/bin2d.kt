@@ -4,13 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
-
 /* TODO
 @PublishedApi
 
  */
-public val BIN_2D: LetsPlotGeom = LetsPlotGeom("bin_2D")
+//public val BIN_2D: LetsPlotGeom = LetsPlotGeom("bin_2D")
 
 /*
 @PlotDslMarker

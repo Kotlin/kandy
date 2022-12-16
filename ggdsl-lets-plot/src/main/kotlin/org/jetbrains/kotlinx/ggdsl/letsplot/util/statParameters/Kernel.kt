@@ -3,7 +3,7 @@
 */
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters
-
+/*
 // todo enum???
 public data class Kernel internal constructor(override val value: String) : SimpleValueWrapper {
     public companion object {
@@ -19,3 +19,5 @@ public data class Kernel internal constructor(override val value: String) : Simp
         public val PARABOLIC: Kernel = Kernel("parabolic")
     }
 }
+
+ */

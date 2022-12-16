@@ -4,10 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
-
-public val DENSITY_2D: LetsPlotGeom = LetsPlotGeom("density_2D")
+//public val DENSITY_2D: LetsPlotGeom = LetsPlotGeom("density_2D")
 
 /*
 // todo stats

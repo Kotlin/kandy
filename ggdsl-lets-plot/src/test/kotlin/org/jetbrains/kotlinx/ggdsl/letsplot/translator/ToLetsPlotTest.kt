@@ -8,16 +8,16 @@ import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bar
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bars
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.line
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.point
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
 import org.jetbrains.kotlinx.ggdsl.letsplot.toSimple
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
-import org.jetbrains.kotlinx.ggdsl.letsplot.x
-import org.jetbrains.kotlinx.ggdsl.letsplot.y
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.x
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.y
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.intern.toSpec
 import kotlin.test.Test
@@ -33,7 +33,7 @@ class ToLetsPlotTest {
         }
         val plot = plot(dataset) {
             x(columnPointer<String>("origin"))
-            point {
+            points {
                 y(columnPointer<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
                 symbol(Symbol.CIRCLE_FILLED)
                 fillColor(Color.RED)
@@ -86,7 +86,7 @@ class ToLetsPlotTest {
             x(columnPointer<Double>("time").scaled(continuousPos(limits = -12.0 to 4.4)))
             y(columnPointer<String>("svalue").scaled(categoricalPos(categories = listOf("A", "B", "C"))))
 
-            bar {
+            bars {
                 color(
                     clM.scaled(
                         categorical(

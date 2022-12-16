@@ -16,22 +16,53 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import kotlin.reflect.typeOf
 
-
+/**
+ * Context with mutable mappings (i.e. with dynamic dataset change - usage
+ * iterable instead of prepared columns).
+ *
+ * @property data context dataset of type [TableData]. Consists of the dynamic data sources.
+ * @property dataBuffer dataset buffer for dynamic data sources.
+ * @property generateID internal method. Generates unique id (name of column in
+ * dataframe) for an added source.
+ */
 public interface TableBindingContextInterfaceMutable : TableDataContext {
     public override val data: TableData
     public val dataBuffer: MutableTableData
     public fun generateID(): String
-
 }
 
+/**
+ * Converts the given [Iterable] to the [ColumnPointer] (while adding it to the dataset as a new column).
+ *
+ * @receiver context into which the iterable will be added.
+ * @param iterable converting [Iterable] that will be added as a column to context dataset.
+ * @return [ColumnPointer] to a new column
+ */
 public inline fun <reified T : Any> TableBindingContextInterfaceMutable.toColumnPointer(iterable: Iterable<T>)
-    : ColumnPointer<T> = toColumnPointer(iterable, generateID())
+        : ColumnPointer<T> = toColumnPointer(iterable, generateID())
 
-public inline fun <reified T : Any> TableBindingContextInterfaceMutable.toColumnPointer(iterable: Iterable<T>, id: String): ColumnPointer<T> {
+/**
+ * Converts the given [Iterable] to the [ColumnPointer] with the given id as
+ * a column name (while adding it to the dataset).
+ *
+ * @receiver context into which the iterable will be added.
+ * @param iterable converting [Iterable] that will be added as a column to context dataset.
+ * @param id name of a new column.
+ * @return [ColumnPointer] to a new column
+ */
+public inline fun <reified T : Any> TableBindingContextInterfaceMutable.toColumnPointer(
+    iterable: Iterable<T>,
+    id: String
+): ColumnPointer<T> {
     dataBuffer.map[id] = TypedList(typeOf<T>(), iterable.toList())
     return columnPointer(id)
 }
 
+/**
+ * Context with immutable bindings base implementation.
+ *
+ * In this context the mappings and scales with [Iterable] are defined. TODO arrays etc.
+ */
 public abstract class TableContextMutableBase : TableBindingContextInterfaceMutable {
     override val bindingCollector: BindingCollector = BindingCollector()
     public abstract override val dataBuffer: MutableTableData
@@ -41,67 +72,237 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
     private var counter: Int = 0
     public override fun generateID(): String = "*gen${counter++}"
 
+    /**
+     * Adds an [Iterable] to context dataset as a column and applies default
+     * (i.e. without specifying the type and parameters;
+     * they will be defined automatically; can be both used for positional and non-positional
+     * mappings) scale to a new column.
+     *
+     * @receiver [Iterable] that will be added as a column to context dataset.
+     * @param DomainType type of the domain.
+     * @return scaled added column.
+     */
     public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
         ColumnScaledUnspecifiedDefault(toColumnPointer(this))
 
-    public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
+    /**
+     * Adds an [Iterable] to context dataset as a column with given name and applies default
+     * (i.e. without specifying the type and parameters;
+     * they will be defined automatically; can be both used for positional and non-positional
+     * mappings) scale to a new column.
+     *
+     * @receiver [Pair] of [Iterable] that will be added as a column to context dataset to [String]
+     * that will be used as a new column name.
+     * @param DomainType type of the domain.
+     * @return scaled added column.
+     */
+    public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled()
+            : ColumnScaledUnspecifiedDefault<DomainType> =
         ColumnScaledUnspecifiedDefault(toColumnPointer(first, second))
 
+    /**
+     * Adds an [Iterable] to context dataset as a column and applies an unspecified
+     * (i.e. without specifying the type and parameters;
+     * they will be defined automatically) positional scale to a new column.
+     *
+     * @receiver [Iterable] that will be added as a column to context dataset.
+     * @param DomainType type of the domain.
+     * @param scale applying positional unspecified scale.
+     * @return scaled added column.
+     */
     public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
         scale: PositionalUnspecifiedScale
     ): ColumnScaledPositionalUnspecified<DomainType> = ColumnScaledPositionalUnspecified(toColumnPointer(this), scale)
 
+    /**
+     * Adds an [Iterable] to context dataset as a column with given name and applies an unspecified
+     * (i.e. without specifying the type and parameters;
+     * they will be defined automatically) poistional scale to a new column.
+     *
+     * @receiver [Pair] of [Iterable] that will be added as a column to context dataset to [String]
+     * that will be used as a new column name.
+     * @param DomainType type of the domain.
+     * @param scale applying positional unspecified scale.
+     * @return scaled added column.
+     */
     public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
         scale: PositionalUnspecifiedScale
-    ): ColumnScaledPositionalUnspecified<DomainType> = ColumnScaledPositionalUnspecified(toColumnPointer(first, second), scale)
+    ): ColumnScaledPositionalUnspecified<DomainType> =
+        ColumnScaledPositionalUnspecified(toColumnPointer(first, second), scale)
 
+    /**
+     * Adds an [Iterable] to context dataset as a column and applies an unspecified
+     * (i.e. without specifying the type and parameters;
+     * they will be defined automatically) non-positional scale to a new column.
+     *
+     * @receiver [Iterable] that will be added as a column to context dataset.
+     * @param DomainType type of the domain.
+     * @param scale applying non-positional unspecified scale.
+     * @return scaled added column.
+     */
     public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
         scale: NonPositionalUnspecifiedScale
     ): ColumnScaledNonPositionalUnspecified<DomainType> =
         ColumnScaledNonPositionalUnspecified(toColumnPointer(this), scale)
 
+    /**
+     * Adds an [Iterable] to context dataset as a column with given name and applies an unspecified
+     * (i.e. without specifying the type and parameters;
+     * they will be defined automatically) non-positional scale to a new column.
+     *
+     * @receiver [Pair] of [Iterable] that will be added as a column to context dataset to [String]
+     * that will be used as a new column name.
+     * @param DomainType type of the domain.
+     * @param scale applying non-positional unspecified scale.
+     * @return scaled added column.
+     */
     public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
         scale: NonPositionalUnspecifiedScale
     ): ColumnScaledNonPositionalUnspecified<DomainType> =
         ColumnScaledNonPositionalUnspecified(toColumnPointer(first, second), scale)
 
+    /**
+     * Adds an [Iterable] to context dataset as a column and applies
+     * a positional scale to a new column.
+     *
+     * @receiver [Iterable] that will be added as a column to context dataset.
+     * @param DomainType type of the domain.
+     * @param scale applying positional scale.
+     * @return scaled added column.
+     */
     public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
         scale: PositionalScale<DomainType>
     ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(toColumnPointer(this), scale)
 
+    /**
+     * Adds an [Iterable] to context dataset as a column with given name and applies a
+     * positional scale to a new column.
+     *
+     * @receiver [Pair] of [Iterable] that will be added as a column to context dataset to [String]
+     * that will be used as a new column name.
+     * @param DomainType type of the domain.
+     * @param scale applying positional scale.
+     * @return scaled added column.
+     */
     public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
         scale: PositionalScale<DomainType>
     ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(toColumnPointer(first, second), scale)
 
+    /**
+     * Adds an [Iterable] to context dataset as a column and applies
+     * a non-positional scale to a new column.
+     *
+     * @receiver [Iterable] that will be added as a column to context dataset.
+     * @param DomainType type of the domain.
+     * @param scale applying non-positional scale.
+     * @return scaled added column.
+     */
     public inline fun <reified DomainType : Any, RangeType : Any> Iterable<DomainType>.scaled(
         scale: NonPositionalScale<DomainType, RangeType>
     ): ColumnScaledNonPositional<DomainType, RangeType> =
         ColumnScaledNonPositional(toColumnPointer(this), scale)
 
+    /**
+     * Adds an [Iterable] to context dataset as a column with given name and applies a
+     * non-positional scale to a new column.
+     *
+     * @receiver [Pair] of [Iterable] that will be added as a column to context dataset to [String]
+     * that will be used as a new column name.
+     * @param DomainType type of the domain.
+     * @param scale applying non-positional scale.
+     * @return scaled added column.
+     */
     public inline fun <reified DomainType : Any, RangeType : Any> Pair<Iterable<DomainType>, String>.scaled(
         scale: NonPositionalScale<DomainType, RangeType>
     ): ColumnScaledNonPositional<DomainType, RangeType> =
         ColumnScaledNonPositional(toColumnPointer(first, second), scale)
 
+    /**
+     * Adds an [Iterable] to context dataset as a column and maps it
+     * to this non-scalable positional ("sub-positional") aesthetic attribute.
+     *
+     * @param iterable [Iterable] that will be added as a column.
+     */
     public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
-        data: Iterable<DomainType>
+        iterable: Iterable<DomainType>
     ) {
         context.bindingCollector.mappings[this.name] =
-            NonScalablePositionalMapping<DomainType>(this.name, toColumnPointer(data), typeOf<DomainType>())
+            NonScalablePositionalMapping<DomainType>(this.name, toColumnPointer(iterable), typeOf<DomainType>())
     }
 
+    /**
+     * Adds an [Iterable] to context dataset as a column with a given name and maps it
+     * to this non-scalable positional ("sub-positional") aesthetic attribute.
+     *
+     * @param dataToName [Pair] of [Iterable] that will be added as a column to the name of a new column.
+     */
+    public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
+        dataToName: Pair<Iterable<DomainType>, String>
+    ) {
+        context.bindingCollector.mappings[this.name] =
+            NonScalablePositionalMapping<DomainType>(
+                this.name, toColumnPointer(dataToName.first, dataToName.second), typeOf<DomainType>()
+            )
+    }
+
+    /**
+     * Adds an [Iterable] to context dataset as a column and maps it
+     * to this non-scalable non-positional aesthetic attribute.
+     *
+     * @param iterable [Iterable] that will be added as a column.
+     */
+    public inline operator fun <reified DomainType : Any, RangeType: Any>
+            NonScalableNonPositionalAes<RangeType>.invoke(
+        iterable: Iterable<DomainType>
+    ) {
+        context.bindingCollector.mappings[this.name] =
+            NonScalableNonPositionalMapping<DomainType>(
+                this.name, toColumnPointer(iterable), typeOf<DomainType>()
+            )
+    }
+
+    /**
+     * Adds an [Iterable] to context dataset as a column with the given name and maps it
+     * to this non-scalable non-positional aesthetic attribute.
+     *
+     * @param dataToName [Pair] of [Iterable] that will be added as a column to the name of a new column.
+     */
+    public inline operator fun <reified DomainType : Any, RangeType: Any>
+            NonScalableNonPositionalAes<RangeType>.invoke(
+        dataToName: Pair<Iterable<DomainType>, String>
+    ) {
+        context.bindingCollector.mappings[this.name] =
+            NonScalablePositionalMapping<DomainType>(
+                this.name, toColumnPointer(dataToName.first, dataToName.second), typeOf<DomainType>()
+            )
+    }
+
+    /**
+     * Adds an [Iterable] to context dataset as a column and maps it
+     * to this positional aesthetic attribute with an unspecified
+     * (i.e. without specifying the type and parameters; they will be defined automatically) scale.
+     *
+     * @param iterable [Iterable] that will be added as a column.
+     */
     public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
-        data: Iterable<DomainType>
+        iterable: Iterable<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
             this.name,
-            toColumnPointer(data).scaled(),
+            toColumnPointer(iterable).scaled(),
             typeOf<DomainType>()
         )
         context.bindingCollector.mappings[this.name] = mapping
         return mapping
     }
 
+    /**
+     * Adds an [Iterable] to context dataset as a column with the given name and maps it
+     * to this positional aesthetic attribute with an unspecified
+     * (i.e. without specifying the type and parameters; they will be defined automatically) scale.
+     *
+     * @param dataToName [Pair] of [Iterable] that will be added as a column to the name of a new column.
+     */
     public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
         dataToName: Pair<Iterable<DomainType>, String>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
@@ -114,13 +315,40 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
         return mapping
     }
 
+    /**
+     * Adds an [Iterable] to context dataset as a column and maps it
+     * to this non-positional aesthetic attribute with an unspecified
+     * (i.e. without specifying the type and parameters; they will be defined automatically) scale.
+     *
+     * @param iterable [Iterable] that will be added as a column.
+     */
     public inline operator fun <reified DomainType : Any, RangeType : Any>
             ScalableNonPositionalAes<RangeType>.invoke(
-        data: Iterable<DomainType>
+        iterable: Iterable<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
             this.name,
-            toColumnPointer(data).scaled(),
+            toColumnPointer(iterable).scaled(),
+            typeOf<DomainType>()
+        )
+        context.bindingCollector.mappings[this.name] = mapping
+        return mapping
+    }
+
+    /**
+     * Adds an [Iterable] to context dataset as a column with the given name and maps it
+     * to this non-positional aesthetic attribute with an unspecified
+     * (i.e. without specifying the type and parameters; they will be defined automatically) scale.
+     *
+     * @param dataToName [Pair] of [Iterable] that will be added as a column to the name of a new column.
+     */
+    public inline operator fun <reified DomainType : Any, RangeType : Any>
+            ScalableNonPositionalAes<RangeType>.invoke(
+        dataToName: Pair<Iterable<DomainType>, String>
+    ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
+        val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
+            this.name,
+            toColumnPointer(dataToName.first, dataToName.second).scaled(),
             typeOf<DomainType>()
         )
         context.bindingCollector.mappings[this.name] = mapping
@@ -128,8 +356,19 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
     }
 }
 
+/**
+ * Base class for nested contexts (that can inherit bindings from parent) with mutable mappings.
+ *
+ * @constructor Constructor with copying bindings from parent collector.
+ * @param parent parental context.
+ * @param separatedData whether to create its own data buffer and copy data from the parent dataset
+ * or to use the parent dataset.
+ * @param copy whether to inherit bindings from parental context.
+ * @param copyMappings whether to inherit the mappings.
+ * @param copySettings whether to inherit the settings.
+ */
 public abstract class TableSubContextMutable(
-    public open val parent: TableBindingContextInterfaceMutable,
+    public val parent: TableBindingContextInterfaceMutable,
     separatedData: Boolean = true,
     copy: Boolean = true,
     copyMappings: Boolean = true,
@@ -140,7 +379,7 @@ public abstract class TableSubContextMutable(
     } else {
         parent.dataBuffer
     }
-    override val bindingCollector: BindingCollector  = if (copy) {
+    override val bindingCollector: BindingCollector = if (copy) {
         BindingCollector(parent.bindingCollector, copyMappings, copySettings)
     } else {
         parent.bindingCollector
@@ -149,22 +388,33 @@ public abstract class TableSubContextMutable(
     override fun generateID(): String = parent.generateID()
 }
 
+/**
+ * Context with mutable bindings and layer collecting.
+ */
 public interface LayerCollectorContextMutable
     : LayerCollectorContextInterface, TableBindingContextInterfaceMutable
 
+/*
 public abstract class SubLayerCollectorContextMutable(
     parent: LayerCollectorContextMutable
 ) : LayerCollectorContextMutable, TableSubContextMutable(parent) {
     override val layers: MutableList<Layer> = parent.layers
 }
 
+ */
+
+/**
+ * Layer building context with mutable bindings.
+ */
 public abstract class LayerContextMutable(parent: LayerCollectorContextMutable) :
     TableSubContextMutable(parent), LayerContextInterface {
     override val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 }
 
+/**
+ * Plot context with mutable bindings.
+ */
 @PlotDslMarker
-//@StatDSLMarker
 public class PlotContextMutable : LayerPlotContext, LayerCollectorContextMutable, TableContextMutableBase() {
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
     override val layers: MutableList<Layer> = mutableListOf()

@@ -11,8 +11,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bar
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.point
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bars
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
 import kotlin.test.Test
@@ -23,7 +23,7 @@ internal class PositionTest {
     @Test
     fun testSimple() {
         val plot = plot(emptyDataset) {
-            point {
+            points {
                 position = Position.Identity
             }
         }
@@ -50,13 +50,13 @@ internal class PositionTest {
     @Test
     fun testComplex() {
         val plot = plot(emptyDataset) {
-            bar {
+            bars {
                 position = Position.Stack
             }
-            point {
+            points {
                 position = Position.JitterDodge(2.0, 3.0, 1.0)
             }
-            point {
+            points {
                 position = Position.Dodge(0.9)
             }
         }

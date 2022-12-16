@@ -4,11 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
 
 
-
-public val VIOLIN: LetsPlotGeom = LetsPlotGeom("violin")
+//public val VIOLIN: LetsPlotGeom = LetsPlotGeom("violin")
 /*
 // todo stats
 @PlotDslMarker

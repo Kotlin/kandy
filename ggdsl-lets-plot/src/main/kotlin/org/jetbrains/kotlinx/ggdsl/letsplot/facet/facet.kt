@@ -5,13 +5,26 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.facet
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.validateColumn
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
-import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
-import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.Direction.Companion.HORIZONTAL
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.Direction.Companion.VERTICAL
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection.Companion.ASCENDING
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection.Companion.DESCENDING
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.ScalesSharing.Companion.FIXED
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.ScalesSharing.Companion.FREE
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.ScalesSharing.Companion.FREE_X
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.ScalesSharing.Companion.FREE_Y
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.context.FacetWrapContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetGridFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetWrapFeature
 
+/**
+ * Specifies ordering direction of columns and rows in the facet.
+ *
+ * @property ASCENDING ascending ordering direction (by default).
+ * @property DESCENDING descending ordering direction.
+ */
 @Serializable
 public data class OrderDirection internal constructor(val value: Int) {
     public companion object {
@@ -19,6 +32,13 @@ public data class OrderDirection internal constructor(val value: Int) {
         public val DESCENDING: OrderDirection = OrderDirection(-1)
     }
 }
+
+/**
+ * Direction of the [facetWrap] parameter.
+ *
+ * @property VERTICAL vertical direction.
+ * @property HORIZONTAL descending direction (by default).
+ */
 @Serializable
 public data class Direction internal constructor(val name: String) {
     public companion object {
@@ -26,6 +46,15 @@ public data class Direction internal constructor(val name: String) {
         public val HORIZONTAL: Direction = Direction("h")
     }
 }
+
+/**
+ * Scales sharing parameter across all facets.
+ *
+ * @property FIXED fixed scales.
+ * @property FREE free scales.
+ * @property FREE_X free scales across X.
+ * @property FREE_Y free scales across Y.
+ */
 @Serializable
 public data class ScalesSharing internal constructor(val name: String) {
     public companion object {
@@ -36,60 +65,24 @@ public data class ScalesSharing internal constructor(val name: String) {
     }
 }
 
-@Serializable
-public data class FacetGridFeature constructor(
-    val x: String?,
-    val y: String?,
-    val scalesSharing: ScalesSharing?,
-    val xOrder: OrderDirection,
-    val yOrder: OrderDirection,
-    val xFormat: String?,
-    val yFormat: String?
-) : PlotFeature {
-    override val featureName: FeatureName = FEATURE_NAME
-
-    public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("FACET_GRID_FEATURE")
-    }
-
-}
-
-@Serializable
-public data class FacetWrapFeature constructor(
-    val facets: List<String>,
-    var nCol: Int?,
-    var nRow: Int?,
-    var orders: List<OrderDirection>,
-    val scalesSharing: ScalesSharing,
-    val direction: Direction,
-    val formats: List<String?>,
-) : PlotFeature {
-    override val featureName: FeatureName = FEATURE_NAME
-
-    public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("FACET_WRAP_FEATURE")
-    }
-
-}
-
-
 /**
- * Splits data by one or two faceting variables. For each data subset creates
- * a plot panel and lays out panels as grid.
- * The grid columns are defined by X faceting variable
- * and rows are defined by Y faceting variable.
+ * Splits data by a variable across X.
+ * For each data subset creates a plot panel and lays out panels as grid.
  *
- * ```
- * facetGrid(
- *    source<String>("type"),
- *    source<Int>("number of hands"),
- *    yOrder = OrderDirection.DESCENDING
- * )
- * ```
- * TODO params
- * @see org.jetbrains.letsPlot.facet.facetGrid
+ * @param x Variable which defines columns of the facet grid.
+ * @param scalesSharing Specifies whether scales are shared across all facets.
+ * @param order Specifies ordering direction of columns
+ * @param format Specifies the format pattern for displaying faceting values in columns.
+ *
+ * Format pattern in the format parameters can be just a number format (like "d") or
+ * a string template where number format is surrounded by curly braces: "{d} cylinders".
+ * Note: the "$" must be escaped as "\$"
+ *
+ * Examples:
+ * ".2f" -> "12.45"
+ * "Score: {.2f}" -> "Score: 12.45"
+ * "'Score: {}' "-> "Score: 12.454789"
  */
-
 public fun LayerPlotContext.facetGridX(
     x: ColumnPointer<*>,
     scalesSharing: ScalesSharing? = null,
@@ -98,11 +91,28 @@ public fun LayerPlotContext.facetGridX(
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
         FacetGridFeature(
-            x.name, null, scalesSharing, order, OrderDirection.ASCENDING, format, null
+            x.name, null, scalesSharing, order, ASCENDING, format, null
         )
 }
 
-
+/**
+ * Splits data by a variable across Y.
+ * For each data subset creates a plot panel and lays out panels as grid.
+ *
+ * @param y Variable which defines rows of the facet grid.
+ * @param scalesSharing Specifies whether scales are shared across all facets.
+ * @param order Specifies ordering direction of rows
+ * @param format Specifies the format pattern for displaying faceting values in rows.
+ *
+ * Format pattern in the format parameters can be just a number format (like "d") or
+ * a string template where number format is surrounded by curly braces: "{d} cylinders".
+ * Note: the "$" must be escaped as "\$"
+ *
+ * Examples:
+ * ".2f" -> "12.45"
+ * "Score: {.2f}" -> "Score: 12.45"
+ * "'Score: {}' "-> "Score: 12.454789"
+ */
 public fun LayerPlotContext.facetGridY(
     y: ColumnPointer<*>,
     scalesSharing: ScalesSharing? = null,
@@ -110,10 +120,31 @@ public fun LayerPlotContext.facetGridY(
     format: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(null, y.name, scalesSharing, OrderDirection.ASCENDING, order, null, format)
+        FacetGridFeature(null, y.name, scalesSharing, ASCENDING, order, null, format)
 }
 
-
+/**
+ * Splits data by two faceting variables across X and Y.
+ * For each data subset creates a plot panel and lays out panels as grid.
+ * The grid columns are defined by X faceting variable and rows are defined by Y faceting variable.
+ *
+ * @param x Variable which defines columns of the facet grid.
+ * @param y Variable which defines rows of the facet grid.
+ * @param scalesSharing Specifies whether scales are shared across all facets.
+ * @param xOrder Specifies ordering direction of columns
+ * @param yOrder Specifies ordering direction of rows
+ * @param xFormat Specifies the format pattern for displaying faceting values in columns.
+ * @param yFormat Specifies the format pattern for displaying faceting values in rows.
+ *
+ * Format pattern in the xFormat/yFormat parameters can be just a number format (like "d") or
+ * a string template where number format is surrounded by curly braces: "{d} cylinders".
+ * Note: the "$" must be escaped as "\$"
+ *
+ * Examples:
+ * ".2f" -> "12.45"
+ * "Score: {.2f}" -> "Score: 12.45"
+ * "'Score: {}' "-> "Score: 12.454789"
+ */
 public fun LayerPlotContext.facetGrid(
     x: ColumnPointer<*>,
     y: ColumnPointer<*>,
@@ -127,41 +158,26 @@ public fun LayerPlotContext.facetGrid(
         FacetGridFeature(x.name, y.name, scalesSharing, xOrder, yOrder, xFormat, yFormat)
 }
 
-@PlotDslMarker
-public class FacetWrapContext @PublishedApi internal constructor(){
-    private val facets = mutableListOf<ColumnPointer<*>>()
-    private val orders= mutableListOf<OrderDirection>()
-    private val formats = mutableListOf<String?>()
-
-    public fun facet(source: ColumnPointer<*>, order: OrderDirection = OrderDirection.ASCENDING, format: String? = null) {
-        facets.add(source)
-        orders.add(order)
-        formats.add(format)
-    }
-
-    internal fun toFeature(
-        nCol: Int? = null,
-        nRow: Int? = null,
-        scalesSharing: ScalesSharing = ScalesSharing.FIXED,
-        direction: Direction = Direction.HORIZONTAL,
-    ) =
-        FacetWrapFeature(
-            facets.map { it.name },
-            nCol,
-            nRow,
-            orders,
-            scalesSharing,
-            direction,
-            formats
-        )
-}
-
 /**
  * Splits data by one or more faceting variables.
- * For each data subset creates a plot panel and lays out panels according to the `nCol`, `nRow` and `direction` settings.
+ * For each data subset creates a plot panel and lays out panels according to the `
+ * nCol`, `nRow` and `direction` settings.
  *
- * TODO params
- * @see org.jetbrains.letsPlot.facet.facetWrap
+ * Opens a [FacetWrapContext]. [FacetWrapContext.facets] is defined in this context. This method adds
+ * a new facet by a given variable.
+ *
+ * ```
+ * facetWrap(nRow = 3, scalesSharing = ScalesSharing.FREE_X) {
+ *    facet(col1)
+ *    facet(col2, OrderDirection.DESCENDING)
+ *    facet(col3, format = {.2f})
+ * }
+ * ```
+ *
+ * @param nCol Number of columns.
+ * @param nRow Number of rows.
+ * @param scalesSharing Specifies whether scales are shared across all facets.
+ * @param direction direction of the facet.
  */
 public fun LayerPlotContext.facetWrap(
     nCol: Int? = null,

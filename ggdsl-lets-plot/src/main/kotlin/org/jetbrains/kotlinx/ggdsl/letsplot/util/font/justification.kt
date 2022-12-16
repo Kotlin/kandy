@@ -5,10 +5,11 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.util.font
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.SimpleValueWrapper
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.SimpleValueWrapper
 
-//TODO
-
+/**
+ * Text horizontal justification.
+ */
 @Serializable
 public data class HorizontalJustification internal constructor(override val value: Double) : SimpleValueWrapper {
     public companion object {
@@ -20,6 +21,9 @@ public data class HorizontalJustification internal constructor(override val valu
     }
 }
 
+/**
+ * Text vertical justification.
+ */
 @Serializable
 public data class VerticalJustification internal constructor(override val value: Double) : SimpleValueWrapper {
     public companion object {

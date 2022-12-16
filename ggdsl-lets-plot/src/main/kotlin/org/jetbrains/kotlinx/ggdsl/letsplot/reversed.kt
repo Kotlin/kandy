@@ -4,20 +4,12 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
-import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
-import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
-import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Reversed
 
-@Serializable
-public data class Reversed(val value: Boolean) : LayerFeature {
-    override val featureName: FeatureName = FEATURE_NAME
-
-    public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("reversed")
-    }
-}
-
+/**
+ * Whether to reverse axes.
+ */
 public var LayerContextInterface.reversed: Boolean
     get() = true
     set(value) {

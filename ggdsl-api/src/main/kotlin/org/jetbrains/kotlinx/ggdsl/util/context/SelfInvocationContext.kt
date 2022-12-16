@@ -4,6 +4,13 @@
 
 package org.jetbrains.kotlinx.ggdsl.util.context
 
+/**
+ * Base interface for context that can be invoked with [invoke] method, creating context
+ * with this as a receiver and applies to this.
+ */
 public interface SelfInvocationContext
 
+/**
+ * Creates a context with this [SelfInvocationContext] as a receiver and applies to this.
+ */
 public operator fun <T : SelfInvocationContext> T.invoke(block: T.() -> Unit): T = apply(block)

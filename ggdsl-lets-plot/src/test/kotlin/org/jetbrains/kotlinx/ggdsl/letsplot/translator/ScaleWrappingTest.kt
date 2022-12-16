@@ -8,8 +8,8 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedPair
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
-import org.jetbrains.kotlinx.ggdsl.letsplot.FILL
-import org.jetbrains.kotlinx.ggdsl.letsplot.X
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.FILL
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.X
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.intern.toSpec
 import kotlin.reflect.typeOf
