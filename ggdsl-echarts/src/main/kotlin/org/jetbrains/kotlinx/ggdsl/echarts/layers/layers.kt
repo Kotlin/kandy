@@ -45,7 +45,7 @@ public inline fun LayerPlotContext.layout(block: EChartsLayout.() -> Unit) {
  * Creates a [context][LineContextImmutable]
  * in which you can create bindings using aesthetic attribute properties invocation and add features.
  *
- * - [x][LineContextImmutable.x] - mapping data on the x-axis.
+ * - [ x][LineContextImmutable.x] - mapping data on the x-axis.
  * - [y][LineContextImmutable.y] - mapping data on the y-axis.
  * - [color][LineContextImmutable.color] - line [color][org.jetbrains.kotlinx.ggdsl.util.color.Color].
  * - [symbol][LineContextImmutable.symbol] - [symbol][org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol] on line.
@@ -93,7 +93,7 @@ public inline fun LayerCollectorContextImmutable.line(block: LineContextImmutabl
  * Creates a [context][AreaContextImmutable]
  * in which you can create bindings using aesthetic attribute properties invocation and add features.
  *
- *  - [x][AreaContextImmutable.x] - mapping data on the x-axis.
+ *  - [ x][AreaContextImmutable.x] - mapping data on the x-axis.
  *  - [y][AreaContextImmutable.y] - mapping data on the y-axis.
  *  - [color][AreaContextImmutable.color] - area fill [color][org.jetbrains.kotlinx.ggdsl.util.color.Color].
  *  - [position][AreaContextImmutable.position] -
@@ -144,7 +144,7 @@ public inline fun LayerCollectorContextImmutable.area(block: AreaContextImmutabl
  * Creates a [context][BarContextImmutable]
  * in which you can create bindings using aesthetic attribute properties invocation and add features.
  *
- * - [x][BarContextImmutable.x] - mapping data on the x-axis.
+ * - [ x][BarContextImmutable.x] - mapping data on the x-axis.
  * - [y][BarContextImmutable.y] - mapping data on the y-axis.
  * - [color][BarContextImmutable.color] - bars [color][org.jetbrains.kotlinx.ggdsl.util.color.Color].
  * - [alpha][BarContextImmutable.alpha] - bars opacity.
@@ -174,7 +174,7 @@ public inline fun LayerCollectorContextImmutable.pie(block: PieContextImmutable.
  * Creates a [context][PointContextImmutable]
  * in which you can create bindings using aesthetic attribute properties invocation and add features.
  *
- * - [x][PointContextImmutable.x] - mapping data on the x-axis.
+ * - [ x][PointContextImmutable.x] - mapping data on the x-axis.
  * - [y][PointContextImmutable.y] - mapping data on the y-axis.
  * - [color][PointContextImmutable.color] - points [color][org.jetbrains.kotlinx.ggdsl.util.color.Color].
  * - [symbol][PointContextImmutable.symbol] - [symbol][org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol] of points.
