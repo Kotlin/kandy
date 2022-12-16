@@ -41,7 +41,7 @@ public class LabelContext(
 ) {
     internal fun toLabelFeature(): LabelFeature? {
         val textStyle = textStyle.takeIf { it.isNotEmpty() }
-        val border = border.takeIf { !it.isNotEmpty() }
+        val border = border.takeIf { it.isNotEmpty() }
         return if (position == null && formatter == null && textStyle == null && border == null)
             null
         else
