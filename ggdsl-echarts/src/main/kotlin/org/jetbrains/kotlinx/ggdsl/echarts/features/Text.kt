@@ -73,6 +73,12 @@ public enum class FontFamily(public val family: String) {
  * @property textBorderColor stroke [color][Color] of the text
  * @property textBorderWidth stroke line width of the text
  * @property textBorderType stroke [line type][LineType] of the text
+ *
+ * @see FontStyle
+ * @see FontWeight
+ * @see FontFamily
+ * @see Color
+ * @see LineType
  */
 @PlotDslMarker
 public class TextStyle(
