@@ -4,18 +4,41 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features
 
-import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsTitle
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.toEchartsColor
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
-@Serializable
+/**
+ * The align of the text.
+ *
+ * @property AUTO
+ * @property LEFT
+ * @property RIGHT
+ * @property CENTER
+ */
 public enum class TextAlign(public val align: String) {
     AUTO("auto"), LEFT("left"), RIGHT("right"), CENTER("center")
 }
 
+/**
+ * Title of the plot.
+ *
+ * @property text the main title text
+ * @property subtext subtitle text
+ * @property align the horizontal [align][TextAlign] of the text and subtext
+ * @property verticalAlign the vertical [align][TextAlign] of the text and subtext
+ * @property backgroundColor background [color][Color] of title. `transparent` by default
+ * @property borderColor border [color][Color] of title
+ * @property borderWidth border width of title
+ * @property textStyle [font style][TextStyle] of the [text]
+ * @property subtextStyle [font style][TextStyle] of the [subtext]
+ *
+ * @see TextAlign
+ * @see TextStyle
+ * @see Color
+ */
 @PlotDslMarker
 public class Title(
     public var text: String? = null,
