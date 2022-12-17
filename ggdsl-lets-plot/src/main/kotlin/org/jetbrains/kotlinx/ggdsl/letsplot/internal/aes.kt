@@ -29,12 +29,6 @@ public class YAes(override val context: BindingContext) : ScalablePositionalAes 
     override val name: AesName = Y
 }
 
-public val LayerPlotContext.x: XAes
-    get() = XAes(this)
-
-public val LayerPlotContext.y: YAes
-    get() = YAes(this)
-
 public val Z: AesName = AesName("z")
 
 public class ZAes(override val context: BindingContext) : ScalablePositionalAes {
