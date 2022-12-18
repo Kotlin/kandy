@@ -5,7 +5,7 @@ package org.jetbrains.kotlinx.ggdsl.ir.data
  *
  * @property nameToValues [Map] of columns;
  * keys are the columns names, values are [TypedList] with columns values.
- * @property groupBy groups this dataframe.
+ * @property groupBy performs this dataframe lazy grouping by given columns.
  */
 public interface NamedDataInterface : TableData {
     public val nameToValues: Map<String, TypedList>
