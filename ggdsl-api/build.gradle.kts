@@ -8,12 +8,14 @@ repositories {
     mavenCentral()
 }
 
+val serialization_version: String by project
 val datetime_version: String by project
 
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:$datetime_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version")
 }
 
 tasks {

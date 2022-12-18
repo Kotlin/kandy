@@ -4,17 +4,12 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
-import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
-import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.feature.CoordFlip
 
-@Serializable
-public object CoordFlip : PlotFeature {
-    public val FEATURE_NAME: FeatureName = FeatureName("COORD_FLIP")
-    override val featureName: FeatureName = FEATURE_NAME
-}
-
+/**
+ * Flip axis of default coordinate system so that horizontal axis becomes vertical and vice versa.
+ */
 public fun LayerPlotContext.coordFlip() {
     features[CoordFlip.FEATURE_NAME] = CoordFlip
 }

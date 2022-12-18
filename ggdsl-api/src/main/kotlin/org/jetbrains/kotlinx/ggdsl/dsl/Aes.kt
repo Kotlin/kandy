@@ -8,9 +8,10 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 
 /**
- * Base interface for aesthetic attribute.
+ * Aesthetic attribute (aesthetic, aes) - attributes of geometric objects on the plot.
  *
  * @property name the name of this attribute
+ * @property context context of this attribute
  */
 public sealed interface Aes {
     public val name: AesName
@@ -18,59 +19,42 @@ public sealed interface Aes {
 }
 
 /**
- * Interface for aesthetic attributes that can be mapped to.
- *
- * @property name the name of this attribute
+ * Aesthetic attributes that can be mapped to.
  */
 public sealed interface MappableAes : Aes
 
 /**
- * Interface for aesthetic attributes that can be given an explicit scale.
- *
- * @property name the name of this attribute
+ * Aesthetic attributes that can be mapped to with an explicit scale.
  */
 public sealed interface ScalableAes : MappableAes
 
 /**
- * Interface for positional aesthetic attributes.
- *
- * @property name the name of this attribute
+ * Positional aesthetic attributes.
  */
 public sealed interface PositionalAes : MappableAes
 
 /**
- * Ordinary positional aesthetic attribute.
- *
- * @property name the name of this attribute
+ * Positional aesthetic attribute that can be mapped to with an explicit scale.
  */
 public interface ScalablePositionalAes : PositionalAes, ScalableAes
 
 /**
  * Positional aesthetic attribute with an implicit scale ("sub-positional").
- *
- * @property name the name of this attribute
  */
 public interface NonScalablePositionalAes : PositionalAes
 
-// todo interface and data
 /**
  * Non-positional aesthetic attribute.
- *
- * @property name the name of this attribute
  */
 public interface NonPositionalAes<in T : Any> : Aes
 
 /**
- * Non-positional aesthetic attribute, that can be mapped and have an explicit scale.
- *
- * @property name the name of this attribute
+ * Non-positional aesthetic attribute that can be mapped with an explicit scale.
  */
 public interface ScalableNonPositionalAes<in T : Any> : NonPositionalAes<T>, ScalableAes
 
 
 /**
- * Non-positional aesthetic attribute, that can be mapped but without an explicit scale.
- *
- * @property name the name of this attribute
+ * Non-positional aesthetic attribute that can be mapped but without an explicit scale.
  */
 public interface NonScalableNonPositionalAes<in T : Any> :  NonPositionalAes<T>, MappableAes

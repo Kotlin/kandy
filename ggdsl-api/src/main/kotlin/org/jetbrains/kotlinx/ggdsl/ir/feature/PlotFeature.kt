@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.ir.feature
 
 /**
- * Base interface for plot feature
+ * Plot feature interface.
  *
  * @property featureName the name of feature
  */

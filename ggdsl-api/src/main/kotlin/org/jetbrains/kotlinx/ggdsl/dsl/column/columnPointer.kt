@@ -5,36 +5,68 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.column
 
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import kotlin.reflect.KProperty
 
 /**
- * Returns a new [ColumnPointer].
+ * Returns a new typed [ColumnPointer] to the column with the given name and type.
+ * The pointer name and type must be exactly the same as the name and type of the
+ * column in the dataset (of type [TableData]).
  *
- * @param T the type of source
- * @param id the name of source in [NamedDataInterface]
+ * @param T the type of the column
+ * @param id the name of the column
  */
-public  fun < T : Any> columnPointer(id: String): ColumnPointer<T> =
+public  fun <T : Any> columnPointer(id: String): ColumnPointer<T> =
     ColumnPointer(id)
 
 /**
- * Returns a new [ColumnPointer].
+ * Returns a new typed [ColumnPointer] to the column with the receiver [String] as a name and given type.
+ * The pointer name and type must be exactly the same as the name and type of the
+ * column in the dataset (of type [TableData]).
  *
- * @receiver the name of source in [NamedDataInterface]
- * @param T the type of source
+ * @param T the type of the column
+ * @receiver the name of the column
  */
 public inline operator fun <reified T : Any> String.invoke(): ColumnPointer<T> =
     ColumnPointer(this)
 
 
-// TODO
-public class UnnamedColumnPointer<T : Any> {
+/**
+ * [ColumnPointer] delegate. It stores a type of the column.
+ *
+ * Can be delegated to create a [ColumnPointer] with the same type and the name of the variable as a
+ * column name:
+ *
+ * ```
+ * // equals to
+ * // val timeVar = columnPointer<Int>("timeVar")
+ * val timeVar by columnPointer<Int>()
+ * ```
+ *
+ * @property T the type of the column.
+ */
+public class UnnamedColumnPointer<T : Any> @PublishedApi internal constructor(){
+    /**
+     * Creates a [ColumnPointer] with `T` type and property name as a column name.
+     */
     public operator fun getValue(thisRef: Any?, property: KProperty<*>): ColumnPointer<T> {
         return ColumnPointer(property.name)
     }
 }
 
-// todo
+/**
+ * Returns a new typed [UnnamedColumnPointer] with the given type.
+ *
+ * Can be delegated to create a [ColumnPointer] with the same type and the name of the variable as a
+ * column name:
+ *
+ * ```
+ * // equals to
+ * // val timeVar = columnPointer<Int>("timeVar")
+ * val timeVar by columnPointer<Int>()
+ *
+ * @param T the type of the column
+ */
 public inline fun <reified T : Any> columnPointer(): UnnamedColumnPointer<T> =
     UnnamedColumnPointer()
 

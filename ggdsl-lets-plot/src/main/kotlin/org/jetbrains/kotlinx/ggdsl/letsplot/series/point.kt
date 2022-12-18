@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.PointContextInterface
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.PointContextInterface
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 
 public interface PointGatheringContextInterface : PointContextInterface, GatheringContextInterface {

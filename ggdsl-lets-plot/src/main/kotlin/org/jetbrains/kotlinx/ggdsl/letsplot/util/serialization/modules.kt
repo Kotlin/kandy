@@ -7,18 +7,18 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ScaleParameters
 import org.jetbrains.kotlinx.ggdsl.ir.scale.Transform
-import org.jetbrains.kotlinx.ggdsl.letsplot.CoordFlip
-import org.jetbrains.kotlinx.ggdsl.letsplot.Layout
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.Reversed
-import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
-import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.feature.CoordFlip
+import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Layout
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Reversed
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetGridFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetWrapFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.NonPositionalParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.PositionalParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.Transformation
 import org.jetbrains.kotlinx.ggdsl.letsplot.series.GatheringList
-import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
+import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
 
 public val letsPlotModules: SerializersModule
     get() = SerializersModule() {

@@ -17,11 +17,13 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
  *
  * @param dataset the main dataset, from which the data are taken
  * in case the layer dataset is not overwritten.
- * @param layers the [List] of [Layer]
- * @param globalMappings the map of mappings defined at the top level (for internal use).
- * @param features the [Map] of the plot features; keys are feature names,
+ * @param layers the [List] of [Layer] in this plot.
+ * @param globalMappings the map of aesthetic names to mappings defined at the top level (for internal use);
+ * keys are aesthetic names, values are mappings on corresponding aesthetics.
+ * @param features [Map] of the to plot features; keys are feature names,
  * values are features with corresponding names.
- * @param freeScales map of free scales.
+ * @param freeScales [Map] of free scales; keys are aesthetic names,
+ * values are corresponding free scales.
  */
 @Serializable
 public data class Plot(

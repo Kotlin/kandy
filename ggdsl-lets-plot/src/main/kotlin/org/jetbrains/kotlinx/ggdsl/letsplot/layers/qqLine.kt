@@ -5,13 +5,11 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
-
 /* TODO
 @PublishedApi
 
  */
-public val QQ_LINE: LetsPlotGeom = LetsPlotGeom("qqLine")
+//public val QQ_LINE: LetsPlotGeom = LetsPlotGeom("qqLine")
 
 /*
 @PlotDslMarker

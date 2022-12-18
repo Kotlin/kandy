@@ -4,10 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
 
-
-public val DENSITY_2D_FILLED: LetsPlotGeom = LetsPlotGeom("density_2D_filled")
+//public val DENSITY_2D_FILLED: LetsPlotGeom = LetsPlotGeom("density_2D_filled")
 /*
 =======
 public val DENSITY_2D_FILLED: LetsPlotGeom = LetsPlotGeom("density_2D_filled")

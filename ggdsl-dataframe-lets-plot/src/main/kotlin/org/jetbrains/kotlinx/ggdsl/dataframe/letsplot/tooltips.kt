@@ -7,11 +7,11 @@ package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.Aes
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.Anchor
-import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
-import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltipsContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.context.LayerTooltipsContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
+import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.value
 
 /**
  * Inserts value of given column into format string.
@@ -33,7 +33,26 @@ public fun LayerTooltipsContext.line(column: ColumnReference<*>) {
     line("@|@${column.name()}")
 }
 
-
+/**
+ * Defines the format for displaying values of this layer.
+ *
+ * Creates a [LayerTooltipsContext]. In this context, you can configure lines of tooltip
+ * by using line(..) methods.
+ *
+ * @see [LayerTooltipsContext].
+ *
+ * @param columns list of [ColumnReference] to crete a general multiline tooltip with.
+ * Useful for specifying the tooltip content quickly, instead of configuring it via the line(..) methods.
+ * @param title the string template to use as a title in the multi-line tooltip.
+ * @param anchor the fixed position for the general tooltip.
+ * @param minWidth minimum width of a general tooltip in pixels.
+ * @param hide flag of tooltips displaying.
+ * @param columnsFormats map of [ColumnReference] to format string of its value.
+ * @param aesFormats map of [Aes] to format string of its value.
+ * The format will be applied to the mapped value in the default tooltip or to the corresponding
+ * value specified in the line template.
+ * @see value
+ */
 public inline fun LayerContextInterface.tooltips(
     columns: List<ColumnReference<*>> = listOf(),
   //  variablesDS: List<ColumnPointer<*>> = listOf(),

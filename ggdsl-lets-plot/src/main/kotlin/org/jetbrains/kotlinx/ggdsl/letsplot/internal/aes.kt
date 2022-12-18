@@ -2,20 +2,18 @@
 * Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.ggdsl.letsplot
+package org.jetbrains.kotlinx.ggdsl.letsplot.internal
 
 import jetbrains.datalore.plot.config.Option
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.ggdsl.ir.aes.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.HorizontalJustification
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.VerticalJustification
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.FontFace
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.FontFamily
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.HorizontalJustification
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.VerticalJustification
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.BandWidth
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
@@ -30,12 +28,6 @@ public val Y: AesName = AesName("y")
 public class YAes(override val context: BindingContext) : ScalablePositionalAes {
     override val name: AesName = Y
 }
-
-public val LayerPlotContext.x: XAes
-    get() = XAes(this)
-
-public val LayerPlotContext.y: YAes
-    get() = YAes(this)
 
 public val Z: AesName = AesName("z")
 
@@ -186,6 +178,7 @@ public class FattenAes internal constructor(override val context: BindingContext
     override val name: AesName = FATTEN
 }
 
+/*
 internal val BINS = AesName("bins")
 
 public class BinsAes internal constructor(override val context: BindingContext) : NonPositionalAes<Int> {
@@ -386,6 +379,8 @@ public val DRAW_QUANTILES: AesName = AesName("draw_quantiles")
 public data class DrawQuantilesAes(override val context: BindingContext) : NonPositionalAes<List<Double>> {
     override val name: AesName = DRAW_QUANTILES
 }
+
+ */
 
 internal val LABEL = AesName("label")
 

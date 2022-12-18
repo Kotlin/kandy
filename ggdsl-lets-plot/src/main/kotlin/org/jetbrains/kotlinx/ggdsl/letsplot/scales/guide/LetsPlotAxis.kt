@@ -6,7 +6,6 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 import kotlin.reflect.KType
@@ -27,14 +26,24 @@ public data class Axis<DomainType : Any> @PublishedApi internal constructor(
     @PublishedApi
     internal var format: String? = null
 
-    // todo type!!!
-    public inline fun<reified DomainType: Any> breaks(breaks: List<DomainType>?, format: String?) {
+    /**
+     * Sets axis breaks with formatting.
+     *
+     * @param breaks list of breaks.
+     * @param format format string.
+     */
+    public fun breaks(breaks: List<DomainType>? = null, format: String? = null) {
         this.breaks = breaks?.let {
             TypedList(kType, it)
         }
         this.format = format
     }
 
+    /**
+     * Sets axis breaks with labels.
+     *
+     * @param breaksToLabels list of breaks with corresponding labels.
+     */
     public fun breaksLabeled(breaksToLabels: List<Pair<DomainType, String>>) {
         breaks = TypedList(kType, breaksToLabels.map { it.first })
         labels = breaksToLabels.map { it.second }

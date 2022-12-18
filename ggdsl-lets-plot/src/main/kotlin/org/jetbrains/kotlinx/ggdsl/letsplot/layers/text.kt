@@ -5,54 +5,86 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.TextContextImmutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.TextContextMutable
 
 @PublishedApi
 internal val TEXT: LetsPlotGeom = LetsPlotGeom("text")
 
-public interface FontSubContextInterface : SelfInvocationContext {
-    public val parentContext: BindingContext
-    public val color: ColorAes get() = ColorAes(parentContext)
-    public val size: SizeAes get() = SizeAes(parentContext)
-    public val family: FontFamilyAes get() = FontFamilyAes(parentContext)
-}
-
-public class FontSubContextImmutable(override val parentContext: BindingContext) : FontSubContextInterface
-
-public class FontSubContextMutable(override val parentContext: TableBindingContextInterfaceMutable) :
-    FontSubContextInterface, TableSubContextMutable(parentContext, false, false)
-
-public interface TextContextInterface : BindingContext {
-    public val x: XAes get() = XAes(this)
-    public val y: YAes get() = YAes(this)
-    public val label: LabelAes get() = LabelAes(this)
-
-    public val alpha: AlphaAes get() = AlphaAes(this)
-    public val angle: AngleAes get() = AngleAes(this)
-    public val format: FormatAes get() = FormatAes(this)
-    public val horizontalJustification: HorizontalJustificationAes get() = HorizontalJustificationAes(this)
-    public val verticalJustification: VerticalJustificationAes get() = VerticalJustificationAes(this)
-
-    public val font: FontSubContextInterface
-}
-
-@PlotDslMarker
-public class TextContextImmutable(parent: LayerCollectorContextImmutable) : LayerContextImmutable(parent),
-    TextContextInterface {
-    override val font: FontSubContextImmutable = FontSubContextImmutable(this)
-}
-
-@PlotDslMarker
-public class TextContextMutable(parent: LayerCollectorContextMutable) :
-    LayerContextMutable(parent), TextContextInterface {
-    override val font: FontSubContextMutable = FontSubContextMutable(this)
-}
-
+/**
+ * Adds a new text layer.
+ *
+ * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ *
+ *  ### Aesthetic attributes:
+ *
+ *  Positional:
+ *
+ *  - [ x][TextContextInterface.x]
+ *  - [y][TextContextInterface.y]
+ *
+ *  Initial mappings to positional attributes are inherited from the parent [LayerPlotContext] (if they exist).
+ *
+ *  Non-positional:
+ *  - [alpha][TextContextInterface.alpha] - this layer alpha, of the type [Double], mappable.
+ *  - [label][TextContextInterface.label] - text label, of the type [String], mappable.
+ *  - [angle][TextContextInterface.angle] - text angle, of the type [Double], mappable.
+ *  - [horizontalJustification][TextContextInterface.horizontalJustification] -
+ *  text horizontal justification, of type [HorizontalJustification].
+ *  - [verticalJustification][TextContextInterface.verticalJustification] -
+ *  text vertical justification, of type [VerticalJustification].
+ *  - [font.color][FontSubContextInterface.color] - font color.
+ *  - [font.size][FontSubContextInterface.size] - font size.
+ *  - [font.family][FontSubContextInterface.family] - font family.
+ *  - [font.face][FontSubContextInterface.face] - font face.
+ *
+ * ```
+ * text {
+ *    x(time) // mapping from `time` column to `X` with default scale.
+ *    font.color(Color.BLUE) // setting of constant `color` value
+ * }
+ * ```
+ */
 public inline fun LayerCollectorContextImmutable.text(block: TextContextImmutable.() -> Unit) {
     addLayer(TextContextImmutable(this).apply(block), TEXT)
 }
 
+/**
+ * Adds a new text layer.
+ *
+ * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
+ *
+ *  ### Aesthetic attributes:
+ *
+ *  Positional:
+ *
+ *  - [ x][TextContextInterface.x]
+ *  - [y][TextContextInterface.y]
+ *
+ *  Initial mappings to positional attributes are inherited from the parent [LayerPlotContext] (if they exist).
+ *
+ *  Non-positional:
+ *  - [alpha][TextContextInterface.alpha] - this layer alpha, of the type [Double], mappable.
+ *  - [label][TextContextInterface.label] - text label, of the type [String], mappable.
+ *  - [angle][TextContextInterface.angle] - text angle, of the type [Double], mappable.
+ *  - [horizontalJustification][TextContextInterface.horizontalJustification] -
+ *  text horizontal justification, of type [HorizontalJustification].
+ *  - [verticalJustification][TextContextInterface.verticalJustification] -
+ *  text vertical justification, of type [VerticalJustification].
+ *  - [font.color][FontSubContextInterface.color] - font color.
+ *  - [font.size][FontSubContextInterface.size] - font size.
+ *  - [font.family][FontSubContextInterface.family] - font family.
+ *  - [font.face][FontSubContextInterface.face] - font face.
+ *
+ * ```
+ * text {
+ *    label(listOf("tt", "vv", "egb")) // mapping from list to `label`.
+ *    font.color(Color.BLUE) // setting of constant `color` value
+ * }
+ * ```
+ */
 public inline fun LayerCollectorContextMutable.text(block: TextContextMutable.() -> Unit) {
     addLayer(TextContextMutable(this).apply(block), TEXT)
 }

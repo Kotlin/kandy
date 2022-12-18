@@ -9,7 +9,8 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 
 /**
- * Creates a new default continuous non-positional scale
+ * Creates a new unspecified (i.e. without specifying the type and parameters;
+ * they will be defined automatically) continuous non-positional scale.
  *
  * @param transform the transformation of scale
  */
@@ -17,12 +18,14 @@ public fun continuous(transform: NonPositionalTransform? = null): NonPositionalC
     NonPositionalContinuousUnspecifiedScale(transform)
 
 /**
- * Creates a new default categorical non-positional scale
+ * Creates a new unspecified (i.e. without specifying the type and parameters;
+ * * they will be defined automatically) categorical non-positional scale
  */
 public fun categorical(): NonPositionalCategoricalUnspecifiedScale = NonPositionalCategoricalUnspecifiedScale
 
 /**
- * Creates a new default continuous positional scale
+ * Creates a new unspecified (i.e. without specifying the type and parameters;
+ * they will be defined automatically) continuous positional scale
  *
  * @param transform the transformation of scale
  */
@@ -30,7 +33,8 @@ public fun continuousPos(transform: PositionalTransform? = null): PositionalCont
     PositionalContinuousUnspecifiedScale(transform)
 
 /**
- * Creates a new default categorical positional scale
+ * Creates a new unspecified (i.e. without specifying the type and parameters;
+ * they will be defined automatically) categorical positional scale
  */
 public fun categoricalPos(): PositionalCategoricalUnspecifiedScale =
     PositionalCategoricalUnspecifiedScale
@@ -83,7 +87,7 @@ public inline fun <reified DomainType : Any> categoricalPos(categories: List<Dom
     PositionalCategoricalScale(categories?.typedList())
 
 /**
- * Creates a new categorical non-positional scale
+ * Creates a new categorical non-positional scale.
  *
  * @param DomainType type of domain
  * @param RangeType type of range
@@ -98,7 +102,12 @@ public inline fun <reified DomainType : Any, reified RangeType : Any> categorica
     NonPositionalCategoricalScale(domainCategories?.typedList(), rangeValues?.typedList())
 
 /**
- * TODO
+ * Creates a new categorical non-positional scale.
+ *
+ * @param DomainType type of domain
+ * @param RangeType type of range
+ * @param categoriesToValues [List] of pairs of category to corresponding value.
+ * @return new [NonPositionalCategoricalScale] with given limits
  */
 public inline fun <reified DomainType : Any, reified RangeType : Any> categorical(
     categoriesToValues: List<Pair<DomainType, RangeType>>

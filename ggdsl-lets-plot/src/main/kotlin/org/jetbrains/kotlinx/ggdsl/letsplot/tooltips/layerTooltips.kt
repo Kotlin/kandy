@@ -8,44 +8,9 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.Aes
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
-import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
-import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
-
-@Serializable
-public data class LayerTooltips internal constructor(
-    val variables: List<String>,
-    val lines: List<String>,
-    val formats: List<Pair<String, String>>,
-    val title: String? = null,
-    val anchor: Anchor? = null,
-    val minWidth: Double? = null,
-    val hide: Boolean = false,
-) : LayerFeature {
-    override val featureName: FeatureName = FEATURE_NAME
-
-    public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("layer_tooltips")
-
-
-        public fun fromContext(
-            variables: List<String>,
-            title: String?,
-            anchor: Anchor?,
-            minWidth: Double?,
-            hide: Boolean,
-            valueFormats: List<Pair<String, String>>,
-            context: LayerTooltipsContext
-        ): LayerTooltips {
-            return LayerTooltips(
-                variables,
-                context.lineBuffer,
-                valueFormats,
-                title, anchor, minWidth, hide
-            )
-        }
-    }
-}
+import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.context.LayerTooltipsContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
 
 
 /**
@@ -79,70 +44,9 @@ public fun value(stat: Statistic<*>): String {
     return "@${stat.id}"
 }
 
-
 /**
- * Context created by [LayerContext.tooltips] method.
+ * Tooltips fixed position.
  */
-//@PlotDslMarker
-public class LayerTooltipsContext {
-    // todo hide
-    internal val lineBuffer = mutableListOf<String>()
-
-    /**
-     * Adds solid line to tooltips with given string value.
-     *
-     * @param string text of the line
-     * @see value
-     */
-    public fun line(string: String) {
-        lineBuffer.add(string)
-    }
-
-    /**
-     * Adds two-sided line to tooltips with given string values.
-     *
-     * @param leftSide text of the left side of line
-     * @param rightSide text of the right side of line
-     * @see value
-     */
-    public fun line(leftSide: String? = null, rightSide: String? = null) {
-        lineBuffer.add("${leftSide ?: ""}|${rightSide ?: ""}")
-    }
-
-    /**
-     * Adds standard line for given [ColumnPointer]
-     * (name of the column on the left side and the corresponding value on the right side).
-     *
-     * @param source [ColumnPointer]
-     */
-
-    public fun line(source: ColumnPointer<*>) {
-
-        lineBuffer.add("@|@${source.name}")
-    }
-
-    /**
-     * Adds standard line for given aesthetic attribute
-     * (name of the column mapped oh this aes on the left side and the corresponding value on the right side).
-     *
-     * @param aes aesthetic attribute
-     */
-    public fun line(aes: Aes) {
-        lineBuffer.add("@|^${aes.name.name}")
-    }
-
-    /**
-     * Adds standard line for given statistics
-     * (name of the source mapped oh this aes on the left side and the corresponding value on the right side).
-     *
-     * @param stat a statistic to display
-     */
-    public fun line(stat: Statistic<*>) {
-        lineBuffer.add("${stat.id.drop(2).dropLast(2)}|@${stat.id}")
-    }
-
-}
-
 @Serializable
 public data class Anchor(val value: String) {
     public companion object {
@@ -166,7 +70,7 @@ public data class Anchor(val value: String) {
  *
  * @see [LayerTooltipsContext].
  *
- * @param variables vararg of [ColumnPointer] to crete a general multiline tooltip with.
+ * @param variables list of [ColumnPointer] to crete a general multiline tooltip with.
  * Useful for specifying the tooltip content quickly, instead of configuring it via the line(..) methods.
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
@@ -178,7 +82,6 @@ public data class Anchor(val value: String) {
  * value specified in the line template.
  * @see value
  */
-
 public inline fun LayerContextInterface.tooltips(
     variables: List<ColumnPointer<*>>,
     title: String? = null,

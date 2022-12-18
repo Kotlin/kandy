@@ -2,18 +2,18 @@
 * Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.ggdsl.letsplot.layers
+package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.ColorAes
-import org.jetbrains.kotlinx.ggdsl.letsplot.LineTypeAes
-import org.jetbrains.kotlinx.ggdsl.letsplot.SizeAes
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.ColorAes
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LineTypeAes
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.SizeAes
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
 
 @PlotDslMarker
 public interface BorderLineContextInterface: SelfInvocationContext {
+    // todo hide
     public val parentContext: BindingContext
     public val color: ColorAes get() = ColorAes(parentContext)
     public val type: LineTypeAes get() = LineTypeAes(parentContext)

@@ -5,8 +5,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.PlotBunch
-import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.PlotGrid
+import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model.PlotBunch
+import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model.PlotGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.wrap
 import org.jetbrains.kotlinx.jupyter.api.HTML
@@ -34,7 +34,7 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.letsplot.export.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.facet.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.*")
-        import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.*")
+        //import("org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.series.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.translator.*")
@@ -49,7 +49,7 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.font.*")
-        import("org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.*")
+       // import("org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.*")
 
         render<Plot> { HTML(frontendContext.getHtml(it.toLetsPlot())) }
         render<PlotBunch> { HTML(frontendContext.getHtml(it.wrap())) }
