@@ -137,7 +137,7 @@ internal fun Gathering.toLayer(): Layer {
         series.settings.forEach { (aesName, setting) ->
             scaleBuffer[aesName]!!.let {
                 it.first.add(series.label)
-                it.second.add((setting as NonPositionalSetting<*>).value)
+                it.second.add((setting as NonPositionalSetting<*>).value.value)
             }
         }
     }
