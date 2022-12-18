@@ -8,13 +8,18 @@ repositories {
     mavenCentral()
 }
 
+val html_version: String by project
+val datetime_version: String by project
+val lets_plot_kotlin_version: String by project
+val lets_plot_image_version: String by project
+
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.8.0")
-    implementation("org.jetbrains.lets-plot:lets-plot-kotlin-jvm:4.1.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.4.0")
-    implementation("org.jetbrains.lets-plot:lets-plot-image-export:2.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:$html_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime-jvm:$datetime_version")
+    implementation("org.jetbrains.lets-plot:lets-plot-kotlin-jvm:$lets_plot_kotlin_version")
+    implementation("org.jetbrains.lets-plot:lets-plot-image-export:$lets_plot_image_version")
     api(project(":ggdsl-api"))
 }
 

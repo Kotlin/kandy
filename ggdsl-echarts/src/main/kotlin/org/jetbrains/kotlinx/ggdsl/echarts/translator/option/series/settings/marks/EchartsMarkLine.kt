@@ -1,6 +1,13 @@
+/*
+* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.element
+import kotlinx.serialization.descriptors.listSerialDescriptor
+import org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkAreaFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkLineFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Blur
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Emphasis
@@ -10,66 +17,20 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.DataMarkLineSe
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
-internal fun Map<FeatureName, LayerFeature>.toEchartsMarkLine(): EchartsMarkLine? {
+internal fun Map<FeatureName, LayerFeature>.getEchartsMarkLine(): EchartsMarkLine? {
     val dataMarkLines = (this[MarkLineFeature.FEATURE_NAME] as? MarkLineFeature)?.lines?.map {
         if (it.point1 == null) {
             DataMarkLine(it.nameML, it.typeML?.type, it.xAxis, it.yAxis)
         } else {
-            val (point1X, point1XAxis) = if (it.point1.x == "max" || it.point1.x == "min" || it.point1.x == "average")
-                null to it.point1.x
-            else
-                it.point1.x to null
-            val (point1Y, point1YAxis) = if (it.point1.y == "max" || it.point1.y == "min" || it.point1.y == "average")
-                null to it.point1.y
-            else
-                it.point1.y to null
-
-            val (point2X, point2XAxis) = if (it.point2?.x == "max" || it.point2?.x == "min" || it.point2?.x == "average")
-                null to it.point2.x
-            else
-                it.point2?.x to null
-            val (point2Y, point2YAxis) = if (it.point2?.y == "max" || it.point2?.y == "min" || it.point2?.y == "average")
-                null to it.point2.y
-            else
-                it.point2?.y to null
-
-            DataMarkLine(
-                listOfPoints =
-                listOf(
-                    DataMarkPoint(
-                        it.nameML,
-                        it.point1.type?.type,
-                        it.point1.valueMP,
-                        it.point1.coord?.toList(),
-                        point1X,
-                        point1Y,
-                        point1XAxis,
-                        point1YAxis
-                    ),
-                    DataMarkPoint(
-                        null,
-                        it.point2?.type?.type,
-                        it.point2?.valueMP,
-                        it.point2?.coord?.toList(),
-                        point2X,
-                        point2Y,
-                        point2XAxis,
-                        point2YAxis
-                    )
-                )
-            )
+            DataMarkLine(listOfPoints = listOf(it.point1.toDataMarkPoint(it.nameML), it.point2!!.toDataMarkPoint()))
         }
     }
 
-    return if (dataMarkLines != null) {
-        EchartsMarkLine(data = dataMarkLines)
-    } else {
-        null
-    }
+    return dataMarkLines?.let { EchartsMarkLine(data = it) }
 }
 
 @Serializable(with = DataMarkLineSerializer::class)
-public data class DataMarkLine(
+internal data class DataMarkLine(
     val name: String? = null,
     val type: String? = null,
     val xAxis: Double? = null,
@@ -78,7 +39,7 @@ public data class DataMarkLine(
 )
 
 @Serializable
-public data class EchartsMarkLine(
+internal data class EchartsMarkLine(
     val silent: Boolean? = null,
     val symbol: String? = null,
     val symbolSize: Int? = null,

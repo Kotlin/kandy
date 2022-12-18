@@ -4,51 +4,52 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features
 
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.AreaContextImmutable
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.BarContextImmutable
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContextImmutable
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
-/*
-    val stackAd = Stack("Ad")
-
-    bar {
-        stack = stackAd
-        stack with stackAd
-        stack(stackAd)
-    }
- */
-/**/
-
-// todo in others contexts??
 /**
- * Name of stack. On the same category axis,
- * the series with the same stack name would be put on top of each other.
+ * Name of stack. On the same category axis, the series with the same stack name would be put on top of each other.
  *
- *
- * @see <a href="https://echarts.apache.org/en/option.html#series-bar.stack">ECharts Documentation</a>
  * @see stack
  */
+public data class Stack internal constructor(val name: String)
 
-// todo
-//public var BarsContextImmutable.stack: Stack
-//    get() = Stack("TODO")
-//    set(value) {
-//        features[Stack.FEATURE_NAME] = value
-//    }
-
-//todo
-public data class Stack internal constructor(val name: String) : LayerFeature {
+internal data class StackFeature internal constructor(val name: String) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
-    public companion object {
-        public val FEATURE_NAME: FeatureName = FeatureName("STACK_FEATURE")
+    companion object {
+        val FEATURE_NAME: FeatureName = FeatureName("STACK_FEATURE")
     }
 }
 
-public var LineContextImmutable.stack: Stack // TODO(change api for stack!)
-    get() = Stack("TODO")
+/**
+ * Stack property for [line][org.jetbrains.kotlinx.ggdsl.echarts.layers.line].
+ */
+public var LineContextImmutable.stack: Stack
+    get() = Stack((features[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
-        features[Stack.FEATURE_NAME] = value
+        features[StackFeature.FEATURE_NAME] = StackFeature(value.name)
+    }
+
+/**
+ * Stack property for [area][org.jetbrains.kotlinx.ggdsl.echarts.layers.area].
+ */
+public var AreaContextImmutable.stack: Stack
+    get() = Stack((features[StackFeature.FEATURE_NAME] as StackFeature).name)
+    set(value) {
+        features[StackFeature.FEATURE_NAME] = StackFeature(value.name)
+    }
+
+/**
+ * Stack property for [bars][org.jetbrains.kotlinx.ggdsl.echarts.layers.bars].
+ */
+public var BarContextImmutable.stack: Stack
+    get() = Stack((features[StackFeature.FEATURE_NAME] as StackFeature).name)
+    set(value) {
+        features[StackFeature.FEATURE_NAME] = StackFeature(value.name)
     }
 
 /**

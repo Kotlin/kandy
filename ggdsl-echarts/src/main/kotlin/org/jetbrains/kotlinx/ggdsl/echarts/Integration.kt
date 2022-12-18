@@ -2,8 +2,6 @@
 * Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-@file:OptIn(ExperimentalSerializationApi::class)
-
 package org.jetbrains.kotlinx.ggdsl.echarts
 
 import kotlinx.html.*
@@ -11,6 +9,7 @@ import kotlinx.html.stream.createHTML
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.PlotChangeAnimation
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.Parser
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.Option
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
@@ -32,20 +31,18 @@ internal class Integration : JupyterIntegration() {
         }
 
         render<Plot> { it.toOption() }
-        render<Option> { HTML(it.toHTML(800 to 600), true) }
-//        render<MetaOption> { HTML(it.option.toHTML(it.size), true) } // TODO (size?)
+        render<Option> { HTML(it.toHTML(it.plotSize), true) }
 //        render<DataChangeAnimation> { HTML(it.toHTML(), true) }
-//        render<PlotChangeAnimation> { HTML(it.toHTML(), true) }
+        render<PlotChangeAnimation> { HTML(it.toHTML(), true) }
 
         import("org.jetbrains.kotlinx.ggdsl.echarts.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.aes.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.features.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.features.animation.*")
+        import("org.jetbrains.kotlinx.ggdsl.echarts.features.label.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.features.marks.*")
-        import("org.jetbrains.kotlinx.ggdsl.echarts.features.text.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.layers.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.settings.*")
-//        import("org.jetbrains.kotlinx.ggdsl.echarts.animation.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.scale.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.scale.guide.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.translator.*")
@@ -53,7 +50,7 @@ internal class Integration : JupyterIntegration() {
     }
 }
 
-internal fun Plot.toOption(): Option {
+private fun Plot.toOption(): Option {
     val parser = Parser(this)
 
     return parser.parse()
@@ -63,15 +60,16 @@ internal fun Plot.toOption(): Option {
 private val json = Json {
     explicitNulls = false
     encodeDefaults = true
+    prettyPrint = true
 //    useArrayPolymorphism = true
     isLenient = true
 }
 
-public fun Option.toJSON(): String {
-    return json.encodeToString(this)
-}
+public fun Plot.toJson(): String = this.toOption().toJSON()
 
-public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
+private fun Option.toJSON(): String = json.encodeToString(this)
+
+internal fun Option.toHTML(size: Pair<Int, Int>? = null): String {
     val width = size?.first ?: 600
     val height = size?.second ?: 400
     return createHTML().html {
@@ -79,7 +77,7 @@ public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
             meta {
                 charset = "utf-8"
             }
-            title("MY BEAUTIFUL PLOT") // TODO (this.title)
+            this@toHTML.title?.text?.let { title(it) }
             script {
                 type = "text/javascript"
                 src = ECHARTS_SRC
@@ -107,17 +105,14 @@ public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
 
 }
 
-/// TODO!!! UNSAFE!!!
 
-// todo sizes
 //public fun DataChangeAnimation.toHTML(): String {
 //    val encoder = Json {
 //        explicitNulls = false
 //        encodeDefaults = true
 //    }
 //    val maxStates = 100
-//    // todo size
-//    val initOption = plot.toOption().option.toJSON().replace('\"', '\'')
+//    val initOption = plot.toOption().toJSON().replace('\"', '\'')
 //    val dataset = plot.dataset
 //    val datasets = mutableListOf<Dataset>()
 //    repeat(maxStates) {
@@ -165,52 +160,50 @@ public fun Option.toHTML(size: Pair<Int, Int>? = null): String {
 //    }
 //}
 
-//public fun PlotChangeAnimation.toHTML(): String {
-//    val encoder = Json {
-//        explicitNulls = false
-//        encodeDefaults = true
-//    }
-//
-//    val encodedPlots = encoder.encodeToString(plots.map { it.toOption().option }).replace('\"', '\'')
-//    val size = plots.size
-//    return createHTML().html {
-//        head {
-//            meta {
-//                charset = "utf-8"
-//            }
-//            title("MY BEAUTIFUL PLOT")
-//            script {
-//                type = "text/javascript"
-//                src = ECHARTS_SRC
-//            }
-//        }
-//        body {
-//            div {
-//                id = "main" // TODO!!!
-//                style = "width: 1000px;height:800px;background: white"
-//            }
-//            script {
-//                type = "text/javascript"
-//                unsafe {
-//                    +("""
-//                        var myChart = echarts.init(document.getElementById('main'));
-//                        var options = $encodedPlots;
-//                        var option = options[0];
-//                        myChart.setOption(option);
-//                        var maxStates = $size;
-//                        var nextState = 1 % maxStates;
-//                        setInterval(function () {
-//                            option = options[nextState];
-//                            nextState = (nextState + 1) % maxStates;
-//                            myChart.setOption(option, true);
-//                        }, $interval);
-//                        """.trimIndent()
-//                        )
-//                }
-//            }
-//        }
-//
-//    }
-//}
+@OptIn(ExperimentalSerializationApi::class)
+internal fun PlotChangeAnimation.toHTML(): String {
+    val encoder = Json {
+        explicitNulls = false
+        encodeDefaults = true
+    }
 
+    val encodedPlots = encoder.encodeToString(plots.map { it.toOption() }).replace('\"', '\'')
+    val size = plots.size
+    return createHTML().html {
+        head {
+            meta {
+                charset = "utf-8"
+            }
+            script {
+                type = "text/javascript"
+                src = ECHARTS_SRC
+            }
+        }
+        body {
+            div {
+                id = "main"
+                style = "width: 1000px;height:800px;background: white"
+            }
+            script {
+                type = "text/javascript"
+                unsafe {
+                    +("""
+                        var myChart = echarts.init(document.getElementById('main'));
+                        var options = $encodedPlots;
+                        var option = options[0];
+                        myChart.setOption(option);
+                        var maxStates = $size;
+                        var nextState = 1 % maxStates;
+                        setInterval(function () {
+                            option = options[nextState];
+                            nextState = (nextState + 1) % maxStates;
+                            myChart.setOption(option, true);
+                        }, $interval);
+                        """.trimIndent()
+                        )
+                }
+            }
+        }
 
+    }
+}

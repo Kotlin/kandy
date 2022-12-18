@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers
 
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -11,7 +15,7 @@ import kotlinx.serialization.encoding.encodeStructure
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.DataMarkPoint
 
 @OptIn(ExperimentalSerializationApi::class)
-public object DataMarkPointSerializer : KSerializer<DataMarkPoint> {
+internal object DataMarkPointSerializer : KSerializer<DataMarkPoint> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("DataMarkPoint") {
         element<String>("name")
         element<String>("type")

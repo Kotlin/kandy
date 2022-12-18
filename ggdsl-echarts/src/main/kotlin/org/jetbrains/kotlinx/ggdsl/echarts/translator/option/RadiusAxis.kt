@@ -1,15 +1,19 @@
+/*
+* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class RadiusAxis(
+internal data class RadiusAxis(
     val id: String?,
     val polarIndex: Int?,
     val type: AxisType?,
     val name: String?,
-    val nameLocation: NameLocation?,
+    val nameLocation: String?,
 //    val nameTextStyle: TextStyle?,
     val nameGap: Int?,
     val nameRotate: Int?,

@@ -1,6 +1,11 @@
+/*
+* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkPoint
 import org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkPointFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Blur
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Emphasis
@@ -10,20 +15,29 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.DataMarkPointS
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
-internal fun Map<FeatureName, LayerFeature>.toEchartsMarkPoint(): EchartsMarkPoint? {
+internal fun Map<FeatureName, LayerFeature>.getEchartsMarkPoint(): EchartsMarkPoint? {
     val dataMarkPoints = (this[MarkPointFeature.FEATURE_NAME] as? MarkPointFeature)?.points?.map {
         DataMarkPoint(it.name, it.type?.type, it.valueMP, it.coord?.toList(), it.x, it.y)
     }
 
-    return if (dataMarkPoints != null) {
-        EchartsMarkPoint(data = dataMarkPoints)
-    } else {
-        null
-    }
+    return EchartsMarkPoint(data = dataMarkPoints).takeIf { dataMarkPoints != null }
+}
+
+internal fun MarkPoint.toDataMarkPoint(otherName: String? = null): DataMarkPoint {
+    val (x1, xAxis1) = if (x == "max" || x == "min" || x == "average")
+        null to x
+    else
+        x to null
+    val (y1, yAxis1) = if (y == "max" || y == "min" || y == "average")
+        null to y
+    else
+        y to null
+
+    return DataMarkPoint(otherName ?: name, type?.type, valueMP, coord?.toList(), x1, y1, xAxis1, yAxis1)
 }
 
 @Serializable(with = DataMarkPointSerializer::class)
-public data class DataMarkPoint(
+internal data class DataMarkPoint(
     val name: String? = null,
     val type: String? = null,
     val value: String? = null,
@@ -35,7 +49,7 @@ public data class DataMarkPoint(
 )
 
 @Serializable
-public data class EchartsMarkPoint(
+internal data class EchartsMarkPoint(
     val symbol: String? = null,
     val symbolSize: Int? = null,
     val symbolRotate: Int? = null,

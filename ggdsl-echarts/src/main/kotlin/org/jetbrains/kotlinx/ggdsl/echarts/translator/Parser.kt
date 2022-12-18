@@ -1,3 +1,7 @@
+/*
+* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.NAME
@@ -5,20 +9,14 @@ import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationPlotFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.BAR
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.EchartsGeom
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.LINE
-import org.jetbrains.kotlinx.ggdsl.echarts.settings.toHexString
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Encode
-import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.toLineSeries
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -27,7 +25,7 @@ import kotlin.reflect.typeOf
 
 @Suppress("UNCHECKED_CAST")
 internal fun <T : Any> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
-    return (this[key] as? NonPositionalSetting<*>)?.value as? T
+    return (this[key] as? NonPositionalSetting<*>)?.value?.value as? T
 }
 
 internal class Parser(plot: Plot) {
@@ -42,79 +40,94 @@ internal class Parser(plot: Plot) {
 
 
     internal fun parse(): Option {
-        val legend: Legend? = null
-        val grid: Grid? = null
         val polar: Polar? = null
         val radiusAxis: RadiusAxis? = null
         val angleAxis: AngleAxis? = null
         val radar: Radar? = null
+        val visualMaps = mutableListOf<VisualMap>()
 
         val layout = (features[EChartsLayout.FEATURE_NAME] as? EChartsLayout)
+        val title = layout?.title?.toEchartsTitle()
+        val legend = layout?.legend?.toEchartsLegend()
+        val grid = layout?.grid?.toEchartsGrid()
+        val tooltip = layout?.tooltip?.toEchartsTooltip()
+        val textStyle = layout?.textStyle?.toTextStyle()
+        val animation = (features[AnimationPlotFeature.FEATURE_NAME] as? AnimationPlotFeature)
 
         globalMappings.forEach { (aes, mapping) ->
             if (mapping is ScaledMapping<*>) {
                 when (aes) {
                     X -> {
                         xAxis = mapping.toAxis()
-                        source[mapping.columnScaled.source.name] = data[mapping.columnScaled.source.name]!!.values
+                        source[mapping.getId()] = data[mapping.getId()]!!.values
                     }
 
                     Y -> {
                         yAxis = mapping.toAxis()
-                        source[mapping.columnScaled.source.name] = data[mapping.columnScaled.source.name]!!.values
+                        source[mapping.getId()] = data[mapping.getId()]!!.values
                     }
                 }
             }
         }
 
-        val series = layers.map { layer ->
+        val series = layers.mapIndexed { index, layer -> // TODO(layout???)
             layer.mappings.forEach { (aes, mapping) ->
                 if (mapping is ScaledMapping<*>) {
-                    if (xAxis == null && aes == X)
-                        xAxis = mapping.toAxis()
-                    if (yAxis == null && aes == Y)
-                        yAxis = mapping.toAxis()
-
-                    source.putIfAbsent(mapping.getId(), data[mapping.getId()]!!.values) // TODO(missing columns?)
+                    when {
+                        (xAxis == null && aes == X) -> xAxis = mapping.toAxis()
+                        (yAxis == null && aes == Y) -> yAxis = mapping.toAxis()
+                        aes != X && aes != Y -> {
+                            val sourceId = mapping.getId()
+                            visualMaps.add(
+                                mapping.columnScaled.scale.toVisualMap(
+                                    aes,
+                                    sourceId, index,
+                                    (layer.dataset as? NamedDataInterface)?.nameToValues?.get(sourceId)?.values
+                                        ?: data[sourceId]?.values,
+                                    visualMaps.size,
+                                    mapping.domainType
+                                )
+                            )
+                        }
+                    }
+                    source.getOrPut(mapping.getId()) { data[mapping.getId()]!!.values } // TODO(missing columns?)
                 }
             }
             layer.toSeries()
         }
 
         val headersOfData = source.keys.toList()
-        val datasetSource = listOf(headersOfData) + List(source.values.first().size) { i ->
+        val datasetSource = listOf(headersOfData) + List(source.values.firstOrNull()?.size ?: 0) { i ->
             List(headersOfData.size) { j ->
-                source[headersOfData[j]]!![i].toString()
+                source[headersOfData[j]]?.get(i).toString()
             }
         }
 
-        val dataset = Dataset(source = datasetSource)
-
-        val title = layout?.titleFeature?.let {
-            Title(
-                text = it.text,
-                textStyle = it.textStyle?.toTextStyle(),
-                subtext = it.subtext,
-                subtextStyle = it.subtextStyle?.toTextStyle(),
-                textAlign = it.align?.align,
-                textVerticalAlign = it.verticalAlign?.align,
-                backgroundColor = it.backgroundColor?.let { col -> BaseColor(col.toHexString()) },
-                borderColor = it.borderColor?.let { col -> BaseColor(col.toHexString()) },
-                borderWidth = it.borderWidth
-            )
-        }
-
-        val textStyle = layout?.textStyle?.toTextStyle()
-
-        val animation = (features[AnimationPlotFeature.FEATURE_NAME] as? AnimationPlotFeature)
+        val dataset = Dataset(source = datasetSource).takeIf { it.isNotEmpty() }
 
         return Option(
-            title, legend, grid, xAxis, yAxis, polar, radiusAxis, angleAxis, radar, dataset, series, textStyle,
-            animation?.enable, animation?.threshold, animation?.duration, animation?.easing?.name, animation?.delay
+            title,
+            legend,
+            grid,
+            xAxis,
+            yAxis,
+            polar,
+            radiusAxis,
+            angleAxis,
+            radar,
+            visualMaps.ifEmpty { null },
+            tooltip,
+            dataset,
+            series.ifEmpty { null },
+            textStyle,
+            animation?.enable,
+            animation?.threshold,
+            animation?.duration,
+            animation?.easing,
+            animation?.delay,
+            plotSize = layout?.size ?: (800 to 600)
         )
     }
-
-    private fun Geom.getType(): String = (this as EchartsGeom).name
 
     private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.name
 
@@ -123,17 +136,18 @@ internal class Parser(plot: Plot) {
         val show: Boolean = true
         val grid: Int? = null
         val alignTicks: Boolean? = null
-        val position: Position? = null
+        val position: String? = null
         val offset: Int? = null
         var min: String? = null
         var max: String? = null
-        val type: AxisType = when (scaleMap) { // TODO match Mapping
+        val type: String = when (scaleMap) { // TODO match Mapping
             is PositionalCategoricalScale<*> -> AxisType.CATEGORY
             is PositionalContinuousScale<*> -> {
-                min = scaleMap.limits?.first?.toString()
-                max = scaleMap.limits?.second?.toString()
+                min = scaleMap.limits?.first?.value?.toString()
+                max = scaleMap.limits?.second?.value?.toString()
                 AxisType.VALUE
             }
+
             is PositionalCategoricalUnspecifiedScale -> AxisType.CATEGORY
             is PositionalContinuousUnspecifiedScale -> AxisType.VALUE
             is DefaultUnspecifiedScale, is UnspecifiedScale -> {
@@ -146,9 +160,9 @@ internal class Parser(plot: Plot) {
             }
 
             else -> AxisType.VALUE
-        }
+        }.value
         val name: String? = null
-        val nameLocation: NameLocation? = null
+        val nameLocation: String? = null
         val nameGap: Int? = null
         val nameRotate: Int? = null
         val inverse: Boolean? = null
@@ -171,24 +185,25 @@ internal class Parser(plot: Plot) {
     }
 
     private fun Layer.toSeries(): Series {
-        val encode =
-            Encode((this.mappings[X] as ScaledMapping<*>).getId(), (this.mappings[Y] as ScaledMapping<*>).getId())
-        val name = settings.getNPSValue<String>(NAME)
-
-        return when (geom) {
-            LINE -> {
-                this.toLineSeries(name, encode)
-            }
-
-            BAR -> {
-                BarSeries(name = name, encode = encode)
-            }
-//            SCATTER -> {}
-//            BOXPLOT -> {}
-//            PIE -> {}
-//            CANDLESTICK -> {}
-            else -> TODO("exception?")
+        val x = (this.mappings[X] as? ScaledMapping<*>)?.getId()
+        val y = (this.mappings[Y] as? ScaledMapping<*>)?.getId()
+        val encode = Encode(x, y).takeIf { it.isNotEmpty() }
+        val name = settings.getNPSValue(NAME) ?: when {
+            x != null && y != null -> "$x $y"
+            x == null && y != null -> y
+            x != null && y == null -> x
+            else -> null
         }
 
+        return when (geom) {
+            LINE -> this.toLineSeries(name, encode)
+            AREA -> this.toAreaSeries(name, encode)
+            BAR -> this.toBarSeries(name, encode)
+            PIE -> this.toPieSeries(name, encode)
+            POINT -> this.toPointSeries(name, encode)
+            CANDLESTICK -> this.toCandlestickSeries(name, encode)
+            BOXPLOT -> this.toBoxplotSeries(name, encode)
+            else -> TODO("exception?")
+        }
     }
 }
