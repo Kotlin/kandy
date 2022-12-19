@@ -45,7 +45,7 @@ public fun main() {
         }
 
 
-    }}
+    } }
 
     simplePlot.save("lets_plot_dataframe_simple.png")
 }
