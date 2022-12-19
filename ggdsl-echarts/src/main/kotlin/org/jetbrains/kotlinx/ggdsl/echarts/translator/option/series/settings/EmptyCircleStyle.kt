@@ -1,10 +1,14 @@
+/*
+* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsColor
 
 @Serializable
-public data class EmptyCircleStyle(
+internal data class EmptyCircleStyle(
     val color: EchartsColor? = null,
     val borderColor: EchartsColor? = null,
     val borderWidth: Int? = null,

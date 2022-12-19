@@ -8,9 +8,9 @@ import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bar
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bars
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.line
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.point
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
 import org.jetbrains.kotlinx.ggdsl.letsplot.toSimple
@@ -33,7 +33,7 @@ class ToLetsPlotTest {
         }
         val plot = plot(dataset) {
             x(columnPointer<String>("origin"))
-            point {
+            points {
                 y(columnPointer<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
                 symbol(Symbol.CIRCLE_FILLED)
                 fillColor(Color.RED)
@@ -86,7 +86,7 @@ class ToLetsPlotTest {
             x(columnPointer<Double>("time").scaled(continuousPos(limits = -12.0 to 4.4)))
             y(columnPointer<String>("svalue").scaled(categoricalPos(categories = listOf("A", "B", "C"))))
 
-            bar {
+            bars {
                 color(
                     clM.scaled(
                         categorical(

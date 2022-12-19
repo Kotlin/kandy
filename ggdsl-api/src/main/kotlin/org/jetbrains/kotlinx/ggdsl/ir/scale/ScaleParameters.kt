@@ -5,6 +5,6 @@
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
 /**
- * Parameters of a scale.
+ * Additional parameters of a scale (defined by an engine).
  */
 public interface ScaleParameters

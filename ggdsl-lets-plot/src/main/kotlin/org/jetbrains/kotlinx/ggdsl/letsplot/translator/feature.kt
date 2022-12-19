@@ -13,13 +13,18 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetGridFeature
-import org.jetbrains.kotlinx.ggdsl.letsplot.facet.FacetWrapFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetGridFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetWrapFeature
+import org.jetbrains.kotlinx.ggdsl.letsplot.feature.CoordFlip
+import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Layout
+import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Reversed
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.COLOR
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.X
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.Y
+import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.series.Gathering
 import org.jetbrains.kotlinx.ggdsl.letsplot.series.GatheringList
-import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
-import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
+import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.coord.coordFlip
 import org.jetbrains.letsPlot.facet.facetGrid
@@ -33,7 +38,6 @@ import org.jetbrains.letsPlot.pos.*
 import org.jetbrains.letsPlot.tooltips.TooltipOptions
 import org.jetbrains.letsPlot.tooltips.layerTooltips
 import org.jetbrains.letsPlot.tooltips.tooltipsNone
-import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 internal fun FacetGridFeature.wrap(): OptionsMap {
@@ -133,14 +137,15 @@ internal fun Gathering.toLayer(): Layer {
         series.settings.forEach { (aesName, setting) ->
             scaleBuffer[aesName]!!.let {
                 it.first.add(series.label)
-                it.second.add((setting as NonPositionalSetting<*>).value)
+                it.second.add((setting as NonPositionalSetting<*>).value.value)
             }
         }
     }
 
 
     val nonPosScales: Map<AesName, Mapping> = if (scaleBuffer.isEmpty()) {
-        mapOf(COLOR to ScaledNonPositionalUnspecifiedMapping<String, Color>(
+        mapOf(
+            COLOR to ScaledNonPositionalUnspecifiedMapping<String, Color>(
             COLOR,
             "label"<String>().scaled(categorical()),
             typeOf<String>()
@@ -191,7 +196,7 @@ internal fun Gathering.toLayer(): Layer {
 internal fun Position.wrap(): PosOptions {
     return when (this) {
         is Position.Identity -> return positionIdentity
-        is Position.Stack -> return positionStack
+        is Position.Stack -> return positionStack()
         is Position.Dodge -> return positionDodge(width)
         is Position.Jitter -> return positionJitter(width, height)
         is Position.Nudge -> return positionNudge(x, y)

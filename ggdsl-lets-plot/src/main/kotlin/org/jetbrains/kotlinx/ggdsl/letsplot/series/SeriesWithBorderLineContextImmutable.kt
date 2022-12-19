@@ -4,10 +4,10 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableBindingContextInterfaceMutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableDataContext
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BorderLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BorderLineContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.WithBorderLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.WithBorderLineContextMutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextImmutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextMutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.WithBorderLineContextImmutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.WithBorderLineContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 
 public abstract class SeriesWithBorderLineContextImmutable(parent: TableDataContext) :

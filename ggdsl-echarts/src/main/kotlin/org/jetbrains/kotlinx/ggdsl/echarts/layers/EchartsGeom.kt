@@ -6,11 +6,25 @@ package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 
-public data class EchartsGeom(val name: String) : Geom
-
-
-public val POINT: EchartsGeom = EchartsGeom("point")
-public val BAR: EchartsGeom = EchartsGeom("bar")
+internal data class EchartsGeom(val name: String) : Geom
 
 @PublishedApi
 internal val LINE: EchartsGeom = EchartsGeom("line")
+
+@PublishedApi
+internal val AREA: EchartsGeom = EchartsGeom("area")
+
+@PublishedApi
+internal val BAR: EchartsGeom = EchartsGeom("bar")
+
+@PublishedApi
+internal val PIE: EchartsGeom = EchartsGeom("pie")
+
+@PublishedApi
+internal val POINT: EchartsGeom = EchartsGeom("point")
+
+@PublishedApi
+internal val CANDLESTICK: EchartsGeom = EchartsGeom("candlestick")
+
+@PublishedApi
+internal val BOXPLOT: EchartsGeom = EchartsGeom("boxplot")

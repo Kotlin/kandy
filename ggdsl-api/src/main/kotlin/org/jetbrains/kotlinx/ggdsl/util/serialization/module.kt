@@ -1,16 +1,18 @@
 package org.jetbrains.kotlinx.ggdsl.util.serialization
 
 import kotlinx.serialization.PolymorphicSerializer
-import kotlinx.serialization.builtins.serializer
-import kotlinx.serialization.modules.*
+import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.polymorphic
+import kotlinx.serialization.modules.subclass
 import org.jetbrains.kotlinx.ggdsl.dsl.LazyGroupedData
 import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 
-//todo
+/**
+ * [SerializersModule] for IR elements from common API.
+ */
 public val commonModules: SerializersModule
     get() = SerializersModule {
         polymorphic(TableData::class) {
@@ -69,12 +71,4 @@ public val commonModules: SerializersModule
         polymorphic(FreeScale::class) {
             subclass(FreePositionalScale.serializer(PolymorphicSerializer(Any::class)))
         }
-    /*
-        polymorphic(Any::class){
-            subclass(Int.serializer())
-            subclass(Double.serializer())
-            subclass(String.serializer())
-        }
-
-     */
 }

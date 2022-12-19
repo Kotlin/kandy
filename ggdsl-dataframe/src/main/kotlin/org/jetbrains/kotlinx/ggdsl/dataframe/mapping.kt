@@ -6,18 +6,20 @@ package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnPointer
-import org.jetbrains.kotlinx.ggdsl.dsl.ScalableNonPositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.NonScalableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.NonScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.dsl.ScalableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.ScalablePositionalAes
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalableNonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalablePositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultNonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledUnspecifiedDefaultPositionalMapping
 import kotlin.reflect.typeOf
 
 /**
- * Mapping the given column to this non-scalable ("sub-positional") aesthetic attribute.
+ * Maps the given [ColumnReference] to this non-scalable positional ("sub-positional") aesthetic attribute.
  *
- * @param columnRef the mapped column.
+ * @param columnRef the mapped raw data column.
  */
 public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
     columnRef: ColumnReference<DomainType>
@@ -27,9 +29,22 @@ public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.i
 }
 
 /**
- * Mapping the given column to this positional aesthetic attribute with a default scale.
+ * Maps the given [ColumnReference] to this non-scalable non-positional aesthetic attribute.
  *
- * @param columnRef the mapped column.
+ * @param columnRef the mapped raw data column.
+ */
+public inline operator fun <reified DomainType : Any, RangeType: Any> NonScalableNonPositionalAes<RangeType>.invoke(
+    columnRef: ColumnReference<DomainType>
+) {
+    context.bindingCollector.mappings[this.name] =
+        NonScalableNonPositionalMapping(this.name, columnRef.toColumnPointer(), typeOf<DomainType>())
+}
+
+/**
+ * Maps the given [ColumnReference] to this positional aesthetic attribute with an unspecified
+ * (i.e. without specifying the type and parameters; they will be defined automatically) scale.
+ *
+ * @param columnRef the mapped raw data column.
  */
 public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
     columnRef: ColumnReference<DomainType>
@@ -44,9 +59,10 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
 }
 
 /**
- * Mapping the given column to this non-positional aesthetic attribute with a default scale.
+ * Maps the given [ColumnReference] to this non-positional aesthetic attribute with an unspecified
+ * (i.e. without specifying the type and parameters; they will be defined automatically) scale.
  *
- * @param columnRef the mapped column.
+ * @param columnRef the mapped raw data column.
  */
 public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableNonPositionalAes<RangeType>.invoke(
     columnRef: ColumnReference<DomainType>

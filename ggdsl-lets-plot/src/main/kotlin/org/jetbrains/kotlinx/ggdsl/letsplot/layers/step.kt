@@ -4,11 +4,15 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LayerWithBorderLineContextImmutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LayerWithBorderLineContextMutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val STEP: LetsPlotGeom = LetsPlotGeom("step")
@@ -31,10 +35,61 @@ public class StepContextImmutable(parent: LayerCollectorContextImmutable) :
 public class StepContextMutable(parent: LayerCollectorContextMutable)
     : LayerWithBorderLineContextMutable(parent), StepContextInterface
 
+/**
+ * Adds a new step layer.
+ *
+ * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ *
+ *  ### Aesthetic attributes:
+ *
+ *  Positional:
+ *
+ *  - [ x][StepContextInterface.x]
+ *  - [ y][StepContextInterface.y]
+ *
+ *   Non-positional:
+ *  - [color][StepContextInterface.color] - line color, of the type [Color], mappable. (TODO grouping)
+ *  - [alpha][StepContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
+ *  - [lineType][StepContextInterface.lineType] - line type, of the type [LineType], mappable. (TODO grouping)
+ *  - [width][StepContextInterface.width] - line width, of the type [Double], mappable. (TODO grouping)
+ *
+ * ```
+ * step {
+ *    x(time.scaled(..)) // mapping from `time` column to `X` with some scale
+ *    lineType(LineType.DOTTED) // setting of constant `type` value
+ * }
+ * ```
+ */
 public inline fun LayerCollectorContextImmutable.step(block: StepContextImmutable.() -> Unit) {
     addLayer(StepContextImmutable(this).apply(block), STEP)
 }
 
+/**
+ * Adds a new step layer.
+ *
+ * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
+ *
+ *  ### Aesthetic attributes:
+ *
+ *  Positional:
+ *
+ *  - [ x][StepContextInterface.x]
+ *  - [ y][StepContextInterface.y]
+ *
+ *   Non-positional:
+ *  - [color][StepContextInterface.color] - line color, of the type [Color], mappable. (TODO grouping)
+ *  - [alpha][StepContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
+ *  - [lineType][StepContextInterface.lineType] - line type, of the type [LineType], mappable. (TODO grouping)
+ *  - [width][StepContextInterface.width] - line width, of the type [Double], mappable. (TODO grouping)
+ *
+ * ```
+ * step {
+ *    x(listOf(4.2f, 5.5f, 8.9f).scaled(..)) // mapping from list to `X` with some scale
+ *    lineType(LineType.DOTTED) // setting of constant `type` value
+ * }
+ * ```
+ */
 public inline fun LayerCollectorContextMutable.step(block: StepContextMutable.() -> Unit) {
     addLayer(StepContextMutable(this).apply(block), STEP)
 }

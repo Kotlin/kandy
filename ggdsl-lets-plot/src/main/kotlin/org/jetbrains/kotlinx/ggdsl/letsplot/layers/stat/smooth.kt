@@ -3,7 +3,7 @@
 */
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat
-
+/*
 public sealed interface SmoothMethod {
     public val name: String
 
@@ -19,3 +19,5 @@ public sealed interface SmoothMethod {
         override val name: String = "loess"
     }
 }
+
+ */

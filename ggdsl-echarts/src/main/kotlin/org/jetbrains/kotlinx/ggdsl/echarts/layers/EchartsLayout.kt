@@ -1,53 +1,55 @@
+/*
+* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.ggdsl.echarts.features.TitleFeature
-import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyleFeature
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.echarts.features.Grid
+import org.jetbrains.kotlinx.ggdsl.echarts.features.Legend
+import org.jetbrains.kotlinx.ggdsl.echarts.features.Title
+import org.jetbrains.kotlinx.ggdsl.echarts.features.Tooltip
+import org.jetbrains.kotlinx.ggdsl.echarts.features.TextStyle
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
-public inline fun LayerPlotContext.layout(block: EChartsLayout.() -> Unit) {
-    features[EChartsLayout.FEATURE_NAME] = EChartsLayout().apply(block)
-}
-
 /**
- * Plot layout settings
+ * Plot layout settings.
  *
- * @param title the title of this plot
- * @param size the size of this plot
+ * @property size - plot size.
+ * @property title - [title][org.jetbrains.kotlinx.ggdsl.echarts.features.Title] of plot.
+ * @property textStyle - [font style][org.jetbrains.kotlinx.ggdsl.echarts.features.TextStyle].
+ * @property grid - [grid][org.jetbrains.kotlinx.ggdsl.echarts.features.Grid] settings.
+ * @property legend - [legend][org.jetbrains.kotlinx.ggdsl.echarts.features.Legend].
+ * @property tooltip - [tooltip][org.jetbrains.kotlinx.ggdsl.echarts.features.Tooltip].
+ *
+ * @see EChartsLayout
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.features.Title
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.features.TextStyle
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.features.Grid
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.features.Legend
+ * @see org.jetbrains.kotlinx.ggdsl.echarts.features.Tooltip
  */
+@PlotDslMarker
 public class EChartsLayout : PlotFeature {
+    public var size: Pair<Int, Int>? = null
 
-    public var title: String? = null
-        set(value) {
-            if (titleFeature == null) {
-                titleFeature = TitleFeature(text = value)
-            } else {
-                titleFeature!!.text = value
-            }
-            field = value
-        }
-
-    public var subtitle: String? = null
-        set(value) {
-            if (titleFeature == null) {
-                titleFeature = TitleFeature(subtext = value)
-            } else {
-                titleFeature!!.subtext = value
-            }
-            field = value
-        }
-
+    /**
+     * @suppress
+     */
     override val featureName: FeatureName = FEATURE_NAME
 
-    @PublishedApi
-    internal var titleFeature: TitleFeature? = null
+    public var title: Title = Title()
+
+    public var textStyle: TextStyle = TextStyle()
+
+    public var grid: Grid = Grid()
 
     @PublishedApi
-    internal var size: Pair<Int, Int>? = null
+    internal var legend: Legend? = null
 
     @PublishedApi
-    internal var textStyle: TextStyleFeature? = null
+    internal var tooltip: Tooltip? = null
 
     @PublishedApi
     internal companion object {

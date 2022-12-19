@@ -2,7 +2,9 @@ package org.jetbrains.kotlinx.ggdsl.ir.data
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.descriptors.*
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.descriptors.buildClassSerialDescriptor
+import kotlinx.serialization.descriptors.element
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
@@ -12,7 +14,6 @@ import kotlinx.serialization.encoding.Encoder
  *
  * @param T a type of column
  * @property name the name of column in the table
- * @property type reified type of data TODO: was removed
  */
 @Serializable(with=CPSerializer::class)
 public data class ColumnPointer<T : Any>(val name: String)

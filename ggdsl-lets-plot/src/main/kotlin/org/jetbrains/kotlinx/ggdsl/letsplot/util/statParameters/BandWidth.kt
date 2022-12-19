@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters
 
+/*
 public interface BandWidth : SimpleValueWrapper {
     public data class ByValue(override val value: Double) : BandWidth
 
@@ -16,3 +17,5 @@ public interface BandWidth : SimpleValueWrapper {
         override val value: String = "nrd"
     }
 }
+
+ */

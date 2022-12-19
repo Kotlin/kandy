@@ -22,7 +22,7 @@ public sealed interface Mapping {
 }
 
 /**
- * Mapping without an individual scale.
+ * Positional mapping without an individual scale.
  *
  * @property aes the aesthetic attribute to be mapped to
  * @property source the source to which the mapping is applied
@@ -35,6 +35,13 @@ public data class NonScalablePositionalMapping<DomainType : Any>(
     @Serializable(KTypeSerializer::class) override val domainType: KType
 ): Mapping
 
+/**
+ * Non-positional mapping without an individual scale.
+ *
+ * @property aes the aesthetic attribute to be mapped to
+ * @property source the source to which the mapping is applied
+ * @property domainType the type of domain
+ */
 @Serializable
 public data class NonScalableNonPositionalMapping<DomainType : Any>(
     override val aes: AesName,

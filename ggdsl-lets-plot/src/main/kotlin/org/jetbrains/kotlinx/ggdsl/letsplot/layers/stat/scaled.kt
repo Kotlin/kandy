@@ -3,14 +3,14 @@
 */
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat
-
+/*
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 
-/*
+
 <<<<<<< HEAD
 inline fun <reified DomainType : Any> Stat<DomainType>.scaled() =
     SourceScaledUnspecifiedDefault(this.toColumnPointer())

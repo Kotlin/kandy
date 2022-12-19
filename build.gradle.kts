@@ -11,15 +11,20 @@ buildscript {
 }
 
 plugins {
-    kotlin("jvm") version "1.7.10"
-    kotlin("plugin.serialization") version "1.7.10"
-    kotlin("jupyter.api") version "0.11.0-187"
+    val kotlin_version: String by System.getProperties()
+    val jupyter_api_version: String by System.getProperties()
+    val nexus_version: String by System.getProperties()
+    val dokka_version: String by System.getProperties()
+
+    kotlin("jvm") version kotlin_version
+    kotlin("plugin.serialization") version kotlin_version
+    kotlin("jupyter.api") version jupyter_api_version
     id("maven-publish")
-    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
-    id("org.jetbrains.dokka") version "1.7.10"
+    id("io.github.gradle-nexus.publish-plugin") version nexus_version
+    id("org.jetbrains.dokka") version dokka_version
 }
 
-val ggdslVersion = "0.2.4-dev-5"
+val ggdslVersion = "0.3.0-rc-1"
 
 allprojects {
     repositories {

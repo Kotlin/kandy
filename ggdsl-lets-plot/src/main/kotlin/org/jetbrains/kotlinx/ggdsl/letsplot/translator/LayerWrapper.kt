@@ -5,13 +5,11 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.letsplot.GROUP
-import org.jetbrains.kotlinx.ggdsl.letsplot.MERGED_GROUPS
-import org.jetbrains.kotlinx.ggdsl.letsplot.Reversed
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.GROUP
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.MERGED_GROUPS
+import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
-import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.LayerTooltips
+import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
 import org.jetbrains.letsPlot.Stat
 import org.jetbrains.letsPlot.intern.Options
 import org.jetbrains.letsPlot.intern.layer.LayerBase

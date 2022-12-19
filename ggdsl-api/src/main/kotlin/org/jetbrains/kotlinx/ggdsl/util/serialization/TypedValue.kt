@@ -5,7 +5,6 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.descriptors.element
@@ -14,7 +13,6 @@ import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.encoding.decodeStructure
 import kotlinx.serialization.encoding.encodeStructure
 import org.jetbrains.kotlinx.ggdsl.ir.data.AnySerializer
-import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
@@ -61,6 +59,13 @@ public object TypedValueSerializer : KSerializer<TypedValue> {
 
 }
 
+/**
+ * Special wrapper that stores a value of some type and that type
+ * in the reified representation.
+ *
+ * @property kType type of list elements.
+ * @property value stored values.
+ */
 @Serializable(TypedValueSerializer::class)
 public data class TypedValue(
     val kType: KType,

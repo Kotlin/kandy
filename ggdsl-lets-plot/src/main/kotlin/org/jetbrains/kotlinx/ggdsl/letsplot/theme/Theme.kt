@@ -6,6 +6,9 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.theme
 
 import kotlinx.serialization.Serializable
 
+/**
+ * Plot theme.
+ */
 public sealed interface Theme {
     @Serializable
     public object Grey : Theme

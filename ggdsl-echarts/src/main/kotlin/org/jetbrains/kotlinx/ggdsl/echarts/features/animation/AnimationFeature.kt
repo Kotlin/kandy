@@ -8,12 +8,12 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
-public class AnimationPlotFeature(
-    public var enable: Boolean? = null,
-    public var threshold: Int? = null,
-    public var duration: Int? = null,
-    public var easing: AnimationEasing? = null,
-    public var delay: Int? = null
+internal class AnimationPlotFeature(
+    var enable: Boolean? = null,
+    var threshold: Int? = null,
+    var duration: Int? = null,
+    var easing: String? = null,
+    var delay: Int? = null
 ) : PlotFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
@@ -22,25 +22,17 @@ public class AnimationPlotFeature(
     }
 }
 
-public class AnimationLineFeature(
-    public var enable: Boolean? = null,
-    public var threshold: Int? = null,
-    public var duration: Int? = null,
-    public var easing: AnimationEasing? = null,
-    public var delay: Int? = null
+internal class AnimationLayerFeature(
+    var enable: Boolean? = null,
+    var type: String? = null,
+    var threshold: Int? = null,
+    var duration: Int? = null,
+    var easing: String? = null,
+    var delay: Int? = null
 ) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
     internal companion object {
-        val FEATURE_NAME: FeatureName = FeatureName("ANIMATION_LINE_FEATURE")
-    }
-}
-
-public class AnimationEasing private constructor(public val name: String) {
-    public companion object {
-        // todo (add function?)
-        public val LINEAR: AnimationEasing = AnimationEasing("linear")
-        public val CUBIC_OUT: AnimationEasing = AnimationEasing("cubicOut")
-        public val ELASTIC_OUT: AnimationEasing = AnimationEasing("elasticOut")
+        val FEATURE_NAME: FeatureName = FeatureName("ANIMATION_LAYER_FEATURE")
     }
 }

@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BarContextInterface
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BarContextInterface
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 
 public interface BarGatheringContextInterface : BarContextInterface, GatheringContextInterface {

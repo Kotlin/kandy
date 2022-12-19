@@ -4,9 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
-
-public val BOXPLOT_STAT: LetsPlotGeom = LetsPlotGeom("boxplot_stat")
+//public val BOXPLOT_STAT: LetsPlotGeom = LetsPlotGeom("boxplot_stat")
 
 /*
 @PlotDslMarker

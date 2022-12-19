@@ -1,52 +1,30 @@
+/*
+* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+*/
+
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.option
 
 import kotlinx.serialization.Contextual
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
-public enum class Position {
-    @SerialName("top")
-    TOP,
-    @SerialName("bottom")
-    BOTTOM
+internal enum class AxisType(val value: String) {
+    VALUE("value"),
+    CATEGORY("category"),
+    TIME("time"),
+    LOG("log"),
 }
 
 @Serializable
-public enum class AxisType {
-    @SerialName("value")
-    VALUE,
-    @SerialName("category")
-    CATEGORY,
-    @SerialName("time")
-    TIME,
-    @SerialName("log")
-    LOG,
-}
-
-@Serializable
-public enum class NameLocation {
-    @SerialName("start")
-    START,
-    @SerialName("middle")
-    MIDDLE,
-    @SerialName("center")
-    CENTER,
-    @SerialName("end")
-    END
-}
-
-@Serializable
-public data class Axis(
+internal data class Axis(
     val id: String? = null,
     val show: Boolean? = null,
     val gridIndex: Int? = null,
     val alignTicks: Boolean? = null,
-    val position: Position? = null,
+    val position: String? = null,
     val offset: Int? = null,
-    val type: AxisType,
+    val type: String,
     val name: String? = null,
-    val nameLocation: NameLocation? = null,
+    val nameLocation: String? = null,
 //    val nameTextStyle: TextStyle?,
     val nameGap: Int? = null,
     val nameRotate: Int? = null,

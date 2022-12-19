@@ -8,6 +8,9 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
+/**
+ * The relative arrangement of groups within a layer. TODO grouping
+ */
 @Serializable
 public sealed class Position private constructor(public val name: String) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME

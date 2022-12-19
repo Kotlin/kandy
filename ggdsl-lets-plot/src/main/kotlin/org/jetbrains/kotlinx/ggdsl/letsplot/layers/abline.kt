@@ -4,35 +4,72 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.ABLineContextImmutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.ABLineContextMutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val AB_LINE: LetsPlotGeom = LetsPlotGeom("abline")
 
-public interface ABLineContextInterface: BindingContext {
-    public val slope: SlopeAes get() = SlopeAes(this)
-    public val intercept: InterceptAes get() = InterceptAes(this)
-
-    public val color: ColorAes get() = ColorAes(this)
-    public val alpha: AlphaAes get() = AlphaAes(this)
-    public val type: LineTypeAes get() = LineTypeAes(this)
-    public val width: WidthAes get() = WidthAes(this)
-}
-
-@PlotDslMarker
-public class ABLineContextImmutable(parent: LayerCollectorContextImmutable)
-    : LayerContextImmutable(parent), ABLineContextInterface
-
-@PlotDslMarker
-public class ABLineContextMutable(parent: LayerCollectorContextMutable):
-    LayerContextMutable(parent), ABLineContextInterface
-
+/**
+ * Adds a new line with specified slope and intercept layer.
+ *
+ * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ *
+ *  ### Aesthetic attributes:
+ *
+ *  Positional:
+ *
+ *  - [slope][ABLineContextImmutable.slope] - line slope.
+ *  - [intercept][ABLineContextImmutable.intercept] - line intercept.
+ *
+ *   Non-positional:
+ *  - [color][ABLineContextImmutable.color] - line color, of the type [Color], mappable. (TODO grouping)
+ *  - [alpha][ABLineContextImmutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
+ *  - [type][ABLineContextImmutable.type] - line type, of the type [LineType], mappable. (TODO grouping)
+ *  - [width][ABLineContextImmutable.width] - line width, of the type [Double], mappable. (TODO grouping)
+ *
+ * ```
+ * abLine {
+ *    intercept(0.5) // setting of constant `intercept` value
+ *    color(gType.scaled(..)) // mapping from `gType` column to `color` with some scale
+ * }
+ * ```
+ */
 public inline fun LayerCollectorContextImmutable.abLine(block: ABLineContextImmutable.() -> Unit) {
     addLayer(ABLineContextImmutable(this).apply(block), AB_LINE)
 }
 
+/**
+ * Adds a new line with specified slope and intercept layer.
+ *
+ * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
+ *
+ *  ### Aesthetic attributes:
+ *
+ *  Positional:
+ *
+ *  - [slope][ABLineContextMutable.slope] - line slope.
+ *  - [intercept][ABLineContextMutable.intercept] - line intercept.
+ *
+ *   Non-positional:
+ *  - [color][ABLineContextMutable.color] - line color, of the type [Color], mappable. (TODO grouping)
+ *  - [alpha][ABLineContextMutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
+ *  - [type][ABLineContextMutable.type] - line type, of the type [LineType], mappable. (TODO grouping)
+ *  - [width][ABLineContextMutable.width] - line width, of the type [Double], mappable. (TODO grouping)
+ *
+ * ```
+ * abLine {
+ *    slope(0.5) // setting of constant `slope` value
+ *    color(listOf("A", "B", "B", "A").scaled(..)) // mapping from list to `color` with some scale
+ * }
+ * ```
+ */
 public inline fun LayerCollectorContextMutable.abLine(block: ABLineContextMutable.() -> Unit) {
     addLayer(ABLineContextMutable(this).apply(block), AB_LINE)
 }

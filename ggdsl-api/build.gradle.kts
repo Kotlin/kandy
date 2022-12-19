@@ -8,11 +8,14 @@ repositories {
     mavenCentral()
 }
 
+val serialization_version: String by project
+val datetime_version: String by project
+
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:$datetime_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version")
 }
 
 tasks {
@@ -28,3 +31,4 @@ tasks.withType<JavaCompile> {
     sourceCompatibility = JavaVersion.VERSION_1_8.toString()
     targetCompatibility = JavaVersion.VERSION_1_8.toString()
 }
+

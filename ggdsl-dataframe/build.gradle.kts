@@ -8,10 +8,12 @@ repositories {
     mavenCentral()
 }
 
+val dataframe_version: String by project
+
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlinx:dataframe:0.9.0-dev-1139")
+    implementation("org.jetbrains.kotlinx:dataframe:$dataframe_version")
     implementation(project(":ggdsl-api"))
 }
 

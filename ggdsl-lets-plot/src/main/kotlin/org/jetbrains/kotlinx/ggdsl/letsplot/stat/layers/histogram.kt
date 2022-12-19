@@ -5,8 +5,8 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BarContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BarContextInterface
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BarContextImmutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BarContextInterface
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinStatContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinXPos
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.Bins

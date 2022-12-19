@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
-import org.jetbrains.kotlinx.ggdsl.letsplot.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
 
 /* TODO
 @PublishedApi
