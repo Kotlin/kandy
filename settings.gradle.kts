@@ -5,4 +5,5 @@ include("ggdsl-echarts")
 include("ggdsl-dataframe")
 include("ggdsl-dataframe-lets-plot")
 
-//include("examples:idea-examples:lets-plot-simple")
+include("examples:idea-examples:lets-plot-simple")
+include("examples:idea-examples:lets-plot-dataframe-simple")
