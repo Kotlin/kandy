@@ -25,8 +25,7 @@ internal class Integration : JupyterIntegration() {
     override fun Builder.onLoaded() {
         resources {
             js("echarts") {
-                url(ECHARTS_SRC)
-                classPath("js/echarts.min.js")
+                url(ECHARTS_SRC, classpathFallBack = "js/echarts.min.js")
             }
         }
 
