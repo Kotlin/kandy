@@ -13,12 +13,13 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.marks.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.Measurement
+import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.util.singleOf
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 
 internal fun Layer.toPointSeries(name: String?, encode: Encode?): ScatterSeries {
-    val symbol = settings.getNPSValue<Symbol>(SYMBOL)
-    val animation = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
-    val size = settings.getNPSValue(SIZE) ?: symbol?.getSize()
+    val symbol: Symbol? = settings.getNPSValue<Symbol>(SYMBOL)
+    val animation: AnimationLayerFeature? = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
+    val size: Measurement? = settings.getNPSValue<Double>(SIZE)?.let { singleOf(it) } ?: symbol?.getSize()
 
     return ScatterSeries(
         name = name,
