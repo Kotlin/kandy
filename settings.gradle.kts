@@ -7,3 +7,5 @@ include("ggdsl-dataframe-lets-plot")
 
 include("examples:idea-examples:lets-plot-simple")
 include("examples:idea-examples:lets-plot-dataframe-simple")
+include("examples:idea-examples:echarts-simple")
+include("examples:idea-examples:echarts-dataframe-simple")
