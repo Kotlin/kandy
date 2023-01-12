@@ -5,7 +5,6 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
@@ -18,6 +17,7 @@ import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.encoding.encodeStructure
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.Range
+import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
 @OptIn(ExperimentalSerializationApi::class)
 internal object RangeSerializer : KSerializer<Range> {
@@ -43,7 +43,7 @@ internal object RangeSerializer : KSerializer<Range> {
                 descriptor, 0, ListSerializer(String.serializer()), value.symbol?.map { (it as Symbol).name }
             )
             encodeNullableSerializableElement(
-                descriptor, 1, ListSerializer(Double.serializer()), value.symbolSize?.map { (it as Number).toDouble() }
+                descriptor, 1, ListSerializer(Double.serializer()), value.symbolSize?.map { ((it as TypedValue).value as Number).toDouble() }
             )
             encodeNullableSerializableElement(descriptor, 2, ListSerializer(ColorSerializer), value.color)
 
