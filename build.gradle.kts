@@ -45,7 +45,9 @@ allprojects {
     }
 }
 
-subprojects {
+val unpublished = listOf("examples")
+
+configure(subprojects.filter { it.name !in unpublished }) {
     apply(from = project.rootProject.file("gradle/publish.gradle"))
 }
 
