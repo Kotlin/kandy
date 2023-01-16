@@ -5,6 +5,9 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.features.animation
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationType.EXPANSION
+import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationType.SCALE
+import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
 /**
  * Animation settings for [Plot][org.jetbrains.kotlinx.ggdsl.ir.Plot] and layers.
@@ -26,14 +29,13 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.BarContextImmutable
  */
 @PlotDslMarker
-public class AnimationContext(
+public class Animation(
     public var enable: Boolean? = null,
     public var threshold: Int? = null,
     public var duration: Int? = null,
     public var easing: AnimationEasing? = null,
     public var delay: Int? = null
-) {
-
+) : SelfInvocationContext {
     internal fun isEmpty(): Boolean =
         enable == null && threshold == null && duration == null && easing == null && delay == null
 
@@ -62,7 +64,7 @@ public class AnimationContext(
  *
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.pie
  * @see org.jetbrains.kotlinx.ggdsl.echarts.features.animation.animation
- * @see AnimationPieContext
+ * @see AnimationPie
  */
 public enum class AnimationType(public val type: String) {
     EXPANSION("expansion"), SCALE("scale")
@@ -85,7 +87,7 @@ public enum class AnimationType(public val type: String) {
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.PieContextImmutable
  */
 @PlotDslMarker
-public class AnimationPieContext(
+public class AnimationPie(
     public var enable: Boolean? = null,
     public var type: AnimationType? = null,
     public var threshold: Int? = null,
@@ -119,7 +121,7 @@ public class AnimationPieContext(
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.CandlestickContextImmutable
  */
 @PlotDslMarker
-public class AnimationBoxplotCandlestickContext(
+public class AnimationBoxplotCandlestick(
     public var duration: Int? = null,
     public var easing: AnimationEasing? = null,
     public var delay: Int? = null

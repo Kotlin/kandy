@@ -3,10 +3,10 @@ package org.jetbrains.kotlinx.ggdsl.echarts.dsl
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationEasing
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationType
-import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.animation
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
 import org.jetbrains.kotlinx.ggdsl.echarts.toJson
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
+import org.jetbrains.kotlinx.ggdsl.util.context.invoke
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -114,7 +114,6 @@ private fun assertAnimationEq(
 }
 
 class AnimationTests {
-    private var animation: Boolean = true
     private var animationType: AnimationType = AnimationType.SCALE
     private var animationThreshold: Int = 2000
     private var animationDuration: Int = 1000
@@ -124,7 +123,7 @@ class AnimationTests {
     @Test
     fun `empty animation`() {
         val actual = plot {
-            animation {  }
+            layout { animation { } }
         }
         val expected = """
             {
@@ -136,7 +135,7 @@ class AnimationTests {
     @Test
     fun `false animation`() {
         val actual = plot {
-            animation { enable = false }
+            layout { animation { enable = false } }
         }
         val expected = """
             {
@@ -149,24 +148,25 @@ class AnimationTests {
     @Test
     fun `animation of plot`() {
         val actual = plot {
-            animation {
-                enable = animation // true
-                threshold = animationThreshold // 2000
-                duration = animationDuration // 1000
-                easing = animationEasing // cubicOut
-                delay = animationDelay // 0
+            layout {
+                animation {
+                    enable = true
+                    threshold = animationThreshold // 2000
+                    duration = animationDuration // 1000
+                    easing = animationEasing // cubicOut
+                    delay = animationDelay // 0
+                }
             }
         }
 
         assertAnimationEq(
-            actual, animation = animation, animationThreshold = animationThreshold,
+            actual, animation = true, animationThreshold = animationThreshold,
             animationDuration = animationDuration, animationEasing = animationEasing, animationDelay = animationDelay
         ) { "Plot animation not as expected" }
     }
 
     @Test
     fun `animation of line`() {
-        animation = true
         animationThreshold = 1000
         animationDuration = 1500
         animationEasing = AnimationEasing.ELASTIC_OUT
@@ -174,7 +174,7 @@ class AnimationTests {
         val actual = plot(mapOf()) {
             line {
                 animation {
-                    enable = animation
+                    enable = true
                     threshold = animationThreshold
                     duration = animationDuration
                     easing = animationEasing
@@ -184,14 +184,13 @@ class AnimationTests {
         }
 
         assertAnimationEq(
-            actual, type = "line", animation = animation, animationThreshold = animationThreshold,
+            actual, type = "line", animation = true, animationThreshold = animationThreshold,
             animationDuration = animationDuration, animationEasing = animationEasing, animationDelay = animationDelay
         ) { "Line plot animation not as expected" }
     }
 
     @Test
     fun `animation of area`() {
-        animation = true
         animationThreshold = 0
         animationDuration = 1
         animationEasing = AnimationEasing.ELASTIC_OUT
@@ -199,7 +198,7 @@ class AnimationTests {
         val actual = plot(mapOf()) {
             area {
                 animation {
-                    enable = animation
+                    enable = true
                     threshold = animationThreshold
                     duration = animationDuration
                     easing = animationEasing
@@ -209,7 +208,7 @@ class AnimationTests {
         }
 
         assertAnimationEq(
-            actual, type = "area", animation = animation, animationThreshold = animationThreshold,
+            actual, type = "area", animation = true, animationThreshold = animationThreshold,
             animationDuration = animationDuration, animationEasing = animationEasing, animationDelay = animationDelay
         ) { "Area plot animation not as expected" }
     }
@@ -260,7 +259,6 @@ class AnimationTests {
 
     @Test
     fun `animation of pie`() {
-        animation = true
         animationType = AnimationType.SCALE
         animationThreshold = 875
         animationDuration = 952
@@ -269,7 +267,7 @@ class AnimationTests {
         val actual = plot(mapOf()) {
             pie {
                 animation {
-                    enable = animation
+                    enable = true
                     type = animationType
                     threshold = animationThreshold
                     duration = animationDuration
@@ -281,7 +279,7 @@ class AnimationTests {
 
         assertAnimationEq(
             actual, type = "pie",
-            animation, animationType, animationThreshold, animationDuration, animationEasing, animationDelay
+            true, animationType, animationThreshold, animationDuration, animationEasing, animationDelay
         )
         { "Pie plot animation not as expected" }
     }

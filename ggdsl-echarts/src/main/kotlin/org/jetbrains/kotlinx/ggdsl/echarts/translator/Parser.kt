@@ -7,7 +7,6 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.NAME
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
-import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationPlotFeature
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.*
@@ -52,7 +51,7 @@ internal class Parser(plot: Plot) {
         val grid = layout?.grid?.toEchartsGrid()
         val tooltip = layout?.tooltip?.toEchartsTooltip()
         val textStyle = layout?.textStyle?.toTextStyle()
-        val animation = (features[AnimationPlotFeature.FEATURE_NAME] as? AnimationPlotFeature)
+        val animation = layout?.animation?.toAnimationPlotFeature()
 
         globalMappings.forEach { (aes, mapping) ->
             if (mapping is ScaledMapping<*>) {
