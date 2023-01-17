@@ -20,7 +20,7 @@ internal fun Color.toEchartsColor(): EchartsColor = when (this) {
 }
 
 @Serializable(with = ColorSerializer::class)
-public interface EchartsColor
+internal interface EchartsColor
 
 internal class BaseColor internal constructor(val hex: String) : EchartsColor
 
