@@ -2,9 +2,15 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.ggdsl.echarts.features
+package org.jetbrains.kotlinx.ggdsl.echarts.features.text
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.FontFamily.*
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.FontStyle.*
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.FontWeight.Companion.BOLD
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.FontWeight.Companion.BOLDER
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.FontWeight.Companion.LIGHTER
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.FontWeight.Companion.NORMAL
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Pixel
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.EchartsTextStyle
@@ -90,15 +96,13 @@ public class TextStyle(
     public var lineHeight: Int? = null,
     public var width: Int? = null,
     public var height: Int? = null,
-    public var textBorderColor: Color? = null,
-    public var textBorderWidth: Int? = null,
-    public var textBorderType: LineType? = null
+    public var border: TextBorder = TextBorder(),
 ) : SelfInvocationContext {
 
     internal fun isEmpty(): Boolean =
         color == null && fontStyle == null && fontWeight == null && fontFamily == null
             && fontSize == null && lineHeight == null && width == null && height == null
-            && textBorderColor == null && textBorderWidth == null && textBorderType == null
+            && border.isEmpty()
 
     internal fun isNotEmpty(): Boolean = !isEmpty()
 
@@ -115,9 +119,9 @@ public class TextStyle(
                 lineHeight = lineHeight,
                 width = width,
                 height = height,
-                textBorderColor = textBorderColor?.toEchartsColor(),
-                textBorderWidth = textBorderWidth,
-                textBorderType = textBorderType?.value
+                textBorderColor = border.color?.toEchartsColor(),
+                textBorderWidth = border.width,
+                textBorderType = border.type?.value
             )
     }
 }

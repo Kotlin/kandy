@@ -2,9 +2,11 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.ggdsl.echarts.features
+package org.jetbrains.kotlinx.ggdsl.echarts.features.title
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyle
+import org.jetbrains.kotlinx.ggdsl.echarts.features.title.TextAlign.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsTitle
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.toEchartsColor
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -46,8 +48,7 @@ public class Title(
     public var align: TextAlign? = null,
     public var verticalAlign: TextAlign? = null,
     public var backgroundColor: Color? = null,
-    public var borderColor: Color? = null,
-    public var borderWidth: Int? = null,
+    public var border: TitleBorder = TitleBorder(),
     public var textStyle: TextStyle = TextStyle(),
     public var subtextStyle: TextStyle = TextStyle()
 ) : SelfInvocationContext {
@@ -61,7 +62,8 @@ public class Title(
             textAlign = align?.align,
             textVerticalAlign = verticalAlign?.align,
             backgroundColor = backgroundColor?.toEchartsColor(),
-            borderColor = borderColor?.toEchartsColor(),
-            borderWidth = borderWidth
+            borderColor = border.color?.toEchartsColor(),
+            borderWidth = border.width,
+            borderRadius = border.radius,
         ).takeIf { !it.isEmpty() }
 }

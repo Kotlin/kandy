@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features.label
 
-import org.jetbrains.kotlinx.ggdsl.echarts.features.TextStyle
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyle
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
 
 /**
@@ -28,7 +28,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
  * - `{@[n]}` - the value of a column at the index of `n`, for example, `{@[3]}` refers the value at column[3].
  *
  * * [textStyle][LabelContext.textStyle] - [text style][TextStyle] settings
- * * [border][LabelContext.border] - [border][Border] settings
+ * * [border][LabelContext.border] - [border][LabelBorder] settings
  *
  * ```kotlin
  * plot {
@@ -77,7 +77,7 @@ public fun LineContextImmutable.label(block: LabelContext.() -> Unit) {
  * - `{@[n]}` - the value of a column at the index of `n`, for example, `{@[3]}` refers the value at column[3].
  *
  * * [textStyle][LabelContext.textStyle] - [text style][TextStyle] settings
- * * [border][LabelContext.border] - [border][Border] settings
+ * * [border][LabelContext.border] - [border][LabelBorder] settings
  *
  * ```kotlin
  * plot {
@@ -126,7 +126,7 @@ public fun AreaContextImmutable.label(block: LabelContext.() -> Unit) {
  * - `{@[n]}` - the value of a column at the index of `n`, for example, `{@[3]}` refers the value at column[3].
  *
  * * [textStyle][LabelContext.textStyle] - [text style][TextStyle] settings
- * * [border][LabelContext.border] - [border][Border] settings
+ * * [border][LabelContext.border] - [border][LabelBorder] settings
  *
  * ```kotlin
  * plot {
@@ -171,7 +171,7 @@ public fun BarContextImmutable.label(block: LabelContext.() -> Unit) {
  * - `{@[n]}` - the value of a column at the index of `n`, for example, `{@[3]}` refers the value at column[3].
  *
  * * [textStyle][LabelContext.textStyle] - [text style][TextStyle] settings
- * * [border][LabelContext.border] - [border][Border] settings
+ * * [border][LabelContext.border] - [border][LabelBorder] settings
  *
  * ```kotlin
  * plot {
@@ -215,7 +215,7 @@ public fun PointContextImmutable.label(block: LabelContext.() -> Unit) {
  * - `{@[n]}` - the value of a column at the index of `n`, for example, `{@[3]}` refers the value at column[3].
  *
  * * [textStyle][LabelContext.textStyle] - [text style][TextStyle] settings
- * * [border][LabelContext.border] - [border][Border] settings
+ * * [border][LabelContext.border] - [border][LabelBorder] settings
  *
  * ```kotlin
  * plot {

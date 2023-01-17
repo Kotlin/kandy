@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.features.label
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.echarts.features.TextStyle
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyle
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
@@ -29,14 +29,14 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
  * - `{@[n]}` - the value of a column at the index of `n`, for example, `{@[3]}` refers the value at column[3].
  *
  * @property textStyle [text style][TextStyle] settings
- * @property border [border][Border] settings
+ * @property border [border][LabelBorder] settings
  */
 @PlotDslMarker
 public class LabelContext(
     public var position: LabelPosition? = null,
     public var formatter: String? = null,
     public var textStyle: TextStyle = TextStyle(),
-    public var border: Border = Border()
+    public var border: LabelBorder = LabelBorder()
 
 ) {
     internal fun toLabelFeature(): LabelFeature? {
@@ -53,7 +53,7 @@ internal class LabelFeature(
     val position: LabelPosition?,
     val formatter: String?,
     val textStyle: TextStyle?,
-    val border: Border?
+    val border: LabelBorder?
 ) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 

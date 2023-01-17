@@ -33,7 +33,7 @@ internal data class EchartsTitle(
     val bottom: @Contextual Any? = null,
     val backgroundColor: EchartsColor? = null,
     val borderColor: EchartsColor? = null,
-    val borderWidth: Int? = null,
+    val borderWidth: Double? = null,
     val borderRadius: @Contextual Any? = null, // number, array
     val shadowBlur: Int? = null,
     val shadowColor: EchartsColor? = null,

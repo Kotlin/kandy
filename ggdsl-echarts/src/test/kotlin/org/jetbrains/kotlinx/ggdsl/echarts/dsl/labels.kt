@@ -1,9 +1,9 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.dsl
 
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
-import org.jetbrains.kotlinx.ggdsl.echarts.features.FontFamily
-import org.jetbrains.kotlinx.ggdsl.echarts.features.FontStyle
-import org.jetbrains.kotlinx.ggdsl.echarts.features.FontWeight
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.FontFamily
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.FontStyle
+import org.jetbrains.kotlinx.ggdsl.echarts.features.text.FontWeight
 import org.jetbrains.kotlinx.ggdsl.echarts.features.label.LabelPosition
 import org.jetbrains.kotlinx.ggdsl.echarts.features.label.label
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.area

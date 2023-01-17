@@ -19,7 +19,7 @@ internal data class EchartsTextStyle(
     val width: Int? = null,
     val height: Int? = null,
     val textBorderColor: EchartsColor? = null,
-    val textBorderWidth: Int? = null,
+    val textBorderWidth: Double? = null,
     val textBorderType: StringNumberArray? = null,
     val textBorderDashOffset: Int? = null,
     val textShadowColor: EchartsColor? = null,
