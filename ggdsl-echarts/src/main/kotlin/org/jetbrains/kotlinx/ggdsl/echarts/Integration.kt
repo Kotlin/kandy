@@ -40,6 +40,8 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.echarts.features.animation.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.features.label.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.features.marks.*")
+        import("org.jetbrains.kotlinx.ggdsl.echarts.features.text.*")
+        import("org.jetbrains.kotlinx.ggdsl.echarts.features.title.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.layers.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.settings.*")
         import("org.jetbrains.kotlinx.ggdsl.echarts.scale.*")
