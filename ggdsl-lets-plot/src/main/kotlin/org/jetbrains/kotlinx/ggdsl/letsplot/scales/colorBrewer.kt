@@ -5,12 +5,14 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
 public sealed interface Palette {
     public val name: String
@@ -62,6 +64,7 @@ public data class ScaleContinuousColorBrewer<DomainType>(
     override val limits: TypedList?,
     override val type: BrewerType?,
     // todo direction
+    override val nullValue: TypedValue?,
     override val transform: Transformation?,
 ) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorBrewer<DomainType>
 
@@ -69,6 +72,7 @@ public data class ScaleContinuousColorBrewer<DomainType>(
 public data class ScaleCategoricalColorBrewer<DomainType>(
     override val limits: TypedList?,
     override val type: BrewerType?,
+    override val nullValue: TypedValue?,
     // todo direction
 ) : CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorBrewer<DomainType> {
     override val transform: Transformation? = null
@@ -78,14 +82,16 @@ public data class ScaleCategoricalColorBrewer<DomainType>(
 public inline fun <reified DomainType> continuousColorBrewer(
     type: BrewerType?,
     domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
+    nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorBrewer<DomainType> = ScaleContinuousColorBrewer(
-    domainLimits?.toList()?.typedList(), type, transform
+    domainLimits?.toList()?.typedList(), type, nullValue?.typed(), transform
 )
 
 public inline fun <reified DomainType> categoricalColorBrewer(
     type: BrewerType?,
     domainCategories: List<DomainType & Any>? = null,
+    nullValue: Color? = null,
 ): ScaleCategoricalColorBrewer<DomainType> = ScaleCategoricalColorBrewer(
-    domainCategories?.typedList(), type
+    domainCategories?.typedList(), type, nullValue?.typed()
 )

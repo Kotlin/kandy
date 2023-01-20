@@ -409,6 +409,7 @@ internal fun Scale.wrap(
                             luminance,
                             hueStart,
                             direction?.value,
+                            naValue = null,
                             name = name,
                             breaks = breaks?.values?.map { it as Number }, // todo
                             labels = labels,
@@ -552,11 +553,11 @@ internal fun Scale.wrap(
                 is NonPositionalUnspecifiedScale -> {
                     when (this) {
                         NonPositionalCategoricalUnspecifiedScale ->
-                            NonPositionalCategoricalScale<Any, Any>()
+                            NonPositionalCategoricalScale<Any, Any>(null, null, null)
                                 .wrap(aesName, domainType, scaleParameters)
 
                         is NonPositionalContinuousUnspecifiedScale ->
-                            NonPositionalContinuousScale<Any, Any>(transform = transform)
+                            NonPositionalContinuousScale<Any, Any>(null, null, null, transform = transform)
                                 .wrap(aesName, domainType, scaleParameters)
                     }
                 }

@@ -127,7 +127,8 @@ internal class CustomizationTest {
                                     mockSrcString,
                                     NonPositionalCategoricalScale<String, CustomGeomType>(
                                         listOf("A", "B").typedList(),
-                                        listOf(CustomGeomType("x"), CustomGeomType("xxx")).typedList()
+                                        listOf(CustomGeomType("x"), CustomGeomType("xxx")).typedList(),
+                                        null
                                     )
                                 ),
                                 typeOf<String>(),
