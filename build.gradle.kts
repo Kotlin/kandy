@@ -1,5 +1,5 @@
 /*
-* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
 import java.time.Duration
@@ -34,7 +34,6 @@ allprojects {
     group = "org.jetbrains.kotlinx"
     version = ggdslVersion
     apply(plugin = "kotlin")
-    apply(plugin = "org.jetbrains.dokka")
 
     kotlin.explicitApi()
 
@@ -68,4 +67,10 @@ nexusPublishing {
         maxRetries.set(100)
         delayBetween.set(Duration.ofSeconds(5))
     }
+}
+
+apply(from = rootProject.file("gradle/dokka.gradle"))
+
+tasks.dokkaHtmlMultiModule.configure {
+    outputDirectory.set(rootProject.file("docs"))
 }
