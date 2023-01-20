@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Axis</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>ggdsl</span>            </a>    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageids="ggdsl-lets-plot::org.jetbrains.kotlinx.ggdsl.letsplot.theme/Axis///PointingToDeclaration//-999019660">
+  <div class="breadcrumbs"><a href="../../index.html">ggdsl-lets-plot</a><span class="delimiter">/</span><a href="../index.html">org.jetbrains.kotlinx.ggdsl.letsplot.theme</a><span class="delimiter">/</span><span class="current">Axis</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Axis</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">Axis</a> : <a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.util.context/-self-invocation-context/index.html">SelfInvocationContext</a>, <a href="../-with-text/index.html">WithText</a>, <a href="../-with-title/index.html">WithTitle</a>, <a href="../-with-line/index.html">WithLine</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+    <div class="tabs-section-body">
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="1866898055%2FFunctions%2F-999019660" anchor-label="line" id="1866898055%2FFunctions%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-with-line/line.html"><span><span>line</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1866898055%2FFunctions%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-with-line/line.html"><span class="token function">line</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../-line-parameters/index.html">LineParameters</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-with-line/line.html"><span class="token function">line</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parameters<span class="token operator">: </span><a href="../-line-parameters/index.html">LineParameters</a></span></span><span class="token punctuation">)</span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1364888487%2FFunctions%2F-999019660" anchor-label="text" id="1364888487%2FFunctions%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-with-text/text.html"><span><span>text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1364888487%2FFunctions%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-with-text/text.html"><span class="token function">text</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../-text-parameters/index.html">TextParameters</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-with-text/text.html"><span class="token function">text</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parameters<span class="token operator">: </span><a href="../-text-parameters/index.html">TextParameters</a></span></span><span class="token punctuation">)</span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1336077641%2FFunctions%2F-999019660" anchor-label="ticks" id="-1336077641%2FFunctions%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="ticks.html"><span><span>ticks</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1336077641%2FFunctions%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="ticks.html"><span class="token function">ticks</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../-line-parameters/index.html">LineParameters</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="ticks.html"><span class="token function">ticks</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parameters<span class="token operator">: </span><a href="../-line-parameters/index.html">LineParameters</a></span></span><span class="token punctuation">)</span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1145829643%2FFunctions%2F-999019660" anchor-label="title" id="1145829643%2FFunctions%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-with-title/title.html"><span><span>title</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1145829643%2FFunctions%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-with-title/title.html"><span class="token function">title</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../-text-parameters/index.html">TextParameters</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-with-title/title.html"><span class="token function">title</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parameters<span class="token operator">: </span><a href="../-text-parameters/index.html">TextParameters</a></span></span><span class="token punctuation">)</span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="-1401234004%2FProperties%2F-999019660" anchor-label="line" id="-1401234004%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="line.html"><span><span>line</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1401234004%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-1401234004%2FProperties%2F-999019660" anchor-label="line" id="-1401234004%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="line.html">line</a><span class="token operator">: </span><a href="../-line-parameters/index.html">LineParameters</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-751475068%2FProperties%2F-999019660" anchor-label="onTop" id="-751475068%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="on-top.html"><span>on</span><wbr><span><span>Top</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-751475068%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-751475068%2FProperties%2F-999019660" anchor-label="onTop" id="-751475068%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="on-top.html">onTop</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span><span class="token boolean">false</span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1935906157%2FProperties%2F-999019660" anchor-label="text" id="-1935906157%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="text.html"><span><span>text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1935906157%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-1935906157%2FProperties%2F-999019660" anchor-label="text" id="-1935906157%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="text.html">text</a><span class="token operator">: </span><a href="../-text-parameters/index.html">TextParameters</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1150054148%2FProperties%2F-999019660" anchor-label="ticks" id="1150054148%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="ticks.html"><span><span>ticks</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1150054148%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="1150054148%2FProperties%2F-999019660" anchor-label="ticks" id="1150054148%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="ticks.html">ticks</a><span class="token operator">: </span><a href="../-line-parameters/index.html">LineParameters</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-2129573506%2FProperties%2F-999019660" anchor-label="ticksLength" id="-2129573506%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="ticks-length.html"><span>ticks</span><wbr><span><span>Length</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2129573506%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-2129573506%2FProperties%2F-999019660" anchor-label="ticksLength" id="-2129573506%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="ticks-length.html">ticksLength</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1641836898%2FProperties%2F-999019660" anchor-label="title" id="1641836898%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="title.html"><span><span>title</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1641836898%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="1641836898%2FProperties%2F-999019660" anchor-label="title" id="1641836898%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="title.html">title</a><span class="token operator">: </span><a href="../-text-parameters/index.html">TextParameters</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1535680215%2FProperties%2F-999019660" anchor-label="tooltip" id="1535680215%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="tooltip.html"><span><span>tooltip</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1535680215%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="1535680215%2FProperties%2F-999019660" anchor-label="tooltip" id="1535680215%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="tooltip.html">tooltip</a><span class="token operator">: </span><a href="../-axis-tooltip/index.html">AxisTooltip</a></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+
+</body></html>
+

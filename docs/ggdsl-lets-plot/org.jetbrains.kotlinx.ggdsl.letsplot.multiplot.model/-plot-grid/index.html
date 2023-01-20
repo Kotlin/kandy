@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PlotGrid</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>ggdsl</span>            </a>    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageids="ggdsl-lets-plot::org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model/PlotGrid///PointingToDeclaration//-999019660">
+  <div class="breadcrumbs"><a href="../../index.html">ggdsl-lets-plot</a><span class="delimiter">/</span><a href="../index.html">org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model</a><span class="delimiter">/</span><span class="current">PlotGrid</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Plot</span><wbr><span><span>Grid</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">PlotGrid</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>items<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.ir/-plot/index.html">Plot</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>nCol<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>cellWidth<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>cellHeight<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>hGap<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>vGap<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">50</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Extensions">Extensions</button></div>
+    <div class="tabs-section-body">
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="-247628382%2FConstructors%2F-999019660" anchor-label="PlotGrid" id="-247628382%2FConstructors%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-plot-grid.html"><span>Plot</span><wbr><span><span>Grid</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-247628382%2FConstructors%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-plot-grid.html"><span class="token function">PlotGrid</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">items<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.ir/-plot/index.html">Plot</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">nCol<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">cellWidth<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">cellHeight<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">hGap<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter ">vGap<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">50</span><span class="token punctuation">, </span></span><span class="parameter ">fit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="2135375409%2FProperties%2F-999019660" anchor-label="cellHeight" id="2135375409%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="cell-height.html"><span>cell</span><wbr><span><span>Height</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2135375409%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="2135375409%2FProperties%2F-999019660" anchor-label="cellHeight" id="2135375409%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="cell-height.html">cellHeight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2048154524%2FProperties%2F-999019660" anchor-label="cellWidth" id="2048154524%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="cell-width.html"><span>cell</span><wbr><span><span>Width</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2048154524%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="2048154524%2FProperties%2F-999019660" anchor-label="cellWidth" id="2048154524%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="cell-width.html">cellWidth</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-932298769%2FProperties%2F-999019660" anchor-label="fit" id="-932298769%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="fit.html"><span><span>fit</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-932298769%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-932298769%2FProperties%2F-999019660" anchor-label="fit" id="-932298769%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="fit.html">fit</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1291748500%2FProperties%2F-999019660" anchor-label="hGap" id="-1291748500%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="h-gap.html"><span>h</span><wbr><span><span>Gap</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1291748500%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-1291748500%2FProperties%2F-999019660" anchor-label="hGap" id="-1291748500%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="h-gap.html">hGap</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1704057440%2FProperties%2F-999019660" anchor-label="items" id="1704057440%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="items.html"><span><span>items</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1704057440%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="1704057440%2FProperties%2F-999019660" anchor-label="items" id="1704057440%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="items.html">items</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.ir/-plot/index.html">Plot</a><span class="token operator">&gt;</span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="44455688%2FProperties%2F-999019660" anchor-label="nCol" id="44455688%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="n-col.html"><span>n</span><wbr><span><span>Col</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="44455688%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="44455688%2FProperties%2F-999019660" anchor-label="nCol" id="44455688%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="n-col.html">nCol</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-178259334%2FProperties%2F-999019660" anchor-label="vGap" id="-178259334%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="v-gap.html"><span>v</span><wbr><span><span>Gap</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-178259334%2FProperties%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-178259334%2FProperties%2F-999019660" anchor-label="vGap" id="-178259334%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="v-gap.html">vGap</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">50</span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="tabbedcontent">Extensions</h2>
+      <div class="table" data-togglable="Extensions"><a data-name="1285089587%2FExtensions%2F-999019660" anchor-label="save" id="1285089587%2FExtensions%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.export/save.html"><span><span>save</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1285089587%2FExtensions%2F-999019660"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">PlotGrid</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.export/save.html"><span class="token function">save</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">filename<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">scale<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token operator"> = </span><span class="token constant">2</span><span class="token punctuation">, </span></span><span class="parameter ">dpi<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Exports plot grid to a file. Supported formats: SVG, HTML, PNG, JPEG and TIFF. Note: in some configurations raster formats might not be supported.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+
+</body></html>
+

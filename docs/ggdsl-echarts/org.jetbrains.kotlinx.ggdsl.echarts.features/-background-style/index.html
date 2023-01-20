@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>BackgroundStyle</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>ggdsl</span>            </a>    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageids="ggdsl-echarts::org.jetbrains.kotlinx.ggdsl.echarts.features/BackgroundStyle///PointingToDeclaration//1748775184">
+  <div class="breadcrumbs"><a href="../../index.html">ggdsl-echarts</a><span class="delimiter">/</span><a href="../index.html">org.jetbrains.kotlinx.ggdsl.echarts.features</a><span class="delimiter">/</span><span class="current">BackgroundStyle</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Background</span><wbr><span><span>Style</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">BackgroundStyle</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.dsl.internal/-binding-context/index.html">BindingContext</a></span></span><span class="token punctuation">)</span></div><p class="paragraph">Background style settings. All properties of this class are aesthetics.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="See also">See also</button></div>
+    <div class="tabs-section-body">
+      <h4 class="">See also</h4>
+      <div data-togglable="See also">
+        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="See also"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><div data-togglable="See also"><div class="table" data-togglable="See also"><div class="table-row" data-filterable-current=":ggdsl-echarts:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><a href="../../org.jetbrains.kotlinx.ggdsl.echarts.layers/bars.html"><span><span>bars</span></span></a></div></span></div><div></div></div></div></div></div></div></div>
+      </div>
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="-1854041688%2FConstructors%2F1748775184" anchor-label="BackgroundStyle" id="-1854041688%2FConstructors%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-echarts:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-background-style.html"><span>Background</span><wbr><span><span>Style</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1854041688%2FConstructors%2F1748775184"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-background-style.html"><span class="token function">BackgroundStyle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.dsl.internal/-binding-context/index.html">BindingContext</a></span></span><span class="token punctuation">)</span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="561721023%2FProperties%2F1748775184" anchor-label="alpha" id="561721023%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-echarts:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="alpha.html"><span><span>alpha</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="561721023%2FProperties%2F1748775184"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><a data-name="561721023%2FProperties%2F1748775184" anchor-label="alpha" id="561721023%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="alpha.html">alpha</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.echarts.aes/-background-alpha-aes/index.html">BackgroundAlphaAes</a></div><div class="brief "><a data-name="561721023%2FProperties%2F1748775184" anchor-label="alpha" id="561721023%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><p class="paragraph">background opacity.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-13040730%2FProperties%2F1748775184" anchor-label="borderColor" id="-13040730%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-echarts:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="border-color.html"><span>border</span><wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-13040730%2FProperties%2F1748775184"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><a data-name="-13040730%2FProperties%2F1748775184" anchor-label="borderColor" id="-13040730%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="border-color.html">borderColor</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.echarts.aes/-background-border-color-aes/index.html">BackgroundBorderColorAes</a></div><div class="brief "><a data-name="-13040730%2FProperties%2F1748775184" anchor-label="borderColor" id="-13040730%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><p class="paragraph">background border <a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.util.color/-color/index.html">color</a>.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="839045887%2FProperties%2F1748775184" anchor-label="borderRadius" id="839045887%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-echarts:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="border-radius.html"><span>border</span><wbr><span><span>Radius</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="839045887%2FProperties%2F1748775184"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><a data-name="839045887%2FProperties%2F1748775184" anchor-label="borderRadius" id="839045887%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="border-radius.html">borderRadius</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.echarts.aes/-background-border-radius-aes/index.html">BackgroundBorderRadiusAes</a></div><div class="brief "><a data-name="839045887%2FProperties%2F1748775184" anchor-label="borderRadius" id="839045887%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><p class="paragraph">background border radius. By default <code class="lang-kotlin">0</code>.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-301772201%2FProperties%2F1748775184" anchor-label="borderType" id="-301772201%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-echarts:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="border-type.html"><span>border</span><wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-301772201%2FProperties%2F1748775184"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><a data-name="-301772201%2FProperties%2F1748775184" anchor-label="borderType" id="-301772201%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="border-type.html">borderType</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.echarts.aes/-background-border-type-aes/index.html">BackgroundBorderTypeAes</a></div><div class="brief "><a data-name="-301772201%2FProperties%2F1748775184" anchor-label="borderType" id="-301772201%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><p class="paragraph">border <a href="../../org.jetbrains.kotlinx.ggdsl.echarts.settings/-line-type/index.html">type</a>. By default <code class="lang-kotlin">solid</code>.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1704531293%2FProperties%2F1748775184" anchor-label="borderWidth" id="-1704531293%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-echarts:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="border-width.html"><span>border</span><wbr><span><span>Width</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1704531293%2FProperties%2F1748775184"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><a data-name="-1704531293%2FProperties%2F1748775184" anchor-label="borderWidth" id="-1704531293%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="border-width.html">borderWidth</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.echarts.aes/-background-border-width-aes/index.html">BackgroundBorderWidthAes</a></div><div class="brief "><a data-name="-1704531293%2FProperties%2F1748775184" anchor-label="borderWidth" id="-1704531293%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><p class="paragraph">background border width. By default <code class="lang-kotlin">0</code>.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1943662502%2FProperties%2F1748775184" anchor-label="color" id="-1943662502%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-echarts:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="color.html"><span><span>color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1943662502%2FProperties%2F1748775184"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><a data-name="-1943662502%2FProperties%2F1748775184" anchor-label="color" id="-1943662502%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="color.html">color</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.echarts.aes/-background-color-aes/index.html">BackgroundColorAes</a></div><div class="brief "><a data-name="-1943662502%2FProperties%2F1748775184" anchor-label="color" id="-1943662502%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><p class="paragraph">background <a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.util.color/-color/index.html">color</a>.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1542423210%2FProperties%2F1748775184" anchor-label="shadowBlur" id="-1542423210%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-echarts:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="shadow-blur.html"><span>shadow</span><wbr><span><span>Blur</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1542423210%2FProperties%2F1748775184"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><a data-name="-1542423210%2FProperties%2F1748775184" anchor-label="shadowBlur" id="-1542423210%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="shadow-blur.html">shadowBlur</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.echarts.aes/-background-shadow-blur-aes/index.html">BackgroundShadowBlurAes</a></div><div class="brief "><a data-name="-1542423210%2FProperties%2F1748775184" anchor-label="shadowBlur" id="-1542423210%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><p class="paragraph">background shadow blur.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1831803494%2FProperties%2F1748775184" anchor-label="shadowColor" id="-1831803494%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":ggdsl-echarts:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="shadow-color.html"><span>shadow</span><wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1831803494%2FProperties%2F1748775184"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><a data-name="-1831803494%2FProperties%2F1748775184" anchor-label="shadowColor" id="-1831803494%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="shadow-color.html">shadowColor</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.echarts.aes/-background-shadow-color-aes/index.html">BackgroundShadowColorAes</a></div><div class="brief "><a data-name="-1831803494%2FProperties%2F1748775184" anchor-label="shadowColor" id="-1831803494%2FProperties%2F1748775184" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"></a><p class="paragraph">background shadow <a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.util.color/-color/index.html">color</a>.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+
+</body></html>
+
