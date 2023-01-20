@@ -46,15 +46,15 @@ public interface NonScalablePositionalAes : PositionalAes
 /**
  * Non-positional aesthetic attribute.
  */
-public interface NonPositionalAes<in T : Any> : Aes
+public interface NonPositionalAes<in T> : Aes
 
 /**
  * Non-positional aesthetic attribute that can be mapped with an explicit scale.
  */
-public interface ScalableNonPositionalAes<in T : Any> : NonPositionalAes<T>, ScalableAes
+public interface ScalableNonPositionalAes<in T> : NonPositionalAes<T>, ScalableAes
 
 
 /**
  * Non-positional aesthetic attribute that can be mapped but without an explicit scale.
  */
-public interface NonScalableNonPositionalAes<in T : Any> :  NonPositionalAes<T>, MappableAes
+public interface NonScalableNonPositionalAes<in T> :  NonPositionalAes<T>, MappableAes

@@ -22,6 +22,8 @@ internal val dateTimeTypes = setOf(
     typeOf<Instant>(), typeOf<LocalDateTime>(), typeOf<LocalDate>()
 )
 
+internal fun List<*>?.wrap() = this?.map { it as Any }
+
 /**
  * TODO datetime
  */
@@ -71,17 +73,17 @@ internal fun Scale.wrap(
                 is PositionalCategoricalScale<*> -> {
                     when (aesName) {
                         X -> scaleXDiscrete(
-                            limits = categories?.values,
+                            limits = categories?.values.wrap(),
                             name = name,
-                            breaks = breaks?.values,
+                            breaks = breaks?.values.wrap(),
                             labels = labels,
                             format = format
                         )
 
                         Y -> scaleYDiscrete(
-                            limits = categories?.values,
+                            limits = categories?.values.wrap(),
                             name = name,
-                            breaks = breaks?.values,
+                            breaks = breaks?.values.wrap(),
                             labels = labels,
                             format = format
                         )
@@ -105,7 +107,7 @@ internal fun Scale.wrap(
                             scaleXDateTime(
                                 limits = limits.wrap(),
                                 name = name,
-                                breaks = breaks?.values,
+                                breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 format = format
                             )
@@ -124,7 +126,7 @@ internal fun Scale.wrap(
                             scaleYDateTime(
                                 limits = limits.wrap(),
                                 name = name,
-                                breaks = breaks?.values,
+                                breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 format = format
                             )
@@ -167,18 +169,18 @@ internal fun Scale.wrap(
                     when (aesName) {
                         SIZE -> if (rangeValues != null) {scaleSizeManual(
                             values = rangeValues!!.values.map { it as Number },
-                            limits = domainCategories?.values,
+                            limits = domainCategories?.values.wrap(),
                             name = name,
-                            breaks = breaks?.values,
+                            breaks = breaks?.values.wrap(),
                             labels = labels,
                             guide = legendType,
                             format = format
                         )} else {
                             org.jetbrains.letsPlot.intern.Scale(
                                 Aes.SIZE,
-                                limits = domainCategories?.values,
+                                limits = domainCategories?.values.wrap(),
                                 name = name,
-                                breaks = breaks?.values,
+                                breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 guide = legendType,
                                 format = format
@@ -188,19 +190,19 @@ internal fun Scale.wrap(
                         COLOR -> {
                             if (rangeValues == null) {
                                 scaleColorDiscrete(
-                                    limits = domainCategories?.values,
+                                    limits = domainCategories?.values.wrap(),
                                     name = name,
-                                    breaks = breaks?.values,
+                                    breaks = breaks?.values.wrap(),
                                     labels = labels,
                                     guide = legendType,
                                     format = format
                                 )
                             } else {
                                 scaleColorManual(
-                                    limits = domainCategories?.values,
+                                    limits = domainCategories?.values.wrap(),
                                     values = rangeValues!!.values.map { (it as Color).wrap() }, //todo
                                     name = name,
-                                    breaks = breaks?.values,
+                                    breaks = breaks?.values.wrap(),
                                     labels = labels,
                                     guide = legendType,
                                     format = format
@@ -211,19 +213,19 @@ internal fun Scale.wrap(
                         FILL -> {
                             if (rangeValues == null) {
                                 scaleFillDiscrete(
-                                    limits = domainCategories?.values,
+                                    limits = domainCategories?.values.wrap(),
                                     name = name,
-                                    breaks = breaks?.values,
+                                    breaks = breaks?.values.wrap(),
                                     labels = labels,
                                     guide = legendType,
                                     format = format
                                 )
                             } else {
                                 scaleFillManual(
-                                    limits = domainCategories?.values,
+                                    limits = domainCategories?.values.wrap(),
                                     values = rangeValues!!.values.map { (it as Color).wrap() },
                                     name = name,
-                                    breaks = breaks?.values,
+                                    breaks = breaks?.values.wrap(),
                                     labels = labels,
                                     guide = legendType,
                                     format = format
@@ -232,19 +234,19 @@ internal fun Scale.wrap(
                         }
                         // TODO
                         ALPHA -> if (rangeValues != null) { scaleAlphaManual(
-                            limits = domainCategories?.values,
+                            limits = domainCategories?.values.wrap(),
                             values = rangeValues!!.values.map { it as Double },
                             name = name,
-                            breaks = breaks?.values,
+                            breaks = breaks?.values.wrap(),
                             labels = labels,
                             guide = legendType,
                             format = format
                         )} else {
                             org.jetbrains.letsPlot.intern.Scale(
                                 Aes.ALPHA,
-                                limits = domainCategories?.values,
+                                limits = domainCategories?.values.wrap(),
                                 name = name,
-                                breaks = breaks?.values,
+                                breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 guide = legendType,
                                 format = format
@@ -253,10 +255,10 @@ internal fun Scale.wrap(
 
                         LINE_TYPE -> if (rangeValues != null) {
                             scaleLinetypeManual(
-                                limits = domainCategories?.values,
+                                limits = domainCategories?.values.wrap(),
                                 values = rangeValues!!.values.map { (it as LineType).codeNumber },
                                 name = name,
-                                breaks = breaks?.values,
+                                breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 guide = legendType,
                                 format = format
@@ -265,9 +267,9 @@ internal fun Scale.wrap(
                         } else {
                             org.jetbrains.letsPlot.intern.Scale(
                                 Aes.LINETYPE,
-                                limits = domainCategories?.values,
+                                limits = domainCategories?.values.wrap(),
                                 name = name,
-                                breaks = breaks?.values,
+                                breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 guide = legendType,
                                 format = format
@@ -276,20 +278,20 @@ internal fun Scale.wrap(
 
                         SHAPE -> if (rangeValues == null) {
                             scaleShape(
-                                limits = domainCategories?.values,
+                                limits = domainCategories?.values.wrap(),
                                 name = name,
-                                breaks = breaks?.values,
+                                breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 guide = legendType,
                                 format = format
                             )
                         } else {
                             scaleShapeManual(
-                                limits = domainCategories?.values,
+                                limits = domainCategories?.values.wrap(),
                                 values = rangeValues!!.values.map { (it as Symbol).shape },
 
                                 name = name,
-                                breaks = breaks?.values,
+                                breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 guide = legendType,
                                 format = format
@@ -583,7 +585,7 @@ internal fun Scale.wrap(
                             Y -> scaleYDateTime(
                                 //limits = categories,
                                 name = name,
-                                breaks = breaks?.values,
+                                breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 format = format
                             )
@@ -593,8 +595,8 @@ internal fun Scale.wrap(
                     }
                     when (this) {
                         PositionalCategoricalUnspecifiedScale -> when (aesName) {
-                            X -> scaleXDiscrete(name = name, breaks = breaks?.values, labels = labels, format = format)
-                            Y -> scaleYDiscrete(name = name, breaks = breaks?.values, labels = labels, format = format)
+                            X -> scaleXDiscrete(name = name, breaks = breaks?.values.wrap(), labels = labels, format = format)
+                            Y -> scaleYDiscrete(name = name, breaks = breaks?.values.wrap(), labels = labels, format = format)
                             else -> TODO()
                         }
 

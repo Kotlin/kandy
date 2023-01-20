@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.FreqpolyContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.freqPoly
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Bins
 
-public inline fun <reified T : Any> PlotContext.freqPoly(
+public inline fun <reified T> PlotContext.freqPoly(
     source: ColumnReference<T>,
     bins: Bins? = null,
     boundary: Double? = null,

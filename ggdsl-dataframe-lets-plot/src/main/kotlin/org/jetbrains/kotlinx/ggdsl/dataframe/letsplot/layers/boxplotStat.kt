@@ -12,14 +12,14 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.boxplot
 
 
 <<<<<<< HEAD
-inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
+inline fun <reified T, reified R> PlotContext.boxplot(
     sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
     sourceY: ColumnReference<R>,
     varWidth: Boolean? = null,
     block: BoxplotStatContext<T>.() -> Unit
 ) = boxplot(sourceX, sourceY.toColRef(), varWidth, block)
 =======
-public inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
+public inline fun <reified T, reified R> PlotContext.boxplot(
     sourceX: DataSource<T>,
     sourceY: ColumnReference<R>,
     varWidth: Boolean? = null,
@@ -27,7 +27,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
 ): Unit = boxplot(sourceX, sourceY.toDataSource(), varWidth, block)
 >>>>>>> main
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
+public inline fun <reified T, reified R> PlotContext.boxplot(
     sourceX: ColumnReference<T>,
     sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
     varWidth: Boolean? = null,
@@ -38,7 +38,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
 ): Unit = boxplot(sourceX.toDataSource(), sourceY, varWidth, block)
 >>>>>>> main
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
+public inline fun <reified T, reified R> PlotContext.boxplot(
     sourceX: ColumnReference<T>,
     sourceY: ColumnReference<R>,
     varWidth: Boolean? = null,

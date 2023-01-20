@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
 @Serializable
-public data class ScaleContinuousColorGradientN<DomainType : Any>(
+public data class ScaleContinuousColorGradientN<DomainType>(
     val domainLimits: Pair<TypedValue, TypedValue>? = null,
     val rangeColors: List<Color>,
     override val transform: Transformation? = null
@@ -26,16 +26,16 @@ public data class ScaleContinuousColorGradientN<DomainType : Any>(
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-public inline fun <reified DomainType : Any> continuousColorGradientN(
+public inline fun <reified DomainType> continuousColorGradientN(
     rangeColors: List<Color>,
-    domainLimits: Pair<DomainType, DomainType>? = null,
+    domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradientN<DomainType> = ScaleContinuousColorGradientN(
     domainLimits?.typedPair(), rangeColors, transform
 )
 
 @Serializable
-public data class ScaleContinuousColorGradient2<DomainType : Any>(
+public data class ScaleContinuousColorGradient2<DomainType>(
     val domainLimits: Pair<TypedValue, TypedValue>? = null,
     val low: Color,
     val mid: Color,
@@ -53,12 +53,12 @@ public data class ScaleContinuousColorGradient2<DomainType : Any>(
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-public inline fun <reified DomainType : Any> continuousColorGradient2(
+public inline fun <reified DomainType> continuousColorGradient2(
     low: Color,
     mid: Color,
     high: Color,
     midpoint: Double,
-    domainLimits: Pair<DomainType, DomainType>? = null,
+    domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradient2<DomainType> = ScaleContinuousColorGradient2(
     domainLimits?.typedPair(), low, mid, high, midpoint, transform

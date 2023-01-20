@@ -11,7 +11,7 @@ public sealed interface Stat<T> {
 }
 
 @PublishedApi
-internal inline fun <reified T : Any> Stat<T>.toColumnPointer(): ColumnPointer<T> {
+internal inline fun <reified T> Stat<T>.toColumnPointer(): ColumnPointer<T> {
     return ColumnPointer(name)
 }
 
@@ -83,7 +83,7 @@ public sealed interface ContourStat<T> : Stat<T> {
 }
 /* TODO
 abstract class WithDensity2DStat {
-     inline operator fun <reified DomainType : Any, RangeType : Any>
+     inline operator fun <reified DomainType, RangeType>
             MappableNonPositionalAes<RangeType>.invoke(
         stat: Density2DStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {

@@ -12,5 +12,5 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
  * @param T the type of the column
  * @receiver the name of the column
  */
-public inline operator fun <reified T : Any> String.invoke(): ColumnReference<T> =
+public inline operator fun <reified T> String.invoke(): ColumnReference<T> =
     column(this)

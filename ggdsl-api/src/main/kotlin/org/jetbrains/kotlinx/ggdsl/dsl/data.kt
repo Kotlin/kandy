@@ -18,7 +18,7 @@ public class NamedDataBuilder {
      * @receiver a new column name.
      * @param list a new column values.
      */
-    public inline infix fun <reified T : Any> String.to(list: List<T>) {
+    public inline infix fun <reified T> String.to(list: List<T>) {
         buffer[this] = TypedList(typeOf<T>(), list)
     }
     // TODO iterable and arrays

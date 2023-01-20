@@ -24,7 +24,7 @@ public sealed interface FreeScale {
  * Free positional scale, i.e scale without a mapping.
  */
 @Serializable
-public data class FreePositionalScale<DomainType : Any>(
+public data class FreePositionalScale<DomainType>(
     override val aes: AesName,
     override val scale: Scale,
     override val domainType: KType,

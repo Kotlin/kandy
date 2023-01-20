@@ -99,11 +99,11 @@ public class BoxplotStatContext<T>(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
+inline fun <reified T, reified R> PlotContext.boxplot(
     sourceX: ColumnPointer<T>,
     sourceY: ColumnPointer<R>,
 =======
-public inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
+public inline fun <reified T, reified R> PlotContext.boxplot(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
 >>>>>>> main
@@ -122,7 +122,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
     )
 }
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
+public inline fun <reified T, reified R> PlotContext.boxplot(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     varWidth: Boolean? = null,

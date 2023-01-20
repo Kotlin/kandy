@@ -20,7 +20,7 @@ internal fun LazyGroupedDataInterface.mergedKeys(): List<String> = buildList {
 }
 
 internal object DateTimeMaster {
-    internal fun postProcess(data: NamedDataInterface): Map<String, List<Any>> {
+    internal fun postProcess(data: NamedDataInterface): Map<String, List<*>> {
         return data.nameToValues.map { (key, tList)  ->
             val type = tList.kType
             val values = tList.values
@@ -57,7 +57,7 @@ internal fun TableData.columnTypes(): Map<String, KType> {
  */
 
 
-internal fun TableData.wrap(): Map<String, List<Any>> {
+internal fun TableData.wrap(): Map<String, List<*>> {
     return (when (this) {
         is NamedDataInterface -> DateTimeMaster.postProcess(this)
         is LazyGroupedDataInterface -> DateTimeMaster.postProcess(origin) + (MERGED_GROUPS to mergedKeys())

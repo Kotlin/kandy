@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.QQLineContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.qqLine
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Distribution
 
-public inline fun <reified T : Any> PlotContext.qqLine(
+public inline fun <reified T> PlotContext.qqLine(
     source: ColumnReference<T>,
     distribution: Distribution? = null,
     quantiles: Pair<Double, Double>? = null,

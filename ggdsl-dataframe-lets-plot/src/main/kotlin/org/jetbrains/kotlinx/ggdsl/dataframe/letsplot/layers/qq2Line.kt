@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.QQ2LineContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.qq2Line
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.qq2Line(
+public inline fun <reified T, reified R> PlotContext.qq2Line(
     sourceX: ColumnReference<T>,
     sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
     quantiles: Pair<Double, Double>? = null,
@@ -18,7 +18,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.qq2Line(
 <<<<<<< HEAD
 ) = qq2Line(sourceX.toColRef(), sourceY, quantiles, block)
 
-inline fun <reified T : Any, reified R: Any> PlotContext.qq2Line(
+inline fun <reified T, reified R: Any> PlotContext.qq2Line(
     sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
     sourceY: ColumnReference<R>,
     quantiles: Pair<Double, Double>? = null,
@@ -27,7 +27,7 @@ inline fun <reified T : Any, reified R: Any> PlotContext.qq2Line(
 =======
 ): Unit = qq2Line(sourceX.toDataSource(), sourceY, quantiles, block)
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.qq2Line(
+public inline fun <reified T, reified R> PlotContext.qq2Line(
     sourceX: DataSource<T>,
     sourceY: ColumnReference<R>,
     quantiles: Pair<Double, Double>? = null,
@@ -35,7 +35,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.qq2Line(
 ): Unit = qq2Line(sourceX, sourceY.toDataSource(), quantiles, block)
 >>>>>>> main
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.qq2Line(
+public inline fun <reified T, reified R> PlotContext.qq2Line(
     sourceX: ColumnReference<T>,
     sourceY: ColumnReference<R>,
     quantiles: Pair<Double, Double>? = null,

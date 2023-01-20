@@ -21,7 +21,7 @@ public sealed interface Setting
  * @property value the assigned value
  */
 @Serializable
-public data class NonPositionalSetting<T : Any>(
+public data class NonPositionalSetting<T>(
     val aes: AesName,
     val value: TypedValue,
 ) : Setting
@@ -34,7 +34,7 @@ public data class NonPositionalSetting<T : Any>(
  * @property value the assigned value
  */
 @Serializable
-public data class PositionalSetting<T : Any>(
+public data class PositionalSetting<T>(
     val aes: AesName,
     val value: TypedValue,
 ) : Setting

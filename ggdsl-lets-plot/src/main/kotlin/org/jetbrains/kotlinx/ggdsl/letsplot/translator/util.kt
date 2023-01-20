@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.SimpleValueWrapper
+import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
@@ -17,7 +17,7 @@ internal fun Color.wrap(): String {
     }
 }
 
-internal fun TypedValue.wrap(): Any = wrapValue(value)
+internal fun TypedValue.wrap(): Any = wrapValue(value!!)
 
 // TODO
 internal fun wrapValue(value: Any): Any {

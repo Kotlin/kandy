@@ -66,7 +66,7 @@ public class HistogramContext(
     internal val boundary: BoundaryAes get() = BoundaryAes(this)
 
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: BinStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -78,7 +78,7 @@ public class HistogramContext(
         return mapping
     }
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType, RangeType> MappableNonPositionalAes<RangeType>.invoke(
         stat: BinStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -93,10 +93,10 @@ public class HistogramContext(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any> PlotContext.histogram(
+inline fun <reified T> PlotContext.histogram(
     source: ColumnPointer<T>,
 =======
-public inline fun <reified T : Any> PlotContext.histogram(
+public inline fun <reified T> PlotContext.histogram(
     source: DataSource<T>,
 >>>>>>> main
     bins: Bins? = null,
@@ -115,7 +115,7 @@ public inline fun <reified T : Any> PlotContext.histogram(
     )
 }
 
-public inline fun <reified T : Any> PlotContext.histogram(
+public inline fun <reified T> PlotContext.histogram(
     source: Iterable<T>,
     bins: Bins? = null,
     boundary: Double? = null,

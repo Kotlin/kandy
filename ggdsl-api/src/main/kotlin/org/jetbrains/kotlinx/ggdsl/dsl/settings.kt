@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalSetting
  *
  * @param value the assigned value.
  */
-public inline operator fun <reified T : Any> NonPositionalAes<T>.invoke(value: T) {
+public inline operator fun <reified T> NonPositionalAes<T>.invoke(value: T) {
     context.bindingCollector.settings[this.name] = NonPositionalSetting<T>(this.name, value.typed())
 }
 

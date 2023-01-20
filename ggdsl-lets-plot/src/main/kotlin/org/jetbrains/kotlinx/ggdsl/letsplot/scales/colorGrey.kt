@@ -12,35 +12,35 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
-public inline fun <reified DomainType : Any> continuousColorGrey(
+public inline fun <reified DomainType> continuousColorGrey(
     paletteRange: Pair<Double, Double>? = null,
-    domainLimits: Pair<DomainType, DomainType>? = null,
+    domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGrey<DomainType> = ScaleContinuousColorGrey(
     paletteRange, domainLimits?.typedPair(), transform
 )
 
-public fun <DomainType : Any> categoricalColorGrey(
+public fun <DomainType> categoricalColorGrey(
     paletteRange: Pair<Double, Double>? = null,
 ): ScaleCategoricalColorGrey<DomainType> = ScaleCategoricalColorGrey<DomainType>(
     paletteRange
 )
 
-public sealed interface ScaleColorGrey<DomainType : Any> {
+public sealed interface ScaleColorGrey<DomainType> {
     public val paletteRange: Pair<Double, Double>?
     public val domainLimits: Pair<TypedValue, TypedValue>?
     public val transform: Transformation?
 }
 
 @Serializable
-public data class ScaleContinuousColorGrey<DomainType : Any>(
+public data class ScaleContinuousColorGrey<DomainType>(
     override val paletteRange: Pair<Double, Double>? = null,
     override val domainLimits: Pair<TypedValue, TypedValue>? = null,
     override val transform: Transformation? = null,
 ) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorGrey<DomainType>
 
 @Serializable
-public data class ScaleCategoricalColorGrey<DomainType : Any> internal constructor(
+public data class ScaleCategoricalColorGrey<DomainType> internal constructor(
     override val paletteRange: Pair<Double, Double>? = null
 ) : CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorGrey<DomainType> {
     override val domainLimits: Pair<TypedValue, TypedValue>?

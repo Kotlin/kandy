@@ -25,20 +25,20 @@ import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-public inline fun <reified DomainType : Any> continuousColorHue(
+public inline fun <reified DomainType> continuousColorHue(
     huesRange: Pair<Int, Int>? = null,
     chroma: Int? = null,
     luminance: Int? = null,
     hueStart: Int? = null,
     direction: WheelDirection? = null,
-    domainLimits: Pair<DomainType, DomainType>? = null,
+    domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorHue<DomainType> = ScaleContinuousColorHue(
     domainLimits?.typedPair(), huesRange, chroma, luminance, hueStart, direction, transform
 )
 
 // todo(LP) categories support
-public fun <DomainType : Any> categoricalColorHue(
+public fun <DomainType> categoricalColorHue(
     huesRange: Pair<Int, Int>? = null,
     chroma: Int? = null,
     luminance: Int? = null,
@@ -56,7 +56,7 @@ public data class WheelDirection internal constructor(val value: Int) {
     }
 }
 
-public sealed interface ScaleColorHue<DomainType : Any> {
+public sealed interface ScaleColorHue<DomainType> {
     public val domainLimits: Pair<TypedValue, TypedValue>?
     public val huesRange: Pair<Int, Int>?
     public val chroma: Int?
@@ -67,7 +67,7 @@ public sealed interface ScaleColorHue<DomainType : Any> {
 }
 
 @Serializable
-public data class ScaleContinuousColorHue<DomainType : Any> @PublishedApi internal constructor(
+public data class ScaleContinuousColorHue<DomainType> @PublishedApi internal constructor(
     override val domainLimits: Pair<TypedValue, TypedValue>?,
     override val huesRange: Pair<Int, Int>?,
     override val chroma: Int?,
@@ -78,7 +78,7 @@ public data class ScaleContinuousColorHue<DomainType : Any> @PublishedApi intern
 ) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorHue<DomainType>
 
 @Serializable
-public data class ScaleCategoricalColorHue<DomainType : Any> @PublishedApi internal constructor(
+public data class ScaleCategoricalColorHue<DomainType> @PublishedApi internal constructor(
     override val huesRange: Pair<Int, Int>?,
     override val chroma: Int?,
     override val luminance: Int?,

@@ -19,7 +19,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
  * @param DomainType type of the domain.
  * @return scaled source.
  */
-public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
+public fun <DomainType> ColumnPointer<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
     ColumnScaledUnspecifiedDefault(this)
 
 /**
@@ -30,7 +30,7 @@ public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(): ColumnScaledUn
  * @param scale positional default scale.
  * @return scaled source.
  */
-public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(scale: PositionalUnspecifiedScale):
+public fun <DomainType> ColumnPointer<DomainType>.scaled(scale: PositionalUnspecifiedScale):
         ColumnScaledPositionalUnspecified<DomainType> =
     ColumnScaledPositionalUnspecified(this, scale)
 
@@ -42,7 +42,7 @@ public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(scale: Positional
  * @param scale non-positional default scale.
  * @return scaled source.
  */
-public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(scale: NonPositionalUnspecifiedScale):
+public fun <DomainType> ColumnPointer<DomainType>.scaled(scale: NonPositionalUnspecifiedScale):
         ColumnScaledNonPositionalUnspecified<DomainType> =
     ColumnScaledNonPositionalUnspecified(this, scale)
 
@@ -53,7 +53,7 @@ public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(scale: NonPositio
  * @param scale positional scale.
  * @return scaled source.
  */
-public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(
+public fun <DomainType> ColumnPointer<DomainType>.scaled(
     scale: PositionalScale<DomainType>
 ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this, scale)
 
@@ -64,6 +64,6 @@ public fun <DomainType : Any> ColumnPointer<DomainType>.scaled(
  * @param scale non-positional scale.
  * @return scaled source.
  */
-public fun <DomainType : Any, RangeType : Any> ColumnPointer<DomainType>.scaled(
+public fun <DomainType, RangeType> ColumnPointer<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
 ): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this, scale)

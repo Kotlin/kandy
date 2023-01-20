@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.violin
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.BandWidth
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.violin(
+public inline fun <reified T, reified R> PlotContext.violin(
     sourceX: ColumnReference<T>,
     sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
     drawQuantiles: List<Double>? = null,
@@ -35,7 +35,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     sourceY, drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
 
-public inline fun <reified T : Any> PlotContext.violin(
+public inline fun <reified T> PlotContext.violin(
     sourceY: ColumnReference<T>,
     drawQuantiles: List<Double>? = null,
     scale: ViolinScale? = null,
@@ -52,7 +52,7 @@ public inline fun <reified T : Any> PlotContext.violin(
 )
 
 
-inline fun <reified T : Any, reified R : Any> PlotContext.violin(
+inline fun <reified T, reified R> PlotContext.violin(
     sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
 =======
 ): Unit = violin(
@@ -60,7 +60,7 @@ inline fun <reified T : Any, reified R : Any> PlotContext.violin(
 )
 
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.violin(
+public inline fun <reified T, reified R> PlotContext.violin(
     sourceX: DataSource<T>,
 >>>>>>> main
     sourceY: ColumnReference<R>,
@@ -79,7 +79,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.violin(
     drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.violin(
+public inline fun <reified T, reified R> PlotContext.violin(
     sourceX: ColumnReference<T>,
     sourceY: ColumnReference<R>,
     drawQuantiles: List<Double>? = null,

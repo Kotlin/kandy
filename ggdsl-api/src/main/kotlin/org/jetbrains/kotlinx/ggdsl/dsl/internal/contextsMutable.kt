@@ -38,7 +38,7 @@ public interface TableBindingContextInterfaceMutable : TableDataContext {
  * @param iterable converting [Iterable] that will be added as a column to context dataset.
  * @return [ColumnPointer] to a new column
  */
-public inline fun <reified T : Any> TableBindingContextInterfaceMutable.toColumnPointer(iterable: Iterable<T>)
+public inline fun <reified T> TableBindingContextInterfaceMutable.toColumnPointer(iterable: Iterable<T>)
         : ColumnPointer<T> = toColumnPointer(iterable, generateID())
 
 /**
@@ -50,7 +50,7 @@ public inline fun <reified T : Any> TableBindingContextInterfaceMutable.toColumn
  * @param id name of a new column.
  * @return [ColumnPointer] to a new column
  */
-public inline fun <reified T : Any> TableBindingContextInterfaceMutable.toColumnPointer(
+public inline fun <reified T> TableBindingContextInterfaceMutable.toColumnPointer(
     iterable: Iterable<T>,
     id: String
 ): ColumnPointer<T> {
@@ -82,7 +82,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      * @param DomainType type of the domain.
      * @return scaled added column.
      */
-    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
+    public inline fun <reified DomainType> Iterable<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
         ColumnScaledUnspecifiedDefault(toColumnPointer(this))
 
     /**
@@ -96,7 +96,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      * @param DomainType type of the domain.
      * @return scaled added column.
      */
-    public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled()
+    public inline fun <reified DomainType> Pair<Iterable<DomainType>, String>.scaled()
             : ColumnScaledUnspecifiedDefault<DomainType> =
         ColumnScaledUnspecifiedDefault(toColumnPointer(first, second))
 
@@ -110,7 +110,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      * @param scale applying positional unspecified scale.
      * @return scaled added column.
      */
-    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
+    public inline fun <reified DomainType> Iterable<DomainType>.scaled(
         scale: PositionalUnspecifiedScale
     ): ColumnScaledPositionalUnspecified<DomainType> = ColumnScaledPositionalUnspecified(toColumnPointer(this), scale)
 
@@ -125,7 +125,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      * @param scale applying positional unspecified scale.
      * @return scaled added column.
      */
-    public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
+    public inline fun <reified DomainType> Pair<Iterable<DomainType>, String>.scaled(
         scale: PositionalUnspecifiedScale
     ): ColumnScaledPositionalUnspecified<DomainType> =
         ColumnScaledPositionalUnspecified(toColumnPointer(first, second), scale)
@@ -140,7 +140,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      * @param scale applying non-positional unspecified scale.
      * @return scaled added column.
      */
-    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
+    public inline fun <reified DomainType> Iterable<DomainType>.scaled(
         scale: NonPositionalUnspecifiedScale
     ): ColumnScaledNonPositionalUnspecified<DomainType> =
         ColumnScaledNonPositionalUnspecified(toColumnPointer(this), scale)
@@ -156,7 +156,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      * @param scale applying non-positional unspecified scale.
      * @return scaled added column.
      */
-    public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
+    public inline fun <reified DomainType> Pair<Iterable<DomainType>, String>.scaled(
         scale: NonPositionalUnspecifiedScale
     ): ColumnScaledNonPositionalUnspecified<DomainType> =
         ColumnScaledNonPositionalUnspecified(toColumnPointer(first, second), scale)
@@ -170,7 +170,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      * @param scale applying positional scale.
      * @return scaled added column.
      */
-    public inline fun <reified DomainType : Any> Iterable<DomainType>.scaled(
+    public inline fun <reified DomainType> Iterable<DomainType>.scaled(
         scale: PositionalScale<DomainType>
     ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(toColumnPointer(this), scale)
 
@@ -184,7 +184,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      * @param scale applying positional scale.
      * @return scaled added column.
      */
-    public inline fun <reified DomainType : Any> Pair<Iterable<DomainType>, String>.scaled(
+    public inline fun <reified DomainType> Pair<Iterable<DomainType>, String>.scaled(
         scale: PositionalScale<DomainType>
     ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(toColumnPointer(first, second), scale)
 
@@ -197,7 +197,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      * @param scale applying non-positional scale.
      * @return scaled added column.
      */
-    public inline fun <reified DomainType : Any, RangeType : Any> Iterable<DomainType>.scaled(
+    public inline fun <reified DomainType, RangeType> Iterable<DomainType>.scaled(
         scale: NonPositionalScale<DomainType, RangeType>
     ): ColumnScaledNonPositional<DomainType, RangeType> =
         ColumnScaledNonPositional(toColumnPointer(this), scale)
@@ -212,7 +212,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      * @param scale applying non-positional scale.
      * @return scaled added column.
      */
-    public inline fun <reified DomainType : Any, RangeType : Any> Pair<Iterable<DomainType>, String>.scaled(
+    public inline fun <reified DomainType, RangeType> Pair<Iterable<DomainType>, String>.scaled(
         scale: NonPositionalScale<DomainType, RangeType>
     ): ColumnScaledNonPositional<DomainType, RangeType> =
         ColumnScaledNonPositional(toColumnPointer(first, second), scale)
@@ -223,7 +223,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      *
      * @param iterable [Iterable] that will be added as a column.
      */
-    public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> NonScalablePositionalAes.invoke(
         iterable: Iterable<DomainType>
     ) {
         context.bindingCollector.mappings[this.name] =
@@ -236,7 +236,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      *
      * @param dataToName [Pair] of [Iterable] that will be added as a column to the name of a new column.
      */
-    public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> NonScalablePositionalAes.invoke(
         dataToName: Pair<Iterable<DomainType>, String>
     ) {
         context.bindingCollector.mappings[this.name] =
@@ -251,7 +251,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      *
      * @param iterable [Iterable] that will be added as a column.
      */
-    public inline operator fun <reified DomainType : Any, RangeType: Any>
+    public inline operator fun <reified DomainType, RangeType: Any>
             NonScalableNonPositionalAes<RangeType>.invoke(
         iterable: Iterable<DomainType>
     ) {
@@ -267,7 +267,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      *
      * @param dataToName [Pair] of [Iterable] that will be added as a column to the name of a new column.
      */
-    public inline operator fun <reified DomainType : Any, RangeType: Any>
+    public inline operator fun <reified DomainType, RangeType: Any>
             NonScalableNonPositionalAes<RangeType>.invoke(
         dataToName: Pair<Iterable<DomainType>, String>
     ) {
@@ -284,7 +284,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      *
      * @param iterable [Iterable] that will be added as a column.
      */
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         iterable: Iterable<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -303,7 +303,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      *
      * @param dataToName [Pair] of [Iterable] that will be added as a column to the name of a new column.
      */
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         dataToName: Pair<Iterable<DomainType>, String>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -322,7 +322,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      *
      * @param iterable [Iterable] that will be added as a column.
      */
-    public inline operator fun <reified DomainType : Any, RangeType : Any>
+    public inline operator fun <reified DomainType, RangeType>
             ScalableNonPositionalAes<RangeType>.invoke(
         iterable: Iterable<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
@@ -342,7 +342,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      *
      * @param dataToName [Pair] of [Iterable] that will be added as a column to the name of a new column.
      */
-    public inline operator fun <reified DomainType : Any, RangeType : Any>
+    public inline operator fun <reified DomainType, RangeType>
             ScalableNonPositionalAes<RangeType>.invoke(
         dataToName: Pair<Iterable<DomainType>, String>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {

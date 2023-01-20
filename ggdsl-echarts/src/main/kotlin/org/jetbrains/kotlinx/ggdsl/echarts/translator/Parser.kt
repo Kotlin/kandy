@@ -23,7 +23,7 @@ import java.time.LocalTime
 import kotlin.reflect.typeOf
 
 @Suppress("UNCHECKED_CAST")
-internal fun <T : Any> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
+internal fun <T> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
     return (this[key] as? NonPositionalSetting<*>)?.value?.value as? T
 }
 

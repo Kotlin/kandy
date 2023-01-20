@@ -47,8 +47,8 @@ public fun categoricalPos(): PositionalCategoricalUnspecifiedScale =
  * @param transform the transformation of scale
  * @return new [PositionalContinuousScale] with given limits
  */
-public inline fun <reified DomainType : Any> continuousPos(
-    limits: Pair<DomainType, DomainType>? = null,
+public inline fun <reified DomainType> continuousPos(
+    limits: Pair<DomainType & Any, DomainType & Any>? = null,
     transform: PositionalTransform? = null
 ): PositionalContinuousScale<DomainType> = PositionalContinuousScale(limits?.let {
     it.first.typed() to it.second.typed()
@@ -64,9 +64,9 @@ public inline fun <reified DomainType : Any> continuousPos(
  * @param transform the transformation of scale
  * @return new [NonPositionalContinuousScale] with given limits
  */
-public inline fun <reified DomainType : Any, reified RangeType : Any> continuous(
-    domainLimits: Pair<DomainType, DomainType>? = null,
-    rangeLimits: Pair<RangeType, RangeType>? = null,
+public inline fun <reified DomainType, reified RangeType> continuous(
+    domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
+    rangeLimits: Pair<RangeType & Any, RangeType & Any>? = null,
     transform: NonPositionalTransform? = null
 ): NonPositionalContinuousScale<DomainType, RangeType> =
     NonPositionalContinuousScale(domainLimits?.let {
@@ -82,7 +82,7 @@ public inline fun <reified DomainType : Any, reified RangeType : Any> continuous
  * @param categories [List] defining the domain
  * @return new [PositionalCategoricalScale] with given categories
  */
-public inline fun <reified DomainType : Any> categoricalPos(categories: List<DomainType>? = null)
+public inline fun <reified DomainType> categoricalPos(categories: List<DomainType & Any>? = null)
         : PositionalCategoricalScale<DomainType> =
     PositionalCategoricalScale(categories?.typedList())
 
@@ -95,9 +95,9 @@ public inline fun <reified DomainType : Any> categoricalPos(categories: List<Dom
  * @param rangeValues [List] defining the range
  * @return new [NonPositionalCategoricalScale] with given limits
  */
-public inline fun <reified DomainType : Any, reified RangeType : Any> categorical(
-    domainCategories: List<DomainType>? = null,
-    rangeValues: List<RangeType>? = null,
+public inline fun <reified DomainType, reified RangeType> categorical(
+    domainCategories: List<DomainType & Any>? = null,
+    rangeValues: List<RangeType & Any>? = null,
 ): NonPositionalCategoricalScale<DomainType, RangeType> =
     NonPositionalCategoricalScale(domainCategories?.typedList(), rangeValues?.typedList())
 
@@ -109,8 +109,8 @@ public inline fun <reified DomainType : Any, reified RangeType : Any> categorica
  * @param categoriesToValues [List] of pairs of category to corresponding value.
  * @return new [NonPositionalCategoricalScale] with given limits
  */
-public inline fun <reified DomainType : Any, reified RangeType : Any> categorical(
-    categoriesToValues: List<Pair<DomainType, RangeType>>
+public inline fun <reified DomainType, reified RangeType> categorical(
+    categoriesToValues: List<Pair<DomainType & Any, RangeType & Any>>
 ): NonPositionalCategoricalScale<DomainType, RangeType> =
     NonPositionalCategoricalScale(
         categoriesToValues.map { it.first }.typedList(),

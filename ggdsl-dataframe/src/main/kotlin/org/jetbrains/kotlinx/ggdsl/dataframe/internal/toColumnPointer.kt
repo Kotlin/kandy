@@ -8,6 +8,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
  *
  * @return a column pointer with the same name and type as a receiver [ColumnReference].
  */
-public fun <T : Any> ColumnReference<T>.toColumnPointer(): ColumnPointer<T> {
+public fun <T> ColumnReference<T>.toColumnPointer(): ColumnPointer<T> {
     return ColumnPointer(name())
 }
