@@ -35,7 +35,7 @@ internal class Parser(plot: Plot) {
 
     private var xAxis: Axis? = null
     private var yAxis: Axis? = null
-    private val source = mutableMapOf<String, List<Any>>()
+    private val source = mutableMapOf<String, List<Any?>>()
 
 
     internal fun parse(): Option {

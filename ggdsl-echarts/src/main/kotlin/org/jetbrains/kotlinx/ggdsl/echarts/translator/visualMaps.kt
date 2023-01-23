@@ -15,7 +15,7 @@ import kotlin.reflect.typeOf
 
 internal fun Scale.toVisualMap(
     aes: AesName, dim: String, seriesIndex: Int,
-    data: List<Any>?, visualMapSize: Int, domainType: KType
+    data: List<Any?>?, visualMapSize: Int, domainType: KType
 ): VisualMap {
     return when (this) {
         is NonPositionalCategoricalScale<*, *> -> {

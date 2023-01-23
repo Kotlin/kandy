@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
-internal fun createInRange(aes: AesName, valuesString: List<Any>?): Range? {
+internal fun createInRange(aes: AesName, valuesString: List<Any?>?): Range? {
     if (valuesString.isNullOrEmpty()) return null
     return when (aes) {
         COLOR, LINE_COLOR, AREA_COLOR -> Range(color = valuesString.map { ((it as TypedValue).value as Color).toEchartsColor() })
@@ -26,10 +26,10 @@ internal fun createInRange(aes: AesName, valuesString: List<Any>?): Range? {
 
 @Serializable(with = RangeSerializer::class)
 internal data class Range(
-    val symbol: List<Any>? = null,
-    val symbolSize: List<Any>? = null,
+    val symbol: List<Any?>? = null,
+    val symbolSize: List<Any?>? = null,
     val color: List<EchartsColor>? = null,
-    val colorAlpha: List<Any>? = null,
+    val colorAlpha: List<Any?>? = null,
     val opacity: List<Double>? = null,
     val colorLightness: List<Double>? = null,
     val colorSaturation: List<Double>? = null,
