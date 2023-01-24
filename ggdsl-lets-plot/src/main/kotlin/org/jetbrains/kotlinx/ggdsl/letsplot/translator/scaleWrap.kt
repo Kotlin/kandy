@@ -35,6 +35,7 @@ internal fun Scale.wrap(
 ): org.jetbrains.letsPlot.intern.Scale? {
     return when (this) {
         is PositionalScale<*> -> {
+            val naValue = nullValue?.value
             val axis = (scaleParameters as PositionalParameters<*>?)?.axis
 
             val name = axis?.name
@@ -77,7 +78,8 @@ internal fun Scale.wrap(
                             name = name,
                             breaks = breaks?.values.wrap(),
                             labels = labels,
-                            format = format
+                            format = format,
+                            naValue = naValue as? Number
                         )
 
                         Y -> scaleYDiscrete(
@@ -85,7 +87,8 @@ internal fun Scale.wrap(
                             name = name,
                             breaks = breaks?.values.wrap(),
                             labels = labels,
-                            format = format
+                            format = format,
+                            naValue = naValue as? Number
                         )
 
                         else -> TODO("error")
@@ -101,7 +104,8 @@ internal fun Scale.wrap(
                                 breaks = breaks?.values?.map { it as Number }, // TODO() }
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
-                                format = format
+                                format = format,
+                                naValue = naValue as? Number
                             )
                         } else {
                             scaleXDateTime(
@@ -109,7 +113,8 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks?.values.wrap(),
                                 labels = labels,
-                                format = format
+                                format = format,
+                                naValue = naValue
                             )
                         }
 
@@ -120,7 +125,8 @@ internal fun Scale.wrap(
                                 breaks = breaks?.values?.map { it as Number }, // TODO() }
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
-                                format = format
+                                format = format,
+                                naValue = naValue as? Number
                             )
                         } else {
                             scaleYDateTime(
@@ -128,7 +134,8 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks?.values.wrap(),
                                 labels = labels,
-                                format = format
+                                format = format,
+                                naValue = naValue
                             )
                         }
 
@@ -141,6 +148,7 @@ internal fun Scale.wrap(
         }
 
         is NonPositionalScale<*, *> -> {
+            val naValue = nullValue?.value
             val legend = (scaleParameters as NonPositionalParameters<*, *>?)?.legend
 
             val name = legend?.name
@@ -174,7 +182,8 @@ internal fun Scale.wrap(
                             breaks = breaks?.values.wrap(),
                             labels = labels,
                             guide = legendType,
-                            format = format
+                            format = format,
+                            naValue = naValue as? Number
                         )} else {
                             org.jetbrains.letsPlot.intern.Scale(
                                 Aes.SIZE,
@@ -183,7 +192,8 @@ internal fun Scale.wrap(
                                 breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 guide = legendType,
-                                format = format
+                                format = format,
+                                naValue = naValue as? Number
                             )
                         }
 
@@ -195,7 +205,8 @@ internal fun Scale.wrap(
                                     breaks = breaks?.values.wrap(),
                                     labels = labels,
                                     guide = legendType,
-                                    format = format
+                                    format = format,
+                                    naValue = naValue
                                 )
                             } else {
                                 scaleColorManual(
@@ -205,7 +216,8 @@ internal fun Scale.wrap(
                                     breaks = breaks?.values.wrap(),
                                     labels = labels,
                                     guide = legendType,
-                                    format = format
+                                    format = format,
+                                    naValue = naValue
                                 )
                             }
                         }
@@ -218,7 +230,8 @@ internal fun Scale.wrap(
                                     breaks = breaks?.values.wrap(),
                                     labels = labels,
                                     guide = legendType,
-                                    format = format
+                                    format = format,
+                                    naValue = naValue
                                 )
                             } else {
                                 scaleFillManual(
@@ -228,7 +241,8 @@ internal fun Scale.wrap(
                                     breaks = breaks?.values.wrap(),
                                     labels = labels,
                                     guide = legendType,
-                                    format = format
+                                    format = format,
+                                    naValue = naValue
                                 )
                             }
                         }
@@ -240,7 +254,8 @@ internal fun Scale.wrap(
                             breaks = breaks?.values.wrap(),
                             labels = labels,
                             guide = legendType,
-                            format = format
+                            format = format,
+                            naValue = naValue as? Number
                         )} else {
                             org.jetbrains.letsPlot.intern.Scale(
                                 Aes.ALPHA,
@@ -249,7 +264,8 @@ internal fun Scale.wrap(
                                 breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 guide = legendType,
-                                format = format
+                                format = format,
+                                naValue = naValue
                             )
                         }
 
@@ -261,7 +277,8 @@ internal fun Scale.wrap(
                                 breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 guide = legendType,
-                                format = format
+                                format = format,
+                                naValue = naValue
                             )
                             // TODO
                         } else {
@@ -272,7 +289,8 @@ internal fun Scale.wrap(
                                 breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 guide = legendType,
-                                format = format
+                                format = format,
+                                naValue = naValue
                             )
                         }
 
@@ -283,7 +301,8 @@ internal fun Scale.wrap(
                                 breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 guide = legendType,
-                                format = format
+                                format = format,
+                                naValue = naValue
                             )
                         } else {
                             scaleShapeManual(
@@ -294,7 +313,8 @@ internal fun Scale.wrap(
                                 breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 guide = legendType,
-                                format = format
+                                format = format,
+                                naValue = naValue
                             )
                         }
 
@@ -313,7 +333,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             trans = (transform as Transformation?)?.name,
-                            format = format
+                            format = format,
+                            naValue = naValue as? Number
                         )
 
 
@@ -332,7 +353,8 @@ internal fun Scale.wrap(
                                 labels = labels,
                                 guide = legendType,
                                 trans = (transform as Transformation?)?.name,
-                                format = format
+                                format = format,
+                                naValue = naValue
 
                             )
 
@@ -353,7 +375,8 @@ internal fun Scale.wrap(
                                 labels = labels,
                                 guide = legendType,
                                 trans = (transform as Transformation?)?.name,
-                                format = format
+                                format = format,
+                                naValue = naValue
                             )
 
                         }
@@ -366,7 +389,8 @@ internal fun Scale.wrap(
                             labels = labels,
                             guide = legendType,
                             trans = (transform as Transformation?)?.name,
-                            format = format
+                            format = format,
+                            naValue = naValue as? Number
                         )
                         // TODO  SYMBOL -> TODO("cant apply contunuous scale")
                         else -> TODO()
@@ -384,7 +408,8 @@ internal fun Scale.wrap(
                             guide = legendType,
                             limits = domainLimits.wrap(),
                             trans = transform?.name,
-                            format = format
+                            format = format,
+                            naValue = naValue
                         )
 
                         FILL -> scaleFillGrey(
@@ -396,7 +421,8 @@ internal fun Scale.wrap(
                             guide = legendType,
                             limits = domainLimits.wrap(),
                             trans = transform?.name,
-                            format = format
+                            format = format,
+                            naValue = naValue
                         )
 
                         else -> TODO()
@@ -409,14 +435,14 @@ internal fun Scale.wrap(
                             luminance,
                             hueStart,
                             direction?.value,
-                            naValue = null,
                             name = name,
                             breaks = breaks?.values?.map { it as Number }, // todo
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
                             trans = transform?.name,
-                            format = format
+                            format = format,
+                            naValue = naValue
                         )
 
                         FILL -> scaleFillHue(
@@ -431,7 +457,8 @@ internal fun Scale.wrap(
                             guide = legendType,
                             limits = domainLimits.wrap(),
                             trans = transform?.name,
-                            format = format
+                            format = format,
+                            naValue = naValue
                         )
 
                         else -> TODO()
@@ -447,7 +474,8 @@ internal fun Scale.wrap(
                             guide = legendType,
                             limits = limits,
                             trans = transform?.name,
-                            format = format
+                            format = format,
+                            naValue = naValue
                         )
 
                         FILL -> scaleFillBrewer(
@@ -459,7 +487,8 @@ internal fun Scale.wrap(
                             guide = legendType,
                             limits = limits,
                             trans = transform?.name,
-                            format = format
+                            format = format,
+                            naValue = naValue
                         )
 
                         else -> TODO()
@@ -477,7 +506,8 @@ internal fun Scale.wrap(
                             guide = legendType,
                             limits = domainLimits.wrap(),
                             trans = transform?.name,
-                            format = format
+                            format = format,
+                            naValue = naValue
                         )
 
                         FILL -> scaleFillGradient2(
@@ -491,7 +521,8 @@ internal fun Scale.wrap(
                             guide = legendType,
                             limits = domainLimits.wrap(),
                             trans = transform?.name,
-                            format = format
+                            format = format,
+                            naValue = naValue
                         )
 
                         else -> TODO()
@@ -506,7 +537,8 @@ internal fun Scale.wrap(
                             guide = legendType,
                             limits = domainLimits.wrap(),
                             trans = transform?.name,
-                            format = format
+                            format = format,
+                            naValue = naValue
                         )
 
                         FILL -> scaleFillGradientN(
@@ -517,7 +549,8 @@ internal fun Scale.wrap(
                             guide = legendType,
                             limits = domainLimits.wrap(),
                             trans = transform?.name,
-                            format = format
+                            format = format,
+                            naValue = naValue
                         )
 
                         else -> TODO()
@@ -580,7 +613,7 @@ internal fun Scale.wrap(
                                 breaks = breaks?.values?.map { it as Number }, // TODO() }
                                 labels = labels,
                                 //   trans = (transform as? Transformation)?.name,
-                                format = format
+                                format = format,
                             )
 
                             Y -> scaleYDateTime(
@@ -588,7 +621,7 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks?.values.wrap(),
                                 labels = labels,
-                                format = format
+                                format = format,
                             )
 
                             else -> TODO()
