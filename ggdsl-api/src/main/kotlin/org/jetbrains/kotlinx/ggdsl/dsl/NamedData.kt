@@ -18,7 +18,7 @@ public data class NamedData(override val nameToValues: Map<String, TypedList>) :
     }
     public companion object {
         @PublishedApi
-        internal fun fromUntyped(untypedMap: Map<String, List<Any>>): NamedData = NamedData(untypedMap.toTyped())
+        internal fun fromUntyped(untypedMap: Map<String, List<*>>): NamedData = NamedData(untypedMap.toTyped())
     }
 }
 

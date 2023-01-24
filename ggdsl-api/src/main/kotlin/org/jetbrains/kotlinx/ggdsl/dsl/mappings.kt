@@ -25,7 +25,7 @@ public inline operator fun <reified DomainType> NonScalablePositionalAes.invoke(
  *
  * @param column the mapped raw data column.
  */
-public inline operator fun <reified DomainType, RangeType: Any> NonScalableNonPositionalAes<RangeType>.invoke(
+public inline operator fun <reified DomainType, RangeType> NonScalableNonPositionalAes<RangeType>.invoke(
     column: ColumnPointer<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =

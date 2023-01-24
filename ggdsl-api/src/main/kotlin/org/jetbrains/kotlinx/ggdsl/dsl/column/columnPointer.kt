@@ -71,4 +71,4 @@ public inline fun <reified T> columnPointer(): UnnamedColumnPointer<T> =
     UnnamedColumnPointer()
 
 @PublishedApi
-internal fun<T: Any> String.toColumnPointer(): ColumnPointer<T> = ColumnPointer(this)
+internal fun<T> String.toColumnPointer(): ColumnPointer<T> = ColumnPointer(this)

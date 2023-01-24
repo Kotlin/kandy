@@ -251,7 +251,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      *
      * @param iterable [Iterable] that will be added as a column.
      */
-    public inline operator fun <reified DomainType, RangeType: Any>
+    public inline operator fun <reified DomainType, RangeType>
             NonScalableNonPositionalAes<RangeType>.invoke(
         iterable: Iterable<DomainType>
     ) {
@@ -267,7 +267,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
      *
      * @param dataToName [Pair] of [Iterable] that will be added as a column to the name of a new column.
      */
-    public inline operator fun <reified DomainType, RangeType: Any>
+    public inline operator fun <reified DomainType, RangeType>
             NonScalableNonPositionalAes<RangeType>.invoke(
         dataToName: Pair<Iterable<DomainType>, String>
     ) {
