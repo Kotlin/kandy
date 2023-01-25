@@ -14,7 +14,9 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Enc
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import java.time.LocalDate
@@ -53,17 +55,25 @@ internal class Parser(plot: Plot) {
         val textStyle = layout?.textStyle?.toTextStyle()
         val animation = layout?.animation?.toAnimationPlotFeature()
 
-        globalMappings.forEach { (aes, mapping) ->
+        globalMappings.forEach { (aes, mapping) -> // todo refactor parse data
             if (mapping is ScaledMapping<*>) {
                 when (aes) {
                     X -> {
                         xAxis = mapping.toAxis()
-                        source[mapping.getId()] = data[mapping.getId()]!!.values
+                        val na = mapping.getNA()
+                        source[mapping.getId()] = if (na != null)
+                            data[mapping.getId()]!!.values.map { it ?: na }
+                        else
+                            data[mapping.getId()]!!.values
                     }
 
                     Y -> {
                         yAxis = mapping.toAxis()
-                        source[mapping.getId()] = data[mapping.getId()]!!.values
+                        val na = mapping.getNA()
+                        source[mapping.getId()] = if (na != null)
+                            data[mapping.getId()]!!.values.map { it ?: na }
+                        else
+                            data[mapping.getId()]!!.values
                     }
                 }
             }
@@ -89,7 +99,13 @@ internal class Parser(plot: Plot) {
                             )
                         }
                     }
-                    source.getOrPut(mapping.getId()) { data[mapping.getId()]!!.values } // TODO(missing columns?)
+                    val na = mapping.getNA()
+                    source.getOrPut(mapping.getId()) {
+                        if (na != null)
+                            data[mapping.getId()]!!.values.map { it ?: na }
+                        else
+                            data[mapping.getId()]!!.values
+                    } // TODO(missing columns?)
                 }
             }
             layer.toSeries()
@@ -98,7 +114,7 @@ internal class Parser(plot: Plot) {
         val headersOfData = source.keys.toList()
         val datasetSource = listOf(headersOfData) + List(source.values.firstOrNull()?.size ?: 0) { i ->
             List(headersOfData.size) { j ->
-                source[headersOfData[j]]?.get(i).toString()
+                source[headersOfData[j]]?.get(i)?.toString()
             }
         }
 
@@ -130,6 +146,12 @@ internal class Parser(plot: Plot) {
 
     private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.name
 
+    private fun ScaledMapping<*>.getNA(): Any? = when (val scale = this.columnScaled.scale) {
+        is PositionalScale<*> -> scale.nullValue?.value
+        is NonPositionalScale<*, *> -> scale.nullValue?.value
+        else -> null
+    }
+
     private fun ScaledMapping<*>.toAxis(): Axis {
         val scaleMap = this.columnScaled.scale
         val show: Boolean = true
@@ -151,9 +173,9 @@ internal class Parser(plot: Plot) {
             is PositionalContinuousUnspecifiedScale -> AxisType.VALUE
             is DefaultUnspecifiedScale, is UnspecifiedScale -> {
                 when (this.domainType) {
-                    typeOf<String>(), typeOf<Char>() -> AxisType.CATEGORY
-                    typeOf<Number>() -> AxisType.VALUE
-                    typeOf<LocalDate>(), typeOf<LocalDateTime>(), typeOf<LocalTime>() -> AxisType.TIME // TODO(kotlinx.datetime)
+                    typeOf<String>(), typeOf<String?>(), typeOf<Char>(), typeOf<Char?>() -> AxisType.CATEGORY
+                    typeOf<Number>(), typeOf<Number?>() -> AxisType.VALUE
+                    typeOf<LocalDate>(), typeOf<LocalDateTime>(), typeOf<LocalTime>(), typeOf<LocalDate?>(), typeOf<LocalDateTime?>(), typeOf<LocalTime?>() -> AxisType.TIME // TODO(kotlinx.datetime)
                     else -> AxisType.VALUE
                 }
             }

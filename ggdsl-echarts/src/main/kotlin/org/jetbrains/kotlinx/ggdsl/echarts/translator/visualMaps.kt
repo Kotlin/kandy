@@ -20,7 +20,7 @@ internal fun Scale.toVisualMap(
     return when (this) {
         is NonPositionalCategoricalScale<*, *> -> {
             val categoriesString =
-                domainCategories?.values?.map { value -> value.toString() } ?: data?.toSet()?.map { it.toString() }
+                domainCategories?.values?.map { value -> value?.toString() } ?: data?.toSet()?.map { it?.toString() }
             val inRange = createInRange(aes, rangeValues?.values)
             PiecewiseVisualMap(
                 dimension = dim,
@@ -55,9 +55,9 @@ internal fun Scale.toVisualMap(
         is DefaultUnspecifiedScale -> {
             when (domainType) {
 //                 todo other, date
-                typeOf<String>() -> PiecewiseVisualMap(
+                typeOf<String>(), typeOf<String?>() -> PiecewiseVisualMap(
                     dimension = dim,
-                    categories = data?.toSet()?.map { it.toString() },
+                    categories = data?.toSet()?.map { it?.toString() },
                     seriesIndex = seriesIndex,
                     right = 10,
                     top = visualMapSize * 100

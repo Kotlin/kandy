@@ -16,7 +16,7 @@ import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 internal fun createInRange(aes: AesName, valuesString: List<Any?>?): Range? {
     if (valuesString.isNullOrEmpty()) return null
     return when (aes) {
-        COLOR, LINE_COLOR, AREA_COLOR -> Range(color = valuesString.map { ((it as TypedValue).value as Color).toEchartsColor() })
+        COLOR, LINE_COLOR, AREA_COLOR -> Range(color = valuesString.map { (it as Color).toEchartsColor() })
         SIZE -> Range(symbolSize = valuesString)
         ALPHA, LINE_ALPHA, AREA_ALPHA -> Range(colorAlpha = valuesString)
         SYMBOL -> Range(symbol = valuesString)
@@ -120,7 +120,7 @@ internal data class PiecewiseVisualMap(
     val id: String? = null,
     val splitNumber: Int? = null,
     val pieces: List<Piece>? = null,
-    val categories: List<String>? = null,
+    val categories: List<String?>? = null,
     val min: Double? = null,
     val max: Double? = null,
     val minOpen: Boolean? = null,
