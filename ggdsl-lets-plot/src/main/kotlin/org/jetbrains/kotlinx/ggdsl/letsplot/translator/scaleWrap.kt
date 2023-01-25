@@ -35,7 +35,7 @@ internal fun Scale.wrap(
 ): org.jetbrains.letsPlot.intern.Scale? {
     return when (this) {
         is PositionalScale<*> -> {
-            val naValue = nullValue?.value
+            val naValue = nullValue?.wrap()
             val axis = (scaleParameters as PositionalParameters<*>?)?.axis
 
             val name = axis?.name
@@ -148,7 +148,7 @@ internal fun Scale.wrap(
         }
 
         is NonPositionalScale<*, *> -> {
-            val naValue = nullValue?.value
+            val naValue = nullValue?.wrap()
             val legend = (scaleParameters as NonPositionalParameters<*, *>?)?.legend
 
             val name = legend?.name
