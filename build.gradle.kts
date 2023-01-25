@@ -46,9 +46,10 @@ allprojects {
     }
 }
 
-val unpublished = listOf("examples")
 
-configure(subprojects.filter { it.name !in unpublished }) {
+val published = listOf("ggdsl-api", "ggdsl-dataframe", "ggdsl-dataframe-lets-plot", "ggdsl-echarts", "ggdsl-lets-plot")
+
+configure(subprojects.filter { it.name in published }) {
     apply(from = project.rootProject.file("gradle/publish.gradle"))
 }
 
