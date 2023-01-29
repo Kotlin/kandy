@@ -33,10 +33,16 @@ internal fun Scale.toVisualMap(
         }
 
         is NonPositionalContinuousScale<*, *> -> {
-            val min =
-                domainLimits?.first?.value?.toString()?.toDouble() ?: data?.minOfOrNull { (it as Number).toDouble() }
-            val max =
-                domainLimits?.second?.value?.toString()?.toDouble() ?: data?.maxOfOrNull { (it as Number).toDouble() }
+            val min: Double?
+            val max: Double?
+            if (domainLimits != null) {
+                min = domainLimits!!.first.value.toString().toDouble()
+                max = domainLimits!!.second.value.toString().toDouble()
+            } else {
+                val d = data?.filterNotNull()
+                min = d?.minOfOrNull { (it as Number).toDouble() }
+                max = d?.maxOfOrNull { (it as Number).toDouble() }
+            }
 
             val valuesString = rangeLimits?.let { listOf(it.first, it.second) }
 
@@ -63,14 +69,20 @@ internal fun Scale.toVisualMap(
                     top = visualMapSize * 100
                 )
 
-                else -> ContinuousVisualMap(
-                    dimension = dim,
-                    min = data?.minOfOrNull { (it as Number).toDouble() },
-                    max = data?.maxOfOrNull { (it as Number).toDouble() },
-                    seriesIndex = seriesIndex,
-                    right = 10,
-                    top = visualMapSize * 100
-                )
+                else -> {
+                    val d = data?.filterNotNull()
+                    val min = d?.minOfOrNull { (it as Number).toDouble() }
+                    val max = d?.maxOfOrNull { (it as Number).toDouble() }
+
+                    ContinuousVisualMap(
+                        dimension = dim,
+                        min = min,
+                        max = max,
+                        seriesIndex = seriesIndex,
+                        right = 10,
+                        top = visualMapSize * 100
+                    )
+                }
             }
         }
 

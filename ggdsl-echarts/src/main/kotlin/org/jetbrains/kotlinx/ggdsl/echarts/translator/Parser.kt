@@ -82,6 +82,12 @@ internal class Parser(plot: Plot) {
         val series = layers.mapIndexed { index, layer -> // TODO(layout???)
             layer.mappings.forEach { (aes, mapping) ->
                 if (mapping is ScaledMapping<*>) {
+                    if (mapping.domainType.isMarkedNullable && mapping.getNA() != null) {
+                        val na = mapping.getNA()!!
+                        source.getOrPut(mapping.getId()) { data[mapping.getId()]!!.values.map { it ?: na } }
+                    } else {
+                        source.getOrPut(mapping.getId()) { data[mapping.getId()]!!.values }
+                    }
                     when {
                         (xAxis == null && aes == X) -> xAxis = mapping.toAxis()
                         (yAxis == null && aes == Y) -> yAxis = mapping.toAxis()
@@ -99,13 +105,6 @@ internal class Parser(plot: Plot) {
                             )
                         }
                     }
-                    val na = mapping.getNA()
-                    source.getOrPut(mapping.getId()) {
-                        if (na != null)
-                            data[mapping.getId()]!!.values.map { it ?: na }
-                        else
-                            data[mapping.getId()]!!.values
-                    } // TODO(missing columns?)
                 }
             }
             layer.toSeries()
