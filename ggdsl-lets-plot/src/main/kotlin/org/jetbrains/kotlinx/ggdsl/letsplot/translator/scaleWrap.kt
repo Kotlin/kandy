@@ -4,6 +4,7 @@ import jetbrains.datalore.plot.base.Aes
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
@@ -20,6 +21,10 @@ import kotlin.reflect.typeOf
 
 internal val dateTimeTypes = setOf(
     typeOf<Instant>(), typeOf<LocalDateTime>(), typeOf<LocalDate>()
+)
+
+internal val timeTypes = setOf(
+    typeOf<LocalTime>(),
 )
 
 /**
@@ -92,7 +97,23 @@ internal fun Scale.wrap(
 
                 is PositionalContinuousScale<*> -> {
                     when (aesName) {
-                        X -> if (domainType !in dateTimeTypes) {
+                        X -> if (domainType in dateTimeTypes) {
+                            scaleXDateTime(
+                                limits = limits.wrap(),
+                                name = name,
+                                breaks = breaks?.values,
+                                labels = labels,
+                                format = format
+                            )
+                        } else if (domainType in timeTypes) {
+                            scaleXTime(
+                                limits = limits.wrap(),
+                                name = name,
+                                breaks = breaks?.values,
+                                labels = labels,
+                               // format = format
+                            )
+                        } else {
                             scaleXContinuous(
                                 limits = limits.wrap(),
                                 name = name,
@@ -101,31 +122,31 @@ internal fun Scale.wrap(
                                 trans = (transform as? Transformation)?.name,
                                 format = format
                             )
-                        } else {
-                            scaleXDateTime(
+                        }
+
+                        Y -> if (domainType in dateTimeTypes) {
+                            scaleYDateTime(
                                 limits = limits.wrap(),
                                 name = name,
                                 breaks = breaks?.values,
                                 labels = labels,
                                 format = format
                             )
-                        }
-
-                        Y -> if (domainType !in dateTimeTypes) {
+                        } else if (domainType in timeTypes) {
+                            scaleYTime(
+                                limits = limits.wrap(),
+                                name = name,
+                                breaks = breaks?.values,
+                                labels = labels,
+                                // format = format
+                            )
+                        } else {
                             scaleYContinuous(
                                 limits = limits.wrap(),
                                 name = name,
                                 breaks = breaks?.values?.map { it as Number }, // TODO() }
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
-                                format = format
-                            )
-                        } else {
-                            scaleYDateTime(
-                                limits = limits.wrap(),
-                                name = name,
-                                breaks = breaks?.values,
-                                labels = labels,
                                 format = format
                             )
                         }
@@ -165,15 +186,17 @@ internal fun Scale.wrap(
             when (this) {
                 is NonPositionalCategoricalScale<*, *> -> {
                     when (aesName) {
-                        SIZE -> if (rangeValues != null) {scaleSizeManual(
-                            values = rangeValues!!.values.map { it as Number },
-                            limits = domainCategories?.values,
-                            name = name,
-                            breaks = breaks?.values,
-                            labels = labels,
-                            guide = legendType,
-                            format = format
-                        )} else {
+                        SIZE -> if (rangeValues != null) {
+                            scaleSizeManual(
+                                values = rangeValues!!.values.map { it as Number },
+                                limits = domainCategories?.values,
+                                name = name,
+                                breaks = breaks?.values,
+                                labels = labels,
+                                guide = legendType,
+                                format = format
+                            )
+                        } else {
                             org.jetbrains.letsPlot.intern.Scale(
                                 Aes.SIZE,
                                 limits = domainCategories?.values,
@@ -231,15 +254,17 @@ internal fun Scale.wrap(
                             }
                         }
                         // TODO
-                        ALPHA -> if (rangeValues != null) { scaleAlphaManual(
-                            limits = domainCategories?.values,
-                            values = rangeValues!!.values.map { it as Double },
-                            name = name,
-                            breaks = breaks?.values,
-                            labels = labels,
-                            guide = legendType,
-                            format = format
-                        )} else {
+                        ALPHA -> if (rangeValues != null) {
+                            scaleAlphaManual(
+                                limits = domainCategories?.values,
+                                values = rangeValues!!.values.map { it as Double },
+                                name = name,
+                                breaks = breaks?.values,
+                                labels = labels,
+                                guide = legendType,
+                                format = format
+                            )
+                        } else {
                             org.jetbrains.letsPlot.intern.Scale(
                                 Aes.ALPHA,
                                 limits = domainCategories?.values,
@@ -586,6 +611,27 @@ internal fun Scale.wrap(
                                 breaks = breaks?.values,
                                 labels = labels,
                                 format = format
+                            )
+
+                            else -> TODO()
+                        }
+                    } else if (domainType in timeTypes) {
+                        return when (aesName) {
+                            X -> scaleXTime(
+                                //  limits = limits.toLP(),
+                                name = name,
+                                breaks = breaks?.values?.map { it as Number }, // TODO() }
+                                labels = labels,
+                                //   trans = (transform as? Transformation)?.name,
+                                //  format = format
+                            )
+
+                            Y -> scaleYTime(
+                                //limits = categories,
+                                name = name,
+                                breaks = breaks?.values,
+                                labels = labels,
+                                //   format = format
                             )
 
                             else -> TODO()
