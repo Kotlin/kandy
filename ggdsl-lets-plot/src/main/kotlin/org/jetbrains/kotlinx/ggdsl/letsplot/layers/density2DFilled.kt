@@ -13,7 +13,7 @@ public val DENSITY_2D_FILLED: LetsPlotGeom = LetsPlotGeom("density_2D_filled")
 >>>>>>> main
 
 // todo stats
-@PlotDslMarker
+/*@PlotDslMarker*/
 // todo move x/y?
 <<<<<<< HEAD
 class Density2DFilledContext(

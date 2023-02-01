@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
 public val SMOOTH: LetsPlotGeom = LetsPlotGeom("smooth")
 
 /*
-@PlotDslMarker
+/*@PlotDslMarker*/
 <<<<<<< HEAD
 class SmoothContext(
     parent: LayerCollectorContext,

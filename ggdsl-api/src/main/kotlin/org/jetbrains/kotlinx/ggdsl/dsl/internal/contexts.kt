@@ -166,7 +166,7 @@ public interface LayerCollectorContextImmutable : LayerCollectorContextInterface
  *
  * @property features [MutableMap] of feature names to layer features.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public interface LayerContextInterface : TableDataContext, TableSubContextInterface {
     public val features: MutableMap<FeatureName, LayerFeature>
 }
@@ -176,7 +176,7 @@ public interface LayerContextInterface : TableDataContext, TableSubContextInterf
  *
  * @property features [MutableMap] of feature names to layer features.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public abstract class LayerContextImmutable(parent: LayerCollectorContextImmutable) : LayerContextInterface,
     TableSubContextImmutable(parent, parent !is LayerPlotContext) {
     public override val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
@@ -187,7 +187,7 @@ public abstract class LayerContextImmutable(parent: LayerCollectorContextImmutab
  *
  * @property layers layers buffer, inherited from a parent.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public abstract class SubLayerCollectorContextImmutable(parent: LayerCollectorContextImmutable)
     : TableDataContext, LayerCollectorContextImmutable, BindingSubContextImmutable(parent) {
     override val layers: MutableList<Layer> = parent.layers
@@ -198,7 +198,7 @@ public abstract class SubLayerCollectorContextImmutable(parent: LayerCollectorCo
  *
  * @property data dataset of type [GroupedDataInterface].
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public interface GroupedDataContextInterface : TableDataContext, LayerCollectorContextImmutable {
     override val data: GroupedDataInterface
 }
@@ -208,7 +208,7 @@ public interface GroupedDataContextInterface : TableDataContext, LayerCollectorC
  *
  * @property data dataset of type [GroupedDataInterface].
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public open class GroupedDataSubContextImmutable constructor(
     override val data: GroupedDataInterface,
     override val layers: MutableList<Layer>,
@@ -223,7 +223,7 @@ public open class GroupedDataSubContextImmutable constructor(
  * @property features [MutableMap] of feature names to plot features.
  * @property toPlot creates a new plot from this context.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public interface PlotContextBase : TableDataContext {
     // todo hide
     override val data: TableData
@@ -234,7 +234,7 @@ public interface PlotContextBase : TableDataContext {
 /**
  * Plot with an explicit layers creating context.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public interface LayerPlotContext : LayerCollectorContextInterface, PlotContextBase {
     // todo hide
     public override fun toPlot(): Plot {
@@ -245,7 +245,7 @@ public interface LayerPlotContext : LayerCollectorContextInterface, PlotContextB
 /**
  * Layer plot with a dataset of type [NamedDataInterface] context.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class NamedDataPlotContext(
     override val data: NamedDataInterface,
 ) : LayerPlotContext, LayerCollectorContextImmutable {
@@ -274,7 +274,7 @@ public class NamedDataPlotContext(
 /**
  * Layer plot with a dataset of type [GroupedDataContextInterface] context.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class GroupedDataPlotContext(
     override val data: GroupedDataInterface,
 ) : LayerPlotContext, GroupedDataContextInterface {

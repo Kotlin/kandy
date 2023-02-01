@@ -5,14 +5,14 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 //todo
-@PlotDslMarker
+/*@PlotDslMarker*/
 @Serializable
 public data class Axis<DomainType : Any> @PublishedApi internal constructor(
     var kType: KType,

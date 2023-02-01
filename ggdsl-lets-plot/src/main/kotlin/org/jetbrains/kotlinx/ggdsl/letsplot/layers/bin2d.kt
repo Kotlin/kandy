@@ -11,7 +11,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 //public val BIN_2D: LetsPlotGeom = LetsPlotGeom("bin_2D")
 
 /*
-@PlotDslMarker
+/*@PlotDslMarker*/
 <<<<<<< HEAD
 class Bin2DContext(
     parent: LayerCollectorContext,

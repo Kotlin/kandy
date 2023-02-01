@@ -17,7 +17,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
  */
 @Serializable
 public data class DataFrameWrapper(
-    @Serializable(with = DataFrameSerializer::class) public val df: DataFrame<@Contextual Any?>
+    @Serializable(with = DataFrameSerializer::class)
+    public val df: DataFrame<@Contextual Any?>
 ) : NamedDataInterface {
     override val nameToValues: Map<String, TypedList> = df.toTypedDataMap()
     override fun groupBy(vararg columnPointers: ColumnPointer<*>): LazyGroupedDataFrame {

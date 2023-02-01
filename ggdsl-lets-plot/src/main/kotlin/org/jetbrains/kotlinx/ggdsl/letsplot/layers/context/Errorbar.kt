@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
 
 public interface ErrorBarContextInterface: BindingContext {
@@ -19,10 +19,10 @@ public interface ErrorBarContextInterface: BindingContext {
     public val width: WidthAes get() = WidthAes(this)
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class ErrorBarContextImmutable(parent: LayerCollectorContextImmutable)
     : LayerWithBorderLineContextImmutable(parent), ErrorBarContextInterface
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class ErrorBarContextMutable(parent: LayerCollectorContextMutable):
     LayerWithBorderLineContextMutable(parent), ErrorBarContextInterface

@@ -414,7 +414,7 @@ public abstract class LayerContextMutable(parent: LayerCollectorContextMutable) 
 /**
  * Plot context with mutable bindings.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class PlotContextMutable : LayerPlotContext, LayerCollectorContextMutable, TableContextMutableBase() {
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
     override val layers: MutableList<Layer> = mutableListOf()

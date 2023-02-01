@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
 
 public interface BoxplotContextInterface: WithBorderLineContextInterface {
@@ -20,10 +20,10 @@ public interface BoxplotContextInterface: WithBorderLineContextInterface {
     public val alpha: AlphaAes get() = AlphaAes(this)
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class BoxplotContextImmutable(parent: LayerCollectorContextImmutable)
     : LayerWithBorderLineContextImmutable(parent), BoxplotContextInterface
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class BoxplotContextMutable(parent: LayerCollectorContextMutable):
     LayerWithBorderLineContextMutable(parent), BoxplotContextInterface

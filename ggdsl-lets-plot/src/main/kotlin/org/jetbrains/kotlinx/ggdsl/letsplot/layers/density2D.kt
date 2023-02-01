@@ -9,7 +9,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 /*
 // todo stats
-@PlotDslMarker
+/*@PlotDslMarker*/
 // todo move x/y?
 <<<<<<< HEAD
 class Density2DContext(

@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.*
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationEasing
@@ -28,7 +28,7 @@ import kotlin.properties.Delegates
  * @see org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
  * @see Animation
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class PointContextImmutable(parent: LayerCollectorContextImmutable) : EchartsLayerContextImmutable(parent) {
 
     public val x: XAes = XAes(this)

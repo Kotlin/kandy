@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features.label
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
@@ -20,7 +20,7 @@ import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
  * @see Color
  * @see LineType
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class LabelBorder(
     public var color: Color? = null,
     public var width: Double? = null,

@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features.animation
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationType.EXPANSION
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationType.SCALE
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
@@ -28,7 +28,7 @@ import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.PointContextImmutable
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.BarContextImmutable
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class Animation(
     public var enable: Boolean? = null,
     public var threshold: Int? = null,
@@ -86,7 +86,7 @@ public enum class AnimationType(public val type: String) {
  * @see AnimationEasing
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.PieContextImmutable
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class AnimationPie(
     public var enable: Boolean? = null,
     public var type: AnimationType? = null,
@@ -120,7 +120,7 @@ public class AnimationPie(
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.BoxplotContextImmutable
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.CandlestickContextImmutable
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class AnimationBoxplotCandlestick(
     public var duration: Int? = null,
     public var easing: AnimationEasing? = null,

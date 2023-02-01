@@ -7,7 +7,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 /**
  * Context created by [LayerContext.tooltips] method.
  */
-//@PlotDslMarker
+///*@PlotDslMarker*/
 public class LayerTooltipsContext {
     // todo hide
     internal val lineBuffer = mutableListOf<String>()

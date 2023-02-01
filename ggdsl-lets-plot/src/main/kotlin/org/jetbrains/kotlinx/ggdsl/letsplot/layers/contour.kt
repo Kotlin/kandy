@@ -12,7 +12,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 //public val CONTOUR: LetsPlotGeom = LetsPlotGeom("contour")
 
 /*
-@PlotDslMarker
+/*@PlotDslMarker*/
 // todo move x/y?
 <<<<<<< HEAD
 class ContourContext(

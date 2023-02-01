@@ -16,7 +16,7 @@ public val FREQPOLY: LetsPlotGeom = LetsPlotGeom("freqpoly")
 
 >>>>>>> main
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public// todo move x/y?
 class FreqpolyContext(
     parent: LayerCollectorContext,

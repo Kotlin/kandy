@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features.title
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyle
 import org.jetbrains.kotlinx.ggdsl.echarts.features.title.TextAlign.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsTitle
@@ -41,7 +41,7 @@ public enum class TextAlign(public val align: String) {
  * @see TextStyle
  * @see Color
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class Title(
     public var text: String? = null,
     public var subtext: String? = null,

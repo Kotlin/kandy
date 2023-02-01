@@ -12,7 +12,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 //public val HISTOGRAM: LetsPlotGeom = LetsPlotGeom("histogram")
 /*
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 // todo move x/y?
 class HistogramContext(
     parent: LayerCollectorContext,
@@ -20,7 +20,7 @@ class HistogramContext(
 public val HISTOGRAM: LetsPlotGeom = LetsPlotGeom("histogram")
 
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 // todo move x/y?
 public class HistogramContext(
     override var data: MutableNamedData,

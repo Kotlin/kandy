@@ -5,7 +5,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextImmutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LayerWithBorderLineContextImmutable
@@ -28,11 +28,11 @@ public interface TileContextInterface : WithBorderLineContextInterface {
     public val alpha: AlphaAes get() = AlphaAes(this)
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class TileContextImmutable(parent: LayerCollectorContextImmutable) :
     LayerWithBorderLineContextImmutable(parent), TileContextInterface
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class TileContextMutable(parent: LayerCollectorContextMutable)
     : LayerWithBorderLineContextMutable(parent), TileContextInterface
 
