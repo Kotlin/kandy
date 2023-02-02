@@ -4,6 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToJsonElement
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
@@ -70,16 +72,28 @@ internal class Integration : JupyterIntegration() {
         }
     }
 
+    @Serializable
+    internal data class ApplicationPlot(
+        @SerialName("output_type")
+        val outputType: String = "lets_plot_spec",
+        val output: String
+    )
+
+    @Serializable
+    internal data class PlotFullInfoMime(
+        @SerialName("text/html")
+        val textHTML: String,
+        @SerialName("application/plot")
+        val applicationPlot: ApplicationPlot
+    )
+
     internal fun Figure.toMimeResult(): MimeTypedResultEx {
         val spec = toSpec()
         val html = toHTML()
         return MimeTypedResultEx(
-            Json.encodeToJsonElement(mapOf(
-                "text/html" to html,
-                "application/plot" to mapOf(
-                    "output_type" to "lets_plot_spec",
-                    "output" to spec
-                )
+            Json.encodeToJsonElement(PlotFullInfoMime(
+                html,
+                ApplicationPlot("lets_plot_spec", spec.toString())
             ))
         )
     }
