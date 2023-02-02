@@ -42,6 +42,6 @@ class MonoIntegrationTest : JupyterReplTestCase() {
         val resourcePath = "testData/jupyter/${testName.methodName}.out"
         val resource = classLoader.getResource(resourcePath)
         assertNotNull(resource)
-        assertEquals(resource.readText(), actualOutputText)
+        assertEquals(resource.readText().replace("\r\n", "\n"), actualOutputText)
     }
 }

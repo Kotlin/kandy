@@ -12,6 +12,7 @@ val html_version: String by project
 val datetime_version: String by project
 val lets_plot_kotlin_version: String by project
 val lets_plot_image_version: String by project
+val serialization_version: String by project
 
 dependencies {
     implementation(kotlin("stdlib"))
@@ -20,6 +21,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-datetime-jvm:$datetime_version")
     implementation("org.jetbrains.lets-plot:lets-plot-kotlin-jvm:$lets_plot_kotlin_version")
     implementation("org.jetbrains.lets-plot:lets-plot-image-export:$lets_plot_image_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version")
     api(project(":ggdsl-api"))
 }
 
