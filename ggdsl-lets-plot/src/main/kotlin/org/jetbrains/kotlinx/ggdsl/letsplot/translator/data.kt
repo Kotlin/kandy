@@ -26,10 +26,10 @@ internal object DateTimeMaster {
             // TODO!!!
             key to when(type) {
                 typeOf<LocalDate>() -> values.map {
-                    (it as LocalDate).atStartOfDayIn((TimeZone.currentSystemDefault()))
+                    (it as LocalDate).atStartOfDayIn(TimeZone.UTC).plus(12, DateTimeUnit.HOUR)
                 }
                 typeOf<LocalDateTime>() -> values.map {
-                    (it as LocalDateTime).toInstant(TimeZone.currentSystemDefault())
+                    (it as LocalDateTime).toInstant(TimeZone.UTC)
                 }
                 typeOf<LocalTime>() -> values.map {
                     (it as LocalTime).toMillisecondOfDay()
