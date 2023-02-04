@@ -7,7 +7,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.MERGED_GROUPS
 import kotlin.reflect.typeOf
-import kotlin.time.Duration.Companion.nanoseconds
 
 internal fun LazyGroupedDataInterface.mergedKeys(): List<String> = buildList {
     val map = this@mergedKeys.origin.nameToValues
@@ -33,13 +32,7 @@ internal object DateTimeMaster {
                     (dateTime as? LocalDateTime)?.toInstant(TimeZone.currentSystemDefault())
                 }
                 typeOf<LocalTime>(), typeOf<LocalTime?>() -> values.map { time ->
-                    (time as? LocalTime)?.let {
-                        Clock.System.now().toLocalDateTime(
-                            TimeZone.currentSystemDefault()
-                        ).date.atStartOfDayIn(TimeZone.currentSystemDefault()).plus(
-                            it.toNanosecondOfDay().nanoseconds
-                        )
-                    }
+                    (time as? LocalTime)?.toMillisecondOfDay()
                 }
                 else -> values
             })

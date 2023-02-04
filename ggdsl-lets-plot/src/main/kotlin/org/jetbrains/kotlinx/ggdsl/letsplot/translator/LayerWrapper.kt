@@ -5,9 +5,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.GROUP
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.MERGED_GROUPS
-import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
 import org.jetbrains.letsPlot.Stat
@@ -37,4 +37,3 @@ internal class LayerWrapper internal constructor(private val layer: Layer, addGr
         }.toMap()
     )
 }
-

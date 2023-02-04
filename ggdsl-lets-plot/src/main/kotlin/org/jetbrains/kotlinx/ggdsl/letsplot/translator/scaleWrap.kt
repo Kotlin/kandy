@@ -4,6 +4,7 @@ import jetbrains.datalore.plot.base.Aes
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
@@ -24,6 +25,9 @@ internal val dateTimeTypes = setOf(
 )
 
 internal fun List<*>?.wrap() = this?.filterNotNull()
+internal val timeTypes = setOf(
+    typeOf<LocalTime>(),  typeOf<LocalTime?>(),
+)
 
 /**
  * TODO datetime
@@ -103,7 +107,23 @@ internal fun Scale.wrap(
 
                 is PositionalContinuousScale<*> -> {
                     when (aesName) {
-                        X -> if (domainType !in dateTimeTypes) {
+                        X -> if (domainType in dateTimeTypes) {
+                            scaleXDateTime(
+                                limits = limits.wrap(),
+                                name = name,
+                                breaks = breaks?.values?.filterNotNull(), // todo
+                                labels = labels,
+                                format = format
+                            )
+                        } else if (domainType in timeTypes) {
+                            scaleXTime(
+                                limits = limits.wrap(),
+                                name = name,
+                                breaks = breaks?.values?.filterNotNull(), // todo
+                                labels = labels,
+                               // format = format
+                            )
+                        } else {
                             scaleXContinuous(
                                 limits = limits.wrap(),
                                 name = name,
@@ -113,8 +133,10 @@ internal fun Scale.wrap(
                                 format = format,
                                 naValue = naValue as? Number
                             )
-                        } else {
-                            scaleXDateTime(
+                        }
+
+                        Y -> if (domainType in dateTimeTypes) {
+                            scaleYDateTime(
                                 limits = limits.wrap(),
                                 name = name,
                                 breaks = breaks?.values.wrap(),
@@ -122,9 +144,15 @@ internal fun Scale.wrap(
                                 format = format,
                                 naValue = naValue
                             )
-                        }
-
-                        Y -> if (domainType !in dateTimeTypes) {
+                        } else if (domainType in timeTypes) {
+                            scaleYTime(
+                                limits = limits.wrap(),
+                                name = name,
+                                breaks = breaks?.values?.filterNotNull(), // todo
+                                labels = labels,
+                                // format = format
+                            )
+                        } else {
                             scaleYContinuous(
                                 limits = limits.wrap(),
                                 name = name,
@@ -133,15 +161,6 @@ internal fun Scale.wrap(
                                 trans = (transform as? Transformation)?.name,
                                 format = format,
                                 naValue = naValue as? Number
-                            )
-                        } else {
-                            scaleYDateTime(
-                                limits = limits.wrap(),
-                                name = name,
-                                breaks = breaks?.values.wrap(),
-                                labels = labels,
-                                format = format,
-                                naValue = naValue
                             )
                         }
 
@@ -263,6 +282,7 @@ internal fun Scale.wrap(
                             }
                         }
                         // TODO
+
                         ALPHA -> if (rangeValues != null) { scaleAlphaManual(
                             limits = domainCategories?.values.wrap(),
                             values = rangeValues!!.values.map { it as Double },
@@ -638,6 +658,27 @@ internal fun Scale.wrap(
                                 breaks = breaks?.values.wrap(),
                                 labels = labels,
                                 format = format,
+                            )
+
+                            else -> TODO()
+                        }
+                    } else if (domainType in timeTypes) {
+                        return when (aesName) {
+                            X -> scaleXTime(
+                                //  limits = limits.toLP(),
+                                name = name,
+                                breaks = breaks?.values?.map { it as Number }, // TODO() }
+                                labels = labels,
+                                //   trans = (transform as? Transformation)?.name,
+                                //  format = format
+                            )
+
+                            Y -> scaleYTime(
+                                //limits = categories,
+                                name = name,
+                                breaks = breaks?.values.wrap(),
+                                labels = labels,
+                                //   format = format
                             )
 
                             else -> TODO()
