@@ -71,7 +71,7 @@ internal class LayersTest {
                                     NonPositionalCategoricalScale<String, Color>(
                                         null,
                                         rangeValues = listOf(Color.RED, Color.BLUE).typedList(),
-                                        null,
+                                        //null,
                                     )
                                 ),
                                 typeOf<String>(),

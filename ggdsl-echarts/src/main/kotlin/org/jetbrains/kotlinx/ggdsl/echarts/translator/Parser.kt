@@ -145,9 +145,9 @@ internal class Parser(plot: Plot) {
 
     private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.name
 
-    private fun ScaledMapping<*>.getNA(): Any? = when (val scale = this.columnScaled.scale) {
-        is PositionalScale<*> -> scale.nullValue?.value
-        is NonPositionalScale<*, *> -> scale.nullValue?.value
+    private fun ScaledMapping<*>.getNA(): Any? = when (/*val scale =*/ this.columnScaled.scale) {
+        is PositionalScale<*> -> null //scale.nullValue?.value TODO()
+        is NonPositionalScale<*, *> -> null //scale.nullValue?.value TODO()
         else -> null
     }
 

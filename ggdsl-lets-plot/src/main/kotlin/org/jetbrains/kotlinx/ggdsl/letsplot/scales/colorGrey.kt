@@ -24,9 +24,9 @@ public inline fun <reified DomainType> continuousColorGrey(
 
 public inline fun <reified DomainType> categoricalColorGrey(
     paletteRange: Pair<Double, Double>? = null,
-    nullValue: Color? = null,
+    //nullValue: Color? = null,
 ): ScaleCategoricalColorGrey<DomainType> = ScaleCategoricalColorGrey<DomainType>(
-    paletteRange, nullValue?.typed()
+    paletteRange, //nullValue?.typed()
 )
 
 public sealed interface ScaleColorGrey<DomainType> {
@@ -46,7 +46,7 @@ public data class ScaleContinuousColorGrey<DomainType> @PublishedApi internal co
 @Serializable
 public data class ScaleCategoricalColorGrey<DomainType> @PublishedApi internal constructor(
     override val paletteRange: Pair<Double, Double>? = null,
-    override val nullValue: TypedValue?
+    //override val nullValue: TypedValue?
 ) : CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorGrey<DomainType> {
     override val domainLimits: Pair<TypedValue, TypedValue>?
         get() = null

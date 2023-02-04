@@ -128,7 +128,7 @@ internal class CustomizationTest {
                                     NonPositionalCategoricalScale<String, CustomGeomType>(
                                         listOf("A", "B").typedList(),
                                         listOf(CustomGeomType("x"), CustomGeomType("xxx")).typedList(),
-                                        null
+                                        //null
                                     )
                                 ),
                                 typeOf<String>(),

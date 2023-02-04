@@ -16,7 +16,7 @@ import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
  * @param RangeType the type of the range.
  */
 public sealed interface NonPositionalScale<DomainType, RangeType> : Scale {
-    public val nullValue: TypedValue?
+    //public val nullValue: TypedValue?
 }
 
 /**
@@ -46,7 +46,7 @@ public data class NonPositionalContinuousScale<DomainType, RangeType>(
 public data class NonPositionalCategoricalScale<DomainType, RangeType>(
     val domainCategories: TypedList?,
     val rangeValues: TypedList?,
-    override val nullValue: TypedValue?,
+    //override val nullValue: TypedValue?,
 ) : CategoricalScale, NonPositionalScale<DomainType, RangeType>
 
 public interface CustomNonPositionalScale<DomainType, RangeType>

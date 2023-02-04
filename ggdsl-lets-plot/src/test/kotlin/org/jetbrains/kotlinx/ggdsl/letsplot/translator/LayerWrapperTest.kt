@@ -98,7 +98,7 @@ internal class LayerWrapperTest {
                         NonPositionalCategoricalScale<String, Color>(
                             null,
                             rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY).typedList(),
-                            null,
+                            //null,
                         ),
                     ),
                     typeOf<String>(),

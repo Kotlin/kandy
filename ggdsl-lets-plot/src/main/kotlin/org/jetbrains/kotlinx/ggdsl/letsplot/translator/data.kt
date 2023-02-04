@@ -21,41 +21,31 @@ internal fun LazyGroupedDataInterface.mergedKeys(): List<String> = buildList {
 
 internal object DateTimeMaster {
     internal fun postProcess(data: NamedDataInterface): Map<String, List<*>> {
-        return data.nameToValues.map { (key, tList)  ->
+        return data.nameToValues.map { (key, tList) ->
             val type = tList.kType
             val values = tList.values
             // TODO!!!
-            key to when(type) {
-                typeOf<LocalDate>() -> values.map {
-                    (it as LocalDate).atStartOfDayIn((TimeZone.currentSystemDefault()))
+            key to (when (type) {
+                typeOf<LocalDate>(), typeOf<LocalDate?>() -> values.map {
+                    (it as? LocalDate)?.atStartOfDayIn((TimeZone.currentSystemDefault()))
                 }
-                typeOf<LocalDateTime>() -> values.map {
-                    (it as LocalDateTime).toInstant(TimeZone.currentSystemDefault())
+                typeOf<LocalDateTime>(), typeOf<LocalDateTime?>() -> values.map { dateTime ->
+                    (dateTime as? LocalDateTime)?.toInstant(TimeZone.currentSystemDefault())
                 }
-                typeOf<LocalTime>() -> values.map {
-                    Clock.System.now().toLocalDateTime(
-                        TimeZone.currentSystemDefault()
-                    ).date.atStartOfDayIn(TimeZone.currentSystemDefault()).plus(
-                        (it as LocalTime).toNanosecondOfDay().nanoseconds
-                    )
+                typeOf<LocalTime>(), typeOf<LocalTime?>() -> values.map { time ->
+                    (time as? LocalTime)?.let {
+                        Clock.System.now().toLocalDateTime(
+                            TimeZone.currentSystemDefault()
+                        ).date.atStartOfDayIn(TimeZone.currentSystemDefault()).plus(
+                            it.toNanosecondOfDay().nanoseconds
+                        )
+                    }
                 }
                 else -> values
-            }
+            })
         }.toMap()
     }
 }
-/*
-internal fun TableData.columnTypes(): Map<String, KType> {
-    return (when (this) {
-        is NamedDataInterface -> nameToValues.map { it.key to it.value.kType }.toMap()
-        is LazyGroupedDataInterface -> origin.nameToValues.map { it.key to it.value.kType }.toMap() + (MERGED_GROUPS to typeOf<String>())
-        is CountedGroupedDataInterface -> toLazy().origin.nameToValues.map { it.key to it.value.kType }.toMap()
-        else -> TODO()
-    })
-}
-
- */
-
 
 internal fun TableData.wrap(): Map<String, List<*>> {
     return (when (this) {

@@ -46,9 +46,9 @@ public fun <DomainType> categoricalColorHue(
     luminance: Int? = null,
     hueStart: Int? = null,
     direction: WheelDirection? = null,
-    nullValue: Color? = null,
+    //nullValue: Color? = null,
 ): ScaleCategoricalColorHue<DomainType> = ScaleCategoricalColorHue<DomainType>(
-    huesRange, chroma, luminance, hueStart, direction, nullValue?.typed()
+    huesRange, chroma, luminance, hueStart, direction, //nullValue?.typed()
 )
 
 @Serializable
@@ -88,7 +88,7 @@ public data class ScaleCategoricalColorHue<DomainType> @PublishedApi internal co
     override val luminance: Int?,
     override val hueStart: Int?,
     override val direction: WheelDirection?,
-    override val nullValue: TypedValue?,
+    //override val nullValue: TypedValue?,
 ) : CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorHue<DomainType> {
     override val domainLimits: Pair<TypedValue, TypedValue>?
         get() = null

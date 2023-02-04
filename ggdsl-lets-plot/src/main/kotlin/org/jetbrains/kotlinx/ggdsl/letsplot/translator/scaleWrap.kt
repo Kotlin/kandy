@@ -19,10 +19,11 @@ import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 internal val dateTimeTypes = setOf(
-    typeOf<Instant>(), typeOf<LocalDateTime>(), typeOf<LocalDate>()
+    typeOf<Instant>(), typeOf<LocalDateTime>(), typeOf<LocalDate>(),
+    typeOf<Instant?>(), typeOf<LocalDateTime?>(), typeOf<LocalDate?>()
 )
 
-internal fun List<*>?.wrap() = this?.map { it as Any }
+internal fun List<*>?.wrap() = this?.filterNotNull()
 
 /**
  * TODO datetime
@@ -35,6 +36,11 @@ internal fun Scale.wrap(
 ): org.jetbrains.letsPlot.intern.Scale? {
     return when (this) {
         is PositionalScale<*> -> {
+            val nullValue = if(this is ContinuousScale) {
+                nullValue
+            } else {
+                null //(this as PositionalCategoricalScale<*>).c
+            }
             val naValue = nullValue?.wrap()
             val axis = (scaleParameters as PositionalParameters<*>?)?.axis
 
@@ -148,7 +154,17 @@ internal fun Scale.wrap(
         }
 
         is NonPositionalScale<*, *> -> {
-            val naValue = nullValue?.wrap()
+            val naValue = if(this is ContinuousScale) {
+                nullValue?.wrap()
+            } else {
+                (this as NonPositionalCategoricalScale<*, *>).domainCategories?.values?.indexOf(null)?.let {
+                    rangeValues?.values?.get(it)?.let {
+                        wrapValue(it)
+                    }
+                }
+                //null //(this as PositionalCategoricalScale<*>).c
+            }
+            //val naValue = nullValue?.wrap()
             val legend = (scaleParameters as NonPositionalParameters<*, *>?)?.legend
 
             val name = legend?.name
@@ -586,7 +602,7 @@ internal fun Scale.wrap(
                 is NonPositionalUnspecifiedScale -> {
                     when (this) {
                         NonPositionalCategoricalUnspecifiedScale ->
-                            NonPositionalCategoricalScale<Any, Any>(null, null, null)
+                            NonPositionalCategoricalScale<Any, Any>(null, null,)
                                 .wrap(aesName, domainType, scaleParameters)
 
                         is NonPositionalContinuousUnspecifiedScale ->

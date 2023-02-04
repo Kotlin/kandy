@@ -64,7 +64,7 @@ internal class ColumnScaledTest {
         )
 
         val ds2 = ColumnPointer<String>("ds10")
-        val scale2 = PositionalCategoricalScale<String>(listOf<String>().typedList(), null)
+        val scale2 = PositionalCategoricalScale<String>(listOf<String>().typedList(), /*null*/)
         val categoricalScaledSource = ds2.scaled(scale2)
         assertEquals(
             ColumnScaledPositional(ds2, scale2),
@@ -91,7 +91,7 @@ internal class ColumnScaledTest {
         val scale2 = NonPositionalCategoricalScale<String, Symbol>(
             null,
             rangeValues = listOf(Symbol.CIRCLE, Symbol.TRIANGLE).typedList(),
-            nullValue = null,
+            //nullValue = null,
         )
         val categoricalScaledSource = ds2.scaled(scale2)
         assertEquals(

@@ -8,7 +8,6 @@ import org.jetbrains.kotlinx.ggdsl.echarts.layers.area
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.bars
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.line
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.points
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -275,7 +274,7 @@ class NullableDataTest {
         """.trimIndent()
 
         val actual = plot(data) {
-            x(days.scaled(categoricalPos(nullValue = "third")))
+            x(days.scaled(categoricalPos(/*nullValue = "third"*/)))
             y(nums)
             bars {}
         }.toJson()

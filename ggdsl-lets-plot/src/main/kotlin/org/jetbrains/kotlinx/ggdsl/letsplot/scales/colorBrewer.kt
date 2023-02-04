@@ -72,7 +72,7 @@ public data class ScaleContinuousColorBrewer<DomainType>(
 public data class ScaleCategoricalColorBrewer<DomainType>(
     override val limits: TypedList?,
     override val type: BrewerType?,
-    override val nullValue: TypedValue?,
+    //override val nullValue: TypedValue?,
     // todo direction
 ) : CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorBrewer<DomainType> {
     override val transform: Transformation? = null
@@ -91,7 +91,7 @@ public inline fun <reified DomainType> continuousColorBrewer(
 public inline fun <reified DomainType> categoricalColorBrewer(
     type: BrewerType?,
     domainCategories: List<DomainType & Any>? = null,
-    nullValue: Color? = null,
+    //nullValue: Color? = null,
 ): ScaleCategoricalColorBrewer<DomainType> = ScaleCategoricalColorBrewer(
-    domainCategories?.typedList(), type, nullValue?.typed()
+    domainCategories?.typedList(), type, //nullValue?.typed()
 )

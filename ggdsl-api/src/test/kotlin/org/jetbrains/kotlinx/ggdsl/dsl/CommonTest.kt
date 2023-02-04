@@ -130,7 +130,7 @@ internal class CommonTest {
                 NonPositionalCategoricalScale<String, Color>(
                     domainCategories = listOf("A", "B").typedList(),
                     rangeValues = listOf(Color.RED, Color.named("blue")).typedList(),
-                    null
+                    //null
                 )
             ),
             typeOf<String>(),

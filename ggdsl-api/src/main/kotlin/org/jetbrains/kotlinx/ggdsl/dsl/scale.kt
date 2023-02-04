@@ -85,11 +85,11 @@ public inline fun <reified DomainType, reified RangeType> continuous(
  * @return new [PositionalCategoricalScale] with given categories
  */
 public inline fun <reified DomainType> categoricalPos(
-    categories: List<DomainType & Any>? = null,
-    nullValue: DomainType? = null,
+    categories: List<DomainType>? = null,
+    //nullValue: DomainType? = null,
 )
         : PositionalCategoricalScale<DomainType> =
-    PositionalCategoricalScale(categories?.typedList(), nullValue?.typed())
+    PositionalCategoricalScale(categories?.typedList(), /*nullValue?.typed()*/)
 
 /**
  * Creates a new categorical non-positional scale.
@@ -101,11 +101,11 @@ public inline fun <reified DomainType> categoricalPos(
  * @return new [NonPositionalCategoricalScale] with given limits
  */
 public inline fun <reified DomainType, reified RangeType> categorical(
-    domainCategories: List<DomainType & Any>? = null,
-    rangeValues: List<RangeType & Any>? = null,
-    nullValue: RangeType? = null,
+    domainCategories: List<DomainType>? = null,
+    rangeValues: List<RangeType>? = null,
+    //nullValue: RangeType? = null,
 ): NonPositionalCategoricalScale<DomainType, RangeType> =
-    NonPositionalCategoricalScale(domainCategories?.typedList(), rangeValues?.typedList(), nullValue?.typed())
+    NonPositionalCategoricalScale(domainCategories?.typedList(), rangeValues?.typedList(), /*nullValue?.typed()*/)
 
 /**
  * Creates a new categorical non-positional scale.
@@ -116,11 +116,11 @@ public inline fun <reified DomainType, reified RangeType> categorical(
  * @return new [NonPositionalCategoricalScale] with given limits
  */
 public inline fun <reified DomainType, reified RangeType> categorical(
-    categoriesToValues: List<Pair<DomainType & Any, RangeType & Any>>,
-    nullValue: RangeType? = null,
+    categoriesToValues: List<Pair<DomainType, RangeType>>,
+    //nullValue: RangeType? = null,
 ): NonPositionalCategoricalScale<DomainType, RangeType> =
     NonPositionalCategoricalScale(
         categoriesToValues.map { it.first }.typedList(),
         categoriesToValues.map { it.second }.typedList(),
-        nullValue?.typed()
+        //nullValue?.typed()
     )
