@@ -24,7 +24,8 @@ plugins {
     id("org.jetbrains.dokka") version dokka_version
 }
 
-val ggdslVersion = "0.3.0-rc-2"
+val buildNumber: String? = properties["build_counter"]?.toString()
+val ggdsl_version = version.toString() + if (buildNumber == null) "" else "-dev-$buildNumber"
 
 allprojects {
     repositories {
@@ -32,7 +33,7 @@ allprojects {
     }
 
     group = "org.jetbrains.kotlinx"
-    version = ggdslVersion
+    version = ggdsl_version
     apply(plugin = "kotlin")
     apply(plugin = "org.jetbrains.dokka")
 
@@ -45,9 +46,10 @@ allprojects {
     }
 }
 
-val unpublished = listOf("examples")
 
-configure(subprojects.filter { it.name !in unpublished }) {
+val published = listOf("ggdsl-api", "ggdsl-dataframe", "ggdsl-dataframe-lets-plot", "ggdsl-echarts", "ggdsl-lets-plot")
+
+configure(subprojects.filter { it.name in published }) {
     apply(from = project.rootProject.file("gradle/publish.gradle"))
 }
 
