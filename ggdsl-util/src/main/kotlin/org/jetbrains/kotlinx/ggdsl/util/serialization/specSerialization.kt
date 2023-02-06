@@ -2,9 +2,9 @@ package org.jetbrains.kotlinx.ggdsl.util.serialization
 
 import kotlinx.serialization.json.*
 
-internal typealias Spec = Map<String, Any>
+public typealias LetsPlotSpec = Map<String, Any>
 
-public fun serializeSpec(spec: Spec): JsonElement {
+public fun serializeSpec(spec: LetsPlotSpec): JsonElement {
     return serialize(spec)
 }
 
@@ -37,7 +37,7 @@ private fun serialize(list: List<*>): JsonArray {
     }
 }
 
-public fun deserializeSpec(json: JsonElement): Spec {
+public fun deserializeSpec(json: JsonElement): LetsPlotSpec {
     if (json !is JsonObject) error("LetsPlot spec should be a key-value object, but it's $json")
     val map = deserializeMap(json)
 
@@ -46,7 +46,7 @@ public fun deserializeSpec(json: JsonElement): Spec {
     }
 
     @Suppress("UNCHECKED_CAST")
-    return map as Spec
+    return map as LetsPlotSpec
 }
 
 private fun deserializeAny(json: JsonElement): Any? {
