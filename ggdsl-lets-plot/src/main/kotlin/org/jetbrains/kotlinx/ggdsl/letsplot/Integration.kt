@@ -67,7 +67,7 @@ internal class Integration : JupyterIntegration() {
         return when(this) {
             is org.jetbrains.letsPlot.intern.Plot -> frontendContext.getHtml(this)
             is GGBunch -> frontendContext.getHtml(this)
-            else -> TODO()
+            else -> error("Unsupported Figure")
         }
     }
 

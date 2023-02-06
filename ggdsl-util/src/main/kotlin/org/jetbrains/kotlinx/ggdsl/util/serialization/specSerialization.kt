@@ -58,15 +58,16 @@ private fun deserializeAny(json: JsonElement): Any? {
 }
 
 private fun deserializePrimitive(json: JsonPrimitive): Any? {
-    if (json is JsonNull) return null
-    return if (json.isString) {
-        json.content
-    } else {
-        json.booleanOrNull ?:
-        json.intOrNull ?:
-        json.longOrNull ?:
-        json.doubleOrNull ?:
-        error("Unknown JSON primitive type: [$json]")
+    return when {
+        json is JsonNull -> null
+        json.isString -> json.content
+        else -> {
+            json.booleanOrNull ?:
+            json.intOrNull ?:
+            json.longOrNull ?:
+            json.doubleOrNull ?:
+            error("Unknown JSON primitive type: [$json]")
+        }
     }
 }
 
