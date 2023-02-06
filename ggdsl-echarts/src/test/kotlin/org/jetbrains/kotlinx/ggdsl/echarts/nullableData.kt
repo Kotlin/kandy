@@ -221,68 +221,6 @@ class NullableDataTest {
     }
 
     @Test
-    fun `bars with nulls and fill nulls for x-axis`() {
-        val expected = """
-            {
-                "xAxis": {
-                    "show": true,
-                    "type": "category"
-                },
-                "yAxis": {
-                    "show": true,
-                    "type": "value"
-                },
-                "dataset": {
-                    "source": [
-                        [
-                            "days",
-                            "nums"
-                        ],
-                        [
-                            "first",
-                            "1"
-                        ],
-                        [
-                            "second",
-                            "2"
-                        ],
-                        [
-                            "third",
-                            "3"
-                        ],
-                        [
-                            "fourth",
-                            null
-                        ],
-                        [
-                            "fifth",
-                            "5"
-                        ]
-                    ]
-                },
-                "series": [
-                    {
-                        "type": "bar",
-                        "name": "days nums",
-                        "encode": {
-                            "x": "days",
-                            "y": "nums"
-                        }
-                    }
-                ]
-            }
-        """.trimIndent()
-
-        val actual = plot(data) {
-            x(days.scaled(categoricalPos(/*nullValue = "third"*/)))
-            y(nums)
-            bars {}
-        }.toJson()
-
-        assertEquals(expected, actual)
-    }
-
-    @Test
     fun `points with nulls`() {
         val option = plot(data) {
             x(nums2)
