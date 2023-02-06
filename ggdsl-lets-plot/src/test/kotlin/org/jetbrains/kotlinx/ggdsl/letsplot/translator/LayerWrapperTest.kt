@@ -6,6 +6,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.toTyped
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
@@ -14,9 +15,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.COLOR
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.FILL
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.WIDTH
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
@@ -55,6 +53,7 @@ internal class LayerWrapperTest {
                 "mapping" to mapOf(
                     "fill" to "F"
                 ),
+                "sampling" to "none",
                 "stat" to "identity",
                 "data" to mapOf<String, Any>(),
                 //"shape" to 21.0,
@@ -130,6 +129,7 @@ internal class LayerWrapperTest {
                     "y" to "VAL_V",
                     "fill" to "BAFGA",
                 ),
+                "sampling" to "none",
                 "stat" to "identity",
                 "data" to mapOf<String, Any>(),
                 "width" to 5.0,
@@ -178,6 +178,46 @@ internal class LayerWrapperTest {
 
 
          */
+    }
+
+    @Test
+    fun testBarNoSampling() {
+        val data = mapOf(
+            "v1" to List(100) {it},
+            "v2" to List(100) {it}
+        )
+        val layer = Layer(
+            NamedData(data.toTyped()),
+            BAR,
+            mapOf(
+                X to ScaledUnspecifiedDefaultPositionalMapping(
+                    X, columnPointer<Int>("v1").scaled(), typeOf<Int>()
+                ),
+                Y to ScaledUnspecifiedDefaultPositionalMapping(
+                    Y, columnPointer<Int>("v2").scaled(), typeOf<Int>()
+                )
+            ),
+            mapOf(),
+            mapOf()
+        )
+
+        val wrappedLayer = LayerWrapper(layer, false)
+        assertEquals(
+            mapOf(
+                "mapping" to mapOf(
+                    "x" to "v1",
+                    "y" to "v2",
+                ),
+                "stat" to "identity",
+                "data" to data.map {
+                    it.key to it.value.map { it.toDouble() }
+                }.toMap(),
+                "position" to "identity",
+                "geom" to "bar",
+                "sampling" to "none",
+            ),
+            wrappedLayer.toSpec()
+        )
     }
 }
 

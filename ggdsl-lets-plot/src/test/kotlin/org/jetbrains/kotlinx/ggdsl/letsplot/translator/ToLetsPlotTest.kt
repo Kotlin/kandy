@@ -60,6 +60,7 @@ class ToLetsPlotTest {
                             "x" to "origin",
                             "y" to "mpg"
                         ),
+                        "sampling" to "none",
                         "stat" to "identity",
                    //     "data" to mapOf<String, Any>(),
                         "shape" to 21.0,
@@ -145,6 +146,7 @@ class ToLetsPlotTest {
                             "y" to "svalue",
                             "fill" to "clM"
                         ),
+                        "sampling" to "none",
                         "stat" to "identity",
                   //      "data" to mapOf<String, Any>(),
                         "alpha" to 0.8,
@@ -180,6 +182,7 @@ class ToLetsPlotTest {
                             "x" to "time",
                             "y" to "svalue",
                         ),
+                        "sampling" to "none",
                         "stat" to "identity",
                       //  "data" to mapOf<String, Any>(),
                         "size" to 2.2,
