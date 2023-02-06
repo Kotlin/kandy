@@ -1,19 +1,15 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.serialization
 
+import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
-import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
-import org.jetbrains.kotlinx.ggdsl.dsl.dataOf
-import org.jetbrains.kotlinx.ggdsl.dsl.invoke
-import org.jetbrains.kotlinx.ggdsl.dsl.plot
-import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.toLetsPlot
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.serialization.deserializeSpec
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.serialization.serializeSpec
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.letsplot.x
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.util.serialization.deserializeSpec
+import org.jetbrains.kotlinx.ggdsl.util.serialization.serializeSpec
 import org.jetbrains.letsPlot.intern.toSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals

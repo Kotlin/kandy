@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model.PlotBunch
 import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model.PlotGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.wrap
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.serialization.serializeSpec
+import org.jetbrains.kotlinx.ggdsl.util.serialization.serializeSpec
 import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.MimeTypedResultEx
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
