@@ -4,16 +4,23 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.buildJsonObject
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model.PlotBunch
 import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model.PlotGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.wrap
+import org.jetbrains.kotlinx.ggdsl.util.serialization.serializeSpec
 import org.jetbrains.kotlinx.jupyter.api.HTML
+import org.jetbrains.kotlinx.jupyter.api.MimeTypedResultEx
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
+import org.jetbrains.letsPlot.Figure
+import org.jetbrains.letsPlot.GGBunch
 import org.jetbrains.letsPlot.LetsPlot
 import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
+import org.jetbrains.letsPlot.intern.toSpec
 
 @JupyterLibrary
 internal class Integration : JupyterIntegration() {
@@ -51,11 +58,31 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.font.*")
        // import("org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.*")
 
-        render<Plot> { HTML(frontendContext.getHtml(it.toLetsPlot())) }
-        render<PlotBunch> { HTML(frontendContext.getHtml(it.wrap())) }
-        render<PlotGrid> { HTML(frontendContext.getHtml(it.wrap())) }
+        render<Plot> { it.toLetsPlot().toMimeResult() }
+        render<PlotBunch> { it.wrap().toMimeResult() }
+        render<PlotGrid> { it.wrap().toMimeResult() }
+    }
+
+    internal fun Figure.toHTML(): String {
+        return when(this) {
+            is org.jetbrains.letsPlot.intern.Plot -> frontendContext.getHtml(this)
+            is GGBunch -> frontendContext.getHtml(this)
+            else -> error("Unsupported Figure")
+        }
+    }
+
+    internal fun Figure.toMimeResult(): MimeTypedResultEx {
+        val spec = toSpec()
+        val html = toHTML()
+        return MimeTypedResultEx(
+            buildJsonObject {
+                put("text/html", JsonPrimitive(html))
+                put("application/plot", buildJsonObject {
+                    put("output_type", JsonPrimitive("lets_plot_spec"))
+                    put("output", serializeSpec(spec))
+                })
+            }
+        )
     }
 
 }
-
-

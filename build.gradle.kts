@@ -47,7 +47,14 @@ allprojects {
 }
 
 
-val published = listOf("ggdsl-api", "ggdsl-dataframe", "ggdsl-dataframe-lets-plot", "ggdsl-echarts", "ggdsl-lets-plot")
+val published = listOf(
+    "ggdsl-api",
+    "ggdsl-dataframe",
+    "ggdsl-dataframe-lets-plot",
+    "ggdsl-echarts",
+    "ggdsl-lets-plot",
+    "ggdsl-util"
+)
 
 configure(subprojects.filter { it.name in published }) {
     apply(from = project.rootProject.file("gradle/publish.gradle"))
