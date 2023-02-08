@@ -4,9 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.LocalTime
+import kotlinx.datetime.*
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.NAME
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
@@ -183,7 +181,12 @@ internal class Parser(plot: Plot) {
                     typeOf<java.time.LocalDate>(), typeOf<java.time.LocalDate?>() -> AxisType.TIME
 
                     typeOf<LocalTime>(), typeOf<LocalTime?>(),
-                    typeOf<java.time.LocalTime>(), typeOf<java.time.LocalTime?>() -> AxisType.CATEGORY
+                    typeOf<Month>(), typeOf<Month?>(),
+                    typeOf<DayOfWeek>(), typeOf<DayOfWeek?>(),
+                    typeOf<java.time.LocalTime>(), typeOf<java.time.LocalTime?>(),
+                    typeOf<java.time.Month>(), typeOf<java.time.Month?>(),
+                    typeOf<java.time.DayOfWeek>(), typeOf<java.time.DayOfWeek?>()
+                    -> AxisType.CATEGORY
 
                     else -> AxisType.VALUE
                 }
