@@ -4,6 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.NAME
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
@@ -19,9 +22,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
 import kotlin.reflect.typeOf
 
 @Suppress("UNCHECKED_CAST")
@@ -173,8 +173,18 @@ internal class Parser(plot: Plot) {
             is DefaultUnspecifiedScale, is UnspecifiedScale -> {
                 when (this.domainType) {
                     typeOf<String>(), typeOf<String?>(), typeOf<Char>(), typeOf<Char?>() -> AxisType.CATEGORY
+
                     typeOf<Number>(), typeOf<Number?>() -> AxisType.VALUE
-                    typeOf<LocalDate>(), typeOf<LocalDateTime>(), typeOf<LocalTime>(), typeOf<LocalDate?>(), typeOf<LocalDateTime?>(), typeOf<LocalTime?>() -> AxisType.TIME // TODO(kotlinx.datetime)
+
+                    typeOf<LocalDateTime>(), typeOf<LocalDateTime?>(),
+                    typeOf<java.time.LocalDateTime>(), typeOf<java.time.LocalDateTime?>() -> AxisType.TIME
+
+                    typeOf<LocalDate>(), typeOf<LocalDate?>(),
+                    typeOf<java.time.LocalDate>(), typeOf<java.time.LocalDate?>() -> AxisType.TIME
+
+                    typeOf<LocalTime>(), typeOf<LocalTime?>(),
+                    typeOf<java.time.LocalTime>(), typeOf<java.time.LocalTime?>() -> AxisType.CATEGORY
+
                     else -> AxisType.VALUE
                 }
             }
