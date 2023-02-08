@@ -3,6 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.dsl.internal
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
 import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import kotlin.reflect.typeOf
 
@@ -32,6 +33,7 @@ public fun List<*>.toTypedList(): TypedList {
         all { it is Instant } -> typeOf<Instant>()
         all { it is LocalDateTime } -> typeOf<LocalDateTime>()
         all { it is LocalDate } -> typeOf<LocalDate>()
+        all { it is LocalTime } -> typeOf<LocalTime>()
         all { it is Int? } -> typeOf<Int?>()
         all { it is Long? } -> typeOf<Long?>()
         all { it is Double? } -> typeOf<Double?>()
@@ -42,6 +44,7 @@ public fun List<*>.toTypedList(): TypedList {
         all { it is Instant? } -> typeOf<Instant?>()
         all { it is LocalDateTime? } -> typeOf<LocalDateTime?>()
         all { it is LocalDate? } -> typeOf<LocalDate?>()
+        all { it is LocalTime? } -> typeOf<LocalTime?>()
         else -> typeOf<Any?>() // todo
     }
     return TypedList(type, this)
