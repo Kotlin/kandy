@@ -34,7 +34,7 @@ public data class ColorBar internal constructor(
 // TODO
 @Serializable
 /*@PlotDslMarker*/
-public data class Legend<DomainType : Any, out RangeType : Any> @PublishedApi internal constructor(
+public data class Legend<DomainType, out RangeType> @PublishedApi internal constructor(
     var kType: KType,
 ) : SelfInvocationContext {
     var name: String? = null
@@ -50,7 +50,7 @@ public data class Legend<DomainType : Any, out RangeType : Any> @PublishedApi in
      * @param breaks list of breaks.
      * @param format format string.
      */
-    public fun breaks(breaks: List<DomainType>? = null, format: String? = null) {
+    public fun breaks(breaks: List<DomainType & Any>? = null, format: String? = null) {
         this.breaks = breaks?.let {
             TypedList(kType, it)
         }
@@ -62,14 +62,14 @@ public data class Legend<DomainType : Any, out RangeType : Any> @PublishedApi in
      *
      * @param breaksToLabels list of breaks with corresponding labels.
      */
-    public fun breaksLabeled(breaksToLabels: List<Pair<DomainType, String>>) {
+    public fun breaksLabeled(breaksToLabels: List<Pair<DomainType & Any, String>>) {
         breaks = TypedList(kType, breaksToLabels.map { it.first })
         labels = breaksToLabels.map { it.second }
     }
 
     public companion object {
         @PublishedApi
-        internal inline fun<reified DomainType: Any, RangeType: Any> create(): Legend<DomainType, RangeType> = Legend(typeOf<DomainType>())
+        internal inline fun<reified DomainType, RangeType> create(): Legend<DomainType, RangeType> = Legend(typeOf<DomainType>())
     }
 }
 

@@ -21,29 +21,29 @@ internal data class OrderBy(
 )
 
 @Serializable
-public data class PositionalParameters<DomainType : Any>(
+public data class PositionalParameters<DomainType>(
     val axis: Axis<DomainType>
 ) : LetsPlotScaleParameters {
     internal var orderBy: OrderBy? = null
 }
 
 @Serializable
-public data class NonPositionalParameters<DomainType : Any, RangeType : Any>(val legend: Legend<DomainType, RangeType>)
+public data class NonPositionalParameters<DomainType, RangeType>(val legend: Legend<DomainType, RangeType>)
     : LetsPlotScaleParameters
 
-public inline fun <reified DomainType : Any> BaseScaledPositionalMapping<DomainType>.with(
+public inline fun <reified DomainType> BaseScaledPositionalMapping<DomainType>.with(
     block: PositionalParameters<DomainType>.() -> Unit
 ) {
     scaleParameters = PositionalParameters(Axis.create<DomainType>()).apply(block)
 }
 
-public inline fun <reified DomainType : Any> FreePositionalScale<DomainType>.with(
+public inline fun <reified DomainType> FreePositionalScale<DomainType>.with(
     block: PositionalParameters<DomainType>.() -> Unit
 ) {
     scaleParameters = PositionalParameters(Axis.create<DomainType>()).apply(block)
 }
 
-public inline fun <reified DomainType : Any, RangeType : Any> BaseScaledNonPositionalMapping<DomainType, RangeType>.with(
+public inline fun <reified DomainType, RangeType> BaseScaledNonPositionalMapping<DomainType, RangeType>.with(
     block: NonPositionalParameters<DomainType, RangeType>.() -> Unit
 ) {
     scaleParameters = NonPositionalParameters(Legend.create<DomainType, RangeType>()).apply(block)

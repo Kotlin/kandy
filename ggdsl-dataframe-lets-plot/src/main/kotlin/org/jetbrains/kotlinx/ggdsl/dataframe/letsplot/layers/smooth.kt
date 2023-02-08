@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.SmoothContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.smooth
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.SmoothMethod
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
+public inline fun <reified T, reified R> PlotContext.smooth(
     sourceX: ColumnReference<T>,
     sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
     method: SmoothMethod? = null,
@@ -22,12 +22,12 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
 <<<<<<< HEAD
 ) = smooth(sourceX.toColRef(), sourceY, method, pointsNumber, se, level, block)
 
-inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
+inline fun <reified T, reified R> PlotContext.smooth(
     sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
 =======
 ): Unit = smooth(sourceX.toDataSource(), sourceY, method, pointsNumber, se, level, block)
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
+public inline fun <reified T, reified R> PlotContext.smooth(
     sourceX: DataSource<T>,
 >>>>>>> main
     sourceY: ColumnReference<R>,
@@ -42,7 +42,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
 ): Unit = smooth(sourceX, sourceY.toDataSource(), method, pointsNumber, se, level, block)
 >>>>>>> main
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
+public inline fun <reified T, reified R> PlotContext.smooth(
     sourceX: ColumnReference<T>,
     sourceY: ColumnReference<R>,
     method: SmoothMethod? = null,

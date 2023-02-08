@@ -34,7 +34,7 @@ public inline fun plot(dataset: NamedDataInterface, block: NamedDataPlotContext.
  *
  * @param dataset plot dataset.
  */
-public inline fun plot(dataset: Map<String, List<Any>>, block: NamedDataPlotContext.() -> Unit): Plot {
+public inline fun plot(dataset: Map<String, List<*>>, block: NamedDataPlotContext.() -> Unit): Plot {
     return NamedDataPlotContext(NamedData.fromUntyped(dataset)).apply(block).toPlot().also {
         it.validate()
     }

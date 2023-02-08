@@ -131,13 +131,13 @@ internal fun Gathering.toLayer(): Layer {
     val yType = series.first().mappings[Y]!!.domainType
 
     series.forEach {series ->
-        xBuffer.addAll(data.nameToValues[series.mappings[X]!!.wrap().second]!!.values)
-        yBuffer.addAll(data.nameToValues[series.mappings[Y]!!.wrap().second]!!.values)
+        xBuffer.addAll(data.nameToValues[series.mappings[X]!!.wrap().second]!!.values.wrap()!!)
+        yBuffer.addAll(data.nameToValues[series.mappings[Y]!!.wrap().second]!!.values.wrap()!!)
         labelBuffer.addAll(List(size){series.label})
         series.settings.forEach { (aesName, setting) ->
             scaleBuffer[aesName]!!.let {
                 it.first.add(series.label)
-                it.second.add((setting as NonPositionalSetting<*>).value.value)
+                it.second.add((setting as NonPositionalSetting<*>).value.value!!)
             }
         }
     }
@@ -152,7 +152,7 @@ internal fun Gathering.toLayer(): Layer {
         ))
     } else {
         scaleBuffer.map { (aesName, buffer) ->
-            aesName to ScaledNonPositionalMapping<String, Any>(
+            aesName to ScaledNonPositionalMapping<String, Any?>(
                 aesName,
                 "label"<String>().scaled(
                     categorical(

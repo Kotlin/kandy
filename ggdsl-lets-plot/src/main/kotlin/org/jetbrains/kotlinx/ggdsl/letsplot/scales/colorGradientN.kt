@@ -5,6 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedPair
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
@@ -12,10 +13,11 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
 @Serializable
-public data class ScaleContinuousColorGradientN<DomainType : Any>(
-    val domainLimits: Pair<TypedValue, TypedValue>? = null,
+public data class ScaleContinuousColorGradientN<DomainType>(
+    val domainLimits: Pair<TypedValue, TypedValue>?,
     val rangeColors: List<Color>,
-    override val transform: Transformation? = null
+    override val nullValue: TypedValue?,
+    override val transform: Transformation?
 ) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>
 
 /**
@@ -26,22 +28,24 @@ public data class ScaleContinuousColorGradientN<DomainType : Any>(
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-public inline fun <reified DomainType : Any> continuousColorGradientN(
+public inline fun <reified DomainType> continuousColorGradientN(
     rangeColors: List<Color>,
-    domainLimits: Pair<DomainType, DomainType>? = null,
+    domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
+    nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradientN<DomainType> = ScaleContinuousColorGradientN(
-    domainLimits?.typedPair(), rangeColors, transform
+    domainLimits?.typedPair(), rangeColors, nullValue?.typed(), transform
 )
 
 @Serializable
-public data class ScaleContinuousColorGradient2<DomainType : Any>(
+public data class ScaleContinuousColorGradient2<DomainType>(
     val domainLimits: Pair<TypedValue, TypedValue>? = null,
     val low: Color,
     val mid: Color,
     val high: Color,
     val midpoint: Double,
-    override val transform: Transformation? = null
+    override val nullValue: TypedValue?,
+    override val transform: Transformation?
 ) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>
 
 /**
@@ -53,13 +57,14 @@ public data class ScaleContinuousColorGradient2<DomainType : Any>(
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-public inline fun <reified DomainType : Any> continuousColorGradient2(
+public inline fun <reified DomainType> continuousColorGradient2(
     low: Color,
     mid: Color,
     high: Color,
     midpoint: Double,
-    domainLimits: Pair<DomainType, DomainType>? = null,
+    domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
+    nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradient2<DomainType> = ScaleContinuousColorGradient2(
-    domainLimits?.typedPair(), low, mid, high, midpoint, transform
+    domainLimits?.typedPair(), low, mid, high, midpoint, nullValue?.typed(), transform
 )

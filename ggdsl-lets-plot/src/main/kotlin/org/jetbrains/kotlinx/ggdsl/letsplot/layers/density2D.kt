@@ -95,7 +95,7 @@ public class Density2DContext(
     }
 
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -108,7 +108,7 @@ public class Density2DContext(
     }
 
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any>
+    public inline operator fun <reified DomainType, RangeType>
         MappableNonPositionalAes<RangeType>.invoke(
         stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
@@ -125,11 +125,11 @@ public class Density2DContext(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any, reified R: Any> PlotContext.density2D(
+inline fun <reified T, reified R: Any> PlotContext.density2D(
     sourceX: ColumnPointer<T>,
     sourceY: ColumnPointer<R>,
 =======
-public inline fun <reified T : Any, reified R : Any> PlotContext.density2D(
+public inline fun <reified T, reified R> PlotContext.density2D(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
 >>>>>>> main
@@ -153,7 +153,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.density2D(
     )
 }
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.density2D(
+public inline fun <reified T, reified R> PlotContext.density2D(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     kernel: Kernel? = null,

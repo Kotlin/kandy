@@ -12,32 +12,32 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 
 
 <<<<<<< HEAD
-inline fun <reified DomainType : Any> Stat<DomainType>.scaled() =
+inline fun <reified DomainType> Stat<DomainType>.scaled() =
     SourceScaledUnspecifiedDefault(this.toColumnPointer())
 
 
-inline fun <reified DomainType : Any> Stat<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
+inline fun <reified DomainType> Stat<DomainType>.scaled(scale: PositionalUnspecifiedScale) =
     SourceScaledPositionalUnspecified(this.toColumnPointer(), scale)
 
 
 
-inline fun <reified DomainType : Any> Stat<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
+inline fun <reified DomainType> Stat<DomainType>.scaled(scale: NonPositionalUnspecifiedScale) =
     SourceScaledNonPositionalUnspecified(this.toColumnPointer(), scale)
 =======
-public inline fun <reified DomainType : Any> Stat<DomainType>.scaled(): SourceScaledUnspecifiedDefault<DomainType> =
+public inline fun <reified DomainType> Stat<DomainType>.scaled(): SourceScaledUnspecifiedDefault<DomainType> =
     SourceScaledUnspecifiedDefault(this.toDataSource())
 
 
-public inline fun <reified DomainType : Any> Stat<DomainType>.scaled(scale: PositionalUnspecifiedScale): SourceScaledPositionalUnspecified<DomainType> =
+public inline fun <reified DomainType> Stat<DomainType>.scaled(scale: PositionalUnspecifiedScale): SourceScaledPositionalUnspecified<DomainType> =
     SourceScaledPositionalUnspecified(this.toDataSource(), scale)
 
 
-public inline fun <reified DomainType : Any> Stat<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): SourceScaledNonPositionalUnspecified<DomainType> =
+public inline fun <reified DomainType> Stat<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): SourceScaledNonPositionalUnspecified<DomainType> =
     SourceScaledNonPositionalUnspecified(this.toDataSource(), scale)
 >>>>>>> main
 
 
-public inline fun <reified DomainType : Any> Stat<DomainType>.scaled(
+public inline fun <reified DomainType> Stat<DomainType>.scaled(
     scale: PositionalScale<DomainType>
 <<<<<<< HEAD
 ) = SourceScaledPositional(this.toColumnPointer(), scale)
@@ -46,7 +46,7 @@ public inline fun <reified DomainType : Any> Stat<DomainType>.scaled(
 >>>>>>> main
 
 
-public inline fun <reified DomainType : Any, RangeType : Any> Stat<DomainType>.scaled(
+public inline fun <reified DomainType, RangeType> Stat<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
 <<<<<<< HEAD
 ) = SourceScaledNonPositional(this.toColumnPointer(), scale)

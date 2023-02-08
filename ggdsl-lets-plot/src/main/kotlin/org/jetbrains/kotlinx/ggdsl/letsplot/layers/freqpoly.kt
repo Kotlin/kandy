@@ -62,7 +62,7 @@ class FreqpolyContext(
     internal val boundary: BoundaryAes get() = BoundaryAes(this)
 
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: BinStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -74,7 +74,7 @@ class FreqpolyContext(
         return mapping
     }
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType, RangeType> MappableNonPositionalAes<RangeType>.invoke(
         stat: BinStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -89,10 +89,10 @@ class FreqpolyContext(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any> PlotContext.freqPoly(
+inline fun <reified T> PlotContext.freqPoly(
     source: ColumnPointer<T>,
 =======
-public inline fun <reified T : Any> PlotContext.freqPoly(
+public inline fun <reified T> PlotContext.freqPoly(
     source: DataSource<T>,
 >>>>>>> main
     bins: Bins? = null,
@@ -111,7 +111,7 @@ public inline fun <reified T : Any> PlotContext.freqPoly(
     )
 }
 
-public inline fun <reified T : Any> PlotContext.freqPoly(
+public inline fun <reified T> PlotContext.freqPoly(
     source: Iterable<T>,
     bins: Bins? = null,
     boundary: Double? = null,

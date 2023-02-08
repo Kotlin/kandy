@@ -10,7 +10,7 @@ import kotlin.reflect.typeOf
  *
  * @return [TypedValue] with the given value and obtained [KType].
  */
-public inline fun<reified T: Any> T.typed(): TypedValue{
+public inline fun<reified T> T.typed(): TypedValue{
     return TypedValue(typeOf<T>(), this)
 }
 
@@ -19,7 +19,7 @@ public inline fun<reified T: Any> T.typed(): TypedValue{
  *
  * @return [Pair] of [TypedValue] with the given values and obtained [KType].
  */
-public inline fun<reified T: Any> Pair<T, T>.typedPair(): Pair<TypedValue, TypedValue>{
+public inline fun<reified T> Pair<T, T>.typedPair(): Pair<TypedValue, TypedValue>{
     return TypedValue(typeOf<T>(), this.first) to TypedValue(typeOf<T>(), this.second)
 }
 
@@ -28,6 +28,6 @@ public inline fun<reified T: Any> Pair<T, T>.typedPair(): Pair<TypedValue, Typed
  *
  * @return [TypedList] with the given values and obtained [KType].
  */
-public inline fun<reified T: Any> List<T>.typedList(): TypedList{
+public inline fun<reified T> List<T>.typedList(): TypedList{
     return TypedList(typeOf<T>(), this)
 }

@@ -10,14 +10,14 @@ import org.jetbrains.kotlinx.ggdsl.dsl.contexts.PlotContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.QQ2Context
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.qq2
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.qq2(
+public inline fun <reified T, reified R> PlotContext.qq2(
     sourceX: ColumnReference<T>,
     sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
     block: QQ2Context.() -> Unit
 <<<<<<< HEAD
 ) = qq2(sourceX.toColRef(), sourceY, block)
 
-inline fun <reified T : Any, reified R: Any> PlotContext.qq2(
+inline fun <reified T, reified R: Any> PlotContext.qq2(
     sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
     sourceY: ColumnReference<R>,
     block: QQ2Context.() -> Unit
@@ -25,14 +25,14 @@ inline fun <reified T : Any, reified R: Any> PlotContext.qq2(
 =======
 ): Unit = qq2(sourceX.toDataSource(), sourceY, block)
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.qq2(
+public inline fun <reified T, reified R> PlotContext.qq2(
     sourceX: DataSource<T>,
     sourceY: ColumnReference<R>,
     block: QQ2Context.() -> Unit
 ): Unit = qq2(sourceX, sourceY.toDataSource(), block)
 >>>>>>> main
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.qq2(
+public inline fun <reified T, reified R> PlotContext.qq2(
     sourceX: ColumnReference<T>,
     sourceY: ColumnReference<R>,
     block: QQ2Context.() -> Unit

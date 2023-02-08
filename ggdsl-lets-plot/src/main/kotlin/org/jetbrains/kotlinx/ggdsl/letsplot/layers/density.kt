@@ -94,7 +94,7 @@ public class DensityContext(
     public val Stat: Statistics = Statistics
 
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: DensityStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -107,7 +107,7 @@ public class DensityContext(
     }
 
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any>
+    public inline operator fun <reified DomainType, RangeType>
         MappableNonPositionalAes<RangeType>.invoke(
         stat: DensityStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
@@ -122,10 +122,10 @@ public class DensityContext(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any> PlotContext.density(
+inline fun <reified T> PlotContext.density(
     source: ColumnPointer<T>,
 =======
-public inline fun <reified T : Any> PlotContext.density(
+public inline fun <reified T> PlotContext.density(
     source: DataSource<T>,
 >>>>>>> main
     kernel: Kernel? = null,
@@ -147,7 +147,7 @@ public inline fun <reified T : Any> PlotContext.density(
     )
 }
 
-public inline fun <reified T : Any> PlotContext.density(
+public inline fun <reified T> PlotContext.density(
     source: Iterable<T>,
     kernel: Kernel? = null,
     bandWidth: BandWidth? = null,

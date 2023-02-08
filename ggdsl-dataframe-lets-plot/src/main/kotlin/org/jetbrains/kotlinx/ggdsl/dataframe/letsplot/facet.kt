@@ -122,7 +122,7 @@ public fun LayerPlotContext.facetGrid(
  * "Score: {.2f}" -> "Score: 12.45"
  * "'Score: {}' "-> "Score: 12.454789"
  */
-public inline fun <reified T : Any> FacetWrapContext.facet(
+public inline fun <reified T> FacetWrapContext.facet(
     variable: ColumnReference<T>,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null

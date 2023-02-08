@@ -15,7 +15,7 @@ import kotlin.reflect.typeOf
 
 //TODO
 @PublishedApi
-internal inline fun <reified T : Any> KProperty<T>.toColumnPointer(): ColumnPointer<T> =
+internal inline fun <reified T> KProperty<T>.toColumnPointer(): ColumnPointer<T> =
     ColumnPointer(this.name)
 
 /**
@@ -24,7 +24,7 @@ internal inline fun <reified T : Any> KProperty<T>.toColumnPointer(): ColumnPoin
  *
  * @param property the mapped [KProperty].
  */
-public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType> NonScalablePositionalAes.invoke(
     property: KProperty<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =
@@ -38,7 +38,7 @@ public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.i
  *
  * @param property the mapped [KProperty].
  */
-public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
     property: KProperty<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping<DomainType>(
@@ -57,7 +57,7 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
  *
  * @param property the mapped [KProperty].
  */
-public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableNonPositionalAes<RangeType>.invoke(
+public inline operator fun <reified DomainType, RangeType> ScalableNonPositionalAes<RangeType>.invoke(
     property: KProperty<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -74,7 +74,7 @@ public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableN
  * they will be defined automatically; can be both used for positional and non-positional mappings) scale
  * to this [KProperty] (i.e. a column with the same name and type as the given property).
  */
-public inline fun <reified DomainType : Any> KProperty<DomainType>.scaled()
+public inline fun <reified DomainType> KProperty<DomainType>.scaled()
 : ColumnScaledUnspecifiedDefault<DomainType> =
     ColumnScaledUnspecifiedDefault(this.toColumnPointer())
 
@@ -87,7 +87,7 @@ public inline fun <reified DomainType : Any> KProperty<DomainType>.scaled()
  * @param scale positional default scale.
  * @return scaled source.
  */
-public inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(scale: PositionalUnspecifiedScale):
+public inline fun <reified DomainType> KProperty<DomainType>.scaled(scale: PositionalUnspecifiedScale):
         ColumnScaledPositionalUnspecified<DomainType> =
     ColumnScaledPositionalUnspecified(this.toColumnPointer(), scale)
 
@@ -101,7 +101,7 @@ public inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(scale:
  * @return scaled source.
  */
 
-public inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(scale: NonPositionalUnspecifiedScale):
+public inline fun <reified DomainType> KProperty<DomainType>.scaled(scale: NonPositionalUnspecifiedScale):
         ColumnScaledNonPositionalUnspecified<DomainType> =
     ColumnScaledNonPositionalUnspecified(this.toColumnPointer(), scale)
 
@@ -114,7 +114,7 @@ public inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(scale:
  * @return scaled source.
  */
 
-public inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(
+public inline fun <reified DomainType> KProperty<DomainType>.scaled(
     scale: PositionalScale<DomainType>
 ): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.toColumnPointer(), scale)
 
@@ -126,6 +126,6 @@ public inline fun <reified DomainType : Any> KProperty<DomainType>.scaled(
  * @param scale non-positional scale.
  * @return scaled source.
  */
-public inline fun <reified DomainType : Any, RangeType : Any> KProperty<DomainType>.scaled(
+public inline fun <reified DomainType, RangeType> KProperty<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
 ): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.toColumnPointer(), scale)

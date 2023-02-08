@@ -5,6 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
 
 /**
@@ -40,7 +41,9 @@ public sealed interface NonPositionalUnspecifiedScale : UnspecifiedScale
  */
 @Serializable
 public data class PositionalContinuousUnspecifiedScale(override val transform: PositionalTransform? = null) :
-    PositionalUnspecifiedScale, ContinuousScale
+    PositionalUnspecifiedScale, ContinuousScale {
+    override val nullValue: TypedValue? = null
+}
 
 /**
  * Positional categorical scale with an unspecified domain; it will be defined automatically.
@@ -55,7 +58,9 @@ public object PositionalCategoricalUnspecifiedScale : PositionalUnspecifiedScale
  */
 @Serializable
 public data class NonPositionalContinuousUnspecifiedScale(override val transform: NonPositionalTransform? = null) :
-    NonPositionalUnspecifiedScale, ContinuousScale
+    NonPositionalUnspecifiedScale, ContinuousScale {
+    override val nullValue: TypedValue? = null
+    }
 
 /**
  * Non-positional categorical scale with an unspecified domain and range; they will be defined automatically.

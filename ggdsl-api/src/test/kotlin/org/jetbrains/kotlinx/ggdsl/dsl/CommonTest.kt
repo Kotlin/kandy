@@ -119,7 +119,7 @@ internal class CommonTest {
         val yMapping = ScaledPositionalMapping(
             Y, ColumnScaledPositional(
             height, PositionalContinuousScale<Float>(
-            limits = 1f.typed() to 15f.typed()
+            limits = 1f.typed() to 15f.typed(), null, null
         )
         ), typeOf<Float>()
         )
@@ -129,7 +129,8 @@ internal class CommonTest {
                 type,
                 NonPositionalCategoricalScale<String, Color>(
                     domainCategories = listOf("A", "B").typedList(),
-                    rangeValues = listOf(Color.RED, Color.named("blue")).typedList()
+                    rangeValues = listOf(Color.RED, Color.named("blue")).typedList(),
+                    //null
                 )
             ),
             typeOf<String>(),

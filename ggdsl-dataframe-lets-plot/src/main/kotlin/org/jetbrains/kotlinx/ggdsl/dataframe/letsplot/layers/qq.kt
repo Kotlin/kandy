@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.QQContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.qq
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Distribution
 
-public inline fun <reified T : Any> PlotContext.qq(
+public inline fun <reified T> PlotContext.qq(
     source: ColumnReference<T>,
     distribution: Distribution? = null,
     block: QQContext.() -> Unit

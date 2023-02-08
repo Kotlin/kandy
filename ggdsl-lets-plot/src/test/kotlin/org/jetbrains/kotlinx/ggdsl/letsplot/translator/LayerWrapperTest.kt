@@ -98,7 +98,9 @@ internal class LayerWrapperTest {
                     ColumnScaledNonPositional(
                         columnPointer<String>("BAFGA"),
                         NonPositionalCategoricalScale<String, Color>(
-                            rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY).typedList()
+                            null,
+                            rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY).typedList(),
+                            //null,
                         ),
                     ),
                     typeOf<String>(),

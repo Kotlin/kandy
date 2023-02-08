@@ -14,7 +14,7 @@ import kotlin.reflect.typeOf
 //todo
 /*@PlotDslMarker*/
 @Serializable
-public data class Axis<DomainType : Any> @PublishedApi internal constructor(
+public data class Axis<DomainType> @PublishedApi internal constructor(
     var kType: KType,
     // todo expand & trans
 ) : SelfInvocationContext {
@@ -32,7 +32,7 @@ public data class Axis<DomainType : Any> @PublishedApi internal constructor(
      * @param breaks list of breaks.
      * @param format format string.
      */
-    public fun breaks(breaks: List<DomainType>? = null, format: String? = null) {
+    public fun breaks(breaks: List<DomainType & Any>? = null, format: String? = null) {
         this.breaks = breaks?.let {
             TypedList(kType, it)
         }
@@ -44,13 +44,13 @@ public data class Axis<DomainType : Any> @PublishedApi internal constructor(
      *
      * @param breaksToLabels list of breaks with corresponding labels.
      */
-    public fun breaksLabeled(breaksToLabels: List<Pair<DomainType, String>>) {
+    public fun breaksLabeled(breaksToLabels: List<Pair<DomainType & Any, String>>) {
         breaks = TypedList(kType, breaksToLabels.map { it.first })
         labels = breaksToLabels.map { it.second }
     }
 
     public companion object {
         @PublishedApi
-        internal inline fun<reified DomainType: Any> create(): Axis<DomainType> = Axis(typeOf<DomainType>())
+        internal inline fun<reified DomainType> create(): Axis<DomainType> = Axis(typeOf<DomainType>())
     }
 }

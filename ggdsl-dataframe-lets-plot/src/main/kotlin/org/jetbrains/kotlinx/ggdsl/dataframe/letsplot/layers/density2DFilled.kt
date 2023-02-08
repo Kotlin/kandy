@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.density2DFilled
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.BandWidth
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.density2DFilled(
+public inline fun <reified T, reified R> PlotContext.density2DFilled(
     sourceX: ColumnReference<T>,
     sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
     kernel: Kernel? = null,
@@ -27,14 +27,14 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.density2DFilled
     sourceX.toColRef(), sourceY, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
 
-inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
+inline fun <reified T, reified R: Any> PlotContext.density2DFilled(
     sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
 =======
 ): Unit = density2DFilled(
     sourceX.toDataSource(), sourceY, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block
 )
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.density2DFilled(
+public inline fun <reified T, reified R> PlotContext.density2DFilled(
     sourceX: DataSource<T>,
 >>>>>>> main
     sourceY: ColumnReference<R>,
@@ -54,7 +54,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.density2DFilled
 >>>>>>> main
 )
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.density2DFilled(
+public inline fun <reified T, reified R> PlotContext.density2DFilled(
     sourceX: ColumnReference<T>,
     sourceY: ColumnReference<R>,
     kernel: Kernel? = null,
