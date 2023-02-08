@@ -15,7 +15,9 @@ import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
  *
  * @param DomainType the type of the domain.
  */
-public sealed interface PositionalScale<DomainType : Any> : Scale
+public sealed interface PositionalScale<DomainType> : Scale {
+    //public val nullValue: TypedValue?
+}
 
 /**
  * Positional continuous scale.
@@ -24,9 +26,10 @@ public sealed interface PositionalScale<DomainType : Any> : Scale
  * @param limits the limits of the domain.
  */
 @Serializable
-public data class PositionalContinuousScale<DomainType : Any>(
-    val limits: Pair<TypedValue, TypedValue>? = null,
-    override val transform: PositionalTransform? = null,
+public data class PositionalContinuousScale<DomainType>(
+    val limits: Pair<TypedValue, TypedValue>?,
+    override val nullValue: TypedValue?,
+    override val transform: PositionalTransform?,
 ) : ContinuousScale, PositionalScale<DomainType>
 
 /**
@@ -36,6 +39,7 @@ public data class PositionalContinuousScale<DomainType : Any>(
  * @param categories the list of the domain categories.
  */
 @Serializable
-public data class PositionalCategoricalScale<DomainType : Any>(
-    val categories: TypedList? = null,
+public data class PositionalCategoricalScale<DomainType>(
+    val categories: TypedList?,
+    //override val nullValue: TypedValue?,
 ) : CategoricalScale, PositionalScale<DomainType>

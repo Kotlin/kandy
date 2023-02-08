@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.HistogramContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.histogram
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Bins
 
-public inline fun <reified T : Any> PlotContext.histogram(
+public inline fun <reified T> PlotContext.histogram(
     source: ColumnReference<T>,
     bins: Bins? = null,
     boundary: Double? = null,

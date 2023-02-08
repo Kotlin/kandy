@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.density
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.BandWidth
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
 
-public inline fun <reified T : Any> PlotContext.density(
+public inline fun <reified T> PlotContext.density(
     source: ColumnReference<T>,
     kernel: Kernel? = null,
     bandWidth: BandWidth? = null,

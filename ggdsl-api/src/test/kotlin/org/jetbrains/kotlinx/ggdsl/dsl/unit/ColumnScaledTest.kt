@@ -56,7 +56,7 @@ internal class ColumnScaledTest {
     @Test
     fun testScaledPositional() {
         val ds1 = ColumnPointer<Float>("ds4")
-        val scale1 = PositionalContinuousScale<Float>(limits = 4.3F.typed() to 10F.typed())
+        val scale1 = PositionalContinuousScale<Float>(limits = 4.3F.typed() to 10F.typed(), null, null)
         val continuousScaledSource = ds1.scaled(scale1)
         assertEquals(
             ColumnScaledPositional(ds1, scale1),
@@ -64,7 +64,7 @@ internal class ColumnScaledTest {
         )
 
         val ds2 = ColumnPointer<String>("ds10")
-        val scale2 = PositionalCategoricalScale<String>(listOf<String>().typedList())
+        val scale2 = PositionalCategoricalScale<String>(listOf<String>().typedList(), /*null*/)
         val categoricalScaledSource = ds2.scaled(scale2)
         assertEquals(
             ColumnScaledPositional(ds2, scale2),
@@ -77,7 +77,9 @@ internal class ColumnScaledTest {
         val ds1 = ColumnPointer<Char>("dsX")
         val scale1 = NonPositionalContinuousScale<Char, Color>(
             'a'.typed() to 'e'.typed(),
-            Color.hex("#000000").typed() to Color.named("red").typed()
+            Color.hex("#000000").typed() to Color.named("red").typed(),
+            null,
+            null
         )
         val continuousScaledSource = ds1.scaled(scale1)
         assertEquals(
@@ -87,7 +89,9 @@ internal class ColumnScaledTest {
 
         val ds2 = ColumnPointer<String>("dsY")
         val scale2 = NonPositionalCategoricalScale<String, Symbol>(
-            rangeValues = listOf(Symbol.CIRCLE, Symbol.TRIANGLE).typedList()
+            null,
+            rangeValues = listOf(Symbol.CIRCLE, Symbol.TRIANGLE).typedList(),
+            //nullValue = null,
         )
         val categoricalScaledSource = ds2.scaled(scale2)
         assertEquals(

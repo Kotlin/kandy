@@ -5,6 +5,7 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.builtins.nullable
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.descriptors.element
@@ -53,7 +54,7 @@ public object TypedValueSerializer : KSerializer<TypedValue> {
     override fun serialize(encoder: Encoder, value: TypedValue) {
         encoder.encodeStructure(descriptor) {
             encodeStringElement(descriptor, 0, value.kType.toString())
-            encodeSerializableElement(descriptor, 1, AnySerializer(value.kType), value.value)
+            encodeSerializableElement(descriptor, 1, AnySerializer(value.kType).nullable, value.value)
         }
     }
 
@@ -69,5 +70,5 @@ public object TypedValueSerializer : KSerializer<TypedValue> {
 @Serializable(TypedValueSerializer::class)
 public data class TypedValue(
     val kType: KType,
-    val value: Any
+    val value: Any?
 )

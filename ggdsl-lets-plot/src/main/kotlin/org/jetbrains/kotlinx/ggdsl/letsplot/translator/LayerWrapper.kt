@@ -39,4 +39,3 @@ internal class LayerWrapper internal constructor(private val layer: Layer, addGr
         }.toMap()
     )
 }
-

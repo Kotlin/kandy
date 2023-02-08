@@ -16,7 +16,7 @@ import kotlin.reflect.KProperty
  * @param T the type of the column
  * @param id the name of the column
  */
-public  fun <T : Any> columnPointer(id: String): ColumnPointer<T> =
+public  fun <T> columnPointer(id: String): ColumnPointer<T> =
     ColumnPointer(id)
 
 /**
@@ -27,7 +27,7 @@ public  fun <T : Any> columnPointer(id: String): ColumnPointer<T> =
  * @param T the type of the column
  * @receiver the name of the column
  */
-public inline operator fun <reified T : Any> String.invoke(): ColumnPointer<T> =
+public inline operator fun <reified T> String.invoke(): ColumnPointer<T> =
     ColumnPointer(this)
 
 
@@ -45,7 +45,7 @@ public inline operator fun <reified T : Any> String.invoke(): ColumnPointer<T> =
  *
  * @property T the type of the column.
  */
-public class UnnamedColumnPointer<T : Any> @PublishedApi internal constructor(){
+public class UnnamedColumnPointer<T> @PublishedApi internal constructor(){
     /**
      * Creates a [ColumnPointer] with `T` type and property name as a column name.
      */
@@ -67,8 +67,8 @@ public class UnnamedColumnPointer<T : Any> @PublishedApi internal constructor(){
  *
  * @param T the type of the column
  */
-public inline fun <reified T : Any> columnPointer(): UnnamedColumnPointer<T> =
+public inline fun <reified T> columnPointer(): UnnamedColumnPointer<T> =
     UnnamedColumnPointer()
 
 @PublishedApi
-internal fun<T: Any> String.toColumnPointer(): ColumnPointer<T> = ColumnPointer(this)
+internal fun<T> String.toColumnPointer(): ColumnPointer<T> = ColumnPointer(this)

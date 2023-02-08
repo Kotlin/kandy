@@ -21,7 +21,7 @@ import kotlin.reflect.typeOf
  *
  * @param columnRef the mapped raw data column.
  */
-public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType> NonScalablePositionalAes.invoke(
     columnRef: ColumnReference<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =
@@ -33,7 +33,7 @@ public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.i
  *
  * @param columnRef the mapped raw data column.
  */
-public inline operator fun <reified DomainType : Any, RangeType: Any> NonScalableNonPositionalAes<RangeType>.invoke(
+public inline operator fun <reified DomainType, RangeType: Any> NonScalableNonPositionalAes<RangeType>.invoke(
     columnRef: ColumnReference<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =
@@ -46,7 +46,7 @@ public inline operator fun <reified DomainType : Any, RangeType: Any> NonScalabl
  *
  * @param columnRef the mapped raw data column.
  */
-public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
     columnRef: ColumnReference<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -64,7 +64,7 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
  *
  * @param columnRef the mapped raw data column.
  */
-public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableNonPositionalAes<RangeType>.invoke(
+public inline operator fun <reified DomainType, RangeType> ScalableNonPositionalAes<RangeType>.invoke(
     columnRef: ColumnReference<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(

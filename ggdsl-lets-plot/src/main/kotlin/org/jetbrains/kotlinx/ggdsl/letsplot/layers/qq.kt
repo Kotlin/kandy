@@ -57,7 +57,7 @@ public class QQContext(
     public val Stat: Statistics = Statistics
 
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: QQStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -69,7 +69,7 @@ public class QQContext(
         return mapping
     }
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType, RangeType> MappableNonPositionalAes<RangeType>.invoke(
         stat: QQStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -85,10 +85,10 @@ public class QQContext(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any> PlotContext.qq(
+inline fun <reified T> PlotContext.qq(
     source: ColumnPointer<T>,
 =======
-public inline fun <reified T : Any> PlotContext.qq(
+public inline fun <reified T> PlotContext.qq(
     source: DataSource<T>,
 >>>>>>> main
     distribution: Distribution? = null,
@@ -105,7 +105,7 @@ public inline fun <reified T : Any> PlotContext.qq(
     )
 }
 
-public inline fun <reified T : Any> PlotContext.qq(
+public inline fun <reified T> PlotContext.qq(
     source: Iterable<T>,
     distribution: Distribution? = null,
     block: QQContext.() -> Unit

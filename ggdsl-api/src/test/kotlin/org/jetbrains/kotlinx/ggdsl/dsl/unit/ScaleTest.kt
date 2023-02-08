@@ -8,7 +8,6 @@ import org.jetbrains.kotlinx.ggdsl.dsl.categorical
 import org.jetbrains.kotlinx.ggdsl.dsl.categoricalPos
 import org.jetbrains.kotlinx.ggdsl.dsl.continuous
 import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedPair
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
@@ -27,7 +26,7 @@ internal class ScaleTest {
     fun testContinuousPos() {
         val limits = -5 to 19
         val scale = continuousPos(limits)
-        assertEquals(PositionalContinuousScale(limits.typedPair()), scale)
+        assertEquals(PositionalContinuousScale(limits.typedPair(), null, null), scale)
     }
 
     @Test
@@ -39,7 +38,7 @@ internal class ScaleTest {
     fun testCategoricalPos() {
         val categories = listOf("a", "b", "CCC", "123")
         val scale = categoricalPos(categories = categories)
-        assertEquals(PositionalCategoricalScale(categories.typedList()), scale)
+        assertEquals(PositionalCategoricalScale(categories.typedList(), /*null*/), scale)
     }
 
     @Test
@@ -52,7 +51,7 @@ internal class ScaleTest {
         val domainLimits = 23.0 to 129.13
         val rangeLimits = 0.0F to 1.0F
         val scale = continuous(domainLimits, rangeLimits)
-        assertEquals(NonPositionalContinuousScale(domainLimits.typedPair(), rangeLimits.typedPair()), scale)
+        assertEquals(NonPositionalContinuousScale(domainLimits.typedPair(), rangeLimits.typedPair(), null, null), scale)
     }
 
     @Test
@@ -65,6 +64,6 @@ internal class ScaleTest {
         val domainCategories = listOf(1, 3, 100, 999)
         val rangeCategories = listOf(Color.RED, Color.BLACK, Color.BLUE, Color.WHITE)
         val scale = categorical(domainCategories, rangeCategories)
-        assertEquals(NonPositionalCategoricalScale(domainCategories.typedList(), rangeCategories.typedList()), scale)
+        assertEquals(NonPositionalCategoricalScale(domainCategories.typedList(), rangeCategories.typedList(), /*null*/), scale)
     }
 }

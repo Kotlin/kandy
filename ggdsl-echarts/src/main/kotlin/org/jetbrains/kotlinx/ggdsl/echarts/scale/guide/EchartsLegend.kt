@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.scale.guide
 
 
-public class Legend<DomainType : Any, RangeType : Any> {
+public class Legend<DomainType, RangeType> {
     public var name: String? = null
     public var show: Boolean? = null
     public var calculable: Boolean? = null // todo customize ? move to upper context???
@@ -13,7 +13,7 @@ public class Legend<DomainType : Any, RangeType : Any> {
 }
 
 
-public inline operator fun <DomainType : Any, RangeType : Any>
+public inline operator fun <DomainType, RangeType>
     Legend<DomainType, RangeType>.invoke(block: Legend<DomainType, RangeType>.() -> Unit) {
     apply(block)
 }

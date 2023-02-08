@@ -13,7 +13,7 @@ import kotlin.reflect.typeOf
  *
  * @param column the mapped raw data column.
  */
-public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType> NonScalablePositionalAes.invoke(
     column: ColumnPointer<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =
@@ -25,7 +25,7 @@ public inline operator fun <reified DomainType : Any> NonScalablePositionalAes.i
  *
  * @param column the mapped raw data column.
  */
-public inline operator fun <reified DomainType : Any, RangeType: Any> NonScalableNonPositionalAes<RangeType>.invoke(
+public inline operator fun <reified DomainType, RangeType> NonScalableNonPositionalAes<RangeType>.invoke(
     column: ColumnPointer<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =
@@ -38,7 +38,7 @@ public inline operator fun <reified DomainType : Any, RangeType: Any> NonScalabl
  *
  * @param column the mapped raw data column.
  */
-public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
     column: ColumnPointer<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping<DomainType>(
@@ -56,7 +56,7 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
  *
  * @param column the mapped raw data column.
  */
-public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableNonPositionalAes<RangeType>.invoke(
+public inline operator fun <reified DomainType, RangeType> ScalableNonPositionalAes<RangeType>.invoke(
     column: ColumnPointer<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -74,7 +74,7 @@ public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableN
  *
  * @param columnScaledDefault the mapped column scaled default.
  */
-public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
     columnScaledDefault: ColumnScaledUnspecifiedDefault<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -92,7 +92,7 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
  *
  * @param columnScaledDefault the mapped column scaled default.
  */
-public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableNonPositionalAes<RangeType>.invoke(
+public inline operator fun <reified DomainType, RangeType> ScalableNonPositionalAes<RangeType>.invoke(
     columnScaledDefault: ColumnScaledUnspecifiedDefault<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -110,7 +110,7 @@ public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableN
  *
  * @param columnScaledDefault the mapped column scaled unspecified positional.
  */
-public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
     columnScaledDefault: ColumnScaledPositionalUnspecified<DomainType>
 ): ScaledPositionalUnspecifiedMapping<DomainType> {
     val mapping = ScaledPositionalUnspecifiedMapping(
@@ -129,7 +129,7 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
  *
  * @param columnScaledDefault the mapped column scaled unspecified non-positional.
  */
-public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableNonPositionalAes<RangeType>.invoke(
+public inline operator fun <reified DomainType, RangeType> ScalableNonPositionalAes<RangeType>.invoke(
     columnScaledDefault: ColumnScaledNonPositionalUnspecified<DomainType>
 ): ScaledNonPositionalUnspecifiedMapping<DomainType, RangeType> {
     val mapping = ScaledNonPositionalUnspecifiedMapping<DomainType, RangeType>(
@@ -146,7 +146,7 @@ public inline operator fun <reified DomainType : Any, RangeType : Any> ScalableN
  *
  * @param columnScaledPositional the mapped column scaled positional.
  */
-public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
     columnScaledPositional: ColumnScaledPositional<DomainType>
 ): ScaledPositionalMapping<DomainType> {
     val mapping = ScaledPositionalMapping(
@@ -163,7 +163,7 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
  *
  * @param columnScaledNonPositional the mapped column scaled non-positional.
  */
-public inline operator fun <reified DomainType : Any, reified RangeType : Any>
+public inline operator fun <reified DomainType, reified RangeType>
         ScalableNonPositionalAes<RangeType>.invoke(
     columnScaledNonPositional: ColumnScaledNonPositional<DomainType, RangeType>
 ): ScaledNonPositionalMapping<DomainType, RangeType> {

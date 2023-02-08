@@ -56,7 +56,7 @@ public class ContourContext(
     // todo speed, flow - mi ne znaem chto eto takoe, esli bi mi znali
 
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -68,7 +68,7 @@ public class ContourContext(
         return mapping
     }
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType, RangeType> MappableNonPositionalAes<RangeType>.invoke(
         stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -116,12 +116,12 @@ public class ContourContext(
 }
 
 <<<<<<< HEAD
-inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contour(
+inline fun <reified TX, reified TY, reified TZ> PlotContext.contour(
     sourceX: ColumnPointer<TX>,
     sourceY: ColumnPointer<TY>,
     sourceZ: ColumnPointer<TZ>,
 =======
-public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contour(
+public inline fun <reified TX, reified TY, reified TZ> PlotContext.contour(
     sourceX: DataSource<TX>,
     sourceY: DataSource<TY>,
     sourceZ: DataSource<TZ>,
@@ -142,7 +142,7 @@ public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotCon
     )
 }
 
-public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contour(
+public inline fun <reified TX, reified TY, reified TZ> PlotContext.contour(
     sourceX: Iterable<TX>,
     sourceY: Iterable<TY>,
     sourceZ: Iterable<TZ>,

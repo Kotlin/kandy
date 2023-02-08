@@ -29,7 +29,7 @@ public sealed interface Mapping {
  * @property domainType the type of domain
  */
 @Serializable
-public data class NonScalablePositionalMapping<DomainType : Any>(
+public data class NonScalablePositionalMapping<DomainType>(
     override val aes: AesName,
     val source: ColumnPointer<DomainType>,
     @Serializable(KTypeSerializer::class) override val domainType: KType
@@ -43,7 +43,7 @@ public data class NonScalablePositionalMapping<DomainType : Any>(
  * @property domainType the type of domain
  */
 @Serializable
-public data class NonScalableNonPositionalMapping<DomainType : Any>(
+public data class NonScalableNonPositionalMapping<DomainType>(
     override val aes: AesName,
     val source: ColumnPointer<DomainType>,
     @Serializable(KTypeSerializer::class) override val domainType: KType
@@ -56,7 +56,7 @@ public data class NonScalableNonPositionalMapping<DomainType : Any>(
  * @property columnScaled the scaled source to which the mapping is applied
  * @property domainType the type of domain
  */
-public sealed interface ScaledMapping<DomainType : Any> : Mapping {
+public sealed interface ScaledMapping<DomainType> : Mapping {
     override val aes: AesName
     public val columnScaled: ColumnScaled<DomainType>
     public override val domainType: KType
@@ -70,7 +70,7 @@ public sealed interface ScaledMapping<DomainType : Any> : Mapping {
  * @property columnScaled the scaled source to which the mapping is applied
  * @property domainType the type of domain
  */
-public sealed interface BaseScaledPositionalMapping<DomainType : Any> : ScaledMapping<DomainType> {
+public sealed interface BaseScaledPositionalMapping<DomainType> : ScaledMapping<DomainType> {
     override val aes: AesName
     override val columnScaled: ColumnScaled<DomainType>
     override val domainType: KType
@@ -84,7 +84,7 @@ public sealed interface BaseScaledPositionalMapping<DomainType : Any> : ScaledMa
  * @property columnScaled the scaled source to which the mapping is applied
  * @property domainType the type of domain
  */
-public sealed interface BaseScaledNonPositionalMapping<DomainType : Any, RangeType : Any> : ScaledMapping<DomainType> {
+public sealed interface BaseScaledNonPositionalMapping<DomainType, RangeType> : ScaledMapping<DomainType> {
     override val aes: AesName
     override val columnScaled: ColumnScaled<DomainType>
     override val domainType: KType
@@ -98,7 +98,7 @@ public sealed interface BaseScaledNonPositionalMapping<DomainType : Any, RangeTy
  * @property columnScaled the scaled default unspecified source to which the mapping is applied
  * @property domainType type of domain
  */
-public sealed interface ScaledUnspecifiedDefaultMapping<DomainType : Any> : ScaledMapping<DomainType> {
+public sealed interface ScaledUnspecifiedDefaultMapping<DomainType> : ScaledMapping<DomainType> {
     override val aes: AesName
     override val columnScaled: ColumnScaledUnspecifiedDefault<DomainType>
     @Serializable(KTypeSerializer::class) override val domainType: KType
@@ -113,7 +113,7 @@ public sealed interface ScaledUnspecifiedDefaultMapping<DomainType : Any> : Scal
  * @property domainType type of domain
  */
 @Serializable
-public data class ScaledUnspecifiedDefaultPositionalMapping<DomainType : Any>(
+public data class ScaledUnspecifiedDefaultPositionalMapping<DomainType>(
     override val aes: AesName,
     override val columnScaled: ColumnScaledUnspecifiedDefault<DomainType>,
     @Serializable(KTypeSerializer::class) override val domainType: KType
@@ -129,7 +129,7 @@ public data class ScaledUnspecifiedDefaultPositionalMapping<DomainType : Any>(
  * @property domainType type of domain
  */
 @Serializable
-public data class ScaledUnspecifiedDefaultNonPositionalMapping<DomainType : Any, RangeType : Any>(
+public data class ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
     override val aes: AesName,
     override val columnScaled: ColumnScaledUnspecifiedDefault<DomainType>,
     @Serializable(KTypeSerializer::class) override val domainType: KType
@@ -145,7 +145,7 @@ public data class ScaledUnspecifiedDefaultNonPositionalMapping<DomainType : Any,
  * @property domainType type of domain
  */
 @Serializable
-public data class ScaledPositionalUnspecifiedMapping<DomainType : Any>(
+public data class ScaledPositionalUnspecifiedMapping<DomainType>(
     override val aes: AesName,
     override val columnScaled: ColumnScaledPositionalUnspecified<DomainType>,
     @Serializable(KTypeSerializer::class) override val domainType: KType
@@ -161,7 +161,7 @@ public data class ScaledPositionalUnspecifiedMapping<DomainType : Any>(
  * @property domainType type of domain
  */
 @Serializable
-public data class ScaledNonPositionalUnspecifiedMapping<DomainType : Any, RangeType : Any>(
+public data class ScaledNonPositionalUnspecifiedMapping<DomainType, RangeType>(
     override val aes: AesName,
     override val columnScaled: ColumnScaledNonPositionalUnspecified<DomainType>,
     @Serializable(KTypeSerializer::class) override val domainType: KType
@@ -177,7 +177,7 @@ public data class ScaledNonPositionalUnspecifiedMapping<DomainType : Any, RangeT
  * @property domainType type of domain
  */
 @Serializable
-public data class ScaledPositionalMapping<DomainType : Any>(
+public data class ScaledPositionalMapping<DomainType>(
     override val aes: AesName,
     override val columnScaled: ColumnScaledPositional<DomainType>,
     @Serializable(KTypeSerializer::class) override val domainType: KType
@@ -194,7 +194,7 @@ public data class ScaledPositionalMapping<DomainType : Any>(
  * @property domainType type of domain
  */
 @Serializable
-public data class ScaledNonPositionalMapping<DomainType : Any, RangeType : Any>(
+public data class ScaledNonPositionalMapping<DomainType, RangeType>(
     override val aes: AesName,
     override val columnScaled: ColumnScaledNonPositional<DomainType, RangeType>,
     @Serializable(KTypeSerializer::class) override val domainType: KType,

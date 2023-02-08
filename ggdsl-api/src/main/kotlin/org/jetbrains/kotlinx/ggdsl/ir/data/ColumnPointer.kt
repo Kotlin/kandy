@@ -16,9 +16,10 @@ import kotlinx.serialization.encoding.Encoder
  * @property name the name of column in the table
  */
 @Serializable(with=CPSerializer::class)
-public data class ColumnPointer<T : Any>(val name: String)
+public data class ColumnPointer<T>(val name: String)
 
 
+//todo
 public object CPSerializer: KSerializer<ColumnPointer<*>> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("ColumnPointer") {
         element<String>("name")

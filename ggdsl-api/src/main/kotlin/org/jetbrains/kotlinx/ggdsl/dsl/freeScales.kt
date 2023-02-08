@@ -16,7 +16,7 @@ import kotlin.reflect.typeOf
  * @param scale positional scale.
  * @return [FreePositionalScale]
  */
-public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
     scale: PositionalScale<DomainType>
 ): FreePositionalScale<DomainType> {
     val freeScale = FreePositionalScale<DomainType>(
@@ -35,7 +35,7 @@ public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invo
  * @param scale positional unspecified scale.
  * @return [FreePositionalScale]
  */
-public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
     scale: PositionalUnspecifiedScale
 ): FreePositionalScale<DomainType> {
     val freeScale = FreePositionalScale<DomainType>(
