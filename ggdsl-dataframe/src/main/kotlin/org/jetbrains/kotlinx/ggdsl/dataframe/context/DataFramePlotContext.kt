@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.ggdsl.dataframe.api
+package org.jetbrains.kotlinx.ggdsl.dataframe.context
 
 import org.jetbrains.kotlinx.dataframe.*
 import org.jetbrains.kotlinx.dataframe.columns.ColumnPath
@@ -22,27 +22,27 @@ public class DataFramePlotContext<T>(
 
 
     override fun columns(): List<AnyCol> {
-        TODO("Not yet implemented")
+        return dataFrame.columns()
     }
 
     override fun columnsCount(): Int {
-        TODO("Not yet implemented")
+        return dataFrame.columnsCount()
     }
 
     override fun containsColumn(name: String): Boolean {
-        TODO("Not yet implemented")
+        return dataFrame.containsColumn(name)
     }
 
     override fun containsColumn(path: ColumnPath): Boolean {
-        TODO("Not yet implemented")
+        return dataFrame.containsColumn(path)
     }
 
     override fun <C> get(columns: ColumnsSelector<T, C>): List<DataColumn<C>> {
-        TODO("Not yet implemented")
+        return dataFrame[columns]
     }
 
     override fun getColumnIndex(name: String): Int {
-        TODO("Not yet implemented")
+        return dataFrame.getColumnIndex(name)
     }
 
     override fun getColumnOrNull(index: Int): AnyCol? {

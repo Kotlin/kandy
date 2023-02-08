@@ -1,7 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
-import org.jetbrains.kotlinx.ggdsl.dataframe.create
 import org.jetbrains.kotlinx.ggdsl.dataframe.plot
 import org.jetbrains.kotlinx.ggdsl.dsl.column.invoke
 import org.jetbrains.kotlinx.ggdsl.dsl.continuous
@@ -31,7 +30,7 @@ public fun main() {
 
     // TODO save as HTML
     /*val simplePlot =*/
-    simpleDataFrame.create{ plot {
+    simpleDataFrame.plot {
         x("days_of_week"<String>())
 
 
@@ -58,5 +57,5 @@ public fun main() {
                 bottom = 0.px
             }
         }
-    } }
+    }
 }
