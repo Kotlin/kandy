@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.AlphaAes
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.FillAes
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.XAes
@@ -16,10 +16,10 @@ public interface AreaContextInterface: WithBorderLineContextInterface {
     public val alpha: AlphaAes get() = AlphaAes(this)
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class AreaContextImmutable(parent: LayerCollectorContextImmutable)
     : LayerWithBorderLineContextImmutable(parent), AreaContextInterface
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class AreaContextMutable(parent: LayerCollectorContextMutable):
     LayerWithBorderLineContextMutable(parent), AreaContextInterface

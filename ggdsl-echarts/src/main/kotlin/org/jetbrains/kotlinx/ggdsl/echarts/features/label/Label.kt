@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features.label
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.features.text.TextStyle
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
@@ -31,7 +31,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
  * @property textStyle [text style][TextStyle] settings
  * @property border [border][LabelBorder] settings
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class LabelContext(
     public var position: LabelPosition? = null,
     public var formatter: String? = null,

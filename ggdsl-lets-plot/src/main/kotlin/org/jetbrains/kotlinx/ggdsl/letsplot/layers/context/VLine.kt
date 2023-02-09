@@ -12,10 +12,10 @@ public interface VLineContextInterface: BindingContext {
     public val width: SizeAes get() = SizeAes(this)
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class VLineContextImmutable(parent: LayerCollectorContextImmutable)
     : LayerContextImmutable(parent), VLineContextInterface
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class VLineContextMutable(parent: LayerCollectorContextMutable):
     LayerContextMutable(parent), VLineContextInterface

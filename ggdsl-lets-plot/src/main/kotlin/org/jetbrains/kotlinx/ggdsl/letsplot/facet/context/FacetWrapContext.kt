@@ -1,6 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.facet.context
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.Direction
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetWrapFeature
 /**
  * Context opened by [facetWrap].
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class FacetWrapContext @PublishedApi internal constructor(){
     private val facets = mutableListOf<ColumnPointer<*>>()
     private val orders= mutableListOf<OrderDirection>()

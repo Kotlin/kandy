@@ -5,11 +5,11 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationBoxplotCandlestick
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationEasing
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class CandlestickContextImmutable(parent: LayerCollectorContextImmutable) : EchartsLayerContextImmutable(parent) {
 
     /**

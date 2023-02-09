@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.EChartsLayout
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.EchartsTooltip
 
@@ -53,7 +53,7 @@ public enum class Trigger(public val type: String) {
  *
  * @see Trigger
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class Tooltip(
     public var trigger: Trigger? = null,
     public var formatter: String? = null

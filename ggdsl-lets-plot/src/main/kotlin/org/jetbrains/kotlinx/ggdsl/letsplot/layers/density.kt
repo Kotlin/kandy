@@ -8,14 +8,14 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 //public val DENSITY: LetsPlotGeom = LetsPlotGeom("density")
 /*
 // todo stats
-@PlotDslMarker
+/*@PlotDslMarker*/
 class DensityContext(
     parent: LayerCollectorContext,
 =======
 public val DENSITY: LetsPlotGeom = LetsPlotGeom("density")
 
 // todo stats
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class DensityContext(
     override var data: MutableNamedData,
 >>>>>>> main

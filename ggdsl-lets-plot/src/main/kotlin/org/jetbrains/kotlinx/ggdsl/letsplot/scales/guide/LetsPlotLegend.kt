@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
@@ -33,7 +33,7 @@ public data class ColorBar internal constructor(
 
 // TODO
 @Serializable
-@PlotDslMarker
+/*@PlotDslMarker*/
 public data class Legend<DomainType, out RangeType> @PublishedApi internal constructor(
     var kType: KType,
 ) : SelfInvocationContext {

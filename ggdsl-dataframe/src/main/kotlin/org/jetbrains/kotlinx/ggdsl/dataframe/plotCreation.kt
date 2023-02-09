@@ -6,13 +6,21 @@ package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
+import org.jetbrains.kotlinx.ggdsl.dataframe.context.DataFramePlotContext
 import org.jetbrains.kotlinx.ggdsl.dataframe.context.GroupedDataFrameContext
-import org.jetbrains.kotlinx.ggdsl.dataframe.data.DataFrameWrapper
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.GroupedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 
+public fun<T> DataFrame<T>.plot(block: DataFramePlotContext<T>.() -> Unit): Plot {
+    return DataFramePlotContext<T>(this).apply(block).toPlot()
+}
+
+public fun<T, G> GroupBy<T, G>.plot(block:  GroupedDataFrameContext<T, G>.() -> Unit): Plot {
+    return GroupedDataFrameContext(this).apply(block).toPlot()
+}
+
+// TODO series plots
+
+/*
 /**
  * Returns a new [Plot].
  *
@@ -82,3 +90,5 @@ public inline fun <T, G> GroupBy<T, G>.create(block: GroupedDataFrameContext<T, 
 public inline fun <T, G> GroupedDataFrameContext<T, G>.plot(block: GroupedDataPlotContext.() -> Unit): Plot {
     return plot(toLazy(), block)
 }
+
+ */

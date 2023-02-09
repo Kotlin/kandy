@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.features
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.*
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.BarContextImmutable
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
@@ -65,7 +65,7 @@ public inline fun BarContextImmutable.background(crossinline block: BackgroundSt
  *
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.bars
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class BackgroundStyle(context: BindingContext) {
     public val color: BackgroundColorAes = BackgroundColorAes(context)
     public val borderColor: BackgroundBorderColorAes = BackgroundBorderColorAes(context)

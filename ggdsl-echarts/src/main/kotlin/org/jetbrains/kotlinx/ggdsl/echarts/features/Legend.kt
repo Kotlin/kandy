@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.EChartsLayout
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.SizeUnit
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsLegend
@@ -74,7 +74,7 @@ public enum class Orient(public val type: String) {
  * @see Orient
  * @see SizeUnit
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class Legend(
     public var type: LegendType? = null,
     public var left: SizeUnit? = null,

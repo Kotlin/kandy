@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Grid
 import org.jetbrains.kotlinx.ggdsl.echarts.features.Legend
 import org.jetbrains.kotlinx.ggdsl.echarts.features.title.Title
@@ -34,7 +34,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
  * @see Legend
  * @see Tooltip
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class EChartsLayout : PlotFeature {
     public var size: Pair<Int, Int>? = null
 
