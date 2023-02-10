@@ -100,7 +100,7 @@ internal class Integration(
         return MimeTypedResultEx(
             buildJsonObject {
                 put("text/html", JsonPrimitive(html))
-                put("application/plot", buildJsonObject {
+                put("application/plot+json", buildJsonObject {
                     put("output_type", JsonPrimitive("lets_plot_spec"))
                     put("output", serializeSpec(spec))
                 })
