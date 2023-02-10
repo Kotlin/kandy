@@ -3,7 +3,6 @@ package org.jetbrains.kotlinx.ggdsl.dataframe.data
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.dataframe.api.dropNulls
 import org.jetbrains.kotlinx.dataframe.api.flatten
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.dataframe.values
@@ -47,7 +46,7 @@ public data class DataFrameWrapper(
 @Suppress("UNCHECKED_CAST")
 internal fun DataFrame<*>.toTypedDataMap(): Map<String, TypedList> {
     // TODO (change convert df to map)
-    return dropNulls().flatten().columns().associate {
-        it.name() to TypedList(it.type(), it.values.toList() as List<Any>)
+    return flatten().columns().associate {
+        it.name() to TypedList(it.type(), it.values.toList() as List<*>)
     }
 }
