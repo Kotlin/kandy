@@ -8,10 +8,10 @@ import jetbrains.datalore.plot.base.stat.Stats
 import jetbrains.datalore.plot.builder.data.GroupUtil
 import jetbrains.datalore.plot.builder.data.GroupingContext
 import jetbrains.datalore.plot.common.data.SeriesUtil
-import org.jetbrains.kotlinx.ggdsl.dsl.LazyGroupedData
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.toTyped
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
+import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
+import org.jetbrains.kotlinx.dataframe.api.toDataFrame
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 
 internal fun BinXPos.toKind():BinStat.XPosKind = when(this) {
@@ -48,20 +48,20 @@ internal fun countBinsImpl(
     val statContext = SimpleStatContext(df)
     val dfCounted = stat.apply(df, statContext)
 
-    return dataOf {
-        BinStatistic.Bins.NAME to dfCounted[Stats.X].map { it as Double }
-        BinStatistic.Count.NAME to dfCounted[Stats.COUNT].map { it as Double }
-        BinStatistic.Density.NAME to dfCounted[Stats.DENSITY].map { it as Double }
-    }
+    return NamedData(dataFrameOf(
+        BinStatistic.Bins.NAME to dfCounted[Stats.X].map { it as Double },
+        BinStatistic.Count.NAME to dfCounted[Stats.COUNT].map { it as Double },
+        BinStatistic.Density.NAME to dfCounted[Stats.DENSITY].map { it as Double },
+    ))
 }
 
 @PublishedApi
 internal fun countBinsImpl(
-    data: org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedData,
+    data: GroupedData,
     column: ColumnReference<*>,
     bins: Bins,
     binXPos: BinXPos
-): LazyGroupedData {
+): GroupedData {
     val variables = data.keys.map { DataFrame.Variable(it) }
     val df = data.origin.toDataFrame(column, variables)
     val groupingContext = GroupingContext(df, variables, null, true)
@@ -94,9 +94,9 @@ internal fun countBinsImpl(
     }
 
 
-    return LazyGroupedData(
-        data.keys,
-        NamedData(buffer.toTyped())
+    return GroupedData(
+        buffer.toDataFrame(),
+        data.keys
     )
 }
 
@@ -107,11 +107,10 @@ internal fun NamedData.toDataFrame(
 ): DataFrame {
     //println(nameToValues)
     var builder =
-        DataFrame.Builder().putNumeric(TransformVar.X, nameToValues[column.name]!!.values.map { (it as Number).toDouble() })
+        DataFrame.Builder().putNumeric(TransformVar.X, dataFrame[column.name()].values().map { (it as Number).toDouble() })
     variables.forEach {
-        builder = builder.putDiscrete(it, nameToValues[it.name]!!.values)
+        builder = builder.putDiscrete(it, dataFrame[it.name].values().toList())
     }
-
 
     return builder.build()
 }

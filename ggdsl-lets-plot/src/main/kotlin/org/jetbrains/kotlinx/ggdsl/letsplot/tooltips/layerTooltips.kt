@@ -4,10 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.tooltips
 
-import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.Aes
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.context.LayerTooltipsContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
@@ -21,7 +20,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
  */
 
 public fun value(source: ColumnReference<*>): String {
-    return "@${source.name}"
+    return "@${source.name()}"
 }
 
 /**
@@ -94,12 +93,12 @@ public inline fun LayerContextInterface.tooltips(
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
-        variables.map { it.name },
+        variables.map { it.name() },
         title,
         anchor,
         minWidth,
         hide,
-        valueFormats.map { it.key.name to it.value }
+        valueFormats.map { it.key.name() to it.value }
             + aesFormats.map { "^" + it.key.name.name to it.value }
             + statFormats.map { it.key.id to it.value },
         LayerTooltipsContext().apply(tooltipsContextAction)

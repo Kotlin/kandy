@@ -8,8 +8,6 @@ import org.jetbrains.kotlinx.ggdsl.dsl.categorical
 import org.jetbrains.kotlinx.ggdsl.dsl.categoricalPos
 import org.jetbrains.kotlinx.ggdsl.dsl.continuous
 import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedPair
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.test.Test
@@ -26,7 +24,7 @@ internal class ScaleTest {
     fun testContinuousPos() {
         val limits = -5 to 19
         val scale = continuousPos(limits)
-        assertEquals(PositionalContinuousScale(limits.typedPair(), null, null), scale)
+        assertEquals(PositionalContinuousScale(limits, null, null), scale)
     }
 
     @Test
@@ -51,7 +49,7 @@ internal class ScaleTest {
         val domainLimits = 23.0 to 129.13
         val rangeLimits = 0.0F to 1.0F
         val scale = continuous(domainLimits, rangeLimits)
-        assertEquals(NonPositionalContinuousScale(domainLimits.typedPair(), rangeLimits.typedPair(), null, null), scale)
+        assertEquals(NonPositionalContinuousScale(domainLimits, rangeLimits, null, null), scale)
     }
 
     @Test

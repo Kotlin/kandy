@@ -2,18 +2,10 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
-import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.letsPlot.intern.Feature
 
-internal fun GroupedData.groupKeys(): List<String> {
-    return when(this) {
-        is CountedGroupedData -> keys.nameToValues.keys.toList()
-        is LazyGroupedData -> keys
-    }
-}
 
 internal fun Layer.wrap(featureBuffer: MutableList<Feature>, plotDataset: TableData?) {
     val addGroups: Boolean = if (dataset == null) {
@@ -22,9 +14,9 @@ internal fun Layer.wrap(featureBuffer: MutableList<Feature>, plotDataset: TableD
         dataset is GroupedData
     }
     val groupKeys: List<String> = if (dataset == null) {
-        (plotDataset as? GroupedData)?.groupKeys()
+        (plotDataset as? GroupedData)?.keys
     } else {
-        (dataset as? GroupedData)?.groupKeys()
+        (dataset as? GroupedData)?.keys
     } ?: listOf()
     featureBuffer.add(LayerWrapper(this, addGroups))
     freeScales.forEach { (_, freeScale) -> freeScale.wrap(featureBuffer) }
@@ -32,7 +24,7 @@ internal fun Layer.wrap(featureBuffer: MutableList<Feature>, plotDataset: TableD
         if (mapping is ScaledMapping<*>) {
             // TODO!!!
             val type = mapping.domainType
-            mapping.columnScaled.scale.wrap(aes, type/* mapping.domainType*/, mapping.scaleParameters, mapping.columnScaled.source.name in groupKeys)?.let {
+            mapping.columnScaled.scale.wrap(aes, type/* mapping.domainType*/, mapping.scaleParameters, mapping.columnScaled.source.name() in groupKeys)?.let {
                 featureBuffer.add(it)
             }
         }

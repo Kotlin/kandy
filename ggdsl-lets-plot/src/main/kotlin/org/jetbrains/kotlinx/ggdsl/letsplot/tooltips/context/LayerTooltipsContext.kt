@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.context
 
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.Aes
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 
 /**
@@ -41,8 +41,7 @@ public class LayerTooltipsContext {
      */
 
     public fun line(source: ColumnReference<*>) {
-
-        lineBuffer.add("@|@${source.name}")
+        lineBuffer.add("@|@${source.name()}")
     }
 
     /**

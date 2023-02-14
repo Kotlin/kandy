@@ -1,7 +1,10 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin
 
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.*
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.StatLayerCollectorContext
 
 public interface BinStatContext {
@@ -86,8 +89,7 @@ internal inline fun statBinImpl(
 ){
     val newData = when(data) {
         is NamedData -> countBinsImpl(data, column, bins, binXPos)
-        is CountedGroupedData -> countBinsImpl(data.toLazy(), column, bins, binXPos)
-        is LazyGroupedData -> countBinsImpl(data, column, bins, binXPos)
+        is GroupedData -> countBinsImpl(data, column, bins, binXPos)
     }
     BinLayerCollectorContext(contextParent, newData).apply(block)
 }
@@ -103,8 +105,7 @@ internal inline fun statBinImpl(
 ){
     val newData = when(data) {
         is NamedData -> countBinsImpl(data, column, bins, binXPos)
-        is CountedGroupedData -> countBinsImpl(data.toLazy(), column, bins, binXPos)
-        is LazyGroupedData -> countBinsImpl(data, column, bins, binXPos)
+        is GroupedData -> countBinsImpl(data, column, bins, binXPos)
     }
     BinLayerCollectorContext(contextParent, newData).apply(block)
 }
@@ -118,7 +119,7 @@ public inline fun LayerCollectorContextImmutable.statBin(
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ) {
-    data.validateColumn(column.name)
+    data.validateColumn(column.name())
     statBinImpl(this, data, column, bins, binXPos, block)
 }
 

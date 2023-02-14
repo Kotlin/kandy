@@ -17,7 +17,7 @@ internal fun Color.wrap(): String {
 }
 
 // TODO
-internal fun wrapValue(value: Any): Any {
+internal fun wrapValue(value: Any?): Any? {
     if (value is Enum<*>) {
         return value.toString()
     }

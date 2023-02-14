@@ -1,6 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.ir.data
 
+import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
+import org.jetbrains.kotlinx.dataframe.api.groupBy
 
 
 /**
@@ -13,7 +15,13 @@ import org.jetbrains.kotlinx.dataframe.api.GroupBy
  */
 public data class GroupedData(
     public val groupBy: GroupBy<*, *>
-): TableData {
+) : TableData {
     public val keys: List<String> = groupBy.keys.columnNames()
     public val origin: NamedData = NamedData(groupBy.toDataFrame())
+
+    public constructor(origin: NamedData, keys: List<String>) :
+            this(origin.dataFrame.groupBy(*keys.toTypedArray()))
+
+    public constructor(dataFrame: DataFrame<*>, keys: List<String>) :
+            this(dataFrame.groupBy(*keys.toTypedArray()))
 }

@@ -5,7 +5,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.util.serialization.allModules
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-
+/*
 // TODO improve
 public fun Plot.toJson(prettyPrint: Boolean = false): String {
     val json = Json {
@@ -24,3 +24,5 @@ private val jsonDefault = Json {
 public fun Plot.Companion.fromJson(json: String): Plot {
     return jsonDefault.decodeFromString(json)
 }
+
+ */

@@ -4,16 +4,18 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl.unit
 
+import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
 internal class ContextTest {
-    private val emptyDataset = NamedData(mapOf())
+    private val emptyDataset = NamedData(DataFrame.Empty)
     @Test
     fun testPoints() {
         val context = NamedDataPlotContext(emptyDataset).apply {

@@ -1,7 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.echarts
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.column.invoke
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.x
 import org.jetbrains.kotlinx.ggdsl.echarts.features.label.LabelPosition
 import org.jetbrains.kotlinx.ggdsl.echarts.features.label.label

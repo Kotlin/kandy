@@ -4,24 +4,25 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
-import org.jetbrains.kotlinx.ggdsl.dsl.column.ColumnReference
+import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetGridFeature
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGridX
+import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetGridFeature
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class FacetTest {
-    private val emptyDataset = NamedData(mapOf())
+    private val emptyDataset = NamedData(DataFrame.Empty)
     @Test
     fun testSimpleFacet() {
         val plot = plot(emptyDataset) {
             facetGridX(
-                x = ColumnReference<String>("xSrc")
+                x = column<String>("xSrc")
             )
         }
         assertEquals(
@@ -50,8 +51,8 @@ class FacetTest {
     fun testComplexFacet() {
         val plot = plot(emptyDataset) {
             facetGrid(
-                x = ColumnReference<String>("xArg"),
-                y = ColumnReference<Int>("yArg"),
+                x = column<String>("xArg"),
+                y = column<Int>("yArg"),
                 xOrder = OrderDirection.ASCENDING,
                 yOrder = OrderDirection.DESCENDING,
             )

@@ -4,13 +4,13 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.column.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.ALPHA
@@ -25,15 +25,15 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class LayersTest {
-    val emptyDataset = dataOf {
-        "time" to listOf<Int>()
-        "type" to listOf<String>()
-    }
+    private val dataset = NamedData(dataFrameOf(
+        "time" to listOf(1, 2),
+        "type" to listOf("a", "b")
+    ))
     @Test
     fun testArea() {
-        val time = ColumnReference<Int>("time")
-        val type = ColumnReference<String>("type")
-        val plot = plot(emptyDataset) {
+        val time = column<Int>("time")
+        val type = column<String>("type")
+        val plot = plot(dataset) {
             area {
                 y(time.scaled(continuousPos()))
                 color(
@@ -52,7 +52,7 @@ internal class LayersTest {
         // TODO
         assertEquals(
             Plot(
-                emptyDataset,
+                dataset,
                 listOf(
                     Layer(
                         null,

@@ -4,9 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedPair
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
@@ -25,7 +22,7 @@ internal class ScaleWrappingTest {
     @Test
     fun testPos() {
         val range = 2.0 to 11.1
-        val scale = PositionalContinuousScale<Double>(range.typedPair(), null, null)
+        val scale = PositionalContinuousScale<Double>(range, null, null)
         val wrappedScale = scale.wrap(X, typeOf<Double>())
         assertNotNull(wrappedScale)
         assertEquals(
@@ -59,14 +56,14 @@ internal class ScaleWrappingTest {
     @Test
     fun testNonPosCategoricalNull() {
         val categories = listOf(1, 3, 5)
-        val values = listOf(4.0, 6.0, 7.5)
-        val nullValue = 0.5
-        val scale = NonPositionalCategoricalScale<String, Color>(
+        val values = listOf(45.1, 728.1, 0.0001)
+        val nullValue = 1.123
+        val scale = NonPositionalCategoricalScale<Int?, Double>(
             (categories + null),
             (values + nullValue),
             //null,
         )
-        val wrappedScale = scale.wrap(SIZE, typeOf<Int>())
+        val wrappedScale = scale.wrap(SIZE, typeOf<Double>())
         assertNotNull(wrappedScale)
         assertEquals(
             mapOf(
@@ -84,9 +81,9 @@ internal class ScaleWrappingTest {
         val domainLimits = 0.5 to 0.9
         val rangeLimits = Color.RED to Color.GREEN
         val nullValue = Color.GREY
-        val scale = NonPositionalContinuousScale<String, Color>(
-            domainLimits.typedPair(),
-            rangeLimits.typedPair(),
+        val scale = NonPositionalContinuousScale<Double, Color>(
+            domainLimits,
+            rangeLimits,
             nullValue,
             null
         )

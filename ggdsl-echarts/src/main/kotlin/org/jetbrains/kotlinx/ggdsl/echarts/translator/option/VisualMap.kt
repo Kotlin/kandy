@@ -11,7 +11,6 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Ech
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.RangeSerializer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
 internal fun createInRange(aes: AesName, valuesString: List<Any?>?): Range? {
     if (valuesString.isNullOrEmpty()) return null

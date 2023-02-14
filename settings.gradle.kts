@@ -5,6 +5,4 @@ include("ggdsl-echarts")
 include("ggdsl-util")
 
 include("examples:idea-examples:lets-plot-simple")
-include("examples:idea-examples:lets-plot-dataframe-simple")
 include("examples:idea-examples:echarts-simple")
-include("examples:idea-examples:echarts-dataframe-simple")
