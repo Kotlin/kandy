@@ -7,21 +7,21 @@ import org.jetbrains.kotlinx.dataframe.api.flatten
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.dataframe.values
 import org.jetbrains.kotlinx.ggdsl.dataframe.util.serialization.DataFrameSerializer
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 
 /**
- * Wrapper for a [DataFrame] implementing [NamedDataInterface].
+ * Wrapper for a [DataFrame] implementing [NamedData].
  */
 @Serializable
 public data class DataFrameWrapper(
     @Serializable(with = DataFrameSerializer::class)
     public val df: DataFrame<@Contextual Any?>
-) : NamedDataInterface {
+) : NamedData {
     override val nameToValues: Map<String, TypedList> = df.toTypedDataMap()
-    override fun groupBy(vararg columnPointers: ColumnPointer<*>): LazyGroupedDataFrame {
-        return LazyGroupedDataFrame(columnPointers.map { it.name }, this)
+    override fun groupBy(vararg ColumnReferences: ColumnReference<*>): LazyGroupedDataFrame {
+        return LazyGroupedDataFrame(ColumnReferences.map { it.name }, this)
     }
 
     /**
@@ -35,9 +35,9 @@ public data class DataFrameWrapper(
     /*
         public fun groupBy(
             columnReferences: List<ColumnReference<*>>,
-            columnPointers: List<ColumnPointer<*>> = listOf()
+            ColumnReferences: List<ColumnReference<*>> = listOf()
         ): LazyGroupedDataFrame {
-            return LazyGroupedDataFrame(columnReferences.map { it.name() } + columnPointers.map { it.name }, this)
+            return LazyGroupedDataFrame(columnReferences.map { it.name() } + ColumnReferences.map { it.name }, this)
         }
 
      */

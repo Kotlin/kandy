@@ -5,9 +5,9 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnPointer
+import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
@@ -22,7 +22,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
  * @return scaled source.
  */
 public inline fun <reified DomainType> ColumnReference<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
-    ColumnScaledUnspecifiedDefault(this.toColumnPointer())
+    ColumnScaledUnspecifiedDefault(this.toColumnReference())
 
 /**
  * Applies an unspecified (i.e. without specifying the type and parameters;
@@ -33,7 +33,7 @@ public inline fun <reified DomainType> ColumnReference<DomainType>.scaled(): Col
  * @return scaled source.
  */
 public inline fun <reified DomainType> ColumnReference<DomainType>.scaled(scale: PositionalUnspecifiedScale): ColumnScaledPositionalUnspecified<DomainType> =
-    ColumnScaledPositionalUnspecified(this.toColumnPointer(), scale)
+    ColumnScaledPositionalUnspecified(this.toColumnReference(), scale)
 
 
 /**
@@ -46,11 +46,11 @@ public inline fun <reified DomainType> ColumnReference<DomainType>.scaled(scale:
  */
 public inline fun <reified DomainType> ColumnReference<DomainType>
         .scaled(scale: NonPositionalUnspecifiedScale): ColumnScaledNonPositionalUnspecified<DomainType> =
-    ColumnScaledNonPositionalUnspecified(this.toColumnPointer(), scale)
+    ColumnScaledNonPositionalUnspecified(this.toColumnReference(), scale)
 
 
 /**
- * Applies a positional scale to this [ColumnPointer].
+ * Applies a positional scale to this [ColumnReference].
  *
  * @param DomainType type of the domain.
  * @param scale positional scale.
@@ -58,11 +58,11 @@ public inline fun <reified DomainType> ColumnReference<DomainType>
  */
 public inline fun <reified DomainType> ColumnReference<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.toColumnPointer(), scale)
+): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.toColumnReference(), scale)
 
 
 /**
- * Applies a non-positional scale to this [ColumnPointer].
+ * Applies a non-positional scale to this [ColumnReference].
  *
  * @param DomainType type of the domain.
  * @param scale non-positional scale.
@@ -70,5 +70,5 @@ public inline fun <reified DomainType> ColumnReference<DomainType>.scaled(
  */
 public inline fun <reified DomainType, RangeType> ColumnReference<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.toColumnPointer(), scale)
+): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.toColumnReference(), scale)
 

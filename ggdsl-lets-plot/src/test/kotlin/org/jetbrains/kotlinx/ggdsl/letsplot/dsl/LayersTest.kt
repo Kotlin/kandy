@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.column.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
@@ -31,8 +31,8 @@ internal class LayersTest {
     }
     @Test
     fun testArea() {
-        val time = columnPointer<Int>("time")
-        val type = columnPointer<String>("type")
+        val time = ColumnReference<Int>("time")
+        val type = ColumnReference<String>("type")
         val plot = plot(emptyDataset) {
             area {
                 y(time.scaled(continuousPos()))

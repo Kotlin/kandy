@@ -12,14 +12,14 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.qq2Line
 
 public inline fun <reified T, reified R> PlotContext.qq2Line(
     sourceX: ColumnReference<T>,
-    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
+    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<R>,
     quantiles: Pair<Double, Double>? = null,
     block: QQ2LineContext.() -> Unit
 <<<<<<< HEAD
 ) = qq2Line(sourceX.toColRef(), sourceY, quantiles, block)
 
 inline fun <reified T, reified R: Any> PlotContext.qq2Line(
-    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
+    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<T>,
     sourceY: ColumnReference<R>,
     quantiles: Pair<Double, Double>? = null,
     block: QQ2LineContext.() -> Unit

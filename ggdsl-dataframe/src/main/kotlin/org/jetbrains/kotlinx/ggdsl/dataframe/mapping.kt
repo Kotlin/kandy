@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnPointer
+import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.NonScalableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.NonScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.ScalableNonPositionalAes
@@ -25,7 +25,7 @@ public inline operator fun <reified DomainType> NonScalablePositionalAes.invoke(
     columnRef: ColumnReference<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =
-        NonScalablePositionalMapping(this.name, columnRef.toColumnPointer(), typeOf<DomainType>())
+        NonScalablePositionalMapping(this.name, columnRef.toColumnReference(), typeOf<DomainType>())
 }
 
 /**
@@ -37,7 +37,7 @@ public inline operator fun <reified DomainType, RangeType: Any> NonScalableNonPo
     columnRef: ColumnReference<DomainType>
 ) {
     context.bindingCollector.mappings[this.name] =
-        NonScalableNonPositionalMapping(this.name, columnRef.toColumnPointer(), typeOf<DomainType>())
+        NonScalableNonPositionalMapping(this.name, columnRef.toColumnReference(), typeOf<DomainType>())
 }
 
 /**

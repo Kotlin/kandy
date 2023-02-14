@@ -18,7 +18,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import kotlin.reflect.typeOf
 
@@ -28,7 +28,7 @@ internal fun <T> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
 }
 
 internal class Parser(plot: Plot) {
-    private val data = (plot.dataset as NamedDataInterface).nameToValues
+    private val data = (plot.dataset as NamedData).nameToValues
     private val globalMappings = plot.globalMappings
     private val layers = plot.layers
     private val features = plot.features
@@ -95,7 +95,7 @@ internal class Parser(plot: Plot) {
                                 mapping.columnScaled.scale.toVisualMap(
                                     aes,
                                     sourceId, index,
-                                    (layer.dataset as? NamedDataInterface)?.nameToValues?.get(sourceId)?.values
+                                    (layer.dataset as? NamedData)?.nameToValues?.get(sourceId)?.values
                                         ?: data[sourceId]?.values,
                                     visualMaps.size,
                                     mapping.domainType

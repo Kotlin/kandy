@@ -55,12 +55,12 @@ public fun LayerTooltipsContext.line(column: ColumnReference<*>) {
  */
 public inline fun LayerContextInterface.tooltips(
     columns: List<ColumnReference<*>> = listOf(),
-  //  variablesDS: List<ColumnPointer<*>> = listOf(),
+  //  variablesDS: List<ColumnReference<*>> = listOf(),
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
     hide: Boolean = false,
-  //  dsFormats: Map<ColumnPointer<*>, String> = mapOf(),
+  //  dsFormats: Map<ColumnReference<*>, String> = mapOf(),
     columnsFormats: Map<ColumnReference<*>, String> = mapOf(),
     aesFormats: Map<Aes, String> = mapOf(),
     statFormats: Map<Statistic<*>, String> = mapOf(),

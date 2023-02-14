@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.column.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bars
@@ -32,9 +32,9 @@ class ToLetsPlotTest {
             "mpg" to listOf<Double>()
         }
         val plot = plot(dataset) {
-            x(columnPointer<String>("origin"))
+            x(ColumnReference<String>("origin"))
             points {
-                y(columnPointer<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
+                y(ColumnReference<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
                 symbol(Symbol.CIRCLE_FILLED)
                 fillColor(Color.RED)
             }
@@ -82,10 +82,10 @@ class ToLetsPlotTest {
             "clM" to listOf<Int>()
             "clX" to listOf<String>()
         }
-        val clM = columnPointer<Int>("clM")
+        val clM = ColumnReference<Int>("clM")
         val plot = plot(dataset) {
-            x(columnPointer<Double>("time").scaled(continuousPos(limits = -12.0 to 4.4)))
-            y(columnPointer<String>("svalue").scaled(categoricalPos(categories = listOf("A", "B", "C"))))
+            x(ColumnReference<Double>("time").scaled(continuousPos(limits = -12.0 to 4.4)))
+            y(ColumnReference<String>("svalue").scaled(categoricalPos(categories = listOf("A", "B", "C"))))
 
             bars {
                 color(
@@ -108,7 +108,7 @@ class ToLetsPlotTest {
 
             facetGrid(
                 x = clM,
-                y = columnPointer<String>("clX"),
+                y = ColumnReference<String>("clX"),
                 yOrder = OrderDirection.DESCENDING
             )
         }

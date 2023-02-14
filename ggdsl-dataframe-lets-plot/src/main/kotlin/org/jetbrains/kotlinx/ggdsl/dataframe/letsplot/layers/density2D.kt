@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
 
 public inline fun <reified T, reified R> PlotContext.density2D(
     sourceX: ColumnReference<T>,
-    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
+    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<R>,
     kernel: Kernel? = null,
     bandWidth: BandWidth? = null,
     pointsSampled: Int? = null,
@@ -28,7 +28,7 @@ public inline fun <reified T, reified R> PlotContext.density2D(
 )
 
 inline fun <reified T, reified R: Any> PlotContext.density2D(
-    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
+    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<T>,
 =======
 ): Unit = density2D(
     sourceX.toDataSource(), sourceY, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block

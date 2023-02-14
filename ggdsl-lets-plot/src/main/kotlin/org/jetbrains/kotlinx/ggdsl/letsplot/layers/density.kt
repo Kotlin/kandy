@@ -123,7 +123,7 @@ public class DensityContext(
 
 <<<<<<< HEAD
 inline fun <reified T> PlotContext.density(
-    source: ColumnPointer<T>,
+    source: ColumnReference<T>,
 =======
 public inline fun <reified T> PlotContext.density(
     source: DataSource<T>,

@@ -2,17 +2,16 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.letsPlot.intern.Feature
-import kotlin.reflect.KType
 
 internal fun GroupedDataInterface.groupKeys(): List<String> {
     return when(this) {
-        is CountedGroupedDataInterface -> keys.nameToValues.keys.toList()
-        is LazyGroupedDataInterface -> keys
+        is CountedGroupedData -> keys.nameToValues.keys.toList()
+        is LazyGroupedData -> keys
     }
 }
 

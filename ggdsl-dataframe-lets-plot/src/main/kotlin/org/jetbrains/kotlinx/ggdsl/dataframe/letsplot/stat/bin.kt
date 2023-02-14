@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.stat
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnPointer
+import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.validateColumn
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin.BinLayerCollectorContext
@@ -18,7 +18,7 @@ public inline fun LayerCollectorContextImmutable.statBin(
     block: BinLayerCollectorContext.() -> Unit
 ) {
     data.validateColumn(column.name())
-    statBin(column.toColumnPointer(), bins, binXPos, block)
+    statBin(column.toColumnReference(), bins, binXPos, block)
 }
 //todo type
 public inline fun LayerCollectorContextImmutable.histogram(
@@ -28,5 +28,5 @@ public inline fun LayerCollectorContextImmutable.histogram(
     block: HistogramContextImmutable.() -> Unit = {}
 ) {
     data.validateColumn(column.name())
-    histogram(column.toColumnPointer(), bins, binXPos, block)
+    histogram(column.toColumnReference(), bins, binXPos, block)
 }

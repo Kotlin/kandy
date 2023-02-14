@@ -15,7 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.Kernel
 
 public inline fun <reified T, reified R> PlotContext.violin(
     sourceX: ColumnReference<T>,
-    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
+    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<R>,
     drawQuantiles: List<Double>? = null,
     scale: ViolinScale? = null,
     kernel: Kernel? = null,
@@ -53,7 +53,7 @@ public inline fun <reified T> PlotContext.violin(
 
 
 inline fun <reified T, reified R> PlotContext.violin(
-    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
+    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<T>,
 =======
 ): Unit = violin(
     sourceY.toDataSource(), drawQuantiles, scale, kernel, bandWidth, pointsSampled, trim, adjust, fullScanMax, block

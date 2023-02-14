@@ -9,9 +9,9 @@ import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
@@ -243,11 +243,11 @@ public interface LayerPlotContext : LayerCollectorContextInterface, PlotContextB
 }
 
 /**
- * Layer plot with a dataset of type [NamedDataInterface] context.
+ * Layer plot with a dataset of type [NamedData] context.
  */
 /*@PlotDslMarker*/
 public class NamedDataPlotContext(
-    override val data: NamedDataInterface,
+    override val data: NamedData,
 ) : LayerPlotContext, LayerCollectorContextImmutable {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val layers: MutableList<Layer> = mutableListOf()
@@ -257,14 +257,14 @@ public class NamedDataPlotContext(
      * Performs grouping of this plot dataset by given columns.
      * Creates [GroupedDataSubContextImmutable].
      *
-     * @param columnPointers pointers to grouping keys columns.
+     * @param ColumnReferences pointers to grouping keys columns.
      */
     public inline fun groupBy(
-        vararg columnPointers: ColumnPointer<*>,
+        vararg ColumnReferences: ColumnReference<*>,
         block: GroupedDataSubContextImmutable.() -> Unit
     ) {
         GroupedDataSubContextImmutable(
-            data.groupBy(*columnPointers),
+            data.groupBy(*ColumnReferences),
             layers,
             this
         ).apply(block)

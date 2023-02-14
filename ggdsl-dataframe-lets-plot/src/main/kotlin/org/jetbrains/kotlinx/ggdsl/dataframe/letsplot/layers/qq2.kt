@@ -12,13 +12,13 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.qq2
 
 public inline fun <reified T, reified R> PlotContext.qq2(
     sourceX: ColumnReference<T>,
-    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
+    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<R>,
     block: QQ2Context.() -> Unit
 <<<<<<< HEAD
 ) = qq2(sourceX.toColRef(), sourceY, block)
 
 inline fun <reified T, reified R: Any> PlotContext.qq2(
-    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
+    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<T>,
     sourceY: ColumnReference<R>,
     block: QQ2Context.() -> Unit
 ) = qq2(sourceX, sourceY.toColRef(), block)

@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContextMutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.validate
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 
 /**
  * Returns a new [Plot].
@@ -20,7 +20,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
  *
  * @param dataset plot dataset.
  */
-public inline fun plot(dataset: NamedDataInterface, block: NamedDataPlotContext.() -> Unit): Plot {
+public inline fun plot(dataset: NamedData, block: NamedDataPlotContext.() -> Unit): Plot {
     return NamedDataPlotContext(dataset).apply(block).toPlot().also {
         it.validate()
     }

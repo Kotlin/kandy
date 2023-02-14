@@ -11,9 +11,8 @@ import jetbrains.datalore.plot.common.data.SeriesUtil
 import org.jetbrains.kotlinx.ggdsl.dsl.LazyGroupedData
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.toTyped
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
-import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 
 internal fun BinXPos.toKind():BinStat.XPosKind = when(this) {
     is BinXPos.None -> BinStat.XPosKind.NONE
@@ -35,8 +34,8 @@ internal fun splitByGroup(data: DataFrame, groups: (Int) -> Int): List<DataFrame
 
 @PublishedApi
 internal fun countBinsImpl(
-    data: NamedDataInterface,
-    column: ColumnPointer<*>,
+    data: NamedData,
+    column: ColumnReference<*>,
     bins: Bins,
     binXPos: BinXPos
 ): NamedData {
@@ -58,8 +57,8 @@ internal fun countBinsImpl(
 
 @PublishedApi
 internal fun countBinsImpl(
-    data: LazyGroupedDataInterface,
-    column: ColumnPointer<*>,
+    data: org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedData,
+    column: ColumnReference<*>,
     bins: Bins,
     binXPos: BinXPos
 ): LazyGroupedData {
@@ -102,8 +101,8 @@ internal fun countBinsImpl(
 }
 
 // tODO
-internal fun NamedDataInterface.toDataFrame(
-    column: ColumnPointer<*>,
+internal fun NamedData.toDataFrame(
+    column: ColumnReference<*>,
     variables: List<DataFrame.Variable>,
 ): DataFrame {
     //println(nameToValues)

@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.SmoothMethod
 
 public inline fun <reified T, reified R> PlotContext.smooth(
     sourceX: ColumnReference<T>,
-    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
+    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<R>,
     method: SmoothMethod? = null,
     pointsNumber: Int? = null,
     se: Boolean? = null,
@@ -23,7 +23,7 @@ public inline fun <reified T, reified R> PlotContext.smooth(
 ) = smooth(sourceX.toColRef(), sourceY, method, pointsNumber, se, level, block)
 
 inline fun <reified T, reified R> PlotContext.smooth(
-    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
+    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<T>,
 =======
 ): Unit = smooth(sourceX.toDataSource(), sourceY, method, pointsNumber, se, level, block)
 

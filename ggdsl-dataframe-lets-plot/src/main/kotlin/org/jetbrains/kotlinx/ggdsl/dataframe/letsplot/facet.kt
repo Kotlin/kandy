@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnPointer
+import org.jetbrains.kotlinx.ggdsl.dataframe.internal.toColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.ScalesSharing
@@ -126,4 +126,4 @@ public inline fun <reified T> FacetWrapContext.facet(
     variable: ColumnReference<T>,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
-): Unit = facet(variable.toColumnPointer(), order, format)
+): Unit = facet(variable.toColumnReference(), order, format)

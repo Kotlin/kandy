@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
 //import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
-//import org.jetbrains.kotlinx.ggdsl.dsl.columnPointer
+//import org.jetbrains.kotlinx.ggdsl.dsl.ColumnReference
 //import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
 //import org.jetbrains.kotlinx.ggdsl.echarts.*
 //import org.jetbrains.kotlinx.ggdsl.echarts.stack.Stack
@@ -57,7 +57,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator
 //                X to ScaledPositionalMapping(
 //                    X,
 //                    ColumnScaledPositional(
-//                        columnPointer<Double>("srcX"),
+//                        ColumnReference<Double>("srcX"),
 //                        continuousPos(1.0 to 5.0)
 //                    ),
 //                    typeOf<Double>()
@@ -65,7 +65,7 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator
 //                Y to ScaledUnspecifiedDefaultPositionalMapping(
 //                    Y,
 //                    ColumnScaledUnspecifiedDefault(
-//                        columnPointer<Int>("yy")
+//                        ColumnReference<Int>("yy")
 //                    ),
 //                    typeOf<Int>()
 //                )
@@ -98,14 +98,14 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator
 //            mapOf(
 //                X to ScaledPositionalUnspecifiedMapping(
 //                    X, ColumnScaledPositionalUnspecified(
-//                        columnPointer<Float>("time"),
+//                        ColumnReference<Float>("time"),
 //                        PositionalContinuousUnspecifiedScale()
 //                    ),
 //                    typeOf<Double>()
 //                ),
 //                Y to ScaledPositionalMapping(
 //                    Y, ColumnScaledPositional(
-//                        columnPointer<Float>("size"),
+//                        ColumnReference<Float>("size"),
 //                        PositionalContinuousScale(
 //                            limits = 1f to 15f
 //                        )

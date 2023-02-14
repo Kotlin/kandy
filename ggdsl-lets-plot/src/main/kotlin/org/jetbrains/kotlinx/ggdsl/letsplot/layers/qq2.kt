@@ -75,8 +75,8 @@ public class QQ2Context(
 
 <<<<<<< HEAD
 inline fun <reified T, reified R: Any> PlotContext.qq2(
-    sourceX: ColumnPointer<T>,
-    sourceY: ColumnPointer<R>,
+    sourceX: ColumnReference<T>,
+    sourceY: ColumnReference<R>,
 =======
 public inline fun <reified T, reified R> PlotContext.qq2(
     sourceX: DataSource<T>,

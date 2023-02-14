@@ -138,8 +138,8 @@ public class SmoothContext(
 
 <<<<<<< HEAD
 inline fun <reified T, reified R> PlotContext.smooth(
-    sourceX: ColumnPointer<T>,
-    sourceY: ColumnPointer<R>,
+    sourceX: ColumnReference<T>,
+    sourceY: ColumnReference<R>,
 =======
 public inline fun <reified T, reified R> PlotContext.smooth(
     sourceX: DataSource<T>,

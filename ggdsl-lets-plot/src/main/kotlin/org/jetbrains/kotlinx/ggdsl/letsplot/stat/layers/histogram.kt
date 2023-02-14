@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.stat.layers
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BarContextImmutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BarContextInterface
@@ -28,7 +28,7 @@ public class HistogramContextMutable(parent: LayerCollectorContextMutable) :
 
 //todo type
 public inline fun LayerCollectorContextImmutable.histogram(
-    sample: ColumnPointer<*>,
+    sample: ColumnReference<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: HistogramContextImmutable.() -> Unit = {}

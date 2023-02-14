@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat.Bins2D
 
 public inline fun <reified T, reified R> PlotContext.bin2D(
     sourceX: ColumnReference<T>,
-    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
+    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<R>,
     bins: Bins2D? = null,
     drop: Boolean? = null,
     block: Bin2DContext.() -> Unit
@@ -33,7 +33,7 @@ public inline fun <reified T, reified R> PlotContext.bin2D(
 ) = bin2D(sourceX.toColRef(), sourceY.toColRef(), bins, drop, block)
 
 inline fun <reified T, reified R: Any> PlotContext.bin2D(
-    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
+    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<T>,
 =======
 ): Unit = bin2D(sourceX.toDataSource(), sourceY.toDataSource(), bins, drop, block)
 

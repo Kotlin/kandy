@@ -125,8 +125,8 @@ public class Bin2DContext(
 
 <<<<<<< HEAD
 inline fun <reified T, reified R: Any> PlotContext.bin2D(
-    sourceX: ColumnPointer<T>,
-    sourceY: ColumnPointer<R>,
+    sourceX: ColumnReference<T>,
+    sourceY: ColumnReference<R>,
 =======
 public inline fun <reified T, reified R> PlotContext.bin2D(
     sourceX: DataSource<T>,

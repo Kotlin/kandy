@@ -62,7 +62,7 @@ public sealed interface BinXPos {
 @PublishedApi
 internal fun countData(
     data: TableData,
-    column: ColumnPointer<*>,
+    column: ColumnReference<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
 ): TableData {
@@ -79,15 +79,15 @@ internal fun countData(
 internal inline fun statBinImpl(
     contextParent: LayerCollectorContextImmutable,
     data: TableData,
-    column: ColumnPointer<*>,
+    column: ColumnReference<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ){
     val newData = when(data) {
-        is NamedDataInterface -> countBinsImpl(data, column, bins, binXPos)
-        is CountedGroupedDataInterface -> countBinsImpl(data.toLazy(), column, bins, binXPos)
-        is LazyGroupedDataInterface -> countBinsImpl(data, column, bins, binXPos)
+        is NamedData -> countBinsImpl(data, column, bins, binXPos)
+        is CountedGroupedData -> countBinsImpl(data.toLazy(), column, bins, binXPos)
+        is LazyGroupedData -> countBinsImpl(data, column, bins, binXPos)
     }
     BinLayerCollectorContext(contextParent, newData).apply(block)
 }
@@ -96,15 +96,15 @@ internal inline fun statBinImpl(
 internal inline fun statBinImpl(
     contextParent: LayerCollectorContextMutable,
     data: TableData,
-    column: ColumnPointer<*>,
+    column: ColumnReference<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ){
     val newData = when(data) {
-        is NamedDataInterface -> countBinsImpl(data, column, bins, binXPos)
-        is CountedGroupedDataInterface -> countBinsImpl(data.toLazy(), column, bins, binXPos)
-        is LazyGroupedDataInterface -> countBinsImpl(data, column, bins, binXPos)
+        is NamedData -> countBinsImpl(data, column, bins, binXPos)
+        is CountedGroupedData -> countBinsImpl(data.toLazy(), column, bins, binXPos)
+        is LazyGroupedData -> countBinsImpl(data, column, bins, binXPos)
     }
     BinLayerCollectorContext(contextParent, newData).apply(block)
 }
@@ -113,7 +113,7 @@ internal inline fun statBinImpl(
 
 //todo type
 public inline fun LayerCollectorContextImmutable.statBin(
-    column: ColumnPointer<*>,
+    column: ColumnReference<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
@@ -129,6 +129,6 @@ public inline fun<reified T:Any> LayerCollectorContextMutable.statBin(
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ) {
-    val columnPointer = toColumnPointer(source)
-    statBinImpl(this, data, columnPointer, bins, binXPos, block)
+    val ColumnReference = toColumnReference(source)
+    statBinImpl(this, data, ColumnReference, bins, binXPos, block)
 }

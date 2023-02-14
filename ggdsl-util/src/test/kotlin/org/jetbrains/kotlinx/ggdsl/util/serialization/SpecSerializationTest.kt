@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.util.serialization
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.column.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.toLetsPlot
@@ -19,9 +19,9 @@ internal class SpecSerializationTest {
             "origin" to listOf("x", "y", "z")
             "mpg" to listOf(1.3, 8.1, 5.0)
         }) {
-            x(columnPointer<String>("origin"))
+            x(ColumnReference<String>("origin"))
             points {
-                y(columnPointer<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
+                y(ColumnReference<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
                 symbol(Symbol.CIRCLE_FILLED)
                 fillColor(Color.RED)
             }

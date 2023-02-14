@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.ggdsl.ir.bindings
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.data.KTypeSerializer
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ScaleParameters
 import kotlin.reflect.KType
@@ -31,7 +31,7 @@ public sealed interface Mapping {
 @Serializable
 public data class NonScalablePositionalMapping<DomainType>(
     override val aes: AesName,
-    val source: ColumnPointer<DomainType>,
+    val source: ColumnReference<DomainType>,
     @Serializable(KTypeSerializer::class) override val domainType: KType
 ): Mapping
 
@@ -45,7 +45,7 @@ public data class NonScalablePositionalMapping<DomainType>(
 @Serializable
 public data class NonScalableNonPositionalMapping<DomainType>(
     override val aes: AesName,
-    val source: ColumnPointer<DomainType>,
+    val source: ColumnReference<DomainType>,
     @Serializable(KTypeSerializer::class) override val domainType: KType
 ) : Mapping
 

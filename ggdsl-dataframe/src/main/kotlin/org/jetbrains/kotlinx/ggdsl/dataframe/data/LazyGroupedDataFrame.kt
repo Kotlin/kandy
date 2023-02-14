@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.dataframe.data
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.dataframe.api.groupBy
-import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedData
 
 /**
  * Lazy grouping implementation for [DataFrameWrapper].
@@ -11,6 +11,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
 public data class LazyGroupedDataFrame(
     override val keys: List<String>,
     override val origin: DataFrameWrapper,
-) : LazyGroupedDataInterface {
+) : LazyGroupedData {
     override fun count(): GroupedByWrapper<Any?, Any?> = GroupedByWrapper(origin.df.groupBy(cols = keys.toTypedArray()))
 }

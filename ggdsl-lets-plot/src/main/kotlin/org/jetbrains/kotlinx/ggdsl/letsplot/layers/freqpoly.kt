@@ -90,7 +90,7 @@ class FreqpolyContext(
 
 <<<<<<< HEAD
 inline fun <reified T> PlotContext.freqPoly(
-    source: ColumnPointer<T>,
+    source: ColumnReference<T>,
 =======
 public inline fun <reified T> PlotContext.freqPoly(
     source: DataSource<T>,

@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.facet
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.Direction.Companion.HORIZONTAL
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.Direction.Companion.VERTICAL
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection.Companion.ASCENDING
@@ -84,7 +84,7 @@ public data class ScalesSharing internal constructor(val name: String) {
  * "'Score: {}' "-> "Score: 12.454789"
  */
 public fun LayerPlotContext.facetGridX(
-    x: ColumnPointer<*>,
+    x: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
@@ -114,7 +114,7 @@ public fun LayerPlotContext.facetGridX(
  * "'Score: {}' "-> "Score: 12.454789"
  */
 public fun LayerPlotContext.facetGridY(
-    y: ColumnPointer<*>,
+    y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
@@ -146,8 +146,8 @@ public fun LayerPlotContext.facetGridY(
  * "'Score: {}' "-> "Score: 12.454789"
  */
 public fun LayerPlotContext.facetGrid(
-    x: ColumnPointer<*>,
-    y: ColumnPointer<*>,
+    x: ColumnReference<*>,
+    y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     xOrder: OrderDirection = OrderDirection.ASCENDING,
     yOrder: OrderDirection = OrderDirection.ASCENDING,

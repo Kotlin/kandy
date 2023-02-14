@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.test.Test
@@ -18,14 +18,14 @@ import kotlin.test.assertEquals
 internal class ColumnScaledTest {
     @Test
     fun testScaledUnspecified() {
-        val ds = ColumnPointer<Int>("ds1")
+        val ds = ColumnReference<Int>("ds1")
         val scaledSource = ds.scaled()
         assertEquals(ColumnScaledUnspecifiedDefault(ds), scaledSource)
     }
 
     @Test
     fun testScaledPositionalDefault() {
-        val ds = ColumnPointer<Double>("ds2")
+        val ds = ColumnReference<Double>("ds2")
         val continuousScaledSource = ds.scaled(PositionalContinuousUnspecifiedScale())
         val categoricalScaledSource = ds.scaled(PositionalCategoricalUnspecifiedScale)
         assertEquals(
@@ -40,7 +40,7 @@ internal class ColumnScaledTest {
 
     @Test
     fun testScaledNonPositionalDefault() {
-        val ds = ColumnPointer<Double>("ds3")
+        val ds = ColumnReference<Double>("ds3")
         val continuousScaledSource = ds.scaled(NonPositionalContinuousUnspecifiedScale())
         val categoricalScaledSource = ds.scaled(NonPositionalCategoricalUnspecifiedScale)
         assertEquals(
@@ -55,7 +55,7 @@ internal class ColumnScaledTest {
 
     @Test
     fun testScaledPositional() {
-        val ds1 = ColumnPointer<Float>("ds4")
+        val ds1 = ColumnReference<Float>("ds4")
         val scale1 = PositionalContinuousScale<Float>(limits = 4.3F.typed() to 10F.typed(), null, null)
         val continuousScaledSource = ds1.scaled(scale1)
         assertEquals(
@@ -63,7 +63,7 @@ internal class ColumnScaledTest {
             continuousScaledSource
         )
 
-        val ds2 = ColumnPointer<String>("ds10")
+        val ds2 = ColumnReference<String>("ds10")
         val scale2 = PositionalCategoricalScale<String>(listOf<String>().typedList(), /*null*/)
         val categoricalScaledSource = ds2.scaled(scale2)
         assertEquals(
@@ -74,7 +74,7 @@ internal class ColumnScaledTest {
 
     @Test
     fun testScaledNonPositional() {
-        val ds1 = ColumnPointer<Char>("dsX")
+        val ds1 = ColumnReference<Char>("dsX")
         val scale1 = NonPositionalContinuousScale<Char, Color>(
             'a'.typed() to 'e'.typed(),
             Color.hex("#000000").typed() to Color.named("red").typed(),
@@ -87,7 +87,7 @@ internal class ColumnScaledTest {
             continuousScaledSource
         )
 
-        val ds2 = ColumnPointer<String>("dsY")
+        val ds2 = ColumnReference<String>("dsY")
         val scale2 = NonPositionalCategoricalScale<String, Symbol>(
             null,
             rangeValues = listOf(Symbol.CIRCLE, Symbol.TRIANGLE).typedList(),

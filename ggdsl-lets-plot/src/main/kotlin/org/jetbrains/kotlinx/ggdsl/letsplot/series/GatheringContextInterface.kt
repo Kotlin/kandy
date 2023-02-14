@@ -2,14 +2,14 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.series
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 
 public interface GatheringContextInterface : TableDataContext {
-    public override val data: NamedDataInterface
+    public override val data: NamedData
     public val seriesCollector: MutableList<Series>
     public val position: Position
     public val geom: Geom
@@ -62,7 +62,7 @@ public abstract class SeriesContextImmutable(parent: TableDataContext) :
 public abstract class GatheringContextBaseImmutable(
     parent: NamedDataPlotContext, override val position: Position
 ) : TableSubContextImmutable(parent), GatheringContextInterface {
-    override val data: NamedDataInterface = parent.data
+    override val data: NamedData = parent.data
     override val seriesCollector: MutableList<Series> = mutableListOf()
 }
 
@@ -73,8 +73,8 @@ public abstract class GatheringSubContextMutable(
     override val position: Position
 ) :
     TableSubContextMutable(parent), GatheringContextMutable {
-    override val data: NamedDataInterface
-        get() = super.data as NamedDataInterface
+    override val data: NamedData
+        get() = super.data as NamedData
     override val seriesCollector: MutableList<Series> = mutableListOf()
 }
 
@@ -82,7 +82,7 @@ public abstract class SeriesPlotContextMutable(
     public override val position: Position,
 ) : PlotContextBase, GatheringContextInterface, TableContextMutableBase() {
     override val dataBuffer: MutableTableData = MutableNamedData()
-    override val data: NamedDataInterface get() = super.data as NamedDataInterface
+    override val data: NamedData get() = super.data as NamedData
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
     override fun toPlot(): Plot {
         gather()

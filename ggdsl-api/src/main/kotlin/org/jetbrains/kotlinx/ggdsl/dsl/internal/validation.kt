@@ -9,9 +9,9 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalableNonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalablePositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import kotlin.reflect.KType
 
@@ -53,12 +53,12 @@ public fun Layer.validate(plotDataset: TableData) {
 
 internal fun TableData.columns(): Map<String, KType> {
     return when (this) {
-        is NamedDataInterface -> nameToValues.map {
+        is org.jetbrains.kotlinx.ggdsl.ir.data.NamedData -> nameToValues.map {
             it.key to it.value.kType
         }.toMap()
 
-        is LazyGroupedDataInterface -> origin.columns()
-        is CountedGroupedDataInterface -> this.toLazy().columns()
+        is org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedData -> origin.columns()
+        is CountedGroupedData -> this.toLazy().columns()
     }
 }
 /* TODO

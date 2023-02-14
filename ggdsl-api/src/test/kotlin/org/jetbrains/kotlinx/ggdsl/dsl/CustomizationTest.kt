@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.column.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
@@ -70,10 +70,10 @@ internal class CustomizationTest {
         }
 
 
-    val mockSrcDouble = columnPointer<Double>("mock_double")
-    val mockSrcInt = columnPointer<Int>("mock_int")
-    val mockSrcString = columnPointer<String>("mock_string")
-    val mockSrcFloat = columnPointer<Float>("mock_float")
+    val mockSrcDouble = ColumnReference<Double>("mock_double")
+    val mockSrcInt = ColumnReference<Int>("mock_int")
+    val mockSrcString = ColumnReference<String>("mock_string")
+    val mockSrcFloat = ColumnReference<Float>("mock_float")
 
     val dataset =
         dataOf {

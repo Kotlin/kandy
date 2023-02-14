@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
 import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
-import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
+import org.jetbrains.kotlinx.ggdsl.dsl.column.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetGridFeature
@@ -21,7 +21,7 @@ class FacetTest {
     fun testSimpleFacet() {
         val plot = plot(emptyDataset) {
             facetGridX(
-                x = columnPointer<String>("xSrc")
+                x = ColumnReference<String>("xSrc")
             )
         }
         assertEquals(
@@ -50,8 +50,8 @@ class FacetTest {
     fun testComplexFacet() {
         val plot = plot(emptyDataset) {
             facetGrid(
-                x = columnPointer<String>("xArg"),
-                y = columnPointer<Int>("yArg"),
+                x = ColumnReference<String>("xArg"),
+                y = ColumnReference<Int>("yArg"),
                 xOrder = OrderDirection.ASCENDING,
                 yOrder = OrderDirection.DESCENDING,
             )

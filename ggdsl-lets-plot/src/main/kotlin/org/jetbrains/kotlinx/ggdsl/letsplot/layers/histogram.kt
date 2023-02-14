@@ -94,7 +94,7 @@ public class HistogramContext(
 
 <<<<<<< HEAD
 inline fun <reified T> PlotContext.histogram(
-    source: ColumnPointer<T>,
+    source: ColumnReference<T>,
 =======
 public inline fun <reified T> PlotContext.histogram(
     source: DataSource<T>,

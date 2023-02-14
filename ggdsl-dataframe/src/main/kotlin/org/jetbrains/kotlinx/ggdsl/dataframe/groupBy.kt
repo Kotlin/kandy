@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.LazyGroupedData
 import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.GroupedDataSubContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 
 /**
  * Performs grouping of this plot dataset by given columns.

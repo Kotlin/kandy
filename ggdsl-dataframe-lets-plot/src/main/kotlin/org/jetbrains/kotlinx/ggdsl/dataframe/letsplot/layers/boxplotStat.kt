@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.boxplot
 
 <<<<<<< HEAD
 inline fun <reified T, reified R> PlotContext.boxplot(
-    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<T>,
+    sourceX: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<T>,
     sourceY: ColumnReference<R>,
     varWidth: Boolean? = null,
     block: BoxplotStatContext<T>.() -> Unit
@@ -29,7 +29,7 @@ public inline fun <reified T, reified R> PlotContext.boxplot(
 
 public inline fun <reified T, reified R> PlotContext.boxplot(
     sourceX: ColumnReference<T>,
-    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer<R>,
+    sourceY: org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference<R>,
     varWidth: Boolean? = null,
     block: BoxplotStatContext<T>.() -> Unit
 <<<<<<< HEAD
