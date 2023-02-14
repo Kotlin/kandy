@@ -12,7 +12,7 @@ val dataframe_version: String by project
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.jetbrains.kotlinx:dataframe:$dataframe_version")
-    implementation(project(":ggdsl-dataframe-lets-plot"))
+    implementation(project(":ggdsl-lets-plot"))
 }
 
 tasks {

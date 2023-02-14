@@ -4,10 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
-import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
-import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
-
 /**
  * Non-positional scale interface. Non-positional scale is used in case
  * of mapping to non-positional aesthetic attribute.
@@ -27,13 +23,13 @@ public sealed interface NonPositionalScale<DomainType, RangeType> : Scale {
  * @param domainLimits the limits of the domain.
  * @param rangeLimits the limits of the range.
  */
-@Serializable
+//@Serializable
 public data class NonPositionalContinuousScale<DomainType, RangeType>(
-    val domainLimits: Pair<TypedValue, TypedValue>?,
-    val rangeLimits: Pair<TypedValue, TypedValue>?,
-    override val nullValue: TypedValue?,
+    val domainLimits: Pair<DomainType & Any, DomainType & Any>?,
+    val rangeLimits: Pair<RangeType & Any, RangeType & Any>?,
+    override val nullValue: RangeType?,
     override val transform: NonPositionalTransform?,
-) : ContinuousScale, NonPositionalScale<DomainType, RangeType>
+) : ContinuousScale<RangeType>, NonPositionalScale<DomainType, RangeType>
 
 /**
  * Non-positional categorical scale.
@@ -42,10 +38,10 @@ public data class NonPositionalContinuousScale<DomainType, RangeType>(
  * @param domainCategories the list of the domain categories.
  * @param rangeValues the list of the range values.
  */
-@Serializable
+//@Serializable
 public data class NonPositionalCategoricalScale<DomainType, RangeType>(
-    val domainCategories: TypedList?,
-    val rangeValues: TypedList?,
+    val domainCategories: List<DomainType>?,
+    val rangeValues: List<RangeType>?,
     //override val nullValue: TypedValue?,
 ) : CategoricalScale, NonPositionalScale<DomainType, RangeType>
 

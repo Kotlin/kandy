@@ -38,7 +38,7 @@ internal class ScaleTest {
     fun testCategoricalPos() {
         val categories = listOf("a", "b", "CCC", "123")
         val scale = categoricalPos(categories = categories)
-        assertEquals(PositionalCategoricalScale(categories.typedList(), /*null*/), scale)
+        assertEquals(PositionalCategoricalScale(categories, /*null*/), scale)
     }
 
     @Test
@@ -64,6 +64,6 @@ internal class ScaleTest {
         val domainCategories = listOf(1, 3, 100, 999)
         val rangeCategories = listOf(Color.RED, Color.BLACK, Color.BLUE, Color.WHITE)
         val scale = categorical(domainCategories, rangeCategories)
-        assertEquals(NonPositionalCategoricalScale(domainCategories.typedList(), rangeCategories.typedList(), /*null*/), scale)
+        assertEquals(NonPositionalCategoricalScale(domainCategories, rangeCategories, /*null*/), scale)
     }
 }

@@ -65,7 +65,7 @@ internal class BindingTest {
             mockAesDoubleNonPos(valueDouble)
         }
         assertEquals(
-            mapOf(MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting<Double>(MOCK_AES_DOUBLE_NON_POS, valueDouble.typed())),
+            mapOf(MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting<Double>(MOCK_AES_DOUBLE_NON_POS, valueDouble)),
             context.bindingCollector.settings.toMap()
         )
 
@@ -76,8 +76,8 @@ internal class BindingTest {
         }
         assertEquals(
             mapOf(
-                MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting<Double>(MOCK_AES_DOUBLE_NON_POS, valueDouble.typed()),
-                MOCK_AES_STRING_MAP_NON_POS to NonPositionalSetting<Double>(MOCK_AES_STRING_MAP_NON_POS, valueString.typed())
+                MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting<Double>(MOCK_AES_DOUBLE_NON_POS, valueDouble),
+                MOCK_AES_STRING_MAP_NON_POS to NonPositionalSetting<Double>(MOCK_AES_STRING_MAP_NON_POS, valueString)
             ),
             context.bindingCollector.settings.toMap()
         )

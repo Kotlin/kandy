@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir
 
-import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
@@ -25,7 +24,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
  * @param freeScales [Map] of free scales; keys are aesthetic names,
  * values are corresponding free scales.
  */
-@Serializable
+//@Serializable
 public data class Plot(
     val dataset: TableData,
     val layers: List<Layer>,

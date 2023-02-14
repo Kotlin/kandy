@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  *
  * TODO detailed?
  */
-@Serializable
+//@Serializable
 public data class Symbol internal constructor(val shape: Int) {
     public companion object {
         public val SQUARE_OPEN: Symbol = Symbol(0)

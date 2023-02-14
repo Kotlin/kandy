@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.ir.data
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.groupBy
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 
 /**
@@ -17,8 +18,8 @@ public data class NamedData(public val dataFrame: DataFrame<*>): TableData {
      *
      * @param columnReference pointers to grouping keys columns.
      */
-    public fun groupBy(vararg columnReference: ColumnReference<*>): LazyGroupedData {
-        return LazyGroupedData(columnReference.map { it.name() }, this)
+    public fun groupBy(vararg columnReference: ColumnReference<*>): GroupedData {
+        return GroupedData(dataFrame.groupBy(*columnReference))
     }
 
 }

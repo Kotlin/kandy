@@ -47,7 +47,7 @@ public fun value(stat: Statistic<*>): String {
 /**
  * Tooltips fixed position.
  */
-@Serializable
+//@Serializable
 public data class Anchor(val value: String) {
     public companion object {
         public val TOP_RIGHT: Anchor = Anchor("top_right")

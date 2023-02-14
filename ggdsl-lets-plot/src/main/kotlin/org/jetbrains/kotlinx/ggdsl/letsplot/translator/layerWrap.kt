@@ -3,12 +3,12 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedData
-import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.letsPlot.intern.Feature
 
-internal fun GroupedDataInterface.groupKeys(): List<String> {
+internal fun GroupedData.groupKeys(): List<String> {
     return when(this) {
         is CountedGroupedData -> keys.nameToValues.keys.toList()
         is LazyGroupedData -> keys
@@ -17,14 +17,14 @@ internal fun GroupedDataInterface.groupKeys(): List<String> {
 
 internal fun Layer.wrap(featureBuffer: MutableList<Feature>, plotDataset: TableData?) {
     val addGroups: Boolean = if (dataset == null) {
-        plotDataset is GroupedDataInterface
+        plotDataset is GroupedData
     } else {
-        dataset is GroupedDataInterface
+        dataset is GroupedData
     }
     val groupKeys: List<String> = if (dataset == null) {
-        (plotDataset as? GroupedDataInterface)?.groupKeys()
+        (plotDataset as? GroupedData)?.groupKeys()
     } else {
-        (dataset as? GroupedDataInterface)?.groupKeys()
+        (dataset as? GroupedData)?.groupKeys()
     } ?: listOf()
     featureBuffer.add(LayerWrapper(this, addGroups))
     freeScales.forEach { (_, freeScale) -> freeScale.wrap(featureBuffer) }

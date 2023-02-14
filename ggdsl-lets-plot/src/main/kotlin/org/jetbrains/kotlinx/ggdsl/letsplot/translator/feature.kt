@@ -4,14 +4,15 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
+//import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
 import org.jetbrains.kotlinx.ggdsl.dsl.categorical
-import org.jetbrains.kotlinx.ggdsl.dsl.column.invoke
+import org.jetbrains.kotlinx.ggdsl.dsl.invoke
+//import org.jetbrains.kotlinx.ggdsl.dsl.column.invoke
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
+//import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetWrapFeature
@@ -118,7 +119,8 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
 //internal val palette = listOf(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE)
 
 internal fun Gathering.toLayer(): Layer {
-    val size = data.nameToValues.values.first().values.size
+    val dataFrame = data.dataFrame
+    val size = dataFrame.rowsCount()
     val mappingAesNames = series.first().settings.keys
     val xBuffer = mutableListOf<Any>()
     val yBuffer = mutableListOf<Any>()
@@ -131,13 +133,14 @@ internal fun Gathering.toLayer(): Layer {
     val yType = series.first().mappings[Y]!!.domainType
 
     series.forEach {series ->
+        val d = series.mappings[X]!!.wrap()
         xBuffer.addAll(data.nameToValues[series.mappings[X]!!.wrap().second]!!.values.wrap()!!)
         yBuffer.addAll(data.nameToValues[series.mappings[Y]!!.wrap().second]!!.values.wrap()!!)
         labelBuffer.addAll(List(size){series.label})
         series.settings.forEach { (aesName, setting) ->
             scaleBuffer[aesName]!!.let {
                 it.first.add(series.label)
-                it.second.add((setting as NonPositionalSetting<*>).value.value!!)
+                it.second.add((setting as NonPositionalSetting<*>).value!!)
             }
         }
     }

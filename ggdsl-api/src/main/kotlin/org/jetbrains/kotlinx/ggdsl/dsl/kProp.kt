@@ -4,8 +4,10 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
+
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
@@ -16,7 +18,7 @@ import kotlin.reflect.typeOf
 //TODO
 @PublishedApi
 internal inline fun <reified T> KProperty<T>.toColumnReference(): ColumnReference<T> =
-    ColumnReference(this.name)
+    column(this.name)
 
 /**
  * Maps the given [KProperty] (i.e. a column with the same name and type as the given property)

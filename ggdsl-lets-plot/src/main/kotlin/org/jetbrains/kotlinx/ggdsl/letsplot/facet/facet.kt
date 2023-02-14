@@ -4,9 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.facet
 
-import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.Direction.Companion.HORIZONTAL
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.Direction.Companion.VERTICAL
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection.Companion.ASCENDING
@@ -25,7 +24,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetWrapFeature
  * @property ASCENDING ascending ordering direction (by default).
  * @property DESCENDING descending ordering direction.
  */
-@Serializable
+//@Serializable
 public data class OrderDirection internal constructor(val value: Int) {
     public companion object {
         public val ASCENDING: OrderDirection = OrderDirection(1)
@@ -39,7 +38,7 @@ public data class OrderDirection internal constructor(val value: Int) {
  * @property VERTICAL vertical direction.
  * @property HORIZONTAL descending direction (by default).
  */
-@Serializable
+//@Serializable
 public data class Direction internal constructor(val name: String) {
     public companion object {
         public val VERTICAL: Direction = Direction("v")
@@ -55,7 +54,7 @@ public data class Direction internal constructor(val name: String) {
  * @property FREE_X free scales across X.
  * @property FREE_Y free scales across Y.
  */
-@Serializable
+//@Serializable
 public data class ScalesSharing internal constructor(val name: String) {
     public companion object {
         public val FIXED: ScalesSharing = ScalesSharing("fixed")
@@ -91,7 +90,7 @@ public fun LayerPlotContext.facetGridX(
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
         FacetGridFeature(
-            x.name, null, scalesSharing, order, ASCENDING, format, null
+            x.name(), null, scalesSharing, order, ASCENDING, format, null
         )
 }
 
@@ -120,7 +119,7 @@ public fun LayerPlotContext.facetGridY(
     format: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(null, y.name, scalesSharing, ASCENDING, order, null, format)
+        FacetGridFeature(null, y.name(), scalesSharing, ASCENDING, order, null, format)
 }
 
 /**
@@ -155,7 +154,7 @@ public fun LayerPlotContext.facetGrid(
     yFormat: String? = null
 ) {
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x.name, y.name, scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(x.name(), y.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
 }
 
 /**

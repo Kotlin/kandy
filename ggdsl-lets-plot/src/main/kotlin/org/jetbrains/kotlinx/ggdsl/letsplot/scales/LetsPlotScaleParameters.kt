@@ -14,20 +14,20 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Legend
 
 public sealed interface LetsPlotScaleParameters : ScaleParameters
 
-@Serializable
+//@Serializable
 internal data class OrderBy(
     val name: String?,
     val order: Int
 )
 
-@Serializable
+//@Serializable
 public data class PositionalParameters<DomainType>(
     val axis: Axis<DomainType>
 ) : LetsPlotScaleParameters {
     internal var orderBy: OrderBy? = null
 }
 
-@Serializable
+//@Serializable
 public data class NonPositionalParameters<DomainType, RangeType>(val legend: Legend<DomainType, RangeType>)
     : LetsPlotScaleParameters
 

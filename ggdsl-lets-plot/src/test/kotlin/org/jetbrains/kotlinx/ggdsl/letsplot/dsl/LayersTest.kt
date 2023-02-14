@@ -70,7 +70,7 @@ internal class LayersTest {
                                     type,
                                     NonPositionalCategoricalScale<String, Color>(
                                         null,
-                                        rangeValues = listOf(Color.RED, Color.BLUE).typedList(),
+                                        rangeValues = listOf(Color.RED, Color.BLUE),
                                         //null,
                                     )
                                 ),
@@ -81,11 +81,11 @@ internal class LayersTest {
                         mapOf(
                             ALPHA to NonPositionalSetting<Double>(
                                 ALPHA,
-                                0.7.typed()
+                                0.7
                             ),
                             SIZE to NonPositionalSetting<Double>(
                                 SIZE,
-                                2.0.typed()
+                                2.0
                             )
                         ),
                         mapOf()

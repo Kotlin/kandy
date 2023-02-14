@@ -1,5 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
-
+/*
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.toTyped
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.validate
@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.*
 /**
  * Standard [NamedData] implementation.
  */
-@Serializable
+//@Serializable
 public data class NamedData(override val nameToValues: Map<String, TypedList>) :
     org.jetbrains.kotlinx.ggdsl.ir.data.NamedData {
     init {
@@ -26,7 +26,7 @@ public data class NamedData(override val nameToValues: Map<String, TypedList>) :
 /**
  * Standard [LazyGroupedData] implementation.
  */
-@Serializable
+//@Serializable
 public data class LazyGroupedData(
     override val keys: List<String>,
     override val origin: NamedData
@@ -38,3 +38,5 @@ public data class LazyGroupedData(
         TODO("Not yet implemented")
     }
 }
+
+ */

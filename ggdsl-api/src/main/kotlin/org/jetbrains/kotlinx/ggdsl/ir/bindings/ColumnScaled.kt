@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.bindings
 
-import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 
@@ -27,7 +26,7 @@ public sealed interface ColumnScaled<DomainType> {
  * @property source the source to which the scale is applied.
  * @property scale applying unspecified default scale.
  */
-@Serializable
+//////@Serializable
 public data class ColumnScaledUnspecifiedDefault<DomainType>(
     override val source: ColumnReference<DomainType>,
 ) : ColumnScaled<DomainType> {
@@ -41,7 +40,7 @@ public data class ColumnScaledUnspecifiedDefault<DomainType>(
  * @property source the source to which the scale is applied.
  * @property scale applying positional default scale.
  */
-@Serializable
+//////@Serializable
 public data class ColumnScaledPositionalUnspecified<DomainType>(
     override val source: ColumnReference<DomainType>,
     override val scale: PositionalUnspecifiedScale
@@ -54,7 +53,7 @@ public data class ColumnScaledPositionalUnspecified<DomainType>(
  * @property source the source to which the scale is applied.
  * @property scale applying non-positional default scale.
  */
-@Serializable
+//////@Serializable
 public data class ColumnScaledNonPositionalUnspecified<DomainType>(
     override val source: ColumnReference<DomainType>,
     override val scale: NonPositionalUnspecifiedScale
@@ -67,7 +66,7 @@ public data class ColumnScaledNonPositionalUnspecified<DomainType>(
  * @property source the source to which the scale is applied.
  * @property scale applying positional scale.
  */
-@Serializable
+//////@Serializable
 public data class ColumnScaledPositional<DomainType>(
     override val source: ColumnReference<DomainType>,
     override val scale: PositionalScale<DomainType>
@@ -80,7 +79,7 @@ public data class ColumnScaledPositional<DomainType>(
  * @property source the source to which the scale is applied.
  * @property scale applying non-positional scale.
  */
-@Serializable
+//////@Serializable
 public data class ColumnScaledNonPositional<DomainType, RangeType>(
     override val source: ColumnReference<DomainType>,
     override val scale: NonPositionalScale<DomainType, RangeType>

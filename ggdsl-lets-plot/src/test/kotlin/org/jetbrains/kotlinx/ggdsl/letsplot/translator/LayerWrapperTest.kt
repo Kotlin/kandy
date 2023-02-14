@@ -41,7 +41,7 @@ internal class LayerWrapperTest {
             mapOf(
                 COLOR to NonPositionalSetting<Color>(
                     COLOR,
-                    Color.RED.typed()
+                    Color.RED
                 )
             ),
             mapOf()
@@ -99,7 +99,7 @@ internal class LayerWrapperTest {
                         ColumnReference<String>("BAFGA"),
                         NonPositionalCategoricalScale<String, Color>(
                             null,
-                            rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY).typedList(),
+                            rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY),
                             //null,
                         ),
                     ),
@@ -110,11 +110,11 @@ internal class LayerWrapperTest {
             mapOf(
                 COLOR to NonPositionalSetting<Color>(
                     COLOR,
-                    Color.RED.typed()
+                    Color.RED
                 ),
                 WIDTH to NonPositionalSetting<Color>(
                     WIDTH,
-                    5.0.typed()
+                    5.0
                 ),
             ),
             mapOf(

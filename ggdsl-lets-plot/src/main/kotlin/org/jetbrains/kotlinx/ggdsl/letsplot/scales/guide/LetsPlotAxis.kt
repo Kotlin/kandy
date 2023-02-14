@@ -13,7 +13,7 @@ import kotlin.reflect.typeOf
 
 //todo
 /*@PlotDslMarker*/
-@Serializable
+//@Serializable
 public data class Axis<DomainType> @PublishedApi internal constructor(
     var kType: KType,
     // todo expand & trans

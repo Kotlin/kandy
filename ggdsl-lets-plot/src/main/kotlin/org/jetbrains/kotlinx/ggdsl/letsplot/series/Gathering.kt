@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 
-@Serializable
+//@Serializable
 public data class Gathering(
     val geom: Geom,
     val data: NamedData,
@@ -19,7 +19,7 @@ public data class Gathering(
     val position: Position
 )
 
-@Serializable
+//@Serializable
 public class GatheringList : PlotFeature {
     public val gatheringList: MutableList<Gathering> = mutableListOf<Gathering>()
     override val featureName: FeatureName = FEATURE_NAME
@@ -29,7 +29,7 @@ public class GatheringList : PlotFeature {
     }
 }
 
-@Serializable
+//@Serializable
 public data class Series(
     val mappings: Map<AesName, Mapping>,
     val settings: Map<AesName, Setting>,

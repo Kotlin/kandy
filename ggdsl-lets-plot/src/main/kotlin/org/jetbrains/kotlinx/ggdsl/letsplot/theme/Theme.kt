@@ -10,16 +10,16 @@ import kotlinx.serialization.Serializable
  * Plot theme.
  */
 public sealed interface Theme {
-    @Serializable
+    //@Serializable
     public object Grey : Theme
-    @Serializable
+    //@Serializable
     public object Light : Theme
-    @Serializable
+    //@Serializable
     public object Classic : Theme
-    @Serializable
+    //@Serializable
     public object Minimal : Theme
-    @Serializable
+    //@Serializable
     public object Minimal2 : Theme
-    @Serializable
+    //@Serializable
     public object None : Theme
 }

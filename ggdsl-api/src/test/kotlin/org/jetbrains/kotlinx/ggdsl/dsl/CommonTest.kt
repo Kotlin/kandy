@@ -4,12 +4,12 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.column.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
@@ -22,14 +22,14 @@ internal class CommonTest {
 
     @Test
     fun oneLayer() {
-        val dataset = NamedData.fromUntyped(mapOf(
+        val dataset = NamedData(mapOf(
             "x" to listOf(1.0, 2.0, 3.0),
             "y" to listOf(3F, 12F, 5.5F),
             "type" to listOf("A", "B", "A")
-        ))
-        val srcX = ColumnReference<Double>("x")
-        val srcY = ColumnReference<Float>("y")
-        val type = ColumnReference<String>("type")
+        ).toDataFrame())
+        val srcX = column<Double>("x")
+        val srcY = column<Float>("y")
+        val type = column<String>("type")
 
         val plot = plot(dataset) {
             x(srcX)
@@ -59,7 +59,7 @@ internal class CommonTest {
                             ),
                         ),
                         settings = mapOf(
-                            SIZE to NonPositionalSetting<Double>(SIZE, 4.5.typed())
+                            SIZE to NonPositionalSetting<Double>(SIZE, 4.5)
                         )
                     )
                 ),
@@ -77,16 +77,16 @@ internal class CommonTest {
 
     @Test
     fun severalLayersAndScales() {
-        val dataset = NamedData.fromUntyped(mapOf(
+        val dataset = NamedData(mapOf(
             "width" to listOf(1.0, 2.0, 3.0, 3.0),
             "height" to listOf(3F, 12F, 5.5F, 8F),
             "type" to listOf("A", "B", "A", "B"),
             "number of attachments" to listOf(2, 5, 2, 4),
-        ))
-        val width = ColumnReference<Double>("width")
-        val height = ColumnReference<Float>("height")
-        val type = ColumnReference<String>("type")
-        val noa = ColumnReference<Int>("number of attachments")
+        ).toDataFrame())
+        val width = column<Double>("width")
+        val height = column<Float>("height")
+        val type = column<String>("type")
+        val noa = column<Int>("number of attachments")
 
         val plot = plot(dataset) {
             x(width.scaled(continuousPos()))
@@ -119,7 +119,7 @@ internal class CommonTest {
         val yMapping = ScaledPositionalMapping(
             Y, ColumnScaledPositional(
             height, PositionalContinuousScale<Float>(
-            limits = 1f.typed() to 15f.typed(), null, null
+            limits = 1f to 15f, null, null
         )
         ), typeOf<Float>()
         )
@@ -128,8 +128,8 @@ internal class CommonTest {
             ColumnScaledNonPositional(
                 type,
                 NonPositionalCategoricalScale<String, Color>(
-                    domainCategories = listOf("A", "B").typedList(),
-                    rangeValues = listOf(Color.RED, Color.named("blue")).typedList(),
+                    domainCategories = listOf("A", "B"),
+                    rangeValues = listOf(Color.RED, Color.named("blue")),
                     //null
                 )
             ),
@@ -162,7 +162,7 @@ internal class CommonTest {
                             Y to yMapping,
                         ),
                         settings = mapOf(
-                            WIDTH to NonPositionalSetting<Double>(WIDTH, 5.0.typed())
+                            WIDTH to NonPositionalSetting<Double>(WIDTH, 5.0)
                         )
                     )
                 ),

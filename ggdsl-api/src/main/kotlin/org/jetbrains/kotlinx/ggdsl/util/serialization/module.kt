@@ -1,5 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.util.serialization
-
+/*
 import kotlinx.serialization.PolymorphicSerializer
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
@@ -72,3 +72,6 @@ public val commonModules: SerializersModule
             subclass(FreePositionalScale.serializer(PolymorphicSerializer(Any::class)))
         }
 }
+
+
+ */

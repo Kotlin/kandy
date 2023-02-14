@@ -1,12 +1,11 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.internal
 
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.column.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
-import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
@@ -54,8 +53,8 @@ public inline fun <reified T> TableBindingContextInterfaceMutable.toColumnRefere
     iterable: Iterable<T>,
     id: String
 ): ColumnReference<T> {
-    dataBuffer.map[id] = TypedList(typeOf<T>(), iterable.toList())
-    return ColumnReference(id)
+    dataBuffer.map[id] = iterable.toList()
+    return column(id)
 }
 
 /**
@@ -287,7 +286,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
     public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         iterable: Iterable<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
-        val mapping = ScaledUnspecifiedDefaultPositionalMapping(
+        val mapping = ScaledUnspecifiedDefaultPositionalMapping<DomainType>(
             this.name,
             toColumnReference(iterable).scaled(),
             typeOf<DomainType>()
@@ -306,7 +305,7 @@ public abstract class TableContextMutableBase : TableBindingContextInterfaceMuta
     public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         dataToName: Pair<Iterable<DomainType>, String>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
-        val mapping = ScaledUnspecifiedDefaultPositionalMapping(
+        val mapping = ScaledUnspecifiedDefaultPositionalMapping<DomainType>(
             this.name,
             toColumnReference(dataToName.first, dataToName.second).scaled(),
             typeOf<DomainType>()

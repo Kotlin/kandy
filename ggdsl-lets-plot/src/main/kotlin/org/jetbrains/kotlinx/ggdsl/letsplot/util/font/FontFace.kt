@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 /**
  * Font face.
  */
-@Serializable
+//@Serializable
 public enum class FontFace {
     PLAIN, ITALIC, BOLD, BOLD_ITALIC;
 

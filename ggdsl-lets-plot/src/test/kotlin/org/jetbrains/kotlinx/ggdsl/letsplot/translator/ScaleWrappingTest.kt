@@ -42,7 +42,7 @@ internal class ScaleWrappingTest {
         val values = listOf(Color.BLACK, Color.RED, Color.GREEN)
         val scale = NonPositionalCategoricalScale<String, Color>(
             null,
-            rangeValues = values.typedList(),
+            rangeValues = values,
             //null,
         )
         val wrappedScale = scale.wrap(FILL, typeOf<String>())
@@ -62,8 +62,8 @@ internal class ScaleWrappingTest {
         val values = listOf(4.0, 6.0, 7.5)
         val nullValue = 0.5
         val scale = NonPositionalCategoricalScale<String, Color>(
-            (categories + null).typedList(),
-            (values + nullValue).typedList(),
+            (categories + null),
+            (values + nullValue),
             //null,
         )
         val wrappedScale = scale.wrap(SIZE, typeOf<Int>())
@@ -87,7 +87,7 @@ internal class ScaleWrappingTest {
         val scale = NonPositionalContinuousScale<String, Color>(
             domainLimits.typedPair(),
             rangeLimits.typedPair(),
-            nullValue.typed(),
+            nullValue,
             null
         )
         val wrappedScale = scale.wrap(COLOR, typeOf<Double>())
