@@ -176,7 +176,9 @@ internal fun Scale.wrap(
                 wrapValue(nullValue)
             } else {
                 (this as NonPositionalCategoricalScale<*, *>).domainCategories?.indexOf(null)?.let {
-                    rangeValues?.get(it)?.let {
+                    if (it == -1) {
+                        null
+                    } else rangeValues?.get(it)?.let {
                         wrapValue(it)
                     }
                 }
