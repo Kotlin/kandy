@@ -82,7 +82,7 @@ public data class Anchor(val value: String) {
  * @see value
  */
 public inline fun LayerContextInterface.tooltips(
-    variables: List<ColumnReference<*>>,
+    variables: List<ColumnReference<*>> = listOf(),
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
@@ -90,7 +90,7 @@ public inline fun LayerContextInterface.tooltips(
     valueFormats: Map<ColumnReference<*>, String> = mapOf(),
     aesFormats: Map<Aes, String> = mapOf(),
     statFormats: Map<Statistic<*>, String> = mapOf(),
-    tooltipsContextAction: LayerTooltipsContext.() -> Unit
+    tooltipsContextAction: LayerTooltipsContext.() -> Unit = {}
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
         variables.map { it.name() },
