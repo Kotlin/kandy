@@ -175,7 +175,8 @@ internal fun Scale.wrap(
             val naValue = if(this is ContinuousScale<*>) {
                 wrapValue(nullValue)
             } else {
-                (this as NonPositionalCategoricalScale<*, *>).domainCategories?.indexOf(null)?.let {
+                // todo custom scales
+                (this as? NonPositionalCategoricalScale<*, *>)?.domainCategories?.indexOf(null)?.let {
                     if (it == -1) {
                         null
                     } else rangeValues?.get(it)?.let {

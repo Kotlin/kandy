@@ -242,13 +242,17 @@ public interface LayerPlotContext : LayerCollectorContextInterface, PlotContextB
     }
 }
 
+public interface NamedDataPlotContextInterface: LayerPlotContext {
+    override val data: NamedData
+}
+
 /**
  * Layer plot with a dataset of type [NamedData] context.
  */
 /*@PlotDslMarker*/
 public class NamedDataPlotContext(
     override val data: NamedData,
-) : LayerPlotContext, LayerCollectorContextImmutable {
+) : NamedDataPlotContextInterface, LayerCollectorContextImmutable {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val layers: MutableList<Layer> = mutableListOf()
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()

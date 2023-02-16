@@ -5,16 +5,15 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnPath
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
-import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
 public class DataFramePlotContext<T>(
     private val dataFrame: DataFrame<T>
-) : LayerPlotContext, LayerCollectorContextImmutable, ColumnsContainer<T> {
+) : NamedDataPlotContextInterface, LayerCollectorContextImmutable, ColumnsContainer<T> {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val layers: MutableList<Layer> = mutableListOf()
-    override val data: TableData = NamedData(dataFrame)
+    override val data: NamedData = NamedData(dataFrame)
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
 

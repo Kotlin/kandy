@@ -136,7 +136,7 @@ internal fun Gathering.toLayer(): Layer {
 
     series.forEach {series ->
         xBuffer.addAll(dataFrame[series.mappings[X]!!.columnName()].values())
-        yBuffer.addAll(dataFrame[series.mappings[X]!!.columnName()].values())
+        yBuffer.addAll(dataFrame[series.mappings[Y]!!.columnName()].values())
         labelBuffer.addAll(List(size){series.label})
         series.settings.forEach { (aesName, setting) ->
             scaleBuffer[aesName]!!.let {
