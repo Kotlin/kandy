@@ -21,5 +21,4 @@ public data class NamedData(public val dataFrame: DataFrame<*>): TableData {
     public fun groupBy(vararg columnReference: ColumnReference<*>): GroupedData {
         return GroupedData(dataFrame.groupBy(*columnReference))
     }
-
 }
