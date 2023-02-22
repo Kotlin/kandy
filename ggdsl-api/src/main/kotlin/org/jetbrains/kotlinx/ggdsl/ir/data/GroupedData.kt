@@ -7,7 +7,7 @@ import org.jetbrains.kotlinx.dataframe.api.groupBy
 
 
 /**
- * Actually grouped data.
+ * Actually, grouped data.
  *
  * @property keys grouping keys.
  * @property groups [List] of groups.
