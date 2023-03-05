@@ -6,23 +6,21 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
-import kotlin.reflect.KType
-import kotlin.reflect.typeOf
 
 //todo
 /*@PlotDslMarker*/
 //@Serializable
 public data class Axis<DomainType> @PublishedApi internal constructor(
-    var kType: KType,
+    var name: String? = null,
+    @PublishedApi
+internal var breaks: List<DomainType>? = null,
+@PublishedApi
+internal var labels: List<String>? = null,
+@PublishedApi
+internal var format: String? = null,
     // todo expand & trans
 ) : SelfInvocationContext {
-    var name: String? = null
-    @PublishedApi
-    internal var breaks: List<DomainType>? = null
-    @PublishedApi
-    internal var labels: List<String>? = null
-    @PublishedApi
-    internal var format: String? = null
+
 
     /**
      * Sets axis breaks with formatting.
@@ -45,8 +43,5 @@ public data class Axis<DomainType> @PublishedApi internal constructor(
         labels = breaksToLabels.map { it.second }
     }
 
-    public companion object {
-        @PublishedApi
-        internal inline fun<reified DomainType> create(): Axis<DomainType> = Axis(typeOf<DomainType>())
-    }
+
 }

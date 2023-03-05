@@ -4,19 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BarContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BarContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val BAR: LetsPlotGeom = LetsPlotGeom("bar")
-
+/*
 /**
  * Adds a new bars layer.
  *
@@ -88,3 +80,6 @@ public inline fun LayerCollectorContextImmutable.bars(block: BarContextImmutable
 public inline fun LayerCollectorContextMutable.bars(block: BarContextMutable.() -> Unit) {
     addLayer(BarContextMutable(this).apply(block), BAR)
 }
+
+
+ */

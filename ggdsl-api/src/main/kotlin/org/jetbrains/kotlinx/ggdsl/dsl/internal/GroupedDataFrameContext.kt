@@ -1,14 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.internal
 
-import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.dataframe.api.GroupBy
-import org.jetbrains.kotlinx.dataframe.api.first
-import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
-import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
-import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
-import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
-
+/*
 /**
  * Wrapper of [GroupBy] that allows to access grouping keys and dataframe columns.
  *
@@ -25,3 +17,5 @@ public class GroupedDataFrameContext<T, G>(
     override val data: TableData = GroupedData(groupBy)
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 }
+
+ */

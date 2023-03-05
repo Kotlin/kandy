@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.tooltips
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.Aes
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.context.LayerTooltipsContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
@@ -81,7 +81,7 @@ public data class Anchor(val value: String) {
  * value specified in the line template.
  * @see value
  */
-public inline fun LayerContextInterface.tooltips(
+public inline fun LayerContext.tooltips(
     variables: List<ColumnReference<*>> = listOf(),
     title: String? = null,
     anchor: Anchor? = null,

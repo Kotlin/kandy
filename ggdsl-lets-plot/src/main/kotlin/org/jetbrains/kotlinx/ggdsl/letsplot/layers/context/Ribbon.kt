@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
+/*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
@@ -16,10 +17,14 @@ public interface RibbonContextInterface : WithBorderLineContextInterface {
     public val alpha: AlphaAes get() = AlphaAes(this)
 }
 
-/*@PlotDslMarker*/
+*/
+/*@PlotDslMarker*//*
+
 public class RibbonContextImmutable(parent: LayerCollectorContextImmutable) :
     LayerWithBorderLineContextImmutable(parent), RibbonContextInterface
 
-/*@PlotDslMarker*/
+*/
+/*@PlotDslMarker*//*
+
 public class RibbonContextMutable(parent: LayerCollectorContextMutable)
-    : LayerWithBorderLineContextMutable(parent), RibbonContextInterface
+    : LayerWithBorderLineContextMutable(parent), RibbonContextInterface*/

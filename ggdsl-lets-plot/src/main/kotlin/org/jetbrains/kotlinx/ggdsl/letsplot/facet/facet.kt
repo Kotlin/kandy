@@ -88,9 +88,10 @@ public fun LayerPlotContext.facetGridX(
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
 ) {
+    val xColName = datasetHandler.takeColumn(x.name())
     features[FacetGridFeature.FEATURE_NAME] =
         FacetGridFeature(
-            x.name(), null, scalesSharing, order, ASCENDING, format, null
+            xColName, null, scalesSharing, order, ASCENDING, format, null
         )
 }
 
@@ -118,8 +119,9 @@ public fun LayerPlotContext.facetGridY(
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
 ) {
+    val yColName = datasetHandler.takeColumn(y.name())
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(null, y.name(), scalesSharing, ASCENDING, order, null, format)
+        FacetGridFeature(null, yColName, scalesSharing, ASCENDING, order, null, format)
 }
 
 /**
@@ -153,8 +155,10 @@ public fun LayerPlotContext.facetGrid(
     xFormat: String? = null,
     yFormat: String? = null
 ) {
+    val xColName = datasetHandler.takeColumn(x.name())
+    val yColName = datasetHandler.takeColumn(y.name())
     features[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(x.name(), y.name(), scalesSharing, xOrder, yOrder, xFormat, yFormat)
+        FacetGridFeature(xColName, yColName, scalesSharing, xOrder, yOrder, xFormat, yFormat)
 }
 
 /**
@@ -186,5 +190,5 @@ public fun LayerPlotContext.facetWrap(
     block: FacetWrapContext.() -> Unit
 ) {
     features[FacetWrapFeature.FEATURE_NAME] =
-        FacetWrapContext().apply(block).toFeature(nCol, nRow, scalesSharing, direction)
+        FacetWrapContext().apply(block).toFeature(datasetHandler, nCol, nRow, scalesSharing, direction)
 }

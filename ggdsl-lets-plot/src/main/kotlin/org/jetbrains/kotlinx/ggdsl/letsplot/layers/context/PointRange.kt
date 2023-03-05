@@ -1,9 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
-import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
-
+/*
 public interface InnerPointSubContextInterface: SelfInvocationContext {
     // todo hide
     public val parentContext: BindingContext
@@ -43,7 +40,9 @@ public interface PointRangeContextInterface : BindingContext {
     public val innerLine: InnerLineSubContextInterface
 }
 
-/*@PlotDslMarker*/
+*/
+/*@PlotDslMarker*//*
+
 public class PointRangeContextImmutable(parent: LayerCollectorContextImmutable) :
     LayerWithBorderLineContextImmutable(parent), PointRangeContextInterface {
     override val innerPoint: InnerPointSubContextImmutable =
@@ -52,7 +51,9 @@ public class PointRangeContextImmutable(parent: LayerCollectorContextImmutable) 
         InnerLineSubContextImmutable(this)
 }
 
-/*@PlotDslMarker*/
+*/
+/*@PlotDslMarker*//*
+
 public class PointRangeContextMutable(parent: LayerCollectorContextMutable) : LayerWithBorderLineContextMutable(parent),
     PointRangeContextInterface {
     override val innerPoint: InnerPointSubContextMutable =
@@ -60,4 +61,4 @@ public class PointRangeContextMutable(parent: LayerCollectorContextMutable) : La
     override val innerLine: InnerLineSubContextMutable =
         InnerLineSubContextMutable(this)
 
-}
+}*/

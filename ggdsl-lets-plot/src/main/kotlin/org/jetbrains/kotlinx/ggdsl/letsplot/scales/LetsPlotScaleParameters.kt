@@ -3,7 +3,7 @@
 */
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales
-
+/*
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.BaseScaledNonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.BaseScaledPositionalMapping
@@ -48,3 +48,6 @@ public inline fun <reified DomainType, RangeType> BaseScaledNonPositionalMapping
 ) {
     scaleParameters = NonPositionalParameters(Legend.create<DomainType, RangeType>()).apply(block)
 }
+
+
+ */

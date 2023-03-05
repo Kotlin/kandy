@@ -3,7 +3,7 @@
 */
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
-
+/*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.ColorAes
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LineTypeAes
@@ -49,4 +49,6 @@ public abstract class LayerWithBorderLineContextMutable(parent: LayerCollectorCo
     : LayerContextMutable(parent), WithBorderLineContextMutable {
     override val borderLine: BorderLineContextMutable by lazy { BorderLineContextMutable(this) }
 }
+
+ */
 

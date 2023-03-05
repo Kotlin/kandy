@@ -4,16 +4,12 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 
 
 @PublishedApi
 internal val ERROR_BAR: LetsPlotGeom = LetsPlotGeom("errorbar")
-
+/*
 /**
  * Adds a new error bars layer.
  *
@@ -94,3 +90,6 @@ public inline fun LayerCollectorContextImmutable.errorBar(block: ErrorBarContext
 public inline fun LayerCollectorContextMutable.errorBar(block: ErrorBarContextMutable.() -> Unit) {
     addLayer(ErrorBarContextMutable(this).apply(block), ERROR_BAR)
 }
+
+
+ */

@@ -5,8 +5,10 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.unit
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
+import org.jetbrains.kotlinx.dataframe.api.toMap
+import org.jetbrains.kotlinx.ggdsl.dsl.impl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.DataFramePlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
@@ -15,16 +17,16 @@ import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
 internal class ContextTest {
-    private val emptyDataset = NamedData(DataFrame.Empty)
+    private val emptyDataset = DataFrame.Empty
     @Test
     fun testPoints() {
-        val context = NamedDataPlotContext(emptyDataset).apply {
+        val context = DataFramePlotContext(emptyDataset).apply {
             points {}
         }
         assertContentEquals(
             listOf(
                 Layer(
-                    null,
+                    0,
                     POINT,
                     emptyMap(),
                     emptyMap(),
@@ -36,13 +38,13 @@ internal class ContextTest {
 
     @Test
     fun testLine() {
-        val context = NamedDataPlotContext(emptyDataset).apply {
+        val context = DataFramePlotContext(emptyDataset).apply {
             line {}
         }
         assertContentEquals(
             listOf(
                 Layer(
-                    null,
+                    0,
                     LINE,
                     emptyMap(),
                     emptyMap(),
@@ -54,13 +56,13 @@ internal class ContextTest {
 
     @Test
     fun testBars() {
-        val context = NamedDataPlotContext(emptyDataset).apply {
+        val context = DataFramePlotContext(emptyDataset).apply {
             bars {}
         }
         assertContentEquals(
             listOf(
                 Layer(
-                    null,
+                    0,
                     BAR,
                     emptyMap(),
                     emptyMap(),
@@ -72,10 +74,10 @@ internal class ContextTest {
 
     @Test
     fun testPlotEmpty() {
-        val plot = plot(emptyDataset) { }
+        val plot = plot(emptyDataset.toMap()) { }
         assertEquals(
             Plot(
-                emptyDataset,
+                listOf(NamedData(emptyDataset)),
                 listOf(),
                 emptyMap(),
                 emptyMap(),

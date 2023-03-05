@@ -4,17 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.AreaContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.AreaContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val AREA: LetsPlotGeom = LetsPlotGeom("area")
-
+/*
 /**
  * Adds a new area layer.
  *
@@ -82,3 +76,5 @@ public inline fun LayerCollectorContextImmutable.area(block: AreaContextImmutabl
 public inline fun LayerCollectorContextMutable.area(block: AreaContextMutable.() -> Unit) {
     addLayer(AreaContextMutable(this).apply(block), AREA)
 }
+
+ */

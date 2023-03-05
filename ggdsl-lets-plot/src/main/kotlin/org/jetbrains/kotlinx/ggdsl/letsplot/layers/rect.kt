@@ -4,19 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RectContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RectContextInterface
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RectContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val RECT: LetsPlotGeom = LetsPlotGeom("rect")
-
+/*
 /**
  * Adds a new rect layer.
  *
@@ -93,3 +85,6 @@ public inline fun LayerCollectorContextImmutable.rect(block: RectContextImmutabl
 public inline fun LayerCollectorContextMutable.rect(block: RectContextMutable.() -> Unit) {
     addLayer(RectContextMutable(this).apply(block), RECT)
 }
+
+
+ */

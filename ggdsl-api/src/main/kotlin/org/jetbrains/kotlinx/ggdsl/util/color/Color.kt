@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.util.color
 /**
  * Color base interface.
  */
-public sealed interface Color {
+public sealed interface Color: Comparable<Color> {
 
     public companion object {
         /**

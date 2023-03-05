@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
-
+/*
 /**
  * "ab-line" layer context interface.
  *
@@ -49,3 +49,5 @@ public class ABLineContextImmutable(parent: LayerCollectorContextImmutable)
 /*@PlotDslMarker*/
 public class ABLineContextMutable(parent: LayerCollectorContextMutable):
     LayerContextMutable(parent), ABLineContextInterface
+
+ */

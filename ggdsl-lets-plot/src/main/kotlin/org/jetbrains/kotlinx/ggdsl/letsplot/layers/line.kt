@@ -4,20 +4,13 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LineContextInterface
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LineContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 // TODO
 
 @PublishedApi
 internal val LINE: LetsPlotGeom = LetsPlotGeom("line")
-
+/*
 /**
  * Adds a new line layer.
  *
@@ -76,3 +69,6 @@ public inline fun LayerCollectorContextImmutable.line(block: LineContextImmutabl
 public inline fun LayerCollectorContextMutable.line(block: LineContextMutable.() -> Unit) {
     addLayer(LineContextMutable(this).apply(block), LINE)
 }
+
+
+ */

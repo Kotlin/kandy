@@ -4,14 +4,14 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.position
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
 
 /**
  * Position adjustment of this layer.
  *
  * @see [Position]
  */
-public var LayerContextInterface.position: Position
+public var LayerContext.position: Position
     get() = Position.Identity // todo add backing property?
     set(pos) {
         features[Position.FEATURE_NAME] = pos

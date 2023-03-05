@@ -6,15 +6,16 @@ package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.toDataFrame
+import org.jetbrains.kotlinx.ggdsl.dsl.impl.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -22,11 +23,11 @@ internal class CommonTest {
 
     @Test
     fun oneLayer() {
-        val dataset = NamedData(mapOf(
+        val dataset = mapOf(
             "x" to listOf(1.0, 2.0, 3.0),
             "y" to listOf(3F, 12F, 5.5F),
             "type" to listOf("A", "B", "A")
-        ).toDataFrame())
+        )
         val srcX = column<Double>("x")
         val srcY = column<Float>("y")
         val type = column<String>("type")
@@ -36,26 +37,23 @@ internal class CommonTest {
             points {
                 y(srcY)
                 color(type)
-                size(4.5)
+                size = 4.5
             }
         }
 
         assertEquals(
             Plot(
-                dataset,
+                listOf(NamedData(dataset.toDataFrame())),
                 listOf(
                     Layer(
-                        null,
+                        0,
                         POINT,
                         mappings = mapOf(
-                            X to ScaledUnspecifiedDefaultPositionalMapping(
-                                X, ColumnScaledUnspecifiedDefault(srcX), typeOf<Double>()
+                            Y to PositionalMapping<Float>(
+                                Y, srcY.name(), CommonPositionalMappingParameters(null)
                             ),
-                            Y to ScaledUnspecifiedDefaultPositionalMapping(
-                                Y, ColumnScaledUnspecifiedDefault(srcY), typeOf<Float>()
-                            ),
-                            COLOR to ScaledUnspecifiedDefaultNonPositionalMapping<String, Color>(
-                                COLOR, ColumnScaledUnspecifiedDefault(type), typeOf<String>()
+                            COLOR to NonPositionalMapping<String, Color>(
+                                COLOR, type.name(), CommonNonPositionalMappingParameters(null)
                             ),
                         ),
                         settings = mapOf(
@@ -64,8 +62,8 @@ internal class CommonTest {
                     )
                 ),
                 mapOf(
-                    X to ScaledUnspecifiedDefaultPositionalMapping(
-                        X, ColumnScaledUnspecifiedDefault(srcX), typeOf<Double>()
+                    X to PositionalMapping<Float>(
+                        X, srcX.name(), CommonPositionalMappingParameters(null)
                     ),
                 ),
                 emptyMap(),
@@ -77,90 +75,73 @@ internal class CommonTest {
 
     @Test
     fun severalLayersAndScales() {
-        val dataset = NamedData(mapOf(
+        val dataset = mapOf(
             "width" to listOf(1.0, 2.0, 3.0, 3.0),
             "height" to listOf(3F, 12F, 5.5F, 8F),
             "type" to listOf("A", "B", "A", "B"),
             "number of attachments" to listOf(2, 5, 2, 4),
-        ).toDataFrame())
+        ).toDataFrame()
         val width = column<Double>("width")
         val height = column<Float>("height")
         val type = column<String>("type")
         val noa = column<Int>("number of attachments")
 
-        val plot = plot(dataset) {
-            x(width.scaled(continuousPos()))
-            y(
-                height.scaled(
-                    continuousPos(
-                        1f to 15f
-                    )
-                )
-            )
+        val plot = dataset.plot {
+            x(width)
+            y(height) {
+                scale = continuous(1f..15f)
+            }
             points {
-                color(
-                    type.scaled(
-                        categorical(
-                            domainCategories = listOf("A", "B"),
-                            rangeValues = listOf(Color.RED, Color.named("blue"))
-                        )
+                color(type) {
+                    scale = categorical(
+                        "A" to Color.RED, "B" to Color.named("blue")
                     )
-                )
+                }
                 size(noa)
             }
             bars {
-                width(5.0)
+                this.width = 5.0
             }
         }
 
-        val xMapping = ScaledPositionalUnspecifiedMapping(
-            X, ColumnScaledPositionalUnspecified(width, PositionalContinuousUnspecifiedScale()), typeOf<Double>()
+        val xMapping = PositionalMapping<Double>(
+            X, width.name(), CommonPositionalMappingParameters(null)
         )
-        val yMapping = ScaledPositionalMapping(
-            Y, ColumnScaledPositional(
-            height, PositionalContinuousScale<Float>(
-            limits = 1f to 15f, null, null
+        val yMapping = PositionalMapping<Float>(
+            Y, height.name(), CommonPositionalMappingParameters<Float>(
+                PositionalContinuousScale(limits = 1f..15f, null, null)
+            )
         )
-        ), typeOf<Float>()
-        )
-        val colorMapping = ScaledNonPositionalMapping(
+        val colorMapping = NonPositionalMapping<String, Color>(
             COLOR,
-            ColumnScaledNonPositional(
-                type,
+            type.name(),
+            CommonNonPositionalMappingParameters(
                 NonPositionalCategoricalScale<String, Color>(
                     domainCategories = listOf("A", "B"),
                     rangeValues = listOf(Color.RED, Color.named("blue")),
-                    //null
                 )
-            ),
-            typeOf<String>(),
-            //typeOf<Color>()
+            )
         )
 
         assertEquals(
             Plot(
-                dataset,
+                listOf(NamedData(dataset)),
                 listOf(
                     Layer(
-                        null,
+                        0,
                         POINT,
                         mappings = mapOf(
-                            X to xMapping,
-                            Y to yMapping,
                             COLOR to colorMapping,
-                            SIZE to ScaledUnspecifiedDefaultNonPositionalMapping<Int, Double>(
-                                SIZE, ColumnScaledUnspecifiedDefault(noa), typeOf<Int>()
+                            SIZE to NonPositionalMapping<Int, Double>(
+                                SIZE, noa.name(), CommonNonPositionalMappingParameters(null)
                             )
                         ),
                         settings = mapOf()
                     ),
                     Layer(
-                        null,
+                        0,
                         BAR,
-                        mappings = mapOf(
-                            X to xMapping,
-                            Y to yMapping,
-                        ),
+                        mappings = mapOf(),
                         settings = mapOf(
                             WIDTH to NonPositionalSetting<Double>(WIDTH, 5.0)
                         )
@@ -176,54 +157,54 @@ internal class CommonTest {
             plot
         )
     }
-/*
-    @Test
-    fun datasetOverriding() {
-        val emptyDataset = NamedData(mapOf())
-        val realDataset = NamedData(mapOf(
-            "name" to listOf("Tiny", "Pudge", "Spirit Breaker"),
-            "winRate" to listOf(100.0, 0.01, 50.0),
-            "iq" to listOf(12, 12, 1000)
-        ))
-        val wr = ColumnReference<Double>("winRate")
-        val iq = ColumnReference<Int>("iq")
-        val name = ColumnReference<String>("name")
+    /*
+        @Test
+        fun datasetOverriding() {
+            val emptyDataset = NamedData(mapOf())
+            val realDataset = NamedData(mapOf(
+                "name" to listOf("Tiny", "Pudge", "Spirit Breaker"),
+                "winRate" to listOf(100.0, 0.01, 50.0),
+                "iq" to listOf(12, 12, 1000)
+            ))
+            val wr = ColumnReference<Double>("winRate")
+            val iq = ColumnReference<Int>("iq")
+            val name = ColumnReference<String>("name")
 
-        val plot = plot(emptyDataset) {
-            x(wr)
-            y(iq)
-            points {
-                data = realDataset.toMutableMap()
-                color(name)
+            val plot = plot(emptyDataset) {
+                x(wr)
+                y(iq)
+                points {
+                    data = realDataset.toMutableMap()
+                    color(name)
+                }
             }
-        }
-        assertEquals(
-            Plot(
-                emptyDataset,
-                listOf(
-                    Layer(
-                        realDataset,
-                        POINT,
-                        mappings = mapOf(
-                            X to ScaledUnspecifiedDefaultPositionalMapping(
-                                X, SourceScaledUnspecifiedDefault(wr), typeOf<Double>()
+            assertEquals(
+                Plot(
+                    emptyDataset,
+                    listOf(
+                        Layer(
+                            realDataset,
+                            POINT,
+                            mappings = mapOf(
+                                X to ScaledUnspecifiedDefaultPositionalMapping(
+                                    X, SourceScaledUnspecifiedDefault(wr), typeOf<Double>()
+                                ),
+                                Y to ScaledUnspecifiedDefaultPositionalMapping(
+                                    Y, SourceScaledUnspecifiedDefault(iq), typeOf<Int>()
+                                ),
+                                COLOR to ScaledUnspecifiedDefaultNonPositionalMapping<String, Color>(
+                                    COLOR, SourceScaledUnspecifiedDefault(name), typeOf<String>()
+                                ),
                             ),
-                            Y to ScaledUnspecifiedDefaultPositionalMapping(
-                                Y, SourceScaledUnspecifiedDefault(iq), typeOf<Int>()
-                            ),
-                            COLOR to ScaledUnspecifiedDefaultNonPositionalMapping<String, Color>(
-                                COLOR, SourceScaledUnspecifiedDefault(name), typeOf<String>()
-                            ),
-                        ),
-                        settings = mapOf()
-                    )
+                            settings = mapOf()
+                        )
+                    ),
+                    null,
                 ),
-                null,
-            ),
-            plot
-        )
-    }
+                plot
+            )
+        }
 
- */
+     */
 }
 

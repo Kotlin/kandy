@@ -1,19 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin
 
-import jetbrains.datalore.plot.base.DataFrame
-import jetbrains.datalore.plot.base.data.TransformVar
-import jetbrains.datalore.plot.base.stat.BinStat
-import jetbrains.datalore.plot.base.stat.SimpleStatContext
-import jetbrains.datalore.plot.base.stat.Stats
-import jetbrains.datalore.plot.builder.data.GroupUtil
-import jetbrains.datalore.plot.builder.data.GroupingContext
-import jetbrains.datalore.plot.common.data.SeriesUtil
-import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
-import org.jetbrains.kotlinx.dataframe.api.toDataFrame
-import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
-
+/*
 internal fun BinXPos.toKind():BinStat.XPosKind = when(this) {
     is BinXPos.None -> BinStat.XPosKind.NONE
     is BinXPos.Boundary -> BinStat.XPosKind.BOUNDARY
@@ -114,3 +101,5 @@ internal fun NamedData.toDataFrame(
 
     return builder.build()
 }
+
+ */

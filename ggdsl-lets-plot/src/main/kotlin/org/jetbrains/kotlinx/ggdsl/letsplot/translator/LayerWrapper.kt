@@ -16,9 +16,12 @@ import org.jetbrains.letsPlot.intern.layer.LayerBase
 import org.jetbrains.letsPlot.pos.positionIdentity
 import org.jetbrains.letsPlot.sampling.samplingNone
 
-internal class LayerWrapper internal constructor(private val layer: Layer, addGroups: Boolean) :
+internal class LayerWrapper internal constructor(
+    private val layer: Layer, addGroups: Boolean,
+    dataset: Map<String, List<*>>?
+) :
     LayerBase(
-        data = layer.dataset?.wrap(),
+        data = dataset,
         mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap() }.toMap().toMutableMap().apply {
             if (addGroups) {
                 this[GROUP.name] = MERGED_GROUPS

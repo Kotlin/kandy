@@ -4,20 +4,13 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LayerWithBorderLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LayerWithBorderLineContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
 
 @PublishedApi
 internal val STEP: LetsPlotGeom = LetsPlotGeom("step")
-
-public interface StepContextInterface : LayerContextInterface {
+/*
+public interface StepContextInterface : LayerContext {
     public val x: XAes get() = XAes(this)
     public val y: YAes get() = YAes(this)
 
@@ -93,3 +86,6 @@ public inline fun LayerCollectorContextImmutable.step(block: StepContextImmutabl
 public inline fun LayerCollectorContextMutable.step(block: StepContextMutable.() -> Unit) {
     addLayer(StepContextMutable(this).apply(block), STEP)
 }
+
+
+ */

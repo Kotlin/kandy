@@ -8,6 +8,8 @@ import org.jetbrains.kotlinx.ggdsl.dsl.categorical
 import org.jetbrains.kotlinx.ggdsl.dsl.categoricalPos
 import org.jetbrains.kotlinx.ggdsl.dsl.continuous
 import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
+import org.jetbrains.kotlinx.ggdsl.dsl.impl.CommonNonPositionalMappingParameters
+import org.jetbrains.kotlinx.ggdsl.dsl.impl.CommonPositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import kotlin.test.Test
@@ -17,51 +19,69 @@ internal class ScaleTest {
 
     @Test
     fun testContinuousPosDefault() {
-        assertEquals(PositionalContinuousUnspecifiedScale(), continuousPos())
+        val expectedScale = PositionalContinuousScale<Float>(null, null, null)
+        assertEquals(expectedScale, Scale.continuousPos<Float>())
+        assertEquals(expectedScale, CommonPositionalMappingParameters<Float>().continuous())
     }
 
     @Test
     fun testContinuousPos() {
-        val limits = -5 to 19
-        val scale = continuousPos(limits)
-        assertEquals(PositionalContinuousScale(limits, null, null), scale)
+        val limits = -5..19
+        val expectedScale = PositionalContinuousScale<Int>(limits, null, null)
+        assertEquals(expectedScale, Scale.continuousPos<Int>(limits))
+        assertEquals(expectedScale, CommonPositionalMappingParameters<Int>().continuous(limits))
     }
 
     @Test
     fun testCategoricalPosDefault() {
-        assertEquals(PositionalCategoricalUnspecifiedScale, categoricalPos())
+        val expectedScale = PositionalCategoricalScale<Float>(null)
+        assertEquals(expectedScale, Scale.categoricalPos<Float>())
+        assertEquals(expectedScale, CommonPositionalMappingParameters<Float>().categorical())
     }
 
     @Test
     fun testCategoricalPos() {
         val categories = listOf("a", "b", "CCC", "123")
-        val scale = categoricalPos(categories = categories)
-        assertEquals(PositionalCategoricalScale(categories, /*null*/), scale)
+        val expectedScale = PositionalCategoricalScale<String>(categories)
+        assertEquals(expectedScale, Scale.categoricalPos<String>(categories))
+        assertEquals(expectedScale, CommonPositionalMappingParameters<String>().categorical(categories))
     }
 
     @Test
     fun testContinuousDefault() {
-        assertEquals(NonPositionalContinuousUnspecifiedScale(), continuous())
+        val expectedScale = NonPositionalContinuousScale<Double, Double>(null, null, null, null)
+        assertEquals(expectedScale, Scale.continuous<Double, Double>())
+        assertEquals(expectedScale, CommonNonPositionalMappingParameters<Double, Double>().continuous())
     }
 
     @Test
     fun testContinuous() {
-        val domainLimits = 23.0 to 129.13
-        val rangeLimits = 0.0F to 1.0F
-        val scale = continuous(domainLimits, rangeLimits)
-        assertEquals(NonPositionalContinuousScale(domainLimits, rangeLimits, null, null), scale)
+        val domainLimits = 23.0..129.13
+        val rangeLimits = 0.0F..1.0F
+        val expectedScale = NonPositionalContinuousScale<Double, Float>(domainLimits, rangeLimits, null, null)
+        assertEquals(expectedScale, Scale.continuous(domainLimits, rangeLimits))
+        assertEquals(
+            expectedScale,
+            CommonNonPositionalMappingParameters<Double, Float>().continuous(domainLimits, rangeLimits)
+        )
     }
 
     @Test
     fun testCategoricalDefault() {
-        assertEquals(NonPositionalCategoricalUnspecifiedScale, categorical())
+        val expectedScale = NonPositionalCategoricalScale<String, Color>(null, null)
+        assertEquals(expectedScale, Scale.categorical<String, Color>())
+        assertEquals(expectedScale, CommonNonPositionalMappingParameters<String, Color>().categorical())
     }
 
     @Test
     fun testCategorical() {
-        val domainCategories = listOf(1, 3, 100, 999)
-        val rangeCategories = listOf(Color.RED, Color.BLACK, Color.BLUE, Color.WHITE)
-        val scale = categorical(domainCategories, rangeCategories)
-        assertEquals(NonPositionalCategoricalScale(domainCategories, rangeCategories, /*null*/), scale)
+        val domainCategories = listOf(1, 3, 100)
+        val rangeCategories = listOf(Color.RED, Color.BLACK, Color.BLUE)
+        val expectedScale = NonPositionalCategoricalScale<Int, Color>(domainCategories, rangeCategories)
+        assertEquals(expectedScale, Scale.categorical<Int, Color>(
+            *domainCategories.zip(rangeCategories).toTypedArray()
+        ))
+        assertEquals(expectedScale, CommonNonPositionalMappingParameters<Int, Color>().categorical(domainCategories, rangeCategories))
+
     }
 }

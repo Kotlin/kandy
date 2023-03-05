@@ -15,7 +15,7 @@ public sealed interface FreeScale {
     public val aes: AesName
     public val scale: Scale
     public val domainType: KType
-    public var scaleParameters: ScaleParameters?
+  //  public var scaleParameters: ScaleParameters?
 }
 
 /**
@@ -28,5 +28,5 @@ public data class FreePositionalScale<DomainType>(
     override val scale: Scale,
     override val domainType: KType,
 ) : FreeScale {
-    override var scaleParameters: ScaleParameters? = null
+ //   override var scaleParameters: ScaleParameters? = null
 }

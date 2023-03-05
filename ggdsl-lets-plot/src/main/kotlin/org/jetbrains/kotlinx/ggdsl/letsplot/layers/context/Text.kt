@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
+/*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
@@ -30,14 +31,18 @@ public interface TextContextInterface : BindingContext {
     public val font: FontSubContextInterface
 }
 
-/*@PlotDslMarker*/
+*/
+/*@PlotDslMarker*//*
+
 public class TextContextImmutable(parent: LayerCollectorContextImmutable) : LayerContextImmutable(parent),
     TextContextInterface {
     override val font: FontSubContextImmutable = FontSubContextImmutable(this)
 }
 
-/*@PlotDslMarker*/
+*/
+/*@PlotDslMarker*//*
+
 public class TextContextMutable(parent: LayerCollectorContextMutable) :
     LayerContextMutable(parent), TextContextInterface {
     override val font: FontSubContextMutable = FontSubContextMutable(this)
-}
+}*/

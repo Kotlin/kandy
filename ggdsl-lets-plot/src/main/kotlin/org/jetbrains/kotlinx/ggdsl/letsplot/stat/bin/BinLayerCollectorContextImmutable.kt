@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.StatLayerCollectorContext
-
+/*
 public interface BinStatContext {
     public val Stat: StatHolder
         get() = StatHolder
@@ -21,7 +21,7 @@ public interface BinStatContext {
 // TODO
 
 //@StatDSLMarker
-public class BinLayerCollectorContext(parent: LayerCollectorContextInterface, override val data: TableData)
+public class BinLayerCollectorContext(parent: LayerCollectorContext, override val data: TableData)
     : StatLayerCollectorContext(parent), BinStatContext {
     // TODO
     override val bindingCollector: BindingCollector = BindingCollector()
@@ -133,3 +133,6 @@ public inline fun<reified T:Any> LayerCollectorContextMutable.statBin(
     val ColumnReference = toColumnReference(source)
     statBinImpl(this, data, ColumnReference, bins, binXPos, block)
 }
+
+
+ */

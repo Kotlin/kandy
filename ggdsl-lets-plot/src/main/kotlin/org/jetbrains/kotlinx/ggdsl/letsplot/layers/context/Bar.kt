@@ -1,5 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
-
+/*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
@@ -21,3 +21,5 @@ public open class BarContextImmutable(parent: LayerCollectorContextImmutable) :
 /*@PlotDslMarker*/
 public open class BarContextMutable(parent: LayerCollectorContextMutable)
     : LayerWithBorderLineContextMutable(parent), BarContextInterface
+
+ */

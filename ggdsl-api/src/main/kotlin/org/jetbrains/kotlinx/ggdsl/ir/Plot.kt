@@ -26,7 +26,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
  */
 //@Serializable
 public data class Plot(
-    val dataset: TableData,
+    val datasets: List<TableData>,
     val layers: List<Layer>,
     val globalMappings: Map<AesName, Mapping>,
     val features: Map<FeatureName, PlotFeature>,

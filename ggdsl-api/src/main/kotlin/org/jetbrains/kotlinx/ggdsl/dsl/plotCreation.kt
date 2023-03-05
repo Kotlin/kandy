@@ -5,12 +5,10 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+
 
 /**
  * Returns a new [Plot].
@@ -20,26 +18,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
  *
  * @param dataset plot dataset.
  */
-public inline fun plot(dataset: NamedData, block: NamedDataPlotContext.() -> Unit): Plot {
-    return NamedDataPlotContext(dataset).apply(block).toPlot().also {
-        it.validate()
-    }
+public inline fun plot(dataset: Map<String, List<*>>, block: DataFramePlotContext<*>.() -> Unit): Plot {
+    return DataFramePlotContext(dataset.toDataFrame()).apply(block).toPlot()
 }
-
-/**
- * Returns a new [Plot].
- *
- * Creates a plotting context [NamedDataPlotContext], in which you can configure a plot.
- * Possible configuration parameters depend on the engine.
- *
- * @param dataset plot dataset.
- */
-public inline fun plot(dataset: Map<String, List<*>>, block: NamedDataPlotContext.() -> Unit): Plot {
-    return NamedDataPlotContext(NamedData(dataset.toDataFrame())).apply(block).toPlot().also {
-        it.validate()
-    }
-}
-
+/*
 /**
  * Returns a new [Plot].
  *
@@ -68,10 +50,16 @@ public inline fun plot(block: PlotContextMutable.() -> Unit): Plot {
     }
 }
 
+ */
+
 public fun <T> DataFrame<T>.plot(block: DataFramePlotContext<T>.() -> Unit): Plot {
     return DataFramePlotContext<T>(this).apply(block).toPlot()
 }
 
+/*
 public fun <T, G> GroupBy<T, G>.plot(block: GroupedDataFrameContext<T, G>.() -> Unit): Plot {
     return GroupedDataFrameContext(this).apply(block).toPlot()
 }
+
+
+ */

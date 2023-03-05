@@ -4,15 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl.internal
 
-import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
-import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
-import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
@@ -28,124 +24,42 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
 public class BindingCollector() {
     public val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
     public val settings: MutableMap<AesName, Setting> = mutableMapOf()
-
-    // todo
     public val freeScales: MutableMap<AesName, FreeScale> = mutableMapOf()
-
-    /**
-     * Constructor with copying bindings from other collector.
-     *
-     * @param other inherited [BindingCollector].
-     * @param copyMappings whether to inherit the mappings.
-     * @param copySettings whether to inherit the settings.
-     */
-    public constructor(
-        other: BindingCollector,
-        copyMappings: Boolean = true,
-        copySettings: Boolean = true,
-    ) : this() {
-        if (copyMappings) mappings.putAll(other.mappings)
-        if (copySettings) settings.putAll(other.settings)
-    }
 }
+
 
 /**
  * Base interface for context with bindings.
  *
  * @property bindingCollector [BindingCollector] of this context.
  */
-public interface BindingContext {
-    // todo hide
-    public val bindingCollector: BindingCollector
+
+public interface BaseContext {
+    public val plotContext: PlotContext
+    public val datasetIndex: Int
 }
 
-/**
- * Interface for nested binding context.
- */
-public interface SubBindingContextInterface : BindingContext
-
-/**
- * Base class for nested contexts (that can inherit bindings from parent) with immutable mappings
- * (i.e. mappings from existing columns on prepared dataset).
- *
- * @constructor Constructor with copying bindings from parent collector.
- * @param parent parental context.
- * @param cloneBindings whether to inherit bindings from parental context.
- * @param copyMappings whether to inherit the mappings.
- * @param copySettings whether to inherit the settings.
- */
-public abstract class BindingSubContextImmutable(
-    parent: BindingContext,
-    cloneBindings: Boolean = true,
-    copyMappings: Boolean = true,
-    copySettings: Boolean = true,
-) : SubBindingContextInterface {
-    override val bindingCollector: BindingCollector = if (cloneBindings) {
-        BindingCollector(parent.bindingCollector, copyMappings, copySettings)
-    } else {
-        BindingCollector()
-    }
+public abstract class LayerContext(parent: LayerCollectorContext) : BindingContext {
+    override val bindingCollector: BindingCollector = BindingCollector()
+    override val datasetIndex: Int = parent.datasetIndex
+    public val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
+    override val plotContext: PlotContext = parent.plotContext
 }
 
-/**
- * Interface for bindings contexts with [TableData] as dataset.
- *
- * @property data context dataset of type [TableData] (nullable).
- */
-public interface TableDataContext : BindingContext {
-    public val data: TableData?
-}
-
-/**
- * Interface for nested bindings contexts with [TableData] as dataset.
- */
-public interface TableSubContextInterface : TableDataContext, SubBindingContextInterface
-
-/**
- * Nested context that can inherit bindings and data from parents.
- *
- * @constructor Constructor with copying bindings from parent collector.
- * @param parent parental context.
- * @param copyData whether to inherit dataset from parental context.
- * @param cloneBindings whether to inherit bindings from parental context.
- * @param copyMappings whether to inherit the mappings.
- * @param copySettings whether to inherit the settings.
- */
-public abstract class TableSubContextImmutable(
-    parent: TableDataContext,
-    copyData: Boolean = false,
-    cloneBindings: Boolean = true,
-    copyMappings: Boolean = true,
-    copySettings: Boolean = true,
-) : TableSubContextInterface, BindingSubContextImmutable(parent, cloneBindings, copyMappings, copySettings) {
-    override val data: TableData? = if (copyData) {
-        parent.data
-    } else null
-}
-
-
-/**
- * Context with layer collecting.
- *
- * @property layers layers buffer.
- * @property data context dataset.
- * @property addLayer creates a new layer from layer context.
- */
-public interface LayerCollectorContextInterface : TableDataContext {
+public interface LayerCollectorContext : BaseContext {
     // todo hide
     public val layers: MutableList<Layer>
-    override val data: TableData
 
     /**
      * Creates and adds to the buffer a new layer from a layer context.
      *
-     * @param context [LayerContextInterface] with bindings of a new layer.
+     * @param context [LayerContext] with bindings of a new layer.
      * @param geom [Geom] of a new layer.
      */
-    public fun addLayer(context: LayerContextInterface, geom: Geom) {
+    public fun addLayer(context: LayerContext, geom: Geom) {
         layers.add(
             Layer(
-                context.data,
+                datasetIndex,
                 geom,
                 context.bindingCollector.mappings,
                 context.bindingCollector.settings,
@@ -156,42 +70,82 @@ public interface LayerCollectorContextInterface : TableDataContext {
     }
 }
 
-/**
- * Layer collector context with immutable mappings.
- */
-public interface LayerCollectorContextImmutable : LayerCollectorContextInterface
-
-/**
- * Layer building contexts.
- *
- * @property features [MutableMap] of feature names to layer features.
- */
-/*@PlotDslMarker*/
-public interface LayerContextInterface : TableDataContext, TableSubContextInterface {
-    public val features: MutableMap<FeatureName, LayerFeature>
+public interface PlotContext : BindingContext {
+    public val datasetHandlers: MutableList<DatasetHandler>
+    public val features: MutableMap<FeatureName, PlotFeature>
+    public fun toPlot(): Plot
 }
 
-/**
- * Layer context with immutable mappings.
- *
- * @property features [MutableMap] of feature names to layer features.
- */
-/*@PlotDslMarker*/
-public abstract class LayerContextImmutable(parent: LayerCollectorContextImmutable) : LayerContextInterface,
-    TableSubContextImmutable(parent, parent !is LayerPlotContext) {
-    public override val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
+public interface LayerPlotContext : LayerCollectorContext, PlotContext {
+    // todo hide
+    public override fun toPlot(): Plot {
+        return Plot(
+            datasetHandlers.map { NamedData(it.buffer) },
+            layers,
+            bindingCollector.mappings,
+            features,
+            bindingCollector.freeScales
+        )
+    }
 }
 
-/**
- * Nested layer collector context with immutable mappings.
- *
- * @property layers layers buffer, inherited from a parent.
- */
-/*@PlotDslMarker*/
-public abstract class SubLayerCollectorContextImmutable(parent: LayerCollectorContextImmutable)
-    : TableDataContext, LayerCollectorContextImmutable, BindingSubContextImmutable(parent) {
-    override val layers: MutableList<Layer> = parent.layers
+public interface BindingContext : BaseContext {
+    public override val plotContext: PlotContext
+    public override val datasetIndex: Int
+    public val bindingCollector: BindingCollector
+    public val datasetHandler: DatasetHandler
+        get() = plotContext.datasetHandlers[datasetIndex]
+
+    public fun <DomainType> addPositionalSetting(aesName: AesName, value: DomainType): PositionalSetting<DomainType> {
+        return PositionalSetting(aesName, value).also {
+            bindingCollector.settings[aesName] = it
+        }
+    }
+
+    public fun <DomainType> addPositionalMapping(
+        aesName: AesName, values: List<DomainType>, name: String?, parameters: PositionalMappingParameters<DomainType>
+    ): PositionalMapping<DomainType> {
+        val columnID = datasetHandler.addColumn(values, name ?: aesName.name)
+        return PositionalMapping<DomainType>(aesName, columnID, parameters).also {
+            bindingCollector.mappings[aesName] = it
+        }
+    }
+
+    public fun <DomainType> addPositionalMapping(
+        aesName: AesName,
+        columnID: String,
+        parameters: PositionalMappingParameters<DomainType>
+    ): PositionalMapping<DomainType> {
+        val newColumnID = datasetHandler.takeColumn(columnID)
+        return PositionalMapping<DomainType>(aesName, newColumnID, parameters).also {
+            bindingCollector.mappings[aesName] = it
+        }
+    }
+
+    public fun <DomainType, RangeType> addNonPositionalMapping(
+        aesName: AesName,
+        values: List<DomainType>,
+        name: String?,
+        parameters: NonPositionalMappingParameters<DomainType, RangeType>
+    ): NonPositionalMapping<DomainType, RangeType> {
+        val columnID = datasetHandler.addColumn(values, name ?: aesName.name)
+        return NonPositionalMapping<DomainType, RangeType>(aesName, columnID, parameters).also {
+            bindingCollector.mappings[aesName] = it
+        }
+    }
+
+    public fun <DomainType, RangeType> addNonPositionalMapping(
+        aesName: AesName,
+        columnID: String,
+        parameters: NonPositionalMappingParameters<DomainType, RangeType>
+    ): NonPositionalMapping<DomainType, RangeType> {
+        val newColumnID = datasetHandler.takeColumn(columnID)
+        return NonPositionalMapping<DomainType, RangeType>(aesName, newColumnID, parameters).also {
+            bindingCollector.mappings[aesName] = it
+        }
+    }
 }
+/*
 
 /**
  * Context with a grouped data.
@@ -223,28 +177,17 @@ public open class GroupedDataSubContextImmutable constructor(
  * @property features [MutableMap] of feature names to plot features.
  * @property toPlot creates a new plot from this context.
  */
-/*@PlotDslMarker*/
-public interface PlotContextBase : TableDataContext {
-    // todo hide
-    override val data: TableData
-    public val features: MutableMap<FeatureName, PlotFeature>
-    public fun toPlot(): Plot
-}
+
 
 /**
  * Plot with an explicit layers creating context.
  */
-/*@PlotDslMarker*/
-public interface LayerPlotContext : LayerCollectorContextInterface, PlotContextBase {
-    // todo hide
-    public override fun toPlot(): Plot {
-        return Plot(data, layers, bindingCollector.mappings, features, bindingCollector.freeScales)
-    }
-}
-
+/*
 public interface NamedDataPlotContextInterface: LayerPlotContext {
     override val data: NamedData
 }
+
+ */
 
 /**
  * Layer plot with a dataset of type [NamedData] context.
@@ -286,3 +229,6 @@ public class GroupedDataPlotContext(
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
     override val bindingCollector: BindingCollector = BindingCollector()
 }
+
+
+ */

@@ -4,19 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RasterContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RasterContextInterface
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RasterContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val RASTER: LetsPlotGeom = LetsPlotGeom("raster")
-
+/*
 /**
  * Adds a new raster layer.
  *
@@ -94,3 +86,6 @@ public inline fun LayerCollectorContextMutable.raster(block: RasterContextMutabl
     addLayer(RasterContextMutable(this).apply(block), RASTER)
 }
 
+
+
+ */

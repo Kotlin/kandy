@@ -3,7 +3,7 @@
 */
 
 package org.jetbrains.kotlinx.ggdsl.dsl
-
+/*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 
@@ -58,3 +58,6 @@ public interface ScalableNonPositionalAes<in T> : NonPositionalAes<T>, ScalableA
  * Non-positional aesthetic attribute that can be mapped but without an explicit scale.
  */
 public interface NonScalableNonPositionalAes<in T> :  NonPositionalAes<T>, MappableAes
+
+
+ */

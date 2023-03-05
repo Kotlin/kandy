@@ -4,13 +4,13 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Reversed
 
 /**
  * Whether to reverse axes.
  */
-public var LayerContextInterface.reversed: Boolean
+public var LayerContext.reversed: Boolean
     get() = true
     set(value) {
         features[Reversed.FEATURE_NAME] = Reversed(value)

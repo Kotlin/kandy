@@ -8,10 +8,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.PointContextInterface
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.PointsContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 
-public interface PointGatheringContextInterface : PointContextInterface, GatheringContextInterface {
+public interface PointGatheringContextInterface : PointsContext, GatheringContextInterface {
     override val geom: Geom
         get() = POINT
 }
@@ -20,7 +20,7 @@ public interface PointGatheringContextInterfaceImmutable : PointGatheringContext
 public interface PointGatheringContextInterfaceMutable : PointGatheringContextInterface
 
 public class PointSeriesContextImmutable(parent: TableDataContext)
-    : SeriesWithBorderLineContextImmutable(parent), PointContextInterface
+    : SeriesWithBorderLineContextImmutable(parent), PointsContext
 
 public inline fun PointGatheringContextInterfaceImmutable.series(
     label: String,
@@ -53,7 +53,7 @@ public class PointSeriesPlotContextMutable(
 }
 
 public open class PointSeriesContextMutable(parent: TableBindingContextInterfaceMutable) :
-    SeriesWithBorderLineContextImmutable(parent), PointContextInterface
+    SeriesWithBorderLineContextImmutable(parent), PointsContext
 
 public inline fun pointPlot(
     dataset: NamedData,

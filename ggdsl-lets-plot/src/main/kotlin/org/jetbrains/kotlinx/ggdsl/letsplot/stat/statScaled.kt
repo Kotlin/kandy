@@ -1,5 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat
-
+/*
 import org.jetbrains.kotlinx.ggdsl.dsl.ScalableNonPositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.ScalablePositionalAes
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
@@ -51,3 +51,6 @@ public inline operator fun <reified DomainType, RangeType>
     context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }
+
+
+ */

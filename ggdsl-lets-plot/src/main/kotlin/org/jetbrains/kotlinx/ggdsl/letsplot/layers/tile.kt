@@ -3,20 +3,12 @@
 */
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LayerWithBorderLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LayerWithBorderLineContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.WithBorderLineContextInterface
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
 
 @PublishedApi
 internal val TILE: LetsPlotGeom = LetsPlotGeom("tile")
-
+/*
 public interface TileContextInterface : WithBorderLineContextInterface {
     public val x: XAes get() = XAes(this)
     public val y: YAes get() = YAes(this)
@@ -109,3 +101,6 @@ public inline fun LayerCollectorContextImmutable.tile(block: TileContextImmutabl
 public inline fun LayerCollectorContextMutable.tile(block: TileContextMutable.() -> Unit) {
     addLayer(TileContextMutable(this).apply(block), TILE)
 }
+
+
+ */

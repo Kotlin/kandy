@@ -3,19 +3,13 @@
 */
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.VLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.VLineContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 // TODO
 
 @PublishedApi
 internal val V_LINE: LetsPlotGeom = LetsPlotGeom("vLine")
-
+/*
 /**
  * Adds a new vertical line layer.
  *
@@ -73,3 +67,6 @@ public inline fun LayerCollectorContextMutable.vLine(block: VLineContextMutable.
     addLayer(VLineContextMutable(this).apply(block), V_LINE)
 }
 
+
+
+ */

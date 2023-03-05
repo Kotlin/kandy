@@ -4,20 +4,12 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RibbonContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RibbonContextInterface
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RibbonContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
 @PublishedApi
 internal val RIBBON: LetsPlotGeom = LetsPlotGeom("ribbon")
-
+/*
 /**
  * Adds a new ribbon layer.
  *
@@ -93,3 +85,6 @@ public inline fun LayerCollectorContextImmutable.ribbon(block: RibbonContextImmu
 public inline fun LayerCollectorContextMutable.ribbon(block: RibbonContextMutable.() -> Unit) {
     addLayer(RibbonContextMutable(this).apply(block), RIBBON)
 }
+
+
+ */

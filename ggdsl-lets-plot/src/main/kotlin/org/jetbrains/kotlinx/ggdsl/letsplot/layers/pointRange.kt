@@ -4,16 +4,12 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.PointRangeContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.PointRangeContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
+
 
 @PublishedApi
 internal val POINT_RANGE: LetsPlotGeom = LetsPlotGeom("pointrange")
-
+/*
 /**
  * Adds a new point ranges layer.
  *
@@ -98,3 +94,6 @@ public inline fun LayerCollectorContextImmutable.pointRange(block: PointRangeCon
 public inline fun LayerCollectorContextMutable.pointRange(block: PointRangeContextMutable.() -> Unit) {
     addLayer(PointRangeContextMutable(this).apply(block), POINT_RANGE)
 }
+
+
+ */

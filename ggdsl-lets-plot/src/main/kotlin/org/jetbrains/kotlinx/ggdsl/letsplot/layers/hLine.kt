@@ -4,19 +4,13 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.HLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.HLineContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 // TODO
 
 @PublishedApi
 internal val H_LINE: LetsPlotGeom = LetsPlotGeom("hLine")
-
+/*
 /**
  * Adds a new horizontal line layer.
  *
@@ -73,3 +67,5 @@ public inline fun LayerCollectorContextImmutable.hLine(block: HLineContextImmuta
 public inline fun LayerCollectorContextMutable.hLine(block: HLineContextMutable.() -> Unit) {
     addLayer(HLineContextMutable(this).apply(block), H_LINE)
 }
+
+ */

@@ -24,9 +24,9 @@ public sealed interface NonPositionalScale<DomainType, RangeType> : Scale {
  * @param rangeLimits the limits of the range.
  */
 //@Serializable
-public data class NonPositionalContinuousScale<DomainType, RangeType>(
-    val domainLimits: Pair<DomainType & Any, DomainType & Any>?,
-    val rangeLimits: Pair<RangeType & Any, RangeType & Any>?,
+public data class NonPositionalContinuousScale<DomainType : Comparable<DomainType>, RangeType : Comparable<RangeType>>(
+    val domainLimits: ClosedRange<DomainType>?,
+    val rangeLimits: ClosedRange<RangeType>?,
     override val nullValue: RangeType?,
     override val transform: NonPositionalTransform?,
 ) : ContinuousScale<RangeType>, NonPositionalScale<DomainType, RangeType>

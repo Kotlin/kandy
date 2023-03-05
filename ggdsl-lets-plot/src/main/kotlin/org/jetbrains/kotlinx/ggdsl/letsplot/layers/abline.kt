@@ -4,8 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
+
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.ABLineContextImmutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.ABLineContextMutable
@@ -14,7 +13,8 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val AB_LINE: LetsPlotGeom = LetsPlotGeom("abline")
-
+/*
+*/
 /**
  * Adds a new line with specified slope and intercept layer.
  *
@@ -39,11 +39,13 @@ internal val AB_LINE: LetsPlotGeom = LetsPlotGeom("abline")
  *    color(gType.scaled(..)) // mapping from `gType` column to `color` with some scale
  * }
  * ```
- */
+ *//*
+
 public inline fun LayerCollectorContextImmutable.abLine(block: ABLineContextImmutable.() -> Unit) {
     addLayer(ABLineContextImmutable(this).apply(block), AB_LINE)
 }
 
+*/
 /**
  * Adds a new line with specified slope and intercept layer.
  *
@@ -69,7 +71,9 @@ public inline fun LayerCollectorContextImmutable.abLine(block: ABLineContextImmu
  *    color(listOf("A", "B", "B", "A").scaled(..)) // mapping from list to `color` with some scale
  * }
  * ```
- */
+ *//*
+
 public inline fun LayerCollectorContextMutable.abLine(block: ABLineContextMutable.() -> Unit) {
     addLayer(ABLineContextMutable(this).apply(block), AB_LINE)
 }
+*/

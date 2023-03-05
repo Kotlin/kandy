@@ -2,7 +2,7 @@
 * Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.ggdsl.dsl
+package org.jetbrains.kotlinx.ggdsl.dsl.impl
 
 /**
  * Plot layout settings
@@ -10,7 +10,7 @@ package org.jetbrains.kotlinx.ggdsl.dsl
  * @param title the title of this plot
  * @param size the size of this plot
  */
-data class DefaultLayout(
+data class Layout(
     var title: String? = null,
     // todo width height?
     var size: Pair<Int, Int>? = null,

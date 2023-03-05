@@ -1,8 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalSetting
 
+/*
 /**
  * Sets the given constant value to this non-positional aesthetic attribute.
  *
@@ -20,3 +19,5 @@ public inline operator fun <reified T> NonPositionalAes<T>.invoke(value: T) {
 public inline operator fun <reified T : Number> PositionalAes.invoke(value: T) {
     context.bindingCollector.settings[this.name] = PositionalSetting<T>(this.name, value)
 }
+
+ */

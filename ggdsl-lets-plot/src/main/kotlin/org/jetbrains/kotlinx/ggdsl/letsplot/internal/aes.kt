@@ -4,57 +4,27 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.internal
 
-import jetbrains.datalore.plot.config.Option
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.FontFace
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.FontFamily
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.HorizontalJustification
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.VerticalJustification
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
+
 
 public val X: AesName = AesName("x")
 
-public class XAes(override val context: BindingContext) : ScalablePositionalAes {
-    override val name: AesName = X
-}
-
 public val Y: AesName = AesName("y")
-
-public class YAes(override val context: BindingContext) : ScalablePositionalAes {
-    override val name: AesName = Y
-}
 
 public val Z: AesName = AesName("z")
 
-public class ZAes(override val context: BindingContext) : ScalablePositionalAes {
-    override val name: AesName = Z
-}
+public val COLOR: AesName = AesName("color")
 
-public class XDummyAes(override val context: BindingContext) : ScalablePositionalAes {
-    override val name: AesName = X
-}
+public val SHAPE: AesName = AesName("shape")
 
-public class YDummyAes(override val context: BindingContext) : ScalablePositionalAes {
-    override val name: AesName = Y
-}
+public val SIZE: AesName = AesName("size")
 
-public class ZDummyAes(override val context: BindingContext) : ScalablePositionalAes {
-    override val name: AesName = Z
-}
+public val ALPHA: AesName = AesName("alpha")
 
 internal val LOWER = AesName("lower")
 
-public class LowerAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = LOWER
-}
-
 internal val UPPER = AesName("upper")
-
+/*
 public class UpperAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
     override val name: AesName = UPPER
 }
@@ -445,3 +415,5 @@ public val Y_INTERCEPT: AesName = AesName("yintercept")
 public class YInterceptAes(override val context: BindingContext) : NonScalablePositionalAes {
     override val name: AesName = Y_INTERCEPT
 }
+
+ */

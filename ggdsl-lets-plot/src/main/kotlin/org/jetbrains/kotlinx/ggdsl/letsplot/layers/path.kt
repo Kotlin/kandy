@@ -1,17 +1,10 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LineContextInterface
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LineContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val PATH: LetsPlotGeom = LetsPlotGeom("path")
-
+/*
 /**
  * Adds a new path layer.
  *
@@ -70,3 +63,5 @@ public inline fun LayerCollectorContextImmutable.path(block: LineContextImmutabl
 public inline fun LayerCollectorContextMutable.path(block: LineContextMutable.() -> Unit) {
     addLayer(LineContextMutable(this).apply(block), PATH)
 }
+
+ */

@@ -1,9 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalableNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalablePositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CategoricalScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.PositionalParameters
 import org.jetbrains.letsPlot.asDiscrete
@@ -21,6 +18,9 @@ internal fun Mapping.wrap(): Pair<String, Any> {
 
             else -> aes.name to columnScaled.source.name()
         }
+
+        is NonPositionalMapping -> TODO()
+        is PositionalMapping -> TODO()
     }
 }
 

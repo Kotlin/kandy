@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
+/*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
 
@@ -12,10 +13,14 @@ public interface VLineContextInterface: BindingContext {
     public val width: SizeAes get() = SizeAes(this)
 }
 
-/*@PlotDslMarker*/
+*/
+/*@PlotDslMarker*//*
+
 public class VLineContextImmutable(parent: LayerCollectorContextImmutable)
     : LayerContextImmutable(parent), VLineContextInterface
 
-/*@PlotDslMarker*/
+*/
+/*@PlotDslMarker*//*
+
 public class VLineContextMutable(parent: LayerCollectorContextMutable):
-    LayerContextMutable(parent), VLineContextInterface
+    LayerContextMutable(parent), VLineContextInterface*/

@@ -22,8 +22,8 @@ public sealed interface PositionalScale<DomainType> : Scale {
  * @param limits the limits of the domain.
  */
 //@Serializable
-public data class PositionalContinuousScale<DomainType>(
-    val limits: Pair<DomainType & Any, DomainType & Any>?,
+public data class PositionalContinuousScale<DomainType : Comparable<DomainType>>(
+    val limits: ClosedRange<DomainType>?,
     override val nullValue: DomainType?,
     override val transform: PositionalTransform?,
 ) : ContinuousScale<DomainType>, PositionalScale<DomainType>

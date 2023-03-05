@@ -42,6 +42,11 @@ public sealed interface StandardColor: Color {
         public override val hex: Hex = Hex(
             String.format("#%02X%02X%02X", r, g, b)
         )
+
+        override fun compareTo(other: Color): Int {
+            //TODO("Not yet implemented")
+            return 1
+        }
     }
 
     /**
@@ -62,6 +67,11 @@ public sealed interface StandardColor: Color {
                 append(((a * 255).roundToInt() or (1 shr 8)).toString(16))
             }
         )
+
+        override fun compareTo(other: Color): Int {
+            //TODO("Not yet implemented")
+            return 1
+        }
     }
 
     /**
@@ -73,6 +83,11 @@ public sealed interface StandardColor: Color {
     public data class Named internal constructor(val name: String) : StandardColor {
         override val description: String
             get() = name
+
+        override fun compareTo(other: Color): Int {
+            //TODO("Not yet implemented")
+            return 1
+        }
     }
 
     /**
@@ -83,6 +98,10 @@ public sealed interface StandardColor: Color {
     //@Serializable
     public data class Hex internal constructor(override val hexString: String) : AsHexColor {
         override val hex: Hex = this
+        override fun compareTo(other: Color): Int {
+            //TODO("Not yet implemented")
+            return 1
+        }
         //todo toRgb/toRgba
     }
 }

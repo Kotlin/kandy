@@ -4,20 +4,12 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.CrossBarContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.CrossBarContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 
 @PublishedApi
 internal val CROSS_BAR: LetsPlotGeom = LetsPlotGeom("crossbar")
-
+/*
 /**
  * Adds a new cross bars (bars with horizontal median line) layer.
  *
@@ -106,3 +98,6 @@ public inline fun LayerCollectorContextImmutable.crossBar(block: CrossBarContext
 public inline fun LayerCollectorContextMutable.crossBar(block: CrossBarContextMutable.() -> Unit) {
     addLayer(CrossBarContextMutable(this).apply(block), CROSS_BAR)
 }
+
+
+ */

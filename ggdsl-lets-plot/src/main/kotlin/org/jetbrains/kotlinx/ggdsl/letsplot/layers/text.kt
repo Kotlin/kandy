@@ -4,14 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.TextContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.TextContextMutable
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
 
 @PublishedApi
 internal val TEXT: LetsPlotGeom = LetsPlotGeom("text")
-
+/*
 /**
  * Adds a new text layer.
  *
@@ -88,3 +85,6 @@ public inline fun LayerCollectorContextImmutable.text(block: TextContextImmutabl
 public inline fun LayerCollectorContextMutable.text(block: TextContextMutable.() -> Unit) {
     addLayer(TextContextMutable(this).apply(block), TEXT)
 }
+
+
+ */

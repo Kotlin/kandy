@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
+/*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
@@ -17,10 +18,14 @@ public interface RectContextInterface : WithBorderLineContextInterface {
     public val alpha: AlphaAes get() = AlphaAes(this)
 }
 
-/*@PlotDslMarker*/
+*/
+/*@PlotDslMarker*//*
+
 public class RectContextImmutable(parent: LayerCollectorContextImmutable) :
     LayerWithBorderLineContextImmutable(parent), RectContextInterface
 
-/*@PlotDslMarker*/
+*/
+/*@PlotDslMarker*//*
+
 public class RectContextMutable(parent: LayerCollectorContextMutable)
-    : LayerWithBorderLineContextMutable(parent), RectContextInterface
+    : LayerWithBorderLineContextMutable(parent), RectContextInterface*/

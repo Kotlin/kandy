@@ -1,18 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.internal
 
-import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.dataframe.api.containsColumn
-import org.jetbrains.kotlinx.dataframe.type
-import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalableNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonScalablePositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
-import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
-import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
-
+/*
 /*
 /**
  * Checks if all columns of dataset are the same size.
@@ -106,3 +94,5 @@ public fun Plot.validate() {
         it.mappings.validate((it.dataset ?: dataset).getDataFrame())
     }
 }
+
+ */

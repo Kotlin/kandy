@@ -1,12 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
+/*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
 
-public interface SegmentContextInterface : LayerContextInterface {
+public interface SegmentContextInterface : LayerContext {
     public val xDummyAes: XDummyAes get() = XDummyAes(this)
     public val yDummyAes: YDummyAes get() = YDummyAes(this)
 
@@ -23,10 +24,14 @@ public interface SegmentContextInterface : LayerContextInterface {
     // todo speed and flow
 }
 
-/*@PlotDslMarker*/
+*/
+/*@PlotDslMarker*//*
+
 public class SegmentContextImmutable(parent: LayerCollectorContextImmutable) :
     LayerWithBorderLineContextImmutable(parent), SegmentContextInterface
 
-/*@PlotDslMarker*/
+*/
+/*@PlotDslMarker*//*
+
 public class SegmentContextMutable(parent: LayerCollectorContextMutable)
-    : LayerWithBorderLineContextMutable(parent), SegmentContextInterface
+    : LayerWithBorderLineContextMutable(parent), SegmentContextInterface*/

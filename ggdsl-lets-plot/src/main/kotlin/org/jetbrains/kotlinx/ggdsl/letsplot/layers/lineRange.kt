@@ -4,18 +4,12 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextInterface
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LineRangeContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LineRangeContextInterface
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LineRangeContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
+
 
 @PublishedApi
 internal val LINE_RANGE: LetsPlotGeom = LetsPlotGeom("linerange")
-
+/*
 /**
  * Adds a new line ranges layer.
  *
@@ -92,3 +86,5 @@ public inline fun LayerCollectorContextImmutable.lineRange(block: LineRangeConte
 public inline fun LayerCollectorContextMutable.lineRange(block: LineRangeContextMutable.() -> Unit) {
     addLayer(LineRangeContextMutable(this).apply(block), LINE_RANGE)
 }
+
+ */

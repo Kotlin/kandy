@@ -9,10 +9,14 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
 public class DataFramePlotContext<T>(
     private val dataFrame: DataFrame<T>
-) : NamedDataPlotContextInterface, LayerCollectorContextImmutable, ColumnsContainer<T> by dataFrame {
+) : LayerPlotContext, ColumnsContainer<T> by dataFrame {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val layers: MutableList<Layer> = mutableListOf()
-    override val data: NamedData = NamedData(dataFrame)
+    override val plotContext: PlotContext = this
+    override val datasetIndex: Int = 0
+    override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(
+        DatasetHandler(NamedData(dataFrame))
+    )
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
     public fun <C> columns(selector: ColumnsSelector<T, C>): List<DataColumn<C>> = dataFrame.get(selector)

@@ -8,7 +8,9 @@ package org.jetbrains.kotlinx.ggdsl.ir.scale
  * Scale base interface. Scale wraps a function that converts
  * a value from a data source into some geometric value (value of aesthetic attribute).
  */
-public sealed interface Scale
+public sealed interface Scale {
+    public companion object
+}
 
 /**
  * Continuous scale interface. Continuous scale wraps a function

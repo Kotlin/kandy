@@ -16,6 +16,7 @@ val lets_plot_image_version: String by project
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation(project(mapOf("path" to ":ggdsl-api")))
     testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:$html_version")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime-jvm:$datetime_version")

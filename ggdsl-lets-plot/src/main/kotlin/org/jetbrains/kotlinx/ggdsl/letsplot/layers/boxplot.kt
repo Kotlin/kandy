@@ -4,18 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BoxplotContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BoxplotContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 @PublishedApi
 internal val BOXPLOT: LetsPlotGeom = LetsPlotGeom("boxplot")
-
+/*
 /**
  * Adds a new boxplot layer.
  *
@@ -106,3 +99,6 @@ public inline fun LayerCollectorContextImmutable.boxplot(block: BoxplotContextIm
 public inline fun LayerCollectorContextMutable.boxplot(block: BoxplotContextMutable.() -> Unit) {
     addLayer(BoxplotContextMutable(this).apply(block), BOXPLOT)
 }
+
+
+ */

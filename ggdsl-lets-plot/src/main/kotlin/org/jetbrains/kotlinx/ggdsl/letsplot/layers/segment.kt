@@ -4,17 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.SegmentContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.SegmentContextMutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
 
 @PublishedApi
 internal val SEGMENT: LetsPlotGeom = LetsPlotGeom("segment")
-
+/*
 /**
  * Adds a new segment layer.
  *
@@ -77,3 +71,6 @@ public inline fun LayerCollectorContextImmutable.segment(block: SegmentContextIm
 public inline fun LayerCollectorContextMutable.segment(block: SegmentContextMutable.() -> Unit) {
     addLayer(SegmentContextMutable(this).apply(block), SEGMENT)
 }
+
+
+ */

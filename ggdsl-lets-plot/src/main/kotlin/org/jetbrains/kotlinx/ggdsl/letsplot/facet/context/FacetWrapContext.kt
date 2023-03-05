@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.facet.context
 
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.DatasetHandler
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.Direction
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.ScalesSharing
@@ -43,13 +44,14 @@ public class FacetWrapContext @PublishedApi internal constructor(){
     }
 
     internal fun toFeature(
-        nCol: Int? = null,
-        nRow: Int? = null,
-        scalesSharing: ScalesSharing = ScalesSharing.FIXED,
-        direction: Direction = Direction.HORIZONTAL,
+        datasetHandler: DatasetHandler,
+        nCol: Int?,
+        nRow: Int?,
+        scalesSharing: ScalesSharing,
+        direction: Direction,
     ) =
         FacetWrapFeature(
-            facets.map { it.name() },
+            facets.map { datasetHandler.takeColumn(it.name()) },
             nCol,
             nRow,
             orders,

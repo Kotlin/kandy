@@ -3,9 +3,10 @@
 */
 
 package org.jetbrains.kotlinx.ggdsl.dsl
-
+/*
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
+import org.jetbrains.kotlinx.ggdsl.dsl.impl.*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
@@ -53,7 +54,7 @@ internal class CustomizationTest {
         }
     }
 
-    private fun LayerContextInterface.mockFeatureFunction(value: Int) {
+    private fun LayerContext.mockFeatureFunction(value: Int) {
         features[MockLayerFeature.FEATURE_NAME] = MockLayerFeature(value)
     }
 
@@ -164,7 +165,8 @@ internal class CustomizationTest {
                         mapOf()
                     )
                 ),
-                mapOf(Y to ScaledUnspecifiedDefaultPositionalMapping(
+                mapOf(
+                    Y to ScaledUnspecifiedDefaultPositionalMapping(
                     Y,
                     ColumnScaledUnspecifiedDefault(mockSrcDouble),
                     typeOf<Double>()
@@ -205,5 +207,7 @@ internal class CustomizationTest {
         )
     }
 }
+
+ */
 
 

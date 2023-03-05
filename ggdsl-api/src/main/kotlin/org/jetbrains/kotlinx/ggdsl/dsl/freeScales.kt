@@ -3,7 +3,7 @@
 */
 
 package org.jetbrains.kotlinx.ggdsl.dsl
-
+/*
 import org.jetbrains.kotlinx.ggdsl.ir.scale.FreePositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
@@ -48,3 +48,5 @@ public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
 }
 
 
+
+ */
