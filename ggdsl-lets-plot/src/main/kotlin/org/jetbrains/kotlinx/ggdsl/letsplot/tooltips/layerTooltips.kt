@@ -95,7 +95,7 @@ public inline fun LayerContext.tooltips(
     tooltipsContextAction: LayerTooltipsContext.() -> Unit = {}
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
-        variables.map { it.name() },
+        variables.map { datasetHandler.takeColumn(it.name()) },
         title,
         anchor,
         minWidth,

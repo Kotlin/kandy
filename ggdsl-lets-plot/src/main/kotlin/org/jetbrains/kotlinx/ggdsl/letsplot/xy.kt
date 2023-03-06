@@ -19,6 +19,18 @@ public fun <T> PlotContext.x(
     return addPositionalMapping<T>(X, column.name(), LetsPlotPositionalMappingParameters<T>().apply(parameters))
 }
 
+public fun <T> PlotContext.x(
+    values: Iterable<T>,
+    name: String? = null,
+    parameters: LetsPlotPositionalMappingParameters<T>.() -> Unit = {}
+): PositionalMapping<T> {
+    return addPositionalMapping<T>(
+        X,
+        values.toList(),
+        name,
+        LetsPlotPositionalMappingParameters<T>().apply(parameters)
+    )
+}
 
 public fun <T> PlotContext.y(value: T): PositionalSetting<T> {
     return addPositionalSetting(Y, value)
@@ -29,4 +41,17 @@ public fun <T> PlotContext.y(
     parameters: LetsPlotPositionalMappingParameters<T>.() -> Unit = {}
 ): PositionalMapping<T> {
     return addPositionalMapping<T>(Y, column.name(), LetsPlotPositionalMappingParameters<T>().apply(parameters))
+}
+
+public fun <T> PlotContext.y(
+    values: Iterable<T>,
+    name: String? = null,
+    parameters: LetsPlotPositionalMappingParameters<T>.() -> Unit = {}
+): PositionalMapping<T> {
+    return addPositionalMapping<T>(
+        Y,
+        values.toList(),
+        name,
+        LetsPlotPositionalMappingParameters<T>().apply(parameters)
+    )
 }
