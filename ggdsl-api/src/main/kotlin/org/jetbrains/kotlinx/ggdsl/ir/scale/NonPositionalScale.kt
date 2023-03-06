@@ -47,3 +47,7 @@ public data class NonPositionalCategoricalScale<DomainType, RangeType>(
 
 public interface CustomNonPositionalScale<DomainType, RangeType>
     : NonPositionalScale<DomainType, RangeType>, CustomScale
+
+//todo!!!
+public data class NonPositionalDefaultScale<DomainType, RangeType>(private val nothing: Nothing? = null):
+    NonPositionalScale<DomainType, RangeType>, DefaultScale

@@ -39,3 +39,8 @@ public data class PositionalCategoricalScale<DomainType>(
     val categories: List<DomainType>?,
     //override val nullValue: TypedValue?,
 ) : CategoricalScale, PositionalScale<DomainType>
+
+// TODO!!!
+public data class PositionalDefaultScale<DomainType>(private val nothing: Nothing? = null)
+    : PositionalScale<DomainType>, DefaultScale {
+}

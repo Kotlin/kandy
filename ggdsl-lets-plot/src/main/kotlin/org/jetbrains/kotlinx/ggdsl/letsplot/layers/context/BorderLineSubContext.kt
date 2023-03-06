@@ -3,6 +3,25 @@
 */
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
+
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.SubBindingContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.WithColor
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.WithType
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.WithWidthAsSize
+import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
+
+public class BorderLineContext internal constructor(override val parentContext: BindingContext):
+    SelfInvocationContext, SubBindingContext, WithColor, WithType, WithWidthAsSize
+{
+}
+
+public abstract class LayerWithBorderLineContext(parent: LayerCollectorContext) : LayerContext(parent) {
+    public val borderLine: BorderLineContext = BorderLineContext(this)
+}
+
 /*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.ColorAes

@@ -21,17 +21,19 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-public inline fun <reified DomainType> continuousColorHue(
+public inline fun <reified DomainType : Comparable<DomainType>> continuousColorHue(
     huesRange: Pair<Int, Int>? = null,
     chroma: Int? = null,
     luminance: Int? = null,
     hueStart: Int? = null,
     direction: WheelDirection? = null,
-    domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
+    domainLimits: ClosedRange<DomainType>? = null,
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorHue<DomainType> = ScaleContinuousColorHue(
-    domainLimits, huesRange, chroma, luminance, hueStart, direction, nullValue, transform
+    domainLimits?.let {
+                      it.start to it.endInclusive
+    }, huesRange, chroma, luminance, hueStart, direction, nullValue, transform
 )
 
 // todo(LP) categories support

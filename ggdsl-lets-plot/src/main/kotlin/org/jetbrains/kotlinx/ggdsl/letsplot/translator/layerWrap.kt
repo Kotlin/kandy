@@ -1,13 +1,18 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.letsPlot.intern.Feature
 
 
-internal fun Layer.wrap(featureBuffer: MutableList<Feature>, datasets: List<TableData>) {
+internal fun Layer.wrap(
+    featureBuffer: MutableList<Feature>,
+    datasets: List<TableData>,
+    globalMappings:  Map<AesName, Mapping>,
+) {
     val addGroups: Boolean = false/*if (dataset == null) {
         plotDataset is GroupedData
     } else {
@@ -27,16 +32,17 @@ internal fun Layer.wrap(featureBuffer: MutableList<Feature>, datasets: List<Tabl
     } else {
         datasets[datasetIndex]
     }
-    featureBuffer.add(LayerWrapper(this, addGroups, dataset?.wrap()))
+    //todo
+    val mappings = if (datasetIndex == 0) {
+        globalMappings + mappings
+    } else {
+        mappings
+    }
+    val df = (datasets[datasetIndex] as NamedData).dataFrame
+    featureBuffer.add(LayerWrapper(this, addGroups, dataset?.wrap(), mappings))
     freeScales.forEach { (_, freeScale) -> freeScale.wrap(featureBuffer) }
-    mappings.forEach { (aes, mapping) ->
-        mapping.parameters?.scale?.wrap(aes, )
-        if (mapping is ScaledMapping<*>) {
-            // TODO!!!
-            val type = mapping.domainType
-            mapping.columnScaled.scale.wrap(aes, type/* mapping.domainType*/, mapping.scaleParameters, mapping.columnScaled.source.name() in groupKeys)?.let {
-                featureBuffer.add(it)
-            }
-        }
+    mappings.forEach { (_, mapping) ->
+        //todo group
+        featureBuffer.add(mapping.wrapScale(df[mapping.columnID].type(), false))
     }
 }

@@ -37,7 +37,7 @@ public data class Legend<DomainType, out RangeType> @PublishedApi internal const
             internal var breaks: List<DomainType>? = null,
             internal var labels: List<String>? = null,
             internal var format: String? = null,
-) : SelfInvocationContext {
+) : SelfInvocationContext, ScaleParameters {
 
 
     /**

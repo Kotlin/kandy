@@ -26,13 +26,15 @@ public data class ScaleContinuousColorGradientN<DomainType>(
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-public inline fun <reified DomainType> continuousColorGradientN(
+public inline fun <reified DomainType : Comparable<DomainType>> continuousColorGradientN(
     rangeColors: List<Color>,
-    domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
+    domainLimits: ClosedRange<DomainType>? = null,
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradientN<DomainType> = ScaleContinuousColorGradientN(
-    domainLimits, rangeColors, nullValue, transform
+    domainLimits?.let {
+                      it.start to it.endInclusive
+    }, rangeColors, nullValue, transform
 )
 
 //@Serializable

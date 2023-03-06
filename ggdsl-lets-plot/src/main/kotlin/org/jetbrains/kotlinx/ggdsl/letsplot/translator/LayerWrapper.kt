@@ -5,6 +5,8 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.GROUP
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.MERGED_GROUPS
@@ -18,11 +20,13 @@ import org.jetbrains.letsPlot.sampling.samplingNone
 
 internal class LayerWrapper internal constructor(
     private val layer: Layer, addGroups: Boolean,
-    dataset: Map<String, List<*>>?
+    dataset: Map<String, List<*>>?,
+    mappings:  Map<AesName, Mapping>,
 ) :
     LayerBase(
         data = dataset,
-        mapping = Options(layer.mappings.map { (_, mapping) -> mapping.wrap() }.toMap().toMutableMap().apply {
+        // todo group
+        mapping = Options(mappings.map { (_, mapping) -> mapping.wrap(false) }.toMap().toMutableMap().apply {
             if (addGroups) {
                 this[GROUP.name] = MERGED_GROUPS
             }

@@ -7,28 +7,14 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 //import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
 //import org.jetbrains.kotlinx.ggdsl.dsl.column.invoke
 //import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
-import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
-import org.jetbrains.kotlinx.ggdsl.dsl.categorical
-import org.jetbrains.kotlinx.ggdsl.dsl.invoke
-import org.jetbrains.kotlinx.ggdsl.dsl.scaled
-import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetWrapFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.feature.CoordFlip
 import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Layout
 import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Reversed
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.COLOR
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.X
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.Y
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
-import org.jetbrains.kotlinx.ggdsl.letsplot.series.Gathering
-import org.jetbrains.kotlinx.ggdsl.letsplot.series.GatheringList
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
-import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.coord.coordFlip
 import org.jetbrains.letsPlot.facet.facetGrid
 import org.jetbrains.letsPlot.facet.facetWrap
@@ -41,7 +27,6 @@ import org.jetbrains.letsPlot.pos.*
 import org.jetbrains.letsPlot.tooltips.TooltipOptions
 import org.jetbrains.letsPlot.tooltips.layerTooltips
 import org.jetbrains.letsPlot.tooltips.tooltipsNone
-import kotlin.reflect.typeOf
 
 internal fun FacetGridFeature.wrap(): OptionsMap {
     return facetGrid(
@@ -107,11 +92,14 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
             (this as Layout).wrap(featureBuffer)
         }
 
+        /*
         GatheringList.FEATURE_NAME -> {
             (this as GatheringList).gatheringList.forEach {
                 it.toLayer().wrap(featureBuffer, null)
             }
         }
+
+         */
 
         else -> TODO()
     }
@@ -119,7 +107,7 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
 }
 
 //internal val palette = listOf(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE)
-
+/*
 internal fun Gathering.toLayer(): Layer {
     val dataFrame = data.dataFrame
     val size = dataFrame.rowsCount()
@@ -196,6 +184,8 @@ internal fun Gathering.toLayer(): Layer {
 }
 
 
+ */
+
 internal fun Position.wrap(): PosOptions {
     return when (this) {
         is Position.Identity -> return positionIdentity
@@ -235,3 +225,4 @@ internal fun Reversed.wrap(): String = if (value) {
 } else {
     "x"
 }
+

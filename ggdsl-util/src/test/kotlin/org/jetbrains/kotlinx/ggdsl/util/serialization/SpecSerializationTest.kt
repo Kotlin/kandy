@@ -2,10 +2,8 @@ package org.jetbrains.kotlinx.ggdsl.util.serialization
 
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
-import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
-import org.jetbrains.kotlinx.ggdsl.dsl.invoke
+import org.jetbrains.kotlinx.ggdsl.dsl.continuous
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
-import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.toLetsPlot
@@ -25,9 +23,11 @@ internal class SpecSerializationTest {
         ).plot {
             x(column<String>("origin"))
             points {
-                y(column<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
-                symbol(Symbol.CIRCLE_FILLED)
-                fillColor(Color.RED)
+                y(column<Double>("mpg")) {
+                    scale = continuous(limits = 1.0 .. 5.0)
+                }
+                symbol = Symbol.CIRCLE_FILLED
+                fillColor = Color.RED
             }
         }
     )

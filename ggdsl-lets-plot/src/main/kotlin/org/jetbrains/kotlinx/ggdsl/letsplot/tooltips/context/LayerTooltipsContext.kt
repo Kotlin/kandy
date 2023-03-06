@@ -1,14 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.context
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.Aes
-import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
 
 /**
  * Context created by [LayerContext.tooltips] method.
  */
 ///*@PlotDslMarker*/
-public class LayerTooltipsContext {
+public class LayerTooltipsContext(private val layerContext: LayerContext) {
     // todo hide
     internal val lineBuffer = mutableListOf<String>()
 
@@ -40,8 +39,8 @@ public class LayerTooltipsContext {
      * @param source [ColumnReference]
      */
 
-    public fun line(source: ColumnReference<*>) {
-        lineBuffer.add("@|@${source.name()}")
+    public fun line(column: ColumnReference<*>) {
+        lineBuffer.add("@|@${layerContext.datasetHandler.takeColumn(column.name())}")
     }
 
     /**
@@ -50,10 +49,14 @@ public class LayerTooltipsContext {
      *
      * @param aes aesthetic attribute
      */
+    /* TODO
     public fun line(aes: Aes) {
         lineBuffer.add("@|^${aes.name.name}")
     }
 
+     */
+
+    /* TODO
     /**
      * Adds standard line for given statistics
      * (name of the source mapped oh this aes on the left side and the corresponding value on the right side).
@@ -64,4 +67,6 @@ public class LayerTooltipsContext {
         lineBuffer.add("${stat.id.drop(2).dropLast(2)}|@${stat.id}")
     }
 
+
+     */
 }

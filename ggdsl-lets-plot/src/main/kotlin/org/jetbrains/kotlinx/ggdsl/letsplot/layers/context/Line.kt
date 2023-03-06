@@ -1,5 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
+
+public class LineContext(parent: LayerCollectorContext)
+    :LayerContext(parent), WithX, WithY, WithAlpha, WithColor, WithWidthAsSize, WithType
+
 /*
 public interface LineContextInterface: BindingContext {
     public val x: XAes get() = XAes(this)

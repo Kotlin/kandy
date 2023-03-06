@@ -1,5 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.series
-
+/*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
@@ -123,3 +123,5 @@ internal fun LayerPlotContext.addGathering(gathering: Gathering) {
         GatheringList()
     } as GatheringList).gatheringList.add(gathering)
 }
+
+ */

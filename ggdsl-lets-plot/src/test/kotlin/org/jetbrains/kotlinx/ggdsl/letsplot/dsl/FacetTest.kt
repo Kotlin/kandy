@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
-import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
@@ -17,17 +17,19 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class FacetTest {
-    private val emptyDataset = NamedData(DataFrame.Empty)
     @Test
     fun testSimpleFacet() {
-        val plot = plot(emptyDataset) {
+        val dataset: Map<String, List<*>> = mapOf(
+            "xSrc" to listOf(1, 2, 3)
+        )
+        val plot = plot(dataset) {
             facetGridX(
                 x = column<String>("xSrc")
             )
         }
         assertEquals(
             Plot(
-                emptyDataset,
+                listOf(NamedData(dataset.toDataFrame())),
                 listOf(),
                 mapOf(),
                 mapOf(
@@ -49,7 +51,11 @@ class FacetTest {
 
     @Test
     fun testComplexFacet() {
-        val plot = plot(emptyDataset) {
+        val dataset: Map<String, List<*>> = mapOf(
+            "xArg" to listOf(1, 2, 3),
+            "yArg" to listOf(0.1, 0.2, 0.3)
+        )
+        val plot = plot(dataset) {
             facetGrid(
                 x = column<String>("xArg"),
                 y = column<Int>("yArg"),
@@ -59,7 +65,7 @@ class FacetTest {
         }
         assertEquals(
             Plot(
-                emptyDataset,
+                listOf(NamedData(dataset.toDataFrame())),
                 listOf(),
                 mapOf(),
                 mapOf(

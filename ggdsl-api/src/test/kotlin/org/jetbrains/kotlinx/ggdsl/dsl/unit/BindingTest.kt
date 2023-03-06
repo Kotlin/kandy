@@ -69,7 +69,7 @@ internal class BindingTest {
                 X to PositionalMapping<Double>(
                     X,
                     mockSource.name(),
-                    CommonPositionalMappingParameters(null)
+                    CommonPositionalMappingParameters()
                 )
             ),
             context.bindingCollector.mappings
@@ -90,7 +90,7 @@ internal class BindingTest {
                 SIZE to NonPositionalMapping<Int, String>(
                     SIZE,
                     mockSource.name(),
-                    CommonNonPositionalMappingParameters(null)
+                    CommonNonPositionalMappingParameters()
                 )
             ),
             context.bindingCollector.mappings
@@ -110,7 +110,7 @@ internal class BindingTest {
             mapOf(
                 Y to PositionalMapping<String>(
                     Y, mockSource.name(),
-                    CommonPositionalMappingParameters(null)
+                    CommonPositionalMappingParameters()
                 )
             ),
             context.bindingCollector.mappings

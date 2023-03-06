@@ -15,11 +15,17 @@ public val Z: AesName = AesName("z")
 
 public val COLOR: AesName = AesName("color")
 
+public val FILL: AesName = AesName("fill")
+
 public val SHAPE: AesName = AesName("shape")
 
 public val SIZE: AesName = AesName("size")
 
+public val WIDTH: AesName = AesName("width")
+
 public val ALPHA: AesName = AesName("alpha")
+
+public val LINE_TYPE: AesName = AesName("linetype")
 
 internal val LOWER = AesName("lower")
 

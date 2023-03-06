@@ -4,7 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.AreaContext
 
 @PublishedApi
 internal val AREA: LetsPlotGeom = LetsPlotGeom("area")
@@ -78,3 +80,7 @@ public inline fun LayerCollectorContextMutable.area(block: AreaContextMutable.()
 }
 
  */
+
+public inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
+    addLayer(AreaContext(this).apply(block), AREA)
+}

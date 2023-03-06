@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
 
-import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
@@ -20,7 +20,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class PositionTest {
-    private val emptyDataset = NamedData(DataFrame.Empty)
+    private val emptyDataset = mapOf<String, List<*>>()
     @Test
     fun testSimple() {
         val plot = plot(emptyDataset) {
@@ -30,10 +30,10 @@ internal class PositionTest {
         }
         assertEquals(
             Plot(
-                emptyDataset,
+                listOf(NamedData(emptyDataset.toDataFrame())),
                 listOf(
                     Layer(
-                        null,
+                        0,
                         POINT,
                         mapOf(),
                         mapOf(),
@@ -63,17 +63,17 @@ internal class PositionTest {
         }
         assertEquals(
             Plot(
-                emptyDataset,
+                listOf(NamedData(emptyDataset.toDataFrame())),
                 listOf(
                     Layer(
-                        null,
+                        0,
                         BAR,
                         mapOf(),
                         mapOf(),
                         mapOf(Position.FEATURE_NAME to Position.Stack)
                     ),
                     Layer(
-                        null,
+                        0,
                         POINT,
                         mapOf(),
                         mapOf(),
@@ -83,7 +83,7 @@ internal class PositionTest {
                         )
                     ),
                     Layer(
-                        null,
+                        0,
                         POINT,
                         mapOf(),
                         mapOf(),

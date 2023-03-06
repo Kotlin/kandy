@@ -9,13 +9,15 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
-public inline fun <reified DomainType> continuousColorGrey(
+public inline fun <reified DomainType : Comparable<DomainType>> continuousColorGrey(
     paletteRange: Pair<Double, Double>? = null,
-    domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
+    domainLimits: ClosedRange<DomainType>? = null,
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGrey<DomainType> = ScaleContinuousColorGrey(
-    paletteRange, domainLimits, nullValue, transform
+    paletteRange, domainLimits?.let {
+                                    it.start to it.endInclusive
+    }, nullValue, transform
 )
 
 public inline fun <reified DomainType> categoricalColorGrey(

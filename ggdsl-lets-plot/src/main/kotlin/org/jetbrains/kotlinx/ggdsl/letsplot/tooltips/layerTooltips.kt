@@ -5,7 +5,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.tooltips
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.Aes
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.context.LayerTooltipsContext
@@ -15,14 +14,15 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
 /**
  * Inserts value of given [ColumnReference] into format string.
  *
- * @param source [ColumnReference] whose value will be inserted into the tooltip
+ * @param column [ColumnReference] whose value will be inserted into the tooltip
  * @return format string
  */
 
-public fun value(source: ColumnReference<*>): String {
-    return "@${source.name()}"
+public fun LayerContext.value(column: ColumnReference<*>): String {
+    return "@${datasetHandler.takeColumn(column.name())}"
 }
 
+/* TODO
 /**
  * Inserts value of given aesthetic attribute into format string.
  *
@@ -33,6 +33,8 @@ public fun value(aes: Aes): String {
     return "^${aes.name.name}"
 }
 
+
+
 /**
  * Inserts value of given statistics into format string.
  *
@@ -42,7 +44,7 @@ public fun value(aes: Aes): String {
 public fun value(stat: Statistic<*>): String {
     return "@${stat.id}"
 }
-
+*/
 /**
  * Tooltips fixed position.
  */
@@ -88,7 +90,7 @@ public inline fun LayerContext.tooltips(
     minWidth: Double? = null,
     hide: Boolean = false,
     valueFormats: Map<ColumnReference<*>, String> = mapOf(),
-    aesFormats: Map<Aes, String> = mapOf(),
+    // todo aesFormats: Map<Aes, String> = mapOf(),
     statFormats: Map<Statistic<*>, String> = mapOf(),
     tooltipsContextAction: LayerTooltipsContext.() -> Unit = {}
 ) {
@@ -99,8 +101,8 @@ public inline fun LayerContext.tooltips(
         minWidth,
         hide,
         valueFormats.map { it.key.name() to it.value }
-            + aesFormats.map { "^" + it.key.name.name to it.value }
+         //   + aesFormats.map { "^" + it.key.name.name to it.value }
             + statFormats.map { it.key.id to it.value },
-        LayerTooltipsContext().apply(tooltipsContextAction)
+        LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
 }

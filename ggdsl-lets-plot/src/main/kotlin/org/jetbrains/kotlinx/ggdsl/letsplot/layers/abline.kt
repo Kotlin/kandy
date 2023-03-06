@@ -6,8 +6,6 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.ABLineContextImmutable
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.ABLineContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 

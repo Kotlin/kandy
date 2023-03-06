@@ -7,7 +7,9 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.toMap
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.categorical
+import org.jetbrains.kotlinx.ggdsl.dsl.continuous
+import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bars
@@ -35,9 +37,11 @@ class ToLetsPlotTest {
         val plot = dataset.plot {
             x(column<String>("origin"))
             points {
-                y(column<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
-                symbol(Symbol.CIRCLE_FILLED)
-                fillColor(Color.RED)
+                y(column<Double>("mpg")) {
+                    scale = continuous(1.0..5.0)
+                }
+                symbol = Symbol.CIRCLE_FILLED
+                fillColor = Color.RED
             }
         }
 
@@ -63,7 +67,7 @@ class ToLetsPlotTest {
                         ),
                         "sampling" to "none",
                         "stat" to "identity",
-                   //     "data" to mapOf<String, Any>(),
+                        //     "data" to mapOf<String, Any>(),
                         "shape" to 21.0,
                         "position" to "identity",
                         "geom" to "point",
@@ -85,25 +89,28 @@ class ToLetsPlotTest {
         )
         val clM = column<Int>("clM")
         val plot = dataset.plot {
-            x(column<Double>("time").scaled(continuousPos(limits = -12.0 to 4.4)))
-            y(column<String>("svalue").scaled(categoricalPos(categories = listOf("A", "B", "C"))))
+            x(column<Double>("time")){
+                scale = continuous(limits = -12.0 .. 4.4)
+            }
+            y(column<String>("svalue")){
+                scale = categorical(categories = listOf("A", "B", "C"))
+            }
 
             bars {
-                color(
-                    clM.scaled(
+                fillColor(clM) {
+                    scale =
                         categorical(
                             rangeValues = listOf(Color.RED, Color.hex("#bb11aa"))
                         )
-                    )
-                )
-                width(0.5)
-                alpha(0.8)
+                }
+                width = 0.5
+                alpha =0.8
 
                 position = Position.Stack
             }
             line {
-                width(2.2)
-                type(LineType.DOTTED)
+                width = 2.2
+                type = LineType.DOTTED
                 position = Position.Identity
             }
 
@@ -149,33 +156,33 @@ class ToLetsPlotTest {
                         ),
                         "sampling" to "none",
                         "stat" to "identity",
-                  //      "data" to mapOf<String, Any>(),
+                        //      "data" to mapOf<String, Any>(),
                         "alpha" to 0.8,
                         "width" to 0.5,
                         "position" to "stack",
                         "geom" to "bar",
                         "data_meta" to mapOf<String, Any>(
                             "mapping_annotations" to
-                                listOf(
-                                    mapOf(
-                                        "aes" to "y",
-                                        "annotation" to "as_discrete",
-                                        "parameters" to mapOf<String, Any?>(
-                                            "label" to "svalue",
-                                            "order_by" to null,
-                                            "order" to null
-                                        )
-                                    ),
-                                    mapOf(
-                                        "aes" to "fill",
-                                        "annotation" to "as_discrete",
-                                        "parameters" to mapOf<String, Any?>(
-                                            "label" to "clM",
-                                            "order_by" to null,
-                                            "order" to null
+                                    listOf(
+                                        mapOf(
+                                            "aes" to "y",
+                                            "annotation" to "as_discrete",
+                                            "parameters" to mapOf<String, Any?>(
+                                                "label" to "svalue",
+                                                "order_by" to null,
+                                                "order" to null
+                                            )
+                                        ),
+                                        mapOf(
+                                            "aes" to "fill",
+                                            "annotation" to "as_discrete",
+                                            "parameters" to mapOf<String, Any?>(
+                                                "label" to "clM",
+                                                "order_by" to null,
+                                                "order" to null
+                                            )
                                         )
                                     )
-                                )
                         )
                     ),
                     mapOf(
@@ -185,24 +192,24 @@ class ToLetsPlotTest {
                         ),
                         "sampling" to "none",
                         "stat" to "identity",
-                      //  "data" to mapOf<String, Any>(),
+                        //  "data" to mapOf<String, Any>(),
                         "size" to 2.2,
                         "linetype" to "dotted",
                         "position" to "identity",
                         "geom" to "line",
                         "data_meta" to mapOf<String, Any>(
                             "mapping_annotations" to
-                                listOf(
-                                    mapOf(
-                                        "aes" to "y",
-                                        "annotation" to "as_discrete",
-                                        "parameters" to mapOf<String, Any?>(
-                                            "label" to "svalue",
-                                            "order_by" to null,
-                                            "order" to null
+                                    listOf(
+                                        mapOf(
+                                            "aes" to "y",
+                                            "annotation" to "as_discrete",
+                                            "parameters" to mapOf<String, Any?>(
+                                                "label" to "svalue",
+                                                "order_by" to null,
+                                                "order" to null
+                                            )
                                         )
                                     )
-                                )
                         )
                     ),
                 ),

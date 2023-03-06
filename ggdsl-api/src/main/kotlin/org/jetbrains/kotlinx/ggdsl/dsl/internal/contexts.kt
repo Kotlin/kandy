@@ -145,6 +145,16 @@ public interface BindingContext : BaseContext {
         }
     }
 }
+
+public interface SubBindingContext: BindingContext {
+    public val parentContext: BindingContext
+    override val bindingCollector: BindingCollector
+        get() = parentContext.bindingCollector
+    override val plotContext: PlotContext
+        get() = parentContext.plotContext
+    override val datasetIndex: Int
+        get() = parentContext.datasetIndex
+}
 /*
 
 /**

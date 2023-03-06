@@ -1,12 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin
-
+/*
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.StatLayerCollectorContext
-/*
+
 public interface BinStatContext {
     public val Stat: StatHolder
         get() = StatHolder

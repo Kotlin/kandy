@@ -1,5 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.series
-
+/*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import kotlin.reflect.typeOf
@@ -21,3 +21,6 @@ public inline fun <reified T : GatheringContextInterface> NamedDataPlotContext.g
         typeOf<Bar>() -> barGather(position, block as (Bar.() -> Unit))
     }
 }
+
+
+ */

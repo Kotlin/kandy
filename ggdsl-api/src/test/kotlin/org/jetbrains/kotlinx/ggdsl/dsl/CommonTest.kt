@@ -50,10 +50,10 @@ internal class CommonTest {
                         POINT,
                         mappings = mapOf(
                             Y to PositionalMapping<Float>(
-                                Y, srcY.name(), CommonPositionalMappingParameters(null)
+                                Y, srcY.name(), CommonPositionalMappingParameters()
                             ),
                             COLOR to NonPositionalMapping<String, Color>(
-                                COLOR, type.name(), CommonNonPositionalMappingParameters(null)
+                                COLOR, type.name(), CommonNonPositionalMappingParameters()
                             ),
                         ),
                         settings = mapOf(
@@ -63,7 +63,7 @@ internal class CommonTest {
                 ),
                 mapOf(
                     X to PositionalMapping<Float>(
-                        X, srcX.name(), CommonPositionalMappingParameters(null)
+                        X, srcX.name(), CommonPositionalMappingParameters()
                     ),
                 ),
                 emptyMap(),
@@ -105,7 +105,7 @@ internal class CommonTest {
         }
 
         val xMapping = PositionalMapping<Double>(
-            X, width.name(), CommonPositionalMappingParameters(null)
+            X, width.name(), CommonPositionalMappingParameters()
         )
         val yMapping = PositionalMapping<Float>(
             Y, height.name(), CommonPositionalMappingParameters<Float>(
@@ -133,7 +133,7 @@ internal class CommonTest {
                         mappings = mapOf(
                             COLOR to colorMapping,
                             SIZE to NonPositionalMapping<Int, Double>(
-                                SIZE, noa.name(), CommonNonPositionalMappingParameters(null)
+                                SIZE, noa.name(), CommonNonPositionalMappingParameters()
                             )
                         ),
                         settings = mapOf()

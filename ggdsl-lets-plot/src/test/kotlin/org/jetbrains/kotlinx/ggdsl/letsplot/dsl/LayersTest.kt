@@ -6,76 +6,75 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.categorical
+import org.jetbrains.kotlinx.ggdsl.dsl.continuous
+import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.ALPHA
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.FILL
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.SIZE
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.Y
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.AREA
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.area
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class LayersTest {
-    private val dataset = NamedData(dataFrameOf(
+    private val dataset = dataFrameOf(
         "time" to listOf(1, 2),
         "type" to listOf("a", "b")
-    ))
+    )
+
     @Test
     fun testArea() {
         val time = column<Int>("time")
         val type = column<String>("type")
-        val plot = plot(dataset) {
+        val plot = dataset.plot {
             area {
-                y(time.scaled(continuousPos()))
-                color(
-                    type.scaled(
+                y(time) {
+                    scale = continuous()
+                }
+                fillColor(type) {
+                    scale =
                         categorical(
                             rangeValues = listOf(Color.RED, Color.BLUE)
                         )
-                    )
-                )
+
+                }
                 // TODO
-                alpha(0.7)
-                borderLine.width(2.0)
+                alpha = 0.7
+                borderLine.width = 2.0
 
             }
         }
         // TODO
         assertEquals(
             Plot(
-                dataset,
+                listOf(NamedData(dataset)),
                 listOf(
                     Layer(
-                        null,
+                        0,
                         AREA,
                         mapOf(
-                            Y to ScaledPositionalUnspecifiedMapping(
-                                Y, ColumnScaledPositionalUnspecified(
-                                time,
-                                PositionalContinuousUnspecifiedScale()
-                            ), typeOf<Int>()
+                            Y to PositionalMapping<Int>(
+                                Y, time.name(), LetsPlotPositionalMappingParameters(
+                                    PositionalContinuousScale(null, null, null)
+                                )
                             ),
-                            FILL to ScaledNonPositionalMapping(
+                            FILL to NonPositionalMapping<String, Color>(
                                 FILL,
-                                ColumnScaledNonPositional(
-                                    type,
+                                type.name(),
+                                LetsPlotNonPositionalMappingParameters(
                                     NonPositionalCategoricalScale<String, Color>(
                                         null,
                                         rangeValues = listOf(Color.RED, Color.BLUE),
-                                        //null,
                                     )
-                                ),
-                                typeOf<String>(),
-                                //  typeOf<Color>()
+                                )
                             )
                         ),
                         mapOf(
@@ -91,7 +90,7 @@ internal class LayersTest {
                         mapOf()
                     )
                 ),
-                mapOf(),emptyMap(),emptyMap()
+                mapOf(), emptyMap(), emptyMap()
             ),
             plot
         )

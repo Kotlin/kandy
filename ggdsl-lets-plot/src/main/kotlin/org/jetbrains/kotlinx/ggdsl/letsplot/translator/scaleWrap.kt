@@ -6,12 +6,11 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.ColorBar
-import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.DiscreteLegend
-import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.None
+import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -26,8 +25,17 @@ internal val dateTimeTypes = setOf(
 
 internal fun List<*>?.wrap() = this?.filterNotNull()
 internal val timeTypes = setOf(
-    typeOf<LocalTime>(),  typeOf<LocalTime?>(),
+    typeOf<LocalTime>(), typeOf<LocalTime?>(),
 )
+
+internal fun Mapping.wrapScale(domainType: KType, isGroupKey: Boolean): org.jetbrains.letsPlot.intern.Scale {
+    return parameters.scale.wrap(
+        aes, domainType,
+        (parameters as? LetsPlotPositionalMappingParameters<*>)?.axis
+            ?: (parameters as? LetsPlotNonPositionalMappingParameters<*, *>)?.legend,
+        isGroupKey
+    )
+}
 
 /**
  * TODO datetime
@@ -35,17 +43,18 @@ internal val timeTypes = setOf(
 internal fun Scale.wrap(
     aesName: AesName,
     domainType: KType,
-    scaleParameters: ScaleParameters? = null,
-    isGroupKey: Boolean = false,
-): org.jetbrains.letsPlot.intern.Scale? {
+    scaleParameters: ScaleParameters?,
+    isGroupKey: Boolean,
+): org.jetbrains.letsPlot.intern.Scale {
     return when (this) {
+
         is PositionalScale<*> -> {
-            val naValue = if(this is ContinuousScale<*>) {
+            val naValue = if (this is ContinuousScale<*>) {
                 wrapValue(nullValue)
             } else {
                 null //(this as PositionalCategoricalScale<*>).c
             }
-            val axis = (scaleParameters as PositionalParameters<*>?)?.axis
+            val axis = scaleParameters as? Axis<*>?
 
             val name = axis?.name
             val breaks = axis?.breaks
@@ -88,7 +97,7 @@ internal fun Scale.wrap(
                             breaks = breaks?.wrap(),
                             labels = labels,
                             format = format,
-                           // naValue = nullValue as? Number
+                            // naValue = nullValue as? Number
                         )
 
                         Y -> scaleYDiscrete(
@@ -97,7 +106,7 @@ internal fun Scale.wrap(
                             breaks = breaks?.wrap(),
                             labels = labels,
                             format = format,
-                          //  naValue = nullValue as? Number
+                            //  naValue = nullValue as? Number
                         )
 
                         else -> TODO("error")
@@ -120,7 +129,7 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
-                               // format = format
+                                // format = format
                             )
                         } else {
                             scaleXContinuous(
@@ -167,12 +176,21 @@ internal fun Scale.wrap(
                     }
                 }
 
-                // is CustomScale -> TODO()
+                is PositionalDefaultScale<*> -> if (domainType.isCategoricalType() || isGroupKey) {
+                    PositionalCategoricalScale<String>(null).wrap(aesName, domainType, scaleParameters, isGroupKey)
+                } else {
+                    PositionalContinuousScale<Double>(null, null, null).wrap(
+                        aesName,
+                        domainType,
+                        scaleParameters,
+                        isGroupKey
+                    )
+                }
             }
         }
 
         is NonPositionalScale<*, *> -> {
-            val naValue = if(this is ContinuousScale<*>) {
+            val naValue = if (this is ContinuousScale<*>) {
                 wrapValue(nullValue)
             } else {
                 // todo custom scales
@@ -186,7 +204,7 @@ internal fun Scale.wrap(
                 //null //(this as PositionalCategoricalScale<*>).c
             }
             //val naValue = nullValue?.wrap()
-            val legend = (scaleParameters as NonPositionalParameters<*, *>?)?.legend
+            val legend = scaleParameters as? Legend<*, *>?
 
             val name = legend?.name
             val breaks = legend?.breaks
@@ -210,18 +228,36 @@ internal fun Scale.wrap(
             }
 
             when (this) {
+                is NonPositionalDefaultScale<*, *> -> if (domainType.isCategoricalType() || isGroupKey) {
+                    NonPositionalCategoricalScale<String, String>(null, null).wrap(
+                        aesName,
+                        domainType,
+                        scaleParameters,
+                        isGroupKey
+                    )
+                } else {
+                    NonPositionalContinuousScale<Double, Double>(null, null, null, null).wrap(
+                        aesName,
+                        domainType,
+                        scaleParameters,
+                        isGroupKey
+                    )
+                }
+
                 is NonPositionalCategoricalScale<*, *> -> {
                     when (aesName) {
-                        SIZE -> if (rangeValues != null) {scaleSizeManual(
-                            values = rangeValues!!.map { it as Number },
-                            limits = domainCategories?.wrap(),
-                            name = name,
-                            breaks = breaks?.wrap(),
-                            labels = labels,
-                            guide = legendType,
-                            format = format,
-                            naValue = naValue as? Number
-                        )} else {
+                        SIZE -> if (rangeValues != null) {
+                            scaleSizeManual(
+                                values = rangeValues!!.map { it as Number },
+                                limits = domainCategories?.wrap(),
+                                name = name,
+                                breaks = breaks?.wrap(),
+                                labels = labels,
+                                guide = legendType,
+                                format = format,
+                                naValue = naValue as? Number
+                            )
+                        } else {
                             org.jetbrains.letsPlot.intern.Scale(
                                 Aes.SIZE,
                                 limits = domainCategories?.wrap(),
@@ -285,16 +321,18 @@ internal fun Scale.wrap(
                         }
                         // TODO
 
-                        ALPHA -> if (rangeValues != null) { scaleAlphaManual(
-                            limits = domainCategories?.wrap(),
-                            values = rangeValues!!.map { it as Double },
-                            name = name,
-                            breaks = breaks?.wrap(),
-                            labels = labels,
-                            guide = legendType,
-                            format = format,
-                            naValue = naValue as? Number
-                        )} else {
+                        ALPHA -> if (rangeValues != null) {
+                            scaleAlphaManual(
+                                limits = domainCategories?.wrap(),
+                                values = rangeValues!!.map { it as Double },
+                                name = name,
+                                breaks = breaks?.wrap(),
+                                labels = labels,
+                                guide = legendType,
+                                format = format,
+                                naValue = naValue as? Number
+                            )
+                        } else {
                             org.jetbrains.letsPlot.intern.Scale(
                                 Aes.ALPHA,
                                 limits = domainCategories?.wrap(),
@@ -378,7 +416,7 @@ internal fun Scale.wrap(
 
                         COLOR -> {
                             val (lowColor, highColor) = rangeLimits.let {
-                                (it?.first as? Color)?.wrap() to (it?.second as? Color)?.wrap()
+                                (it?.start as? Color)?.wrap() to (it?.endInclusive as? Color)?.wrap()
                             }
                             val limits = domainLimits.wrap() // todo datetime support here
 
@@ -400,7 +438,7 @@ internal fun Scale.wrap(
 
                         FILL -> {
                             val (lowColor, highColor) = rangeLimits.let {
-                                (it?.first as? Color)?.wrap() to (it?.second as? Color)?.wrap()
+                                (it?.start as? Color)?.wrap() to (it?.endInclusive as? Color)?.wrap()
                             }
                             val limits = domainLimits.wrap() //todo datetime support here
 
@@ -598,122 +636,6 @@ internal fun Scale.wrap(
                 }
 
                 else -> TODO()
-            }
-        }
-
-        is UnspecifiedScale -> {
-            when (this) {
-                DefaultUnspecifiedScale -> when (aesName) {
-
-                    X, Y -> if (domainType.isCategoricalType() || isGroupKey) {
-                        PositionalCategoricalUnspecifiedScale.wrap(aesName, domainType, scaleParameters)
-                    } else {
-                        PositionalContinuousUnspecifiedScale().wrap(aesName, domainType, scaleParameters)
-                    }
-
-                    COLOR, FILL, SIZE, SHAPE, LINE_TYPE -> if (domainType.isCategoricalType() || isGroupKey) {
-                        NonPositionalCategoricalUnspecifiedScale.wrap(aesName, domainType, scaleParameters)
-                    } else {
-                        NonPositionalContinuousUnspecifiedScale().wrap(aesName, domainType, scaleParameters)
-                    }
-
-                    else -> null
-
-                }
-                // TODO!!!
-                is NonPositionalUnspecifiedScale -> {
-                    when (this) {
-                        NonPositionalCategoricalUnspecifiedScale ->
-                            NonPositionalCategoricalScale<Any, Any>(null, null,)
-                                .wrap(aesName, domainType, scaleParameters)
-
-                        is NonPositionalContinuousUnspecifiedScale ->
-                            NonPositionalContinuousScale<Any, Any>(null, null, null, transform = transform)
-                                .wrap(aesName, domainType, scaleParameters)
-                    }
-                }
-
-                // TODO
-                is PositionalUnspecifiedScale -> {
-                    val axis = (scaleParameters as PositionalParameters<*>?)?.axis
-
-                    val name = axis?.name
-                    val breaks = axis?.breaks
-                    val labels = axis?.labels
-                    val format = axis?.format
-
-                    // todo discrete datetime?
-                    if (domainType in dateTimeTypes) {
-                        return when (aesName) {
-                            X -> scaleXDateTime(
-                                //  limits = limits.toLP(),
-                                name = name,
-                                breaks = breaks?.map { it as Number }, // TODO() }
-                                labels = labels,
-                                //   trans = (transform as? Transformation)?.name,
-                                format = format,
-                            )
-
-                            Y -> scaleYDateTime(
-                                //limits = categories,
-                                name = name,
-                                breaks = breaks?.wrap(),
-                                labels = labels,
-                                format = format,
-                            )
-
-                            else -> TODO()
-                        }
-                    } else if (domainType in timeTypes) {
-                        return when (aesName) {
-                            X -> scaleXTime(
-                                //  limits = limits.toLP(),
-                                name = name,
-                                breaks = breaks?.map { it as Number }, // TODO() }
-                                labels = labels,
-                                //   trans = (transform as? Transformation)?.name,
-                                //  format = format
-                            )
-
-                            Y -> scaleYTime(
-                                //limits = categories,
-                                name = name,
-                                breaks = breaks?.wrap(),
-                                labels = labels,
-                                //   format = format
-                            )
-
-                            else -> TODO()
-                        }
-                    }
-                    when (this) {
-                        PositionalCategoricalUnspecifiedScale -> when (aesName) {
-                            X -> scaleXDiscrete(name = name, breaks = breaks?.wrap(), labels = labels, format = format)
-                            Y -> scaleYDiscrete(name = name, breaks = breaks?.wrap(), labels = labels, format = format)
-                            else -> TODO()
-                        }
-
-                        is PositionalContinuousUnspecifiedScale -> when (aesName) {
-                            X -> scaleXContinuous(
-                                name = name,
-                                breaks = breaks?.map { it as Number },
-                                labels = labels,
-                                trans = (transform as? Transformation)?.name,
-                                format = format
-                            )
-
-                            Y -> scaleYContinuous(
-                                name = name,
-                                breaks = breaks?.map { it as Number },
-                                labels = labels,
-                                trans = (transform as? Transformation)?.name,
-                                format = format
-                            )
-
-                            else -> TODO()
-                        }
-                    }
-                }
             }
         }
 

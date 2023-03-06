@@ -4,39 +4,36 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.dataframe.api.column
-import org.jetbrains.kotlinx.dataframe.api.toDataFrame
-import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.intern.toSpec
-import kotlin.reflect.typeOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class LayerWrapperTest {
-    private val emptyDataset = NamedData(DataFrame.Empty)
     @Test
     fun testSimple() {
+        val mappings: Map<AesName, Mapping> = mapOf(
+            FILL to NonPositionalMapping<Int, Color>(
+                FILL,
+                "F",
+                LetsPlotNonPositionalMappingParameters()
+            )
+        )
         val layer = Layer(
-            emptyDataset,
+            0,
             POINT,
-            mapOf(
-                FILL to ScaledUnspecifiedDefaultNonPositionalMapping<Int, Color>(
-                    FILL,
-                    column<Int>("F").scaled(),
-                    typeOf<Int>()
-                )
-            ),
+            mappings,
             mapOf(
                 COLOR to NonPositionalSetting<Color>(
                     COLOR,
@@ -46,7 +43,7 @@ internal class LayerWrapperTest {
             mapOf()
         )
 
-        val wrappedLayer = LayerWrapper(layer, false)
+        val wrappedLayer = LayerWrapper(layer, false, null, mappings)
         assertEquals(
             mapOf(
                 "mapping" to mapOf(
@@ -54,8 +51,6 @@ internal class LayerWrapperTest {
                 ),
                 "sampling" to "none",
                 "stat" to "identity",
-                "data" to mapOf<String, Any>(),
-                //"shape" to 21.0,
                 "color" to "#ee6666",
                 "position" to "identity",
                 "geom" to "point"
@@ -66,46 +61,39 @@ internal class LayerWrapperTest {
 
     @Test
     fun testComplex() {
-        /*
-        val dataset: NamedData = mapOf(
+
+        val dataset = mapOf(
             "TIME_T" to listOf(1.0F, 2.0F, 3.0F),
             "VAL_V" to listOf(19921.44, 42423.324, 34242.1987)
         )
 
-         */
-        val layer = Layer(
-            emptyDataset,
-            BAR,
-            mapOf(
-                X to ScaledUnspecifiedDefaultPositionalMapping(
-                    X,
-                    ColumnScaledUnspecifiedDefault(
-                        column<Float>("TIME_T")
-                    ),
-                    typeOf<Float>()
-                ),
-                Y to ScaledPositionalUnspecifiedMapping(
-                    Y,
-                    ColumnScaledPositionalUnspecified(
-                        column<Double>("VAL_V"),
-                        PositionalContinuousUnspecifiedScale()
-                    ),
-                    typeOf<Double>()
-                ),
-                FILL to ScaledNonPositionalMapping(
-                    FILL,
-                    ColumnScaledNonPositional(
-                        column<String>("BAFGA"),
-                        NonPositionalCategoricalScale<String, Color>(
-                            null,
-                            rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY),
-                            //null,
-                        ),
-                    ),
-                    typeOf<String>(),
-                    //typeOf<Color>()
-                )
+
+        val mappings: Map<AesName, Mapping> = mapOf(
+            X to PositionalMapping<Float>(
+                X,
+                "TIME_T",
+                LetsPlotPositionalMappingParameters()
             ),
+            Y to PositionalMapping<Double>(
+                Y,
+                "VAL_V",
+                LetsPlotPositionalMappingParameters()
+            ),
+            FILL to NonPositionalMapping(
+                FILL,
+                "BAFGA",
+                LetsPlotNonPositionalMappingParameters(NonPositionalCategoricalScale<String, Color>(
+                    null,
+                    rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY),
+                    //null,
+                ))
+            )
+        )
+
+        val layer = Layer(
+            1,
+            BAR,
+            mappings,
             mapOf(
                 COLOR to NonPositionalSetting<Color>(
                     COLOR,
@@ -121,7 +109,7 @@ internal class LayerWrapperTest {
             )
         )
 
-        val wrappedLayer = LayerWrapper(layer, false)
+        val wrappedLayer = LayerWrapper(layer, false,dataset, mappings)
 
         assertEquals(
             mapOf(
@@ -132,7 +120,9 @@ internal class LayerWrapperTest {
                 ),
                 "sampling" to "none",
                 "stat" to "identity",
-                "data" to mapOf<String, Any>(),
+                "data" to dataset.map {
+                    it.key to it.value.map { it.toDouble() }
+                }.toMap(),
                 "width" to 5.0,
                 "color" to "#ee6666",
                 "position" to mapOf(
@@ -159,26 +149,6 @@ internal class LayerWrapperTest {
             wrappedLayer.toSpec()
         )
 
-        /*
-        LayerAssert.assertThat(wrappedLayer)
-            .aes("x", "TIME_T")
-            .aes("y", "VAL_V")
-            .aes("fill", "BAFGA")
-            .parameter("color", "red")
-            .parameter("width", 5.0)
-            .geom()
-            .kind(GeomKind.BAR)
-            .noMapping()
-        LayerAssert.assertThat(wrappedLayer)
-            .stat()
-            .kind(StatKind.IDENTITY)
-
-        LayerAssert.assertThat(wrappedLayer)
-            .position(PosKind.DODGE)
-            .parameter("width", 0.9)
-
-
-         */
     }
 
     @Test
@@ -187,22 +157,23 @@ internal class LayerWrapperTest {
             "v1" to List(100) {it},
             "v2" to List(100) {it}
         )
-        val layer = Layer(
-            NamedData(data.toDataFrame()),
-            BAR,
-            mapOf(
-                X to ScaledUnspecifiedDefaultPositionalMapping(
-                    X, column<Int>("v1").scaled(), typeOf<Int>()
-                ),
-                Y to ScaledUnspecifiedDefaultPositionalMapping(
-                    Y, column<Int>("v2").scaled(), typeOf<Int>()
-                )
+        val mappings: Map<AesName, Mapping> = mapOf(
+            X to PositionalMapping<Int>(
+                X, "v1", LetsPlotPositionalMappingParameters()
             ),
+            Y to PositionalMapping<Int>(
+                Y, "v2", LetsPlotPositionalMappingParameters()
+            )
+        )
+        val layer = Layer(
+            1,
+            BAR,
+            mappings,
             mapOf(),
             mapOf()
         )
 
-        val wrappedLayer = LayerWrapper(layer, false)
+        val wrappedLayer = LayerWrapper(layer, false, data, mappings)
         assertEquals(
             mapOf(
                 "mapping" to mapOf(

@@ -1,5 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.series
-
+/*
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
@@ -35,5 +35,7 @@ public data class Series(
     val settings: Map<AesName, Setting>,
     val label: String,
 )
+
+ */
 
 

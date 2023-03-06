@@ -19,7 +19,7 @@ internal var labels: List<String>? = null,
 @PublishedApi
 internal var format: String? = null,
     // todo expand & trans
-) : SelfInvocationContext {
+) : SelfInvocationContext, ScaleParameters {
 
 
     /**

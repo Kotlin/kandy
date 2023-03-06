@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
 
 public class PointsContext(parent: LayerCollectorContext)
-    : LayerContext(parent), WithX, WithY, WithColor, WithSymbol, WithSize, WithAlpha
+    : LayerContext(parent), WithX, WithY, WithColor, WithSymbol, WithSize, WithAlpha, WithFillColor
 {
     /*
     // FILL SHAPES only

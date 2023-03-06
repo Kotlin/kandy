@@ -74,13 +74,15 @@ public data class ScaleCategoricalColorBrewer<DomainType>(
 }
 
 
-public inline fun <reified DomainType> continuousColorBrewer(
+public inline fun <reified DomainType : Comparable<DomainType>> continuousColorBrewer(
     type: BrewerType?,
-    domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
+    domainLimits: ClosedRange<DomainType>? = null,
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorBrewer<DomainType> = ScaleContinuousColorBrewer(
-    domainLimits?.toList(), type, nullValue, transform
+    domainLimits?.let {
+        listOf(it.start, it.endInclusive)
+    }, type, nullValue, transform
 )
 
 public inline fun <reified DomainType> categoricalColorBrewer(
