@@ -4,15 +4,15 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat
 /*
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 
 public sealed interface Stat<T> {
     public val name: String
 }
 
 @PublishedApi
-internal inline fun <reified T> Stat<T>.toColumnPointer(): ColumnPointer<T> {
-    return ColumnPointer(name)
+internal inline fun <reified T> Stat<T>.toColumnReference(): ColumnReference<T> {
+    return ColumnReference(name)
 }
 
 // TODO TYPES

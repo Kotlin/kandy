@@ -83,9 +83,9 @@ public class ContourFilledContext(
 
 <<<<<<< HEAD
 inline fun <reified TX, reified TY, reified TZ> PlotContext.contourFilled(
-    sourceX: ColumnPointer<TX>,
-    sourceY: ColumnPointer<TY>,
-    sourceZ: ColumnPointer<TZ>,
+    sourceX: ColumnReference<TX>,
+    sourceY: ColumnReference<TY>,
+    sourceZ: ColumnReference<TZ>,
 =======
 public inline fun <reified TX, reified TY, reified TZ> PlotContext.contourFilled(
     sourceX: DataSource<TX>,

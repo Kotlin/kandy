@@ -147,8 +147,8 @@ public class ViolinContext(
 
 <<<<<<< HEAD
 inline fun <reified T, reified R> PlotContext.violin(
-    sourceX: ColumnPointer<T>,
-    sourceY: ColumnPointer<R>,
+    sourceX: ColumnReference<T>,
+    sourceY: ColumnReference<R>,
 =======
 public inline fun <reified T, reified R> PlotContext.violin(
     sourceX: DataSource<T>,
@@ -178,7 +178,7 @@ public inline fun <reified T, reified R> PlotContext.violin(
 
 <<<<<<< HEAD
 inline fun <reified T> PlotContext.violin(
-    sourceY: ColumnPointer<T>,
+    sourceY: ColumnReference<T>,
 =======
 public inline fun <reified T> PlotContext.violin(
     sourceY: DataSource<T>,

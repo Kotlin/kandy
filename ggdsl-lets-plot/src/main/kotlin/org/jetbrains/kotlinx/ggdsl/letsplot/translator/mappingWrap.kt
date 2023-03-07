@@ -10,16 +10,24 @@ import org.jetbrains.letsPlot.asDiscrete
 
 internal fun Mapping.wrap(): Pair<String, Any> {
     return when (this) {
-        is NonScalablePositionalMapping<*> -> aes.name to source.name
-        is NonScalableNonPositionalMapping<*> -> aes.name to source.name
+        is NonScalablePositionalMapping<*> -> aes.name to source.name()
+        is NonScalableNonPositionalMapping<*> -> aes.name to source.name()
         is ScaledMapping<*> -> when (this.columnScaled.scale) {
             is CategoricalScale -> aes.name to asDiscrete(
-                columnScaled.source.name,
+                columnScaled.source.name(),
                 order = (scaleParameters as? PositionalParameters<*>)?.orderBy?.order,
                 orderBy = (scaleParameters as? PositionalParameters<*>)?.orderBy?.name
             )
 
-            else -> aes.name to columnScaled.source.name
+            else -> aes.name to columnScaled.source.name()
         }
+    }
+}
+
+internal fun Mapping.columnName(): String {
+    return when (this) {
+        is NonScalablePositionalMapping<*> -> source.name()
+        is NonScalableNonPositionalMapping<*> -> source.name()
+        is ScaledMapping<*> -> columnScaled.source.name()
     }
 }

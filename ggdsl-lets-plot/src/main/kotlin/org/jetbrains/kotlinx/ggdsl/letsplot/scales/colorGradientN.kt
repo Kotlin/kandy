@@ -4,21 +4,19 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales
 
-import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedPair
 import org.jetbrains.kotlinx.ggdsl.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
-@Serializable
+// todo categorical
+
+//@Serializable
 public data class ScaleContinuousColorGradientN<DomainType>(
-    val domainLimits: Pair<TypedValue, TypedValue>?,
+    val domainLimits: Pair<DomainType & Any, DomainType & Any>?,
     val rangeColors: List<Color>,
-    override val nullValue: TypedValue?,
+    override val nullValue: Color?,
     override val transform: Transformation?
-) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>
+) : ContinuousScale<Color>, CustomNonPositionalScale<DomainType, Color>
 
 /**
  * Creates smooth color gradient between multiple colors.
@@ -34,19 +32,19 @@ public inline fun <reified DomainType> continuousColorGradientN(
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradientN<DomainType> = ScaleContinuousColorGradientN(
-    domainLimits?.typedPair(), rangeColors, nullValue?.typed(), transform
+    domainLimits, rangeColors, nullValue, transform
 )
 
-@Serializable
+//@Serializable
 public data class ScaleContinuousColorGradient2<DomainType>(
-    val domainLimits: Pair<TypedValue, TypedValue>? = null,
+    val domainLimits: Pair<DomainType, DomainType>? = null,
     val low: Color,
     val mid: Color,
     val high: Color,
     val midpoint: Double,
-    override val nullValue: TypedValue?,
+    override val nullValue: Color?,
     override val transform: Transformation?
-) : ContinuousScale, CustomNonPositionalScale<DomainType, Color>
+) : ContinuousScale<Color>, CustomNonPositionalScale<DomainType, Color>
 
 /**
  * Creates diverging color gradient (low-mid-high) for color aesthetic.
@@ -66,5 +64,5 @@ public inline fun <reified DomainType> continuousColorGradient2(
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradient2<DomainType> = ScaleContinuousColorGradient2(
-    domainLimits?.typedPair(), low, mid, high, midpoint, nullValue?.typed(), transform
+    domainLimits, low, mid, high, midpoint, nullValue, transform
 )

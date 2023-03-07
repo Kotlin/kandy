@@ -117,9 +117,9 @@ public class ContourContext(
 
 <<<<<<< HEAD
 inline fun <reified TX, reified TY, reified TZ> PlotContext.contour(
-    sourceX: ColumnPointer<TX>,
-    sourceY: ColumnPointer<TY>,
-    sourceZ: ColumnPointer<TZ>,
+    sourceX: ColumnReference<TX>,
+    sourceY: ColumnReference<TY>,
+    sourceZ: ColumnReference<TZ>,
 =======
 public inline fun <reified TX, reified TY, reified TZ> PlotContext.contour(
     sourceX: DataSource<TX>,

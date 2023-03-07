@@ -92,7 +92,7 @@ public class QQLineContext(
 
 <<<<<<< HEAD
 inline fun <reified T> PlotContext.qqLine(
-    source: ColumnPointer<T>,
+    source: ColumnReference<T>,
 =======
 public inline fun <reified T> PlotContext.qqLine(
     source: DataSource<T>,

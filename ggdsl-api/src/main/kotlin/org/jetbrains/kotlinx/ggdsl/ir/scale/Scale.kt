@@ -4,8 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
-import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
-
 /**
  * Scale base interface. Scale wraps a function that converts
  * a value from a data source into some geometric value (value of aesthetic attribute).
@@ -16,8 +14,8 @@ public sealed interface Scale
  * Continuous scale interface. Continuous scale wraps a function
  * that acts from one segment to another.
  */
-public interface ContinuousScale : Scale {
-    public val nullValue: TypedValue?
+public interface ContinuousScale<RangeType> : Scale {
+    public val nullValue: RangeType?
     public val transform: Transform?
 }
 

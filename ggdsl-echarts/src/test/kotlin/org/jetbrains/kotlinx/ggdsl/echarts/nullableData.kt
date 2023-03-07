@@ -1,7 +1,10 @@
 package org.jetbrains.kotlinx.ggdsl.echarts
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
+import org.jetbrains.kotlinx.ggdsl.dsl.invoke
+import org.jetbrains.kotlinx.ggdsl.dsl.plot
+import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.x
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.y
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.area
@@ -21,11 +24,11 @@ class NullableDataTest {
         "colors" to listOf("red", "blue", "yellow", null, "purple")
     )
 
-    private val days = columnPointer<String?>("days")
-    private val nums = columnPointer<Int?>("nums")
-    private val nums2 = columnPointer<Int?>("nums2")
-    private val colors = columnPointer<String?>("colors")
-    private val sizes = columnPointer<Double?>("sizes")
+    private val days = column<String?>("days")
+    private val nums = column<Int?>("nums")
+    private val nums2 = column<Int?>("nums2")
+    private val colors = column<String?>("colors")
+    private val sizes = column<Double?>("sizes")
 
     @Test
     fun `line with nulls`() {

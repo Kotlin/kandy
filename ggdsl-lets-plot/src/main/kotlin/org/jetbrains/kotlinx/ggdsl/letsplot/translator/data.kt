@@ -1,30 +1,29 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import kotlinx.datetime.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.MERGED_GROUPS
 import kotlin.reflect.typeOf
 
-internal fun LazyGroupedDataInterface.mergedKeys(): List<String> = buildList {
-    val map = this@mergedKeys.origin.nameToValues
-    val size = map.values.first().values.size
+internal fun GroupedData.mergedKeys(): List<String> = buildList {
+    val dataFrame = origin.dataFrame
+    val size = dataFrame.rowsCount()
     for (i in 0 until size) {
         add(keys.joinToString("$") {
-            map[it]!!.values[i].toString()
+            dataFrame[it][i].toString()
         })
     }
 }
 
 internal object DateTimeMaster {
-    internal fun postProcess(data: NamedDataInterface): Map<String, List<*>> {
-        return data.nameToValues.map { (key, tList) ->
-            val type = tList.kType
-            val values = tList.values
+    internal fun postProcess(data: NamedData): Map<String, List<*>> {
+        return data.dataFrame.columns().map {
+            val type = it.type()
+            val values = it.values()
             // TODO!!!
-            key to (when (type) {
+            it.name() to (when (type) {
                 typeOf<LocalDate>(), typeOf<LocalDate?>() -> values.map {
                     (it as? LocalDate)?.atStartOfDayIn((TimeZone.currentSystemDefault()))
                 }
@@ -35,16 +34,15 @@ internal object DateTimeMaster {
                     (time as? LocalTime)?.toMillisecondOfDay()
                 }
                 else -> values
-            })
+            }).toList()
         }.toMap()
     }
 }
 
 internal fun TableData.wrap(): Map<String, List<*>> {
     return (when (this) {
-        is NamedDataInterface -> DateTimeMaster.postProcess(this)
-        is LazyGroupedDataInterface -> DateTimeMaster.postProcess(origin) + (MERGED_GROUPS to mergedKeys())
-        is CountedGroupedDataInterface -> toLazy().wrap()
+        is NamedData -> DateTimeMaster.postProcess(this)
+        is GroupedData -> DateTimeMaster.postProcess(origin) + (MERGED_GROUPS to mergedKeys())
         else -> TODO()
     })
 }

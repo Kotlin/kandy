@@ -1,7 +1,11 @@
 package org.jetbrains.kotlinx.ggdsl.util.serialization
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
+import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
+import org.jetbrains.kotlinx.ggdsl.dsl.invoke
+import org.jetbrains.kotlinx.ggdsl.dsl.plot
+import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
 import org.jetbrains.kotlinx.ggdsl.letsplot.translator.toLetsPlot
@@ -15,13 +19,13 @@ import kotlin.test.assertEquals
 internal class SpecSerializationTest {
     @Test
     fun testSimpleCase() = doTest(
-        plot(dataOf {
-            "origin" to listOf("x", "y", "z")
+        dataFrameOf(
+            "origin" to listOf("x", "y", "z"),
             "mpg" to listOf(1.3, 8.1, 5.0)
-        }) {
-            x(columnPointer<String>("origin"))
+        ).plot {
+            x(column<String>("origin"))
             points {
-                y(columnPointer<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
+                y(column<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
                 symbol(Symbol.CIRCLE_FILLED)
                 fillColor(Color.RED)
             }

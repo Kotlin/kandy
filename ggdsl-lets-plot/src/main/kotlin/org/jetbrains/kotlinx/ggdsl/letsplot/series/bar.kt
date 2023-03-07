@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContextMutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableBindingContextInterfaceMutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableDataContext
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BarContextInterface
@@ -33,7 +33,7 @@ public class BarGatheringContextImmutable(parent: NamedDataPlotContext, position
     GatheringWithBorderLineContextImmutable(parent, position), BarGatheringContextInterfaceImmutable
 
 public class BarSeriesPlotContext(
-    override val data: NamedDataInterface,
+    override val data: NamedData,
     override val position: Position
 ) : SeriesPlotWithBorderLineContext(data, position), BarGatheringContextInterfaceImmutable
 
@@ -56,7 +56,7 @@ public open class BarSeriesContextMutable(parent: TableBindingContextInterfaceMu
     SeriesWithBorderLineContextImmutable(parent), BarContextInterface
 
 public inline fun barPlot(
-    dataset: NamedDataInterface,
+    dataset: NamedData,
     position: Position = Position.Identity,
     block: BarSeriesPlotContext.() -> Unit,
 ): Plot {

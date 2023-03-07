@@ -1,5 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.util.serialization
-
+/*
 import kotlinx.serialization.PolymorphicSerializer
 import kotlinx.serialization.modules.*
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
@@ -55,3 +55,6 @@ public val letsPlotModules: SerializersModule
             subclass(LetsPlotGeom::class)
         }
     }
+
+
+ */

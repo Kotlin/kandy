@@ -4,10 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
-import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
-import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
-
 /**
  * Positional scale interface. Positional scale is used in case
  * of mapping to positional aesthetic attribute.
@@ -25,12 +21,12 @@ public sealed interface PositionalScale<DomainType> : Scale {
  * @param DomainType the type of the domain.
  * @param limits the limits of the domain.
  */
-@Serializable
+//@Serializable
 public data class PositionalContinuousScale<DomainType>(
-    val limits: Pair<TypedValue, TypedValue>?,
-    override val nullValue: TypedValue?,
+    val limits: Pair<DomainType & Any, DomainType & Any>?,
+    override val nullValue: DomainType?,
     override val transform: PositionalTransform?,
-) : ContinuousScale, PositionalScale<DomainType>
+) : ContinuousScale<DomainType>, PositionalScale<DomainType>
 
 /**
  * Positional categorical scale.
@@ -38,8 +34,8 @@ public data class PositionalContinuousScale<DomainType>(
  * @param DomainType the type of the domain.
  * @param categories the list of the domain categories.
  */
-@Serializable
+//@Serializable
 public data class PositionalCategoricalScale<DomainType>(
-    val categories: TypedList?,
+    val categories: List<DomainType>?,
     //override val nullValue: TypedValue?,
 ) : CategoricalScale, PositionalScale<DomainType>

@@ -18,17 +18,17 @@ import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 import kotlin.reflect.typeOf
 
 @Suppress("UNCHECKED_CAST")
 internal fun <T> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
-    return (this[key] as? NonPositionalSetting<*>)?.value?.value as? T
+    return (this[key] as? NonPositionalSetting<*>)?.value as? T
 }
 
 internal class Parser(plot: Plot) {
-    private val data = (plot.dataset as NamedDataInterface).nameToValues
+    private val dataFrame = (plot.dataset as NamedData).dataFrame
     private val globalMappings = plot.globalMappings
     private val layers = plot.layers
     private val features = plot.features
@@ -59,19 +59,19 @@ internal class Parser(plot: Plot) {
                     X -> {
                         xAxis = mapping.toAxis()
                         val na = mapping.getNA()
-                        source[mapping.getId()] = if (na != null)
-                            data[mapping.getId()]!!.values.map { it ?: na }
+                        source[mapping.getId()] = (if (na != null)
+                            dataFrame[mapping.getId()].values().map { it ?: na }
                         else
-                            data[mapping.getId()]!!.values
+                            dataFrame[mapping.getId()].values()).toList()
                     }
 
                     Y -> {
                         yAxis = mapping.toAxis()
                         val na = mapping.getNA()
-                        source[mapping.getId()] = if (na != null)
-                            data[mapping.getId()]!!.values.map { it ?: na }
+                        source[mapping.getId()] = (if (na != null)
+                            dataFrame[mapping.getId()].values().map { it ?: na }
                         else
-                            data[mapping.getId()]!!.values
+                            dataFrame[mapping.getId()].values()).toList()
                     }
                 }
             }
@@ -82,9 +82,9 @@ internal class Parser(plot: Plot) {
                 if (mapping is ScaledMapping<*>) {
                     if (mapping.domainType.isMarkedNullable && mapping.getNA() != null) {
                         val na = mapping.getNA()!!
-                        source.getOrPut(mapping.getId()) { data[mapping.getId()]!!.values.map { it ?: na } }
+                        source.getOrPut(mapping.getId()) { dataFrame[mapping.getId()].values().map { it ?: na } }
                     } else {
-                        source.getOrPut(mapping.getId()) { data[mapping.getId()]!!.values }
+                        source.getOrPut(mapping.getId()) { dataFrame[mapping.getId()].values().toList() }
                     }
                     when {
                         (xAxis == null && aes == X) -> xAxis = mapping.toAxis()
@@ -95,8 +95,8 @@ internal class Parser(plot: Plot) {
                                 mapping.columnScaled.scale.toVisualMap(
                                     aes,
                                     sourceId, index,
-                                    (layer.dataset as? NamedDataInterface)?.nameToValues?.get(sourceId)?.values
-                                        ?: data[sourceId]?.values,
+                                    (layer.dataset as? NamedData)?.dataFrame?.get(sourceId)?.values()?.toList()
+                                        ?: dataFrame[sourceId].values().toList(),
                                     visualMaps.size,
                                     mapping.domainType
                                 )
@@ -141,11 +141,11 @@ internal class Parser(plot: Plot) {
         )
     }
 
-    private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.name
+    private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.name()
 
     private fun ScaledMapping<*>.getNA(): Any? = when (val scale = this.columnScaled.scale) {
-        is PositionalContinuousScale<*> -> scale.nullValue?.value
-        is NonPositionalContinuousScale<*, *> -> scale.nullValue?.value
+        is PositionalContinuousScale<*> -> scale.nullValue
+        is NonPositionalContinuousScale<*, *> -> scale.nullValue
         else -> null
     }
 
@@ -161,8 +161,8 @@ internal class Parser(plot: Plot) {
         val type: String = when (scaleMap) { // TODO match Mapping
             is PositionalCategoricalScale<*> -> AxisType.CATEGORY
             is PositionalContinuousScale<*> -> {
-                min = scaleMap.limits?.first?.value?.toString()
-                max = scaleMap.limits?.second?.value?.toString()
+                min = scaleMap.limits?.first?.toString()
+                max = scaleMap.limits?.second?.toString()
                 AxisType.VALUE
             }
 

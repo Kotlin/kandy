@@ -1,8 +1,8 @@
-package org.jetbrains.kotlinx.ggdsl.dataframe
+package org.jetbrains.kotlinx.ggdsl.dsl
 
+import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.dataframe.DataFrame
 
 /**
  * Returns a new typed [ColumnReference] to the column with the receiver [String] as a name and given type.

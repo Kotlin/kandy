@@ -4,13 +4,13 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.GroupedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContextMutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.validate
+import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.GroupBy
+import org.jetbrains.kotlinx.dataframe.api.toDataFrame
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 
 /**
  * Returns a new [Plot].
@@ -20,7 +20,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
  *
  * @param dataset plot dataset.
  */
-public inline fun plot(dataset: NamedDataInterface, block: NamedDataPlotContext.() -> Unit): Plot {
+public inline fun plot(dataset: NamedData, block: NamedDataPlotContext.() -> Unit): Plot {
     return NamedDataPlotContext(dataset).apply(block).toPlot().also {
         it.validate()
     }
@@ -35,7 +35,7 @@ public inline fun plot(dataset: NamedDataInterface, block: NamedDataPlotContext.
  * @param dataset plot dataset.
  */
 public inline fun plot(dataset: Map<String, List<*>>, block: NamedDataPlotContext.() -> Unit): Plot {
-    return NamedDataPlotContext(NamedData.fromUntyped(dataset)).apply(block).toPlot().also {
+    return NamedDataPlotContext(NamedData(dataset.toDataFrame())).apply(block).toPlot().also {
         it.validate()
     }
 }
@@ -48,7 +48,7 @@ public inline fun plot(dataset: Map<String, List<*>>, block: NamedDataPlotContex
  *
  * @param dataset plot dataset.
  */
-public inline fun plot(dataset: GroupedDataInterface, block: GroupedDataPlotContext.() -> Unit): Plot {
+public inline fun plot(dataset: GroupedData, block: GroupedDataPlotContext.() -> Unit): Plot {
     return GroupedDataPlotContext(dataset).apply(block).toPlot().also {
         it.validate()
     }
@@ -66,4 +66,12 @@ public inline fun plot(block: PlotContextMutable.() -> Unit): Plot {
     return PlotContextMutable().apply(block).toPlot().also {
         it.validate()
     }
+}
+
+public fun <T> DataFrame<T>.plot(block: DataFramePlotContext<T>.() -> Unit): Plot {
+    return DataFramePlotContext<T>(this).apply(block).toPlot()
+}
+
+public fun <T, G> GroupBy<T, G>.plot(block: GroupedDataFrameContext<T, G>.() -> Unit): Plot {
+    return GroupedDataFrameContext(this).apply(block).toPlot()
 }

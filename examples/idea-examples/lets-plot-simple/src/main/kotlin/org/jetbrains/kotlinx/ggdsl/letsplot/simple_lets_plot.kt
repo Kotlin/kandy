@@ -2,7 +2,6 @@ package org.jetbrains.kotlinx.ggdsl.letsplot
 
 import org.jetbrains.kotlinx.ggdsl.dsl.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import org.jetbrains.kotlinx.ggdsl.dsl.column.invoke
 import org.jetbrains.kotlinx.ggdsl.letsplot.export.save
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bars
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.line

@@ -4,8 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.bindings
 
-import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
 
 /**
@@ -16,7 +15,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.*
  * @property scale applying scale.
  */
 public sealed interface ColumnScaled<DomainType> {
-    public val source: ColumnPointer<DomainType>
+    public val source: ColumnReference<DomainType>
     public val scale: Scale
 }
 
@@ -27,9 +26,9 @@ public sealed interface ColumnScaled<DomainType> {
  * @property source the source to which the scale is applied.
  * @property scale applying unspecified default scale.
  */
-@Serializable
+//////@Serializable
 public data class ColumnScaledUnspecifiedDefault<DomainType>(
-    override val source: ColumnPointer<DomainType>,
+    override val source: ColumnReference<DomainType>,
 ) : ColumnScaled<DomainType> {
     override val scale: DefaultUnspecifiedScale = DefaultUnspecifiedScale
 }
@@ -41,9 +40,9 @@ public data class ColumnScaledUnspecifiedDefault<DomainType>(
  * @property source the source to which the scale is applied.
  * @property scale applying positional default scale.
  */
-@Serializable
+//////@Serializable
 public data class ColumnScaledPositionalUnspecified<DomainType>(
-    override val source: ColumnPointer<DomainType>,
+    override val source: ColumnReference<DomainType>,
     override val scale: PositionalUnspecifiedScale
 ) : ColumnScaled<DomainType>
 
@@ -54,9 +53,9 @@ public data class ColumnScaledPositionalUnspecified<DomainType>(
  * @property source the source to which the scale is applied.
  * @property scale applying non-positional default scale.
  */
-@Serializable
+//////@Serializable
 public data class ColumnScaledNonPositionalUnspecified<DomainType>(
-    override val source: ColumnPointer<DomainType>,
+    override val source: ColumnReference<DomainType>,
     override val scale: NonPositionalUnspecifiedScale
 ) : ColumnScaled<DomainType>
 
@@ -67,9 +66,9 @@ public data class ColumnScaledNonPositionalUnspecified<DomainType>(
  * @property source the source to which the scale is applied.
  * @property scale applying positional scale.
  */
-@Serializable
+//////@Serializable
 public data class ColumnScaledPositional<DomainType>(
-    override val source: ColumnPointer<DomainType>,
+    override val source: ColumnReference<DomainType>,
     override val scale: PositionalScale<DomainType>
 ) : ColumnScaled<DomainType>
 
@@ -80,8 +79,8 @@ public data class ColumnScaledPositional<DomainType>(
  * @property source the source to which the scale is applied.
  * @property scale applying non-positional scale.
  */
-@Serializable
+//////@Serializable
 public data class ColumnScaledNonPositional<DomainType, RangeType>(
-    override val source: ColumnPointer<DomainType>,
+    override val source: ColumnReference<DomainType>,
     override val scale: NonPositionalScale<DomainType, RangeType>
 ) : ColumnScaled<DomainType>

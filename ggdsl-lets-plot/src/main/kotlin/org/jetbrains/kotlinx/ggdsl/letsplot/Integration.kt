@@ -37,10 +37,10 @@ internal class Integration(
     override fun Builder.onLoaded() {
 
         onLoaded {
-            frontendContext = LetsPlot.setupNotebook("2.5.0", null) {
+            frontendContext = LetsPlot.setupNotebook("3.0.0", null) {
                 display(HTML(it), null)
             }
-            LetsPlot.apiVersion = "4.1.0"
+            LetsPlot.apiVersion = "4.2.0"
             display(HTML(frontendContext.getConfigureHtml()), null)
         }
 

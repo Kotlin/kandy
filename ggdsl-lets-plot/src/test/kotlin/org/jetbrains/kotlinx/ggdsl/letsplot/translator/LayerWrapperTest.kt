@@ -4,14 +4,13 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
-import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.toTyped
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
+import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
@@ -25,7 +24,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class LayerWrapperTest {
-    private val emptyDataset = NamedData(mapOf())
+    private val emptyDataset = NamedData(DataFrame.Empty)
     @Test
     fun testSimple() {
         val layer = Layer(
@@ -34,14 +33,14 @@ internal class LayerWrapperTest {
             mapOf(
                 FILL to ScaledUnspecifiedDefaultNonPositionalMapping<Int, Color>(
                     FILL,
-                    columnPointer<Int>("F").scaled(),
+                    column<Int>("F").scaled(),
                     typeOf<Int>()
                 )
             ),
             mapOf(
                 COLOR to NonPositionalSetting<Color>(
                     COLOR,
-                    Color.RED.typed()
+                    Color.RED
                 )
             ),
             mapOf()
@@ -81,14 +80,14 @@ internal class LayerWrapperTest {
                 X to ScaledUnspecifiedDefaultPositionalMapping(
                     X,
                     ColumnScaledUnspecifiedDefault(
-                        columnPointer<Float>("TIME_T")
+                        column<Float>("TIME_T")
                     ),
                     typeOf<Float>()
                 ),
                 Y to ScaledPositionalUnspecifiedMapping(
                     Y,
                     ColumnScaledPositionalUnspecified(
-                        columnPointer<Double>("VAL_V"),
+                        column<Double>("VAL_V"),
                         PositionalContinuousUnspecifiedScale()
                     ),
                     typeOf<Double>()
@@ -96,10 +95,10 @@ internal class LayerWrapperTest {
                 FILL to ScaledNonPositionalMapping(
                     FILL,
                     ColumnScaledNonPositional(
-                        columnPointer<String>("BAFGA"),
+                        column<String>("BAFGA"),
                         NonPositionalCategoricalScale<String, Color>(
                             null,
-                            rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY).typedList(),
+                            rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY),
                             //null,
                         ),
                     ),
@@ -110,11 +109,11 @@ internal class LayerWrapperTest {
             mapOf(
                 COLOR to NonPositionalSetting<Color>(
                     COLOR,
-                    Color.RED.typed()
+                    Color.RED
                 ),
-                WIDTH to NonPositionalSetting<Color>(
+                WIDTH to NonPositionalSetting<Double>(
                     WIDTH,
-                    5.0.typed()
+                    5.0
                 ),
             ),
             mapOf(
@@ -189,14 +188,14 @@ internal class LayerWrapperTest {
             "v2" to List(100) {it}
         )
         val layer = Layer(
-            NamedData(data.toTyped()),
+            NamedData(data.toDataFrame()),
             BAR,
             mapOf(
                 X to ScaledUnspecifiedDefaultPositionalMapping(
-                    X, columnPointer<Int>("v1").scaled(), typeOf<Int>()
+                    X, column<Int>("v1").scaled(), typeOf<Int>()
                 ),
                 Y to ScaledUnspecifiedDefaultPositionalMapping(
-                    Y, columnPointer<Int>("v2").scaled(), typeOf<Int>()
+                    Y, column<Int>("v2").scaled(), typeOf<Int>()
                 )
             ),
             mapOf(),

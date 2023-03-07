@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.util.serialization
 
+/*
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
@@ -72,3 +73,5 @@ public data class TypedValue(
     val kType: KType,
     val value: Any?
 )
+
+ */

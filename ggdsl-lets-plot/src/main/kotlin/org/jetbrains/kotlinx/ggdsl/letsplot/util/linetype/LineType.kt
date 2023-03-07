@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  *
  * TODO detailed?
  */
-@Serializable
+//@Serializable
 public data class LineType internal constructor(public val description: String, public val codeNumber: Int) {
     public companion object {
         public val BLANK: LineType = LineType("blank", 0)

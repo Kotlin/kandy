@@ -1,8 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.internal
 
-import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
+import org.jetbrains.kotlinx.dataframe.api.toDataFrame
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
-import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
 
 /**
  * Buffer type for creating a [TableData] dynamically, i.e. with dynamic adding columns.
@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
  * @property toTableData builds [TableData].
  */
 public interface MutableTableData {
-    public val map: MutableMap<String, TypedList>
+    public val map: MutableMap<String, List<*>>
 
     public fun toTableData(): TableData
 }
@@ -20,10 +20,10 @@ public interface MutableTableData {
  * Buffer type for creating a [NamedData] dynamically, i.e. with dynamic adding columns.
  */
 public open class MutableNamedData(
-    public override val map: MutableMap<String, TypedList> = mutableMapOf<String, TypedList>()
+    public override val map: MutableMap<String, List<*>> = mutableMapOf()
 ): MutableTableData {
     public override fun toTableData(): NamedData {
-        return NamedData(map.toMap())
+        return NamedData(map.toDataFrame())
     }
 }
 /*

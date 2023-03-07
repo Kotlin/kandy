@@ -49,8 +49,6 @@ allprojects {
 
 val published = listOf(
     "ggdsl-api",
-    "ggdsl-dataframe",
-    "ggdsl-dataframe-lets-plot",
     "ggdsl-echarts",
     "ggdsl-lets-plot",
     "ggdsl-util"

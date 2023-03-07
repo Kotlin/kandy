@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.util.SimpleValueWrapper
 /**
  * Text horizontal justification.
  */
-@Serializable
+//@Serializable
 public data class HorizontalJustification internal constructor(override val value: Double) : SimpleValueWrapper {
     public companion object {
         public val LEFT: HorizontalJustification = HorizontalJustification(0.0)
@@ -24,7 +24,7 @@ public data class HorizontalJustification internal constructor(override val valu
 /**
  * Text vertical justification.
  */
-@Serializable
+//@Serializable
 public data class VerticalJustification internal constructor(override val value: Double) : SimpleValueWrapper {
     public companion object {
         public val BOTTOM: VerticalJustification = VerticalJustification(0.0)

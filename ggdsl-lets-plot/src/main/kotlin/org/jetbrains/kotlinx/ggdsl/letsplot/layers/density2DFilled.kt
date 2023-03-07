@@ -129,8 +129,8 @@ public class Density2DFilledContext(
 
 <<<<<<< HEAD
 inline fun <reified T, reified R: Any> PlotContext.density2DFilled(
-    sourceX: ColumnPointer<T>,
-    sourceY: ColumnPointer<R>,
+    sourceX: ColumnReference<T>,
+    sourceY: ColumnReference<R>,
 =======
 public inline fun <reified T, reified R> PlotContext.density2DFilled(
     sourceX: DataSource<T>,
