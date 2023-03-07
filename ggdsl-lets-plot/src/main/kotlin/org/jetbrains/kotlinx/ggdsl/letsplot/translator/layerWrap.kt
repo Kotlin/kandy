@@ -43,6 +43,6 @@ internal fun Layer.wrap(
     freeScales.forEach { (_, freeScale) -> freeScale.wrap(featureBuffer) }
     mappings.forEach { (_, mapping) ->
         //todo group
-        featureBuffer.add(mapping.wrapScale(df[mapping.columnID].type(), false))
+        mapping.wrapScale(df[mapping.columnID].type(), false)?.let { featureBuffer.add(it) }
     }
 }

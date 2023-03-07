@@ -32,7 +32,7 @@ import org.jetbrains.letsPlot.export.ggsave
  */
 public fun Plot.save(
     filename: String,
-    scale: Number = 2,
+    scale: Number = 1,
     dpi: Number? = null,
     path: String? = null
 ): String = ggsave(toLetsPlot(), filename, scale, dpi, path)
@@ -58,7 +58,7 @@ public fun Plot.save(
  */
 public fun PlotGrid.save(
     filename: String,
-    scale: Number = 2,
+    scale: Number = 1,
     dpi: Number? = null,
     path: String? = null
 ): String = ggsave(wrap(), filename, scale, dpi, path)
@@ -84,7 +84,7 @@ public fun PlotGrid.save(
  */
 public fun PlotBunch.save(
     filename: String,
-    scale: Number = 2,
+    scale: Number = 1,
     dpi: Number? = null,
     path: String? = null
 ): String = ggsave(wrap(), filename, scale, dpi, path)

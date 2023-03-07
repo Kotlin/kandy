@@ -4,7 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.dataframe.size
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.Y
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BoxplotContext
 
 @PublishedApi
 internal val BOXPLOT: LetsPlotGeom = LetsPlotGeom("boxplot")
@@ -102,3 +106,10 @@ public inline fun LayerCollectorContextMutable.boxplot(block: BoxplotContextMuta
 
 
  */
+
+public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
+    // todo letsplot fix
+    addLayer(BoxplotContext(this).apply(block).apply {
+        addPositionalMapping(Y, List(datasetHandler.buffer.size().nrow) {null}, null, null)
+    }, BOXPLOT)
+}

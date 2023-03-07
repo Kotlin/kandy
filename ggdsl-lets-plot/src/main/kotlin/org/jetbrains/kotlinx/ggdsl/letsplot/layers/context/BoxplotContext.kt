@@ -1,5 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
+
+public class BoxplotContext(parent: LayerCollectorContext)
+    : LayerWithBorderLineContext(parent), WithX, WithAlpha, WithFillColor, WithWidth,
+    WithLower, WithUpper, WithMiddle, WithYMin, WithYMax, WithFatten
+
 /*import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable

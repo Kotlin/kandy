@@ -16,7 +16,7 @@ public sealed interface Mapping {
     public val aes: AesName
     public val columnID: String
 
-    public val parameters: MappingParameters
+    public val parameters: MappingParameters?
 }
 /*
 public data class NonScalablePositionalMapping<DomainType>(
@@ -56,7 +56,7 @@ public sealed interface ScaledMapping<DomainType> : Mapping {
 public data class PositionalMapping<DomainType>(
     override val aes: AesName,
     override val columnID: String,
-    override val parameters: PositionalMappingParameters<DomainType>
+    override val parameters: PositionalMappingParameters<DomainType>?
 ) : Mapping
 
 /**
@@ -69,5 +69,5 @@ public data class PositionalMapping<DomainType>(
 public data class NonPositionalMapping<DomainType, RangeType>(
     override val aes: AesName,
     override val columnID: String,
-    override val parameters: NonPositionalMappingParameters<DomainType, RangeType>
+    override val parameters: NonPositionalMappingParameters<DomainType, RangeType>?
 ) : Mapping

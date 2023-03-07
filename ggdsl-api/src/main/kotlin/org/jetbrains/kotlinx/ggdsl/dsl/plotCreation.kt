@@ -18,7 +18,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.Plot
  *
  * @param dataset plot dataset.
  */
-public inline fun plot(dataset: Map<String, List<*>>, block: DataFramePlotContext<*>.() -> Unit): Plot {
+public inline fun plot(dataset: Map<String, List<*>> = mapOf(), block: DataFramePlotContext<*>.() -> Unit): Plot {
     return DataFramePlotContext(dataset.toDataFrame()).apply(block).toPlot()
 }
 /*

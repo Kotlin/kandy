@@ -7,29 +7,40 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.internal
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 
 
-public val X: AesName = AesName("x")
+internal val X: AesName = AesName("x")
 
-public val Y: AesName = AesName("y")
+@PublishedApi
+internal val Y: AesName = AesName("y")
 
-public val Z: AesName = AesName("z")
+internal val Z: AesName = AesName("z")
 
-public val COLOR: AesName = AesName("color")
+internal val COLOR: AesName = AesName("color")
 
-public val FILL: AesName = AesName("fill")
+internal val FILL: AesName = AesName("fill")
 
-public val SHAPE: AesName = AesName("shape")
+internal val SHAPE: AesName = AesName("shape")
 
-public val SIZE: AesName = AesName("size")
+internal val SIZE: AesName = AesName("size")
 
-public val WIDTH: AesName = AesName("width")
+internal val WIDTH: AesName = AesName("width")
 
-public val ALPHA: AesName = AesName("alpha")
+internal val ALPHA: AesName = AesName("alpha")
 
-public val LINE_TYPE: AesName = AesName("linetype")
+internal val LINE_TYPE: AesName = AesName("linetype")
 
 internal val LOWER = AesName("lower")
 
 internal val UPPER = AesName("upper")
+
+internal val MIDDLE = AesName("middle")
+
+internal val Y_MIN = AesName("ymin")
+
+internal val Y_MAX = AesName("ymax")
+
+internal val FATTEN = AesName("fatten")
+
+
 /*
 public class UpperAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
     override val name: AesName = UPPER

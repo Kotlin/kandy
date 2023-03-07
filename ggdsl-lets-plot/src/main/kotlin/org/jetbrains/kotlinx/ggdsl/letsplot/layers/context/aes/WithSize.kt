@@ -3,7 +3,6 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotNonPositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.SIZE
 
@@ -11,7 +10,7 @@ public interface WithSize : BindingContext {
     public var size: Double?
         get() = null
         set(value) {
-            bindingCollector.settings[SIZE] = NonPositionalSetting(SIZE, value)
+            addNonPositionalSetting(SIZE, value)
         }
     public fun <T> size(
         column: ColumnReference<T>,
