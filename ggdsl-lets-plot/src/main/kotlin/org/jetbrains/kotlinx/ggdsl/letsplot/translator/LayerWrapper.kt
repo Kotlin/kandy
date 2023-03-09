@@ -22,11 +22,12 @@ internal class LayerWrapper internal constructor(
     private val layer: Layer, addGroups: Boolean,
     dataset: Map<String, List<*>>?,
     mappings:  Map<AesName, Mapping>,
+    groupKeys: List<String>?,
 ) :
     LayerBase(
         data = dataset,
         // todo group
-        mapping = Options(mappings.map { (_, mapping) -> mapping.wrap(false) }.toMap().toMutableMap().apply {
+        mapping = Options(mappings.map { (_, mapping) -> mapping.wrap(groupKeys) }.toMap().toMutableMap().apply {
             if (addGroups) {
                 this[GROUP.name] = MERGED_GROUPS
             }

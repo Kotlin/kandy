@@ -5,8 +5,10 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.toDataFrame
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.DataFramePlotContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.GroupByPlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 
 
@@ -52,8 +54,12 @@ public inline fun plot(block: PlotContextMutable.() -> Unit): Plot {
 
  */
 
-public fun <T> DataFrame<T>.plot(block: DataFramePlotContext<T>.() -> Unit): Plot {
+public inline fun <T> DataFrame<T>.plot(block: DataFramePlotContext<T>.() -> Unit): Plot {
     return DataFramePlotContext<T>(this).apply(block).toPlot()
+}
+
+public inline fun <T, G> GroupBy<T, G>.plot(block: GroupByPlotContext<T, G>.() -> Unit): Plot {
+    return GroupByPlotContext<T, G>(this).apply(block).toPlot()
 }
 
 /*

@@ -8,12 +8,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
-import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
 
 /**
  * Internal collector of mappings and settings.
@@ -33,7 +31,6 @@ public class BindingCollector() {
  *
  * @property bindingCollector [BindingCollector] of this context.
  */
-
 public interface BaseContext {
     public val plotContext: PlotContext
     public val datasetIndex: Int
@@ -70,6 +67,13 @@ public interface LayerCollectorContext : BaseContext {
     }
 }
 
+public class GroupedContext(
+    override val datasetIndex: Int,
+    override val plotContext: LayerPlotContext
+): LayerCollectorContext {
+    override val layers: MutableList<Layer> = plotContext.layers
+}
+
 public interface PlotContext : BindingContext {
     public val datasetHandlers: MutableList<DatasetHandler>
     public val features: MutableMap<FeatureName, PlotFeature>
@@ -80,7 +84,7 @@ public interface LayerPlotContext : LayerCollectorContext, PlotContext {
     // todo hide
     public override fun toPlot(): Plot {
         return Plot(
-            datasetHandlers.map { NamedData(it.buffer) },
+            datasetHandlers.map { it.data() },
             layers,
             bindingCollector.mappings,
             features,
@@ -88,6 +92,22 @@ public interface LayerPlotContext : LayerCollectorContext, PlotContext {
         )
     }
 }
+/*
+public interface NamedDataPlotContext: LayerPlotContext {
+    public fun groupBy(
+        vararg columnReferences: ColumnReference<*>,
+        block: GroupedContext.() -> Unit
+    ) {
+        val newDataset = (datasetHandler.data() as NamedData).dataFrame.groupBy(*columnReferences)
+        datasetHandlers.add(DatasetHandler(GroupedData(newDataset)))
+        GroupedContext(
+            datasetHandlers.size - 1,
+            this
+        ).apply(block)
+    }
+}
+
+ */
 
 public interface BindingContext : BaseContext {
     public override val plotContext: PlotContext
@@ -149,6 +169,12 @@ public interface BindingContext : BaseContext {
         return NonPositionalMapping<DomainType, RangeType>(aesName, newColumnID, parameters).also {
             bindingCollector.mappings[aesName] = it
         }
+    }
+
+    public fun <DomainType> addPositionalFreeScale(
+        aesName: AesName, parameters: PositionalMappingParameters<DomainType>
+    ) {
+        bindingCollector.freeScales[aesName] = PositionalFreeScale<DomainType>(aesName, parameters)
     }
 }
 

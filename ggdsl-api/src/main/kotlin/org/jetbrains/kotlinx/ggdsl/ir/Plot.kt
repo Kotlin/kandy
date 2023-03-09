@@ -5,11 +5,11 @@
 package org.jetbrains.kotlinx.ggdsl.ir
 
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.FreeScale
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
 
 /**
  * The main IR structure describing the plot. Basically, plot is a collection of layers.

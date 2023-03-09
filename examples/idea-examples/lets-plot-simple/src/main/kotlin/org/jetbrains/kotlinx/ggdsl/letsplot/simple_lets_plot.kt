@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
+import org.jetbrains.kotlinx.ggdsl.dsl.categorical
 import org.jetbrains.kotlinx.ggdsl.dsl.continuous
 import org.jetbrains.kotlinx.ggdsl.dsl.invoke
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
@@ -18,6 +19,7 @@ public fun main() {
     )
 
     val simplePlot = plot(simpleDataset) {
+
         x("time"<Int>())
 
         y("temperature"<Double>()) {
@@ -34,6 +36,9 @@ public fun main() {
         }
 
         line {
+            color("123") {
+                scale = categorical("1" to Color.RED)
+            }
             width = 3.0
             color = Color.hex("#6e5596")
             type = LineType.DOTDASH

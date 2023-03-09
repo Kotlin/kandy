@@ -1,17 +1,20 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.ggdsl.ir.scale.FreeScale
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.FreeScale
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalFreeScale
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.letsPlot.intern.Feature
+import kotlin.reflect.typeOf
 
 internal fun FreeScale.wrap(featureBuffer: MutableList<Feature>) {
-    if (this.aes.name == "kek") {
-        println(featureBuffer)
-    }
-    /* TODO
     when (this) {
-        is FreePositionalScale<*> -> featureBuffer.add(scale.wrap(aes, domainType, scaleParameters)!!) // TODO
+        is PositionalFreeScale<*> -> featureBuffer.add(
+            parameters.scale.wrap(
+                aes, typeOf<Any>(),
+                (parameters as? LetsPlotPositionalMappingParameters<*>)?.axis,
+                false
+            )
+        )
         else -> TODO()
     }
-
-     */
 }

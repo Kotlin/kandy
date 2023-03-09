@@ -1,10 +1,21 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
+import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.SimpleValueWrapper
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.color.StandardColor
+
+internal fun TableData.dataFrame(): DataFrame<*> {
+    return when(this) {
+        is NamedData -> dataFrame
+        is GroupedData -> origin.dataFrame
+    }
+}
 
 internal fun Color.wrap(): String {
     return when(this) {
