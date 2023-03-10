@@ -28,12 +28,12 @@ internal val timeTypes = setOf(
     typeOf<LocalTime>(), typeOf<LocalTime?>(),
 )
 
-internal fun Mapping.wrapScale(domainType: KType, isGroupKey: Boolean): org.jetbrains.letsPlot.intern.Scale? {
+internal fun Mapping.wrapScale(domainType: KType, groupKeys: List<String>?): org.jetbrains.letsPlot.intern.Scale? {
     return parameters?.scale?.wrap(
         aes, domainType,
         (parameters as? LetsPlotPositionalMappingParameters<*>)?.axis
             ?: (parameters as? LetsPlotNonPositionalMappingParameters<*, *>)?.legend,
-        isGroupKey
+        groupKeys?.contains(columnID) ?: false
     )
 }
 
