@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
 
-public class BarsContext(parent: LayerCollectorContext)
+public open class BarsContext(parent: LayerCollectorContext)
     : LayerWithBorderLineContext(parent), WithX, WithY, WithAlpha, WithFillColor, WithWidth
 /*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable

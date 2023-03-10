@@ -31,7 +31,7 @@ public class DataFramePlotContext<T>(
         datasetHandlers.add(
             DatasetHandler(
                 GroupedData(
-                    datasetHandler.initialDataset,
+                    datasetHandler.initialDataset as NamedData,
                     columnReferences.map { it.name() })
             )
         )

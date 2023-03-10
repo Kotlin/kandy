@@ -11,15 +11,29 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 
 // todo value column
 
-public class DatasetHandler(public val initialDataset: NamedData) {
-    public constructor(initialDataset: GroupedData): this(initialDataset.origin) {
-        isGrouped = true
-        groupKeys = initialDataset.keys
-        groupKeys!!.forEach { takeColumn(it) }
-    }
-    private var isGrouped = false
-    private var groupKeys: List<String>? = null
+public class DatasetHandler(public val initialDataset: TableData) {
+    private val initialNamedData: NamedData
+    private val isGrouped: Boolean
+    private val groupKeys: List<String>?
+    private val referredColumns: MutableMap<String, String> = mutableMapOf()
     private var buffer: DataFrame<*> = DataFrame.Empty
+
+    init {
+        when(initialDataset) {
+            is NamedData -> {
+                initialNamedData = initialDataset
+                isGrouped = false
+                groupKeys =  null
+            }
+            is GroupedData -> {
+                initialNamedData = initialDataset.origin
+                isGrouped = true
+                groupKeys = initialDataset.keys
+                groupKeys.forEach { takeColumn(it) }
+            }
+        }
+    }
+
     public fun rowsCount(): Int = buffer.rowsCount()
     public fun data(): TableData {
         return if (isGrouped) {
@@ -28,10 +42,9 @@ public class DatasetHandler(public val initialDataset: NamedData) {
             NamedData(buffer)
         }
     }
-    private val referredColumns: MutableMap<String, String> = mutableMapOf()
     public fun takeColumn(columnId: String): String {
         return referredColumns[columnId] ?: run {
-            val name =  internalAddColumn(initialDataset.dataFrame.getColumnOrNull(columnId) ?: error("invalid column id"))
+            val name =  internalAddColumn(initialNamedData.dataFrame.getColumnOrNull(columnId) ?: error("invalid column id"))
             referredColumns[columnId] = name
             name
         }

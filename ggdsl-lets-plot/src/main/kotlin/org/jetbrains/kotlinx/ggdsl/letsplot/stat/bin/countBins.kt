@@ -1,7 +1,21 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin
 
-/*
-internal fun BinXPos.toKind():BinStat.XPosKind = when(this) {
+import jetbrains.datalore.plot.base.DataFrame
+import jetbrains.datalore.plot.base.data.TransformVar
+import jetbrains.datalore.plot.base.stat.BinStat
+import jetbrains.datalore.plot.base.stat.SimpleStatContext
+import jetbrains.datalore.plot.base.stat.Stats
+import jetbrains.datalore.plot.builder.data.GroupUtil
+import jetbrains.datalore.plot.builder.data.GroupingContext
+import jetbrains.datalore.plot.common.data.SeriesUtil
+import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
+import org.jetbrains.kotlinx.dataframe.api.toDataFrame
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
+
+
+internal fun BinXPos.toKind(): BinStat.XPosKind = when(this) {
     is BinXPos.None -> BinStat.XPosKind.NONE
     is BinXPos.Boundary -> BinStat.XPosKind.BOUNDARY
     is BinXPos.Center ->  BinStat.XPosKind.CENTER
@@ -36,9 +50,9 @@ internal fun countBinsImpl(
     val dfCounted = stat.apply(df, statContext)
 
     return NamedData(dataFrameOf(
-        BinStatistic.Bins.NAME to dfCounted[Stats.X].map { it as Double },
-        BinStatistic.Count.NAME to dfCounted[Stats.COUNT].map { it as Double },
-        BinStatistic.Density.NAME to dfCounted[Stats.DENSITY].map { it as Double },
+        BINS to dfCounted[Stats.X].map { it as Double },
+        COUNT to dfCounted[Stats.COUNT].map { it as Double },
+        DENSITY to dfCounted[Stats.DENSITY].map { it as Double },
     ))
 }
 
@@ -60,9 +74,9 @@ internal fun countBinsImpl(
     val stat = BinStat(binCount, binWidth, binXPos.toKind(), binXPos.posValue)
     val statContext = SimpleStatContext(df)
     val buffer = mutableMapOf<String, MutableList<Any>>(
-        BinStatistic.Bins.NAME to mutableListOf(),
-        BinStatistic.Count.NAME to mutableListOf(),
-        BinStatistic.Density.NAME to mutableListOf()
+        BINS to mutableListOf(),
+        COUNT to mutableListOf(),
+        DENSITY to mutableListOf()
     )
 
     variables.forEach {
@@ -72,9 +86,9 @@ internal fun countBinsImpl(
     for (d in splitByGroup(df, groupingContext.groupMapper)) {
         val dfCounted = stat.apply(d, statContext)
         val size = dfCounted[Stats.X].size
-        buffer[BinStatistic.Bins.NAME]!!.addAll(dfCounted[Stats.X].map { it as Any })
-        buffer[BinStatistic.Count.NAME]!!.addAll(dfCounted[Stats.COUNT].map { it as Any })
-        buffer[BinStatistic.Density.NAME]!!.addAll(dfCounted[Stats.DENSITY].map { it as Any })
+        buffer[BINS]!!.addAll(dfCounted[Stats.X].map { it as Any })
+        buffer[COUNT]!!.addAll(dfCounted[Stats.COUNT].map { it as Any })
+        buffer[DENSITY]!!.addAll(dfCounted[Stats.DENSITY].map { it as Any })
         variables.forEach { variable ->
             buffer[variable.name]!!.addAll(List(size) {d[variable].first()!!})
         }
@@ -101,5 +115,3 @@ internal fun NamedData.toDataFrame(
 
     return builder.build()
 }
-
- */

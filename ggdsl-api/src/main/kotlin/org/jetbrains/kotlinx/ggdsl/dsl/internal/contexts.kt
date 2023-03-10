@@ -34,6 +34,9 @@ public class BindingCollector() {
 public interface BaseContext {
     public val plotContext: PlotContext
     public val datasetIndex: Int
+
+    public val datasetHandler: DatasetHandler
+        get() = plotContext.datasetHandlers[datasetIndex]
 }
 
 public abstract class LayerContext(parent: LayerCollectorContext) : BindingContext {
@@ -113,8 +116,6 @@ public interface BindingContext : BaseContext {
     public override val plotContext: PlotContext
     public override val datasetIndex: Int
     public val bindingCollector: BindingCollector
-    public val datasetHandler: DatasetHandler
-        get() = plotContext.datasetHandlers[datasetIndex]
 
     public fun <DomainType> addNonPositionalSetting(aesName: AesName, value: DomainType): NonPositionalSetting<DomainType> {
         return NonPositionalSetting(aesName, value).also {

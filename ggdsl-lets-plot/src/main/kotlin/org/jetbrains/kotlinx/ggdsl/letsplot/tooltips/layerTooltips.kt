@@ -6,7 +6,6 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.tooltips
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
-import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.context.LayerTooltipsContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
 
@@ -77,7 +76,7 @@ public data class Anchor(val value: String) {
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
  * @param hide flag of tooltips displaying.
- * @param valueFormats map of [ColumnReference] to format string of its value.
+ * @param formats map of [ColumnReference] to format string of its value.
  * @param aesFormats map of [Aes] to format string of its value.
  * The format will be applied to the mapped value in the default tooltip or to the corresponding
  * value specified in the line template.
@@ -89,9 +88,9 @@ public inline fun LayerContext.tooltips(
     anchor: Anchor? = null,
     minWidth: Double? = null,
     hide: Boolean = false,
-    valueFormats: Map<ColumnReference<*>, String> = mapOf(),
+    formats: Map<ColumnReference<*>, String> = mapOf(),
     // todo aesFormats: Map<Aes, String> = mapOf(),
-    statFormats: Map<Statistic<*>, String> = mapOf(),
+    //statFormats: Map<Statistic<*>, String> = mapOf(),
     tooltipsContextAction: LayerTooltipsContext.() -> Unit = {}
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
@@ -100,9 +99,9 @@ public inline fun LayerContext.tooltips(
         anchor,
         minWidth,
         hide,
-        valueFormats.map { it.key.name() to it.value }
+        formats.map { it.key.name() to it.value },
          //   + aesFormats.map { "^" + it.key.name.name to it.value }
-            + statFormats.map { it.key.id to it.value },
+          //  + statFormats.map { it.key.id to it.value },
         LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
 }

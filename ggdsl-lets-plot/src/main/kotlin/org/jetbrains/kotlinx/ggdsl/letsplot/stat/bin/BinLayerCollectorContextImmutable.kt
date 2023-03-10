@@ -1,31 +1,36 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin
-/*
+
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.DatasetHandler
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContext
+import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
-import org.jetbrains.kotlinx.ggdsl.letsplot.stat.StatLayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 
 public interface BinStatContext {
     public val Stat: StatHolder
         get() = StatHolder
 
     public object StatHolder {
-        public val BINS: BinStatistic.Bins = BinStatistic.Bins
-        public val COUNT: BinStatistic.Count = BinStatistic.Count
-        public val DENSITY: BinStatistic.Density = BinStatistic.Density
+        public val BINS: Statistic<Double> = column("STAT_BINS")
+        public val COUNT: Statistic<Double> = column("STAT_COUNT")
+        public val DENSITY: Statistic<Double> = column("STAT_DENSITY")
     }
 }
 
 // TODO
 
 //@StatDSLMarker
-public class BinLayerCollectorContext(parent: LayerCollectorContext, override val data: TableData)
-    : StatLayerCollectorContext(parent), BinStatContext {
-    // TODO
-    override val bindingCollector: BindingCollector = BindingCollector()
-    }
+public class BinLayerCollectorContext(parent: LayerCollectorContext, override val datasetIndex: Int)
+    : LayerCollectorContext, BinStatContext {
+    override val layers: MutableList<Layer> = parent.layers
+    override val plotContext: PlotContext = parent.plotContext
+}
 
 /*
 public class BinLayerCollectorContextMutable(parent: LayerCollectorContextMutable, override val data: TableData)
@@ -79,8 +84,7 @@ internal fun countData(
  */
 
 @PublishedApi
-internal inline fun statBinImpl(
-    contextParent: LayerCollectorContextImmutable,
+internal inline fun LayerCollectorContext.statBinImpl(
     data: TableData,
     column: ColumnReference<*>,
     bins: Bins = Bins.byNumber(20),
@@ -91,48 +95,34 @@ internal inline fun statBinImpl(
         is NamedData -> countBinsImpl(data, column, bins, binXPos)
         is GroupedData -> countBinsImpl(data, column, bins, binXPos)
     }
-    BinLayerCollectorContext(contextParent, newData).apply(block)
-}
-
-@PublishedApi
-internal inline fun statBinImpl(
-    contextParent: LayerCollectorContextMutable,
-    data: TableData,
-    column: ColumnReference<*>,
-    bins: Bins = Bins.byNumber(20),
-    binXPos: BinXPos = BinXPos.none(0.0),
-    block: BinLayerCollectorContext.() -> Unit
-){
-    val newData = when(data) {
-        is NamedData -> countBinsImpl(data, column, bins, binXPos)
-        is GroupedData -> countBinsImpl(data, column, bins, binXPos)
-    }
-    BinLayerCollectorContext(contextParent, newData).apply(block)
+    plotContext.datasetHandlers.add(DatasetHandler(newData))
+    BinLayerCollectorContext(this, plotContext.datasetHandlers.size-1).apply(block)
 }
 
 
 
 //todo type
-public inline fun LayerCollectorContextImmutable.statBin(
+public inline fun LayerCollectorContext.statBin(
     column: ColumnReference<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ) {
-    data.validateColumn(column.name())
-    statBinImpl(this, data, column, bins, binXPos, block)
+    val newData = when(val data = datasetHandler.initialDataset) {
+        is NamedData -> countBinsImpl(data, column, bins, binXPos)
+        is GroupedData -> countBinsImpl(data, column, bins, binXPos)
+    }
+    plotContext.datasetHandlers.add(DatasetHandler(newData))
+    BinLayerCollectorContext(this, plotContext.datasetHandlers.size-1).apply(block)
 }
 
-
-public inline fun<reified T:Any> LayerCollectorContextMutable.statBin(
-    source: Iterable<T>,
+public inline fun LayerCollectorContext.statBin(
+    values: Iterable<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ) {
-    val ColumnReference = toColumnReference(source)
-    statBinImpl(this, data, ColumnReference, bins, binXPos, block)
+    val newData = countBinsImpl(NamedData(dataFrameOf("sample" to values.toList())), column<Double>("sample"), bins, binXPos)
+    plotContext.datasetHandlers.add(DatasetHandler(newData))
+    BinLayerCollectorContext(this, plotContext.datasetHandlers.size-1).apply(block)
 }
-
-
- */
