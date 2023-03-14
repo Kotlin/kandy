@@ -34,9 +34,12 @@
     <div class="library-name">
 <a href="../../../index.html">
 <span>ggdsl</span>            </a>    </div>
-    <div>
+    <div>0.3.2
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":ggdsl-api:dokkaHtmlPartial/main">jvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -46,63 +49,78 @@
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="ggdsl-api::org.jetbrains.kotlinx.ggdsl.ir.scale/PositionalContinuousScale///PointingToDeclaration//48540784">
+<div class="main-content" data-page-type="classlike" id="content" pageids="ggdsl-api::org.jetbrains.kotlinx.ggdsl.ir.scale/PositionalContinuousScale///PointingToDeclaration//48540784">
   <div class="breadcrumbs"><a href="../../index.html">ggdsl-api</a><span class="delimiter">/</span><a href="../index.html">org.jetbrains.kotlinx.ggdsl.ir.scale</a><span class="delimiter">/</span><span class="current">PositionalContinuousScale</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Positional</span><wbr><span>Continuous</span><wbr><span><span>Scale</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">PositionalContinuousScale</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>limits<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.ggdsl.util.serialization/-typed-value/index.html">TypedValue</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.ggdsl.util.serialization/-typed-value/index.html">TypedValue</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>transform<span class="token operator">: </span><a href="../-positional-transform/index.html">PositionalTransform</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="../-continuous-scale/index.html">ContinuousScale</a>, <a href="../-positional-scale/index.html">PositionalScale</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator">&gt; </span></div><p class="paragraph">Positional continuous scale.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">PositionalContinuousScale</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>limits<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator"> &amp; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator"> &amp; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>nullValue<span class="token operator">: </span><a href="index.html">DomainType</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>transform<span class="token operator">: </span><a href="../-positional-transform/index.html">PositionalTransform</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span> : <a href="../-continuous-scale/index.html">ContinuousScale</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator">&gt; </span>, <a href="../-positional-scale/index.html">PositionalScale</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator">&gt; </span></div><p class="paragraph">Positional continuous scale.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>Domain</span><wbr><span><span>Type</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the type of the domain.</p></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>limits</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the limits of the domain.</p></div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h4 class="">Parameters</h4>
-      <div data-togglable="Parameters">
-        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>Domain</span><wbr><span><span>Type</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">the type of the domain.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span><span>limits</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">the limits of the domain.</p></div></div></div></div></div></div></div></div></div>
-      </div>
-      <h2 class="tabbedcontent">Constructors</h2>
-      <div class="table" data-togglable="Constructors"><a data-name="1708120689%2FConstructors%2F48540784" anchor-label="PositionalContinuousScale" id="1708120689%2FConstructors%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue TabbedContent">
-            <div class=""><span class="inline-flex">
-                <div><a href="-positional-continuous-scale.html"><span>Positional</span><wbr><span>Continuous</span><wbr><span><span>Scale</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1708120689%2FConstructors%2F48540784"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-positional-continuous-scale.html"><span class="token function">PositionalContinuousScale</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">limits<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.ggdsl.util.serialization/-typed-value/index.html">TypedValue</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.ggdsl.util.serialization/-typed-value/index.html">TypedValue</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">transform<span class="token operator">: </span><a href="../-positional-transform/index.html">PositionalTransform</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1341161433%2FConstructors%2F48540784" anchor-label="PositionalContinuousScale" id="-1341161433%2FConstructors%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-positional-continuous-scale.html"><span>Positional</span><wbr><span>Continuous</span><wbr><span><span>Scale</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1341161433%2FConstructors%2F48540784"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">limits<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator"> &amp; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator"> &amp; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">nullValue<span class="token operator">: </span><a href="index.html">DomainType</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">transform<span class="token operator">: </span><a href="../-positional-transform/index.html">PositionalTransform</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="621256765%2FProperties%2F48540784" anchor-label="limits" id="621256765%2FProperties%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="limits.html"><span><span>limits</span></span></a></div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="621256765%2FProperties%2F48540784" anchor-label="limits" id="621256765%2FProperties%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="limits.html"><span><span>limits</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="621256765%2FProperties%2F48540784"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><a data-name="621256765%2FProperties%2F48540784" anchor-label="limits" id="621256765%2FProperties%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="limits.html">limits</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.ggdsl.util.serialization/-typed-value/index.html">TypedValue</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.ggdsl.util.serialization/-typed-value/index.html">TypedValue</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="limits.html">limits</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator"> &amp; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator"> &amp; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+<a data-name="789981755%2FProperties%2F48540784" anchor-label="nullValue" id="789981755%2FProperties%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="null-value.html"><span>null</span><wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="789981755%2FProperties%2F48540784"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="null-value.html">nullValue</a><span class="token operator">: </span><a href="index.html">DomainType</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-1955216071%2FProperties%2F48540784" anchor-label="transform" id="-1955216071%2FProperties%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="transform.html"><span><span>transform</span></span></a></div>
+          <div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="transform.html"><span><span>transform</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1955216071%2FProperties%2F48540784"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><a data-name="-1955216071%2FProperties%2F48540784" anchor-label="transform" id="-1955216071%2FProperties%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="transform.html">transform</a><span class="token operator">: </span><a href="../-positional-transform/index.html">PositionalTransform</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="transform.html">transform</a><span class="token operator">: </span><a href="../-positional-transform/index.html">PositionalTransform</a><span class="token operator">?</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -116,6 +134,6 @@
       </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

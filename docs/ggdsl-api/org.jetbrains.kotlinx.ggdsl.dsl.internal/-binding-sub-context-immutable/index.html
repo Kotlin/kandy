@@ -34,9 +34,12 @@
     <div class="library-name">
 <a href="../../../index.html">
 <span>ggdsl</span>            </a>    </div>
-    <div>
+    <div>0.3.2
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":ggdsl-api:dokkaHtmlPartial/main">jvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -46,85 +49,50 @@
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="ggdsl-api::org.jetbrains.kotlinx.ggdsl.dsl.internal/BindingSubContextImmutable///PointingToDeclaration//48540784">
+<div class="main-content" data-page-type="classlike" id="content" pageids="ggdsl-api::org.jetbrains.kotlinx.ggdsl.dsl.internal/BindingSubContextImmutable///PointingToDeclaration//48540784">
   <div class="breadcrumbs"><a href="../../index.html">ggdsl-api</a><span class="delimiter">/</span><a href="../index.html">org.jetbrains.kotlinx.ggdsl.dsl.internal</a><span class="delimiter">/</span><span class="current">BindingSubContextImmutable</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Binding</span><wbr><span>Sub</span><wbr><span>Context</span><wbr><span><span>Immutable</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="index.html">BindingSubContextImmutable</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parent<span class="token operator">: </span><a href="../-binding-context/index.html">BindingContext</a><span class="token punctuation">, </span></span><span class="parameter ">cloneBindings<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">copyMappings<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">copySettings<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span> : <a href="../-sub-binding-context-interface/index.html">SubBindingContextInterface</a></div><p class="paragraph">Base class for nested contexts (that can inherit bindings from parent) with immutable mappings (i.e. mappings from existing columns on prepared dataset).</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="index.html">BindingSubContextImmutable</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parent<span class="token operator">: </span><a href="../-binding-context/index.html">BindingContext</a><span class="token punctuation">, </span></span><span class="parameter ">cloneBindings<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">copyMappings<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">copySettings<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span> : <a href="../-sub-binding-context-interface/index.html">SubBindingContextInterface</a></div><p class="paragraph">Base class for nested contexts (that can inherit bindings from parent) with immutable mappings (i.e. mappings from existing columns on prepared dataset).</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>parent</span></span></u></div></span></div><div><div class="title"><p class="paragraph">parental context.</p></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>clone</span><wbr><span><span>Bindings</span></span></u></div></span></div><div><div class="title"><p class="paragraph">whether to inherit bindings from parental context.</p></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>copy</span><wbr><span><span>Mappings</span></span></u></div></span></div><div><div class="title"><p class="paragraph">whether to inherit the mappings.</p></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>copy</span><wbr><span><span>Settings</span></span></u></div></span></div><div><div class="title"><p class="paragraph">whether to inherit the settings.</p></div></div></div></div></div><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-table-sub-context-immutable/index.html">TableSubContextImmutable</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-sub-layer-collector-context-immutable/index.html">SubLayerCollectorContextImmutable</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-grouped-data-sub-context-immutable/index.html">GroupedDataSubContextImmutable</a></div></span></div><div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button><button class="section-tab" data-togglable="Inheritors">Inheritors</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h4 class="">Parameters</h4>
-      <div data-togglable="Parameters">
-        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span><span>parent</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">parental context.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>clone</span><wbr><span><span>Bindings</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">whether to inherit bindings from parental context.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>copy</span><wbr><span><span>Mappings</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">whether to inherit the mappings.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>copy</span><wbr><span><span>Settings</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">whether to inherit the settings.</p></div></div></div></div></div></div></div></div></div>
-      </div>
-      <h2 class="tabbedcontent">Constructors</h2>
-      <div class="table" data-togglable="Constructors"><a data-name="521328487%2FConstructors%2F48540784" anchor-label="BindingSubContextImmutable" id="521328487%2FConstructors%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue TabbedContent">
-            <div class=""><span class="inline-flex">
-                <div><a href="-binding-sub-context-immutable.html"><span>Binding</span><wbr><span>Sub</span><wbr><span>Context</span><wbr><span><span>Immutable</span></span></a></div>
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="521328487%2FConstructors%2F48540784" anchor-label="BindingSubContextImmutable" id="521328487%2FConstructors%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-binding-sub-context-immutable.html"><span>Binding</span><wbr><span>Sub</span><wbr><span>Context</span><wbr><span><span>Immutable</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="521328487%2FConstructors%2F48540784"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-binding-sub-context-immutable.html"><span class="token function">BindingSubContextImmutable</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parent<span class="token operator">: </span><a href="../-binding-context/index.html">BindingContext</a><span class="token punctuation">, </span></span><span class="parameter ">cloneBindings<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">copyMappings<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">copySettings<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Constructor with copying bindings from parent collector.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parent<span class="token operator">: </span><a href="../-binding-context/index.html">BindingContext</a><span class="token punctuation">, </span></span><span class="parameter ">cloneBindings<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">copyMappings<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">copySettings<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Constructor with copying bindings from parent collector.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="478458315%2FProperties%2F48540784" anchor-label="bindingCollector" id="478458315%2FProperties%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="binding-collector.html"><span>binding</span><wbr><span><span>Collector</span></span></a></div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="478458315%2FProperties%2F48540784" anchor-label="bindingCollector" id="478458315%2FProperties%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="binding-collector.html"><span>binding</span><wbr><span><span>Collector</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="478458315%2FProperties%2F48540784"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><a data-name="478458315%2FProperties%2F48540784" anchor-label="bindingCollector" id="478458315%2FProperties%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="binding-collector.html">bindingCollector</a><span class="token operator">: </span><a href="../-binding-collector/index.html">BindingCollector</a></div><div class="brief "><a data-name="478458315%2FProperties%2F48540784" anchor-label="bindingCollector" id="478458315%2FProperties%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a><p class="paragraph"><a href="../-binding-collector/index.html">BindingCollector</a> of this context.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="binding-collector.html">bindingCollector</a><span class="token operator">: </span><a href="../-binding-collector/index.html">BindingCollector</a></div><div class="brief "><p class="paragraph"><a href="../-binding-collector/index.html">BindingCollector</a> of this context.</p></div></div></div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <h2 class="">Inheritors</h2>
-      <div class="table" data-togglable="Inheritors"><a data-name="-593429067%2FInheritors%2F48540784" anchor-label="TableSubContextImmutable" id="-593429067%2FInheritors%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../-table-sub-context-immutable/index.html">TableSubContextImmutable</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-593429067%2FInheritors%2F48540784"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1230352825%2FInheritors%2F48540784" anchor-label="SubLayerCollectorContextImmutable" id="1230352825%2FInheritors%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../-sub-layer-collector-context-immutable/index.html">SubLayerCollectorContextImmutable</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1230352825%2FInheritors%2F48540784"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1295154097%2FInheritors%2F48540784" anchor-label="GroupedDataSubContextImmutable" id="-1295154097%2FInheritors%2F48540784" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-api:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-api:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../-grouped-data-sub-context-immutable/index.html">GroupedDataSubContextImmutable</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1295154097%2FInheritors%2F48540784"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
           </div>
         </div>
       </div>
@@ -136,6 +104,6 @@
       </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

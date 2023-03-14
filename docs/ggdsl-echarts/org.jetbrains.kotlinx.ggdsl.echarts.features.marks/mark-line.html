@@ -34,9 +34,12 @@
     <div class="library-name">
 <a href="../../index.html">
 <span>ggdsl</span>            </a>    </div>
-    <div>
+    <div>0.3.2
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":ggdsl-echarts:dokkaHtmlPartial/main">jvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -46,18 +49,18 @@
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="ggdsl-echarts::org.jetbrains.kotlinx.ggdsl.echarts.features.marks//markLine/org.jetbrains.kotlinx.ggdsl.echarts.layers.EchartsLayerContextImmutable#kotlin.Function1[org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkLineContext,kotlin.Unit]/PointingToDeclaration//1748775184">
+<div class="main-content" data-page-type="member" id="content" pageids="ggdsl-echarts::org.jetbrains.kotlinx.ggdsl.echarts.features.marks//markLine/org.jetbrains.kotlinx.ggdsl.echarts.layers.EchartsLayerContextImmutable#kotlin.Function1[org.jetbrains.kotlinx.ggdsl.echarts.features.marks.MarkLineContext,kotlin.Unit]/PointingToDeclaration//1748775184">
   <div class="breadcrumbs"><a href="../index.html">ggdsl-echarts</a><span class="delimiter">/</span><a href="index.html">org.jetbrains.kotlinx.ggdsl.echarts.features.marks</a><span class="delimiter">/</span><span class="current">markLine</span></div>
   <div class="cover ">
     <h1 class="cover"><span>mark</span><wbr><span><span>Line</span></span></h1>
   </div>
-  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../org.jetbrains.kotlinx.ggdsl.echarts.layers/-echarts-layer-context-immutable/index.html">EchartsLayerContextImmutable</a><span class="token punctuation">.</span><a href="mark-line.html"><span class="token function">markLine</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="-mark-line-context/index.html">MarkLineContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><p class="paragraph">Sets mark lines on a layer.</p><ul><li><p class="paragraph"><a href="-mark-line-context/lines.html">points</a> - list of <a href="-mark-line/index.html">mark line</a></p></li></ul><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">plot {<br> line {<br>     markLine {<br>         lines = listOf(<br>             MarkLine("max", MarkType.MAX),<br>             MarkLine("two points", MarkPoint(MarkType.MIN), MarkPoint(5, 3))<br>             )<br>     }<br> }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><h4 class="">See also</h4><div data-togglable="See also"><div class="table" data-togglable="See also"><div class="table-row" data-filterable-current=":ggdsl-echarts:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><a href="-mark-line/index.html"><span>Mark</span><wbr><span><span>Line</span></span></a></div></span></div><div></div></div></div></div></div></div></div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../org.jetbrains.kotlinx.ggdsl.echarts.layers/-echarts-layer-context-immutable/index.html">EchartsLayerContextImmutable</a><span class="token punctuation">.</span><a href="mark-line.html"><span class="token function">markLine</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="-mark-line-context/index.html">MarkLineContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><p class="paragraph">Sets mark lines on a layer.</p><ul><li><p class="paragraph"><a href="-mark-line-context/lines.html">points</a> - list of <a href="-mark-line/index.html">mark line</a></p></li></ul><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">plot {<br> line {<br>     markLine {<br>         lines = listOf(<br>             MarkLine("max", MarkType.MAX),<br>             MarkLine("two points", MarkPoint(MarkType.MIN), MarkPoint(5, 3))<br>             )<br>     }<br> }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><h4 class="">See also</h4><div class="table"><div class="table-row" data-filterable-current=":ggdsl-echarts:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-mark-line/index.html"><span>Mark</span><wbr><span><span>Line</span></span></a></div></span></div><div></div></div></div></div></div></div>
 </div>
       <div class="footer">
         <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

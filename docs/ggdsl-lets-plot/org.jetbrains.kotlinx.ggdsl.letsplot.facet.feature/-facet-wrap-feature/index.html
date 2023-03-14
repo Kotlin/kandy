@@ -34,9 +34,12 @@
     <div class="library-name">
 <a href="../../../index.html">
 <span>ggdsl</span>            </a>    </div>
-    <div>
+    <div>0.3.2
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":ggdsl-lets-plot:dokkaHtmlPartial/main">jvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -46,170 +49,172 @@
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="ggdsl-lets-plot::org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature/FacetWrapFeature///PointingToDeclaration//-999019660">
+<div class="main-content" data-page-type="classlike" id="content" pageids="ggdsl-lets-plot::org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature/FacetWrapFeature///PointingToDeclaration//-999019660">
   <div class="breadcrumbs"><a href="../../index.html">ggdsl-lets-plot</a><span class="delimiter">/</span><a href="../index.html">org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature</a><span class="delimiter">/</span><span class="current">FacetWrapFeature</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Facet</span><wbr><span>Wrap</span><wbr><span><span>Feature</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">FacetWrapFeature</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>facets<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>nCol<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>nRow<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>orders<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-order-direction/index.html">OrderDirection</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scalesSharing<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-scales-sharing/index.html">ScalesSharing</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>direction<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-direction/index.html">Direction</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>formats<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.ir.feature/-plot-feature/index.html">PlotFeature</a></div><p class="paragraph">Splits data by one or more faceting variables. For each data subset creates a plot panel and lays out panels according to the <code class="lang-kotlin">nCol</code>, <code class="lang-kotlin">nRow</code> and <code class="lang-kotlin">direction</code> settings.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">FacetWrapFeature</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>facets<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>nCol<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>nRow<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>orders<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-order-direction/index.html">OrderDirection</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scalesSharing<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-scales-sharing/index.html">ScalesSharing</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>direction<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-direction/index.html">Direction</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>formats<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.ir.feature/-plot-feature/index.html">PlotFeature</a></div><p class="paragraph">Splits data by one or more faceting variables. For each data subset creates a plot panel and lays out panels according to the <code class="lang-kotlin">nCol</code>, <code class="lang-kotlin">nRow</code> and <code class="lang-kotlin">direction</code> settings.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>facets</span></span></u></div></span></div><div><div class="title"><p class="paragraph">list of faceting variable names.</p></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>n</span><wbr><span><span>Col</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Number of columns.</p></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>n</span><wbr><span><span>Row</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Number of rows.</p></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>scales</span><wbr><span><span>Sharing</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Specifies whether scales are shared across all facets.</p></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>orders</span></span></u></div></span></div><div><div class="title"><p class="paragraph">list of <a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-order-direction/index.html">OrderDirection</a> values specifying ordering direction panels. The <code class="lang-kotlin">order</code> values are positionally matched to variables in <code class="lang-kotlin">facets</code>.</p></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>formats</span></span></u></div></span></div><div><div class="title"><p class="paragraph">list of strings specifying the format pattern for displaying faceting values. The <code class="lang-kotlin">format</code> values are positionally matched to variables in <code class="lang-kotlin">facets</code>.</p></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>direction</span></span></u></div></span></div><div><div class="title"><p class="paragraph">direction of the facet.</p><p class="paragraph">Format patterns in the <code class="lang-kotlin">format</code> parameter can be just a number format (like "d") or a string template where number format is surrounded by curly braces: "{d} cylinders". Note: the "$" must be escaped as "\$" For more info see: https://github.com/JetBrains/lets-plot-kotlin/blob/master/docs/formats.md</p><p class="paragraph">Examples: ".2f" -&gt; "12.45" "Score: {.2f}" -&gt; "Score: 12.45" "Score: {}" -&gt; "Score: 12.454789"</p></div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h4 class="">Parameters</h4>
-      <div data-togglable="Parameters">
-        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span><span>facets</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">list of faceting variable names.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>n</span><wbr><span><span>Col</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Number of columns.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>n</span><wbr><span><span>Row</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Number of rows.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>scales</span><wbr><span><span>Sharing</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Specifies whether scales are shared across all facets.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span><span>orders</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">list of <a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-order-direction/index.html">OrderDirection</a> values specifying ordering direction panels. The <code class="lang-kotlin">order</code> values are positionally matched to variables in <code class="lang-kotlin">facets</code>.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span><span>formats</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">list of strings specifying the format pattern for displaying faceting values. The <code class="lang-kotlin">format</code> values are positionally matched to variables in <code class="lang-kotlin">facets</code>.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span><span>direction</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">direction of the facet.</p><p class="paragraph">Format patterns in the <code class="lang-kotlin">format</code> parameter can be just a number format (like "d") or a string template where number format is surrounded by curly braces: "{d} cylinders". Note: the "$" must be escaped as "\$" For more info see: https://github.com/JetBrains/lets-plot-kotlin/blob/master/docs/formats.md</p><p class="paragraph">Examples: ".2f" -&gt; "12.45" "Score: {.2f}" -&gt; "Score: 12.45" "Score: {}" -&gt; "Score: 12.454789"</p></div></div></div></div></div></div></div></div></div>
-      </div>
-      <h2 class="tabbedcontent">Constructors</h2>
-      <div class="table" data-togglable="Constructors"><a data-name="-1532789199%2FConstructors%2F-999019660" anchor-label="FacetWrapFeature" id="-1532789199%2FConstructors%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue TabbedContent">
-            <div class=""><span class="inline-flex">
-                <div><a href="-facet-wrap-feature.html"><span>Facet</span><wbr><span>Wrap</span><wbr><span><span>Feature</span></span></a></div>
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1532789199%2FConstructors%2F-999019660" anchor-label="FacetWrapFeature" id="-1532789199%2FConstructors%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-facet-wrap-feature.html"><span>Facet</span><wbr><span>Wrap</span><wbr><span><span>Feature</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1532789199%2FConstructors%2F-999019660"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-facet-wrap-feature.html"><span class="token function">FacetWrapFeature</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">facets<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">nCol<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">nRow<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">orders<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-order-direction/index.html">OrderDirection</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">scalesSharing<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-scales-sharing/index.html">ScalesSharing</a><span class="token punctuation">, </span></span><span class="parameter ">direction<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-direction/index.html">Direction</a><span class="token punctuation">, </span></span><span class="parameter ">formats<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">facets<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">nCol<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">nRow<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">orders<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-order-direction/index.html">OrderDirection</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">scalesSharing<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-scales-sharing/index.html">ScalesSharing</a><span class="token punctuation">, </span></span><span class="parameter ">direction<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-direction/index.html">Direction</a><span class="token punctuation">, </span></span><span class="parameter ">formats<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Types</h2>
-      <div class="table" data-togglable="Types"><a data-name="-1541207293%2FClasslikes%2F-999019660" anchor-label="Companion" id="-1541207293%2FClasslikes%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-1541207293%2FClasslikes%2F-999019660" anchor-label="Companion" id="-1541207293%2FClasslikes%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1541207293%2FClasslikes%2F-999019660"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="-451129571%2FProperties%2F-999019660" anchor-label="direction" id="-451129571%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="direction.html"><span><span>direction</span></span></a></div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-451129571%2FProperties%2F-999019660" anchor-label="direction" id="-451129571%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="direction.html"><span><span>direction</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-451129571%2FProperties%2F-999019660"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-451129571%2FProperties%2F-999019660" anchor-label="direction" id="-451129571%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="direction.html">direction</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-direction/index.html">Direction</a></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="direction.html">direction</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-direction/index.html">Direction</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1722029054%2FProperties%2F-999019660" anchor-label="facets" id="-1722029054%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="facets.html"><span><span>facets</span></span></a></div>
+          <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="facets.html"><span><span>facets</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1722029054%2FProperties%2F-999019660"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-1722029054%2FProperties%2F-999019660" anchor-label="facets" id="-1722029054%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="facets.html">facets</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="facets.html">facets</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1082474885%2FProperties%2F-999019660" anchor-label="featureName" id="-1082474885%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="feature-name.html"><span>feature</span><wbr><span><span>Name</span></span></a></div>
+          <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="feature-name.html"><span>feature</span><wbr><span><span>Name</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1082474885%2FProperties%2F-999019660"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-1082474885%2FProperties%2F-999019660" anchor-label="featureName" id="-1082474885%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="feature-name.html">featureName</a><span class="token operator">: </span><a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.ir.feature/-feature-name/index.html">FeatureName</a></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="feature-name.html">featureName</a><span class="token operator">: </span><a href="../../../ggdsl-api/org.jetbrains.kotlinx.ggdsl.ir.feature/-feature-name/index.html">FeatureName</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1029544544%2FProperties%2F-999019660" anchor-label="formats" id="-1029544544%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="formats.html"><span><span>formats</span></span></a></div>
+          <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="formats.html"><span><span>formats</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1029544544%2FProperties%2F-999019660"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-1029544544%2FProperties%2F-999019660" anchor-label="formats" id="-1029544544%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="formats.html">formats</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator">&gt;</span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="formats.html">formats</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-2079097748%2FProperties%2F-999019660" anchor-label="nCol" id="-2079097748%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="n-col.html"><span>n</span><wbr><span><span>Col</span></span></a></div>
+          <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="n-col.html"><span>n</span><wbr><span><span>Col</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2079097748%2FProperties%2F-999019660"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-2079097748%2FProperties%2F-999019660" anchor-label="nCol" id="-2079097748%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="n-col.html">nCol</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="n-col.html">nCol</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1263960750%2FProperties%2F-999019660" anchor-label="nRow" id="-1263960750%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="n-row.html"><span>n</span><wbr><span><span>Row</span></span></a></div>
+          <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="n-row.html"><span>n</span><wbr><span><span>Row</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1263960750%2FProperties%2F-999019660"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-1263960750%2FProperties%2F-999019660" anchor-label="nRow" id="-1263960750%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="n-row.html">nRow</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="n-row.html">nRow</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="397418201%2FProperties%2F-999019660" anchor-label="orders" id="397418201%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="orders.html"><span><span>orders</span></span></a></div>
+          <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="orders.html"><span><span>orders</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="397418201%2FProperties%2F-999019660"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="397418201%2FProperties%2F-999019660" anchor-label="orders" id="397418201%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="orders.html">orders</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-order-direction/index.html">OrderDirection</a><span class="token operator">&gt;</span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="orders.html">orders</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-order-direction/index.html">OrderDirection</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1620057751%2FProperties%2F-999019660" anchor-label="scalesSharing" id="-1620057751%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="scales-sharing.html"><span>scales</span><wbr><span><span>Sharing</span></span></a></div>
+          <div class="table-row" data-filterable-current=":ggdsl-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scales-sharing.html"><span>scales</span><wbr><span><span>Sharing</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1620057751%2FProperties%2F-999019660"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><a data-name="-1620057751%2FProperties%2F-999019660" anchor-label="scalesSharing" id="-1620057751%2FProperties%2F-999019660" data-filterable-set=":ggdsl-lets-plot:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="scales-sharing.html">scalesSharing</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-scales-sharing/index.html">ScalesSharing</a></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ggdsl-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="scales-sharing.html">scalesSharing</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.ggdsl.letsplot.facet/-scales-sharing/index.html">ScalesSharing</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -223,6 +228,6 @@
       </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

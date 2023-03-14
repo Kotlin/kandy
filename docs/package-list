@@ -3,7 +3,6 @@ $dokka.linkExtension:html
 
 module:ggdsl-api
 org.jetbrains.kotlinx.ggdsl.dsl
-org.jetbrains.kotlinx.ggdsl.dsl.column
 org.jetbrains.kotlinx.ggdsl.dsl.internal
 org.jetbrains.kotlinx.ggdsl.ir
 org.jetbrains.kotlinx.ggdsl.ir.aes
@@ -14,18 +13,6 @@ org.jetbrains.kotlinx.ggdsl.ir.geom
 org.jetbrains.kotlinx.ggdsl.ir.scale
 org.jetbrains.kotlinx.ggdsl.util.color
 org.jetbrains.kotlinx.ggdsl.util.context
-org.jetbrains.kotlinx.ggdsl.util.serialization
-module:ggdsl-dataframe
-org.jetbrains.kotlinx.ggdsl.dataframe
-org.jetbrains.kotlinx.ggdsl.dataframe.context
-org.jetbrains.kotlinx.ggdsl.dataframe.data
-org.jetbrains.kotlinx.ggdsl.dataframe.internal
-org.jetbrains.kotlinx.ggdsl.dataframe.util.serialization
-module:ggdsl-dataframe-lets-plot
-org.jetbrains.kotlinx.ggdsl.dataframe.letsplot
-org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.series
-org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.stat
-org.jetbrains.kotlinx.ggdsl.dataframe.letsplot.util.serialization
 module:ggdsl-echarts
 org.jetbrains.kotlinx.ggdsl.echarts
 org.jetbrains.kotlinx.ggdsl.echarts.aes
@@ -66,5 +53,4 @@ org.jetbrains.kotlinx.ggdsl.letsplot.translator
 org.jetbrains.kotlinx.ggdsl.letsplot.util
 org.jetbrains.kotlinx.ggdsl.letsplot.util.font
 org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype
-org.jetbrains.kotlinx.ggdsl.letsplot.util.serialization
 org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol
