@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes
 
+import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
@@ -29,6 +30,19 @@ public interface WithY : BindingContext {
             values.toList(),
             name,
             LetsPlotPositionalMappingParameters<T>().apply(parameters)
+        )
+    }
+
+    public fun <T> y(
+        values: DataColumn<T>,
+        //name: String? = null,
+        parameters: LetsPlotPositionalMappingParameters<T>.() -> Unit = {}
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(
+            Y,
+            values.toList(),
+            values.name(),
+            LetsPlotPositionalMappingParameters<T,>().apply(parameters)
         )
     }
 }

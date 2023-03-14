@@ -38,7 +38,7 @@ internal var format: String? = null,
      *
      * @param breaksToLabels list of breaks with corresponding labels.
      */
-    public fun breaksLabeled(breaksToLabels: List<Pair<DomainType & Any, String>>) {
+    public fun breaksLabeled(vararg breaksToLabels: Pair<DomainType & Any, String>) {
         breaks = breaksToLabels.map { it.first }
         labels = breaksToLabels.map { it.second }
     }

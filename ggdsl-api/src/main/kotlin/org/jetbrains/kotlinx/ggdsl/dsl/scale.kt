@@ -62,8 +62,8 @@ public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeTyp
     NonPositionalContinuousScale(domainLimits, rangeLimits, nullValue, transform)
 
 public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeType>> Scale.Companion.continuous(
-    domainLimits: ClosedRange<DomainType>? = null,
     rangeLimits: ClosedRange<RangeType>? = null,
+    domainLimits: ClosedRange<DomainType>? = null,
     nullValue: RangeType? = null,
     transform: NonPositionalTransform? = null
 ): NonPositionalContinuousScale<DomainType, RangeType> =
@@ -79,14 +79,14 @@ public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeTyp
  * @return new [NonPositionalCategoricalScale] with given limits
  */
 public inline fun <reified DomainType, reified RangeType> NonPositionalMappingParameters<DomainType, RangeType>.categorical(
-    domainCategories: List<DomainType>? = null,
     rangeValues: List<RangeType>? = null,
+    domainCategories: List<DomainType>? = null,
 ): NonPositionalCategoricalScale<DomainType, RangeType> =
     NonPositionalCategoricalScale(domainCategories, rangeValues)
 
 public inline fun <reified DomainType, reified RangeType> Scale.Companion.categorical(
-    domainCategories: List<DomainType>? = null,
     rangeValues: List<RangeType>? = null,
+    domainCategories: List<DomainType>? = null,
 ): NonPositionalCategoricalScale<DomainType, RangeType> =
     NonPositionalCategoricalScale(domainCategories, rangeValues)
 

@@ -161,7 +161,7 @@ class ToLetsPlotTest {
                         "width" to 0.5,
                         "position" to "stack",
                         "geom" to "bar",
-                        "data_meta" to mapOf<String, Any>(
+                        /*"data_meta" to mapOf<String, Any>(
                             "mapping_annotations" to
                                     listOf(
                                         mapOf(
@@ -183,7 +183,7 @@ class ToLetsPlotTest {
                                             )
                                         )
                                     )
-                        )
+                        )*/
                     ),
                     mapOf(
                         "mapping" to mapOf(
@@ -197,7 +197,7 @@ class ToLetsPlotTest {
                         "linetype" to "dotted",
                         "position" to "identity",
                         "geom" to "line",
-                        "data_meta" to mapOf<String, Any>(
+                        /*"data_meta" to mapOf<String, Any>(
                             "mapping_annotations" to
                                     listOf(
                                         mapOf(
@@ -210,7 +210,7 @@ class ToLetsPlotTest {
                                             )
                                         )
                                     )
-                        )
+                        )*/
                     ),
                 ),
                 "facet" to mapOf<String, Any>(

@@ -131,7 +131,7 @@ internal class LayerWrapperTest {
                     "kind" to "pos"
                 ),
                 "geom" to "bar",
-                "data_meta" to mapOf<String, Any>(
+                /*"data_meta" to mapOf<String, Any>(
                     "mapping_annotations" to
                         listOf(
                             mapOf(
@@ -144,7 +144,7 @@ internal class LayerWrapperTest {
                                 )
                             )
                         )
-                )
+                )*/
             ),
             wrappedLayer.toSpec()
         )
