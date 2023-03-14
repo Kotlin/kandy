@@ -43,7 +43,7 @@ public interface PointRangeContextInterface : BindingContext {
     public val innerLine: InnerLineSubContextInterface
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class PointRangeContextImmutable(parent: LayerCollectorContextImmutable) :
     LayerWithBorderLineContextImmutable(parent), PointRangeContextInterface {
     override val innerPoint: InnerPointSubContextImmutable =
@@ -52,7 +52,7 @@ public class PointRangeContextImmutable(parent: LayerCollectorContextImmutable) 
         InnerLineSubContextImmutable(this)
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class PointRangeContextMutable(parent: LayerCollectorContextMutable) : LayerWithBorderLineContextMutable(parent),
     PointRangeContextInterface {
     override val innerPoint: InnerPointSubContextMutable =

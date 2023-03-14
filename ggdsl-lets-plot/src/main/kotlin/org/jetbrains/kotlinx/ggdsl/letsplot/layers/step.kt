@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContextInterface
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LayerWithBorderLineContextImmutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LayerWithBorderLineContextMutable
@@ -27,11 +27,11 @@ public interface StepContextInterface : LayerContextInterface {
     public val width: SizeAes get() = SizeAes(this)
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class StepContextImmutable(parent: LayerCollectorContextImmutable) :
     LayerWithBorderLineContextImmutable(parent), StepContextInterface
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class StepContextMutable(parent: LayerCollectorContextMutable)
     : LayerWithBorderLineContextMutable(parent), StepContextInterface
 

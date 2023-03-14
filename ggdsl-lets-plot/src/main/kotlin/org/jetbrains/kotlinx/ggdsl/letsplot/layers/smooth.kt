@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
 public val SMOOTH: LetsPlotGeom = LetsPlotGeom("smooth")
 
 /*
-@PlotDslMarker
+/*@PlotDslMarker*/
 <<<<<<< HEAD
 class SmoothContext(
     parent: LayerCollectorContext,
@@ -109,7 +109,7 @@ public class SmoothContext(
     public val Stat: Statistics = Statistics
 
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: SmoothStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -121,7 +121,7 @@ public class SmoothContext(
         return mapping
     }
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType, RangeType> MappableNonPositionalAes<RangeType>.invoke(
         stat: SmoothStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -137,11 +137,11 @@ public class SmoothContext(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
-    sourceX: ColumnPointer<T>,
-    sourceY: ColumnPointer<R>,
+inline fun <reified T, reified R> PlotContext.smooth(
+    sourceX: ColumnReference<T>,
+    sourceY: ColumnReference<R>,
 =======
-public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
+public inline fun <reified T, reified R> PlotContext.smooth(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
 >>>>>>> main
@@ -163,7 +163,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
     )
 }
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.smooth(
+public inline fun <reified T, reified R> PlotContext.smooth(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     method: SmoothMethod? = null,

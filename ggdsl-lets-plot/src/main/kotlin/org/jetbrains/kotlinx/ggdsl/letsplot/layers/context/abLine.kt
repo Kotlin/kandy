@@ -33,7 +33,7 @@ public interface ABLineContextInterface: BindingContext {
  * @property type line type, non-positional.
  * @property width line width, non-positional.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class ABLineContextImmutable(parent: LayerCollectorContextImmutable)
     : LayerContextImmutable(parent), ABLineContextInterface
 
@@ -46,6 +46,6 @@ public class ABLineContextImmutable(parent: LayerCollectorContextImmutable)
  * @property type line type, non-positional.
  * @property width line width, non-positional.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class ABLineContextMutable(parent: LayerCollectorContextMutable):
     LayerContextMutable(parent), ABLineContextInterface

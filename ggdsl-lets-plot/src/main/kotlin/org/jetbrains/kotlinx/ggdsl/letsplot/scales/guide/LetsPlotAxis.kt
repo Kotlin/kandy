@@ -4,23 +4,21 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide
 
-import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 //todo
-@PlotDslMarker
-@Serializable
-public data class Axis<DomainType : Any> @PublishedApi internal constructor(
+/*@PlotDslMarker*/
+//@Serializable
+public data class Axis<DomainType> @PublishedApi internal constructor(
     var kType: KType,
     // todo expand & trans
 ) : SelfInvocationContext {
     var name: String? = null
     @PublishedApi
-    internal var breaks: TypedList? = null
+    internal var breaks: List<DomainType>? = null
     @PublishedApi
     internal var labels: List<String>? = null
     @PublishedApi
@@ -33,9 +31,7 @@ public data class Axis<DomainType : Any> @PublishedApi internal constructor(
      * @param format format string.
      */
     public fun breaks(breaks: List<DomainType>? = null, format: String? = null) {
-        this.breaks = breaks?.let {
-            TypedList(kType, it)
-        }
+        this.breaks = breaks
         this.format = format
     }
 
@@ -44,13 +40,13 @@ public data class Axis<DomainType : Any> @PublishedApi internal constructor(
      *
      * @param breaksToLabels list of breaks with corresponding labels.
      */
-    public fun breaksLabeled(breaksToLabels: List<Pair<DomainType, String>>) {
-        breaks = TypedList(kType, breaksToLabels.map { it.first })
+    public fun breaksLabeled(breaksToLabels: List<Pair<DomainType & Any, String>>) {
+        breaks = breaksToLabels.map { it.first }
         labels = breaksToLabels.map { it.second }
     }
 
     public companion object {
         @PublishedApi
-        internal inline fun<reified DomainType: Any> create(): Axis<DomainType> = Axis(typeOf<DomainType>())
+        internal inline fun<reified DomainType> create(): Axis<DomainType> = Axis(typeOf<DomainType>())
     }
 }

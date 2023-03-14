@@ -18,7 +18,7 @@ import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
 
-private const val ECHARTS_SRC: String = "https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"
+private const val ECHARTS_SRC: String = "https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"
 
 @JupyterLibrary
 internal class Integration : JupyterIntegration() {

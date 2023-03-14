@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features.text
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.features.text.FontFamily.*
 import org.jetbrains.kotlinx.ggdsl.echarts.features.text.FontStyle.*
 import org.jetbrains.kotlinx.ggdsl.echarts.features.text.FontWeight.Companion.BOLD
@@ -86,7 +86,7 @@ public enum class FontFamily(public val family: String) {
  * @see Color
  * @see LineType
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class TextStyle(
     public var color: Color? = null,
     public var fontStyle: FontStyle? = null,

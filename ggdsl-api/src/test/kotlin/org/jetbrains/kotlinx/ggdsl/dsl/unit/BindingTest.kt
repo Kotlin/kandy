@@ -4,11 +4,10 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl.unit
 
+import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingCollector
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -65,7 +64,7 @@ internal class BindingTest {
             mockAesDoubleNonPos(valueDouble)
         }
         assertEquals(
-            mapOf(MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting<Double>(MOCK_AES_DOUBLE_NON_POS, valueDouble.typed())),
+            mapOf(MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting<Double>(MOCK_AES_DOUBLE_NON_POS, valueDouble)),
             context.bindingCollector.settings.toMap()
         )
 
@@ -76,8 +75,8 @@ internal class BindingTest {
         }
         assertEquals(
             mapOf(
-                MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting<Double>(MOCK_AES_DOUBLE_NON_POS, valueDouble.typed()),
-                MOCK_AES_STRING_MAP_NON_POS to NonPositionalSetting<Double>(MOCK_AES_STRING_MAP_NON_POS, valueString.typed())
+                MOCK_AES_DOUBLE_NON_POS to NonPositionalSetting<Double>(MOCK_AES_DOUBLE_NON_POS, valueDouble),
+                MOCK_AES_STRING_MAP_NON_POS to NonPositionalSetting<String>(MOCK_AES_STRING_MAP_NON_POS, valueString)
             ),
             context.bindingCollector.settings.toMap()
         )
@@ -86,7 +85,7 @@ internal class BindingTest {
     @Test
     fun testMappingNonScalable() {
         //  val mockAes = NonScalablePositionalAes("mock_aes")
-        val mockSource = columnPointer<Double>("mock_source")
+        val mockSource = column<Double>("mock_source")
         val context = TestContext().apply {
             mockAesNonSclbPos(mockSource)
         }
@@ -105,7 +104,7 @@ internal class BindingTest {
     @Test
     fun testMappingUnscaled() {
         //   val mockAes = MappableNonPositionalAes<Int>("mock_aes")
-        val mockSource = columnPointer<Int>("mock_source")
+        val mockSource = column<Int>("mock_source")
         val context = TestContext().apply {
             mockAesStringMapNonPos(mockSource)
         }
@@ -124,7 +123,7 @@ internal class BindingTest {
     @Test
     fun testMappingScaledUnspecified() {
       //  val mockAes = ScalablePositionalAes("mock_aes")
-        val mockSource = columnPointer<String>("mock_source")
+        val mockSource = column<String>("mock_source")
         val context = TestContext().apply {
             mockAesSclbPos(mockSource.scaled())
         }
@@ -141,7 +140,7 @@ internal class BindingTest {
     @Test
     fun testMappingScaledPositionalDefault() {
        // val mockAes = ScalablePositionalAes("mock_aes")
-        val mockSource = columnPointer<Float>("mock_source")
+        val mockSource = column<Float>("mock_source")
         val context = TestContext().apply {
             mockAesSclbPos(mockSource.scaled(continuousPos()))
         }
@@ -160,7 +159,7 @@ internal class BindingTest {
     @Test
     fun testMappingScaledNonPositionalDefault() {
       //  val mockAes = MappableNonPositionalAes<LineType>("mock_aes")
-        val mockSource = columnPointer<String>("mock_source")
+        val mockSource = column<String>("mock_source")
         val context = TestContext().apply {
             mockAesStringMapNonPos(mockSource.scaled(categorical()))
         }
@@ -179,7 +178,7 @@ internal class BindingTest {
     @Test
     fun testMappingScaledPositional() {
        // val mockAes = ScalablePositionalAes("mock_aes")
-        val mockSource = columnPointer<String>("mock_source")
+        val mockSource = column<String>("mock_source")
 
         val scale = categoricalPos(
             categories = listOf("cat1", "cat2", "cat3")
@@ -202,7 +201,7 @@ internal class BindingTest {
     @Test
     fun testMappingScaledNonPositional() {
       //  val mockAes = MappableNonPositionalAes<Color>("mock_aes")
-        val mockSource = columnPointer<Int>("mock_source")
+        val mockSource = column<Int>("mock_source")
         val scale = continuous<Int, Color>(
             rangeLimits = Color.rgb(1, 1, 1) to Color.rgb(1, 100, 100)
         )

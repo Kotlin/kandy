@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features.marks
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
@@ -22,7 +22,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.boxplot
  * @see org.jetbrains.kotlinx.ggdsl.echarts.layers.candlestick
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class MarkLineContext(
     public var lines: List<MarkLine>? = null
 ) {

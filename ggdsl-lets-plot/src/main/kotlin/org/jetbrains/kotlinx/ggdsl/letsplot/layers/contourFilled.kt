@@ -13,14 +13,14 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 /*
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 class ContourFilledContext(
     parent: LayerCollectorContext,
 =======
 public val CONTOUR_FILLED: LetsPlotGeom = LetsPlotGeom("contour_filled")
 
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class ContourFilledContext(
     override var data: MutableNamedData,
 >>>>>>> main
@@ -56,7 +56,7 @@ public class ContourFilledContext(
 
     public val Stat: Statistics = Statistics
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -68,7 +68,7 @@ public class ContourFilledContext(
         return mapping
     }
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType, RangeType> MappableNonPositionalAes<RangeType>.invoke(
         stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -82,12 +82,12 @@ public class ContourFilledContext(
 }
 
 <<<<<<< HEAD
-inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
-    sourceX: ColumnPointer<TX>,
-    sourceY: ColumnPointer<TY>,
-    sourceZ: ColumnPointer<TZ>,
+inline fun <reified TX, reified TY, reified TZ> PlotContext.contourFilled(
+    sourceX: ColumnReference<TX>,
+    sourceY: ColumnReference<TY>,
+    sourceZ: ColumnReference<TZ>,
 =======
-public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+public inline fun <reified TX, reified TY, reified TZ> PlotContext.contourFilled(
     sourceX: DataSource<TX>,
     sourceY: DataSource<TY>,
     sourceZ: DataSource<TZ>,
@@ -108,7 +108,7 @@ public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotCon
     )
 }
 
-public inline fun <reified TX : Any, reified TY : Any, reified TZ : Any> PlotContext.contourFilled(
+public inline fun <reified TX, reified TY, reified TZ> PlotContext.contourFilled(
     sourceX: Iterable<TX>,
     sourceY: Iterable<TY>,
     sourceZ: Iterable<TZ>,

@@ -14,7 +14,8 @@ public sealed interface Scale
  * Continuous scale interface. Continuous scale wraps a function
  * that acts from one segment to another.
  */
-public interface ContinuousScale : Scale {
+public interface ContinuousScale<RangeType> : Scale {
+    public val nullValue: RangeType?
     public val transform: Transform?
 }
 

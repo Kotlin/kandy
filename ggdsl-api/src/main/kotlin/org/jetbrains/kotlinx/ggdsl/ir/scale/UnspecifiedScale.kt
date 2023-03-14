@@ -4,21 +4,19 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
-import kotlinx.serialization.Serializable
-
 
 /**
  * Unspecified scale - a scale without a specified type and parameters;
  * they will be defined automatically.
  */
-@Serializable
+//@Serializable
 public sealed interface UnspecifiedScale : Scale
 
 /**
  * Default unspecified scale - a scale without a specified type and parameters;
  * they will be defined automatically; can be both used for positional and non-positional mappings.
  */
-@Serializable
+//@Serializable
 public object DefaultUnspecifiedScale : UnspecifiedScale
 
 /**
@@ -38,14 +36,16 @@ public sealed interface NonPositionalUnspecifiedScale : UnspecifiedScale
  *
  * @property transform transformation of the scale.
  */
-@Serializable
+//@Serializable
 public data class PositionalContinuousUnspecifiedScale(override val transform: PositionalTransform? = null) :
-    PositionalUnspecifiedScale, ContinuousScale
+    PositionalUnspecifiedScale, ContinuousScale<Any?> {
+    override val nullValue: Any? = null
+}
 
 /**
  * Positional categorical scale with an unspecified domain; it will be defined automatically.
  */
-@Serializable
+//@Serializable
 public object PositionalCategoricalUnspecifiedScale : PositionalUnspecifiedScale, CategoricalScale
 
 /**
@@ -53,12 +53,14 @@ public object PositionalCategoricalUnspecifiedScale : PositionalUnspecifiedScale
  *
  * @property transform transformation of the scale.
  */
-@Serializable
+//@Serializable
 public data class NonPositionalContinuousUnspecifiedScale(override val transform: NonPositionalTransform? = null) :
-    NonPositionalUnspecifiedScale, ContinuousScale
+    NonPositionalUnspecifiedScale, ContinuousScale<Any?> {
+    override val nullValue: Any? = null
+    }
 
 /**
  * Non-positional categorical scale with an unspecified domain and range; they will be defined automatically.
  */
-@Serializable
+//@Serializable
 public object NonPositionalCategoricalUnspecifiedScale : NonPositionalUnspecifiedScale, CategoricalScale

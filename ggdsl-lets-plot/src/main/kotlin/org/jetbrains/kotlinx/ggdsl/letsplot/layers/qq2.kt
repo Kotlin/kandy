@@ -12,7 +12,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 //public val QQ2: LetsPlotGeom = LetsPlotGeom("qq2")
 
 /*
-@PlotDslMarker
+/*@PlotDslMarker*/
 // todo move x/y?
 <<<<<<< HEAD
 class QQ2Context(
@@ -47,7 +47,7 @@ public class QQ2Context(
     public val Stat: Statistics = Statistics
 
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: QQ2Stat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -59,7 +59,7 @@ public class QQ2Context(
         return mapping
     }
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType, RangeType> MappableNonPositionalAes<RangeType>.invoke(
         stat: QQ2Stat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -74,11 +74,11 @@ public class QQ2Context(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any, reified R: Any> PlotContext.qq2(
-    sourceX: ColumnPointer<T>,
-    sourceY: ColumnPointer<R>,
+inline fun <reified T, reified R: Any> PlotContext.qq2(
+    sourceX: ColumnReference<T>,
+    sourceY: ColumnReference<R>,
 =======
-public inline fun <reified T : Any, reified R : Any> PlotContext.qq2(
+public inline fun <reified T, reified R> PlotContext.qq2(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
 >>>>>>> main
@@ -96,7 +96,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.qq2(
     )
 }
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.qq2(
+public inline fun <reified T, reified R> PlotContext.qq2(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     block: QQ2Context.() -> Unit

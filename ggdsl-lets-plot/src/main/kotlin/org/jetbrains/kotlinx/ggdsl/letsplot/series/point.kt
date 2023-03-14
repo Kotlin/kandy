@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContextMutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableBindingContextInterfaceMutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableDataContext
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.geom.Geom
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.PointContextInterface
@@ -33,7 +33,7 @@ public class PointGatheringContextImmutable(parent: NamedDataPlotContext, positi
     GatheringWithBorderLineContextImmutable(parent, position), PointGatheringContextInterfaceImmutable
 
 public class PointSeriesPlotContext(
-    override val data: NamedDataInterface,
+    override val data: NamedData,
     override val position: Position
 ) : SeriesPlotWithBorderLineContext(data, position), PointGatheringContextInterfaceImmutable
 
@@ -56,7 +56,7 @@ public open class PointSeriesContextMutable(parent: TableBindingContextInterface
     SeriesWithBorderLineContextImmutable(parent), PointContextInterface
 
 public inline fun pointPlot(
-    dataset: NamedDataInterface,
+    dataset: NamedData,
     position: Position = Position.Identity,
     block: PointSeriesPlotContext.() -> Unit,
 ): Plot {

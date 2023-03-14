@@ -12,7 +12,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 //public val QQ_LINE: LetsPlotGeom = LetsPlotGeom("qqLine")
 
 /*
-@PlotDslMarker
+/*@PlotDslMarker*/
 // todo move x/y?
 <<<<<<< HEAD
 class QQLineContext(
@@ -64,7 +64,7 @@ public class QQLineContext(
     public val Stat: Statistics = Statistics
 
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: QQStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -76,7 +76,7 @@ public class QQLineContext(
         return mapping
     }
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType, RangeType> MappableNonPositionalAes<RangeType>.invoke(
         stat: QQStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -91,10 +91,10 @@ public class QQLineContext(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any> PlotContext.qqLine(
-    source: ColumnPointer<T>,
+inline fun <reified T> PlotContext.qqLine(
+    source: ColumnReference<T>,
 =======
-public inline fun <reified T : Any> PlotContext.qqLine(
+public inline fun <reified T> PlotContext.qqLine(
     source: DataSource<T>,
 >>>>>>> main
     distribution: Distribution? = null,
@@ -112,7 +112,7 @@ public inline fun <reified T : Any> PlotContext.qqLine(
     )
 }
 
-public inline fun <reified T : Any> PlotContext.qqLine(
+public inline fun <reified T> PlotContext.qqLine(
     source: Iterable<T>,
     distribution: Distribution? = null,
     quantiles: Pair<Double, Double>? = null,

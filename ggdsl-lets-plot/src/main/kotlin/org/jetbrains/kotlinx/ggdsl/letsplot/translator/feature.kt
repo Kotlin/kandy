@@ -4,14 +4,17 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
+//import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
+//import org.jetbrains.kotlinx.ggdsl.dsl.column.invoke
+//import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
+import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.ggdsl.dsl.categorical
-import org.jetbrains.kotlinx.ggdsl.dsl.column.invoke
+import org.jetbrains.kotlinx.ggdsl.dsl.invoke
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.TypedList
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetWrapFeature
@@ -118,26 +121,27 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
 //internal val palette = listOf(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE)
 
 internal fun Gathering.toLayer(): Layer {
-    val size = data.nameToValues.values.first().values.size
+    val dataFrame = data.dataFrame
+    val size = dataFrame.rowsCount()
     val mappingAesNames = series.first().settings.keys
-    val xBuffer = mutableListOf<Any>()
-    val yBuffer = mutableListOf<Any>()
+    val xBuffer = mutableListOf<Any?>()
+    val yBuffer = mutableListOf<Any?>()
     val labelBuffer = mutableListOf<String>()
     val scaleBuffer = mappingAesNames.associateWith {
-        mutableListOf<String>() to mutableListOf<Any>()
+        mutableListOf<String>() to mutableListOf<Any?>()
     }
 
     val xType = series.first().mappings[X]!!.domainType
     val yType = series.first().mappings[Y]!!.domainType
 
     series.forEach {series ->
-        xBuffer.addAll(data.nameToValues[series.mappings[X]!!.wrap().second]!!.values)
-        yBuffer.addAll(data.nameToValues[series.mappings[Y]!!.wrap().second]!!.values)
+        xBuffer.addAll(dataFrame[series.mappings[X]!!.columnName()].values())
+        yBuffer.addAll(dataFrame[series.mappings[Y]!!.columnName()].values())
         labelBuffer.addAll(List(size){series.label})
         series.settings.forEach { (aesName, setting) ->
             scaleBuffer[aesName]!!.let {
                 it.first.add(series.label)
-                it.second.add((setting as NonPositionalSetting<*>).value.value)
+                it.second.add((setting as NonPositionalSetting<*>).value!!)
             }
         }
     }
@@ -152,7 +156,7 @@ internal fun Gathering.toLayer(): Layer {
         ))
     } else {
         scaleBuffer.map { (aesName, buffer) ->
-            aesName to ScaledNonPositionalMapping<String, Any>(
+            aesName to ScaledNonPositionalMapping<String, Any?>(
                 aesName,
                 "label"<String>().scaled(
                     categorical(
@@ -165,13 +169,12 @@ internal fun Gathering.toLayer(): Layer {
         }.toMap()
     }
 
-    val newData = NamedData(
-        mapOf(
-            "x" to TypedList(typeOf<Double>(), xBuffer),
-            "y" to TypedList(typeOf<Double>(), yBuffer),
-            "label" to TypedList(typeOf<String>(), labelBuffer)
-        )
+    val df = dataFrameOf(
+        "x" to xBuffer,
+        "y" to yBuffer,
+        "label" to labelBuffer
     )
+    val newData = NamedData(df)
     return Layer(
         newData,
         geom,

@@ -32,8 +32,8 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator
 //            "val" to listOf(2.0, 3.3, 2.9)
 //        ))
 //        val plot = plot(simpleDataset) {
-//            x(columnPointer<Int>("time"))
-//            y(columnPointer<Int>("val"))
+//            x(ColumnReference<Int>("time"))
+//            y(ColumnReference<Int>("val"))
 //            points {
 //                color(Color.RED)
 //            }
@@ -87,13 +87,13 @@ package org.jetbrains.kotlinx.ggdsl.echarts.translator
 //            "val_avg" to listOf(2.0, 3.3, 2.9, 1.8)
 //        ))
 //
-//        val time = columnPointer<Int>("time")
-//        val valMax = columnPointer<Double>("val_max")
-//        val valMinMainPart = columnPointer<Double>("val_min_main_part")
-//        val valMinRest = columnPointer<Double>("val_min_rest")
-//        val valAvg = columnPointer<Double>("val_avg")
-//        val type = columnPointer<String>("type")
-//        val typeMainPart = columnPointer<String>("type_main_part")
+//        val time = ColumnReference<Int>("time")
+//        val valMax = ColumnReference<Double>("val_max")
+//        val valMinMainPart = ColumnReference<Double>("val_min_main_part")
+//        val valMinRest = ColumnReference<Double>("val_min_rest")
+//        val valAvg = ColumnReference<Double>("val_avg")
+//        val type = ColumnReference<String>("type")
+//        val typeMainPart = ColumnReference<String>("type_main_part")
 //
 //        /*
 //        val plotTitle = "Important plot"

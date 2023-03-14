@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
 
 public interface CrossBarContextInterface: WithBorderLineContextInterface {
@@ -21,10 +21,10 @@ public interface CrossBarContextInterface: WithBorderLineContextInterface {
     public val alpha: AlphaAes get() = AlphaAes(this)
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class CrossBarContextImmutable(parent: LayerCollectorContextImmutable)
     : LayerWithBorderLineContextImmutable(parent), CrossBarContextInterface
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class CrossBarContextMutable(parent: LayerCollectorContextMutable):
     LayerWithBorderLineContextMutable(parent), CrossBarContextInterface

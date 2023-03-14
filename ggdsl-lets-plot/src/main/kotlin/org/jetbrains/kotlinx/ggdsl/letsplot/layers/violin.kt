@@ -9,14 +9,14 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 //public val VIOLIN: LetsPlotGeom = LetsPlotGeom("violin")
 /*
 // todo stats
-@PlotDslMarker
+/*@PlotDslMarker*/
 class ViolinContext(
     parent: LayerCollectorContext,
 =======
 public val VIOLIN: LetsPlotGeom = LetsPlotGeom("violin")
 
 // todo stats
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class ViolinContext(
     override var data: MutableNamedData,
 >>>>>>> main
@@ -117,7 +117,7 @@ public class ViolinContext(
 
     public val Stat: Statistics = Statistics
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: ViolinStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -129,7 +129,7 @@ public class ViolinContext(
         return mapping
     }
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any>
+    public inline operator fun <reified DomainType, RangeType>
         MappableNonPositionalAes<RangeType>.invoke(
         stat: ViolinStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
@@ -146,11 +146,11 @@ public class ViolinContext(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any, reified R : Any> PlotContext.violin(
-    sourceX: ColumnPointer<T>,
-    sourceY: ColumnPointer<R>,
+inline fun <reified T, reified R> PlotContext.violin(
+    sourceX: ColumnReference<T>,
+    sourceY: ColumnReference<R>,
 =======
-public inline fun <reified T : Any, reified R : Any> PlotContext.violin(
+public inline fun <reified T, reified R> PlotContext.violin(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
 >>>>>>> main
@@ -177,10 +177,10 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.violin(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any> PlotContext.violin(
-    sourceY: ColumnPointer<T>,
+inline fun <reified T> PlotContext.violin(
+    sourceY: ColumnReference<T>,
 =======
-public inline fun <reified T : Any> PlotContext.violin(
+public inline fun <reified T> PlotContext.violin(
     sourceY: DataSource<T>,
 >>>>>>> main
     drawQuantiles: List<Double>? = null,
@@ -204,7 +204,7 @@ public inline fun <reified T : Any> PlotContext.violin(
     )
 }
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.violin(
+public inline fun <reified T, reified R> PlotContext.violin(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     drawQuantiles: List<Double>? = null,

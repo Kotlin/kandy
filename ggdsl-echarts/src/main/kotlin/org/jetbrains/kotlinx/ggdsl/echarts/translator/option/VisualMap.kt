@@ -11,12 +11,11 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Ech
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.serializers.RangeSerializer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
-import org.jetbrains.kotlinx.ggdsl.util.serialization.TypedValue
 
-internal fun createInRange(aes: AesName, valuesString: List<Any>?): Range? {
+internal fun createInRange(aes: AesName, valuesString: List<Any?>?): Range? {
     if (valuesString.isNullOrEmpty()) return null
     return when (aes) {
-        COLOR, LINE_COLOR, AREA_COLOR -> Range(color = valuesString.map { ((it as TypedValue).value as Color).toEchartsColor() })
+        COLOR, LINE_COLOR, AREA_COLOR -> Range(color = valuesString.map { (it as Color).toEchartsColor() })
         SIZE -> Range(symbolSize = valuesString)
         ALPHA, LINE_ALPHA, AREA_ALPHA -> Range(colorAlpha = valuesString)
         SYMBOL -> Range(symbol = valuesString)
@@ -26,10 +25,10 @@ internal fun createInRange(aes: AesName, valuesString: List<Any>?): Range? {
 
 @Serializable(with = RangeSerializer::class)
 internal data class Range(
-    val symbol: List<Any>? = null,
-    val symbolSize: List<Any>? = null,
+    val symbol: List<Any?>? = null,
+    val symbolSize: List<Any?>? = null,
     val color: List<EchartsColor>? = null,
-    val colorAlpha: List<Any>? = null,
+    val colorAlpha: List<Any?>? = null,
     val opacity: List<Double>? = null,
     val colorLightness: List<Double>? = null,
     val colorSaturation: List<Double>? = null,
@@ -120,7 +119,7 @@ internal data class PiecewiseVisualMap(
     val id: String? = null,
     val splitNumber: Int? = null,
     val pieces: List<Piece>? = null,
-    val categories: List<String>? = null,
+    val categories: List<String?>? = null,
     val min: Double? = null,
     val max: Double? = null,
     val minOpen: Boolean? = null,

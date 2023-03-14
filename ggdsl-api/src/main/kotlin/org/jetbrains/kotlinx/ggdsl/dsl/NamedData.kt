@@ -1,39 +1,42 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
-
+/*
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.toTyped
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.validate
 import org.jetbrains.kotlinx.ggdsl.ir.data.*
 
 /**
- * Standard [NamedDataInterface] implementation.
+ * Standard [NamedData] implementation.
  */
-@Serializable
-public data class NamedData(override val nameToValues: Map<String, TypedList>) : NamedDataInterface {
+//@Serializable
+public data class NamedData(override val nameToValues: Map<String, TypedList>) :
+    org.jetbrains.kotlinx.ggdsl.ir.data.NamedData {
     init {
         validate()
     }
-    override fun groupBy(vararg columnPointers: ColumnPointer<*>): LazyGroupedData {
-        return LazyGroupedData(columnPointers.map { it.name }, this)
+    override fun groupBy(vararg ColumnReferences: ColumnReference<*>): LazyGroupedData {
+        return LazyGroupedData(ColumnReferences.map { it.name }, this)
     }
     public companion object {
         @PublishedApi
-        internal fun fromUntyped(untypedMap: Map<String, List<Any>>): NamedData = NamedData(untypedMap.toTyped())
+        internal fun fromUntyped(untypedMap: Map<String, List<*>>): NamedData = NamedData(untypedMap.toTyped())
     }
 }
 
 /**
- * Standard [LazyGroupedDataInterface] implementation.
+ * Standard [LazyGroupedData] implementation.
  */
-@Serializable
+//@Serializable
 public data class LazyGroupedData(
     override val keys: List<String>,
     override val origin: NamedData
-) : LazyGroupedDataInterface {
+) : org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedData {
     init {
         validate()
     }
-    override fun count(): CountedGroupedDataInterface {
+    override fun count(): CountedGroupedData {
         TODO("Not yet implemented")
     }
 }
+
+ */

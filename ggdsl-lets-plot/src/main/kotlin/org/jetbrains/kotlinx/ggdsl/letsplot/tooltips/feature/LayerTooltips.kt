@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.Anchor
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.context.LayerTooltipsContext
 
-@Serializable
+//@Serializable
 public data class LayerTooltips internal constructor(
     val variables: List<String>,
     val lines: List<String>,

@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 //public val BOXPLOT_STAT: LetsPlotGeom = LetsPlotGeom("boxplot_stat")
 
 /*
-@PlotDslMarker
+/*@PlotDslMarker*/
 <<<<<<< HEAD
 class OutlierSubContext(parentContext: BindingContext) : SubContext(parentContext), SelfInvocationContext {
     parent: LayerCollectorContext = mutableMapOf()
@@ -26,7 +26,7 @@ public class OutlierSubContext(parentContext: BindingContext) : SubContext(paren
 }
 
 // TODO Stats
-@PlotDslMarker
+/*@PlotDslMarker*/
 // todo move x/y?
 <<<<<<< HEAD
 class BoxplotStatContext<T>(
@@ -99,11 +99,11 @@ public class BoxplotStatContext<T>(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
-    sourceX: ColumnPointer<T>,
-    sourceY: ColumnPointer<R>,
+inline fun <reified T, reified R> PlotContext.boxplot(
+    sourceX: ColumnReference<T>,
+    sourceY: ColumnReference<R>,
 =======
-public inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
+public inline fun <reified T, reified R> PlotContext.boxplot(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
 >>>>>>> main
@@ -122,7 +122,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
     )
 }
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.boxplot(
+public inline fun <reified T, reified R> PlotContext.boxplot(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     varWidth: Boolean? = null,

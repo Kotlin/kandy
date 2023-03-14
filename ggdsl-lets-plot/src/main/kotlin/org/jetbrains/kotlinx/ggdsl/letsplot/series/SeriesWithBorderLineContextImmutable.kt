@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.series
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.NamedDataPlotContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableBindingContextInterfaceMutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.TableDataContext
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextImmutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.BorderLineContextMutable
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.WithBorderLineContextImmutable
@@ -38,7 +38,7 @@ public abstract class GatheringWithBorderLineContextMutable(
 }
 
 public abstract class SeriesPlotWithBorderLineContext(
-    override val data: NamedDataInterface,
+    override val data: NamedData,
     override val position: Position
 ) : SeriesPlotContextBase(), WithBorderLineContextImmutable {
     override val borderLine: BorderLineContextImmutable

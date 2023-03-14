@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.scale
 
-import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import kotlin.reflect.KType
 
@@ -23,8 +22,8 @@ public sealed interface FreeScale {
  * TODO: will be redesigned in the near future.
  * Free positional scale, i.e scale without a mapping.
  */
-@Serializable
-public data class FreePositionalScale<DomainType : Any>(
+//@Serializable
+public data class FreePositionalScale<DomainType>(
     override val aes: AesName,
     override val scale: Scale,
     override val domainType: KType,

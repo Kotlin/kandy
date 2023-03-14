@@ -9,12 +9,14 @@ package org.jetbrains.kotlinx.ggdsl.dsl.internal
 public annotation class StatDSLMarker
 
  */
-
+/*
 /**
  * Main DSL marker.
  */
 @DslMarker
 public annotation class PlotDslMarker
+
+ */
 
 /*
 @DslMarker

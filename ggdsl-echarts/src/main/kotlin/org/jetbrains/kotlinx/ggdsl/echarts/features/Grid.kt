@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.SizeUnit
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.EchartsGrid
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.toEchartsColor
@@ -31,7 +31,7 @@ import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
  * @see Color
  * @see Tooltip
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class Grid(
     public var left: SizeUnit? = null,
     public var top: SizeUnit? = null,

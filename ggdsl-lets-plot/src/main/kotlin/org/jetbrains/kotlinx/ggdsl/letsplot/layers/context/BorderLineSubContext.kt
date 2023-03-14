@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.internal.SizeAes
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public interface BorderLineContextInterface: SelfInvocationContext {
     // todo hide
     public val parentContext: BindingContext

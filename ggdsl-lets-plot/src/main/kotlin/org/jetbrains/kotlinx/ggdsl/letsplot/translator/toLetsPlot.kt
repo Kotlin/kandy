@@ -5,8 +5,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
-import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
 import org.jetbrains.letsPlot.intern.FeatureList
 import org.jetbrains.letsPlot.letsPlot
 

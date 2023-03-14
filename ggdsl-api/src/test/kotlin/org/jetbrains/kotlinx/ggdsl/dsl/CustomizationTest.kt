@@ -4,12 +4,14 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
@@ -70,22 +72,22 @@ internal class CustomizationTest {
         }
 
 
-    val mockSrcDouble = columnPointer<Double>("mock_double")
-    val mockSrcInt = columnPointer<Int>("mock_int")
-    val mockSrcString = columnPointer<String>("mock_string")
-    val mockSrcFloat = columnPointer<Float>("mock_float")
+    val mockSrcDouble = column<Double>("mock_double")
+    val mockSrcInt = column<Int>("mock_int")
+    val mockSrcString = column<String>("mock_string")
+    val mockSrcFloat = column<Float>("mock_float")
 
     val dataset =
-        dataOf {
-            "mock_double" to listOf<Double>()
-            "mock_int" to listOf<Int>()
-            "mock_string" to listOf<String>()
-            "mock_float" to listOf<Float>()
-        }
+        dataFrameOf(
+            "mock_double" to listOf<Double>(),
+            "mock_int" to listOf<Int>(),
+            "mock_string" to listOf<String>(),
+            "mock_float" to listOf<Float>(),
+        )
 
     @Test
     fun testCustomLayer() {
-        val plot = plot(dataset) {
+        val plot = dataset.plot {
             y(mockSrcDouble)
             customLayer {
                 x(mockSrcFloat.scaled(continuousPos()))
@@ -105,7 +107,7 @@ internal class CustomizationTest {
         }
         assertEquals(
             Plot(
-                dataset,
+                NamedData(dataset),
                 listOf(
                     Layer(
                         null,
@@ -126,8 +128,9 @@ internal class CustomizationTest {
                                 ColumnScaledNonPositional(
                                     mockSrcString,
                                     NonPositionalCategoricalScale<String, CustomGeomType>(
-                                        listOf("A", "B").typedList(),
-                                        listOf(CustomGeomType("x"), CustomGeomType("xxx")).typedList()
+                                        listOf("A", "B"),
+                                        listOf(CustomGeomType("x"), CustomGeomType("xxx")),
+                                        //null
                                     )
                                 ),
                                 typeOf<String>(),
@@ -155,7 +158,7 @@ internal class CustomizationTest {
                         mapOf(
                             SPECIFIC_AES to NonPositionalSetting<CustomGeomType>(
                                 SPECIFIC_AES,
-                                CustomGeomType("yy").typed()
+                                CustomGeomType("yy")
                             )
                         ),
                         mapOf()
@@ -175,7 +178,7 @@ internal class CustomizationTest {
 
     @Test
     fun testFeatures() {
-        val plot = plot(dataset) {
+        val plot = dataset.plot {
             mockFeatureProp = "amentes ineptias"
             bars {
                 mockFeatureFunction(14)
@@ -184,7 +187,7 @@ internal class CustomizationTest {
 
         assertEquals(
             Plot(
-                dataset,
+                NamedData(dataset),
                 listOf(
                     Layer(
                         null,

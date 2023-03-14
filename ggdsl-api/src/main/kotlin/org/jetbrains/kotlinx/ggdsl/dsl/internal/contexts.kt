@@ -4,14 +4,14 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl.internal
 
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
-import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
@@ -166,7 +166,7 @@ public interface LayerCollectorContextImmutable : LayerCollectorContextInterface
  *
  * @property features [MutableMap] of feature names to layer features.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public interface LayerContextInterface : TableDataContext, TableSubContextInterface {
     public val features: MutableMap<FeatureName, LayerFeature>
 }
@@ -176,7 +176,7 @@ public interface LayerContextInterface : TableDataContext, TableSubContextInterf
  *
  * @property features [MutableMap] of feature names to layer features.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public abstract class LayerContextImmutable(parent: LayerCollectorContextImmutable) : LayerContextInterface,
     TableSubContextImmutable(parent, parent !is LayerPlotContext) {
     public override val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
@@ -187,7 +187,7 @@ public abstract class LayerContextImmutable(parent: LayerCollectorContextImmutab
  *
  * @property layers layers buffer, inherited from a parent.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public abstract class SubLayerCollectorContextImmutable(parent: LayerCollectorContextImmutable)
     : TableDataContext, LayerCollectorContextImmutable, BindingSubContextImmutable(parent) {
     override val layers: MutableList<Layer> = parent.layers
@@ -196,21 +196,21 @@ public abstract class SubLayerCollectorContextImmutable(parent: LayerCollectorCo
 /**
  * Context with a grouped data.
  *
- * @property data dataset of type [GroupedDataInterface].
+ * @property data dataset of type [GroupedData].
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public interface GroupedDataContextInterface : TableDataContext, LayerCollectorContextImmutable {
-    override val data: GroupedDataInterface
+    override val data: GroupedData
 }
 
 /**
  * Context with a grouped data with immutable mappings.
  *
- * @property data dataset of type [GroupedDataInterface].
+ * @property data dataset of type [GroupedData].
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public open class GroupedDataSubContextImmutable constructor(
-    override val data: GroupedDataInterface,
+    override val data: GroupedData,
     override val layers: MutableList<Layer>,
     parent: BindingContext,
 ) : GroupedDataContextInterface, BindingSubContextImmutable(parent)
@@ -223,7 +223,7 @@ public open class GroupedDataSubContextImmutable constructor(
  * @property features [MutableMap] of feature names to plot features.
  * @property toPlot creates a new plot from this context.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public interface PlotContextBase : TableDataContext {
     // todo hide
     override val data: TableData
@@ -234,7 +234,7 @@ public interface PlotContextBase : TableDataContext {
 /**
  * Plot with an explicit layers creating context.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public interface LayerPlotContext : LayerCollectorContextInterface, PlotContextBase {
     // todo hide
     public override fun toPlot(): Plot {
@@ -242,13 +242,17 @@ public interface LayerPlotContext : LayerCollectorContextInterface, PlotContextB
     }
 }
 
+public interface NamedDataPlotContextInterface: LayerPlotContext {
+    override val data: NamedData
+}
+
 /**
- * Layer plot with a dataset of type [NamedDataInterface] context.
+ * Layer plot with a dataset of type [NamedData] context.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class NamedDataPlotContext(
-    override val data: NamedDataInterface,
-) : LayerPlotContext, LayerCollectorContextImmutable {
+    override val data: NamedData,
+) : NamedDataPlotContextInterface, LayerCollectorContextImmutable {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val layers: MutableList<Layer> = mutableListOf()
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
@@ -257,14 +261,14 @@ public class NamedDataPlotContext(
      * Performs grouping of this plot dataset by given columns.
      * Creates [GroupedDataSubContextImmutable].
      *
-     * @param columnPointers pointers to grouping keys columns.
+     * @param ColumnReferences pointers to grouping keys columns.
      */
     public inline fun groupBy(
-        vararg columnPointers: ColumnPointer<*>,
+        vararg columnReferences: ColumnReference<*>,
         block: GroupedDataSubContextImmutable.() -> Unit
     ) {
         GroupedDataSubContextImmutable(
-            data.groupBy(*columnPointers),
+            data.groupBy(*columnReferences),
             layers,
             this
         ).apply(block)
@@ -274,9 +278,9 @@ public class NamedDataPlotContext(
 /**
  * Layer plot with a dataset of type [GroupedDataContextInterface] context.
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class GroupedDataPlotContext(
-    override val data: GroupedDataInterface,
+    override val data: GroupedData,
 ) : LayerPlotContext, GroupedDataContextInterface {
     override val layers: MutableList<Layer> = mutableListOf()
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()

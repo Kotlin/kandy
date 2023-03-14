@@ -1,15 +1,14 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.feature
 
-import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.theme.CustomTheme
 import org.jetbrains.kotlinx.ggdsl.letsplot.theme.Theme
 
 //todo
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class Layout(
     var title: String? = null,
     var subtitle: String? = null,

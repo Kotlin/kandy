@@ -4,8 +4,10 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
+import org.jetbrains.kotlinx.dataframe.api.toMap
 import org.jetbrains.kotlinx.ggdsl.dsl.*
-import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.facetGrid
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bars
@@ -13,7 +15,6 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.line
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.points
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.position
-import org.jetbrains.kotlinx.ggdsl.letsplot.toSimple
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.ggdsl.letsplot.x
@@ -27,14 +28,14 @@ class ToLetsPlotTest {
 
     @Test
     fun testSimple() {
-        val dataset = dataOf {
-            "origin" to listOf<String>()
+        val dataset = dataFrameOf(
+            "origin" to listOf<String>(),
             "mpg" to listOf<Double>()
-        }
-        val plot = plot(dataset) {
-            x(columnPointer<String>("origin"))
+        )
+        val plot = dataset.plot {
+            x(column<String>("origin"))
             points {
-                y(columnPointer<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
+                y(column<Double>("mpg").scaled(continuousPos(limits = 1.0 to 5.0)))
                 symbol(Symbol.CIRCLE_FILLED)
                 fillColor(Color.RED)
             }
@@ -43,7 +44,7 @@ class ToLetsPlotTest {
         assertEquals(
             mapOf(
                 "mapping" to mapOf<String, String>(),
-                "data" to dataset.toSimple(),
+                "data" to dataset.toMap(),
                 "kind" to "plot",
                 "scales" to listOf(
                     mapOf(
@@ -60,6 +61,7 @@ class ToLetsPlotTest {
                             "x" to "origin",
                             "y" to "mpg"
                         ),
+                        "sampling" to "none",
                         "stat" to "identity",
                    //     "data" to mapOf<String, Any>(),
                         "shape" to 21.0,
@@ -75,16 +77,16 @@ class ToLetsPlotTest {
 
     @Test
     fun testComplex() {
-        val dataset = dataOf {
-            "svalue" to listOf<String>()
-            "time" to listOf<Double>()
-            "clM" to listOf<Int>()
-            "clX" to listOf<String>()
-        }
-        val clM = columnPointer<Int>("clM")
-        val plot = plot(dataset) {
-            x(columnPointer<Double>("time").scaled(continuousPos(limits = -12.0 to 4.4)))
-            y(columnPointer<String>("svalue").scaled(categoricalPos(categories = listOf("A", "B", "C"))))
+        val dataset = dataFrameOf(
+            "svalue" to listOf<String>(),
+            "time" to listOf<Double>(),
+            "clM" to listOf<Int>(),
+            "clX" to listOf<String>(),
+        )
+        val clM = column<Int>("clM")
+        val plot = dataset.plot {
+            x(column<Double>("time").scaled(continuousPos(limits = -12.0 to 4.4)))
+            y(column<String>("svalue").scaled(categoricalPos(categories = listOf("A", "B", "C"))))
 
             bars {
                 color(
@@ -107,14 +109,14 @@ class ToLetsPlotTest {
 
             facetGrid(
                 x = clM,
-                y = columnPointer<String>("clX"),
+                y = column<String>("clX"),
                 yOrder = OrderDirection.DESCENDING
             )
         }
         assertEquals(
             mapOf(
                 "mapping" to mapOf<String, String>(),
-                "data" to dataset.toSimple(),
+                "data" to dataset.toMap(),
                 "kind" to "plot",
                 "scales" to listOf(
                     mapOf(
@@ -145,6 +147,7 @@ class ToLetsPlotTest {
                             "y" to "svalue",
                             "fill" to "clM"
                         ),
+                        "sampling" to "none",
                         "stat" to "identity",
                   //      "data" to mapOf<String, Any>(),
                         "alpha" to 0.8,
@@ -180,6 +183,7 @@ class ToLetsPlotTest {
                             "x" to "time",
                             "y" to "svalue",
                         ),
+                        "sampling" to "none",
                         "stat" to "identity",
                       //  "data" to mapOf<String, Any>(),
                         "size" to 2.2,

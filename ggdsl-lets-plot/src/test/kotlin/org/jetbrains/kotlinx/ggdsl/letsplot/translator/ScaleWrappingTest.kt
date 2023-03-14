@@ -4,11 +4,12 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedPair
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalContinuousScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.COLOR
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.FILL
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.SIZE
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.X
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.letsPlot.intern.toSpec
@@ -21,7 +22,7 @@ internal class ScaleWrappingTest {
     @Test
     fun testPos() {
         val range = 2.0 to 11.1
-        val scale = PositionalContinuousScale<Double>(range.typedPair())
+        val scale = PositionalContinuousScale<Double>(range, null, null)
         val wrappedScale = scale.wrap(X, typeOf<Double>())
         assertNotNull(wrappedScale)
         assertEquals(
@@ -36,7 +37,11 @@ internal class ScaleWrappingTest {
     @Test
     fun testNonPos() {
         val values = listOf(Color.BLACK, Color.RED, Color.GREEN)
-        val scale = NonPositionalCategoricalScale<String, Color>(rangeValues = values.typedList())
+        val scale = NonPositionalCategoricalScale<String, Color>(
+            null,
+            rangeValues = values,
+            //null,
+        )
         val wrappedScale = scale.wrap(FILL, typeOf<String>())
         assertNotNull(wrappedScale)
         assertEquals(
@@ -47,15 +52,53 @@ internal class ScaleWrappingTest {
             wrappedScale.toSpec()
         )
     }
-    /*
-        @Test
-        fun testDefaults() {
-            assertNull(DefaultUnspecifiedScale.wrap(SHAPE, mapping.domainType))
-            assertNull(PositionalCategoricalUnspecifiedScale.wrap(Y, mapping.domainType))
-            assertNull(PositionalContinuousUnspecifiedScale().wrap(Y, mapping.domainType))
-            assertNull(NonPositionalCategoricalUnspecifiedScale.wrap(COLOR, mapping.domainType))
-            assertNull(NonPositionalContinuousUnspecifiedScale().wrap(SIZE, mapping.domainType))
-        }
 
-     */
+    @Test
+    fun testNonPosCategoricalNull() {
+        val categories = listOf(1, 3, 5)
+        val values = listOf(45.1, 728.1, 0.0001)
+        val nullValue = 1.123
+        val scale = NonPositionalCategoricalScale<Int?, Double>(
+            (categories + null),
+            (values + nullValue),
+            //null,
+        )
+        val wrappedScale = scale.wrap(SIZE, typeOf<Double>())
+        assertNotNull(wrappedScale)
+        assertEquals(
+            mapOf(
+                "aesthetic" to "size",
+                "limits" to categories.map { it.toDouble() },
+                "values" to values + nullValue, // TODO!!
+                "na_value" to nullValue,
+            ),
+            wrappedScale.toSpec()
+        )
+    }
+
+    @Test
+    fun testNonPosContinuousNull() {
+        val domainLimits = 0.5 to 0.9
+        val rangeLimits = Color.RED to Color.GREEN
+        val nullValue = Color.GREY
+        val scale = NonPositionalContinuousScale<Double, Color>(
+            domainLimits,
+            rangeLimits,
+            nullValue,
+            null
+        )
+        val wrappedScale = scale.wrap(COLOR, typeOf<Double>())
+        assertNotNull(wrappedScale)
+        assertEquals(
+            mapOf(
+                "aesthetic" to "color",
+                "scale_mapper_kind" to "color_gradient",
+                "limits" to domainLimits.toList(),
+                "low" to "#ee6666",
+                "high" to "#3ba272",
+                "na_value" to "#a39999",
+            ),
+            wrappedScale.toSpec()
+        )
+    }
 }

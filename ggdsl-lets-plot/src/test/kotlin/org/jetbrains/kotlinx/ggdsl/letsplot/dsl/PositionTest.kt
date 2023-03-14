@@ -5,10 +5,11 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.dsl
 
 
-import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
+import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.bars
@@ -19,7 +20,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class PositionTest {
-    private val emptyDataset = NamedData(mapOf())
+    private val emptyDataset = NamedData(DataFrame.Empty)
     @Test
     fun testSimple() {
         val plot = plot(emptyDataset) {

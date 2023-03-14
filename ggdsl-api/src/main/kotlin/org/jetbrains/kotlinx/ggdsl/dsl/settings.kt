@@ -1,6 +1,5 @@
 package org.jetbrains.kotlinx.ggdsl.dsl
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalSetting
 
@@ -9,8 +8,8 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalSetting
  *
  * @param value the assigned value.
  */
-public inline operator fun <reified T : Any> NonPositionalAes<T>.invoke(value: T) {
-    context.bindingCollector.settings[this.name] = NonPositionalSetting<T>(this.name, value.typed())
+public inline operator fun <reified T> NonPositionalAes<T>.invoke(value: T) {
+    context.bindingCollector.settings[this.name] = NonPositionalSetting<T>(this.name, value)
 }
 
 /**
@@ -19,5 +18,5 @@ public inline operator fun <reified T : Any> NonPositionalAes<T>.invoke(value: T
  * @param value the assigned value.
  */
 public inline operator fun <reified T : Number> PositionalAes.invoke(value: T) {
-    context.bindingCollector.settings[this.name] = PositionalSetting<T>(this.name, value.typed())
+    context.bindingCollector.settings[this.name] = PositionalSetting<T>(this.name, value)
 }

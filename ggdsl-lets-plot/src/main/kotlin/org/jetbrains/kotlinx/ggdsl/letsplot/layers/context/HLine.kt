@@ -12,10 +12,10 @@ public interface HLineContextInterface: BindingContext {
     public val width: SizeAes get() = SizeAes(this)
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class HLineContextImmutable(parent: LayerCollectorContextImmutable)
     : LayerContextImmutable(parent), HLineContextInterface
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class HLineContextMutable(parent: LayerCollectorContextMutable):
     LayerContextMutable(parent), HLineContextInterface

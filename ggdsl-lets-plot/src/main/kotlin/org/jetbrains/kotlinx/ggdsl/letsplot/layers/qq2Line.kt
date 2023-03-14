@@ -12,7 +12,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 //public val QQ2_LINE: LetsPlotGeom = LetsPlotGeom("qq2Line")
 
 /*
-@PlotDslMarker
+/*@PlotDslMarker*/
 // todo move x/y?
 <<<<<<< HEAD
 class QQ2LineContext(
@@ -58,7 +58,7 @@ public class QQ2LineContext(
     public val Stat: Statistics = Statistics
 
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: QQ2Stat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -70,7 +70,7 @@ public class QQ2LineContext(
         return mapping
     }
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any> MappableNonPositionalAes<RangeType>.invoke(
+    public inline operator fun <reified DomainType, RangeType> MappableNonPositionalAes<RangeType>.invoke(
         stat: QQ2Stat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
         val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
@@ -85,11 +85,11 @@ public class QQ2LineContext(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any, reified R: Any> PlotContext.qq2Line(
-    sourceX: ColumnPointer<T>,
-    sourceY: ColumnPointer<R>,
+inline fun <reified T, reified R: Any> PlotContext.qq2Line(
+    sourceX: ColumnReference<T>,
+    sourceY: ColumnReference<R>,
 =======
-public inline fun <reified T : Any, reified R : Any> PlotContext.qq2Line(
+public inline fun <reified T, reified R> PlotContext.qq2Line(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
 >>>>>>> main
@@ -108,7 +108,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.qq2Line(
     )
 }
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.qq2Line(
+public inline fun <reified T, reified R> PlotContext.qq2Line(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     quantiles: Pair<Double, Double>? = null,

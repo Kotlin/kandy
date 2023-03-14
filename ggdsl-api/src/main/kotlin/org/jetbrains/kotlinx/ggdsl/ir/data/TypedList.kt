@@ -1,11 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.ir.data
-
+/*
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.builtins.nullable
 import kotlinx.serialization.descriptors.*
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
@@ -123,7 +124,7 @@ public object TypedListSerializer : KSerializer<TypedList> {
     override fun serialize(encoder: Encoder, value: TypedList) {
         encoder.encodeStructure(descriptor) {
             encodeStringElement(descriptor, 0, value.kType.toString())
-            encodeSerializableElement(descriptor, 1, ListSerializer(AnySerializer(value.kType)), value.values)
+            encodeSerializableElement(descriptor, 1, ListSerializer(AnySerializer(value.kType).nullable), value.values)
         }
     }
 
@@ -139,5 +140,8 @@ public object TypedListSerializer : KSerializer<TypedList> {
 @Serializable(with = TypedListSerializer::class)
 public data class TypedList(
     val kType: KType,
-    val values: List<Any>,
+    val values: List<*>,
 )
+
+
+ */

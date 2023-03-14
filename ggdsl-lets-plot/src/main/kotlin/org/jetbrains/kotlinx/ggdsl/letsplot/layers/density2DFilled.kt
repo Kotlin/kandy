@@ -13,7 +13,7 @@ public val DENSITY_2D_FILLED: LetsPlotGeom = LetsPlotGeom("density_2D_filled")
 >>>>>>> main
 
 // todo stats
-@PlotDslMarker
+/*@PlotDslMarker*/
 // todo move x/y?
 <<<<<<< HEAD
 class Density2DFilledContext(
@@ -98,7 +98,7 @@ public class Density2DFilledContext(
     }
 
 
-    public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+    public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
         stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
         val mapping = ScaledUnspecifiedDefaultPositionalMapping(
@@ -111,7 +111,7 @@ public class Density2DFilledContext(
     }
 
 
-    public inline operator fun <reified DomainType : Any, RangeType : Any>
+    public inline operator fun <reified DomainType, RangeType>
         MappableNonPositionalAes<RangeType>.invoke(
         stat: ContourStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
@@ -128,11 +128,11 @@ public class Density2DFilledContext(
 }
 
 <<<<<<< HEAD
-inline fun <reified T : Any, reified R: Any> PlotContext.density2DFilled(
-    sourceX: ColumnPointer<T>,
-    sourceY: ColumnPointer<R>,
+inline fun <reified T, reified R: Any> PlotContext.density2DFilled(
+    sourceX: ColumnReference<T>,
+    sourceY: ColumnReference<R>,
 =======
-public inline fun <reified T : Any, reified R : Any> PlotContext.density2DFilled(
+public inline fun <reified T, reified R> PlotContext.density2DFilled(
     sourceX: DataSource<T>,
     sourceY: DataSource<R>,
 >>>>>>> main
@@ -156,7 +156,7 @@ public inline fun <reified T : Any, reified R : Any> PlotContext.density2DFilled
     )
 }
 
-public inline fun <reified T : Any, reified R : Any> PlotContext.density2DFilled(
+public inline fun <reified T, reified R> PlotContext.density2DFilled(
     sourceX: Iterable<T>,
     sourceY: Iterable<R>,
     kernel: Kernel? = null,

@@ -15,13 +15,13 @@ import kotlin.reflect.typeOf
 
 internal fun Scale.toVisualMap(
     aes: AesName, dim: String, seriesIndex: Int,
-    data: List<Any>?, visualMapSize: Int, domainType: KType
+    data: List<Any?>?, visualMapSize: Int, domainType: KType
 ): VisualMap {
     return when (this) {
         is NonPositionalCategoricalScale<*, *> -> {
             val categoriesString =
-                domainCategories?.values?.map { value -> value.toString() } ?: data?.toSet()?.map { it.toString() }
-            val inRange = createInRange(aes, rangeValues?.values)
+                domainCategories?.map { value -> value?.toString() } ?: data?.toSet()?.map { it?.toString() }
+            val inRange = createInRange(aes, rangeValues)
             PiecewiseVisualMap(
                 dimension = dim,
                 categories = categoriesString,
@@ -33,10 +33,16 @@ internal fun Scale.toVisualMap(
         }
 
         is NonPositionalContinuousScale<*, *> -> {
-            val min =
-                domainLimits?.first?.value?.toString()?.toDouble() ?: data?.minOfOrNull { (it as Number).toDouble() }
-            val max =
-                domainLimits?.second?.value?.toString()?.toDouble() ?: data?.maxOfOrNull { (it as Number).toDouble() }
+            val min: Double?
+            val max: Double?
+            if (domainLimits != null) {
+                min = domainLimits!!.first.toString().toDouble()
+                max = domainLimits!!.second.toString().toDouble()
+            } else {
+                val d = data?.filterNotNull()
+                min = d?.minOfOrNull { (it as Number).toDouble() }
+                max = d?.maxOfOrNull { (it as Number).toDouble() }
+            }
 
             val valuesString = rangeLimits?.let { listOf(it.first, it.second) }
 
@@ -55,22 +61,28 @@ internal fun Scale.toVisualMap(
         is DefaultUnspecifiedScale -> {
             when (domainType) {
 //                 todo other, date
-                typeOf<String>() -> PiecewiseVisualMap(
+                typeOf<String>(), typeOf<String?>() -> PiecewiseVisualMap(
                     dimension = dim,
-                    categories = data?.toSet()?.map { it.toString() },
+                    categories = data?.toSet()?.map { it?.toString() },
                     seriesIndex = seriesIndex,
                     right = 10,
                     top = visualMapSize * 100
                 )
 
-                else -> ContinuousVisualMap(
-                    dimension = dim,
-                    min = data?.minOfOrNull { (it as Number).toDouble() },
-                    max = data?.maxOfOrNull { (it as Number).toDouble() },
-                    seriesIndex = seriesIndex,
-                    right = 10,
-                    top = visualMapSize * 100
-                )
+                else -> {
+                    val d = data?.filterNotNull()
+                    val min = d?.minOfOrNull { (it as Number).toDouble() }
+                    val max = d?.maxOfOrNull { (it as Number).toDouble() }
+
+                    ContinuousVisualMap(
+                        dimension = dim,
+                        min = min,
+                        max = max,
+                        seriesIndex = seriesIndex,
+                        right = 10,
+                        top = visualMapSize * 100
+                    )
+                }
             }
         }
 

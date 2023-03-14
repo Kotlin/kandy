@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
+import kotlinx.datetime.*
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.NAME
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
@@ -14,28 +15,27 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Enc
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.*
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
 import kotlin.reflect.typeOf
 
 @Suppress("UNCHECKED_CAST")
-internal fun <T : Any> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
-    return (this[key] as? NonPositionalSetting<*>)?.value?.value as? T
+internal fun <T> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
+    return (this[key] as? NonPositionalSetting<*>)?.value as? T
 }
 
 internal class Parser(plot: Plot) {
-    private val data = (plot.dataset as NamedDataInterface).nameToValues
+    private val dataFrame = (plot.dataset as NamedData).dataFrame
     private val globalMappings = plot.globalMappings
     private val layers = plot.layers
     private val features = plot.features
 
     private var xAxis: Axis? = null
     private var yAxis: Axis? = null
-    private val source = mutableMapOf<String, List<Any>>()
+    private val source = mutableMapOf<String, List<Any?>>()
 
 
     internal fun parse(): Option {
@@ -53,17 +53,25 @@ internal class Parser(plot: Plot) {
         val textStyle = layout?.textStyle?.toTextStyle()
         val animation = layout?.animation?.toAnimationPlotFeature()
 
-        globalMappings.forEach { (aes, mapping) ->
+        globalMappings.forEach { (aes, mapping) -> // todo refactor parse data
             if (mapping is ScaledMapping<*>) {
                 when (aes) {
                     X -> {
                         xAxis = mapping.toAxis()
-                        source[mapping.getId()] = data[mapping.getId()]!!.values
+                        val na = mapping.getNA()
+                        source[mapping.getId()] = (if (na != null)
+                            dataFrame[mapping.getId()].values().map { it ?: na }
+                        else
+                            dataFrame[mapping.getId()].values()).toList()
                     }
 
                     Y -> {
                         yAxis = mapping.toAxis()
-                        source[mapping.getId()] = data[mapping.getId()]!!.values
+                        val na = mapping.getNA()
+                        source[mapping.getId()] = (if (na != null)
+                            dataFrame[mapping.getId()].values().map { it ?: na }
+                        else
+                            dataFrame[mapping.getId()].values()).toList()
                     }
                 }
             }
@@ -72,6 +80,12 @@ internal class Parser(plot: Plot) {
         val series = layers.mapIndexed { index, layer -> // TODO(layout???)
             layer.mappings.forEach { (aes, mapping) ->
                 if (mapping is ScaledMapping<*>) {
+                    if (mapping.domainType.isMarkedNullable && mapping.getNA() != null) {
+                        val na = mapping.getNA()!!
+                        source.getOrPut(mapping.getId()) { dataFrame[mapping.getId()].values().map { it ?: na } }
+                    } else {
+                        source.getOrPut(mapping.getId()) { dataFrame[mapping.getId()].values().toList() }
+                    }
                     when {
                         (xAxis == null && aes == X) -> xAxis = mapping.toAxis()
                         (yAxis == null && aes == Y) -> yAxis = mapping.toAxis()
@@ -81,15 +95,14 @@ internal class Parser(plot: Plot) {
                                 mapping.columnScaled.scale.toVisualMap(
                                     aes,
                                     sourceId, index,
-                                    (layer.dataset as? NamedDataInterface)?.nameToValues?.get(sourceId)?.values
-                                        ?: data[sourceId]?.values,
+                                    (layer.dataset as? NamedData)?.dataFrame?.get(sourceId)?.values()?.toList()
+                                        ?: dataFrame[sourceId].values().toList(),
                                     visualMaps.size,
                                     mapping.domainType
                                 )
                             )
                         }
                     }
-                    source.getOrPut(mapping.getId()) { data[mapping.getId()]!!.values } // TODO(missing columns?)
                 }
             }
             layer.toSeries()
@@ -98,7 +111,7 @@ internal class Parser(plot: Plot) {
         val headersOfData = source.keys.toList()
         val datasetSource = listOf(headersOfData) + List(source.values.firstOrNull()?.size ?: 0) { i ->
             List(headersOfData.size) { j ->
-                source[headersOfData[j]]?.get(i).toString()
+                source[headersOfData[j]]?.get(i)?.toString()
             }
         }
 
@@ -128,7 +141,13 @@ internal class Parser(plot: Plot) {
         )
     }
 
-    private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.name
+    private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.name()
+
+    private fun ScaledMapping<*>.getNA(): Any? = when (val scale = this.columnScaled.scale) {
+        is PositionalContinuousScale<*> -> scale.nullValue
+        is NonPositionalContinuousScale<*, *> -> scale.nullValue
+        else -> null
+    }
 
     private fun ScaledMapping<*>.toAxis(): Axis {
         val scaleMap = this.columnScaled.scale
@@ -142,8 +161,8 @@ internal class Parser(plot: Plot) {
         val type: String = when (scaleMap) { // TODO match Mapping
             is PositionalCategoricalScale<*> -> AxisType.CATEGORY
             is PositionalContinuousScale<*> -> {
-                min = scaleMap.limits?.first?.value?.toString()
-                max = scaleMap.limits?.second?.value?.toString()
+                min = scaleMap.limits?.first?.toString()
+                max = scaleMap.limits?.second?.toString()
                 AxisType.VALUE
             }
 
@@ -151,9 +170,24 @@ internal class Parser(plot: Plot) {
             is PositionalContinuousUnspecifiedScale -> AxisType.VALUE
             is DefaultUnspecifiedScale, is UnspecifiedScale -> {
                 when (this.domainType) {
-                    typeOf<String>(), typeOf<Char>() -> AxisType.CATEGORY
-                    typeOf<Number>() -> AxisType.VALUE
-                    typeOf<LocalDate>(), typeOf<LocalDateTime>(), typeOf<LocalTime>() -> AxisType.TIME // TODO(kotlinx.datetime)
+                    typeOf<String>(), typeOf<String?>(), typeOf<Char>(), typeOf<Char?>() -> AxisType.CATEGORY
+
+                    typeOf<Number>(), typeOf<Number?>() -> AxisType.VALUE
+
+                    typeOf<LocalDateTime>(), typeOf<LocalDateTime?>(),
+                    typeOf<java.time.LocalDateTime>(), typeOf<java.time.LocalDateTime?>() -> AxisType.TIME
+
+                    typeOf<LocalDate>(), typeOf<LocalDate?>(),
+                    typeOf<java.time.LocalDate>(), typeOf<java.time.LocalDate?>() -> AxisType.TIME
+
+                    typeOf<LocalTime>(), typeOf<LocalTime?>(),
+                    typeOf<Month>(), typeOf<Month?>(),
+                    typeOf<DayOfWeek>(), typeOf<DayOfWeek?>(),
+                    typeOf<java.time.LocalTime>(), typeOf<java.time.LocalTime?>(),
+                    typeOf<java.time.Month>(), typeOf<java.time.Month?>(),
+                    typeOf<java.time.DayOfWeek>(), typeOf<java.time.DayOfWeek?>()
+                    -> AxisType.CATEGORY
+
                     else -> AxisType.VALUE
                 }
             }

@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.theme
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.font.FontFace
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
@@ -33,24 +33,24 @@ public sealed interface LayoutParameters {
     }
 }
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class LineParameters internal constructor(
     var color: Color? = null,
     var width: Double? = null,
     var blank: Boolean = false,
 ) : LayoutParameters
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class TextParameters internal constructor(
     var color: Color? = null,
     var font: FontFace? = null,
     var blank: Boolean = false
 ) : LayoutParameters
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class BackgroundParameters internal constructor(
     var fillColor: Color? = null,
     var borderLineColor: Color? = null,
@@ -107,8 +107,8 @@ public interface WithTitle {
 }
 
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class Global internal constructor(
     override var line: LineParameters? = null,
     override var background: BackgroundParameters? = null,
@@ -128,23 +128,23 @@ public data class Global internal constructor(
      */
 }
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class LayerTooltips internal constructor(
     override var background: BackgroundParameters? = null,
     override var title: TextParameters? = null,
     override var text: TextParameters? = null,
 ) : SelfInvocationContext, WithBackground, WithText, WithTitle
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class AxisTooltip internal constructor(
     override var background: BackgroundParameters? = null,
     override var text: TextParameters? = null,
 ) : SelfInvocationContext, WithBackground, WithText
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class Axis internal constructor(
     var onTop: Boolean? = false,
     override var title: TextParameters? = null,
@@ -172,25 +172,25 @@ public sealed interface LegendPosition {
     public object Bottom : LegendPosition
     public object Top : LegendPosition
 
-    @Serializable
+    //@Serializable
     public data class Custom(val x: Double, val y: Double) : LegendPosition
 }
 
 public sealed interface LegendJustification {
-    @Serializable
+    //@Serializable
     public object Center : LegendJustification
-    @Serializable
+    //@Serializable
     public data class Custom(val x: Double, val y: Double) : LegendJustification
 }
 
-@Serializable
+//@Serializable
 public enum class LegendDirection {
     HORIZONTAL,
     VERTICAL
 }
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class Legend internal constructor(
     override var background: BackgroundParameters? = null,
     override var title: TextParameters? = null,
@@ -224,8 +224,8 @@ public data class Legend internal constructor(
      */
 }
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class Grid internal constructor(
     var lineGlobal: LineParameters? = null,
     var majorLine: LineParameters? = null,
@@ -305,8 +305,8 @@ public data class Grid internal constructor(
      */
 }
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class Panel internal constructor(
     override var background: BackgroundParameters? = null,
     var borderLine: LineParameters? = null,
@@ -321,8 +321,8 @@ public data class Panel internal constructor(
     }
 }
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class Plot internal constructor(
     override var background: BackgroundParameters? = null,
     override var title: TextParameters? = null,
@@ -346,15 +346,15 @@ public data class Plot internal constructor(
     }
 }
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class Strip internal constructor(
     override var background: BackgroundParameters? = null,
     override var text: TextParameters? = null
 ) : SelfInvocationContext, WithText, WithBackground
 
-@PlotDslMarker
-@Serializable
+/*@PlotDslMarker*/
+//@Serializable
 public data class CustomTheme @PublishedApi internal constructor(
     val global: Global = Global(),
     val axis: Axis = Axis(),

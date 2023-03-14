@@ -1,67 +1,48 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import kotlinx.datetime.*
-import org.jetbrains.kotlinx.ggdsl.ir.data.CountedGroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.LazyGroupedDataInterface
-import org.jetbrains.kotlinx.ggdsl.ir.data.NamedDataInterface
+import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.MERGED_GROUPS
 import kotlin.reflect.typeOf
-import kotlin.time.Duration.Companion.nanoseconds
 
-internal fun LazyGroupedDataInterface.mergedKeys(): List<String> = buildList {
-    val map = this@mergedKeys.origin.nameToValues
-    val size = map.values.first().values.size
+internal fun GroupedData.mergedKeys(): List<String> = buildList {
+    val dataFrame = origin.dataFrame
+    val size = dataFrame.rowsCount()
     for (i in 0 until size) {
         add(keys.joinToString("$") {
-            map[it]!!.values[i].toString()
+            dataFrame[it][i].toString()
         })
     }
 }
 
 internal object DateTimeMaster {
-    internal fun postProcess(data: NamedDataInterface): Map<String, List<Any>> {
-        return data.nameToValues.map { (key, tList)  ->
-            val type = tList.kType
-            val values = tList.values
+    internal fun postProcess(data: NamedData): Map<String, List<*>> {
+        return data.dataFrame.columns().map {
+            val type = it.type()
+            val values = it.values()
             // TODO!!!
-            key to when(type) {
-                typeOf<LocalDate>() -> values.map {
-                    (it as LocalDate).atStartOfDayIn((TimeZone.currentSystemDefault()))
+            it.name() to (when (type) {
+                typeOf<LocalDate>(), typeOf<LocalDate?>() -> values.map {
+                    (it as? LocalDate)?.atStartOfDayIn((TimeZone.currentSystemDefault()))
                 }
-                typeOf<LocalDateTime>() -> values.map {
-                    (it as LocalDateTime).toInstant(TimeZone.currentSystemDefault())
+                typeOf<LocalDateTime>(), typeOf<LocalDateTime?>() -> values.map { dateTime ->
+                    (dateTime as? LocalDateTime)?.toInstant(TimeZone.currentSystemDefault())
                 }
-                typeOf<LocalTime>() -> values.map {
-                    Clock.System.now().toLocalDateTime(
-                        TimeZone.currentSystemDefault()
-                    ).date.atStartOfDayIn(TimeZone.currentSystemDefault()).plus(
-                        (it as LocalTime).toNanosecondOfDay().nanoseconds
-                    )
+                typeOf<LocalTime>(), typeOf<LocalTime?>() -> values.map { time ->
+                    (time as? LocalTime)?.toMillisecondOfDay()
                 }
                 else -> values
-            }
+            }).toList()
         }.toMap()
     }
 }
-/*
-internal fun TableData.columnTypes(): Map<String, KType> {
+
+internal fun TableData.wrap(): Map<String, List<*>> {
     return (when (this) {
-        is NamedDataInterface -> nameToValues.map { it.key to it.value.kType }.toMap()
-        is LazyGroupedDataInterface -> origin.nameToValues.map { it.key to it.value.kType }.toMap() + (MERGED_GROUPS to typeOf<String>())
-        is CountedGroupedDataInterface -> toLazy().origin.nameToValues.map { it.key to it.value.kType }.toMap()
-        else -> TODO()
-    })
-}
-
- */
-
-
-internal fun TableData.wrap(): Map<String, List<Any>> {
-    return (when (this) {
-        is NamedDataInterface -> DateTimeMaster.postProcess(this)
-        is LazyGroupedDataInterface -> DateTimeMaster.postProcess(origin) + (MERGED_GROUPS to mergedKeys())
-        is CountedGroupedDataInterface -> toLazy().wrap()
+        is NamedData -> DateTimeMaster.postProcess(this)
+        is GroupedData -> DateTimeMaster.postProcess(origin) + (MERGED_GROUPS to mergedKeys())
         else -> TODO()
     })
 }

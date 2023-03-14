@@ -4,19 +4,16 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
-import org.jetbrains.kotlinx.ggdsl.dsl.NamedData
-import org.jetbrains.kotlinx.ggdsl.dsl.column.columnPointer
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typed
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.typedList
+import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
+import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousUnspecifiedScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.COLOR
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.FILL
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.WIDTH
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.POINT
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
@@ -27,7 +24,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class LayerWrapperTest {
-    private val emptyDataset = NamedData(mapOf())
+    private val emptyDataset = NamedData(DataFrame.Empty)
     @Test
     fun testSimple() {
         val layer = Layer(
@@ -36,14 +33,14 @@ internal class LayerWrapperTest {
             mapOf(
                 FILL to ScaledUnspecifiedDefaultNonPositionalMapping<Int, Color>(
                     FILL,
-                    columnPointer<Int>("F").scaled(),
+                    column<Int>("F").scaled(),
                     typeOf<Int>()
                 )
             ),
             mapOf(
                 COLOR to NonPositionalSetting<Color>(
                     COLOR,
-                    Color.RED.typed()
+                    Color.RED
                 )
             ),
             mapOf()
@@ -55,6 +52,7 @@ internal class LayerWrapperTest {
                 "mapping" to mapOf(
                     "fill" to "F"
                 ),
+                "sampling" to "none",
                 "stat" to "identity",
                 "data" to mapOf<String, Any>(),
                 //"shape" to 21.0,
@@ -82,14 +80,14 @@ internal class LayerWrapperTest {
                 X to ScaledUnspecifiedDefaultPositionalMapping(
                     X,
                     ColumnScaledUnspecifiedDefault(
-                        columnPointer<Float>("TIME_T")
+                        column<Float>("TIME_T")
                     ),
                     typeOf<Float>()
                 ),
                 Y to ScaledPositionalUnspecifiedMapping(
                     Y,
                     ColumnScaledPositionalUnspecified(
-                        columnPointer<Double>("VAL_V"),
+                        column<Double>("VAL_V"),
                         PositionalContinuousUnspecifiedScale()
                     ),
                     typeOf<Double>()
@@ -97,9 +95,11 @@ internal class LayerWrapperTest {
                 FILL to ScaledNonPositionalMapping(
                     FILL,
                     ColumnScaledNonPositional(
-                        columnPointer<String>("BAFGA"),
+                        column<String>("BAFGA"),
                         NonPositionalCategoricalScale<String, Color>(
-                            rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY).typedList()
+                            null,
+                            rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY),
+                            //null,
                         ),
                     ),
                     typeOf<String>(),
@@ -109,11 +109,11 @@ internal class LayerWrapperTest {
             mapOf(
                 COLOR to NonPositionalSetting<Color>(
                     COLOR,
-                    Color.RED.typed()
+                    Color.RED
                 ),
-                WIDTH to NonPositionalSetting<Color>(
+                WIDTH to NonPositionalSetting<Double>(
                     WIDTH,
-                    5.0.typed()
+                    5.0
                 ),
             ),
             mapOf(
@@ -130,6 +130,7 @@ internal class LayerWrapperTest {
                     "y" to "VAL_V",
                     "fill" to "BAFGA",
                 ),
+                "sampling" to "none",
                 "stat" to "identity",
                 "data" to mapOf<String, Any>(),
                 "width" to 5.0,
@@ -178,6 +179,46 @@ internal class LayerWrapperTest {
 
 
          */
+    }
+
+    @Test
+    fun testBarNoSampling() {
+        val data = mapOf(
+            "v1" to List(100) {it},
+            "v2" to List(100) {it}
+        )
+        val layer = Layer(
+            NamedData(data.toDataFrame()),
+            BAR,
+            mapOf(
+                X to ScaledUnspecifiedDefaultPositionalMapping(
+                    X, column<Int>("v1").scaled(), typeOf<Int>()
+                ),
+                Y to ScaledUnspecifiedDefaultPositionalMapping(
+                    Y, column<Int>("v2").scaled(), typeOf<Int>()
+                )
+            ),
+            mapOf(),
+            mapOf()
+        )
+
+        val wrappedLayer = LayerWrapper(layer, false)
+        assertEquals(
+            mapOf(
+                "mapping" to mapOf(
+                    "x" to "v1",
+                    "y" to "v2",
+                ),
+                "stat" to "identity",
+                "data" to data.map {
+                    it.key to it.value.map { it.toDouble() }
+                }.toMap(),
+                "position" to "identity",
+                "geom" to "bar",
+                "sampling" to "none",
+            ),
+            wrappedLayer.toSpec()
+        )
     }
 }
 

@@ -10,42 +10,42 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalUnspecifiedScale
 import kotlin.reflect.typeOf
 
-public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
-    ColumnScaledUnspecifiedDefault(this.toColumnPointer())
+public inline fun <reified DomainType> Statistic<DomainType>.scaled(): ColumnScaledUnspecifiedDefault<DomainType> =
+    ColumnScaledUnspecifiedDefault(this.toColumnReference())
 
-public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: PositionalUnspecifiedScale): ColumnScaledPositionalUnspecified<DomainType> =
-    ColumnScaledPositionalUnspecified(this.toColumnPointer(), scale)
+public inline fun <reified DomainType> Statistic<DomainType>.scaled(scale: PositionalUnspecifiedScale): ColumnScaledPositionalUnspecified<DomainType> =
+    ColumnScaledPositionalUnspecified(this.toColumnReference(), scale)
 
-public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): ColumnScaledNonPositionalUnspecified<DomainType> =
-    ColumnScaledNonPositionalUnspecified(this.toColumnPointer(), scale)
+public inline fun <reified DomainType> Statistic<DomainType>.scaled(scale: NonPositionalUnspecifiedScale): ColumnScaledNonPositionalUnspecified<DomainType> =
+    ColumnScaledNonPositionalUnspecified(this.toColumnReference(), scale)
 
-public inline fun <reified DomainType : Any> Statistic<DomainType>.scaled(
+public inline fun <reified DomainType> Statistic<DomainType>.scaled(
     scale: PositionalScale<DomainType>
-): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.toColumnPointer(), scale)
+): ColumnScaledPositional<DomainType> = ColumnScaledPositional(this.toColumnReference(), scale)
 
-public inline fun <reified DomainType : Any, RangeType : Any> Statistic<DomainType>.scaled(
+public inline fun <reified DomainType, RangeType> Statistic<DomainType>.scaled(
     scale: NonPositionalScale<DomainType, RangeType>
-): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.toColumnPointer(), scale)
+): ColumnScaledNonPositional<DomainType, RangeType> = ColumnScaledNonPositional(this.toColumnReference(), scale)
 
-public inline operator fun <reified DomainType : Any> ScalablePositionalAes.invoke(
+public inline operator fun <reified DomainType> ScalablePositionalAes.invoke(
     stat: Statistic<DomainType>
 ): ScaledUnspecifiedDefaultPositionalMapping<DomainType> {
     val mapping = ScaledUnspecifiedDefaultPositionalMapping(
         this.name,
-        stat.toColumnPointer().scaled(),
+        stat.toColumnReference().scaled(),
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping
     return mapping
 }
 
-public inline operator fun <reified DomainType : Any, RangeType : Any>
+public inline operator fun <reified DomainType, RangeType>
         ScalableNonPositionalAes<RangeType>.invoke(
     stat: Statistic<DomainType>
 ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {
     val mapping = ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType>(
         this.name,
-        stat.toColumnPointer().scaled(),
+        stat.toColumnReference().scaled(),
         typeOf<DomainType>()
     )
     context.bindingCollector.mappings[this.name] = mapping

@@ -4,15 +4,15 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.stat
 /*
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnReference
 
 public sealed interface Stat<T> {
     public val name: String
 }
 
 @PublishedApi
-internal inline fun <reified T : Any> Stat<T>.toColumnPointer(): ColumnPointer<T> {
-    return ColumnPointer(name)
+internal inline fun <reified T> Stat<T>.toColumnReference(): ColumnReference<T> {
+    return ColumnReference(name)
 }
 
 // TODO TYPES
@@ -83,7 +83,7 @@ public sealed interface ContourStat<T> : Stat<T> {
 }
 /* TODO
 abstract class WithDensity2DStat {
-     inline operator fun <reified DomainType : Any, RangeType : Any>
+     inline operator fun <reified DomainType, RangeType>
             MappableNonPositionalAes<RangeType>.invoke(
         stat: Density2DStat<DomainType>
     ): ScaledUnspecifiedDefaultNonPositionalMapping<DomainType, RangeType> {

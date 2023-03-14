@@ -20,10 +20,10 @@ public interface PointContextInterface : BindingContext {
         get() = FillAes(this)
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class PointContextImmutable(parent: LayerCollectorContextImmutable) :
     LayerContextImmutable(parent), PointContextInterface
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class PointMutableMutableContextMutable(parent: LayerCollectorContextMutable) :
     LayerContextMutable(parent), PointContextInterface

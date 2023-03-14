@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.facet.context
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.ir.data.ColumnPointer
+// import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.Direction
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.ggdsl.letsplot.facet.ScalesSharing
@@ -10,9 +10,9 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.facet.feature.FacetWrapFeature
 /**
  * Context opened by [facetWrap].
  */
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class FacetWrapContext @PublishedApi internal constructor(){
-    private val facets = mutableListOf<ColumnPointer<*>>()
+    private val facets = mutableListOf<ColumnReference<*>>()
     private val orders= mutableListOf<OrderDirection>()
     private val formats = mutableListOf<String?>()
 
@@ -33,7 +33,7 @@ public class FacetWrapContext @PublishedApi internal constructor(){
      * "'Score: {}' "-> "Score: 12.454789"
      */
     public fun facet(
-        variable: ColumnPointer<*>,
+        variable: ColumnReference<*>,
         order: OrderDirection = OrderDirection.ASCENDING,
         format: String? = null
     ) {
@@ -49,7 +49,7 @@ public class FacetWrapContext @PublishedApi internal constructor(){
         direction: Direction = Direction.HORIZONTAL,
     ) =
         FacetWrapFeature(
-            facets.map { it.name },
+            facets.map { it.name() },
             nCol,
             nRow,
             orders,

@@ -4,12 +4,10 @@
 
 package org.jetbrains.kotlinx.ggdsl.ir.feature
 
-import kotlinx.serialization.Serializable
-
 /**
  * Wrapper for a feature name.
  *
  * @property name the name of feature
  */
-@Serializable
+//@Serializable
 public data class FeatureName(val name: String)

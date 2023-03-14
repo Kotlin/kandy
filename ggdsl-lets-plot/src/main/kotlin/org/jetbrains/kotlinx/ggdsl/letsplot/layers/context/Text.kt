@@ -30,13 +30,13 @@ public interface TextContextInterface : BindingContext {
     public val font: FontSubContextInterface
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class TextContextImmutable(parent: LayerCollectorContextImmutable) : LayerContextImmutable(parent),
     TextContextInterface {
     override val font: FontSubContextImmutable = FontSubContextImmutable(this)
 }
 
-@PlotDslMarker
+/*@PlotDslMarker*/
 public class TextContextMutable(parent: LayerCollectorContextMutable) :
     LayerContextMutable(parent), TextContextInterface {
     override val font: FontSubContextMutable = FontSubContextMutable(this)

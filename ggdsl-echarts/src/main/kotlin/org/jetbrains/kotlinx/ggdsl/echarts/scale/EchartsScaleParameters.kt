@@ -13,17 +13,17 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.ScaleParameters
 
 public interface EchartsScaleParameters : ScaleParameters
 
-public data class PositionalParameters<DomainType : Any>(val axis: Axis<DomainType>) : EchartsScaleParameters
-public data class NonPositionalParameters<DomainType : Any, RangeType : Any>
+public data class PositionalParameters<DomainType>(val axis: Axis<DomainType>) : EchartsScaleParameters
+public data class NonPositionalParameters<DomainType, RangeType>
 (val legend: Legend<DomainType, RangeType>) : EchartsScaleParameters
 
-public fun <DomainType : Any> BaseScaledPositionalMapping<DomainType>.with(
+public fun <DomainType> BaseScaledPositionalMapping<DomainType>.with(
     block: PositionalParameters<DomainType>.() -> Unit
 ) {
     scaleParameters = PositionalParameters(Axis<DomainType>()).apply(block)
 }
 
-public fun <DomainType : Any, RangeType : Any> BaseScaledNonPositionalMapping<DomainType, RangeType>.with(
+public fun <DomainType, RangeType> BaseScaledNonPositionalMapping<DomainType, RangeType>.with(
     block: NonPositionalParameters<DomainType, RangeType>.() -> Unit
 ) {
     scaleParameters = NonPositionalParameters(Legend<DomainType, RangeType>()).apply(block)
