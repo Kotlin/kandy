@@ -4,7 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.HLineContext
 
 // TODO
 
@@ -64,8 +66,9 @@ public inline fun LayerCollectorContextImmutable.hLine(block: HLineContextImmuta
  * }
  * ```
  */
-public inline fun LayerCollectorContextMutable.hLine(block: HLineContextMutable.() -> Unit) {
-    addLayer(HLineContextMutable(this).apply(block), H_LINE)
-}
+
 
  */
+public inline fun LayerCollectorContext.hLine(block: HLineContext.() -> Unit) {
+    addLayer(HLineContext(this).apply(block), H_LINE)
+}

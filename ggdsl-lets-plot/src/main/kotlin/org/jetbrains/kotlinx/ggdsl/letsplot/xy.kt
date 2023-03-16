@@ -2,21 +2,14 @@ package org.jetbrains.kotlinx.ggdsl.letsplot
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContext
+import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotPositionalMappingParameters
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.X
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.Y
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Axis
-
-/*
-public fun <T> PlotContext.x(value: T): PositionalSetting<T> {
-    return addPositionalSetting(X, value)
-}
-
- */
 
 public fun <T> PlotContext.x(
     column: ColumnReference<T>,
@@ -38,6 +31,13 @@ public fun <T> PlotContext.x(
     )
 }
 
+public fun PlotContext.x(
+    column: String,
+    parameters: LetsPlotPositionalMappingParameters<Any?>.() -> Unit = {}
+): PositionalMapping<Any?> {
+    return addPositionalMapping<Any?>(X, column, LetsPlotPositionalMappingParameters<Any?>().apply(parameters))
+}
+
 public fun <T> PlotContext.x(
     values: DataColumn<T>,
     //name: String? = null,
@@ -56,7 +56,7 @@ public val PlotContext.x: AxisParameters
     get() {
         return AxisParameters(bindingCollector.freeScales.getOrPut(X) {
             PositionalFreeScale(X, LetsPlotPositionalMappingParameters<Any?>())
-        }.parameters as LetsPlotPositionalMappingParameters<Any?>)
+        }.parameters as LetsPlotPositionalMappingParameters<Any?>, X, this)
     }
 
 public fun PlotContext.x(
@@ -92,6 +92,13 @@ public fun <T> PlotContext.y(
     )
 }
 
+public fun PlotContext.y(
+    column: String,
+    parameters: LetsPlotPositionalMappingParameters<Any?>.() -> Unit = {}
+): PositionalMapping<Any?> {
+    return addPositionalMapping<Any?>(Y, column, LetsPlotPositionalMappingParameters<Any?>().apply(parameters))
+}
+
 public fun <T> PlotContext.y(
     values: DataColumn<T>,
     //name: String? = null,
@@ -110,7 +117,7 @@ public val PlotContext.y: AxisParameters
     get() {
         return AxisParameters(bindingCollector.freeScales.getOrPut(Y) {
             PositionalFreeScale(Y, LetsPlotPositionalMappingParameters<Any?>())
-        }.parameters as LetsPlotPositionalMappingParameters<Any?>)
+        }.parameters as LetsPlotPositionalMappingParameters<Any?>, Y, this)
     }
 
 public fun PlotContext.y(
@@ -119,11 +126,19 @@ public fun PlotContext.y(
     y.apply(parameters)
 }
 
-public class AxisParameters(private val mappingParameters: LetsPlotPositionalMappingParameters<Any?>) {
+public class AxisParameters(
+    private val mappingParameters: LetsPlotPositionalMappingParameters<Any?>,
+    private val aesName: AesName,
+    private val bindingContext: BindingContext,
+) {
     public var limits: ClosedRange<*>? = null
         set(value) {
             mappingParameters.scale = PositionalContinuousScale(value, null, null)
         }
     public val axis: Axis<Any?>
         get() = mappingParameters.axis
+
+    public fun constant(value: Any?) {
+        bindingContext.addPositionalSetting(aesName, value)
+    }
 }

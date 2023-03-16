@@ -65,9 +65,9 @@ public class DatasetHandler(public val initialDataset: TableData) {
     }
 
     public fun addColumn(values: List<*>, name: String): String {
-        /*if (isGrouped) {
+        if (isGrouped && groupKeys!!.contains(name)) {
             return takeColumn(name)
-        }*/
+        }
         return internalAddColumn(DataColumn.createValueColumn(name, values, Infer.Type))
     }
 

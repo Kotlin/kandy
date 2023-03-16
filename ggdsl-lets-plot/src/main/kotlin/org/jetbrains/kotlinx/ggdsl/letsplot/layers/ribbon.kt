@@ -4,7 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RibbonContext
 
 
 @PublishedApi
@@ -88,3 +90,7 @@ public inline fun LayerCollectorContextMutable.ribbon(block: RibbonContextMutabl
 
 
  */
+
+public inline fun LayerCollectorContext.ribbon(block: RibbonContext.() -> Unit) {
+    addLayer(RibbonContext(this).apply(block), RIBBON)
+}

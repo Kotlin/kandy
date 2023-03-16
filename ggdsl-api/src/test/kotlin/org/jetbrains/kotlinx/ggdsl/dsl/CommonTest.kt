@@ -67,6 +67,7 @@ internal class CommonTest {
                     ),
                 ),
                 emptyMap(),
+                emptyMap(),
                 emptyMap()
             ),
             plot
@@ -151,6 +152,7 @@ internal class CommonTest {
                     X to xMapping,
                     Y to yMapping,
                 ),
+                emptyMap(),
                 emptyMap(),
                 emptyMap()
             ),

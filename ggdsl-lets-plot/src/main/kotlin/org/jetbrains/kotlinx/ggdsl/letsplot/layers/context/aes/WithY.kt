@@ -3,21 +3,30 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContext
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalSetting
+import org.jetbrains.kotlinx.ggdsl.letsplot.AxisParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.Y
 
 public interface WithY : BindingContext {
-    public fun <T> y(value: T): PositionalSetting<T> {
+    /*public fun <T> y(value: T): PositionalSetting<T> {
         return addPositionalSetting(Y, value)
-    }
+    }*/
 
     public fun <T> y(
         column: ColumnReference<T>,
         parameters: LetsPlotPositionalMappingParameters<T>.() -> Unit = {}
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(Y, column.name(), LetsPlotPositionalMappingParameters<T>().apply(parameters))
+    }
+
+    public fun PlotContext.y(
+        column: String,
+        parameters: LetsPlotPositionalMappingParameters<Any?>.() -> Unit = {}
+    ): PositionalMapping<Any?> {
+        return addPositionalMapping<Any?>(Y, column, LetsPlotPositionalMappingParameters<Any?>().apply(parameters))
     }
 
     public fun <T> y(
@@ -44,5 +53,19 @@ public interface WithY : BindingContext {
             values.name(),
             LetsPlotPositionalMappingParameters<T,>().apply(parameters)
         )
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    public val y: AxisParameters
+        get() {
+            return AxisParameters(bindingCollector.freeScales.getOrPut(Y) {
+                PositionalFreeScale(Y, LetsPlotPositionalMappingParameters<Any?>())
+            }.parameters as LetsPlotPositionalMappingParameters<Any?>, Y, this)
+        }
+
+    public fun y(
+        parameters: AxisParameters.() -> Unit = {}
+    ) {
+        y.apply(parameters)
     }
 }

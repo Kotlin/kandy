@@ -4,7 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.ErrorBarContext
 
 
 @PublishedApi
@@ -93,3 +95,7 @@ public inline fun LayerCollectorContextMutable.errorBar(block: ErrorBarContextMu
 
 
  */
+
+public inline fun LayerCollectorContext.errorBar(block: ErrorBarContext.() -> Unit) {
+    addLayer(ErrorBarContext(this).apply(block), ERROR_BAR)
+}

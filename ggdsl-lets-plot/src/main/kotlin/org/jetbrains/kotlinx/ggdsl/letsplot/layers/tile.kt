@@ -4,7 +4,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.TileContext
 
 @PublishedApi
 internal val TILE: LetsPlotGeom = LetsPlotGeom("tile")
@@ -104,3 +106,7 @@ public inline fun LayerCollectorContextMutable.tile(block: TileContextMutable.()
 
 
  */
+
+public inline fun LayerCollectorContext.tile(block: TileContext.() -> Unit) {
+    addLayer(TileContext(this).apply(block), TILE)
+}

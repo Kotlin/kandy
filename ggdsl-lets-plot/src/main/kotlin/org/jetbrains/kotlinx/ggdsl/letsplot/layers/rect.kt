@@ -4,7 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RectContext
 
 @PublishedApi
 internal val RECT: LetsPlotGeom = LetsPlotGeom("rect")
@@ -88,3 +90,7 @@ public inline fun LayerCollectorContextMutable.rect(block: RectContextMutable.()
 
 
  */
+
+public inline fun LayerCollectorContext.rect(block: RectContext.() -> Unit) {
+    addLayer(RectContext(this).apply(block), RECT)
+}

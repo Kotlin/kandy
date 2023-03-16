@@ -24,6 +24,8 @@ internal val SIZE: AesName = AesName("size")
 
 internal val WIDTH: AesName = AesName("width")
 
+internal val HEIGHT: AesName = AesName("height")
+
 internal val ALPHA: AesName = AesName("alpha")
 
 internal val LINE_TYPE: AesName = AesName("linetype")
@@ -37,6 +39,10 @@ internal val MIDDLE = AesName("middle")
 internal val Y_MIN = AesName("ymin")
 
 internal val Y_MAX = AesName("ymax")
+
+internal val X_MIN = AesName("xmin")
+
+internal val X_MAX = AesName("xmax")
 
 internal val FATTEN = AesName("fatten")
 

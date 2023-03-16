@@ -31,7 +31,8 @@ class FacetTest {
             Plot(
                 listOf(NamedData(dataset.toDataFrame())),
                 listOf(),
-                mapOf(),
+                emptyMap(),
+                emptyMap(),
                 mapOf(
                     FacetGridFeature.FEATURE_NAME to FacetGridFeature(
                         "xSrc",
@@ -67,7 +68,8 @@ class FacetTest {
             Plot(
                 listOf(NamedData(dataset.toDataFrame())),
                 listOf(),
-                mapOf(),
+                emptyMap(),
+                emptyMap(),
                 mapOf(
                     FacetGridFeature.FEATURE_NAME to FacetGridFeature(
                         x = "xArg",

@@ -3,7 +3,9 @@
 */
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.VLineContext
 
 // TODO
 
@@ -63,10 +65,11 @@ public inline fun LayerCollectorContextImmutable.vLine(block: VLineContextImmuta
  * }
  * ```
  */
-public inline fun LayerCollectorContextMutable.vLine(block: VLineContextMutable.() -> Unit) {
-    addLayer(VLineContextMutable(this).apply(block), V_LINE)
-}
+
 
 
 
  */
+public inline fun LayerCollectorContext.vLine(block: VLineContext.() -> Unit) {
+    addLayer(VLineContext(this).apply(block), V_LINE)
+}

@@ -90,6 +90,7 @@ public interface LayerPlotContext : LayerCollectorContext, PlotContext {
             datasetHandlers.map { it.data() },
             layers,
             bindingCollector.mappings,
+            bindingCollector.settings,
             features,
             bindingCollector.freeScales
         )

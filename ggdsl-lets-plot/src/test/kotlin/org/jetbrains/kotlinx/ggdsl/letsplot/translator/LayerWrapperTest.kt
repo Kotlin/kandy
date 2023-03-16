@@ -43,7 +43,7 @@ internal class LayerWrapperTest {
             mapOf()
         )
 
-        val wrappedLayer = LayerWrapper(layer, false, null, mappings, null)
+        val wrappedLayer = LayerWrapper(layer, false, null, mappings, layer.settings,null)
         assertEquals(
             mapOf(
                 "mapping" to mapOf(
@@ -109,7 +109,7 @@ internal class LayerWrapperTest {
             )
         )
 
-        val wrappedLayer = LayerWrapper(layer, false,dataset, mappings, null)
+        val wrappedLayer = LayerWrapper(layer, false,dataset, mappings, layer.settings,null)
 
         assertEquals(
             mapOf(
@@ -173,7 +173,7 @@ internal class LayerWrapperTest {
             mapOf()
         )
 
-        val wrappedLayer = LayerWrapper(layer, false, data, mappings, null)
+        val wrappedLayer = LayerWrapper(layer, false, data, mappings, emptyMap(),null)
         assertEquals(
             mapOf(
                 "mapping" to mapOf(
