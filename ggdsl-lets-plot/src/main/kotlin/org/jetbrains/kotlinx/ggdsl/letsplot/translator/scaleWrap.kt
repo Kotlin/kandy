@@ -23,6 +23,10 @@ internal val dateTimeTypes = setOf(
     typeOf<Instant?>(), typeOf<LocalDateTime?>(), typeOf<LocalDate?>()
 )
 
+internal val discreteAes = setOf(
+    SHAPE, LINE_TYPE
+)
+
 internal fun List<*>?.wrap() = this?.filterNotNull()
 internal val timeTypes = setOf(
     typeOf<LocalTime>(), typeOf<LocalTime?>(),
@@ -228,7 +232,7 @@ internal fun Scale.wrap(
             }
 
             when (this) {
-                is NonPositionalDefaultScale<*, *> -> if (domainType.isCategoricalType() || isGroupKey) {
+                is NonPositionalDefaultScale<*, *> -> if (domainType.isCategoricalType() || aesName in discreteAes || isGroupKey) {
                     NonPositionalCategoricalScale<String, String>(null, null).wrap(
                         aesName,
                         domainType,
