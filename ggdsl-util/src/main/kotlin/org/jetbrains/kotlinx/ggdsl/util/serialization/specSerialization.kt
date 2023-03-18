@@ -63,8 +63,6 @@ private fun deserializePrimitive(json: JsonPrimitive): Any? {
         json.isString -> json.content
         else -> {
             json.booleanOrNull ?:
-            json.intOrNull ?:
-            json.longOrNull ?:
             json.doubleOrNull ?:
             error("Unknown JSON primitive type: [$json]")
         }
