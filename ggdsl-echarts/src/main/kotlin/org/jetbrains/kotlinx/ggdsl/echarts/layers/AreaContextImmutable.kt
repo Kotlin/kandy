@@ -4,11 +4,22 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.dataframe.DataColumn
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.dataframe.impl.asList
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.*
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationEasing
+import org.jetbrains.kotlinx.ggdsl.echarts.scale.EchartsNonPositionalMappingParameters
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.AreaPosition
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Cap
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Step
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMappingParameters
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 /**
  * Area settings.
@@ -41,25 +52,111 @@ import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationEasing
  * @see Animation
  */
 /*@PlotDslMarker*/
-public class AreaContextImmutable(parent: LayerCollectorContextImmutable) : EchartsLayerContextImmutable(parent) {
-    public val x: XAes = XAes(this)
-    public val y: YAes = YAes(this)
-    public val color: AreaColorAes = AreaColorAes(this)
-    public val position: PositionAes = PositionAes(this)
-    public val shadowBlur: AreaShadowBlurAes = AreaShadowBlurAes(this)
-    public val shadowColor: AreaShadowColorAes = AreaShadowColorAes(this)
-    public val alpha: AreaAlphaAes = AreaAlphaAes(this)
+public class AreaContextImmutable(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
+    WithAlpha, WithSymbol {
+    public var position: AreaPosition? = null
+        set(value) {
+            addNonPositionalSetting(AREA_POSITION, value)
+            field = value
+        }
+    public var shadowBlur: Number? = null
+        set(value) {
+            addNonPositionalSetting(AREA_SHADOW_BLUR, value)
+            field = value
+        }
+    public var shadowColor: Color? = null
+        set(value) {
+            addNonPositionalSetting(AREA_SHADOW_COLOR, value)
+            field = value
+        }
 
-    public val lineColor: LineColorAes = LineColorAes(this)
-    public val symbol: SymbolAes = SymbolAes(this)
-    public val smooth: SmoothAes = SmoothAes(this)
-    public val lineAlpha: LineAlphaAes = LineAlphaAes(this)
-    public val lineWidth: WidthAes = WidthAes(this)
-    public val lineType: LineTypeAes = LineTypeAes(this)
-    public val step: StepAes = StepAes(this)
-    public val cap: CapAes = CapAes(this)
-    public val lineShadowColor: LineShadowColorAes = LineShadowColorAes(this)
-    public val lineShadowBlur: LineShadowBlurAes = LineShadowBlurAes(this)
+    public var lineColor: Color? = null
+        set(value) {
+            addNonPositionalSetting(LINE_COLOR, value)
+            field = value
+        }
+    public var smooth: Boolean? = null
+        set(value) {
+            addNonPositionalSetting(SMOOTH, value)
+            field = value
+        }
+    public var lineAlpha: Number? = null
+        set(value) {
+            addNonPositionalSetting(LINE_ALPHA, value)
+            field = value
+        }
+    public var lineWidth: Number? = null
+        set(value) {
+            addNonPositionalSetting(WIDTH, value)
+            field = value
+        }
+    public var lineType: LineType? = null
+        set(value) {
+            addNonPositionalSetting(LINE_TYPE, value)
+            field = value
+        }
+    public var step: Step? = null
+        set(value) {
+            addNonPositionalSetting(STEP, value)
+            field = value
+        }
+
+    public var cap: Cap? = null
+        set(value) {
+            addNonPositionalSetting(CAP, value)
+            field = value
+        }
+    public var lineShadowColor: Color? = null
+        set(value) {
+            addNonPositionalSetting(LINE_SHADOW_COLOR, value)
+            field = value
+        }
+    public var lineShadowBlur: Number? = null
+        set(value) {
+            addNonPositionalSetting(LINE_SHADOW_BLUR, value)
+            field = value
+        }
+
+    public fun <T> lineAlpha(
+        column: ColumnReference<T>, parameters: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+    ): NonPositionalMapping<T, Double> =
+        addNonPositionalMapping(
+            LINE_ALPHA, column.name(), EchartsNonPositionalMappingParameters<T, Double>().apply(parameters)
+        )
+
+    public fun <T> lineAlpha(
+        values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Double>.() -> Unit = {}
+    ): NonPositionalMapping<T, Double> =
+        addNonPositionalMapping(
+            LINE_ALPHA, values.asList(),
+            name, EchartsNonPositionalMappingParameters<T, Double>().apply(params)
+        )
+
+    public fun <T> lineAlpha(
+        values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+    ): NonPositionalMapping<T, Double> =
+        addNonPositionalMapping(LINE_ALPHA, values, EchartsNonPositionalMappingParameters<T, Double>().apply(params))
+
+    public fun <T> lineColor(
+        column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
+    ): NonPositionalMapping<T, Color> =
+        addNonPositionalMapping(
+            LINE_COLOR, column.name(), EchartsNonPositionalMappingParameters<T, Color>().apply(params)
+        )
+
+    public fun <T> lineColor(
+        values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Color>.() -> Unit = {}
+    ): NonPositionalMapping<T, Color> =
+        addNonPositionalMapping(
+            LINE_COLOR, values.asList(),
+            name, EchartsNonPositionalMappingParameters<T, Color>().apply(params)
+        )
+
+    public fun <T> lineColor(
+        values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
+    ): NonPositionalMapping<T, Color> =
+        addNonPositionalMapping(LINE_COLOR, values, EchartsNonPositionalMappingParameters<T, Color>().apply(params))
+
 
     /**
      * Animation options settings for [area][area].

@@ -44,19 +44,19 @@ public class DatasetHandler(public val initialDataset: TableData) {
     }
     public fun takeColumn(columnId: String): String {
         return referredColumns[columnId] ?: run {
-            val name =  internalAddColumn(initialNamedData.dataFrame.getColumnOrNull(columnId) ?: error("invalid column id"))
+            val name = addColumn(initialNamedData.dataFrame.getColumnOrNull(columnId) ?: error("invalid column id"))
             referredColumns[columnId] = name
             name
         }
         // TODO
     }
 
-    private fun internalAddColumn(column: DataColumn<*>): String {
+    public fun addColumn(column: DataColumn<*>): String {
         return if (buffer.containsColumn(column.name())) {
             if (buffer[column.name()] == column) {
                  column.name()
             } else {
-                 internalAddColumn(column.rename(column.name() + "*"))
+                addColumn(column.rename(column.name() + "*"))
             }
         } else {
             buffer = buffer.add(column)
@@ -68,7 +68,7 @@ public class DatasetHandler(public val initialDataset: TableData) {
         if (isGrouped) {
             return takeColumn(name)
         }
-        return internalAddColumn(DataColumn.createValueColumn(name, values, Infer.Type))
+        return addColumn(DataColumn.createValueColumn(name, values, Infer.Type))
     }
 
 }

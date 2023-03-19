@@ -9,11 +9,14 @@ import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.PiecewiseVisualMap
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.VisualMap
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.createInRange
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.scale.*
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalCategoricalScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalContinuousScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
-internal fun Scale.toVisualMap(
+internal fun NonPositionalScale<*, *>.toVisualMap(
     aes: AesName, dim: String, seriesIndex: Int,
     data: List<Any?>?, visualMapSize: Int, domainType: KType
 ): VisualMap {
@@ -36,15 +39,15 @@ internal fun Scale.toVisualMap(
             val min: Double?
             val max: Double?
             if (domainLimits != null) {
-                min = domainLimits!!.first.toString().toDouble()
-                max = domainLimits!!.second.toString().toDouble()
+                min = domainLimits!!.start.toString().toDouble()
+                max = domainLimits!!.endInclusive.toString().toDouble()
             } else {
                 val d = data?.filterNotNull()
                 min = d?.minOfOrNull { (it as Number).toDouble() }
                 max = d?.maxOfOrNull { (it as Number).toDouble() }
             }
 
-            val valuesString = rangeLimits?.let { listOf(it.first, it.second) }
+            val valuesString = rangeLimits?.let { listOf(it.start, it.endInclusive) }
 
             val inRange = createInRange(aes, valuesString)
             ContinuousVisualMap(
@@ -58,7 +61,7 @@ internal fun Scale.toVisualMap(
             )
         }
 
-        is DefaultUnspecifiedScale -> {
+        is NonPositionalDefaultScale -> {
             when (domainType) {
 //                 todo other, date
                 typeOf<String>(), typeOf<String?>() -> PiecewiseVisualMap(
@@ -85,23 +88,6 @@ internal fun Scale.toVisualMap(
                 }
             }
         }
-
-        is NonPositionalCategoricalUnspecifiedScale -> PiecewiseVisualMap(
-            dimension = dim,
-            categories = data?.toSet()?.map { it.toString() },
-            seriesIndex = seriesIndex,
-            right = 10,
-            top = visualMapSize * 100
-        )
-
-        is NonPositionalContinuousUnspecifiedScale -> ContinuousVisualMap(
-            dimension = dim,
-            min = data?.minOfOrNull { (it as Number).toDouble() },
-            max = data?.maxOfOrNull { (it as Number).toDouble() },
-            seriesIndex = seriesIndex,
-            right = 10,
-            top = visualMapSize * 100
-        )
 
         else -> throw Exception("Unknown scale on ${aes.name} aes in $seriesIndex layer.")
     }

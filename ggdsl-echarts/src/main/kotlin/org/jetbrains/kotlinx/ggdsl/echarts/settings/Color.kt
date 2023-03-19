@@ -52,6 +52,10 @@ public class LinearGradient private constructor(
         x, y, x2, y2, colors.toColorStops()
     )
 
+    override fun compareTo(other: Color): Int { // ???
+        TODO("Not yet implemented")
+    }
+
 
 }
 
@@ -88,4 +92,8 @@ public class RadialGradient private constructor(
     public constructor(x: Double, y: Double, r: Double, colors: List<Color>) : this(
         x, y, r, colors.toColorStops()
     )
+
+    override fun compareTo(other: Color): Int {
+        TODO("Not yet implemented")
+    }
 }

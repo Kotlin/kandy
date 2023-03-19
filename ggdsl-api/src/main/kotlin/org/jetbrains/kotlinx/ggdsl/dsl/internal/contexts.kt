@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.dsl.internal
 
+import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
@@ -73,7 +74,7 @@ public interface LayerCollectorContext : BaseContext {
 public class GroupedContext(
     override val datasetIndex: Int,
     override val plotContext: LayerPlotContext
-): LayerCollectorContext {
+) : LayerCollectorContext {
     override val layers: MutableList<Layer> = plotContext.layers
 }
 
@@ -139,12 +140,19 @@ public interface BindingContext : BaseContext {
     }
 
     public fun <DomainType> addPositionalMapping(
-        aesName: AesName,
-        columnID: String,
-        parameters: PositionalMappingParameters<DomainType>?
+        aesName: AesName, columnID: String, parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
         val newColumnID = datasetHandler.takeColumn(columnID)
         return PositionalMapping<DomainType>(aesName, newColumnID, parameters).also {
+            bindingCollector.mappings[aesName] = it
+        }
+    }
+
+    public fun <DomainType> addPositionalMapping(
+        aesName: AesName, values: DataColumn<DomainType>, parameters: PositionalMappingParameters<DomainType>?
+    ): PositionalMapping<DomainType> {
+        val columnID = datasetHandler.addColumn(values)
+        return PositionalMapping<DomainType>(aesName, columnID, parameters).also {
             bindingCollector.mappings[aesName] = it
         }
     }
@@ -156,6 +164,17 @@ public interface BindingContext : BaseContext {
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?
     ): NonPositionalMapping<DomainType, RangeType> {
         val columnID = datasetHandler.addColumn(values, name ?: aesName.name)
+        return NonPositionalMapping<DomainType, RangeType>(aesName, columnID, parameters).also {
+            bindingCollector.mappings[aesName] = it
+        }
+    }
+
+    public fun <DomainType, RangeType> addNonPositionalMapping(
+        aesName: AesName,
+        values: DataColumn<DomainType>,
+        parameters: NonPositionalMappingParameters<DomainType, RangeType>?
+    ): NonPositionalMapping<DomainType, RangeType> {
+        val columnID = datasetHandler.addColumn(values)
         return NonPositionalMapping<DomainType, RangeType>(aesName, columnID, parameters).also {
             bindingCollector.mappings[aesName] = it
         }
@@ -179,7 +198,7 @@ public interface BindingContext : BaseContext {
     }
 }
 
-public interface SubBindingContext: BindingContext {
+public interface SubBindingContext : BindingContext {
     public val parentContext: BindingContext
     override val bindingCollector: BindingCollector
         get() = parentContext.bindingCollector

@@ -4,16 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.scale.guide
 
-
-public class Legend<DomainType, RangeType> {
-    public var name: String? = null
-    public var show: Boolean? = null
-    public var calculable: Boolean? = null // todo customize ? move to upper context???
-    // todo more
-}
+import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
 
-public inline operator fun <DomainType, RangeType>
-    Legend<DomainType, RangeType>.invoke(block: Legend<DomainType, RangeType>.() -> Unit) {
-    apply(block)
-}
+public data class Legend internal constructor(
+    public var name: String? = null,
+    public var show: Boolean? = null,
+    public var calculable: Boolean? = null
+) : SelfInvocationContext

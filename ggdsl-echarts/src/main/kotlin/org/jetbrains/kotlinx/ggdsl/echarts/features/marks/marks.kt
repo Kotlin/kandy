@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.features.marks
 
-import org.jetbrains.kotlinx.ggdsl.echarts.layers.EchartsLayerContextImmutable
+import org.jetbrains.kotlinx.ggdsl.echarts.layers.EchartsLayerContext
 
 /**
  * Sets mark points on a layer.
@@ -23,7 +23,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.layers.EchartsLayerContextImmutable
  *
  * @see MarkPoint
  */
-public fun EchartsLayerContextImmutable.markPoint(block: MarkPointContext.() -> Unit) {
+public fun EchartsLayerContext.markPoint(block: MarkPointContext.() -> Unit) {
     features[MarkPointFeature.FEATURE_NAME] = MarkPointContext().apply(block).toMarkPointFeature()
 }
 
@@ -47,7 +47,7 @@ public fun EchartsLayerContextImmutable.markPoint(block: MarkPointContext.() -> 
  *
  * @see MarkLine
  */
-public fun EchartsLayerContextImmutable.markLine(block: MarkLineContext.() -> Unit) {
+public fun EchartsLayerContext.markLine(block: MarkLineContext.() -> Unit) {
     features[MarkLineFeature.FEATURE_NAME] = MarkLineContext().apply(block).toMarkLineFeature()
 }
 
@@ -68,6 +68,6 @@ public fun EchartsLayerContextImmutable.markLine(block: MarkLineContext.() -> Un
  *
  * @see MarkArea
  */
-public fun EchartsLayerContextImmutable.markArea(block: MarkAreaContext.() -> Unit) {
+public fun EchartsLayerContext.markArea(block: MarkAreaContext.() -> Unit) {
     features[MarkAreaFeature.FEATURE_NAME] = MarkAreaContext().apply(block).toMarkAreaFeature()
 }

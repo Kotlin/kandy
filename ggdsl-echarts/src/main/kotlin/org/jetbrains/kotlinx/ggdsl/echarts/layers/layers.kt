@@ -4,8 +4,10 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.x
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.y
 
 /**
  * Adds a layer with settings and features to plot.
@@ -83,7 +85,7 @@ public inline fun LayerPlotContext.layout(block: EChartsLayout.() -> Unit) {
  *
  * @see LineContextImmutable
  */
-public inline fun LayerCollectorContextImmutable.line(block: LineContextImmutable.() -> Unit) {
+public inline fun LayerCollectorContext.line(block: LineContextImmutable.() -> Unit) {
     addLayer(LineContextImmutable(this).apply(block), LINE)
 }
 
@@ -134,7 +136,7 @@ public inline fun LayerCollectorContextImmutable.line(block: LineContextImmutabl
  *
  * @see AreaContextImmutable
  */
-public inline fun LayerCollectorContextImmutable.area(block: AreaContextImmutable.() -> Unit) {
+public inline fun LayerCollectorContext.area(block: AreaContextImmutable.() -> Unit) {
     addLayer(AreaContextImmutable(this).apply(block), AREA)
 }
 
@@ -160,11 +162,11 @@ public inline fun LayerCollectorContextImmutable.area(block: AreaContextImmutabl
  *
  * @see BarContextImmutable
  */
-public inline fun LayerCollectorContextImmutable.bars(block: BarContextImmutable.() -> Unit) {
+public inline fun LayerCollectorContext.bars(block: BarContextImmutable.() -> Unit) {
     addLayer(BarContextImmutable(this).apply(block), BAR)
 }
 
-public inline fun LayerCollectorContextImmutable.pie(block: PieContextImmutable.() -> Unit) {
+public inline fun LayerCollectorContext.pie(block: PieContextImmutable.() -> Unit) {
     addLayer(PieContextImmutable(this).apply(block), PIE)
 }
 
@@ -196,14 +198,14 @@ public inline fun LayerCollectorContextImmutable.pie(block: PieContextImmutable.
  *
  * @see PointContextImmutable
  */
-public inline fun LayerCollectorContextImmutable.points(block: PointContextImmutable.() -> Unit) {
+public inline fun LayerCollectorContext.points(block: PointContextImmutable.() -> Unit) {
     addLayer(PointContextImmutable(this).apply(block), POINT)
 }
 
-public inline fun LayerCollectorContextImmutable.candlestick(block: CandlestickContextImmutable.() -> Unit) {
+public inline fun LayerCollectorContext.candlestick(block: CandlestickContextImmutable.() -> Unit) {
     addLayer(CandlestickContextImmutable(this).apply(block), CANDLESTICK)
 }
 
-public inline fun LayerCollectorContextImmutable.boxplot(block: BoxplotContextImmutable.() -> Unit) {
+public inline fun LayerCollectorContext.boxplot(block: BoxplotContextImmutable.() -> Unit) {
     addLayer(BoxplotContextImmutable(this).apply(block), BOXPLOT)
 }

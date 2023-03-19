@@ -4,12 +4,12 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.ggdsl.echarts.aes.AlphaAes
-import org.jetbrains.kotlinx.ggdsl.echarts.aes.ColorAes
-import org.jetbrains.kotlinx.ggdsl.echarts.aes.XAes
-import org.jetbrains.kotlinx.ggdsl.echarts.aes.YAes
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.WithAlpha
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.WithColor
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.WithX
+import org.jetbrains.kotlinx.ggdsl.echarts.aes.WithY
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationEasing
 
@@ -27,12 +27,8 @@ import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationEasing
  * @see Animation
  */
 /*@PlotDslMarker*/
-public class BarContextImmutable(parent: LayerCollectorContextImmutable) : EchartsLayerContextImmutable(parent) {
-    public val x: XAes = XAes(this)
-    public val y: YAes = YAes(this)
-    public val color: ColorAes = ColorAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
-
+public class BarContextImmutable(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
+    WithAlpha {
     /**
      * Animation options settings for [bars][bars].
      * If a property isn't set or set to null, a default value will be used.
