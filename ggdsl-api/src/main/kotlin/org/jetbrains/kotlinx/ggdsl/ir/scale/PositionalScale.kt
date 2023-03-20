@@ -23,7 +23,8 @@ public sealed interface PositionalScale<DomainType> : Scale {
  */
 //@Serializable
 public data class PositionalContinuousScale<DomainType>(
-    val limits: ClosedRange<*>?,
+    val min: DomainType?,
+    val max: DomainType?,
     override val nullValue: DomainType?,
     override val transform: PositionalTransform?,
 ) : ContinuousScale<DomainType>, PositionalScale<DomainType>
@@ -41,6 +42,13 @@ public data class PositionalCategoricalScale<DomainType>(
 ) : CategoricalScale, PositionalScale<DomainType>
 
 // TODO!!!
-public data class PositionalDefaultScale<DomainType>(private val nothing: Nothing? = null)
+public class PositionalDefaultScale<DomainType>
     : PositionalScale<DomainType>, DefaultScale {
+    public override fun equals(other: Any?): Boolean {
+        return other is PositionalDefaultScale<*>
+    }
+
+    override fun hashCode(): Int {
+        return javaClass.hashCode()
+    }
 }

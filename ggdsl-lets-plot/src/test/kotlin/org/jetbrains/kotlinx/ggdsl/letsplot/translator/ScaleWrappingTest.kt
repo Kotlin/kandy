@@ -22,7 +22,7 @@ internal class ScaleWrappingTest {
     @Test
     fun testPos() {
         val range = 2.0 .. 11.1
-        val scale = PositionalContinuousScale<Double>(range, null, null)
+        val scale = PositionalContinuousScale<Double>(range.start, range.endInclusive, null, null)
         val wrappedScale = scale.wrap(X, typeOf<Double>(), null, false)
         assertNotNull(wrappedScale)
         assertEquals(
@@ -82,8 +82,10 @@ internal class ScaleWrappingTest {
         val rangeLimits: ClosedRange<Color> = Color.RED .. Color.GREEN
         val nullValue = Color.GREY
         val scale = NonPositionalContinuousScale<Double, Color>(
-            domainLimits,
-            rangeLimits,
+            domainLimits.start,
+            domainLimits.endInclusive,
+            rangeLimits.start,
+            rangeLimits.endInclusive,
             nullValue,
             null
         )

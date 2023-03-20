@@ -110,7 +110,7 @@ internal class CommonTest {
         )
         val yMapping = PositionalMapping<Float>(
             Y, height.name(), CommonPositionalMappingParameters<Float>(
-                PositionalContinuousScale(limits = 1f..15f, null, null)
+                PositionalContinuousScale(1f,15f, null, null)
             )
         )
         val colorMapping = NonPositionalMapping<String, Color>(

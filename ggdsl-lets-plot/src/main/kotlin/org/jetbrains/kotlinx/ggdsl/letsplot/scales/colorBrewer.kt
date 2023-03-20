@@ -47,7 +47,7 @@ public sealed interface BrewerType {
 }
 
 public sealed interface ScaleColorBrewer<DomainType> {
-    public val limits: List<DomainType>?
+    public val limits: List<DomainType?>?
     public val type: BrewerType?
 
     // todo direction
@@ -56,7 +56,7 @@ public sealed interface ScaleColorBrewer<DomainType> {
 
 //@Serializable
 public data class ScaleContinuousColorBrewer<DomainType>(
-    override val limits: List<DomainType & Any>?,
+    override val limits: List<DomainType?>?,
     override val type: BrewerType?,
     // todo direction
     override val nullValue: Color?,
@@ -76,13 +76,23 @@ public data class ScaleCategoricalColorBrewer<DomainType>(
 
 public inline fun <reified DomainType : Comparable<DomainType>> continuousColorBrewer(
     type: BrewerType?,
-    domainLimits: ClosedRange<DomainType>? = null,
+    domain: ClosedRange<DomainType>,
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorBrewer<DomainType> = ScaleContinuousColorBrewer(
-    domainLimits?.let {
+    domain.let {
         listOf(it.start, it.endInclusive)
     }, type, nullValue, transform
+)
+
+public inline fun <reified DomainType : Comparable<DomainType>> continuousColorBrewer(
+    type: BrewerType?,
+    domainMin: DomainType? = null,
+    domainMax: DomainType? = null,
+    nullValue: Color? = null,
+    transform: Transformation? = null
+): ScaleContinuousColorBrewer<DomainType> = ScaleContinuousColorBrewer(
+    listOf(domainMin, domainMax), type, nullValue, transform
 )
 
 public inline fun <reified DomainType> categoricalColorBrewer(
