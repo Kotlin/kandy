@@ -1,5 +1,11 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
+
+
+public class ErrorBarContext(parent: LayerCollectorContext)
+    : LayerWithBorderLineContext(parent), WithX, WithYMin, WithYMax, WithWidth, WithAlpha
 /*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable

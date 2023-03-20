@@ -1,5 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
+
+public class CrossBarContext(parent: LayerCollectorContext)
+    : LayerWithBorderLineContext(parent), WithX, WithYMin, WithYMax, WithMiddle,
+    WithFatten, WithWidth, WithFillColor, WithAlpha
+
 /*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable

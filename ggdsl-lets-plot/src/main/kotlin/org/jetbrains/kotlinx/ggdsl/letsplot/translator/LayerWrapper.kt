@@ -7,6 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.GROUP
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.MERGED_GROUPS
@@ -22,6 +23,7 @@ internal class LayerWrapper internal constructor(
     private val layer: Layer, addGroups: Boolean,
     dataset: Map<String, List<*>>?,
     mappings:  Map<AesName, Mapping>,
+    private val settings:  Map<AesName, Setting>,
     groupKeys: List<String>?,
 ) :
     LayerBase(
@@ -42,7 +44,7 @@ internal class LayerWrapper internal constructor(
     ) {
     // TODO
     override fun seal() = Options(
-        layer.settings.map { (_, setting) ->
+        settings.map { (_, setting) ->
             setting.wrap()
         }.toMap()
     )

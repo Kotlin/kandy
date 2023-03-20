@@ -4,7 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.CrossBarContext
 
 
 @PublishedApi
@@ -101,3 +103,7 @@ public inline fun LayerCollectorContextMutable.crossBar(block: CrossBarContextMu
 
 
  */
+
+public inline fun LayerCollectorContext.crossBar(block: CrossBarContext.() -> Unit) {
+    addLayer(CrossBarContext(this).apply(block), CROSS_BAR)
+}

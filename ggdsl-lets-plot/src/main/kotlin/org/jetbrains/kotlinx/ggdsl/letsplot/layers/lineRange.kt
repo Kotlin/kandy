@@ -4,7 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LineRangeContext
 
 
 @PublishedApi
@@ -88,3 +90,7 @@ public inline fun LayerCollectorContextMutable.lineRange(block: LineRangeContext
 }
 
  */
+
+public inline fun LayerCollectorContext.lineRange(block: LineRangeContext.() -> Unit) {
+    addLayer(LineRangeContext(this).apply(block), LINE_RANGE)
+}

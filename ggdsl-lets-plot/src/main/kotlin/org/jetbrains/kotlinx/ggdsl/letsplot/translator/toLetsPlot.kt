@@ -11,7 +11,7 @@ import org.jetbrains.letsPlot.letsPlot
 public fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
     // todo validate datasets
     val featureBuffer = buildList {
-        layers.forEach { it.wrap(this, datasets, globalMappings) }
+        layers.forEach { it.wrap(this, datasets, globalMappings, globalSettings) }
         freeScales.forEach { it.value.wrap(this) }
         features.forEach { it.value.wrap(this) }
         //  (layout as? LetsPlotLayout)?.wrap(this) // todo

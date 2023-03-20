@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat.layers
 
+import org.jetbrains.kotlinx.dataframe.api.toColumnOf
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.BAR
@@ -16,12 +17,26 @@ public class HistogramContext(parent: LayerCollectorContext) : BarsContext(paren
 
 //todo type
 public inline fun LayerCollectorContext.histogram(
-    sample: ColumnReference<*>,
+    column: ColumnReference<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: HistogramContext.() -> Unit = {}
 ) {
-    statBin(sample, bins, binXPos) {
+    statBin(column, bins, binXPos) {
+        addLayer(HistogramContext(this).apply {
+            x(Stat.BINS)
+            y(Stat.COUNT)
+        }.apply(block), BAR)
+    }
+}
+
+public inline fun LayerCollectorContext.histogram(
+    columnName: String,
+    bins: Bins = Bins.byNumber(20),
+    binXPos: BinXPos = BinXPos.none(0.0),
+    block: HistogramContext.() -> Unit = {}
+) {
+    statBin(columnName.toColumnOf<Any>(), bins, binXPos) {
         addLayer(HistogramContext(this).apply {
             x(Stat.BINS)
             y(Stat.COUNT)

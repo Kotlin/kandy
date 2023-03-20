@@ -4,31 +4,31 @@ import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.WIDTH
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.HEIGHT
 
-public interface WithWidth : BindingContext {
-    public var width: Double?
+public interface WithHeight : BindingContext {
+    public var height: Double?
         get() = null
         set(value) {
-            addNonPositionalSetting(WIDTH, value)
+            addNonPositionalSetting(HEIGHT, value)
         }
-    public fun <T> width(
+    public fun <T> height(
         column: ColumnReference<T>,
         //parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping<T, Double>(
-            WIDTH,
+            HEIGHT,
             column.name(),
             null//LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
         )
     }
 
-    public fun width(
+    public fun height(
         column: String,
        // parameters: LetsPlotNonPositionalMappingParameters<Any?, Double>.() -> Unit = {}
     ): NonPositionalMapping<Any?, Double> {
         return addNonPositionalMapping(
-            WIDTH,
+            HEIGHT,
             column,
             null
             //LetsPlotNonPositionalMappingParameters<Any?, Double>().apply(parameters)
@@ -36,13 +36,13 @@ public interface WithWidth : BindingContext {
     }
 
     // Iterable, Array, PrimArray, DataColumn,
-    public fun <T> width(
+    public fun <T> height(
         values: Iterable<T>,
         name: String? = null,
         //parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping(
-            WIDTH,
+            HEIGHT,
             values.toList(),
             name,
             null
@@ -50,13 +50,13 @@ public interface WithWidth : BindingContext {
         )
     }
 
-    public fun <T> width(
+    public fun <T> height(
         values: DataColumn<T>,
         //name: String? = null,
         //parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping(
-            WIDTH,
+            HEIGHT,
             values.toList(),
             values.name(),
             null

@@ -7,6 +7,7 @@ package org.jetbrains.kotlinx.ggdsl.ir
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.FreeScale
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.Mapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
 import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
@@ -29,6 +30,7 @@ public data class Plot(
     val datasets: List<TableData>,
     val layers: List<Layer>,
     val globalMappings: Map<AesName, Mapping>,
+    val globalSettings: Map<AesName, Setting>,
     val features: Map<FeatureName, PlotFeature>,
     val freeScales: Map<AesName, FreeScale>,
 )

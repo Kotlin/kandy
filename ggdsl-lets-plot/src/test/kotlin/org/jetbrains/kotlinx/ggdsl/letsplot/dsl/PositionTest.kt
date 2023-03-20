@@ -42,7 +42,8 @@ internal class PositionTest {
                 ),
                 emptyMap(),
                 mapOf(),
-                emptyMap()
+                emptyMap(),
+                emptyMap(),
             ),
             plot
         )
@@ -92,7 +93,8 @@ internal class PositionTest {
                 ),
                 mapOf(),
                 emptyMap(),
-                emptyMap()
+                emptyMap(),
+                emptyMap(),
             ),
             plot
         )

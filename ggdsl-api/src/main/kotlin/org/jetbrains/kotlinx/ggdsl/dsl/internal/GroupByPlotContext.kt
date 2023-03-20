@@ -3,6 +3,8 @@ package org.jetbrains.kotlinx.ggdsl.dsl.internal
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.concat
+import org.jetbrains.kotlinx.dataframe.api.getColumns
+import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
@@ -20,7 +22,9 @@ public class GroupByPlotContext<T, G>(
     )
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
-    public val groupKey: DataFrame<T> = groupBy.keys
     public val column: DataFrame<G> = groupBy.groups.concat()
-
+    @Suppress("UNCHECKED_CAST")
+    public val groupKey: DataFrame<T> = column.getColumns(*groupBy.keys.columns().map {
+        it.name()
+    }.toTypedArray()).toDataFrame() as DataFrame<T>
 }

@@ -4,7 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.RasterContext
 
 @PublishedApi
 internal val RASTER: LetsPlotGeom = LetsPlotGeom("raster")
@@ -89,3 +91,7 @@ public inline fun LayerCollectorContextMutable.raster(block: RasterContextMutabl
 
 
  */
+
+public inline fun LayerCollectorContext.raster(block: RasterContext.() -> Unit) {
+    addLayer(RasterContext(this).apply(block), RASTER)
+}

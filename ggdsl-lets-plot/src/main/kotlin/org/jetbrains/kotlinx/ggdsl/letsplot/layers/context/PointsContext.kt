@@ -11,8 +11,5 @@ public class PointsContext(parent: LayerCollectorContext)
     // FILL SHAPES only
     public val borderWidth: StrokeAes  // TODO doesnt work lol
         get() = StrokeAes(this)
-    public val fillColor: FillAes
-        get() = FillAes(this)
-
      */
 }
