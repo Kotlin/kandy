@@ -6,9 +6,9 @@ package org.jetbrains.kotlinx.ggdsl.echarts.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.dataframe.impl.asList
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.echarts.scale.EchartsNonPositionalMappingParameters
+import org.jetbrains.kotlinx.ggdsl.echarts.scale.nonPosMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMappingParameters
 
@@ -21,21 +21,13 @@ public interface WithSize : BindingContext {
 
     public fun <T> size(
         column: ColumnReference<T>, parameters: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> =
-        addNonPositionalMapping(
-            SIZE, column.name(), EchartsNonPositionalMappingParameters<T, Double>().apply(parameters)
-        )
+    ): NonPositionalMapping<T, Double> = nonPosMapping(SIZE, column, parameters)
 
     public fun <T> size(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> =
-        addNonPositionalMapping(
-            SIZE, values.asList(),
-            name, EchartsNonPositionalMappingParameters<T, Double>().apply(params)
-        )
+    ): NonPositionalMapping<T, Double> = nonPosMapping(SIZE, values, name, params)
 
     public fun <T> size(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> =
-        addNonPositionalMapping(SIZE, values, EchartsNonPositionalMappingParameters<T, Double>().apply(params))
+    ): NonPositionalMapping<T, Double> = nonPosMapping(SIZE, values, params)
 }

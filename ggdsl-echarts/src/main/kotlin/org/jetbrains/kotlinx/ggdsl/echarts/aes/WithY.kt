@@ -6,9 +6,9 @@ package org.jetbrains.kotlinx.ggdsl.echarts.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.dataframe.impl.asList
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.echarts.scale.EchartsPositionalMappingParameters
+import org.jetbrains.kotlinx.ggdsl.echarts.scale.posMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalSetting
 
@@ -19,15 +19,13 @@ public interface WithY : BindingContext {
 
     public fun <T> y(
         values: DataColumn<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
-    ): PositionalMapping<T> = addPositionalMapping(Y, values, EchartsPositionalMappingParameters<T>().apply(params))
+    ): PositionalMapping<T> = posMapping(Y, values, params)
 
     public fun <T> y(
         values: Iterable<T>, name: String? = null, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
-    ): PositionalMapping<T> =
-        addPositionalMapping(Y, values.asList(), name, EchartsPositionalMappingParameters<T>().apply(params))
+    ): PositionalMapping<T> = posMapping(Y, values, name, params)
 
     public fun <T> y(
         column: ColumnReference<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
-    ): PositionalMapping<T> =
-        addPositionalMapping(Y, column.name(), EchartsPositionalMappingParameters<T>().apply(params))
+    ): PositionalMapping<T> = posMapping(Y, column, params)
 }

@@ -9,6 +9,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.dataframe.impl.asList
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.echarts.scale.EchartsNonPositionalMappingParameters
+import org.jetbrains.kotlinx.ggdsl.echarts.scale.nonPosMapping
 import org.jetbrains.kotlinx.ggdsl.echarts.settings.Symbol
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMappingParameters
@@ -22,21 +23,13 @@ public interface WithSymbol : BindingContext {
 
     public fun <T> symbol(
         column: ColumnReference<T>, parameters: EchartsNonPositionalMappingParameters<T, Symbol>.() -> Unit = {}
-    ): NonPositionalMapping<T, Symbol> =
-        addNonPositionalMapping(
-            SYMBOL, column.name(), EchartsNonPositionalMappingParameters<T, Symbol>().apply(parameters)
-        )
+    ): NonPositionalMapping<T, Symbol> = nonPosMapping(SYMBOL, column, parameters)
 
     public fun <T> symbol(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Symbol>.() -> Unit = {}
-    ): NonPositionalMapping<T, Symbol> =
-        addNonPositionalMapping(
-            SYMBOL, values.asList(),
-            name, EchartsNonPositionalMappingParameters<T, Symbol>().apply(params)
-        )
+    ): NonPositionalMapping<T, Symbol> = nonPosMapping(SYMBOL, values, name, params)
 
     public fun <T> symbol(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Symbol>.() -> Unit = {}
-    ): NonPositionalMapping<T, Symbol> =
-        addNonPositionalMapping(SYMBOL, values, EchartsNonPositionalMappingParameters<T, Symbol>().apply(params))
+    ): NonPositionalMapping<T, Symbol> = nonPosMapping(SYMBOL, values, params)
 }

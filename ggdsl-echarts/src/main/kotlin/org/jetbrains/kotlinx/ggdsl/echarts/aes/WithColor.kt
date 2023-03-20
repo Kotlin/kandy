@@ -6,9 +6,9 @@ package org.jetbrains.kotlinx.ggdsl.echarts.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.dataframe.impl.asList
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.echarts.scale.EchartsNonPositionalMappingParameters
+import org.jetbrains.kotlinx.ggdsl.echarts.scale.nonPosMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
@@ -22,21 +22,13 @@ public interface WithColor : BindingContext {
 
     public fun <T> color(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> =
-        addNonPositionalMapping(
-            COLOR, column.name(), EchartsNonPositionalMappingParameters<T, Color>().apply(params)
-        )
+    ): NonPositionalMapping<T, Color> = nonPosMapping(COLOR, column, params)
 
     public fun <T> color(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> =
-        addNonPositionalMapping(
-            COLOR, values.asList(),
-            name, EchartsNonPositionalMappingParameters<T, Color>().apply(params)
-        )
+    ): NonPositionalMapping<T, Color> = nonPosMapping(COLOR, values, name, params)
 
     public fun <T> color(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> =
-        addNonPositionalMapping(COLOR, values, EchartsNonPositionalMappingParameters<T, Color>().apply(params))
+    ): NonPositionalMapping<T, Color> = nonPosMapping(COLOR, values, params)
 }
