@@ -19,7 +19,7 @@ internal class ScaleTest {
 
     @Test
     fun testContinuousPosDefault() {
-        val expectedScale = PositionalContinuousScale<Float>(null, null, null)
+        val expectedScale = PositionalContinuousScale<Float>(null, null, null, null)
         assertEquals(expectedScale, Scale.continuousPos<Float>())
         assertEquals(expectedScale, CommonPositionalMappingParameters<Float>().continuous())
     }
@@ -27,7 +27,7 @@ internal class ScaleTest {
     @Test
     fun testContinuousPos() {
         val limits = -5..19
-        val expectedScale = PositionalContinuousScale<Int>(limits, null, null)
+        val expectedScale = PositionalContinuousScale<Int>(limits.first, limits.last, null, null)
         assertEquals(expectedScale, Scale.continuousPos<Int>(limits))
         assertEquals(expectedScale, CommonPositionalMappingParameters<Int>().continuous(limits))
     }
@@ -49,7 +49,9 @@ internal class ScaleTest {
 
     @Test
     fun testContinuousDefault() {
-        val expectedScale = NonPositionalContinuousScale<Double, Double>(null, null, null, null)
+        val expectedScale = NonPositionalContinuousScale<Double, Double>(
+            null, null, null, null, null, null
+        )
         assertEquals(expectedScale, Scale.continuous<Double, Double>())
         assertEquals(expectedScale, CommonNonPositionalMappingParameters<Double, Double>().continuous())
     }
@@ -58,11 +60,15 @@ internal class ScaleTest {
     fun testContinuous() {
         val domainLimits = 23.0..129.13
         val rangeLimits = 0.0F..1.0F
-        val expectedScale = NonPositionalContinuousScale<Double, Float>(domainLimits, rangeLimits, null, null)
+        val expectedScale = NonPositionalContinuousScale<Double, Float>(
+            domainLimits.start, domainLimits.endInclusive,
+            rangeLimits.start, rangeLimits.endInclusive, null, null
+        )
         assertEquals(expectedScale, Scale.continuous(rangeLimits, domainLimits))
         assertEquals(
             expectedScale,
-            CommonNonPositionalMappingParameters<Double, Float>().continuous(domainLimits, rangeLimits)
+            CommonNonPositionalMappingParameters<Double, Float>().continuous(
+                rangeLimits, domainLimits)
         )
     }
 
@@ -78,10 +84,15 @@ internal class ScaleTest {
         val domainCategories = listOf(1, 3, 100)
         val rangeCategories = listOf(Color.RED, Color.BLACK, Color.BLUE)
         val expectedScale = NonPositionalCategoricalScale<Int, Color>(domainCategories, rangeCategories)
-        assertEquals(expectedScale, Scale.categorical<Int, Color>(
-            *domainCategories.zip(rangeCategories).toTypedArray()
-        ))
-        assertEquals(expectedScale, CommonNonPositionalMappingParameters<Int, Color>().categorical(rangeCategories, domainCategories))
+        assertEquals(
+            expectedScale, Scale.categorical<Int, Color>(
+                *domainCategories.zip(rangeCategories).toTypedArray()
+            )
+        )
+        assertEquals(
+            expectedScale,
+            CommonNonPositionalMappingParameters<Int, Color>().categorical(rangeCategories, domainCategories)
+        )
 
     }
 }

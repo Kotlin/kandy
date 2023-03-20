@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 //@Serializable
 public data class ScaleContinuousColorGradientN<DomainType>(
-    val domainLimits: Pair<DomainType & Any, DomainType & Any>?,
+    val domainLimits: Pair<DomainType?, DomainType?>?,
     val rangeColors: List<Color>,
     override val nullValue: Color?,
     override val transform: Transformation?
@@ -26,15 +26,25 @@ public data class ScaleContinuousColorGradientN<DomainType>(
  * @param transform the transformation of scale
  * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
  */
-public inline fun <reified DomainType : Comparable<DomainType>> continuousColorGradientN(
+public fun <DomainType : Comparable<DomainType>> continuousColorGradientN(
     rangeColors: List<Color>,
-    domainLimits: ClosedRange<DomainType>? = null,
+    domainLimits: ClosedRange<DomainType>,
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradientN<DomainType> = ScaleContinuousColorGradientN(
-    domainLimits?.let {
+    domainLimits.let {
                       it.start to it.endInclusive
     }, rangeColors, nullValue, transform
+)
+
+public fun < DomainType> continuousColorGradientN(
+    rangeColors: List<Color>,
+    domainMin: DomainType? = null,
+    domainMax: DomainType? = null,
+    nullValue: Color? = null,
+    transform: Transformation? = null
+): ScaleContinuousColorGradientN<DomainType> = ScaleContinuousColorGradientN(
+    domainMin to domainMax, rangeColors, nullValue, transform
 )
 
 //@Serializable

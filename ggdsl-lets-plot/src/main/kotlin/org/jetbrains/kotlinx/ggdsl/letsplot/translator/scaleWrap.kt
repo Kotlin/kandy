@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package org.jetbrains.kotlinx.ggdsl.letsplot.translator
 
 import jetbrains.datalore.plot.base.Aes
@@ -121,7 +123,7 @@ internal fun Scale.wrap(
                     when (aesName) {
                         X -> if (domainType in dateTimeTypes) {
                             scaleXDateTime(
-                                limits = limits.wrap(),
+                                limits = (min to max).wrap(),
                                 name = name,
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
@@ -129,7 +131,7 @@ internal fun Scale.wrap(
                             )
                         } else if (domainType in timeTypes) {
                             scaleXTime(
-                                limits = limits.wrap(),
+                                limits = (min to max).wrap(),
                                 name = name,
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
@@ -137,7 +139,7 @@ internal fun Scale.wrap(
                             )
                         } else {
                             scaleXContinuous(
-                                limits = limits.wrap(),
+                                limits = (min to max).wrap(),
                                 name = name,
                                 breaks = breaks?.map { it as Number }, // TODO() }
                                 labels = labels,
@@ -149,7 +151,7 @@ internal fun Scale.wrap(
 
                         Y -> if (domainType in dateTimeTypes) {
                             scaleYDateTime(
-                                limits = limits.wrap(),
+                                limits = (min to max).wrap(),
                                 name = name,
                                 breaks = breaks?.wrap(),
                                 labels = labels,
@@ -158,7 +160,7 @@ internal fun Scale.wrap(
                             )
                         } else if (domainType in timeTypes) {
                             scaleYTime(
-                                limits = limits.wrap(),
+                                limits = (min to max).wrap(),
                                 name = name,
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
@@ -166,7 +168,7 @@ internal fun Scale.wrap(
                             )
                         } else {
                             scaleYContinuous(
-                                limits = limits.wrap(),
+                                limits = (min to max).wrap(),
                                 name = name,
                                 breaks = breaks?.map { it as Number }, // TODO() }
                                 labels = labels,
@@ -183,7 +185,7 @@ internal fun Scale.wrap(
                 is PositionalDefaultScale<*> -> if (domainType.isCategoricalType() || isGroupKey) {
                     PositionalCategoricalScale<String>(null).wrap(aesName, domainType, scaleParameters, isGroupKey)
                 } else {
-                    PositionalContinuousScale<Double>(null, null, null).wrap(
+                    PositionalContinuousScale<Double>(null, null, null,null).wrap(
                         aesName,
                         domainType,
                         scaleParameters,
@@ -240,7 +242,9 @@ internal fun Scale.wrap(
                         isGroupKey
                     )
                 } else {
-                    NonPositionalContinuousScale<Double, Double>(null, null, null, null).wrap(
+                    NonPositionalContinuousScale<Double, Double>(
+                        null, null, null, null,null, null
+                    ).wrap(
                         aesName,
                         domainType,
                         scaleParameters,
@@ -406,8 +410,8 @@ internal fun Scale.wrap(
                     when (aesName) {
 
                         SIZE -> scaleSize(
-                            limits = domainLimits.wrap(),
-                            range = rangeLimits.wrap(),
+                            limits = (domainMin to domainMax).wrap(),
+                            range = (rangeMin to rangeMax).wrap() as Pair<Number, Number>?, // todo!!
                             name = name,
                             breaks = breaks?.map { it as Number },
                             labels = labels,
@@ -419,10 +423,10 @@ internal fun Scale.wrap(
 
 
                         COLOR -> {
-                            val (lowColor, highColor) = rangeLimits.let {
-                                (it?.start as? Color)?.wrap() to (it?.endInclusive as? Color)?.wrap()
-                            }
-                            val limits = domainLimits.wrap() // todo datetime support here
+                            val lowColor = (rangeMin as? Color)?.wrap()
+                            val highColor = (rangeMax as? Color)?.wrap()
+
+                            val limits = (domainMin to domainMax).wrap() // todo datetime support here
 
                             scaleColorContinuous(
                                 low = lowColor,
@@ -441,10 +445,9 @@ internal fun Scale.wrap(
                         }
 
                         FILL -> {
-                            val (lowColor, highColor) = rangeLimits.let {
-                                (it?.start as? Color)?.wrap() to (it?.endInclusive as? Color)?.wrap()
-                            }
-                            val limits = domainLimits.wrap() //todo datetime support here
+                            val lowColor = (rangeMin as? Color)?.wrap()
+                            val highColor = (rangeMax as? Color)?.wrap()
+                            val limits = (domainMin to domainMax).wrap() //todo datetime support here
 
                             scaleFillContinuous(
                                 low = lowColor,
@@ -462,8 +465,8 @@ internal fun Scale.wrap(
                         }
 
                         ALPHA -> scaleAlpha(
-                            limits = domainLimits.wrap(),
-                            range = rangeLimits.wrap(),
+                            limits = (domainMin to domainMax).wrap(),
+                            range = (rangeMin to rangeMax).wrap() as Pair<Number, Number>?, //todo
                             name = name,
                             breaks = breaks?.map { it as Number },
                             labels = labels,

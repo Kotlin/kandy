@@ -53,6 +53,7 @@ class ToLetsPlotTest {
                 "scales" to listOf(
                     mapOf(
                         "aesthetic" to "x",
+                        "limits" to listOf(null ,null)
                     ),
                     mapOf(
                         "aesthetic" to "y",
@@ -100,7 +101,7 @@ class ToLetsPlotTest {
                 fillColor(clM) {
                     scale =
                         categorical(
-                            rangeValues = listOf(Color.RED, Color.hex("#bb11aa"))
+                            range = listOf(Color.RED, Color.hex("#bb11aa"))
                         )
                 }
                 width = 0.5

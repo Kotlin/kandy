@@ -126,14 +126,19 @@ public fun PlotContext.y(
     y.apply(parameters)
 }
 
+// todo
 public class AxisParameters(
     private val mappingParameters: LetsPlotPositionalMappingParameters<Any?>,
     private val aesName: AesName,
     private val bindingContext: BindingContext,
 ) {
+
     public var limits: ClosedRange<*>? = null
         set(value) {
-            mappingParameters.scale = PositionalContinuousScale(value, null, null)
+            mappingParameters.scale = PositionalContinuousScale(value?.start,
+                value?.endInclusive,
+                null, null)
+            field = value
         }
     public val axis: Axis<Any?>
         get() = mappingParameters.axis

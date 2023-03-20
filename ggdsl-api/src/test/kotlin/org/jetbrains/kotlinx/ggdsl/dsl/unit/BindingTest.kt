@@ -132,7 +132,7 @@ internal class BindingTest {
             mapOf(
                 X to PositionalMapping<Float>(
                     X, mockSource.name(), CommonPositionalMappingParameters(
-                        PositionalContinuousScale<Float>(null, null, null))
+                        PositionalContinuousScale<Float>(null, null, null, null))
                 )
             ),
             context.bindingCollector.mappings
@@ -199,7 +199,7 @@ internal class BindingTest {
         )
         val mockSource = column<Int>("mock_source")
         val scaleColorCont = Scale.continuous<Int, Color>(
-            rangeLimits = Color.rgb(1, 1, 1).. Color.rgb(1, 100, 100)
+            range = Color.rgb(1, 1, 1).. Color.rgb(1, 100, 100)
         )
         val context = TestContext(plotContext).apply {
             color(mockSource) {
@@ -214,7 +214,9 @@ internal class BindingTest {
                     CommonNonPositionalMappingParameters(
                         NonPositionalContinuousScale(
                             null,
-                            Color.rgb(1, 1, 1) .. Color.rgb(1, 100, 100),
+                            null,
+                            Color.rgb(1, 1, 1),
+                            Color.rgb(1, 100, 100),
                             null,
                             null
                         )

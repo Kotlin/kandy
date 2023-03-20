@@ -24,9 +24,11 @@ public sealed interface NonPositionalScale<DomainType, RangeType> : Scale {
  * @param rangeLimits the limits of the range.
  */
 //@Serializable
-public data class NonPositionalContinuousScale<DomainType : Comparable<DomainType>, RangeType : Comparable<RangeType>>(
-    val domainLimits: ClosedRange<DomainType>?,
-    val rangeLimits: ClosedRange<RangeType>?,
+public data class NonPositionalContinuousScale<DomainType, RangeType>(
+    val domainMin: DomainType?,
+    val domainMax: DomainType?,
+    val rangeMin: RangeType?,
+    val rangeMax: RangeType?,
     override val nullValue: RangeType?,
     override val transform: NonPositionalTransform?,
 ) : ContinuousScale<RangeType>, NonPositionalScale<DomainType, RangeType>
@@ -49,5 +51,13 @@ public interface CustomNonPositionalScale<DomainType, RangeType>
     : NonPositionalScale<DomainType, RangeType>, CustomScale
 
 //todo!!!
-public data class NonPositionalDefaultScale<DomainType, RangeType>(private val nothing: Nothing? = null):
-    NonPositionalScale<DomainType, RangeType>, DefaultScale
+public class NonPositionalDefaultScale<DomainType, RangeType>:
+    NonPositionalScale<DomainType, RangeType>, DefaultScale {
+    override fun equals(other: Any?): Boolean {
+        return other is NonPositionalDefaultScale<*, *>
+    }
+
+    override fun hashCode(): Int {
+        return javaClass.hashCode()
+    }
+}

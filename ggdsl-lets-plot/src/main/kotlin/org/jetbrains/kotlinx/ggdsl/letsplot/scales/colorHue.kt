@@ -27,13 +27,27 @@ public inline fun <reified DomainType : Comparable<DomainType>> continuousColorH
     luminance: Int? = null,
     hueStart: Int? = null,
     direction: WheelDirection? = null,
-    domainLimits: ClosedRange<DomainType>? = null,
+    domainLimits: ClosedRange<DomainType>,
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorHue<DomainType> = ScaleContinuousColorHue(
-    domainLimits?.let {
-                      it.start to it.endInclusive
+    domainLimits.let {
+        it.start to it.endInclusive
     }, huesRange, chroma, luminance, hueStart, direction, nullValue, transform
+)
+
+public inline fun <reified DomainType : Comparable<DomainType>> continuousColorHue(
+    huesRange: Pair<Int, Int>? = null,
+    chroma: Int? = null,
+    luminance: Int? = null,
+    hueStart: Int? = null,
+    direction: WheelDirection? = null,
+    domainMin: DomainType? = null,
+    domainMax: DomainType? = null,
+    nullValue: Color? = null,
+    transform: Transformation? = null
+): ScaleContinuousColorHue<DomainType> = ScaleContinuousColorHue(
+    domainMin to domainMax, huesRange, chroma, luminance, hueStart, direction, nullValue, transform
 )
 
 // todo(LP) categories support
@@ -57,7 +71,7 @@ public data class WheelDirection internal constructor(val value: Int) {
 }
 
 public sealed interface ScaleColorHue<DomainType> {
-    public val domainLimits: Pair<DomainType & Any, DomainType & Any>?
+    public val domainLimits: Pair<DomainType?, DomainType?>?
     public val huesRange: Pair<Int, Int>?
     public val chroma: Int?
     public val luminance: Int?
@@ -68,7 +82,7 @@ public sealed interface ScaleColorHue<DomainType> {
 
 //@Serializable
 public data class ScaleContinuousColorHue<DomainType> @PublishedApi internal constructor(
-    override val domainLimits: Pair<DomainType & Any, DomainType & Any>?,
+    override val domainLimits: Pair<DomainType ?, DomainType ?>?,
     override val huesRange: Pair<Int, Int>?,
     override val chroma: Int?,
     override val luminance: Int?,

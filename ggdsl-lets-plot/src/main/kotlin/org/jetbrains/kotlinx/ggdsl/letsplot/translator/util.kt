@@ -49,4 +49,4 @@ internal fun wrapValue(value: Any?): Any? {
 
 // TODO
 internal fun ClosedRange<*>?.wrap() = this?.let { (it.start as Number) to (it.endInclusive as Number) }
-internal fun Pair<*, *>?.wrap() = this?.let { (it.first as Number) to (it.second as Number) }
+internal fun Pair<*, *>?.wrap() = this?.let { (it.first as? Number) to (it.second as? Number) }

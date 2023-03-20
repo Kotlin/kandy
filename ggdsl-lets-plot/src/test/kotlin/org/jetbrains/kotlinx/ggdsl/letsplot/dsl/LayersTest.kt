@@ -42,7 +42,7 @@ internal class LayersTest {
                 fillColor(type) {
                     scale =
                         categorical(
-                            rangeValues = listOf(Color.RED, Color.BLUE)
+                            range = listOf(Color.RED, Color.BLUE)
                         )
 
                 }
@@ -63,7 +63,7 @@ internal class LayersTest {
                         mapOf(
                             Y to PositionalMapping<Int>(
                                 Y, time.name(), LetsPlotPositionalMappingParameters(
-                                    PositionalContinuousScale(null, null, null)
+                                    PositionalContinuousScale(null, null, null, null)
                                 )
                             ),
                             FILL to NonPositionalMapping<String, Color>(
