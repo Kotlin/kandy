@@ -16,22 +16,33 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.*
  * @param transform the transformation of scale
  * @return new [PositionalContinuousScale] with given limits
  */
-public fun <DomainType : Comparable<DomainType>> PositionalMappingParameters<DomainType>.continuous(
+public fun <DomainType : Comparable<DomainType>> PositionalMappingParameters<DomainType?>.continuous(
     limits: ClosedRange<DomainType>,
     nullValue: DomainType? = null,
     transform: PositionalTransform? = null
-): PositionalContinuousScale<DomainType> = PositionalContinuousScale(
+): PositionalContinuousScale<DomainType?> = PositionalContinuousScale(
     limits.start, limits.endInclusive, nullValue, transform
 )
 
-public fun <DomainType> PositionalMappingParameters<DomainType>.continuous(
+public fun <DomainType : Comparable<DomainType>> PositionalMappingParameters<DomainType>.continuous(
+    limits: ClosedRange<DomainType>,
+    transform: PositionalTransform? = null
+): PositionalContinuousScale<DomainType> = PositionalContinuousScale(
+    limits.start, limits.endInclusive, null, transform
+)
+
+public fun <DomainType> PositionalMappingParameters<DomainType?>.continuous(
     min: DomainType? = null,
     max: DomainType? = null,
     nullValue: DomainType? = null,
     transform: PositionalTransform? = null
-): PositionalContinuousScale<DomainType> = PositionalContinuousScale(
-    min, max, nullValue, transform
-)
+): PositionalContinuousScale<DomainType?> = PositionalContinuousScale(min, max, nullValue, transform)
+
+public fun <DomainType> PositionalMappingParameters<DomainType>.continuous(
+    min: DomainType? = null,
+    max: DomainType? = null,
+    transform: PositionalTransform? = null
+): PositionalContinuousScale<DomainType> = PositionalContinuousScale(min, max, null, transform)
 
 public fun <DomainType : Comparable<DomainType>> Scale.Companion.continuousPos(
     limits: ClosedRange<DomainType>,

@@ -146,8 +146,8 @@ internal class Parser(plot: Plot) {
         val type = when (axisScale) {
             is PositionalCategoricalScale<*> -> AxisType.CATEGORY
             is PositionalContinuousScale<*> -> {
-                min = axisScale.limits?.start.toString()
-                max = axisScale.limits?.endInclusive.toString()
+                min = axisScale.min?.toString()
+                max = axisScale.max?.toString()
                 AxisType.VALUE
             }
 

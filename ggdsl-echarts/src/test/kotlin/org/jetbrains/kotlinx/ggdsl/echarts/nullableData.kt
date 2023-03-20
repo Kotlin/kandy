@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.ggdsl.echarts
 
 import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.ggdsl.dsl.continuous
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.x
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.y
@@ -155,7 +156,6 @@ class NullableDataTest {
     }
 
     @Test
-    @Ignore
     fun `bars with nulls and fill null for y-axis`() {
         val expected = """
             {
@@ -209,11 +209,10 @@ class NullableDataTest {
         val actual = plot(data) {
             x(days)
             y(nums) {
-//                scale = continuous(nullValue = 4)
+                scale = continuous(nullValue = 4)
             }
             bars {}
         }.toJson()
-
 
         assertEquals(expected, actual)
     }

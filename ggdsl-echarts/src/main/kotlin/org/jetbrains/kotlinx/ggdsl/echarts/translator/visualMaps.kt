@@ -36,18 +36,12 @@ internal fun NonPositionalScale<*, *>.toVisualMap(
         }
 
         is NonPositionalContinuousScale<*, *> -> {
-            val min: Double?
-            val max: Double?
-            if (domainLimits != null) {
-                min = domainLimits!!.start.toString().toDouble()
-                max = domainLimits!!.endInclusive.toString().toDouble()
-            } else {
-                val d = data?.filterNotNull()
-                min = d?.minOfOrNull { (it as Number).toDouble() }
-                max = d?.maxOfOrNull { (it as Number).toDouble() }
-            }
+            val min = domainMin?.toString()?.toDouble() ?: data?.asSequence()?.filterNotNull()
+                ?.minOfOrNull { (it as Number).toDouble() }
+            val max = domainMax?.toString()?.toDouble() ?: data?.asSequence()?.filterNotNull()
+                ?.maxOfOrNull { (it as Number).toDouble() }
 
-            val valuesString = rangeLimits?.let { listOf(it.start, it.endInclusive) }
+            val valuesString = if (rangeMin != null && rangeMax != null) listOf(rangeMin, rangeMax) else null
 
             val inRange = createInRange(aes, valuesString)
             ContinuousVisualMap(
