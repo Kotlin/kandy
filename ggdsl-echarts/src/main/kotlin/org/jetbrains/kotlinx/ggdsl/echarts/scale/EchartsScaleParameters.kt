@@ -5,7 +5,6 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.scale
 
 import org.jetbrains.kotlinx.ggdsl.echarts.scale.guide.Axis
-import org.jetbrains.kotlinx.ggdsl.echarts.scale.guide.Legend
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalDefaultScale
@@ -21,5 +20,4 @@ public data class EchartsPositionalMappingParameters<DomainType>(
 
 public data class EchartsNonPositionalMappingParameters<DomainType, RangeType>(
     override var scale: NonPositionalScale<DomainType, RangeType> = NonPositionalDefaultScale(),
-    public val legend: Legend = Legend()
 ) : NonPositionalMappingParameters<DomainType, RangeType>
