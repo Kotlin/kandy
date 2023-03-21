@@ -4,13 +4,13 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationBoxplotCandlestick
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationEasing
 
 /*@PlotDslMarker*/
-public class BoxplotContextImmutable(parent: LayerCollectorContextImmutable) : EchartsLayerContextImmutable(parent) {
+public class BoxplotContextImmutable(parent: LayerCollectorContext) : EchartsLayerContext(parent) {
 
     /**
      * Animation options settings for [boxplot][boxplot].

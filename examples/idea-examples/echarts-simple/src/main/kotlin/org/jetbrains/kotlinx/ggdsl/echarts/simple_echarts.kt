@@ -1,6 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.echarts
 
-import org.jetbrains.kotlinx.ggdsl.dsl.*
+import org.jetbrains.kotlinx.ggdsl.dsl.continuous
+import org.jetbrains.kotlinx.ggdsl.dsl.invoke
+import org.jetbrains.kotlinx.ggdsl.dsl.plot
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.x
 import org.jetbrains.kotlinx.ggdsl.echarts.features.label.LabelPosition
 import org.jetbrains.kotlinx.ggdsl.echarts.features.label.label
@@ -29,9 +31,13 @@ public fun main() {
 
 
         bars {
-            name("Precipitation")
-            y("precipitation"<Double>().scaled(continuousPos(0.0 to 200.0)))
-            color("temp"<Double>().scaled(continuous(rangeLimits = Color.GREY to Color.BLUE)))
+            name = "Precipitation"
+            y("precipitation"<Double>()) {
+                scale = continuous(0.0 .. 200.0)
+            }
+            color("temp"<Double>()) {
+                scale = continuous(range = Color.GREY .. Color.BLUE)
+            }
             label {
                 position = LabelPosition.TOP
                 formatter = "{@precipitation} ml"
@@ -39,9 +45,9 @@ public fun main() {
         }
 
         line {
-            name("Evaporation")
+            name = "Evaporation"
             y("evaporation"<Double>())
-            symbol(Symbol.diamond(20.0))
+            symbol = Symbol.diamond(20.0)
         }
 
         layout {

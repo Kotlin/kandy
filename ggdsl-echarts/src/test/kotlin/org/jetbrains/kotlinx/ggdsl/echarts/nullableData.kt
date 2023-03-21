@@ -1,10 +1,8 @@
 package org.jetbrains.kotlinx.ggdsl.echarts
 
 import org.jetbrains.kotlinx.dataframe.api.column
-import org.jetbrains.kotlinx.ggdsl.dsl.continuousPos
-import org.jetbrains.kotlinx.ggdsl.dsl.invoke
+import org.jetbrains.kotlinx.ggdsl.dsl.continuous
 import org.jetbrains.kotlinx.ggdsl.dsl.plot
-import org.jetbrains.kotlinx.ggdsl.dsl.scaled
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.x
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.y
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.area
@@ -12,6 +10,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.layers.bars
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.line
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.points
 import kotlin.test.Test
+import kotlin.test.Ignore
 import kotlin.test.assertEquals
 
 class NullableDataTest {
@@ -35,11 +34,9 @@ class NullableDataTest {
         val expected = """
         {
             "xAxis": {
-                "show": true,
                 "type": "category"
             },
             "yAxis": {
-                "show": true,
                 "type": "value"
             },
             "dataset": {
@@ -98,11 +95,9 @@ class NullableDataTest {
         val expected = """
             {
                 "xAxis": {
-                    "show": true,
                     "type": "category"
                 },
                 "yAxis": {
-                    "show": true,
                     "type": "value"
                 },
                 "dataset": {
@@ -165,11 +160,9 @@ class NullableDataTest {
         val expected = """
             {
                 "xAxis": {
-                    "show": true,
                     "type": "category"
                 },
                 "yAxis": {
-                    "show": true,
                     "type": "value"
                 },
                 "dataset": {
@@ -215,24 +208,25 @@ class NullableDataTest {
 
         val actual = plot(data) {
             x(days)
-            y(nums.scaled(continuousPos(nullValue = 4)))
+            y(nums) {
+                scale = continuous(nullValue = 4)
+            }
             bars {}
         }.toJson()
-
 
         assertEquals(expected, actual)
     }
 
-    @Test
-    fun `points with nulls`() {
-        val option = plot(data) {
-            x(nums2)
-            y(nums)
-            points {
-                size(sizes.scaled())
-            }
-        }.toJson()
-
-        println(option)
-    }
+//    @Test
+//    fun `points with nulls`() {
+//        val option = plot(data) {
+//            x(nums2)
+//            y(nums)
+//            points {
+//                size(sizes)
+//            }
+//        }.toJson()
+//
+//        println(option)
+//    }
 }

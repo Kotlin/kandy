@@ -10,6 +10,8 @@ import org.jetbrains.kotlinx.ggdsl.echarts.layers.LineContextImmutable
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.LayerFeature
 
+
+// TODO(change stack, move to stack)
 /**
  * Name of stack. On the same category axis, the series with the same stack name would be put on top of each other.
  *

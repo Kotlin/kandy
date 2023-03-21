@@ -5,26 +5,19 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.scale
 
 import org.jetbrains.kotlinx.ggdsl.echarts.scale.guide.Axis
-import org.jetbrains.kotlinx.ggdsl.echarts.scale.guide.Legend
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.BaseScaledNonPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.BaseScaledPositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.scale.ScaleParameters
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMappingParameters
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMappingParameters
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalDefaultScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 
 
-public interface EchartsScaleParameters : ScaleParameters
+public data class EchartsPositionalMappingParameters<DomainType>(
+    override var scale: PositionalScale<DomainType> = PositionalDefaultScale(),
+    public val axis: Axis = Axis()
+) : PositionalMappingParameters<DomainType>
 
-public data class PositionalParameters<DomainType>(val axis: Axis<DomainType>) : EchartsScaleParameters
-public data class NonPositionalParameters<DomainType, RangeType>
-(val legend: Legend<DomainType, RangeType>) : EchartsScaleParameters
-
-public fun <DomainType> BaseScaledPositionalMapping<DomainType>.with(
-    block: PositionalParameters<DomainType>.() -> Unit
-) {
-    scaleParameters = PositionalParameters(Axis<DomainType>()).apply(block)
-}
-
-public fun <DomainType, RangeType> BaseScaledNonPositionalMapping<DomainType, RangeType>.with(
-    block: NonPositionalParameters<DomainType, RangeType>.() -> Unit
-) {
-    scaleParameters = NonPositionalParameters(Legend<DomainType, RangeType>()).apply(block)
-}
+public data class EchartsNonPositionalMappingParameters<DomainType, RangeType>(
+    override var scale: NonPositionalScale<DomainType, RangeType> = NonPositionalDefaultScale(),
+) : NonPositionalMappingParameters<DomainType, RangeType>

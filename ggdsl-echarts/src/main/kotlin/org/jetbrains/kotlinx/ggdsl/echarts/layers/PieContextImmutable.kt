@@ -4,14 +4,14 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationEasing
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationPie
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationType
 
 /*@PlotDslMarker*/
-public class PieContextImmutable(parent: LayerCollectorContextImmutable) : EchartsLayerContextImmutable(parent) {
+public class PieContextImmutable(parent: LayerCollectorContext) : EchartsLayerContext(parent) {
 
     /**
      * Animation options settings for [pie][pie].

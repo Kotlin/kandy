@@ -4,13 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.scale.guide
 
+import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
 
-public class Axis<DomainType> {
-    public var show: Boolean? = true
-    public var name: String? = null
-}
-
-
-public inline operator fun <DomainType> Axis<DomainType>.invoke(block: Axis<DomainType>.() -> Unit) {
-    apply(block)
-}
+public data class Axis internal constructor(
+    var name: String? = null,
+    var show: Boolean? = null
+): SelfInvocationContext
