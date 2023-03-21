@@ -4,11 +4,15 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.*
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationEasing
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Cap
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.LineType
+import org.jetbrains.kotlinx.ggdsl.echarts.settings.Step
+import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
 /**
  * Line settings.
@@ -36,19 +40,47 @@ import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationEasing
  * @see Animation
  */
 /*@PlotDslMarker*/
-public class LineContextImmutable(parent: LayerCollectorContextImmutable) : EchartsLayerContextImmutable(parent) {
-    public val x: XAes = XAes(this)
-    public val y: YAes = YAes(this)
-    public val color: LineColorAes = LineColorAes(this)
-    public val symbol: SymbolAes = SymbolAes(this)
-    public val smooth: SmoothAes = SmoothAes(this)
-    public val alpha: LineAlphaAes = LineAlphaAes(this)
-    public val width: WidthAes = WidthAes(this)
-    public val lineType: LineTypeAes = LineTypeAes(this)
-    public val step: StepAes = StepAes(this)
-    public val cap: CapAes = CapAes(this)
-    public val shadowColor: LineShadowColorAes = LineShadowColorAes(this)
-    public val shadowBlur: LineShadowBlurAes = LineShadowBlurAes(this)
+public class LineContextImmutable(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
+    WithAlpha, WithSymbol {
+
+    public var smooth: Boolean? = null
+        set(value) {
+            addNonPositionalSetting(SMOOTH, value)
+            field = smooth
+        }
+    public var width: Number? = null
+        set(value) {
+            addNonPositionalSetting(WIDTH, value)
+            field = value
+        }
+
+    public var lineType: LineType? = null
+        set(value) {
+            addNonPositionalSetting(LINE_TYPE, value)
+            field = value
+        }
+
+    public var step: Step? = null
+        set(value) {
+            addNonPositionalSetting(STEP, value)
+            field = value
+        }
+
+    public var cap: Cap? = null
+        set(value) {
+            addNonPositionalSetting(CAP, value)
+            field = value
+        }
+    public var shadowColor: Color? = null
+        set(value) {
+            addNonPositionalSetting(LINE_SHADOW_COLOR, value)
+            field = value
+        }
+    public var shadowBlur: Number? = null
+        set(value) {
+            addNonPositionalSetting(LINE_SHADOW_BLUR, value)
+            field = value
+        }
 
     /**
      * Animation options settings for [line][line].

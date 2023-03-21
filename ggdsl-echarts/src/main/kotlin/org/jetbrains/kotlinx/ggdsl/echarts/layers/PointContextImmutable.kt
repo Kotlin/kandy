@@ -4,13 +4,11 @@
 
 package org.jetbrains.kotlinx.ggdsl.echarts.layers
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.*
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationEasing
-import org.jetbrains.kotlinx.ggdsl.echarts.features.animation.AnimationLayerFeature
-import kotlin.properties.Delegates
 
 /**
  * Point settings.
@@ -29,14 +27,8 @@ import kotlin.properties.Delegates
  * @see Animation
  */
 /*@PlotDslMarker*/
-public class PointContextImmutable(parent: LayerCollectorContextImmutable) : EchartsLayerContextImmutable(parent) {
-
-    public val x: XAes = XAes(this)
-    public val y: YAes = YAes(this)
-    public val color: ColorAes = ColorAes(this)
-    public val symbol: SymbolAes = SymbolAes(this)
-    public val size: SizeAes = SizeAes(this)
-    public val alpha: AlphaAes = AlphaAes(this)
+public class PointContextImmutable(parent: LayerCollectorContext) : EchartsLayerContext(parent), /*WithX, WithY,*/
+    WithAlpha, WithColor, WithSize, WithSymbol {
 
     /**
      * Animation options settings for [points][points].

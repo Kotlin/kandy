@@ -5,21 +5,28 @@
 package org.jetbrains.kotlinx.ggdsl.echarts.translator
 
 import kotlinx.datetime.*
+import org.jetbrains.kotlinx.dataframe.api.fillNA
+import org.jetbrains.kotlinx.dataframe.api.map
+import org.jetbrains.kotlinx.dataframe.api.withValue
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.NAME
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.X
 import org.jetbrains.kotlinx.ggdsl.echarts.aes.Y
 import org.jetbrains.kotlinx.ggdsl.echarts.layers.*
+import org.jetbrains.kotlinx.ggdsl.echarts.scale.EchartsPositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.*
 import org.jetbrains.kotlinx.ggdsl.echarts.translator.option.series.settings.Encode
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalSetting
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.ScaledMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.Setting
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.*
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
-import org.jetbrains.kotlinx.ggdsl.ir.scale.*
+import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
+import org.jetbrains.kotlinx.ggdsl.ir.scale.NonPositionalContinuousScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalCategoricalScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
+import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalDefaultScale
+import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 @Suppress("UNCHECKED_CAST")
@@ -28,17 +35,18 @@ internal fun <T> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
 }
 
 internal class Parser(plot: Plot) {
-    private val dataFrame = (plot.dataset as NamedData).dataFrame
+    private val datasets: List<TableData> = plot.datasets
     private val globalMappings = plot.globalMappings
     private val layers = plot.layers
     private val features = plot.features
+    private val freeScales = plot.freeScales
 
     private var xAxis: Axis? = null
     private var yAxis: Axis? = null
-    private val source = mutableMapOf<String, List<Any?>>()
 
 
     internal fun parse(): Option {
+        var df = (datasets[0] as NamedData).dataFrame
         val polar: Polar? = null
         val radiusAxis: RadiusAxis? = null
         val angleAxis: AngleAxis? = null
@@ -53,25 +61,17 @@ internal class Parser(plot: Plot) {
         val textStyle = layout?.textStyle?.toTextStyle()
         val animation = layout?.animation?.toAnimationPlotFeature()
 
-        globalMappings.forEach { (aes, mapping) -> // todo refactor parse data
-            if (mapping is ScaledMapping<*>) {
+        globalMappings.forEach { (aes: AesName, mapping: Mapping) ->
+            if (mapping is PositionalMapping<*>) {
                 when (aes) {
                     X -> {
-                        xAxis = mapping.toAxis()
-                        val na = mapping.getNA()
-                        source[mapping.getId()] = (if (na != null)
-                            dataFrame[mapping.getId()].values().map { it ?: na }
-                        else
-                            dataFrame[mapping.getId()].values()).toList()
+                        xAxis = mapping.toAxis(df[mapping.columnID].type())
+                        mapping.getNA()?.let { df = df.fillNA(mapping.columnID).withValue(it) }
                     }
 
                     Y -> {
-                        yAxis = mapping.toAxis()
-                        val na = mapping.getNA()
-                        source[mapping.getId()] = (if (na != null)
-                            dataFrame[mapping.getId()].values().map { it ?: na }
-                        else
-                            dataFrame[mapping.getId()].values()).toList()
+                        yAxis = mapping.toAxis(df[mapping.columnID].type())
+                        mapping.getNA()?.let { df = df.fillNA(mapping.columnID).withValue(it) }
                     }
                 }
             }
@@ -79,43 +79,33 @@ internal class Parser(plot: Plot) {
 
         val series = layers.mapIndexed { index, layer -> // TODO(layout???)
             layer.mappings.forEach { (aes, mapping) ->
-                if (mapping is ScaledMapping<*>) {
-                    if (mapping.domainType.isMarkedNullable && mapping.getNA() != null) {
-                        val na = mapping.getNA()!!
-                        source.getOrPut(mapping.getId()) { dataFrame[mapping.getId()].values().map { it ?: na } }
-                    } else {
-                        source.getOrPut(mapping.getId()) { dataFrame[mapping.getId()].values().toList() }
-                    }
+                if (mapping is PositionalMapping<*>) {
                     when {
-                        (xAxis == null && aes == X) -> xAxis = mapping.toAxis()
-                        (yAxis == null && aes == Y) -> yAxis = mapping.toAxis()
-                        aes != X && aes != Y -> {
-                            val sourceId = mapping.getId()
-                            visualMaps.add(
-                                mapping.columnScaled.scale.toVisualMap(
-                                    aes,
-                                    sourceId, index,
-                                    (layer.dataset as? NamedData)?.dataFrame?.get(sourceId)?.values()?.toList()
-                                        ?: dataFrame[sourceId].values().toList(),
-                                    visualMaps.size,
-                                    mapping.domainType
-                                )
-                            )
+                        (xAxis == null && aes == X) -> {
+                            xAxis = mapping.toAxis(df[mapping.columnID].type())
+                            mapping.getNA()?.let { df = df.fillNA(mapping.columnID).withValue(it) }
+                        }
+
+                        (yAxis == null && aes == Y) -> {
+                            yAxis = mapping.toAxis(df[mapping.columnID].type())
+                            mapping.getNA()?.let { df = df.fillNA(mapping.columnID).withValue(it) }
                         }
                     }
+                } else if (mapping is NonPositionalMapping<*, *>) {
+                    mapping.getNA()?.let { df = df.fillNA(mapping.columnID).withValue(it) }
+                    visualMaps.add(
+                        mapping.parameters?.scale!!.toVisualMap(
+                            aes, mapping.columnID, index,
+                            df[mapping.columnID].toList(), visualMaps.size, df[mapping.columnID].type()
+                        )
+                    )
                 }
             }
             layer.toSeries()
         }
 
-        val headersOfData = source.keys.toList()
-        val datasetSource = listOf(headersOfData) + List(source.values.firstOrNull()?.size ?: 0) { i ->
-            List(headersOfData.size) { j ->
-                source[headersOfData[j]]?.get(i)?.toString()
-            }
-        }
-
-        val dataset = Dataset(source = datasetSource).takeIf { it.isNotEmpty() }
+        val source = listOf(df.columnNames()) + df.map { it.values().map { l -> l?.toString() } }
+        val dataset = Dataset(source = source).takeIf { it.isNotEmpty() }
 
         return Option(
             title,
@@ -141,39 +131,30 @@ internal class Parser(plot: Plot) {
         )
     }
 
-    private fun ScaledMapping<*>.getId(): String = this.columnScaled.source.name()
-
-    private fun ScaledMapping<*>.getNA(): Any? = when (val scale = this.columnScaled.scale) {
+    private fun Mapping.getNA(): Any? = when (val scale = this.parameters?.scale) {
         is PositionalContinuousScale<*> -> scale.nullValue
         is NonPositionalContinuousScale<*, *> -> scale.nullValue
         else -> null
     }
 
-    private fun ScaledMapping<*>.toAxis(): Axis {
-        val scaleMap = this.columnScaled.scale
-        val show: Boolean = true
-        val grid: Int? = null
-        val alignTicks: Boolean? = null
-        val position: String? = null
-        val offset: Int? = null
+    private fun PositionalMapping<*>.toAxis(ktype: KType): Axis {
+        val params = this.parameters as EchartsPositionalMappingParameters
+        val axis = params.axis
+        val axisScale = params.scale
         var min: String? = null
         var max: String? = null
-        val type: String = when (scaleMap) { // TODO match Mapping
+        val type = when (axisScale) {
             is PositionalCategoricalScale<*> -> AxisType.CATEGORY
             is PositionalContinuousScale<*> -> {
-                min = scaleMap.limits?.first?.toString()
-                max = scaleMap.limits?.second?.toString()
+                min = axisScale.min?.toString()
+                max = axisScale.max?.toString()
                 AxisType.VALUE
             }
 
-            is PositionalCategoricalUnspecifiedScale -> AxisType.CATEGORY
-            is PositionalContinuousUnspecifiedScale -> AxisType.VALUE
-            is DefaultUnspecifiedScale, is UnspecifiedScale -> {
-                when (this.domainType) {
+            is PositionalDefaultScale -> {
+                when (ktype) {
                     typeOf<String>(), typeOf<String?>(), typeOf<Char>(), typeOf<Char?>() -> AxisType.CATEGORY
-
                     typeOf<Number>(), typeOf<Number?>() -> AxisType.VALUE
-
                     typeOf<LocalDateTime>(), typeOf<LocalDateTime?>(),
                     typeOf<java.time.LocalDateTime>(), typeOf<java.time.LocalDateTime?>() -> AxisType.TIME
 
@@ -193,40 +174,19 @@ internal class Parser(plot: Plot) {
             }
 
             else -> AxisType.VALUE
-        }.value
-        val name: String? = null
-        val nameLocation: String? = null
-        val nameGap: Int? = null
-        val nameRotate: Int? = null
-        val inverse: Boolean? = null
-        val boundaryGap: Any? = null
-        val scale: Boolean? = null
-        val splitNumber: Int? = null
-        val minInterval: Int? = null
-        val interval: Int? = null
-        val logBase: Int? = null
-        val silent: Boolean? = null
-        val triggerEvent: Boolean? = null
-        val zlevel: Int? = null
-        val z: Int? = null
-
-        return Axis(
-            null, show, grid, alignTicks, position, offset, type, name, nameLocation,
-            nameGap, nameRotate, inverse, boundaryGap, min, max, scale, splitNumber, minInterval,
-            interval, logBase, silent, triggerEvent, null, zlevel, z
-        )
+        }
+        return Axis(name = axis.name, show = axis.show, type = type.value, min = min, max = max)
     }
 
     private fun Layer.toSeries(): Series {
-        val x = (this.mappings[X] as? ScaledMapping<*>)?.getId()
-        val y = (this.mappings[Y] as? ScaledMapping<*>)?.getId()
+        val x = mappings[X]?.columnID ?: globalMappings[X]?.columnID
+        val y = mappings[Y]?.columnID ?: globalMappings[Y]?.columnID
         val encode = Encode(x, y).takeIf { it.isNotEmpty() }
-        val name = settings.getNPSValue(NAME) ?: when {
-            x != null && y != null -> "$x $y"
-            x == null && y != null -> y
-            x != null && y == null -> x
-            else -> null
-        }
+        val name = settings.getNPSValue(NAME)
+            ?: if (xAxis?.name == null && x == null && yAxis?.name == null && y == null)
+                null
+            else
+                "${xAxis?.name ?: x} ${yAxis?.name ?: y}".trim()
 
         return when (geom) {
             LINE -> this.toLineSeries(name, encode)
