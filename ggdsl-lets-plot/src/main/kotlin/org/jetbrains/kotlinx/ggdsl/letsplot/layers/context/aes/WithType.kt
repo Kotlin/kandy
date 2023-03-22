@@ -57,8 +57,7 @@ public interface WithType : BindingContext {
     ): NonPositionalMapping<T, LineType> {
         return addNonPositionalMapping(
             LINE_TYPE,
-            values.toList(),
-            values.name(),
+            values,
             LetsPlotNonPositionalMappingParameters<T, LineType>().apply(parameters)
         )
     }

@@ -11,7 +11,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 
 // todo value column
 
-public class DatasetHandler(public val initialDataset: TableData) {
+public class DatasetHandler(
+    public val initialDataset: TableData,
+    private val dcAsRefOnly: Boolean = false
+) {
     private val initialNamedData: NamedData
     private val isGrouped: Boolean
     private val groupKeys: List<String>?
@@ -19,12 +22,13 @@ public class DatasetHandler(public val initialDataset: TableData) {
     private var buffer: DataFrame<*> = DataFrame.Empty
 
     init {
-        when(initialDataset) {
+        when (initialDataset) {
             is NamedData -> {
                 initialNamedData = initialDataset
                 isGrouped = false
-                groupKeys =  null
+                groupKeys = null
             }
+
             is GroupedData -> {
                 initialNamedData = initialDataset.origin
                 isGrouped = true
@@ -42,9 +46,10 @@ public class DatasetHandler(public val initialDataset: TableData) {
             NamedData(buffer)
         }
     }
+
     public fun takeColumn(columnId: String): String {
         return referredColumns[columnId] ?: run {
-            val name = addColumn(initialNamedData.dataFrame.getColumnOrNull(columnId) ?: error("invalid column id"))
+            val name = internalAddColumn(initialNamedData.dataFrame.getColumnOrNull(columnId) ?: error("invalid column id"))
             referredColumns[columnId] = name
             name
         }
@@ -52,11 +57,19 @@ public class DatasetHandler(public val initialDataset: TableData) {
     }
 
     public fun addColumn(column: DataColumn<*>): String {
+        // TODO
+        if (dcAsRefOnly) {
+            return takeColumn(column.name())
+        }
+        return internalAddColumn(column)
+    }
+
+    private fun internalAddColumn(column: DataColumn<*>): String {
         return if (buffer.containsColumn(column.name())) {
             if (buffer[column.name()] == column) {
-                 column.name()
+                column.name()
             } else {
-                addColumn(column.rename(column.name() + "*"))
+                internalAddColumn(column.rename(column.name() + "*"))
             }
         } else {
             buffer = buffer.add(column)
@@ -65,10 +78,7 @@ public class DatasetHandler(public val initialDataset: TableData) {
     }
 
     public fun addColumn(values: List<*>, name: String): String {
-        if (isGrouped && groupKeys!!.contains(name)) {
-            return takeColumn(name)
-        }
-        return addColumn(DataColumn.createValueColumn(name, values, Infer.Type))
+        return internalAddColumn(DataColumn.createValueColumn(name, values, Infer.Type))
     }
 
 }

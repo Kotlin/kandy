@@ -48,8 +48,7 @@ public interface WithX : BindingContext {
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(
             X,
-            values.toList(),
-            values.name(),
+            values,
             LetsPlotPositionalMappingParameters<T,>().apply(parameters)
         )
     }

@@ -57,8 +57,7 @@ public interface WithSymbol : BindingContext {
     ): NonPositionalMapping<T, Symbol> {
         return addNonPositionalMapping(
             SHAPE,
-            values.toList(),
-            values.name(),
+            values,
             LetsPlotNonPositionalMappingParameters<T, Symbol>().apply(parameters)
         )
     }

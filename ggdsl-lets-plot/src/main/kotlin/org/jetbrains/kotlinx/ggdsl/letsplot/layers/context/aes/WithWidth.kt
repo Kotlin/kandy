@@ -57,8 +57,7 @@ public interface WithWidth : BindingContext {
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping(
             WIDTH,
-            values.toList(),
-            values.name(),
+            values,
             null
            // LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
         )

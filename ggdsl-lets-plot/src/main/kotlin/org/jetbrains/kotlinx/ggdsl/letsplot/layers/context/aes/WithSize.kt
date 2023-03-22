@@ -56,8 +56,7 @@ public interface WithSize : BindingContext {
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping(
             SIZE,
-            values.toList(),
-            values.name(),
+            values,
             LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
         )
     }

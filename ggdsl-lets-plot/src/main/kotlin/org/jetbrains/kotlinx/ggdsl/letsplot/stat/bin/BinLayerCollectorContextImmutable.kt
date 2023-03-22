@@ -112,7 +112,7 @@ public inline fun LayerCollectorContext.statBin(
         is NamedData -> countBinsImpl(data, column, bins, binXPos)
         is GroupedData -> countBinsImpl(data, column, bins, binXPos)
     }
-    plotContext.datasetHandlers.add(DatasetHandler(newData))
+    plotContext.datasetHandlers.add(DatasetHandler(newData, true))
     BinLayerCollectorContext(this, plotContext.datasetHandlers.size-1).apply(block)
 }
 
@@ -123,6 +123,6 @@ public inline fun LayerCollectorContext.statBin(
     block: BinLayerCollectorContext.() -> Unit
 ) {
     val newData = countBinsImpl(NamedData(dataFrameOf("sample" to values.toList())), column<Double>("sample"), bins, binXPos)
-    plotContext.datasetHandlers.add(DatasetHandler(newData))
+    plotContext.datasetHandlers.add(DatasetHandler(newData, true))
     BinLayerCollectorContext(this, plotContext.datasetHandlers.size-1).apply(block)
 }

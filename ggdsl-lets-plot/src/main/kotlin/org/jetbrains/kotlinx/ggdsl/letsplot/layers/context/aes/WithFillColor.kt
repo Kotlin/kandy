@@ -51,13 +51,11 @@ public interface WithFillColor : BindingContext {
 
     public fun <T> fillColor(
         values: DataColumn<T>,
-        //name: String? = null,
         parameters: LetsPlotNonPositionalMappingParameters<T, Color>.() -> Unit = {}
     ): NonPositionalMapping<T, Color> {
         return addNonPositionalMapping<T, Color>(
             FILL,
-            values.toList(),
-            values.name(),
+            values,
             LetsPlotNonPositionalMappingParameters<T, Color>().apply(parameters)
         )
     }

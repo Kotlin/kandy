@@ -58,8 +58,7 @@ public interface WithColor : BindingContext {
     ): NonPositionalMapping<T, Color> {
         return addNonPositionalMapping<T, Color>(
             COLOR,
-            values.toList(),
-            values.name(),
+            values,
             LetsPlotNonPositionalMappingParameters<T, Color>().apply(parameters)
         )
     }

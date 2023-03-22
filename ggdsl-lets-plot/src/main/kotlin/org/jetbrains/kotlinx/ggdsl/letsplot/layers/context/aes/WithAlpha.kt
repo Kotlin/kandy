@@ -55,8 +55,7 @@ public interface WithAlpha : BindingContext {
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping<T, Double>(
             ALPHA,
-            values.toList(),
-            values.name(),
+            values,
             LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
         )
     }

@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes
 
+import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
@@ -29,6 +30,16 @@ public interface WithMiddle : BindingContext {
             MIDDLE,
             values.toList(),
             null,
+            null
+        )
+    }
+
+    public fun <T> middle(
+        values: DataColumn<T>,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(
+            MIDDLE,
+            values,
             null
         )
     }

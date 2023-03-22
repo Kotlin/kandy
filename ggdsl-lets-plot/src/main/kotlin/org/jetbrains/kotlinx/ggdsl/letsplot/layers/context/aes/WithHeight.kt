@@ -4,6 +4,7 @@ import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.HEIGHT
 
 public interface WithHeight : BindingContext {
@@ -52,13 +53,10 @@ public interface WithHeight : BindingContext {
 
     public fun <T> height(
         values: DataColumn<T>,
-        //name: String? = null,
-        //parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> {
-        return addNonPositionalMapping(
+    ): PositionalMapping<T> {
+        return addPositionalMapping(
             HEIGHT,
-            values.toList(),
-            values.name(),
+            values,
             null
            // LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
         )
