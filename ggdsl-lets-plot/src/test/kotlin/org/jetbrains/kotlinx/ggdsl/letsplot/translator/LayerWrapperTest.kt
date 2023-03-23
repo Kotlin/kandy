@@ -128,7 +128,7 @@ internal class LayerWrapperTest {
                 "position" to mapOf(
                     "name" to "dodge",
                     "width" to 0.9,
-                    "kind" to "pos"
+                   // "kind" to "pos"
                 ),
                 "geom" to "bar",
                 /*"data_meta" to mapOf<String, Any>(

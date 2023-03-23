@@ -26,10 +26,10 @@ internal class ScaleWrappingTest {
         val wrappedScale = scale.wrap(X, typeOf<Double>(), null, false)
         assertNotNull(wrappedScale)
         assertEquals(
-            mapOf(
+            listOf(mapOf(
                 "aesthetic" to "x",
                 "limits" to listOf(2.0, 11.1)
-            ),
+            )),
             wrappedScale.toSpec()
         )
     }
@@ -45,10 +45,10 @@ internal class ScaleWrappingTest {
         val wrappedScale = scale.wrap(FILL, typeOf<String>(), null, false)
         assertNotNull(wrappedScale)
         assertEquals(
-            mapOf(
+            listOf(mapOf(
                 "aesthetic" to "fill",
                 "values" to listOf("#000000", "#ee6666", "#3ba272")
-            ),
+            )),
             wrappedScale.toSpec()
         )
     }
@@ -66,12 +66,12 @@ internal class ScaleWrappingTest {
         val wrappedScale = scale.wrap(SIZE, typeOf<Double>(), null, false)
         assertNotNull(wrappedScale)
         assertEquals(
-            mapOf(
+            listOf(mapOf(
                 "aesthetic" to "size",
                 "limits" to categories.map { it.toDouble() },
                 "values" to values + nullValue, // TODO!!
                 "na_value" to nullValue,
-            ),
+            )),
             wrappedScale.toSpec()
         )
     }
@@ -92,14 +92,14 @@ internal class ScaleWrappingTest {
         val wrappedScale = scale.wrap(COLOR, typeOf<Double>(), null, false)
         assertNotNull(wrappedScale)
         assertEquals(
-            mapOf(
+            listOf(mapOf(
                 "aesthetic" to "color",
                 "scale_mapper_kind" to "color_gradient",
                 "limits" to listOf(domainLimits.start, domainLimits.endInclusive),
                 "low" to "#ee6666",
                 "high" to "#3ba272",
                 "na_value" to "#a39999",
-            ),
+            )),
             wrappedScale.toSpec()
         )
     }

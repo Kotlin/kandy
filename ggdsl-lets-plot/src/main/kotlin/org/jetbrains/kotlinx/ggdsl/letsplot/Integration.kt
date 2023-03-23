@@ -4,6 +4,8 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot
 
+import jetbrains.datalore.plot.config.Option
+import jetbrains.datalore.plot.config.Option.GGBunch.ITEMS
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
@@ -22,9 +24,10 @@ import org.jetbrains.letsPlot.Figure
 import org.jetbrains.letsPlot.GGBunch
 import org.jetbrains.letsPlot.LetsPlot
 import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
+import org.jetbrains.letsPlot.intern.figure.SubPlotsFigure
 import org.jetbrains.letsPlot.intern.toSpec
-import org.jetbrains.letsPlot.themes.flavorDarcula
 
+@Suppress("UNCHECKED_CAST")
 @JupyterLibrary
 internal class Integration(
     private val notebook: Notebook,
@@ -37,10 +40,10 @@ internal class Integration(
     override fun Builder.onLoaded() {
 
         onLoaded {
-            frontendContext = LetsPlot.setupNotebook("3.0.0", null) {
+            frontendContext = LetsPlot.setupNotebook("3.1.0", null) {
                 display(HTML(it), null)
             }
-            LetsPlot.apiVersion = "4.2.0"
+            LetsPlot.apiVersion = "4.3.0"
             display(HTML(frontendContext.getConfigureHtml()), null)
         }
 
@@ -63,49 +66,83 @@ internal class Integration(
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.symbol.*")
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.font.*")
-       // import("org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.*")
+        // import("org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.*")
 
         val applyColorScheme: Boolean = options["applyColorScheme"]?.toBooleanStrictOrNull() ?: true
 
-        fun org.jetbrains.letsPlot.intern.Plot.applyColorScheme(): org.jetbrains.letsPlot.intern.Plot {
-            if (!applyColorScheme) return this
-            /* TODO
-            if (features.any {(it is OptionsMap) && (it.kind == Option.Plot.THEME)}) {
-                return this
-            }
-             */
-            return if (notebook.currentColorScheme == ColorScheme.DARK) {
-                this + flavorDarcula()
-            } else {
-                this
+        fun MutableMap<String, Any>.applyColorSchemeToPlotSpec() {
+            if (!applyColorScheme) return
+            if (notebook.currentColorScheme == ColorScheme.DARK) {
+                if ("theme" in this) {
+                    val theme = (this["theme"]!!
+                            as MutableMap<String, Any>)
+                    if ("flavor" !in theme) {
+                        theme["flavor"] = "darcula"
+                    }
+                } else {
+                    this["theme"] = mutableMapOf(
+                        "flavor" to "darcula"
+                    )
+                }
             }
         }
 
-        render<Plot> { it.toLetsPlot().applyColorScheme().toMimeResult() }
+        fun MutableMap<String, Any>.applyColorSchemeToGGBunch() {
+            if (!applyColorScheme) return
+            if (notebook.currentColorScheme == ColorScheme.DARK) {
+                (this[ITEMS]!! as List<MutableMap<String, Any>>).map {
+                    (it[Option.GGBunch.Item.FEATURE_SPEC]
+                            as MutableMap<String, Any>
+                            ).applyColorSchemeToPlotSpec()
+                }
+            }
+        }
+
+        // todo
+        fun MutableMap<String, Any>.applyColorSchemeToPlotGrid() {
+            if (!applyColorScheme) return
+            if (notebook.currentColorScheme == ColorScheme.DARK) {
+                (this[Option.SubPlots.FIGURES]!! as List<MutableMap<String, Any>>).map {
+                    it.applyColorSchemeToPlotSpec()
+                }
+            }
+        }
+
+        fun Figure.toHTML(): String {
+            return when (this) {
+                is org.jetbrains.letsPlot.intern.Plot -> frontendContext.getHtml(this)
+                is SubPlotsFigure -> frontendContext.getHtml(this)
+                is GGBunch -> frontendContext.getHtml(this)
+                else -> error("Unsupported Figure")
+            }
+        }
+
+
+        fun Figure.toMimeResult(): MimeTypedResultEx {
+            val spec = toSpec()
+            when (this) {
+                is org.jetbrains.letsPlot.intern.Plot -> spec.applyColorSchemeToPlotSpec()
+                is SubPlotsFigure -> spec.applyColorSchemeToPlotGrid()
+                is GGBunch -> spec.applyColorSchemeToGGBunch()
+                else -> error("Unsupported Figure")
+            }
+            val html = toHTML()
+            return MimeTypedResultEx(
+                buildJsonObject {
+                    put("text/html", JsonPrimitive(html))
+                    put("application/plot+json", buildJsonObject {
+                        put("output_type", JsonPrimitive("lets_plot_spec"))
+                        put("output", serializeSpec(spec))
+                    })
+                }
+            )
+        }
+
+
+        render<Plot> { it.toLetsPlot().toMimeResult() }
         render<PlotBunch> { it.wrap().toMimeResult() }
         render<PlotGrid> { it.wrap().toMimeResult() }
     }
 
-    internal fun Figure.toHTML(): String {
-        return when(this) {
-            is org.jetbrains.letsPlot.intern.Plot -> frontendContext.getHtml(this)
-            is GGBunch -> frontendContext.getHtml(this)
-            else -> error("Unsupported Figure")
-        }
-    }
-
-    internal fun Figure.toMimeResult(): MimeTypedResultEx {
-        val spec = toSpec()
-        val html = toHTML()
-        return MimeTypedResultEx(
-            buildJsonObject {
-                put("text/html", JsonPrimitive(html))
-                put("application/plot+json", buildJsonObject {
-                    put("output_type", JsonPrimitive("lets_plot_spec"))
-                    put("output", serializeSpec(spec))
-                })
-            }
-        )
-    }
 
 }

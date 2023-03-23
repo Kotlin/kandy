@@ -8,6 +8,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model.PlotBunch
 import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model.PlotGrid
 import org.jetbrains.letsPlot.GGBunch
 import org.jetbrains.letsPlot.gggrid
+import org.jetbrains.letsPlot.intern.figure.SubPlotsFigure
 
 
 internal fun PlotBunch.wrap(): GGBunch {
@@ -16,7 +17,7 @@ internal fun PlotBunch.wrap(): GGBunch {
     }
 }
 
-internal fun PlotGrid.wrap(): GGBunch {
-    return gggrid(items.map { it.toLetsPlot() }, nCol, cellWidth, cellHeight, hGap, vGap, fit)
+//TODO
+internal fun PlotGrid.wrap(): SubPlotsFigure {
+    return gggrid(items.map { it.toLetsPlot() }, nCol)
 }
-

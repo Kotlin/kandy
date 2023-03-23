@@ -8,12 +8,12 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model.PlotGrid
 
 public fun plotGrid(
     items: List<Plot>,
-    nCol: Int,
-    cellWidth: Int,
+    nCol: Int? = null,
+    /*cellWidth: Int,
     cellHeight: Int,
     hGap: Int = 0,
     vGap: Int = 50,
-    fit: Boolean = false
+    fit: Boolean = false*/
 ): PlotGrid = PlotGrid(
-    items, nCol, cellWidth, cellHeight, hGap, vGap, fit
+    items, nCol,// cellWidth, cellHeight, hGap, vGap, fit
 )
