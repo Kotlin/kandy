@@ -4,47 +4,47 @@ import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.MIDDLE
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.Y_END
 
-public interface WithMiddle : BindingContext {
-    public val middle: ConstantSetter
-        get() = ConstantSetter(MIDDLE, bindingCollector)
+public interface WithYEnd : BindingContext {
+    public val yEnd: ConstantSetter
+        get() = ConstantSetter(Y_END, bindingCollector)
 
     /*
-    public fun <T> middle(value: T): PositionalSetting<T> {
-        return addPositionalSetting(MIDDLE, value)
+    public fun <T> xMin(value: T): PositionalSetting<T> {
+        return addPositionalSetting(X_MIN, value)
     }
 
      */
 
-    public fun <T> middle(
+    public fun <T> yEnd(
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
-        return addPositionalMapping<T>(MIDDLE, column.name(), null)
+        return addPositionalMapping<T>(Y_END, column.name(), null)
     }
 
-    public fun <T> middle(
+    public fun <T> yEnd(
         column: String,
     ): PositionalMapping<T> {
-        return addPositionalMapping<T>(MIDDLE, column, null)
+        return addPositionalMapping<T>(Y_END, column, null)
     }
 
-    public fun <T> middle(
+    public fun <T> yEnd(
         values: Iterable<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(
-            MIDDLE,
+            Y_END,
             values.toList(),
             null,
             null
         )
     }
 
-    public fun <T> middle(
+    public fun <T> yEnd(
         values: DataColumn<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(
-            MIDDLE,
+            Y_END,
             values,
             null
         )

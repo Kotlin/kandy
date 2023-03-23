@@ -24,6 +24,12 @@ public interface WithLower : BindingContext {
     }
 
     public fun <T> lower(
+        column: String,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(LOWER, column, null)
+    }
+
+    public fun <T> lower(
         values: Iterable<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(

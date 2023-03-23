@@ -4,47 +4,41 @@ import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.MIDDLE
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.SLOPE
 
-public interface WithMiddle : BindingContext {
-    public val middle: ConstantSetter
-        get() = ConstantSetter(MIDDLE, bindingCollector)
+public interface WithSlope : BindingContext {
+    public val slope: ConstantSetter
+        get() = ConstantSetter(SLOPE, bindingCollector)
 
     /*
-    public fun <T> middle(value: T): PositionalSetting<T> {
-        return addPositionalSetting(MIDDLE, value)
+    public fun <T> lower(value: T): PositionalSetting<T> {
+        return addPositionalSetting(LOWER, value)
     }
 
      */
 
-    public fun <T> middle(
+    public fun <T> slope(
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
-        return addPositionalMapping<T>(MIDDLE, column.name(), null)
+        return addPositionalMapping<T>(SLOPE, column.name(), null)
     }
 
-    public fun <T> middle(
-        column: String,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(MIDDLE, column, null)
-    }
-
-    public fun <T> middle(
+    public fun <T> slope(
         values: Iterable<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(
-            MIDDLE,
+            SLOPE,
             values.toList(),
             null,
             null
         )
     }
 
-    public fun <T> middle(
+    public fun <T> slope(
         values: DataColumn<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(
-            MIDDLE,
+            SLOPE,
             values,
             null
         )

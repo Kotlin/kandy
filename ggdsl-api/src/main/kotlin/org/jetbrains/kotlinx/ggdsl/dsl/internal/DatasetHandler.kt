@@ -15,7 +15,7 @@ public class DatasetHandler(
     public val initialDataset: TableData,
     private val dcAsRefOnly: Boolean = false
 ) {
-    private val initialNamedData: NamedData
+    public val initialNamedData: NamedData
     private val isGrouped: Boolean
     private val groupKeys: List<String>?
     private val referredColumns: MutableMap<String, String> = mutableMapOf()

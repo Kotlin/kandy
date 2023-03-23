@@ -23,6 +23,12 @@ public interface WithUpper : BindingContext {
     }
 
     public fun <T> upper(
+        column: String,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(UPPER, column, null)
+    }
+
+    public fun <T> upper(
         values: Iterable<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(

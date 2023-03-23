@@ -24,6 +24,12 @@ public interface WithYMin : BindingContext {
     }
 
     public fun <T> yMin(
+        column: String,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(Y_MIN, column, null)
+    }
+
+    public fun <T> yMin(
         values: Iterable<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(

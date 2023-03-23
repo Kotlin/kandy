@@ -46,75 +46,27 @@ internal val X_MAX = AesName("xmax")
 
 internal val FATTEN = AesName("fatten")
 
+internal val SLOPE: AesName = AesName("slope")
 
-/*
-public class UpperAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = UPPER
-}
+internal val INTERCEPT: AesName = AesName("intercept")
 
-internal val MIDDLE = AesName("middle")
-
-public class MiddleAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = MIDDLE
-}
-
-internal val X_MIN = AesName("xmin")
-
-public class XMinAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = X_MIN
-}
-
-internal val X_MAX = AesName("xmax")
-
-public class XMaxAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = X_MAX
-}
-
-internal val Y_MIN = AesName("ymin")
-
-public class YMinAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = Y_MIN
-}
-
-internal val Y_MAX = AesName("ymax")
-
-public class YMaxAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = Y_MAX
-}
-
-internal val X_END = AesName("xend")
-
-public class XEndAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = X_END
-}
+internal val Y_BEGIN = AesName("ybegin")
 
 internal val Y_END = AesName("yend")
 
-public class YEndAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = Y_END
-}
+internal val X_BEGIN = AesName("xbegin")
+
+internal val X_END = AesName("xend")
+
+/*
+
+internal val X_END = AesName("xend")
+
+internal val Y_END = AesName("yend")
 
 public val SLOPE: AesName = AesName("slope")
-public data class SlopeAes(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = SLOPE
-}
+
 public val INTERCEPT: AesName = AesName("intercept")
-public data class InterceptAes(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = INTERCEPT
-}
-
-
-internal val WIDTH_POS = AesName("width")
-
-public class WidthPosAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = WIDTH_POS
-}
-
-internal val HEIGHT_POS = AesName("height")
-
-public class HeightPosAes internal constructor(override val context: BindingContext) : NonScalablePositionalAes {
-    override val name: AesName = HEIGHT_POS
-}
 
 internal val COLOR = AesName("color")
 

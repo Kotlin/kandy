@@ -1,5 +1,13 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
+
+public class SegmentContext(parent: LayerCollectorContext)
+    : LayerContext(parent), WithColor, WithAlpha, WithLineType, WithWidthAsSize,
+    WithXBegin, WithYBegin, WithXEnd, WithYEnd
+
 /*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextMutable

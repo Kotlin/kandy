@@ -24,6 +24,12 @@ public interface WithXMin : BindingContext {
     }
 
     public fun <T> xMin(
+        column: String,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(X_MIN, column, null)
+    }
+
+    public fun <T> xMin(
         values: Iterable<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(

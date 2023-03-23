@@ -24,6 +24,12 @@ public interface WithXMax : BindingContext {
     }
 
     public fun <T> xMax(
+        column: String,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(X_MAX, column, null)
+    }
+
+    public fun <T> xMax(
         values: Iterable<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(

@@ -24,6 +24,12 @@ public interface WithYMax : BindingContext {
     }
 
     public fun <T> yMax(
+        column: String,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(Y_MAX, column, null)
+    }
+
+    public fun <T> yMax(
         values: Iterable<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(

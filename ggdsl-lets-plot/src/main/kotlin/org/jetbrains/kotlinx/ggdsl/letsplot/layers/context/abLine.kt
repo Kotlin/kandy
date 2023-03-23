@@ -1,7 +1,12 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
+
+public class ABLineContext(parent: LayerCollectorContext)
+    : LayerContext(parent), WithType, WithColor, WithAlpha, WithWidthAsSize, WithSlope, WithIntercept
+
 /*
 /**
  * "ab-line" layer context interface.

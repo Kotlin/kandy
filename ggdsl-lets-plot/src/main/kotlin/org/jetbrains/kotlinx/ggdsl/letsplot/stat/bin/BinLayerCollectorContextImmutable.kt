@@ -1,8 +1,10 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.stat.bin
 
+import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.dataframe.values
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.DatasetHandler
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContext
@@ -117,6 +119,15 @@ public inline fun LayerCollectorContext.statBin(
 }
 
 public inline fun LayerCollectorContext.statBin(
+    column: String,
+    bins: Bins = Bins.byNumber(20),
+    binXPos: BinXPos = BinXPos.none(0.0),
+    block: BinLayerCollectorContext.() -> Unit
+) {
+    statBin(column<Any>(column), bins, binXPos, block)
+}
+
+public inline fun LayerCollectorContext.statBin(
     values: Iterable<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
@@ -125,4 +136,18 @@ public inline fun LayerCollectorContext.statBin(
     val newData = countBinsImpl(NamedData(dataFrameOf("sample" to values.toList())), column<Double>("sample"), bins, binXPos)
     plotContext.datasetHandlers.add(DatasetHandler(newData, true))
     BinLayerCollectorContext(this, plotContext.datasetHandlers.size-1).apply(block)
+}
+
+public inline fun LayerCollectorContext.statBin(
+    column: DataColumn<*>,
+    bins: Bins = Bins.byNumber(20),
+    binXPos: BinXPos = BinXPos.none(0.0),
+    block: BinLayerCollectorContext.() -> Unit
+) {
+    val initialDF = datasetHandler.initialNamedData.dataFrame
+    if (initialDF.containsColumn(column.name()) && initialDF[column.name()] == column) {
+        statBin(column.name(), bins, binXPos, block)
+    } else {
+        statBin(column.values, bins, binXPos, block)
+    }
 }
