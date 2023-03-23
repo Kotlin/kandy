@@ -5,7 +5,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.ABLineContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
 
@@ -71,7 +73,9 @@ public inline fun LayerCollectorContextImmutable.abLine(block: ABLineContextImmu
  * ```
  *//*
 
-public inline fun LayerCollectorContextMutable.abLine(block: ABLineContextMutable.() -> Unit) {
-    addLayer(ABLineContextMutable(this).apply(block), AB_LINE)
-}
+
 */
+
+public inline fun LayerCollectorContext.abLine(block: ABLineContext.() -> Unit) {
+    addLayer(ABLineContext(this).apply(block), AB_LINE)
+}

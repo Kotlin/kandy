@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
-import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.LineContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.PathContext
 
 @PublishedApi
 internal val PATH: LetsPlotGeom = LetsPlotGeom("path")
@@ -68,6 +68,6 @@ public inline fun LayerCollectorContextMutable.path(block: LineContextMutable.()
 
  */
 
-public inline fun LayerCollectorContext.path(block: LineContext.() -> Unit) {
-    addLayer(LineContext(this).apply(block), PATH)
+public inline fun LayerCollectorContext.path(block: PathContext.() -> Unit) {
+    addLayer(PathContext(this).apply(block), PATH)
 }

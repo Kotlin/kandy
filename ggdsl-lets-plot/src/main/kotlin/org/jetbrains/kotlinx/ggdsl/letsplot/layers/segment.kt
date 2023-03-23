@@ -4,7 +4,9 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.SegmentContext
 
 @PublishedApi
 internal val SEGMENT: LetsPlotGeom = LetsPlotGeom("segment")
@@ -68,9 +70,11 @@ public inline fun LayerCollectorContextImmutable.segment(block: SegmentContextIm
  * }
  * ```
  */
-public inline fun LayerCollectorContextMutable.segment(block: SegmentContextMutable.() -> Unit) {
-    addLayer(SegmentContextMutable(this).apply(block), SEGMENT)
-}
+
 
 
  */
+
+public inline fun LayerCollectorContext.segment(block: SegmentContext.() -> Unit) {
+    addLayer(SegmentContext(this).apply(block), SEGMENT)
+}

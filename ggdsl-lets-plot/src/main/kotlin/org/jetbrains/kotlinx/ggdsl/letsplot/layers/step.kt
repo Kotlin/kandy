@@ -5,7 +5,9 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 // import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.StepContext
 
 @PublishedApi
 internal val STEP: LetsPlotGeom = LetsPlotGeom("step")
@@ -89,3 +91,7 @@ public inline fun LayerCollectorContextMutable.step(block: StepContextMutable.()
 
 
  */
+
+public inline fun LayerCollectorContext.step(block: StepContext.() -> Unit) {
+    addLayer(StepContext(this).apply(block), STEP)
+}
