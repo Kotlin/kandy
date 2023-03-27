@@ -20,9 +20,13 @@ public fun <T> PlotContext.x(
     values: Iterable<T>, name: String? = null, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
 ): PositionalMapping<T> = posMapping(X, values, name, params)
 
-internal fun <T> PlotContext.x(
+public fun <T> PlotContext.x(
     values: DataColumn<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
 ): PositionalMapping<T> = posMapping(X, values, params)
+
+public fun PlotContext.x(
+    column: String, params: EchartsPositionalMappingParameters<*>.() -> Unit = {}
+): PositionalMapping<*> = posMapping(X, column, params)
 
 public fun <T> PlotContext.x(params: EchartsPositionalMappingParameters<T>.() -> Unit = {}): Unit =
     posFreeScale(X, params)
@@ -35,9 +39,13 @@ public fun <T> PlotContext.y(
     values: Iterable<T>, name: String? = null, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
 ): PositionalMapping<T> = posMapping(Y, values, name, params)
 
-internal fun <T> PlotContext.y(
+public fun <T> PlotContext.y(
     values: DataColumn<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
 ): PositionalMapping<T> = posMapping(Y, values, params)
+
+public fun PlotContext.y(
+    column: String, params: EchartsPositionalMappingParameters<*>.() -> Unit = {}
+): PositionalMapping<*> = posMapping(Y, column, params)
 
 public fun <T> PlotContext.y(
     params: EchartsPositionalMappingParameters<T>.() -> Unit = {}

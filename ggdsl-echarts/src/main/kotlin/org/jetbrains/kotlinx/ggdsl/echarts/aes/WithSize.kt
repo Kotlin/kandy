@@ -27,6 +27,10 @@ public interface WithSize : BindingContext {
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> = nonPosMapping(SIZE, values, name, params)
 
+    public fun size(
+        column: String, params: EchartsNonPositionalMappingParameters<*, Double>.() -> Unit = {}
+    ): NonPositionalMapping<*, Double> = nonPosMapping(SIZE, column, params)
+
     public fun <T> size(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> = nonPosMapping(SIZE, values, params)

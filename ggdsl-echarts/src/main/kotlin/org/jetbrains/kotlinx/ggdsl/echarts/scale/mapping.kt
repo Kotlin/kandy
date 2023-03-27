@@ -10,7 +10,6 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 
 
-
 internal fun <T> BindingContext.posMapping(
     aesName: AesName, column: ColumnReference<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
 ): PositionalMapping<T> =
@@ -25,6 +24,12 @@ internal fun <T> BindingContext.posMapping(
 internal fun <T> BindingContext.posMapping(
     aesName: AesName, values: DataColumn<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
 ): PositionalMapping<T> = addPositionalMapping(aesName, values, EchartsPositionalMappingParameters<T>().apply(params))
+
+internal fun BindingContext.posMapping(
+    aesName: AesName, column: String,
+    parameters: EchartsPositionalMappingParameters<*>.() -> Unit = {}
+): PositionalMapping<*> =
+    addPositionalMapping(aesName, column, EchartsPositionalMappingParameters<Any?>().apply(parameters))
 
 internal fun <T> BindingContext.posFreeScale(
     aesName: AesName, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
@@ -47,3 +52,8 @@ internal fun <T, D> BindingContext.nonPosMapping(
     aesName: AesName, values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, D>.() -> Unit
 ): NonPositionalMapping<T, D> =
     this.addNonPositionalMapping(aesName, values, EchartsNonPositionalMappingParameters<T, D>().apply(params))
+
+internal fun <D> BindingContext.nonPosMapping(
+    aesName: AesName, column: String, parameters: EchartsNonPositionalMappingParameters<*, D>.() -> Unit = {}
+): NonPositionalMapping<*, D> =
+    addNonPositionalMapping(aesName, column, EchartsNonPositionalMappingParameters<Any?, D>().apply(parameters))

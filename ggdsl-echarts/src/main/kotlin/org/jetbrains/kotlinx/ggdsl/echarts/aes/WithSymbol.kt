@@ -6,7 +6,6 @@ package org.jetbrains.kotlinx.ggdsl.echarts.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.dataframe.impl.asList
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.echarts.scale.EchartsNonPositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.echarts.scale.nonPosMapping
@@ -28,6 +27,10 @@ public interface WithSymbol : BindingContext {
     public fun <T> symbol(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Symbol>.() -> Unit = {}
     ): NonPositionalMapping<T, Symbol> = nonPosMapping(SYMBOL, values, name, params)
+
+    public fun symbol(
+        column: String, params: EchartsNonPositionalMappingParameters<*, Symbol>.() -> Unit = {}
+    ): NonPositionalMapping<*, Symbol> = nonPosMapping(SYMBOL, column, params)
 
     public fun <T> symbol(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Symbol>.() -> Unit = {}
