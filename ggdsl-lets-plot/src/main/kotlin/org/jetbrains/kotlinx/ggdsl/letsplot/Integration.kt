@@ -133,6 +133,7 @@ internal class Integration(
                     put("application/plot+json", buildJsonObject {
                         put("output_type", JsonPrimitive("lets_plot_spec"))
                         put("output", serializeSpec(spec))
+                        //put("applyColorScheme", JsonPrimitive(applyColorScheme))
                     })
                 }
             )
