@@ -70,43 +70,6 @@ internal class Integration(
 
         val applyColorScheme: Boolean = options["applyColorScheme"]?.toBooleanStrictOrNull() ?: true
 
-        fun MutableMap<String, Any>.applyColorSchemeToPlotSpec() {
-            if (!applyColorScheme) return
-            if (notebook.currentColorScheme == ColorScheme.DARK) {
-                if ("theme" in this) {
-                    val theme = (this["theme"]!!
-                            as MutableMap<String, Any>)
-                    if ("flavor" !in theme) {
-                        theme["flavor"] = "darcula"
-                    }
-                } else {
-                    this["theme"] = mutableMapOf(
-                        "flavor" to "darcula"
-                    )
-                }
-            }
-        }
-
-        fun MutableMap<String, Any>.applyColorSchemeToGGBunch() {
-            if (!applyColorScheme) return
-            if (notebook.currentColorScheme == ColorScheme.DARK) {
-                (this[ITEMS]!! as List<MutableMap<String, Any>>).map {
-                    (it[Option.GGBunch.Item.FEATURE_SPEC]
-                            as MutableMap<String, Any>
-                            ).applyColorSchemeToPlotSpec()
-                }
-            }
-        }
-
-        // todo
-        fun MutableMap<String, Any>.applyColorSchemeToPlotGrid() {
-            if (!applyColorScheme) return
-            if (notebook.currentColorScheme == ColorScheme.DARK) {
-                (this[Option.SubPlots.FIGURES]!! as List<MutableMap<String, Any>>).map {
-                    it.applyColorSchemeToPlotSpec()
-                }
-            }
-        }
 
         fun Figure.toHTML(): String {
             return when (this) {
