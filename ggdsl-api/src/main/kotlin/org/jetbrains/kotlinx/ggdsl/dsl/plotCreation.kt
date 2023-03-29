@@ -58,8 +58,8 @@ public inline fun <T> DataFrame<T>.plot(block: DataFramePlotContext<T>.() -> Uni
     return DataFramePlotContext<T>(this).apply(block).toPlot()
 }
 
-public inline fun <T, G> GroupBy<T, G>.plot(block: GroupByPlotContext<T, G>.() -> Unit): Plot {
-    return GroupByPlotContext<T, G>(this).apply(block).toPlot()
+public inline fun <T> GroupBy<T, T>.plot(block: GroupByPlotContext<T>.() -> Unit): Plot {
+    return GroupByPlotContext<T>(this).apply(block).toPlot()
 }
 
 /*
