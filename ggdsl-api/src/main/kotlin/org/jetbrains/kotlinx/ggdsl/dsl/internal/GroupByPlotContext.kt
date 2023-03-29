@@ -1,18 +1,16 @@
 package org.jetbrains.kotlinx.ggdsl.dsl.internal
 
-import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.ColumnsContainer
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.concat
-import org.jetbrains.kotlinx.dataframe.api.getColumns
-import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 
-public class GroupByPlotContext<T, G>(
-    private val groupBy: GroupBy<T, G>
-) : LayerPlotContext {
+public class GroupByPlotContext<T>(
+    private val groupBy: GroupBy<T, T>
+) : LayerPlotContext, ColumnsContainer<T> by groupBy.groups.concat() {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val layers: MutableList<Layer> = mutableListOf()
     override val plotContext: PlotContext = this
@@ -22,9 +20,10 @@ public class GroupByPlotContext<T, G>(
     )
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
-    public val column: DataFrame<G> = groupBy.groups.concat()
-    @Suppress("UNCHECKED_CAST")
-    public val groupKey: DataFrame<T> = column.getColumns(*groupBy.keys.columns().map {
-        it.name()
-    }.toTypedArray()).toDataFrame() as DataFrame<T>
+/*
+    public fun <C> columns(selector: ColumnsSelector<G, C>): List<DataColumn<C>> = groupBy.groups.concat().get(selector)
+    public fun <C> columns(vararg columns: String): List<AnyCol> = groupBy.groups.concat().getColumns(*columns)
+
+
+ */
 }
