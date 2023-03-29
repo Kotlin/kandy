@@ -14,6 +14,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.feature.CoordFlip
 import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Layout
 import org.jetbrains.kotlinx.ggdsl.letsplot.feature.Reversed
 import org.jetbrains.kotlinx.ggdsl.letsplot.position.Position
+import org.jetbrains.kotlinx.ggdsl.letsplot.theme.Flavor
 import org.jetbrains.kotlinx.ggdsl.letsplot.tooltips.feature.LayerTooltips
 import org.jetbrains.letsPlot.coord.coordFlip
 import org.jetbrains.letsPlot.facet.facetGrid
@@ -24,6 +25,10 @@ import org.jetbrains.letsPlot.intern.OptionsMap
 import org.jetbrains.letsPlot.intern.layer.PosOptions
 import org.jetbrains.letsPlot.label.labs
 import org.jetbrains.letsPlot.pos.*
+import org.jetbrains.letsPlot.themes.flavorDarcula
+import org.jetbrains.letsPlot.themes.flavorHighContrastDark
+import org.jetbrains.letsPlot.themes.flavorHighContrastLight
+import org.jetbrains.letsPlot.themes.flavorSolarizedLight
 import org.jetbrains.letsPlot.tooltips.TooltipOptions
 import org.jetbrains.letsPlot.tooltips.layerTooltips
 import org.jetbrains.letsPlot.tooltips.tooltipsNone
@@ -52,6 +57,16 @@ internal fun FacetWrapFeature.wrap(): OptionsMap {
     )
 }
 
+internal fun Flavor.wrap(): OptionsMap {
+    return when(this) {
+        Flavor.DARCULA -> flavorDarcula()
+        Flavor.SOLARIZED_LIGHT -> flavorSolarizedLight()
+        Flavor.SOLARIZED_DARK -> flavorSolarizedLight()
+        Flavor.HIGH_CONTRAST_LIGHT -> flavorHighContrastLight()
+        Flavor.HIGH_CONTRAST_DARK -> flavorHighContrastDark()
+    }
+}
+
 internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
     val labs = labs(
         title, subtitle, caption, xAxisLabel, yAxisLabel
@@ -64,6 +79,9 @@ internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
         featureBuffer.add(it.wrap())
     }
     customTheme?.let {
+        featureBuffer.add(it.wrap())
+    }
+    flavor?.let {
         featureBuffer.add(it.wrap())
     }
 }

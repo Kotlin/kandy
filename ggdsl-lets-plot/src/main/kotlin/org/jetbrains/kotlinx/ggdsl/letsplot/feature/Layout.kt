@@ -4,6 +4,7 @@ package org.jetbrains.kotlinx.ggdsl.letsplot.feature
 import org.jetbrains.kotlinx.ggdsl.ir.feature.FeatureName
 import org.jetbrains.kotlinx.ggdsl.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.ggdsl.letsplot.theme.CustomTheme
+import org.jetbrains.kotlinx.ggdsl.letsplot.theme.Flavor
 import org.jetbrains.kotlinx.ggdsl.letsplot.theme.Theme
 
 //todo
@@ -16,6 +17,8 @@ public data class Layout(
     // todo remove?
     var xAxisLabel: String? = null,
     var yAxisLabel: String? = null,
+
+    var flavor: Flavor? = null,
 
     var size: Pair<Int, Int>? = null
 ) : PlotFeature {
