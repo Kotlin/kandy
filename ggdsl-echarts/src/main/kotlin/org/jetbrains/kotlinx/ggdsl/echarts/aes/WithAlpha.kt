@@ -27,6 +27,10 @@ public interface WithAlpha : BindingContext {
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> = nonPosMapping(ALPHA, values, name, params)
 
+    public fun alpha(
+        column: String, params: EchartsNonPositionalMappingParameters<*, Double>.() -> Unit = {}
+    ): NonPositionalMapping<*, Double> = nonPosMapping(ALPHA, column, params)
+
     public fun <T> alpha(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> = nonPosMapping(ALPHA, values, params)

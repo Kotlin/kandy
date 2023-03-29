@@ -25,6 +25,9 @@ public interface WithX : BindingContext {
         values: Iterable<T>, name: String? = null, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
     ): PositionalMapping<T> = posMapping(X, values, name, params)
 
+    public fun x(column: String, params: EchartsPositionalMappingParameters<*>.() -> Unit = {}): PositionalMapping<*> =
+        posMapping(X, column, params)
+
     public fun <T> x(
         values: DataColumn<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
     ): PositionalMapping<T> = posMapping(X, values, params)

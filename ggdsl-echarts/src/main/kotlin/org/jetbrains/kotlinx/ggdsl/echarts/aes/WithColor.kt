@@ -28,6 +28,10 @@ public interface WithColor : BindingContext {
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Color>.() -> Unit = {}
     ): NonPositionalMapping<T, Color> = nonPosMapping(COLOR, values, name, params)
 
+    public fun color(
+        column: String, params: EchartsNonPositionalMappingParameters<*, Color>.() -> Unit = {}
+    ): NonPositionalMapping<*, Color> = nonPosMapping(COLOR, column, params)
+
     public fun <T> color(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
     ): NonPositionalMapping<T, Color> = nonPosMapping(COLOR, values, params)
