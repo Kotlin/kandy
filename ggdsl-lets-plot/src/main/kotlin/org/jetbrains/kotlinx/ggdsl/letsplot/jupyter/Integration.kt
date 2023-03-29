@@ -2,10 +2,8 @@
 * Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.ggdsl.letsplot
+package org.jetbrains.kotlinx.ggdsl.letsplot.jupyter
 
-import jetbrains.datalore.plot.config.Option
-import jetbrains.datalore.plot.config.Option.GGBunch.ITEMS
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
 import org.jetbrains.kotlinx.ggdsl.ir.Plot
@@ -18,7 +16,7 @@ import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.MimeTypedResultEx
 import org.jetbrains.kotlinx.jupyter.api.Notebook
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
-import org.jetbrains.kotlinx.jupyter.api.libraries.ColorScheme
+import org.jetbrains.kotlinx.jupyter.api.declare
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.letsPlot.Figure
 import org.jetbrains.letsPlot.GGBunch
@@ -80,15 +78,20 @@ internal class Integration(
             }
         }
 
+        val config = JupyterConfig()
+
+        onLoaded {
+            declare("ggdslConfig" to config)
+        }
 
         fun Figure.toMimeResult(): MimeTypedResultEx {
             val spec = toSpec()
-            when (this) {
+            /*when (this) {
                 is org.jetbrains.letsPlot.intern.Plot -> spec.applyColorSchemeToPlotSpec()
                 is SubPlotsFigure -> spec.applyColorSchemeToPlotGrid()
                 is GGBunch -> spec.applyColorSchemeToGGBunch()
                 else -> error("Unsupported Figure")
-            }
+            }*/
             val html = toHTML()
             return MimeTypedResultEx(
                 buildJsonObject {
@@ -96,7 +99,8 @@ internal class Integration(
                     put("application/plot+json", buildJsonObject {
                         put("output_type", JsonPrimitive("lets_plot_spec"))
                         put("output", serializeSpec(spec))
-                        //put("applyColorScheme", JsonPrimitive(applyColorScheme))
+                        put("apply_color_scheme", JsonPrimitive(applyColorScheme))
+                        put("swing_enabled", JsonPrimitive(config.swingEnabled))
                     })
                 }
             )
