@@ -25,7 +25,6 @@ import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
 import org.jetbrains.letsPlot.intern.figure.SubPlotsFigure
 import org.jetbrains.letsPlot.intern.toSpec
 
-@Suppress("UNCHECKED_CAST")
 @JupyterLibrary
 internal class Integration(
     private val notebook: Notebook,
@@ -66,8 +65,7 @@ internal class Integration(
         import("org.jetbrains.kotlinx.ggdsl.letsplot.util.font.*")
         // import("org.jetbrains.kotlinx.ggdsl.letsplot.util.statParameters.*")
 
-        val applyColorScheme: Boolean = options["applyColorScheme"]?.toBooleanStrictOrNull() ?: true
-
+        /*val applyColorScheme: Boolean = options["applyColorScheme"]?.toBooleanStrictOrNull() ?: true*/
 
         fun Figure.toHTML(): String {
             return when (this) {
@@ -99,7 +97,7 @@ internal class Integration(
                     put("application/plot+json", buildJsonObject {
                         put("output_type", JsonPrimitive("lets_plot_spec"))
                         put("output", serializeSpec(spec))
-                        put("apply_color_scheme", JsonPrimitive(applyColorScheme))
+                        put("apply_color_scheme", JsonPrimitive(config.applyColorScheme))
                         put("swing_enabled", JsonPrimitive(config.swingEnabled))
                     })
                 }
