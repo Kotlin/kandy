@@ -7,8 +7,11 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
+import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
-import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotPositionalMappingParameters
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.X
+import org.jetbrains.kotlinx.ggdsl.letsplot.internal.Y
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Axis
 
 public fun <T> PlotContext.x(
@@ -129,7 +132,7 @@ public class AxisParameters(
     private val mappingParameters: LetsPlotPositionalMappingParameters<Any?>,
     private val aesName: AesName,
     private val bindingContext: BindingContext,
-) {
+): PositionalMappingParameters<Any?> by mappingParameters {
 
     public var limits: ClosedRange<*>? = null
         set(value) {
@@ -138,7 +141,7 @@ public class AxisParameters(
                 null, null)
             field = value
         }
-    public val axis: Axis<Any?>
+   public val axis: Axis<Any?>
         get() = mappingParameters.axis
 
     public fun constant(value: Any?) {
