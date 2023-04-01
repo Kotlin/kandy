@@ -25,14 +25,15 @@ public class DataFramePlotContext<T>(
     public fun <C> columns(vararg columns: String): List<AnyCol> = dataFrame.getColumns(*columns)
 
     public inline fun groupBy(
-        vararg columnReferences: ColumnReference<*>,
+        columns: Iterable<String>,
         block: GroupedContext.() -> Unit
     ) {
         datasetHandlers.add(
             DatasetHandler(
                 GroupedData(
                     datasetHandler.initialDataset as NamedData,
-                    columnReferences.map { it.name() })
+                    columns.toList()
+                )
             )
         )
         GroupedContext(
@@ -40,4 +41,14 @@ public class DataFramePlotContext<T>(
             this
         ).apply(block)
     }
+
+    public inline fun groupBy(
+        vararg columns: String,
+        block: GroupedContext.() -> Unit
+    ): Unit = groupBy(columns.toList(), block)
+
+    public inline fun groupBy(
+        vararg columnReferences: ColumnReference<*>,
+        block: GroupedContext.() -> Unit
+    ):  Unit = groupBy(columnReferences.map { it.name() }, block)
 }
