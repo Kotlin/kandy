@@ -11,14 +11,13 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 
 public class DataFramePlotContext<T>(
     private val dataFrame: DataFrame<T>
-) : org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext, ColumnsContainer<T> by dataFrame {
-    override val bindingCollector: org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector =
-        org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector()
+) : LayerPlotContext, ColumnsContainer<T> by dataFrame {
+    override val bindingCollector: BindingCollector = BindingCollector()
     override val layers: MutableList<Layer> = mutableListOf()
-    override val plotContext: org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext = this
+    override val plotContext: PlotContext = this
     override val datasetIndex: Int = 0
-    override val datasetHandlers: MutableList<org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler> = mutableListOf(
-        org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler(NamedData(dataFrame))
+    override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(
+        DatasetHandler(NamedData(dataFrame))
     )
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
@@ -26,19 +25,30 @@ public class DataFramePlotContext<T>(
     public fun <C> columns(vararg columns: String): List<AnyCol> = dataFrame.getColumns(*columns)
 
     public inline fun groupBy(
-        vararg columnReferences: ColumnReference<*>,
-        block: org.jetbrains.kotlinx.kandy.dsl.internal.GroupedContext.() -> Unit
+        columns: Iterable<String>,
+        block: GroupedContext.() -> Unit
     ) {
         datasetHandlers.add(
-            org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler(
+            DatasetHandler(
                 GroupedData(
                     datasetHandler.initialDataset as NamedData,
-                    columnReferences.map { it.name() })
+                    columns.toList()
+                )
             )
         )
-        org.jetbrains.kotlinx.kandy.dsl.internal.GroupedContext(
+        GroupedContext(
             datasetHandlers.size - 1,
             this
         ).apply(block)
     }
+
+    public inline fun groupBy(
+        vararg columns: String,
+        block: GroupedContext.() -> Unit
+    ): Unit = groupBy(columns.toList(), block)
+
+    public inline fun groupBy(
+        vararg columnReferences: ColumnReference<*>,
+        block: GroupedContext.() -> Unit
+    ):  Unit = groupBy(columnReferences.map { it.name() }, block)
 }
