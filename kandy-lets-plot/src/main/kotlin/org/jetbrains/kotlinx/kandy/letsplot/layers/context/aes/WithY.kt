@@ -1,9 +1,8 @@
-package org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes
+package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.AxisParameters
@@ -22,7 +21,7 @@ public interface WithY : BindingContext {
         return addPositionalMapping<T>(Y, column.name(), LetsPlotPositionalMappingParameters<T>().apply(parameters))
     }
 
-    public fun PlotContext.y(
+    public fun y(
         column: String,
         parameters: LetsPlotPositionalMappingParameters<Any?>.() -> Unit = {}
     ): PositionalMapping<Any?> {

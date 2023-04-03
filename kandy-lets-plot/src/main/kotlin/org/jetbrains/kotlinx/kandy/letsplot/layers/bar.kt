@@ -7,6 +7,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BarsContext
+import org.jetbrains.kotlinx.kandy.letsplot.position.Position
+import org.jetbrains.kotlinx.kandy.letsplot.position.position
 import org.jetbrains.kotlinx.kandy.letsplot.reversed
 
 @PublishedApi
@@ -88,7 +90,9 @@ public inline fun LayerCollectorContextMutable.bars(block: BarContextMutable.() 
  */
 
 public inline fun LayerCollectorContext.bars(block: BarsContext.() -> Unit) {
-    addLayer(BarsContext(this).apply(block), BAR)
+    addLayer(BarsContext(this).apply {
+        position = Position.Dodge()
+    }.apply(block), BAR)
 }
 
 public inline fun LayerCollectorContext.barsH(block: BarsContext.() -> Unit) {

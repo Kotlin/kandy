@@ -2,12 +2,14 @@
 * Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.letsplot.layers
+package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxplotContext
+import org.jetbrains.kotlinx.kandy.letsplot.position.Position
+import org.jetbrains.kotlinx.kandy.letsplot.position.position
 
 @PublishedApi
 internal val BOXPLOT: LetsPlotGeom = LetsPlotGeom("boxplot")
@@ -109,6 +111,7 @@ public inline fun LayerCollectorContextMutable.boxplot(block: BoxplotContextMuta
 public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
     // todo letsplot fix
     addLayer(BoxplotContext(this).apply(block).apply {
+        position = Position.Dodge()
         addPositionalMapping(Y, List(datasetHandler.rowsCount()) {null}, null, null)
     }, BOXPLOT)
 }
