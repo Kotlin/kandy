@@ -9,7 +9,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation(project(":ggdsl-echarts"))
+    implementation(project(":kandy-echarts"))
 }
 
 tasks {

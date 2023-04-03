@@ -1,0 +1,14 @@
+package org.jetbrains.kotlinx.kandy.letsplot.multiplot.model
+
+import org.jetbrains.kotlinx.kandy.ir.Plot
+
+//@Serializable
+public data class PlotGrid(
+    val items: List<Plot>,
+    val nCol: Int?,
+    /*val cellWidth: Int,
+    val cellHeight: Int,
+    val hGap: Int = 0,
+    val vGap: Int = 50,
+    val fit: Boolean = false*/
+)
