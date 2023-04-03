@@ -23,6 +23,10 @@ import org.jetbrains.kotlinx.ggdsl.ir.Plot
 public inline fun plot(dataset: Map<String, List<*>> = mapOf(), block: DataFramePlotContext<*>.() -> Unit): Plot {
     return DataFramePlotContext(dataset.toDataFrame()).apply(block).toPlot()
 }
+
+/*public inline fun Map<String, List<*>>.plot(block: DataFramePlotContext<*>.() -> Unit): Plot {
+    return DataFramePlotContext(this.toDataFrame()).apply(block).toPlot()
+}*/
 /*
 /**
  * Returns a new [Plot].
@@ -57,6 +61,10 @@ public inline fun plot(block: PlotContextMutable.() -> Unit): Plot {
 public inline fun <T> DataFrame<T>.plot(block: DataFramePlotContext<T>.() -> Unit): Plot {
     return DataFramePlotContext<T>(this).apply(block).toPlot()
 }
+
+/*public inline fun <T> plot(dataframe: DataFrame<T>, block: DataFramePlotContext<T>.() -> Unit): Plot {
+    return DataFramePlotContext<T>(dataframe).apply(block).toPlot()
+}*/
 
 public inline fun <T> GroupBy<T, T>.plot(block: GroupByPlotContext<T>.() -> Unit): Plot {
     return GroupByPlotContext<T>(this).apply(block).toPlot()
