@@ -4,11 +4,12 @@ import org.jetbrains.kotlinx.kandy.ir.Plot
 
 //@Serializable
 public data class PlotGrid(
-    val items: List<Plot>,
+    val plots: List<Plot?>,
     val nCol: Int?,
-    /*val cellWidth: Int,
-    val cellHeight: Int,
-    val hGap: Int = 0,
-    val vGap: Int = 50,
-    val fit: Boolean = false*/
+    val widths: List<Number>?,
+    val heights: List<Number>?,
+    val hspace: Number?,
+    val vspace: Number?,
+    val fit: Boolean,
+    val align: Boolean,
 )

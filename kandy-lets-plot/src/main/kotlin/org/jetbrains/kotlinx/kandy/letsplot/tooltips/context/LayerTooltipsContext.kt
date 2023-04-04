@@ -43,6 +43,14 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
         lineBuffer.add("@|@${layerContext.datasetHandler.takeColumn(column.name())}")
     }
 
+    public fun varLine(columnName: String) {
+        lineBuffer.add("@|@${layerContext.datasetHandler.takeColumn(columnName)}")
+    }
+
+    public fun varLine(column: ColumnReference<*>) {
+        line(column)
+    }
+
     /**
      * Adds standard line for given aesthetic attribute
      * (name of the column mapped oh this aes on the left side and the corresponding value on the right side).

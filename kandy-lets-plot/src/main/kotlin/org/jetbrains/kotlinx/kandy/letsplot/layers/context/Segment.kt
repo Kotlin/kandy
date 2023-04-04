@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
 public class SegmentContext(parent: LayerCollectorContext)
     : LayerContext(parent), WithColor, WithAlpha, WithLineType, WithWidthAsSize,
-    WithXBegin, WithYBegin, WithXEnd, WithYEnd
+    WithXBegin, WithYBegin, WithXEnd, WithYEnd, WithXFree, WithYFree
 
 /*
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextImmutable

@@ -21,6 +21,10 @@ public fun LayerContext.value(column: ColumnReference<*>): String {
     return "@${datasetHandler.takeColumn(column.name())}"
 }
 
+public fun LayerContext.value(columnName: String): String {
+    return "@${datasetHandler.takeColumn(columnName)}"
+}
+
 /* TODO
 /**
  * Inserts value of given aesthetic attribute into format string.
@@ -104,4 +108,24 @@ public inline fun LayerContext.tooltips(
           //  + statFormats.map { it.key.id to it.value },
         LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
+}
+
+public fun LayerContext.tooltips(
+    vararg variables: String
+) {
+    features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
+        variables.map { datasetHandler.takeColumn(it) },
+        null,
+        null,
+        null,
+        false,
+        listOf(),
+        null
+    )
+}
+
+public fun LayerContext.tooltips(
+    vararg variables: ColumnReference<*>
+) {
+    tooltips(*variables.map { it.name() }.toTypedArray())
 }

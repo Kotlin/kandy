@@ -1,6 +1,6 @@
 package org.jetbrains.kotlinx.kandy.util.serialization
 
-
+/*
 @Suppress("UNCHECKED_CAST")
 public fun MutableMap<String, Any>.applyColorSchemeToPlot(schemeName: String) {
     val themeMap = compute("theme") { _, prevVal ->
@@ -29,3 +29,5 @@ public fun MutableMap<String, Any>.applyColorSchemeToPlotGrid(schemeName: String
         it.applyColorSchemeToPlot(schemeName)
     }
 }
+
+ */

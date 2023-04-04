@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
 public class CrossBarContext(parent: LayerCollectorContext)
     : LayerWithBorderLineContext(parent), WithX, WithYMin, WithYMax, WithMiddle,
-    WithFatten, WithWidth, WithFillColor, WithAlpha
+    WithFatten, WithWidth, WithFillColor, WithAlpha, WithYFree
 
 /*
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextImmutable

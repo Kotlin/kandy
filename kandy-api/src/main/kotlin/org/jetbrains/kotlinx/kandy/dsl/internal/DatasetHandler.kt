@@ -47,10 +47,10 @@ public class DatasetHandler(
         }
     }
 
-    public fun takeColumn(columnId: String): String {
-        return referredColumns[columnId] ?: run {
-            val name = internalAddColumn(initialNamedData.dataFrame.getColumnOrNull(columnId) ?: error("invalid column id"))
-            referredColumns[columnId] = name
+    public fun takeColumn(name: String): String {
+        return referredColumns[name] ?: run {
+            val columnId = internalAddColumn(initialNamedData.dataFrame.getColumnOrNull(name) ?: error("invalid column id"))
+            referredColumns[name] = columnId
             name
         }
         // TODO
@@ -78,6 +78,8 @@ public class DatasetHandler(
     }
 
     public fun addColumn(values: List<*>, name: String): String {
+        val columnId = internalAddColumn(DataColumn.createValueColumn(name, values, Infer.Type))
+        referredColumns[name] = columnId
         return internalAddColumn(DataColumn.createValueColumn(name, values, Infer.Type))
     }
 

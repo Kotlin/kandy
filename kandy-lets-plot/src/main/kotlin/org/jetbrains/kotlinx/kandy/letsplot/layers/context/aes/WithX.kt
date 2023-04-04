@@ -5,9 +5,10 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
-import org.jetbrains.kotlinx.kandy.letsplot.AxisParameters
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
+import org.jetbrains.kotlinx.kandy.letsplot.scales.AxisParametersWithSetter
+import kotlin.reflect.KProperty
 
 public interface WithX : BindingContext {
     /*public fun <T> x(value: T): PositionalSetting<T> {
@@ -19,6 +20,13 @@ public interface WithX : BindingContext {
         parameters: LetsPlotPositionalMappingParameters<T>.() -> Unit = {}
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(X, column.name(), LetsPlotPositionalMappingParameters<T>().apply(parameters))
+    }
+
+    public fun <T> x(
+        column: KProperty<T>,
+        parameters: LetsPlotPositionalMappingParameters<T>.() -> Unit = {}
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(X, column.name, LetsPlotPositionalMappingParameters<T>().apply(parameters))
     }
 
     public fun x(
@@ -54,15 +62,15 @@ public interface WithX : BindingContext {
     }
 
     @Suppress("UNCHECKED_CAST")
-    public val x: AxisParameters
+    public val x: AxisParametersWithSetter
         get() {
-            return AxisParameters(bindingCollector.freeScales.getOrPut(X) {
+            return AxisParametersWithSetter(bindingCollector.freeScales.getOrPut(X) {
                 PositionalFreeScale(X, LetsPlotPositionalMappingParameters<Any?>())
             }.parameters as LetsPlotPositionalMappingParameters<Any?>, X, this)
         }
 
     public fun x(
-        parameters: AxisParameters.() -> Unit = {}
+        parameters: AxisParametersWithSetter.() -> Unit = {}
     ) {
         x.apply(parameters)
     }

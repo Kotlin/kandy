@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X_MAX
+import kotlin.reflect.KProperty
 
 public interface WithXMax : BindingContext {
     public val xMax: ConstantSetter
@@ -21,6 +22,12 @@ public interface WithXMax : BindingContext {
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(X_MAX, column.name(), null)
+    }
+
+    public fun <T> xMax(
+        column: KProperty<T>,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(X_MAX, column.name, null)
     }
 
     public fun <T> xMax(

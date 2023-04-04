@@ -8,12 +8,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.tooltips.context.LayerTooltipsContex
 //@Serializable
 public data class LayerTooltips internal constructor(
     val variables: List<String>,
-    val lines: List<String>,
+    val lines: List<String>?,
     val formats: List<Pair<String, String>>,
-    val title: String? = null,
-    val anchor: Anchor? = null,
-    val minWidth: Double? = null,
-    val hide: Boolean = false,
+    val title: String?,
+    val anchor: Anchor?,
+    val minWidth: Double?,
+    val hide: Boolean,
 ) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
@@ -28,11 +28,11 @@ public data class LayerTooltips internal constructor(
             minWidth: Double?,
             hide: Boolean,
             valueFormats: List<Pair<String, String>>,
-            context: LayerTooltipsContext
+            context: LayerTooltipsContext?
         ): LayerTooltips {
             return LayerTooltips(
                 variables,
-                context.lineBuffer,
+                context?.lineBuffer,
                 valueFormats,
                 title, anchor, minWidth, hide
             )

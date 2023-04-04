@@ -7,6 +7,7 @@ package org.jetbrains.kotlinx.kandy.dsl
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.toDataFrame
+import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.GroupByPlotContext
 import org.jetbrains.kotlinx.kandy.ir.Plot
 
@@ -19,11 +20,13 @@ import org.jetbrains.kotlinx.kandy.ir.Plot
  *
  * @param dataset plot dataset.
  */
-public inline fun plot(
-    dataset: Map<String, List<*>> = mapOf(),
-    block: org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotContext<*>.() -> Unit
-): Plot {
-    return org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotContext(dataset.toDataFrame()).apply(block).toPlot()
+public inline fun plot(dataset: Map<String, List<*>> = mapOf(), block: DataFramePlotContext<*>.() -> Unit): Plot {
+    return plot(dataset.toDataFrame(), block)
+}
+
+@JvmName("mapPlot")
+public inline fun Map<String, List<*>>.plot(block: DataFramePlotContext<*>.() -> Unit): Plot {
+    return plot(this, block)
 }
 
 /*public inline fun Map<String, List<*>>.plot(block: DataFramePlotContext<*>.() -> Unit): Plot {
@@ -60,8 +63,13 @@ public inline fun plot(block: PlotContextMutable.() -> Unit): Plot {
 
  */
 
-public inline fun <T> DataFrame<T>.plot(block: org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotContext<T>.() -> Unit): Plot {
-    return org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotContext<T>(this).apply(block).toPlot()
+public inline fun <T> DataFrame<T>.plot(block: DataFramePlotContext<T>.() -> Unit): Plot {
+    return plot(this, block)
+}
+
+@JvmName("plotDataframe")
+public inline fun <T> plot(dataframe: DataFrame<T>, block: DataFramePlotContext<T>.() -> Unit): Plot {
+    return DataFramePlotContext<T>(dataframe).apply(block).toPlot()
 }
 
 /*public inline fun <T> plot(dataframe: DataFrame<T>, block: DataFramePlotContext<T>.() -> Unit): Plot {

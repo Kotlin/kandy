@@ -7,6 +7,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.letsplot.internal.SHAPE
 import org.jetbrains.kotlinx.kandy.letsplot.util.symbol.Symbol
+import kotlin.reflect.KProperty
 
 public interface WithSymbol : BindingContext {
     public var symbol: Symbol?
@@ -21,6 +22,17 @@ public interface WithSymbol : BindingContext {
         return addNonPositionalMapping<T, Symbol>(
             SHAPE,
             column.name(),
+            LetsPlotNonPositionalMappingParameters<T, Symbol>().apply(parameters)
+        )
+    }
+
+    public fun <T> symbol(
+        column: KProperty<T>,
+        parameters: LetsPlotNonPositionalMappingParameters<T, Symbol>.() -> Unit = {}
+    ): NonPositionalMapping<T, Symbol> {
+        return addNonPositionalMapping<T, Symbol>(
+            SHAPE,
+            column.name,
             LetsPlotNonPositionalMappingParameters<T, Symbol>().apply(parameters)
         )
     }

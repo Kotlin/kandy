@@ -1,5 +1,18 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.SubBindingContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
+
+
+public class FontContext internal constructor(override val parentContext: BindingContext):
+    SelfInvocationContext, SubBindingContext, WithColor, WithSize, WithFace, WithFamily
+
+public class TextContext(parent: LayerCollectorContext)
+    :LayerContext(parent), WithX, WithY, WithAlpha,WithLabel
 
 /*
 import org.jetbrains.kotlinx.kandy.dsl.internal.*

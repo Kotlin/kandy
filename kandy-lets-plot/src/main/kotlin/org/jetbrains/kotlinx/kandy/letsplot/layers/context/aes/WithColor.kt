@@ -7,6 +7,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.COLOR
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.util.color.Color
+import kotlin.reflect.KProperty
 
 public interface WithColor : BindingContext {
     public var color: Color?
@@ -22,6 +23,17 @@ public interface WithColor : BindingContext {
         return addNonPositionalMapping<T, Color>(
             COLOR,
             column.name(),
+            LetsPlotNonPositionalMappingParameters<T, Color>().apply(parameters)
+        )
+    }
+
+    public fun <T> color(
+        column: KProperty<T>,
+        parameters: LetsPlotNonPositionalMappingParameters<T, Color>.() -> Unit = {}
+    ): NonPositionalMapping<T, Color> {
+        return addNonPositionalMapping<T, Color>(
+            COLOR,
+            column.name,
             LetsPlotNonPositionalMappingParameters<T, Color>().apply(parameters)
         )
     }

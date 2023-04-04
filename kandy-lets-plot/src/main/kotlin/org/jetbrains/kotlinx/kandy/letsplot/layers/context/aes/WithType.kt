@@ -7,6 +7,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LINE_TYPE
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.letsplot.util.linetype.LineType
+import kotlin.reflect.KProperty
 
 public interface WithType : BindingContext {
     public var type: LineType?
@@ -14,6 +15,7 @@ public interface WithType : BindingContext {
         set(value) {
             addNonPositionalSetting(LINE_TYPE, value)
         }
+
     public fun <T> type(
         column: ColumnReference<T>,
         parameters: LetsPlotNonPositionalMappingParameters<T, LineType>.() -> Unit = {}
@@ -21,6 +23,17 @@ public interface WithType : BindingContext {
         return addNonPositionalMapping<T, LineType>(
             LINE_TYPE,
             column.name(),
+            LetsPlotNonPositionalMappingParameters<T, LineType>().apply(parameters)
+        )
+    }
+
+    public fun <T> type(
+        column: KProperty<T>,
+        parameters: LetsPlotNonPositionalMappingParameters<T, LineType>.() -> Unit = {}
+    ): NonPositionalMapping<T, LineType> {
+        return addNonPositionalMapping<T, LineType>(
+            LINE_TYPE,
+            column.name,
             LetsPlotNonPositionalMappingParameters<T, LineType>().apply(parameters)
         )
     }

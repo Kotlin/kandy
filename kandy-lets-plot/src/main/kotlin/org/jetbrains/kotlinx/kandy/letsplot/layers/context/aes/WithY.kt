@@ -1,13 +1,13 @@
-package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes
+package org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
-import org.jetbrains.kotlinx.kandy.letsplot.AxisParameters
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
+import org.jetbrains.kotlinx.kandy.letsplot.scales.AxisParametersWithSetter
 
 public interface WithY : BindingContext {
     /*public fun <T> y(value: T): PositionalSetting<T> {
@@ -54,15 +54,15 @@ public interface WithY : BindingContext {
     }
 
     @Suppress("UNCHECKED_CAST")
-    public val y: AxisParameters
+    public val y: AxisParametersWithSetter
         get() {
-            return AxisParameters(bindingCollector.freeScales.getOrPut(Y) {
+            return AxisParametersWithSetter(bindingCollector.freeScales.getOrPut(Y) {
                 PositionalFreeScale(Y, LetsPlotPositionalMappingParameters<Any?>())
             }.parameters as LetsPlotPositionalMappingParameters<Any?>, Y, this)
         }
 
     public fun y(
-        parameters: AxisParameters.() -> Unit = {}
+        parameters: AxisParametersWithSetter.() -> Unit = {}
     ) {
         y.apply(parameters)
     }

@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
+import kotlin.reflect.KProperty
 
 public interface WithYMin : BindingContext {
     public val yMin: ConstantSetter
@@ -21,6 +22,12 @@ public interface WithYMin : BindingContext {
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(Y_MIN, column.name(), null)
+    }
+
+    public fun <T> yMin(
+        column: KProperty<T>,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(Y_MIN, column.name, null)
     }
 
     public fun <T> yMin(

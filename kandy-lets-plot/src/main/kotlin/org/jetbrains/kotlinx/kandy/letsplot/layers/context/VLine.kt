@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
 
 public class VLineContext(parent: LayerCollectorContext)
-    : LayerContext(parent), WithX, WithAlpha, WithColor, WithWidthAsSize, WithType
+    : LayerContext(parent), WithX, WithAlpha, WithColor, WithWidthAsSize, WithType, WithYFree
 /*
 import org.jetbrains.kotlinx.kandy.dsl.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*

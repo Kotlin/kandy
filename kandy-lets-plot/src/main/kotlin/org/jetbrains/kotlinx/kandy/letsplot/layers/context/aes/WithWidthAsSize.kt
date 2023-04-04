@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.letsplot.internal.SIZE
+import kotlin.reflect.KProperty
 
 public interface WithWidthAsSize : BindingContext {
     public var width: Double?
@@ -20,6 +21,17 @@ public interface WithWidthAsSize : BindingContext {
         return addNonPositionalMapping<T, Double>(
             SIZE,
             column.name(),
+            LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
+        )
+    }
+
+    public fun <T> width(
+        column: KProperty<T>,
+        parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+    ): NonPositionalMapping<T, Double> {
+        return addNonPositionalMapping<T, Double>(
+            SIZE,
+            column.name,
             LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
         )
     }

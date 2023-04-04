@@ -4,8 +4,10 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
-public class ABLineContext(parent: LayerCollectorContext)
-    : LayerContext(parent), WithType, WithColor, WithAlpha, WithWidthAsSize, WithSlope, WithIntercept
+public class ABLineContext(parent: LayerCollectorContext) : LayerContext(parent), WithType,
+    WithColor, WithAlpha,
+    WithWidthAsSize, WithSlope, WithIntercept,
+    WithXFree, WithYFree
 
 /*
 /**

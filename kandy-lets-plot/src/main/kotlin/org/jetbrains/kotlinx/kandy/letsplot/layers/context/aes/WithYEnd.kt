@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_END
+import kotlin.reflect.KProperty
 
 public interface WithYEnd : BindingContext {
     public val yEnd: ConstantSetter
@@ -21,6 +22,12 @@ public interface WithYEnd : BindingContext {
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(Y_END, column.name(), null)
+    }
+
+    public fun <T> yEnd(
+        column: KProperty<T>,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(Y_END, column.name, null)
     }
 
     public fun <T> yEnd(

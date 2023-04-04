@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.HEIGHT
+import kotlin.reflect.KProperty
 
 public interface WithHeight : BindingContext {
     public var height: Double?
@@ -20,6 +21,17 @@ public interface WithHeight : BindingContext {
         return addNonPositionalMapping<T, Double>(
             HEIGHT,
             column.name(),
+            null//LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
+        )
+    }
+
+    public fun <T> height(
+        column: KProperty<T>,
+        //parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+    ): NonPositionalMapping<T, Double> {
+        return addNonPositionalMapping<T, Double>(
+            HEIGHT,
+            column.name,
             null//LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
         )
     }

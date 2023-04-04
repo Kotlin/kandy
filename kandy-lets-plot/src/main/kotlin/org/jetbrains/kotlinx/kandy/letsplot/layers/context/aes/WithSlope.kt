@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.SLOPE
+import kotlin.reflect.KProperty
 
 public interface WithSlope : BindingContext {
     public val slope: ConstantSetter
@@ -21,6 +22,12 @@ public interface WithSlope : BindingContext {
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(SLOPE, column.name(), null)
+    }
+
+    public fun <T> slope(
+        column: KProperty<T>,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(SLOPE, column.name, null)
     }
 
     public fun <T> slope(

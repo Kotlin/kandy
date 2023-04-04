@@ -10,14 +10,12 @@ import org.jetbrains.letsPlot.GGBunch
 import org.jetbrains.letsPlot.gggrid
 import org.jetbrains.letsPlot.intern.figure.SubPlotsFigure
 
-
-internal fun PlotBunch.wrap(): GGBunch {
+public fun PlotBunch.wrap(): GGBunch {
     return GGBunch().apply {
         items.forEach { addPlot(it.plot.toLetsPlot(), it.x, it.y, it.width, it.height) }
     }
 }
 
-//TODO
-internal fun PlotGrid.wrap(): SubPlotsFigure {
-    return gggrid(items.map { it.toLetsPlot() }, nCol)
+public fun PlotGrid.wrap(): SubPlotsFigure {
+    return gggrid(plots.map { it?.toLetsPlot() }, nCol, widths, heights, hspace, vspace, fit, align)
 }
