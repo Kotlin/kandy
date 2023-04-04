@@ -5,9 +5,9 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
-import org.jetbrains.kotlinx.ggdsl.letsplot.AxisParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.Y
+import org.jetbrains.kotlinx.ggdsl.letsplot.scales.AxisParametersWithSetter
 
 public interface WithY : BindingContext {
     /*public fun <T> y(value: T): PositionalSetting<T> {
@@ -54,15 +54,15 @@ public interface WithY : BindingContext {
     }
 
     @Suppress("UNCHECKED_CAST")
-    public val y: AxisParameters
+    public val y: AxisParametersWithSetter
         get() {
-            return AxisParameters(bindingCollector.freeScales.getOrPut(Y) {
+            return AxisParametersWithSetter(bindingCollector.freeScales.getOrPut(Y) {
                 PositionalFreeScale(Y, LetsPlotPositionalMappingParameters<Any?>())
             }.parameters as LetsPlotPositionalMappingParameters<Any?>, Y, this)
         }
 
     public fun y(
-        parameters: AxisParameters.() -> Unit = {}
+        parameters: AxisParametersWithSetter.() -> Unit = {}
     ) {
         y.apply(parameters)
     }

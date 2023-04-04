@@ -58,6 +58,12 @@ internal val X_BEGIN = AesName("x")
 
 internal val X_END = AesName("xend")
 
+internal val LABEL = AesName("label")
+
+internal val FONT_FACE = AesName("fontface")
+
+internal val FONT_FAMILY = AesName("family")
+
 /*
 
 internal val X_END = AesName("xend")

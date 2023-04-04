@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.WIDTH
+import kotlin.reflect.KProperty
 
 public interface WithWidth : BindingContext {
     public var width: Double?
@@ -19,6 +20,17 @@ public interface WithWidth : BindingContext {
         return addNonPositionalMapping<T, Double>(
             WIDTH,
             column.name(),
+            null//LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
+        )
+    }
+
+    public fun <T> width(
+        column: KProperty<T>,
+        //parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+    ): NonPositionalMapping<T, Double> {
+        return addNonPositionalMapping<T, Double>(
+            WIDTH,
+            column.name,
             null//LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
         )
     }

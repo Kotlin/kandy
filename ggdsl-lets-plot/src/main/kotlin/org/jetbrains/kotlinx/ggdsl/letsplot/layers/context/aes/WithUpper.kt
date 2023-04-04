@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.UPPER
+import kotlin.reflect.KProperty
 
 public interface WithUpper : BindingContext {
     public val upper: ConstantSetter
@@ -20,6 +21,12 @@ public interface WithUpper : BindingContext {
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(UPPER, column.name(), null)
+    }
+
+    public fun <T> upper(
+        column: KProperty<T>,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(UPPER, column.name, null)
     }
 
     public fun <T> upper(

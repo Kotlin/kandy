@@ -232,7 +232,7 @@ internal fun LayerTooltips.wrap(): TooltipOptions {
     formats.forEach {
         buffer = buffer.format(it.first, it.second)
     }
-    lines.forEach {
+    lines?.forEach {
         buffer = buffer.line(it)
     }
     return buffer
@@ -243,4 +243,3 @@ internal fun Reversed.wrap(): String = if (value) {
 } else {
     "x"
 }
-

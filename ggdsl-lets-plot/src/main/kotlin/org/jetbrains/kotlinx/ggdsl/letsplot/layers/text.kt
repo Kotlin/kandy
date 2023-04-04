@@ -4,10 +4,17 @@
 
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.TextContext
 
 @PublishedApi
 internal val TEXT: LetsPlotGeom = LetsPlotGeom("text")
+
+public inline fun LayerCollectorContext.text(block: TextContext.() -> Unit) {
+    addLayer(TextContext(this).apply(block), TEXT)
+}
+
 /*
 /**
  * Adds a new text layer.

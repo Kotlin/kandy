@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.INTERCEPT
+import kotlin.reflect.KProperty
 
 public interface WithIntercept : BindingContext {
     public val intercept: ConstantSetter
@@ -21,6 +22,12 @@ public interface WithIntercept : BindingContext {
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(INTERCEPT, column.name(), null)
+    }
+
+    public fun <T> intercept(
+        column: KProperty<T>,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(INTERCEPT, column.name, null)
     }
 
     public fun <T> intercept(

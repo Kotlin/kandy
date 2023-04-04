@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.MIDDLE
+import kotlin.reflect.KProperty
 
 public interface WithMiddle : BindingContext {
     public val middle: ConstantSetter
@@ -21,6 +22,12 @@ public interface WithMiddle : BindingContext {
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(MIDDLE, column.name(), null)
+    }
+
+    public fun <T> middle(
+        column: KProperty<T>,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(MIDDLE, column.name, null)
     }
 
     public fun <T> middle(

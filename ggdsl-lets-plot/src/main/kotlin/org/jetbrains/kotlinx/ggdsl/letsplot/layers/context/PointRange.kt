@@ -1,5 +1,26 @@
 package org.jetbrains.kotlinx.ggdsl.letsplot.layers.context
 
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.ggdsl.dsl.internal.SubBindingContext
+import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.ggdsl.util.context.SelfInvocationContext
+
+
+public class InnerPointContext internal constructor(override val parentContext: BindingContext) :
+    SelfInvocationContext, SubBindingContext, WithSymbol, WithFillColor, WithFatten
+
+public class InnerLineContext internal constructor(override val parentContext: BindingContext) :
+    SelfInvocationContext, SubBindingContext, WithType
+
+
+public class PointRangeContext(parent: LayerCollectorContext) : LayerContext(parent), WithX, WithY, WithAlpha,
+    WithColor, WithYMin, WithYMax, WithSize {
+    public val innerPoint: InnerPointContext = InnerPointContext(this)
+    public val innerLine: InnerLineContext = InnerLineContext(this)
+}
+
 /*
 public interface InnerPointSubContextInterface: SelfInvocationContext {
     // todo hide

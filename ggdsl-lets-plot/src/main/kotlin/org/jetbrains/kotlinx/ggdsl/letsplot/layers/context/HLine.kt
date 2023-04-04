@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
 
 
 public class HLineContext(parent: LayerCollectorContext)
-    : LayerContext(parent), WithY, WithAlpha, WithColor, WithWidthAsSize, WithType
+    : LayerContext(parent), WithY, WithAlpha, WithColor, WithWidthAsSize, WithType, WithXFree
 /*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*

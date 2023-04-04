@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.ALPHA
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotNonPositionalMappingParameters
+import kotlin.reflect.KProperty
 
 public interface WithAlpha : BindingContext {
     public var alpha: Double?
@@ -20,6 +21,17 @@ public interface WithAlpha : BindingContext {
         return addNonPositionalMapping<T, Double>(
             ALPHA,
             column.name(),
+            LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
+        )
+    }
+
+    public fun <T> alpha(
+        column: KProperty<T>,
+        parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+    ): NonPositionalMapping<T, Double> {
+        return addNonPositionalMapping<T, Double>(
+            ALPHA,
+            column.name,
             LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
         )
     }

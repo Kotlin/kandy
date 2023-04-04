@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
 
 
 public class VLineContext(parent: LayerCollectorContext)
-    : LayerContext(parent), WithX, WithAlpha, WithColor, WithWidthAsSize, WithType
+    : LayerContext(parent), WithX, WithAlpha, WithColor, WithWidthAsSize, WithType, WithYFree
 /*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.*
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.*

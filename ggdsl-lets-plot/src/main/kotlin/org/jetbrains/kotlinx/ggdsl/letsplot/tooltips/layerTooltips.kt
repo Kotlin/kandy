@@ -109,3 +109,23 @@ public inline fun LayerContext.tooltips(
         LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
 }
+
+public fun LayerContext.tooltips(
+    vararg variables: String
+) {
+    features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
+        variables.map { datasetHandler.takeColumn(it) },
+        null,
+        null,
+        null,
+        false,
+        listOf(),
+        null
+    )
+}
+
+public fun LayerContext.tooltips(
+    vararg variables: ColumnReference<*>
+) {
+    tooltips(*variables.map { it.name() }.toTypedArray())
+}

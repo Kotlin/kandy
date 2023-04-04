@@ -4,7 +4,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
 
 public class RibbonContext(parent: LayerCollectorContext)
-    : LayerWithBorderLineContext(parent), WithX, WithYMin, WithYMax, WithFillColor, WithAlpha
+    : LayerWithBorderLineContext(parent), WithX, WithYMin, WithYMax, WithFillColor, WithAlpha, WithYFree
 
 /*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable

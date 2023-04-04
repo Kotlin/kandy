@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.X_MIN
+import kotlin.reflect.KProperty
 
 public interface WithXMin : BindingContext {
     public val xMin: ConstantSetter
@@ -21,6 +22,12 @@ public interface WithXMin : BindingContext {
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(X_MIN, column.name(), null)
+    }
+
+    public fun <T> xMin(
+        column: KProperty<T>,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(X_MIN, column.name, null)
     }
 
     public fun <T> xMin(

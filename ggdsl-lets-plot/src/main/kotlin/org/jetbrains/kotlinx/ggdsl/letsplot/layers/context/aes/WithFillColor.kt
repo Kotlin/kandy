@@ -7,6 +7,7 @@ import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.FILL
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotNonPositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.util.color.Color
+import kotlin.reflect.KProperty
 
 public interface WithFillColor : BindingContext {
     public var fillColor: Color?
@@ -21,6 +22,17 @@ public interface WithFillColor : BindingContext {
         return addNonPositionalMapping<T, Color>(
             FILL,
             column.name(),
+            LetsPlotNonPositionalMappingParameters<T, Color>().apply(parameters)
+        )
+    }
+
+    public fun <T> fillColor(
+        column: KProperty<T>,
+        parameters: LetsPlotNonPositionalMappingParameters<T, Color>.() -> Unit = {}
+    ): NonPositionalMapping<T, Color> {
+        return addNonPositionalMapping<T, Color>(
+            FILL,
+            column.name,
             LetsPlotNonPositionalMappingParameters<T, Color>().apply(parameters)
         )
     }

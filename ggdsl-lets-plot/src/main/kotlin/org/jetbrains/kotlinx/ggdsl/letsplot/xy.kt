@@ -2,17 +2,13 @@ package org.jetbrains.kotlinx.ggdsl.letsplot
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContext
-import org.jetbrains.kotlinx.ggdsl.ir.aes.AesName
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
-import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMappingParameters
-import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalContinuousScale
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.X
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.Y
-import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Axis
+import org.jetbrains.kotlinx.ggdsl.letsplot.scales.AxisParametersWithSetter
 
 public fun <T> PlotContext.x(
     column: ColumnReference<T>,
@@ -54,15 +50,15 @@ public fun <T> PlotContext.x(
 }
 
 @Suppress("UNCHECKED_CAST")
-public val PlotContext.x: AxisParameters
+public val PlotContext.x: AxisParametersWithSetter
     get() {
-        return AxisParameters(bindingCollector.freeScales.getOrPut(X) {
+        return AxisParametersWithSetter(bindingCollector.freeScales.getOrPut(X) {
             PositionalFreeScale(X, LetsPlotPositionalMappingParameters<Any?>())
         }.parameters as LetsPlotPositionalMappingParameters<Any?>, X, this)
     }
 
 public fun PlotContext.x(
-    parameters: AxisParameters.() -> Unit = {}
+    parameters: AxisParametersWithSetter.() -> Unit = {}
 ) {
     x.apply(parameters)
 }
@@ -114,37 +110,15 @@ public fun <T> PlotContext.y(
 }
 
 @Suppress("UNCHECKED_CAST")
-public val PlotContext.y: AxisParameters
+public val PlotContext.y: AxisParametersWithSetter
     get() {
-        return AxisParameters(bindingCollector.freeScales.getOrPut(Y) {
+        return AxisParametersWithSetter(bindingCollector.freeScales.getOrPut(Y) {
             PositionalFreeScale(Y, LetsPlotPositionalMappingParameters<Any?>())
         }.parameters as LetsPlotPositionalMappingParameters<Any?>, Y, this)
     }
 
 public fun PlotContext.y(
-    parameters: AxisParameters.() -> Unit = {}
+    parameters: AxisParametersWithSetter.() -> Unit = {}
 ) {
     y.apply(parameters)
-}
-
-// todo
-public class AxisParameters(
-    private val mappingParameters: LetsPlotPositionalMappingParameters<Any?>,
-    private val aesName: AesName,
-    private val bindingContext: BindingContext,
-): PositionalMappingParameters<Any?> by mappingParameters {
-
-    public var limits: ClosedRange<*>? = null
-        set(value) {
-            mappingParameters.scale = PositionalContinuousScale(value?.start,
-                value?.endInclusive,
-                null, null)
-            field = value
-        }
-   public val axis: Axis<Any?>
-        get() = mappingParameters.axis
-
-    public fun constant(value: Any?) {
-        bindingContext.addPositionalSetting(aesName, value)
-    }
 }

@@ -5,6 +5,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.X_END
+import kotlin.reflect.KProperty
 
 public interface WithXEnd : BindingContext {
     public val xEnd: ConstantSetter
@@ -21,6 +22,12 @@ public interface WithXEnd : BindingContext {
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(X_END, column.name(), null)
+    }
+
+    public fun <T> xEnd(
+        column: KProperty<T>,
+    ): PositionalMapping<T> {
+        return addPositionalMapping<T>(X_END, column.name, null)
     }
 
     public fun <T> xEnd(

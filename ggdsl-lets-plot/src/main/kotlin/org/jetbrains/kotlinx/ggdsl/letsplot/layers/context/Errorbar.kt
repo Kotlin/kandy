@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
 
 
 public class ErrorBarContext(parent: LayerCollectorContext)
-    : LayerWithBorderLineContext(parent), WithX, WithYMin, WithYMax, WithWidth, WithAlpha
+    : LayerWithBorderLineContext(parent), WithX, WithYMin, WithYMax, WithWidth, WithAlpha, WithYFree
 /*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable

@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.LetsPlotNonPositionalMappingParameters
 import org.jetbrains.kotlinx.ggdsl.letsplot.internal.SIZE
+import kotlin.reflect.KProperty
 
 public interface WithSize : BindingContext {
     public var size: Double?
@@ -20,6 +21,17 @@ public interface WithSize : BindingContext {
         return addNonPositionalMapping<T, Double>(
             SIZE,
             column.name(),
+            LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
+        )
+    }
+
+    public fun <T> size(
+        column: KProperty<T>,
+        parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+    ): NonPositionalMapping<T, Double> {
+        return addNonPositionalMapping<T, Double>(
+            SIZE,
+            column.name,
             LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
         )
     }

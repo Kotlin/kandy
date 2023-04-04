@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.layers.context.aes.*
 
 public class RectContext(parent: LayerCollectorContext)
     : LayerWithBorderLineContext(parent), WithXMin, WithXMax, WithYMin, WithYMax,
-    WithFillColor, WithAlpha
+    WithFillColor, WithAlpha, WithXFree, WithYFree
 
 /*
 import org.jetbrains.kotlinx.ggdsl.dsl.internal.LayerCollectorContextImmutable
