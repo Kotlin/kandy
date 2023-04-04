@@ -7,13 +7,14 @@ import org.jetbrains.kotlinx.ggdsl.ir.Plot
 import org.jetbrains.kotlinx.ggdsl.letsplot.multiplot.model.PlotGrid
 
 public fun plotGrid(
-    items: List<Plot>,
+    plots: List<Plot?>,
     nCol: Int? = null,
-    /*cellWidth: Int,
-    cellHeight: Int,
-    hGap: Int = 0,
-    vGap: Int = 50,
-    fit: Boolean = false*/
+    widths: List<Number>? = null,
+    heights: List<Number>? = null,
+    hspace: Number? = null,
+    vspace: Number? = null,
+    fit: Boolean = true,
+    align: Boolean = false,
 ): PlotGrid = PlotGrid(
-    items, nCol,// cellWidth, cellHeight, hGap, vGap, fit
+    plots, nCol, widths, heights, hspace, vspace, fit, align
 )
