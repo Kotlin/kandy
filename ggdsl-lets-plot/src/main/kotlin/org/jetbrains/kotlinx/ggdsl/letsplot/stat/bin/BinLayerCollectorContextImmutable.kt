@@ -11,7 +11,6 @@ import org.jetbrains.kotlinx.ggdsl.dsl.internal.PlotContext
 import org.jetbrains.kotlinx.ggdsl.ir.Layer
 import org.jetbrains.kotlinx.ggdsl.ir.data.GroupedData
 import org.jetbrains.kotlinx.ggdsl.ir.data.NamedData
-import org.jetbrains.kotlinx.ggdsl.ir.data.TableData
 import org.jetbrains.kotlinx.ggdsl.letsplot.stat.Statistic
 
 public interface BinStatContext {
@@ -85,6 +84,7 @@ internal fun countData(
 
  */
 
+/*
 @PublishedApi
 internal inline fun LayerCollectorContext.statBinImpl(
     data: TableData,
@@ -100,6 +100,7 @@ internal inline fun LayerCollectorContext.statBinImpl(
     plotContext.datasetHandlers.add(DatasetHandler(newData))
     BinLayerCollectorContext(this, plotContext.datasetHandlers.size-1).apply(block)
 }
+*/
 
 
 

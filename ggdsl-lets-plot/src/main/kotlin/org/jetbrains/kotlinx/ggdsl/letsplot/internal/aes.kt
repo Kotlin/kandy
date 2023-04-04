@@ -50,11 +50,11 @@ internal val SLOPE: AesName = AesName("slope")
 
 internal val INTERCEPT: AesName = AesName("intercept")
 
-internal val Y_BEGIN = AesName("ybegin")
+internal val Y_BEGIN = AesName("y")
 
 internal val Y_END = AesName("yend")
 
-internal val X_BEGIN = AesName("xbegin")
+internal val X_BEGIN = AesName("x")
 
 internal val X_END = AesName("xend")
 

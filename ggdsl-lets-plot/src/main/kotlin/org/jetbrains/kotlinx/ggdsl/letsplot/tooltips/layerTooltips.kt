@@ -21,6 +21,10 @@ public fun LayerContext.value(column: ColumnReference<*>): String {
     return "@${datasetHandler.takeColumn(column.name())}"
 }
 
+public fun LayerContext.value(columnName: String): String {
+    return "@${datasetHandler.takeColumn(columnName)}"
+}
+
 /* TODO
 /**
  * Inserts value of given aesthetic attribute into format string.
