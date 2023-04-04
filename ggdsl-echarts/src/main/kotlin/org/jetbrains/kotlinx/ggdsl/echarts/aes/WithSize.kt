@@ -11,6 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.scale.EchartsNonPositionalMappingPara
 import org.jetbrains.kotlinx.ggdsl.echarts.scale.nonPosMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.NonPositionalMappingParameters
+import kotlin.reflect.KProperty
 
 public interface WithSize : BindingContext {
     public var size: Double?
@@ -22,6 +23,10 @@ public interface WithSize : BindingContext {
     public fun <T> size(
         column: ColumnReference<T>, parameters: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> = nonPosMapping(SIZE, column, parameters)
+
+    public fun <T> size(
+        column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+    ): NonPositionalMapping<T, Double> = nonPosMapping(SIZE, column, params)
 
     public fun <T> size(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Double>.() -> Unit = {}
