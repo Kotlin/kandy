@@ -40,7 +40,8 @@ internal class LayerWrapperTest {
                     Color.RED
                 )
             ),
-            mapOf()
+            mapOf(),
+            emptyMap()
         )
 
         val wrappedLayer = LayerWrapper(layer, false, null, mappings, layer.settings,null)
@@ -106,7 +107,8 @@ internal class LayerWrapperTest {
             ),
             mapOf(
                 Position.FEATURE_NAME to Position.Dodge(0.9)
-            )
+            ),
+            emptyMap()
         )
 
         val wrappedLayer = LayerWrapper(layer, false,dataset, mappings, layer.settings,null)
@@ -170,7 +172,8 @@ internal class LayerWrapperTest {
             BAR,
             mappings,
             mapOf(),
-            mapOf()
+            mapOf(),
+            emptyMap()
         )
 
         val wrappedLayer = LayerWrapper(layer, false, data, mappings, emptyMap(),null)

@@ -87,7 +87,8 @@ internal class LayersTest {
                                 2.0
                             )
                         ),
-                        mapOf()
+                        mapOf(),
+                        emptyMap()
                     )
                 ),
                 mapOf(), emptyMap(), emptyMap(), emptyMap()

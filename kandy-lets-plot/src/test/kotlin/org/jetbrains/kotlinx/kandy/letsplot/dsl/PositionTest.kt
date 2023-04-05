@@ -37,7 +37,8 @@ internal class PositionTest {
                         POINT,
                         mapOf(),
                         mapOf(),
-                        mapOf(Position.FEATURE_NAME to Position.Identity)
+                        mapOf(Position.FEATURE_NAME to Position.Identity),
+                        emptyMap()
                     )
                 ),
                 emptyMap(),
@@ -71,7 +72,8 @@ internal class PositionTest {
                         BAR,
                         mapOf(),
                         mapOf(),
-                        mapOf(Position.FEATURE_NAME to Position.Stack)
+                        mapOf(Position.FEATURE_NAME to Position.Stack),
+                        emptyMap()
                     ),
                     Layer(
                         0,
@@ -81,14 +83,16 @@ internal class PositionTest {
                         mapOf(
                             Position.FEATURE_NAME to
                                 Position.JitterDodge(2.0, 3.0, 1.0)
-                        )
+                        ),
+                        emptyMap()
                     ),
                     Layer(
                         0,
                         POINT,
                         mapOf(),
                         mapOf(),
-                        mapOf(Position.FEATURE_NAME to Position.Dodge(0.9))
+                        mapOf(Position.FEATURE_NAME to Position.Dodge(0.9)),
+                        emptyMap()
                     )
                 ),
                 mapOf(),
