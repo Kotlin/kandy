@@ -8,6 +8,11 @@ import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 
+/**
+ * Plotting context with [GroupBy] as an initial dataset.
+ *
+ * @param groupBy initial grouped dataset.
+ */
 public class GroupByPlotContext<T>(
     private val groupBy: GroupBy<T, T>
 ) : LayerPlotContext, ColumnsContainer<T> by groupBy.groups.concat() {

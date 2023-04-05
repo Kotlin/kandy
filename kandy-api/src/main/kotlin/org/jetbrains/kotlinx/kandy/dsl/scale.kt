@@ -9,12 +9,43 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.scale.*
 
 /**
- * Creates a new continuous positional scale
+ * Creates a new continuous positional scale (with non-nullable domain).
  *
- * @param DomainType type of domain
- * @param limits segment defining the domain
- * @param transform the transformation of scale
- * @return new [PositionalContinuousScale] with given limits
+ * @param DomainType type of the scale domain.
+ * @param limits [ClosedRange] defining the scale domain.
+ * @param transform the transformation of scale.
+ * @return new [PositionalContinuousScale] with given limits.
+ */
+public fun <DomainType : Comparable<DomainType>> PositionalMappingParameters<DomainType>.continuous(
+    limits: ClosedRange<DomainType>,
+    transform: PositionalTransform? = null
+): PositionalContinuousScale<DomainType> = PositionalContinuousScale(
+    limits.start, limits.endInclusive, null, transform
+)
+
+/**
+ * Creates a new continuous positional scale (with non-nullable domain).
+ *
+ * @param DomainType type of the scale domain.
+ * @param limits [ClosedRange] defining the scale domain.
+ * @param transform the transformation of scale.
+ * @return new [PositionalContinuousScale] with given limits.
+ */
+public fun <DomainType : Comparable<DomainType>> Scale.Companion.continuousPos(
+    limits: ClosedRange<DomainType>,
+    transform: PositionalTransform? = null
+): PositionalContinuousScale<DomainType> = PositionalContinuousScale(
+    limits.start, limits.endInclusive, null, transform
+)
+
+/**
+ * Creates a new continuous positional scale (with nullable domain).
+ *
+ * @param DomainType type of the scale domain.
+ * @param limits [ClosedRange] defining the scale domain.
+ * @param nullValue value which null is mapped to.
+ * @param transform the transformation of scale.
+ * @return new [PositionalContinuousScale] with given limits.
  */
 public fun <DomainType : Comparable<DomainType>> PositionalMappingParameters<DomainType?>.continuous(
     limits: ClosedRange<DomainType>,
@@ -24,67 +55,123 @@ public fun <DomainType : Comparable<DomainType>> PositionalMappingParameters<Dom
     limits.start, limits.endInclusive, nullValue, transform
 )
 
-public fun <DomainType : Comparable<DomainType>> PositionalMappingParameters<DomainType>.continuous(
+/**
+ * Creates a new continuous positional scale (with nullable domain).
+ *
+ * @param DomainType type of the scale domain.
+ * @param limits [ClosedRange] defining the scale domain.
+ * @param nullValue value which null is mapped to.
+ * @param transform the transformation of scale.
+ * @return new [PositionalContinuousScale] with given limits.
+ */
+public fun <DomainType : Comparable<DomainType>> Scale.Companion.continuousPos(
     limits: ClosedRange<DomainType>,
-    transform: PositionalTransform? = null
-): PositionalContinuousScale<DomainType> = PositionalContinuousScale(
-    limits.start, limits.endInclusive, null, transform
-)
-
-public fun <DomainType> PositionalMappingParameters<DomainType?>.continuous(
-    min: DomainType? = null,
-    max: DomainType? = null,
     nullValue: DomainType? = null,
     transform: PositionalTransform? = null
-): PositionalContinuousScale<DomainType?> = PositionalContinuousScale(min, max, nullValue, transform)
+): PositionalContinuousScale<DomainType?> = PositionalContinuousScale(
+    limits.start, limits.endInclusive, nullValue, transform
+)
 
+/**
+ * Creates a new continuous positional scale (with non-nullable domain).
+ *
+ * @param DomainType type of the scale domain.
+ * @param min scale domain minimum.
+ * @param max scale domain maximum.
+ * @param transform the transformation of scale.
+ * @return new [PositionalContinuousScale] with given limits.
+ */
 public fun <DomainType> PositionalMappingParameters<DomainType>.continuous(
     min: DomainType? = null,
     max: DomainType? = null,
     transform: PositionalTransform? = null
 ): PositionalContinuousScale<DomainType> = PositionalContinuousScale(min, max, null, transform)
 
-public fun <DomainType : Comparable<DomainType>> Scale.Companion.continuousPos(
-    limits: ClosedRange<DomainType>,
-    nullValue: DomainType? = null,
+/**
+ * Creates a new continuous positional scale (with non-nullable domain).
+ *
+ * @param DomainType type of the scale domain.
+ * @param min scale domain minimum.
+ * @param max scale domain maximum.
+ * @param transform the transformation of scale.
+ * @return new [PositionalContinuousScale] with given limits.
+ */
+public fun <DomainType> Scale.Companion.continuousPos(
+    min: DomainType? = null,
+    max: DomainType? = null,
     transform: PositionalTransform? = null
 ): PositionalContinuousScale<DomainType> = PositionalContinuousScale(
-    limits.start, limits.endInclusive, nullValue, transform
+    min, max, null, transform
 )
 
+/**
+ * Creates a new continuous positional scale (with nullable domain).
+ *
+ * @param DomainType type of the scale domain.
+ * @param min scale domain minimum.
+ * @param max scale domain maximum.
+ * @param nullValue value which null is mapped to.
+ * @param transform the transformation of scale.
+ * @return new [PositionalContinuousScale] with given limits.
+ */
+public fun <DomainType> PositionalMappingParameters<DomainType?>.continuous(
+    min: DomainType? = null,
+    max: DomainType? = null,
+    nullValue: DomainType? = null,
+    transform: PositionalTransform? = null
+): PositionalContinuousScale<DomainType?> = PositionalContinuousScale(
+    min, max, nullValue, transform
+)
+
+/**
+ * Creates a new continuous positional scale (with nullable domain).
+ *
+ * @param DomainType type of the scale domain.
+ * @param min scale domain minimum.
+ * @param max scale domain maximum.
+ * @param nullValue value which null is mapped to.
+ * @param transform the transformation of scale.
+ * @return new [PositionalContinuousScale] with given limits.
+ */
 public fun <DomainType> Scale.Companion.continuousPos(
     min: DomainType? = null,
     max: DomainType? = null,
     nullValue: DomainType? = null,
     transform: PositionalTransform? = null
-): PositionalContinuousScale<DomainType> = PositionalContinuousScale(
+): PositionalContinuousScale<DomainType?> = PositionalContinuousScale(
     min, max, nullValue, transform
 )
 
 /**
- * Creates a new categorical positional scale
+ * Creates a new categorical positional scale.
  *
- * @param DomainType type of domain
- * @param categories [List] defining the domain
- * @return new [PositionalCategoricalScale] with given categories
+ * @param DomainType type of the scale domain.
+ * @param categories [List] defining the scale domain.
+ * @return new [PositionalCategoricalScale] with given categories.
  */
 public fun <DomainType> PositionalMappingParameters<DomainType>.categorical(
     categories: List<DomainType>? = null,
 ): PositionalCategoricalScale<DomainType> = PositionalCategoricalScale(categories)
 
+/**
+ * Creates a new categorical positional scale.
+ *
+ * @param DomainType type of the scale domain.
+ * @param categories [List] defining the scale domain.
+ * @return new [PositionalCategoricalScale] with given categories.
+ */
 public fun <DomainType> Scale.Companion.categoricalPos(
     categories: List<DomainType>? = null,
 ): PositionalCategoricalScale<DomainType> = PositionalCategoricalScale(categories)
 
 /**
- * Creates a new continuous non-positional scale
+ * Creates a new continuous non-positional scale.
  *
- * @param DomainType type of domain
- * @param RangeType type of range
- * @param domainLimits segment defining the domain
- * @param rangeLimits segment defining the range
- * @param transform the transformation of scale
- * @return new [NonPositionalContinuousScale] with given limits
+ * @param DomainType type of the scale domain.
+ * @param RangeType type of the scale range.
+ * @param range [ClosedRange] defining the scale range.
+ * @param transform scale transformation.
+ * @return new [NonPositionalContinuousScale] with the given range.
  */
 public fun <DomainType, RangeType : Comparable<RangeType>> NonPositionalMappingParameters<DomainType, RangeType>.continuous(
     range: ClosedRange<RangeType>,
@@ -95,6 +182,34 @@ public fun <DomainType, RangeType : Comparable<RangeType>> NonPositionalMappingP
         null, null, range.start, range.endInclusive, nullValue, transform
     )
 
+/**
+ * Creates a new continuous non-positional scale.
+ *
+ * @param DomainType type of the scale domain.
+ * @param RangeType type of the scale range.
+ * @param range [ClosedRange] defining the scale range.
+ * @param transform scale transformation.
+ * @return new [NonPositionalContinuousScale] with the given range.
+ */
+public fun <DomainType, RangeType : Comparable<RangeType>> Scale.Companion.continuous(
+    range: ClosedRange<RangeType>,
+    nullValue: RangeType? = null,
+    transform: NonPositionalTransform? = null
+): NonPositionalContinuousScale<DomainType, RangeType> =
+    NonPositionalContinuousScale(
+        null, null, range.start, range.endInclusive, nullValue, transform
+    )
+
+/**
+ * Creates a new continuous non-positional scale.
+ *
+ * @param DomainType type of the scale domain.
+ * @param RangeType type of the scale range.
+ * @param range [ClosedRange] defining the scale range.
+ * @param domain [ClosedRange] defining the scale domain.
+ * @param transform scale transformation.
+ * @return new [NonPositionalContinuousScale] with the given domain and range.
+ */
 public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeType>>
         NonPositionalMappingParameters<DomainType, RangeType>.continuous(
     range: ClosedRange<RangeType>? = null,
@@ -106,6 +221,39 @@ public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeTyp
         domain.start, domain.endInclusive, range?.start, range?.endInclusive, nullValue, transform
     )
 
+/**
+ * Creates a new continuous non-positional scale.
+ *
+ * @param DomainType type of the scale domain.
+ * @param RangeType type of the scale range.
+ * @param range [ClosedRange] defining the scale range.
+ * @param domain [ClosedRange] defining the scale domain.
+ * @param transform scale transformation.
+ * @return new [NonPositionalContinuousScale] with the given domain and range.
+ */
+public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeType>>
+        Scale.Companion.continuous(
+    range: ClosedRange<RangeType>? = null,
+    domain: ClosedRange<DomainType>,
+    nullValue: RangeType? = null,
+    transform: NonPositionalTransform? = null
+): NonPositionalContinuousScale<DomainType, RangeType> =
+    NonPositionalContinuousScale(
+        domain.start, domain.endInclusive, range?.start, range?.endInclusive, nullValue, transform
+    )
+
+/**
+ * Creates a new continuous non-positional scale.
+ *
+ * @param DomainType type of the scale domain.
+ * @param RangeType type of the scale range.
+ * @param rangeMin scale range minimum.
+ * @param rangeMax scale range maximum.
+ * @param domainMin scale domain minimum.
+ * @param domainMax scale domain maximum.
+ * @param transform scale transformation.
+ * @return new [NonPositionalContinuousScale] with the given domain and range.
+ */
 public fun <DomainType, RangeType> NonPositionalMappingParameters<DomainType, RangeType>.continuous(
     rangeMin: RangeType? = null,
     rangeMax: RangeType? = null,
@@ -118,26 +266,18 @@ public fun <DomainType, RangeType> NonPositionalMappingParameters<DomainType, Ra
         domainMin, domainMax, rangeMin, rangeMax, nullValue, transform
     )
 
-public fun <DomainType, RangeType : Comparable<RangeType>> Scale.Companion.continuous(
-    range: ClosedRange<RangeType>,
-    nullValue: RangeType? = null,
-    transform: NonPositionalTransform? = null
-): NonPositionalContinuousScale<DomainType, RangeType> =
-    NonPositionalContinuousScale(
-        null, null, range.start, range.endInclusive, nullValue, transform
-    )
-
-public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeType>>
-        Scale.Companion.continuous(
-    range: ClosedRange<RangeType>? = null,
-    domain: ClosedRange<DomainType>,
-    nullValue: RangeType? = null,
-    transform: NonPositionalTransform? = null
-): NonPositionalContinuousScale<DomainType, RangeType> =
-    NonPositionalContinuousScale(
-        domain.start, domain.endInclusive, range?.start, range?.endInclusive, nullValue, transform
-    )
-
+/**
+ * Creates a new continuous non-positional scale.
+ *
+ * @param DomainType type of the scale domain.
+ * @param RangeType type of the scale range.
+ * @param rangeMin scale range minimum.
+ * @param rangeMax scale range maximum.
+ * @param domainMin scale domain minimum.
+ * @param domainMax scale domain maximum.
+ * @param transform scale transformation.
+ * @return new [NonPositionalContinuousScale] with the given domain and range.
+ */
 public fun <DomainType, RangeType> Scale.Companion.continuous(
     rangeMin: RangeType? = null,
     rangeMax: RangeType? = null,
@@ -153,11 +293,11 @@ public fun <DomainType, RangeType> Scale.Companion.continuous(
 /**
  * Creates a new categorical non-positional scale.
  *
- * @param DomainType type of domain
- * @param RangeType type of range
- * @param domainCategories [List] defining the domain
- * @param rangeValues [List] defining the range
- * @return new [NonPositionalCategoricalScale] with given limits
+ * @param DomainType type of the scale domain.
+ * @param RangeType type of the scale range.
+ * @param range [List] defining the scale range.
+ * @param domain [List] defining the scale domain.
+ * @return new [NonPositionalCategoricalScale] with given domain and range.
  */
 public inline fun <reified DomainType, reified RangeType> NonPositionalMappingParameters<DomainType, RangeType>.categorical(
     range: List<RangeType>? = null,
@@ -165,6 +305,15 @@ public inline fun <reified DomainType, reified RangeType> NonPositionalMappingPa
 ): NonPositionalCategoricalScale<DomainType, RangeType> =
     NonPositionalCategoricalScale(domain, range)
 
+/**
+ * Creates a new categorical non-positional scale.
+ *
+ * @param DomainType type of the scale domain.
+ * @param RangeType type of the scale range.
+ * @param range [List] defining the scale range.
+ * @param domain [List] defining the scale domain.
+ * @return new [NonPositionalCategoricalScale] with given domain and range.
+ */
 public inline fun <reified DomainType, reified RangeType> Scale.Companion.categorical(
     range: List<RangeType>? = null,
     domain: List<DomainType>? = null,
@@ -174,10 +323,10 @@ public inline fun <reified DomainType, reified RangeType> Scale.Companion.catego
 /**
  * Creates a new categorical non-positional scale.
  *
- * @param DomainType type of domain
- * @param RangeType type of range
+ * @param DomainType type of the scale domain.
+ * @param RangeType type of the scale range.
  * @param categoriesToValues [List] of pairs of category to corresponding value.
- * @return new [NonPositionalCategoricalScale] with given limits
+ * @return new [NonPositionalCategoricalScale] by domain-to-range correspondence.
  */
 public fun <DomainType, RangeType> NonPositionalMappingParameters<DomainType, RangeType>.categorical(
     vararg categoriesToValues: Pair<DomainType, RangeType>,
@@ -187,6 +336,14 @@ public fun <DomainType, RangeType> NonPositionalMappingParameters<DomainType, Ra
         categoriesToValues.map { it.second },
     )
 
+/**
+ * Creates a new categorical non-positional scale.
+ *
+ * @param DomainType type of the scale domain
+ * @param RangeType type of the scale range
+ * @param categoriesToValues [List] of pairs of category to corresponding value.
+ * @return new [NonPositionalCategoricalScale] by domain-to-range correspondence.
+ */
 public fun <DomainType, RangeType> Scale.Companion.categorical(
     vararg categoriesToValues: Pair<DomainType, RangeType>,
 ): NonPositionalCategoricalScale<DomainType, RangeType> =

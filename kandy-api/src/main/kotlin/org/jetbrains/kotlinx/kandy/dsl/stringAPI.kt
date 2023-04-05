@@ -9,8 +9,8 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
  * The pointer name and type must be exactly the same as the name and type of the
  * column in the [DataFrame].
  *
- * @param T the type of the column
- * @receiver the name of the column
+ * @param T type of the column
+ * @receiver name of the column
  */
 public inline operator fun <reified T> String.invoke(): ColumnReference<T> =
     column(this)
