@@ -1,8 +1,8 @@
-rootProject.name = "ggdsl"
-include("ggdsl-api")
-include("ggdsl-lets-plot")
-include("ggdsl-echarts")
-include("ggdsl-util")
+rootProject.name = "kandy"
+include("kandy-api")
+include("kandy-lets-plot")
+include("kandy-echarts")
+include("kandy-util")
 
 include("examples:idea-examples:lets-plot-simple")
 include("examples:idea-examples:echarts-simple")

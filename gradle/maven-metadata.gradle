@@ -20,7 +20,7 @@ def pomConfig = {
     }
 
     scm {
-        url "https://github.com/AndreiKingsley/lib-ggdsl"
+        url "https://github.com/Kotlin/Kandy"
     }
 }
 
@@ -28,6 +28,6 @@ project.ext.configureMavenCentralMetadata = { pom ->
     def root = asNode()
     root.appendNode('name', project.name)
     root.appendNode('description', 'Kotlin plotting DSL.')
-    root.appendNode('url', 'https://github.com/AndreiKingsley/lib-ggdsl')
+    root.appendNode('url', 'https://github.com/Kotlin/Kandy')
     root.children().last() + pomConfig
 }
