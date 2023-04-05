@@ -10,12 +10,12 @@ import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Axis
 import org.jetbrains.kotlinx.ggdsl.letsplot.scales.guide.Legend
 
 public data class LetsPlotPositionalMappingParameters<DomainType>
-    (override var scale: PositionalScale<DomainType> = PositionalDefaultScale(), public val axis: Axis<DomainType> = Axis()) :
+    (override var scale: PositionalScale<out DomainType> = PositionalDefaultScale(), public val axis: Axis<DomainType> = Axis()) :
     PositionalMappingParameters<DomainType> {
 }
 
 public data class LetsPlotNonPositionalMappingParameters<DomainType, RangeType>
-    (override var scale: NonPositionalScale<DomainType, RangeType> = NonPositionalDefaultScale(),
+    (override var scale: NonPositionalScale<out DomainType, out RangeType> = NonPositionalDefaultScale(),
      public val legend: Legend<DomainType, RangeType> = Legend()) :
     NonPositionalMappingParameters<DomainType, RangeType> {
 }

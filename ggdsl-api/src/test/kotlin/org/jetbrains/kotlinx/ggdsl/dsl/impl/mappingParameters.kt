@@ -8,9 +8,9 @@ import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalDefaultScale
 import org.jetbrains.kotlinx.ggdsl.ir.scale.PositionalScale
 
 data class CommonPositionalMappingParameters<DomainType>(
-    override var scale: PositionalScale<DomainType> = PositionalDefaultScale()
+    override var scale: PositionalScale<out DomainType> = PositionalDefaultScale()
 ) : PositionalMappingParameters<DomainType>
 
 data class CommonNonPositionalMappingParameters<DomainType, RangeType>(
-    override var scale: NonPositionalScale<DomainType, RangeType> = NonPositionalDefaultScale()
+    override var scale: NonPositionalScale<out DomainType, out RangeType> = NonPositionalDefaultScale()
 ) : NonPositionalMappingParameters<DomainType, RangeType>
