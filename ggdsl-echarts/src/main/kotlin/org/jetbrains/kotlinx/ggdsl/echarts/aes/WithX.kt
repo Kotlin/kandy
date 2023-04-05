@@ -11,6 +11,7 @@ import org.jetbrains.kotlinx.ggdsl.echarts.scale.EchartsPositionalMappingParamet
 import org.jetbrains.kotlinx.ggdsl.echarts.scale.posMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.ggdsl.ir.bindings.PositionalSetting
+import kotlin.reflect.KProperty
 
 public interface WithX : BindingContext {
     public fun <T> x(value: T): PositionalSetting<T> {
@@ -19,6 +20,10 @@ public interface WithX : BindingContext {
 
     public fun <T> x(
         column: ColumnReference<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
+    ): PositionalMapping<T> = posMapping(X, column, params)
+
+    public fun <T> x(
+        column: KProperty<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
     ): PositionalMapping<T> = posMapping(X, column, params)
 
     public fun <T> x(
