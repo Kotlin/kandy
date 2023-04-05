@@ -25,7 +25,7 @@ plugins {
 }
 
 val buildNumber: String? = properties["build_counter"]?.toString()
-val ggdsl_version = version.toString() + if (buildNumber == null) "" else "-dev-$buildNumber"
+val kandy_version = version.toString() + if (buildNumber == null) "" else "-dev-$buildNumber"
 
 allprojects {
     repositories {
@@ -33,7 +33,7 @@ allprojects {
     }
 
     group = "org.jetbrains.kotlinx"
-    version = ggdsl_version
+    version = kandy_version
     apply(plugin = "kotlin")
     apply(plugin = "org.jetbrains.dokka")
 
@@ -48,10 +48,10 @@ allprojects {
 
 
 val published = listOf(
-    "ggdsl-api",
-    "ggdsl-echarts",
-    "ggdsl-lets-plot",
-    "ggdsl-util"
+    "kandy-api",
+    "kandy-echarts",
+    "kandy-lets-plot",
+    "kandy-util"
 )
 
 configure(subprojects.filter { it.name in published }) {
@@ -67,7 +67,7 @@ nexusPublishing {
         sonatype {
             username.set(sonatypeUser)
             password.set(sonatypePassword)
-            repositoryDescription.set("ggdsl staging repository, version: $version")
+            repositoryDescription.set("kandy staging repository, version: $version")
         }
     }
 

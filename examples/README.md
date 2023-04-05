@@ -1,4 +1,4 @@
-# Examples of GGDSL
+# Examples of Kandy
 
 - [IDEA examples](#idea-examples)
 - [Notebook examples](#notebook-examples)

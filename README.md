@@ -1,9 +1,9 @@
 [![Experimental](https://kotl.in/badges/experimental.svg)](https://kotlinlang.org/docs/components-stability.html)
 [![JetBrains incubator project](https://jb.gg/badges/incubator.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
-[![Maven Central](https://img.shields.io/maven-central/v/org.jetbrains.kotlinx/ggdsl-api)](https://search.maven.org/artifact/org.jetbrains.kotlinx/ggdsl-api)
+[![Maven Central](https://img.shields.io/maven-central/v/org.jetbrains.kotlinx/kandy-api)](https://search.maven.org/artifact/org.jetbrains.kotlinx/kandy-api)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
 
-# GGDSL
+# KANDY
 
 Kotlin plotting DSL (and more!) inspired
 by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Grammar_of_Graphics). 
@@ -71,7 +71,7 @@ plot(simpleDataset) {
   }
 }
 ```
-![GGDSL example via Lets-plot](examples/images/lets_plot_simple.png)
+![Kandy example via Lets-plot](examples/images/lets_plot_simple.png)
 
 ### ECharts
 
@@ -111,15 +111,15 @@ plot(dataset) {
   }
 }
 ```
-![GGDSL example echarts](examples/images/echarts_readme_sample.png)
+![Kandy example echarts](examples/images/echarts_readme_sample.png)
 
 ## Modules
-* `ggdsl-api` &mdash; contains `Plot` intermediate representation (IR), base plotting DSL and internal API.
-* `ggdsl-lets-plot` &mdash; plot render implementation for [Lets-Plot](https://github.com/JetBrains/lets-plot) 
+* `kandy-api` &mdash; contains `Plot` intermediate representation (IR), base plotting DSL and internal API.
+* `kandy-lets-plot` &mdash; plot render implementation for [Lets-Plot](https://github.com/JetBrains/lets-plot) 
 with additional DSL and IR features.
-* `ggdsl-dataframe` &mdash; integration with [Kotlin Dataframe](https://github.com/Kotlin/dataframe).
-* `ggdsl-dataframe-lets-plot` &mdash; additional methods compatible with `dataframe` API for `lets-plot` implementation.
-* `ggdsl-echarts` &mdash; plot render implementation for [Apache ECharts](https://echarts.apache.org/en/index.html)
+* `kandy-dataframe` &mdash; integration with [Kotlin Dataframe](https://github.com/Kotlin/dataframe).
+* `kandy-dataframe-lets-plot` &mdash; additional methods compatible with `dataframe` API for `lets-plot` implementation.
+* `kandy-echarts` &mdash; plot render implementation for [Apache ECharts](https://echarts.apache.org/en/index.html)
   with additional DSL and IR features.
 
 ## Using in your projects
@@ -139,7 +139,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation("org.jetbrains.kotlinx:ggdsl-dataframe-lets-plot:$ggdsl_version")
+    implementation("org.jetbrains.kotlinx:kandy-dataframe-lets-plot:$kandy_version")
 }
 ```
 
@@ -156,7 +156,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation "org.jetbrains.kotlinx:ggdsl-dataframe-lets-plot:$ggdsl_version"
+    implementation "org.jetbrains.kotlinx:kandy-dataframe-lets-plot:$kandy_version"
 }
 ```
 
@@ -169,32 +169,32 @@ or just visit to [Datalore](https://datalore.jetbrains.com/).
 
 You can include all necessary dependencies, imports and renders to a notebook with "line magic":
 
-``%use ggdsl($ggdsl_version)``
+``%use kandy($kandy_version)``
 
 Use
 ```
 %useLatestDescriptors
-%use ggdsl
+%use kandy
 ```
 for the latest stable version.
 
 
 Available descriptors:
     
-* `ggdsl` &mdash; api, Lets-Plot implementation & DSL features + DataFrame integration.
-* `ggdsl-lets-plot` &mdash; api, Lets-Plot implementation & DSL features.
-* `ggdsl-dataframe` &mdash; api, DataFrame integration (todo remove???).
-* `ggdsl-echarts` &mdash; api, ECharts implementation & DSL features. // todo with dataframe???
+* `kandy` &mdash; api, Lets-Plot implementation & DSL features + DataFrame integration.
+* `kandy-lets-plot` &mdash; api, Lets-Plot implementation & DSL features.
+* `kandy-dataframe` &mdash; api, DataFrame integration (todo remove???).
+* `kandy-echarts` &mdash; api, ECharts implementation & DSL features. // todo with dataframe???
 
 ## Examples and documentation
 
 
-Examples can be found [here](https://github.com/AndreiKingsley/lib-ggdsl/tree/main/examples).
+Examples can be found [here](https://github.com/AndreiKingsley/lib-kandy/tree/main/examples).
 
 
 ## Contributing
 
-If the library does not provide any functionality that you need, you can [create an issue](https://github.com/AndreiKingsley/lib-ggdsl/issues).
+If the library does not provide any functionality that you need, you can [create an issue](https://github.com/AndreiKingsley/lib-kandy/issues).
 
 You are welcome to contribute &mdash; you can provide an IR translation for a new render engine or create add-ons for 
 an existing one.
