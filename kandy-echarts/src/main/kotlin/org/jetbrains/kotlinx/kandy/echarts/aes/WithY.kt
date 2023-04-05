@@ -11,6 +11,7 @@ import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsPositionalMappingParamet
 import org.jetbrains.kotlinx.kandy.echarts.scale.posMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
+import kotlin.reflect.KProperty
 
 public interface WithY : BindingContext {
     public fun <T> y(value: T): PositionalSetting<T> {
@@ -19,6 +20,10 @@ public interface WithY : BindingContext {
 
     public fun <T> y(
         values: DataColumn<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
+    ): PositionalMapping<T> = posMapping(Y, values, params)
+
+    public fun <T> y(
+        values: KProperty<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
     ): PositionalMapping<T> = posMapping(Y, values, params)
 
     public fun <T> y(

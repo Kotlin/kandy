@@ -11,9 +11,14 @@ import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsPositionalMappingParamet
 import org.jetbrains.kotlinx.kandy.echarts.scale.posFreeScale
 import org.jetbrains.kotlinx.kandy.echarts.scale.posMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
+import kotlin.reflect.KProperty
 
 public fun <T> PlotContext.x(
     column: ColumnReference<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
+): PositionalMapping<T> = posMapping(X, column, params)
+
+public fun <T> PlotContext.x(
+    column: KProperty<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
 ): PositionalMapping<T> = posMapping(X, column, params)
 
 public fun <T> PlotContext.x(
@@ -33,6 +38,10 @@ public fun <T> PlotContext.x(params: EchartsPositionalMappingParameters<T>.() ->
 
 public fun <T> PlotContext.y(
     column: ColumnReference<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
+): PositionalMapping<T> = posMapping(Y, column, params)
+
+public fun <T> PlotContext.y(
+    column: KProperty<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
 ): PositionalMapping<T> = posMapping(Y, column, params)
 
 public fun <T> PlotContext.y(

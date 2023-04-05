@@ -12,6 +12,7 @@ import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMapping
 import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
+import kotlin.reflect.KProperty
 
 public interface WithSymbol : BindingContext {
     public var symbol: Symbol?
@@ -23,6 +24,10 @@ public interface WithSymbol : BindingContext {
     public fun <T> symbol(
         column: ColumnReference<T>, parameters: EchartsNonPositionalMappingParameters<T, Symbol>.() -> Unit = {}
     ): NonPositionalMapping<T, Symbol> = nonPosMapping(SYMBOL, column, parameters)
+
+    public fun <T> symbol(
+        column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Symbol>.() -> Unit = {}
+    ): NonPositionalMapping<T, Symbol> = nonPosMapping(SYMBOL, column, params)
 
     public fun <T> symbol(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Symbol>.() -> Unit = {}

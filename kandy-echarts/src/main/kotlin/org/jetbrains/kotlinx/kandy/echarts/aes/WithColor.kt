@@ -12,6 +12,7 @@ import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.util.color.Color
+import kotlin.reflect.KProperty
 
 public interface WithColor : BindingContext {
     public var color: Color?
@@ -22,6 +23,10 @@ public interface WithColor : BindingContext {
 
     public fun <T> color(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
+    ): NonPositionalMapping<T, Color> = nonPosMapping(COLOR, column, params)
+
+    public fun <T> color(
+        column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
     ): NonPositionalMapping<T, Color> = nonPosMapping(COLOR, column, params)
 
     public fun <T> color(

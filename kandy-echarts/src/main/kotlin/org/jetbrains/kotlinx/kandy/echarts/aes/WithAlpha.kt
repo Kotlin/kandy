@@ -11,6 +11,7 @@ import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingPara
 import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
+import kotlin.reflect.KProperty
 
 public interface WithAlpha : BindingContext {
     public var alpha: Double?
@@ -21,6 +22,10 @@ public interface WithAlpha : BindingContext {
 
     public fun <T> alpha(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+    ): NonPositionalMapping<T, Double> = nonPosMapping(ALPHA, column, params)
+
+    public fun <T> alpha(
+        column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> = nonPosMapping(ALPHA, column, params)
 
     public fun <T> alpha(

@@ -9,9 +9,9 @@ public interface MappingParameters {
 }
 
 public interface PositionalMappingParameters<DomainType>: MappingParameters {
-    public override var scale: PositionalScale<DomainType>
+    public override var scale: PositionalScale<out DomainType>
 }
 
 public interface NonPositionalMappingParameters<DomainType, RangeType>: MappingParameters {
-    public override var scale: NonPositionalScale<DomainType, RangeType>
+    public override var scale: NonPositionalScale<out DomainType, out RangeType>
 }

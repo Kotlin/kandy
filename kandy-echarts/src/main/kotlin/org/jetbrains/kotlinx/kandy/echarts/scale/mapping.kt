@@ -8,12 +8,18 @@ import org.jetbrains.kotlinx.kandy.ir.aes.AesName
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
+import kotlin.reflect.KProperty
 
 
 internal fun <T> BindingContext.posMapping(
     aesName: AesName, column: ColumnReference<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
 ): PositionalMapping<T> =
     addPositionalMapping(aesName, column.name(), EchartsPositionalMappingParameters<T>().apply(params))
+
+internal fun <T> BindingContext.posMapping(
+    aesName: AesName, column: KProperty<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
+): PositionalMapping<T> =
+    addPositionalMapping(aesName, column.name, EchartsPositionalMappingParameters<T>().apply(params))
 
 internal fun <T> BindingContext.posMapping(
     aesName: AesName, values: Iterable<T>,
@@ -39,6 +45,12 @@ internal fun <T, D> BindingContext.nonPosMapping(
     aesName: AesName, column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, D>.() -> Unit = {}
 ): NonPositionalMapping<T, D> = this.addNonPositionalMapping(
     aesName, column.name(), EchartsNonPositionalMappingParameters<T, D>().apply(params)
+)
+
+internal fun <T, D> BindingContext.nonPosMapping(
+    aesName: AesName, column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, D>.() -> Unit = {}
+): NonPositionalMapping<T, D> = this.addNonPositionalMapping(
+    aesName, column.name, EchartsNonPositionalMappingParameters<T, D>().apply(params)
 )
 
 internal fun <T, D> BindingContext.nonPosMapping(
