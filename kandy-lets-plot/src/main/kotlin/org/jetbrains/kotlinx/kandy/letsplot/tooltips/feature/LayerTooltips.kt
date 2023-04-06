@@ -24,7 +24,8 @@ public data class LayerTooltips internal constructor(
         public val FEATURE_NAME: FeatureName = FeatureName("layer_tooltips")
 
 
-        public fun fromContext(
+        @PublishedApi
+        internal fun fromContext(
             variables: List<String>,
             title: String?,
             anchor: Anchor?,

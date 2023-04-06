@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
-import org.jetbrains.kotlinx.kandy.letsplot.scales.AxisParametersWithSetter
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.AxisParametersWithSetter
 
 public fun <T> PlotContext.x(
     column: ColumnReference<T>,

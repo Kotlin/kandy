@@ -18,7 +18,8 @@ public inline fun LayerPlotContext.layout(block: Layout.() -> Unit) {
 }
 
 /**
- * Plot [Layout] accessor.
+ * Plot [Layout] accessor. Returns an existed [Layout]
+ * if it has not already been created or creates a new one otherwise.
  */
 public val LayerPlotContext.layout: Layout
     get() {

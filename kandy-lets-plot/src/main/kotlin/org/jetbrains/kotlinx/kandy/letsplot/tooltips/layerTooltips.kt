@@ -11,43 +11,25 @@ import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
 
 
 /**
- * Inserts value of given [ColumnReference] into format string.
+ * Inserts value of given column into formatted string.
  *
- * @param column [ColumnReference] whose value will be inserted into the tooltip
- * @return format string
+ * @param column column whose value will be inserted into the tooltip
+ * @return formatted string
  */
-
 public fun LayerContext.value(column: ColumnReference<*>): String {
     return "@${datasetHandler.takeColumn(column.name())}"
 }
 
+/**
+ * Inserts value of given column into formatted string.
+ *
+ * @param columnName name of column whose value will be inserted into the tooltip
+ * @return formatted string
+ */
 public fun LayerContext.value(columnName: String): String {
     return "@${datasetHandler.takeColumn(columnName)}"
 }
 
-/* TODO
-/**
- * Inserts value of given aesthetic attribute into format string.
- *
- * @param aes aesthetic attribute whose value will be inserted into the tooltip
- * @return format string
- */
-public fun value(aes: Aes): String {
-    return "^${aes.name.name}"
-}
-
-
-
-/**
- * Inserts value of given statistics into format string.
- *
- * @param stat statistics whose value will be inserted into the tooltip
- * @return format string
- */
-public fun value(stat: Statistic<*>): String {
-    return "@${stat.id}"
-}
-*/
 /**
  * Tooltips fixed position.
  */
@@ -66,23 +48,20 @@ public data class Anchor(val value: String) {
 }
 
 /**
- * Defines the format for displaying values of this layer.
+ * Defines the tooltips format for this layer.
  *
  * Creates a [LayerTooltipsContext]. In this context, you can configure lines of tooltip
  * by using line(..) methods.
  *
  * @see [LayerTooltipsContext].
  *
- * @param variables list of [ColumnReference] to crete a general multiline tooltip with.
+ * @param variables list of columns to crete a general multiline tooltip with.
  * Useful for specifying the tooltip content quickly, instead of configuring it via the line(..) methods.
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
  * @param hide flag of tooltips displaying.
- * @param formats map of [ColumnReference] to format string of its value.
- * @param aesFormats map of [Aes] to format string of its value.
- * The format will be applied to the mapped value in the default tooltip or to the corresponding
- * value specified in the line template.
+ * @param formats map of columns to format string of its value.
  * @see value
  */
 public inline fun LayerContext.tooltips(
@@ -92,8 +71,6 @@ public inline fun LayerContext.tooltips(
     minWidth: Double? = null,
     hide: Boolean = false,
     formats: Map<ColumnReference<*>, String> = mapOf(),
-    // todo aesFormats: Map<Aes, String> = mapOf(),
-    //statFormats: Map<Statistic<*>, String> = mapOf(),
     tooltipsContextAction: LayerTooltipsContext.() -> Unit = {}
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
@@ -109,6 +86,12 @@ public inline fun LayerContext.tooltips(
     )
 }
 
+/**
+ * Defines the tooltips format for this layer.
+ *
+ * @param variables list of column names to crete a general multiline tooltip with.
+ * @see value
+ */
 public fun LayerContext.tooltips(
     vararg variables: String
 ) {
@@ -123,6 +106,12 @@ public fun LayerContext.tooltips(
     )
 }
 
+/**
+ * Defines the tooltips format for this layer.
+ *
+ * @param variables list of columns to crete a general multiline tooltip with.
+ * @see value
+ */
 public fun LayerContext.tooltips(
     vararg variables: ColumnReference<*>
 ) {

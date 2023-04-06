@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.kandy.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.kandy.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.kandy.util.color.Color
 
-// todo categorical
+// todo categorical and nullable
 
 public data class ScaleContinuousColorGradientN<DomainType>(
     val domainLimits: Pair<DomainType?, DomainType?>?,
@@ -21,33 +21,48 @@ public data class ScaleContinuousColorGradientN<DomainType>(
  * Creates smooth color gradient between multiple colors.
  *
  * @param DomainType type of domain
- * @param domainLimits segment defining the domain
- * @param transform the transformation of scale
- * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
+ * @param gradientColors gradient color [List].
+ * @param domain [ClosedRange] defining the scale domain.
+ * @param nullValue value which null is mapped to.
+ * @param transform scale transformation.
+ *
+ * @return new continuous color scale.
  */
 public fun <DomainType : Comparable<DomainType>> continuousColorGradientN(
-    rangeColors: List<Color>,
-    domainLimits: ClosedRange<DomainType>,
+    gradientColors: List<Color>,
+    domain: ClosedRange<DomainType>,
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradientN<DomainType> = ScaleContinuousColorGradientN(
-    domainLimits.let {
+    domain.let {
         it.start to it.endInclusive
-    }, rangeColors, nullValue, transform
+    }, gradientColors, nullValue, transform
 )
 
+/**
+ * Creates smooth color gradient between multiple colors.
+ *
+ * @param DomainType type of domain
+ * @param gradientColors gradient color [List].
+ * @param domainMin scale domain minimum.
+ * @param domainMax scale domain maximum.
+ * @param nullValue value which null is mapped to.
+ * @param transform scale transformation.
+ *
+ * @return new continuous color scale.
+ */
 public fun <DomainType> continuousColorGradientN(
-    rangeColors: List<Color>,
+    gradientColors: List<Color>,
     domainMin: DomainType? = null,
     domainMax: DomainType? = null,
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradientN<DomainType> = ScaleContinuousColorGradientN(
-    domainMin to domainMax, rangeColors, nullValue, transform
+    domainMin to domainMax, gradientColors, nullValue, transform
 )
 
 public data class ScaleContinuousColorGradient2<DomainType>(
-    val domainLimits: Pair<DomainType, DomainType>? = null,
+    val domainLimits: Pair<DomainType?, DomainType?>?,
     val low: Color,
     val mid: Color,
     val high: Color,
@@ -59,20 +74,51 @@ public data class ScaleContinuousColorGradient2<DomainType>(
 /**
  * Creates diverging color gradient (low-mid-high) for color aesthetic.
  *
- * TODO
  * @param DomainType type of domain
- * @param domainLimits segment defining the domain
+ * @param low color, scale range minimum.
+ * @param mid color, corresponding to the midpoint.
+ * @param high color, scale range maximum.
+ * @param midpoint point on scale domain which is mapped to [mid] color.
+ * @param domain segment defining the domain
  * @param transform the transformation of scale
- * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
+ * @return new continuous color scale.
  */
-public inline fun <reified DomainType> continuousColorGradient2(
+public fun <DomainType : Comparable<DomainType>> continuousColorGradient2(
     low: Color,
     mid: Color,
     high: Color,
     midpoint: Double,
-    domainLimits: Pair<DomainType & Any, DomainType & Any>? = null,
+    domain: ClosedRange<DomainType>,
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGradient2<DomainType> = ScaleContinuousColorGradient2(
-    domainLimits, low, mid, high, midpoint, nullValue, transform
+    domain.let {
+        it.start to it.endInclusive
+    }, low, mid, high, midpoint, nullValue, transform
+)
+
+/**
+ * Creates diverging color gradient (low-mid-high) for color aesthetic.
+ *
+ * @param DomainType type of domain
+ * @param low color, scale range minimum.
+ * @param mid color, corresponding to the midpoint.
+ * @param high color, scale range maximum.
+ * @param midpoint point on scale domain which is mapped to [mid] color.
+ * @param domainMin scale domain minimum.
+ * @param domainMax scale domain maximum.
+ * @param transform the transformation of scale
+ * @return new continuous color scale.
+ */
+public fun <DomainType> continuousColorGradient2(
+    low: Color,
+    mid: Color,
+    high: Color,
+    midpoint: Double,
+    domainMin: DomainType? = null,
+    domainMax: DomainType? = null,
+    nullValue: Color? = null,
+    transform: Transformation? = null
+): ScaleContinuousColorGradient2<DomainType> = ScaleContinuousColorGradient2(
+    domainMin to domainMax, low, mid, high, midpoint, nullValue, transform
 )

@@ -21,6 +21,15 @@ public class HistogramContext(parent: LayerCollectorContext) : BarsContext(paren
 
 
 //todo type
+/**
+ * Builds histogram by given column. Creates [HistogramContext], combining [BinStatContext] and [BarsContext].
+ * @param column column for which the histogram are counted.
+ * @param bins [Bins] count parameter.Determines the parameter
+ * by which the bins will be calculated - either their number or their width.
+ * @param binXPos bins position adjustment.
+ * @see [BinStatContext]
+ * @see [BarsContext]
+ */
 public inline fun LayerCollectorContext.histogram(
     column: ColumnReference<*>,
     bins: Bins = Bins.byNumber(20),
@@ -35,6 +44,15 @@ public inline fun LayerCollectorContext.histogram(
     }
 }
 
+/**
+ * Builds histogram by given column. Creates [HistogramContext], combining [BinStatContext] and [BarsContext].
+ * @param columnName name of column for which the histogram are counted.
+ * @param bins [Bins] count parameter.Determines the parameter
+ * by which the bins will be calculated - either their number or their width.
+ * @param binXPos bins position adjustment.
+ * @see [BinStatContext]
+ * @see [BarsContext]
+ */
 public inline fun LayerCollectorContext.histogram(
     columnName: String,
     bins: Bins = Bins.byNumber(20),
@@ -49,13 +67,22 @@ public inline fun LayerCollectorContext.histogram(
     }
 }
 
+/**
+ * Builds histogram of given values. Creates [HistogramContext], combining [BinStatContext] and [BarsContext].
+ * @param values values for which the histogram are counted.
+ * @param bins [Bins] count parameter.Determines the parameter
+ * by which the bins will be calculated - either their number or their width.
+ * @param binXPos bins position adjustment.
+ * @see [BinStatContext]
+ * @see [BarsContext]
+ */
 public inline fun <reified T : Any> LayerCollectorContext.histogram(
-    sample: Iterable<T>,
+    values: Iterable<T>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: HistogramContext.() -> Unit = {}
 ) {
-    statBin(sample, bins, binXPos) {
+    statBin(values, bins, binXPos) {
         addLayer(HistogramContext(this).apply {
             x(Stat.BINS)
             y(Stat.COUNT)
@@ -63,6 +90,15 @@ public inline fun <reified T : Any> LayerCollectorContext.histogram(
     }
 }
 
+/**
+ * Builds histogram by given column. Creates [HistogramContext], combining [BinStatContext] and [BarsContext].
+ * @param column column for which the histogram are counted.
+ * @param bins [Bins] count parameter.Determines the parameter
+ * by which the bins will be calculated - either their number or their width.
+ * @param binXPos bins position adjustment.
+ * @see [BinStatContext]
+ * @see [BarsContext]
+ */
 public inline fun LayerCollectorContext.histogram(
     column: DataColumn<*>,
     bins: Bins = Bins.byNumber(20),
@@ -76,5 +112,3 @@ public inline fun LayerCollectorContext.histogram(
         }.apply(block), BAR)
     }
 }
-
-

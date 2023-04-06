@@ -10,20 +10,21 @@ import org.jetbrains.kotlinx.kandy.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.kandy.util.color.Color
 
 /**
- * Creates a qualitative color scale with evenly spaced hues.
+ * Creates a qualitative continuous color scale with evenly spaced hues.
  *
- * @param DomainType type of domain
- * @param domainLimits segment defining the domain
- * @param huesRange a pair of numbers Range of hues, in [0,360]
+ * @param DomainType scale domain type.
+ * @param domainLimits [ClosedRange] defining the scale domain.
+ * @param huesRange [ClosedRange] of hues, in [0,360]
  * @param chroma numeric Chroma (intensity of color), maximum value varies depending on
  * @param luminance numeric Luminance (lightness), in [0,100]
- * @param hueStart list of two numbers Hue to start at
- * @param direction numeric Direction to travel around the color wheel
- * @param transform the transformation of scale
- * @return new [ContinuousScale]/[CustomNonPositionalScale] with given limits
+ * @param hueStart number Hue to start at
+ * @param direction [WheelDirection] to travel around the color wheel.
+ * @param nullValue value which null is mapped to.
+ * @param transform scale transformation.
+ * @return new continuous color scale.
  */
 public inline fun <reified DomainType : Comparable<DomainType>> continuousColorHue(
-    huesRange: Pair<Int, Int>? = null,
+    huesRange: ClosedRange<Int>? = null,
     chroma: Int? = null,
     luminance: Int? = null,
     hueStart: Int? = null,
@@ -34,11 +35,28 @@ public inline fun <reified DomainType : Comparable<DomainType>> continuousColorH
 ): ScaleContinuousColorHue<DomainType> = ScaleContinuousColorHue(
     domainLimits.let {
         it.start to it.endInclusive
-    }, huesRange, chroma, luminance, hueStart, direction, nullValue, transform
+    }, huesRange?.let {
+        it.start to it.endInclusive
+    }, chroma, luminance, hueStart, direction, nullValue, transform
 )
 
+/**
+ * Creates a qualitative continuous color scale with evenly spaced hues.
+ *
+ * @param DomainType scale domain type.
+ * @param domainMin scale domain minimum.
+ * @param domainMax scale domain maximum.
+ * @param huesRange [ClosedRange] of hues, in [0,360]
+ * @param chroma numeric Chroma (intensity of color), maximum value varies depending on
+ * @param luminance numeric Luminance (lightness), in [0,100]
+ * @param hueStart number Hue to start at
+ * @param direction [WheelDirection] to travel around the color wheel.
+ * @param nullValue value which null is mapped to.
+ * @param transform scale transformation.
+ * @return new continuous color scale.
+ */
 public inline fun <reified DomainType : Comparable<DomainType>> continuousColorHue(
-    huesRange: Pair<Int, Int>? = null,
+    huesRange: ClosedRange<Int>? = null,
     chroma: Int? = null,
     luminance: Int? = null,
     hueStart: Int? = null,
@@ -48,19 +66,31 @@ public inline fun <reified DomainType : Comparable<DomainType>> continuousColorH
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorHue<DomainType> = ScaleContinuousColorHue(
-    domainMin to domainMax, huesRange, chroma, luminance, hueStart, direction, nullValue, transform
+    domainMin to domainMax, huesRange?.let {
+        it.start to it.endInclusive
+    }, chroma, luminance, hueStart, direction, nullValue, transform
 )
 
 // todo(LP) categories support
+/**
+ * Creates a qualitative categorical color scale with evenly spaced hues.
+ *
+ * @param DomainType scale domain type.
+ * @param huesRange [ClosedRange] of hues, in [0,360]
+ * @param chroma numeric Chroma (intensity of color), maximum value varies depending on
+ * @param luminance numeric Luminance (lightness), in [0,100]
+ * @param hueStart number Hue to start at
+ * @param direction [WheelDirection] to travel around the color wheel.
+ * @return new categorical color scale.
+ */
 public fun <DomainType> categoricalColorHue(
     huesRange: Pair<Int, Int>? = null,
     chroma: Int? = null,
     luminance: Int? = null,
     hueStart: Int? = null,
     direction: WheelDirection? = null,
-    //nullValue: Color? = null,
 ): ScaleCategoricalColorHue<DomainType> = ScaleCategoricalColorHue<DomainType>(
-    huesRange, chroma, luminance, hueStart, direction, //nullValue?
+    huesRange, chroma, luminance, hueStart, direction,
 )
 
 public data class WheelDirection internal constructor(val value: Int) {
