@@ -1,12 +1,9 @@
 /*
-* Copyright 2020-2022 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
-//import org.jetbrains.kotlinx.kandy.dsl.NamedData
-//import org.jetbrains.kotlinx.kandy.dsl.column.invoke
-//import org.jetbrains.kotlinx.kandy.ir.data.TypedList
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetWrapFeature
