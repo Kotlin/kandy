@@ -41,11 +41,22 @@ public data class Layout(
     @PublishedApi
     internal var customTheme: CustomTheme? = null
 
+    /**
+     * Sets up plot theme.
+     *
+     * @param theme one of pre-cooked theme.
+     * @param block customization in addition to the main theme.
+     */
     public inline fun theme(theme: Theme, block: CustomTheme.() -> Unit = {}) {
         this.theme = theme
         customTheme = CustomTheme().apply(block)
     }
 
+    /**
+     * Sets up plot theme.
+     *
+     * @param block custom theme builder.
+     */
     public inline fun theme(block: CustomTheme.() -> Unit) {
         theme = CustomTheme().apply(block)
     }
