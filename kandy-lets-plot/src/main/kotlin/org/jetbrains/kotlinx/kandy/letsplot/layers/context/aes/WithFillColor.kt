@@ -19,6 +19,7 @@ public interface WithFillColor : BindingContext {
         set(value) {
             addNonPositionalSetting(FILL, value)
         }
+
     public fun <T> fillColor(
         column: ColumnReference<T>,
         parameters: LetsPlotNonPositionalMappingParameters<T, Color>.() -> Unit = {}

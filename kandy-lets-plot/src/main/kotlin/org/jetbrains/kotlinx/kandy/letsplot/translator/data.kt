@@ -31,12 +31,15 @@ internal object DateTimeMaster {
                 typeOf<LocalDate>(), typeOf<LocalDate?>() -> values.map {
                     (it as? LocalDate)?.atStartOfDayIn((TimeZone.currentSystemDefault()))
                 }
+
                 typeOf<LocalDateTime>(), typeOf<LocalDateTime?>() -> values.map { dateTime ->
                     (dateTime as? LocalDateTime)?.toInstant(TimeZone.currentSystemDefault())
                 }
+
                 typeOf<LocalTime>(), typeOf<LocalTime?>() -> values.map { time ->
                     (time as? LocalTime)?.toMillisecondOfDay()
                 }
+
                 else -> values
             }).toList()
         }.toMap()

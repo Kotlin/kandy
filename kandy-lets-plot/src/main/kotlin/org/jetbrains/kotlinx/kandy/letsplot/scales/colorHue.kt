@@ -8,6 +8,7 @@ import org.jetbrains.kotlinx.kandy.ir.scale.CategoricalScale
 import org.jetbrains.kotlinx.kandy.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.kandy.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.kandy.util.color.Color
+
 /**
  * Creates a qualitative color scale with evenly spaced hues.
  *
@@ -62,7 +63,6 @@ public fun <DomainType> categoricalColorHue(
     huesRange, chroma, luminance, hueStart, direction, //nullValue?
 )
 
-//@Serializable
 public data class WheelDirection internal constructor(val value: Int) {
     public companion object {
         public val CLOCKWISE: WheelDirection = WheelDirection(1)
@@ -80,9 +80,8 @@ public sealed interface ScaleColorHue<DomainType> {
     public val transform: Transformation?
 }
 
-//@Serializable
 public data class ScaleContinuousColorHue<DomainType> @PublishedApi internal constructor(
-    override val domainLimits: Pair<DomainType ?, DomainType ?>?,
+    override val domainLimits: Pair<DomainType?, DomainType?>?,
     override val huesRange: Pair<Int, Int>?,
     override val chroma: Int?,
     override val luminance: Int?,
@@ -92,7 +91,6 @@ public data class ScaleContinuousColorHue<DomainType> @PublishedApi internal con
     override val transform: Transformation?
 ) : ContinuousScale<Color>, CustomNonPositionalScale<DomainType, Color>, ScaleColorHue<DomainType>
 
-//@Serializable
 public data class ScaleCategoricalColorHue<DomainType> @PublishedApi internal constructor(
     override val huesRange: Pair<Int, Int>?,
     override val chroma: Int?,

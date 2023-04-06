@@ -16,9 +16,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetWrapFeature
  * Context opened by [facetWrap].
  */
 /*@PlotDslMarker*/
-public class FacetWrapContext @PublishedApi internal constructor(){
+public class FacetWrapContext @PublishedApi internal constructor() {
     private val facets = mutableListOf<ColumnReference<*>>()
-    private val orders= mutableListOf<OrderDirection>()
+    private val orders = mutableListOf<OrderDirection>()
     private val formats = mutableListOf<String?>()
 
     /**

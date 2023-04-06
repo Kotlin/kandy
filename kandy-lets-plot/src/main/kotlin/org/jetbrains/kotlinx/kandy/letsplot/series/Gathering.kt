@@ -14,7 +14,6 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.position.Position
 
-//@Serializable
 public data class Gathering(
     val geom: Geom,
     val data: NamedData,
@@ -23,7 +22,6 @@ public data class Gathering(
     val position: Position
 )
 
-//@Serializable
 public class GatheringList : PlotFeature {
     public val gatheringList: MutableList<Gathering> = mutableListOf<Gathering>()
     override val featureName: FeatureName = FEATURE_NAME
@@ -33,7 +31,6 @@ public class GatheringList : PlotFeature {
     }
 }
 
-//@Serializable
 public data class Series(
     val mappings: Map<AesName, Mapping>,
     val settings: Map<AesName, Setting>,

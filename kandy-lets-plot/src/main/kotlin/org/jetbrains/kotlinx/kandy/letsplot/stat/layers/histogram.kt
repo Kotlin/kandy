@@ -49,7 +49,7 @@ public inline fun LayerCollectorContext.histogram(
     }
 }
 
-public inline fun <reified T:Any> LayerCollectorContext.histogram(
+public inline fun <reified T : Any> LayerCollectorContext.histogram(
     sample: Iterable<T>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),

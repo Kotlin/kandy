@@ -18,6 +18,7 @@ public interface WithSize : BindingContext {
         set(value) {
             addNonPositionalSetting(SIZE, value)
         }
+
     public fun <T> size(
         column: ColumnReference<T>,
         parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}

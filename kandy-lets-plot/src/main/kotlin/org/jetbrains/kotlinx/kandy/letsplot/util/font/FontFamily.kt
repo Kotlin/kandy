@@ -9,7 +9,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.util.SimpleValueWrapper
 /**
  * Font family.
  */
-//@Serializable
 public data class FontFamily internal constructor(override val value: String) : SimpleValueWrapper {
     public companion object {
         public val SANS: FontFamily = FontFamily("sans")

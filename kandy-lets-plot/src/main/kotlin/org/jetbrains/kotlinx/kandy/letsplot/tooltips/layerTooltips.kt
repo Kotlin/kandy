@@ -51,7 +51,6 @@ public fun value(stat: Statistic<*>): String {
 /**
  * Tooltips fixed position.
  */
-//@Serializable
 public data class Anchor(val value: String) {
     public companion object {
         public val TOP_RIGHT: Anchor = Anchor("top_right")
@@ -104,8 +103,8 @@ public inline fun LayerContext.tooltips(
         minWidth,
         hide,
         formats.map { it.key.name() to it.value },
-         //   + aesFormats.map { "^" + it.key.name.name to it.value }
-          //  + statFormats.map { it.key.id to it.value },
+        //   + aesFormats.map { "^" + it.key.name.name to it.value }
+        //  + statFormats.map { it.key.id to it.value },
         LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
 }

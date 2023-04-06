@@ -8,8 +8,8 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
-public class LineContext(parent: LayerCollectorContext)
-    :LayerContext(parent), WithX, WithY, WithAlpha, WithColor, WithWidthAsSize, WithType
+public class LineContext(parent: LayerCollectorContext) : LayerContext(parent), WithX, WithY, WithAlpha, WithColor,
+    WithWidthAsSize, WithType
 
 /*
 public interface LineContextInterface: BindingContext {

@@ -13,7 +13,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
 
 //todo
 /*@PlotDslMarker*/
-//@Serializable
 public data class Layout(
     var title: String? = null,
     var subtitle: String? = null,

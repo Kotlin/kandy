@@ -24,7 +24,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetWrapFeature
  * @property ASCENDING ascending ordering direction (by default).
  * @property DESCENDING descending ordering direction.
  */
-//@Serializable
 public data class OrderDirection internal constructor(val value: Int) {
     public companion object {
         public val ASCENDING: OrderDirection = OrderDirection(1)
@@ -38,7 +37,6 @@ public data class OrderDirection internal constructor(val value: Int) {
  * @property VERTICAL vertical direction.
  * @property HORIZONTAL descending direction (by default).
  */
-//@Serializable
 public data class Direction internal constructor(val name: String) {
     public companion object {
         public val VERTICAL: Direction = Direction("v")
@@ -54,7 +52,6 @@ public data class Direction internal constructor(val name: String) {
  * @property FREE_X free scales across X.
  * @property FREE_Y free scales across Y.
  */
-//@Serializable
 public data class ScalesSharing internal constructor(val name: String) {
     public companion object {
         public val FIXED: ScalesSharing = ScalesSharing("fixed")

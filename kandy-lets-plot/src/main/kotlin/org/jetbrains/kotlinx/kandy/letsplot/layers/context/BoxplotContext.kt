@@ -7,8 +7,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
-public class BoxplotContext(parent: LayerCollectorContext)
-    : LayerWithBorderLineContext(parent), WithX, WithAlpha, WithFillColor, WithWidth,
+public class BoxplotContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithX, WithAlpha,
+    WithFillColor, WithWidth,
     WithLower, WithUpper, WithMiddle, WithYMin, WithYMax, WithFatten, WithYFree
 
 /*import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext

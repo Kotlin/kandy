@@ -55,7 +55,7 @@ internal fun FacetWrapFeature.wrap(): OptionsMap {
 }
 
 internal fun Flavor.wrap(): OptionsMap {
-    return when(this) {
+    return when (this) {
         Flavor.DARCULA -> flavorDarcula()
         Flavor.SOLARIZED_LIGHT -> flavorSolarizedLight()
         Flavor.SOLARIZED_DARK -> flavorSolarizedLight()

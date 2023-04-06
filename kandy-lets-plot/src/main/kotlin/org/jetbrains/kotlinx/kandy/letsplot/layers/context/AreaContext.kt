@@ -11,6 +11,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.WithX
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.WithY
 
 
-public class AreaContext(parent: LayerCollectorContext)
-    : LayerWithBorderLineContext(parent), WithX, WithY, WithAlpha, WithFillColor
+public class AreaContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithX, WithY, WithAlpha,
+    WithFillColor
 

@@ -21,15 +21,17 @@ import kotlin.test.assertNotNull
 internal class ScaleWrappingTest {
     @Test
     fun testPos() {
-        val range = 2.0 .. 11.1
+        val range = 2.0..11.1
         val scale = PositionalContinuousScale<Double>(range.start, range.endInclusive, null, null)
         val wrappedScale = scale.wrap(X, typeOf<Double>(), null, false)
         assertNotNull(wrappedScale)
         assertEquals(
-            listOf(mapOf(
-                "aesthetic" to "x",
-                "limits" to listOf(2.0, 11.1)
-            )),
+            listOf(
+                mapOf(
+                    "aesthetic" to "x",
+                    "limits" to listOf(2.0, 11.1)
+                )
+            ),
             wrappedScale.toSpec()
         )
     }
@@ -45,10 +47,12 @@ internal class ScaleWrappingTest {
         val wrappedScale = scale.wrap(FILL, typeOf<String>(), null, false)
         assertNotNull(wrappedScale)
         assertEquals(
-            listOf(mapOf(
-                "aesthetic" to "fill",
-                "values" to listOf("#000000", "#ee6666", "#3ba272")
-            )),
+            listOf(
+                mapOf(
+                    "aesthetic" to "fill",
+                    "values" to listOf("#000000", "#ee6666", "#3ba272")
+                )
+            ),
             wrappedScale.toSpec()
         )
     }
@@ -66,20 +70,22 @@ internal class ScaleWrappingTest {
         val wrappedScale = scale.wrap(SIZE, typeOf<Double>(), null, false)
         assertNotNull(wrappedScale)
         assertEquals(
-            listOf(mapOf(
-                "aesthetic" to "size",
-                "limits" to categories.map { it.toDouble() },
-                "values" to values + nullValue, // TODO!!
-                "na_value" to nullValue,
-            )),
+            listOf(
+                mapOf(
+                    "aesthetic" to "size",
+                    "limits" to categories.map { it.toDouble() },
+                    "values" to values + nullValue, // TODO!!
+                    "na_value" to nullValue,
+                )
+            ),
             wrappedScale.toSpec()
         )
     }
 
     @Test
     fun testNonPosContinuousNull() {
-        val domainLimits = 0.5 .. 0.9
-        val rangeLimits: ClosedRange<Color> = Color.RED .. Color.GREEN
+        val domainLimits = 0.5..0.9
+        val rangeLimits: ClosedRange<Color> = Color.RED..Color.GREEN
         val nullValue = Color.GREY
         val scale = NonPositionalContinuousScale<Double, Color>(
             domainLimits.start,
@@ -92,14 +98,16 @@ internal class ScaleWrappingTest {
         val wrappedScale = scale.wrap(COLOR, typeOf<Double>(), null, false)
         assertNotNull(wrappedScale)
         assertEquals(
-            listOf(mapOf(
-                "aesthetic" to "color",
-                "scale_mapper_kind" to "color_gradient",
-                "limits" to listOf(domainLimits.start, domainLimits.endInclusive),
-                "low" to "#ee6666",
-                "high" to "#3ba272",
-                "na_value" to "#a39999",
-            )),
+            listOf(
+                mapOf(
+                    "aesthetic" to "color",
+                    "scale_mapper_kind" to "color_gradient",
+                    "limits" to listOf(domainLimits.start, domainLimits.endInclusive),
+                    "low" to "#ee6666",
+                    "high" to "#3ba272",
+                    "na_value" to "#a39999",
+                )
+            ),
             wrappedScale.toSpec()
         )
     }

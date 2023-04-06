@@ -21,6 +21,7 @@ import kotlin.test.assertEquals
 
 internal class PositionTest {
     private val emptyDataset = mapOf<String, List<*>>()
+
     @Test
     fun testSimple() {
         val plot = plot(emptyDataset) {
@@ -80,7 +81,7 @@ internal class PositionTest {
                         mapOf(),
                         mapOf(
                             Position.FEATURE_NAME to
-                                Position.JitterDodge(2.0, 3.0, 1.0)
+                                    Position.JitterDodge(2.0, 3.0, 1.0)
                         )
                     ),
                     Layer(

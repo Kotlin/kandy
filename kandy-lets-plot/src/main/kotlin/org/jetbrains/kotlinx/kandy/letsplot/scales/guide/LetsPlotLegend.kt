@@ -10,33 +10,34 @@ import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
 public sealed interface LegendType
 
-//@Serializable
 public class None internal constructor() : LegendType
 
-//@Serializable
 public data class DiscreteLegend internal constructor(
     val nRow: Int? = null,
     val nCol: Int? = null,
     val byRow: Boolean? = null
 ) : LegendType
 
-//@Serializable
 public data class ColorBar internal constructor(
     val barWidth: Double? = null,
     val barHeight: Double? = null,
     val nBin: Int? = null
 ) : LegendType
 
-// TODO
-//@Serializable
-/*@PlotDslMarker*/
+// todo separate model and context
+/**
+ * Legend, i.e. guide for non-positional scale.
+ *
+ * @property name legend name.
+ * @property type legend type.
+ */
 public data class Legend<DomainType, out RangeType> @PublishedApi internal constructor(
     var name: String? = null,
     // todo expand & trans
     var type: LegendType? = null,
-            internal var breaks: List<DomainType>? = null,
-            internal var labels: List<String>? = null,
-            internal var format: String? = null,
+    internal var breaks: List<DomainType>? = null,
+    internal var labels: List<String>? = null,
+    internal var format: String? = null,
 ) : SelfInvocationContext, ScaleParameters {
 
 
@@ -62,14 +63,32 @@ public data class Legend<DomainType, out RangeType> @PublishedApi internal const
     }
 }
 
+/**
+ * Do not display the legend.
+ */
 public fun Legend<*, *>.none(): None = None()
 
+/**
+ * Legend guide.
+ * Legend type guide shows key (i.e., geoms) mapped onto values.
+ *
+ * @param nRow number of rows in legend's guide.
+ * @param nCol number of columns in legend's guide.
+ * @param byRow type of output: by row (default), or by column.
+ */
 public fun Legend<*, *>.discreteLegend(
     nRow: Int? = null,
     nCol: Int? = null,
     byRow: Boolean? = null
 ): DiscreteLegend = DiscreteLegend(nRow, nCol, byRow)
 
+/**
+ * Continuous color bar guide.
+ * Color bar guide shows continuous color scales mapped onto values.
+ * @param barWidth color bar width.
+ * @param barHeight color bar height.
+ * @param nBin number of bins in color bar.
+ */
 public fun Legend<*, Color>.colorBar(
     barWidth: Double? = null,
     barHeight: Double? = null,

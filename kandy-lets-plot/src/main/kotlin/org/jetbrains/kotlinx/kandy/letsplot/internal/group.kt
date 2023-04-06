@@ -9,19 +9,3 @@ import org.jetbrains.kotlinx.kandy.ir.aes.AesName
 internal const val MERGED_GROUPS: String = "&merged_groups"
 
 internal val GROUP: AesName = AesName("group")
-
-/*
-//TODO
-internal data class GroupAes(override val context: BindingContext): NonScalablePositionalAes {
-    override val name: AesName = GROUP
-}
-
- */
-
-/**
- * TODO
-
-public val LayerContextInterface.splitBy: NonScalablePositionalAes
-    get() = GroupAes(this)
-
-*/

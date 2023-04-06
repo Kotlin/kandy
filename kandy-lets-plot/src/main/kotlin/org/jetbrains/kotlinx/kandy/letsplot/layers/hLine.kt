@@ -12,6 +12,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.HLineContext
 
 @PublishedApi
 internal val H_LINE: LetsPlotGeom = LetsPlotGeom("hLine")
+
 /*
 /**
  * Adds a new horizontal line layer.

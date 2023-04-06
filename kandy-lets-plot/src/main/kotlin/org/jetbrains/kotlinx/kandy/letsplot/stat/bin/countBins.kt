@@ -22,10 +22,10 @@ import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 
-internal fun BinXPos.toKind(): BinStat.XPosKind = when(this) {
+internal fun BinXPos.toKind(): BinStat.XPosKind = when (this) {
     is BinXPos.None -> BinStat.XPosKind.NONE
     is BinXPos.Boundary -> BinStat.XPosKind.BOUNDARY
-    is BinXPos.Center ->  BinStat.XPosKind.CENTER
+    is BinXPos.Center -> BinStat.XPosKind.CENTER
 }
 
 // TODO internal from lp core
@@ -41,7 +41,7 @@ internal fun splitByGroup(data: DataFrame, groups: (Int) -> Int): List<DataFrame
 }
 
 internal class TypeProcessor(val type: KType) {
-   private val datetimeTypes = listOf(
+    private val datetimeTypes = listOf(
         typeOf<Instant>(),
         typeOf<LocalDateTime>(),
         typeOf<LocalDate>(),
@@ -66,8 +66,8 @@ internal class TypeProcessor(val type: KType) {
             (it as LocalDateTime).toInstant(timezone).toDouble()
         },
         typeOf<LocalDate>() to {
-           (it as LocalDate).toEpochDays().toDouble()
-        } ,
+            (it as LocalDate).toEpochDays().toDouble()
+        },
         typeOf<LocalTime>() to {
             (it as LocalTime).toNanosecondOfDay().toDouble()
         }
@@ -76,7 +76,7 @@ internal class TypeProcessor(val type: KType) {
     private val typeToPostprocessor: Map<KType, (Double) -> Any> = mapOf(
         typeOf<Instant>() to {
             it.toInstant()
-        } ,
+        },
         typeOf<LocalDateTime>() to {
             it.toInstant().toLocalDateTime(timezone)
         },
@@ -90,7 +90,7 @@ internal class TypeProcessor(val type: KType) {
     )
 
     fun preprocess(value: Any): Double {
-        return when(value) {
+        return when (value) {
             is Number -> value.toDouble()
             else -> typeToPreprocessor[type]!!(value)
         }
@@ -99,7 +99,7 @@ internal class TypeProcessor(val type: KType) {
     fun postprocess(value: Double): Any {
         return if (type in datetimeTypes) {
             typeToPostprocessor[type]!!(value)
-        }  else {
+        } else {
             value
         }
     }
@@ -112,9 +112,9 @@ internal fun countBinsImpl(
     bins: Bins,
     binXPos: BinXPos
 ): NamedData {
-    val (binCount, binWidth) = when(bins) {
+    val (binCount, binWidth) = when (bins) {
         is Bins.ByNumber -> bins.number to null
-        is  Bins.ByWidth -> 0 to bins.width
+        is Bins.ByWidth -> 0 to bins.width
     }
     val stat = BinStat(binCount, binWidth, binXPos.toKind(), binXPos.posValue)
 
@@ -126,11 +126,13 @@ internal fun countBinsImpl(
     val dfCounted = stat.apply(df, statContext)
 
     //println(dfCounted[Stats.X])
-    return NamedData(dataFrameOf(
-        BINS to dfCounted[Stats.X].map { typeProcessor.postprocess(it as Double)},
-        COUNT to dfCounted[Stats.COUNT].map { it as Double },
-        DENSITY to dfCounted[Stats.DENSITY].map { it as Double },
-    ))
+    return NamedData(
+        dataFrameOf(
+            BINS to dfCounted[Stats.X].map { typeProcessor.postprocess(it as Double) },
+            COUNT to dfCounted[Stats.COUNT].map { it as Double },
+            DENSITY to dfCounted[Stats.DENSITY].map { it as Double },
+        )
+    )
 }
 
 @PublishedApi
@@ -145,9 +147,9 @@ internal fun countBinsImpl(
     val df = data.origin.toDataFrame(column, variables, typeProcessor)
     val groupingContext = GroupingContext(df, variables, null, true)
 
-    val (binCount, binWidth) = when(bins) {
+    val (binCount, binWidth) = when (bins) {
         is Bins.ByNumber -> bins.number to null
-        is  Bins.ByWidth -> 0 to bins.width
+        is Bins.ByWidth -> 0 to bins.width
     }
     val stat = BinStat(binCount, binWidth, binXPos.toKind(), binXPos.posValue)
     val statContext = SimpleStatContext(df)
@@ -168,7 +170,7 @@ internal fun countBinsImpl(
         buffer[COUNT]!!.addAll(dfCounted[Stats.COUNT].map { it as Double })
         buffer[DENSITY]!!.addAll(dfCounted[Stats.DENSITY].map { it as Double })
         variables.forEach { variable ->
-            buffer[variable.name]!!.addAll(List(size) {d[variable].first()!!})
+            buffer[variable.name]!!.addAll(List(size) { d[variable].first()!! })
         }
     }
 

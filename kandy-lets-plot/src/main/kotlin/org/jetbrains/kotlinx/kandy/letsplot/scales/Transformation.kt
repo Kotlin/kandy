@@ -7,7 +7,6 @@ package org.jetbrains.kotlinx.kandy.letsplot.scales
 import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalTransform
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalTransform
 
-//@Serializable
 public enum class Transformation(public val description: String) : PositionalTransform, NonPositionalTransform {
     IDENTITY("identity"),
     LOG10("log10"),

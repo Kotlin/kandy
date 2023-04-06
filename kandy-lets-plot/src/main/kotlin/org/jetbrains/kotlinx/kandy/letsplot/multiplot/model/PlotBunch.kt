@@ -6,11 +6,9 @@ package org.jetbrains.kotlinx.kandy.letsplot.multiplot.model
 
 import org.jetbrains.kotlinx.kandy.ir.Plot
 
-//@Serializable
 public data class PlotBunch(
     val items: List<Item>
 ) {
-    //@Serializable
     public class Item(
         public val plot: Plot,
         public val x: Int,

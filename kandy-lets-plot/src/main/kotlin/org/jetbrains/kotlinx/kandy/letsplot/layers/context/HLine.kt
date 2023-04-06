@@ -9,8 +9,8 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
 
-public class HLineContext(parent: LayerCollectorContext)
-    : LayerContext(parent), WithY, WithAlpha, WithColor, WithWidthAsSize, WithType, WithXFree
+public class HLineContext(parent: LayerCollectorContext) : LayerContext(parent), WithY, WithAlpha, WithColor,
+    WithWidthAsSize, WithType, WithXFree
 /*
 import org.jetbrains.kotlinx.kandy.dsl.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*

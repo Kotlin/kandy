@@ -17,6 +17,7 @@ public interface WithWidth : BindingContext {
         set(value) {
             addNonPositionalSetting(WIDTH, value)
         }
+
     public fun <T> width(
         column: ColumnReference<T>,
         //parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
@@ -41,7 +42,7 @@ public interface WithWidth : BindingContext {
 
     public fun width(
         column: String,
-       // parameters: LetsPlotNonPositionalMappingParameters<Any?, Double>.() -> Unit = {}
+        // parameters: LetsPlotNonPositionalMappingParameters<Any?, Double>.() -> Unit = {}
     ): NonPositionalMapping<Any?, Double> {
         return addNonPositionalMapping(
             WIDTH,
@@ -75,7 +76,7 @@ public interface WithWidth : BindingContext {
             WIDTH,
             values,
             null
-           // LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
+            // LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
         )
     }
 }

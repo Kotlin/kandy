@@ -13,13 +13,31 @@ import org.jetbrains.kotlinx.kandy.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.Axis
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.Legend
 
-public data class LetsPlotPositionalMappingParameters<DomainType>
-    (override var scale: PositionalScale<out DomainType> = PositionalDefaultScale(), public val axis: Axis<DomainType> = Axis()) :
+/**
+ * Lets-plot positional mapping parameters.
+ *
+ * @property DomainType scale domain type.
+ * @property scale positional scale of this mapping.
+ * @property axis scale axis settings.
+ */
+public data class LetsPlotPositionalMappingParameters<DomainType>(
+    override var scale: PositionalScale<out DomainType> = PositionalDefaultScale(),
+    public val axis: Axis<DomainType> = Axis()
+) :
     PositionalMappingParameters<DomainType> {
 }
 
-public data class LetsPlotNonPositionalMappingParameters<DomainType, RangeType>
-    (override var scale: NonPositionalScale<out DomainType, out RangeType> = NonPositionalDefaultScale(),
-     public val legend: Legend<DomainType, RangeType> = Legend()) :
+/**
+ * Lets-plot non-positional mapping parameters.
+ *
+ * @property DomainType scale domain type.
+ * @property RangeType scale domain type.
+ * @property scale positional scale of this mapping.
+ * @property legend scale legend settings.
+ */
+public data class LetsPlotNonPositionalMappingParameters<DomainType, RangeType>(
+    override var scale: NonPositionalScale<out DomainType, out RangeType> = NonPositionalDefaultScale(),
+    public val legend: Legend<DomainType, RangeType> = Legend()
+) :
     NonPositionalMappingParameters<DomainType, RangeType> {
 }

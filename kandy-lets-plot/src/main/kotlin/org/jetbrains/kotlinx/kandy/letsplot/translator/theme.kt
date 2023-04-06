@@ -10,7 +10,7 @@ import org.jetbrains.letsPlot.themes.*
 
 public fun LineParameters.wrap(): Map<String, Any> {
     return elementLine(
-        color ?.wrap(),
+        color?.wrap(),
         width, blank
     )
 }

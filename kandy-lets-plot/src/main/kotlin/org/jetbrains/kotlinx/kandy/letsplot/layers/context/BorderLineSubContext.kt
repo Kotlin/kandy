@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.WithType
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.WithWidthAsSize
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
-public class BorderLineContext internal constructor(override val parentContext: BindingContext):
+public class BorderLineContext internal constructor(override val parentContext: BindingContext) :
     SelfInvocationContext, SubBindingContext, WithColor, WithType, WithWidthAsSize
 
 public abstract class LayerWithBorderLineContext(parent: LayerCollectorContext) : LayerContext(parent) {
