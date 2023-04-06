@@ -19,3 +19,5 @@ public fun Plot.toBufferedImage(
     ).bytes
     return ImageIO.read(ByteArrayInputStream(byteArray))
 }
+
+// todo grid and bunch

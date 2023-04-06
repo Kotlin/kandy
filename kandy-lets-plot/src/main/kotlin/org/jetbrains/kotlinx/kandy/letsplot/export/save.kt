@@ -20,7 +20,7 @@ import org.jetbrains.letsPlot.export.ggsave
  * if not specified otherwise (see the `path` parameter).
  *
  * @receiver [Plot] to export.
- * @param filename The name of file. It must end with file extention corresponding
+ * @param filename The name of file. It must end with file extension corresponding
  *      to one of the supported formats: svg, html (or htm), png, jpeg (or jpg) or tiff (or tif)
  * @param scale Scaling factor (only for raster formats). Default: 2.0
  * @param dpi Dot-per-Inch value to store in the exported file metadata (only for raster formats).
