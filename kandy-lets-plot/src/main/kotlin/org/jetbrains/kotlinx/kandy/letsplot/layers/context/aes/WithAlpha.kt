@@ -18,6 +18,7 @@ public interface WithAlpha : BindingContext {
         set(value) {
             addNonPositionalSetting(ALPHA, value)
         }
+
     public fun <T> alpha(
         column: ColumnReference<T>,
         parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}

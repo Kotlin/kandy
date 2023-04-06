@@ -10,7 +10,6 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
 
 // todo categorical
 
-//@Serializable
 public data class ScaleContinuousColorGradientN<DomainType>(
     val domainLimits: Pair<DomainType?, DomainType?>?,
     val rangeColors: List<Color>,
@@ -33,11 +32,11 @@ public fun <DomainType : Comparable<DomainType>> continuousColorGradientN(
     transform: Transformation? = null
 ): ScaleContinuousColorGradientN<DomainType> = ScaleContinuousColorGradientN(
     domainLimits.let {
-                      it.start to it.endInclusive
+        it.start to it.endInclusive
     }, rangeColors, nullValue, transform
 )
 
-public fun < DomainType> continuousColorGradientN(
+public fun <DomainType> continuousColorGradientN(
     rangeColors: List<Color>,
     domainMin: DomainType? = null,
     domainMax: DomainType? = null,
@@ -47,7 +46,6 @@ public fun < DomainType> continuousColorGradientN(
     domainMin to domainMax, rangeColors, nullValue, transform
 )
 
-//@Serializable
 public data class ScaleContinuousColorGradient2<DomainType>(
     val domainLimits: Pair<DomainType, DomainType>? = null,
     val low: Color,

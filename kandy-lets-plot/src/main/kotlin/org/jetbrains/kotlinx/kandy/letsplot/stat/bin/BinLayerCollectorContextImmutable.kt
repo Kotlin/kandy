@@ -31,8 +31,8 @@ public interface BinStatContext {
 // TODO
 
 //@StatDSLMarker
-public class BinLayerCollectorContext(parent: LayerCollectorContext, override val datasetIndex: Int)
-    : LayerCollectorContext, BinStatContext {
+public class BinLayerCollectorContext(parent: LayerCollectorContext, override val datasetIndex: Int) :
+    LayerCollectorContext, BinStatContext {
     override val layers: MutableList<Layer> = parent.layers
     override val plotContext: PlotContext = parent.plotContext
 }
@@ -115,12 +115,12 @@ public inline fun LayerCollectorContext.statBin(
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ) {
-    val newData = when(val data = datasetHandler.initialDataset) {
+    val newData = when (val data = datasetHandler.initialDataset) {
         is NamedData -> countBinsImpl(data, column, bins, binXPos)
         is GroupedData -> countBinsImpl(data, column, bins, binXPos)
     }
     plotContext.datasetHandlers.add(DatasetHandler(newData, true))
-    BinLayerCollectorContext(this, plotContext.datasetHandlers.size-1).apply(block)
+    BinLayerCollectorContext(this, plotContext.datasetHandlers.size - 1).apply(block)
 }
 
 public inline fun LayerCollectorContext.statBin(
@@ -138,9 +138,10 @@ public inline fun LayerCollectorContext.statBin(
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ) {
-    val newData = countBinsImpl(NamedData(dataFrameOf("sample" to values.toList())), column<Double>("sample"), bins, binXPos)
+    val newData =
+        countBinsImpl(NamedData(dataFrameOf("sample" to values.toList())), column<Double>("sample"), bins, binXPos)
     plotContext.datasetHandlers.add(DatasetHandler(newData, true))
-    BinLayerCollectorContext(this, plotContext.datasetHandlers.size-1).apply(block)
+    BinLayerCollectorContext(this, plotContext.datasetHandlers.size - 1).apply(block)
 }
 
 public inline fun LayerCollectorContext.statBin(

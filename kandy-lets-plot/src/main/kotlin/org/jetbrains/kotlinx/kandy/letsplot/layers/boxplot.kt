@@ -112,6 +112,6 @@ public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit
     // todo letsplot fix
     addLayer(BoxplotContext(this).apply(block).apply {
         position = Position.Dodge()
-        addPositionalMapping(Y, List(datasetHandler.rowsCount()) {null}, null, null)
+        addPositionalMapping(Y, List(datasetHandler.rowsCount()) { null }, null, null)
     }, BOXPLOT)
 }

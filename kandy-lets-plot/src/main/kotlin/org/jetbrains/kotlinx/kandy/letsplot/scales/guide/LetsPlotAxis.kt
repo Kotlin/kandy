@@ -7,17 +7,20 @@ package org.jetbrains.kotlinx.kandy.letsplot.scales.guide
 // import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
-//todo
-/*@PlotDslMarker*/
-//@Serializable
+// todo separate model and context
+/**
+ * Axis, i.e. guide for positional scale.
+ *
+ * @property name name of axis.
+ */
 public data class Axis<DomainType> @PublishedApi internal constructor(
     var name: String? = null,
     @PublishedApi
-internal var breaks: List<DomainType>? = null,
-@PublishedApi
-internal var labels: List<String>? = null,
-@PublishedApi
-internal var format: String? = null,
+    internal var breaks: List<DomainType>? = null,
+    @PublishedApi
+    internal var labels: List<String>? = null,
+    @PublishedApi
+    internal var format: String? = null,
     // todo expand & trans
 ) : SelfInvocationContext, ScaleParameters {
 

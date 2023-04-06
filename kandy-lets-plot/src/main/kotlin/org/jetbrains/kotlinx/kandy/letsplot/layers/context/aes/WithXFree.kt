@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.scales.AxisParameters
 
 
-public interface WithXFree: BindingContext {
+public interface WithXFree : BindingContext {
     @Suppress("UNCHECKED_CAST")
     public val x: AxisParameters
         get() {

@@ -13,24 +13,26 @@ import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.Axis
 
 public open class AxisParameters(
     private val mappingParameters: LetsPlotPositionalMappingParameters<Any?>,
-): PositionalMappingParameters<Any?> by mappingParameters {
+) : PositionalMappingParameters<Any?> by mappingParameters {
     public var limits: ClosedRange<*>? = null
         set(value) {
-            mappingParameters.scale = PositionalContinuousScale(value?.start,
+            mappingParameters.scale = PositionalContinuousScale(
+                value?.start,
                 value?.endInclusive,
-                null, null)
+                null, null
+            )
             field = value
         }
-   public val axis: Axis<Any?>
+    public val axis: Axis<Any?>
         get() = mappingParameters.axis
-    
+
 }
 
 public class AxisParametersWithSetter(
     mappingParameters: LetsPlotPositionalMappingParameters<Any?>,
     private val aesName: AesName,
     private val bindingContext: BindingContext,
-): AxisParameters(mappingParameters) {
+) : AxisParameters(mappingParameters) {
     public fun constant(value: Any?) {
         bindingContext.addPositionalSetting(aesName, value)
     }

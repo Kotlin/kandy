@@ -53,7 +53,7 @@ class ToLetsPlotTest {
                 "scales" to listOf(
                     mapOf(
                         "aesthetic" to "x",
-                        "limits" to listOf(null ,null)
+                        "limits" to listOf(null, null)
                     ),
                     mapOf(
                         "aesthetic" to "y",
@@ -90,10 +90,10 @@ class ToLetsPlotTest {
         )
         val clM = column<Int>("clM")
         val plot = dataset.plot {
-            x(column<Double>("time")){
-                scale = continuous(limits = -12.0 .. 4.4)
+            x(column<Double>("time")) {
+                scale = continuous(limits = -12.0..4.4)
             }
-            y(column<String>("svalue")){
+            y(column<String>("svalue")) {
                 scale = categorical(categories = listOf("A", "B", "C"))
             }
 
@@ -105,7 +105,7 @@ class ToLetsPlotTest {
                         )
                 }
                 width = 0.5
-                alpha =0.8
+                alpha = 0.8
 
                 position = Position.Stack
             }

@@ -189,7 +189,7 @@ internal fun Scale.wrap(
                 is PositionalDefaultScale<*> -> if (domainType.isCategoricalType() || isGroupKey) {
                     PositionalCategoricalScale<String>(null).wrap(aesName, domainType, scaleParameters, isGroupKey)
                 } else {
-                    PositionalContinuousScale<Double>(null, null, null,null).wrap(
+                    PositionalContinuousScale<Double>(null, null, null, null).wrap(
                         aesName,
                         domainType,
                         scaleParameters,
@@ -247,7 +247,7 @@ internal fun Scale.wrap(
                     )
                 } else {
                     NonPositionalContinuousScale<Double, Double>(
-                        null, null, null, null,null, null
+                        null, null, null, null, null, null
                     ).wrap(
                         aesName,
                         domainType,

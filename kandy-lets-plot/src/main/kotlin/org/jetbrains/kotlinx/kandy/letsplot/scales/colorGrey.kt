@@ -43,7 +43,6 @@ public sealed interface ScaleColorGrey<DomainType> {
     public val transform: Transformation?
 }
 
-//@Serializable
 public data class ScaleContinuousColorGrey<DomainType> @PublishedApi internal constructor(
     override val paletteRange: Pair<Double, Double>?,
     override val domainLimits: Pair<DomainType?, DomainType?>,
@@ -51,7 +50,6 @@ public data class ScaleContinuousColorGrey<DomainType> @PublishedApi internal co
     override val transform: Transformation?,
 ) : ContinuousScale<Color>, CustomNonPositionalScale<DomainType, Color>, ScaleColorGrey<DomainType>
 
-//@Serializable
 public data class ScaleCategoricalColorGrey<DomainType> @PublishedApi internal constructor(
     override val paletteRange: Pair<Double, Double>?,
     //override val nullValue: TypedValue?

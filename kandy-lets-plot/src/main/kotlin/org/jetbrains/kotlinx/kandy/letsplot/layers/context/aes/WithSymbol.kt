@@ -19,6 +19,7 @@ public interface WithSymbol : BindingContext {
         set(value) {
             addNonPositionalSetting(SHAPE, value)
         }
+
     public fun <T> symbol(
         column: ColumnReference<T>,
         parameters: LetsPlotNonPositionalMappingParameters<T, Symbol>.() -> Unit = {}

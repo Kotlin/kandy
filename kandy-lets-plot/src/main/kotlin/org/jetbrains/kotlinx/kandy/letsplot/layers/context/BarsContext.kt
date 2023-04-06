@@ -7,8 +7,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
-public open class BarsContext(parent: LayerCollectorContext)
-    : LayerWithBorderLineContext(parent), WithX, WithY, WithAlpha, WithFillColor, WithWidth
+public open class BarsContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithX, WithY,
+    WithAlpha, WithFillColor, WithWidth
 /*
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextMutable

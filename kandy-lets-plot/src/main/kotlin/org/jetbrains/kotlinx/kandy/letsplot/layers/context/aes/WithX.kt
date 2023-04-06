@@ -61,7 +61,7 @@ public interface WithX : BindingContext {
         return addPositionalMapping<T>(
             X,
             values,
-            LetsPlotPositionalMappingParameters<T,>().apply(parameters)
+            LetsPlotPositionalMappingParameters<T>().apply(parameters)
         )
     }
 

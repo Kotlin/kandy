@@ -22,8 +22,8 @@ import org.jetbrains.letsPlot.sampling.samplingNone
 internal class LayerWrapper internal constructor(
     private val layer: Layer, addGroups: Boolean,
     dataset: Map<String, List<*>>?,
-    mappings:  Map<AesName, Mapping>,
-    private val settings:  Map<AesName, Setting>,
+    mappings: Map<AesName, Mapping>,
+    private val settings: Map<AesName, Setting>,
     groupKeys: List<String>?,
 ) :
     LayerBase(
@@ -33,7 +33,7 @@ internal class LayerWrapper internal constructor(
             if (addGroups) {
                 this[GROUP.name] = MERGED_GROUPS
             }
-        } ),
+        }),
         geom = layer.geom.wrap(),
         stat = Stat.identity,
         tooltips = (layer.features[LayerTooltips.FEATURE_NAME] as? LayerTooltips)?.wrap(),

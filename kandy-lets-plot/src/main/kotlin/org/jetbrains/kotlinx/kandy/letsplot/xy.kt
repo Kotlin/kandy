@@ -49,7 +49,7 @@ public fun <T> PlotContext.x(
     return addPositionalMapping<T>(
         X,
         values,
-        LetsPlotPositionalMappingParameters<T,>().apply(parameters)
+        LetsPlotPositionalMappingParameters<T>().apply(parameters)
     )
 }
 
@@ -109,7 +109,7 @@ public fun <T> PlotContext.y(
     return addPositionalMapping<T>(
         Y,
         values,
-        LetsPlotPositionalMappingParameters<T,>().apply(parameters)
+        LetsPlotPositionalMappingParameters<T>().apply(parameters)
     )
 }
 

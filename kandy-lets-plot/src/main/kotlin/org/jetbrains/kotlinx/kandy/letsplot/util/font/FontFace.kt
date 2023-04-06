@@ -7,7 +7,6 @@ package org.jetbrains.kotlinx.kandy.letsplot.util.font
 /**
  * Font face.
  */
-//@Serializable
 public enum class FontFace {
     PLAIN, ITALIC, BOLD, BOLD_ITALIC;
 

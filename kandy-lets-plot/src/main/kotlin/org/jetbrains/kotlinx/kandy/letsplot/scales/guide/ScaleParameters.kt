@@ -4,4 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.scales.guide
 
+/**
+ * Scale additional parameters.
+ */
 public sealed interface ScaleParameters

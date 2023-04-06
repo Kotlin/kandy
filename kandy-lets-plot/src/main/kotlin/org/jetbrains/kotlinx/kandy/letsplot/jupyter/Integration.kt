@@ -46,7 +46,7 @@ internal class Integration(
         }
 
         onLoaded {
-            frontendContext = LetsPlot.setupNotebook("3.1.0", null) {
+            frontendContext = LetsPlot.setupNotebook("3.1.0", true) {
                 display(HTML(it), null)
             }
             LetsPlot.apiVersion = "4.3.0"

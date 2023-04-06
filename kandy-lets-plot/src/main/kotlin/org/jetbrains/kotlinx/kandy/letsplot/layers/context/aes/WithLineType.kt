@@ -19,6 +19,7 @@ public interface WithLineType : BindingContext {
         set(value) {
             addNonPositionalSetting(LINE_TYPE, value)
         }
+
     public fun <T> lineType(
         column: ColumnReference<T>,
         parameters: LetsPlotNonPositionalMappingParameters<T, LineType>.() -> Unit = {}

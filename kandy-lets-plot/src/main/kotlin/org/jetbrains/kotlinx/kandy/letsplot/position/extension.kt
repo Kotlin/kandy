@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
  * @see [Position]
  */
 public var LayerContext.position: Position
-    get() = Position.Identity // todo add backing property?
+    get() = Position.Identity // todo
     set(pos) {
         features[Position.FEATURE_NAME] = pos
     }

@@ -12,6 +12,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.VLineContext
 
 @PublishedApi
 internal val V_LINE: LetsPlotGeom = LetsPlotGeom("vLine")
+
 /*
 /**
  * Adds a new vertical line layer.
