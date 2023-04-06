@@ -4,20 +4,22 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.jupyter
 
+import jetbrains.datalore.plot.PlotHtmlHelper
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
-import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
-import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
-import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
-import org.jetbrains.kotlinx.kandy.util.serialization.serializeSpec
 import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.MimeTypedResultEx
 import org.jetbrains.kotlinx.jupyter.api.Notebook
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.declare
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
+import org.jetbrains.kotlinx.jupyter.api.libraries.resources
+import org.jetbrains.kotlinx.kandy.ir.Plot
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
+import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
+import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
+import org.jetbrains.kotlinx.kandy.util.serialization.serializeSpec
 import org.jetbrains.letsPlot.Figure
 import org.jetbrains.letsPlot.GGBunch
 import org.jetbrains.letsPlot.LetsPlot
@@ -33,15 +35,22 @@ internal class Integration(
 
     lateinit var frontendContext: NotebookFrontendContext
 
+    private val jsVersion = "3.1.0"
 
     override fun Builder.onLoaded() {
+
+        resources {
+            js("kandyLetsPlot") {
+                url(PlotHtmlHelper.scriptUrl(jsVersion))
+            }
+        }
 
         onLoaded {
             frontendContext = LetsPlot.setupNotebook("3.1.0", null) {
                 display(HTML(it), null)
             }
             LetsPlot.apiVersion = "4.3.0"
-            display(HTML(frontendContext.getConfigureHtml()), null)
+            //display(HTML(frontendContext.getConfigureHtml()), null)
         }
 
         import("org.jetbrains.kotlinx.kandy.letsplot.*")
