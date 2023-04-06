@@ -5,6 +5,6 @@
 package org.jetbrains.kotlinx.kandy.ir.scale
 
 /**
- * Scales not provided in the base API.
+ * Scales not provided in the common API.
  */
 public interface CustomScale : Scale

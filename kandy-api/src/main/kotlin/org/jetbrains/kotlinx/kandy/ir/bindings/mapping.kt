@@ -4,13 +4,14 @@
 
 package org.jetbrains.kotlinx.kandy.ir.bindings
 
-//import org.jetbrains.kotlinx.kandy.ir.data.KTypeSerializer
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
 
 /**
- * Mapping base interface
+ * Mapping from column in the dataset to an aesthetic attribute.
  *
- * @property aes the aesthetic attribute to be mapped to.
+ * @property aes aesthetic attribute to which the mapping is performed.
+ * @property columnID id of mapped column in dataset.
+ * @property parameters mapping parameters, optional.
  */
 public sealed interface Mapping {
     public val aes: AesName
@@ -18,41 +19,10 @@ public sealed interface Mapping {
 
     public val parameters: MappingParameters?
 }
-/*
-public data class NonScalablePositionalMapping<DomainType>(
-    override val aes: AesName,
-    override val columnID: String,
-) : Mapping {
-    override val mappingParameters: MappingParameters? = null
-}
 
 /**
- * Non-positional mapping without an individual scale.
- *
- * @property aes the aesthetic attribute to be mapped to
- * @property source the source to which the mapping is applied
- * @property domainType the type of domain
+ * Mapping to positional aes.
  */
-public data class NonScalableNonPositionalMapping<DomainType>(
-    override val aes: AesName,
-    override val columnID: String,
-) : Mapping {
-    override val mappingParameters: MappingParameters? = null
-}
-
-/**
- * Mapping interface with an individual scale.
- *
- * @property aes the aesthetic attribute to be mapped to
- * @property columnScaled the scaled source to which the mapping is applied
- * @property domainType the type of domain
- */
-public sealed interface ScaledMapping<DomainType> : Mapping {
-    override val mappingParameters: MappingParameters
-}
-
- */
-
 public data class PositionalMapping<DomainType>(
     override val aes: AesName,
     override val columnID: String,
@@ -60,11 +30,7 @@ public data class PositionalMapping<DomainType>(
 ) : Mapping
 
 /**
- * Non-positional mapping without an individual scale.
- *
- * @property aes the aesthetic attribute to be mapped to
- * @property source the source to which the mapping is applied
- * @property domainType the type of domain
+ * Mapping to non-positional aes.
  */
 public data class NonPositionalMapping<DomainType, RangeType>(
     override val aes: AesName,

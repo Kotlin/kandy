@@ -9,5 +9,4 @@ package org.jetbrains.kotlinx.kandy.ir.aes
  *
  * @property name attribute name.
  */
-////@Serializable
 public data class AesName(val name: String)

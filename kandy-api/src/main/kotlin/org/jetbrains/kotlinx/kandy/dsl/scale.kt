@@ -170,6 +170,7 @@ public fun <DomainType> Scale.Companion.categoricalPos(
  * @param DomainType type of the scale domain.
  * @param RangeType type of the scale range.
  * @param range [ClosedRange] defining the scale range.
+ * @param nullValue value which null is mapped to.
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given range.
  */
@@ -188,6 +189,7 @@ public fun <DomainType, RangeType : Comparable<RangeType>> NonPositionalMappingP
  * @param DomainType type of the scale domain.
  * @param RangeType type of the scale range.
  * @param range [ClosedRange] defining the scale range.
+ * @param nullValue value which null is mapped to.
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given range.
  */
@@ -207,6 +209,7 @@ public fun <DomainType, RangeType : Comparable<RangeType>> Scale.Companion.conti
  * @param RangeType type of the scale range.
  * @param range [ClosedRange] defining the scale range.
  * @param domain [ClosedRange] defining the scale domain.
+ * @param nullValue value which null is mapped to.
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given domain and range.
  */
@@ -228,6 +231,7 @@ public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeTyp
  * @param RangeType type of the scale range.
  * @param range [ClosedRange] defining the scale range.
  * @param domain [ClosedRange] defining the scale domain.
+ * @param nullValue value which null is mapped to.
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given domain and range.
  */
@@ -251,6 +255,7 @@ public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeTyp
  * @param rangeMax scale range maximum.
  * @param domainMin scale domain minimum.
  * @param domainMax scale domain maximum.
+ * @param nullValue value which null is mapped to.
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given domain and range.
  */
@@ -275,6 +280,7 @@ public fun <DomainType, RangeType> NonPositionalMappingParameters<DomainType, Ra
  * @param rangeMax scale range maximum.
  * @param domainMin scale domain minimum.
  * @param domainMax scale domain maximum.
+ * @param nullValue value which null is mapped to.
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given domain and range.
  */

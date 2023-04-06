@@ -1,6 +1,6 @@
 package org.jetbrains.kotlinx.kandy.util.color
 
 /**
- * Custom color interface.
+ * Custom color.
  */
 public interface CustomColor: Color
