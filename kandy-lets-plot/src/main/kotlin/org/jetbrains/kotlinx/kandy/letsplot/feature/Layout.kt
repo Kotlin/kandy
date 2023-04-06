@@ -11,9 +11,17 @@ import org.jetbrains.kotlinx.kandy.letsplot.theme.CustomTheme
 import org.jetbrains.kotlinx.kandy.letsplot.theme.Flavor
 import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
 
-//todo
-/*@PlotDslMarker*/
-//@Serializable
+// todo separate model and context!!!
+
+/**
+ * Plot layout parameters.
+ *
+ * @property title plot title.
+ * @property subtitle plot subtitle.
+ * @property caption plot caption.
+ * @property flavor plot flavor (color scheme).
+ * @property size plot size.
+ */
 public data class Layout(
     var title: String? = null,
     var subtitle: String? = null,

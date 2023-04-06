@@ -12,6 +12,14 @@ import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
 import javax.imageio.ImageIO
 
+/**
+ * Exports plot as a [BufferedImage].
+ *
+ * @receiver [Plot] for export.
+ * @param scale scaling factor (only for raster formats). Default: 2.0
+ * @param dpi dot-per-inch value to store in the exported image.
+ * @return Absolute pathname of created file.
+ */
 public fun Plot.toBufferedImage(
     scale: Number = 1,
     dpi: Number? = null,
@@ -19,7 +27,7 @@ public fun Plot.toBufferedImage(
     val byteArray = PlotImageExport.buildImageFromRawSpecs(
         this.toLetsPlot().toSpec(),
         PlotImageExport.Format.PNG,
-        scale.toDouble(), dpi?.toDouble() ?: Double.NaN
+        scale.toDouble(),dpi?.toDouble() ?: Double.NaN
     ).bytes
     return ImageIO.read(ByteArrayInputStream(byteArray))
 }

@@ -24,7 +24,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetWrapFeature
  * @property ASCENDING ascending ordering direction (by default).
  * @property DESCENDING descending ordering direction.
  */
-//@Serializable
 public data class OrderDirection internal constructor(val value: Int) {
     public companion object {
         public val ASCENDING: OrderDirection = OrderDirection(1)
@@ -38,7 +37,6 @@ public data class OrderDirection internal constructor(val value: Int) {
  * @property VERTICAL vertical direction.
  * @property HORIZONTAL descending direction (by default).
  */
-//@Serializable
 public data class Direction internal constructor(val name: String) {
     public companion object {
         public val VERTICAL: Direction = Direction("v")
@@ -54,7 +52,6 @@ public data class Direction internal constructor(val name: String) {
  * @property FREE_X free scales across X.
  * @property FREE_Y free scales across Y.
  */
-//@Serializable
 public data class ScalesSharing internal constructor(val name: String) {
     public companion object {
         public val FIXED: ScalesSharing = ScalesSharing("fixed")
@@ -99,10 +96,10 @@ public fun LayerPlotContext.facetGridX(
  * Splits data by a variable across Y.
  * For each data subset creates a plot panel and lays out panels as grid.
  *
- * @param y Variable which defines rows of the facet grid.
- * @param scalesSharing Specifies whether scales are shared across all facets.
- * @param order Specifies ordering direction of rows
- * @param format Specifies the format pattern for displaying faceting values in rows.
+ * @param y variable which defines rows of the facet grid.
+ * @param scalesSharing specifies whether scales are shared across all facets.
+ * @param order specifies ordering direction of rows
+ * @param format specifies the format pattern for displaying faceting values in rows.
  *
  * Format pattern in the format parameters can be just a number format (like "d") or
  * a string template where number format is surrounded by curly braces: "{d} cylinders".
@@ -129,13 +126,13 @@ public fun LayerPlotContext.facetGridY(
  * For each data subset creates a plot panel and lays out panels as grid.
  * The grid columns are defined by X faceting variable and rows are defined by Y faceting variable.
  *
- * @param x Variable which defines columns of the facet grid.
- * @param y Variable which defines rows of the facet grid.
- * @param scalesSharing Specifies whether scales are shared across all facets.
- * @param xOrder Specifies ordering direction of columns
- * @param yOrder Specifies ordering direction of rows
- * @param xFormat Specifies the format pattern for displaying faceting values in columns.
- * @param yFormat Specifies the format pattern for displaying faceting values in rows.
+ * @param x variable which defines columns of the facet grid.
+ * @param y variable which defines rows of the facet grid.
+ * @param scalesSharing specifies whether scales are shared across all facets.
+ * @param xOrder specifies ordering direction of columns
+ * @param yOrder specifies ordering direction of rows
+ * @param xFormat specifies the format pattern for displaying faceting values in columns.
+ * @param yFormat specifies the format pattern for displaying faceting values in rows.
  *
  * Format pattern in the xFormat/yFormat parameters can be just a number format (like "d") or
  * a string template where number format is surrounded by curly braces: "{d} cylinders".
@@ -177,9 +174,9 @@ public fun LayerPlotContext.facetGrid(
  * }
  * ```
  *
- * @param nCol Number of columns.
- * @param nRow Number of rows.
- * @param scalesSharing Specifies whether scales are shared across all facets.
+ * @param nCol number of columns.
+ * @param nRow number of rows.
+ * @param scalesSharing specifies whether scales are shared across all facets.
  * @param direction direction of the facet.
  */
 public fun LayerPlotContext.facetWrap(
