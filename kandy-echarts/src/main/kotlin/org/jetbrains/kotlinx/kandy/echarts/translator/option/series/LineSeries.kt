@@ -5,9 +5,9 @@
 package org.jetbrains.kotlinx.kandy.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.kandy.echarts.aes.SMOOTH
-import org.jetbrains.kotlinx.kandy.echarts.aes.STEP
-import org.jetbrains.kotlinx.kandy.echarts.aes.SYMBOL
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.SMOOTH
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.STEP
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.SYMBOL
 import org.jetbrains.kotlinx.kandy.echarts.features.StackFeature
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationLayerFeature
 import org.jetbrains.kotlinx.kandy.echarts.settings.Step

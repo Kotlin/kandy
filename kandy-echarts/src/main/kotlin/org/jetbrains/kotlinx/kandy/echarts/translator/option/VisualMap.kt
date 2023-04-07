@@ -6,7 +6,14 @@ package org.jetbrains.kotlinx.kandy.echarts.translator.option
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.kandy.echarts.aes.*
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.ALPHA
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.AREA_ALPHA
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.AREA_COLOR
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.COLOR
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.LINE_ALPHA
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.LINE_COLOR
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.SIZE
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.SYMBOL
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.EchartsTextStyle
 import org.jetbrains.kotlinx.kandy.echarts.translator.serializers.RangeSerializer
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName

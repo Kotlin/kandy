@@ -2,15 +2,15 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.echarts.layers
+package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 // import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.echarts.aes.*
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.*
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMapping
 import org.jetbrains.kotlinx.kandy.echarts.settings.AreaPosition
@@ -44,7 +44,7 @@ import kotlin.reflect.KProperty
  * @property lineShadowBlur shadow blur size of line.
  * @property animation [animation][Animation]
  *
- * @see area
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.area
  * @see org.jetbrains.kotlinx.kandy.util.color.Color
  * @see org.jetbrains.kotlinx.kandy.echarts.settings.AreaPosition
  * @see org.jetbrains.kotlinx.kandy.echarts.settings.Symbol
@@ -53,7 +53,7 @@ import kotlin.reflect.KProperty
  * @see Animation
  */
 /*@PlotDslMarker*/
-public class AreaContextImmutable(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
+public class AreaContext(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
     WithAlpha, WithSymbol {
     public var position: AreaPosition? = null
         set(value) {
@@ -160,7 +160,7 @@ public class AreaContextImmutable(parent: LayerCollectorContext) : EchartsLayerC
 
 
     /**
-     * Animation options settings for [area][area].
+     * Animation options settings for [area][org.jetbrains.kotlinx.kandy.echarts.layers.area].
      * If a property isn't set or set to null, a default value will be used.
      *
      * * [enable][Animation.enable] - responsible for enabling animation.

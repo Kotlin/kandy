@@ -23,10 +23,10 @@ import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
  * @see AnimationEasing
  * @see org.jetbrains.kotlinx.kandy.ir.Plot
  * @see org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.AreaContextImmutable
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.LineContextImmutable
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.PointContextImmutable
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.BarContextImmutable
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.AreaContext
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.LineContext
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.PointContext
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.BarContext
  */
 /*@PlotDslMarker*/
 public class Animation(
@@ -63,7 +63,7 @@ public class Animation(
  * @property SCALE scale animation. Can use it with `easing = AnimationEasing.CUBIC_OUT` to have popup effect.
  *
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.pie
- * @see org.jetbrains.kotlinx.kandy.echarts.features.animation.animation
+ * @see org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
  * @see AnimationPie
  */
 public enum class AnimationType(public val type: String) {
@@ -71,7 +71,7 @@ public enum class AnimationType(public val type: String) {
 }
 
 /**
- * Animation settings for [Pie][org.jetbrains.kotlinx.kandy.echarts.layers.PieContextImmutable] plot.
+ * Animation settings for [Pie][org.jetbrains.kotlinx.kandy.echarts.layers.context.PieContext] plot.
  *
  * @property enable responsible for enabling animation. By default `true`.
  * @property type initial [animation type][AnimationType]. By default `expansion`.
@@ -84,7 +84,7 @@ public enum class AnimationType(public val type: String) {
  *
  * @see AnimationType
  * @see AnimationEasing
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.PieContextImmutable
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.PieContext
  */
 /*@PlotDslMarker*/
 public class AnimationPie(
@@ -109,16 +109,16 @@ public class AnimationPie(
 }
 
 /**
- * Animation settings for [Boxplot][org.jetbrains.kotlinx.kandy.echarts.layers.BoxplotContextImmutable]
- * and [Candlestick][org.jetbrains.kotlinx.kandy.echarts.layers.CandlestickContextImmutable].
+ * Animation settings for [Boxplot][org.jetbrains.kotlinx.kandy.echarts.layers.context.BoxplotContext]
+ * and [Candlestick][org.jetbrains.kotlinx.kandy.echarts.layers.context.CandlestickContext].
  *
  * @property duration Duration of the first animation. By default `1000`.
  * @property easing [easing effect][AnimationEasing] used for the first animation. By default `cubicOut`.
  * @property delay delay before updating the first animation. By default `0`.
  *
  * @see AnimationEasing
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.BoxplotContextImmutable
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.CandlestickContextImmutable
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.BoxplotContext
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.CandlestickContext
  */
 /*@PlotDslMarker*/
 public class AnimationBoxplotCandlestick(

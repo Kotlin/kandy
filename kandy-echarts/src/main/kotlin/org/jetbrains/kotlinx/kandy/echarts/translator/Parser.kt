@@ -8,9 +8,9 @@ import kotlinx.datetime.*
 import org.jetbrains.kotlinx.dataframe.api.fillNA
 import org.jetbrains.kotlinx.dataframe.api.map
 import org.jetbrains.kotlinx.dataframe.api.withValue
-import org.jetbrains.kotlinx.kandy.echarts.aes.NAME
-import org.jetbrains.kotlinx.kandy.echarts.aes.X
-import org.jetbrains.kotlinx.kandy.echarts.aes.Y
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.NAME
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.X
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.Y
 import org.jetbrains.kotlinx.kandy.echarts.layers.*
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.*

@@ -2,13 +2,13 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.echarts.layers
+package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 // import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.echarts.aes.*
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.*
 
 /**
  * Point settings.
@@ -21,17 +21,17 @@ import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
  * @property alpha opacity of points.
  * @property animation [animation][Animation]
  *
- * @see points
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.points
  * @see org.jetbrains.kotlinx.kandy.util.color.Color
  * @see org.jetbrains.kotlinx.kandy.echarts.settings.Symbol
  * @see Animation
  */
 /*@PlotDslMarker*/
-public class PointContextImmutable(parent: LayerCollectorContext) : EchartsLayerContext(parent), /*WithX, WithY,*/
+public class PointContext(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY,
     WithAlpha, WithColor, WithSize, WithSymbol {
 
     /**
-     * Animation options settings for [points][points].
+     * Animation options settings for [points][org.jetbrains.kotlinx.kandy.echarts.layers.points].
      * If a property isn't set or set to null, a default value will be used.
      *
      * * [enable][Animation.enable] - responsible for enabling animation.

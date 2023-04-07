@@ -2,7 +2,7 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.echarts.layers
+package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 // import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
@@ -11,10 +11,10 @@ import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationPie
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationType
 
 /*@PlotDslMarker*/
-public class PieContextImmutable(parent: LayerCollectorContext) : EchartsLayerContext(parent) {
+public class PieContext(parent: LayerCollectorContext) : EchartsLayerContext(parent) {
 
     /**
-     * Animation options settings for [pie][pie].
+     * Animation options settings for [pie][org.jetbrains.kotlinx.kandy.echarts.layers.pie].
      * If a property isn't set or set to null, a default value will be used.
      *
      * * [enable][AnimationPie.enable] - responsible for enabling animation.

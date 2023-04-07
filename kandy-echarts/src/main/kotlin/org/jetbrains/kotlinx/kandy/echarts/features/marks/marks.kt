@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.features.marks
 
-import org.jetbrains.kotlinx.kandy.echarts.layers.EchartsLayerContext
+import org.jetbrains.kotlinx.kandy.echarts.layers.context.EchartsLayerContext
 
 /**
  * Sets mark points on a layer.

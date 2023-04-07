@@ -2,14 +2,14 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.echarts.layers
+package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 // import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.echarts.aes.WithAlpha
-import org.jetbrains.kotlinx.kandy.echarts.aes.WithColor
-import org.jetbrains.kotlinx.kandy.echarts.aes.WithX
-import org.jetbrains.kotlinx.kandy.echarts.aes.WithY
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.WithAlpha
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.WithColor
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.WithX
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.WithY
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
 
@@ -22,15 +22,15 @@ import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
  * @property alpha bars opacity.
  * @property animation [animation][Animation]
  *
- * @see bars
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.bars
  * @see org.jetbrains.kotlinx.kandy.util.color.Color
  * @see Animation
  */
 /*@PlotDslMarker*/
-public class BarContextImmutable(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
+public class BarContext(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
     WithAlpha {
     /**
-     * Animation options settings for [bars][bars].
+     * Animation options settings for [bars][org.jetbrains.kotlinx.kandy.echarts.layers.bars].
      * If a property isn't set or set to null, a default value will be used.
      *
      * * [enable][Animation.enable] - responsible for enabling animation.

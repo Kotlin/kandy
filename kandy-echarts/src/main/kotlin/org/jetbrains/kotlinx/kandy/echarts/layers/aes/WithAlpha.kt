@@ -2,7 +2,7 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.echarts.aes
+package org.jetbrains.kotlinx.kandy.echarts.layers.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
@@ -13,30 +13,30 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import kotlin.reflect.KProperty
 
-public interface WithSize : BindingContext {
-    public var size: Double?
+public interface WithAlpha : BindingContext {
+    public var alpha: Double?
         get() = null
         set(value) {
-            addNonPositionalSetting(SIZE, value)
+            addNonPositionalSetting(ALPHA, value)
         }
 
-    public fun <T> size(
-        column: ColumnReference<T>, parameters: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> = nonPosMapping(SIZE, column, parameters)
+    public fun <T> alpha(
+        column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+    ): NonPositionalMapping<T, Double> = nonPosMapping(ALPHA, column, params)
 
-    public fun <T> size(
+    public fun <T> alpha(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> = nonPosMapping(SIZE, column, params)
+    ): NonPositionalMapping<T, Double> = nonPosMapping(ALPHA, column, params)
 
-    public fun <T> size(
+    public fun <T> alpha(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> = nonPosMapping(SIZE, values, name, params)
+    ): NonPositionalMapping<T, Double> = nonPosMapping(ALPHA, values, name, params)
 
-    public fun size(
+    public fun alpha(
         column: String, params: EchartsNonPositionalMappingParameters<*, Double>.() -> Unit = {}
-    ): NonPositionalMapping<*, Double> = nonPosMapping(SIZE, column, params)
+    ): NonPositionalMapping<*, Double> = nonPosMapping(ALPHA, column, params)
 
-    public fun <T> size(
+    public fun <T> alpha(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> = nonPosMapping(SIZE, values, params)
+    ): NonPositionalMapping<T, Double> = nonPosMapping(ALPHA, values, params)
 }

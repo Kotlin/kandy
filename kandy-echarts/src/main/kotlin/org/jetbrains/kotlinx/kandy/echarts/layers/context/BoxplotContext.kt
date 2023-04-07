@@ -2,7 +2,7 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.echarts.layers
+package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 // import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
@@ -10,10 +10,10 @@ import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationBoxplotCa
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
 
 /*@PlotDslMarker*/
-public class CandlestickContextImmutable(parent: LayerCollectorContext) : EchartsLayerContext(parent) {
+public class BoxplotContext(parent: LayerCollectorContext) : EchartsLayerContext(parent) {
 
     /**
-     * Animation options settings for [candlestick][candlestick].
+     * Animation options settings for [boxplot][org.jetbrains.kotlinx.kandy.echarts.layers.boxplot].
      * If a property isn't set or set to null, a default value will be used.
      *
      * * [duration][AnimationBoxplotCandlestick.duration] - duration of the first animation.
@@ -26,7 +26,7 @@ public class CandlestickContextImmutable(parent: LayerCollectorContext) : Echart
      *
      * ```kotlin
      * plot {
-     *  candlestick {
+     *  boxplot {
      *      animation {
      *          duration = 1000
      *          easing = AnimationEasing.CUBIC_OUT

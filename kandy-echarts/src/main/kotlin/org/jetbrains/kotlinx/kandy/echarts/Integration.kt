@@ -35,7 +35,6 @@ internal class Integration : JupyterIntegration() {
         render<PlotChangeAnimation> { HTML(it.toHTML(), true) }
 
         import("org.jetbrains.kotlinx.kandy.echarts.*")
-        import("org.jetbrains.kotlinx.kandy.echarts.aes.*")
         import("org.jetbrains.kotlinx.kandy.echarts.features.*")
         import("org.jetbrains.kotlinx.kandy.echarts.features.animation.*")
         import("org.jetbrains.kotlinx.kandy.echarts.features.label.*")
@@ -43,6 +42,8 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.kandy.echarts.features.text.*")
         import("org.jetbrains.kotlinx.kandy.echarts.features.title.*")
         import("org.jetbrains.kotlinx.kandy.echarts.layers.*")
+        import("org.jetbrains.kotlinx.kandy.echarts.layers.aes.*")
+        import("org.jetbrains.kotlinx.kandy.echarts.layers.context.*")
         import("org.jetbrains.kotlinx.kandy.echarts.settings.*")
         import("org.jetbrains.kotlinx.kandy.echarts.scale.*")
         import("org.jetbrains.kotlinx.kandy.echarts.scale.guide.*")

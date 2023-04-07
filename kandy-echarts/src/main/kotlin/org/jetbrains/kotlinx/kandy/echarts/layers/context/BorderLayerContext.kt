@@ -2,18 +2,17 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.echarts.settings
+package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.kandy.echarts.aes.BORDER_COLOR
-import org.jetbrains.kotlinx.kandy.echarts.aes.BORDER_TYPE
-import org.jetbrains.kotlinx.kandy.echarts.aes.BORDER_WIDTH
-import org.jetbrains.kotlinx.kandy.echarts.layers.BarContextImmutable
-import org.jetbrains.kotlinx.kandy.echarts.layers.PointContextImmutable
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.BORDER_COLOR
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.BORDER_TYPE
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.BORDER_WIDTH
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMapping
+import org.jetbrains.kotlinx.kandy.echarts.settings.LineType
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.util.color.Color
@@ -22,14 +21,14 @@ import kotlin.reflect.KProperty
 /**
  * Adds [border][BorderLayerContext] settings to [bars][org.jetbrains.kotlinx.kandy.echarts.layers.bars].
  */
-public fun BarContextImmutable.border(block: BorderLayerContext.() -> Unit) {
+public fun BarContext.border(block: BorderLayerContext.() -> Unit) {
     BorderLayerContext(this).apply(block)
 }
 
 /**
  * Adds [border][BorderLayerContext] settings to [points][org.jetbrains.kotlinx.kandy.echarts.layers.points].
  */
-public fun PointContextImmutable.border(block: BorderLayerContext.() -> Unit) {
+public fun PointContext.border(block: BorderLayerContext.() -> Unit) {
     BorderLayerContext(this).apply(block)
 }
 

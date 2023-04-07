@@ -2,13 +2,12 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.echarts.features
+package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.kandy.echarts.aes.*
-import org.jetbrains.kotlinx.kandy.echarts.layers.BarContextImmutable
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.*
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMapping
 import org.jetbrains.kotlinx.kandy.echarts.settings.LineType
@@ -40,14 +39,14 @@ import kotlin.reflect.KProperty
  * plot {
  *     bars {
  *         background {
- *             color(Color.GREY)
- *             borderColor(Color.BLACK)
- *             borderWidth(1.0)
- *             borderType(LineType.DASHED)
- *             borderRadius(1.3)
- *             shadowBlur(10.0)
- *             shadowColor(Color.GREEN)
- *             alpha(0.7)
+ *             color = Color.GREY
+ *             borderColor = Color.BLACK
+ *             borderWidth = 1.0
+ *             borderType = LineType.DASHED
+ *             borderRadius = 1.3
+ *             shadowBlur = 10.0
+ *             shadowColor = Color.GREEN
+ *             alpha = 0.7
  *         }
  *     }
  * }
@@ -55,7 +54,7 @@ import kotlin.reflect.KProperty
  *
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.bars
  */
-public inline fun BarContextImmutable.background(crossinline block: BackgroundStyle.() -> Unit) {
+public inline fun BarContext.background(crossinline block: BackgroundStyle.() -> Unit) {
     BackgroundStyle(this).apply(block)
 }
 

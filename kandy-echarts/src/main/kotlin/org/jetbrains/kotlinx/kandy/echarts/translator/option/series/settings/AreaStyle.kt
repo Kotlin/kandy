@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.kotlinx.kandy.echarts.aes.*
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.*
 import org.jetbrains.kotlinx.kandy.echarts.settings.AreaPosition
 import org.jetbrains.kotlinx.kandy.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.EchartsColor

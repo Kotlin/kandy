@@ -32,8 +32,7 @@ public enum class TextAlign(public val align: String) {
  * @property align the horizontal [align][TextAlign] of the text and subtext
  * @property verticalAlign the vertical [align][TextAlign] of the text and subtext
  * @property backgroundColor background [color][Color] of title. `transparent` by default
- * @property borderColor border [color][Color] of title
- * @property borderWidth border width of title
+ * @property border border of title, includes `borderColor`, `borderWidth`
  * @property textStyle [font style][TextStyle] of the [text]
  * @property subtextStyle [font style][TextStyle] of the [subtext]
  *

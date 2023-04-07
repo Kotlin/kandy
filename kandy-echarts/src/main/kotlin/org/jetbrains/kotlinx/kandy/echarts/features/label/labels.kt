@@ -6,6 +6,7 @@ package org.jetbrains.kotlinx.kandy.echarts.features.label
 
 import org.jetbrains.kotlinx.kandy.echarts.features.text.TextStyle
 import org.jetbrains.kotlinx.kandy.echarts.layers.*
+import org.jetbrains.kotlinx.kandy.echarts.layers.context.*
 
 /**
  * Label options settings for [line][line].
@@ -47,11 +48,11 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.*
  * ```
  *
  * @see line
- * @see LineContextImmutable
+ * @see LineContext
  * @see LabelContext
  * @see LabelPosition
  */
-public fun LineContextImmutable.label(block: LabelContext.() -> Unit) {
+public fun LineContext.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
     if (label != null) features[LabelFeature.FEATURE_NAME] = label
 }
@@ -85,7 +86,7 @@ public fun LineContextImmutable.label(block: LabelContext.() -> Unit) {
  *      label {
  *          position = LabelPosition.top(distance = 5, rotate = 45)
  *          formatter = "{b}: {@score}"
- *          textStyle.color(Color.BLUE)
+ *          textStyle.color = Color.BLUE
  *          border {
  *              color = Color.RED
  *              width = 1.5
@@ -96,11 +97,11 @@ public fun LineContextImmutable.label(block: LabelContext.() -> Unit) {
  * ```
  *
  * @see area
- * @see AreaContextImmutable
+ * @see AreaContext
  * @see LabelContext
  * @see LabelPosition
  */
-public fun AreaContextImmutable.label(block: LabelContext.() -> Unit) {
+public fun AreaContext.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
     if (label != null) features[LabelFeature.FEATURE_NAME] = label
 }
@@ -134,18 +135,18 @@ public fun AreaContextImmutable.label(block: LabelContext.() -> Unit) {
  *      label {
  *          position = LabelPosition.fromPx(10.px to 10.px)
  *          formatter = "{b}: {@score}"
- *          textStyle.color(Color.BLUE)
+ *          textStyle.color = Color.BLUE
  *      }
  *  }
  * }
  * ```
  *
  * @see bars
- * @see BarContextImmutable
+ * @see BarContext
  * @see LabelContext
  * @see LabelPosition
  */
-public fun BarContextImmutable.label(block: LabelContext.() -> Unit) {
+public fun BarContext.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
     if (label != null) features[LabelFeature.FEATURE_NAME] = label
 }
@@ -178,18 +179,18 @@ public fun BarContextImmutable.label(block: LabelContext.() -> Unit) {
  *  points {
  *      label {
  *          position = LabelPosition.INSIDE
- *          textStyle.color(Color.BLACK)
+ *          textStyle.color = Color.BLACK
  *      }
  *  }
  * }
  * ```
  *
  * @see points
- * @see PointContextImmutable
+ * @see PointContext
  * @see LabelContext
  * @see LabelPosition
  */
-public fun PointContextImmutable.label(block: LabelContext.() -> Unit) {
+public fun PointContext.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
     if (label != null) features[LabelFeature.FEATURE_NAME] = label
 }
@@ -228,11 +229,11 @@ public fun PointContextImmutable.label(block: LabelContext.() -> Unit) {
  * ```
  *
  * @see pie
- * @see PieContextImmutable
+ * @see PieContext
  * @see LabelContext
  * @see LabelPosition
  */
-public fun PieContextImmutable.label(block: LabelContext.() -> Unit) {
+public fun PieContext.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
     if (label != null) features[LabelFeature.FEATURE_NAME] = label
 }

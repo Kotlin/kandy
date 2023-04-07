@@ -2,11 +2,11 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.echarts.layers
+package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
-import org.jetbrains.kotlinx.kandy.echarts.aes.NAME
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.NAME
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationBoxplotCandlestick
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationLayerFeature

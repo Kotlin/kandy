@@ -2,13 +2,13 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.echarts.layers
+package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 // import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.echarts.aes.*
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.*
 import org.jetbrains.kotlinx.kandy.echarts.settings.Cap
 import org.jetbrains.kotlinx.kandy.echarts.settings.LineType
 import org.jetbrains.kotlinx.kandy.echarts.settings.Step
@@ -21,7 +21,7 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
  * @property y mapping data on the y-axis.
  * @property color line [color][org.jetbrains.kotlinx.kandy.util.color.Color].
  * @property symbol [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] on line.
- * Symbols are not shown by default.
+ * Symbols aren't shown by default.
  * @property smooth smooth curve. `false` by default.
  * @property alpha line opacity.
  * @property width line width. `2` by default.
@@ -32,7 +32,7 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
  * @property shadowBlur shadow blur size of line.
  * @property animation [animation][Animation] of line.
  *
- * @see line
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.line
  * @see org.jetbrains.kotlinx.kandy.util.color.Color
  * @see org.jetbrains.kotlinx.kandy.echarts.settings.Symbol
  * @see org.jetbrains.kotlinx.kandy.echarts.settings.LineType
@@ -40,7 +40,7 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
  * @see Animation
  */
 /*@PlotDslMarker*/
-public class LineContextImmutable(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
+public class LineContext(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
     WithAlpha, WithSymbol {
 
     public var smooth: Boolean? = null
@@ -83,7 +83,7 @@ public class LineContextImmutable(parent: LayerCollectorContext) : EchartsLayerC
         }
 
     /**
-     * Animation options settings for [line][line].
+     * Animation options settings for [line][org.jetbrains.kotlinx.kandy.echarts.layers.line].
      * If a property isn't set or set to null, a default value will be used.
      *
      * * [enable][Animation.enable] - responsible for enabling animation.

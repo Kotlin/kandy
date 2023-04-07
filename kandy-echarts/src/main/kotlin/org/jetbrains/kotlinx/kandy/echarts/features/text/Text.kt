@@ -76,9 +76,7 @@ public enum class FontFamily(public val family: String) {
  * @property lineHeight line height of the text fragment
  * @property width width of the text block
  * @property height height of the text block
- * @property textBorderColor stroke [color][Color] of the text
- * @property textBorderWidth stroke line width of the text
- * @property textBorderType stroke [line type][LineType] of the text
+ * @property border border of the text, includes `textBorderColor`, `textBorderWidth`, `textBorderType`
  *
  * @see FontStyle
  * @see FontWeight

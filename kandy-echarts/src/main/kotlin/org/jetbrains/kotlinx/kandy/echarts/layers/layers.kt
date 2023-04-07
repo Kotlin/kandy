@@ -6,8 +6,9 @@ package org.jetbrains.kotlinx.kandy.echarts.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.kandy.echarts.aes.x
-import org.jetbrains.kotlinx.kandy.echarts.aes.y
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.x
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.y
+import org.jetbrains.kotlinx.kandy.echarts.layers.context.*
 
 /**
  * Adds a layer with settings and features to plot.
@@ -44,168 +45,168 @@ public inline fun LayerPlotContext.layout(block: EChartsLayout.() -> Unit) {
 /**
  * Adds a new [line] layer.
  *
- * Creates a [context][LineContextImmutable]
+ * Creates a [context][LineContext]
  * in which you can create bindings using aesthetic attribute properties invocation and add features.
  *
- * - [ x][LineContextImmutable.x] - mapping data on the x-axis.
- * - [y][LineContextImmutable.y] - mapping data on the y-axis.
- * - [color][LineContextImmutable.color] - line [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- * - [symbol][LineContextImmutable.symbol] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] on line.
+ * - [ x][LineContext.x] - mapping data on the x-axis.
+ * - [y][LineContext.y] - mapping data on the y-axis.
+ * - [color][LineContext.color] - line [color][org.jetbrains.kotlinx.kandy.util.color.Color].
+ * - [symbol][LineContext.symbol] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] on line.
  *  Symbols are not shown by default.
- * - [smooth][LineContextImmutable.smooth] - smooth curve.
+ * - [smooth][LineContext.smooth] - smooth curve.
  * `false` by default.
- * - [alpha][LineContextImmutable.alpha] - line opacity.
- * - [width][LineContextImmutable.width] - line width.
+ * - [alpha][LineContext.alpha] - line opacity.
+ * - [width][LineContext.width] - line width.
  * `2` by default.
- * - [lineType][LineContextImmutable.lineType] - [line type][org.jetbrains.kotlinx.kandy.echarts.settings.LineType].
+ * - [lineType][LineContext.lineType] - [line type][org.jetbrains.kotlinx.kandy.echarts.settings.LineType].
  *  `solid` by default.
- * - [step][LineContextImmutable.step] - step line.
+ * - [step][LineContext.step] - step line.
  * `false` by default.
- * - [cap][LineContextImmutable.cap] - [end points][org.jetbrains.kotlinx.kandy.echarts.settings.Cap] of line.
+ * - [cap][LineContext.cap] - [end points][org.jetbrains.kotlinx.kandy.echarts.settings.Cap] of line.
  *  `butt` by default.
- * - [shadowColor][LineContextImmutable.shadowColor] - shadow color of line.
- * - [shadowBlur][LineContextImmutable.shadowBlur] - shadow blur size of line.
+ * - [shadowColor][LineContext.shadowColor] - shadow color of line.
+ * - [shadowBlur][LineContext.shadowBlur] - shadow blur size of line.
  *
  * ```kotlin
  * line {
  *    x(time)
  *    y(values)
- *    color(Color.RED)
- *    symbol(Symbol.CIRCLE)
- *    smooth(true)
- *    alpha(.9)
- *    width(2.0)
- *    lineType(LineType.SOLID)
- *    step(Step.FALSE)
- *    cap(Cap.BUTT)
- *    shadowColor(Color.GREY)
- *    shadowBlur(10)
+ *    color = Color.RED
+ *    symbol = Symbol.CIRCLE
+ *    smooth = true
+ *    alpha = .9
+ *    width = 2.0
+ *    lineType = LineType.SOLID
+ *    step = Step.FALSE
+ *    cap = Cap.BUTT
+ *    shadowColor = Color.GREY
+ *    shadowBlur = 10
  * }
  * ```
  *
- * @see LineContextImmutable
+ * @see LineContext
  */
-public inline fun LayerCollectorContext.line(block: LineContextImmutable.() -> Unit) {
-    addLayer(LineContextImmutable(this).apply(block), LINE)
+public inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
+    addLayer(LineContext(this).apply(block), LINE)
 }
 
 /**
  * Adds a new [area] layer.
  *
- * Creates a [context][AreaContextImmutable]
+ * Creates a [context][AreaContext]
  * in which you can create bindings using aesthetic attribute properties invocation and add features.
  *
- *  - [ x][AreaContextImmutable.x] - mapping data on the x-axis.
- *  - [y][AreaContextImmutable.y] - mapping data on the y-axis.
- *  - [color][AreaContextImmutable.color] - area fill [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- *  - [position][AreaContextImmutable.position] -
+ *  - [ x][AreaContext.x] - mapping data on the x-axis.
+ *  - [y][AreaContext.y] - mapping data on the y-axis.
+ *  - [color][AreaContext.color] - area fill [color][org.jetbrains.kotlinx.kandy.util.color.Color].
+ *  - [position][AreaContext.position] -
  *  origin [position][org.jetbrains.kotlinx.kandy.echarts.settings.AreaPosition] of area.
  *  `auto` by default.
- *  - [shadowBlur][AreaContextImmutable.shadowBlur] - size of shadow blur of area.
- *  - [shadowColor][AreaContextImmutable.shadowColor] -
+ *  - [shadowBlur][AreaContext.shadowBlur] - size of shadow blur of area.
+ *  - [shadowColor][AreaContext.shadowColor] -
  *  shadow [color][org.jetbrains.kotlinx.kandy.util.color.Color] of area.
- *  - [alpha][AreaContextImmutable.alpha] - opacity of area.
- *  - [lineColor][AreaContextImmutable.lineColor] - line [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- *  - [symbol][AreaContextImmutable.symbol] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] on line.
+ *  - [alpha][AreaContext.alpha] - opacity of area.
+ *  - [lineColor][AreaContext.lineColor] - line [color][org.jetbrains.kotlinx.kandy.util.color.Color].
+ *  - [symbol][AreaContext.symbol] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] on line.
  *  Symbols are not shown by default.
- *  - [smooth][AreaContextImmutable.smooth] - smooth curve.
+ *  - [smooth][AreaContext.smooth] - smooth curve.
  *  `false` by default.
- *  - [lineAlpha][AreaContextImmutable.lineAlpha] - line opacity.
- *  - [lineWidth][AreaContextImmutable.lineWidth] - line width.
+ *  - [lineAlpha][AreaContext.lineAlpha] - line opacity.
+ *  - [lineWidth][AreaContext.lineWidth] - line width.
  *  `2` by default.
- *  - [lineType][AreaContextImmutable.lineType] - [line type][org.jetbrains.kotlinx.kandy.echarts.settings.LineType].
+ *  - [lineType][AreaContext.lineType] - [line type][org.jetbrains.kotlinx.kandy.echarts.settings.LineType].
  *  `solid` by default.
- *  - [step][AreaContextImmutable.step] - step line.
+ *  - [step][AreaContext.step] - step line.
  *  `false` by default.
- *  - [cap][AreaContextImmutable.cap] - [end points][org.jetbrains.kotlinx.kandy.echarts.settings.Cap] of line.
+ *  - [cap][AreaContext.cap] - [end points][org.jetbrains.kotlinx.kandy.echarts.settings.Cap] of line.
  *  `butt` by default.
- *  - [lineShadowColor][AreaContextImmutable.lineShadowColor] - shadow color of line.
- *  - [lineShadowBlur][AreaContextImmutable.lineShadowBlur] - shadow blur size of line.
+ *  - [lineShadowColor][AreaContext.lineShadowColor] - shadow color of line.
+ *  - [lineShadowBlur][AreaContext.lineShadowBlur] - shadow blur size of line.
  *
  * ```kotlin
  * area {
  *    x(time)
  *    y(values)
- *    color(Color.GREEN)
- *    position(AreaPosition.START)
- *    shadowBlur(10)
- *    shadowColor(Color.GREY)
- *    alpha(.7)
+ *    color = Color.GREEN
+ *    position = AreaPosition.START
+ *    shadowBlur = 10
+ *    shadowColor = Color.GREY
+ *    alpha = .7
  * }
  * ```
  *
- * @see AreaContextImmutable
+ * @see AreaContext
  */
-public inline fun LayerCollectorContext.area(block: AreaContextImmutable.() -> Unit) {
-    addLayer(AreaContextImmutable(this).apply(block), AREA)
+public inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
+    addLayer(AreaContext(this).apply(block), AREA)
 }
 
 /**
  * Adds a new [bars] layer.
  *
- * Creates a [context][BarContextImmutable]
+ * Creates a [context][BarContext]
  * in which you can create bindings using aesthetic attribute properties invocation and add features.
  *
- * - [ x][BarContextImmutable.x] - mapping data on the x-axis.
- * - [y][BarContextImmutable.y] - mapping data on the y-axis.
- * - [color][BarContextImmutable.color] - bars [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- * - [alpha][BarContextImmutable.alpha] - bars opacity.
+ * - [ x][BarContext.x] - mapping data on the x-axis.
+ * - [y][BarContext.y] - mapping data on the y-axis.
+ * - [color][BarContext.color] - bars [color][org.jetbrains.kotlinx.kandy.util.color.Color].
+ * - [alpha][BarContext.alpha] - bars opacity.
  *
  * ```kotlin
  * bars {
  *    x(categories)
  *    y(values)
- *    color(Color.LIGHT_GREEN)
- *    alpha(.5)
+ *    color = Color.LIGHT_GREEN
+ *    alpha = .5
  * }
  * ```
  *
- * @see BarContextImmutable
+ * @see BarContext
  */
-public inline fun LayerCollectorContext.bars(block: BarContextImmutable.() -> Unit) {
-    addLayer(BarContextImmutable(this).apply(block), BAR)
+public inline fun LayerCollectorContext.bars(block: BarContext.() -> Unit) {
+    addLayer(BarContext(this).apply(block), BAR)
 }
 
-public inline fun LayerCollectorContext.pie(block: PieContextImmutable.() -> Unit) {
-    addLayer(PieContextImmutable(this).apply(block), PIE)
+public inline fun LayerCollectorContext.pie(block: PieContext.() -> Unit) {
+    addLayer(PieContext(this).apply(block), PIE)
 }
 
 /**
  * Adds a new [points] layer.
  *
- * Creates a [context][PointContextImmutable]
+ * Creates a [context][PointContext]
  * in which you can create bindings using aesthetic attribute properties invocation and add features.
  *
- * - [ x][PointContextImmutable.x] - mapping data on the x-axis.
- * - [y][PointContextImmutable.y] - mapping data on the y-axis.
- * - [color][PointContextImmutable.color] - points [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- * - [symbol][PointContextImmutable.symbol] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] of points.
+ * - [ x][PointContext.x] - mapping data on the x-axis.
+ * - [y][PointContext.y] - mapping data on the y-axis.
+ * - [color][PointContext.color] - points [color][org.jetbrains.kotlinx.kandy.util.color.Color].
+ * - [symbol][PointContext.symbol] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] of points.
  * `circle` by default.
- * - [size][PointContextImmutable.size] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] size.
+ * - [size][PointContext.size] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] size.
  * `10` by default.
- * - [alpha][PointContextImmutable.alpha] - opacity of points.
+ * - [alpha][PointContext.alpha] - opacity of points.
  *
  * ```kotlin
  * points {
  *    x(col1)
  *    y(col2)
- *    color(Color.PURPLE)
- *    symbol(Symbol.DIAMOND)
- *    size(20.0)
- *    alpha(1.0)
+ *    color = Color.PURPLE
+ *    symbol = Symbol.DIAMOND
+ *    size = 20.0
+ *    alpha = 1.0
  * }
  * ```
  *
- * @see PointContextImmutable
+ * @see PointContext
  */
-public inline fun LayerCollectorContext.points(block: PointContextImmutable.() -> Unit) {
-    addLayer(PointContextImmutable(this).apply(block), POINT)
+public inline fun LayerCollectorContext.points(block: PointContext.() -> Unit) {
+    addLayer(PointContext(this).apply(block), POINT)
 }
 
-public inline fun LayerCollectorContext.candlestick(block: CandlestickContextImmutable.() -> Unit) {
-    addLayer(CandlestickContextImmutable(this).apply(block), CANDLESTICK)
+public inline fun LayerCollectorContext.candlestick(block: CandlestickContext.() -> Unit) {
+    addLayer(CandlestickContext(this).apply(block), CANDLESTICK)
 }
 
-public inline fun LayerCollectorContext.boxplot(block: BoxplotContextImmutable.() -> Unit) {
-    addLayer(BoxplotContextImmutable(this).apply(block), BOXPLOT)
+public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
+    addLayer(BoxplotContext(this).apply(block), BOXPLOT)
 }
