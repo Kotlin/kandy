@@ -16,9 +16,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing
  * nCol`, `nRow` and `direction` settings.
  *
  * @param facets list of faceting variable names.
- * @param nCol Number of columns.
- * @param nRow Number of rows.
- * @param scalesSharing Specifies whether scales are shared across all facets.
+ * @param nCol number of columns.
+ * @param nRow number of rows.
+ * @param scalesSharing specifies whether scales are shared across all facets.
  * @param orders list of [OrderDirection] values specifying ordering direction panels.
  * The `order` values are positionally matched to variables in `facets`.
  * @param formats list of strings specifying the format pattern for displaying faceting values.
@@ -35,7 +35,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing
  * "Score: {.2f}" -> "Score: 12.45"
  * "Score: {}" -> "Score: 12.454789"
  */
-//@Serializable
 public data class FacetWrapFeature constructor(
     val facets: List<String>,
     var nCol: Int?,

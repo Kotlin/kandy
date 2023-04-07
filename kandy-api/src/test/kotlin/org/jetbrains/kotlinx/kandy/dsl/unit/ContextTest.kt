@@ -30,6 +30,8 @@ internal class ContextTest {
                     POINT,
                     emptyMap(),
                     emptyMap(),
+                    emptyMap(),
+                    emptyMap(),
                 )
             ),
             context.layers
@@ -48,6 +50,8 @@ internal class ContextTest {
                     LINE,
                     emptyMap(),
                     emptyMap(),
+                    emptyMap(),
+                    emptyMap(),
                 )
             ),
             context.layers
@@ -64,6 +68,8 @@ internal class ContextTest {
                 Layer(
                     0,
                     BAR,
+                    emptyMap(),
+                    emptyMap(),
                     emptyMap(),
                     emptyMap(),
                 )

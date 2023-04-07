@@ -17,8 +17,9 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 /**
  * Internal collector of mappings and settings.
  *
- * @property mappings [MutableMap] of aesthetic names to mappings.
- * @property settings [MutableMap] of aesthetic names to settings   .
+ * @property mappings [MutableMap] of aesthetic names to their mappings.
+ * @property settings [MutableMap] of aesthetic names to their settings.
+ * @property freeScales [MutableMap] of aesthetic names to their free scales.
  */
 public class BindingCollector() {
     public val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
@@ -26,11 +27,12 @@ public class BindingCollector() {
     public val freeScales: MutableMap<AesName, FreeScale> = mutableMapOf()
 }
 
-
 /**
- * Base interface for context with bindings.
+ * Base plotting DSL context.
  *
- * @property bindingCollector [BindingCollector] of this context.
+ * @property plotContext top [PlotContext] of this context.
+ * @property datasetIndex index of context dataset in the [PlotContext.datasetHandlers].
+ * @property datasetHandler handler of context dataset.
  */
 public interface BaseContext {
     public val plotContext: PlotContext
@@ -40,6 +42,12 @@ public interface BaseContext {
         get() = plotContext.datasetHandlers[datasetIndex]
 }
 
+/**
+ * Context that defines the configuration of the layer.
+ *
+ * @param parent parental [LayerCollectorContext].
+ * @property features [MutableMap] of feature names to corresponding layer features.
+ */
 public abstract class LayerContext(parent: LayerCollectorContext) : BindingContext {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val datasetIndex: Int = parent.datasetIndex
@@ -47,12 +55,16 @@ public abstract class LayerContext(parent: LayerCollectorContext) : BindingConte
     override val plotContext: PlotContext = parent.plotContext
 }
 
+/**
+ * Context with layers collecting.
+ *
+ * @property layers layers buffer.
+ */
 public interface LayerCollectorContext : BaseContext {
-    // todo hide
     public val layers: MutableList<Layer>
 
     /**
-     * Creates and adds to the buffer a new layer from a layer context.
+     * Creates a layers from [LayerContext] and adds it to the buffer.
      *
      * @param context [LayerContext] with bindings of a new layer.
      * @param geom [Geom] of a new layer.
@@ -71,6 +83,9 @@ public interface LayerCollectorContext : BaseContext {
     }
 }
 
+/**
+ * Context with a grouped dataset.
+ */
 public class GroupedContext(
     override val datasetIndex: Int,
     override val plotContext: LayerPlotContext
@@ -78,14 +93,28 @@ public class GroupedContext(
     override val layers: MutableList<Layer> = plotContext.layers
 }
 
+/**
+ * Top plotting context which allows to configure and create a [Plot].
+ *
+ * @property datasetHandlers buffer of plot datasets.
+ * @property features
+ */
 public interface PlotContext : BindingContext {
     public val datasetHandlers: MutableList<DatasetHandler>
     public val features: MutableMap<FeatureName, PlotFeature>
+
+    /**
+     * Creates [Plot] configured by this context.
+     *
+     * @return new [Plot].
+     */
     public fun toPlot(): Plot
 }
 
+/**
+ *  [PlotContext] that directly collects layers and creates [Plot] from them.
+ */
 public interface LayerPlotContext : LayerCollectorContext, PlotContext {
-    // todo hide
     public override fun toPlot(): Plot {
         return Plot(
             datasetHandlers.map { it.data() },
@@ -97,40 +126,51 @@ public interface LayerPlotContext : LayerCollectorContext, PlotContext {
         )
     }
 }
-/*
-public interface NamedDataPlotContext: LayerPlotContext {
-    public fun groupBy(
-        vararg columnReferences: ColumnReference<*>,
-        block: GroupedContext.() -> Unit
-    ) {
-        val newDataset = (datasetHandler.data() as NamedData).dataFrame.groupBy(*columnReferences)
-        datasetHandlers.add(DatasetHandler(GroupedData(newDataset)))
-        GroupedContext(
-            datasetHandlers.size - 1,
-            this
-        ).apply(block)
-    }
-}
 
+/**
+ * Context with bindings collecting.
+ *
+ * @property bindingCollector collector of context bindings.
  */
-
 public interface BindingContext : BaseContext {
     public override val plotContext: PlotContext
     public override val datasetIndex: Int
     public val bindingCollector: BindingCollector
 
+    /**
+     * Adds [NonPositionalSetting] for given non-positional aes and value.
+     *
+     * @param aesName name of aes.
+     * @param value assigned value.
+     * @param DomainType type of value.
+     */
     public fun <DomainType> addNonPositionalSetting(aesName: AesName, value: DomainType): NonPositionalSetting<DomainType> {
         return NonPositionalSetting(aesName, value).also {
             bindingCollector.settings[aesName] = it
         }
     }
 
+    /**
+     * Adds [PositionalSetting] for given positional aes and value.
+     *
+     * @param aesName name of aes.
+     * @param value assigned value.
+     * @param DomainType type of value.
+     */
     public fun <DomainType> addPositionalSetting(aesName: AesName, value: DomainType): PositionalSetting<DomainType> {
         return PositionalSetting(aesName, value).also {
             bindingCollector.settings[aesName] = it
         }
     }
 
+    /**
+     * Adds [PositionalMapping] for given positional aes from given [List] of values.
+     *
+     * @param aesName name of aes.
+     * @param values [List] of mapped values.
+     * @param parameters mapping parameters, optional.
+     * @param DomainType type of values.
+     */
     public fun <DomainType> addPositionalMapping(
         aesName: AesName, values: List<DomainType>, name: String?, parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
@@ -140,6 +180,14 @@ public interface BindingContext : BaseContext {
         }
     }
 
+    /**
+     * Adds [PositionalMapping] for given positional aes from column of dataset referenced by given id.
+     *
+     * @param aesName name of aes.
+     * @param columnID name of mapped column of dataset.
+     * @param parameters mapping parameters, optional.
+     * @param DomainType type of values.
+     */
     public fun <DomainType> addPositionalMapping(
         aesName: AesName, columnID: String, parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
@@ -149,6 +197,14 @@ public interface BindingContext : BaseContext {
         }
     }
 
+    /**
+     * Adds [PositionalMapping] for given positional aes from given [DataColumn] of values.
+     *
+     * @param aesName name of aes.
+     * @param values mapped column.
+     * @param parameters mapping parameters, optional.
+     * @param DomainType type of values.
+     */
     public fun <DomainType> addPositionalMapping(
         aesName: AesName, values: DataColumn<DomainType>, parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
@@ -158,6 +214,14 @@ public interface BindingContext : BaseContext {
         }
     }
 
+    /**
+     * Adds [NonPositionalMapping] for given non-positional aes from given [List] of values.
+     *
+     * @param aesName name of aes.
+     * @param values [List] of mapped values.
+     * @param parameters mapping parameters, optional.
+     * @param DomainType type of values.
+     */
     public fun <DomainType, RangeType> addNonPositionalMapping(
         aesName: AesName,
         values: List<DomainType>,
@@ -170,6 +234,14 @@ public interface BindingContext : BaseContext {
         }
     }
 
+    /**
+     * Adds [NonPositionalMapping] for given positional aes from given [DataColumn] of values.
+     *
+     * @param aesName name of aes.
+     * @param values mapped column.
+     * @param parameters mapping parameters, optional.
+     * @param DomainType type of values.
+     */
     public fun <DomainType, RangeType> addNonPositionalMapping(
         aesName: AesName,
         values: DataColumn<DomainType>,
@@ -181,6 +253,14 @@ public interface BindingContext : BaseContext {
         }
     }
 
+    /**
+     * Adds [NonPositionalMapping] for given non-positional aes from column of dataset referenced by given id.
+     *
+     * @param aesName name of aes.
+     * @param columnID name of mapped column of dataset.
+     * @param parameters mapping parameters, optional.
+     * @param DomainType type of values.
+     */
     public fun <DomainType, RangeType> addNonPositionalMapping(
         aesName: AesName,
         columnID: String,
@@ -192,13 +272,26 @@ public interface BindingContext : BaseContext {
         }
     }
 
+    /**
+     * Adds [PositionalFreeScale] for given positional aes.
+     *
+     * @param aesName name of aes.
+     * @param parameters mapping parameters.
+     * @param DomainType scale domain type.
+     */
     public fun <DomainType> addPositionalFreeScale(
-        aesName: AesName, parameters: PositionalMappingParameters<DomainType>
+        aesName: AesName,
+        parameters: PositionalMappingParameters<DomainType>
     ) {
         bindingCollector.freeScales[aesName] = PositionalFreeScale<DomainType>(aesName, parameters)
     }
 }
 
+/**
+ * Nested context. [bindingCollector], [plotContext] and [datasetIndex] are inherited from parent.
+ *
+ * @property parentContext parental [BindingContext].
+ */
 public interface SubBindingContext : BindingContext {
     public val parentContext: BindingContext
     override val bindingCollector: BindingCollector
@@ -208,90 +301,3 @@ public interface SubBindingContext : BindingContext {
     override val datasetIndex: Int
         get() = parentContext.datasetIndex
 }
-/*
-
-/**
- * Context with a grouped data.
- *
- * @property data dataset of type [GroupedData].
- */
-/*@PlotDslMarker*/
-public interface GroupedDataContextInterface : TableDataContext, LayerCollectorContextImmutable {
-    override val data: GroupedData
-}
-
-/**
- * Context with a grouped data with immutable mappings.
- *
- * @property data dataset of type [GroupedData].
- */
-/*@PlotDslMarker*/
-public open class GroupedDataSubContextImmutable constructor(
-    override val data: GroupedData,
-    override val layers: MutableList<Layer>,
-    parent: BindingContext,
-) : GroupedDataContextInterface, BindingSubContextImmutable(parent)
-
-
-/**
- * Plot creating context.
- *
- * @property data plot dataset.
- * @property features [MutableMap] of feature names to plot features.
- * @property toPlot creates a new plot from this context.
- */
-
-
-/**
- * Plot with an explicit layers creating context.
- */
-/*
-public interface NamedDataPlotContextInterface: LayerPlotContext {
-    override val data: NamedData
-}
-
- */
-
-/**
- * Layer plot with a dataset of type [NamedData] context.
- */
-/*@PlotDslMarker*/
-public class NamedDataPlotContext(
-    override val data: NamedData,
-) : NamedDataPlotContextInterface, LayerCollectorContextImmutable {
-    override val bindingCollector: BindingCollector = BindingCollector()
-    override val layers: MutableList<Layer> = mutableListOf()
-    override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
-
-    /**
-     * Performs grouping of this plot dataset by given columns.
-     * Creates [GroupedDataSubContextImmutable].
-     *
-     * @param ColumnReferences pointers to grouping keys columns.
-     */
-    public inline fun groupBy(
-        vararg columnReferences: ColumnReference<*>,
-        block: GroupedDataSubContextImmutable.() -> Unit
-    ) {
-        GroupedDataSubContextImmutable(
-            data.groupBy(*columnReferences),
-            layers,
-            this
-        ).apply(block)
-    }
-}
-
-/**
- * Layer plot with a dataset of type [GroupedDataContextInterface] context.
- */
-/*@PlotDslMarker*/
-public class GroupedDataPlotContext(
-    override val data: GroupedData,
-) : LayerPlotContext, GroupedDataContextInterface {
-    override val layers: MutableList<Layer> = mutableListOf()
-    override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
-    override val bindingCollector: BindingCollector = BindingCollector()
-}
-
-
- */

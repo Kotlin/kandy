@@ -6,11 +6,12 @@ package org.jetbrains.kotlinx.kandy.letsplot.tooltips.context
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.letsplot.tooltips.tooltips
+import org.jetbrains.kotlinx.kandy.letsplot.tooltips.value
 
 /**
- * Context created by [LayerContext.tooltips] method.
+ * Context created by [LayerContext.tooltips] methods.
  */
-///*@PlotDslMarker*/
 public class LayerTooltipsContext(private val layerContext: LayerContext) {
     // todo hide
     internal val lineBuffer = mutableListOf<String>()
@@ -37,48 +38,33 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
     }
 
     /**
-     * Adds standard line for given [ColumnReference]
+     * Adds standard line for given column.
      * (name of the column on the left side and the corresponding value on the right side).
      *
-     * @param source [ColumnReference]
+     * @param column column whose value will be displayed.
      */
-
     public fun line(column: ColumnReference<*>) {
         lineBuffer.add("@|@${layerContext.datasetHandler.takeColumn(column.name())}")
     }
 
+    /**
+     * Adds standard line for given column.
+     * (name of the column on the left side and the corresponding value on the right side).
+     *
+     * @param columnName name of column whose values will be displayed.
+     */
     public fun varLine(columnName: String) {
         lineBuffer.add("@|@${layerContext.datasetHandler.takeColumn(columnName)}")
     }
 
+    /**
+     * Adds standard line for given column.
+     * (name of the column on the left side and the corresponding value on the right side).
+     *
+     * @param column column whose value will be displayed.
+     */
     public fun varLine(column: ColumnReference<*>) {
         line(column)
     }
 
-    /**
-     * Adds standard line for given aesthetic attribute
-     * (name of the column mapped oh this aes on the left side and the corresponding value on the right side).
-     *
-     * @param aes aesthetic attribute
-     */
-    /* TODO
-    public fun line(aes: Aes) {
-        lineBuffer.add("@|^${aes.name.name}")
-    }
-
-     */
-
-    /* TODO
-    /**
-     * Adds standard line for given statistics
-     * (name of the source mapped oh this aes on the left side and the corresponding value on the right side).
-     *
-     * @param stat a statistic to display
-     */
-    public fun line(stat: Statistic<*>) {
-        lineBuffer.add("${stat.id.drop(2).dropLast(2)}|@${stat.id}")
-    }
-
-
-     */
 }

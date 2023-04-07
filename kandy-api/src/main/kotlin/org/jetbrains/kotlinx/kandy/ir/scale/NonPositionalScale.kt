@@ -5,25 +5,25 @@
 package org.jetbrains.kotlinx.kandy.ir.scale
 
 /**
- * Non-positional scale interface. Non-positional scale is used in case
- * of mapping to non-positional aesthetic attribute.
+ * Non-positional scale is used by mapping to non-positional aesthetic attribute.
  *
- * @param DomainType the type of the domain.
- * @param RangeType the type of the range.
+ * @property DomainType type of the domain.
+ * @property RangeType
  */
-public sealed interface NonPositionalScale<DomainType, RangeType> : Scale {
-    //public val nullValue: TypedValue?
-}
+public sealed interface NonPositionalScale<DomainType, RangeType> : Scale
 
 /**
  * Non-positional continuous scale.
  *
- * @param DomainType the type of the domain.
- * @param RangeType the type of the range.
- * @param domainLimits the limits of the domain.
- * @param rangeLimits the limits of the range.
+ * @param DomainType type of the domain.
+ * @param RangeType type of the range.
+ * @param rangeMin scale range minimum.
+ * @param rangeMax scale range maximum.
+ * @param domainMin scale domain minimum.
+ * @param domainMax scale domain maximum.
+ * @param nullValue value which null is mapped to.
+ * @param transform scale transformation.
  */
-//@Serializable
 public data class NonPositionalContinuousScale<DomainType, RangeType>(
     val domainMin: DomainType?,
     val domainMax: DomainType?,
@@ -36,21 +36,24 @@ public data class NonPositionalContinuousScale<DomainType, RangeType>(
 /**
  * Non-positional categorical scale.
  *
- * @param DomainType the type of the domain.
- * @param domainCategories the list of the domain categories.
- * @param rangeValues the list of the range values.
+ * @param DomainType type of the domain.
+ * @param domainCategories [List] of the domain categories.
+ * @param rangeValues [List] of the range values.
  */
-//@Serializable
 public data class NonPositionalCategoricalScale<DomainType, RangeType>(
     val domainCategories: List<DomainType>?,
     val rangeValues: List<RangeType>?,
-    //override val nullValue: TypedValue?,
 ) : CategoricalScale, NonPositionalScale<DomainType, RangeType>
 
+/**
+ * Custom non-positional scale.
+ */
 public interface CustomNonPositionalScale<DomainType, RangeType>
     : NonPositionalScale<DomainType, RangeType>, CustomScale
 
-//todo!!!
+/**
+ * Non-positional default scale.
+ */
 public class NonPositionalDefaultScale<DomainType, RangeType>:
     NonPositionalScale<DomainType, RangeType>, DefaultScale {
     override fun equals(other: Any?): Boolean {

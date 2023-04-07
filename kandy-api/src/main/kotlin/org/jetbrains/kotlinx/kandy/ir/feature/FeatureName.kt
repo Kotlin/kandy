@@ -9,5 +9,4 @@ package org.jetbrains.kotlinx.kandy.ir.feature
  *
  * @property name the name of feature
  */
-//@Serializable
 public data class FeatureName(val name: String)

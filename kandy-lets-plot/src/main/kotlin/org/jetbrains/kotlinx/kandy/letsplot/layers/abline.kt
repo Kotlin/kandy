@@ -8,74 +8,48 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ABLineContext
-import org.jetbrains.kotlinx.kandy.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.kandy.util.color.Color
 
 @PublishedApi
 internal val AB_LINE: LetsPlotGeom = LetsPlotGeom("abline")
-/*
-*/
+
 /**
- * Adds a new line with specified slope and intercept layer.
+ * Adds a new abLine layer.
  *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
  *
- *  ### Aesthetic attributes:
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
  *
- *  Positional:
+ * ABLine aesthetics:
+ * * `slope`
+ * * `intercept`
+ * * `color`
+ * * `type`
+ * * `width`
+ * * `alpha`
  *
- *  - [slope][ABLineContextImmutable.slope] - line slope.
- *  - [intercept][ABLineContextImmutable.intercept] - line intercept.
- *
- *   Non-positional:
- *  - [color][ABLineContextImmutable.color] - line color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][ABLineContextImmutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [type][ABLineContextImmutable.type] - line type, of the type [LineType], mappable. (TODO grouping)
- *  - [width][ABLineContextImmutable.width] - line width, of the type [Double], mappable. (TODO grouping)
+ * Example:
  *
  * ```
  * abLine {
- *    intercept(0.5) // setting of constant `intercept` value
- *    color(gType.scaled(..)) // mapping from `gType` column to `color` with some scale
+ *    // positional mapping
+ *    intercept(time)
+ *    // positional setting
+ *    y.constant(12.5)
+ *
+ *    // non-positional setting
+ *    width = 2.5
+ *    // non-positional mapping
+ *    color("type") {
+ *       ... // some mapping parameters
+ *    }
  * }
  * ```
- *//*
-
-public inline fun LayerCollectorContextImmutable.abLine(block: ABLineContextImmutable.() -> Unit) {
-    addLayer(ABLineContextImmutable(this).apply(block), AB_LINE)
-}
-
-*/
-/**
- * Adds a new line with specified slope and intercept layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [slope][ABLineContextMutable.slope] - line slope.
- *  - [intercept][ABLineContextMutable.intercept] - line intercept.
- *
- *   Non-positional:
- *  - [color][ABLineContextMutable.color] - line color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][ABLineContextMutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [type][ABLineContextMutable.type] - line type, of the type [LineType], mappable. (TODO grouping)
- *  - [width][ABLineContextMutable.width] - line width, of the type [Double], mappable. (TODO grouping)
- *
- * ```
- * abLine {
- *    slope(0.5) // setting of constant `slope` value
- *    color(listOf("A", "B", "B", "A").scaled(..)) // mapping from list to `color` with some scale
- * }
- * ```
- *//*
-
-
-*/
-
+ */
 public inline fun LayerCollectorContext.abLine(block: ABLineContext.() -> Unit) {
     addLayer(ABLineContext(this).apply(block), AB_LINE)
 }

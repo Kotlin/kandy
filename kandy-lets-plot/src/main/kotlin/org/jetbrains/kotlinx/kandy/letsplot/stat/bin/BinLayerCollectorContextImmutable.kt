@@ -31,22 +31,11 @@ public interface BinStatContext {
 // TODO
 
 //@StatDSLMarker
-public class BinLayerCollectorContext(parent: LayerCollectorContext, override val datasetIndex: Int)
-    : LayerCollectorContext, BinStatContext {
+public class BinLayerCollectorContext(parent: LayerCollectorContext, override val datasetIndex: Int) :
+    LayerCollectorContext, BinStatContext {
     override val layers: MutableList<Layer> = parent.layers
     override val plotContext: PlotContext = parent.plotContext
 }
-
-/*
-public class BinLayerCollectorContextMutable(parent: LayerCollectorContextMutable, override val data: TableData)
-    : StatLayerCollectorContext(parent), BinStatContext{
-    // TODO
-    override val bindingCollector: BindingCollector = BindingCollector()
-}
-
- */
-
-
 
 public sealed interface Bins {
     public data class ByNumber internal constructor(val number: Int) : Bins
@@ -71,58 +60,54 @@ public sealed interface BinXPos {
         public fun boundary(posValue: Double): Boundary = Boundary(posValue)
     }
 }
-/*
-@PublishedApi
-internal fun countData(
-    data: TableData,
-    column: ColumnReference<*>,
-    bins: Bins = Bins.byNumber(20),
-    binXPos: BinXPos = BinXPos.none(0.0),
-): TableData {
-    return when(data) {
-        is NamedDataInterface -> countBinsImpl(data, column, bins, binXPos)
-        is CountedGroupedDataInterface -> countBinsImpl(data.toLazy(), column, bins, binXPos)
-        is LazyGroupedDataInterface -> countBinsImpl(data, column, bins, binXPos)
-    }
-}
-
- */
-
-/*
-@PublishedApi
-internal inline fun LayerCollectorContext.statBinImpl(
-    data: TableData,
-    column: ColumnReference<*>,
-    bins: Bins = Bins.byNumber(20),
-    binXPos: BinXPos = BinXPos.none(0.0),
-    block: BinLayerCollectorContext.() -> Unit
-){
-    val newData = when(data) {
-        is NamedData -> countBinsImpl(data, column, bins, binXPos)
-        is GroupedData -> countBinsImpl(data, column, bins, binXPos)
-    }
-    plotContext.datasetHandlers.add(DatasetHandler(newData))
-    BinLayerCollectorContext(this, plotContext.datasetHandlers.size-1).apply(block)
-}
-*/
-
-
 
 //todo type
+/**
+ * Counts `bin` statistics by given column. Creates [BinLayerCollectorContext].
+ * In this context a dataset with calculated stats is used.
+ * It also has properties - references to columns with these stats,
+ * which can be used in mappings etc.
+ *
+ * Countable statistics:
+ *  * [BinStatContext.StatHolder.BINS]
+ *  * [BinStatContext.StatHolder.COUNT]
+ *  * [BinStatContext.StatHolder.DENSITY]
+ *
+ *  @param column column for which the statistics are counted.
+ *  @param bins [Bins] count parameter.Determines the parameter by which the bins will be calculated
+ *  - either their number or their width.
+ *  @param binXPos bins position adjustment.
+ */
 public inline fun LayerCollectorContext.statBin(
     column: ColumnReference<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ) {
-    val newData = when(val data = datasetHandler.initialDataset) {
+    val newData = when (val data = datasetHandler.initialDataset) {
         is NamedData -> countBinsImpl(data, column, bins, binXPos)
         is GroupedData -> countBinsImpl(data, column, bins, binXPos)
     }
     plotContext.datasetHandlers.add(DatasetHandler(newData, true))
-    BinLayerCollectorContext(this, plotContext.datasetHandlers.size-1).apply(block)
+    BinLayerCollectorContext(this, plotContext.datasetHandlers.size - 1).apply(block)
 }
 
+/**
+ * Counts `bin` statistics by given column. Creates [BinLayerCollectorContext].
+ * In this context a dataset with calculated stats is used.
+ * It also has properties - references to columns with these stats,
+ * which can be used in mappings etc.
+ *
+ * Countable statistics:
+ *  * [BinStatContext.StatHolder.BINS]
+ *  * [BinStatContext.StatHolder.COUNT]
+ *  * [BinStatContext.StatHolder.DENSITY]
+ *
+ *  @param column name of column for which the statistics are counted.
+ *  @param bins [Bins] count parameter.Determines the parameter by which the bins will be calculated
+ *  - either their number or their width.
+ *  @param binXPos bins position adjustment.
+ */
 public inline fun LayerCollectorContext.statBin(
     column: String,
     bins: Bins = Bins.byNumber(20),
@@ -132,17 +117,50 @@ public inline fun LayerCollectorContext.statBin(
     statBin(column<Any>(column), bins, binXPos, block)
 }
 
+/**
+ * Counts `bin` statistics for given values. Creates [BinLayerCollectorContext].
+ * In this context a dataset with calculated stats is used.
+ * It also has properties - references to columns with these stats,
+ * which can be used in mappings etc.
+ *
+ * Countable statistics:
+ *  * [BinStatContext.StatHolder.BINS]
+ *  * [BinStatContext.StatHolder.COUNT]
+ *  * [BinStatContext.StatHolder.DENSITY]
+ *
+ *  @param values values for which the statistics are counted.
+ *  @param bins [Bins] count parameter.Determines the parameter by which the bins will be calculated
+ *  - either their number or their width.
+ *  @param binXPos bins position adjustment.
+ */
 public inline fun LayerCollectorContext.statBin(
     values: Iterable<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ) {
-    val newData = countBinsImpl(NamedData(dataFrameOf("sample" to values.toList())), column<Double>("sample"), bins, binXPos)
+    val newData =
+        countBinsImpl(NamedData(dataFrameOf("sample" to values.toList())), column<Double>("sample"), bins, binXPos)
     plotContext.datasetHandlers.add(DatasetHandler(newData, true))
-    BinLayerCollectorContext(this, plotContext.datasetHandlers.size-1).apply(block)
+    BinLayerCollectorContext(this, plotContext.datasetHandlers.size - 1).apply(block)
 }
 
+/**
+ * Counts `bin` statistics by given column. Creates [BinLayerCollectorContext].
+ * In this context a dataset with calculated stats is used.
+ * It also has properties - references to columns with these stats,
+ * which can be used in mappings etc.
+ *
+ * Countable statistics:
+ *  * [BinStatContext.StatHolder.BINS]
+ *  * [BinStatContext.StatHolder.COUNT]
+ *  * [BinStatContext.StatHolder.DENSITY]
+ *
+ *  @param column column for which the statistics are counted.
+ *  @param bins [Bins] count parameter.Determines the parameter by which the bins will be calculated
+ *  - either their number or their width.
+ *  @param binXPos bins position adjustment.
+ */
 public inline fun LayerCollectorContext.statBin(
     column: DataColumn<*>,
     bins: Bins = Bins.byNumber(20),

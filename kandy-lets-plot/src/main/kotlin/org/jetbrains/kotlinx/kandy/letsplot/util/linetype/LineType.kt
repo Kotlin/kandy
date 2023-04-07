@@ -9,7 +9,6 @@ package org.jetbrains.kotlinx.kandy.letsplot.util.linetype
  *
  * TODO detailed?
  */
-//@Serializable
 public data class LineType internal constructor(public val description: String, public val codeNumber: Int) {
     public companion object {
         public val BLANK: LineType = LineType("blank", 0)

@@ -8,10 +8,10 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
-import org.jetbrains.kotlinx.kandy.letsplot.scales.AxisParameters
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.AxisParameters
 
 
-public interface WithYFree: BindingContext {
+public interface WithYFree : BindingContext {
     @Suppress("UNCHECKED_CAST")
     public val y: AxisParameters
         get() {

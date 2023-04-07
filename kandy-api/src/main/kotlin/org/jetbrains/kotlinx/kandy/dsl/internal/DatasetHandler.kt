@@ -13,12 +13,12 @@ import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 
 
-// todo value column
-
 public class DatasetHandler(
     public val initialDataset: TableData,
     private val dcAsRefOnly: Boolean = false
 ) {
+    // todo value column
+
     public val initialNamedData: NamedData
     private val isGrouped: Boolean
     private val groupKeys: List<String>?

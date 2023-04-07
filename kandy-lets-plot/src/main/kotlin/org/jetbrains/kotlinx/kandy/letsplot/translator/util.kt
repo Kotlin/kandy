@@ -15,14 +15,14 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.color.StandardColor
 
 internal fun TableData.dataFrame(): DataFrame<*> {
-    return when(this) {
+    return when (this) {
         is NamedData -> dataFrame
         is GroupedData -> origin.dataFrame
     }
 }
 
 internal fun Color.wrap(): String {
-    return when(this) {
+    return when (this) {
         is StandardColor.Hex -> hexString
         is StandardColor.Named -> name
         is StandardColor.RGB -> hexString

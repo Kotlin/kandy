@@ -9,7 +9,6 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.Anchor
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.context.LayerTooltipsContext
 
-//@Serializable
 public data class LayerTooltips internal constructor(
     val variables: List<String>,
     val lines: List<String>?,
@@ -25,7 +24,8 @@ public data class LayerTooltips internal constructor(
         public val FEATURE_NAME: FeatureName = FeatureName("layer_tooltips")
 
 
-        public fun fromContext(
+        @PublishedApi
+        internal fun fromContext(
             variables: List<String>,
             title: String?,
             anchor: Anchor?,

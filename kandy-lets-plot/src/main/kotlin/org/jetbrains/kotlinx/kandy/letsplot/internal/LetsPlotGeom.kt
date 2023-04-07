@@ -6,5 +6,4 @@ package org.jetbrains.kotlinx.kandy.letsplot.internal
 
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-//@Serializable
 public data class LetsPlotGeom(val name: String) : Geom

@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.kandy.ir.scale
 
 /**
- * [Scale] transformation - a function that transforms a scale via composition.
+ * [ContinuousScale] transformation - function that converts the scale through a composition with the base function.
  */
 public sealed interface Transform
 

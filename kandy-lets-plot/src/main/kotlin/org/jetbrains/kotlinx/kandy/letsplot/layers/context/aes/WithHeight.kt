@@ -18,6 +18,7 @@ public interface WithHeight : BindingContext {
         set(value) {
             addNonPositionalSetting(HEIGHT, value)
         }
+
     public fun <T> height(
         column: ColumnReference<T>,
         //parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
@@ -42,7 +43,7 @@ public interface WithHeight : BindingContext {
 
     public fun height(
         column: String,
-       // parameters: LetsPlotNonPositionalMappingParameters<Any?, Double>.() -> Unit = {}
+        // parameters: LetsPlotNonPositionalMappingParameters<Any?, Double>.() -> Unit = {}
     ): NonPositionalMapping<Any?, Double> {
         return addNonPositionalMapping(
             HEIGHT,
@@ -74,7 +75,7 @@ public interface WithHeight : BindingContext {
             HEIGHT,
             values,
             null
-           // LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
+            // LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
         )
     }
 }

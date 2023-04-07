@@ -7,31 +7,29 @@ package org.jetbrains.kotlinx.kandy.ir.bindings
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
 
 /**
- * Setting base interface.
+ * Setting, i.e. assigning a constant value to an attribute .
  */
 public sealed interface Setting
 
 /**
- * Setting of a non-positional aesthetic attribute.
+ * Setting of non-positional aesthetic attribute.
  *
- * @param T the type specifying a non-positional attribute
- * @property aes the non-positional aesthetic attribute to be set to
- * @property value the assigned value
+ * @param T type specifying a non-positional attribute.
+ * @property aes non-positional aesthetic attribute to be set to.
+ * @property value the assigned value.
  */
-////@Serializable
 public data class NonPositionalSetting<T>(
     val aes: AesName,
     val value: T,
 ) : Setting
 
 /**
- * Setting of a positional aesthetic attribute.
+ * Setting of positional aesthetic attribute.
  *
- * @param T the type of set value.
- * @property aes the positional aesthetic attribute to be set to
- * @property value the assigned value
+ * @param T type specifying a positional attribute.
+ * @property aes positional aesthetic attribute to be set to.
+ * @property value the assigned value.
  */
-////@Serializable
 public data class PositionalSetting<T>(
     val aes: AesName,
     val value: T,

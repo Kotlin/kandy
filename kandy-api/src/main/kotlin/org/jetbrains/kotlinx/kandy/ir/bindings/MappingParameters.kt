@@ -8,6 +8,11 @@ import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.kandy.ir.scale.Scale
 
+/**
+ *  Parameters of the mapping.
+ *
+ *  @property scale [Scale] of this mapping.
+ */
 public interface MappingParameters {
     public val scale: Scale
 }

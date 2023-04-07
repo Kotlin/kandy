@@ -10,8 +10,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 // import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 
 
-public class LineRangeContext(parent: LayerCollectorContext)
-    :LayerWithBorderLineContext(parent), WithX, WithYMin, WithYMax, WithAlpha, WithYFree
+public class LineRangeContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithX, WithYMin,
+    WithYMax, WithAlpha, WithYFree
 
 /*
 public interface LineRangeContextInterface : WithBorderLineContextInterface {

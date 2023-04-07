@@ -1,21 +1,15 @@
-/*
-* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
-*/
-
 package org.jetbrains.kotlinx.kandy.letsplot.multiplot
 
-import org.jetbrains.kotlinx.kandy.ir.Plot
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.context.PlotBunchBuffer
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
 
-public class PlotBunchBuffer {
-    @PublishedApi
-    internal val items: MutableList<PlotBunch.Item> = mutableListOf()
-
-    public fun add(plot: Plot, x: Int, y: Int, width: Int? = null, height: Int? = null) {
-        items.add(PlotBunch.Item(plot, x, y, width, height))
-    }
-}
-
+/**
+ * Collection of plots. Each plot can have arbitrary location and size. Creates [PlotBunchBuffer]
+ * with method [PlotBunchBuffer.add] that adds a plot with the specified coordinates
+ * of the upper left point and size.
+ *
+ * @return [PlotBunch] with given plots.
+ */
 public inline fun plotBunch(block: PlotBunchBuffer.() -> Unit): PlotBunch {
     return PlotBunch(PlotBunchBuffer().apply(block).items)
 }

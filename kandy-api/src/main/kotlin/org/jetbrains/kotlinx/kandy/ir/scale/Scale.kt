@@ -5,16 +5,15 @@
 package org.jetbrains.kotlinx.kandy.ir.scale
 
 /**
- * Scale base interface. Scale wraps a function that converts
- * a value from a data source into some geometric value (value of aesthetic attribute).
+ * Scale wraps a function that converts a value from a data source into
+ * some geometric value (value of an aesthetic attribute).
  */
 public sealed interface Scale {
     public companion object
 }
 
 /**
- * Continuous scale interface. Continuous scale wraps a function
- * that acts from one segment to another.
+ * Continuous scale, i.e. scale defined by a continuous function.
  */
 public interface ContinuousScale<RangeType> : Scale {
     public val nullValue: RangeType?
@@ -22,7 +21,6 @@ public interface ContinuousScale<RangeType> : Scale {
 }
 
 /**
- * Categorical scale interface. Categorical scale wraps a function
- * that acts from one finite set to another.
+ * CategoricalScale scale, i.e. scale defined by a discrete finite function.
  */
 public interface CategoricalScale : Scale

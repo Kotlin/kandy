@@ -16,8 +16,7 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
  * [Layer] is a collection of data and mappings from it.
  * It is characterized by its [Geom].
  *
- * @param dataset the dataset of this layer. In case it is null,
- * the data for this layer is taken from the dataset of the [Plot]
+ * @param datasetIndex index of layer dataset in the [Plot.datasets].
  * @param geom the [Geom] that describes this layer.
  * @param mappings the [Map] of the mappings; keys are aesthetic attributes,
  * values are mappings on corresponding attributes.
@@ -26,12 +25,11 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
  * @param features the [Map] of the layer features; keys are feature names,
  * values are features with corresponding names.
  */
-//@Serializable
 public data class Layer(
     val datasetIndex: Int,
     val geom: Geom,
     val mappings: Map<AesName, Mapping>,
     val settings: Map<AesName, Setting>,
-    val features: Map<FeatureName, LayerFeature> = emptyMap(),
-    val freeScales: Map<AesName, FreeScale> = emptyMap(),
+    val features: Map<FeatureName, LayerFeature>,
+    val freeScales: Map<AesName, FreeScale>,
 )

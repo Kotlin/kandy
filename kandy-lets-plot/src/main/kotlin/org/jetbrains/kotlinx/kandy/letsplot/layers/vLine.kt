@@ -12,64 +12,42 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.VLineContext
 
 @PublishedApi
 internal val V_LINE: LetsPlotGeom = LetsPlotGeom("vLine")
-/*
-/**
- * Adds a new vertical line layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [ x][VLineContextImmutable.x]
- *
- *   Non-positional:
- *  - [color][VLineContextImmutable.color] - line color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][VLineContextImmutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [type][VLineContextImmutable.type] - line type, of the type [LineType], mappable. (TODO grouping)
- *  - [width][VLineContextImmutable.width] - line width, of the type [Double], mappable. (TODO grouping)
- *
- * ```
- * vLine {
- *    x(0.5) // setting of constant `y` value
- *    color(gType.scaled(..)) // mapping from `gType` column to `color` with some scale
- * }
- * ```
- */
-public inline fun LayerCollectorContextImmutable.vLine(block: VLineContextImmutable.() -> Unit) {
-    addLayer(VLineContextImmutable(this).apply(block), V_LINE)
-}
 
 /**
  * Adds a new vertical line layer.
  *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
  *
- *  ### Aesthetic attributes:
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
  *
- *  Positional:
+ * Vertical ine aesthetics:
+ * * `x`
+ * * `color`
+ * * `type`
+ * * `width`
+ * * `alpha`
  *
- *  - [ x][VLineContextMutable.x]
- *
- *   Non-positional:
- *  - [color][VLineContextMutable.color] - line color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][VLineContextMutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [type][VLineContextMutable.type] - line type, of the type [LineType], mappable. (TODO grouping)
- *  - [width][VLineContextMutable.width] - line width, of the type [Double], mappable. (TODO grouping)
+ * Example:
  *
  * ```
  * vLine {
- *    x(listOf(0.1, 0.5, 0.6) // mapping from list to `Y` with an implicit scale
- *    color(Color.RED) // setting of constant `color` value
+ *    // positional mapping
+ *    x(count) {
+ *       ... // some mapping parameters
+ *    }
+ *    // even though the v-line have no "y" attribute we can adjust the `Y` axis
+ *    y.limits = 0.0 to 5.0
+ *    // non-positional setting
+ *    width = 2.5
+ *    // non-positional mapping
+ *    color("count")
  * }
  * ```
- */
-
-
-
-
  */
 public inline fun LayerCollectorContext.vLine(block: VLineContext.() -> Unit) {
     addLayer(VLineContext(this).apply(block), V_LINE)

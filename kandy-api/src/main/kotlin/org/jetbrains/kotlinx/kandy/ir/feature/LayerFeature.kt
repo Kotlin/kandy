@@ -5,10 +5,11 @@
 package org.jetbrains.kotlinx.kandy.ir.feature
 
 /**
- * Layer feature interface.
+ * Layer feature.
  *
- * @property featureName the name of feature
+ * @property featureName the name of feature.
  */
 public interface LayerFeature {
-    public val featureName: FeatureName // todo remove?
+    // todo remove
+    public val featureName: FeatureName
 }

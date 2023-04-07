@@ -10,7 +10,6 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 /**
  * The relative arrangement of groups within a layer. TODO grouping
  */
-//@Serializable
 public sealed class Position private constructor(public val name: String) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
@@ -21,13 +20,11 @@ public sealed class Position private constructor(public val name: String) : Laye
     /**
      * Don't adjust position.
      */
-    //@Serializable
     public object Identity : Position("identity")
 
     /**
      * Stack overlapping objects on top of each another
      */
-    //@Serializable
     public object Stack : Position("stack")
 
     /**
@@ -35,7 +32,6 @@ public sealed class Position private constructor(public val name: String) : Laye
      *
      * @param width the dodging width, when different to the width of the individual elements.
      */
-    //@Serializable
     public data class Dodge(val width: Double? = null) : Position("dodge")
 
     /**
@@ -48,7 +44,6 @@ public sealed class Position private constructor(public val name: String) : Laye
      * The jitter is added in both positive and negative directions,
      * so the total spread is twice the value specified here.
      */
-    //@Serializable
     public data class Jitter(val width: Double? = null, val height: Double? = null) : Position("jitter")
 
     /**
@@ -57,7 +52,6 @@ public sealed class Position private constructor(public val name: String) : Laye
      * @param x the amount of vertical distance to move.
      * @param y the amount of horizontal distance to move.
      */
-    //@Serializable
     public data class Nudge(val x: Double? = null, val y: Double? = null) : Position("nudge")
 
     /**
@@ -67,7 +61,6 @@ public sealed class Position private constructor(public val name: String) : Laye
      * @param jitterWidth the degree of jitter in the x direction.
      * @param jitterHeight the degree of jitter in the y direction.
      */
-    //@Serializable
     public data class JitterDodge(
         val dodgeWidth: Double? = null,
         val jitterWidth: Double? = null,

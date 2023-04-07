@@ -8,8 +8,8 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
-public class SegmentContext(parent: LayerCollectorContext)
-    : LayerContext(parent), WithColor, WithAlpha, WithLineType, WithWidthAsSize,
+public class SegmentContext(parent: LayerCollectorContext) : LayerContext(parent), WithColor, WithAlpha, WithLineType,
+    WithWidthAsSize,
     WithXBegin, WithYBegin, WithXEnd, WithYEnd, WithXFree, WithYFree
 
 /*

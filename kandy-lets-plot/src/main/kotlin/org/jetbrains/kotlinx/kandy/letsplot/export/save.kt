@@ -19,13 +19,13 @@ import org.jetbrains.letsPlot.export.ggsave
  * The exported file is created in directory ${user.dir}/lets-plot-images
  * if not specified otherwise (see the `path` parameter).
  *
- * @receiver [Plot] to export.
- * @param filename The name of file. It must end with file extention corresponding
+ * @receiver [Plot] for export.
+ * @param filename name of file. It must end with file extension corresponding
  *      to one of the supported formats: svg, html (or htm), png, jpeg (or jpg) or tiff (or tif)
- * @param scale Scaling factor (only for raster formats). Default: 2.0
- * @param dpi Dot-per-Inch value to store in the exported file metadata (only for raster formats).
+ * @param scale scaling factor (only for raster formats). Default: 2.0
+ * @param dpi dot-per-inch value to store in the exported file metadata (only for raster formats).
  *      By default, no metadata is stored.
- * @param path Path to a directory to save image files in.
+ * @param path path to a directory to save image files in.
  *      By default, it is `${user.dir}/lets-plot-images`
  *
  * @return Absolute pathname of created file.

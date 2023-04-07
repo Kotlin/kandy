@@ -4,29 +4,30 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.facet.context
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
+
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.kandy.letsplot.facet.Direction
 import org.jetbrains.kotlinx.kandy.letsplot.facet.OrderDirection
 import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing
+import org.jetbrains.kotlinx.kandy.letsplot.facet.facetWrap
 import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetWrapFeature
 
 /**
- * Context opened by [facetWrap].
+ * Context opened by [LayerPlotContext.facetWrap]. Collects facets variables.
  */
-/*@PlotDslMarker*/
-public class FacetWrapContext @PublishedApi internal constructor(){
+public class FacetWrapContext @PublishedApi internal constructor() {
     private val facets = mutableListOf<ColumnReference<*>>()
-    private val orders= mutableListOf<OrderDirection>()
+    private val orders = mutableListOf<OrderDirection>()
     private val formats = mutableListOf<String?>()
 
     /**
      * Adds a a new facet by a given variable.
      *
-     * @param variable Variable which defines this facet.
-     * @param order Specifies ordering direction of this facet.
-     * @param format Specifies the format pattern for displaying faceting values in rows.
+     * @param variable variable which defines this facet.
+     * @param order specifies ordering direction of this facet.
+     * @param format specifies the format pattern for displaying faceting values in rows.
      *
      * Format pattern in the format parameters can be just a number format (like "d") or
      * a string template where number format is surrounded by curly braces: "{d} cylinders".

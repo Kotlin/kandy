@@ -5,10 +5,11 @@
 package org.jetbrains.kotlinx.kandy.ir.feature
 
 /**
- * Plot feature interface.
+ * Plot feature.
  *
- * @property featureName the name of feature
+ * @property featureName the name of feature.
  */
 public interface PlotFeature {
+    // todo remove
     public val featureName: FeatureName
 }

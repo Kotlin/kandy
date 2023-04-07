@@ -11,87 +11,43 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.StepContext
 
 @PublishedApi
 internal val STEP: LetsPlotGeom = LetsPlotGeom("step")
-/*
-public interface StepContextInterface : LayerContext {
-    public val x: XAes get() = XAes(this)
-    public val y: YAes get() = YAes(this)
-
-    public val color: ColorAes get() = ColorAes(this)
-    public val alpha: AlphaAes get() = AlphaAes(this)
-    public val lineType: LineTypeAes get() = LineTypeAes(this)
-    public val width: SizeAes get() = SizeAes(this)
-}
-
-/*@PlotDslMarker*/
-public class StepContextImmutable(parent: LayerCollectorContextImmutable) :
-    LayerWithBorderLineContextImmutable(parent), StepContextInterface
-
-/*@PlotDslMarker*/
-public class StepContextMutable(parent: LayerCollectorContextMutable)
-    : LayerWithBorderLineContextMutable(parent), StepContextInterface
 
 /**
  * Adds a new step layer.
  *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
  *
- *  ### Aesthetic attributes:
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
  *
- *  Positional:
+ * Step aesthetics:
+ * * `x`
+ * * `y`
+ * * `color`
+ * * `lineType`
+ * * `width`
+ * * `alpha`
  *
- *  - [ x][StepContextInterface.x]
- *  - [ y][StepContextInterface.y]
- *
- *   Non-positional:
- *  - [color][StepContextInterface.color] - line color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][StepContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [lineType][StepContextInterface.lineType] - line type, of the type [LineType], mappable. (TODO grouping)
- *  - [width][StepContextInterface.width] - line width, of the type [Double], mappable. (TODO grouping)
+ * Example:
  *
  * ```
- * step {
- *    x(time.scaled(..)) // mapping from `time` column to `X` with some scale
- *    lineType(LineType.DOTTED) // setting of constant `type` value
+ * line {
+ *    // positional mapping
+ *    x(time) {
+ *       ... // some mapping parameters
+ *    }
+ *
+ *    // non-positional setting
+ *    width = 2.5
+ *    // non-positional mapping
+ *    color("type")
  * }
  * ```
  */
-public inline fun LayerCollectorContextImmutable.step(block: StepContextImmutable.() -> Unit) {
-    addLayer(StepContextImmutable(this).apply(block), STEP)
-}
-
-/**
- * Adds a new step layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [ x][StepContextInterface.x]
- *  - [ y][StepContextInterface.y]
- *
- *   Non-positional:
- *  - [color][StepContextInterface.color] - line color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][StepContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [lineType][StepContextInterface.lineType] - line type, of the type [LineType], mappable. (TODO grouping)
- *  - [width][StepContextInterface.width] - line width, of the type [Double], mappable. (TODO grouping)
- *
- * ```
- * step {
- *    x(listOf(4.2f, 5.5f, 8.9f).scaled(..)) // mapping from list to `X` with some scale
- *    lineType(LineType.DOTTED) // setting of constant `type` value
- * }
- * ```
- */
-public inline fun LayerCollectorContextMutable.step(block: StepContextMutable.() -> Unit) {
-    addLayer(StepContextMutable(this).apply(block), STEP)
-}
-
-
- */
-
 public inline fun LayerCollectorContext.step(block: StepContext.() -> Unit) {
     addLayer(StepContext(this).apply(block), STEP)
 }

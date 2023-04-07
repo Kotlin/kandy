@@ -5,23 +5,22 @@
 package org.jetbrains.kotlinx.kandy.ir.scale
 
 /**
- * Positional scale interface. Positional scale is used in case
- * of mapping to positional aesthetic attribute.
+ * Positional scale is used by mapping to positional aesthetic attribute.
  * It has an implicit range.
  *
- * @param DomainType the type of the domain.
+ * @property DomainType type of the domain.
  */
-public sealed interface PositionalScale<DomainType> : Scale {
-    //public val nullValue: TypedValue?
-}
+public sealed interface PositionalScale<DomainType> : Scale
 
 /**
  * Positional continuous scale.
  *
- * @param DomainType the type of the domain.
- * @param limits the limits of the domain.
+ * @property DomainType type of the domain.
+ * @property min scale domain minimum.
+ * @property max scale domain maximum.
+ * @property nullValue value which null is mapped to.
+ * @property transform scale transformation.
  */
-//@Serializable
 public data class PositionalContinuousScale<DomainType>(
     val min: DomainType?,
     val max: DomainType?,
@@ -32,16 +31,16 @@ public data class PositionalContinuousScale<DomainType>(
 /**
  * Positional categorical scale.
  *
- * @param DomainType the type of the domain.
- * @param categories the list of the domain categories.
+ * @property DomainType the type of the domain.
+ * @property categories the list of the domain categories.
  */
-//@Serializable
 public data class PositionalCategoricalScale<DomainType>(
     val categories: List<DomainType>?,
-    //override val nullValue: TypedValue?,
 ) : CategoricalScale, PositionalScale<DomainType>
 
-// TODO!!!
+/**
+ * Positional default scale.
+ */
 public class PositionalDefaultScale<DomainType>
     : PositionalScale<DomainType>, DefaultScale {
     public override fun equals(other: Any?): Boolean {

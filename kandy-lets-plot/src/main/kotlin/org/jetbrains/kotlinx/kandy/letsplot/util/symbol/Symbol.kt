@@ -9,7 +9,6 @@ package org.jetbrains.kotlinx.kandy.letsplot.util.symbol
  *
  * TODO detailed?
  */
-//@Serializable
 public data class Symbol internal constructor(val shape: Int) {
     public companion object {
         public val SQUARE_OPEN: Symbol = Symbol(0)

@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
-import org.jetbrains.kotlinx.kandy.letsplot.scales.AxisParametersWithSetter
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.AxisParametersWithSetter
 import kotlin.reflect.KProperty
 
 public interface WithX : BindingContext {
@@ -61,7 +61,7 @@ public interface WithX : BindingContext {
         return addPositionalMapping<T>(
             X,
             values,
-            LetsPlotPositionalMappingParameters<T,>().apply(parameters)
+            LetsPlotPositionalMappingParameters<T>().apply(parameters)
         )
     }
 

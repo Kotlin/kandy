@@ -8,8 +8,8 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
 
-public class RectContext(parent: LayerCollectorContext)
-    : LayerWithBorderLineContext(parent), WithXMin, WithXMax, WithYMin, WithYMax,
+public class RectContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithXMin, WithXMax,
+    WithYMin, WithYMax,
     WithFillColor, WithAlpha, WithXFree, WithYFree
 
 /*

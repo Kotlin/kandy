@@ -10,71 +10,49 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.SegmentContext
 
 @PublishedApi
 internal val SEGMENT: LetsPlotGeom = LetsPlotGeom("segment")
-/*
-/**
- * Adds a new segment layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [xBegin][SegmentContextInterface.xBegin]
- *  - [yBegin][SegmentContextInterface.yBegin]
- *  - [xEnd][SegmentContextInterface.xEnd]
- *  - [yEnd][SegmentContextInterface.yEnd]
- *
- *   Non-positional:
- *  - [color][SegmentContextInterface.color] - line color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][SegmentContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [lineType][SegmentContextInterface.lineType] - line type, of the type [LineType], mappable. (TODO grouping)
- *  - [width][SegmentContextInterface.width] - line width, of the type [Double], mappable. (TODO grouping)
- *
- * ```
- * segment {
- *    xBegin(sTime.scaled(..)) // mapping from `sTime` column to `xBegin` with some scale
- *    lineType(LineType.DOTTED) // setting of constant `type` value
- * }
- * ```
- */
-public inline fun LayerCollectorContextImmutable.segment(block: SegmentContextImmutable.() -> Unit) {
-    addLayer(SegmentContextImmutable(this).apply(block), SEGMENT)
-}
 
 /**
  * Adds a new segment layer.
  *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
  *
- *  ### Aesthetic attributes:
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
  *
- *  Positional:
+ * Segment aesthetics:
+ * * `xBegin`
+ * * `xEnd`
+ * * `yBegin`
+ * * `yEnd`
+ * * `color`
+ * * `alpha`
+ * * `width`
+ * * `lineType`
  *
- *  - [xBegin][SegmentContextInterface.xBegin]
- *  - [yBegin][SegmentContextInterface.yBegin]
- *  - [xEnd][SegmentContextInterface.xEnd]
- *  - [yEnd][SegmentContextInterface.yEnd]
- *
- *   Non-positional:
- *  - [color][SegmentContextInterface.color] - line color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][SegmentContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [lineType][SegmentContextInterface.lineType] - line type, of the type [LineType], mappable. (TODO grouping)
- *  - [width][SegmentContextInterface.width] - line width, of the type [Double], mappable. (TODO grouping)
+ * Example:
  *
  * ```
  * segment {
- *    xBegin(listOf(1.0, 1.0, 1.5)) // mapping from list to `xBegin`
- *    lineType(LineType.DOTTED) // setting of constant `type` value
+ *    // positional mapping
+ *    xBegin(startTime) {
+ *       ... // some mapping parameters
+ *    }
+ *    yEnd.constant(100.0)
+ *    // even though the segment has no "y" attribute we can adjust the `Y` axis
+ *    y.limits = 0.0 .. 110.0
+ *
+ *    // non-positional setting
+ *    width = 2.5
+ *    // non-positional mapping
+ *    color("density")
+ *
  * }
  * ```
  */
-
-
-
- */
-
 public inline fun LayerCollectorContext.segment(block: SegmentContext.() -> Unit) {
     addLayer(SegmentContext(this).apply(block), SEGMENT)
 }

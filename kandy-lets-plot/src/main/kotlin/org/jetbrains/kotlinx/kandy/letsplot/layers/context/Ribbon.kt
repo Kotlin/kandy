@@ -7,8 +7,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
-public class RibbonContext(parent: LayerCollectorContext)
-    : LayerWithBorderLineContext(parent), WithX, WithYMin, WithYMax, WithFillColor, WithAlpha, WithYFree
+public class RibbonContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithX, WithYMin,
+    WithYMax, WithFillColor, WithAlpha, WithYFree
 
 /*
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextImmutable

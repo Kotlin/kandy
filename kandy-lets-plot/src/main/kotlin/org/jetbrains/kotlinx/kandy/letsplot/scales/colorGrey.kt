@@ -9,32 +9,69 @@ import org.jetbrains.kotlinx.kandy.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.kandy.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.kandy.util.color.Color
 
+/**
+ * Sequential grey continuous color scale for color aesthetic.
+ * The palette is computed using HSV (hue, saturation, value) color model.
+ *
+ * @param DomainType type of domain
+ * @param paletteRange grey values range (between [0, 1]).
+ * @param domain [ClosedRange] defining the scale domain.
+ * @param nullValue value which null is mapped to.
+ * @param transform scale transformation.
+ *
+ * @return new continuous color scale.
+ */
 public inline fun <reified DomainType : Comparable<DomainType>> continuousColorGrey(
-    paletteRange: Pair<Double, Double>? = null,
-    domainLimits: ClosedRange<DomainType>,
+    paletteRange: ClosedRange<Double>? = null,
+    domain: ClosedRange<DomainType>,
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGrey<DomainType> = ScaleContinuousColorGrey(
-    paletteRange, domainLimits.let {
+    paletteRange?.let {
+        it.start to it.endInclusive
+    }, domain.let {
         it.start to it.endInclusive
     }, nullValue, transform
 )
 
+/**
+ * Sequential grey color continuous scale for color aesthetic.
+ * The palette is computed using HSV (hue, saturation, value) color model.
+ *
+ * @param DomainType type of domain
+ * @param paletteRange grey values range (between [0, 1]).
+ * @param domainMin scale domain minimum.
+ * @param domainMax scale domain maximum.
+ * @param nullValue value which null is mapped to.
+ * @param transform scale transformation.
+ *
+ * @return new continuous color scale.
+ */
 public inline fun <reified DomainType : Comparable<DomainType>> continuousColorGrey(
-    paletteRange: Pair<Double, Double>? = null,
+    paletteRange: ClosedRange<Double>? = null,
     domainMin: DomainType? = null,
     domainMax: DomainType? = null,
     nullValue: Color? = null,
     transform: Transformation? = null
 ): ScaleContinuousColorGrey<DomainType> = ScaleContinuousColorGrey(
-    paletteRange, domainMin to domainMax, nullValue, transform
+    paletteRange?.let {
+        it.start to it.endInclusive
+    }, domainMin to domainMax, nullValue, transform
 )
 
+/**
+ * Sequential grey color categorical scale for color aesthetic.
+ * The palette is computed using HSV (hue, saturation, value) color model.
+ *
+ * @param DomainType type of domain
+ * @param paletteRange grey values range (between [0, 1]).
+ *
+ * @return new categorical color scale.
+ */
 public inline fun <reified DomainType> categoricalColorGrey(
     paletteRange: Pair<Double, Double>? = null,
-    //nullValue: Color? = null,
 ): ScaleCategoricalColorGrey<DomainType> = ScaleCategoricalColorGrey<DomainType>(
-    paletteRange, //nullValue?
+    paletteRange,
 )
 
 public sealed interface ScaleColorGrey<DomainType> {
@@ -43,7 +80,6 @@ public sealed interface ScaleColorGrey<DomainType> {
     public val transform: Transformation?
 }
 
-//@Serializable
 public data class ScaleContinuousColorGrey<DomainType> @PublishedApi internal constructor(
     override val paletteRange: Pair<Double, Double>?,
     override val domainLimits: Pair<DomainType?, DomainType?>,
@@ -51,7 +87,6 @@ public data class ScaleContinuousColorGrey<DomainType> @PublishedApi internal co
     override val transform: Transformation?,
 ) : ContinuousScale<Color>, CustomNonPositionalScale<DomainType, Color>, ScaleColorGrey<DomainType>
 
-//@Serializable
 public data class ScaleCategoricalColorGrey<DomainType> @PublishedApi internal constructor(
     override val paletteRange: Pair<Double, Double>?,
     //override val nullValue: TypedValue?

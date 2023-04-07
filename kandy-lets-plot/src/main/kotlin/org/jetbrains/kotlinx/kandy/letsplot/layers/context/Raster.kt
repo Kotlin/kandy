@@ -10,8 +10,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.WithFillColor
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.WithX
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.WithY
 
-public class RasterContext(parent: LayerCollectorContext)
-    : LayerWithBorderLineContext(parent), WithX, WithY, WithFillColor, WithAlpha
+public class RasterContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithX, WithY,
+    WithFillColor, WithAlpha
 
 /*
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextImmutable

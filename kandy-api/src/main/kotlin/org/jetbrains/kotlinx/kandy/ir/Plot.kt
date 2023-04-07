@@ -15,8 +15,7 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 /**
  * The main IR structure describing the plot. Basically, plot is a collection of layers.
  *
- * @param dataset the main dataset, from which the data are taken
- * in case the layer dataset is not overwritten.
+ * @param datasets [List] of plot datasets. Each layer has [Layer.datasetIndex] of its dataset in this list.
  * @param layers the [List] of [Layer] in this plot.
  * @param globalMappings the map of aesthetic names to mappings defined at the top level (for internal use);
  * keys are aesthetic names, values are mappings on corresponding aesthetics.
@@ -25,7 +24,6 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
  * @param freeScales [Map] of free scales; keys are aesthetic names,
  * values are corresponding free scales.
  */
-//@Serializable
 public data class Plot(
     val datasets: List<TableData>,
     val layers: List<Layer>,

@@ -14,13 +14,14 @@ import kotlin.reflect.KProperty
 public interface WithUpper : BindingContext {
     public val upper: ConstantSetter
         get() = ConstantSetter(UPPER, bindingCollector)
-/*
-    public fun <T> upper(value: T): PositionalSetting<T> {
-        return addPositionalSetting(UPPER, value)
-    }
+
+    /*
+        public fun <T> upper(value: T): PositionalSetting<T> {
+            return addPositionalSetting(UPPER, value)
+        }
 
 
- */
+     */
     public fun <T> upper(
         column: ColumnReference<T>,
     ): PositionalMapping<T> {

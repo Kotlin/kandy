@@ -11,12 +11,42 @@ public sealed interface Color: Comparable<Color> {
 
     public companion object {
         /**
-         *
+         * Creates an RGB color with the specified red, green,
+         * and blue components values in the range (0 - 255).
+         * @param r the red component.
+         * @param g the green component.
+         * @param b the blue component.
          */
         public fun rgb(r: Int, g: Int, b: Int): StandardColor.RGB = StandardColor.RGB(r, g, b)
+
+        /**
+         * Creates an RGBA color with the specified red, green, blue
+         * components values in the range (0 - 255) and alpha value in the range (0.0 - 1.0).
+         * @param r the red component.
+         * @param g the green component.
+         * @param b the blue component.
+         * @param a the alpha value.
+         */
         public fun rgba(r: Int, g: Int, b: Int, a: Double): StandardColor.RGBA = StandardColor.RGBA(StandardColor.RGB(r, g, b), a)
+
+        /**
+         * Creates a color specified by given name (its interpretation depends on engine).
+         *
+         * @param name name of color.
+         */
         public fun named(name: String): StandardColor.Named = StandardColor.Named(name)
+
+        /**
+         * Creates an RGB or RGBA color from the given hexadecimal string.
+         * (possible formats: "#rrggbb" and "#rrggbbaa").
+         * @param hexString [String] encoding the color in hexadecimal format.
+         */
         public fun hex(hexString: String): StandardColor.Hex = StandardColor.Hex(hexString)
+
+        /**
+         * Creates an RGB or RGBA color from the given hex-value [Int].
+         * @param hexInt [Int] encoding the color in hexadecimal format.
+         */
         public fun hex(hexInt: Int): StandardColor.Hex = StandardColor.Hex('#' + hexInt.toString(16))
 
         public val RED: StandardColor.Hex = StandardColor.Hex("#ee6666")

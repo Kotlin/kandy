@@ -40,10 +40,11 @@ internal class LayerWrapperTest {
                     Color.RED
                 )
             ),
-            mapOf()
+            mapOf(),
+            emptyMap()
         )
 
-        val wrappedLayer = LayerWrapper(layer, false, null, mappings, layer.settings,null)
+        val wrappedLayer = LayerWrapper(layer, false, null, mappings, layer.settings, null)
         assertEquals(
             mapOf(
                 "mapping" to mapOf(
@@ -82,11 +83,13 @@ internal class LayerWrapperTest {
             FILL to NonPositionalMapping(
                 FILL,
                 "BAFGA",
-                LetsPlotNonPositionalMappingParameters(NonPositionalCategoricalScale<String, Color>(
-                    null,
-                    rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY),
-                    //null,
-                ))
+                LetsPlotNonPositionalMappingParameters(
+                    NonPositionalCategoricalScale<String, Color>(
+                        null,
+                        rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY),
+                        //null,
+                    )
+                )
             )
         )
 
@@ -106,10 +109,11 @@ internal class LayerWrapperTest {
             ),
             mapOf(
                 Position.FEATURE_NAME to Position.Dodge(0.9)
-            )
+            ),
+            emptyMap()
         )
 
-        val wrappedLayer = LayerWrapper(layer, false,dataset, mappings, layer.settings,null)
+        val wrappedLayer = LayerWrapper(layer, false, dataset, mappings, layer.settings, null)
 
         assertEquals(
             mapOf(
@@ -128,7 +132,7 @@ internal class LayerWrapperTest {
                 "position" to mapOf(
                     "name" to "dodge",
                     "width" to 0.9,
-                   // "kind" to "pos"
+                    // "kind" to "pos"
                 ),
                 "geom" to "bar",
                 /*"data_meta" to mapOf<String, Any>(
@@ -154,8 +158,8 @@ internal class LayerWrapperTest {
     @Test
     fun testBarNoSampling() {
         val data = mapOf(
-            "v1" to List(100) {it},
-            "v2" to List(100) {it}
+            "v1" to List(100) { it },
+            "v2" to List(100) { it }
         )
         val mappings: Map<AesName, Mapping> = mapOf(
             X to PositionalMapping<Int>(
@@ -170,10 +174,11 @@ internal class LayerWrapperTest {
             BAR,
             mappings,
             mapOf(),
-            mapOf()
+            mapOf(),
+            emptyMap()
         )
 
-        val wrappedLayer = LayerWrapper(layer, false, data, mappings, emptyMap(),null)
+        val wrappedLayer = LayerWrapper(layer, false, data, mappings, emptyMap(), null)
         assertEquals(
             mapOf(
                 "mapping" to mapOf(

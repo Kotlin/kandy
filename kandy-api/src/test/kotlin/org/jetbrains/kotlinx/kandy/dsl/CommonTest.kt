@@ -16,7 +16,6 @@ import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalContinuousScale
 import org.jetbrains.kotlinx.kandy.util.color.Color
-import org.jetbrains.kotlinx.kandy.dsl.impl.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -59,7 +58,9 @@ internal class CommonTest {
                         ),
                         settings = mapOf(
                             SIZE to NonPositionalSetting<Double>(SIZE, 4.5)
-                        )
+                        ),
+                        emptyMap(),
+                        emptyMap(),
                     )
                 ),
                 mapOf(
@@ -138,7 +139,9 @@ internal class CommonTest {
                                 SIZE, noa.name(), CommonNonPositionalMappingParameters()
                             )
                         ),
-                        settings = mapOf()
+                        settings = mapOf(),
+                        emptyMap(),
+                        emptyMap(),
                     ),
                     Layer(
                         0,
@@ -146,7 +149,9 @@ internal class CommonTest {
                         mappings = mapOf(),
                         settings = mapOf(
                             WIDTH to NonPositionalSetting<Double>(WIDTH, 5.0)
-                        )
+                        ),
+                        emptyMap(),
+                        emptyMap(),
                     )
                 ),
                 mapOf(
