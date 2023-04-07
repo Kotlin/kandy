@@ -10,88 +10,49 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RasterContext
 
 @PublishedApi
 internal val RASTER: LetsPlotGeom = LetsPlotGeom("raster")
-/*
-/**
- * Adds a new raster layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [ x][RasterContextInterface.x]
- *  - [y][RasterContextInterface.y]
- *
- *  // TODO y
- *
- *   Non-positional:
- *  - [color][RasterContextInterface.color] - raster fill color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][RasterContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [borderLine.type][BorderLineContextImmutable.type] - borderline type, of the type [LineType], mappable.
- *  (TODO grouping)
- *  - [borderLine.width][BorderLineContextImmutable.width] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- *  - [borderLine.color][BorderLineContextImmutable.color] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- * ```
- * raster {
- *    x(time.scaled(..)) // mapping from `time` column to `X` with an explicit scale
- *    y(midSpread) // mapping from `midSpread` column to `y`
- *
- *    borderLine {
- *       width(2.5) // // setting of constant `borderLine.width` value
- *    }
- * }
- * ```
- */
-public inline fun LayerCollectorContextImmutable.raster(block: RasterContextImmutable.() -> Unit) {
-    addLayer(RasterContextImmutable(this).apply(block), RASTER)
-}
 
 /**
  * Adds a new raster layer.
  *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
  *
- *  ### Aesthetic attributes:
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
  *
- *  Positional:
+ * Raster aesthetics:
+ * * `x`
+ * * `y`
+ * * `fillColor`
+ * * `alpha`
+ * * `borderLine.color`
+ * * `borderLine.width`
+ * * `borderLine.type`
  *
- *  - [ x][RasterContextInterface.x]
- *  - [y][RasterContextInterface.y]
+ * Example:
  *
- *  // TODO y
- *
- *   Non-positional:
- *  - [color][RasterContextInterface.color] - raster fill color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][RasterContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [borderLine.type][BorderLineContextImmutable.type] - borderline type, of the type [LineType], mappable.
- *  (TODO grouping)
- *  - [borderLine.width][BorderLineContextImmutable.width] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- *  - [borderLine.color][BorderLineContextImmutable.color] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
  * ```
  * raster {
- *    x(listOf(3, 4, 5).scaled(..)) // mapping from list to `X` with an explicit scale
- *    y(listOf(20, 24, 25)) // mapping from list to `y`
- *
- *    borderLine {
- *       width(2.5) // // setting of constant `borderLine.width` value
+ *    // positional mapping
+ *    x(waiting) {
+ *       ... // some mapping parameters
  *    }
+ *    y.constant(100.0)
+ *
+ *    // non-positional settings
+ *    alpha = 0.8
+ *    borderLine.width = 2.5
+ *    borderLine {
+ *       color = Color.BLACK
+ *    }
+ *    // non-positional mapping
+ *    fillColor("density")
  * }
  * ```
  */
-public inline fun LayerCollectorContextMutable.raster(block: RasterContextMutable.() -> Unit) {
-    addLayer(RasterContextMutable(this).apply(block), RASTER)
-}
-
-
-
- */
-
 public inline fun LayerCollectorContext.raster(block: RasterContext.() -> Unit) {
     addLayer(RasterContext(this).apply(block), RASTER)
 }

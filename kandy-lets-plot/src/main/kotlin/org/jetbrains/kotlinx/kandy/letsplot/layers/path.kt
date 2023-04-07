@@ -10,68 +10,45 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PathContext
 
 @PublishedApi
 internal val PATH: LetsPlotGeom = LetsPlotGeom("path")
-/*
-/**
- * Adds a new path layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [ x][LineContextInterface.x]
- *  - [ y][LineContextInterface.y]
- *
- *   Non-positional:
- *  - [color][LineContextInterface.color] - line color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][LineContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [type][LineContextInterface.type] - line type, of the type [LineType], mappable. (TODO grouping)
- *  - [width][LineContextInterface.width] - line width, of the type [Double], mappable. (TODO grouping)
- *
- * ```
- * line {
- *    x(time.scaled(..)) // mapping from `time` column to `X` with some scale
- *    type(LineType.DOTTED) // setting of constant `type` value
- * }
- * ```
- */
-public inline fun LayerCollectorContextImmutable.path(block: LineContextImmutable.() -> Unit) {
-    addLayer(LineContextImmutable(this).apply(block), PATH)
-}
 
 /**
  * Adds a new path layer.
  *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
  *
- *  ### Aesthetic attributes:
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
  *
- *  Positional:
+ * Path aesthetics:
+ * * `x`
+ * * `y`
+ * * `color`
+ * * `lineType`
+ * * `width`
+ * * `alpha`
  *
- *  - [ x][LineContextInterface.x]
- *  - [ y][LineContextInterface.y]
- *
- *   Non-positional:
- *  - [color][LineContextInterface.color] - line color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][LineContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [type][LineContextInterface.type] - line type, of the type [LineType], mappable. (TODO grouping)
- *  - [width][LineContextInterface.width] - line width, of the type [Double], mappable. (TODO grouping)
+ * Example:
  *
  * ```
- * line {
- *    x(listOf(4.2f, 5.5f, 8.9f).scaled(..)) // mapping from list to `X` with some scale
- *    type(LineType.DOTTED) // setting of constant `type` value
+ * path {
+ *    // positional mapping
+ *    x(time) {
+ *       ... // some mapping parameters
+ *    }
+ *    // positional setting
+ *    y.constant(12.5)
+ *
+ *    // non-positional setting
+ *    width = 2.5
+ *    // non-positional mapping
+ *    color("type")
  * }
  * ```
  */
-public inline fun LayerCollectorContextMutable.path(block: LineContextMutable.() -> Unit) {
-    addLayer(LineContextMutable(this).apply(block), PATH)
-}
-
- */
-
 public inline fun LayerCollectorContext.path(block: PathContext.() -> Unit) {
     addLayer(PathContext(this).apply(block), PATH)
 }

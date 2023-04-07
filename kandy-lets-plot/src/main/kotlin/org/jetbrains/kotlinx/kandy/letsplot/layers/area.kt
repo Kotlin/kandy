@@ -10,77 +10,51 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.AreaContext
 
 @PublishedApi
 internal val AREA: LetsPlotGeom = LetsPlotGeom("area")
-/*
+
 /**
  * Adds a new area layer.
  *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
  *
- *  ### Aesthetic attributes:
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
  *
- *  Positional:
+ * Area aesthetics:
+ * * `x`
+ * * `y`
+ * * `fillColor`
+ * * `alpha`
+ * * `borderLine.color`
+ * * `borderLine.width`
+ * * `borderLine.type`
  *
- *  - [ x][AreaContextImmutable.x]
- *  - [y][AreaContextImmutable.y]
+ * Example:
  *
- *   Non-positional:
- *  - [color][AreaContextImmutable.color] - area fill color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][AreaContextImmutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [borderLine.type][BorderLineContextImmutable.type] - borderline type, of the type [LineType], mappable.
- *  (TODO grouping)
- *  - [borderLine.width][BorderLineContextImmutable.width] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- *  - [borderLine.color][BorderLineContextImmutable.color] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
  * ```
  * area {
- *    x(time) // mapping from `time` column to `X` with the default scale
- *    borderLine {
- *       color(model.scaled(..)) // mapping from `model` column to `borderLine.color` with an explicit scale
- *       width(2.5) // // setting of constant `borderLine.width` value
+ *    // positional mapping
+ *    x(time) {
+ *       ... // some mapping parameters
  *    }
+ *
+ *    // non-positional settings
+ *    alpha = 0.8
+ *    borderLine.width = 2.5
+ *    borderLine {
+ *       color = Color.BLACK
+ *    }
+ *    // non-positional mapping
+ *    fillColor("type")
+ *
+ *    // position adjustment
+ *    position = Position.Stack
  * }
  * ```
  */
-public inline fun LayerCollectorContextImmutable.area(block: AreaContextImmutable.() -> Unit) {
-    addLayer(AreaContextImmutable(this).apply(block), AREA)
-}
-
-/**
- * Adds a new area layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [ x][AreaContextMutable.x]
- *  - [y][AreaContextMutable.y]
- *
- *   Non-positional:
- *  - [color][AreaContextMutable.color] - area fill color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][AreaContextMutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [borderLine.type][BorderLineContextMutable.type] - borderline type, of the type [LineType], mappable.
- *  (TODO grouping)
- *  - [borderLine.width][BorderLineContextMutable.width] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- *  - [borderLine.color][BorderLineContextMutable.color] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- * ```
- * area {
- *    x(listOf(1.0, 2.2, 3.1, 4.0, 4.9)) // mapping from list to `X` with the default scale
- *    borderLine.width(2.5) // // setting of constant `borderLine.width` value
- * }
- * ```
- */
-public inline fun LayerCollectorContextMutable.area(block: AreaContextMutable.() -> Unit) {
-    addLayer(AreaContextMutable(this).apply(block), AREA)
-}
-
- */
-
 public inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
     addLayer(AreaContext(this).apply(block), AREA)
 }

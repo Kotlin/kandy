@@ -15,13 +15,6 @@ public interface WithSlope : BindingContext {
     public val slope: ConstantSetter
         get() = ConstantSetter(SLOPE, bindingCollector)
 
-    /*
-    public fun <T> lower(value: T): PositionalSetting<T> {
-        return addPositionalSetting(LOWER, value)
-    }
-
-     */
-
     public fun <T> slope(
         column: ColumnReference<T>,
     ): PositionalMapping<T> {

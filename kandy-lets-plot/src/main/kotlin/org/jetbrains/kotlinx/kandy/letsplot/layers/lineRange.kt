@@ -11,86 +11,50 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.LineRangeContext
 
 @PublishedApi
 internal val LINE_RANGE: LetsPlotGeom = LetsPlotGeom("linerange")
-/*
+
 /**
- * Adds a new line ranges layer.
+ * Adds a new line-range layer.
  *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
  *
- *  ### Aesthetic attributes:
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
  *
- *  Positional:
+ * Line-range aesthetics:
+ * * `x`
+ * * `yMin`
+ * * `yMax`
+ * * `alpha`
+ * * `borderLine.color`
+ * * `borderLine.width`
+ * * `borderLine.type`
  *
- *  - [ x][LineRangeContextInterface.x]
- *  - [yMin][LineRangeContextInterface.yMin] - lower bound for range.
- *  - [yMax][LineRangeContextInterface.yMax] - upper bound for range.
+ * Example:
  *
- *  // TODO y
- *
- *   Non-positional:
- *  - [alpha][LineRangeContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [borderLine.type][BorderLineContextInterface.type] - borderline type, of the type [LineType], mappable.
- *  (TODO grouping)
- *  - [borderLine.width][BorderLineContextInterface.width] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- *  - [borderLine.color][BorderLineContextInterface.color] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
  * ```
  * lineRange {
- *    x(time.scaled(..)) // mapping from `time` column to `X` with an explicit scale
- *    yMin(minSpread) // mapping from `minSpread` column to `yMin`
+ *    // positional mapping
+ *    x(time) {
+ *       ... // some mapping parameters
+ *    }
+ *    yMax.constant(100.0)
+ *    // even though the line-range bars have no "y" attribute we can adjust the `Y` axis
+ *    y.limits = 0.0 .. 110.0
  *
+ *    // non-positional settings
+ *    alpha = 0.9
+ *    borderLine.width = 2.5
+ *    // non-positional mapping
  *    borderLine {
- *       color(Color.GREEN) // // setting of constant `borderLine.width` value
+ *       color("capacity")
  *    }
  * }
  * ```
  */
-public inline fun LayerCollectorContextImmutable.lineRange(block: LineRangeContextImmutable.() -> Unit) {
-    addLayer(LineRangeContextImmutable(this).apply(block), LINE_RANGE)
-}
-
-/**
- * Adds a new line ranges layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [ x][LineRangeContextInterface.x]
- *  - [yMin][LineRangeContextInterface.yMin] - lower bound for range.
- *  - [yMax][LineRangeContextInterface.yMax] - upper bound for range.
- *
- *  // TODO y
- *
- *   Non-positional:
- *  - [alpha][LineRangeContextInterface.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [borderLine.type][BorderLineContextInterface.type] - borderline type, of the type [LineType], mappable.
- *  (TODO grouping)
- *  - [borderLine.width][BorderLineContextInterface.width] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- *  - [borderLine.color][BorderLineContextInterface.color] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- * ```
- * lineRange {
- *    x(listOf("A" ,"B").scaled(..)) // mapping from list to `X` with an explicit scale
- *    yMin(listOf(3.4, 1.2)) // mapping from list to `yMin`
- *
- *    borderLine {
- *       color(Color.GREEN) // // setting of constant `borderLine.width` value
- *    }
- * }
- * ```
- */
-public inline fun LayerCollectorContextMutable.lineRange(block: LineRangeContextMutable.() -> Unit) {
-    addLayer(LineRangeContextMutable(this).apply(block), LINE_RANGE)
-}
-
- */
-
 public inline fun LayerCollectorContext.lineRange(block: LineRangeContext.() -> Unit) {
     addLayer(LineRangeContext(this).apply(block), LINE_RANGE)
 }

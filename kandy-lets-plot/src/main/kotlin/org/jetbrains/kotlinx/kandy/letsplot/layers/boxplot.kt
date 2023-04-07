@@ -13,105 +13,63 @@ import org.jetbrains.kotlinx.kandy.letsplot.position.position
 
 @PublishedApi
 internal val BOXPLOT: LetsPlotGeom = LetsPlotGeom("boxplot")
-/*
+
 /**
  * Adds a new boxplot layer.
  *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
  *
- *  ### Aesthetic attributes:
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
  *
- *  Positional:
+ * Boxplot aesthetics:
+ * * `x`
+ * * `yMin`
+ * * `lower`
+ * * `middle`
+ * * `upper`
+ * * `yMax`
+ * * `fillColor`
+ * * `alpha`
+ * * `width`
+ * * `fatten`
+ * * `borderLine.color`
+ * * `borderLine.width`
+ * * `borderLine.type`
  *
- *  - [ x][BoxplotContextImmutable.x]
- *  - [lower][BoxplotContextImmutable.lower] - lower hinge, 25% quantile.
- *  - [middle][BoxplotContextImmutable.middle] - middle median, 50% quantile.
- *  - [upper][BoxplotContextImmutable.upper] - upper upper hinge, 75% quantile.
- *  - [yMin][BoxplotContextImmutable.yMin] - lower whisker = smallest observation greater than
- *  or equal to lower hinge - 1.5 * IQR.
- *  - [yMax][BoxplotContextImmutable.yMax] - upper whisker = largest observation less than
- *  or equal to upper hinge + 1.5 * IQR.
+ * Example:
  *
- *  // TODO y
- *
- *   Non-positional:
- *  - [color][BoxplotContextImmutable.color] - boxplot fill color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][BoxplotContextImmutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [fatten][BoxplotContextImmutable.fatten] - multiplicative factor applied to size of the middle bar,
- *  non-mappable.
- *  - [borderLine.type][BorderLineContextImmutable.type] - borderline type, of the type [LineType], mappable.
- *  (TODO grouping)
- *  - [borderLine.width][BorderLineContextImmutable.width] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- *  - [borderLine.color][BorderLineContextImmutable.color] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
  * ```
  * boxplot {
- *    x(time.scaled(..)) // mapping from `time` column to `X` with an explicit scale
- *    middle(midSpread) // mapping from `midSpread` column to `middle`
- *
- *    borderLine {
- *       width(2.5) // // setting of constant `borderLine.width` value
+ *    // positional mapping
+ *    x(time) {
+ *       ... // some mapping parameters
  *    }
+ *    yMax.constant(100.0)
+ *    // even though the boxplot has no "y" attribute we can adjust the `Y` axis
+ *    y.limits = 0.0 .. 110.0
+ *
+ *    // non-positional settings
+ *    fatten = 0.8
+ *    borderLine.width = 2.5
+ *    borderLine {
+ *       color = Color.BLACK
+ *    }
+ *    // non-positional mapping
+ *    fillColor("type")
+ *
  * }
  * ```
  */
-public inline fun LayerCollectorContextImmutable.boxplot(block: BoxplotContextImmutable.() -> Unit) {
-    addLayer(BoxplotContextImmutable(this).apply(block), BOXPLOT)
-}
-
-/**
- * Adds a new boxplot layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [ x][BoxplotContextImmutable.x]
- *  - [lower][BoxplotContextImmutable.lower] - lower hinge, 25% quantile.
- *  - [middle][BoxplotContextImmutable.middle] - middle median, 50% quantile.
- *  - [upper][BoxplotContextImmutable.upper] - upper upper hinge, 75% quantile.
- *  - [yMin][BoxplotContextImmutable.yMin] - lower whisker = smallest observation greater than
- *  or equal to lower hinge - 1.5 * IQR.
- *  - [yMax][BoxplotContextImmutable.yMax] - upper whisker = largest observation less than
- *  or equal to upper hinge + 1.5 * IQR.
- *
- *  // TODO y
- *
- *   Non-positional:
- *  - [color][BoxplotContextImmutable.color] - boxplot fill color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][BoxplotContextImmutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [fatten][BoxplotContextImmutable.fatten] - multiplicative factor applied to size of the middle bar,
- *  non-mappable.
- *  - [borderLine.type][BorderLineContextImmutable.type] - borderline type, of the type [LineType], mappable.
- *  (TODO grouping)
- *  - [borderLine.width][BorderLineContextImmutable.width] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- *  - [borderLine.color][BorderLineContextImmutable.color] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- * ```
- * boxplot {
- *    x(listOf("A", "B", "C").scaled(..)) // mapping from list to `X` with an explicit scale
- *    middle(listOf(0.2, 0.44, 0.29)) // mapping from list to `middle`
- *
- *    borderLine.width(2.5) // // setting of constant `borderLine.width` value
- * }
- * ```
- */
-public inline fun LayerCollectorContextMutable.boxplot(block: BoxplotContextMutable.() -> Unit) {
-    addLayer(BoxplotContextMutable(this).apply(block), BOXPLOT)
-}
-
-
- */
-
 public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
     // todo letsplot fix
-    addLayer(BoxplotContext(this).apply(block).apply {
+    addLayer(BoxplotContext(this).apply {
         position = Position.Dodge()
+    }.apply(block).apply {
         addPositionalMapping(Y, List(datasetHandler.rowsCount()) { null }, null, null)
     }, BOXPLOT)
 }

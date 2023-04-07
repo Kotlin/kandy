@@ -11,99 +11,56 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarContext
 
 @PublishedApi
 internal val CROSS_BAR: LetsPlotGeom = LetsPlotGeom("crossbar")
-/*
+
+// todo rename to cross bars
 /**
- * Adds a new cross bars (bars with horizontal median line) layer.
+ * Adds a new crossbars layer.
  *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
  *
- *  ### Aesthetic attributes:
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
  *
- *  Positional:
+ * Crossbar aesthetics:
+ * * `x`
+ * * `yMin`
+ * * `middle`
+ * * `yMax`
+ * * `fillColor`
+ * * `alpha`
+ * * `width`
+ * * `fatten`
+ * * `borderLine.color`
+ * * `borderLine.width`
+ * * `borderLine.type`
  *
- *  - [ x][CrossBarContextImmutable.x]
- *  - [middle][CrossBarContextImmutable.middle] - position of median bar.
- *  - [yMin][CrossBarContextImmutable.yMin] - lower bound for error bar.
- *  - [yMax][CrossBarContextImmutable.yMax] - upper bound for error bar.
+ * Example:
  *
- *  // TODO y
- *
- *   Non-positional:
- *  - [color][CrossBarContextImmutable.color] - boxplot fill color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][CrossBarContextImmutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [width][CrossBarContextImmutable.width] - cross bar width, of the type [Double], mappable without an
- *  explicit scale. (TODO grouping)
- *  - [fatten][CrossBarContextImmutable.fatten] - multiplicative factor applied to size of the middle bar,
- *  non-mappable.
- *  - [borderLine.type][BorderLineContextImmutable.type] - borderline type, of the type [LineType], mappable.
- *  (TODO grouping)
- *  - [borderLine.width][BorderLineContextImmutable.width] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- *  - [borderLine.color][BorderLineContextImmutable.color] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
  * ```
  * crossBar {
- *    x(time.scaled(..)) // mapping from `time` column to `X` with an explicit scale
- *    middle(midSpread) // mapping from `midSpread` column to `middle`
- *
- *    borderLine {
- *       width(2.5) // // setting of constant `borderLine.width` value
+ *    // positional mapping
+ *    x(time) {
+ *       ... // some mapping parameters
  *    }
+ *    yMax.constant(100.0)
+ *    // even though the crossbars have no "y" attribute we can adjust the `Y` axis
+ *    y.limits = 0.0 .. 110.0
+ *
+ *    // non-positional settings
+ *    fatten = 3.5
+ *    borderLine.width = 2.5
+ *    borderLine {
+ *       color = Color.BLACK
+ *    }
+ *    // non-positional mapping
+ *    fillColor("type")
  * }
  * ```
  */
-public inline fun LayerCollectorContextImmutable.crossBar(block: CrossBarContextImmutable.() -> Unit) {
-    addLayer(CrossBarContextImmutable(this).apply(block), CROSS_BAR)
-}
-
-/**
- * Adds a new cross bars (bars with horizontal median line) layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [ x][CrossBarContextMutable.x]
- *  - [middle][CrossBarContextMutable.middle] - position of median bar.
- *  - [yMin][CrossBarContextMutable.yMin] - lower bound for error bar.
- *  - [yMax][CrossBarContextMutable.yMax] - upper bound for error bar.
- *
- *  // TODO y
- *
- *   Non-positional:
- *  - [color][CrossBarContextMutable.color] - boxplot fill color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][CrossBarContextMutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [width][CrossBarContextMutable.width] - cross bar width, of the type [Double], mappable without an
- *  explicit scale. (TODO grouping)
- *  - [fatten][CrossBarContextMutable.fatten] - multiplicative factor applied to size of the middle bar,
- *  non-mappable.
- *  - [borderLine.type][BorderLineContextMutable.type] - borderline type, of the type [LineType], mappable.
- *  (TODO grouping)
- *  - [borderLine.width][BorderLineContextMutable.width] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- *  - [borderLine.color][BorderLineContextMutable.color] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- * ```
- * crossBar {
- *    x(listOf("A", "B", "C").scaled(..)) // mapping from list to `X` with an explicit scale
- *    middle(listOf(12, 18, 6)) // mapping from list column to `middle`
- *
- *    borderLine {
- *       width(2.5) // // setting of constant `borderLine.width` value
- *    }
- * }
- * ```
- */
-public inline fun LayerCollectorContextMutable.crossBar(block: CrossBarContextMutable.() -> Unit) {
-    addLayer(CrossBarContextMutable(this).apply(block), CROSS_BAR)
-}
-
-
- */
-
 public inline fun LayerCollectorContext.crossBar(block: CrossBarContext.() -> Unit) {
     addLayer(CrossBarContext(this).apply(block), CROSS_BAR)
 }

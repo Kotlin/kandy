@@ -13,88 +13,105 @@ import org.jetbrains.kotlinx.kandy.letsplot.reversed
 
 @PublishedApi
 internal val BAR: LetsPlotGeom = LetsPlotGeom("bar")
-/*
+
 /**
  * Adds a new bars layer.
  *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
  *
- *  ### Aesthetic attributes:
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
  *
- *  Positional:
+ * Bars aesthetics:
+ * * `x`
+ * * `y`
+ * * `fillColor`
+ * * `alpha`
+ * * `width`
+ * * `borderLine.color`
+ * * `borderLine.width`
+ * * `borderLine.type`
  *
- *  - [ x][BarContextImmutable.x]
- *  - [y][BarContextImmutable.y]
+ * Example:
  *
- *   Non-positional:
- *  - [color][BarContextImmutable.color] - bars fill color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][BarContextImmutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [width][BarContextImmutable.width] - bars width, of the type [Double], mappable. (TODO grouping)
- *  - [borderLine.type][BorderLineContextImmutable.type] - borderline type, of the type [LineType], mappable.
- *  (TODO grouping)
- *  - [borderLine.width][BorderLineContextImmutable.width] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- *  - [borderLine.color][BorderLineContextImmutable.color] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
  * ```
- * bar {
- *    x(time) // mapping from `time` column to `X` with the default scale
- *    borderLine {
- *       color(model.scaled(..)) // mapping from `model` column to `borderLine.color` with an explicit scale
- *       width(2.5) // // setting of constant `borderLine.width` value
+ * bars {
+ *    // positional mapping
+ *    x(time) {
+ *       ... // some mapping parameters
  *    }
+ *    y.constant(100.0)
+ *
+ *    // non-positional settings
+ *    alpha = 0.8
+ *    borderLine.width = 2.5
+ *    borderLine {
+ *       color = Color.BLACK
+ *    }
+ *    // non-positional mapping
+ *    fillColor("type")
+ *
+ *    // position adjustment
+ *    position = Position.Stack
  * }
  * ```
  */
-public inline fun LayerCollectorContextImmutable.bars(block: BarContextImmutable.() -> Unit) {
-    addLayer(BarContextImmutable(this).apply(block), BAR)
-}
-
-/**
- * Adds a new bars layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [ x][BarContextMutable.x]
- *  - [y][BarContextMutable.y]
- *
- *   Non-positional:
- *  - [color][BarContextMutable.color] - bars fill color, of the type [Color], mappable. (TODO grouping)
- *  - [alpha][BarContextMutable.alpha] - layer alpha, of the type [Double], mappable. (TODO grouping)
- *  - [width][BarContextMutable.width] - bars width, of the type [Double], mappable without an
- *  explicit scale. (TODO grouping)
- *  - [borderLine.type][BorderLineContextMutable.type] - borderline type, of the type [LineType], mappable.
- *  (TODO grouping)
- *  - [borderLine.width][BorderLineContextMutable.width] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- *  - [borderLine.color][BorderLineContextMutable.color] - borderline width, of the type [Double], mappable.
- *  (TODO grouping)
- * ```
- * bar {
- *    x(listOf(1.0, 2.2, 3.1, 4.0, 4.9)) // mapping from `time` column to `X` with the default scale
- *
- *    borderLine.width(2.5) // // setting of constant `borderLine.width` value
- * }
- * ```
- */
-public inline fun LayerCollectorContextMutable.bars(block: BarContextMutable.() -> Unit) {
-    addLayer(BarContextMutable(this).apply(block), BAR)
-}
-
-
- */
-
 public inline fun LayerCollectorContext.bars(block: BarsContext.() -> Unit) {
     addLayer(BarsContext(this).apply {
         position = Position.Dodge()
     }.apply(block), BAR)
 }
 
+/**
+ * Adds a new horizontal bars layer.
+ *
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
+ *
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
+ *
+ * Bars aesthetics:
+ * * `x`
+ * * `y`
+ * * `fillColor`
+ * * `alpha`
+ * * `width`
+ * * `borderLine.color`
+ * * `borderLine.width`
+ * * `borderLine.type`
+ *
+ * Example:
+ *
+ * ```
+ * barsH {
+ *    // positional mapping
+ *    y(time) {
+ *       ... // some mapping parameters
+ *    }
+ *    x.constant(100.0)
+ *
+ *    // non-positional settings
+ *    alpha = 0.8
+ *    borderLine.width = 2.5
+ *    borderLine {
+ *       color = Color.BLACK
+ *    }
+ *    // non-positional mapping
+ *    fillColor("type")
+ *
+ *    // position adjustment
+ *    position = Position.Stack
+ * }
+ * ```
+ */
 public inline fun LayerCollectorContext.barsH(block: BarsContext.() -> Unit) {
     addLayer(BarsContext(this).apply {
         reversed = true

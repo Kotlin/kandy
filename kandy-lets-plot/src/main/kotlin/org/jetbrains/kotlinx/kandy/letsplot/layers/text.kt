@@ -11,87 +11,50 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TextContext
 @PublishedApi
 internal val TEXT: LetsPlotGeom = LetsPlotGeom("text")
 
+/**
+ * Adds a new text layer.
+ *
+ * Creates a context in which you can configure layer. Within it, you can set mappings and settings
+ * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
+ * while settings allow you to assign a constant value to the attributes.
+ *
+ * Mapping can be performed via method with name of corresponding aes.
+ * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
+ * Setting for positional attributes can be performed with `.constant()` method of special property with
+ * the same name as the attribute.
+ *
+ * Text aesthetics:
+ * * `x`
+ * * `y`
+ * * `label`
+ * * `alpha`
+ * * `width`
+ * * `font.color`
+ * * `font.family`
+ * * `font.size`
+ * * `font.face`
+ *
+ * Example:
+ *
+ * ```
+ * text {
+ *    // positional mapping
+ *    x(time) {
+ *       ... // some mapping parameters
+ *    }
+ *    y.constant(20.0F)
+ *
+ *    // non-positional settings
+ *    alpha = 0.8
+ *    font.size = 2.5
+ *    font {
+ *       color = Color.RED
+ *    }
+ *    // non-positional mapping
+ *    label("status")
+ * }
+ * ```
+ */
 public inline fun LayerCollectorContext.text(block: TextContext.() -> Unit) {
     addLayer(TextContext(this).apply(block), TEXT)
 }
-
-/*
-/**
- * Adds a new text layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [ x][TextContextInterface.x]
- *  - [y][TextContextInterface.y]
- *
- *  Initial mappings to positional attributes are inherited from the parent [LayerPlotContext] (if they exist).
- *
- *  Non-positional:
- *  - [alpha][TextContextInterface.alpha] - this layer alpha, of the type [Double], mappable.
- *  - [label][TextContextInterface.label] - text label, of the type [String], mappable.
- *  - [angle][TextContextInterface.angle] - text angle, of the type [Double], mappable.
- *  - [horizontalJustification][TextContextInterface.horizontalJustification] -
- *  text horizontal justification, of type [HorizontalJustification].
- *  - [verticalJustification][TextContextInterface.verticalJustification] -
- *  text vertical justification, of type [VerticalJustification].
- *  - [font.color][FontSubContextInterface.color] - font color.
- *  - [font.size][FontSubContextInterface.size] - font size.
- *  - [font.family][FontSubContextInterface.family] - font family.
- *  - [font.face][FontSubContextInterface.face] - font face.
- *
- * ```
- * text {
- *    x(time) // mapping from `time` column to `X` with default scale.
- *    font.color(Color.BLUE) // setting of constant `color` value
- * }
- * ```
- */
-public inline fun LayerCollectorContextImmutable.text(block: TextContextImmutable.() -> Unit) {
-    addLayer(TextContextImmutable(this).apply(block), TEXT)
-}
-
-/**
- * Adds a new text layer.
- *
- * Creates a context in which you can create bindings using aesthetic attribute properties invocation.
- * In this context, you can use mutable mappings - that is, do mapping and scaling with iterables.
- *
- *  ### Aesthetic attributes:
- *
- *  Positional:
- *
- *  - [ x][TextContextInterface.x]
- *  - [y][TextContextInterface.y]
- *
- *  Initial mappings to positional attributes are inherited from the parent [LayerPlotContext] (if they exist).
- *
- *  Non-positional:
- *  - [alpha][TextContextInterface.alpha] - this layer alpha, of the type [Double], mappable.
- *  - [label][TextContextInterface.label] - text label, of the type [String], mappable.
- *  - [angle][TextContextInterface.angle] - text angle, of the type [Double], mappable.
- *  - [horizontalJustification][TextContextInterface.horizontalJustification] -
- *  text horizontal justification, of type [HorizontalJustification].
- *  - [verticalJustification][TextContextInterface.verticalJustification] -
- *  text vertical justification, of type [VerticalJustification].
- *  - [font.color][FontSubContextInterface.color] - font color.
- *  - [font.size][FontSubContextInterface.size] - font size.
- *  - [font.family][FontSubContextInterface.family] - font family.
- *  - [font.face][FontSubContextInterface.face] - font face.
- *
- * ```
- * text {
- *    label(listOf("tt", "vv", "egb")) // mapping from list to `label`.
- *    font.color(Color.BLUE) // setting of constant `color` value
- * }
- * ```
- */
-public inline fun LayerCollectorContextMutable.text(block: TextContextMutable.() -> Unit) {
-    addLayer(TextContextMutable(this).apply(block), TEXT)
-}
-
-
- */
