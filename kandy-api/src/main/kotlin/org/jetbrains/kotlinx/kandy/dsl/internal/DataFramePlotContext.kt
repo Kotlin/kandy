@@ -48,7 +48,8 @@ public class DataFramePlotContext<T>(
                 GroupedData(
                     datasetHandler.initialDataset as NamedData,
                     columns.toList()
-                )
+                ),
+                initialBuffer = datasetHandler.buffer
             )
         )
         GroupedContext(
