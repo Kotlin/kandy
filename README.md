@@ -29,15 +29,15 @@ Inside [Kotlin Notebook](https://plugins.jetbrains.com/plugin/16340-kotlin-noteb
 [Datalore](https://datalore.jetbrains.com/)
 or [Jupyter with Kotlin Kernel](https://github.com/Kotlin/kotlin-jupyter#readme):
 
-```kotlin
+```
 %use kandy
 
-    plot {
-        bars {
-            x(listOf("first", "second", "third"))
-            y(listOf(7, 3, 5))
-        }
-    }
+plot {
+  bars { 
+    x(listOf("first", "second", "third"))
+    y(listOf(7, 3, 5))
+  }
+}
 ```
 
 ## Table of contents
