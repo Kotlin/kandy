@@ -3,39 +3,93 @@
 [![Maven Central](https://img.shields.io/maven-central/v/org.jetbrains.kotlinx/kandy-api)](https://search.maven.org/artifact/org.jetbrains.kotlinx/kandy-api)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
 
-# KANDY
+# Kandy
 
-Kotlin plotting DSL (and more!) inspired
-by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Grammar_of_Graphics). 
-*Currently, JVM-only*.
+Kandy is an open-source plotting library for Kotlin
+that provides a powerful and flexible DSL for creating graphs and utilizes various popular engines.
 
-## Table of contents
+* Simplicity — provides an easy-to-use, simple and intuitive API,
+  allowing users to quickly get started with creating visualizations.
+* Flexibility — offers a wide range of options to implement diverse visualization requirements
+* Readable — utilizes a concise DSL that provides a clear and concise representation of the constructed graph.
+  The DSL is designed to be easy to understand and read, making it accessible to users of all levels of experience.
+* Multi-engine — provides a common DSL that can be used with different well-known engines.
+  This allows users to choose the engine that best suits their needs and preferences,
+  without having to learn a new syntax.
+* Typesafe — provides safe handling of various data types and supports Kotlin null safety,
+  ensuring that users can work with their data in a secure and efficient manner.
+* Data flexibility — seamlessly supports collections and [dataframe](https://github.com/Kotlin/dataframe#readme),
+  enabling users to work with a wide range of data formats in their visualizations.
+
+Inspired by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Grammar_of_Graphics).
+
+### Quickstart
+
+Inside [Kotlin Notebook](https://plugins.jetbrains.com/plugin/16340-kotlin-notebook),
+[Datalore](https://datalore.jetbrains.com/)
+or [Jupyter with Kotlin Kernel](https://github.com/Kotlin/kotlin-jupyter#readme):
+
+```kotlin
+%use kandy
+
+plot {
+  bars { 
+    x(listOf("first", "second", "third"))
+    y(listOf(7, 3, 5))
+  }
+}
+```
+
+To get started, use these cheatsheets
+for
+[`kandy-lets-plot`](examples/notebooks/lets-plot/lets_plot_cheatsheet.ipynb)([Datalore link](https://datalore.jetbrains.com/view/notebook/Q82jBGHFgEmJhUHh7wBMmh))
+and
+[`kandy-echarts`](examples/notebooks/echarts/echarts_cheatsheet.ipynb)([Datalore link](https://datalore.jetbrains.com/view/notebook/kCKb37O2P9ZYEHGPnOZc9r)).
+
+## Table of Contents
 
 <!--- TOC -->
 
-* [What does it offer?](#what-does-it-offer)
-* [What does it look-and-feel like?](#what-does-it-look-and-feel-like)
-   * [Lets-Plot](#lets-plot)
-   * [ECharts](#echarts)
-* [Modules](#modules)
-* [Using in your projects](#using-in-your-projects)
-    * [Gradle](#gradle)
-    * [Kotlin Jupyter Notebook](#kotlin-jupyter-notebook)
-* [Examples and documentation](#examples-and-documentation)
+* [Overview](#overview)
+* [Examples](#examples)
+    * [Lets-Plot](#lets-plot)
+    * [Echarts](#echarts)
+* [Using Kandy](#using-kandy)
 * [Contributing](#contributing)
+* [Code of Conduct](#code-of-conduct)
+* [License](#license)
 
 <!--- END -->
 
-## What does it offer?
+## Overview
 
-1) Convenient, universal and readable DSL for plotting in Kotlin.
-2) Multi-engine support &mdash; DSL for different engines have a common base (which makes porting the source code easy), 
-but at the same time you can use all the possibilities of engines with DSL features.
-3) Simple add-ons and superstructures making for your needs. 
+Kandy is a Kotlin library that provides a flexible and idiomatic DSL for creating various types of charts,
+leveraging different visualization libraries.
+The library aims
+to make it easy and quick for users to create both basic and complex charts with many parameters and settings,
+without the need for lengthy documentation.
+Depending on the task, users can choose from different engines for the perfect visualization.
 
-## What does it look-and-feel like?
+Kandy integrates with [dataframe](https://github.com/Kotlin/dataframe#readme),
+another Kotlin library for working with data, allowing for a seamless transition from data processing to final
+visualization.
+Additionally,
+integration with `kandy-lets-plot` in [Kotlin Notebook](https://plugins.jetbrains.com/plugin/16340-kotlin-notebook)
+enables high-speed chart rendering and the ability to work with large amounts of data without delays or waiting.
 
-Seeing is believing; One look is worth a thousand words.
+The library comprises the following modules:
+
+* `kandy-api` — This module provides a simple-to-use API for creating charts.
+* `kandy-lets-plot` — This module offers an implementation of
+  the [Lets-Plot](https://github.com/JetBrains/lets-plot#readme) library,
+  which is based by Leland Wilkinson
+  work [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Grammar_of_Graphics)
+  and is a proven tool for creating visualizations.
+* `kandy-echarts` — This module provides an implementation of
+  the [Apache ECharts](https://echarts.apache.org/en/index.html) library,
+  which is a widely-used tool for creating interactive visualizations.
+
+## Examples
 
 ### Lets-Plot
 
@@ -47,160 +101,152 @@ val simpleDataset = mapOf(
 )
 
 plot(simpleDataset) {
-  x("time"<Int>())
-  y("temperature"<Double>().scaled(
-    continuousPos(0.0 to 25.5)
-  ))
+    x("time"<Int>())
 
-  bar {
-    color("humidity"<Double>().scaled(continuous(
-      rangeLimits = Color.YELLOW to Color.RED
-    )))
-    borderLine.width(0.0)
-  }
+    y("temperature"<Double>()) {
+        scale = continuous(0.0..25.5)
+    }
 
-  line {
-    width(3.0)
-    color(Color.hex("#6e5596"))
-    type(LineType.DOTDASH)
-  }
+    bars {
+        fillColor("humidity"<Double>()) {
+            scale = continuous(range = Color.YELLOW..Color.RED)
+        }
+        borderLine.width = 0.0
+    }
 
-  layout {
-    title = "Simple plot with lets-plot"
-    caption = "See `examples` section for more\n complicated and interesting examples!"
-  }
+    line {
+        width = 3.0
+        color = Color.hex("#6e5596")
+        type = LineType.DOTDASH
+    }
+
+    layout {
+        title = "Simple plot with lets-plot"
+        caption = "See `examples` section for more\n complicated and interesting examples!"
+    }
+
 }
 ```
+
 ![Kandy example via Lets-plot](examples/images/lets_plot_simple.png)
+
+> You can get this example as a [notebook](examples/notebooks/lets-plot/simple_lets_plot.ipynb),
+> as [Datalore notebook](https://datalore.jetbrains.com/view/notebook/9p6A2HMfKhsltuAzsNYu4M),
+> or as
+> a [Kotlin project](examples/idea-examples/lets-plot-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/letsplot/simple_lets_plot.kt).
 
 ### ECharts
 
 ```kotlin
 val dataset = mapOf(
-        "days_of_week" to listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
-        "evaporation" to listOf(2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6),
-        "precipitation" to listOf(2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6),
-        "temp" to listOf(2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3)
+    "days_of_week" to listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
+    "evaporation" to listOf(2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6),
+    "precipitation" to listOf(2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6),
+    "temp" to listOf(2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3)
 )
 
 plot(dataset) {
-  x("days_of_week"<String>())
-  
-  bars {
-    name("Precipitation")
-    y("precipitation"<Double>().scaled(continuousPos(0.0 to 200.0)))
-    color("temp"<Double>().scaled(continuous(rangeLimits = Color.GREY to Color.BLUE)))
-    label {
-      position = LabelPosition.TOP
-      formatter = "{@precipitation} ml"
+    x("days_of_week"<String>())
+
+    bars {
+        name = "Precipitation"
+        y("precipitation"<Double>()) { scale = continuous(0.0..200.0) }
+        color("temp"<Double>()) { scale = continuous(range = Color.GREY..Color.BLUE) }
+        label {
+            position = LabelPosition.TOP
+            formatter = "{@precipitation} ml"
+        }
     }
-  }
-  
-  line {
-    name("Evaporation")
-    y("evaporation"<Double>())
-    symbol(Symbol.diamond(20.0))
-  }
-  
-  layout {
-    title.text = "Precipitation and evaporation per week"
-    legend {
-      left = 50.pct
-      bottom = 0.px
+
+    line {
+        name = "Evaporation"
+        y("evaporation"<Double>())
+        symbol = Symbol.diamond(20.0)
     }
-  }
+
+    layout {
+        title.text = "Precipitation and evaporation per week"
+        legend {
+            left = 50.pct
+            bottom = 0.px
+        }
+    }
 }
 ```
+
 ![Kandy example echarts](examples/images/echarts_readme_sample.png)
 
-## Modules
-* `kandy-api` &mdash; contains `Plot` intermediate representation (IR), base plotting DSL and internal API.
-* `kandy-lets-plot` &mdash; plot render implementation for [Lets-Plot](https://github.com/JetBrains/lets-plot) 
-with additional DSL and IR features.
-* `kandy-dataframe` &mdash; integration with [Kotlin Dataframe](https://github.com/Kotlin/dataframe).
-* `kandy-dataframe-lets-plot` &mdash; additional methods compatible with `dataframe` API for `lets-plot` implementation.
-* `kandy-echarts` &mdash; plot render implementation for [Apache ECharts](https://echarts.apache.org/en/index.html)
-  with additional DSL and IR features.
+> You can get this example as a [notebook](examples/notebooks/echarts/simple_echarts.ipynb),
+> as a [Datalore notebook](https://datalore.jetbrains.com/view/notebook/uJ6jVPCpNAhH7DeHq7344L),
+> or as
+> a [Kotlin project](examples/idea-examples/echarts-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/echarts/simple_echarts.kt).
 
-## Using in your projects
+More examples of working with the library can be found [here](examples/README.md).
 
-### Gradle 
+## Using Kandy
 
-#### Kotlin DSL:
+### Kotlin Notebook, Datalore, Kotlin Jupyter Notebook
 
-- Add the Maven Central repository if it is not already there:
+You can use Kandy in Kotlin-supported notebooks,
+namely in [Kotlin Notebook](https://plugins.jetbrains.com/plugin/16340-kotlin-notebook),
+[Datalore](https://datalore.jetbrains.com/),
+and [Kotlin Jupyter Notebook](https://github.com/Kotlin/kotlin-jupyter#readme).
 
-```kotlin
-repositories {
-    mavenCentral()
-}
+You can include all the necessary dependencies and imports in the notebook using *line magic*:
+
 ```
-- Add one of the api/implementation dependency:
-
-```groovy
-dependencies {
-    implementation("org.jetbrains.kotlinx:kandy-dataframe-lets-plot:$kandy_version")
-}
+%use kandy
 ```
 
-#### Groovy DSL:
+You can use `%useLatestDescriptors`
+to get the latest stable version without updating the Kotlin kernel or manually specify the version:
 
-- Add the Maven Central repository if it is not already there:
-
-```kotlin
-repositories {
-    mavenCentral()
-}
-```
-- Add one of the api/implementation dependency:
-
-```groovy
-dependencies {
-    implementation "org.jetbrains.kotlinx:kandy-dataframe-lets-plot:$kandy_version"
-}
-```
-
-
-### Kotlin Jupyter Notebook
-
-Install [Kotlin kernel](https://github.com/Kotlin/kotlin-jupyter) for
-[Jupyter](https://jupyter.org/)
-or just visit to [Datalore](https://datalore.jetbrains.com/).
-
-You can include all necessary dependencies, imports and renders to a notebook with "line magic":
-
-``%use kandy($kandy_version)``
-
-Use
 ```
 %useLatestDescriptors
 %use kandy
 ```
-for the latest stable version.
 
+or
+
+```
+%use kandy($kandy_version)
+```
+
+Refer to the [documentation on *"line magic"*](https://github.com/Kotlin/kotlin-jupyter#line-magics) for details.
 
 Available descriptors:
-    
-* `kandy` &mdash; api, Lets-Plot implementation & DSL features + DataFrame integration.
-* `kandy-lets-plot` &mdash; api, Lets-Plot implementation & DSL features.
-* `kandy-dataframe` &mdash; api, DataFrame integration (todo remove???).
-* `kandy-echarts` &mdash; api, ECharts implementation & DSL features. // todo with dataframe???
 
-## Examples and documentation
+* `kandy` — includes an API, implementation of Lets-Plot, DSL features, and DataFrame support
+* `kandy-echarts` — includes an API, implementation of ECharts, DSL features, and DataFrame support
 
+### Gradle
 
-Examples can be found [here](https://github.com/AndreiKingsley/lib-kandy/tree/main/examples).
+Add dependencies (you can also add other modules that you need):
 
+```kotlin
+dependencies {
+    implementation("org.jetbrains.kotlinx:kandy-lets-plot:$kandy_version")
+}
+```
+
+Make sure that you have `mavenCentral()` in the list of repositories:
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+```
 
 ## Contributing
 
-If the library does not provide any functionality that you need, you can [create an issue](https://github.com/AndreiKingsley/lib-kandy/issues).
+Read the [Contributing Guidelines](CONTRIBUTING.md).
 
-You are welcome to contribute &mdash; you can provide an IR translation for a new render engine or create add-ons for 
-an existing one.
+## Code of Conduct
 
+This project and the corresponding community are governed by the
+[JetBrains Open Source and Community Code of Conduct](https://confluence.jetbrains.com/display/ALL/JetBrains+Open+Source+and+Community+Code+of+Conduct).
+Please make sure you read it.
 
-## *Note:*
+## License
 
-*The name of the library is temporary and should be changed soon. We will be very happy with suggestions.*
-
+Kandy is licensed under the [Apache 2.0 License](LICENSE).
