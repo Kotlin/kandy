@@ -29,7 +29,7 @@ Inside [Kotlin Notebook](https://plugins.jetbrains.com/plugin/16340-kotlin-noteb
 [Datalore](https://datalore.jetbrains.com/)
 or [Jupyter with Kotlin Kernel](https://github.com/Kotlin/kotlin-jupyter#readme):
 
-```
+```kotlin
 %use kandy
 
 plot {
@@ -40,7 +40,13 @@ plot {
 }
 ```
 
-## Table of contents
+To get started, use these cheatsheets
+for
+[`kandy-lets-plot`](examples/notebooks/lets-plot/lets_plot_cheatsheet.ipynb)([Datalore link](https://datalore.jetbrains.com/view/notebook/Q82jBGHFgEmJhUHh7wBMmh))
+and
+[`kandy-echarts`](examples/notebooks/echarts/echarts_cheatsheet.ipynb)([Datalore link](https://datalore.jetbrains.com/view/notebook/kCKb37O2P9ZYEHGPnOZc9r)).
+
+## Table of Contents
 
 <!--- TOC -->
 
@@ -124,7 +130,9 @@ plot(simpleDataset) {
 
 ![Kandy example via Lets-plot](examples/images/lets_plot_simple.png)
 
-> You can get this example as a [notebook](examples/notebooks/lets-plot/simple_lets_plot.ipynb) or as
+> You can get this example as a [notebook](examples/notebooks/lets-plot/simple_lets_plot.ipynb),
+> as [Datalore notebook](https://datalore.jetbrains.com/view/notebook/9p6A2HMfKhsltuAzsNYu4M),
+> or as
 > a [Kotlin project](examples/idea-examples/lets-plot-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/letsplot/simple_lets_plot.kt).
 
 ### ECharts
@@ -168,7 +176,9 @@ plot(dataset) {
 
 ![Kandy example echarts](examples/images/echarts_readme_sample.png)
 
-> You can get this example as a [notebook](examples/notebooks/echarts/simple_echarts.ipynb) or as
+> You can get this example as a [notebook](examples/notebooks/echarts/simple_echarts.ipynb),
+> as a [Datalore notebook](https://datalore.jetbrains.com/view/notebook/uJ6jVPCpNAhH7DeHq7344L),
+> or as
 > a [Kotlin project](examples/idea-examples/echarts-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/echarts/simple_echarts.kt).
 
 More examples of working with the library can be found [here](examples/README.md).
