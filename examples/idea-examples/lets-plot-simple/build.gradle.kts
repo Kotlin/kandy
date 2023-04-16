@@ -9,7 +9,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation(project(":ggdsl-lets-plot"))
+    implementation(project(":kandy-lets-plot"))
 }
 
 tasks {
