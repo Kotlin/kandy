@@ -1,0 +1,533 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>BinLayerCollectorContext</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>kandy</span>            </a>    </div>
+    <div>0.4.0
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":kandy-lets-plot:dokkaHtmlPartial/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="kandy-lets-plot::org.jetbrains.kotlinx.kandy.letsplot.stat.bin/BinLayerCollectorContext///PointingToDeclaration//878209508">
+  <div class="breadcrumbs"><a href="../../index.html">kandy-lets-plot</a><span class="delimiter">/</span><a href="../index.html">org.jetbrains.kotlinx.kandy.letsplot.stat.bin</a><span class="delimiter">/</span><span class="current">BinLayerCollectorContext</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Bin</span><wbr><span>Layer</span><wbr><span>Collector</span><wbr><span><span>Context</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">BinLayerCollectorContext</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parent<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>datasetIndex<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span> : <a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a>, <a href="../-bin-stat-context/index.html">BinStatContext</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-816787435%2FConstructors%2F878209508" anchor-label="BinLayerCollectorContext" id="-816787435%2FConstructors%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-bin-layer-collector-context.html"><span>Bin</span><wbr><span>Layer</span><wbr><span>Collector</span><wbr><span><span>Context</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-816787435%2FConstructors%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parent<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">, </span></span><span class="parameter ">datasetIndex<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1734328493%2FFunctions%2F878209508" anchor-label="abLine" id="1734328493%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/ab-line.html"><span>ab</span><wbr><span><span>Line</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1734328493%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/ab-line.html"><span class="token function">abLine</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-a-b-line-context/index.html">ABLineContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new abLine layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-857241496%2FFunctions%2F878209508" anchor-label="addLayer" id="-857241496%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-857241496%2FFunctions%2F878209508"><span>add</span><wbr><span><span>Layer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-857241496%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html#-857241496%2FFunctions%2F878209508"><span class="token function">addLayer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-context/index.html">LayerContext</a><span class="token punctuation">, </span></span><span class="parameter ">geom<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.geom/-geom/index.html">Geom</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="21603149%2FFunctions%2F878209508" anchor-label="area" id="21603149%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/area.html"><span><span>area</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="21603149%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/area.html"><span class="token function">area</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-area-context/index.html">AreaContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new area layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1008799213%2FFunctions%2F878209508" anchor-label="bars" id="1008799213%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/bars.html"><span><span>bars</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1008799213%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/bars.html"><span class="token function">bars</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-bars-context/index.html">BarsContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new bars layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="413348763%2FFunctions%2F878209508" anchor-label="barsH" id="413348763%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/bars-h.html"><span>bars</span><wbr><span><span>H</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="413348763%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/bars-h.html"><span class="token function">barsH</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-bars-context/index.html">BarsContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new horizontal bars layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="900458117%2FFunctions%2F878209508" anchor-label="boxplot" id="900458117%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/boxplot.html"><span><span>boxplot</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="900458117%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/boxplot.html"><span class="token function">boxplot</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-boxplot-context/index.html">BoxplotContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new boxplot layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-571126259%2FFunctions%2F878209508" anchor-label="crossBar" id="-571126259%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/cross-bar.html"><span>cross</span><wbr><span><span>Bar</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-571126259%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/cross-bar.html"><span class="token function">crossBar</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-cross-bar-context/index.html">CrossBarContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new crossbars layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="685454093%2FFunctions%2F878209508" anchor-label="errorBar" id="685454093%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/error-bar.html"><span>error</span><wbr><span><span>Bar</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="685454093%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/error-bar.html"><span class="token function">errorBar</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-error-bar-context/index.html">ErrorBarContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new error bars layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2057073471%2FFunctions%2F878209508" anchor-label="histogram" id="2057073471%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/histogram.html"><span><span>histogram</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2057073471%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/histogram.html"><span class="token function">histogram</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">columnName<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">bins<span class="token operator">: </span><a href="../-bins/index.html">Bins</a><span class="token operator"> = </span>Bins.byNumber(20)<span class="token punctuation">, </span></span><span class="parameter ">binXPos<span class="token operator">: </span><a href="../-bin-x-pos/index.html">BinXPos</a><span class="token operator"> = </span>BinXPos.none(0.0)<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/-histogram-context/index.html">HistogramContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/histogram.html"><span class="token function">histogram</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">column<span class="token operator">: </span><span data-unresolved-link="org.jetbrains.kotlinx.dataframe/DataColumn///PointingToDeclaration/">DataColumn</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">bins<span class="token operator">: </span><a href="../-bins/index.html">Bins</a><span class="token operator"> = </span>Bins.byNumber(20)<span class="token punctuation">, </span></span><span class="parameter ">binXPos<span class="token operator">: </span><a href="../-bin-x-pos/index.html">BinXPos</a><span class="token operator"> = </span>BinXPos.none(0.0)<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/-histogram-context/index.html">HistogramContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/histogram.html"><span class="token function">histogram</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">column<span class="token operator">: </span><span data-unresolved-link="org.jetbrains.kotlinx.dataframe.columns/ColumnReference///PointingToDeclaration/">ColumnReference</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">bins<span class="token operator">: </span><a href="../-bins/index.html">Bins</a><span class="token operator"> = </span>Bins.byNumber(20)<span class="token punctuation">, </span></span><span class="parameter ">binXPos<span class="token operator">: </span><a href="../-bin-x-pos/index.html">BinXPos</a><span class="token operator"> = </span>BinXPos.none(0.0)<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/-histogram-context/index.html">HistogramContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Builds histogram by given column. Creates <a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/-histogram-context/index.html">HistogramContext</a>, combining <a href="../-bin-stat-context/index.html">BinStatContext</a> and <a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-bars-context/index.html">BarsContext</a>.</p></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/histogram.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/histogram.html"><span class="token function">histogram</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">values<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/histogram.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">bins<span class="token operator">: </span><a href="../-bins/index.html">Bins</a><span class="token operator"> = </span>Bins.byNumber(20)<span class="token punctuation">, </span></span><span class="parameter ">binXPos<span class="token operator">: </span><a href="../-bin-x-pos/index.html">BinXPos</a><span class="token operator"> = </span>BinXPos.none(0.0)<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/-histogram-context/index.html">HistogramContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Builds histogram of given values. Creates <a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/-histogram-context/index.html">HistogramContext</a>, combining <a href="../-bin-stat-context/index.html">BinStatContext</a> and <a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-bars-context/index.html">BarsContext</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-444157595%2FFunctions%2F878209508" anchor-label="hLine" id="-444157595%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/h-line.html"><span>h</span><wbr><span><span>Line</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-444157595%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/h-line.html"><span class="token function">hLine</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-h-line-context/index.html">HLineContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new horizontal line layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="682173293%2FFunctions%2F878209508" anchor-label="line" id="682173293%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/line.html"><span><span>line</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="682173293%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/line.html"><span class="token function">line</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-line-context/index.html">LineContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new line layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1794532725%2FFunctions%2F878209508" anchor-label="lineRange" id="-1794532725%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/line-range.html"><span>line</span><wbr><span><span>Range</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1794532725%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/line-range.html"><span class="token function">lineRange</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-line-range-context/index.html">LineRangeContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new line-range layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-383862707%2FFunctions%2F878209508" anchor-label="path" id="-383862707%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/path.html"><span><span>path</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-383862707%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/path.html"><span class="token function">path</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-path-context/index.html">PathContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new path layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-136903667%2FFunctions%2F878209508" anchor-label="pointRange" id="-136903667%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/point-range.html"><span>point</span><wbr><span><span>Range</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-136903667%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/point-range.html"><span class="token function">pointRange</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-point-range-context/index.html">PointRangeContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new point-range layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="443186509%2FFunctions%2F878209508" anchor-label="points" id="443186509%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/points.html"><span><span>points</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="443186509%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/points.html"><span class="token function">points</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-points-context/index.html">PointsContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new points layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="38177165%2FFunctions%2F878209508" anchor-label="raster" id="38177165%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/raster.html"><span><span>raster</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="38177165%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/raster.html"><span class="token function">raster</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-raster-context/index.html">RasterContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new raster layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1665059475%2FFunctions%2F878209508" anchor-label="rect" id="-1665059475%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/rect.html"><span><span>rect</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1665059475%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/rect.html"><span class="token function">rect</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-rect-context/index.html">RectContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new rect layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="218079021%2FFunctions%2F878209508" anchor-label="ribbon" id="218079021%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/ribbon.html"><span><span>ribbon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="218079021%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/ribbon.html"><span class="token function">ribbon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-ribbon-context/index.html">RibbonContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new ribbon layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-865593289%2FFunctions%2F878209508" anchor-label="segment" id="-865593289%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/segment.html"><span><span>segment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-865593289%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/segment.html"><span class="token function">segment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-segment-context/index.html">SegmentContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new segment layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="321270432%2FFunctions%2F878209508" anchor-label="statBin" id="321270432%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../stat-bin.html"><span>stat</span><wbr><span><span>Bin</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="321270432%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../stat-bin.html"><span class="token function">statBin</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">column<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">bins<span class="token operator">: </span><a href="../-bins/index.html">Bins</a><span class="token operator"> = </span>Bins.byNumber(20)<span class="token punctuation">, </span></span><span class="parameter ">binXPos<span class="token operator">: </span><a href="../-bin-x-pos/index.html">BinXPos</a><span class="token operator"> = </span>BinXPos.none(0.0)<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="index.html">BinLayerCollectorContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../stat-bin.html"><span class="token function">statBin</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">column<span class="token operator">: </span><span data-unresolved-link="org.jetbrains.kotlinx.dataframe/DataColumn///PointingToDeclaration/">DataColumn</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">bins<span class="token operator">: </span><a href="../-bins/index.html">Bins</a><span class="token operator"> = </span>Bins.byNumber(20)<span class="token punctuation">, </span></span><span class="parameter ">binXPos<span class="token operator">: </span><a href="../-bin-x-pos/index.html">BinXPos</a><span class="token operator"> = </span>BinXPos.none(0.0)<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="index.html">BinLayerCollectorContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../stat-bin.html"><span class="token function">statBin</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">column<span class="token operator">: </span><span data-unresolved-link="org.jetbrains.kotlinx.dataframe.columns/ColumnReference///PointingToDeclaration/">ColumnReference</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">bins<span class="token operator">: </span><a href="../-bins/index.html">Bins</a><span class="token operator"> = </span>Bins.byNumber(20)<span class="token punctuation">, </span></span><span class="parameter ">binXPos<span class="token operator">: </span><a href="../-bin-x-pos/index.html">BinXPos</a><span class="token operator"> = </span>BinXPos.none(0.0)<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="index.html">BinLayerCollectorContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Counts <code class="lang-kotlin">bin</code> statistics by given column. Creates <a href="index.html">BinLayerCollectorContext</a>. In this context a dataset with calculated stats is used. It also has properties - references to columns with these stats, which can be used in mappings etc.</p></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../stat-bin.html"><span class="token function">statBin</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">values<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">bins<span class="token operator">: </span><a href="../-bins/index.html">Bins</a><span class="token operator"> = </span>Bins.byNumber(20)<span class="token punctuation">, </span></span><span class="parameter ">binXPos<span class="token operator">: </span><a href="../-bin-x-pos/index.html">BinXPos</a><span class="token operator"> = </span>BinXPos.none(0.0)<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="index.html">BinLayerCollectorContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Counts <code class="lang-kotlin">bin</code> statistics for given values. Creates <a href="index.html">BinLayerCollectorContext</a>. In this context a dataset with calculated stats is used. It also has properties - references to columns with these stats, which can be used in mappings etc.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="717852781%2FFunctions%2F878209508" anchor-label="step" id="717852781%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/step.html"><span><span>step</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="717852781%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/step.html"><span class="token function">step</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-step-context/index.html">StepContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new step layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1174269773%2FFunctions%2F878209508" anchor-label="text" id="1174269773%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/text.html"><span><span>text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1174269773%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/text.html"><span class="token function">text</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-text-context/index.html">TextContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new text layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1524550189%2FFunctions%2F878209508" anchor-label="tile" id="1524550189%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/tile.html"><span><span>tile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1524550189%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/tile.html"><span class="token function">tile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-tile-context/index.html">TileContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new tile layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1490702519%2FFunctions%2F878209508" anchor-label="vLine" id="-1490702519%2FFunctions%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/v-line.html"><span>v</span><wbr><span><span>Line</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1490702519%2FFunctions%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers/v-line.html"><span class="token function">vLine</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-v-line-context/index.html">VLineContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a new vertical line layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="601138483%2FProperties%2F878209508" anchor-label="datasetHandler" id="601138483%2FProperties%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/-histogram-context/index.html#601138483%2FProperties%2F878209508"><span>dataset</span><wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="601138483%2FProperties%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../../org.jetbrains.kotlinx.kandy.letsplot.stat.layers/-histogram-context/index.html#601138483%2FProperties%2F878209508">datasetHandler</a><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-dataset-handler/index.html">DatasetHandler</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="428991719%2FProperties%2F878209508" anchor-label="datasetIndex" id="428991719%2FProperties%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="dataset-index.html"><span>dataset</span><wbr><span><span>Index</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="428991719%2FProperties%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="dataset-index.html">datasetIndex</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1536238303%2FProperties%2F878209508" anchor-label="layers" id="1536238303%2FProperties%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="layers.html"><span><span>layers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1536238303%2FProperties%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="layers.html">layers</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir/-layer/index.html">Layer</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="583376459%2FProperties%2F878209508" anchor-label="plotContext" id="583376459%2FProperties%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="plot-context.html"><span>plot</span><wbr><span><span>Context</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="583376459%2FProperties%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="plot-context.html">plotContext</a><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-plot-context/index.html">PlotContext</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1330001365%2FProperties%2F878209508" anchor-label="Stat" id="1330001365%2FProperties%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-bin-stat-context/-stat.html"><span><span>Stat</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1330001365%2FProperties%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-bin-stat-context/-stat.html">Stat</a><span class="token operator">: </span><a href="../-bin-stat-context/-stat-holder/index.html">BinStatContext.StatHolder</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+

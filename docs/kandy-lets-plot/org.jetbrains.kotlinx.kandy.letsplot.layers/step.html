@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>step</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../index.html">
+<span>kandy</span>            </a>    </div>
+    <div>0.4.0
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":kandy-lets-plot:dokkaHtmlPartial/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="member" id="content" pageids="kandy-lets-plot::org.jetbrains.kotlinx.kandy.letsplot.layers//step/org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext#kotlin.Function1[org.jetbrains.kotlinx.kandy.letsplot.layers.context.StepContext,kotlin.Unit]/PointingToDeclaration//878209508">
+  <div class="breadcrumbs"><a href="../index.html">kandy-lets-plot</a><span class="delimiter">/</span><a href="index.html">org.jetbrains.kotlinx.kandy.letsplot.layers</a><span class="delimiter">/</span><span class="current">step</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>step</span></span></h1>
+  </div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-collector-context/index.html">LayerCollectorContext</a><span class="token punctuation">.</span><a href="step.html"><span class="token function">step</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../org.jetbrains.kotlinx.kandy.letsplot.layers.context/-step-context/index.html">StepContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><p class="paragraph">Adds a new step layer.</p><p class="paragraph">Creates a context in which you can configure layer. Within it, you can set mappings and settings on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values, while settings allow you to assign a constant value to the attributes.</p><p class="paragraph">Mapping can be performed via method with name of corresponding aes. Setting for non-positional attributes can be performed with simple assignment of variable with name of aes. Setting for positional attributes can be performed with <code class="lang-kotlin">.constant()</code> method of special property with the same name as the attribute.</p><p class="paragraph">Step aesthetics:</p><ul><li><p class="paragraph"><code class="lang-kotlin">x</code></p></li><li><p class="paragraph"><code class="lang-kotlin">y</code></p></li><li><p class="paragraph"><code class="lang-kotlin">color</code></p></li><li><p class="paragraph"><code class="lang-kotlin">lineType</code></p></li><li><p class="paragraph"><code class="lang-kotlin">width</code></p></li><li><p class="paragraph"><code class="lang-kotlin">alpha</code></p></li></ul><p class="paragraph">Example:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">line {<br>   // positional mapping<br>   x(time) {<br>      ... // some mapping parameters<br>   }<br><br>   // non-positional setting<br>   width = 2.5<br>   // non-positional mapping<br>   color("type")<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+

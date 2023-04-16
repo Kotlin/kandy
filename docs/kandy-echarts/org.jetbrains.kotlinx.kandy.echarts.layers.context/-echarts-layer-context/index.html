@@ -1,0 +1,304 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>EchartsLayerContext</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>kandy</span>            </a>    </div>
+    <div>0.4.0
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":kandy-echarts:dokkaHtmlPartial/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="kandy-echarts::org.jetbrains.kotlinx.kandy.echarts.layers.context/EchartsLayerContext///PointingToDeclaration//-1006810240">
+  <div class="breadcrumbs"><a href="../../index.html">kandy-echarts</a><span class="delimiter">/</span><a href="../index.html">org.jetbrains.kotlinx.kandy.echarts.layers.context</a><span class="delimiter">/</span><span class="current">EchartsLayerContext</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Echarts</span><wbr><span>Layer</span><wbr><span><span>Context</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="index.html">EchartsLayerContext</a> : <a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-layer-context/index.html">LayerContext</a></div><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-area-context/index.html">AreaContext</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-bar-context/index.html">BarContext</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-boxplot-context/index.html">BoxplotContext</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-candlestick-context/index.html">CandlestickContext</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-line-context/index.html">LineContext</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-pie-context/index.html">PieContext</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-point-context/index.html">PointContext</a></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1147276406%2FFunctions%2F-1006810240" anchor-label="addNonPositionalMapping" id="-1147276406%2FFunctions%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-point-context/index.html#1128056878%2FFunctions%2F-1006810240"><span>add</span><wbr><span>Non</span><wbr><span>Positional</span><wbr><span><span>Mapping</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1147276406%2FFunctions%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#1128056878%2FFunctions%2F-1006810240">DomainType</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../-point-context/index.html#1128056878%2FFunctions%2F-1006810240">RangeType</a><span class="token operator">&gt; </span><a href="../-point-context/index.html#1128056878%2FFunctions%2F-1006810240"><span class="token function">addNonPositionalMapping</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aesName<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.aes/-aes-name/index.html">AesName</a><span class="token punctuation">, </span></span><span class="parameter ">columnID<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">parameters<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-non-positional-mapping-parameters/index.html">NonPositionalMappingParameters</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#1128056878%2FFunctions%2F-1006810240">DomainType</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../-point-context/index.html#1128056878%2FFunctions%2F-1006810240">RangeType</a><span class="token operator">&gt;</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-non-positional-mapping/index.html">NonPositionalMapping</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#1128056878%2FFunctions%2F-1006810240">DomainType</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../-point-context/index.html#1128056878%2FFunctions%2F-1006810240">RangeType</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#-1015709952%2FFunctions%2F-1006810240">DomainType</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../-point-context/index.html#-1015709952%2FFunctions%2F-1006810240">RangeType</a><span class="token operator">&gt; </span><a href="../-point-context/index.html#-1015709952%2FFunctions%2F-1006810240"><span class="token function">addNonPositionalMapping</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aesName<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.aes/-aes-name/index.html">AesName</a><span class="token punctuation">, </span></span><span class="parameter ">values<span class="token operator">: </span><span data-unresolved-link="org.jetbrains.kotlinx.dataframe/DataColumn///PointingToDeclaration/">DataColumn</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#-1015709952%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">parameters<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-non-positional-mapping-parameters/index.html">NonPositionalMappingParameters</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#-1015709952%2FFunctions%2F-1006810240">DomainType</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../-point-context/index.html#-1015709952%2FFunctions%2F-1006810240">RangeType</a><span class="token operator">&gt;</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-non-positional-mapping/index.html">NonPositionalMapping</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#-1015709952%2FFunctions%2F-1006810240">DomainType</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../-point-context/index.html#-1015709952%2FFunctions%2F-1006810240">RangeType</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#1382632228%2FFunctions%2F-1006810240">DomainType</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../-point-context/index.html#1382632228%2FFunctions%2F-1006810240">RangeType</a><span class="token operator">&gt; </span><a href="../-point-context/index.html#1382632228%2FFunctions%2F-1006810240"><span class="token function">addNonPositionalMapping</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aesName<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.aes/-aes-name/index.html">AesName</a><span class="token punctuation">, </span></span><span class="parameter ">values<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#1382632228%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">parameters<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-non-positional-mapping-parameters/index.html">NonPositionalMappingParameters</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#1382632228%2FFunctions%2F-1006810240">DomainType</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../-point-context/index.html#1382632228%2FFunctions%2F-1006810240">RangeType</a><span class="token operator">&gt;</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-non-positional-mapping/index.html">NonPositionalMapping</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#1382632228%2FFunctions%2F-1006810240">DomainType</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../-point-context/index.html#1382632228%2FFunctions%2F-1006810240">RangeType</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1783747322%2FFunctions%2F-1006810240" anchor-label="addNonPositionalSetting" id="1783747322%2FFunctions%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-point-context/index.html#1783747322%2FFunctions%2F-1006810240"><span>add</span><wbr><span>Non</span><wbr><span>Positional</span><wbr><span><span>Setting</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1783747322%2FFunctions%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#1783747322%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt; </span><a href="../-point-context/index.html#1783747322%2FFunctions%2F-1006810240"><span class="token function">addNonPositionalSetting</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aesName<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.aes/-aes-name/index.html">AesName</a><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><a href="../-point-context/index.html#1783747322%2FFunctions%2F-1006810240">DomainType</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-non-positional-setting/index.html">NonPositionalSetting</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#1783747322%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="213921012%2FFunctions%2F-1006810240" anchor-label="addPositionalFreeScale" id="213921012%2FFunctions%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-point-context/index.html#213921012%2FFunctions%2F-1006810240"><span>add</span><wbr><span>Positional</span><wbr><span>Free</span><wbr><span><span>Scale</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="213921012%2FFunctions%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#213921012%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt; </span><a href="../-point-context/index.html#213921012%2FFunctions%2F-1006810240"><span class="token function">addPositionalFreeScale</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aesName<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.aes/-aes-name/index.html">AesName</a><span class="token punctuation">, </span></span><span class="parameter ">parameters<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-positional-mapping-parameters/index.html">PositionalMappingParameters</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#213921012%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1725481000%2FFunctions%2F-1006810240" anchor-label="addPositionalMapping" id="1725481000%2FFunctions%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-point-context/index.html#-1837868988%2FFunctions%2F-1006810240"><span>add</span><wbr><span>Positional</span><wbr><span><span>Mapping</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1725481000%2FFunctions%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#-1837868988%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt; </span><a href="../-point-context/index.html#-1837868988%2FFunctions%2F-1006810240"><span class="token function">addPositionalMapping</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aesName<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.aes/-aes-name/index.html">AesName</a><span class="token punctuation">, </span></span><span class="parameter ">columnID<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">parameters<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-positional-mapping-parameters/index.html">PositionalMappingParameters</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#-1837868988%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-positional-mapping/index.html">PositionalMapping</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#-1837868988%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#354634994%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt; </span><a href="../-point-context/index.html#354634994%2FFunctions%2F-1006810240"><span class="token function">addPositionalMapping</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aesName<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.aes/-aes-name/index.html">AesName</a><span class="token punctuation">, </span></span><span class="parameter ">values<span class="token operator">: </span><span data-unresolved-link="org.jetbrains.kotlinx.dataframe/DataColumn///PointingToDeclaration/">DataColumn</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#354634994%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">parameters<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-positional-mapping-parameters/index.html">PositionalMappingParameters</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#354634994%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-positional-mapping/index.html">PositionalMapping</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#354634994%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#-1513969714%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt; </span><a href="../-point-context/index.html#-1513969714%2FFunctions%2F-1006810240"><span class="token function">addPositionalMapping</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aesName<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.aes/-aes-name/index.html">AesName</a><span class="token punctuation">, </span></span><span class="parameter ">values<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#-1513969714%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">parameters<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-positional-mapping-parameters/index.html">PositionalMappingParameters</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#-1513969714%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-positional-mapping/index.html">PositionalMapping</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#-1513969714%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1166615219%2FFunctions%2F-1006810240" anchor-label="addPositionalSetting" id="1166615219%2FFunctions%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-point-context/index.html#1166615219%2FFunctions%2F-1006810240"><span>add</span><wbr><span>Positional</span><wbr><span><span>Setting</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1166615219%2FFunctions%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#1166615219%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt; </span><a href="../-point-context/index.html#1166615219%2FFunctions%2F-1006810240"><span class="token function">addPositionalSetting</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aesName<span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.aes/-aes-name/index.html">AesName</a><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><a href="../-point-context/index.html#1166615219%2FFunctions%2F-1006810240">DomainType</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.bindings/-positional-setting/index.html">PositionalSetting</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-point-context/index.html#1166615219%2FFunctions%2F-1006810240">DomainType</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-650607473%2FFunctions%2F-1006810240" anchor-label="invoke" id="-650607473%2FFunctions%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="invoke.html"><span><span>invoke</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-650607473%2FFunctions%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.animation/-animation/index.html">Animation</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.animation/-animation/index.html">Animation</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.animation/-animation/index.html">Animation</a></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.animation/-animation-boxplot-candlestick/index.html">AnimationBoxplotCandlestick</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.animation/-animation-boxplot-candlestick/index.html">AnimationBoxplotCandlestick</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.animation/-animation-boxplot-candlestick/index.html">AnimationBoxplotCandlestick</a></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.animation/-animation-pie/index.html">AnimationPie</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.animation/-animation-pie/index.html">AnimationPie</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.animation/-animation-pie/index.html">AnimationPie</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-46184772%2FFunctions%2F-1006810240" anchor-label="markArea" id="-46184772%2FFunctions%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.marks/mark-area.html"><span>mark</span><wbr><span><span>Area</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-46184772%2FFunctions%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">EchartsLayerContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.marks/mark-area.html"><span class="token function">markArea</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.marks/-mark-area-context/index.html">MarkAreaContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets mark areas on a layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="865250478%2FFunctions%2F-1006810240" anchor-label="markLine" id="865250478%2FFunctions%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.marks/mark-line.html"><span>mark</span><wbr><span><span>Line</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="865250478%2FFunctions%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">EchartsLayerContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.marks/mark-line.html"><span class="token function">markLine</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.marks/-mark-line-context/index.html">MarkLineContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets mark lines on a layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1954304474%2FFunctions%2F-1006810240" anchor-label="markPoint" id="1954304474%2FFunctions%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.marks/mark-point.html"><span>mark</span><wbr><span><span>Point</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1954304474%2FFunctions%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">EchartsLayerContext</a><span class="token punctuation">.</span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.marks/mark-point.html"><span class="token function">markPoint</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.jetbrains.kotlinx.kandy.echarts.features.marks/-mark-point-context/index.html">MarkPointContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets mark points on a layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="133281931%2FProperties%2F-1006810240" anchor-label="bindingCollector" id="133281931%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-point-context/index.html#133281931%2FProperties%2F-1006810240"><span>binding</span><wbr><span><span>Collector</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="133281931%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../-point-context/index.html#133281931%2FProperties%2F-1006810240">bindingCollector</a><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-binding-collector/index.html">BindingCollector</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="601138483%2FProperties%2F-1006810240" anchor-label="datasetHandler" id="601138483%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-point-context/index.html#601138483%2FProperties%2F-1006810240"><span>dataset</span><wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="601138483%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-point-context/index.html#601138483%2FProperties%2F-1006810240">datasetHandler</a><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-dataset-handler/index.html">DatasetHandler</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2043857895%2FProperties%2F-1006810240" anchor-label="datasetIndex" id="-2043857895%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-point-context/index.html#-2043857895%2FProperties%2F-1006810240"><span>dataset</span><wbr><span><span>Index</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2043857895%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../-point-context/index.html#-2043857895%2FProperties%2F-1006810240">datasetIndex</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1172116342%2FProperties%2F-1006810240" anchor-label="features" id="1172116342%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-point-context/index.html#1172116342%2FProperties%2F-1006810240"><span><span>features</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1172116342%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../-point-context/index.html#1172116342%2FProperties%2F-1006810240">features</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html">MutableMap</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.feature/-feature-name/index.html">FeatureName</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.feature/-layer-feature/index.html">LayerFeature</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-746099843%2FProperties%2F-1006810240" anchor-label="name" id="-746099843%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="name.html"><span><span>name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-746099843%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="name.html">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="919249113%2FProperties%2F-1006810240" anchor-label="plotContext" id="919249113%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-point-context/index.html#919249113%2FProperties%2F-1006810240"><span>plot</span><wbr><span><span>Context</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="919249113%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../-point-context/index.html#919249113%2FProperties%2F-1006810240">plotContext</a><span class="token operator">: </span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.dsl.internal/-plot-context/index.html">PlotContext</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+

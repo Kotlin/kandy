@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Legend</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>kandy</span>            </a>    </div>
+    <div>0.4.0
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":kandy-echarts:dokkaHtmlPartial/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="kandy-echarts::org.jetbrains.kotlinx.kandy.echarts.features/Legend///PointingToDeclaration//-1006810240">
+  <div class="breadcrumbs"><a href="../../index.html">kandy-echarts</a><span class="delimiter">/</span><a href="../index.html">org.jetbrains.kotlinx.kandy.echarts.features</a><span class="delimiter">/</span><span class="current">Legend</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Legend</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Legend</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">var </span>type<span class="token operator">: </span><a href="../-legend-type/index.html">LegendType</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>left<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>top<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>right<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>bottom<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>width<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>height<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>orient<span class="token operator">: </span><a href="../-orient/index.html">Orient</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>formatter<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><p class="paragraph">Legend settings for plot.</p><h4 class="">See also</h4><div class="table"><div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-legend-type/index.html"><span>Legend</span><wbr><span><span>Type</span></span></a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-orient/index.html"><span><span>Orient</span></span></a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html"><span>Size</span><wbr><span><span>Unit</span></span></a></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1100421965%2FConstructors%2F-1006810240" anchor-label="Legend" id="-1100421965%2FConstructors%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-legend.html"><span><span>Legend</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1100421965%2FConstructors%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="../-legend-type/index.html">LegendType</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">left<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">top<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">right<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">bottom<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">width<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">height<span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">orient<span class="token operator">: </span><a href="../-orient/index.html">Orient</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">formatter<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="2082828724%2FProperties%2F-1006810240" anchor-label="bottom" id="2082828724%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bottom.html"><span><span>bottom</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2082828724%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="bottom.html">bottom</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">distance between a legend component and the bottom side of the container. <code class="lang-kotlin">auto</code> by default.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1577314609%2FProperties%2F-1006810240" anchor-label="formatter" id="1577314609%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="formatter.html"><span><span>formatter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1577314609%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="formatter.html">formatter</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">formatter is used to format label of legend.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1837698616%2FProperties%2F-1006810240" anchor-label="height" id="1837698616%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="height.html"><span><span>height</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1837698616%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="height.html">height</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">height of a legend component. <code class="lang-kotlin">auto</code> by default.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-146209832%2FProperties%2F-1006810240" anchor-label="left" id="-146209832%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="left.html"><span><span>left</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-146209832%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="left.html">left</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">distance between a legend component and the left side of the container. <code class="lang-kotlin">auto</code> by default.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2129630426%2FProperties%2F-1006810240" anchor-label="orient" id="2129630426%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="orient.html"><span><span>orient</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2129630426%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="orient.html">orient</a><span class="token operator">: </span><a href="../-orient/index.html">Orient</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">the layout <a href="../-orient/index.html">orientation</a> of legend. <code class="lang-kotlin">horizontal</code> by default.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="995870495%2FProperties%2F-1006810240" anchor-label="right" id="995870495%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="right.html"><span><span>right</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="995870495%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="right.html">right</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">distance between a legend component and the right side of the container. <code class="lang-kotlin">auto</code> by default.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1589014138%2FProperties%2F-1006810240" anchor-label="top" id="-1589014138%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="top.html"><span><span>top</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1589014138%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="top.html">top</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">distance between a legend component and the top side of the container. <code class="lang-kotlin">auto</code> by default.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="864781317%2FProperties%2F-1006810240" anchor-label="type" id="864781317%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="type.html"><span><span>type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="864781317%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="type.html">type</a><span class="token operator">: </span><a href="../-legend-type/index.html">LegendType</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph"><a href="../-legend-type/index.html">type</a> of legend. <code class="lang-kotlin">plain</code> is default.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="98889397%2FProperties%2F-1006810240" anchor-label="width" id="98889397%2FProperties%2F-1006810240" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-echarts:dokkaHtmlPartial/main" data-filterable-set=":kandy-echarts:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="width.html"><span><span>width</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="98889397%2FProperties%2F-1006810240"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-echarts:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="width.html">width</a><span class="token operator">: </span><a href="../../org.jetbrains.kotlinx.kandy.echarts.settings/-size-unit/index.html">SizeUnit</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">width of a legend component. <code class="lang-kotlin">auto</code> by default.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+

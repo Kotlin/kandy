@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>ScaleCategoricalColorHue</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>kandy</span>            </a>    </div>
+    <div>0.4.0
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":kandy-lets-plot:dokkaHtmlPartial/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="kandy-lets-plot::org.jetbrains.kotlinx.kandy.letsplot.scales/ScaleCategoricalColorHue///PointingToDeclaration//878209508">
+  <div class="breadcrumbs"><a href="../../index.html">kandy-lets-plot</a><span class="delimiter">/</span><a href="../index.html">org.jetbrains.kotlinx.kandy.letsplot.scales</a><span class="delimiter">/</span><span class="current">ScaleCategoricalColorHue</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Scale</span><wbr><span>Categorical</span><wbr><span>Color</span><wbr><span><span>Hue</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">ScaleCategoricalColorHue</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator">&gt;</span> : <a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.scale/-categorical-scale/index.html">CategoricalScale</a>, <a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.ir.scale/-custom-non-positional-scale/index.html">CustomNonPositionalScale</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../../kandy-api/org.jetbrains.kotlinx.kandy.util.color/-color/index.html">Color</a><span class="token operator">&gt; </span>, <a href="../-scale-color-hue/index.html">ScaleColorHue</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator">&gt; </span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-131287282%2FProperties%2F878209508" anchor-label="chroma" id="-131287282%2FProperties%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="chroma.html"><span><span>chroma</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-131287282%2FProperties%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="chroma.html">chroma</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="394097335%2FProperties%2F878209508" anchor-label="direction" id="394097335%2FProperties%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="direction.html"><span><span>direction</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="394097335%2FProperties%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="direction.html">direction</a><span class="token operator">: </span><a href="../-wheel-direction/index.html">WheelDirection</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2016641288%2FProperties%2F878209508" anchor-label="domainLimits" id="2016641288%2FProperties%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="domain-limits.html"><span>domain</span><wbr><span><span>Limits</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2016641288%2FProperties%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="domain-limits.html">domainLimits</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator"> &amp; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">DomainType</a><span class="token operator"> &amp; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-387686380%2FProperties%2F878209508" anchor-label="huesRange" id="-387686380%2FProperties%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="hues-range.html"><span>hues</span><wbr><span><span>Range</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-387686380%2FProperties%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="hues-range.html">huesRange</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1911324666%2FProperties%2F878209508" anchor-label="hueStart" id="1911324666%2FProperties%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="hue-start.html"><span>hue</span><wbr><span><span>Start</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1911324666%2FProperties%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="hue-start.html">hueStart</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2070683486%2FProperties%2F878209508" anchor-label="luminance" id="2070683486%2FProperties%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="luminance.html"><span><span>luminance</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2070683486%2FProperties%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="luminance.html">luminance</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="511075178%2FProperties%2F878209508" anchor-label="transform" id="511075178%2FProperties%2F878209508" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-lets-plot:dokkaHtmlPartial/main" data-filterable-set=":kandy-lets-plot:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="transform.html"><span><span>transform</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="511075178%2FProperties%2F878209508"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-lets-plot:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="transform.html">transform</a><span class="token operator">: </span><a href="../-transformation/index.html">Transformation</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+

@@ -2,7 +2,7 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-def docSubprojects = ["ggdsl-api", "ggdsl-dataframe", "ggdsl-dataframe-lets-plot", "ggdsl-echarts", "ggdsl-lets-plot"]
+def docSubprojects = ["kandy-api", "kandy-echarts", "kandy-lets-plot"]
 
 subprojects {
     if (!(name in docSubprojects)) return

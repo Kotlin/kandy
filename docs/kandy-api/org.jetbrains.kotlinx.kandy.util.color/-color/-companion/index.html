@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Companion</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../../index.html">
+<span>kandy</span>            </a>    </div>
+    <div>0.4.0
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":kandy-api:dokkaHtmlPartial/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="kandy-api::org.jetbrains.kotlinx.kandy.util.color/Color.Companion///PointingToDeclaration//1219788512">
+  <div class="breadcrumbs"><a href="../../../index.html">kandy-api</a><span class="delimiter">/</span><a href="../../index.html">org.jetbrains.kotlinx.kandy.util.color</a><span class="delimiter">/</span><a href="../index.html">Color</a><span class="delimiter">/</span><span class="current">Companion</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Companion</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">Companion</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1721642582%2FFunctions%2F1219788512" anchor-label="hex" id="1721642582%2FFunctions%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="hex.html"><span><span>hex</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1721642582%2FFunctions%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="hex.html"><span class="token function">hex</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">hexInt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div><div class="brief "><p class="paragraph">Creates an RGB or RGBA color from the given hex-value <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>.</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="hex.html"><span class="token function">hex</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">hexString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div><div class="brief "><p class="paragraph">Creates an RGB or RGBA color from the given hexadecimal string. (possible formats: "#rrggbb" and "#rrggbbaa").</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="973293300%2FFunctions%2F1219788512" anchor-label="named" id="973293300%2FFunctions%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="named.html"><span><span>named</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="973293300%2FFunctions%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="named.html"><span class="token function">named</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../-standard-color/-named/index.html">StandardColor.Named</a></div><div class="brief "><p class="paragraph">Creates a color specified by given name (its interpretation depends on engine).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1551068922%2FFunctions%2F1219788512" anchor-label="rgb" id="1551068922%2FFunctions%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="rgb.html"><span><span>rgb</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1551068922%2FFunctions%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="rgb.html"><span class="token function">rgb</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">r<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">g<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">b<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../-standard-color/-r-g-b/index.html">StandardColor.RGB</a></div><div class="brief "><p class="paragraph">Creates an RGB color with the specified red, green, and blue components values in the range (0 - 255).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1446460672%2FFunctions%2F1219788512" anchor-label="rgba" id="-1446460672%2FFunctions%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="rgba.html"><span><span>rgba</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1446460672%2FFunctions%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="rgba.html"><span class="token function">rgba</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">r<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">g<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">b<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">a<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../-standard-color/-r-g-b-a/index.html">StandardColor.RGBA</a></div><div class="brief "><p class="paragraph">Creates an RGBA color with the specified red, green, blue components values in the range (0 - 255) and alpha value in the range (0.0 - 1.0).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-507377110%2FProperties%2F1219788512" anchor-label="BLACK" id="-507377110%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-a-c-k.html"><span><span>BLACK</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-507377110%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-a-c-k.html">BLACK</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1256300983%2FProperties%2F1219788512" anchor-label="BLUE" id="1256300983%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-u-e.html"><span><span>BLUE</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1256300983%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-u-e.html">BLUE</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="410187686%2FProperties%2F1219788512" anchor-label="GREEN" id="410187686%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-g-r-e-e-n.html"><span><span>GREEN</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="410187686%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-g-r-e-e-n.html">GREEN</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1312863954%2FProperties%2F1219788512" anchor-label="GREY" id="1312863954%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-g-r-e-y.html"><span><span>GREY</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1312863954%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-g-r-e-y.html">GREY</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1644372690%2FProperties%2F1219788512" anchor-label="LIGHT_BLUE" id="-1644372690%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-l-i-g-h-t_-b-l-u-e.html"><span><span>LIGHT_BLUE</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1644372690%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-l-i-g-h-t_-b-l-u-e.html">LIGHT_BLUE</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="683617039%2FProperties%2F1219788512" anchor-label="LIGHT_GREEN" id="683617039%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-l-i-g-h-t_-g-r-e-e-n.html"><span><span>LIGHT_GREEN</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="683617039%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-l-i-g-h-t_-g-r-e-e-n.html">LIGHT_GREEN</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1257159348%2FProperties%2F1219788512" anchor-label="LIGHT_PURPLE" id="-1257159348%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-l-i-g-h-t_-p-u-r-p-l-e.html"><span><span>LIGHT_PURPLE</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1257159348%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-l-i-g-h-t_-p-u-r-p-l-e.html">LIGHT_PURPLE</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-429739677%2FProperties%2F1219788512" anchor-label="ORANGE" id="-429739677%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-o-r-a-n-g-e.html"><span><span>ORANGE</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-429739677%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-o-r-a-n-g-e.html">ORANGE</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-998755336%2FProperties%2F1219788512" anchor-label="PEACH" id="-998755336%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-e-a-c-h.html"><span><span>PEACH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-998755336%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-p-e-a-c-h.html">PEACH</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1143534699%2FProperties%2F1219788512" anchor-label="PURPLE" id="-1143534699%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-u-r-p-l-e.html"><span><span>PURPLE</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1143534699%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-p-u-r-p-l-e.html">PURPLE</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1738622760%2FProperties%2F1219788512" anchor-label="RED" id="-1738622760%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-r-e-d.html"><span><span>RED</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1738622760%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-r-e-d.html">RED</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1803620032%2FProperties%2F1219788512" anchor-label="WHITE" id="-1803620032%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-w-h-i-t-e.html"><span><span>WHITE</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1803620032%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-w-h-i-t-e.html">WHITE</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2136141277%2FProperties%2F1219788512" anchor-label="YELLOW" id="2136141277%2FProperties%2F1219788512" data-filterable-set=":kandy-api:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":kandy-api:dokkaHtmlPartial/main" data-filterable-set=":kandy-api:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-y-e-l-l-o-w.html"><span><span>YELLOW</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2136141277%2FProperties%2F1219788512"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kandy-api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-y-e-l-l-o-w.html">YELLOW</a><span class="token operator">: </span><a href="../../-standard-color/-hex/index.html">StandardColor.Hex</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+
