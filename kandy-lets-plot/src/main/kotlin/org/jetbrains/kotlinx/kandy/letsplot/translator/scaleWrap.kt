@@ -413,17 +413,34 @@ internal fun Scale.wrap(
                 is NonPositionalContinuousScale<*, *> -> {
                     when (aesName) {
 
-                        SIZE -> scaleSize(
-                            limits = (domainMin to domainMax).wrap(),
-                            range = (rangeMin to rangeMax).wrap() as Pair<Number, Number>?, // todo!!
-                            name = name,
-                            breaks = breaks?.map { it as Number },
-                            labels = labels,
-                            guide = legendType,
-                            trans = (transform as Transformation?)?.name,
-                            format = format,
-                            naValue = naValue as? Number
-                        )
+                        SIZE -> {
+                            val range: Pair<Double, Double>? = if (rangeMin == null && rangeMax == null) {
+                                null
+                            } else {
+                                if (rangeMax == null) {
+                                    (rangeMin as Double).let {
+                                        it to it + 7.0
+                                    }
+                                } else if (rangeMin == null) {
+                                    (rangeMax as Double).let {
+                                        (it - 7.0).coerceAtLeast(0.2) to it
+                                    }
+                                } else {
+                                    rangeMin as Double to rangeMax as Double
+                                }
+                            }
+                            scaleSize(
+                                limits = (domainMin to domainMax).wrap(),
+                                range = range,//(rangeMin to rangeMax).wrap() as Pair<Number, Number>?, // todo!!
+                                name = name,
+                                breaks = breaks?.map { it as Number },
+                                labels = labels,
+                                guide = legendType,
+                                trans = (transform as Transformation?)?.name,
+                                format = format,
+                                naValue = naValue as? Number
+                            )
+                        }
 
 
                         COLOR -> {
