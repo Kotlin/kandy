@@ -111,4 +111,22 @@ internal class ScaleWrappingTest {
             wrappedScale.toSpec()
         )
     }
+
+    @Test
+    fun testSizeRangeNull(){
+        val scale = NonPositionalContinuousScale<Double, Double>(
+            null, null, null, null, null, null
+        )
+        val wrappedScale = scale.wrap(SIZE, typeOf<Double>(), null, false)
+        assertNotNull(wrappedScale)
+        assertEquals(
+            listOf(
+                mapOf<String, Any?>(
+                    "aesthetic" to "size",
+                    "limits" to listOf(null, null),
+                )
+            ),
+            wrappedScale.toSpec()
+        )
+    }
 }

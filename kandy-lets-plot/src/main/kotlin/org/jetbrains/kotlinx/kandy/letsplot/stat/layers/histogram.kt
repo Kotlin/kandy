@@ -10,15 +10,19 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.BAR
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BarsContext
-import org.jetbrains.kotlinx.kandy.letsplot.stat.bin.BinStatContext
-import org.jetbrains.kotlinx.kandy.letsplot.stat.bin.BinXPos
-import org.jetbrains.kotlinx.kandy.letsplot.stat.bin.Bins
-import org.jetbrains.kotlinx.kandy.letsplot.stat.bin.statBin
+import org.jetbrains.kotlinx.kandy.letsplot.position.Position
+import org.jetbrains.kotlinx.kandy.letsplot.position.position
+import org.jetbrains.kotlinx.kandy.letsplot.stat.bin.*
+import org.jetbrains.kotlinx.kandy.letsplot.stat.layers.context.HistogramContext
 
-// TODO!!!
-
-public class HistogramContext(parent: LayerCollectorContext) : BarsContext(parent), BinStatContext
-
+@PublishedApi
+internal inline fun BinLayerCollectorContext.hist(block: HistogramContext.() -> Unit = {}){
+    addLayer(HistogramContext(this).apply {
+        x(Stat.BINS)
+        y(Stat.COUNT)
+        position = Position.Dodge()
+    }.apply(block), BAR)
+}
 
 //todo type
 /**
@@ -37,10 +41,7 @@ public inline fun LayerCollectorContext.histogram(
     block: HistogramContext.() -> Unit = {}
 ) {
     statBin(column, bins, binXPos) {
-        addLayer(HistogramContext(this).apply {
-            x(Stat.BINS)
-            y(Stat.COUNT)
-        }.apply(block), BAR)
+        hist(block)
     }
 }
 
@@ -60,10 +61,7 @@ public inline fun LayerCollectorContext.histogram(
     block: HistogramContext.() -> Unit = {}
 ) {
     statBin(columnName.toColumnOf<Any>(), bins, binXPos) {
-        addLayer(HistogramContext(this).apply {
-            x(Stat.BINS)
-            y(Stat.COUNT)
-        }.apply(block), BAR)
+        hist(block)
     }
 }
 
@@ -83,10 +81,7 @@ public inline fun <reified T : Any> LayerCollectorContext.histogram(
     block: HistogramContext.() -> Unit = {}
 ) {
     statBin(values, bins, binXPos) {
-        addLayer(HistogramContext(this).apply {
-            x(Stat.BINS)
-            y(Stat.COUNT)
-        }.apply(block), BAR)
+        hist(block)
     }
 }
 
@@ -106,9 +101,6 @@ public inline fun LayerCollectorContext.histogram(
     block: HistogramContext.() -> Unit = {}
 ) {
     statBin(column, bins, binXPos) {
-        addLayer(HistogramContext(this).apply {
-            x(Stat.BINS)
-            y(Stat.COUNT)
-        }.apply(block), BAR)
+        hist(block)
     }
 }

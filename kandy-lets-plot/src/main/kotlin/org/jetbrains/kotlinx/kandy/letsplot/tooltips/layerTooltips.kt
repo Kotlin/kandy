@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.tooltips
 
+import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.context.LayerTooltipsContext
@@ -116,4 +117,24 @@ public fun LayerContext.tooltips(
     vararg variables: ColumnReference<*>
 ) {
     tooltips(*variables.map { it.name() }.toTypedArray())
+}
+
+/**
+ * Defines the tooltips format for this layer.
+ *
+ * @param variables list of columns to crete a general multiline tooltip with.
+ * @see value
+ */
+public fun LayerContext.tooltips(
+    vararg variables: DataColumn<*>
+) {
+    features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
+        variables.map { datasetHandler.addColumn(it) },
+        null,
+        null,
+        null,
+        false,
+        listOf(),
+        null
+    )
 }
