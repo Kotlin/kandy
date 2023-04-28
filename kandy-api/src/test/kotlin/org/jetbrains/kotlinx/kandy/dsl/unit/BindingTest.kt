@@ -225,6 +225,3 @@ internal class BindingTest {
         )
     }
 }
-
-
-
