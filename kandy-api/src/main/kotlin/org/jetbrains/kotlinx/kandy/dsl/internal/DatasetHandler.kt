@@ -56,7 +56,9 @@ public class DatasetHandler(
 
     public fun takeColumn(name: String): String {
         return referredColumns[name] ?: run {
-            val columnId = internalAddColumn(initialNamedData.dataFrame.getColumnOrNull(name) ?: error("invalid column id"))
+            val columnId = internalAddColumn(
+                initialNamedData.dataFrame.getColumnOrNull(name) ?: error("invalid column id")
+            )
             referredColumns[name] = columnId
             name
         }

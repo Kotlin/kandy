@@ -28,11 +28,4 @@ public class GroupByPlotContext<T>(
         DatasetHandler(GroupedData(groupBy))
     )
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
-
-/*
-    public fun <C> columns(selector: ColumnsSelector<G, C>): List<DataColumn<C>> = groupBy.groups.concat().get(selector)
-    public fun <C> columns(vararg columns: String): List<AnyCol> = groupBy.groups.concat().getColumns(*columns)
-
-
- */
 }
