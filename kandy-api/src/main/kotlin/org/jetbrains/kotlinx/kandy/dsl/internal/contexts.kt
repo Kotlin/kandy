@@ -53,6 +53,7 @@ public abstract class LayerContext(parent: LayerCollectorContext) : BindingConte
     override val datasetIndex: Int = parent.datasetIndex
     public val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
     override val plotContext: PlotContext = parent.plotContext
+    public abstract val requiredAes: Set<AesName>
 }
 
 /**
@@ -62,6 +63,7 @@ public abstract class LayerContext(parent: LayerCollectorContext) : BindingConte
  */
 public interface LayerCollectorContext : BaseContext {
     public val layers: MutableList<Layer>
+    public val layersInheritMappings: Boolean
 
     /**
      * Creates a layers from [LayerContext] and adds it to the buffer.
@@ -70,6 +72,9 @@ public interface LayerCollectorContext : BaseContext {
      * @param geom [Geom] of a new layer.
      */
     public fun addLayer(context: LayerContext, geom: Geom) {
+        checkRequiredAes(context.requiredAes, context, if (layersInheritMappings) {
+            plotContext
+        } else null)
         layers.add(
             Layer(
                 datasetIndex,
@@ -77,7 +82,8 @@ public interface LayerCollectorContext : BaseContext {
                 context.bindingCollector.mappings,
                 context.bindingCollector.settings,
                 context.features,
-                context.bindingCollector.freeScales
+                context.bindingCollector.freeScales,
+                layersInheritMappings
             )
         )
     }
@@ -91,6 +97,7 @@ public class GroupedContext(
     override val plotContext: LayerPlotContext
 ) : LayerCollectorContext {
     override val layers: MutableList<Layer> = plotContext.layers
+    override val layersInheritMappings: Boolean = true
 }
 
 /**

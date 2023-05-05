@@ -30,12 +30,15 @@ internal class LayersTest {
         "type" to listOf("a", "b")
     )
 
+    // TODO more
+
     @Test
     fun testArea() {
         val time = column<Int>("time")
         val type = column<String>("type")
         val plot = dataset.plot {
             area {
+                x(time)
                 y(time) {
                     scale = continuous()
                 }
@@ -46,13 +49,11 @@ internal class LayersTest {
                         )
 
                 }
-                // TODO
                 alpha = 0.7
                 borderLine.width = 2.0
-
             }
         }
-        // TODO
+
         assertEquals(
             Plot(
                 listOf(NamedData(dataset)),
@@ -61,6 +62,9 @@ internal class LayersTest {
                         0,
                         AREA,
                         mapOf(
+                            X to PositionalMapping<Int>(
+                                X, time.name(), LetsPlotPositionalMappingParameters()
+                            ),
                             Y to PositionalMapping<Int>(
                                 Y, time.name(), LetsPlotPositionalMappingParameters(
                                     PositionalContinuousScale(null, null, null, null)
@@ -96,7 +100,6 @@ internal class LayersTest {
             plot
         )
     }
-    // todo others???
 }
 
 

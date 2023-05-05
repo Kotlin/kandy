@@ -26,14 +26,12 @@ internal fun Layer.wrap(
     }
     val addGroups = datasets[datasetIndex] is GroupedData
     val groupKeys = (datasets[datasetIndex] as? GroupedData)?.keys
-    //todo
-    /*val mappings = if (datasetIndex == 0) {
+    val mappings = if (inheritsBindings) {
         globalMappings + mappings
     } else {
         mappings
-    }*/
-    val mappings = globalMappings + mappings
-    val settings = if (datasetIndex == 0) {
+    }
+    val settings = if (inheritsBindings) {
         globalSettings + settings
     } else {
         settings

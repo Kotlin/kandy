@@ -8,6 +8,10 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.SubBindingContext
+import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.letsplot.internal.LABEL
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
@@ -17,6 +21,8 @@ public class FontContext internal constructor(override val parentContext: Bindin
 
 public class TextContext(parent: LayerCollectorContext) : LayerContext(parent), WithX, WithY, WithAlpha, WithLabel {
     public val font: FontContext = FontContext(this)
+
+    override val requiredAes: Set<AesName> = setOf(X, Y, LABEL)
 }
 
 /*

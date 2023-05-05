@@ -32,4 +32,5 @@ public data class Layer(
     val settings: Map<AesName, Setting>,
     val features: Map<FeatureName, LayerFeature>,
     val freeScales: Map<AesName, FreeScale>,
+    val inheritsBindings: Boolean = true
 )

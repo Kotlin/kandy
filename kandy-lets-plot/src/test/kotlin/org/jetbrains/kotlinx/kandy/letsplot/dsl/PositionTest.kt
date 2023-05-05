@@ -5,32 +5,43 @@
 package org.jetbrains.kotlinx.kandy.letsplot.dsl
 
 
-import org.jetbrains.kotlinx.dataframe.api.toDataFrame
+import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
+import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
+import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.BAR
 import org.jetbrains.kotlinx.kandy.letsplot.layers.POINT
 import org.jetbrains.kotlinx.kandy.letsplot.layers.bars
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.position.Position
 import org.jetbrains.kotlinx.kandy.letsplot.position.position
+import org.jetbrains.kotlinx.kandy.letsplot.x
+import org.jetbrains.kotlinx.kandy.letsplot.y
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class PositionTest {
-    private val emptyDataset = mapOf<String, List<*>>()
+    private val dataFrame = dataFrameOf(
+        "x" to listOf(1, 2, 3),
+        "y" to listOf(0.1, 0.2, 3.0)
+    )
     @Test
     fun testSimple() {
-        val plot = plot(emptyDataset) {
+        val plot = plot(dataFrame) {
+            x("x")
+            y("y")
             points {
                 position = Position.Identity
             }
         }
         assertEquals(
             Plot(
-                listOf(NamedData(emptyDataset.toDataFrame())),
+                listOf(NamedData(dataFrame)),
                 listOf(
                     Layer(
                         0,
@@ -41,8 +52,11 @@ internal class PositionTest {
                         emptyMap()
                     )
                 ),
+                mapOf(
+                    X to PositionalMapping<Int>(X, "x", LetsPlotPositionalMappingParameters()),
+                    Y to PositionalMapping<Int>(Y, "y", LetsPlotPositionalMappingParameters())
+                ),
                 emptyMap(),
-                mapOf(),
                 emptyMap(),
                 emptyMap(),
             ),
@@ -52,7 +66,9 @@ internal class PositionTest {
 
     @Test
     fun testComplex() {
-        val plot = plot(emptyDataset) {
+        val plot = plot(dataFrame) {
+            x("x")
+            y("y")
             bars {
                 position = Position.Stack
             }
@@ -65,7 +81,7 @@ internal class PositionTest {
         }
         assertEquals(
             Plot(
-                listOf(NamedData(emptyDataset.toDataFrame())),
+                listOf(NamedData(dataFrame)),
                 listOf(
                     Layer(
                         0,
@@ -95,7 +111,10 @@ internal class PositionTest {
                         emptyMap()
                     )
                 ),
-                mapOf(),
+                mapOf(
+                    X to PositionalMapping<Int>(X, "x", LetsPlotPositionalMappingParameters()),
+                    Y to PositionalMapping<Int>(Y, "y", LetsPlotPositionalMappingParameters())
+                ),
                 emptyMap(),
                 emptyMap(),
                 emptyMap(),
