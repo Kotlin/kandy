@@ -21,35 +21,34 @@ internal fun GroupedData.mergedKeys(): List<String> = buildList {
     }
 }
 
-internal object DateTimeMaster {
-    internal fun postProcess(data: NamedData): Map<String, List<*>> {
-        return data.dataFrame.columns().map {
-            val type = it.type()
-            val values = it.values()
-            // TODO!!!
-            it.name() to (when (type) {
-                typeOf<LocalDate>(), typeOf<LocalDate?>() -> values.map {
-                    (it as? LocalDate)?.atStartOfDayIn((TimeZone.currentSystemDefault()))
-                }
+internal fun process(data: NamedData): Map<String, List<*>> {
+    return data.dataFrame.columns().map {
+        val type = it.type()
+        val values = it.values()
+        // TODO!!!
+        it.name() to (when (type) {
+            typeOf<LocalDate>(), typeOf<LocalDate?>() -> values.map {
+                (it as? LocalDate)?.atStartOfDayIn((TimeZone.currentSystemDefault()))
+            }
 
-                typeOf<LocalDateTime>(), typeOf<LocalDateTime?>() -> values.map { dateTime ->
-                    (dateTime as? LocalDateTime)?.toInstant(TimeZone.currentSystemDefault())
-                }
+            typeOf<LocalDateTime>(), typeOf<LocalDateTime?>() -> values.map { dateTime ->
+                (dateTime as? LocalDateTime)?.toInstant(TimeZone.currentSystemDefault())
+            }
 
-                typeOf<LocalTime>(), typeOf<LocalTime?>() -> values.map { time ->
-                    (time as? LocalTime)?.toMillisecondOfDay()
-                }
+            typeOf<LocalTime>(), typeOf<LocalTime?>() -> values.map { time ->
+                (time as? LocalTime)?.toMillisecondOfDay()
+            }
 
-                else -> values
-            }).toList()
-        }.toMap()
-    }
+            else -> values
+        }).toList()
+    }.toMap()
 }
+
 
 internal fun TableData.wrap(): Map<String, List<*>> {
     return (when (this) {
-        is NamedData -> DateTimeMaster.postProcess(this)
-        is GroupedData -> DateTimeMaster.postProcess(origin) + (MERGED_GROUPS to mergedKeys())
+        is NamedData -> process(this)
+        is GroupedData -> process(origin) + (MERGED_GROUPS to mergedKeys())
         else -> TODO()
     })
 }

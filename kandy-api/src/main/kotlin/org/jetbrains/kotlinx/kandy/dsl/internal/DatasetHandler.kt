@@ -19,7 +19,7 @@ public class DatasetHandler(
     private val dcAsRefOnly: Boolean = false,
     initialBuffer: DataFrame<*>? = null
 ) {
-    // todo value column?
+    // todo value column
 
     public val initialNamedData: NamedData
     private val isGrouped: Boolean
