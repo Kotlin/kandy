@@ -7,6 +7,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import jetbrains.datalore.plot.base.Aes
+import jetbrains.datalore.plot.config.Option
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
@@ -20,6 +21,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.*
 import org.jetbrains.kotlinx.kandy.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.kandy.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.kandy.util.color.Color
+import org.jetbrains.letsPlot.intern.Options
 import org.jetbrains.letsPlot.scale.*
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
@@ -414,6 +416,7 @@ internal fun Scale.wrap(
                     when (aesName) {
 
                         SIZE -> {
+                            // todo
                             val range: Pair<Double, Double>? = if (rangeMin == null && rangeMax == null) {
                                 null
                             } else {
@@ -449,9 +452,9 @@ internal fun Scale.wrap(
 
                             val limits = (domainMin to domainMax).wrap() // todo datetime support here
 
-                            scaleColorContinuous(
-                                low = lowColor,
-                                high = highColor,
+                            /*scaleColorContinuous(
+                                //low = lowColor,
+                                //high = highColor,
                                 limits = limits,
                                 name = name,
                                 breaks = breaks?.map { it as Number },
@@ -461,6 +464,25 @@ internal fun Scale.wrap(
                                 format = format,
                                 naValue = naValue
 
+                            )*/
+
+                            org.jetbrains.letsPlot.intern.Scale(
+                                aesthetic = Aes.COLOR,
+                                name = name,
+                                breaks = breaks?.map { it.toString() },
+                                labels = labels,
+                                limits = limits,
+                                naValue = naValue,
+                                format = format,
+                                guide = legendType,
+                                trans = (transform as Transformation?)?.name,
+                                otherOptions = Options(
+                                    mapOf(
+                                        Option.Scale.LOW to lowColor,
+                                        Option.Scale.HIGH to highColor,
+                                        Option.Scale.SCALE_MAPPER_KIND to Option.Scale.MapperKind.COLOR_GRADIENT
+                                    )
+                                )
                             )
 
                         }
@@ -470,9 +492,9 @@ internal fun Scale.wrap(
                             val highColor = (rangeMax as? Color)?.wrap()
                             val limits = (domainMin to domainMax).wrap() //todo datetime support here
 
-                            scaleFillContinuous(
-                                low = lowColor,
-                                high = highColor,
+                            /*scaleFillContinuous(
+                                //low = lowColor,
+                                //high = highColor,
                                 limits = limits,
                                 name = name,
                                 breaks = breaks?.map { it as Number },
@@ -481,6 +503,25 @@ internal fun Scale.wrap(
                                 trans = (transform as Transformation?)?.name,
                                 format = format,
                                 naValue = naValue
+                            )*/
+
+                            org.jetbrains.letsPlot.intern.Scale(
+                                aesthetic = Aes.FILL,
+                                name = name,
+                                breaks = breaks?.map { it.toString() },
+                                labels = labels,
+                                limits = limits,
+                                naValue = naValue,
+                                format = format,
+                                guide = legendType,
+                                trans = (transform as Transformation?)?.name,
+                                otherOptions = Options(
+                                    mapOf(
+                                        Option.Scale.LOW to lowColor,
+                                        Option.Scale.HIGH to highColor,
+                                        Option.Scale.SCALE_MAPPER_KIND to Option.Scale.MapperKind.COLOR_GRADIENT
+                                    )
+                                )
                             )
 
                         }

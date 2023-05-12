@@ -307,7 +307,7 @@ public data class Panel internal constructor(
 }
 
 /*@PlotDslMarker*/
-public data class Plot internal constructor(
+public data class PlotCanvas internal constructor(
     override var background: BackgroundParameters? = null,
     override var title: TextParameters? = null,
     var subtitle: TextParameters? = null,
@@ -344,7 +344,7 @@ public data class CustomTheme @PublishedApi internal constructor(
     val yAxis: Axis = Axis(),
     val legend: Legend = Legend(),
     val panel: Panel = Panel(),
-    val plotCanvas: Plot = Plot(),
+    val plotCanvas: PlotCanvas = PlotCanvas(),
     val strip: Strip = Strip(),
     val layerTooltips: LayerTooltips = LayerTooltips()
 ) : Theme {
