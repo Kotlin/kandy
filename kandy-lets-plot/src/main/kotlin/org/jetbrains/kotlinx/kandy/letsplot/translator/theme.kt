@@ -26,7 +26,7 @@ public fun BackgroundParameters.wrap(): Map<String, Any> {
 public fun TextParameters.wrap(): Map<String, Any> {
     return elementText(
         color?.wrap(),
-        font?.toString(),
+        fontFace?.toString(),
         blank
     )
 }

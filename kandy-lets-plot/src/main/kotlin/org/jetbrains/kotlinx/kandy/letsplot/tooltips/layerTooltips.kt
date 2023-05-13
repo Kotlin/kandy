@@ -24,6 +24,16 @@ public fun LayerContext.value(column: ColumnReference<*>): String {
 /**
  * Inserts value of given column into formatted string.
  *
+ * @param column column whose value will be inserted into the tooltip
+ * @return formatted string
+ */
+public fun LayerContext.value(column: DataColumn<*>): String {
+    return "@${datasetHandler.addColumn(column)}"
+}
+
+/**
+ * Inserts value of given column into formatted string.
+ *
  * @param columnName name of column whose value will be inserted into the tooltip
  * @return formatted string
  */
@@ -81,8 +91,6 @@ public inline fun LayerContext.tooltips(
         minWidth,
         hide,
         formats.map { it.key.name() to it.value },
-        //   + aesFormats.map { "^" + it.key.name.name to it.value }
-        //  + statFormats.map { it.key.id to it.value },
         LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
 }

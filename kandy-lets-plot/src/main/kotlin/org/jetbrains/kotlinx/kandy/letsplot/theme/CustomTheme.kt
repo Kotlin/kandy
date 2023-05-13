@@ -6,6 +6,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.theme
 
 // import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.letsplot.util.font.FontFace
+import org.jetbrains.kotlinx.kandy.letsplot.util.font.FontFamily
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
@@ -19,9 +20,14 @@ public sealed interface LayoutParameters {
 
         public fun text(
             color: Color? = null,
-            font: FontFace? = null,
+            fontFamily: FontFamily? = null,
+            fontFace: FontFace? = null,
+            fontSize: Double? = null,
+            angle: Double? = null,
+            hJust: Double? = null,
+            vJust: Double? = null,
             blank: Boolean = false
-        ): TextParameters = TextParameters(color, font, blank)
+        ): TextParameters = TextParameters(color, fontFamily, fontFace, fontSize, angle, hJust, vJust, blank)
 
         public fun background(
             fillColor: Color? = null,
@@ -42,7 +48,13 @@ public data class LineParameters internal constructor(
 /*@PlotDslMarker*/
 public data class TextParameters internal constructor(
     var color: Color? = null,
-    var font: FontFace? = null,
+    var fontFamily: FontFamily? = null,
+    var fontFace: FontFace? = null,
+    var fontSize: Double? = null,
+    var angle: Double? = null,
+    var hJust: Double? = null,
+    var vJust: Double? = null,
+    // todo margin
     var blank: Boolean = false
 ) : LayoutParameters
 

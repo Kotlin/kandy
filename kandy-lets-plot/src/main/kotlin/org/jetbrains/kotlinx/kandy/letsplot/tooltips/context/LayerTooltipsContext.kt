@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.tooltips.context
 
+import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.tooltips
@@ -51,6 +52,16 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
      * Adds standard line for given column.
      * (name of the column on the left side and the corresponding value on the right side).
      *
+     * @param column column whose value will be displayed.
+     */
+    public fun line(column: DataColumn<*>) {
+        lineBuffer.add("@|@${layerContext.datasetHandler.addColumn(column)}")
+    }
+
+    /**
+     * Adds standard line for given column.
+     * (name of the column on the left side and the corresponding value on the right side).
+     *
      * @param columnName name of column whose values will be displayed.
      */
     public fun varLine(columnName: String) {
@@ -64,6 +75,16 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
      * @param column column whose value will be displayed.
      */
     public fun varLine(column: ColumnReference<*>) {
+        line(column)
+    }
+
+    /**
+     * Adds standard line for given column.
+     * (name of the column on the left side and the corresponding value on the right side).
+     *
+     * @param column column whose value will be displayed.
+     */
+    public fun varLine(column: DataColumn<*>) {
         line(column)
     }
 

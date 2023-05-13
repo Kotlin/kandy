@@ -41,10 +41,21 @@ public data class Axis<DomainType> @PublishedApi internal constructor(
      *
      * @param breaksToLabels list of breaks with corresponding labels.
      */
-    public fun breaksLabeled(vararg breaksToLabels: Pair<DomainType & Any, String>) {
+    public fun breaksLabeled(vararg breaksToLabels: Pair<DomainType, String>) {
         breaks = breaksToLabels.map { it.first }
         labels = breaksToLabels.map { it.second }
     }
 
+    /**
+     * Sets legend breaks with labels.
+     *
+     * @param breaks list of breaks.
+     * @param labels list of corresponding labels.
+     */
+    public fun breaksLabeled(breaks: List<DomainType>, labels: List<String>) {
+        // todo check equal sizes
+        this.breaks = breaks
+        this.labels = labels
+    }
 
 }
