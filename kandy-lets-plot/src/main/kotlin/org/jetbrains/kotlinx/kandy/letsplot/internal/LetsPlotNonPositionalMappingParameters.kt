@@ -10,8 +10,8 @@ import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalDefaultScale
 import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalDefaultScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalScale
-import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.Axis
-import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.Legend
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Axis
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Legend
 
 /**
  * Lets-plot positional mapping parameters.

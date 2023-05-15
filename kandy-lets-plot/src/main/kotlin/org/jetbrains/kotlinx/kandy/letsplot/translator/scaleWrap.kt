@@ -17,7 +17,10 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.scale.*
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.scales.*
-import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.*
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Axis
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Legend
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.ScaleParameters
 import org.jetbrains.kotlinx.kandy.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.kandy.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.kandy.util.color.Color
@@ -224,14 +227,13 @@ internal fun Scale.wrap(
             val format = legend?.format
             val legendType = legend?.type?.let {
                 when (it) {
-                    is None -> "none"
-                    is ColorBar -> guideColorbar(
+                    is LegendType.None -> "none"
+                    is LegendType.ColorBar -> guideColorbar(
                         barHeight = it.barHeight,
                         barWidth = it.barWidth,
                         nbin = it.nBin
                     )
-
-                    is DiscreteLegend -> guideLegend(
+                    is LegendType.DiscreteLegend -> guideLegend(
                         nrow = it.nRow,
                         ncol = it.nCol,
                         byRow = it.byRow

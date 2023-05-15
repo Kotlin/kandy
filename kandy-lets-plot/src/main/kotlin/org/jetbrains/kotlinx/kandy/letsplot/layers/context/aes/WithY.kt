@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
-import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.AxisParametersWithSetter
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisParametersWithSetter
 
 public interface WithY : BindingContext {
     /*public fun <T> y(value: T): PositionalSetting<T> {

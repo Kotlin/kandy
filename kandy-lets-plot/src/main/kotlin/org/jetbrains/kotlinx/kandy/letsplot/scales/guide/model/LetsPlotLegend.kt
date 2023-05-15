@@ -2,31 +2,32 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.letsplot.scales.guide
+package org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model
 
 // import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
+
 
 // todo separate model and context
 /**
- * Axis, i.e. guide for positional scale.
+ * Legend, i.e. guide for non-positional scale.
  *
- * @property name name of axis.
+ * @property name legend name.
+ * @property type legend type.
  */
-public data class Axis<DomainType> @PublishedApi internal constructor(
+public data class Legend<DomainType, out RangeType> @PublishedApi internal constructor(
     var name: String? = null,
-    @PublishedApi
-    internal var breaks: List<DomainType>? = null,
-    @PublishedApi
-    internal var labels: List<String>? = null,
-    @PublishedApi
-    internal var format: String? = null,
     // todo expand & trans
+    var type: LegendType? = null,
+    internal var breaks: List<DomainType>? = null,
+    internal var labels: List<String>? = null,
+    internal var format: String? = null,
 ) : SelfInvocationContext, ScaleParameters {
 
 
     /**
-     * Sets axis breaks with formatting.
+     * Sets legend breaks with formatting.
      *
      * @param breaks list of breaks.
      * @param format format string.
@@ -37,7 +38,7 @@ public data class Axis<DomainType> @PublishedApi internal constructor(
     }
 
     /**
-     * Sets axis breaks with labels.
+     * Sets legend breaks with labels.
      *
      * @param breaksToLabels list of breaks with corresponding labels.
      */
@@ -57,5 +58,5 @@ public data class Axis<DomainType> @PublishedApi internal constructor(
         this.breaks = breaks
         this.labels = labels
     }
-
 }
+
