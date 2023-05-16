@@ -64,6 +64,16 @@ internal val FONT_FACE = AesName("fontface")
 
 internal val FONT_FAMILY = AesName("family")
 
+internal val SLICE = AesName("slice")
+
+internal val EXPLODE = AesName("explode")
+
+internal val HOLE = AesName("hole")
+
+internal val STROKE = AesName("stroke")
+
+internal val STROKE_COLOR = AesName("stroke_color")
+
 /*
 
 internal val X_END = AesName("xend")

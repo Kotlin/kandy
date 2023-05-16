@@ -5,12 +5,13 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.FATTEN
+import org.jetbrains.kotlinx.kandy.letsplot.internal.STROKE_COLOR
+import org.jetbrains.kotlinx.kandy.util.color.Color
 
-public interface WithFatten : BindingContext {
-    public var fatten: Double?
+public interface WithStrokeColor : BindingContext {
+    public var strokeColor: Color?
         get() = null
         set(value) {
-            addNonPositionalSetting(FATTEN, value)
+            addNonPositionalSetting(STROKE_COLOR, value)
         }
 }
