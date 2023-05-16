@@ -14,7 +14,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.tooltips.value
  * Context created by [LayerContext.tooltips] methods.
  */
 public class LayerTooltipsContext(private val layerContext: LayerContext) {
-    // todo hide
     internal val lineBuffer = mutableListOf<String>()
 
     /**
@@ -38,6 +37,10 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
         lineBuffer.add("${leftSide ?: ""}|${rightSide ?: ""}")
     }
 
+    private fun addVarLine(columnName: String) {
+        lineBuffer.add("@|@{$columnName}")
+    }
+
     /**
      * Adds standard line for given column.
      * (name of the column on the left side and the corresponding value on the right side).
@@ -45,7 +48,7 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
      * @param column column whose value will be displayed.
      */
     public fun line(column: ColumnReference<*>) {
-        lineBuffer.add("@|@${layerContext.datasetHandler.takeColumn(column.name())}")
+        addVarLine(layerContext.datasetHandler.takeColumn(column.name()))
     }
 
     /**
@@ -55,7 +58,7 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
      * @param column column whose value will be displayed.
      */
     public fun line(column: DataColumn<*>) {
-        lineBuffer.add("@|@${layerContext.datasetHandler.addColumn(column)}")
+        addVarLine(layerContext.datasetHandler.addColumn(column))
     }
 
     /**
@@ -65,7 +68,7 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
      * @param columnName name of column whose values will be displayed.
      */
     public fun varLine(columnName: String) {
-        lineBuffer.add("@|@${layerContext.datasetHandler.takeColumn(columnName)}")
+        addVarLine(layerContext.datasetHandler.takeColumn(columnName))
     }
 
     /**
