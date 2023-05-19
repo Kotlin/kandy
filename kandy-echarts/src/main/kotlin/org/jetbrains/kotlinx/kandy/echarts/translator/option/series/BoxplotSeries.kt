@@ -10,13 +10,14 @@ import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.marks.*
 import org.jetbrains.kotlinx.kandy.ir.Layer
 
-internal fun Layer.toBoxplotSeries(name: String?, encode: Encode?): BoxplotSeries {
+internal fun Layer.toBoxplotSeries(name: String?, encode: Encode?, data: List<List<String?>>?): BoxplotSeries {
     val animation = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
 
     return BoxplotSeries(
         name = name,
         itemStyle = settings.getItemStyle(),
         encode = encode,
+        data = data,
         markPoint = features.getEchartsMarkPoint(),
         markLine = features.getEchartsMarkLine(),
         markArea = features.getEchartsMarkArea(),
@@ -47,7 +48,7 @@ internal class BoxplotSeries(
     override val dimensions: List<Dimension>? = null,
     override val encode: Encode? = null,
     override val dataGroupId: String? = null,
-    override val data: List<List<String>>? = null,
+    override val data: List<List<String?>>? = null,
     override val markPoint: EchartsMarkPoint? = null,
     override val markLine: EchartsMarkLine? = null,
     override val markArea: EchartsMarkArea? = null,

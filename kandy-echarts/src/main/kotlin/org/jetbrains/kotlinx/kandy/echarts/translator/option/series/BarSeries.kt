@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.marks.*
 import org.jetbrains.kotlinx.kandy.ir.Layer
 
-internal fun Layer.toBarSeries(name: String?, encode: Encode?): BarSeries {
+internal fun Layer.toBarSeries(name: String?, encode: Encode?, data: List<List<String?>>?): BarSeries {
     val stack = (features[StackFeature.FEATURE_NAME] as? StackFeature)?.name
     val animation = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
     val backgroundStyle = settings.getBackgroundStyle()
@@ -25,6 +25,7 @@ internal fun Layer.toBarSeries(name: String?, encode: Encode?): BarSeries {
         label = features.getLabel(),
         itemStyle = settings.getItemStyle(),
         encode = encode,
+        data = data,
         markPoint = features.getEchartsMarkPoint(),
         markLine = features.getEchartsMarkLine(),
         markArea = features.getEchartsMarkArea(),
@@ -80,7 +81,7 @@ internal class BarSeries(
     val seriesLayoutBy: String? = null,
     val datasetIndex: Int? = null,
     override val dataGroupId: String? = null,
-    override val data: List<List<String>>? = null,
+    override val data: List<List<String?>>? = null,
     val clip: Boolean? = null,
     override val markPoint: EchartsMarkPoint? = null,
     override val markLine: EchartsMarkLine? = null,

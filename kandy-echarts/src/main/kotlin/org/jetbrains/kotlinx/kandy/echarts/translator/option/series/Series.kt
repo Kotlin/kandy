@@ -27,7 +27,7 @@ internal sealed class Series {
     abstract val dimensions: List<Dimension>?
     abstract val encode: Encode?
     abstract val dataGroupId: String?
-    abstract val data: List<List<String>>? // TODO!!! Data
+    abstract val data: List<List<String?>>? // TODO!!! Data
     abstract val markPoint: EchartsMarkPoint?
     abstract val markLine: EchartsMarkLine?
     abstract val markArea: EchartsMarkArea?

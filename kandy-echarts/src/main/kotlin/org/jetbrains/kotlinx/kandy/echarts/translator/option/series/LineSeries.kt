@@ -18,7 +18,7 @@ import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.mar
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.Measurement
 import org.jetbrains.kotlinx.kandy.ir.Layer
 
-internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
+internal fun Layer.toLineSeries(name: String?, encode: Encode?, data: List<List<String?>>? = null): LineSeries {
     val symbol = settings.getNPSValue<Symbol>(SYMBOL)
     val smooth = settings.getNPSValue<Boolean>(SMOOTH)
     val step = settings.getNPSValue<Step>(STEP)?.type
@@ -38,6 +38,7 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
         lineStyle = settings.getLineStyle(),
         smooth = smooth,
         encode = encode,
+        data = data,
         markPoint = features.getEchartsMarkPoint(),
         markLine = features.getEchartsMarkLine(),
         markArea = features.getEchartsMarkArea(),
@@ -49,7 +50,7 @@ internal fun Layer.toLineSeries(name: String?, encode: Encode?): LineSeries {
     )
 }
 
-internal fun Layer.toAreaSeries(name: String?, encode: Encode?): LineSeries {
+internal fun Layer.toAreaSeries(name: String?, encode: Encode?, data: List<List<String?>>?): LineSeries {
     val symbol = settings.getNPSValue<Symbol>(SYMBOL)
     val smooth = settings.getNPSValue<Boolean>(SMOOTH)
     val stack = (features[StackFeature.FEATURE_NAME] as? StackFeature)?.name
@@ -68,6 +69,7 @@ internal fun Layer.toAreaSeries(name: String?, encode: Encode?): LineSeries {
         areaStyle = settings.getAreaStyle(),
         smooth = smooth,
         encode = encode,
+        data = data,
         markPoint = features.getEchartsMarkPoint(),
         markLine = features.getEchartsMarkLine(),
         markArea = features.getEchartsMarkArea(),
@@ -123,7 +125,7 @@ internal class LineSeries(
     val seriesLayoutBy: String? = null,
     val datasetIndex: Int? = null,
     override val dataGroupId: String? = null,
-    override val data: List<List<String>>? = null, // TODO!!! Data
+    override val data: List<List<String?>>? = null, // TODO!!! Data
     override val markPoint: EchartsMarkPoint? = null,
     override val markLine: EchartsMarkLine? = null,
     override val markArea: EchartsMarkArea? = null,

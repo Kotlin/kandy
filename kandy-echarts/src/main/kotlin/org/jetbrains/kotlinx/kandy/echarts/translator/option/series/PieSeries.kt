@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.marks.*
 import org.jetbrains.kotlinx.kandy.ir.Layer
 
-internal fun Layer.toPieSeries(name: String?, encode: Encode?): PieSeries {
+internal fun Layer.toPieSeries(name: String?, encode: Encode?, data: List<List<String?>>?): PieSeries {
     val animation = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
 
     return PieSeries(
@@ -18,6 +18,7 @@ internal fun Layer.toPieSeries(name: String?, encode: Encode?): PieSeries {
         label = features.getLabel(),
         itemStyle = settings.getItemStyle(),
         encode = encode,
+        data = data,
         markPoint = features.getEchartsMarkPoint(),
         markLine = features.getEchartsMarkLine(),
         markArea = features.getEchartsMarkArea(),
@@ -75,7 +76,7 @@ internal class PieSeries(
     override val dimensions: List<Dimension>? = null,
     override val encode: Encode? = null,
     override val dataGroupId: String? = null,
-    override val data: List<List<String>>? = null,
+    override val data: List<List<String?>>? = null,
     override val markPoint: EchartsMarkPoint? = null,
     override val markLine: EchartsMarkLine? = null,
     override val markArea: EchartsMarkArea? = null,

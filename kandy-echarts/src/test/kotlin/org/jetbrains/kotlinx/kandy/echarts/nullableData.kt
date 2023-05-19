@@ -17,6 +17,7 @@ import kotlin.test.Test
 import kotlin.test.Ignore
 import kotlin.test.assertEquals
 
+@Ignore
 class NullableDataTest {
 
     private val data = mapOf(

@@ -16,7 +16,7 @@ import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.Measurement
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.singleOf
 import org.jetbrains.kotlinx.kandy.ir.Layer
 
-internal fun Layer.toPointSeries(name: String?, encode: Encode?): ScatterSeries {
+internal fun Layer.toPointSeries(name: String?, encode: Encode?, data: List<List<String?>>?): ScatterSeries {
     val symbol: Symbol? = settings.getNPSValue<Symbol>(SYMBOL)
     val animation: AnimationLayerFeature? = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
     val size: Measurement? = settings.getNPSValue<Double>(SIZE)?.let { singleOf(it) } ?: symbol?.getSize()
@@ -29,6 +29,7 @@ internal fun Layer.toPointSeries(name: String?, encode: Encode?): ScatterSeries 
         label = features.getLabel(),
         itemStyle = settings.getItemStyle(),
         encode = encode,
+        data = data,
         markPoint = features.getEchartsMarkPoint(),
         markLine = features.getEchartsMarkLine(),
         markArea = features.getEchartsMarkArea(),
@@ -76,7 +77,7 @@ internal class ScatterSeries(
     val seriesLayoutBy: String? = null,
     val datasetIndex: Int? = null,
     override val dataGroupId: String? = null,
-    override val data: List<List<String>>? = null,
+    override val data: List<List<String?>>? = null,
     override val markPoint: EchartsMarkPoint? = null,
     override val markLine: EchartsMarkLine? = null,
     override val markArea: EchartsMarkArea? = null,
