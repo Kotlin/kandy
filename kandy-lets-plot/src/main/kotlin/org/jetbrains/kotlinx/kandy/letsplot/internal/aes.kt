@@ -74,6 +74,10 @@ internal val STROKE = AesName("stroke")
 
 internal val STROKE_COLOR = AesName("stroke_color")
 
+internal val X_INTERCEPT: AesName = AesName("xintercept")
+
+internal val Y_INTERCEPT: AesName = AesName("yintercept")
+
 /*
 
 internal val X_END = AesName("xend")

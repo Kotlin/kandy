@@ -4,11 +4,11 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.tooltips
 
-import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.context.LayerTooltipsContext
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
+import kotlin.reflect.KProperty
 
 
 /**
@@ -18,18 +18,19 @@ import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
  * @return formatted string
  */
 public fun LayerContext.value(column: ColumnReference<*>): String {
-    return "@${datasetHandler.takeColumn(column.name())}"
+    return "@${datasetHandler.addColumn(column)}"
 }
 
-/**
+/*
+*//**
  * Inserts value of given column into formatted string.
  *
  * @param column column whose value will be inserted into the tooltip
  * @return formatted string
- */
+ *//*
 public fun LayerContext.value(column: DataColumn<*>): String {
     return "@${datasetHandler.addColumn(column)}"
-}
+}*/
 
 /**
  * Inserts value of given column into formatted string.
@@ -42,20 +43,30 @@ public fun LayerContext.value(columnName: String): String {
 }
 
 /**
- * Tooltips fixed position.
+ * Inserts value of given column into formatted string.
+ *
+ * @param column name of column whose value will be inserted into the tooltip
+ * @return formatted string
  */
-public data class Anchor(val value: String) {
-    public companion object {
-        public val TOP_RIGHT: Anchor = Anchor("top_right")
-        public val TOP_CENTER: Anchor = Anchor("top_center")
-        public val TOP_LEFT: Anchor = Anchor("top_left")
-        public val BOTTOM_RIGHT: Anchor = Anchor("bottom_right")
-        public val BOTTOM_CENTER: Anchor = Anchor("bottom_center")
-        public val BOTTOM_LEFT: Anchor = Anchor("bottom_left")
-        public val MIDDLE_RIGHT: Anchor = Anchor("middle_right")
-        public val MIDDLE_CENTER: Anchor = Anchor("middle_center")
-        public val MIDDLE_LEFT: Anchor = Anchor("middle_left")
-    }
+public fun LayerContext.value(column: KProperty<*>): String {
+    return "@${datasetHandler.takeColumn(column.name)}"
+}
+
+/**
+ * Hides tooltips.
+ *
+ * @param hide flag of tooltips displaying.
+ */
+public fun LayerContext.tooltips(
+    hide: Boolean = false,
+) {
+    features[LayerTooltips.FEATURE_NAME] = LayerTooltips(
+        listOf(),
+        null,
+        listOf(),
+        null, null, null,
+        hide
+    )
 }
 
 /**
@@ -76,21 +87,21 @@ public data class Anchor(val value: String) {
  * @see value
  */
 public inline fun LayerContext.tooltips(
-    variables: List<ColumnReference<*>> = listOf(),
+    vararg variables: ColumnReference<*>,
+    formats: Map<ColumnReference<*>, String> = mapOf(),
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
     hide: Boolean = false,
-    formats: Map<ColumnReference<*>, String> = mapOf(),
-    tooltipsContextAction: LayerTooltipsContext.() -> Unit = {}
+    tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
-        variables.map { datasetHandler.takeColumn(it.name()) },
+        variables.map { datasetHandler.addColumn(it) },
         title,
         anchor,
         minWidth,
         hide,
-        formats.map { it.key.name() to it.value },
+        formats.map { (column, format) -> datasetHandler.takeColumn(column.name()) to format },
         LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
 }
@@ -99,19 +110,27 @@ public inline fun LayerContext.tooltips(
  * Defines the tooltips format for this layer.
  *
  * @param variables list of column names to crete a general multiline tooltip with.
+ * @param formats map of columns to format string of its value.
+ * @param title the string template to use as a title in the multi-line tooltip.
+ * @param anchor the fixed position for the general tooltip.
+ * @param minWidth minimum width of a general tooltip in pixels.
+ * @param hide flag of tooltips displaying.
  * @see value
  */
 public fun LayerContext.tooltips(
-    vararg variables: String
+    variable: String,
+    vararg variables: String,
+    formats: Map<String, String> = mapOf(),
+    title: String? = null,
+    anchor: Anchor? = null,
+    minWidth: Double? = null,
+    hide: Boolean = false,
 ) {
-    features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
-        variables.map { datasetHandler.takeColumn(it) },
+    features[LayerTooltips.FEATURE_NAME] = LayerTooltips(
+        (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it) },
         null,
-        null,
-        null,
-        false,
-        listOf(),
-        null
+        formats.toList(),
+        title, anchor, minWidth, hide
     )
 }
 
@@ -119,30 +138,58 @@ public fun LayerContext.tooltips(
  * Defines the tooltips format for this layer.
  *
  * @param variables list of columns to crete a general multiline tooltip with.
+ * @param formats map of columns to format string of its value.
+ * @param title the string template to use as a title in the multi-line tooltip.
+ * @param anchor the fixed position for the general tooltip.
+ * @param minWidth minimum width of a general tooltip in pixels.
+ * @param hide flag of tooltips displaying.
  * @see value
  */
 public fun LayerContext.tooltips(
-    vararg variables: ColumnReference<*>
+    variable: ColumnReference<*>,
+    vararg variables: ColumnReference<*>,
+    formats: Map<ColumnReference<*>, String> = mapOf(),
+    title: String? = null,
+    anchor: Anchor? = null,
+    minWidth: Double? = null,
+    hide: Boolean = false,
 ) {
-    tooltips(*variables.map { it.name() }.toTypedArray())
+    features[LayerTooltips.FEATURE_NAME] = LayerTooltips(
+        (listOf(variable) + variables.toList()).map { datasetHandler.addColumn(it) },
+        null,
+        formats.map { (column, format) -> datasetHandler.takeColumn(column.name()) to format },
+        title,
+        anchor,
+        minWidth,
+        hide
+    )
 }
+
 
 /**
  * Defines the tooltips format for this layer.
  *
- * @param variables list of columns to crete a general multiline tooltip with.
+ * @param variables list of column names to crete a general multiline tooltip with.
+ * @param formats map of columns to format string of its value.
+ * @param title the string template to use as a title in the multi-line tooltip.
+ * @param anchor the fixed position for the general tooltip.
+ * @param minWidth minimum width of a general tooltip in pixels.
+ * @param hide flag of tooltips displaying.
  * @see value
  */
 public fun LayerContext.tooltips(
-    vararg variables: DataColumn<*>
+    variable:KProperty<*>,
+    vararg variables: KProperty<*>,
+    formats: Map<KProperty<*>, String> = mapOf(),
+    title: String? = null,
+    anchor: Anchor? = null,
+    minWidth: Double? = null,
+    hide: Boolean = false,
 ) {
-    features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
-        variables.map { datasetHandler.addColumn(it) },
+    features[LayerTooltips.FEATURE_NAME] = LayerTooltips(
+        (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it.name) },
         null,
-        null,
-        null,
-        false,
-        listOf(),
-        null
+        formats.map { (property, format) ->  datasetHandler.takeColumn(property.name) to format },
+        title, anchor, minWidth, hide
     )
 }
