@@ -60,11 +60,11 @@ private fun Plot.toOption(): Option {
 
 @OptIn(ExperimentalSerializationApi::class)
 private val json = Json {
-    explicitNulls = false
-    encodeDefaults = true
     prettyPrint = true
-//    useArrayPolymorphism = true
     isLenient = true
+    encodeDefaults = true
+    explicitNulls = false
+    allowSpecialFloatingPointValues = true
 }
 
 public fun Plot.toJson(): String = this.toOption().toJSON()

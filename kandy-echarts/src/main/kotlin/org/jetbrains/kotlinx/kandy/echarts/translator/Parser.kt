@@ -16,7 +16,7 @@ import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsPositionalMappingParamet
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.*
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.*
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.Encode
-import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.pairOf
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.Element
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
@@ -25,7 +25,6 @@ import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.scale.*
-import java.util.ListResourceBundle
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
@@ -201,7 +200,7 @@ internal class Parser(plot: Plot) {
         val groupedSeries = mutableListOf<Series>()
         groupedData.keys.forEach { columnName ->
             groupedData.groupBy.map { _ ->
-                val data = group.select(x!!, y!!).map { it.values().map { l -> l?.toString() } } // TODO(check null)
+                val data = group.select(x!!, y!!).map { it.values().map { l -> Element.StringEl(l.toString()) } } // TODO(check null and wrap primitive to element)
                 groupedSeries.add(getSeries(key.getValue(columnName), null, data)) // TODO(aggregate data better)
             }
 
@@ -209,7 +208,7 @@ internal class Parser(plot: Plot) {
         return groupedSeries
     }
 
-    private fun Layer.getSeries(name: String?, encode: Encode?, data: List<List<String?>>? = null): Series =
+    private fun Layer.getSeries(name: String?, encode: Encode?, data: List<List<Element?>>? = null): Series =
         when (geom) {
             LINE -> this.toLineSeries(name, encode, data)
             AREA -> this.toAreaSeries(name, encode, data)
