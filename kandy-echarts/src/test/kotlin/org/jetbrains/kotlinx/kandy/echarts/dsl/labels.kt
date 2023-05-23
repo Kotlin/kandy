@@ -73,7 +73,7 @@ class LabelTests {
             area {
                 label {
                     position = LabelPosition.inside(10)
-                    formatter = "formattec {a}, {b}, {c}, {d}"
+                    formatter = "format {a}, {b}, {c}, {d}"
                     textStyle.color = Color.named("blue")
                 }
             }
@@ -89,7 +89,7 @@ class LabelTests {
                             "show": true,
                             "position": "inside",
                             "distance": 10,
-                            "formatter": "formattec {a}, {b}, {c}, {d}",
+                            "formatter": "format {a}, {b}, {c}, {d}",
                             "color": "blue"
                         },
                         "areaStyle": {

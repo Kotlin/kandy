@@ -44,7 +44,7 @@ internal object RangeSerializer : KSerializer<Range> {
             encodeNullableSerializableElement(
                 descriptor, 1, ListSerializer(Double.serializer()), value.symbolSize?.map { (it as Number).toDouble() }
             )
-            encodeNullableSerializableElement(descriptor, 2, ListSerializer(ColorSerializer), value.color)
+            encodeNullableSerializableElement(descriptor, 2, ListSerializer(ColorSerializer), value.color) // TODO
 
             encodeNullableSerializableElement(
                 descriptor, 3, ListSerializer(Double.serializer()), value.colorAlpha?.map { (it as Number).toDouble() }
