@@ -20,25 +20,46 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
     /**
      * Adds solid line to tooltips with given string value.
      *
-     * @param string text of the line
+     * @param string text of the line.
      * @see value
      */
     public fun line(string: String) {
         lineBuffer.add(string)
     }
 
+    /**
+     * Inserts value of given column into formatted string.
+     *
+     * @receiver property with a name of column whose value will be inserted into the tooltip.
+     * @param format value format.
+     * @return formatted string.
+     */
     public fun KProperty<*>.tooltipValue(format: String? = null): String {
         val colID = layerContext.datasetHandler.takeColumn(this.name)
         addFormat(colID, format)
         return "@$colID"
     }
 
+    /**
+     * Inserts value of given column into formatted string.
+     *
+     * @receiver name of column whose value will be inserted into the tooltip.
+     * @param format value format.
+     * @return formatted string.
+     */
     public fun String.tooltipValue(format: String? = null): String {
         val colID = layerContext.datasetHandler.takeColumn(this)
         addFormat(colID, format)
         return "@$colID"
     }
 
+    /**
+     * Inserts value of given column into formatted string.
+     *
+     * @receiver column whose value will be inserted into the tooltip.
+     * @param format value format.
+     * @return formatted string.
+     */
     public fun ColumnReference<*>.tooltipValue(format: String? = null): String {
         val colID = layerContext.datasetHandler.addColumn(this)
         addFormat(colID, format)
@@ -67,7 +88,7 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
     }
 
     /**
-     * Adds standard line for given column.
+     * Adds standard line for given column
      * (name of the column on the left side and the corresponding value on the right side).
      *
      * @param column column whose value will be displayed.
@@ -80,33 +101,21 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
 
     /**
      * Adds standard line for given column.
-     * (name of the column on the left side and the corresponding value on the right side).
+     * (Name of the column on the left side and the corresponding value on the right side).
      *
-     * @param column column whose value will be displayed.
+     * @param property property with the name of column whose value will be displayed.
      */
-    public fun line(column: KProperty<*>, format: String? = null) {
-        addVarLine(layerContext.datasetHandler.takeColumn(column.name).also {
+    public fun line(property: KProperty<*>, format: String? = null) {
+        addVarLine(layerContext.datasetHandler.takeColumn(property.name).also {
             addFormat(it, format)
         })
     }
 
-   /* *//**
-     * Adds standard line for given column.
-     * (name of the column on the left side and the corresponding value on the right side).
-     *
-     * @param column column whose value will be displayed.
-     *//*
-    public fun line(column: DataColumn<*>, format: String? = null) {
-        addVarLine(layerContext.datasetHandler.addColumn(column).also {
-            addFormat(it, format)
-        })
-    }*/
-
     /**
-     * Adds standard line for given column.
+     * Adds standard line for given column
      * (name of the column on the left side and the corresponding value on the right side).
      *
-     * @param columnName name of column whose values will be displayed.
+     * @param columnName name of column whose value will be displayed.
      */
     public fun varLine(columnName: String, format: String? = null) {
         addVarLine(layerContext.datasetHandler.takeColumn(columnName).also {
@@ -115,17 +124,17 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
     }
 
     /**
-     * Adds standard line for given column.
+     * Adds standard line for given column
      * (name of the column on the left side and the corresponding value on the right side).
      *
-     * @param columnName name of column whose values will be displayed.
+     * @param property property with the name of column whose value will be displayed.
      */
-    public fun varLine(column: KProperty<*>, format: String? = null) {
-        line(column, format)
+    public fun varLine(property: KProperty<*>, format: String? = null) {
+        line(property, format)
     }
 
     /**
-     * Adds standard line for given column.
+     * Adds standard line for given column
      * (name of the column on the left side and the corresponding value on the right side).
      *
      * @param column column whose value will be displayed.
@@ -133,15 +142,5 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
     public fun varLine(column: ColumnReference<*>, format: String? = null) {
         line(column, format)
     }
-
- /*   *//**
-     * Adds standard line for given column.
-     * (name of the column on the left side and the corresponding value on the right side).
-     *
-     * @param column column whose value will be displayed.
-     *//*
-    public fun varLine(column: DataColumn<*>, format: String? = null) {
-        line(column, format)
-    }*/
 
 }

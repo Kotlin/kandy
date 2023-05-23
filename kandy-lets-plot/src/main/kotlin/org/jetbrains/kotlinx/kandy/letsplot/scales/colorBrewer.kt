@@ -9,44 +9,27 @@ import org.jetbrains.kotlinx.kandy.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.kandy.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.kandy.util.color.Color
 
-//todo rework
-public sealed interface Palette {
-    public val name: String
-}
-
-public enum class SequentialPalette : Palette {
-    Blues, BuGn, BuPu, GnBu, Greens, Greys, Oranges, OrRd, PuBu, PuBuGn,
-    PuRd, Purples, RdPu, Reds, YlGn, YlGnBu, YlOrBr, YlOrRd
-}
-
-public enum class DivergingPalette : Palette {
-    BrBG, PiYG, PRGn, PuOr, RdBu, RdGy, RdYlBu, RdYlGn, Spectral
-}
-
-public enum class QualitativePalette : Palette {
-    Accent, Dark2, Paired, Pastel1, Pastel2, Set1, Set2, Set3
-}
-
-public sealed interface BrewerType {
-    public val palette: Palette?
+public sealed interface BrewerPalette {
     public val name: String
 
-    public data class Sequential(override val palette: SequentialPalette? = null) : BrewerType {
-        override val name: String = "seq"
+    public enum class Sequential : BrewerPalette {
+        Blues, BuGn, BuPu, GnBu, Greens, Greys, Oranges, OrRd, PuBu, PuBuGn,
+        PuRd, Purples, RdPu, Reds, YlGn, YlGnBu, YlOrBr, YlOrRd;
     }
 
-    public data class Diverging(override val palette: DivergingPalette? = null) : BrewerType {
-        override val name: String = "div"
+    public enum class Diverging: BrewerPalette {
+        BrBG, PiYG, PRGn, PuOr, RdBu, RdGy, RdYlBu, RdYlGn, Spectral;
     }
 
-    public data class Qualitative(override val palette: QualitativePalette? = null) : BrewerType {
-        override val name: String = "qual"
+    public enum class Qualitative : BrewerPalette {
+        Accent, Dark2, Paired, Pastel1, Pastel2, Set1, Set2, Set3;
     }
+
 }
 
 public sealed interface ScaleColorBrewer<DomainType> {
     public val limits: List<DomainType?>?
-    public val type: BrewerType?
+    public val palette: BrewerPalette?
 
     // todo direction
     public val transform: Transformation?
@@ -54,7 +37,7 @@ public sealed interface ScaleColorBrewer<DomainType> {
 
 public data class ScaleContinuousColorBrewer<DomainType>(
     override val limits: List<DomainType?>?,
-    override val type: BrewerType?,
+    override val palette: BrewerPalette?,
     // todo direction
     override val nullValue: Color?,
     override val transform: Transformation?,
@@ -62,7 +45,7 @@ public data class ScaleContinuousColorBrewer<DomainType>(
 
 public data class ScaleCategoricalColorBrewer<DomainType>(
     override val limits: List<DomainType>?,
-    override val type: BrewerType?,
+    override val palette: BrewerPalette?,
     //override val nullValue: TypedValue?,
     // todo direction
 ) : CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorBrewer<DomainType> {
@@ -73,7 +56,7 @@ public data class ScaleCategoricalColorBrewer<DomainType>(
 /**
  * Sequential, diverging and qualitative color scales from colorbrewer.org.
  *
- * @param type [BrewerType] pallet.
+ * @param type [BrewerPalette] pallet.
  * @param DomainType scale domain type.
  * @param domain [ClosedRange] defining the scale domain.
  * @param nullValue value which null is mapped to.
@@ -82,7 +65,7 @@ public data class ScaleCategoricalColorBrewer<DomainType>(
  * @return new continuous color scale.
  */
 public inline fun <reified DomainType : Comparable<DomainType>> continuousColorBrewer(
-    type: BrewerType? = null,
+    type: BrewerPalette? = null,
     domain: ClosedRange<DomainType>,
     nullValue: Color? = null,
     transform: Transformation? = null
@@ -95,7 +78,7 @@ public inline fun <reified DomainType : Comparable<DomainType>> continuousColorB
 /**
  * Sequential, diverging and qualitative color scales from colorbrewer.org.
  *
- * @param type [BrewerType] pallet.
+ * @param type [BrewerPalette] pallet.
  * @param DomainType scale domain type.
  * @param domainMin scale domain minimum.
  * @param domainMax scale domain maximum.
@@ -105,7 +88,7 @@ public inline fun <reified DomainType : Comparable<DomainType>> continuousColorB
  * @return new continuous color scale.
  */
 public inline fun <reified DomainType : Comparable<DomainType>> continuousColorBrewer(
-    type: BrewerType? = null,
+    type: BrewerPalette? = null,
     domainMin: DomainType? = null,
     domainMax: DomainType? = null,
     nullValue: Color? = null,
@@ -117,14 +100,14 @@ public inline fun <reified DomainType : Comparable<DomainType>> continuousColorB
 /**
  * Sequential, diverging and qualitative color scales from colorbrewer.org.
  *
- * @param type [BrewerType] pallet.
+ * @param type [BrewerPalette] pallet.
  * @param DomainType scale domain type.
  * @param domain [List] defining the scale domain.
  *
  * @return new categorical color scale.
  */
 public inline fun <reified DomainType> categoricalColorBrewer(
-    type: BrewerType? = null,
+    type: BrewerPalette? = null,
     domain: List<DomainType>? = null,
 ): ScaleCategoricalColorBrewer<DomainType> = ScaleCategoricalColorBrewer(
     domain, type

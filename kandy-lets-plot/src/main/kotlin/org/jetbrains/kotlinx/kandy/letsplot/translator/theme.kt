@@ -25,9 +25,14 @@ public fun BackgroundParameters.wrap(): Map<String, Any> {
 
 public fun TextParameters.wrap(): Map<String, Any> {
     return elementText(
-        color?.wrap(),
-        fontFace?.toString(),
-        blank
+        color = color?.wrap(),
+        family = fontFamily?.value,
+        face = fontFace?.toString(),
+        size = fontSize,
+        angle = angle,
+        hjust = hJust,
+        vjust = vJust,
+        blank = blank
     )
 }
 

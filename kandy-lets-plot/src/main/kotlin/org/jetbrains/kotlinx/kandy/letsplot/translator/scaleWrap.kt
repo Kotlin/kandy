@@ -613,8 +613,9 @@ internal fun Scale.wrap(
 
                     is ScaleColorBrewer<*> -> when (aesName) {
                         COLOR -> scaleColorBrewer(
-                            type = type?.name,
-                            palette = type?.palette?.name,
+                            //type = type?.type,
+                            type = null,
+                            palette = palette?.name,
                             name = name,
                             breaks = breaks?.map { it as Number }, // todo
                             labels = labels,
@@ -626,8 +627,9 @@ internal fun Scale.wrap(
                         )
 
                         FILL -> scaleFillBrewer(
-                            type = type?.name,
-                            palette = type?.palette?.name,
+                            //type = type?.type,
+                            type = null,
+                            palette = palette?.name,
                             name = name,
                             breaks = breaks?.map { it as Number }, // todo
                             labels = labels,
