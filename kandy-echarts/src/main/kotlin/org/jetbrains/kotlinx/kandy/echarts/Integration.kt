@@ -17,6 +17,7 @@ import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
+import java.util.UUID
 
 private const val ECHARTS_SRC: String = "https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"
 
@@ -72,8 +73,9 @@ public fun Plot.toJson(): String = this.toOption().toJSON()
 private fun Option.toJSON(): String = json.encodeToString(this)
 
 internal fun Option.toHTML(size: Pair<Int, Int>? = null): String {
-    val width = size?.first ?: 600
-    val height = size?.second ?: 400
+    val width = size?.first ?: 900
+    val height = size?.second ?: 500
+    val chartId = UUID.randomUUID().toString()
     return createHTML().html {
         head {
             meta {
@@ -87,15 +89,18 @@ internal fun Option.toHTML(size: Pair<Int, Int>? = null): String {
         }
         body {
             div {
-                id = "main" // TODO (set unique id)
-                style = "width: ${width}px;height:${height}px;background: white" // TODO (what does style need?)
+                id = chartId
+                classes += "chart-container"
+                style = "width: ${width};height:${height};" // TODO (horizontal_center?)
             }
             script {
                 type = "text/javascript"
                 unsafe {
                     +"""
-                    var myChart = echarts.init(document.getElementById('main'));
-                    var option = ${toJSON()/*.replace('\"', '\'')*/};
+                    var chart_$chartId = echarts.init(
+                        document.getElementById('$chartId'), 'white', {renderer: 'canvas'});
+                    var option_$chartId = ${toJSON()};
+                    chart_$chartId.setOption(option_$chartId);
                     myChart.setOption(option);
                 """.trimIndent()
                 }
