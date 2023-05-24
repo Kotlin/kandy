@@ -35,6 +35,7 @@ public class BinLayerCollectorContext(parent: LayerCollectorContext, override va
     LayerCollectorContext, BinStatContext {
     override val layers: MutableList<Layer> = parent.layers
     override val plotContext: PlotContext = parent.plotContext
+    override val layersInheritMappings: Boolean = false
 }
 
 public sealed interface Bins {

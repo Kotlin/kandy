@@ -26,7 +26,9 @@ import kotlin.test.assertEquals
 
 internal class BindingTest {
 
-    class TestContext(parent: LayerCollectorContext) : LayerContext(parent), WithColor, WithSize, WithX, WithY
+    class TestContext(parent: LayerCollectorContext) : LayerContext(parent), WithColor, WithSize, WithX, WithY {
+        override val requiredAes: Set<AesName> = setOf()
+    }
 
     @Test
     fun testSetting() {

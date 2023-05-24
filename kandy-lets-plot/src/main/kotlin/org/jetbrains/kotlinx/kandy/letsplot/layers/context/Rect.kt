@@ -5,12 +5,19 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X_MAX
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X_MIN
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
 
 public class RectContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithXMin, WithXMax,
     WithYMin, WithYMax,
-    WithFillColor, WithAlpha, WithXFree, WithYFree
+    WithFillColor, WithAlpha, WithXFree, WithYFree {
+    override val requiredAes: Set<AesName> = setOf(X_MIN, X_MAX, Y_MIN, Y_MAX)
+    }
 
 /*
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextImmutable

@@ -64,6 +64,20 @@ internal val FONT_FACE = AesName("fontface")
 
 internal val FONT_FAMILY = AesName("family")
 
+internal val SLICE = AesName("slice")
+
+internal val EXPLODE = AesName("explode")
+
+internal val HOLE = AesName("hole")
+
+internal val STROKE = AesName("stroke")
+
+internal val STROKE_COLOR = AesName("stroke_color")
+
+internal val X_INTERCEPT: AesName = AesName("xintercept")
+
+internal val Y_INTERCEPT: AesName = AesName("yintercept")
+
 /*
 
 internal val X_END = AesName("xend")
@@ -385,14 +399,12 @@ public data class VerticalJustificationAes internal constructor(override val con
 
 public val X_INTERCEPT: AesName = AesName("xintercept")
 
-// TODO
 public class XInterceptAes(override val context: BindingContext) : NonScalablePositionalAes {
     override val name: AesName = X_INTERCEPT
 }
 
 public val Y_INTERCEPT: AesName = AesName("yintercept")
 
-// TODO
 public class YInterceptAes(override val context: BindingContext) : NonScalablePositionalAes {
     override val name: AesName = Y_INTERCEPT
 }

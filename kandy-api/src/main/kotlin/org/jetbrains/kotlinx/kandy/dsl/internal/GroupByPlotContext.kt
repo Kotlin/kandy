@@ -28,4 +28,5 @@ public class GroupByPlotContext<T>(
         DatasetHandler(GroupedData(groupBy))
     )
     override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
+    override val layersInheritMappings: Boolean = true
 }

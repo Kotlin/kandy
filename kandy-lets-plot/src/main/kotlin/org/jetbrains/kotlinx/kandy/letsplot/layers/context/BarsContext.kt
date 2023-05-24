@@ -5,10 +5,15 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
 public open class BarsContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithX, WithY,
-    WithAlpha, WithFillColor, WithWidth
+    WithAlpha, WithFillColor, WithWidth {
+    override val requiredAes: Set<AesName> = setOf(X, Y)
+}
 /*
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextImmutable
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextMutable

@@ -8,6 +8,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.ir.aes.AesName
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
@@ -95,16 +96,13 @@ interface WithWidth : BindingContext {
 }
 
 class PointsContext(parent: LayerCollectorContext) : LayerContext(parent), WithColor, WithSize, WithX, WithY {
-   // override var size: Double? = null
-   // override var color: Color? by settingDelegate(COLOR)
+    override val requiredAes: Set<AesName> = setOf()
 }
 
 class LineContext(parent: LayerCollectorContext) : LayerContext(parent), WithWidth, WithColor, WithX, WithY {
-   // override var color: Color? by settingDelegate(COLOR)
-   // override var width: Double? by settingDelegate(WIDTH)
+    override val requiredAes: Set<AesName> = setOf()
 }
 
 class BarsContext(parent: LayerCollectorContext) : LayerContext(parent), WithWidth, WithColor, WithX, WithY {
-  //  override var color: Color? by settingDelegate(COLOR)
-  //  override var width: Double? by settingDelegate(WIDTH)
+    override val requiredAes: Set<AesName> = setOf()
 }

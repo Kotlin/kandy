@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
-import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.AxisParameters
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisParameters
 
 
 public interface WithXFree : BindingContext {

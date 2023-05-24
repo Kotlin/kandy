@@ -6,11 +6,15 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_INTERCEPT
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
 
-public class HLineContext(parent: LayerCollectorContext) : LayerContext(parent), WithY, WithAlpha, WithColor,
-    WithWidthAsSize, WithType, WithXFree
+public class HLineContext(parent: LayerCollectorContext) : LayerContext(parent), WithYIntercept, WithAlpha, WithColor,
+    WithWidthAsSize, WithType, WithXFree {
+    override val requiredAes: Set<AesName> = setOf(Y_INTERCEPT)
+    }
 /*
 import org.jetbrains.kotlinx.kandy.dsl.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*

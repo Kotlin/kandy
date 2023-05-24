@@ -15,7 +15,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.position.Position
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
 import org.jetbrains.letsPlot.Stat
 import org.jetbrains.letsPlot.intern.Options
-import org.jetbrains.letsPlot.intern.layer.LayerBase
 import org.jetbrains.letsPlot.pos.positionIdentity
 import org.jetbrains.letsPlot.sampling.samplingNone
 
@@ -26,7 +25,7 @@ internal class LayerWrapper internal constructor(
     private val settings: Map<AesName, Setting>,
     groupKeys: List<String>?,
 ) :
-    LayerBase(
+    org.jetbrains.letsPlot.intern.Layer(
         data = dataset,
         // todo group
         mapping = Options(mappings.map { (_, mapping) -> mapping.wrap(groupKeys) }.toMap().toMutableMap().apply {

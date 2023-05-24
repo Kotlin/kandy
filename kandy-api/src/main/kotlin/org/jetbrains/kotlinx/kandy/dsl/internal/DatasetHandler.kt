@@ -9,6 +9,7 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.Infer
 import org.jetbrains.kotlinx.dataframe.api.add
 import org.jetbrains.kotlinx.dataframe.api.copy
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
@@ -16,7 +17,7 @@ import org.jetbrains.kotlinx.kandy.ir.data.TableData
 
 public class DatasetHandler(
     public val initialDataset: TableData,
-    private val dcAsRefOnly: Boolean = false,
+    private val columnAsRefOnly: Boolean = false,
     initialBuffer: DataFrame<*>? = null
 ) {
     // todo value column
@@ -25,6 +26,7 @@ public class DatasetHandler(
     private val isGrouped: Boolean
     private val groupKeys: List<String>?
     private val referredColumns: MutableMap<String, String> = mutableMapOf()
+
     @PublishedApi
     internal var buffer: DataFrame<*> = initialBuffer?.copy() ?: DataFrame.Empty
 
@@ -62,15 +64,12 @@ public class DatasetHandler(
             referredColumns[name] = columnId
             name
         }
-        // TODO
     }
 
-    public fun addColumn(column: DataColumn<*>): String {
-        // TODO
-        if (dcAsRefOnly) {
-            return takeColumn(column.name())
-        }
-        return internalAddColumn(column)
+    public fun addColumn(column: ColumnReference<*>): String {
+        return if (column is DataColumn<*> && !columnAsRefOnly) {
+            internalAddColumn(column)
+        } else takeColumn(column.name())
     }
 
     private fun internalAddColumn(column: DataColumn<*>): String {

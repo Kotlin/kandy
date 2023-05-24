@@ -9,7 +9,6 @@ import jetbrains.datalore.plot.base.data.TransformVar
 import jetbrains.datalore.plot.base.stat.BinStat
 import jetbrains.datalore.plot.base.stat.SimpleStatContext
 import jetbrains.datalore.plot.base.stat.Stats
-import jetbrains.datalore.plot.builder.data.GroupUtil
 import jetbrains.datalore.plot.builder.data.GroupingContext
 import jetbrains.datalore.plot.common.data.SeriesUtil
 import kotlinx.datetime.*
@@ -20,6 +19,21 @@ import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
+
+internal object GroupUtil {
+    fun indicesByGroup(dataLength: Int, groups: (Int) -> Int): Map<Int, List<Int>> {
+        val indicesByGroup = LinkedHashMap<Int, MutableList<Int>>()
+        for (i in 0 until dataLength) {
+            val group = groups(i)
+            if (!indicesByGroup.containsKey(group)) {
+                indicesByGroup[group] = ArrayList()
+            }
+            indicesByGroup[group]!!.add(i)
+        }
+
+        return indicesByGroup
+    }
+}
 
 
 internal fun BinXPos.toKind(): BinStat.XPosKind = when (this) {

@@ -6,13 +6,13 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 
+// todo add Stroke
 public class PointsContext(parent: LayerCollectorContext) : LayerContext(parent), WithX, WithY, WithColor, WithSymbol,
     WithSize, WithAlpha, WithFillColor {
-    /*
-    // FILL SHAPES only
-    public val borderWidth: StrokeAes  // TODO doesnt work lol
-        get() = StrokeAes(this)
-     */
+    override val requiredAes: Set<AesName> = setOf(X, Y)
 }

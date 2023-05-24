@@ -8,6 +8,11 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.SubBindingContext
+import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
@@ -23,6 +28,7 @@ public class PointRangeContext(parent: LayerCollectorContext) : LayerContext(par
     WithColor, WithYMin, WithYMax, WithSize {
     public val innerPoint: InnerPointContext = InnerPointContext(this)
     public val innerLine: InnerLineContext = InnerLineContext(this)
+    override val requiredAes: Set<AesName> = setOf(X, Y, Y_MIN, Y_MAX)
 }
 
 /*

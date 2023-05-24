@@ -1,11 +1,5 @@
-/*
-* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
-*/
+package org.jetbrains.kotlinx.kandy.letsplot.dsl.layers
 
-package org.jetbrains.kotlinx.kandy.letsplot.dsl
-
-import org.jetbrains.kotlinx.dataframe.api.column
-import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.plot
@@ -17,6 +11,9 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalContinuousScale
+import org.jetbrains.kotlinx.kandy.letsplot.dsl.dataset
+import org.jetbrains.kotlinx.kandy.letsplot.dsl.time
+import org.jetbrains.kotlinx.kandy.letsplot.dsl.type
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.AREA
 import org.jetbrains.kotlinx.kandy.letsplot.layers.area
@@ -24,18 +21,12 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-internal class LayersTest {
-    private val dataset = dataFrameOf(
-        "time" to listOf(1, 2),
-        "type" to listOf("a", "b")
-    )
-
+internal class AreaTest {
     @Test
     fun testArea() {
-        val time = column<Int>("time")
-        val type = column<String>("type")
         val plot = dataset.plot {
             area {
+                x(time)
                 y(time) {
                     scale = continuous()
                 }
@@ -46,13 +37,11 @@ internal class LayersTest {
                         )
 
                 }
-                // TODO
                 alpha = 0.7
                 borderLine.width = 2.0
-
             }
         }
-        // TODO
+
         assertEquals(
             Plot(
                 listOf(NamedData(dataset)),
@@ -61,6 +50,9 @@ internal class LayersTest {
                         0,
                         AREA,
                         mapOf(
+                            X to PositionalMapping<Int>(
+                                X, time.name(), LetsPlotPositionalMappingParameters()
+                            ),
                             Y to PositionalMapping<Int>(
                                 Y, time.name(), LetsPlotPositionalMappingParameters(
                                     PositionalContinuousScale(null, null, null, null)
@@ -96,7 +88,4 @@ internal class LayersTest {
             plot
         )
     }
-    // todo others???
 }
-
-

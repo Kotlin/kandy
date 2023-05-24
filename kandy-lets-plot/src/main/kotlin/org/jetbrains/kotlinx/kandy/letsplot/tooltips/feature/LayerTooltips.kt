@@ -32,12 +32,12 @@ public data class LayerTooltips internal constructor(
             minWidth: Double?,
             hide: Boolean,
             valueFormats: List<Pair<String, String>>,
-            context: LayerTooltipsContext?
+            context: LayerTooltipsContext
         ): LayerTooltips {
             return LayerTooltips(
                 variables,
-                context?.lineBuffer,
-                valueFormats,
+                context.lineBuffer,
+                valueFormats + context.formatsBuffer.toList(),
                 title, anchor, minWidth, hide
             )
         }

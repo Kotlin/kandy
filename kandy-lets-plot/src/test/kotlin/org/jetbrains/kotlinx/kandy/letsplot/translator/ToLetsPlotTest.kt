@@ -133,7 +133,8 @@ class ToLetsPlotTest {
                     ),
                     mapOf(
                         "aesthetic" to "y",
-                        "limits" to listOf("A", "B", "C")
+                        "limits" to listOf("A", "B", "C"),
+                        "discrete" to true
                     ),
                     mapOf(
                         "aesthetic" to "fill",
@@ -145,7 +146,8 @@ class ToLetsPlotTest {
                     ),
                     mapOf(
                         "aesthetic" to "y",
-                        "limits" to listOf("A", "B", "C")
+                        "limits" to listOf("A", "B", "C"),
+                        "discrete" to true
                     ),
                 ),
                 "layers" to listOf(

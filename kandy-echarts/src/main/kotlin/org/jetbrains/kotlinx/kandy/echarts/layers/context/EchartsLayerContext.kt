@@ -6,13 +6,16 @@ package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
-import org.jetbrains.kotlinx.kandy.echarts.layers.aes.NAME
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationBoxplotCandlestick
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationLayerFeature
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationPie
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.NAME
+import org.jetbrains.kotlinx.kandy.ir.aes.AesName
 
 public sealed class EchartsLayerContext(parent: LayerCollectorContext) : LayerContext(parent) {
+
+    override val requiredAes: Set<AesName> = setOf()
     public var name: String? = null
         set(value) {
             addNonPositionalSetting(NAME, value)
