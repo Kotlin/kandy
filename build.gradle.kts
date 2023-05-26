@@ -2,6 +2,7 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.time.Duration
 
 buildscript {
@@ -39,11 +40,14 @@ allprojects {
 
     kotlin.explicitApi()
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    tasks.withType<KotlinCompile>().configureEach {
         kotlinOptions {
             allWarningsAsErrors = true
+            jvmTarget = "11"
         }
     }
+
+    java { toolchain { languageVersion.set(JavaLanguageVersion.of(11)) } }
 }
 
 

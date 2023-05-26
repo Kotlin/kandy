@@ -8,13 +8,13 @@ apply from: project.rootProject.file('gradle/maven-metadata.gradle')
 def sonatypeUser = System.getenv('SONATYPE_USER')
 def sonatypePassword = System.getenv('SONATYPE_PASSWORD')
 
-task sourcesJar(type: Jar) {
-    classifier 'sources'
+tasks.register('sourcesJar', Jar) {
+    archiveClassifier.set('sources')
     from sourceSets.main.allSource
 }
 
-task javadocJar(type: Jar) {
-    classifier 'javadoc'
+tasks.register('javadocJar', Jar) {
+    archiveClassifier.set('javadoc')
     from javadoc
 }
 
@@ -26,8 +26,8 @@ publishing {
             groupId project.group
             artifactId project.name
             version project.version
-            artifact sourcesJar { classifier "sources" }
-            artifact javadocJar { classifier "javadoc" }
+            artifact sourcesJar { archiveClassifier.set("sources") }
+            artifact javadocJar { archiveClassifier.set("javadoc") }
         }
     }
     repositories {
