@@ -15,19 +15,26 @@ internal fun <K, V: Any> Map<K, V>.extendedBy(other: Map<K, V>, join: (V, V) -> 
             v
     }
 }
+
 @OptIn(ExperimentalContracts::class)
-private fun isStringLiteral(element: JsonElement): Boolean {
-    contract { returns(true) implies (element is JsonPrimitive) }
-    return element is JsonPrimitive && element.isString
+private inline fun <reified T> bothOfType(a: Any, b: Any): Boolean {
+    contract { returns(true) implies (a is T && b is T) }
+    return a is T && b is T
+}
+
+@OptIn(ExperimentalContracts::class)
+private inline fun <reified T> bothOfTypeAnd(a: Any, b: Any, condition: (T) -> Boolean): Boolean {
+    contract { returns(true) implies (a is T && b is T) }
+    return a is T && b is T && condition(a) && condition(b)
 }
 
 internal infix fun Map<String, JsonElement>.extendedByJson(other: Map<String, JsonElement>): JsonObject {
     val map = this.extendedBy(other) { a, b ->
         // This logic might be enhanced
         when {
-            isStringLiteral(a) && isStringLiteral(b) -> JsonPrimitive(a.content + b.content)
-            a is JsonArray && b is JsonArray -> JsonArray(a + b)
-            a is JsonObject && b is JsonObject -> JsonObject(a + b)
+            bothOfTypeAnd<JsonPrimitive>(a, b) { it.isString } -> JsonPrimitive(a.content + b.content)
+            bothOfType<JsonArray>(a, b) -> JsonArray(a + b)
+            bothOfType<JsonObject>(a, b) -> JsonObject(a + b)
             else -> a
         }
     }
