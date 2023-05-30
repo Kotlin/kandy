@@ -5,8 +5,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.jupyter
 
 import jetbrains.datalore.plot.PlotHtmlHelper
-import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.buildJsonObject
 import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.MimeTypedResultEx
 import org.jetbrains.kotlinx.jupyter.api.Notebook
@@ -19,23 +17,22 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
-import org.jetbrains.kotlinx.kandy.util.serialization.serializeSpec
-import org.jetbrains.letsPlot.Figure
-import org.jetbrains.letsPlot.GGBunch
+import org.jetbrains.kotlinx.kandy.letsplot.util.NotebookRenderingContext
+import org.jetbrains.kotlinx.kandy.letsplot.util.figureToMimeResult
 import org.jetbrains.letsPlot.LetsPlot
-import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
-import org.jetbrains.letsPlot.intern.figure.SubPlotsFigure
-import org.jetbrains.letsPlot.intern.toSpec
 
 @JupyterLibrary
 internal class Integration(
     private val notebook: Notebook,
     private val options: MutableMap<String, String?>,
 ) : JupyterIntegration() {
-
-    lateinit var frontendContext: NotebookFrontendContext
-
     private val jsVersion = "3.1.0"
+
+    private lateinit var initHtml: MimeTypedResultEx
+    private val frontendContext = LetsPlot.setupNotebook(jsVersion, true) {
+        initHtml = HTML(it)
+    }
+    private val config = JupyterConfig()
 
     override fun Builder.onLoaded() {
 
@@ -46,9 +43,7 @@ internal class Integration(
         }
 
         onLoaded {
-            frontendContext = LetsPlot.setupNotebook("3.1.0", true) {
-                display(HTML(it), null)
-            }
+            display(initHtml, null)
             LetsPlot.apiVersion = "4.3.0"
             //display(HTML(frontendContext.getConfigureHtml()), null)
         }
@@ -74,50 +69,14 @@ internal class Integration(
         import("org.jetbrains.kotlinx.kandy.letsplot.util.font.*")
         // import("org.jetbrains.kotlinx.kandy.letsplot.util.statParameters.*")
 
-        /*val applyColorScheme: Boolean = options["applyColorScheme"]?.toBooleanStrictOrNull() ?: true*/
-
-        fun Figure.toHTML(): String {
-            return when (this) {
-                is org.jetbrains.letsPlot.intern.Plot -> frontendContext.getHtml(this)
-                is SubPlotsFigure -> frontendContext.getHtml(this)
-                is GGBunch -> frontendContext.getHtml(this)
-                else -> error("Unsupported Figure")
-            }
-        }
-
-        val config = JupyterConfig()
-
         onLoaded {
             declare("kandyConfig" to config)
         }
 
-        fun Figure.toMimeResult(): MimeTypedResultEx {
-            val spec = toSpec()
-            /*when (this) {
-                is org.jetbrains.letsPlot.intern.Plot -> spec.applyColorSchemeToPlotSpec()
-                is SubPlotsFigure -> spec.applyColorSchemeToPlotGrid()
-                is GGBunch -> spec.applyColorSchemeToGGBunch()
-                else -> error("Unsupported Figure")
-            }*/
-            val html = toHTML()
-            return MimeTypedResultEx(
-                buildJsonObject {
-                    put("text/html", JsonPrimitive(html))
-                    put("application/plot+json", buildJsonObject {
-                        put("output_type", JsonPrimitive("lets_plot_spec"))
-                        put("output", serializeSpec(spec))
-                        put("apply_color_scheme", JsonPrimitive(config.applyColorScheme))
-                        put("swing_enabled", JsonPrimitive(config.swingEnabled))
-                    })
-                }
-            )
+        with(NotebookRenderingContext(frontendContext, config)) {
+            render<Plot> { figureToMimeResult(it.toLetsPlot()) }
+            render<PlotBunch> { figureToMimeResult(it.wrap()) }
+            render<PlotGrid> { figureToMimeResult(it.wrap()) }
         }
-
-
-        render<Plot> { it.toLetsPlot().toMimeResult() }
-        render<PlotBunch> { it.wrap().toMimeResult() }
-        render<PlotGrid> { it.wrap().toMimeResult() }
     }
-
-
 }
