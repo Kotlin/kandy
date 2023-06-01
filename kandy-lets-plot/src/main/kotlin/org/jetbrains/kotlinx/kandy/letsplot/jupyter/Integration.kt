@@ -6,7 +6,6 @@ package org.jetbrains.kotlinx.kandy.letsplot.jupyter
 
 import jetbrains.datalore.plot.PlotHtmlHelper
 import org.jetbrains.kotlinx.jupyter.api.HTML
-import org.jetbrains.kotlinx.jupyter.api.MimeTypedResultEx
 import org.jetbrains.kotlinx.jupyter.api.Notebook
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.declare
@@ -20,6 +19,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
 import org.jetbrains.kotlinx.kandy.letsplot.util.NotebookRenderingContext
 import org.jetbrains.kotlinx.kandy.letsplot.util.figureToMimeResult
 import org.jetbrains.letsPlot.LetsPlot
+import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
 
 @JupyterLibrary
 internal class Integration(
@@ -28,9 +28,8 @@ internal class Integration(
 ) : JupyterIntegration() {
     private val jsVersion = "3.1.0"
 
-    private lateinit var initHtml: MimeTypedResultEx
-    private val frontendContext = LetsPlot.setupNotebook(jsVersion, true) {
-        initHtml = HTML(it)
+    private val frontendContext: NotebookFrontendContext = LetsPlot.setupNotebook(jsVersion, true) {
+        HTML(it)
     }
     private val config = JupyterConfig()
 
@@ -43,7 +42,7 @@ internal class Integration(
         }
 
         onLoaded {
-            display(initHtml, null)
+            display(frontendContext.getConfigureHtml(), null)
             LetsPlot.apiVersion = "4.3.0"
             //display(HTML(frontendContext.getConfigureHtml()), null)
         }
