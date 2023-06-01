@@ -9,11 +9,11 @@ import kotlinx.html.stream.createHTML
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.jetbrains.kotlinx.jupyter.api.*
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.PlotChangeAnimation
 import org.jetbrains.kotlinx.kandy.echarts.translator.Parser
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.Option
 import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
@@ -22,18 +22,21 @@ import java.util.UUID
 private const val ECHARTS_SRC: String = "https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"
 
 @JupyterLibrary
-internal class Integration : JupyterIntegration() {
+internal class Integration(private val notebook: Notebook, private val options: MutableMap<String, String?>) :
+    JupyterIntegration() {
     override fun Builder.onLoaded() {
         resources {
-            js("echarts") {
-                url(ECHARTS_SRC, classpathFallBack = "js/echarts.min.js")
+            js("kandyEcharts") {
+                when (notebook.jupyterClientType) {
+                    JupyterClientType.KOTLIN_NOTEBOOK, JupyterClientType.JUPYTER_LAB -> classPath("scripts/init.js")
+                    else -> url(ECHARTS_SRC, classpathFallBack = "scripts/echarts.min.js")
+                }
             }
         }
 
-        render<Plot> { it.toOption() }
-        render<Option> { HTML(it.toHTML(it.plotSize), true) }
+        render<Plot> { HTML(it.toOption().toHTML()) }
 //        render<DataChangeAnimation> { HTML(it.toHTML(), true) }
-        render<PlotChangeAnimation> { HTML(it.toHTML(), true) }
+        render<PlotChangeAnimation> { HTML(it.toHTML()) }
 
         import("org.jetbrains.kotlinx.kandy.echarts.*")
         import("org.jetbrains.kotlinx.kandy.echarts.features.*")
@@ -55,7 +58,6 @@ internal class Integration : JupyterIntegration() {
 
 private fun Plot.toOption(): Option {
     val parser = Parser(this)
-
     return parser.parse()
 }
 
@@ -72,44 +74,38 @@ public fun Plot.toJson(): String = this.toOption().toJSON()
 
 private fun Option.toJSON(): String = json.encodeToString(this)
 
-internal fun Option.toHTML(size: Pair<Int, Int>? = null): String {
-    val width = size?.first ?: 900
-    val height = size?.second ?: 500
-    val chartId = UUID.randomUUID().toString()
+internal fun Option.toHTML(): String {
+    val width = plotSize.first
+    val height = plotSize.second
+    val chartId = UUID.randomUUID().toString().replace("-", "")
     return createHTML().html {
         head {
+            lang = "en"
             meta {
                 charset = "utf-8"
             }
             this@toHTML.title?.text?.let { title(it) }
-            script {
-                type = "text/javascript"
-                src = ECHARTS_SRC
-            }
         }
         body {
             div {
                 id = chartId
                 classes += "chart-container"
-                style = "width: ${width};height:${height};" // TODO (horizontal_center?)
+                style = "width: ${width}px;height:${height}px;" // TODO (horizontal_center?)
             }
             script {
                 type = "text/javascript"
                 unsafe {
-                    +"""
-                    var chart_$chartId = echarts.init(
-                        document.getElementById('$chartId'), 'white', {renderer: 'canvas'});
-                    var option_$chartId = ${toJSON()};
-                    chart_$chartId.setOption(option_$chartId);
-                    myChart.setOption(option);
-                """.trimIndent()
+                    +"""                    
+    var chart_$chartId = echarts.init(
+        document.getElementById('$chartId'), 'white', {renderer: 'canvas'});
+    var option_$chartId = ${toJSON()};
+    chart_$chartId.setOption(option_$chartId);
+                """
                 }
             }
         }
 
     }
-
-
 }
 
 
@@ -181,10 +177,6 @@ internal fun PlotChangeAnimation.toHTML(): String {
             meta {
                 charset = "utf-8"
             }
-            script {
-                type = "text/javascript"
-                src = ECHARTS_SRC
-            }
         }
         body {
             div {
@@ -207,7 +199,7 @@ internal fun PlotChangeAnimation.toHTML(): String {
                             myChart.setOption(option, true);
                         }, $interval);
                         """.trimIndent()
-                        )
+                            )
                 }
             }
         }
