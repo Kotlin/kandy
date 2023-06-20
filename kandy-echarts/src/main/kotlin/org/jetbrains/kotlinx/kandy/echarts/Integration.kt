@@ -27,10 +27,11 @@ internal class Integration(private val notebook: Notebook, private val options: 
     override fun Builder.onLoaded() {
         resources {
             js("kandyEcharts") {
-                when (notebook.jupyterClientType) {
-                    JupyterClientType.KOTLIN_NOTEBOOK, JupyterClientType.JUPYTER_LAB -> classPath("scripts/init.js")
-                    else -> url(ECHARTS_SRC, classpathFallBack = "scripts/echarts.min.js")
-                }
+                url(ECHARTS_SRC, classpathFallBack = "scripts/echarts.min.js")
+//                when (notebook.jupyterClientType) {
+//                    JupyterClientType.KOTLIN_NOTEBOOK, JupyterClientType.JUPYTER_LAB -> classPath("scripts/init.js")
+//                    else -> url(ECHARTS_SRC, classpathFallBack = "scripts/echarts.min.js")
+//                }
             }
         }
 
@@ -93,7 +94,7 @@ internal fun Option.toHTML(): String {
                 style = "width: ${width}px;height:${height}px;" // TODO (horizontal_center?)
             }
             script {
-                type = "text/javascript"
+                type = "application/vnd.echarts+json"
                 unsafe {
                     +"""                    
     var chart_$chartId = echarts.init(
