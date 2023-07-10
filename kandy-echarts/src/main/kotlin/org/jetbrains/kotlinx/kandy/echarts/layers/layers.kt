@@ -6,8 +6,6 @@ package org.jetbrains.kotlinx.kandy.echarts.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.kandy.echarts.layers.aes.x
-import org.jetbrains.kotlinx.kandy.echarts.layers.aes.y
 import org.jetbrains.kotlinx.kandy.echarts.layers.context.*
 
 /**
@@ -39,7 +37,7 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.context.*
  * @see EChartsLayout
  */
 public inline fun LayerPlotContext.layout(block: EChartsLayout.() -> Unit) {
-    features[EChartsLayout.FEATURE_NAME] = EChartsLayout().apply(block)
+    plotFeatures[EChartsLayout.FEATURE_NAME] = EChartsLayout().apply(block)
 }
 
 /**
