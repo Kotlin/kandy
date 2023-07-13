@@ -5,10 +5,12 @@
 package org.jetbrains.kotlinx.kandy.dsl.internal
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
+import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
+import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
@@ -50,10 +52,95 @@ public interface BaseContext {
  */
 public abstract class LayerContext(parent: LayerCollectorContext) : BindingContext {
     override val bindingCollector: BindingCollector = BindingCollector()
-    override val datasetIndex: Int = parent.datasetIndex
+    override var datasetIndex: Int = parent.datasetIndex
     public val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
     override val plotContext: PlotContext = parent.plotContext
     public abstract val requiredAes: Set<AesName>
+
+    private var firstMapping = true
+    private val handlerRowsCount: Int
+        get()  {
+            val buffer = datasetHandler.buffer
+            return if (buffer == DataFrame.Empty) {
+                datasetHandler.initialNamedData.dataFrame.rowsCount()
+            } else {
+                buffer.rowsCount()
+            }
+        }
+
+    private fun overrideDataset() {
+        plotContext.datasetHandlers.add(DatasetHandler(NamedData(DataFrame.Empty)))
+        datasetIndex = plotContext.datasetHandlers.size - 1
+    }
+
+    override fun <DomainType, RangeType> addNonPositionalMapping(
+        aesName: AesName,
+        columnID: String,
+        parameters: NonPositionalMappingParameters<DomainType, RangeType>?
+    ): NonPositionalMapping<DomainType, RangeType> {
+        firstMapping = false
+        return super.addNonPositionalMapping(aesName, columnID, parameters)
+    }
+
+    override fun <DomainType, RangeType> addNonPositionalMapping(
+        aesName: AesName,
+        values: DataColumn<DomainType>,
+        parameters: NonPositionalMappingParameters<DomainType, RangeType>?
+    ): NonPositionalMapping<DomainType, RangeType> {
+        if (firstMapping && handlerRowsCount != values.size()) {
+            overrideDataset()
+        }
+        firstMapping = false
+        return super.addNonPositionalMapping(aesName, values, parameters)
+    }
+
+    override fun <DomainType, RangeType> addNonPositionalMapping(
+        aesName: AesName,
+        values: List<DomainType>,
+        name: String?,
+        parameters: NonPositionalMappingParameters<DomainType, RangeType>?
+    ): NonPositionalMapping<DomainType, RangeType> {
+        if (firstMapping && handlerRowsCount != values.size) {
+            overrideDataset()
+        }
+        firstMapping = false
+        return super.addNonPositionalMapping(aesName, values, name, parameters)
+    }
+
+    override fun <DomainType> addPositionalMapping(
+        aesName: AesName,
+        columnID: String,
+        parameters: PositionalMappingParameters<DomainType>?
+    ): PositionalMapping<DomainType> {
+        firstMapping = false
+        return super.addPositionalMapping(aesName, columnID, parameters)
+    }
+
+    override fun <DomainType> addPositionalMapping(
+        aesName: AesName,
+        values: DataColumn<DomainType>,
+        parameters: PositionalMappingParameters<DomainType>?
+    ): PositionalMapping<DomainType> {
+        if (firstMapping && handlerRowsCount != values.size()) {
+            overrideDataset()
+        }
+        firstMapping = false
+        return super.addPositionalMapping(aesName, values, parameters)
+    }
+
+    override fun <DomainType> addPositionalMapping(
+        aesName: AesName,
+        values: List<DomainType>,
+        name: String?,
+        parameters: PositionalMappingParameters<DomainType>?
+    ): PositionalMapping<DomainType> {
+        if (firstMapping && handlerRowsCount != values.size) {
+            overrideDataset()
+        }
+        firstMapping = false
+        return super.addPositionalMapping(aesName, values, name, parameters)
+    }
+
 }
 
 /**
@@ -77,7 +164,7 @@ public interface LayerCollectorContext : BaseContext {
         } else null)
         layers.add(
             Layer(
-                datasetIndex,
+                context.datasetIndex,
                 geom,
                 context.bindingCollector.mappings,
                 context.bindingCollector.settings,
