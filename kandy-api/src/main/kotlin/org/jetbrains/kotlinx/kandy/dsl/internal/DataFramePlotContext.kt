@@ -29,7 +29,7 @@ public class DataFramePlotContext<T>(
     override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(
         DatasetHandler(NamedData(dataFrame))
     )
-    override val features: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
+    override val plotFeatures: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
     override val layersInheritMappings: Boolean = true
 
     public fun <C> columns(selector: ColumnsSelector<T, C>): List<DataColumn<C>> = dataFrame.get(selector)

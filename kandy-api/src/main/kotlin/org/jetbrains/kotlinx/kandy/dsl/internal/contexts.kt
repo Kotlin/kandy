@@ -44,18 +44,33 @@ public interface BaseContext {
         get() = plotContext.datasetHandlers[datasetIndex]
 }
 
+public interface LayerContextInterface: BindingContext {
+    public val features: MutableMap<FeatureName, LayerFeature>
+    public val requiredAes: Set<AesName>
+    public fun toLayer(datasetIndex: Int, geom: Geom, layersInheritMappings: Boolean): Layer {
+        return Layer(
+            datasetIndex,
+            geom,
+            bindingCollector.mappings,
+            bindingCollector.settings,
+            features,
+            bindingCollector.freeScales,
+            layersInheritMappings
+        )
+    }
+}
+
 /**
  * Context that defines the configuration of the layer.
  *
  * @param parent parental [LayerCollectorContext].
  * @property features [MutableMap] of feature names to corresponding layer features.
  */
-public abstract class LayerContext(parent: LayerCollectorContext) : BindingContext {
+public abstract class LayerContext(parent: LayerCollectorContext) : LayerContextInterface {
     override val bindingCollector: BindingCollector = BindingCollector()
     override var datasetIndex: Int = parent.datasetIndex
-    public val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
+    public override val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
     override val plotContext: PlotContext = parent.plotContext
-    public abstract val requiredAes: Set<AesName>
 
     private var firstMapping = true
     private val handlerRowsCount: Int
@@ -158,20 +173,12 @@ public interface LayerCollectorContext : BaseContext {
      * @param context [LayerContext] with bindings of a new layer.
      * @param geom [Geom] of a new layer.
      */
-    public fun addLayer(context: LayerContext, geom: Geom) {
+    public fun addLayer(context: LayerContextInterface, geom: Geom) {
         checkRequiredAes(context.requiredAes, context, if (layersInheritMappings) {
             plotContext
         } else null)
         layers.add(
-            Layer(
-                context.datasetIndex,
-                geom,
-                context.bindingCollector.mappings,
-                context.bindingCollector.settings,
-                context.features,
-                context.bindingCollector.freeScales,
-                layersInheritMappings
-            )
+            context.toLayer(datasetIndex, geom, layersInheritMappings)
         )
     }
 }
@@ -191,11 +198,11 @@ public class GroupedContext(
  * Top plotting context which allows to configure and create a [Plot].
  *
  * @property datasetHandlers buffer of plot datasets.
- * @property features
+ * @property plotFeatures
  */
 public interface PlotContext : BindingContext {
     public val datasetHandlers: MutableList<DatasetHandler>
-    public val features: MutableMap<FeatureName, PlotFeature>
+    public val plotFeatures: MutableMap<FeatureName, PlotFeature>
 
     /**
      * Creates [Plot] configured by this context.
@@ -203,6 +210,20 @@ public interface PlotContext : BindingContext {
      * @return new [Plot].
      */
     public fun toPlot(): Plot
+}
+
+public interface SingleLayerPlotContext: PlotContext {
+    public val layer: Layer
+    public override fun toPlot(): Plot {
+        return Plot(
+            datasetHandlers.map { it.data() },
+            listOf(layer),
+            bindingCollector.mappings,
+            bindingCollector.settings,
+            plotFeatures,
+            bindingCollector.freeScales
+        )
+    }
 }
 
 /**
@@ -215,7 +236,7 @@ public interface LayerPlotContext : LayerCollectorContext, PlotContext {
             layers,
             bindingCollector.mappings,
             bindingCollector.settings,
-            features,
+            plotFeatures,
             bindingCollector.freeScales
         )
     }

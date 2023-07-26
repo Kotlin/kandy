@@ -4,27 +4,27 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
 
 /**
  * Opens [Layout] context for layout configuration.
  */
-public inline fun LayerPlotContext.layout(block: Layout.() -> Unit) {
-    if (features[Layout.NAME] == null) {
-        features[Layout.NAME] = Layout().apply(block)
+public inline fun PlotContext.layout(block: Layout.() -> Unit) {
+    if (plotFeatures[Layout.NAME] == null) {
+        plotFeatures[Layout.NAME] = Layout().apply(block)
     }
-    (features[Layout.NAME] as Layout).apply(block)
+    (plotFeatures[Layout.NAME] as Layout).apply(block)
 }
 
 /**
  * Plot [Layout] accessor. Returns an existed [Layout]
  * if it has not already been created or creates a new one otherwise.
  */
-public val LayerPlotContext.layout: Layout
+public val PlotContext.layout: Layout
     get() {
-        if (features[Layout.NAME] == null) {
-            features[Layout.NAME] = Layout()
+        if (plotFeatures[Layout.NAME] == null) {
+            plotFeatures[Layout.NAME] = Layout()
         }
-        return features[Layout.NAME] as Layout
+        return plotFeatures[Layout.NAME] as Layout
     }

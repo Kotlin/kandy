@@ -16,8 +16,12 @@ import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 public class BorderLineContext internal constructor(override val parentContext: BindingContext) :
     SelfInvocationContext, SubBindingContext, WithColor, WithType, WithWidthAsSize
 
-public abstract class LayerWithBorderLineContext(parent: LayerCollectorContext) : LayerContext(parent) {
-    public val borderLine: BorderLineContext = BorderLineContext(this)
+public interface WithBorderLineContext {
+    public val borderLine: BorderLineContext
+}
+
+public abstract class LayerWithBorderLineContext(parent: LayerCollectorContext) : LayerContext(parent), WithBorderLineContext {
+    public override val borderLine: BorderLineContext = BorderLineContext(this)
 }
 
 /*
