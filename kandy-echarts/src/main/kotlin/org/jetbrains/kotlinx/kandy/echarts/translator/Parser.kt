@@ -66,12 +66,19 @@ internal class Parser(plot: Plot) {
                 when (aes) {
                     X -> {
                         xAxis = mapping.toAxis(df[mapping.columnID].type())
-                        mapping.getNA()?.let { df = df.fillNA(mapping.columnID).with { it } }
+                        mapping.getNA()?.let { df = df.fillNA(mapping.columnID).with {
+                            it
+                        } }
                     }
 
                     Y -> {
                         yAxis = mapping.toAxis(df[mapping.columnID].type())
-                        mapping.getNA()?.let { df = df.fillNA(mapping.columnID).with { it } }
+                        println(df)
+                        mapping.getNA()?.let {naValue ->
+                            df = df.fillNA(mapping.columnID).with { naValue }
+                        }
+                        println("NA!!!")
+                        println(df)
                     }
                 }
             }
