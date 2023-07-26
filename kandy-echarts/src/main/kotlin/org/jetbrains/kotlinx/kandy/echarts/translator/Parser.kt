@@ -66,15 +66,14 @@ internal class Parser(plot: Plot) {
                 when (aes) {
                     X -> {
                         xAxis = mapping.toAxis(df[mapping.columnID].type())
-                        mapping.getNA()?.let { df = df.fillNA(mapping.columnID).with {
-                            it
-                        } }
+                        mapping.getNA()?.let { naValue ->
+                            df = df.fillNA(mapping.columnID).with { naValue }
+                        }
                     }
 
                     Y -> {
                         yAxis = mapping.toAxis(df[mapping.columnID].type())
-                        println(df)
-                        mapping.getNA()?.let {naValue ->
+                        mapping.getNA()?.let { naValue ->
                             df = df.fillNA(mapping.columnID).with { naValue }
                         }
                         println("NA!!!")
@@ -90,16 +89,16 @@ internal class Parser(plot: Plot) {
                     when {
                         (xAxis == null && aes == X) -> {
                             xAxis = mapping.toAxis(df[mapping.columnID].type())
-                            mapping.getNA()?.let { df = df.fillNA(mapping.columnID).with { it } }
+                            mapping.getNA()?.let { naValue -> df = df.fillNA(mapping.columnID).with { naValue } }
                         }
 
                         (yAxis == null && aes == Y) -> {
                             yAxis = mapping.toAxis(df[mapping.columnID].type())
-                            mapping.getNA()?.let { df = df.fillNA(mapping.columnID).with { it } }
+                            mapping.getNA()?.let { naValue -> df = df.fillNA(mapping.columnID).with { naValue } }
                         }
                     }
                 } else if (mapping is NonPositionalMapping<*, *>) {
-                    mapping.getNA()?.let { df = df.fillNA(mapping.columnID).with { it } }
+                    mapping.getNA()?.let { naValue -> df = df.fillNA(mapping.columnID).with { naValue } }
                     visualMaps.add(
                         mapping.parameters?.scale!!.toVisualMap(
                             aes, mapping.columnID, index,
