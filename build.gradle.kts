@@ -67,7 +67,7 @@ val sonatypePassword: String = System.getenv("SONATYPE_PASSWORD") ?: ""
 
 nexusPublishing {
     packageGroup.set(project.group.toString())
-    repositories {
+    this.repositories {
         sonatype {
             username.set(sonatypeUser)
             password.set(sonatypePassword)
