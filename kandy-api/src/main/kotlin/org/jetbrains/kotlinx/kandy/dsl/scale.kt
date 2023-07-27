@@ -5,7 +5,9 @@
 package org.jetbrains.kotlinx.kandy.dsl
 
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.ir.scale.*
 
 /**
@@ -16,7 +18,7 @@ import org.jetbrains.kotlinx.kandy.ir.scale.*
  * @param transform the transformation of scale.
  * @return new [PositionalContinuousScale] with given limits.
  */
-public fun <DomainType : Comparable<DomainType>> PositionalMappingParameters<DomainType>.continuous(
+public fun <DomainType : Comparable<DomainType>> PositionalMappingParametersContinuous<DomainType>.continuous(
     limits: ClosedRange<DomainType>,
     transform: PositionalTransform? = null
 ): PositionalContinuousScale<DomainType> = PositionalContinuousScale(
@@ -47,7 +49,7 @@ public fun <DomainType : Comparable<DomainType>> Scale.Companion.continuousPos(
  * @param transform the transformation of scale.
  * @return new [PositionalContinuousScale] with given limits.
  */
-public fun <DomainType : Comparable<DomainType>> PositionalMappingParameters<DomainType?>.continuous(
+public fun <DomainType : Comparable<DomainType>> PositionalMappingParametersContinuous<DomainType?>.continuous(
     limits: ClosedRange<DomainType>,
     nullValue: DomainType? = null,
     transform: PositionalTransform? = null
@@ -81,7 +83,7 @@ public fun <DomainType : Comparable<DomainType>> Scale.Companion.continuousPos(
  * @param transform the transformation of scale.
  * @return new [PositionalContinuousScale] with given limits.
  */
-public fun <DomainType> PositionalMappingParameters<DomainType>.continuous(
+public fun <DomainType> PositionalMappingParametersContinuous<DomainType>.continuous(
     min: DomainType? = null,
     max: DomainType? = null,
     transform: PositionalTransform? = null
@@ -114,7 +116,7 @@ public fun <DomainType> Scale.Companion.continuousPos(
  * @param transform the transformation of scale.
  * @return new [PositionalContinuousScale] with given limits.
  */
-public fun <DomainType> PositionalMappingParameters<DomainType?>.continuous(
+public fun <DomainType> PositionalMappingParametersContinuous<DomainType?>.continuous(
     min: DomainType? = null,
     max: DomainType? = null,
     nullValue: DomainType? = null,
@@ -174,7 +176,7 @@ public fun <DomainType> Scale.Companion.categoricalPos(
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given range.
  */
-public fun <DomainType, RangeType : Comparable<RangeType>> NonPositionalMappingParameters<DomainType, RangeType>.continuous(
+public fun <DomainType, RangeType : Comparable<RangeType>> NonPositionalMappingParametersContinuous<DomainType, RangeType>.continuous(
     range: ClosedRange<RangeType>,
     nullValue: RangeType? = null,
     transform: NonPositionalTransform? = null
@@ -214,7 +216,7 @@ public fun <DomainType, RangeType : Comparable<RangeType>> Scale.Companion.conti
  * @return new [NonPositionalContinuousScale] with the given domain and range.
  */
 public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeType>>
-        NonPositionalMappingParameters<DomainType, RangeType>.continuous(
+        NonPositionalMappingParametersContinuous<DomainType, RangeType>.continuous(
     range: ClosedRange<RangeType>? = null,
     domain: ClosedRange<DomainType>,
     nullValue: RangeType? = null,
@@ -259,7 +261,7 @@ public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeTyp
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given domain and range.
  */
-public fun <DomainType, RangeType> NonPositionalMappingParameters<DomainType, RangeType>.continuous(
+public fun <DomainType, RangeType> NonPositionalMappingParametersContinuous<DomainType, RangeType>.continuous(
     rangeMin: RangeType? = null,
     rangeMax: RangeType? = null,
     domainMin: DomainType? = null,

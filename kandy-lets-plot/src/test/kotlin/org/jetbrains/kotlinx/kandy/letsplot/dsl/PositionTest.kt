@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.BAR
@@ -53,8 +53,8 @@ internal class PositionTest {
                     )
                 ),
                 mapOf(
-                    X to PositionalMapping<Int>(X, "x", LetsPlotPositionalMappingParameters()),
-                    Y to PositionalMapping<Int>(Y, "y", LetsPlotPositionalMappingParameters())
+                    X to PositionalMapping<Int>(X, "x", LetsPlotPositionalMappingParametersContinuous()),
+                    Y to PositionalMapping<Int>(Y, "y", LetsPlotPositionalMappingParametersContinuous())
                 ),
                 emptyMap(),
                 emptyMap(),
@@ -112,8 +112,8 @@ internal class PositionTest {
                     )
                 ),
                 mapOf(
-                    X to PositionalMapping<Int>(X, "x", LetsPlotPositionalMappingParameters()),
-                    Y to PositionalMapping<Int>(Y, "y", LetsPlotPositionalMappingParameters())
+                    X to PositionalMapping<Int>(X, "x", LetsPlotPositionalMappingParametersContinuous()),
+                    Y to PositionalMapping<Int>(Y, "y", LetsPlotPositionalMappingParametersContinuous())
                 ),
                 emptyMap(),
                 emptyMap(),

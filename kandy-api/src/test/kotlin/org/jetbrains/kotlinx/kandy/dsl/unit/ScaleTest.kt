@@ -9,7 +9,9 @@ import org.jetbrains.kotlinx.kandy.dsl.categoricalPos
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.continuousPos
 import org.jetbrains.kotlinx.kandy.dsl.impl.CommonNonPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.dsl.impl.CommonNonPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.dsl.impl.CommonPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.dsl.impl.CommonPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.ir.scale.*
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.test.Test
@@ -21,7 +23,7 @@ internal class ScaleTest {
     fun testContinuousPosDefault() {
         val expectedScale = PositionalContinuousScale<Float>(null, null, null, null)
         assertEquals(expectedScale, Scale.continuousPos<Float>())
-        assertEquals(expectedScale, CommonPositionalMappingParameters<Float>().continuous())
+        assertEquals(expectedScale, CommonPositionalMappingParametersContinuous<Float>().continuous())
     }
 
     @Test
@@ -29,7 +31,7 @@ internal class ScaleTest {
         val limits = -5..19
         val expectedScale = PositionalContinuousScale<Int>(limits.first, limits.last, null, null)
         assertEquals(expectedScale, Scale.continuousPos<Int>(limits))
-        assertEquals(expectedScale, CommonPositionalMappingParameters<Int>().continuous(limits))
+        assertEquals(expectedScale, CommonPositionalMappingParametersContinuous<Int>().continuous(limits))
     }
 
     @Test
@@ -53,7 +55,7 @@ internal class ScaleTest {
             null, null, null, null, null, null
         )
         assertEquals(expectedScale, Scale.continuous<Double, Double>())
-        assertEquals(expectedScale, CommonNonPositionalMappingParameters<Double, Double>().continuous())
+        assertEquals(expectedScale, CommonNonPositionalMappingParametersContinuous<Double, Double>().continuous())
     }
 
     @Test
@@ -67,7 +69,7 @@ internal class ScaleTest {
         assertEquals(expectedScale, Scale.continuous(rangeLimits, domainLimits))
         assertEquals(
             expectedScale,
-            CommonNonPositionalMappingParameters<Double, Float>().continuous(
+            CommonNonPositionalMappingParametersContinuous<Double, Float>().continuous(
                 rangeLimits, domainLimits)
         )
     }

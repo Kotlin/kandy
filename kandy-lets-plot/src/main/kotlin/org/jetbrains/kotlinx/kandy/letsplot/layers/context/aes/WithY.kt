@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisParametersWithSetter
 
@@ -20,40 +20,40 @@ public interface WithY : BindingContext {
 
     public fun <T> y(
         column: ColumnReference<T>,
-        parameters: LetsPlotPositionalMappingParameters<T>.() -> Unit = {}
+        parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> {
-        return addPositionalMapping<T>(Y, column.name(), LetsPlotPositionalMappingParameters<T>().apply(parameters))
+        return addPositionalMapping<T>(Y, column.name(), LetsPlotPositionalMappingParametersContinuous<T>().apply(parameters))
     }
 
     public fun y(
         column: String,
-        parameters: LetsPlotPositionalMappingParameters<Any?>.() -> Unit = {}
+        parameters: LetsPlotPositionalMappingParametersContinuous<Any?>.() -> Unit = {}
     ): PositionalMapping<Any?> {
-        return addPositionalMapping<Any?>(Y, column, LetsPlotPositionalMappingParameters<Any?>().apply(parameters))
+        return addPositionalMapping<Any?>(Y, column, LetsPlotPositionalMappingParametersContinuous<Any?>().apply(parameters))
     }
 
     public fun <T> y(
         values: Iterable<T>,
         name: String? = null,
-        parameters: LetsPlotPositionalMappingParameters<T>.() -> Unit = {}
+        parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(
             Y,
             values.toList(),
             name,
-            LetsPlotPositionalMappingParameters<T>().apply(parameters)
+            LetsPlotPositionalMappingParametersContinuous<T>().apply(parameters)
         )
     }
 
     public fun <T> y(
         values: DataColumn<T>,
         //name: String? = null,
-        parameters: LetsPlotPositionalMappingParameters<T>.() -> Unit = {}
+        parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(
             Y,
             values,
-            LetsPlotPositionalMappingParameters<T>().apply(parameters)
+            LetsPlotPositionalMappingParametersContinuous<T>().apply(parameters)
         )
     }
 
@@ -61,8 +61,8 @@ public interface WithY : BindingContext {
     public val y: AxisParametersWithSetter
         get() {
             return AxisParametersWithSetter(bindingCollector.freeScales.getOrPut(Y) {
-                PositionalFreeScale(Y, LetsPlotPositionalMappingParameters<Any?>())
-            }.parameters as LetsPlotPositionalMappingParameters<Any?>, Y, this)
+                PositionalFreeScale(Y, LetsPlotPositionalMappingParametersContinuous<Any?>())
+            }.parameters as LetsPlotPositionalMappingParametersContinuous<Any?>, Y, this)
         }
 
     public fun y(

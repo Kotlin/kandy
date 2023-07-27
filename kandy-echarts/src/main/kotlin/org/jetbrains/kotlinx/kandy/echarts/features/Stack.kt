@@ -31,27 +31,27 @@ internal data class StackFeature internal constructor(val name: String) : LayerF
  * Stack property for [line][org.jetbrains.kotlinx.kandy.echarts.layers.line].
  */
 public var LineContext.stack: Stack
-    get() = Stack((features[StackFeature.FEATURE_NAME] as StackFeature).name)
+    get() = Stack((layerFeatures[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
-        features[StackFeature.FEATURE_NAME] = StackFeature(value.name)
+        layerFeatures[StackFeature.FEATURE_NAME] = StackFeature(value.name)
     }
 
 /**
  * Stack property for [area][org.jetbrains.kotlinx.kandy.echarts.layers.area].
  */
 public var AreaContext.stack: Stack
-    get() = Stack((features[StackFeature.FEATURE_NAME] as StackFeature).name)
+    get() = Stack((layerFeatures[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
-        features[StackFeature.FEATURE_NAME] = StackFeature(value.name)
+        layerFeatures[StackFeature.FEATURE_NAME] = StackFeature(value.name)
     }
 
 /**
  * Stack property for [bars][org.jetbrains.kotlinx.kandy.echarts.layers.bars].
  */
 public var BarContext.stack: Stack
-    get() = Stack((features[StackFeature.FEATURE_NAME] as StackFeature).name)
+    get() = Stack((layerFeatures[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
-        features[StackFeature.FEATURE_NAME] = StackFeature(value.name)
+        layerFeatures[StackFeature.FEATURE_NAME] = StackFeature(value.name)
     }
 
 /**

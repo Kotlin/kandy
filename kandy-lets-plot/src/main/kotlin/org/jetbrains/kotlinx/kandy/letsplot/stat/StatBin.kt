@@ -81,7 +81,7 @@ public class HistogramPlotContext(
 ) : SingleLayerPlotContext, BarsContextInterface, BinStatContext {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val borderLine: BorderLineContext = BorderLineContext(this)
-    override val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
+    override val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 
     //public override val layers: MutableList<Layer> = mutableListOf()
     override val plotContext: PlotContext = this

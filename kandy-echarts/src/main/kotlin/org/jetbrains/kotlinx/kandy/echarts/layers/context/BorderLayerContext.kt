@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.aes.BORDER_COLOR
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.BORDER_TYPE
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.BORDER_WIDTH
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParameters
-import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMapping
+import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMappingCont
 import org.jetbrains.kotlinx.kandy.echarts.settings.LineType
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
@@ -51,23 +51,23 @@ public class BorderLayerContext(private val context: BindingContext) {
 
     public fun <T> color(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BORDER_COLOR, column, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BORDER_COLOR, column, params)
 
     public fun <T> color(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BORDER_COLOR, column, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BORDER_COLOR, column, params)
 
     public fun color(
         column: String, params: EchartsNonPositionalMappingParameters<*, Color>.() -> Unit = {}
-    ): NonPositionalMapping<*, Color> = context.nonPosMapping(BORDER_COLOR, column, params)
+    ): NonPositionalMapping<*, Color> = context.nonPosMappingCont(BORDER_COLOR, column, params)
 
     public fun <T> color(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BORDER_COLOR, values, name, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BORDER_COLOR, values, name, params)
 
     public fun <T> color(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BORDER_COLOR, values, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BORDER_COLOR, values, params)
 
 
     public var width: Number? = null
@@ -77,23 +77,23 @@ public class BorderLayerContext(private val context: BindingContext) {
 
     public fun <T> width(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BORDER_WIDTH, column, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BORDER_WIDTH, column, params)
 
     public fun <T> width(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BORDER_WIDTH, column, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BORDER_WIDTH, column, params)
 
     public fun width(
         column: String, params: EchartsNonPositionalMappingParameters<*, Number>.() -> Unit = {}
-    ): NonPositionalMapping<*, Number> = context.nonPosMapping(BORDER_WIDTH, column, params)
+    ): NonPositionalMapping<*, Number> = context.nonPosMappingCont(BORDER_WIDTH, column, params)
 
     public fun <T> width(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BORDER_WIDTH, values, name, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BORDER_WIDTH, values, name, params)
 
     public fun <T> width(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BORDER_WIDTH, values, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BORDER_WIDTH, values, params)
 
 
     public var type: LineType? = null
@@ -103,23 +103,23 @@ public class BorderLayerContext(private val context: BindingContext) {
 
     public fun <T> type(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, LineType>.() -> Unit = {}
-    ): NonPositionalMapping<T, LineType> = context.nonPosMapping(BORDER_TYPE, column, params)
+    ): NonPositionalMapping<T, LineType> = context.nonPosMappingCont(BORDER_TYPE, column, params)
 
     public fun <T> type(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, LineType>.() -> Unit = {}
-    ): NonPositionalMapping<T, LineType> = context.nonPosMapping(BORDER_TYPE, column, params)
+    ): NonPositionalMapping<T, LineType> = context.nonPosMappingCont(BORDER_TYPE, column, params)
 
     public fun type(
         column: String, params: EchartsNonPositionalMappingParameters<*, LineType>.() -> Unit = {}
-    ): NonPositionalMapping<*, LineType> = context.nonPosMapping(BORDER_TYPE, column, params)
+    ): NonPositionalMapping<*, LineType> = context.nonPosMappingCont(BORDER_TYPE, column, params)
 
     public fun <T> type(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, LineType>.() -> Unit = {}
-    ): NonPositionalMapping<T, LineType> = context.nonPosMapping(BORDER_TYPE, values, name, params)
+    ): NonPositionalMapping<T, LineType> = context.nonPosMappingCont(BORDER_TYPE, values, name, params)
 
     public fun <T> type(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, LineType>.() -> Unit = {}
-    ): NonPositionalMapping<T, LineType> = context.nonPosMapping(BORDER_TYPE, values, params)
+    ): NonPositionalMapping<T, LineType> = context.nonPosMappingCont(BORDER_TYPE, values, params)
 
     public var radius: LineType? = null
         set(value) {
@@ -128,21 +128,21 @@ public class BorderLayerContext(private val context: BindingContext) {
 
     public fun <T> radius(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BORDER_TYPE, column, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BORDER_TYPE, column, params)
 
     public fun <T> radius(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BORDER_TYPE, column, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BORDER_TYPE, column, params)
 
     public fun radius(
         column: String, params: EchartsNonPositionalMappingParameters<*, Number>.() -> Unit = {}
-    ): NonPositionalMapping<*, Number> = context.nonPosMapping(BORDER_TYPE, column, params)
+    ): NonPositionalMapping<*, Number> = context.nonPosMappingCont(BORDER_TYPE, column, params)
 
     public fun <T> radius(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BORDER_TYPE, values, name, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BORDER_TYPE, values, name, params)
 
     public fun <T> radius(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BORDER_TYPE, values, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BORDER_TYPE, values, params)
 }

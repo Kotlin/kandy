@@ -45,7 +45,7 @@ public interface BaseContext {
 }
 
 public interface LayerContextInterface: BindingContext {
-    public val features: MutableMap<FeatureName, LayerFeature>
+    public val layerFeatures: MutableMap<FeatureName, LayerFeature>
     public val requiredAes: Set<AesName>
     public fun toLayer(datasetIndex: Int, geom: Geom, layersInheritMappings: Boolean): Layer {
         return Layer(
@@ -53,7 +53,7 @@ public interface LayerContextInterface: BindingContext {
             geom,
             bindingCollector.mappings,
             bindingCollector.settings,
-            features,
+            layerFeatures,
             bindingCollector.freeScales,
             layersInheritMappings
         )
@@ -64,12 +64,12 @@ public interface LayerContextInterface: BindingContext {
  * Context that defines the configuration of the layer.
  *
  * @param parent parental [LayerCollectorContext].
- * @property features [MutableMap] of feature names to corresponding layer features.
+ * @property layerFeatures [MutableMap] of feature names to corresponding layer features.
  */
 public abstract class LayerContext(parent: LayerCollectorContext) : LayerContextInterface {
     override val bindingCollector: BindingCollector = BindingCollector()
     override var datasetIndex: Int = parent.datasetIndex
-    public override val features: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
+    public override val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
     override val plotContext: PlotContext = parent.plotContext
 
     private var firstMapping = true

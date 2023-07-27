@@ -50,10 +50,10 @@ internal class CommonTest {
                         POINT,
                         mappings = mapOf(
                             Y to PositionalMapping<Float>(
-                                Y, srcY.name(), CommonPositionalMappingParameters()
+                                Y, srcY.name(), CommonPositionalMappingParametersContinuous()
                             ),
                             COLOR to NonPositionalMapping<String, Color>(
-                                COLOR, type.name(), CommonNonPositionalMappingParameters()
+                                COLOR, type.name(), CommonNonPositionalMappingParametersContinuous()
                             ),
                         ),
                         settings = mapOf(
@@ -65,7 +65,7 @@ internal class CommonTest {
                 ),
                 mapOf(
                     X to PositionalMapping<Float>(
-                        X, srcX.name(), CommonPositionalMappingParameters()
+                        X, srcX.name(), CommonPositionalMappingParametersContinuous()
                     ),
                 ),
                 emptyMap(),
@@ -108,17 +108,17 @@ internal class CommonTest {
         }
 
         val xMapping = PositionalMapping<Double>(
-            X, width.name(), CommonPositionalMappingParameters()
+            X, width.name(), CommonPositionalMappingParametersContinuous()
         )
         val yMapping = PositionalMapping<Float>(
-            Y, height.name(), CommonPositionalMappingParameters<Float>(
+            Y, height.name(), CommonPositionalMappingParametersContinuous<Float>(
                 PositionalContinuousScale(1f,15f, null, null)
             )
         )
         val colorMapping = NonPositionalMapping<String, Color>(
             COLOR,
             type.name(),
-            CommonNonPositionalMappingParameters(
+            CommonNonPositionalMappingParametersContinuous(
                 NonPositionalCategoricalScale<String, Color>(
                     domainCategories = listOf("A", "B"),
                     rangeValues = listOf(Color.RED, Color.named("blue")),
@@ -136,7 +136,7 @@ internal class CommonTest {
                         mappings = mapOf(
                             COLOR to colorMapping,
                             SIZE to NonPositionalMapping<Int, Double>(
-                                SIZE, noa.name(), CommonNonPositionalMappingParameters()
+                                SIZE, noa.name(), CommonNonPositionalMappingParametersContinuous()
                             )
                         ),
                         settings = mapOf(),

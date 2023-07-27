@@ -27,7 +27,7 @@ internal class LayerWrapperTest {
             FILL to NonPositionalMapping<Int, Color>(
                 FILL,
                 "F",
-                LetsPlotNonPositionalMappingParameters()
+                LetsPlotNonPositionalMappingParametersContinuous()
             )
         )
         val layer = Layer(
@@ -73,17 +73,17 @@ internal class LayerWrapperTest {
             X to PositionalMapping<Float>(
                 X,
                 "TIME_T",
-                LetsPlotPositionalMappingParameters()
+                LetsPlotPositionalMappingParametersContinuous()
             ),
             Y to PositionalMapping<Double>(
                 Y,
                 "VAL_V",
-                LetsPlotPositionalMappingParameters()
+                LetsPlotPositionalMappingParametersContinuous()
             ),
             FILL to NonPositionalMapping(
                 FILL,
                 "BAFGA",
-                LetsPlotNonPositionalMappingParameters(
+                LetsPlotNonPositionalMappingParametersContinuous(
                     NonPositionalCategoricalScale<String, Color>(
                         null,
                         rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY),
@@ -163,10 +163,10 @@ internal class LayerWrapperTest {
         )
         val mappings: Map<AesName, Mapping> = mapOf(
             X to PositionalMapping<Int>(
-                X, "v1", LetsPlotPositionalMappingParameters()
+                X, "v1", LetsPlotPositionalMappingParametersContinuous()
             ),
             Y to PositionalMapping<Int>(
-                Y, "v2", LetsPlotPositionalMappingParameters()
+                Y, "v2", LetsPlotPositionalMappingParametersContinuous()
             )
         )
         val layer = Layer(

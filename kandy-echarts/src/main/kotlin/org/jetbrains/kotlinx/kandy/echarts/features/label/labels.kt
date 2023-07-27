@@ -54,7 +54,7 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.context.*
  */
 public fun LineContext.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
-    if (label != null) features[LabelFeature.FEATURE_NAME] = label
+    if (label != null) layerFeatures[LabelFeature.FEATURE_NAME] = label
 }
 
 /**
@@ -103,7 +103,7 @@ public fun LineContext.label(block: LabelContext.() -> Unit) {
  */
 public fun AreaContext.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
-    if (label != null) features[LabelFeature.FEATURE_NAME] = label
+    if (label != null) layerFeatures[LabelFeature.FEATURE_NAME] = label
 }
 
 /**
@@ -148,7 +148,7 @@ public fun AreaContext.label(block: LabelContext.() -> Unit) {
  */
 public fun BarContext.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
-    if (label != null) features[LabelFeature.FEATURE_NAME] = label
+    if (label != null) layerFeatures[LabelFeature.FEATURE_NAME] = label
 }
 
 /**
@@ -192,7 +192,7 @@ public fun BarContext.label(block: LabelContext.() -> Unit) {
  */
 public fun PointContext.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
-    if (label != null) features[LabelFeature.FEATURE_NAME] = label
+    if (label != null) layerFeatures[LabelFeature.FEATURE_NAME] = label
 }
 
 /**
@@ -235,5 +235,5 @@ public fun PointContext.label(block: LabelContext.() -> Unit) {
  */
 public fun PieContext.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
-    if (label != null) features[LabelFeature.FEATURE_NAME] = label
+    if (label != null) layerFeatures[LabelFeature.FEATURE_NAME] = label
 }

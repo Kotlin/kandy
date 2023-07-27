@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.kandy.echarts.layers.aes
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.echarts.scale.posMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
@@ -19,21 +19,21 @@ public interface WithX : BindingContext {
     }
 
     public fun <T> x(
-        column: ColumnReference<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
+        column: ColumnReference<T>, params: EchartsPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> = posMapping(X, column, params)
 
     public fun <T> x(
-        column: KProperty<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
+        column: KProperty<T>, params: EchartsPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> = posMapping(X, column, params)
 
     public fun <T> x(
-        values: Iterable<T>, name: String? = null, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
+        values: Iterable<T>, name: String? = null, params: EchartsPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> = posMapping(X, values, name, params)
 
-    public fun x(column: String, params: EchartsPositionalMappingParameters<*>.() -> Unit = {}): PositionalMapping<*> =
+    public fun x(column: String, params: EchartsPositionalMappingParametersContinuous<*>.() -> Unit = {}): PositionalMapping<*> =
         posMapping(X, column, params)
 
     public fun <T> x(
-        values: DataColumn<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
+        values: DataColumn<T>, params: EchartsPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> = posMapping(X, values, params)
 }

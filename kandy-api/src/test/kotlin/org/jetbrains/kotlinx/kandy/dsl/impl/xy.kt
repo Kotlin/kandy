@@ -13,8 +13,11 @@ fun <T> PlotContext.x(value: T): PositionalSetting<T> {
     return addPositionalSetting(X, value)
 }
 
-fun <T> PlotContext.x(column: ColumnReference<T>, parameters: CommonPositionalMappingParameters<T>.() -> Unit = {}): PositionalMapping<T> {
-    return addPositionalMapping<T>(X, column.name(), CommonPositionalMappingParameters<T>().apply(parameters))
+fun <T> PlotContext.x(
+    column: ColumnReference<T>,
+    parameters: CommonPositionalMappingParametersContinuous<T>.() -> Unit = {}
+): PositionalMapping<T> {
+    return addPositionalMapping<T>(X, column.name(), CommonPositionalMappingParametersContinuous<T>().apply(parameters))
 }
 
 
@@ -22,6 +25,9 @@ fun <T> PlotContext.y(value: T): PositionalSetting<T> {
     return addPositionalSetting(Y, value)
 }
 
-fun <T> PlotContext.y(column: ColumnReference<T>, parameters: CommonPositionalMappingParameters<T>.() -> Unit = {}): PositionalMapping<T> {
-    return addPositionalMapping<T>(Y, column.name(), CommonPositionalMappingParameters<T>().apply(parameters))
+fun <T> PlotContext.y(
+    column: ColumnReference<T>,
+    parameters: CommonPositionalMappingParametersContinuous<T>.() -> Unit = {}
+): PositionalMapping<T> {
+    return addPositionalMapping<T>(Y, column.name(), CommonPositionalMappingParametersContinuous<T>().apply(parameters))
 }

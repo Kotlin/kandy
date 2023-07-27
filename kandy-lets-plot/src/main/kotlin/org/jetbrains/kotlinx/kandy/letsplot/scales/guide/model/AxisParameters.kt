@@ -6,9 +6,9 @@ package org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
-import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalContinuousScale
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
 
 /**
  * Parameters of positional mapping unattached to mapping.
@@ -17,8 +17,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingPa
  * @property axis axis settings.
  */
 public open class AxisParameters(
-    private val mappingParameters: LetsPlotPositionalMappingParameters<Any?>,
-) : PositionalMappingParameters<Any?> by mappingParameters {
+    private val mappingParameters: LetsPlotPositionalMappingParametersContinuous<Any?>,
+) : PositionalMappingParametersContinuous<Any?> by mappingParameters {
     public var limits: ClosedRange<*>? = null
         set(value) {
             mappingParameters.scale = PositionalContinuousScale(
@@ -37,7 +37,7 @@ public open class AxisParameters(
  * [AxisParameters] with additional setter for related aes.
  */
 public class AxisParametersWithSetter(
-    mappingParameters: LetsPlotPositionalMappingParameters<Any?>,
+    mappingParameters: LetsPlotPositionalMappingParametersContinuous<Any?>,
     private val aesName: AesName,
     private val bindingContext: BindingContext,
 ) : AxisParameters(mappingParameters) {

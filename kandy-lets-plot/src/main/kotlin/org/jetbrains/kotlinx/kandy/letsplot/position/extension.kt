@@ -14,5 +14,5 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 public var LayerContextInterface.position: Position
     get() = Position.Identity // todo
     set(pos) {
-        features[Position.FEATURE_NAME] = pos
+        layerFeatures[Position.FEATURE_NAME] = pos
     }

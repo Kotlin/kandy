@@ -18,9 +18,14 @@ public interface MappingParameters {
 }
 
 public interface PositionalMappingParameters<DomainType>: MappingParameters {
-    public override var scale: PositionalScale<out DomainType>
+    public override val scale: PositionalScale<out DomainType>
 }
 
+public interface PositionalMappingParametersContinuous<DomainType>: PositionalMappingParameters<DomainType>
+
 public interface NonPositionalMappingParameters<DomainType, RangeType>: MappingParameters {
-    public override var scale: NonPositionalScale<out DomainType, out RangeType>
+    public override val scale: NonPositionalScale<out DomainType, out RangeType>
 }
+
+public interface NonPositionalMappingParametersContinuous<DomainType, RangeType>:
+    NonPositionalMappingParameters<DomainType, RangeType>
