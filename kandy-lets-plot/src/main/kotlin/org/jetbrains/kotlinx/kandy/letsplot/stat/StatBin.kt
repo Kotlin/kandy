@@ -87,7 +87,7 @@ public class HistogramPlotContext(
     override val plotContext: PlotContext = this
     override val datasetIndex: Int = 0
     override val layer: Layer
-        get() = toLayer(datasetIndex, BAR, true)
+        get() = toLayer(BAR, true)
     override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(
         DatasetHandler(statBin.data)
     )

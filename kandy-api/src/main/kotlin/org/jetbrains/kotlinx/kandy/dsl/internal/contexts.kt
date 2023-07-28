@@ -47,7 +47,7 @@ public interface BaseContext {
 public interface LayerContextInterface: BindingContext {
     public val layerFeatures: MutableMap<FeatureName, LayerFeature>
     public val requiredAes: Set<AesName>
-    public fun toLayer(datasetIndex: Int, geom: Geom, layersInheritMappings: Boolean): Layer {
+    public fun toLayer(geom: Geom, layersInheritMappings: Boolean): Layer {
         return Layer(
             datasetIndex,
             geom,
@@ -178,7 +178,7 @@ public interface LayerCollectorContext : BaseContext {
             plotContext
         } else null)
         layers.add(
-            context.toLayer(datasetIndex, geom, layersInheritMappings)
+            context.toLayer(geom, layersInheritMappings)
         )
     }
 }
