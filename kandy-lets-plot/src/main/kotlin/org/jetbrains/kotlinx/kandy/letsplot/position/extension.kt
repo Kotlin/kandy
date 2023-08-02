@@ -4,15 +4,15 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.position
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 
 /**
  * Position adjustment of this layer.
  *
  * @see [Position]
  */
-public var LayerContext.position: Position
+public var LayerContextInterface.position: Position
     get() = Position.Identity // todo
     set(pos) {
-        features[Position.FEATURE_NAME] = pos
+        layerFeatures[Position.FEATURE_NAME] = pos
     }

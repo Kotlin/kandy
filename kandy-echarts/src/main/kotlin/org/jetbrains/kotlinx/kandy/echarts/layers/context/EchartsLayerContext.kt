@@ -23,20 +23,20 @@ public sealed class EchartsLayerContext(parent: LayerCollectorContext) : LayerCo
 
     public operator fun Animation.invoke(block: Animation.() -> Unit): Animation = apply(block).also {
         it.toAnimationLayerFeature()?.let { feature ->
-            this@EchartsLayerContext.features[AnimationLayerFeature.FEATURE_NAME] = feature
+            this@EchartsLayerContext.layerFeatures[AnimationLayerFeature.FEATURE_NAME] = feature
         }
     }
 
     public operator fun AnimationPie.invoke(block: AnimationPie.() -> Unit): AnimationPie = apply(block).also {
         it.toAnimationFeature()?.let { feature ->
-            this@EchartsLayerContext.features[AnimationLayerFeature.FEATURE_NAME] = feature
+            this@EchartsLayerContext.layerFeatures[AnimationLayerFeature.FEATURE_NAME] = feature
         }
     }
 
     public operator fun AnimationBoxplotCandlestick.invoke(block: AnimationBoxplotCandlestick.() -> Unit): AnimationBoxplotCandlestick =
         apply(block).also {
             it.toAnimationFeature()?.let { feature ->
-                this@EchartsLayerContext.features[AnimationLayerFeature.FEATURE_NAME] = feature
+                this@EchartsLayerContext.layerFeatures[AnimationLayerFeature.FEATURE_NAME] = feature
             }
         }
 }

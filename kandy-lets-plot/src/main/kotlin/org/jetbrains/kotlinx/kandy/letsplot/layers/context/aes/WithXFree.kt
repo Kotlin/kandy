@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalFreeScale
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisParameters
 
@@ -16,8 +16,8 @@ public interface WithXFree : BindingContext {
     public val x: AxisParameters
         get() {
             return AxisParameters(bindingCollector.freeScales.getOrPut(X) {
-                PositionalFreeScale(X, LetsPlotPositionalMappingParameters<Any?>())
-            }.parameters as LetsPlotPositionalMappingParameters<Any?>)
+                PositionalFreeScale(X, LetsPlotPositionalMappingParametersContinuous<Any?>())
+            }.parameters as LetsPlotPositionalMappingParametersContinuous<Any?>)
         }
 
     public fun x(

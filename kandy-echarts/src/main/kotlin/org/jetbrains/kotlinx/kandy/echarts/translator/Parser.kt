@@ -7,11 +7,11 @@ package org.jetbrains.kotlinx.kandy.echarts.translator
 import kotlinx.datetime.*
 import org.jetbrains.kotlinx.dataframe.api.fillNA
 import org.jetbrains.kotlinx.dataframe.api.map
-import org.jetbrains.kotlinx.dataframe.api.withValue
+import org.jetbrains.kotlinx.dataframe.api.with
+import org.jetbrains.kotlinx.kandy.echarts.layers.*
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.NAME
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.X
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.Y
-import org.jetbrains.kotlinx.kandy.echarts.layers.*
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.*
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.*
@@ -66,12 +66,18 @@ internal class Parser(plot: Plot) {
                 when (aes) {
                     X -> {
                         xAxis = mapping.toAxis(df[mapping.columnID].type())
-                        mapping.getNA()?.let { df = df.fillNA(mapping.columnID).withValue(it) }
+                        mapping.getNA()?.let { naValue ->
+                            df = df.fillNA(mapping.columnID).with { naValue }
+                        }
                     }
 
                     Y -> {
                         yAxis = mapping.toAxis(df[mapping.columnID].type())
-                        mapping.getNA()?.let { df = df.fillNA(mapping.columnID).withValue(it) }
+                        mapping.getNA()?.let { naValue ->
+                            df = df.fillNA(mapping.columnID).with { naValue }
+                        }
+                        println("NA!!!")
+                        println(df)
                     }
                 }
             }
@@ -83,16 +89,16 @@ internal class Parser(plot: Plot) {
                     when {
                         (xAxis == null && aes == X) -> {
                             xAxis = mapping.toAxis(df[mapping.columnID].type())
-                            mapping.getNA()?.let { df = df.fillNA(mapping.columnID).withValue(it) }
+                            mapping.getNA()?.let { naValue -> df = df.fillNA(mapping.columnID).with { naValue } }
                         }
 
                         (yAxis == null && aes == Y) -> {
                             yAxis = mapping.toAxis(df[mapping.columnID].type())
-                            mapping.getNA()?.let { df = df.fillNA(mapping.columnID).withValue(it) }
+                            mapping.getNA()?.let { naValue -> df = df.fillNA(mapping.columnID).with { naValue } }
                         }
                     }
                 } else if (mapping is NonPositionalMapping<*, *>) {
-                    mapping.getNA()?.let { df = df.fillNA(mapping.columnID).withValue(it) }
+                    mapping.getNA()?.let { naValue -> df = df.fillNA(mapping.columnID).with { naValue } }
                     visualMaps.add(
                         mapping.parameters?.scale!!.toVisualMap(
                             aes, mapping.columnID, index,

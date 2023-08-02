@@ -51,17 +51,17 @@ internal class AreaTest {
                         AREA,
                         mapOf(
                             X to PositionalMapping<Int>(
-                                X, time.name(), LetsPlotPositionalMappingParameters()
+                                X, time.name(), LetsPlotPositionalMappingParametersContinuous()
                             ),
                             Y to PositionalMapping<Int>(
-                                Y, time.name(), LetsPlotPositionalMappingParameters(
+                                Y, time.name(), LetsPlotPositionalMappingParametersContinuous(
                                     PositionalContinuousScale(null, null, null, null)
                                 )
                             ),
                             FILL to NonPositionalMapping<String, Color>(
                                 FILL,
                                 type.name(),
-                                LetsPlotNonPositionalMappingParameters(
+                                LetsPlotNonPositionalMappingParametersContinuous(
                                     NonPositionalCategoricalScale<String, Color>(
                                         null,
                                         rangeValues = listOf(Color.RED, Color.BLUE),

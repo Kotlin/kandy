@@ -4,14 +4,14 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Reversed
 
 /**
  * Whether to reverse axes.
  */
-public var LayerContext.reversed: Boolean
+public var LayerContextInterface.reversed: Boolean
     get() = true
     set(value) {
-        features[Reversed.FEATURE_NAME] = Reversed(value)
+        layerFeatures[Reversed.FEATURE_NAME] = Reversed(value)
     }

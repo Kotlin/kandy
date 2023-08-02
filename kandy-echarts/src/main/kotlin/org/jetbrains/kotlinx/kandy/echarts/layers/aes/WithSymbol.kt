@@ -7,11 +7,10 @@ package org.jetbrains.kotlinx.kandy.echarts.layers.aes
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParameters
-import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMapping
+import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParametersCategorical
+import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMappingCat
 import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
-import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import kotlin.reflect.KProperty
 
 public interface WithSymbol : BindingContext {
@@ -22,22 +21,22 @@ public interface WithSymbol : BindingContext {
         }
 
     public fun <T> symbol(
-        column: ColumnReference<T>, parameters: EchartsNonPositionalMappingParameters<T, Symbol>.() -> Unit = {}
-    ): NonPositionalMapping<T, Symbol> = nonPosMapping(SYMBOL, column, parameters)
+        column: ColumnReference<T>, parameters: EchartsNonPositionalMappingParametersCategorical<T, Symbol>.() -> Unit = {}
+    ): NonPositionalMapping<T, Symbol> = nonPosMappingCat(SYMBOL, column, parameters)
 
     public fun <T> symbol(
-        column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Symbol>.() -> Unit = {}
-    ): NonPositionalMapping<T, Symbol> = nonPosMapping(SYMBOL, column, params)
+        column: KProperty<T>, params: EchartsNonPositionalMappingParametersCategorical<T, Symbol>.() -> Unit = {}
+    ): NonPositionalMapping<T, Symbol> = nonPosMappingCat(SYMBOL, column, params)
 
     public fun <T> symbol(
-        values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Symbol>.() -> Unit = {}
-    ): NonPositionalMapping<T, Symbol> = nonPosMapping(SYMBOL, values, name, params)
+        values: Iterable<T>, name: String? = null, params: EchartsNonPositionalMappingParametersCategorical<T, Symbol>.() -> Unit = {}
+    ): NonPositionalMapping<T, Symbol> = nonPosMappingCat(SYMBOL, values, name, params)
 
     public fun symbol(
-        column: String, params: EchartsNonPositionalMappingParameters<*, Symbol>.() -> Unit = {}
-    ): NonPositionalMapping<*, Symbol> = nonPosMapping(SYMBOL, column, params)
+        column: String, params: EchartsNonPositionalMappingParametersCategorical<*, Symbol>.() -> Unit = {}
+    ): NonPositionalMapping<*, Symbol> = nonPosMappingCat(SYMBOL, column, params)
 
     public fun <T> symbol(
-        values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Symbol>.() -> Unit = {}
-    ): NonPositionalMapping<T, Symbol> = nonPosMapping(SYMBOL, values, params)
+        values: DataColumn<T>, params: EchartsNonPositionalMappingParametersCategorical<T, Symbol>.() -> Unit = {}
+    ): NonPositionalMapping<T, Symbol> = nonPosMappingCat(SYMBOL, values, params)
 }

@@ -60,7 +60,7 @@ public fun LayerContext.value(column: KProperty<*>): String {
 public fun LayerContext.tooltips(
     hide: Boolean = false,
 ) {
-    features[LayerTooltips.FEATURE_NAME] = LayerTooltips(
+    layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         listOf(),
         null,
         listOf(),
@@ -95,7 +95,7 @@ public inline fun LayerContext.tooltips(
     hide: Boolean = false,
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
-    features[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
+    layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
         variables.map { datasetHandler.addColumn(it) },
         title,
         anchor,
@@ -126,7 +126,7 @@ public fun LayerContext.tooltips(
     minWidth: Double? = null,
     hide: Boolean = false,
 ) {
-    features[LayerTooltips.FEATURE_NAME] = LayerTooltips(
+    layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it) },
         null,
         formats.toList(),
@@ -154,7 +154,7 @@ public fun LayerContext.tooltips(
     minWidth: Double? = null,
     hide: Boolean = false,
 ) {
-    features[LayerTooltips.FEATURE_NAME] = LayerTooltips(
+    layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.addColumn(it) },
         null,
         formats.map { (column, format) -> datasetHandler.takeColumn(column.name()) to format },
@@ -186,7 +186,7 @@ public fun LayerContext.tooltips(
     minWidth: Double? = null,
     hide: Boolean = false,
 ) {
-    features[LayerTooltips.FEATURE_NAME] = LayerTooltips(
+    layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it.name) },
         null,
         formats.map { (property, format) ->  datasetHandler.takeColumn(property.name) to format },

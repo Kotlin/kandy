@@ -69,7 +69,7 @@ internal class BindingTest {
                 X to PositionalMapping<Double>(
                     X,
                     mockSource.name(),
-                    CommonPositionalMappingParameters()
+                    CommonPositionalMappingParametersContinuous()
                 )
             ),
             context.bindingCollector.mappings
@@ -90,7 +90,7 @@ internal class BindingTest {
                 SIZE to NonPositionalMapping<Int, String>(
                     SIZE,
                     mockSource.name(),
-                    CommonNonPositionalMappingParameters()
+                    CommonNonPositionalMappingParametersContinuous()
                 )
             ),
             context.bindingCollector.mappings
@@ -110,7 +110,7 @@ internal class BindingTest {
             mapOf(
                 Y to PositionalMapping<String>(
                     Y, mockSource.name(),
-                    CommonPositionalMappingParameters()
+                    CommonPositionalMappingParametersContinuous()
                 )
             ),
             context.bindingCollector.mappings
@@ -131,7 +131,7 @@ internal class BindingTest {
         assertEquals<Map<AesName, Mapping>>(
             mapOf(
                 X to PositionalMapping<Float>(
-                    X, mockSource.name(), CommonPositionalMappingParameters(
+                    X, mockSource.name(), CommonPositionalMappingParametersContinuous(
                         PositionalContinuousScale<Float>(null, null, null, null))
                 )
             ),
@@ -154,7 +154,7 @@ internal class BindingTest {
         assertEquals<Map<AesName, Mapping>>(
             mapOf(
                 COLOR to NonPositionalMapping<String, Color>(
-                    COLOR, mockSource.name(), CommonNonPositionalMappingParameters(
+                    COLOR, mockSource.name(), CommonNonPositionalMappingParametersContinuous(
                         NonPositionalCategoricalScale<String, Color>(null, null)
                     )
                 )
@@ -183,7 +183,7 @@ internal class BindingTest {
                 Y to PositionalMapping<String>(
                     Y,
                     mockSource.name(),
-                    CommonPositionalMappingParameters(
+                    CommonPositionalMappingParametersContinuous(
                         PositionalCategoricalScale(listOf("cat1", "cat2", "cat3"))
                     )
                 )
@@ -211,7 +211,7 @@ internal class BindingTest {
                 COLOR to NonPositionalMapping<Int, Color>(
                     COLOR,
                     mockSource.name(),
-                    CommonNonPositionalMappingParameters(
+                    CommonNonPositionalMappingParametersContinuous(
                         NonPositionalContinuousScale(
                             null,
                             null,

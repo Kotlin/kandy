@@ -22,9 +22,9 @@ interface WithX : BindingContext {
 
     fun <T> x(
         column: ColumnReference<T>,
-        parameters: CommonPositionalMappingParameters<T>.() -> Unit = {}
+        parameters: CommonPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> {
-        return addPositionalMapping<T>(X, column.name(), CommonPositionalMappingParameters<T>().apply(parameters))
+        return addPositionalMapping<T>(X, column.name(), CommonPositionalMappingParametersContinuous<T>().apply(parameters))
     }
 }
 
@@ -35,9 +35,9 @@ interface WithY : BindingContext {
 
     fun <T> y(
         column: ColumnReference<T>,
-        parameters: CommonPositionalMappingParameters<T>.() -> Unit = {}
+        parameters: CommonPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> {
-        return addPositionalMapping<T>(Y, column.name(), CommonPositionalMappingParameters<T>().apply(parameters))
+        return addPositionalMapping<T>(Y, column.name(), CommonPositionalMappingParametersContinuous<T>().apply(parameters))
     }
 }
 
@@ -49,12 +49,12 @@ interface WithColor : BindingContext {
         }
     fun <T> color(
         column: ColumnReference<T>,
-        parameters: CommonNonPositionalMappingParameters<T, Color>.() -> Unit = {}
+        parameters: CommonNonPositionalMappingParametersContinuous<T, Color>.() -> Unit = {}
     ): NonPositionalMapping<T, Color> {
         return addNonPositionalMapping<T, Color>(
             COLOR,
             column.name(),
-            CommonNonPositionalMappingParameters<T, Color>().apply(parameters)
+            CommonNonPositionalMappingParametersContinuous<T, Color>().apply(parameters)
         )
     }
 }
@@ -67,12 +67,12 @@ interface WithSize : BindingContext {
         }
     fun <T> size(
         column: ColumnReference<T>,
-        parameters: CommonNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+        parameters: CommonNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping<T, Double>(
             SIZE,
             column.name(),
-            CommonNonPositionalMappingParameters<T, Double>().apply(parameters)
+            CommonNonPositionalMappingParametersContinuous<T, Double>().apply(parameters)
         )
     }
 }
@@ -85,12 +85,12 @@ interface WithWidth : BindingContext {
         }
     fun <T> width(
         column: ColumnReference<T>,
-        parameters: CommonNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+        parameters: CommonNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping<T, Double>(
             WIDTH,
             column.name(),
-            CommonNonPositionalMappingParameters<T, Double>().apply(parameters)
+            CommonNonPositionalMappingParametersContinuous<T, Double>().apply(parameters)
         )
     }
 }

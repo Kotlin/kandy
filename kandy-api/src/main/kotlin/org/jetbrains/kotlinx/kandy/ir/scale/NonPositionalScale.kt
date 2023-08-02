@@ -33,6 +33,9 @@ public data class NonPositionalContinuousScale<DomainType, RangeType>(
     override val transform: NonPositionalTransform?,
 ) : ContinuousScale<RangeType>, NonPositionalScale<DomainType, RangeType>
 
+public sealed interface NonPositionalCategoricalScaleBase<DomainType, RangeType>
+    : CategoricalScale, NonPositionalScale<DomainType, RangeType>
+
 /**
  * Non-positional categorical scale.
  *
@@ -43,7 +46,7 @@ public data class NonPositionalContinuousScale<DomainType, RangeType>(
 public data class NonPositionalCategoricalScale<DomainType, RangeType>(
     val domainCategories: List<DomainType>?,
     val rangeValues: List<RangeType>?,
-) : CategoricalScale, NonPositionalScale<DomainType, RangeType>
+) : NonPositionalCategoricalScaleBase<DomainType, RangeType>
 
 /**
  * Custom non-positional scale.
@@ -56,6 +59,20 @@ public interface CustomNonPositionalScale<DomainType, RangeType>
  */
 public class NonPositionalDefaultScale<DomainType, RangeType>:
     NonPositionalScale<DomainType, RangeType>, DefaultScale {
+    override fun equals(other: Any?): Boolean {
+        return other is NonPositionalDefaultScale<*, *>
+    }
+
+    override fun hashCode(): Int {
+        return javaClass.hashCode()
+    }
+}
+
+/**
+ * Non-positional default categorical scale.
+ */
+public class NonPositionalDefaultCategoricalScale<DomainType, RangeType>:
+    NonPositionalCategoricalScaleBase<DomainType, RangeType>, DefaultScale {
     override fun equals(other: Any?): Boolean {
         return other is NonPositionalDefaultScale<*, *>
     }

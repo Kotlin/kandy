@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.*
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParameters
-import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMapping
+import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMappingCont
 import org.jetbrains.kotlinx.kandy.echarts.settings.LineType
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
@@ -84,23 +84,23 @@ public class BackgroundStyle(private val context: BindingContext) : SelfInvocati
 
     public fun <T> color(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_COLOR, column, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_COLOR, column, params)
 
     public fun <T> color(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_COLOR, column, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_COLOR, column, params)
 
     public fun color(
         column: String, params: EchartsNonPositionalMappingParameters<*, Color>.() -> Unit = {}
-    ): NonPositionalMapping<*, Color> = context.nonPosMapping(BACKGROUND_COLOR, column, params)
+    ): NonPositionalMapping<*, Color> = context.nonPosMappingCont(BACKGROUND_COLOR, column, params)
 
     public fun <T> color(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_COLOR, values, name, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_COLOR, values, name, params)
 
     public fun <T> color(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_COLOR, values, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_COLOR, values, params)
 
     /* BACKGROUND BORDER COLOR*/
     public var borderColor: Color? = null
@@ -110,23 +110,23 @@ public class BackgroundStyle(private val context: BindingContext) : SelfInvocati
 
     public fun <T> borderColor(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_BORDER_COLOR, column, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_BORDER_COLOR, column, params)
 
     public fun <T> borderColor(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_BORDER_COLOR, column, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_BORDER_COLOR, column, params)
 
     public fun borderColor(
         column: String, params: EchartsNonPositionalMappingParameters<*, Color>.() -> Unit = {}
-    ): NonPositionalMapping<*, Color> = context.nonPosMapping(BACKGROUND_BORDER_COLOR, column, params)
+    ): NonPositionalMapping<*, Color> = context.nonPosMappingCont(BACKGROUND_BORDER_COLOR, column, params)
 
     public fun <T> borderColor(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_BORDER_COLOR, values, name, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_BORDER_COLOR, values, name, params)
 
     public fun <T> borderColor(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_BORDER_COLOR, values, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_BORDER_COLOR, values, params)
 
     /* BACKGROUND BORDER WIDTH*/
     public var borderWidth: Color? = null
@@ -136,23 +136,23 @@ public class BackgroundStyle(private val context: BindingContext) : SelfInvocati
 
     public fun <T> borderWidth(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_BORDER_WIDTH, column, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_BORDER_WIDTH, column, params)
 
     public fun <T> borderWidth(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_BORDER_WIDTH, column, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_BORDER_WIDTH, column, params)
 
     public fun borderWidth(
         column: String, params: EchartsNonPositionalMappingParameters<*, Color>.() -> Unit = {}
-    ): NonPositionalMapping<*, Color> = context.nonPosMapping(BACKGROUND_BORDER_WIDTH, column, params)
+    ): NonPositionalMapping<*, Color> = context.nonPosMappingCont(BACKGROUND_BORDER_WIDTH, column, params)
 
     public fun <T> borderWidth(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_BORDER_WIDTH, values, name, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_BORDER_WIDTH, values, name, params)
 
     public fun <T> borderWidth(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_BORDER_WIDTH, values, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_BORDER_WIDTH, values, params)
 
     /* BACKGROUND BORDER TYPE*/
     public var borderType: LineType? = null
@@ -162,23 +162,23 @@ public class BackgroundStyle(private val context: BindingContext) : SelfInvocati
 
     public fun <T> borderType(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, LineType>.() -> Unit = {}
-    ): NonPositionalMapping<T, LineType> = context.nonPosMapping(BACKGROUND_BORDER_TYPE, column, params)
+    ): NonPositionalMapping<T, LineType> = context.nonPosMappingCont(BACKGROUND_BORDER_TYPE, column, params)
 
     public fun <T> borderType(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, LineType>.() -> Unit = {}
-    ): NonPositionalMapping<T, LineType> = context.nonPosMapping(BACKGROUND_BORDER_TYPE, column, params)
+    ): NonPositionalMapping<T, LineType> = context.nonPosMappingCont(BACKGROUND_BORDER_TYPE, column, params)
 
     public fun borderType(
         column: String, params: EchartsNonPositionalMappingParameters<*, LineType>.() -> Unit = {}
-    ): NonPositionalMapping<*, LineType> = context.nonPosMapping(BACKGROUND_BORDER_TYPE, column, params)
+    ): NonPositionalMapping<*, LineType> = context.nonPosMappingCont(BACKGROUND_BORDER_TYPE, column, params)
 
     public fun <T> borderType(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, LineType>.() -> Unit = {}
-    ): NonPositionalMapping<T, LineType> = context.nonPosMapping(BACKGROUND_BORDER_TYPE, values, name, params)
+    ): NonPositionalMapping<T, LineType> = context.nonPosMappingCont(BACKGROUND_BORDER_TYPE, values, name, params)
 
     public fun <T> borderType(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, LineType>.() -> Unit = {}
-    ): NonPositionalMapping<T, LineType> = context.nonPosMapping(BACKGROUND_BORDER_TYPE, values, params)
+    ): NonPositionalMapping<T, LineType> = context.nonPosMappingCont(BACKGROUND_BORDER_TYPE, values, params)
 
     /* BACKGROUND BORDER RADIUS*/
     public var borderRadius: Number? = null
@@ -188,23 +188,23 @@ public class BackgroundStyle(private val context: BindingContext) : SelfInvocati
 
     public fun <T> borderRadius(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BACKGROUND_BORDER_RADIUS, column, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BACKGROUND_BORDER_RADIUS, column, params)
 
     public fun <T> borderRadius(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BACKGROUND_BORDER_RADIUS, column, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BACKGROUND_BORDER_RADIUS, column, params)
 
     public fun borderRadius(
         column: String, params: EchartsNonPositionalMappingParameters<*, Number>.() -> Unit = {}
-    ): NonPositionalMapping<*, Number> = context.nonPosMapping(BACKGROUND_BORDER_RADIUS, column, params)
+    ): NonPositionalMapping<*, Number> = context.nonPosMappingCont(BACKGROUND_BORDER_RADIUS, column, params)
 
     public fun <T> borderRadius(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BACKGROUND_BORDER_RADIUS, values, name, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BACKGROUND_BORDER_RADIUS, values, name, params)
 
     public fun <T> borderRadius(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BACKGROUND_BORDER_RADIUS, values, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BACKGROUND_BORDER_RADIUS, values, params)
 
 
     /* BACKGROUND BORDER SHADOW BLUR*/
@@ -215,23 +215,23 @@ public class BackgroundStyle(private val context: BindingContext) : SelfInvocati
 
     public fun <T> shadowBlur(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BACKGROUND_SHADOW_BLUR, column, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BACKGROUND_SHADOW_BLUR, column, params)
 
     public fun <T> shadowBlur(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BACKGROUND_SHADOW_BLUR, column, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BACKGROUND_SHADOW_BLUR, column, params)
 
     public fun shadowBlur(
         column: String, params: EchartsNonPositionalMappingParameters<*, Number>.() -> Unit = {}
-    ): NonPositionalMapping<*, Number> = context.nonPosMapping(BACKGROUND_SHADOW_BLUR, column, params)
+    ): NonPositionalMapping<*, Number> = context.nonPosMappingCont(BACKGROUND_SHADOW_BLUR, column, params)
 
     public fun <T> shadowBlur(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BACKGROUND_SHADOW_BLUR, values, name, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BACKGROUND_SHADOW_BLUR, values, name, params)
 
     public fun <T> shadowBlur(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BACKGROUND_SHADOW_BLUR, values, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BACKGROUND_SHADOW_BLUR, values, params)
 
     /* BACKGROUND BORDER SHADOW COLOR*/
     public var shadowColor: Color? = null
@@ -241,23 +241,23 @@ public class BackgroundStyle(private val context: BindingContext) : SelfInvocati
 
     public fun <T> shadowColor(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_SHADOW_COLOR, column, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_SHADOW_COLOR, column, params)
 
     public fun <T> shadowColor(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_SHADOW_COLOR, column, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_SHADOW_COLOR, column, params)
 
     public fun shadowColor(
         column: String, params: EchartsNonPositionalMappingParameters<*, Color>.() -> Unit = {}
-    ): NonPositionalMapping<*, Color> = context.nonPosMapping(BACKGROUND_SHADOW_COLOR, column, params)
+    ): NonPositionalMapping<*, Color> = context.nonPosMappingCont(BACKGROUND_SHADOW_COLOR, column, params)
 
     public fun <T> shadowColor(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_SHADOW_COLOR, values, name, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_SHADOW_COLOR, values, name, params)
 
     public fun <T> shadowColor(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = context.nonPosMapping(BACKGROUND_SHADOW_COLOR, values, params)
+    ): NonPositionalMapping<T, Color> = context.nonPosMappingCont(BACKGROUND_SHADOW_COLOR, values, params)
 
     /* BACKGROUND BORDER ALPHA*/
     public var alpha: Number? = null
@@ -267,21 +267,21 @@ public class BackgroundStyle(private val context: BindingContext) : SelfInvocati
 
     public fun <T> alpha(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BACKGROUND_ALPHA, column, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BACKGROUND_ALPHA, column, params)
 
     public fun <T> alpha(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BACKGROUND_ALPHA, column, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BACKGROUND_ALPHA, column, params)
 
     public fun alpha(
         column: String, params: EchartsNonPositionalMappingParameters<*, Number>.() -> Unit = {}
-    ): NonPositionalMapping<*, Number> = context.nonPosMapping(BACKGROUND_ALPHA, column, params)
+    ): NonPositionalMapping<*, Number> = context.nonPosMappingCont(BACKGROUND_ALPHA, column, params)
 
     public fun <T> alpha(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BACKGROUND_ALPHA, values, name, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BACKGROUND_ALPHA, values, name, params)
 
     public fun <T> alpha(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Number>.() -> Unit = {}
-    ): NonPositionalMapping<T, Number> = context.nonPosMapping(BACKGROUND_ALPHA, values, params)
+    ): NonPositionalMapping<T, Number> = context.nonPosMappingCont(BACKGROUND_ALPHA, values, params)
 }

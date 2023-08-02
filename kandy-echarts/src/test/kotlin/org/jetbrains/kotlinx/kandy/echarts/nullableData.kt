@@ -12,9 +12,7 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.aes.y
 import org.jetbrains.kotlinx.kandy.echarts.layers.area
 import org.jetbrains.kotlinx.kandy.echarts.layers.bars
 import org.jetbrains.kotlinx.kandy.echarts.layers.line
-import org.jetbrains.kotlinx.kandy.echarts.layers.points
 import kotlin.test.Test
-import kotlin.test.Ignore
 import kotlin.test.assertEquals
 
 class NullableDataTest {
@@ -216,9 +214,12 @@ class NullableDataTest {
                 scale = continuous(nullValue = 4)
             }
             bars {}
-        }.toJson()
+        }
 
-        assertEquals(expected, actual)
+        println("!!!!!")
+        println(actual)
+
+        assertEquals(expected, actual.toJson())
     }
 
 //    @Test

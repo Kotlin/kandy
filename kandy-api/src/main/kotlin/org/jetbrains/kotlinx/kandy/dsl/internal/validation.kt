@@ -12,7 +12,7 @@ public fun<T: Comparable<T>> checkInRange(aesName: AesName, value: T, range: Clo
     }
 }
 
-public fun checkRequiredAes(requiredAes: Set<AesName>, layerContext: LayerContext, plotContext: PlotContext?) {
+public fun checkRequiredAes(requiredAes: Set<AesName>, layerContext: LayerContextInterface, plotContext: PlotContext?) {
     val assignedAes: Set<AesName> = layerContext.bindingCollector.let {
         it.mappings.keys + it.settings.keys
     } + (plotContext?.bindingCollector?.let {
