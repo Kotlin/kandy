@@ -248,8 +248,6 @@ public interface LayerPlotContext : LayerCollectorContext, PlotContext {
  * @property bindingCollector collector of context bindings.
  */
 public interface BindingContext : BaseContext {
-    public override val plotContext: PlotContext
-    public override val datasetIndex: Int
     public val bindingCollector: BindingCollector
 
     /**
