@@ -85,7 +85,7 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
 
     private fun overrideDataset() {
         plotContext.datasetHandlers.add(DatasetHandler(NamedData(DataFrame.Empty)))
-        datasetIndex = plotContext.datasetHandlers.size - 1
+        datasetIndex = plotContext.datasetHandlers.lastIndex
     }
 
     override fun <DomainType, RangeType> addNonPositionalMapping(
