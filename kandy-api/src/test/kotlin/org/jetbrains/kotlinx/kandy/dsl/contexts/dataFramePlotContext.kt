@@ -92,7 +92,6 @@ class DataFramePlotContextTest {
             1, 2, 3,
             4, 5, 6,
         )
-        val a by column<Int>("a")
         val b by column<Int>("b")
         val c by column<Int>("c")
 
