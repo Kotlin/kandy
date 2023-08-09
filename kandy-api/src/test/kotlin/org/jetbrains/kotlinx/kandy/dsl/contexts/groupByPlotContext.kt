@@ -1,10 +1,21 @@
 package org.jetbrains.kotlinx.kandy.dsl.contexts
 
+import io.mockk.every
+import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.getColumn
 import org.jetbrains.kotlinx.dataframe.api.groupBy
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
 import org.jetbrains.kotlinx.kandy.dsl.internal.GroupByPlotContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.kandy.dsl.plot
+import org.jetbrains.kotlinx.kandy.ir.Layer
+import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
+import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
+import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -64,5 +75,49 @@ class GroupByPlotContextTest {
         assertEquals(a, context.getColumnOrNull("a"))
         assertEquals(c, context.getColumnOrNull(c))
         assertEquals(b, context.getColumnOrNull { b })
+    }
+
+    @Test
+    fun `test empty plot with grouped DataFrame`() {
+        val emptyPlot1 = dataFrame.groupBy("a").plot {}
+        val emptyPlot2 = plot(dataFrame.groupBy("a")) {}
+
+        assertEquals(
+            (emptyPlot1.datasets.first() as GroupedData).origin,
+            (emptyPlot2.datasets.first() as GroupedData).origin
+        )
+        assertEquals(
+            (emptyPlot1.datasets.first() as GroupedData).keys,
+            (emptyPlot2.datasets.first() as GroupedData).keys
+        )
+        assertEquals(
+            (emptyPlot1.datasets.first() as GroupedData).groupBy.groups,
+            (emptyPlot2.datasets.first() as GroupedData).groupBy.groups
+        )
+
+        val geom = mockk<Geom>()
+        val mockLayer = Layer(
+            datasetIndex = 0, geom = geom,
+            mappings = mapOf(AesName("a") to mockk<Mapping>()),
+            settings = mapOf(AesName("a") to mockk<Setting>()),
+            features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
+        )
+        val layerContext = mockk<LayerContextInterface> {
+            every { requiredAes } returns emptySet()
+            every { bindingCollector } returns BindingCollector()
+            every { toLayer(geom, true) } returns mockLayer
+        }
+
+        val plot1 = dataFrame.groupBy("b", "c").plot {
+            addLayer(layerContext, geom)
+        }
+        val plot2 = plot(dataFrame.groupBy("b", "c")) {
+            addLayer(layerContext, geom)
+        }
+
+        assertEquals(1, plot1.layers.size)
+        assertEquals(1, plot2.layers.size)
+        assertEquals(mockLayer, plot1.layers.first())
+        assertEquals(mockLayer, plot2.layers.first())
     }
 }
