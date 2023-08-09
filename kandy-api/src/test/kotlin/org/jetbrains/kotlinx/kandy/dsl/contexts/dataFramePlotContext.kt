@@ -4,9 +4,13 @@ import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
+import org.jetbrains.kotlinx.dataframe.api.emptyDataFrame
 import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.kandy.dsl.plot
+import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
+import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -105,5 +109,63 @@ class DataFramePlotContextTest {
         assertEquals(2, context.layers.size)
         assertEquals(2, context.datasetHandlers.size)
         assertEquals(GroupedData::class, context.datasetHandlers[1].initialDataset::class)
+    }
+
+    @Test
+    fun `test empty plot`() {
+        val emptyMap = emptyMap<String, List<Any>>()
+        val plot = emptyMap.plot {}
+        val expected = Plot(
+            datasets = mutableListOf(NamedData(emptyDataFrame<Any>())), layers = emptyList(),
+            globalMappings = emptyMap(), globalSettings = emptyMap(), features = emptyMap(), freeScales = emptyMap()
+        )
+        assertEquals(expected, plot)
+    }
+
+    @Test
+    fun `test plot with map`() {
+        val map = mapOf("A" to listOf("a", "b", "c"), "B" to listOf(1, 2, 3))
+
+        assertEquals(map.plot {}, plot(map) {})
+
+        val layerContext = mockk<LayerContextInterface>(relaxed = true)
+        val geom = mockk<Geom>()
+
+        val plot1 = map.plot {
+            addLayer(layerContext, geom)
+        }
+        val plot2 = plot(map) {
+            addLayer(layerContext, geom)
+        }
+
+        assertEquals(1, plot1.layers.size)
+        assertEquals(1, plot2.layers.size)
+        assertEquals(geom, plot1.layers.first().geom) // TODO(Why are these different geoms?)
+        assertEquals(geom, plot2.layers.first().geom) // TODO
+    }
+
+    @Test
+    fun `test plot with dataframe`() {
+        val dataFrame = dataFrameOf(
+            "A" to listOf("a", "b", "c"),
+            "B" to listOf(1, 2, 3)
+        )
+
+        assertEquals(dataFrame.plot {}, plot(dataFrame) {})
+
+        val layerContext = mockk<LayerContextInterface>(relaxed = true)
+        val geom = mockk<Geom>()
+
+        val plot1 = dataFrame.plot {
+            addLayer(layerContext, geom)
+        }
+        val plot2 = plot(dataFrame) {
+            addLayer(layerContext, geom)
+        }
+
+        assertEquals(1, plot1.layers.size)
+        assertEquals(1, plot2.layers.size)
+        assertEquals(geom, plot1.layers.first().geom) // TODO(Why are these different geoms?)
+        assertEquals(geom, plot2.layers.first().geom) // TODO
     }
 }
