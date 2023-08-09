@@ -1,14 +1,20 @@
 package org.jetbrains.kotlinx.kandy.dsl.contexts
 
+import io.mockk.every
 import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.emptyDataFrame
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
 import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.kandy.dsl.plot
+import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
+import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
+import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
@@ -128,8 +134,18 @@ class DataFramePlotContextTest {
 
         assertEquals(map.plot {}, plot(map) {})
 
-        val layerContext = mockk<LayerContextInterface>(relaxed = true)
         val geom = mockk<Geom>()
+        val mockLayer = Layer(
+            datasetIndex = 0, geom = geom,
+            mappings = mapOf(AesName("a") to mockk<Mapping>()),
+            settings = mapOf(AesName("a") to mockk<Setting>()),
+            features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
+        )
+        val layerContext = mockk<LayerContextInterface> {
+            every { requiredAes } returns emptySet()
+            every { bindingCollector } returns BindingCollector()
+            every { toLayer(geom, true) } returns mockLayer
+        }
 
         val plot1 = map.plot {
             addLayer(layerContext, geom)
@@ -140,8 +156,7 @@ class DataFramePlotContextTest {
 
         assertEquals(1, plot1.layers.size)
         assertEquals(1, plot2.layers.size)
-        assertEquals(geom, plot1.layers.first().geom) // TODO(Why are these different geoms?)
-        assertEquals(geom, plot2.layers.first().geom) // TODO
+        assertEquals(plot1, plot2)
     }
 
     @Test
@@ -153,8 +168,18 @@ class DataFramePlotContextTest {
 
         assertEquals(dataFrame.plot {}, plot(dataFrame) {})
 
-        val layerContext = mockk<LayerContextInterface>(relaxed = true)
         val geom = mockk<Geom>()
+        val mockLayer = Layer(
+            datasetIndex = 0, geom = geom,
+            mappings = mapOf(AesName("a") to mockk<Mapping>()),
+            settings = mapOf(AesName("a") to mockk<Setting>()),
+            features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
+        )
+        val layerContext = mockk<LayerContextInterface> {
+            every { requiredAes } returns emptySet()
+            every { bindingCollector } returns BindingCollector()
+            every { toLayer(geom, true) } returns mockLayer
+        }
 
         val plot1 = dataFrame.plot {
             addLayer(layerContext, geom)
@@ -165,7 +190,6 @@ class DataFramePlotContextTest {
 
         assertEquals(1, plot1.layers.size)
         assertEquals(1, plot2.layers.size)
-        assertEquals(geom, plot1.layers.first().geom) // TODO(Why are these different geoms?)
-        assertEquals(geom, plot2.layers.first().geom) // TODO
+        assertEquals(plot1, plot2)
     }
 }
