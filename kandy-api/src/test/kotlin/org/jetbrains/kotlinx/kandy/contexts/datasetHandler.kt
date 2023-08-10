@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.kandy.dsl.contexts
+package org.jetbrains.kotlinx.kandy.contexts
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf

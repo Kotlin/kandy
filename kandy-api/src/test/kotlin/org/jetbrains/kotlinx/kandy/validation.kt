@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.kandy.dsl
+package org.jetbrains.kotlinx.kandy
 
 import io.mockk.every
 import io.mockk.mockk

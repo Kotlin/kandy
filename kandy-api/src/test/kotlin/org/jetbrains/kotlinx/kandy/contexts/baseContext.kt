@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.kandy.dsl.contexts
+package org.jetbrains.kotlinx.kandy.contexts
 
 import io.mockk.every
 import io.mockk.mockk
