@@ -6,9 +6,8 @@ package org.jetbrains.kotlinx.kandy.dsl.impl
 
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-data class CommonGeom(val name: String) : Geom
+internal data class CommonGeom(val name: String) : Geom
 
-
-val POINT = CommonGeom("point")
-val BAR = CommonGeom("bar")
-val LINE = CommonGeom("line")
+internal val POINT = CommonGeom("point")
+internal val BAR = CommonGeom("bar")
+internal val LINE = CommonGeom("line")

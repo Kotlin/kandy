@@ -19,7 +19,7 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-internal class CommonTest {
+class CommonDSLTest {
 
     @Test
     fun oneLayer() {
@@ -57,7 +57,7 @@ internal class CommonTest {
                             ),
                         ),
                         settings = mapOf(
-                            SIZE to NonPositionalSetting<Double>(SIZE, 4.5)
+                            SIZE to NonPositionalSetting(SIZE, 4.5)
                         ),
                         emptyMap(),
                         emptyMap(),
@@ -110,12 +110,12 @@ internal class CommonTest {
         val xMapping = PositionalMapping<Double>(
             X, width.name(), CommonPositionalMappingParametersContinuous()
         )
-        val yMapping = PositionalMapping<Float>(
-            Y, height.name(), CommonPositionalMappingParametersContinuous<Float>(
-                PositionalContinuousScale(1f,15f, null, null)
+        val yMapping = PositionalMapping(
+            Y, height.name(), CommonPositionalMappingParametersContinuous(
+                PositionalContinuousScale(1f, 15f, null, null)
             )
         )
-        val colorMapping = NonPositionalMapping<String, Color>(
+        val colorMapping = NonPositionalMapping(
             COLOR,
             type.name(),
             CommonNonPositionalMappingParametersContinuous(
@@ -148,7 +148,7 @@ internal class CommonTest {
                         BAR,
                         mappings = mapOf(),
                         settings = mapOf(
-                            WIDTH to NonPositionalSetting<Double>(WIDTH, 5.0)
+                            WIDTH to NonPositionalSetting(WIDTH, 5.0)
                         ),
                         emptyMap(),
                         emptyMap(),
@@ -165,54 +165,5 @@ internal class CommonTest {
             plot
         )
     }
-    /*
-        @Test
-        fun datasetOverriding() {
-            val emptyDataset = NamedData(mapOf())
-            val realDataset = NamedData(mapOf(
-                "name" to listOf("Tiny", "Pudge", "Spirit Breaker"),
-                "winRate" to listOf(100.0, 0.01, 50.0),
-                "iq" to listOf(12, 12, 1000)
-            ))
-            val wr = ColumnReference<Double>("winRate")
-            val iq = ColumnReference<Int>("iq")
-            val name = ColumnReference<String>("name")
-
-            val plot = plot(emptyDataset) {
-                x(wr)
-                y(iq)
-                points {
-                    data = realDataset.toMutableMap()
-                    color(name)
-                }
-            }
-            assertEquals(
-                Plot(
-                    emptyDataset,
-                    listOf(
-                        Layer(
-                            realDataset,
-                            POINT,
-                            mappings = mapOf(
-                                X to ScaledUnspecifiedDefaultPositionalMapping(
-                                    X, SourceScaledUnspecifiedDefault(wr), typeOf<Double>()
-                                ),
-                                Y to ScaledUnspecifiedDefaultPositionalMapping(
-                                    Y, SourceScaledUnspecifiedDefault(iq), typeOf<Int>()
-                                ),
-                                COLOR to ScaledUnspecifiedDefaultNonPositionalMapping<String, Color>(
-                                    COLOR, SourceScaledUnspecifiedDefault(name), typeOf<String>()
-                                ),
-                            ),
-                            settings = mapOf()
-                        )
-                    ),
-                    null,
-                ),
-                plot
-            )
-        }
-
-     */
 }
 
