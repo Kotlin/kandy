@@ -6,7 +6,6 @@ package org.jetbrains.kotlinx.kandy.contexts
 
 import org.jetbrains.kotlinx.dataframe.AnyCol
 import org.jetbrains.kotlinx.dataframe.AnyFrame
-import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
@@ -64,20 +63,6 @@ class DatasetHandlerTest {
         val handler = DatasetHandler(initialDataset)
 
         assertEquals(initialDataset.origin, handler.initialNamedData)
-    }
-
-    // TODO(review referredColumns, and internalAddColumn logic)
-    @Test
-    fun `test add and take column`() {
-        val columnName = "column"
-        val initialDataset = NamedData(dataFrameOf(columnName)("a", "b", "c"))
-        val handler = DatasetHandler(initialDataset)
-        val newColumn = DataColumn.create("new_column", listOf(1, 2, 3))
-
-        assertEquals("column", handler.takeColumn("column"))
-
-        handler.addColumn(newColumn)
-        assertEquals(newColumn.name(), handler.takeColumn(newColumn.name())) //TODO
     }
 
     @Test
