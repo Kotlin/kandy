@@ -19,7 +19,7 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
  */
 public class GroupByPlotContext<T>(
     private val groupBy: GroupBy<T, T>
-) : LayerPlotContext, ColumnsContainer<T> by groupBy.groups.concat() {
+) : LayerPlotContext, ColumnsContainer<T> by groupBy.concat() {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val layers: MutableList<Layer> = mutableListOf()
     override val plotContext: PlotContext = this

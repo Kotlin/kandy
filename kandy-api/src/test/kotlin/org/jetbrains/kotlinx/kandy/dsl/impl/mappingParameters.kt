@@ -13,18 +13,18 @@ import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalDefaultScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalScale
 
-data class CommonPositionalMappingParameters<DomainType>(
+internal data class CommonPositionalMappingParameters<DomainType>(
     override var scale: PositionalScale<out DomainType> = PositionalDefaultScale()
 ) : PositionalMappingParameters<DomainType>
 
-data class CommonPositionalMappingParametersContinuous<DomainType>(
+internal data class CommonPositionalMappingParametersContinuous<DomainType>(
     override var scale: PositionalScale<out DomainType> = PositionalDefaultScale()
 ) : PositionalMappingParametersContinuous<DomainType>
 
-data class CommonNonPositionalMappingParameters<DomainType, RangeType>(
+internal data class CommonNonPositionalMappingParameters<DomainType, RangeType>(
     override var scale: NonPositionalScale<out DomainType, out RangeType> = NonPositionalDefaultScale()
 ) : NonPositionalMappingParameters<DomainType, RangeType>
 
-data class CommonNonPositionalMappingParametersContinuous<DomainType, RangeType>(
+internal data class CommonNonPositionalMappingParametersContinuous<DomainType, RangeType>(
     override var scale: NonPositionalScale<out DomainType, out RangeType> = NonPositionalDefaultScale()
 ) : NonPositionalMappingParametersContinuous<DomainType, RangeType>

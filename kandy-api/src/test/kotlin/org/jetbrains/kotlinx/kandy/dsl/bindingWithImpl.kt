@@ -2,14 +2,11 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.dsl.unit
+package org.jetbrains.kotlinx.kandy.dsl
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
-import org.jetbrains.kotlinx.kandy.dsl.categorical
-import org.jetbrains.kotlinx.kandy.dsl.categoricalPos
-import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.impl.*
 import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
@@ -24,7 +21,7 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-internal class BindingTest {
+class BindingImplTest {
 
     class TestContext(parent: LayerCollectorContext) : LayerContext(parent), WithColor, WithSize, WithX, WithY {
         override val requiredAes: Set<AesName> = setOf()
@@ -38,7 +35,7 @@ internal class BindingTest {
             size = valueDouble
         }
         assertEquals(
-            mapOf(SIZE to NonPositionalSetting<Double>(SIZE, valueDouble)),
+            mapOf(SIZE to NonPositionalSetting(SIZE, valueDouble)),
             context.bindingCollector.settings.toMap()
         )
 
@@ -48,7 +45,7 @@ internal class BindingTest {
         }
         assertEquals(
             mapOf(
-                SIZE to NonPositionalSetting<Double>(SIZE, valueDouble),
+                SIZE to NonPositionalSetting(SIZE, valueDouble),
                 COLOR to NonPositionalSetting<Color>(COLOR, valueColor)
             ),
             context.bindingCollector.settings.toMap()
@@ -65,13 +62,7 @@ internal class BindingTest {
             x(mockSource)
         }
         assertEquals<Map<AesName, Mapping>>(
-            mapOf(
-                X to PositionalMapping<Double>(
-                    X,
-                    mockSource.name(),
-                    CommonPositionalMappingParametersContinuous()
-                )
-            ),
+            mapOf(X to PositionalMapping<Double>(X, mockSource.name(), CommonPositionalMappingParametersContinuous())),
             context.bindingCollector.mappings
         )
     }
@@ -130,9 +121,10 @@ internal class BindingTest {
         }
         assertEquals<Map<AesName, Mapping>>(
             mapOf(
-                X to PositionalMapping<Float>(
+                X to PositionalMapping(
                     X, mockSource.name(), CommonPositionalMappingParametersContinuous(
-                        PositionalContinuousScale<Float>(null, null, null, null))
+                        PositionalContinuousScale<Float>(null, null, null, null)
+                    )
                 )
             ),
             context.bindingCollector.mappings
@@ -154,9 +146,9 @@ internal class BindingTest {
         assertEquals<Map<AesName, Mapping>>(
             mapOf(
                 COLOR to NonPositionalMapping<String, Color>(
-                    COLOR, mockSource.name(), CommonNonPositionalMappingParametersContinuous(
-                        NonPositionalCategoricalScale<String, Color>(null, null)
-                    )
+                    COLOR,
+                    mockSource.name(),
+                    CommonNonPositionalMappingParametersContinuous(NonPositionalCategoricalScale(null, null))
                 )
             ),
             context.bindingCollector.mappings
@@ -180,7 +172,7 @@ internal class BindingTest {
         }
         assertEquals<Map<AesName, Mapping>>(
             mapOf(
-                Y to PositionalMapping<String>(
+                Y to PositionalMapping(
                     Y,
                     mockSource.name(),
                     CommonPositionalMappingParametersContinuous(
@@ -199,7 +191,7 @@ internal class BindingTest {
         )
         val mockSource = column<Int>("mock_source")
         val scaleColorCont = Scale.continuous<Int, Color>(
-            range = Color.rgb(1, 1, 1).. Color.rgb(1, 100, 100)
+            range = Color.rgb(1, 1, 1)..Color.rgb(1, 100, 100)
         )
         val context = TestContext(plotContext).apply {
             color(mockSource) {

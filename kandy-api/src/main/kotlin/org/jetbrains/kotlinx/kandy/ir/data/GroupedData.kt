@@ -22,7 +22,7 @@ public data class GroupedData(
     public val groupBy: GroupBy<*, *>
 ) : TableData {
     public val keys: List<String> = groupBy.keys.columnNames()
-    public val origin: NamedData = NamedData(groupBy.groups.concat())
+    public val origin: NamedData = NamedData(groupBy.concat())
 
     /**
      * @param origin original [NamedData].

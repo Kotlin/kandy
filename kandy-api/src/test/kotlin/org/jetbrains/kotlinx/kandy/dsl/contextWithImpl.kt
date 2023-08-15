@@ -2,13 +2,12 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.dsl.unit
+package org.jetbrains.kotlinx.kandy.dsl
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.toMap
 import org.jetbrains.kotlinx.kandy.dsl.impl.*
 import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotContext
-import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
@@ -16,7 +15,7 @@ import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
-internal class ContextTest {
+class ContextImplTest {
     private val emptyDataset = DataFrame.Empty
     @Test
     fun testPoints() {
