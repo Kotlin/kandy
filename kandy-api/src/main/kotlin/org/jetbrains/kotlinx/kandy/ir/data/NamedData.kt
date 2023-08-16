@@ -7,9 +7,10 @@ package org.jetbrains.kotlinx.kandy.ir.data
 import org.jetbrains.kotlinx.dataframe.DataFrame
 
 /**
- * "Simple dataframe": a set of named typed columns. Types of columns are simple,
- * i.e. not columns or dataframes.
+ * A wrapper for a "simple" dataframe, which is a two-dimensional table of data
+ * with named columns potentially of different data types.
+ * In essence, it represents data in a format akin to a spreadsheet, SQL table, or a dictionary of objects.
  *
- * @property dataFrame underlying [DataFrame].
+ * @property dataFrame the underlying [dataframe][DataFrame] being wrapped.
  */
 public data class NamedData(public val dataFrame: DataFrame<*>): TableData
