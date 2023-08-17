@@ -7,6 +7,13 @@ package org.jetbrains.kotlinx.kandy.ir.geom
 import org.jetbrains.kotlinx.kandy.ir.Layer
 
 /**
- *  Geometrical entity that characterizes the [Layer].
+ * Represents a geometric object (or "geom") for data visualization.
+ *
+ * A geom specifies the type of visual representation or [layer][Layer] for the data on the plot.
+ *
+ * Common geoms include:
+ * - `line` - For line charts.
+ * - `bar` - For bar charts.
+ * - `point` - For scatter-plots.
  */
 public interface Geom
