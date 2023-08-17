@@ -5,9 +5,10 @@
 package org.jetbrains.kotlinx.kandy.ir.feature
 
 /**
- * Plot feature.
+ * Represents a feature specific to the overall plot.
+ * Such features might influence or enhance the global behavior or appearance of the entire plot.
  *
- * @property featureName the name of feature.
+ * @property featureName the unique identifier or name of the plot-wide feature.
  */
 public interface PlotFeature {
     // todo remove
