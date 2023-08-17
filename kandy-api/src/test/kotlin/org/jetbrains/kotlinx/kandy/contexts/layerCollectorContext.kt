@@ -11,19 +11,18 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
 import org.jetbrains.kotlinx.kandy.ir.Layer
-import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.Test
 
 class LayerCollectorContextTest {
 
     @Test
     fun `test addLayer`() {
-        val mockGeom = mockk<Geom>()
+        //val mockGeom = mockk<Geom>()
         val mockLayer = mockk<Layer>()
         val layers = mutableListOf<Layer>()
         val layersInheritMappings = true
         val mockLayerContext = mockk<LayerContextInterface>(relaxed = true) {
-            every { toLayer(any(), any()) } returns mockLayer
+            every { toLayer(any()) } returns mockLayer
         }
 
         val layerCollectorContext = object : LayerCollectorContext {
@@ -33,7 +32,7 @@ class LayerCollectorContextTest {
             override val layersInheritMappings: Boolean = layersInheritMappings
         }
 
-        layerCollectorContext.addLayer(mockLayerContext, mockGeom)
+        layerCollectorContext.addLayer(mockLayerContext)
 
         assertEquals(1, layerCollectorContext.layers.size)
         assertEquals(mockLayer, layerCollectorContext.layers.first())

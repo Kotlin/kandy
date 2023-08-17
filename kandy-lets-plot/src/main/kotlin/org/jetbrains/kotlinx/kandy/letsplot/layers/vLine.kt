@@ -5,13 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.VLineContext
 
-// TODO
-
-@PublishedApi
-internal val V_LINE: LetsPlotGeom = LetsPlotGeom("vLine")
 
 /**
  * Adds a new vertical line layer.
@@ -50,5 +45,5 @@ internal val V_LINE: LetsPlotGeom = LetsPlotGeom("vLine")
  * ```
  */
 public inline fun LayerCollectorContext.vLine(block: VLineContext.() -> Unit) {
-    addLayer(VLineContext(this).apply(block), V_LINE)
+    addLayer(VLineContext(this).apply(block))
 }

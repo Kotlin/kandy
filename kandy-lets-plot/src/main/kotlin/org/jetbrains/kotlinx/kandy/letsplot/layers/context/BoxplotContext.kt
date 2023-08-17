@@ -5,15 +5,22 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BOXPLOT
 
-public class BoxplotContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithX, WithAlpha,
+public interface BoxplotInterface : LayerContextInterface, WithX, WithAlpha,
     WithFillColor, WithWidth,
     WithLower, WithUpper, WithMiddle, WithYMin, WithYMax, WithFatten, WithYFree {
-    override val requiredAes: Set<AesName> = setOf(X, LOWER, UPPER, MIDDLE, Y_MIN, Y_MAX)
+    override val geom: Geom
+        get() = BOXPLOT
+    override val requiredAes: Set<AesName> get() = setOf(X, LOWER, UPPER, MIDDLE, Y_MIN, Y_MAX)
 }
+
+public open class BoxplotContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), BoxplotInterface
 
 /*import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextImmutable

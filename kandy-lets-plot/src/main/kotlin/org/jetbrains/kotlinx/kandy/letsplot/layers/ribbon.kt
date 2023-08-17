@@ -5,12 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RibbonContext
 
-
-@PublishedApi
-internal val RIBBON: LetsPlotGeom = LetsPlotGeom("ribbon")
 
 /**
  * Adds a new ribbon layer.
@@ -58,5 +54,5 @@ internal val RIBBON: LetsPlotGeom = LetsPlotGeom("ribbon")
  * ```
  */
 public inline fun LayerCollectorContext.ribbon(block: RibbonContext.() -> Unit) {
-    addLayer(RibbonContext(this).apply(block), RIBBON)
+    addLayer(RibbonContext(this).apply(block))
 }

@@ -6,12 +6,10 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
-import org.jetbrains.kotlinx.kandy.letsplot.internal.X
-import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.PATH
 
-public class PathContext(parent: LayerCollectorContext) : LayerContext(parent), WithX, WithY, WithAlpha, WithColor,
-    WithWidthAsSize, WithLineType {
-    override val requiredAes: Set<AesName> = setOf(X, Y)
-    }
+public open class PathContext(parent: LayerCollectorContext) : LayerContext(parent), LineInterface {
+    override val geom: Geom
+        get() = PATH
+}

@@ -49,9 +49,9 @@ class DataFramePlotContextTest {
         )
         val context = DataFramePlotContext(dataFrame)
         val layerContext = mockk<LayerContextInterface>(relaxed = true)
-        val geom = mockk<Geom>()
+        //val geom = mockk<Geom>()
 
-        context.addLayer(layerContext, geom)
+        context.addLayer(layerContext)
 
         assertEquals(1, context.layers.size)
     }
@@ -89,8 +89,8 @@ class DataFramePlotContextTest {
         val context = DataFramePlotContext(dataFrame)
 
         context.groupBy("a", "b") {
-            this.addLayer(mockk(relaxed = true), geom = mockk())
-            this.addLayer(mockk(relaxed = true), geom = mockk())
+            this.addLayer(mockk(relaxed = true))
+            this.addLayer(mockk(relaxed = true))
         }
 
         assertEquals(2, context.layers.size)
@@ -112,8 +112,8 @@ class DataFramePlotContextTest {
         val context = DataFramePlotContext(dataFrame)
 
         context.groupBy(b, c) {
-            this.addLayer(mockk(relaxed = true), geom = mockk())
-            this.addLayer(mockk(relaxed = true), geom = mockk())
+            this.addLayer(mockk(relaxed = true))
+            this.addLayer(mockk(relaxed = true))
         }
 
         assertEquals(2, context.layers.size)
@@ -148,14 +148,14 @@ class DataFramePlotContextTest {
         val layerContext = mockk<LayerContextInterface> {
             every { requiredAes } returns emptySet()
             every { bindingCollector } returns BindingCollector()
-            every { toLayer(geom, true) } returns mockLayer
+            every { toLayer(true) } returns mockLayer
         }
 
         val plot1 = map.plot {
-            addLayer(layerContext, geom)
+            addLayer(layerContext)
         }
         val plot2 = plot(map) {
-            addLayer(layerContext, geom)
+            addLayer(layerContext)
         }
 
         assertEquals(1, plot1.layers.size)
@@ -182,14 +182,14 @@ class DataFramePlotContextTest {
         val layerContext = mockk<LayerContextInterface> {
             every { requiredAes } returns emptySet()
             every { bindingCollector } returns BindingCollector()
-            every { toLayer(geom, true) } returns mockLayer
+            every { toLayer(true) } returns mockLayer
         }
 
         val plot1 = dataFrame.plot {
-            addLayer(layerContext, geom)
+            addLayer(layerContext)
         }
         val plot2 = plot(dataFrame) {
-            addLayer(layerContext, geom)
+            addLayer(layerContext)
         }
 
         assertEquals(1, plot1.layers.size)

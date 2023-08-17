@@ -85,7 +85,7 @@ public inline fun LayerPlotContext.layout(block: EChartsLayout.() -> Unit) {
  * @see LineContext
  */
 public inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
-    addLayer(LineContext(this).apply(block), LINE)
+    addLayer(LineContext(this).apply(block))
 }
 
 /**
@@ -136,7 +136,7 @@ public inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
  * @see AreaContext
  */
 public inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
-    addLayer(AreaContext(this).apply(block), AREA)
+    addLayer(AreaContext(this).apply(block))
 }
 
 /**
@@ -162,11 +162,11 @@ public inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
  * @see BarContext
  */
 public inline fun LayerCollectorContext.bars(block: BarContext.() -> Unit) {
-    addLayer(BarContext(this).apply(block), BAR)
+    addLayer(BarContext(this).apply(block))
 }
 
 public inline fun LayerCollectorContext.pie(block: PieContext.() -> Unit) {
-    addLayer(PieContext(this).apply(block), PIE)
+    addLayer(PieContext(this).apply(block))
 }
 
 /**
@@ -198,13 +198,13 @@ public inline fun LayerCollectorContext.pie(block: PieContext.() -> Unit) {
  * @see PointContext
  */
 public inline fun LayerCollectorContext.points(block: PointContext.() -> Unit) {
-    addLayer(PointContext(this).apply(block), POINT)
+    addLayer(PointContext(this).apply(block))
 }
 
 public inline fun LayerCollectorContext.candlestick(block: CandlestickContext.() -> Unit) {
-    addLayer(CandlestickContext(this).apply(block), CANDLESTICK)
+    addLayer(CandlestickContext(this).apply(block))
 }
 
 public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
-    addLayer(BoxplotContext(this).apply(block), BOXPLOT)
+    addLayer(BoxplotContext(this).apply(block))
 }

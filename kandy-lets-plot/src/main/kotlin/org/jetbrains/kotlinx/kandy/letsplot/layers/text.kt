@@ -5,11 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TextContext
-
-@PublishedApi
-internal val TEXT: LetsPlotGeom = LetsPlotGeom("text")
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LetsPlotGeom
 
 /**
  * Adds a new text layer.
@@ -56,5 +53,5 @@ internal val TEXT: LetsPlotGeom = LetsPlotGeom("text")
  * ```
  */
 public inline fun LayerCollectorContext.text(block: TextContext.() -> Unit) {
-    addLayer(TextContext(this).apply(block), TEXT)
+    addLayer(TextContext(this).apply(block))
 }

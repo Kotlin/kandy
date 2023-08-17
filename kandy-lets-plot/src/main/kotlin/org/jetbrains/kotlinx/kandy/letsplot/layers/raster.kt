@@ -5,11 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RasterContext
 
-@PublishedApi
-internal val RASTER: LetsPlotGeom = LetsPlotGeom("raster")
 
 /**
  * Adds a new raster layer.
@@ -54,5 +51,5 @@ internal val RASTER: LetsPlotGeom = LetsPlotGeom("raster")
  * ```
  */
 public inline fun LayerCollectorContext.raster(block: RasterContext.() -> Unit) {
-    addLayer(RasterContext(this).apply(block), RASTER)
+    addLayer(RasterContext(this).apply(block))
 }

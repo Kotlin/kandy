@@ -5,45 +5,21 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.ERROR_BAR
 
-
-public class ErrorBarContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithX, WithYMin,
+public interface ErrorBarInterface : LayerContextInterface, WithX, WithYMin,
     WithYMax, WithWidth, WithAlpha, WithYFree {
-    override val requiredAes: Set<AesName> = setOf(X, Y_MIN, Y_MAX)
-    }
-/*
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextMutable
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.kandy.letsplot.internal.*
-
-public interface ErrorBarContextInterface: BindingContext {
-    public val x: XAes get() = XAes(this)
-
-    //todo
-    public val y: YDummyAes get() = YDummyAes(this)
-
-    public val yMin: YMinAes get() = YMinAes(this)
-    public val yMax: YMaxAes get() = YMaxAes(this)
-
-    public val alpha: AlphaAes get() = AlphaAes(this)
-    public val width: WidthAes get() = WidthAes(this)
+    override val geom: Geom
+        get() = ERROR_BAR
+    override val requiredAes: Set<AesName>
+        get ()= setOf(X, Y_MIN, Y_MAX)
 }
 
-*/
-/*@PlotDslMarker*//*
-
-public class ErrorBarContextImmutable(parent: LayerCollectorContextImmutable)
-    : LayerWithBorderLineContextImmutable(parent), ErrorBarContextInterface
-
-*/
-/*@PlotDslMarker*//*
-
-public class ErrorBarContextMutable(parent: LayerCollectorContextMutable):
-    LayerWithBorderLineContextMutable(parent), ErrorBarContextInterface*/
+public open class ErrorBarContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), ErrorBarInterface

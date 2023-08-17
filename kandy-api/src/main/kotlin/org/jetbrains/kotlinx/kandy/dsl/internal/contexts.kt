@@ -45,9 +45,10 @@ public interface BaseContext {
 }
 
 public interface LayerContextInterface: BindingContext {
+    public val geom: Geom
     public val layerFeatures: MutableMap<FeatureName, LayerFeature>
     public val requiredAes: Set<AesName>
-    public fun toLayer(geom: Geom, layersInheritMappings: Boolean): Layer {
+    public fun toLayer(layersInheritMappings: Boolean): Layer {
         return Layer(
             datasetIndex,
             geom,
@@ -173,12 +174,12 @@ public interface LayerCollectorContext : BaseContext {
      * @param context [LayerContext] with bindings of a new layer.
      * @param geom [Geom] of a new layer.
      */
-    public fun addLayer(context: LayerContextInterface, geom: Geom) {
+    public fun addLayer(context: LayerContextInterface) {
         checkRequiredAes(context.requiredAes, context, if (layersInheritMappings) {
             plotContext
         } else null)
         layers.add(
-            context.toLayer(geom, layersInheritMappings)
+            context.toLayer(layersInheritMappings)
         )
     }
 }

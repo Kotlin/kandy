@@ -93,7 +93,8 @@ class ScaleTest {
         val scale = Scale.continuousPos(limits)
 
         val expectedScale = PositionalContinuousScale(limits.first, limits.last, null, null)
-
+        scale.max
+        expectedScale.max
 //        assertEquals(expectedScale, scale) // TODO
     }
 

@@ -14,25 +14,36 @@ public sealed class Position private constructor(public val name: String) : Laye
     override val featureName: FeatureName = FEATURE_NAME
 
     public companion object {
+        public fun identity(): Position = Identity
+        public fun stack(): Position = Stack
+        public fun dodge(width: Double? = null): Position = Dodge(width)
+        public fun jitter(width: Double? = null, height: Double? = null): Position = Jitter(width, height)
+        public fun nudge(x: Double? = null, y: Double? = null): Position = Nudge(x, y)
+        public fun jitterDodge(
+            dodgeWidth: Double? = null,
+            jitterWidth: Double? = null,
+            jitterHeight: Double? = null
+        ): Position = JitterDodge(dodgeWidth, jitterWidth, jitterHeight)
+
         public val FEATURE_NAME: FeatureName = FeatureName("POSITION")
     }
 
     /**
      * Don't adjust position.
      */
-    public object Identity : Position("identity")
+    internal object Identity : Position("identity")
 
     /**
      * Stack overlapping objects on top of each another
      */
-    public object Stack : Position("stack")
+    internal object Stack : Position("stack")
 
     /**
      * Dodge overlapping objects side-to-side.
      *
      * @param width the dodging width, when different to the width of the individual elements.
      */
-    public data class Dodge(val width: Double? = null) : Position("dodge")
+    internal data class Dodge(val width: Double? = null) : Position("dodge")
 
     /**
      * Jitter points to avoid overplotting.
@@ -44,7 +55,7 @@ public sealed class Position private constructor(public val name: String) : Laye
      * The jitter is added in both positive and negative directions,
      * so the total spread is twice the value specified here.
      */
-    public data class Jitter(val width: Double? = null, val height: Double? = null) : Position("jitter")
+    internal data class Jitter(val width: Double? = null, val height: Double? = null) : Position("jitter")
 
     /**
      * Nudge points a fixed distance.
@@ -52,7 +63,7 @@ public sealed class Position private constructor(public val name: String) : Laye
      * @param x the amount of vertical distance to move.
      * @param y the amount of horizontal distance to move.
      */
-    public data class Nudge(val x: Double? = null, val y: Double? = null) : Position("nudge")
+    internal data class Nudge(val x: Double? = null, val y: Double? = null) : Position("nudge")
 
     /**
      * Simultaneously, dodge and jitter.
@@ -61,7 +72,7 @@ public sealed class Position private constructor(public val name: String) : Laye
      * @param jitterWidth the degree of jitter in the x direction.
      * @param jitterHeight the degree of jitter in the y direction.
      */
-    public data class JitterDodge(
+    internal data class JitterDodge(
         val dodgeWidth: Double? = null,
         val jitterWidth: Double? = null,
         val jitterHeight: Double? = null,

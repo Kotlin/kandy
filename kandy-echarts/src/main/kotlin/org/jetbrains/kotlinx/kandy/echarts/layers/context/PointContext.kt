@@ -8,7 +8,9 @@ package org.jetbrains.kotlinx.kandy.echarts.layers.context
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
+import org.jetbrains.kotlinx.kandy.echarts.layers.POINT
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.*
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
 /**
  * Point settings.
@@ -29,7 +31,8 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.aes.*
 /*@PlotDslMarker*/
 public class PointContext(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY,
     WithAlpha, WithColor, WithSize, WithSymbol {
-
+    override val geom: Geom
+        get() = POINT
     /**
      * Animation options settings for [points][org.jetbrains.kotlinx.kandy.echarts.layers.points].
      * If a property isn't set or set to null, a default value will be used.

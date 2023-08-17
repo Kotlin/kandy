@@ -5,12 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.LineRangeContext
 
-
-@PublishedApi
-internal val LINE_RANGE: LetsPlotGeom = LetsPlotGeom("linerange")
 
 /**
  * Adds a new line-range layer.
@@ -56,5 +52,5 @@ internal val LINE_RANGE: LetsPlotGeom = LetsPlotGeom("linerange")
  * ```
  */
 public inline fun LayerCollectorContext.lineRange(block: LineRangeContext.() -> Unit) {
-    addLayer(LineRangeContext(this).apply(block), LINE_RANGE)
+    addLayer(LineRangeContext(this).apply(block))
 }

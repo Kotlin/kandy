@@ -17,6 +17,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -44,6 +45,7 @@ class LayerContextTest {
         }
 
         layerContext = object : LayerContext(parentContext) {
+            override val geom: Geom = mockk()
             override val requiredAes: Set<AesName> = mockk()
             override val datasetHandler: DatasetHandler = mockk(relaxed = true)
         }

@@ -7,13 +7,13 @@ package org.jetbrains.kotlinx.kandy.dsl.impl
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 
 internal inline fun LayerCollectorContext.points(block: PointsContext.() -> Unit) {
-    addLayer(PointsContext(this).apply(block), POINT)
+    addLayer(PointsContext(this).apply(block))
 }
 
 internal inline fun LayerCollectorContext.bars(block: BarsContext.() -> Unit) {
-    addLayer(BarsContext(this).apply(block), BAR)
+    addLayer(BarsContext(this).apply(block))
 }
 
 internal inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
-    addLayer(LineContext(this).apply(block), LINE)
+    addLayer(LineContext(this).apply(block))
 }

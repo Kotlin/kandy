@@ -5,11 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PathContext
-
-@PublishedApi
-internal val PATH: LetsPlotGeom = LetsPlotGeom("path")
 
 /**
  * Adds a new path layer.
@@ -50,5 +46,5 @@ internal val PATH: LetsPlotGeom = LetsPlotGeom("path")
  * ```
  */
 public inline fun LayerCollectorContext.path(block: PathContext.() -> Unit) {
-    addLayer(PathContext(this).apply(block), PATH)
+    addLayer(PathContext(this).apply(block))
 }

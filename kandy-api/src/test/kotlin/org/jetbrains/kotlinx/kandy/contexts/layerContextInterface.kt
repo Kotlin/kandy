@@ -27,6 +27,7 @@ class LayerContextInterfaceTest {
         val layersInheritMappings = true
 
         val layerContextInterface = object : LayerContextInterface {
+            override val geom: Geom = mockGeom
             override val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
             override val requiredAes: Set<AesName> = setOf()
             override val plotContext: PlotContext = mockk()
@@ -35,7 +36,7 @@ class LayerContextInterfaceTest {
             override val datasetHandler: DatasetHandler = mockk()
         }
 
-        val layer = layerContextInterface.toLayer(mockGeom, layersInheritMappings)
+        val layer = layerContextInterface.toLayer(layersInheritMappings)
 
         assertEquals(layerContextInterface.datasetIndex, layer.datasetIndex)
         assertEquals(mockGeom, layer.geom)

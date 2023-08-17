@@ -5,13 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.HLineContext
 
-// TODO
-
-@PublishedApi
-internal val H_LINE: LetsPlotGeom = LetsPlotGeom("hLine")
 
 /**
  * Adds a new horizontal line layer.
@@ -50,5 +45,5 @@ internal val H_LINE: LetsPlotGeom = LetsPlotGeom("hLine")
  * ```
  */
 public inline fun LayerCollectorContext.hLine(block: HLineContext.() -> Unit) {
-    addLayer(HLineContext(this).apply(block), H_LINE)
+    addLayer(HLineContext(this).apply(block))
 }

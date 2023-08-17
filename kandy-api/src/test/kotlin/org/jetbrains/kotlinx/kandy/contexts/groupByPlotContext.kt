@@ -109,14 +109,14 @@ class GroupByPlotContextTest {
         val layerContext = mockk<LayerContextInterface> {
             every { requiredAes } returns emptySet()
             every { bindingCollector } returns BindingCollector()
-            every { toLayer(geom, true) } returns mockLayer
+            every { toLayer(true) } returns mockLayer
         }
 
         val plot1 = dataFrame.groupBy("b", "c").plot {
-            addLayer(layerContext, geom)
+            addLayer(layerContext)
         }
         val plot2 = plot(dataFrame.groupBy("b", "c")) {
-            addLayer(layerContext, geom)
+            addLayer(layerContext)
         }
 
         assertEquals(1, plot1.layers.size)

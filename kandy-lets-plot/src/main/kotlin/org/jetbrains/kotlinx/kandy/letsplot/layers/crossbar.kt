@@ -5,12 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarContext
 
-
-@PublishedApi
-internal val CROSS_BAR: LetsPlotGeom = LetsPlotGeom("crossbar")
 
 // todo rename to cross bars
 /**
@@ -62,5 +58,5 @@ internal val CROSS_BAR: LetsPlotGeom = LetsPlotGeom("crossbar")
  * ```
  */
 public inline fun LayerCollectorContext.crossBar(block: CrossBarContext.() -> Unit) {
-    addLayer(CrossBarContext(this).apply(block), CROSS_BAR)
+    addLayer(CrossBarContext(this).apply(block))
 }

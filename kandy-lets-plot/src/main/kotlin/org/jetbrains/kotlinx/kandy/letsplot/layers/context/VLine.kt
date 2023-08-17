@@ -6,36 +6,21 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X_INTERCEPT
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.V_LINE
 
-
-public class VLineContext(parent: LayerCollectorContext) : LayerContext(parent), WithXIntercept, WithAlpha, WithColor,
+public interface VLineInterface: LayerContextInterface, WithXIntercept, WithAlpha, WithColor,
     WithWidthAsSize, WithType, WithYFree {
-    override val requiredAes: Set<AesName> = setOf(X_INTERCEPT)
-    }
-/*
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
-import org.jetbrains.kotlinx.kandy.letsplot.internal.*
-
-public interface VLineContextInterface: BindingContext {
-    public val x: XInterceptAes get() = XInterceptAes(this)
-
-    public val color: ColorAes get() = ColorAes(this)
-    public val alpha: AlphaAes get() = AlphaAes(this)
-    public val type: LineTypeAes get() = LineTypeAes(this)
-    public val width: SizeAes get() = SizeAes(this)
+    override val geom: Geom
+        get() = V_LINE
+    override val requiredAes: Set<AesName>
+        get() = setOf(X_INTERCEPT)
 }
 
-*/
-/*@PlotDslMarker*//*
-
-public class VLineContextImmutable(parent: LayerCollectorContextImmutable)
-    : LayerContextImmutable(parent), VLineContextInterface
-
-*/
-/*@PlotDslMarker*//*
-
-public class VLineContextMutable(parent: LayerCollectorContextMutable):
-    LayerContextMutable(parent), VLineContextInterface*/
+public open class VLineContext(parent: LayerCollectorContext) : LayerContext(parent), VLineInterface {
+    override val requiredAes: Set<AesName> = setOf(X_INTERCEPT)
+    }

@@ -5,11 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RectContext
-
-@PublishedApi
-internal val RECT: LetsPlotGeom = LetsPlotGeom("rect")
 
 /**
  * Adds a new rect layer.
@@ -58,5 +54,5 @@ internal val RECT: LetsPlotGeom = LetsPlotGeom("rect")
  * ```
  */
 public inline fun LayerCollectorContext.rect(block: RectContext.() -> Unit) {
-    addLayer(RectContext(this).apply(block), RECT)
+    addLayer(RectContext(this).apply(block))
 }

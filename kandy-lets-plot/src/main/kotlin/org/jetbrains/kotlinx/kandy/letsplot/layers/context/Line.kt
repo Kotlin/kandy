@@ -6,35 +6,20 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LINE
 
-public class LineContext(parent: LayerCollectorContext) : LayerContext(parent), WithX, WithY, WithAlpha, WithColor,
+public interface LineInterface: LayerContextInterface, WithX, WithY, WithAlpha, WithColor,
     WithWidthAsSize, WithType {
-    override val requiredAes: Set<AesName> = setOf(X, Y)
-    }
-
-/*
-public interface LineContextInterface: BindingContext {
-    public val x: XAes get() = XAes(this)
-    public val y: YAes get() = YAes(this)
-
-    public val color: ColorAes get() = ColorAes(this)
-    public val alpha: AlphaAes get() = AlphaAes(this)
-    public val type: LineTypeAes get() = LineTypeAes(this)
-    public val width: SizeAes get() = SizeAes(this)
+    override val geom: Geom
+        get() = LINE
+    override val requiredAes: Set<AesName>
+        get() = setOf(X, Y)
 }
 
-*/
-/*@PlotDslMarker*//*
-
-public class LineContextImmutable(parent: LayerCollectorContextImmutable)
-    : LayerContextImmutable(parent), LineContextInterface
-
-*/
-/*@PlotDslMarker*//*
-
-public class LineContextMutable(parent: LayerCollectorContextMutable):
-    LayerContextMutable(parent), LineContextInterface*/
+public open class LineContext(parent: LayerCollectorContext) : LayerContext(parent), LineInterface
