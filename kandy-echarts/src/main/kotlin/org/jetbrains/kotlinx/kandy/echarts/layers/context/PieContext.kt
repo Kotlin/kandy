@@ -5,16 +5,16 @@
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationPie
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationType
+import org.jetbrains.kotlinx.kandy.echarts.layers.PIE
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-/*@PlotDslMarker*/
 public class PieContext(parent: LayerCollectorContext) : EchartsLayerContext(parent) {
     override val geom: Geom
-        get() = TODO()
+        get() = PIE
+
     /**
      * Animation options settings for [pie][org.jetbrains.kotlinx.kandy.echarts.layers.pie].
      * If a property isn't set or set to null, a default value will be used.

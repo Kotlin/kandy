@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
