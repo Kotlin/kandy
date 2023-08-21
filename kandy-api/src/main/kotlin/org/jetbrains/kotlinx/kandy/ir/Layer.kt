@@ -13,17 +13,24 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
 /**
- * [Layer] is a collection of data and mappings from it.
- * It is characterized by its [Geom].
+ * Represents a foundational component in constructing a plot.
+ * Each `Layer` defines a specific graphical element on the plot, such as `points`, `lines`, or `bars`.
+ * Plots are incrementally built by stacking layers upon one another.
  *
- * @param datasetIndex index of layer dataset in the [Plot.datasets].
- * @param geom the [Geom] that describes this layer.
- * @param mappings the [Map] of the mappings; keys are aesthetic attributes,
- * values are mappings on corresponding attributes.
- * @param settings the [Map] of the setting; keys are aesthetic attributes,
- * values are setting of corresponding attributes.
- * @param features the [Map] of the layer features; keys are feature names,
- * values are features with corresponding names.
+ * Within a `Layer`, several elements come together:
+ * - **Data**: The data intended for visualization.
+ * - **Geom**: Specifies the type of geometric object to render.
+ * - **Aesthetic Mappings**: A collection of rules mapping data to the visual properties of the geom,
+ * such as `position`, `color`, `size`, etc.
+ *
+ * @property datasetIndex the index referencing the dataset for this layer within [Plot.datasets].
+ * @property geom the geometric object ([Geom]) characterizing the type of visual representation for this layer.
+ * @property mappings the dictionary associating [aesthetic attributes][AesName] to their respective data mappings.
+ * @property settings the dictionary associating [aesthetic attributes][AesName] to their settings or configurations.
+ * @property features the dictionary defining unique features of this layer,
+ * where keys are feature names and values represent the corresponding feature details.
+ * @property freeScales the dictionary associating [aesthetic attributes][AesName] to their [free scales][FreeScale].
+ * @property inheritsBindings indicates if this layer should inherit any bindings from its predecessors. Default is `true`.
  */
 public data class Layer(
     val datasetIndex: Int,
