@@ -5,11 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PieContext
-
-@PublishedApi
-internal val PIE: LetsPlotGeom = LetsPlotGeom("pie")
 
 /**
  * Adds a new pie layer.
@@ -55,5 +51,5 @@ internal val PIE: LetsPlotGeom = LetsPlotGeom("pie")
  * ```
  */
 public inline fun LayerCollectorContext.pie(block: PieContext.() -> Unit) {
-    addLayer(PieContext(this).apply(block), PIE)
+    addLayer(PieContext(this).apply(block))
 }

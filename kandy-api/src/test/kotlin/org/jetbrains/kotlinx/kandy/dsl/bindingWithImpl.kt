@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.dsl
 
+import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
@@ -16,6 +17,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.ir.scale.*
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.test.Test
@@ -24,6 +26,8 @@ import kotlin.test.assertEquals
 class BindingImplTest {
 
     class TestContext(parent: LayerCollectorContext) : LayerContext(parent), WithColor, WithSize, WithX, WithY {
+        override val geom: Geom
+            get() = mockk()
         override val requiredAes: Set<AesName> = setOf()
     }
 

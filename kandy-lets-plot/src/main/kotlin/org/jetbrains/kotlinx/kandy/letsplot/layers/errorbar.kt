@@ -4,12 +4,9 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ErrorBarContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LetsPlotGeom
 
-
-@PublishedApi
-internal val ERROR_BAR: LetsPlotGeom = LetsPlotGeom("errorbar")
 
 // todo rename to error bars
 /**
@@ -58,5 +55,5 @@ internal val ERROR_BAR: LetsPlotGeom = LetsPlotGeom("errorbar")
  * ```
  */
 public inline fun LayerCollectorContext.errorBar(block: ErrorBarContext.() -> Unit) {
-    addLayer(ErrorBarContext(this).apply(block), ERROR_BAR)
+    addLayer(ErrorBarContext(this).apply(block))
 }

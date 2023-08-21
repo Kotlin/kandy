@@ -14,9 +14,9 @@ import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
-import org.jetbrains.kotlinx.kandy.letsplot.layers.BAR
-import org.jetbrains.kotlinx.kandy.letsplot.layers.POINT
 import org.jetbrains.kotlinx.kandy.letsplot.layers.bars
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BAR
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.position.Position
 import org.jetbrains.kotlinx.kandy.letsplot.position.position

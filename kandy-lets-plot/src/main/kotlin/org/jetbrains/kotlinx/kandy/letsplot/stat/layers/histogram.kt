@@ -8,7 +8,6 @@ import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.api.toColumnOf
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.BAR
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BarsContext
 import org.jetbrains.kotlinx.kandy.letsplot.position.Position
 import org.jetbrains.kotlinx.kandy.letsplot.position.position
@@ -20,8 +19,8 @@ internal inline fun BinLayerCollectorContext.hist(block: HistogramContext.() -> 
     addLayer(HistogramContext(this).apply {
         x(Stat.BINS)
         y(Stat.COUNT)
-        position = Position.Dodge()
-    }.apply(block), BAR)
+        position = Position.dodge()
+    }.apply(block))
 }
 
 //todo type

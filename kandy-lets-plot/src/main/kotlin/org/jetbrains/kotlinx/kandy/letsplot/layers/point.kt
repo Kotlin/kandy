@@ -5,11 +5,9 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointsContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LetsPlotGeom
 
-@PublishedApi
-internal val POINT: LetsPlotGeom = LetsPlotGeom("point")
 
 /**
  * Adds a new points layer.
@@ -51,5 +49,5 @@ internal val POINT: LetsPlotGeom = LetsPlotGeom("point")
  * ```
  */
 public inline fun LayerCollectorContext.points(block: PointsContext.() -> Unit) {
-    addLayer(PointsContext(this).apply(block), POINT)
+    addLayer(PointsContext(this).apply(block))
 }

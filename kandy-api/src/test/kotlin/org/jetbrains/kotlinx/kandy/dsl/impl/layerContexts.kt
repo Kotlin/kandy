@@ -12,6 +12,7 @@ import org.jetbrains.kotlinx.kandy.ir.aes.AesName
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.util.color.Color
 
 internal interface WithX : BindingContext {
@@ -88,12 +89,18 @@ internal interface WithWidth : BindingContext {
 
 internal class PointsContext(parent: LayerCollectorContext) : LayerContext(parent), WithColor, WithSize, WithX, WithY {
     override val requiredAes: Set<AesName> = setOf()
+    override val geom: Geom
+        get() = POINT
 }
 
 internal class LineContext(parent: LayerCollectorContext) : LayerContext(parent), WithWidth, WithColor, WithX, WithY {
     override val requiredAes: Set<AesName> = setOf()
+    override val geom: Geom
+        get() = LINE
 }
 
 internal class BarsContext(parent: LayerCollectorContext) : LayerContext(parent), WithWidth, WithColor, WithX, WithY {
     override val requiredAes: Set<AesName> = setOf()
+    override val geom: Geom
+        get() = BAR
 }

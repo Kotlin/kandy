@@ -5,12 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointRangeContext
 
-
-@PublishedApi
-internal val POINT_RANGE: LetsPlotGeom = LetsPlotGeom("pointrange")
 
 /**
  * Adds a new point-range layer.
@@ -59,5 +55,5 @@ internal val POINT_RANGE: LetsPlotGeom = LetsPlotGeom("pointrange")
  * ```
  */
 public inline fun LayerCollectorContext.pointRange(block: PointRangeContext.() -> Unit) {
-    addLayer(PointRangeContext(this).apply(block), POINT_RANGE)
+    addLayer(PointRangeContext(this).apply(block))
 }

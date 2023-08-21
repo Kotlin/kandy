@@ -5,14 +5,10 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BarsContext
 import org.jetbrains.kotlinx.kandy.letsplot.position.Position
 import org.jetbrains.kotlinx.kandy.letsplot.position.position
 import org.jetbrains.kotlinx.kandy.letsplot.reversed
-
-@PublishedApi
-internal val BAR: LetsPlotGeom = LetsPlotGeom("bar")
 
 /**
  * Adds a new bars layer.
@@ -62,8 +58,8 @@ internal val BAR: LetsPlotGeom = LetsPlotGeom("bar")
  */
 public inline fun LayerCollectorContext.bars(block: BarsContext.() -> Unit) {
     addLayer(BarsContext(this).apply {
-        position = Position.Dodge()
-    }.apply(block), BAR)
+        position = Position.dodge()
+    }.apply(block))
 }
 
 /**
@@ -115,5 +111,5 @@ public inline fun LayerCollectorContext.bars(block: BarsContext.() -> Unit) {
 public inline fun LayerCollectorContext.barsH(block: BarsContext.() -> Unit) {
     addLayer(BarsContext(this).apply {
         reversed = true
-    }.apply(block), BAR)
+    }.apply(block))
 }

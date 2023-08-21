@@ -6,12 +6,18 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.PIE
 
-// todo add Stroke
-public class PieContext(parent: LayerCollectorContext) : LayerContext(parent),
-    WithX, WithY, WithSlice, WithExplode, WithHole, WithSize, WithAlpha, WithFillColor,
-        WithStroke, WithStrokeColor {
-    override val requiredAes: Set<AesName> = setOf() // todo
+public interface PieInterface: LayerContextInterface, WithX, WithY, WithSlice, WithExplode, WithHole, WithSize, WithAlpha, WithFillColor,
+    WithStroke, WithStrokeColor {
+    override val geom: Geom
+        get() = PIE
+    override val requiredAes: Set<AesName>  // todo
+        get() = setOf()
 }
+
+public open class PieContext(parent: LayerCollectorContext) : LayerContext(parent), PieInterface

@@ -6,11 +6,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ABLineContext
-
-@PublishedApi
-internal val AB_LINE: LetsPlotGeom = LetsPlotGeom("abline")
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LetsPlotGeom
 
 /**
  * Adds a new abLine layer.
@@ -51,5 +48,5 @@ internal val AB_LINE: LetsPlotGeom = LetsPlotGeom("abline")
  * ```
  */
 public inline fun LayerCollectorContext.abLine(block: ABLineContext.() -> Unit) {
-    addLayer(ABLineContext(this).apply(block), AB_LINE)
+    addLayer(ABLineContext(this).apply(block))
 }

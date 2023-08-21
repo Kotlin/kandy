@@ -6,11 +6,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 // import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.StepContext
-
-@PublishedApi
-internal val STEP: LetsPlotGeom = LetsPlotGeom("step")
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LetsPlotGeom
 
 /**
  * Adds a new step layer.
@@ -49,5 +46,5 @@ internal val STEP: LetsPlotGeom = LetsPlotGeom("step")
  * ```
  */
 public inline fun LayerCollectorContext.step(block: StepContext.() -> Unit) {
-    addLayer(StepContext(this).apply(block), STEP)
+    addLayer(StepContext(this).apply(block))
 }

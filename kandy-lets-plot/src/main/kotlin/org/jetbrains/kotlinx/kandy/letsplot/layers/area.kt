@@ -5,11 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.AreaContext
 
-@PublishedApi
-internal val AREA: LetsPlotGeom = LetsPlotGeom("area")
 
 /**
  * Adds a new area layer.
@@ -56,5 +53,5 @@ internal val AREA: LetsPlotGeom = LetsPlotGeom("area")
  * ```
  */
 public inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
-    addLayer(AreaContext(this).apply(block), AREA)
+    addLayer(AreaContext(this).apply(block))
 }

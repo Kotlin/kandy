@@ -5,11 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.SegmentContext
 
-@PublishedApi
-internal val SEGMENT: LetsPlotGeom = LetsPlotGeom("segment")
 
 /**
  * Adds a new segment layer.
@@ -54,5 +51,5 @@ internal val SEGMENT: LetsPlotGeom = LetsPlotGeom("segment")
  * ```
  */
 public inline fun LayerCollectorContext.segment(block: SegmentContext.() -> Unit) {
-    addLayer(SegmentContext(this).apply(block), SEGMENT)
+    addLayer(SegmentContext(this).apply(block))
 }

@@ -21,55 +21,6 @@ public interface WithBorderLineContext {
 }
 
 public abstract class LayerWithBorderLineContext(parent: LayerCollectorContext) : LayerContext(parent), WithBorderLineContext {
+    // todo fix
     public override val borderLine: BorderLineContext = BorderLineContext(this)
 }
-
-/*
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
-import org.jetbrains.kotlinx.kandy.letsplot.internal.ColorAes
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LineTypeAes
-import org.jetbrains.kotlinx.kandy.letsplot.internal.SizeAes
-import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
-
-
-/*@PlotDslMarker*/
-public interface BorderLineContextInterface: SelfInvocationContext {
-    // todo hide
-    public val parentContext: BindingContext
-    public val color: ColorAes get() = ColorAes(parentContext)
-    public val type: LineTypeAes get() = LineTypeAes(parentContext)
-    public val width: SizeAes get() = SizeAes(parentContext)
-}
-
-public class BorderLineContextImmutable(override val parentContext: BindingContext) : BorderLineContextInterface
-
-public class BorderLineContextMutable(override val parentContext: TableBindingContextInterfaceMutable) :
-    BorderLineContextInterface, TableSubContextMutable(parentContext, false, false)
-
-public interface WithBorderLineContextInterface: BindingContext {
-  //  public val parent: LayerContextInterface
-    public val borderLine: BorderLineContextInterface
-}
-
-public interface WithBorderLineContextImmutable : WithBorderLineContextInterface {
- //   public override val parent: LayerContextImmutable
-    public override val borderLine: BorderLineContextImmutable
-}
-
-public abstract class LayerWithBorderLineContextImmutable(parent: LayerCollectorContextImmutable)
-    : LayerContextImmutable(parent), WithBorderLineContextImmutable {
-    override val borderLine: BorderLineContextImmutable by lazy { BorderLineContextImmutable(this) }
-}
-
-public interface WithBorderLineContextMutable : WithBorderLineContextInterface {
-    //   public override val parent: LayerContextMutable
-    public override val borderLine: BorderLineContextMutable
-}
-
-public abstract class LayerWithBorderLineContextMutable(parent: LayerCollectorContextMutable)
-    : LayerContextMutable(parent), WithBorderLineContextMutable {
-    override val borderLine: BorderLineContextMutable by lazy { BorderLineContextMutable(this) }
-}
-
- */
-

@@ -6,11 +6,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 // import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TileContext
 
-@PublishedApi
-internal val TILE: LetsPlotGeom = LetsPlotGeom("tile")
 
 /**
  * Adds a new tile layer.
@@ -57,5 +54,5 @@ internal val TILE: LetsPlotGeom = LetsPlotGeom("tile")
  * ```
  */
 public inline fun LayerCollectorContext.tile(block: TileContext.() -> Unit) {
-    addLayer(TileContext(this).apply(block), TILE)
+    addLayer(TileContext(this).apply(block))
 }

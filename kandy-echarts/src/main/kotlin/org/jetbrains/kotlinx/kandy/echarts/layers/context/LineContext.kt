@@ -8,10 +8,12 @@ package org.jetbrains.kotlinx.kandy.echarts.layers.context
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
+import org.jetbrains.kotlinx.kandy.echarts.layers.LINE
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.*
 import org.jetbrains.kotlinx.kandy.echarts.settings.Cap
 import org.jetbrains.kotlinx.kandy.echarts.settings.LineType
 import org.jetbrains.kotlinx.kandy.echarts.settings.Step
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.util.color.Color
 
 /**
@@ -42,6 +44,9 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
 /*@PlotDslMarker*/
 public class LineContext(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
     WithAlpha, WithSymbol {
+
+    override val geom: Geom
+        get() = LINE
 
     public var smooth: Boolean? = null
         set(value) {

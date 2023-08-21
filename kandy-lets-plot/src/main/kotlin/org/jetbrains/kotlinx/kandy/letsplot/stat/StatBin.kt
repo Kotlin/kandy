@@ -13,7 +13,6 @@ import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.kandy.letsplot.layers.BAR
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BarsContextInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BorderLineContext
 import org.jetbrains.kotlinx.kandy.letsplot.position.Position
@@ -87,7 +86,7 @@ public class HistogramPlotContext(
     override val plotContext: PlotContext = this
     override val datasetIndex: Int = 0
     override val layer: Layer
-        get() = toLayer(BAR, true)
+        get() = toLayer(true)
     override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(
         DatasetHandler(statBin.data)
     )

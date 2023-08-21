@@ -5,11 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.LineContext
-
-@PublishedApi
-internal val LINE: LetsPlotGeom = LetsPlotGeom("line")
 
 /**
  * Adds a new line layer.
@@ -48,5 +44,5 @@ internal val LINE: LetsPlotGeom = LetsPlotGeom("line")
  * ```
  */
 public inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
-    addLayer(LineContext(this).apply(block), LINE)
+    addLayer(LineContext(this).apply(block))
 }

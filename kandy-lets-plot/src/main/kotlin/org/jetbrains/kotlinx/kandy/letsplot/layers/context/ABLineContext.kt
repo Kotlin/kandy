@@ -6,64 +6,22 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.INTERCEPT
 import org.jetbrains.kotlinx.kandy.letsplot.internal.SLOPE
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.AB_LINE
 
-public class ABLineContext(parent: LayerCollectorContext) : LayerContext(parent), WithType,
+public interface ABLineInterface : LayerContextInterface, WithType,
     WithColor, WithAlpha,
     WithWidthAsSize, WithSlope, WithIntercept,
     WithXFree, WithYFree {
-    override val requiredAes: Set<AesName> = setOf(SLOPE, INTERCEPT)
+    override val geom: Geom
+        get() = AB_LINE
+    override val requiredAes: Set<AesName>
+        get() = setOf(SLOPE, INTERCEPT)
 }
 
-/*
-/**
- * "ab-line" layer context interface.
- *
- *  @property slope line slope, positional.
- *  @property intercept line intercept, positional.
- *  @property color line color, non-positional,
- *  @property alpha layer alpha, non-positional.
- *  @property type line type, non-positional.
- *  @property width line width, non-positional.
- */
-public interface ABLineContextInterface: BindingContext {
-    public val slope: SlopeAes get() = SlopeAes(this)
-    public val intercept: InterceptAes get() = InterceptAes(this)
-
-    public val color: ColorAes get() = ColorAes(this)
-    public val alpha: AlphaAes get() = AlphaAes(this)
-    public val type: LineTypeAes get() = LineTypeAes(this)
-    public val width: WidthAes get() = WidthAes(this)
-}
-
-/**
- * "ab-line" layer context with immutable mappings.
- *
- * @property slope line slope, positional.
- * @property intercept line intercept, positional.
- * @property color line color, non-positional,
- * @property alpha layer alpha, non-positional.
- * @property type line type, non-positional.
- * @property width line width, non-positional.
- */
-/*@PlotDslMarker*/
-public class ABLineContextImmutable(parent: LayerCollectorContextImmutable)
-    : LayerContextImmutable(parent), ABLineContextInterface
-
-/**
- * "ab-line" layer context with mutable mappings.
- * @property slope line slope, positional.
- * @property intercept line intercept, positional.
- * @property color line color, non-positional,
- * @property alpha layer alpha, non-positional.
- * @property type line type, non-positional.
- * @property width line width, non-positional.
- */
-/*@PlotDslMarker*/
-public class ABLineContextMutable(parent: LayerCollectorContextMutable):
-    LayerContextMutable(parent), ABLineContextInterface
-
- */
+public open class ABLineContext(parent: LayerCollectorContext) : LayerContext(parent), ABLineInterface

@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.kandy.ir.scale.ScaleParameters
 import org.jetbrains.kotlinx.kandy.ir.scale.Transform
 import org.jetbrains.kotlinx.kandy.letsplot.feature.CoordFlip
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Reversed
 import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetWrapFeature

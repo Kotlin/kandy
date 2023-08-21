@@ -5,14 +5,10 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxplotContext
 import org.jetbrains.kotlinx.kandy.letsplot.position.Position
 import org.jetbrains.kotlinx.kandy.letsplot.position.position
-
-@PublishedApi
-internal val BOXPLOT: LetsPlotGeom = LetsPlotGeom("boxplot")
 
 /**
  * Adds a new boxplot layer.
@@ -68,8 +64,8 @@ internal val BOXPLOT: LetsPlotGeom = LetsPlotGeom("boxplot")
 public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
     // todo letsplot fix
     addLayer(BoxplotContext(this).apply {
-        position = Position.Dodge()
+        position = Position.dodge()
     }.apply(block).apply {
         addPositionalMapping(Y, List(datasetHandler.rowsCount()) { null }, null, null)
-    }, BOXPLOT)
+    })
 }
