@@ -11,7 +11,7 @@ class AlphaBoundsValidationTest {
 
     @Test
     fun testSetting(){
-        assertFailsWith<IllegalStateException>("Value \"1.1\" of \"alpha\" is outside the range [0.0, 1.0].") {
+        assertFailsWith<IllegalArgumentException>("Value \"1.1\" of \"alpha\" is outside the range [0.0, 1.0].") {
             plot(dataset) {
                 points {
                     x(time)
@@ -24,7 +24,7 @@ class AlphaBoundsValidationTest {
 
     @Test
     fun testScaleContinuous(){
-        assertFailsWith<IllegalStateException>("Value \"-0.5\" of \"alpha\" is outside the range [0.0, 1.0].") {
+        assertFailsWith<IllegalArgumentException>("Value \"-0.5\" of \"alpha\" is outside the range [0.0, 1.0].") {
             plot(dataset) {
                 points {
                     x(time)
@@ -39,7 +39,7 @@ class AlphaBoundsValidationTest {
 
     @Test
     fun testScaleCategorical(){
-        assertFailsWith<IllegalStateException>("Value \"3.0\" of \"alpha\" is outside the range [0.0, 1.0].") {
+        assertFailsWith<IllegalArgumentException>("Value \"3.0\" of \"alpha\" is outside the range [0.0, 1.0].") {
             plot(dataset) {
                 points {
                     x(time)
