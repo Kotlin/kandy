@@ -17,6 +17,7 @@ import kotlin.test.assertEquals
 
 class ContextImplTest {
     private val emptyDataset = DataFrame.Empty
+
     @Test
     fun testPoints() {
         val context = DataFramePlotContext(emptyDataset).apply {

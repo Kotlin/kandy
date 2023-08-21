@@ -49,7 +49,6 @@ class DataFramePlotContextTest {
         )
         val context = DataFramePlotContext(dataFrame)
         val layerContext = mockk<LayerContextInterface>(relaxed = true)
-        //val geom = mockk<Geom>()
 
         context.addLayer(layerContext)
 

@@ -17,7 +17,6 @@ class LayerCollectorContextTest {
 
     @Test
     fun `test addLayer`() {
-        //val mockGeom = mockk<Geom>()
         val mockLayer = mockk<Layer>()
         val layers = mutableListOf<Layer>()
         val layersInheritMappings = true
