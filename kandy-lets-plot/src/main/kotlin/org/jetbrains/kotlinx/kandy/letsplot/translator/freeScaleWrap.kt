@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
-import org.jetbrains.kotlinx.kandy.ir.bindings.FreeScale
-import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalFreeScale
+import org.jetbrains.kotlinx.kandy.ir.scale.FreeScale
+import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.letsPlot.intern.Feature
 import kotlin.reflect.typeOf

@@ -7,8 +7,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
+import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisParametersWithSetter
@@ -22,14 +22,22 @@ public interface WithY : BindingContext {
         column: ColumnReference<T>,
         parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> {
-        return addPositionalMapping<T>(Y, column.name(), LetsPlotPositionalMappingParametersContinuous<T>().apply(parameters))
+        return addPositionalMapping<T>(
+            Y,
+            column.name(),
+            LetsPlotPositionalMappingParametersContinuous<T>().apply(parameters)
+        )
     }
 
     public fun y(
         column: String,
         parameters: LetsPlotPositionalMappingParametersContinuous<Any?>.() -> Unit = {}
     ): PositionalMapping<Any?> {
-        return addPositionalMapping<Any?>(Y, column, LetsPlotPositionalMappingParametersContinuous<Any?>().apply(parameters))
+        return addPositionalMapping<Any?>(
+            Y,
+            column,
+            LetsPlotPositionalMappingParametersContinuous<Any?>().apply(parameters)
+        )
     }
 
     public fun <T> y(

@@ -15,6 +15,8 @@ import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
+import org.jetbrains.kotlinx.kandy.ir.scale.FreeScale
+import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 
 /**
  * Internal collector of mappings and settings.
@@ -44,7 +46,7 @@ public interface BaseContext {
         get() = plotContext.datasetHandlers[datasetIndex]
 }
 
-public interface LayerContextInterface: BindingContext {
+public interface LayerContextInterface : BindingContext {
     public val geom: Geom
     public val layerFeatures: MutableMap<FeatureName, LayerFeature>
     public val requiredAes: Set<AesName>
@@ -75,7 +77,7 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
 
     private var firstMapping = true
     private val handlerRowsCount: Int
-        get()  {
+        get() {
             val buffer = datasetHandler.buffer
             return if (buffer == DataFrame.Empty) {
                 datasetHandler.initialNamedData.dataFrame.rowsCount()
@@ -172,12 +174,13 @@ public interface LayerCollectorContext : BaseContext {
      * Creates a layers from [LayerContext] and adds it to the buffer.
      *
      * @param context [LayerContext] with bindings of a new layer.
-     * @param geom [Geom] of a new layer.
      */
     public fun addLayer(context: LayerContextInterface) {
-        checkRequiredAes(context.requiredAes, context, if (layersInheritMappings) {
-            plotContext
-        } else null)
+        checkRequiredAes(
+            context.requiredAes, context, if (layersInheritMappings) {
+                plotContext
+            } else null
+        )
         layers.add(
             context.toLayer(layersInheritMappings)
         )
@@ -213,7 +216,7 @@ public interface PlotContext : BindingContext {
     public fun toPlot(): Plot
 }
 
-public interface SingleLayerPlotContext: PlotContext {
+public interface SingleLayerPlotContext : PlotContext {
     public val layer: Layer
     public override fun toPlot(): Plot {
         return Plot(
@@ -258,7 +261,10 @@ public interface BindingContext : BaseContext {
      * @param value assigned value.
      * @param DomainType type of value.
      */
-    public fun <DomainType> addNonPositionalSetting(aesName: AesName, value: DomainType): NonPositionalSetting<DomainType> {
+    public fun <DomainType> addNonPositionalSetting(
+        aesName: AesName,
+        value: DomainType
+    ): NonPositionalSetting<DomainType> {
         return NonPositionalSetting(aesName, value).also {
             bindingCollector.settings[aesName] = it
         }

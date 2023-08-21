@@ -14,6 +14,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
 import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
+import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals

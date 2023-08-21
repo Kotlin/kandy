@@ -5,12 +5,12 @@
 package org.jetbrains.kotlinx.kandy.ir
 
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
-import org.jetbrains.kotlinx.kandy.ir.bindings.FreeScale
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.kandy.ir.scale.FreeScale
 
 /**
  * Represents the core structure for constructing visualizations.

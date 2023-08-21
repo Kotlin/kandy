@@ -11,12 +11,12 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.*
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.aes.AesName
-import org.jetbrains.kotlinx.kandy.ir.bindings.FreeScale
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.kandy.ir.scale.FreeScale
 import kotlin.test.Test
 
 class PlotContextsTest {
