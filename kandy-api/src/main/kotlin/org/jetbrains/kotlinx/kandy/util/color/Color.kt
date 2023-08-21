@@ -5,50 +5,71 @@
 package org.jetbrains.kotlinx.kandy.util.color
 
 /**
- * Color base interface.
+ * Represents a standardized color interface, providing a unified way to define and compare colors across various formats.
+ * This interface not only abstracts the essence of a color but also provides utility methods to create colors in RGB,
+ * RGBA, named, and hexadecimal formats.
+ *
+ * In addition to the utility methods, the [Color] companion object provides a set of predefined standard colors.
+ * These can be utilized for consistent and easily recognizable color references.
+ *
+ * Implementing classes or interfaces should provide concrete representations and manipulations specific to their color model.
+ *
+ * @see StandardColor for common implementations like RGB, RGBA, named, and hex formats.
  */
-public sealed interface Color: Comparable<Color> {
+public sealed interface Color : Comparable<Color> {
 
     public companion object {
         /**
-         * Creates an RGB color with the specified red, green,
-         * and blue components values in the range (0 - 255).
-         * @param r the red component.
-         * @param g the green component.
-         * @param b the blue component.
+         * Creates an RGB color based on individual red, green, and blue components.
+         *
+         * @param r red component, in the range (0-255).
+         * @param g green component, in the range (0-255).
+         * @param b blue component, in the range (0-255).
+         * @return an RGB representation of the color.
          */
         public fun rgb(r: Int, g: Int, b: Int): StandardColor.RGB = StandardColor.RGB(r, g, b)
 
         /**
-         * Creates an RGBA color with the specified red, green, blue
-         * components values in the range (0 - 255) and alpha value in the range (0.0 - 1.0).
-         * @param r the red component.
-         * @param g the green component.
-         * @param b the blue component.
-         * @param a the alpha value.
+         * Creates an RGBA color based on individual red, green, blue components and alpha value.
+         *
+         * @param r red component, in the range (0-255).
+         * @param g green component, in the range (0-255).
+         * @param b blue component, in the range (0-255).
+         * @param a alpha value, in the range (0.0-1.0).
+         * @return an RGBA representation of the color.
          */
-        public fun rgba(r: Int, g: Int, b: Int, a: Double): StandardColor.RGBA = StandardColor.RGBA(StandardColor.RGB(r, g, b), a)
+        public fun rgba(r: Int, g: Int, b: Int, a: Double): StandardColor.RGBA =
+            StandardColor.RGBA(StandardColor.RGB(r, g, b), a)
 
         /**
-         * Creates a color specified by given name (its interpretation depends on engine).
+         * Creates a color based on a given name.
+         * The actual interpretation and rendering are dependent on the underlying graphics engine.
          *
-         * @param name name of color.
+         * @param name the name of the color.
+         * @return a named representation of the color.
          */
         public fun named(name: String): StandardColor.Named = StandardColor.Named(name)
 
         /**
-         * Creates an RGB or RGBA color from the given hexadecimal string.
-         * (possible formats: "#rrggbb" and "#rrggbbaa").
-         * @param hexString [String] encoding the color in hexadecimal format.
+         * Creates a color based on a hexadecimal string representation.
+         *
+         * @param hexString ф string encoding the color.
+         * It can be in the format "#RRGGBB" (e.g., "#FF0000" for red) or "#RRGGBBAA"
+         * where "RR", "GG", "BB", and "AA" are hexadecimal values for the red,
+         * green, blue, and alpha components, respectively.
+         * @return ф hexadecimal representation of the color.
          */
         public fun hex(hexString: String): StandardColor.Hex = StandardColor.Hex(hexString)
 
         /**
-         * Creates an RGB or RGBA color from the given hex-value [Int].
-         * @param hexInt [Int] encoding the color in hexadecimal format.
+         * Creates a color based on a hexadecimal integer representation.
+         *
+         * @param hexInt An integer encoding the color in hexadecimal.
+         * @return A hexadecimal representation of the color.
          */
         public fun hex(hexInt: Int): StandardColor.Hex = StandardColor.Hex('#' + hexInt.toString(16))
 
+        // Predefined standard colors for consistent references.
         public val RED: StandardColor.Hex = StandardColor.Hex("#ee6666")
         public val BLUE: StandardColor.Hex = StandardColor.Hex("#5470c6")
         public val GREEN: StandardColor.Hex = StandardColor.Hex("#3ba272")

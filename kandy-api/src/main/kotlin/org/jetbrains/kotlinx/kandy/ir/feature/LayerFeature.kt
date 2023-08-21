@@ -5,9 +5,10 @@
 package org.jetbrains.kotlinx.kandy.ir.feature
 
 /**
- * Layer feature.
+ * Represents a feature specific to a layer within the plotting system.
+ * Such features might affect or enhance the behavior or appearance of individual layers in the plot.
  *
- * @property featureName the name of feature.
+ * @property featureName the unique identifier or name of the layer-specific feature.
  */
 public interface LayerFeature {
     // todo remove

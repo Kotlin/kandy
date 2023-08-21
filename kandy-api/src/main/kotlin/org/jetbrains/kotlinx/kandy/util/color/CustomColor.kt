@@ -5,6 +5,7 @@
 package org.jetbrains.kotlinx.kandy.util.color
 
 /**
- * Custom color.
+ * Represents a user-defined color that might not fit into standard definitions.
+ * Implementations can define their own way of representing or constructing a color.
  */
-public interface CustomColor: Color
+public interface CustomColor : Color

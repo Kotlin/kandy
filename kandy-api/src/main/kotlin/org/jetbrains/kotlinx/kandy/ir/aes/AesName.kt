@@ -5,8 +5,11 @@
 package org.jetbrains.kotlinx.kandy.ir.aes
 
 /**
- * Wrapper for an aesthetic attribute name.
+ * Represents the [name] of a visual attribute (aesthetic) in a graphic.
+ * Aesthetics dictate how data is visually represented on a plot.
+ * Examples of aesthetics include `x` and `y` coordinates, or `line types`.
+ * Their corresponding [AesName] would be `AesName("x")`, `AesName("y")`, and `AesName("line_type")`.
  *
- * @property name attribute name.
+ * @property name the name of the aesthetic.
  */
 public data class AesName(val name: String)
