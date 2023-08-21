@@ -7,18 +7,20 @@ package org.jetbrains.kotlinx.kandy.util.color
 import kotlin.math.roundToInt
 
 /**
- * Standard color implementations interface.
+ * Represents standard color definitions used in visualization.
+ * Each color can be described by a single description string.
  *
- * @property description base single-[String] description.
+ * @property description A basic descriptor in [String] format.
  */
 public sealed interface StandardColor : Color {
     public val description: String
 
+
     /**
-     * Interface for Color that can be interpreted in [Hex] format.
+     * Represents colors that can be transformed into a [Hex] format.
      *
-     * @property hex [Hex] representation of this color.
-     * @property hexString hex-[String] representation of this color.
+     * @property hex the [Hex] representation of the color.
+     * @property hexString the color is represented as a hexadecimal string.
      */
     public sealed interface AsHexColor : StandardColor {
         public val hex: Hex
@@ -30,14 +32,11 @@ public sealed interface StandardColor : Color {
     }
 
     /**
-     * RGB color.
+     * Represents a color using Red, Green, and Blue components.
      *
-     * @property r the red component.
-     * @property g the green component.
-     * @property b the blue component.
-     * @property hex [Hex] representation of this color.
-     * @property hexString hex-[String] representation of this color.
-     * @property toRGBA transforms to [RGBA]
+     * @property r The red component in the range (0-255).
+     * @property g The green component in the range (0-255).
+     * @property b The blue component in the range (0-255).
      */
     public data class RGB internal constructor(val r: Int, val g: Int, val b: Int) : AsHexColor {
         public fun toRGBA(a: Double = 1.0): RGBA = RGBA(this.copy(), a)
@@ -58,13 +57,10 @@ public sealed interface StandardColor : Color {
     }
 
     /**
-     * RGBA color.
+     * Represents a color using Red, Green, Blue, and Alpha (opacity) components.
      *
-     * @property rgb the [RGB] component.
-     * @property a the alpha component
-     * @property hex [Hex] representation of this color.
-     * @property hexString hex-[String] representation of this color.
-     * @property toRGB transforms to [RGB]
+     * @property rgb The [RGB] component of the color.
+     * @property a The alpha component in the range (0.0-1.0).
      */
     public data class RGBA internal constructor(val rgb: RGB, val a: Double) : AsHexColor {
         public fun toRGB(): RGB = rgb.copy()
@@ -88,11 +84,10 @@ public sealed interface StandardColor : Color {
     }
 
     /**
-     * Color defined by name.
+     * Represents a color identified by its name.
      *
-     * @property name the name of this color.
+     * @property name The unique name defining this color.
      */
-    //@Serializable
     public data class Named internal constructor(val name: String) : StandardColor {
         override val description: String
             get() = name
@@ -110,9 +105,9 @@ public sealed interface StandardColor : Color {
     }
 
     /**
-     * Color in a hexadecimal format.
+     * Represents a color in hexadecimal format.
      *
-     * @property hexString hex-[String] representation of this color.
+     * @property hexString the color value is represented as a hexadecimal string.
      */
     public data class Hex internal constructor(override val hexString: String) : AsHexColor {
         override val hex: Hex = this
