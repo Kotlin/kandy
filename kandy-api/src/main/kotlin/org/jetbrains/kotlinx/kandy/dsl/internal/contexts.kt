@@ -15,21 +15,7 @@ import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
-import org.jetbrains.kotlinx.kandy.ir.scale.FreeScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
-
-/**
- * Internal collector of mappings and settings.
- *
- * @property mappings [MutableMap] of aesthetic names to their mappings.
- * @property settings [MutableMap] of aesthetic names to their settings.
- * @property freeScales [MutableMap] of aesthetic names to their free scales.
- */
-public class BindingCollector() {
-    public val mappings: MutableMap<Aes, Mapping> = mutableMapOf()
-    public val settings: MutableMap<Aes, Setting> = mutableMapOf()
-    public val freeScales: MutableMap<Aes, FreeScale> = mutableMapOf()
-}
 
 /**
  * Base plotting DSL context.
