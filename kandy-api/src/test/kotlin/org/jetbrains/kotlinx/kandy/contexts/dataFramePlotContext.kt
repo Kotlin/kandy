@@ -16,7 +16,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
@@ -140,8 +140,8 @@ class DataFramePlotContextTest {
         val geom = mockk<Geom>()
         val mockLayer = Layer(
             datasetIndex = 0, geom = geom,
-            mappings = mapOf(AesName("a") to mockk<Mapping>()),
-            settings = mapOf(AesName("a") to mockk<Setting>()),
+            mappings = mapOf(Aes("a") to mockk<Mapping>()),
+            settings = mapOf(Aes("a") to mockk<Setting>()),
             features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
         )
         val layerContext = mockk<LayerContextInterface> {
@@ -174,8 +174,8 @@ class DataFramePlotContextTest {
         val geom = mockk<Geom>()
         val mockLayer = Layer(
             datasetIndex = 0, geom = geom,
-            mappings = mapOf(AesName("a") to mockk<Mapping>()),
-            settings = mapOf(AesName("a") to mockk<Setting>()),
+            mappings = mapOf(Aes("a") to mockk<Mapping>()),
+            settings = mapOf(Aes("a") to mockk<Setting>()),
             features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
         )
         val layerContext = mockk<LayerContextInterface> {

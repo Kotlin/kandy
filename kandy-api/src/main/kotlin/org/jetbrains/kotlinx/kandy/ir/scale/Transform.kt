@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.ir.scale
 
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 
 /**
  * Represents a transformation function applied to raw data values prior to their mapping to an aesthetic attribute.
@@ -19,6 +19,6 @@ public interface PositionalTransform : Transform
 
 /**
  * Represents a transformation function for [non-positional scales][NonPositionalScale],
- * adjusting data values before they are mapped to [aesthetic attributes][AesName].
+ * adjusting data values before they are mapped to [aesthetic attributes][Aes].
  */
 public interface NonPositionalTransform : Transform

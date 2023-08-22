@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
@@ -18,7 +18,7 @@ public interface ErrorBarInterface : LayerContextInterface, WithX, WithYMin,
     WithYMax, WithWidth, WithAlpha, WithYFree {
     override val geom: Geom
         get() = ERROR_BAR
-    override val requiredAes: Set<AesName>
+    override val requiredAes: Set<Aes>
         get ()= setOf(X, Y_MIN, Y_MAX)
 }
 

@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
 import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 import kotlin.test.BeforeTest
@@ -24,7 +24,7 @@ class BindingContextTest {
     private lateinit var bindingContext: BindingContext
     private lateinit var mockDatasetHandler: DatasetHandler
 
-    private val aesName = mockk<AesName>()
+    private val aes = mockk<Aes>()
     private val value = "testValue"
     private val values = listOf<Any>()
     private val name = "columnName"
@@ -47,46 +47,46 @@ class BindingContextTest {
     /**
      * Assertion method to compare the given mapping parameters to the expected result.
      *
-     * @param aesName The AES name to compare with the mapping result.
+     * @param aes The AES name to compare with the mapping result.
      * @param columnID The column ID to compare with the mapping result.
      * @param parameters The mapping parameters to compare with the mapping result.
      * @param result The actual mapping result.
      */
-    private fun assertMapping(aesName: AesName, columnID: String, parameters: MappingParameters, result: Mapping) {
-        assertEquals(aesName, result.aes)
+    private fun assertMapping(aes: Aes, columnID: String, parameters: MappingParameters, result: Mapping) {
+        assertEquals(aes, result.aes)
         assertEquals(columnID, result.columnID)
         assertEquals(parameters, result.parameters)
 
-        assertEquals(bindingContext.bindingCollector.mappings[aesName], result)
+        assertEquals(bindingContext.bindingCollector.mappings[aes], result)
     }
 
     @Test
     fun `test addNonPositionalSetting`() {
-        val setting = NonPositionalSetting(aesName, value)
+        val setting = NonPositionalSetting(aes, value)
 
-        val result = bindingContext.addNonPositionalSetting(aesName, value)
+        val result = bindingContext.addNonPositionalSetting(aes, value)
 
         assertEquals(setting, result)
-        assertEquals(bindingContext.bindingCollector.settings[aesName], setting)
+        assertEquals(bindingContext.bindingCollector.settings[aes], setting)
     }
 
     @Test
     fun `test addPositionalSetting`() {
-        val setting = PositionalSetting(aesName, value)
+        val setting = PositionalSetting(aes, value)
 
-        val result = bindingContext.addPositionalSetting(aesName, value)
+        val result = bindingContext.addPositionalSetting(aes, value)
 
         assertEquals(setting, result)
-        assertEquals(setting, bindingContext.bindingCollector.settings[aesName])
+        assertEquals(setting, bindingContext.bindingCollector.settings[aes])
     }
 
     @Test
     fun `test addPositionalMapping with list of values`() {
         every { mockDatasetHandler.addColumn(values, name) } returns columnID
 
-        val result = bindingContext.addPositionalMapping(aesName, values, name, positionalParameters)
+        val result = bindingContext.addPositionalMapping(aes, values, name, positionalParameters)
 
-        assertMapping(aesName, columnID, positionalParameters, result)
+        assertMapping(aes, columnID, positionalParameters, result)
         verify { mockDatasetHandler.addColumn(values, name) }
     }
 
@@ -96,9 +96,9 @@ class BindingContextTest {
 
         every { mockDatasetHandler.takeColumn(columnID) } returns newColumnID
 
-        val result = bindingContext.addPositionalMapping(aesName, columnID, positionalParameters)
+        val result = bindingContext.addPositionalMapping(aes, columnID, positionalParameters)
 
-        assertMapping(aesName, newColumnID, positionalParameters, result)
+        assertMapping(aes, newColumnID, positionalParameters, result)
         verify { mockDatasetHandler.takeColumn(columnID) }
     }
 
@@ -108,9 +108,9 @@ class BindingContextTest {
 
         every { mockDatasetHandler.addColumn(dataColumn) } returns columnID
 
-        val result = bindingContext.addPositionalMapping(aesName, dataColumn, positionalParameters)
+        val result = bindingContext.addPositionalMapping(aes, dataColumn, positionalParameters)
 
-        assertMapping(aesName, columnID, positionalParameters, result)
+        assertMapping(aes, columnID, positionalParameters, result)
         verify { mockDatasetHandler.addColumn(dataColumn) }
     }
 
@@ -118,9 +118,9 @@ class BindingContextTest {
     fun `test addNonPositionalMapping with list of values`() {
         every { mockDatasetHandler.addColumn(values, name) } returns columnID
 
-        val result = bindingContext.addNonPositionalMapping(aesName, values, name, nonPositionalParameters)
+        val result = bindingContext.addNonPositionalMapping(aes, values, name, nonPositionalParameters)
 
-        assertMapping(aesName, columnID, nonPositionalParameters, result)
+        assertMapping(aes, columnID, nonPositionalParameters, result)
         verify { mockDatasetHandler.addColumn(values, name) }
     }
 
@@ -130,9 +130,9 @@ class BindingContextTest {
 
         every { mockDatasetHandler.takeColumn(columnID) } returns newColumnID
 
-        val result = bindingContext.addNonPositionalMapping(aesName, columnID, nonPositionalParameters)
+        val result = bindingContext.addNonPositionalMapping(aes, columnID, nonPositionalParameters)
 
-        assertMapping(aesName, newColumnID, nonPositionalParameters, result)
+        assertMapping(aes, newColumnID, nonPositionalParameters, result)
         verify { mockDatasetHandler.takeColumn(columnID) }
     }
 
@@ -142,9 +142,9 @@ class BindingContextTest {
 
         every { mockDatasetHandler.addColumn(dataColumn) } returns columnID
 
-        val result = bindingContext.addNonPositionalMapping(aesName, dataColumn, nonPositionalParameters)
+        val result = bindingContext.addNonPositionalMapping(aes, dataColumn, nonPositionalParameters)
 
-        assertMapping(aesName, columnID, nonPositionalParameters, result)
+        assertMapping(aes, columnID, nonPositionalParameters, result)
         verify { mockDatasetHandler.addColumn(dataColumn) }
     }
 
@@ -152,9 +152,9 @@ class BindingContextTest {
     fun `test addPositionalFreeScale`() {
         val parameters = mockk<PositionalMappingParameters<Any>>()
 
-        bindingContext.addPositionalFreeScale(aesName, parameters)
+        bindingContext.addPositionalFreeScale(aes, parameters)
 
-        val expectedFreeScale = PositionalFreeScale(aesName, parameters)
-        assertEquals(expectedFreeScale, bindingContext.bindingCollector.freeScales[aesName])
+        val expectedFreeScale = PositionalFreeScale(aes, parameters)
+        assertEquals(expectedFreeScale, bindingContext.bindingCollector.freeScales[aes])
     }
 }

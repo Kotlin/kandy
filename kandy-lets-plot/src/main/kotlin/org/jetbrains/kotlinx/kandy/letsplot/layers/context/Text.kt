@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.*
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LABEL
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
@@ -21,7 +21,7 @@ public class FontContext(override val parentContext: BindingContext) :
 public interface TextInterface: LayerContextInterface, WithX, WithY, WithAlpha, WithLabel {
     override val geom: Geom
         get() = TEXT
-    override val requiredAes: Set<AesName>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, Y, LABEL)
     public val font: FontContext
 }

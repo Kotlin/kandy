@@ -11,11 +11,11 @@ import org.jetbrains.kotlinx.kandy.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.EchartsColor
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.toEchartsColor
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.StringNumberArray
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.util.color.Color
 
-internal fun Map<AesName, Setting>.getAreaStyle(): AreaStyle {
+internal fun Map<Aes, Setting>.getAreaStyle(): AreaStyle {
     val color = this.getNPSValue<Color>(AREA_COLOR)?.toEchartsColor()
     val origin = this.getNPSValue<AreaPosition>(AREA_POSITION)?.position
     val shadowBlur = this.getNPSValue<Int>(AREA_SHADOW_BLUR)

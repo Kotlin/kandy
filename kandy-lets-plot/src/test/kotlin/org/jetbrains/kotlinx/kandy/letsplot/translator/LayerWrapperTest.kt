@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import org.jetbrains.kotlinx.kandy.ir.Layer
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
@@ -23,7 +23,7 @@ import kotlin.test.assertEquals
 internal class LayerWrapperTest {
     @Test
     fun testSimple() {
-        val mappings: Map<AesName, Mapping> = mapOf(
+        val mappings: Map<Aes, Mapping> = mapOf(
             FILL to NonPositionalMapping<Int, Color>(
                 FILL,
                 "F",
@@ -69,7 +69,7 @@ internal class LayerWrapperTest {
         )
 
 
-        val mappings: Map<AesName, Mapping> = mapOf(
+        val mappings: Map<Aes, Mapping> = mapOf(
             X to PositionalMapping<Float>(
                 X,
                 "TIME_T",
@@ -161,7 +161,7 @@ internal class LayerWrapperTest {
             "v1" to List(100) { it },
             "v2" to List(100) { it }
         )
-        val mappings: Map<AesName, Mapping> = mapOf(
+        val mappings: Map<Aes, Mapping> = mapOf(
             X to PositionalMapping<Int>(
                 X, "v1", LetsPlotPositionalMappingParametersContinuous()
             ),

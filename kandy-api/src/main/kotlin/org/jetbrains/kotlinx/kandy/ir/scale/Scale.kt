@@ -4,12 +4,12 @@
 
 package org.jetbrains.kotlinx.kandy.ir.scale
 
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 
 /**
  * Represents the concept of a scale, a pivotal element in the visualization library.
- * A scale provides the mapping between the data space, raw [data values][TableData], and the [aesthetic][AesName] space,
+ * A scale provides the mapping between the data space, raw [data values][TableData], and the [aesthetic][Aes] space,
  * which can be visual attributes like `colors`, `positions`, or `sizes`.
  * In essence, a `scale` converts data values into geometric, visual representations.
  *

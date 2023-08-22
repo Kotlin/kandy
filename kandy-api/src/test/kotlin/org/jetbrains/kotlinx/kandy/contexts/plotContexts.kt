@@ -10,7 +10,7 @@ import junit.framework.TestCase.assertEquals
 import org.jetbrains.kotlinx.kandy.dsl.internal.*
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
@@ -25,9 +25,9 @@ class PlotContextsTest {
         every { data() } returns mockData
     }
     private val mockPlotFeatures = mockk<MutableMap<FeatureName, PlotFeature>>()
-    private val mockMappings = mockk<MutableMap<AesName, Mapping>>()
-    private val mockSettings = mockk<MutableMap<AesName, Setting>>()
-    private val mockFreeScales = mockk<MutableMap<AesName, FreeScale>>()
+    private val mockMappings = mockk<MutableMap<Aes, Mapping>>()
+    private val mockSettings = mockk<MutableMap<Aes, Setting>>()
+    private val mockFreeScales = mockk<MutableMap<Aes, FreeScale>>()
 
     @Test
     fun `test singleLayerPlotContext toPlot`() {

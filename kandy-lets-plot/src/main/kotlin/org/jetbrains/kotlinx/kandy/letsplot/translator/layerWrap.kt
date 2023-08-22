@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import org.jetbrains.kotlinx.kandy.ir.Layer
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
@@ -16,8 +16,8 @@ import org.jetbrains.letsPlot.intern.Feature
 internal fun Layer.wrap(
     featureBuffer: MutableList<Feature>,
     datasets: List<TableData>,
-    globalMappings: Map<AesName, Mapping>,
-    globalSettings: Map<AesName, Setting>,
+    globalMappings: Map<Aes, Mapping>,
+    globalSettings: Map<Aes, Setting>,
 ) {
     val dataset = if (datasetIndex == 0) {
         null

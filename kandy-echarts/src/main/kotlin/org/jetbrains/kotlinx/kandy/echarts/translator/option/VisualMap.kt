@@ -16,10 +16,10 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.aes.SIZE
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.SYMBOL
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.EchartsTextStyle
 import org.jetbrains.kotlinx.kandy.echarts.translator.serializers.RangeSerializer
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.util.color.Color
 
-internal fun createInRange(aes: AesName, valuesString: List<Any?>?): Range? {
+internal fun createInRange(aes: Aes, valuesString: List<Any?>?): Range? {
     if (valuesString.isNullOrEmpty()) return null
     return when (aes) {
         COLOR, LINE_COLOR, AREA_COLOR -> Range(color = valuesString.map { (it as Color).toEchartsColor() })

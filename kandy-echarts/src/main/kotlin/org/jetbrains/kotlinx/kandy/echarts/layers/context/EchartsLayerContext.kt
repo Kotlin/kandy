@@ -11,11 +11,11 @@ import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationBoxplotCa
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationLayerFeature
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationPie
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.NAME
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 
 public sealed class EchartsLayerContext(parent: LayerCollectorContext) : LayerContext(parent) {
 
-    override val requiredAes: Set<AesName> = setOf()
+    override val requiredAes: Set<Aes> = setOf()
     public var name: String? = null
         set(value) {
             addNonPositionalSetting(NAME, value)

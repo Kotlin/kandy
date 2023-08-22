@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
@@ -29,7 +29,7 @@ class LayerContextTest {
 
     private val namedData = NamedData(DataFrame.Empty)
     private val dataHandler = DatasetHandler(namedData)
-    private val aesName = mockk<AesName>()
+    private val aes = mockk<Aes>()
     private val name = "columnName"
     private val positionalParameters = mockk<PositionalMappingParameters<Any>>()
     private val nonPositionalParameters = mockk<NonPositionalMappingParameters<Any, Any>>()
@@ -46,7 +46,7 @@ class LayerContextTest {
 
         layerContext = object : LayerContext(parentContext) {
             override val geom: Geom = mockk()
-            override val requiredAes: Set<AesName> = mockk()
+            override val requiredAes: Set<Aes> = mockk()
             override val datasetHandler: DatasetHandler = mockk(relaxed = true)
         }
     }
@@ -55,8 +55,8 @@ class LayerContextTest {
     fun `test addNonPositionalMapping with columnID`() {
         every { layerContext.datasetHandler.takeColumn(columnID) } returns columnID
 
-        val result = layerContext.addNonPositionalMapping(aesName, columnID, nonPositionalParameters)
-        val expectedMapping = NonPositionalMapping(aesName, columnID, nonPositionalParameters)
+        val result = layerContext.addNonPositionalMapping(aes, columnID, nonPositionalParameters)
+        val expectedMapping = NonPositionalMapping(aes, columnID, nonPositionalParameters)
 
         assertEquals(expectedMapping, result)
     }
@@ -69,8 +69,8 @@ class LayerContextTest {
 
         every { layerContext.datasetHandler.addColumn(dataColumn) } returns columnID
 
-        val result = layerContext.addNonPositionalMapping(aesName, dataColumn, nonPositionalParameters)
-        val expectedMapping = NonPositionalMapping(aesName, columnID, nonPositionalParameters)
+        val result = layerContext.addNonPositionalMapping(aes, dataColumn, nonPositionalParameters)
+        val expectedMapping = NonPositionalMapping(aes, columnID, nonPositionalParameters)
 
         assertEquals(1, layerContext.datasetIndex)
         assertEquals(expectedMapping, result)
@@ -81,8 +81,8 @@ class LayerContextTest {
         val values = listOf<Any>("test1", "test2")
         every { layerContext.datasetHandler.addColumn(values, name) } returns columnID
 
-        val result = layerContext.addNonPositionalMapping(aesName, values, name, nonPositionalParameters)
-        val expectedMapping = NonPositionalMapping(aesName, columnID, nonPositionalParameters)
+        val result = layerContext.addNonPositionalMapping(aes, values, name, nonPositionalParameters)
+        val expectedMapping = NonPositionalMapping(aes, columnID, nonPositionalParameters)
 
         assertEquals(1, layerContext.datasetIndex)
         assertEquals(expectedMapping, result)
@@ -92,8 +92,8 @@ class LayerContextTest {
     fun `test addPositionalMapping with columnID`() {
         every { layerContext.datasetHandler.takeColumn(columnID) } returns columnID
 
-        val result = layerContext.addPositionalMapping(aesName, columnID, positionalParameters)
-        val expectedMapping = PositionalMapping(aesName, columnID, positionalParameters)
+        val result = layerContext.addPositionalMapping(aes, columnID, positionalParameters)
+        val expectedMapping = PositionalMapping(aes, columnID, positionalParameters)
 
         assertEquals(expectedMapping, result)
     }
@@ -106,8 +106,8 @@ class LayerContextTest {
 
         every { layerContext.datasetHandler.addColumn(dataColumn) } returns columnID
 
-        val result = layerContext.addPositionalMapping(aesName, dataColumn, positionalParameters)
-        val expectedMapping = PositionalMapping(aesName, columnID, positionalParameters)
+        val result = layerContext.addPositionalMapping(aes, dataColumn, positionalParameters)
+        val expectedMapping = PositionalMapping(aes, columnID, positionalParameters)
 
         assertEquals(1, layerContext.datasetIndex)
         assertEquals(expectedMapping, result)
@@ -118,8 +118,8 @@ class LayerContextTest {
         val values = listOf<Any>("test1", "test2")
         every { layerContext.datasetHandler.addColumn(values, name) } returns columnID
 
-        val result = layerContext.addPositionalMapping(aesName, values, name, positionalParameters)
-        val expectedMapping = PositionalMapping(aesName, columnID, positionalParameters)
+        val result = layerContext.addPositionalMapping(aes, values, name, positionalParameters)
+        val expectedMapping = PositionalMapping(aes, columnID, positionalParameters)
 
         assertEquals(1, layerContext.datasetIndex)
         assertEquals(expectedMapping, result)

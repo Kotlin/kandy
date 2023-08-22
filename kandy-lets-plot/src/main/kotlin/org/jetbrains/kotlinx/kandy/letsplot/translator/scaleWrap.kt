@@ -12,7 +12,6 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.scale.*
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*
@@ -28,6 +27,8 @@ import org.jetbrains.letsPlot.intern.Options
 import org.jetbrains.letsPlot.scale.*
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
+
+private typealias Aesthetic = org.jetbrains.kotlinx.kandy.ir.aes.Aes
 
 internal val dateTimeTypes = setOf(
     typeOf<Instant>(), typeOf<LocalDateTime>(), typeOf<LocalDate>(),
@@ -56,7 +57,7 @@ internal fun Mapping.wrapScale(domainType: KType, groupKeys: List<String>?): org
  * TODO datetime
  */
 internal fun Scale.wrap(
-    aesName: AesName,
+    aes: Aesthetic,
     domainType: KType,
     scaleParameters: ScaleParameters?,
     isGroupKey: Boolean,
@@ -79,7 +80,7 @@ internal fun Scale.wrap(
             // todo discrete datetime
             /*
             if (domainType in dateTimeTypes) {
-                return when (aesName) {
+                return when (aes) {
                     X -> scaleXDateTime(
                         //  limits = limits.toLP(),
                         name = name,
@@ -105,7 +106,7 @@ internal fun Scale.wrap(
 
             when (this) {
                 is PositionalCategoricalScale<*> -> {
-                    when (aesName) {
+                    when (aes) {
                         X -> scaleXDiscrete(
                             limits = categories?.wrap(),
                             name = name,
@@ -129,7 +130,7 @@ internal fun Scale.wrap(
                 }
 
                 is PositionalContinuousScale<*> -> {
-                    when (aesName) {
+                    when (aes) {
                         X -> if (domainType in dateTimeTypes) {
                             scaleXDateTime(
                                 limits = (min to max).wrap(),
@@ -192,10 +193,10 @@ internal fun Scale.wrap(
                 }
 
                 is PositionalDefaultScale<*> -> if (domainType.isCategoricalType() || isGroupKey) {
-                    PositionalCategoricalScale<String>(null).wrap(aesName, domainType, scaleParameters, isGroupKey)
+                    PositionalCategoricalScale<String>(null).wrap(aes, domainType, scaleParameters, isGroupKey)
                 } else {
                     PositionalContinuousScale<Double>(null, null, null, null).wrap(
-                        aesName,
+                        aes,
                         domainType,
                         scaleParameters,
                         isGroupKey
@@ -242,9 +243,9 @@ internal fun Scale.wrap(
             }
 
             when (this) {
-                is NonPositionalDefaultScale<*, *> -> if (domainType.isCategoricalType() || aesName in discreteAes || isGroupKey) {
+                is NonPositionalDefaultScale<*, *> -> if (domainType.isCategoricalType() || aes in discreteAes || isGroupKey) {
                     NonPositionalCategoricalScale<String, String>(null, null).wrap(
-                        aesName,
+                        aes,
                         domainType,
                         scaleParameters,
                         isGroupKey
@@ -253,7 +254,7 @@ internal fun Scale.wrap(
                     NonPositionalContinuousScale<Double, Double>(
                         null, null, null, null, null, null
                     ).wrap(
-                        aesName,
+                        aes,
                         domainType,
                         scaleParameters,
                         isGroupKey
@@ -261,7 +262,7 @@ internal fun Scale.wrap(
                 }
 
                 is NonPositionalCategoricalScale<*, *> -> {
-                    when (aesName) {
+                    when (aes) {
                         SIZE -> if (rangeValues != null) {
                             scaleSizeManual(
                                 values = rangeValues!!.map { it as Number },
@@ -415,7 +416,7 @@ internal fun Scale.wrap(
                 }
 
                 is NonPositionalContinuousScale<*, *> -> {
-                    when (aesName) {
+                    when (aes) {
 
                         SIZE -> {
                             // todo
@@ -545,7 +546,7 @@ internal fun Scale.wrap(
                 }
 
                 is CustomScale -> when (this) {
-                    is ScaleColorGrey<*> -> when (aesName) {
+                    is ScaleColorGrey<*> -> when (aes) {
                         COLOR -> scaleColorGrey(
                             paletteRange?.first,
                             paletteRange?.second,
@@ -575,7 +576,7 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleColorHue<*> -> when (aesName) {
+                    is ScaleColorHue<*> -> when (aes) {
                         COLOR -> scaleColorHue(
                             huesRange,
                             chroma,
@@ -611,7 +612,7 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleColorBrewer<*> -> when (aesName) {
+                    is ScaleColorBrewer<*> -> when (aes) {
                         COLOR -> scaleColorBrewer(
                             //type = type?.type,
                             type = null,
@@ -643,7 +644,7 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleContinuousColorGradient2<*> -> when (aesName) {
+                    is ScaleContinuousColorGradient2<*> -> when (aes) {
                         COLOR -> scaleColorGradient2(
                             low.wrap(),
                             mid.wrap(),
@@ -677,7 +678,7 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleContinuousColorGradientN<*> -> when (aesName) {
+                    is ScaleContinuousColorGradientN<*> -> when (aes) {
                         COLOR -> scaleColorGradientN(
                             rangeColors.map { it.wrap() },
                             name = name,

@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.ir.scale
 
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.MappingParameters
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
 
@@ -18,7 +18,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
  * @property parameters [parameters][MappingParameters] defining the mapping for the aesthetic.
  */
 public sealed interface FreeScale {
-    public val aes: AesName
+    public val aes: Aes
     public val parameters: MappingParameters
 }
 
@@ -39,6 +39,6 @@ public sealed interface FreeScale {
  * @property parameters parameters defining the mapping for the positional aesthetic.
  */
 public data class PositionalFreeScale<DomainType>(
-    override val aes: AesName,
+    override val aes: Aes,
     override val parameters: PositionalMappingParameters<DomainType>
 ) : FreeScale

@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
@@ -17,7 +17,7 @@ public interface BarsContextInterface : LayerContextInterface, WithBorderLineCon
     WithAlpha, WithFillColor, WithWidth {
     public override val geom: Geom
         get() = BAR
-    public override val requiredAes: Set<AesName>
+    public override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 }
 

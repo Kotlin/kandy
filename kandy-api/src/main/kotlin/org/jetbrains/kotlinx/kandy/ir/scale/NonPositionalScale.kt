@@ -4,11 +4,11 @@
 
 package org.jetbrains.kotlinx.kandy.ir.scale
 
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 
 /**
  * Represents a non-positional [scale][Scale],
- * which maps data values to [aesthetic attributes][AesName] other than spatial positions.
+ * which maps data values to [aesthetic attributes][Aes] other than spatial positions.
  *
  * Unlike positional scales that determine the spatial placement of data points on the `x` and `y` axes,
  * non-positional scales influence other visual elements such as color, size, or shape.
@@ -20,7 +20,7 @@ public sealed interface NonPositionalScale<DomainType, RangeType> : Scale
 
 /**
  * Represents a non-positional continuous [scale][Scale].
- * It maps continuous data values to [aesthetic attributes][AesName] other than spatial positions, such as color gradients.
+ * It maps continuous data values to [aesthetic attributes][Aes] other than spatial positions, such as color gradients.
  *
  * @property DomainType the type of data domain.
  * @property RangeType the type of aesthetic range to which the data values are mapped.
@@ -42,7 +42,7 @@ public data class NonPositionalContinuousScale<DomainType, RangeType>(
 
 /**
  * Base interface for non-positional [categorical scales][CategoricalScale].
- * These scales map discrete, finite data values to specific [aesthetic attributes][AesName].
+ * These scales map discrete, finite data values to specific [aesthetic attributes][Aes].
  *
  * @property DomainType the type of data domain.
  * @property RangeType the type of aesthetic range to which the data values are mapped.
@@ -52,7 +52,7 @@ public sealed interface NonPositionalCategoricalScaleBase<DomainType, RangeType>
 
 /**
  * Represents a non-positional [categorical scale][CategoricalScale], mapping distinct categories within the data to
- * specific [aesthetic attributes][AesName] other than spatial positions.
+ * specific [aesthetic attributes][Aes] other than spatial positions.
  *
  * @property DomainType the type of data domain.
  * @property domainCategories list of unique data categories.
@@ -75,7 +75,7 @@ public interface CustomNonPositionalScale<DomainType, RangeType>
 
 /**
  * Represents the default non-positional [scale][Scale] employed based on the type of data and
- * the [aesthetic attribute][AesName] in question.
+ * the [aesthetic attribute][Aes] in question.
  *
  * @property DomainType the type of data domain.
  * @property RangeType the type of aesthetic range.
@@ -93,7 +93,7 @@ public class NonPositionalDefaultScale<DomainType, RangeType> :
 
 /**
  * Represents the default categorical, non-positional [scale][Scale] employed based on
- * the type of data and the [aesthetic attribute][AesName].
+ * the type of data and the [aesthetic attribute][Aes].
  *
  * @property DomainType the type of data domain.
  * @property RangeType the type of aesthetic range.

@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
@@ -88,19 +88,19 @@ internal interface WithWidth : BindingContext {
 }
 
 internal class PointsContext(parent: LayerCollectorContext) : LayerContext(parent), WithColor, WithSize, WithX, WithY {
-    override val requiredAes: Set<AesName> = setOf()
+    override val requiredAes: Set<Aes> = setOf()
     override val geom: Geom
         get() = POINT
 }
 
 internal class LineContext(parent: LayerCollectorContext) : LayerContext(parent), WithWidth, WithColor, WithX, WithY {
-    override val requiredAes: Set<AesName> = setOf()
+    override val requiredAes: Set<Aes> = setOf()
     override val geom: Geom
         get() = LINE
 }
 
 internal class BarsContext(parent: LayerCollectorContext) : LayerContext(parent), WithWidth, WithColor, WithX, WithY {
-    override val requiredAes: Set<AesName> = setOf()
+    override val requiredAes: Set<Aes> = setOf()
     override val geom: Geom
         get() = BAR
 }

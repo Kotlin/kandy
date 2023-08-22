@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
@@ -26,9 +26,9 @@ import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
  * @property freeScales [MutableMap] of aesthetic names to their free scales.
  */
 public class BindingCollector() {
-    public val mappings: MutableMap<AesName, Mapping> = mutableMapOf()
-    public val settings: MutableMap<AesName, Setting> = mutableMapOf()
-    public val freeScales: MutableMap<AesName, FreeScale> = mutableMapOf()
+    public val mappings: MutableMap<Aes, Mapping> = mutableMapOf()
+    public val settings: MutableMap<Aes, Setting> = mutableMapOf()
+    public val freeScales: MutableMap<Aes, FreeScale> = mutableMapOf()
 }
 
 /**
@@ -49,7 +49,7 @@ public interface BaseContext {
 public interface LayerContextInterface : BindingContext {
     public val geom: Geom
     public val layerFeatures: MutableMap<FeatureName, LayerFeature>
-    public val requiredAes: Set<AesName>
+    public val requiredAes: Set<Aes>
     public fun toLayer(layersInheritMappings: Boolean): Layer {
         return Layer(
             datasetIndex,
@@ -92,16 +92,16 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
     }
 
     override fun <DomainType, RangeType> addNonPositionalMapping(
-        aesName: AesName,
+        aes: Aes,
         columnID: String,
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?
     ): NonPositionalMapping<DomainType, RangeType> {
         firstMapping = false
-        return super.addNonPositionalMapping(aesName, columnID, parameters)
+        return super.addNonPositionalMapping(aes, columnID, parameters)
     }
 
     override fun <DomainType, RangeType> addNonPositionalMapping(
-        aesName: AesName,
+        aes: Aes,
         values: DataColumn<DomainType>,
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?
     ): NonPositionalMapping<DomainType, RangeType> {
@@ -109,11 +109,11 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
             overrideDataset()
         }
         firstMapping = false
-        return super.addNonPositionalMapping(aesName, values, parameters)
+        return super.addNonPositionalMapping(aes, values, parameters)
     }
 
     override fun <DomainType, RangeType> addNonPositionalMapping(
-        aesName: AesName,
+        aes: Aes,
         values: List<DomainType>,
         name: String?,
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?
@@ -122,20 +122,20 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
             overrideDataset()
         }
         firstMapping = false
-        return super.addNonPositionalMapping(aesName, values, name, parameters)
+        return super.addNonPositionalMapping(aes, values, name, parameters)
     }
 
     override fun <DomainType> addPositionalMapping(
-        aesName: AesName,
+        aes: Aes,
         columnID: String,
         parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
         firstMapping = false
-        return super.addPositionalMapping(aesName, columnID, parameters)
+        return super.addPositionalMapping(aes, columnID, parameters)
     }
 
     override fun <DomainType> addPositionalMapping(
-        aesName: AesName,
+        aes: Aes,
         values: DataColumn<DomainType>,
         parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
@@ -143,11 +143,11 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
             overrideDataset()
         }
         firstMapping = false
-        return super.addPositionalMapping(aesName, values, parameters)
+        return super.addPositionalMapping(aes, values, parameters)
     }
 
     override fun <DomainType> addPositionalMapping(
-        aesName: AesName,
+        aes: Aes,
         values: List<DomainType>,
         name: String?,
         parameters: PositionalMappingParameters<DomainType>?
@@ -156,7 +156,7 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
             overrideDataset()
         }
         firstMapping = false
-        return super.addPositionalMapping(aesName, values, name, parameters)
+        return super.addPositionalMapping(aes, values, name, parameters)
     }
 
 }
@@ -257,153 +257,153 @@ public interface BindingContext : BaseContext {
     /**
      * Adds [NonPositionalSetting] for given non-positional aes and value.
      *
-     * @param aesName name of aes.
+     * @param aes name of aes.
      * @param value assigned value.
      * @param DomainType type of value.
      */
     public fun <DomainType> addNonPositionalSetting(
-        aesName: AesName,
+        aes: Aes,
         value: DomainType
     ): NonPositionalSetting<DomainType> {
-        return NonPositionalSetting(aesName, value).also {
-            bindingCollector.settings[aesName] = it
+        return NonPositionalSetting(aes, value).also {
+            bindingCollector.settings[aes] = it
         }
     }
 
     /**
      * Adds [PositionalSetting] for given positional aes and value.
      *
-     * @param aesName name of aes.
+     * @param aes name of aes.
      * @param value assigned value.
      * @param DomainType type of value.
      */
-    public fun <DomainType> addPositionalSetting(aesName: AesName, value: DomainType): PositionalSetting<DomainType> {
-        return PositionalSetting(aesName, value).also {
-            bindingCollector.settings[aesName] = it
+    public fun <DomainType> addPositionalSetting(aes: Aes, value: DomainType): PositionalSetting<DomainType> {
+        return PositionalSetting(aes, value).also {
+            bindingCollector.settings[aes] = it
         }
     }
 
     /**
      * Adds [PositionalMapping] for given positional aes from given [List] of values.
      *
-     * @param aesName name of aes.
+     * @param aes name of aes.
      * @param values [List] of mapped values.
      * @param parameters mapping parameters, optional.
      * @param DomainType type of values.
      */
     public fun <DomainType> addPositionalMapping(
-        aesName: AesName, values: List<DomainType>, name: String?, parameters: PositionalMappingParameters<DomainType>?
+        aes: Aes, values: List<DomainType>, name: String?, parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
-        val columnID = datasetHandler.addColumn(values, name ?: aesName.name)
-        return PositionalMapping<DomainType>(aesName, columnID, parameters).also {
-            bindingCollector.mappings[aesName] = it
+        val columnID = datasetHandler.addColumn(values, name ?: aes.name)
+        return PositionalMapping<DomainType>(aes, columnID, parameters).also {
+            bindingCollector.mappings[aes] = it
         }
     }
 
     /**
      * Adds [PositionalMapping] for given positional aes from column of dataset referenced by given id.
      *
-     * @param aesName name of aes.
+     * @param aes name of aes.
      * @param columnID name of mapped column of dataset.
      * @param parameters mapping parameters, optional.
      * @param DomainType type of values.
      */
     public fun <DomainType> addPositionalMapping(
-        aesName: AesName, columnID: String, parameters: PositionalMappingParameters<DomainType>?
+        aes: Aes, columnID: String, parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
         val newColumnID = datasetHandler.takeColumn(columnID)
-        return PositionalMapping<DomainType>(aesName, newColumnID, parameters).also {
-            bindingCollector.mappings[aesName] = it
+        return PositionalMapping<DomainType>(aes, newColumnID, parameters).also {
+            bindingCollector.mappings[aes] = it
         }
     }
 
     /**
      * Adds [PositionalMapping] for given positional aes from given [DataColumn] of values.
      *
-     * @param aesName name of aes.
+     * @param aes name of aes.
      * @param values mapped column.
      * @param parameters mapping parameters, optional.
      * @param DomainType type of values.
      */
     public fun <DomainType> addPositionalMapping(
-        aesName: AesName, values: DataColumn<DomainType>, parameters: PositionalMappingParameters<DomainType>?
+        aes: Aes, values: DataColumn<DomainType>, parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
         val columnID = datasetHandler.addColumn(values)
-        return PositionalMapping<DomainType>(aesName, columnID, parameters).also {
-            bindingCollector.mappings[aesName] = it
+        return PositionalMapping<DomainType>(aes, columnID, parameters).also {
+            bindingCollector.mappings[aes] = it
         }
     }
 
     /**
      * Adds [NonPositionalMapping] for given non-positional aes from given [List] of values.
      *
-     * @param aesName name of aes.
+     * @param aes name of aes.
      * @param values [List] of mapped values.
      * @param parameters mapping parameters, optional.
      * @param DomainType type of values.
      */
     public fun <DomainType, RangeType> addNonPositionalMapping(
-        aesName: AesName,
+        aes: Aes,
         values: List<DomainType>,
         name: String?,
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?
     ): NonPositionalMapping<DomainType, RangeType> {
-        val columnID = datasetHandler.addColumn(values, name ?: aesName.name)
-        return NonPositionalMapping<DomainType, RangeType>(aesName, columnID, parameters).also {
-            bindingCollector.mappings[aesName] = it
+        val columnID = datasetHandler.addColumn(values, name ?: aes.name)
+        return NonPositionalMapping<DomainType, RangeType>(aes, columnID, parameters).also {
+            bindingCollector.mappings[aes] = it
         }
     }
 
     /**
      * Adds [NonPositionalMapping] for given positional aes from given [DataColumn] of values.
      *
-     * @param aesName name of aes.
+     * @param aes name of aes.
      * @param values mapped column.
      * @param parameters mapping parameters, optional.
      * @param DomainType type of values.
      */
     public fun <DomainType, RangeType> addNonPositionalMapping(
-        aesName: AesName,
+        aes: Aes,
         values: DataColumn<DomainType>,
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?
     ): NonPositionalMapping<DomainType, RangeType> {
         val columnID = datasetHandler.addColumn(values)
-        return NonPositionalMapping<DomainType, RangeType>(aesName, columnID, parameters).also {
-            bindingCollector.mappings[aesName] = it
+        return NonPositionalMapping<DomainType, RangeType>(aes, columnID, parameters).also {
+            bindingCollector.mappings[aes] = it
         }
     }
 
     /**
      * Adds [NonPositionalMapping] for given non-positional aes from column of dataset referenced by given id.
      *
-     * @param aesName name of aes.
+     * @param aes name of aes.
      * @param columnID name of mapped column of dataset.
      * @param parameters mapping parameters, optional.
      * @param DomainType type of values.
      */
     public fun <DomainType, RangeType> addNonPositionalMapping(
-        aesName: AesName,
+        aes: Aes,
         columnID: String,
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?
     ): NonPositionalMapping<DomainType, RangeType> {
         val newColumnID = datasetHandler.takeColumn(columnID)
-        return NonPositionalMapping<DomainType, RangeType>(aesName, newColumnID, parameters).also {
-            bindingCollector.mappings[aesName] = it
+        return NonPositionalMapping<DomainType, RangeType>(aes, newColumnID, parameters).also {
+            bindingCollector.mappings[aes] = it
         }
     }
 
     /**
      * Adds [PositionalFreeScale] for given positional aes.
      *
-     * @param aesName name of aes.
+     * @param aes name of aes.
      * @param parameters mapping parameters.
      * @param DomainType scale domain type.
      */
     public fun <DomainType> addPositionalFreeScale(
-        aesName: AesName,
+        aes: Aes,
         parameters: PositionalMappingParameters<DomainType>
     ) {
-        bindingCollector.freeScales[aesName] = PositionalFreeScale<DomainType>(aesName, parameters)
+        bindingCollector.freeScales[aes] = PositionalFreeScale<DomainType>(aes, parameters)
     }
 }
 

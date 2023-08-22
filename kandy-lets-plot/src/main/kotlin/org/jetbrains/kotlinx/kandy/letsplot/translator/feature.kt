@@ -126,11 +126,11 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
 internal fun Gathering.toLayer(): Layer {
     val dataFrame = data.dataFrame
     val size = dataFrame.rowsCount()
-    val mappingAesNames = series.first().settings.keys
+    val mappingAesthetics = series.first().settings.keys
     val xBuffer = mutableListOf<Any?>()
     val yBuffer = mutableListOf<Any?>()
     val labelBuffer = mutableListOf<String>()
-    val scaleBuffer = mappingAesNames.associateWith {
+    val scaleBuffer = mappingAesthetics.associateWith {
         mutableListOf<String>() to mutableListOf<Any?>()
     }
 
@@ -141,8 +141,8 @@ internal fun Gathering.toLayer(): Layer {
         xBuffer.addAll(dataFrame[series.mappings[X]!!.columnName()].values())
         yBuffer.addAll(dataFrame[series.mappings[Y]!!.columnName()].values())
         labelBuffer.addAll(List(size){series.label})
-        series.settings.forEach { (aesName, setting) ->
-            scaleBuffer[aesName]!!.let {
+        series.settings.forEach { (aes, setting) ->
+            scaleBuffer[aes]!!.let {
                 it.first.add(series.label)
                 it.second.add((setting as NonPositionalSetting<*>).value!!)
             }
@@ -150,7 +150,7 @@ internal fun Gathering.toLayer(): Layer {
     }
 
 
-    val nonPosScales: Map<AesName, Mapping> = if (scaleBuffer.isEmpty()) {
+    val nonPosScales: Map<Aes, Mapping> = if (scaleBuffer.isEmpty()) {
         mapOf(
             COLOR to ScaledNonPositionalUnspecifiedMapping<String, Color>(
             COLOR,
@@ -158,9 +158,9 @@ internal fun Gathering.toLayer(): Layer {
             typeOf<String>()
         ))
     } else {
-        scaleBuffer.map { (aesName, buffer) ->
-            aesName to ScaledNonPositionalMapping<String, Any?>(
-                aesName,
+        scaleBuffer.map { (aes, buffer) ->
+            aes to ScaledNonPositionalMapping<String, Any?>(
+                aes,
                 "label"<String>().scaled(
                     categorical(
                         buffer.first,
