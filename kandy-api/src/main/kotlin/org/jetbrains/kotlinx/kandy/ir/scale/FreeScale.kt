@@ -2,9 +2,11 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.ir.bindings
+package org.jetbrains.kotlinx.kandy.ir.scale
 
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
+import org.jetbrains.kotlinx.kandy.ir.bindings.MappingParameters
+import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
 
 /**
  * Defines constraints and conditions for an axis.
@@ -16,7 +18,7 @@ import org.jetbrains.kotlinx.kandy.ir.aes.AesName
  * @property parameters [parameters][MappingParameters] defining the mapping for the aesthetic.
  */
 public sealed interface FreeScale {
-    public val aes: AesName
+    public val aes: Aes
     public val parameters: MappingParameters
 }
 
@@ -37,6 +39,6 @@ public sealed interface FreeScale {
  * @property parameters parameters defining the mapping for the positional aesthetic.
  */
 public data class PositionalFreeScale<DomainType>(
-    override val aes: AesName,
+    override val aes: Aes,
     override val parameters: PositionalMappingParameters<DomainType>
 ) : FreeScale

@@ -4,16 +4,16 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers.aes
 
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 
-internal val X: AesName = AesName("x")
+internal val X: Aes = Aes("x")
 
-internal val Y: AesName = AesName("y")
+internal val Y: Aes = Aes("y")
 
-internal val NAME: AesName = AesName("name")
+internal val NAME: Aes = Aes("name")
 
-internal val SIZE: AesName = AesName("size")
+internal val SIZE: Aes = Aes("size")
 
-internal val COLOR: AesName = AesName("color")
+internal val COLOR: Aes = Aes("color")
 
-internal val ALPHA: AesName = AesName("line_alpha")
+internal val ALPHA: Aes = Aes("line_alpha")

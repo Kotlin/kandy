@@ -4,10 +4,10 @@
 
 package org.jetbrains.kotlinx.kandy.ir.bindings
 
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 
 /**
- * Maps data from a dataset to an [aesthetic attribute][AesName].
+ * Maps data from a dataset to an [aesthetic attribute][Aes].
  *
  * A mapping binds data to visual attributes of a plot, facilitating the visual representation of the data.
  *
@@ -25,19 +25,19 @@ import org.jetbrains.kotlinx.kandy.ir.aes.AesName
  * * `size(variable4)` is a [non-positional mapping][NonPositionalMapping] _size_: _D&#8324;_ &#8594; _S_.
  * Here, _D&#8324;_ consists of values from `variable4`, while _S_ details all potential sizes.
  *
- * @property aes the [aesthetic attribute][AesName] being mapped.
+ * @property aes the [aesthetic attribute][Aes] being mapped.
  * @property columnID the identifier for the column in the dataset that corresponds to the aesthetic attribute.
  * @property parameters the [mapping parameters][MappingParameters], optional.
  */
 public sealed interface Mapping {
-    public val aes: AesName
+    public val aes: Aes
     public val columnID: String
 
     public val parameters: MappingParameters?
 }
 
 /**
- * Maps data from a dataset to a positional [aesthetic attribute][AesName].
+ * Maps data from a dataset to a positional [aesthetic attribute][Aes].
  *
  * Positional mapping links data points to specific locations on the graphical space,
  * often determining the spatial placement of these points on the plot.
@@ -52,18 +52,18 @@ public sealed interface Mapping {
  *
  * Note: For non-positional mappings like `color(variable3)` or `size(variable4)`, refer to [NonPositionalMapping].
  *
- * @property aes the positional [aesthetic attribute][AesName] being mapped.
+ * @property aes the positional [aesthetic attribute][Aes] being mapped.
  * @property columnID the identifier for the column in the dataset that corresponds to the aesthetic attribute.
  * @property parameters the [positional mapping parameters][PositionalMappingParameters], optional.
  */
 public data class PositionalMapping<DomainType>(
-    override val aes: AesName,
+    override val aes: Aes,
     override val columnID: String,
     override val parameters: PositionalMappingParameters<DomainType>?
 ) : Mapping
 
 /**
- * Maps data from a dataset to a non-positional [aesthetic attribute][AesName].
+ * Maps data from a dataset to a non-positional [aesthetic attribute][Aes].
  *
  * Non-positional mapping connects data points to the visual attributes of plot elements, like `color` or `size`,
  * which aren't associated with a particular spatial position on the plot.
@@ -79,12 +79,12 @@ public data class PositionalMapping<DomainType>(
  *
  * Note: For positional mappings like `x(variable1)` or `y(variable2)`, refer to [PositionalMapping].
  *
- * @property aes The non-positional [aesthetic attribute][AesName] being mapped.
+ * @property aes The non-positional [aesthetic attribute][Aes] being mapped.
  * @property columnID the identifier for the column in the dataset that corresponds to the aesthetic attribute.
  * @property parameters the [non-positional mapping parameters][NonPositionalMappingParameters], optional.
  */
 public data class NonPositionalMapping<DomainType, RangeType>(
-    override val aes: AesName,
+    override val aes: Aes,
     override val columnID: String,
     override val parameters: NonPositionalMappingParameters<DomainType, RangeType>?
 ) : Mapping

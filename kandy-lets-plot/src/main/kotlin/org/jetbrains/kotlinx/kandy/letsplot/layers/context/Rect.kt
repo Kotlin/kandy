@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X_MAX
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X_MIN
@@ -20,7 +20,7 @@ public interface RectInterface: LayerContextInterface, WithXMin, WithXMax,
     WithFillColor, WithAlpha, WithXFree, WithYFree {
     override val geom: Geom
         get() = RECT
-    override val requiredAes: Set<AesName>
+    override val requiredAes: Set<Aes>
         get() = setOf(X_MIN, X_MAX, Y_MIN, Y_MAX)
 }
 

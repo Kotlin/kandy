@@ -13,4 +13,4 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
  *
  * @property dataFrame the underlying [dataframe][DataFrame] being wrapped.
  */
-public data class NamedData(public val dataFrame: DataFrame<*>): TableData
+public data class NamedData(public val dataFrame: DataFrame<*>) : TableData

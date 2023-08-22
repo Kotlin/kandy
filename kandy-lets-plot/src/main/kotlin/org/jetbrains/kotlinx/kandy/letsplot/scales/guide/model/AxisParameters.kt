@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalContinuousScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
@@ -38,10 +38,10 @@ public open class AxisParameters(
  */
 public class AxisParametersWithSetter(
     mappingParameters: LetsPlotPositionalMappingParametersContinuous<Any?>,
-    private val aesName: AesName,
+    private val aes: Aes,
     private val bindingContext: BindingContext,
 ) : AxisParameters(mappingParameters) {
     public fun constant(value: Any?) {
-        bindingContext.addPositionalSetting(aesName, value)
+        bindingContext.addPositionalSetting(aes, value)
     }
 }

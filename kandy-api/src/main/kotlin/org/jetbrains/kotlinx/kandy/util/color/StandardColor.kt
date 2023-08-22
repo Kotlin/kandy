@@ -113,7 +113,7 @@ public sealed interface StandardColor : Color {
         override val hex: Hex = this
 
         init {
-            require(hexString.matches("^#([a-fA-F0-9]{6}|[a-fA-F0-9]{8})$".toRegex())) {
+            require(hexString.matches("^#([a-fA-F0-9]{3}|[a-fA-F0-9]{4}|[a-fA-F0-9]{6}|[a-fA-F0-9]{8})$".toRegex())) {
                 "Invalid hex string format: '$hexString'. A valid hex string must start with '#' followed by either 6 or 8 hexadecimal characters."
             }
         }

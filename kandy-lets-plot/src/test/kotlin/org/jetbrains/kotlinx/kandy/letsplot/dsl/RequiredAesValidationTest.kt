@@ -13,7 +13,7 @@ internal class RequiredAesValidationTest {
 
     @Test
     fun testPoints() {
-        assertFailsWith<IllegalStateException>("\"x\" is not assigned.") {
+        assertFailsWith<IllegalArgumentException>("\"x\" is not assigned.") {
             plot {
                 points {
                     y(listOf(1, 2, 3))
@@ -25,7 +25,7 @@ internal class RequiredAesValidationTest {
     @Test
     fun testStatBin() {
         val valCol = column<Int>("val")
-        assertFailsWith<IllegalStateException>("\"y\" is not assigned.") {
+        assertFailsWith<IllegalArgumentException>("\"y\" is not assigned.") {
             plot(mapOf("val" to listOf(1, 2, 3, 4, 5))) {
                 y(valCol)
                 statBin(valCol, Bins.byNumber(5)) {

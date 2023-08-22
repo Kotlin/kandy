@@ -18,7 +18,7 @@ import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.*
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.Encode
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
@@ -30,7 +30,7 @@ import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 @Suppress("UNCHECKED_CAST")
-internal fun <T> Map<AesName, Setting>.getNPSValue(key: AesName): T? {
+internal fun <T> Map<Aes, Setting>.getNPSValue(key: Aes): T? {
     return (this[key] as? NonPositionalSetting<*>)?.value as? T
 }
 
@@ -61,7 +61,7 @@ internal class Parser(plot: Plot) {
         val textStyle = layout?.textStyle?.toTextStyle()
         val animation = layout?.animation?.toAnimationPlotFeature()
 
-        globalMappings.forEach { (aes: AesName, mapping: Mapping) ->
+        globalMappings.forEach { (aes: Aes, mapping: Mapping) ->
             if (mapping is PositionalMapping<*>) {
                 when (aes) {
                     X -> {

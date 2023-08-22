@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X_BEGIN
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X_END
@@ -21,7 +21,7 @@ public interface SegmentInterface: LayerContextInterface, WithColor, WithAlpha, 
     WithXBegin, WithYBegin, WithXEnd, WithYEnd, WithXFree, WithYFree {
     override val geom: Geom
         get() = SEGMENT
-    override val requiredAes: Set<AesName>
+    override val requiredAes: Set<Aes>
         get() = setOf(X_BEGIN, Y_BEGIN, X_END, Y_END)
 }
 

@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.*
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
@@ -28,7 +28,7 @@ public interface PointRangeInterface: LayerContextInterface , WithX, WithY, With
     public val innerLine: InnerLineContext
     override val geom: Geom
         get() = POINT_RANGE
-    override val requiredAes: Set<AesName>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, Y, Y_MIN, Y_MAX)
 }
 

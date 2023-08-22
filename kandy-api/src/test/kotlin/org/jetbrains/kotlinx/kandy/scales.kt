@@ -304,7 +304,7 @@ class ScaleTest {
 
 
         val firstScale = CommonNonPositionalMappingParameters<Int, Color>().categorical(*categoriesToValues)
-        val secondScale= Scale.categorical<Int, Color>(*categoriesToValues)
+        val secondScale = Scale.categorical<Int, Color>(*categoriesToValues)
 
         val expectedScale = NonPositionalCategoricalScale<Int, Color>(domain, range)
 

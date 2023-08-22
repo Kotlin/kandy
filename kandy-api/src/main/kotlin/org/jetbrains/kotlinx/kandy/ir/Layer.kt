@@ -4,13 +4,13 @@
 
 package org.jetbrains.kotlinx.kandy.ir
 
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
-import org.jetbrains.kotlinx.kandy.ir.bindings.FreeScale
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
+import org.jetbrains.kotlinx.kandy.ir.scale.FreeScale
 
 /**
  * Represents a foundational component in constructing a plot.
@@ -25,19 +25,19 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
  *
  * @property datasetIndex the index referencing the dataset for this layer within [Plot.datasets].
  * @property geom the geometric object ([Geom]) characterizing the type of visual representation for this layer.
- * @property mappings the dictionary associating [aesthetic attributes][AesName] to their respective data mappings.
- * @property settings the dictionary associating [aesthetic attributes][AesName] to their settings or configurations.
+ * @property mappings the dictionary associating [aesthetic attributes][Aes] to their respective data mappings.
+ * @property settings the dictionary associating [aesthetic attributes][Aes] to their settings or configurations.
  * @property features the dictionary defining unique features of this layer,
  * where keys are feature names and values represent the corresponding feature details.
- * @property freeScales the dictionary associating [aesthetic attributes][AesName] to their [free scales][FreeScale].
+ * @property freeScales the dictionary associating [aesthetic attributes][Aes] to their [free scales][FreeScale].
  * @property inheritsBindings indicates if this layer should inherit any bindings from its predecessors. Default is `true`.
  */
 public data class Layer(
     val datasetIndex: Int,
     val geom: Geom,
-    val mappings: Map<AesName, Mapping>,
-    val settings: Map<AesName, Setting>,
+    val mappings: Map<Aes, Mapping>,
+    val settings: Map<Aes, Setting>,
     val features: Map<FeatureName, LayerFeature>,
-    val freeScales: Map<AesName, FreeScale>,
+    val freeScales: Map<Aes, FreeScale>,
     val inheritsBindings: Boolean = true
 )

@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import org.jetbrains.kotlinx.kandy.ir.Layer
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Reversed
@@ -21,8 +21,8 @@ import org.jetbrains.letsPlot.sampling.samplingNone
 internal class LayerWrapper internal constructor(
     private val layer: Layer, addGroups: Boolean,
     dataset: Map<String, List<*>>?,
-    mappings: Map<AesName, Mapping>,
-    private val settings: Map<AesName, Setting>,
+    mappings: Map<Aes, Mapping>,
+    private val settings: Map<Aes, Setting>,
     groupKeys: List<String>?,
 ) :
     org.jetbrains.letsPlot.intern.Layer(

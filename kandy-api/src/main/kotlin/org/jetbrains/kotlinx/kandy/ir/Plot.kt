@@ -4,13 +4,13 @@
 
 package org.jetbrains.kotlinx.kandy.ir
 
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
-import org.jetbrains.kotlinx.kandy.ir.bindings.FreeScale
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.kandy.ir.scale.FreeScale
 
 /**
  * Represents the core structure for constructing visualizations.
@@ -20,7 +20,7 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
  * Each [layer][Layer] contributes distinct graphical elements,
  * such as points, bars, or lines, and their associated aesthetic properties.
  * Global mappings and settings apply overarching aesthetic definitions across layers,
- * while individual layer [aesthetics][AesName] can either adopt or override these global attributes.
+ * while individual layer [aesthetics][Aes] can either adopt or override these global attributes.
  *
  * Features allow for additional customization or annotations, and free scales offer flexibility in data-to-aesthetic mappings beyond any predefined scaling.
  *
@@ -39,8 +39,8 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 public data class Plot(
     val datasets: List<TableData>,
     val layers: List<Layer>,
-    val globalMappings: Map<AesName, Mapping>,
-    val globalSettings: Map<AesName, Setting>,
+    val globalMappings: Map<Aes, Mapping>,
+    val globalSettings: Map<Aes, Setting>,
     val features: Map<FeatureName, PlotFeature>,
-    val freeScales: Map<AesName, FreeScale>,
+    val freeScales: Map<Aes, FreeScale>,
 )

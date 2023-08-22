@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.kandy.dsl.impl.*
 import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
@@ -28,7 +28,7 @@ class BindingImplTest {
     class TestContext(parent: LayerCollectorContext) : LayerContext(parent), WithColor, WithSize, WithX, WithY {
         override val geom: Geom
             get() = mockk()
-        override val requiredAes: Set<AesName> = setOf()
+        override val requiredAes: Set<Aes> = setOf()
     }
 
     @Test
@@ -65,7 +65,7 @@ class BindingImplTest {
         val context = TestContext(plotContext).apply {
             x(mockSource)
         }
-        assertEquals<Map<AesName, Mapping>>(
+        assertEquals<Map<Aes, Mapping>>(
             mapOf(X to PositionalMapping<Double>(X, mockSource.name(), CommonPositionalMappingParametersContinuous())),
             context.bindingCollector.mappings
         )
@@ -80,7 +80,7 @@ class BindingImplTest {
         val context = TestContext(plotContext).apply {
             size(mockSource)
         }
-        assertEquals<Map<AesName, Mapping>>(
+        assertEquals<Map<Aes, Mapping>>(
             mapOf(
                 SIZE to NonPositionalMapping<Int, String>(
                     SIZE,
@@ -101,7 +101,7 @@ class BindingImplTest {
         val context = TestContext(plotContext).apply {
             y(mockSource)
         }
-        assertEquals<Map<AesName, Mapping>>(
+        assertEquals<Map<Aes, Mapping>>(
             mapOf(
                 Y to PositionalMapping<String>(
                     Y, mockSource.name(),
@@ -123,7 +123,7 @@ class BindingImplTest {
                 scale = continuous()
             }
         }
-        assertEquals<Map<AesName, Mapping>>(
+        assertEquals<Map<Aes, Mapping>>(
             mapOf(
                 X to PositionalMapping(
                     X, mockSource.name(), CommonPositionalMappingParametersContinuous(
@@ -147,7 +147,7 @@ class BindingImplTest {
                 scale = categorical()
             }
         }
-        assertEquals<Map<AesName, Mapping>>(
+        assertEquals<Map<Aes, Mapping>>(
             mapOf(
                 COLOR to NonPositionalMapping<String, Color>(
                     COLOR,
@@ -174,7 +174,7 @@ class BindingImplTest {
                 scale = scaleCatPos
             }
         }
-        assertEquals<Map<AesName, Mapping>>(
+        assertEquals<Map<Aes, Mapping>>(
             mapOf(
                 Y to PositionalMapping(
                     Y,
@@ -202,7 +202,7 @@ class BindingImplTest {
                 scale = scaleColorCont
             }
         }
-        assertEquals<Map<AesName, Mapping>>(
+        assertEquals<Map<Aes, Mapping>>(
             mapOf(
                 COLOR to NonPositionalMapping<Int, Color>(
                     COLOR,

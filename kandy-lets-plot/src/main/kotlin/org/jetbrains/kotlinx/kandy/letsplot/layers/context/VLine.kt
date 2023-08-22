@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X_INTERCEPT
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
@@ -17,10 +17,10 @@ public interface VLineInterface: LayerContextInterface, WithXIntercept, WithAlph
     WithWidthAsSize, WithType, WithYFree {
     override val geom: Geom
         get() = V_LINE
-    override val requiredAes: Set<AesName>
+    override val requiredAes: Set<Aes>
         get() = setOf(X_INTERCEPT)
 }
 
 public open class VLineContext(parent: LayerCollectorContext) : LayerContext(parent), VLineInterface {
-    override val requiredAes: Set<AesName> = setOf(X_INTERCEPT)
+    override val requiredAes: Set<Aes> = setOf(X_INTERCEPT)
     }

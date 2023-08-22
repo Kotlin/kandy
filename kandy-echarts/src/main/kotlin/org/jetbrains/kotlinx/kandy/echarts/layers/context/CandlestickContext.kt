@@ -4,16 +4,16 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationBoxplotCandlestick
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
+import org.jetbrains.kotlinx.kandy.echarts.layers.CANDLESTICK
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-/*@PlotDslMarker*/
 public class CandlestickContext(parent: LayerCollectorContext) : EchartsLayerContext(parent) {
     override val geom: Geom
-        get() = TODO()
+        get() = CANDLESTICK
+
     /**
      * Animation options settings for [candlestick][org.jetbrains.kotlinx.kandy.echarts.layers.candlestick].
      * If a property isn't set or set to null, a default value will be used.
