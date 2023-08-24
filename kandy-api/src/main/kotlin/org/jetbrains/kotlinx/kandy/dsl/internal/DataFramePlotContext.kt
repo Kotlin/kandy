@@ -13,10 +13,18 @@ import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 
 /**
- * Standard plotting context with [DataFrame] as an initial dataset.
- * Implements [ColumnsContainer] (delegated to [dataFrame]), which allows to use the columns of [dataFrame].
+ * Represents a standard plotting context initialized with a [DataFrame] as its primary dataset.
+ * The class allows the seamless integration of the dataframe's columns into the plotting process.
+ * It also provides convenient methods for grouping data and creating grouped contexts.
  *
- * @param dataFrame initial [DataFrame].
+ * The implemented [ColumnsContainer] interface is delegated to the [dataFrame],
+ * enabling the user to leverage the columns of the dataframe directly in the plotting process.
+ *
+ * @param dataFrame the initial dataframe that this plotting context operates upon.
+ *
+ * @property _plotContext the underlying plot context, typically set to 'this' instance.
+ * @property datasetHandlers a mutable list of handlers for managing datasets.
+ * @property plotFeatures a mutable map representing various plot features.
  */
 public class DataFramePlotContext<T>(
     private val dataFrame: DataFrame<T>
@@ -27,13 +35,27 @@ public class DataFramePlotContext<T>(
     )
     override val plotFeatures: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
+    /**
+     * Fetches the specified columns from the dataframe.
+     *
+     * @param selector a selector to determine the columns to be fetched.
+     * @return a list of selected data columns.
+     */
     public fun <C> columns(selector: ColumnsSelector<T, C>): List<DataColumn<C>> = dataFrame.get(selector)
+
+    /**
+     * Fetches the specified columns from the dataframe by their names.
+     *
+     * @param columns names of the desired columns.
+     * @return a list of selected data columns.
+     */
     public fun <C> columns(vararg columns: String): List<AnyCol> = dataFrame.getColumns(*columns)
 
     /**
-     * Creates a new context with dataframe grouped by given columns as dataset.
+     * Creates and initializes a new context with the dataframe grouped by the specified column names.
      *
-     * @param columns grouping column names
+     * @param columns the column names to group the dataframe by.
+     * @param block a lambda with receiver block that configures the new grouped context.
      */
     public inline fun groupBy(
         columns: Iterable<String>,
@@ -55,9 +77,10 @@ public class DataFramePlotContext<T>(
     }
 
     /**
-     * Creates a new context with dataframe grouped by given columns as dataset.
+     * Creates and initializes a new context with the dataframe grouped by the specified column names.
      *
-     * @param columns grouping column names
+     * @param columns the column names to group the dataframe by.
+     * @param block a lambda with receiver block that configures the new grouped context.
      */
     public inline fun groupBy(
         vararg columns: String,
@@ -65,22 +88,24 @@ public class DataFramePlotContext<T>(
     ): Unit = groupBy(columns.toList(), block)
 
     /**
-     * Creates a new context with dataframe grouped by given columns as dataset.
+     * Creates and initializes a new context with the dataframe grouped by the given column references.
      *
-     * @param columnReferences grouping columns
+     * @param columnReferences references to the columns to group by.
+     * @param block a lambda with receiver block that configures the new grouped context.
      */
     public inline fun groupBy(
         vararg columnReferences: ColumnReference<*>,
         block: GroupedContext.() -> Unit
-    ):  Unit = groupBy(columnReferences.map { it.name() }, block)
+    ): Unit = groupBy(columnReferences.map { it.name() }, block)
 
     /**
-     * Creates a new context with dataframe grouped by given columns as dataset.
+     * Creates and initializes a new context with the dataframe grouped by the given column references.
      *
-     * @param columnReferences grouping columns
+     * @param columnReferences a list of references to the columns to group by.
+     * @param block a lambda with receiver block that configures the new grouped context.
      */
     public inline fun groupBy(
         columnReferences: List<ColumnReference<*>>,
         block: GroupedContext.() -> Unit
-    ):  Unit = groupBy(columnReferences.map { it.name() }, block)
+    ): Unit = groupBy(columnReferences.map { it.name() }, block)
 }

@@ -12,9 +12,15 @@ import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 
 /**
- * Plotting context with [GroupBy] as an initial dataset.
+ * Represents a plotting context where the data is initially grouped using [GroupBy].
+ * This context facilitates the creation and management of visualizations with data that's grouped by certain criteria.
+ * It also provides column access via delegation to the concatenated representation of [groupBy].
  *
- * @param groupBy initial grouped dataset.
+ * @param groupBy The initial dataset that is grouped using [GroupBy].
+ *
+ * @property _plotContext The actual plotting context for this instance, set to this class itself.
+ * @property datasetHandlers A list that manages datasets within the plot. Initialized with the grouped data from [groupBy].
+ * @property plotFeatures A mutable map to store and manage features associated with the plot.
  */
 public class GroupByPlotContext<T>(
     private val groupBy: GroupBy<T, T>

@@ -58,7 +58,7 @@ public inline fun <T> DataFrame<T>.plot(block: DataFramePlotContext<T>.() -> Uni
  */
 @JvmName("plotDataframe")
 public inline fun <T> plot(dataframe: DataFrame<T>, block: DataFramePlotContext<T>.() -> Unit): Plot {
-    return DataFramePlotContext<T>(dataframe).apply(block).toPlot()
+    return DataFramePlotContext(dataframe).apply(block).toPlot()
 }
 
 /**
@@ -70,7 +70,7 @@ public inline fun <T> plot(dataframe: DataFrame<T>, block: DataFramePlotContext<
  * @receiver plot dataset.
  */
 public inline fun <T> GroupBy<T, T>.plot(block: GroupByPlotContext<T>.() -> Unit): Plot {
-    return GroupByPlotContext<T>(this).apply(block).toPlot()
+    return GroupByPlotContext(this).apply(block).toPlot()
 }
 
 /**
@@ -83,5 +83,5 @@ public inline fun <T> GroupBy<T, T>.plot(block: GroupByPlotContext<T>.() -> Unit
  */
 @JvmName("plotGroupBy")
 public inline fun <T> plot(groupedDataframe: GroupBy<T, T>, block: GroupByPlotContext<T>.() -> Unit): Plot {
-    return GroupByPlotContext<T>(groupedDataframe).apply(block).toPlot()
+    return GroupByPlotContext(groupedDataframe).apply(block).toPlot()
 }
