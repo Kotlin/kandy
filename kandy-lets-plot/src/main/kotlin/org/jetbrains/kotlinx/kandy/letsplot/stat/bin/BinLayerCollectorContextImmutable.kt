@@ -29,13 +29,12 @@ public interface BinStatContext {
 }
 
 // TODO
-
-//@StatDSLMarker
-public class BinLayerCollectorContext(parent: LayerCollectorContext, override val datasetIndex: Int) :
-    LayerCollectorContext, BinStatContext {
-    override val layers: MutableList<Layer> = parent.layers
-    override val plotContext: PlotContext = parent.plotContext
-    override val layersInheritMappings: Boolean = false
+@Suppress("invisible_member")
+public class BinLayerCollectorContext(parent: LayerCollectorContext, override val _datasetIndex: Int) :
+    LayerCollectorContext(), BinStatContext {
+    override val _layers: MutableList<Layer> = parent.layers
+    override val _plotContext: PlotContext = parent.plotContext
+    override val _layersInheritMappings: Boolean = false
 }
 
 public sealed interface Bins {
@@ -79,12 +78,14 @@ public sealed interface BinXPos {
  *  - either their number or their width.
  *  @param binXPos bins position adjustment.
  */
+@Suppress("invisible_member")
 public inline fun LayerCollectorContext.statBin(
     column: ColumnReference<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ) {
+    val datasetHandler: DatasetHandler = plotContext.datasetHandlers[datasetIndex]
     val newData = when (val data = datasetHandler.initialDataset) {
         is NamedData -> countBinsImpl(data, column, bins, binXPos)
         is GroupedData -> countBinsImpl(data, column, bins, binXPos)
@@ -134,6 +135,7 @@ public inline fun LayerCollectorContext.statBin(
  *  - either their number or their width.
  *  @param binXPos bins position adjustment.
  */
+@Suppress("invisible_member")
 public inline fun LayerCollectorContext.statBin(
     values: Iterable<*>,
     bins: Bins = Bins.byNumber(20),
@@ -162,12 +164,14 @@ public inline fun LayerCollectorContext.statBin(
  *  - either their number or their width.
  *  @param binXPos bins position adjustment.
  */
+@Suppress("invisible_member")
 public inline fun LayerCollectorContext.statBin(
     column: DataColumn<*>,
     bins: Bins = Bins.byNumber(20),
     binXPos: BinXPos = BinXPos.none(0.0),
     block: BinLayerCollectorContext.() -> Unit
 ) {
+    val datasetHandler: DatasetHandler = plotContext.datasetHandlers[datasetIndex]
     val initialDF = datasetHandler.initialNamedData.dataFrame
     if (initialDF.containsColumn(column.name()) && initialDF[column.name()] == column) {
         statBin(column.name(), bins, binXPos, block)

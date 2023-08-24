@@ -16,145 +16,44 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
+import kotlin.reflect.KProperty1
+import kotlin.reflect.full.memberProperties
 
 /**
  * Base plotting DSL context.
- *
- * @property plotContext top [PlotContext] of this context.
- * @property datasetIndex index of context dataset in the [PlotContext.datasetHandlers].
- * @property datasetHandler handler of context dataset.
  */
-public interface BaseContext {
-    public val plotContext: PlotContext
-    public val datasetIndex: Int
-
-    public val datasetHandler: DatasetHandler
-        get() = plotContext.datasetHandlers[datasetIndex]
-}
-
-public interface LayerContextInterface : BindingContext {
-    public val geom: Geom
-    public val layerFeatures: MutableMap<FeatureName, LayerFeature>
-    public val requiredAes: Set<Aes>
-    public fun toLayer(layersInheritMappings: Boolean): Layer {
-        return Layer(
-            datasetIndex,
-            geom,
-            bindingCollector.mappings,
-            bindingCollector.settings,
-            layerFeatures,
-            bindingCollector.freeScales,
-            layersInheritMappings
-        )
-    }
-}
-
-/**
- * Context that defines the configuration of the layer.
- *
- * @param parent parental [LayerCollectorContext].
- * @property layerFeatures [MutableMap] of feature names to corresponding layer features.
- */
-public abstract class LayerContext(parent: LayerCollectorContext) : LayerContextInterface {
-    override val bindingCollector: BindingCollector = BindingCollector()
-    override var datasetIndex: Int = parent.datasetIndex
-    public override val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
-    override val plotContext: PlotContext = parent.plotContext
-
-    private var firstMapping = true
-    private val handlerRowsCount: Int
-        get() {
-            val buffer = datasetHandler.buffer
-            return if (buffer == DataFrame.Empty) {
-                datasetHandler.initialNamedData.dataFrame.rowsCount()
-            } else {
-                buffer.rowsCount()
-            }
-        }
-
-    private fun overrideDataset() {
-        plotContext.datasetHandlers.add(DatasetHandler(NamedData(DataFrame.Empty)))
-        datasetIndex = plotContext.datasetHandlers.lastIndex
-    }
-
-    override fun <DomainType, RangeType> addNonPositionalMapping(
-        aes: Aes,
-        columnID: String,
-        parameters: NonPositionalMappingParameters<DomainType, RangeType>?
-    ): NonPositionalMapping<DomainType, RangeType> {
-        firstMapping = false
-        return super.addNonPositionalMapping(aes, columnID, parameters)
-    }
-
-    override fun <DomainType, RangeType> addNonPositionalMapping(
-        aes: Aes,
-        values: DataColumn<DomainType>,
-        parameters: NonPositionalMappingParameters<DomainType, RangeType>?
-    ): NonPositionalMapping<DomainType, RangeType> {
-        if (firstMapping && handlerRowsCount != values.size()) {
-            overrideDataset()
-        }
-        firstMapping = false
-        return super.addNonPositionalMapping(aes, values, parameters)
-    }
-
-    override fun <DomainType, RangeType> addNonPositionalMapping(
-        aes: Aes,
-        values: List<DomainType>,
-        name: String?,
-        parameters: NonPositionalMappingParameters<DomainType, RangeType>?
-    ): NonPositionalMapping<DomainType, RangeType> {
-        if (firstMapping && handlerRowsCount != values.size) {
-            overrideDataset()
-        }
-        firstMapping = false
-        return super.addNonPositionalMapping(aes, values, name, parameters)
-    }
-
-    override fun <DomainType> addPositionalMapping(
-        aes: Aes,
-        columnID: String,
-        parameters: PositionalMappingParameters<DomainType>?
-    ): PositionalMapping<DomainType> {
-        firstMapping = false
-        return super.addPositionalMapping(aes, columnID, parameters)
-    }
-
-    override fun <DomainType> addPositionalMapping(
-        aes: Aes,
-        values: DataColumn<DomainType>,
-        parameters: PositionalMappingParameters<DomainType>?
-    ): PositionalMapping<DomainType> {
-        if (firstMapping && handlerRowsCount != values.size()) {
-            overrideDataset()
-        }
-        firstMapping = false
-        return super.addPositionalMapping(aes, values, parameters)
-    }
-
-    override fun <DomainType> addPositionalMapping(
-        aes: Aes,
-        values: List<DomainType>,
-        name: String?,
-        parameters: PositionalMappingParameters<DomainType>?
-    ): PositionalMapping<DomainType> {
-        if (firstMapping && handlerRowsCount != values.size) {
-            overrideDataset()
-        }
-        firstMapping = false
-        return super.addPositionalMapping(aes, values, name, parameters)
-    }
-
-}
+public interface BaseContext
 
 /**
  * Context with layers collecting.
  *
  * @property layers layers buffer.
  */
-public interface LayerCollectorContext : BaseContext {
-    public val layers: MutableList<Layer>
-    public val layersInheritMappings: Boolean
+public abstract class LayerCollectorContext : BaseContext {
+    protected abstract val _plotContext: PlotContext
+
+    protected open val _datasetIndex: Int = 0
+    protected open val _layers: MutableList<Layer> = mutableListOf()
+    protected open val _layersInheritMappings: Boolean = true
+
+    @PublishedApi
+    internal val datasetIndex: Int
+        get() = _datasetIndex
+
+    @PublishedApi
+    internal val plotContext: PlotContext
+        get() = _plotContext
+
+    @PublishedApi
+    internal val datasetHandler: DatasetHandler
+        get() = _plotContext.datasetHandlers[_datasetIndex]
+
+    internal val layers: MutableList<Layer>
+        get() = _layers
+
+    private val layersInheritMappings: Boolean
+        get() = _layersInheritMappings
+
 
     /**
      * Creates a layers from [LayerContext] and adds it to the buffer.
@@ -173,64 +72,29 @@ public interface LayerCollectorContext : BaseContext {
     }
 }
 
-/**
- * Context with a grouped dataset.
- */
-public class GroupedContext(
-    override val datasetIndex: Int,
-    override val plotContext: LayerPlotContext
-) : LayerCollectorContext {
-    override val layers: MutableList<Layer> = plotContext.layers
-    override val layersInheritMappings: Boolean = true
-}
+@PublishedApi
+@Suppress("unchecked_cast")
+internal val BindingContext.datasetHandler: DatasetHandler
+    get() {
+        val properties: Collection<KProperty1<out BindingContext, *>> = this::class.memberProperties
+        return when {
+            properties.any { it.name == "datasetHandler" } -> {
+                (properties.find { it.name == "datasetHandler" } as KProperty1<BindingContext, DatasetHandler>).get(this)
+            }
 
-/**
- * Top plotting context which allows to configure and create a [Plot].
- *
- * @property datasetHandlers buffer of plot datasets.
- * @property plotFeatures
- */
-public interface PlotContext : BindingContext {
-    public val datasetHandlers: MutableList<DatasetHandler>
-    public val plotFeatures: MutableMap<FeatureName, PlotFeature>
+            properties.any { it.name == "datasetHandlers" } && properties.any { it.name == "datasetIndex" } -> {
+                val datasetHandlers =
+                    (properties.find { it.name == "datasetHandlers" } as KProperty1<BindingContext, MutableList<DatasetHandler>>).get(
+                        this
+                    )
+                val datasetIndex =
+                    (properties.find { it.name == "datasetIndex" } as KProperty1<BindingContext, Int>).get(this)
+                datasetHandlers[datasetIndex]
+            }
 
-    /**
-     * Creates [Plot] configured by this context.
-     *
-     * @return new [Plot].
-     */
-    public fun toPlot(): Plot
-}
-
-public interface SingleLayerPlotContext : PlotContext {
-    public val layer: Layer
-    public override fun toPlot(): Plot {
-        return Plot(
-            datasetHandlers.map { it.data() },
-            listOf(layer),
-            bindingCollector.mappings,
-            bindingCollector.settings,
-            plotFeatures,
-            bindingCollector.freeScales
-        )
+            else -> error("BindingContext implementation '${this::class.simpleName}' does not have expected properties for 'datasetHandler' retrieval.")
+        }
     }
-}
-
-/**
- *  [PlotContext] that directly collects layers and creates [Plot] from them.
- */
-public interface LayerPlotContext : LayerCollectorContext, PlotContext {
-    public override fun toPlot(): Plot {
-        return Plot(
-            datasetHandlers.map { it.data() },
-            layers,
-            bindingCollector.mappings,
-            bindingCollector.settings,
-            plotFeatures,
-            bindingCollector.freeScales
-        )
-    }
-}
 
 /**
  * Context with bindings collecting.
@@ -394,6 +258,32 @@ public interface BindingContext : BaseContext {
 }
 
 /**
+ * Top plotting context which allows to configure and create a [Plot].
+ *
+ * @property datasetHandlers buffer of plot datasets.
+ * @property plotFeatures
+ */
+public interface PlotContext : BindingContext {
+    public val datasetHandlers: MutableList<DatasetHandler>
+    public val plotFeatures: MutableMap<FeatureName, PlotFeature>
+
+    /**
+     * Creates [Plot] configured by this context.
+     *
+     * @return new [Plot].
+     */
+    public fun toPlot(): Plot
+}
+
+public interface LayerContextInterface : BindingContext {
+    public val geom: Geom
+    public val layerFeatures: MutableMap<FeatureName, LayerFeature>
+    public val requiredAes: Set<Aes>
+
+    public fun toLayer(layersInheritMappings: Boolean): Layer
+}
+
+/**
  * Nested context. [bindingCollector], [plotContext] and [datasetIndex] are inherited from parent.
  *
  * @property parentContext parental [BindingContext].
@@ -402,8 +292,160 @@ public interface SubBindingContext : BindingContext {
     public val parentContext: BindingContext
     override val bindingCollector: BindingCollector
         get() = parentContext.bindingCollector
-    override val plotContext: PlotContext
-        get() = parentContext.plotContext
-    override val datasetIndex: Int
-        get() = parentContext.datasetIndex
+}
+
+/**
+ * Context that defines the configuration of the layer.
+ *
+ * @param parent parental [LayerCollectorContext].
+ * @property layerFeatures [MutableMap] of feature names to corresponding layer features.
+ */
+public abstract class LayerContext(parent: LayerCollectorContext) : LayerContextInterface {
+    override val bindingCollector: BindingCollector = BindingCollector()
+    override val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
+
+    internal var datasetIndex: Int = parent.datasetIndex
+    internal val plotContext: PlotContext = parent.plotContext
+
+    @PublishedApi
+    internal val datasetHandler: DatasetHandler = plotContext.datasetHandlers[datasetIndex]
+
+    private var firstMapping = true
+    private val handlerRowsCount: Int
+        get() {
+            val buffer = datasetHandler.buffer
+            return if (buffer == DataFrame.Empty) {
+                datasetHandler.initialNamedData.dataFrame.rowsCount()
+            } else {
+                buffer.rowsCount()
+            }
+        }
+
+    private fun overrideDataset() {
+        plotContext.datasetHandlers.add(DatasetHandler(NamedData(DataFrame.Empty)))
+        datasetIndex = plotContext.datasetHandlers.lastIndex
+    }
+
+    public override fun toLayer(layersInheritMappings: Boolean): Layer {
+        return Layer(
+            datasetIndex,
+            geom,
+            bindingCollector.mappings,
+            bindingCollector.settings,
+            layerFeatures,
+            bindingCollector.freeScales,
+            layersInheritMappings
+        )
+    }
+
+    override fun <DomainType, RangeType> addNonPositionalMapping(
+        aes: Aes,
+        columnID: String,
+        parameters: NonPositionalMappingParameters<DomainType, RangeType>?
+    ): NonPositionalMapping<DomainType, RangeType> {
+        firstMapping = false
+        return super.addNonPositionalMapping(aes, columnID, parameters)
+    }
+
+    override fun <DomainType, RangeType> addNonPositionalMapping(
+        aes: Aes,
+        values: DataColumn<DomainType>,
+        parameters: NonPositionalMappingParameters<DomainType, RangeType>?
+    ): NonPositionalMapping<DomainType, RangeType> {
+        if (firstMapping && handlerRowsCount != values.size()) {
+            overrideDataset()
+        }
+        firstMapping = false
+        return super.addNonPositionalMapping(aes, values, parameters)
+    }
+
+    override fun <DomainType, RangeType> addNonPositionalMapping(
+        aes: Aes,
+        values: List<DomainType>,
+        name: String?,
+        parameters: NonPositionalMappingParameters<DomainType, RangeType>?
+    ): NonPositionalMapping<DomainType, RangeType> {
+        if (firstMapping && handlerRowsCount != values.size) {
+            overrideDataset()
+        }
+        firstMapping = false
+        return super.addNonPositionalMapping(aes, values, name, parameters)
+    }
+
+    override fun <DomainType> addPositionalMapping(
+        aes: Aes,
+        columnID: String,
+        parameters: PositionalMappingParameters<DomainType>?
+    ): PositionalMapping<DomainType> {
+        firstMapping = false
+        return super.addPositionalMapping(aes, columnID, parameters)
+    }
+
+    override fun <DomainType> addPositionalMapping(
+        aes: Aes,
+        values: DataColumn<DomainType>,
+        parameters: PositionalMappingParameters<DomainType>?
+    ): PositionalMapping<DomainType> {
+        if (firstMapping && handlerRowsCount != values.size()) {
+            overrideDataset()
+        }
+        firstMapping = false
+        return super.addPositionalMapping(aes, values, parameters)
+    }
+
+    override fun <DomainType> addPositionalMapping(
+        aes: Aes,
+        values: List<DomainType>,
+        name: String?,
+        parameters: PositionalMappingParameters<DomainType>?
+    ): PositionalMapping<DomainType> {
+        if (firstMapping && handlerRowsCount != values.size) {
+            overrideDataset()
+        }
+        firstMapping = false
+        return super.addPositionalMapping(aes, values, name, parameters)
+    }
+
+}
+
+/**
+ * Context with a grouped dataset.
+ */
+public class GroupedContext(
+    override val _datasetIndex: Int,
+    override val _plotContext: LayerPlotContext
+) : LayerCollectorContext() {
+    override val _layers: MutableList<Layer> = _plotContext.layers
+}
+
+public interface SingleLayerPlotContext : PlotContext {
+    public val layer: Layer
+    public override fun toPlot(): Plot {
+        return Plot(
+            datasetHandlers.map { it.data() },
+            listOf(layer),
+            bindingCollector.mappings,
+            bindingCollector.settings,
+            plotFeatures,
+            bindingCollector.freeScales
+        )
+    }
+}
+
+/**
+ *  [PlotContext] that directly collects layers and creates [Plot] from them.
+ */
+public abstract class LayerPlotContext : LayerCollectorContext(), PlotContext {
+    override val bindingCollector: BindingCollector = BindingCollector()
+
+    public override fun toPlot(): Plot {
+        return Plot(
+            datasetHandlers.map { it.data() },
+            layers,
+            bindingCollector.mappings,
+            bindingCollector.settings,
+            plotFeatures,
+            bindingCollector.freeScales
+        )
+    }
 }

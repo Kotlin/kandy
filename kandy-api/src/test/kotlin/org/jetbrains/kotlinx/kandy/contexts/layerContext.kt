@@ -7,8 +7,6 @@ package org.jetbrains.kotlinx.kandy.contexts
 import io.mockk.every
 import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataColumn
-import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
@@ -16,7 +14,6 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
-import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -27,8 +24,6 @@ class LayerContextTest {
     private lateinit var layerContext: LayerContext
     private lateinit var parentContext: LayerCollectorContext
 
-    private val namedData = NamedData(DataFrame.Empty)
-    private val dataHandler = DatasetHandler(namedData)
     private val aes = mockk<Aes>()
     private val name = "columnName"
     private val positionalParameters = mockk<PositionalMappingParameters<Any>>()
@@ -40,14 +35,13 @@ class LayerContextTest {
         parentContext = mockk<LayerCollectorContext> {
             every { datasetIndex } returns 0
             every { plotContext } returns mockk(relaxed = true) {
-                every { datasetHandlers } returns mutableListOf(dataHandler)
+                every { datasetHandlers } returns mutableListOf(mockk(relaxed = true))
             }
         }
 
         layerContext = object : LayerContext(parentContext) {
             override val geom: Geom = mockk()
             override val requiredAes: Set<Aes> = mockk()
-            override val datasetHandler: DatasetHandler = mockk(relaxed = true)
         }
     }
 

@@ -37,10 +37,10 @@ class BindingContextTest {
         mockDatasetHandler = mockk<DatasetHandler>()
 
         bindingContext = object : BindingContext {
-            override val plotContext: PlotContext = mockk()
-            override val datasetIndex: Int = 0
+            val plotContext: PlotContext = mockk()
+            val datasetIndex: Int = 0
             override val bindingCollector: BindingCollector = BindingCollector()
-            override val datasetHandler: DatasetHandler = mockDatasetHandler
+            val datasetHandler: DatasetHandler = mockDatasetHandler
         }
     }
 
