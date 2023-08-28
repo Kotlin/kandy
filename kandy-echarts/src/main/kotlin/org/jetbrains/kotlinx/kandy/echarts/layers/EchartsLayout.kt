@@ -5,7 +5,6 @@
 package org.jetbrains.kotlinx.kandy.echarts.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.echarts.features.Grid
 import org.jetbrains.kotlinx.kandy.echarts.features.Legend
 import org.jetbrains.kotlinx.kandy.echarts.features.title.Title
@@ -34,7 +33,6 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
  * @see Legend
  * @see Tooltip
  */
-/*@PlotDslMarker*/
 public class EChartsLayout : PlotFeature {
     public var size: Pair<Int, Int>? = null
 

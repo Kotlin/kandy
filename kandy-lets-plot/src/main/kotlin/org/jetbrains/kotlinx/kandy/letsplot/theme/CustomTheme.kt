@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.theme
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.letsplot.util.font.FontFace
 import org.jetbrains.kotlinx.kandy.letsplot.util.font.FontFamily
 import org.jetbrains.kotlinx.kandy.util.color.Color
@@ -38,14 +37,12 @@ public sealed interface LayoutParameters {
     }
 }
 
-/*@PlotDslMarker*/
 public data class LineParameters internal constructor(
     var color: Color? = null,
     var width: Double? = null,
     var blank: Boolean = false,
 ) : LayoutParameters
 
-/*@PlotDslMarker*/
 public data class TextParameters internal constructor(
     var color: Color? = null,
     var fontFamily: FontFamily? = null,
@@ -58,7 +55,6 @@ public data class TextParameters internal constructor(
     var blank: Boolean = false
 ) : LayoutParameters
 
-/*@PlotDslMarker*/
 public data class BackgroundParameters internal constructor(
     var fillColor: Color? = null,
     var borderLineColor: Color? = null,
@@ -115,7 +111,6 @@ public interface WithTitle {
 }
 
 
-/*@PlotDslMarker*/
 public data class Global internal constructor(
     override var line: LineParameters? = null,
     override var background: BackgroundParameters? = null,
@@ -135,20 +130,17 @@ public data class Global internal constructor(
      */
 }
 
-/*@PlotDslMarker*/
 public data class LayerTooltips internal constructor(
     override var background: BackgroundParameters? = null,
     override var title: TextParameters? = null,
     override var text: TextParameters? = null,
 ) : SelfInvocationContext, WithBackground, WithText, WithTitle
 
-/*@PlotDslMarker*/
 public data class AxisTooltip internal constructor(
     override var background: BackgroundParameters? = null,
     override var text: TextParameters? = null,
 ) : SelfInvocationContext, WithBackground, WithText
 
-/*@PlotDslMarker*/
 public data class Axis internal constructor(
     var onTop: Boolean? = false,
     override var title: TextParameters? = null,
@@ -189,7 +181,6 @@ public enum class LegendDirection {
     VERTICAL
 }
 
-/*@PlotDslMarker*/
 public data class Legend internal constructor(
     override var background: BackgroundParameters? = null,
     override var title: TextParameters? = null,
@@ -223,7 +214,6 @@ public data class Legend internal constructor(
      */
 }
 
-/*@PlotDslMarker*/
 public data class Grid internal constructor(
     var lineGlobal: LineParameters? = null,
     var majorLine: LineParameters? = null,
@@ -303,7 +293,6 @@ public data class Grid internal constructor(
      */
 }
 
-/*@PlotDslMarker*/
 public data class Panel internal constructor(
     override var background: BackgroundParameters? = null,
     var borderLine: LineParameters? = null,
@@ -318,7 +307,6 @@ public data class Panel internal constructor(
     }
 }
 
-/*@PlotDslMarker*/
 public data class PlotCanvas internal constructor(
     override var background: BackgroundParameters? = null,
     override var title: TextParameters? = null,
@@ -342,13 +330,11 @@ public data class PlotCanvas internal constructor(
     }
 }
 
-/*@PlotDslMarker*/
 public data class Strip internal constructor(
     override var background: BackgroundParameters? = null,
     override var text: TextParameters? = null
 ) : SelfInvocationContext, WithText, WithBackground
 
-/*@PlotDslMarker*/
 public data class CustomTheme @PublishedApi internal constructor(
     val global: Global = Global(),
     val axis: Axis = Axis(),

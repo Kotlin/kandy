@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TileContext
 

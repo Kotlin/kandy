@@ -72,7 +72,6 @@ public inline fun BarContext.background(crossinline block: BackgroundStyle.() ->
  *
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.bars
  */
-/*@PlotDslMarker*/
 // TODO(add border setting)
 public class BackgroundStyle(private val context: BindingContext) : SelfInvocationContext {
 

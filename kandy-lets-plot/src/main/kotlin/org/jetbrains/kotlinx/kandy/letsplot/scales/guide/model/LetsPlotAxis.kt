@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
 // todo separate model and context

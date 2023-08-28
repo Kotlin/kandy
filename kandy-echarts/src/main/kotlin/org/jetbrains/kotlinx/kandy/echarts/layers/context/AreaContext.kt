@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
@@ -54,7 +53,6 @@ import kotlin.reflect.KProperty
  * @see org.jetbrains.kotlinx.kandy.echarts.settings.LineType
  * @see Animation
  */
-/*@PlotDslMarker*/
 public class AreaContext(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
     WithAlpha, WithSymbol {
     override val geom: Geom = AREA
