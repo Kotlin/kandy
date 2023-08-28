@@ -386,6 +386,13 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
         datasetIndex = plotContext.datasetHandlers.lastIndex
     }
 
+    private fun checkAdnOverrideDataset(size: Int) {
+        if (firstMapping && handlerRowsCount != size) {
+            overrideDataset()
+        }
+        firstMapping = false
+    }
+
     public override fun toLayer(layersInheritMappings: Boolean): Layer {
         return Layer(
             datasetIndex,
@@ -412,10 +419,7 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
         values: DataColumn<DomainType>,
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?
     ): NonPositionalMapping<DomainType, RangeType> {
-        if (firstMapping && handlerRowsCount != values.size()) {
-            overrideDataset()
-        }
-        firstMapping = false
+        checkAdnOverrideDataset(values.size())
         return super.addNonPositionalMapping(aes, values, parameters)
     }
 
@@ -425,10 +429,7 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
         name: String?,
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?
     ): NonPositionalMapping<DomainType, RangeType> {
-        if (firstMapping && handlerRowsCount != values.size) {
-            overrideDataset()
-        }
-        firstMapping = false
+        checkAdnOverrideDataset(values.size)
         return super.addNonPositionalMapping(aes, values, name, parameters)
     }
 
@@ -446,10 +447,7 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
         values: DataColumn<DomainType>,
         parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
-        if (firstMapping && handlerRowsCount != values.size()) {
-            overrideDataset()
-        }
-        firstMapping = false
+        checkAdnOverrideDataset(values.size())
         return super.addPositionalMapping(aes, values, parameters)
     }
 
@@ -459,10 +457,7 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
         name: String?,
         parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
-        if (firstMapping && handlerRowsCount != values.size) {
-            overrideDataset()
-        }
-        firstMapping = false
+        checkAdnOverrideDataset(values.size)
         return super.addPositionalMapping(aes, values, name, parameters)
     }
 
