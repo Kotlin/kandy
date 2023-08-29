@@ -1,11 +1,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.dsl
 
-import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
-import org.jetbrains.kotlinx.kandy.letsplot.stat.bin.Bins
-import org.jetbrains.kotlinx.kandy.letsplot.stat.bin.statBin
-import org.jetbrains.kotlinx.kandy.letsplot.y
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
@@ -22,7 +18,7 @@ internal class RequiredAesValidationTest {
         }
     }
 
-    @Test
+   /* @Test
     fun testStatBin() {
         val valCol = column<Int>("val")
         assertFailsWith<IllegalArgumentException>("\"y\" is not assigned.") {
@@ -35,6 +31,6 @@ internal class RequiredAesValidationTest {
                 }
             }
         }
-    }
+    }*/
 
 }

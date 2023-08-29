@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.jupyter
 
-import jetbrains.datalore.plot.PlotHtmlHelper
+import org.jetbrains.letsPlot.core.util.PlotHtmlHelper
 import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.Notebook
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary

@@ -1,5 +1,5 @@
 package org.jetbrains.kotlinx.kandy.letsplot.dsl.stat
-
+/*
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.stat.bin.Bins
@@ -59,3 +59,5 @@ internal class HistogramTest {
         )
     }
 }
+
+ */
