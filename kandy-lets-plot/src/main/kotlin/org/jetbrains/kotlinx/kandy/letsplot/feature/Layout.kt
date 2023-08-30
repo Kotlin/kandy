@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.letsplot.theme.CustomTheme
@@ -22,7 +21,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
  * @property flavor plot flavor (color scheme).
  * @property size plot size.
  */
-@PlotDslMarker
 public data class Layout(
     var title: String? = null,
     var subtitle: String? = null,
