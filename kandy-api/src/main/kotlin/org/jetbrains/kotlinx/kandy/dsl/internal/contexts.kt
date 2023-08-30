@@ -370,7 +370,8 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
     private val plotContext: PlotContext = parent.plotContext
 
     @PublishedApi
-    internal val datasetHandler: DatasetHandler = plotContext.datasetHandlers[datasetIndex]
+    internal val datasetHandler: DatasetHandler
+        get() = plotContext.datasetHandlers[datasetIndex]
 
     private var firstMapping = true
     private val handlerRowsCount: Int
