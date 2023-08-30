@@ -95,6 +95,9 @@ public abstract class LayerCollectorContext : BaseContext {
 @Suppress("unchecked_cast")
 internal val BindingContext.datasetHandler: DatasetHandler
     get() {
+        if (this is SubBindingContext) {
+            return parentContext.datasetHandler
+        }
         val properties: Collection<KProperty1<out BindingContext, *>> = this::class.memberProperties
         return when {
             properties.any { it.name == "datasetHandler" } -> {
