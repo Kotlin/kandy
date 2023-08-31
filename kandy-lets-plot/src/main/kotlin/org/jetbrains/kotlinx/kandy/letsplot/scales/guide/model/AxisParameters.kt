@@ -8,6 +8,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalContinuousScale
+import org.jetbrains.kotlinx.kandy.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
 
 /**
@@ -31,6 +32,7 @@ public open class AxisParameters(
     public val axis: Axis<Any?>
         get() = mappingParameters.axis
 
+    override var scale: PositionalScale<out Any?> = mappingParameters.scale
 }
 
 /**
