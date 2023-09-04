@@ -6,8 +6,6 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
-import jetbrains.datalore.plot.base.Aes
-import jetbrains.datalore.plot.config.Option
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
@@ -23,6 +21,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.ScaleParameters
 import org.jetbrains.kotlinx.kandy.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.kandy.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.kandy.util.color.Color
+import org.jetbrains.letsPlot.core.plot.base.Aes
+import org.jetbrains.letsPlot.core.spec.Option
 import org.jetbrains.letsPlot.intern.Options
 import org.jetbrains.letsPlot.scale.*
 import kotlin.reflect.KType

@@ -1,6 +1,5 @@
 package org.jetbrains.kotlinx.kandy.letsplot.util
 
-import jetbrains.datalore.plot.PlotSvgExport
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
@@ -10,6 +9,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.jupyter.JupyterConfig
 import org.jetbrains.kotlinx.kandy.util.serialization.serializeSpec
 import org.jetbrains.letsPlot.Figure
 import org.jetbrains.letsPlot.GGBunch
+import org.jetbrains.letsPlot.awt.plot.PlotSvgExport
 import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
 import org.jetbrains.letsPlot.intern.figure.SubPlotsFigure
 import org.jetbrains.letsPlot.intern.toSpec

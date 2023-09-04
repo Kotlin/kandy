@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.export
 
-import jetbrains.datalore.plot.PlotImageExport
+import org.jetbrains.letsPlot.core.plot.export.PlotImageExport
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
 import org.jetbrains.letsPlot.intern.toSpec
