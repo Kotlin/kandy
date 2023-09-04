@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="kd"
+                  name="kandy"
+                  start-page="Welcome.topic" is-library="true">
+
+    <toc-element topic="Welcome.topic"/>
+    <toc-element topic="Overview.md"/>
+    <toc-element topic="Getting-Started.md"/>
+    <toc-element topic="User-Guide.md"/>
+    <toc-element topic="API.md"/>
+    <toc-element topic="Examples.topic"/>
+</instance-profile>
