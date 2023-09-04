@@ -95,6 +95,9 @@ public abstract class LayerCollectorContext : BaseContext {
 @Suppress("unchecked_cast")
 internal val BindingContext.datasetHandler: DatasetHandler
     get() {
+        if (this is SubBindingContext) {
+            return parentContext.datasetHandler
+        }
         val properties: Collection<KProperty1<out BindingContext, *>> = this::class.memberProperties
         return when {
             properties.any { it.name == "datasetHandler" } -> {
@@ -359,7 +362,6 @@ public interface SubBindingContext : BindingContext {
  * @param parent The primary [LayerCollectorContext] from which this layer context derives its foundational configurations.
  * @property layerFeatures A mutable map associating feature names with their corresponding layer-specific features.
  */
-@PlotDslMarker
 public abstract class LayerContext(parent: LayerCollectorContext) : LayerContextInterface {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
@@ -368,7 +370,8 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
     private val plotContext: PlotContext = parent.plotContext
 
     @PublishedApi
-    internal val datasetHandler: DatasetHandler = plotContext.datasetHandlers[datasetIndex]
+    internal val datasetHandler: DatasetHandler
+        get() = plotContext.datasetHandlers[datasetIndex]
 
     private var firstMapping = true
     private val handlerRowsCount: Int
@@ -470,7 +473,6 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
  * @property _plotContext Reference to the [LayerPlotContext], which provides a broader context encompassing multiple layers and datasets.
  * @property _layers List of layers derived from the grouped dataset. These layers are managed within the broader [LayerPlotContext].
  */
-@PlotDslMarker
 public class GroupedContext(
     override val _datasetIndex: Int,
     override val _plotContext: LayerPlotContext
@@ -503,7 +505,6 @@ public interface SingleLayerPlotContext : PlotContext {
  *
  * @property bindingCollector A collector that consolidates mappings, settings, and other configurations for this plot context.
  */
-@PlotDslMarker
 public abstract class LayerPlotContext : LayerCollectorContext(), PlotContext {
     override val bindingCollector: BindingCollector = BindingCollector()
 

@@ -26,7 +26,6 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
  * @property datasetHandlers a mutable list of handlers for managing datasets.
  * @property plotFeatures a mutable map representing various plot features.
  */
-@PlotDslMarker
 public class DataFramePlotContext<T>(
     private val dataFrame: DataFrame<T>
 ) : LayerPlotContext(), ColumnsContainer<T> by dataFrame {
