@@ -26,7 +26,7 @@ internal class Integration(
     private val notebook: Notebook,
     private val options: MutableMap<String, String?>,
 ) : JupyterIntegration() {
-    private val jsVersion = "3.1.0"
+    private val jsVersion = "4.0.0"
 
     private val frontendContext: NotebookFrontendContext = LetsPlot.setupNotebook(jsVersion, true) {
         HTML(it)
@@ -43,7 +43,7 @@ internal class Integration(
 
         onLoaded {
             display(frontendContext.getConfigureHtml(), null)
-            LetsPlot.apiVersion = "4.3.0"
+            //LetsPlot.apiVersion = "4.3.0"
             //display(HTML(frontendContext.getConfigureHtml()), null)
         }
 
