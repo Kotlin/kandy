@@ -61,37 +61,38 @@ public inline fun StatBin.plot(block: StatBinPlotContext.() -> Unit): Plot {
     return StatBinPlotContext(this).apply(block).toPlot()
 }
 
-public class StatBinPlotContext(
-    statBin: StatBin
-) : LayerPlotContext, BinStatContext {
-    override val bindingCollector: BindingCollector = BindingCollector()
-    override val layers: MutableList<Layer> = mutableListOf()
-    override val plotContext: PlotContext = this
-    override val datasetIndex: Int = 0
+public class StatBinPlotContext(statBin: StatBin) : LayerPlotContext(), BinStatContext {
+    override val _plotContext: PlotContext = this
     override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(
         DatasetHandler(statBin.data)
     )
     override val plotFeatures: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
-    override val layersInheritMappings: Boolean = true
 }
 
-public class HistogramPlotContext(
-    statBin: StatBin
-) : SingleLayerPlotContext, BarsContextInterface, BinStatContext {
+public class HistogramPlotContext(statBin: StatBin) : SingleLayerPlotContext, BarsContextInterface, BinStatContext {
     override val bindingCollector: BindingCollector = BindingCollector()
     override val borderLine: BorderLineContext = BorderLineContext(this)
     override val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 
-    //public override val layers: MutableList<Layer> = mutableListOf()
-    override val plotContext: PlotContext = this
-    override val datasetIndex: Int = 0
+    private val datasetIndex: Int = 0
     override val layer: Layer
         get() = toLayer(true)
     override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(
         DatasetHandler(statBin.data)
     )
     override val plotFeatures: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
-    //override val layersInheritMappings: Boolean = true
+
+    override fun toLayer(layersInheritMappings: Boolean): Layer {
+        return Layer(
+            datasetIndex,
+            geom,
+            bindingCollector.mappings,
+            bindingCollector.settings,
+            layerFeatures,
+            bindingCollector.freeScales,
+            layersInheritMappings
+        )
+    }
 }
 
 public fun Iterable<Number>.histogram(bins: Bins = Bins.byNumber(10),

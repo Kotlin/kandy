@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.features.marks
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 
@@ -22,7 +21,6 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.boxplot
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.candlestick
  */
-/*@PlotDslMarker*/
 public class MarkAreaContext(
     public var areas: List<MarkArea>? = null
 ) {
@@ -31,7 +29,7 @@ public class MarkAreaContext(
 }
 
 internal class MarkAreaFeature(
-    public var areas: List<MarkArea>? = null
+    var areas: List<MarkArea>? = null
 ) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 

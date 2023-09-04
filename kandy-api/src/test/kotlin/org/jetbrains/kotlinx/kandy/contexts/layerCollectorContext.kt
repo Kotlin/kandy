@@ -24,11 +24,11 @@ class LayerCollectorContextTest {
             every { toLayer(any()) } returns mockLayer
         }
 
-        val layerCollectorContext = object : LayerCollectorContext {
-            override val plotContext: PlotContext = mockk(relaxed = true)
-            override val datasetIndex: Int = 0
-            override val layers: MutableList<Layer> = layers
-            override val layersInheritMappings: Boolean = layersInheritMappings
+        val layerCollectorContext = object : LayerCollectorContext() {
+            override val _plotContext: PlotContext = mockk(relaxed = true)
+            override val _datasetIndex: Int = 0
+            override val _layers: MutableList<Layer> = layers
+            override val _layersInheritMappings: Boolean = layersInheritMappings
         }
 
         layerCollectorContext.addLayer(mockLayerContext)

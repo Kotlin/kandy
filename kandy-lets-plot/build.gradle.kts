@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm")
     kotlin("jupyter.api")
@@ -25,4 +27,14 @@ dependencies {
     //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version")
     api(project(":kandy-api"))
     implementation(project(":kandy-util"))
+}
+
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        val friendModule = project(":kandy-api")
+        val jarTask = friendModule.tasks.getByName("jar") as Jar
+        val jarPath = jarTask.archiveFile.get().asFile.absolutePath
+        freeCompilerArgs += "-Xfriend-paths=$jarPath"
+    }
 }

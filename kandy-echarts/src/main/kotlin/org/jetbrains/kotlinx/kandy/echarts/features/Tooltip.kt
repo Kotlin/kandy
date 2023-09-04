@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.features
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.echarts.layers.EChartsLayout
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.EchartsTooltip
 
@@ -53,7 +52,6 @@ public enum class Trigger(public val type: String) {
  *
  * @see Trigger
  */
-/*@PlotDslMarker*/
 public class Tooltip(
     public var trigger: Trigger? = null,
     public var formatter: String? = null

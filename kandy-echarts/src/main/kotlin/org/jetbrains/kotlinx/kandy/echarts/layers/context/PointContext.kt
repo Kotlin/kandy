@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
@@ -28,7 +27,6 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
  * @see org.jetbrains.kotlinx.kandy.echarts.settings.Symbol
  * @see Animation
  */
-/*@PlotDslMarker*/
 public class PointContext(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY,
     WithAlpha, WithColor, WithSize, WithSymbol {
     override val geom: Geom

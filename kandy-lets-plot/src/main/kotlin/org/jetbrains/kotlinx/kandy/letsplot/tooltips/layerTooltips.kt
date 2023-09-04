@@ -18,6 +18,7 @@ import kotlin.reflect.KProperty
  * @return formatted string
  */
 public fun LayerContext.value(column: ColumnReference<*>): String {
+    @Suppress("invisible_member")
     return "@${datasetHandler.addColumn(column)}"
 }
 
@@ -39,6 +40,7 @@ public fun LayerContext.value(column: DataColumn<*>): String {
  * @return formatted string
  */
 public fun LayerContext.value(columnName: String): String {
+    @Suppress("invisible_member")
     return "@${datasetHandler.takeColumn(columnName)}"
 }
 
@@ -49,6 +51,7 @@ public fun LayerContext.value(columnName: String): String {
  * @return formatted string
  */
 public fun LayerContext.value(column: KProperty<*>): String {
+    @Suppress("invisible_member")
     return "@${datasetHandler.takeColumn(column.name)}"
 }
 
@@ -95,6 +98,7 @@ public inline fun LayerContext.tooltips(
     hide: Boolean = false,
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
+    @Suppress("invisible_member")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
         variables.map { datasetHandler.addColumn(it) },
         title,
@@ -126,6 +130,7 @@ public fun LayerContext.tooltips(
     minWidth: Double? = null,
     hide: Boolean = false,
 ) {
+    @Suppress("invisible_member")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it) },
         null,
@@ -154,6 +159,7 @@ public fun LayerContext.tooltips(
     minWidth: Double? = null,
     hide: Boolean = false,
 ) {
+    @Suppress("invisible_member")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.addColumn(it) },
         null,
@@ -186,6 +192,7 @@ public fun LayerContext.tooltips(
     minWidth: Double? = null,
     hide: Boolean = false,
 ) {
+    @Suppress("invisible_member")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it.name) },
         null,

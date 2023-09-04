@@ -28,8 +28,6 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
  * @see org.jetbrains.kotlinx.kandy.util.color.Color
  * @see Animation
  */
-/*@PlotDslMarker*/
-
 public interface BarInterface : LayerContextInterface, WithX, WithY, WithColor, WithAlpha {
     override val geom: Geom
         get() = BAR

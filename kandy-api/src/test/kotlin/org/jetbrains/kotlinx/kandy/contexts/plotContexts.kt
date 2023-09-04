@@ -42,8 +42,6 @@ class PlotContextsTest {
                 every { settings } returns mockSettings
                 every { freeScales } returns mockFreeScales
             }
-            override val plotContext: PlotContext = mockk()
-            override val datasetIndex: Int = 0
         }
 
         val expectedPlot = Plot(
@@ -65,8 +63,8 @@ class PlotContextsTest {
         val mockLayerFirst: Layer = mockk<Layer>()
         val mockLayerSecond: Layer = mockk<Layer>()
 
-        val layerPlotContext = object : LayerPlotContext {
-            override val layers: MutableList<Layer> = mutableListOf(mockLayerFirst, mockLayerSecond)
+        val layerPlotContext = object : LayerPlotContext() {
+            override val _layers: MutableList<Layer> = mutableListOf(mockLayerFirst, mockLayerSecond)
             override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(mockDataHandler)
             override val plotFeatures: MutableMap<FeatureName, PlotFeature> = mockPlotFeatures
             override val bindingCollector: BindingCollector = mockk() {
@@ -74,9 +72,9 @@ class PlotContextsTest {
                 every { settings } returns mockSettings
                 every { freeScales } returns mockFreeScales
             }
-            override val plotContext: PlotContext = mockk()
-            override val layersInheritMappings: Boolean = false
-            override val datasetIndex: Int = 0
+            override val _plotContext: PlotContext = mockk()
+            override val _layersInheritMappings: Boolean = false
+            override val _datasetIndex: Int = 0
         }
 
         val expectedPlot = Plot(

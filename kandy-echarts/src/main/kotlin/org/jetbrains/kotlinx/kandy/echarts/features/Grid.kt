@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.features
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.echarts.settings.SizeUnit
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.EchartsGrid
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.toEchartsColor
@@ -31,7 +30,6 @@ import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
  * @see Color
  * @see Tooltip
  */
-/*@PlotDslMarker*/
 public class Grid(
     public var left: SizeUnit? = null,
     public var top: SizeUnit? = null,

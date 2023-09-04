@@ -4,10 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.StepContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LetsPlotGeom
 
 /**
  * Adds a new step layer.

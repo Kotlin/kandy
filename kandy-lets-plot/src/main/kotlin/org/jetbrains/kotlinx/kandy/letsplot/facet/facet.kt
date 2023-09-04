@@ -85,6 +85,7 @@ public fun LayerPlotContext.facetGridX(
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
 ) {
+    @Suppress("invisible_member")
     val xColName = datasetHandler.takeColumn(x.name())
     plotFeatures[FacetGridFeature.FEATURE_NAME] =
         FacetGridFeature(
@@ -116,6 +117,7 @@ public fun LayerPlotContext.facetGridY(
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
 ) {
+    @Suppress("invisible_member")
     val yColName = datasetHandler.takeColumn(y.name())
     plotFeatures[FacetGridFeature.FEATURE_NAME] =
         FacetGridFeature(null, yColName, scalesSharing, ASCENDING, order, null, format)
@@ -143,6 +145,7 @@ public fun LayerPlotContext.facetGridY(
  * "Score: {.2f}" -> "Score: 12.45"
  * "'Score: {}' "-> "Score: 12.454789"
  */
+@Suppress("invisible_member")
 public fun LayerPlotContext.facetGrid(
     x: ColumnReference<*>,
     y: ColumnReference<*>,
@@ -186,6 +189,7 @@ public fun LayerPlotContext.facetWrap(
     direction: Direction = Direction.HORIZONTAL,
     block: FacetWrapContext.() -> Unit
 ) {
+    @Suppress("invisible_member")
     plotFeatures[FacetWrapFeature.FEATURE_NAME] =
         FacetWrapContext().apply(block).toFeature(datasetHandler, nCol, nRow, scalesSharing, direction)
 }

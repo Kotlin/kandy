@@ -8,15 +8,16 @@ import io.mockk.every
 import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
+import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
+import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -27,33 +28,36 @@ class LayerContextTest {
     private lateinit var layerContext: LayerContext
     private lateinit var parentContext: LayerCollectorContext
 
-    private val namedData = NamedData(DataFrame.Empty)
-    private val dataHandler = DatasetHandler(namedData)
     private val aes = mockk<Aes>()
-    private val name = "columnName"
     private val positionalParameters = mockk<PositionalMappingParameters<Any>>()
     private val nonPositionalParameters = mockk<NonPositionalMappingParameters<Any, Any>>()
     private val columnID = "columnId"
 
+    private val dataHandler = mockk<DatasetHandler>() {
+        every { initialNamedData } returns NamedData(DataFrame.Empty)
+        every { buffer } returns DataFrame.Empty
+    }
+
     @BeforeTest
     fun setup() {
-        parentContext = mockk<LayerCollectorContext> {
-            every { datasetIndex } returns 0
-            every { plotContext } returns mockk(relaxed = true) {
-                every { datasetHandlers } returns mutableListOf(dataHandler)
+        parentContext = object : LayerCollectorContext() {
+            override val _plotContext: PlotContext = object : PlotContext {
+                override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(dataHandler)
+                override val plotFeatures: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
+                override fun toPlot(): Plot = mockk()
+                override val bindingCollector: BindingCollector = BindingCollector()
             }
         }
 
         layerContext = object : LayerContext(parentContext) {
             override val geom: Geom = mockk()
             override val requiredAes: Set<Aes> = mockk()
-            override val datasetHandler: DatasetHandler = mockk(relaxed = true)
         }
     }
 
     @Test
     fun `test addNonPositionalMapping with columnID`() {
-        every { layerContext.datasetHandler.takeColumn(columnID) } returns columnID
+        every { dataHandler.takeColumn(columnID) } returns columnID
 
         val result = layerContext.addNonPositionalMapping(aes, columnID, nonPositionalParameters)
         val expectedMapping = NonPositionalMapping(aes, columnID, nonPositionalParameters)
@@ -65,9 +69,10 @@ class LayerContextTest {
     fun `test addNonPositionalMapping with DataColumn and overrideDataset`() {
         val dataColumn = mockk<DataColumn<Any>> {
             every { size() } returns 3
+            every { name() } returns columnID
         }
 
-        every { layerContext.datasetHandler.addColumn(dataColumn) } returns columnID
+        every { dataHandler.addColumn(dataColumn) } returns columnID
 
         val result = layerContext.addNonPositionalMapping(aes, dataColumn, nonPositionalParameters)
         val expectedMapping = NonPositionalMapping(aes, columnID, nonPositionalParameters)
@@ -79,9 +84,9 @@ class LayerContextTest {
     @Test
     fun `test addNonPositionalMapping with list of values and overrideDataset`() {
         val values = listOf<Any>("test1", "test2")
-        every { layerContext.datasetHandler.addColumn(values, name) } returns columnID
+        every { layerContext.datasetHandler.addColumn(values, columnID) } returns columnID
 
-        val result = layerContext.addNonPositionalMapping(aes, values, name, nonPositionalParameters)
+        val result = layerContext.addNonPositionalMapping(aes, values, columnID, nonPositionalParameters)
         val expectedMapping = NonPositionalMapping(aes, columnID, nonPositionalParameters)
 
         assertEquals(1, layerContext.datasetIndex)
@@ -102,6 +107,7 @@ class LayerContextTest {
     fun `test addPositionalMapping with DataColumn and overrideDataset`() {
         val dataColumn = mockk<DataColumn<Any>> {
             every { size() } returns 3
+            every { name() } returns columnID
         }
 
         every { layerContext.datasetHandler.addColumn(dataColumn) } returns columnID
@@ -116,9 +122,9 @@ class LayerContextTest {
     @Test
     fun `test addPositionalMapping with list of values and overrideDataset`() {
         val values = listOf<Any>("test1", "test2")
-        every { layerContext.datasetHandler.addColumn(values, name) } returns columnID
+        every { layerContext.datasetHandler.addColumn(values, columnID) } returns columnID
 
-        val result = layerContext.addPositionalMapping(aes, values, name, positionalParameters)
+        val result = layerContext.addPositionalMapping(aes, values, columnID, positionalParameters)
         val expectedMapping = PositionalMapping(aes, columnID, positionalParameters)
 
         assertEquals(1, layerContext.datasetIndex)

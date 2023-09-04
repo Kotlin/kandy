@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.features.animation
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationType.EXPANSION
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationType.SCALE
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
@@ -28,7 +27,6 @@ import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.PointContext
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.BarContext
  */
-/*@PlotDslMarker*/
 public class Animation(
     public var enable: Boolean? = null,
     public var threshold: Int? = null,
@@ -86,7 +84,6 @@ public enum class AnimationType(public val type: String) {
  * @see AnimationEasing
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.PieContext
  */
-/*@PlotDslMarker*/
 public class AnimationPie(
     public var enable: Boolean? = null,
     public var type: AnimationType? = null,
@@ -120,7 +117,6 @@ public class AnimationPie(
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.BoxplotContext
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.CandlestickContext
  */
-/*@PlotDslMarker*/
 public class AnimationBoxplotCandlestick(
     public var duration: Int? = null,
     public var easing: AnimationEasing? = null,

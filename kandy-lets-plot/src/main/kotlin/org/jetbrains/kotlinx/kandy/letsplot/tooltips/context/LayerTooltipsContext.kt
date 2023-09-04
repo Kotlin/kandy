@@ -35,6 +35,7 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
      * @return formatted string.
      */
     public fun KProperty<*>.tooltipValue(format: String? = null): String {
+        @Suppress("invisible_member")
         val colID = layerContext.datasetHandler.takeColumn(this.name)
         addFormat(colID, format)
         return "@$colID"
@@ -48,6 +49,7 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
      * @return formatted string.
      */
     public fun String.tooltipValue(format: String? = null): String {
+        @Suppress("invisible_member")
         val colID = layerContext.datasetHandler.takeColumn(this)
         addFormat(colID, format)
         return "@$colID"
@@ -61,6 +63,7 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
      * @return formatted string.
      */
     public fun ColumnReference<*>.tooltipValue(format: String? = null): String {
+        @Suppress("invisible_member")
         val colID = layerContext.datasetHandler.addColumn(this)
         addFormat(colID, format)
         return "@$colID"
@@ -94,6 +97,7 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
      * @param column column whose value will be displayed.
      */
     public fun line(column: ColumnReference<*>, format: String? = null) {
+        @Suppress("invisible_member")
         addVarLine(layerContext.datasetHandler.addColumn(column).also {
             addFormat(it, format)
         })
@@ -106,6 +110,7 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
      * @param property property with the name of column whose value will be displayed.
      */
     public fun line(property: KProperty<*>, format: String? = null) {
+        @Suppress("invisible_member")
         addVarLine(layerContext.datasetHandler.takeColumn(property.name).also {
             addFormat(it, format)
         })
@@ -118,6 +123,7 @@ public class LayerTooltipsContext(private val layerContext: LayerContext) {
      * @param columnName name of column whose value will be displayed.
      */
     public fun varLine(columnName: String, format: String? = null) {
+        @Suppress("invisible_member")
         addVarLine(layerContext.datasetHandler.takeColumn(columnName).also {
             addFormat(it, format)
         })
