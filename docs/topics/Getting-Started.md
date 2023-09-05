@@ -8,7 +8,7 @@
     Dive into Kandy: Your guide to crafting captivating visualizations from your first plot to advanced graphs.
 </card-summary>
 <link-summary>
-    Kandy's Introduction & Your First Graph Creation.
+    Kandy's Introduction and Your First Graph Creation.
 </link-summary>
 
 Start typing here...

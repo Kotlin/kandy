@@ -9,7 +9,7 @@
     Kandy's Comprehensive Guide: From philosophy to core concepts and seamless integration.
 </card-summary>
 <link-summary>
-    Kandy Unveiled: Integration, Philosophy & Core Concepts.
+    Kandy Unveiled: Integration, Philosophy, and Core Concepts.
 </link-summary>
 
 Start typing here...
