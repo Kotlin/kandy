@@ -41,7 +41,7 @@ enhancing its versatility and performance for a streamlined and powerful graph-b
   empowering users to integrate a
   broad spectrum of data formats into their visualizations, enhancing both utility and adaptability.
 * _**Tooling Support**_ — Kandy is fully integrated with
-  [![Kotlin Notebook logo](pluginIcon.svg){style="inline"}Kotlin Notebook](https://plugins.jetbrains.com/plugin/16340-kotlin-notebook),
+  [![Kotlin Notebook logo](ktn_plugin_icon.svg){style="inline"}Kotlin Notebook](https://plugins.jetbrains.com/plugin/16340-kotlin-notebook),
   leveraging the comprehensive capabilities and features of IntelliJ IDEA.
 
 ## DSL and Syntax
@@ -57,7 +57,7 @@ enhancing the accuracy and relevance of visualizations.
 The following diagram offers a simplified sketch of the DSL structure,
 providing a foundational understanding of the DSL approach without delving into intricate details:
 
-![Basic structure of DSL](tree-basic.svg) { thumbnail="true" }
+![Basic structure of DSL](tree_basic.svg) { thumbnail="true" }
 
 Moreover, Kandy leverages the diverse functionalities of Kotlin to streamline code writing processes,
 making the task of creating visual representations more intuitive and less time-consuming.
@@ -96,6 +96,7 @@ plot(simpleDataFrame) {
     }
 }
 ```
+{ validate="false" }
 
 ![Simple plot with Kandy](overview_sample.svg) { border-effect="rounded" }
 

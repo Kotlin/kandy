@@ -8,7 +8,12 @@
 
     <toc-element topic="Welcome.topic"/>
     <toc-element topic="Overview.md"/>
-    <toc-element topic="Getting-Started.md"/>
+    <toc-element topic="Getting-Started.md">
+        <toc-element topic="Kandy-in-Kotlin-Notebook.md"/>
+        <toc-element topic="Kandy-in-Datalore.md"/>
+        <toc-element topic="Kandy-in-Jupyter-Notebook.md"/>
+        <toc-element topic="Kandy-with-Gradle.md"/>
+    </toc-element>
     <toc-element topic="User-Guide.md"/>
     <toc-element topic="API.md"/>
     <toc-element topic="Examples.topic"/>
