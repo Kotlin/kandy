@@ -25,22 +25,6 @@ public class FacetWrapContext @PublishedApi internal constructor() {
     private val formats = mutableListOf<String?>()
 
     /**
-     * Adds a a new facet by a given variable.
-     *
-     * @param variable variable which defines this facet.
-     * @param order specifies ordering direction of this facet.
-     * @param format specifies the format pattern for displaying faceting values in rows.
-     *
-     * Format pattern in the format parameters can be just a number format (like "d") or
-     * a string template where number format is surrounded by curly braces: "{d} cylinders".
-     * Note: the "$" must be escaped as "\$"
-     *
-     * Examples:
-     * ".2f" -> "12.45"
-     * "Score: {.2f}" -> "Score: 12.45"
-     * "'Score: {}' "-> "Score: 12.454789"
-     */
-    /**
      * Adds a new facet to the plot, defined by the specified variable.
      * This method allows the division of data into different subsets,
      * where each subset is represented as a separate panel in the plot.
