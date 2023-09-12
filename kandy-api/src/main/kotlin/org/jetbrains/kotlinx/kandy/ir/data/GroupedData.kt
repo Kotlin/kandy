@@ -6,8 +6,8 @@ package org.jetbrains.kotlinx.kandy.ir.data
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
-import org.jetbrains.kotlinx.dataframe.api.concat
 import org.jetbrains.kotlinx.dataframe.api.groupBy
+import org.jetbrains.kotlinx.kandy.dsl.internal.concatFixed
 
 
 /**
@@ -22,7 +22,7 @@ public data class GroupedData(
     public val groupBy: GroupBy<*, *>
 ) : TableData {
     public val keys: List<String> = groupBy.keys.columnNames()
-    public val origin: NamedData = NamedData(groupBy.concat())
+    public val origin: NamedData = NamedData(groupBy.concatFixed())
 
     /**
      * Initializes a [GroupedData] instance by grouping the rows of the provided [NamedData] using the specified keys.
