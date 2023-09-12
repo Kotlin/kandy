@@ -31,7 +31,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing
  * "Score: {.2f}" -> "Score: 12.45"
  * "'Score: {}' "-> "Score: 12.454789"
  */
-public data class FacetGridFeature constructor(
+public data class FacetGridFeature(
     val x: String?,
     val y: String?,
     val scalesSharing: ScalesSharing?,
@@ -45,5 +45,4 @@ public data class FacetGridFeature constructor(
     public companion object {
         public val FEATURE_NAME: FeatureName = FeatureName("FACET_GRID_FEATURE")
     }
-
 }

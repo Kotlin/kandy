@@ -6,10 +6,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.facet
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.kandy.letsplot.facet.Direction.Companion.HORIZONTAL
-import org.jetbrains.kotlinx.kandy.letsplot.facet.Direction.Companion.VERTICAL
 import org.jetbrains.kotlinx.kandy.letsplot.facet.OrderDirection.Companion.ASCENDING
-import org.jetbrains.kotlinx.kandy.letsplot.facet.OrderDirection.Companion.DESCENDING
 import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing.Companion.FIXED
 import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing.Companion.FREE
 import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing.Companion.FREE_X
@@ -17,32 +14,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing.Companion.FREE_Y
 import org.jetbrains.kotlinx.kandy.letsplot.facet.context.FacetWrapContext
 import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetWrapFeature
-
-/**
- * Specifies ordering direction of columns and rows in the facet.
- *
- * @property ASCENDING ascending ordering direction (by default).
- * @property DESCENDING descending ordering direction.
- */
-public data class OrderDirection internal constructor(val value: Int) {
-    public companion object {
-        public val ASCENDING: OrderDirection = OrderDirection(1)
-        public val DESCENDING: OrderDirection = OrderDirection(-1)
-    }
-}
-
-/**
- * Direction of the [facetWrap] parameter.
- *
- * @property VERTICAL vertical direction.
- * @property HORIZONTAL descending direction (by default).
- */
-public data class Direction internal constructor(val name: String) {
-    public companion object {
-        public val VERTICAL: Direction = Direction("v")
-        public val HORIZONTAL: Direction = Direction("h")
-    }
-}
 
 /**
  * Scales sharing parameter across all facets.
