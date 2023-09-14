@@ -22,10 +22,10 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
  * @property datasetHandlers A list that manages datasets within the plot. Initialized with the grouped data from [groupBy].
  * @property plotFeatures A mutable map to store and manage features associated with the plot.
  */
-public class GroupByPlotContext<T>(
-    private val groupBy: GroupBy<T, T>
-) : LayerPlotContext(), ColumnsContainer<T> by groupBy.concat() {
-    override val _plotContext: PlotContext = this
+public class GroupByPlotContext<T, G>(
+    groupBy: GroupBy<T, G>
+) : GroupedLayerPlotContext<T, G>(groupBy), ColumnsContainer<G> by groupBy.concat() {
+    //override val _plotContext: PlotContext = this
     override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(
         DatasetHandler(GroupedData(groupBy))
     )

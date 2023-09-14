@@ -6,8 +6,8 @@ package org.jetbrains.kotlinx.kandy.dsl.internal
 
 import org.jetbrains.kotlinx.dataframe.*
 import org.jetbrains.kotlinx.dataframe.api.getColumns
+import org.jetbrains.kotlinx.dataframe.api.groupBy
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
@@ -27,7 +27,8 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
  * @property plotFeatures a mutable map representing various plot features.
  */
 public class DataFramePlotContext<T>(
-    private val dataFrame: DataFrame<T>
+    @PublishedApi
+    internal val dataFrame: DataFrame<T>
 ) : LayerPlotContext(), ColumnsContainer<T> by dataFrame {
     override val _plotContext: PlotContext = this
     override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(
@@ -59,19 +60,12 @@ public class DataFramePlotContext<T>(
      */
     public inline fun groupBy(
         columns: Iterable<String>,
-        block: GroupedContext.() -> Unit
+        block: GroupedContext<T, T>.() -> Unit
     ) {
-        datasetHandlers.add(
-            DatasetHandler(
-                GroupedData(
-                    datasetHandler.initialDataset as NamedData,
-                    columns.toList()
-                ),
-                initialBuffer = datasetHandler.buffer
-            )
-        )
+        val groupBy = dataFrame.groupBy(*columns.toList().toTypedArray())
         GroupedContext(
-            datasetHandlers.size - 1,
+            groupBy,
+            datasetHandler.buffer,
             this
         ).apply(block)
     }
@@ -84,7 +78,7 @@ public class DataFramePlotContext<T>(
      */
     public inline fun groupBy(
         vararg columns: String,
-        block: GroupedContext.() -> Unit
+        block: GroupedContext<T, T>.() -> Unit
     ): Unit = groupBy(columns.toList(), block)
 
     /**
@@ -95,7 +89,7 @@ public class DataFramePlotContext<T>(
      */
     public inline fun groupBy(
         vararg columnReferences: ColumnReference<*>,
-        block: GroupedContext.() -> Unit
+        block: GroupedContext<T, T>.() -> Unit
     ): Unit = groupBy(columnReferences.map { it.name() }, block)
 
     /**
@@ -106,6 +100,6 @@ public class DataFramePlotContext<T>(
      */
     public inline fun groupBy(
         columnReferences: List<ColumnReference<*>>,
-        block: GroupedContext.() -> Unit
+        block: GroupedContext<T, T>.() -> Unit
     ): Unit = groupBy(columnReferences.map { it.name() }, block)
 }

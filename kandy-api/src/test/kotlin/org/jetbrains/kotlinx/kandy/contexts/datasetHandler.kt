@@ -143,8 +143,9 @@ class DatasetHandlerTest {
 
     @Test
     fun `test take non-exist column`() {
-        assertFailsWith<IllegalStateException>(message = "invalid column id") {
-            handler.takeColumn("columnNonExist")
+        val name = "columnNonExist"
+        assertFailsWith<IllegalStateException>(message = "invalid column id: $name") {
+            handler.takeColumn(name)
         }
     }
 
@@ -230,8 +231,9 @@ class DatasetHandlerTest {
 
     @Test
     fun `test take non-exist column with GroupedData`() {
-        assertFailsWith<IllegalStateException>(message = "invalid column id") {
-            handlerWithGrouped.takeColumn("columnNonExist")
+        val name = "columnNonExist"
+        assertFailsWith<IllegalStateException>(message = "invalid column id: $name") {
+            handlerWithGrouped.takeColumn(name)
         }
     }
 }

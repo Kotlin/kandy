@@ -32,7 +32,7 @@ import org.jetbrains.kotlinx.kandy.ir.data.TableData
  */
 public class DatasetHandler(
     public val initialDataset: TableData,
-    private val columnAsRefOnly: Boolean = false,
+    //private val columnAsRefOnly: Boolean = false,
     initialBuffer: DataFrame<*>? = null
 ) {
     // todo value column
@@ -93,7 +93,7 @@ public class DatasetHandler(
     public fun takeColumn(name: String): String {
         return referredColumns[name] ?: run {
             val columnId = internalAddColumn(
-                initialNamedData.dataFrame.getColumnOrNull(name) ?: error("invalid column id")
+                initialNamedData.dataFrame.getColumnOrNull(name) ?: error("invalid column id: $name")
             )
             referredColumns[name] = columnId
             name
@@ -109,7 +109,7 @@ public class DatasetHandler(
      * @return The name of the added column.
      */
     public fun addColumn(column: ColumnReference<*>): String {
-        return if (column is DataColumn<*> && !columnAsRefOnly) {
+        return if (column is DataColumn<*>/* && !columnAsRefOnly*/) {
             internalAddColumn(column)
         } else takeColumn(column.name())
     }
