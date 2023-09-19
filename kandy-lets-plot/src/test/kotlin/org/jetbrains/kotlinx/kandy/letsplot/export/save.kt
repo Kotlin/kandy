@@ -64,10 +64,10 @@ class SaveTests {
     }
 
     @BeforeTest
-    fun before() = cleanTestImages()
+    fun setUp() = cleanTestImages()
 
     @AfterTest
-    fun after() = cleanTestImages()
+    fun tearDown() = cleanTestImages()
 
     @Test
     fun `save plot as svg`() = plot.testSavePlot("svg")

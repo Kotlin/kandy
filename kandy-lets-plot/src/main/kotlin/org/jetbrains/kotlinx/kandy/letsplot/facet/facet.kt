@@ -53,7 +53,7 @@ public data class ScalesSharing internal constructor(val name: String) {
 public fun LayerPlotContext.facetGridX(
     x: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
-    order: OrderDirection = OrderDirection.ASCENDING,
+    order: OrderDirection = ASCENDING,
     format: String? = null
 ) {
     @Suppress("invisible_member")
@@ -85,7 +85,7 @@ public fun LayerPlotContext.facetGridX(
 public fun LayerPlotContext.facetGridY(
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
-    order: OrderDirection = OrderDirection.ASCENDING,
+    order: OrderDirection = ASCENDING,
     format: String? = null
 ) {
     @Suppress("invisible_member")
@@ -121,8 +121,8 @@ public fun LayerPlotContext.facetGrid(
     x: ColumnReference<*>,
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
-    xOrder: OrderDirection = OrderDirection.ASCENDING,
-    yOrder: OrderDirection = OrderDirection.ASCENDING,
+    xOrder: OrderDirection = ASCENDING,
+    yOrder: OrderDirection = ASCENDING,
     xFormat: String? = null,
     yFormat: String? = null
 ) {

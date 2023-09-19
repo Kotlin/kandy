@@ -1,18 +1,178 @@
 package org.jetbrains.kotlinx.kandy.letsplot.multiplot
 
-import org.jetbrains.kotlinx.dataframe.api.column
-import org.jetbrains.kotlinx.dataframe.api.toDataFrame
+import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
-import org.jetbrains.kotlinx.kandy.letsplot.facet.OrderDirection
-import org.jetbrains.kotlinx.kandy.letsplot.facet.facetGrid
-import org.jetbrains.kotlinx.kandy.letsplot.facet.facetGridX
+import org.jetbrains.kotlinx.kandy.letsplot.export.save
+import org.jetbrains.kotlinx.kandy.letsplot.facet.*
 import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetGridFeature
+import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetWrapFeature
+import org.jetbrains.kotlinx.kandy.letsplot.layers.line
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class FacetTests {
+
+    private val col1 by columnOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).named("col1")
+    private val col2 by columnOf(11, 12, 13, 14, 15, 16, 17, 18, 19, 20).named("col2")
+    private val col3 by columnOf("A", "A", "B", "B", "C", "C", "D", "D", "E", "E").named("col3")
+
+    private val dataFrame = dataFrameOf(col1, col2, col3)
+
+    @Test
+    fun `test facetGridX with default parameters`() {
+        val plot = plot(dataFrame) {
+            line { x(col1);y(col2) }
+            facetGridX(col3)
+        }
+
+        val expectedFacet = FacetGridFeature(
+            x = "col3", y = null,
+            scalesSharing = null,
+            xOrder = OrderDirection.ASCENDING, yOrder = OrderDirection.ASCENDING,
+            xFormat = null, yFormat = null
+        )
+
+        assertEquals(expectedFacet, plot.features[FacetGridFeature.FEATURE_NAME])
+    }
+
+    @Test
+    fun `test facetGridX with custom parameters`() {
+        val plot = plot(dataFrame) {
+            line { x(col1);y(col2) }
+            facetGridX(col3, ScalesSharing.FREE_X, OrderDirection.DESCENDING, "'Score: {}'")
+        }
+
+        val expectedFacet = FacetGridFeature(
+            x = "col3", y = null,
+            scalesSharing = ScalesSharing.FREE_X,
+            xOrder = OrderDirection.DESCENDING, yOrder = OrderDirection.ASCENDING,
+            xFormat = "'Score: {}'", yFormat = null
+        )
+
+        assertEquals(expectedFacet, plot.features[FacetGridFeature.FEATURE_NAME])
+    }
+
+    @Test
+    fun `test facetGridY with default parameters`() {
+        val plot = plot(dataFrame) {
+            line { x(col1);y(col2) }
+            facetGridY(col3)
+        }
+
+        val expectedFacet = FacetGridFeature(
+            x = null, y = "col3",
+            scalesSharing = null,
+            xOrder = OrderDirection.ASCENDING, yOrder = OrderDirection.ASCENDING,
+            xFormat = null, yFormat = null
+        )
+
+        assertEquals(expectedFacet, plot.features[FacetGridFeature.FEATURE_NAME])
+    }
+
+    @Test
+    fun `test facetGridY with custom parameters`() {
+        val plot = plot(dataFrame) {
+            line { x(col1);y(col2) }
+            facetGridY(col3, ScalesSharing.FIXED, OrderDirection.DESCENDING, "'Score: {.2f}'")
+        }
+
+        val expectedFacet = FacetGridFeature(
+            x = null, y = "col3",
+            scalesSharing = ScalesSharing.FIXED,
+            xOrder = OrderDirection.ASCENDING, yOrder = OrderDirection.DESCENDING,
+            xFormat = null, yFormat = "'Score: {.2f}'"
+        )
+
+        assertEquals(expectedFacet, plot.features[FacetGridFeature.FEATURE_NAME])
+    }
+
+    @Test
+    fun `test facetGrid with default parameters`() {
+        val plot = plot(dataFrame) {
+            line { x(col1);y(col2) }
+            facetGrid(col2, col3)
+        }
+
+        val expectedFacet = FacetGridFeature(
+            x = "col2", y = "col3",
+            scalesSharing = null,
+            xOrder = OrderDirection.ASCENDING, yOrder = OrderDirection.ASCENDING,
+            xFormat = null, yFormat = null
+        )
+
+        assertEquals(expectedFacet, plot.features[FacetGridFeature.FEATURE_NAME])
+    }
+
+    @Test
+    fun `test facetGrid with custom parameters`() {
+        val plot = plot(dataFrame) {
+            line { x(col1);y(col2) }
+            facetGrid(
+                col1, col3,
+                ScalesSharing.FIXED,
+                OrderDirection.DESCENDING, OrderDirection.ASCENDING,
+                null, "'Score: {.2f}'"
+            )
+        }
+
+        val expectedFacet = FacetGridFeature(
+            x = "col1", y = "col3",
+            scalesSharing = ScalesSharing.FIXED,
+            xOrder = OrderDirection.DESCENDING, yOrder = OrderDirection.ASCENDING,
+            xFormat = null, yFormat = "'Score: {.2f}'"
+        )
+
+        assertEquals(expectedFacet, plot.features[FacetGridFeature.FEATURE_NAME])
+    }
+
+    @Test
+    fun `test facetWrap with default parameters`() {
+        val plot = plot(dataFrame) {
+            line { x(col1);y(col2) }
+            facetWrap(nCol = 3, scalesSharing = ScalesSharing.FREE) {
+                facet(col1)
+                facet(col2)
+                facet(col3)
+            }
+        }
+
+        val expectedFacet = FacetWrapFeature(
+            facets = listOf("col1", "col2", "col3"),
+            nCol = 3, nRow = null,
+            orders = listOf(OrderDirection.ASCENDING, OrderDirection.ASCENDING, OrderDirection.ASCENDING),
+            scalesSharing = ScalesSharing.FREE,
+            direction = Direction.HORIZONTAL,
+            formats = listOf(null, null, null)
+        )
+
+        assertEquals(expectedFacet, plot.features[FacetWrapFeature.FEATURE_NAME])
+    }
+
+    @Test
+    fun `test facetWrap with custom parameters`() {
+        val plot = plot(dataFrame) {
+            line { x(col1);y(col2) }
+            facetWrap(nCol = 3, nRow = 2, scalesSharing = ScalesSharing.FIXED, direction = Direction.VERTICAL) {
+//                facet(col1)
+                facet(col2, OrderDirection.DESCENDING, format = ".2f")
+                facet(col3, format = "Score = {}")
+            }
+        }
+        plot.save("test_facet.png")
+
+        val expectedFacet = FacetWrapFeature(
+            facets = listOf("col1", "col2", "col3"),
+            nCol = 3, nRow = 2,
+            orders = listOf(OrderDirection.ASCENDING, OrderDirection.DESCENDING, OrderDirection.ASCENDING),
+            scalesSharing = ScalesSharing.FIXED,
+            direction = Direction.VERTICAL,
+            formats = listOf(null, ".2f", "Score = {}")
+        )
+
+        assertEquals(expectedFacet, plot.features[FacetWrapFeature.FEATURE_NAME])
+    }
 
 
     @Test
