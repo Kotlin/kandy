@@ -33,9 +33,9 @@ class DatasetHandlerTest {
         handler = DatasetHandler(NamedData(dataFrame))
 
         val groupedData = GroupedData(groupedDf)
-        internalNumbers = groupedData.origin.dataFrame["numbers"]
-        internalType = groupedData.origin.dataFrame["TYPE"]
-        internalCond = groupedData.origin.dataFrame["cond"]
+        internalNumbers = groupedData.dataFrame["numbers"]
+        internalType = groupedData.dataFrame["TYPE"]
+        internalCond = groupedData.dataFrame["cond"]
         handlerWithGrouped = DatasetHandler(groupedData)
     }
 
@@ -62,7 +62,7 @@ class DatasetHandlerTest {
         )
         val handler = DatasetHandler(initialDataset)
 
-        assertEquals(initialDataset.origin, handler.initialNamedData)
+        assertEquals(initialDataset.dataFrame, handler.initialNamedData.dataFrame)
     }
 
     @Test

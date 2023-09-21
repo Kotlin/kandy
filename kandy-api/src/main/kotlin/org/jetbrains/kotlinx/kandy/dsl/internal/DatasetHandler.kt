@@ -54,7 +54,7 @@ public class DatasetHandler(
             }
 
             is GroupedData -> {
-                initialNamedData = initialDataset.origin
+                initialNamedData = NamedData(initialDataset.dataFrame)
                 isGrouped = true
                 groupKeys = initialDataset.keys
                 groupKeys.forEach { takeColumn(it) }

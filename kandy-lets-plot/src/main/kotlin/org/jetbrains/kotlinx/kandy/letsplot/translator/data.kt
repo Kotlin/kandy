@@ -5,6 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import kotlinx.datetime.*
+import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
@@ -12,7 +13,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.MERGED_GROUPS
 import kotlin.reflect.typeOf
 
 internal fun GroupedData.mergedKeys(): List<String> = buildList {
-    val dataFrame = origin.dataFrame
+    val dataFrame = dataFrame
     val size = dataFrame.rowsCount()
     for (i in 0 until size) {
         add(keys.joinToString("$") {
@@ -21,8 +22,8 @@ internal fun GroupedData.mergedKeys(): List<String> = buildList {
     }
 }
 
-internal fun process(data: NamedData): Map<String, List<*>> {
-    return data.dataFrame.columns().map {
+internal fun process(data: DataFrame<*>): Map<String, List<*>> {
+    return data.columns().map {
         val type = it.type()
         val values = it.values()
         // TODO!!!
@@ -47,8 +48,8 @@ internal fun process(data: NamedData): Map<String, List<*>> {
 
 internal fun TableData.wrap(): Map<String, List<*>> {
     return (when (this) {
-        is NamedData -> process(this)
-        is GroupedData -> process(origin) + (MERGED_GROUPS to mergedKeys())
+        is NamedData -> process(dataFrame)
+        is GroupedData -> process(dataFrame) + (MERGED_GROUPS to mergedKeys())
         else -> TODO()
     })
 }
