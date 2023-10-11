@@ -153,22 +153,21 @@ class FacetTests {
     @Test
     fun `test facetWrap with custom parameters`() {
         val plot = plot(dataFrame) {
-            line { x(col1);y(col2) }
-            facetWrap(nCol = 3, nRow = 2, scalesSharing = ScalesSharing.FIXED, direction = Direction.VERTICAL) {
-//                facet(col1)
+            facetWrap(nCol = 2, nRow = 2, scalesSharing = ScalesSharing.FIXED, direction = Direction.VERTICAL) {
                 facet(col2, OrderDirection.DESCENDING, format = ".2f")
                 facet(col3, format = "Score = {}")
+                line { x(col1);y(col2) }
             }
         }
         plot.save("test_facet.png")
 
         val expectedFacet = FacetWrapFeature(
-            facets = listOf("col1", "col2", "col3"),
-            nCol = 3, nRow = 2,
-            orders = listOf(OrderDirection.ASCENDING, OrderDirection.DESCENDING, OrderDirection.ASCENDING),
+            facets = listOf("col2", "col3"),
+            nCol = 2, nRow = 2,
+            orders = listOf(OrderDirection.DESCENDING, OrderDirection.ASCENDING),
             scalesSharing = ScalesSharing.FIXED,
             direction = Direction.VERTICAL,
-            formats = listOf(null, ".2f", "Score = {}")
+            formats = listOf(".2f", "Score = {}")
         )
 
         assertEquals(expectedFacet, plot.features[FacetWrapFeature.FEATURE_NAME])
