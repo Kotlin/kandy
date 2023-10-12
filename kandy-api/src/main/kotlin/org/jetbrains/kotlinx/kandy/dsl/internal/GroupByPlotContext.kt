@@ -25,7 +25,6 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 public class GroupByPlotContext<T, G>(
     groupBy: GroupBy<T, G>
 ) : GroupedLayerPlotContext<T, G>(groupBy), ColumnsContainer<G> by groupBy.concat() {
-    //override val _plotContext: PlotContext = this
     override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(
         DatasetHandler(GroupedData(groupBy))
     )

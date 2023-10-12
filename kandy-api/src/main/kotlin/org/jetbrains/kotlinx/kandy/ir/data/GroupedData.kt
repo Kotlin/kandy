@@ -16,16 +16,15 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.concatFixed
  * @property groupBy a grouped dataframe where the initial columns as the grouping keys,
  * and the last column stores a dataframe as its cell entry.
  * @property keys the column names used for grouping the original dataframe.
- * @property origin the initial dataframe prior to grouping.
+ * @property dataFrame the initial dataframe prior to grouping.
  */
 public data class GroupedData(
     public val dataFrame: DataFrame<*>,
-     public val keys: List<String>
+    public val keys: List<String>
 ) : TableData {
-    //public val keys: List<String> = groupBy.keys.columnNames()
-    //public val origin: NamedData = NamedData(groupBy.concatFixed())
     public val groupBy: GroupBy<*, *>
         get() = dataFrame.groupBy(*keys.toTypedArray())
+
     /**
      * Initializes a [GroupedData] instance by grouping the rows of the provided [NamedData] using the specified keys.
      *

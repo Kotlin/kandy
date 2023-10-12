@@ -47,9 +47,9 @@ internal fun process(data: DataFrame<*>): Map<String, List<*>> {
 
 
 internal fun TableData.wrap(): Map<String, List<*>> {
-    return (when (this) {
+    return when (this) {
         is NamedData -> process(dataFrame)
         is GroupedData -> process(dataFrame) + (MERGED_GROUPS to mergedKeys())
-        else -> TODO()
-    })
+        else -> error("Unexpected data format")
+    }
 }

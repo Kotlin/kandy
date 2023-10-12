@@ -32,7 +32,6 @@ import org.jetbrains.kotlinx.kandy.ir.data.TableData
  */
 public class DatasetHandler(
     public val initialDataset: TableData,
-    //private val columnAsRefOnly: Boolean = false,
     initialBuffer: DataFrame<*>? = null
 ) {
     // todo value column
@@ -109,7 +108,7 @@ public class DatasetHandler(
      * @return The name of the added column.
      */
     public fun addColumn(column: ColumnReference<*>): String {
-        return if (column is DataColumn<*>/* && !columnAsRefOnly*/) {
+        return if (column is DataColumn<*>) {
             internalAddColumn(column)
         } else takeColumn(column.name())
     }
