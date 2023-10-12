@@ -13,7 +13,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.MERGED_GROUPS
 import kotlin.reflect.typeOf
 
 internal fun GroupedData.mergedKeys(): List<String> = buildList {
-    val dataFrame = dataFrame
     val size = dataFrame.rowsCount()
     for (i in 0 until size) {
         add(keys.joinToString("$") {
