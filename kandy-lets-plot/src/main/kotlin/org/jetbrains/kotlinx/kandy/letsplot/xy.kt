@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.kandy.letsplot
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisParametersWithSetter
 
-public fun <T> LayerPlotContext.x(
+public fun <T> PlotContext.x(
     column: ColumnReference<T>,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
@@ -25,7 +25,7 @@ public fun <T> LayerPlotContext.x(
     )
 }
 
-public fun <T> LayerPlotContext.x(
+public fun <T> PlotContext.x(
     values: Iterable<T>,
     name: String? = null,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
@@ -38,7 +38,7 @@ public fun <T> LayerPlotContext.x(
     )
 }
 
-public fun LayerPlotContext.x(
+public fun PlotContext.x(
     column: String,
     parameters: LetsPlotPositionalMappingParametersContinuous<Any?>.() -> Unit = {}
 ): PositionalMapping<Any?> {
@@ -49,7 +49,7 @@ public fun LayerPlotContext.x(
     )
 }
 
-public fun <T> LayerPlotContext.x(
+public fun <T> PlotContext.x(
     values: DataColumn<T>,
     //name: String? = null,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
@@ -62,27 +62,27 @@ public fun <T> LayerPlotContext.x(
 }
 
 @Suppress("UNCHECKED_CAST")
-public val LayerPlotContext.x: AxisParametersWithSetter
+public val PlotContext.x: AxisParametersWithSetter
     get() {
         return AxisParametersWithSetter(bindingCollector.freeScales.getOrPut(X) {
             PositionalFreeScale(X, LetsPlotPositionalMappingParametersContinuous<Any?>())
         }.parameters as LetsPlotPositionalMappingParametersContinuous<Any?>, X, this)
     }
 
-public fun LayerPlotContext.x(
+public fun PlotContext.x(
     parameters: AxisParametersWithSetter.() -> Unit = {}
 ) {
     x.apply(parameters)
 }
 
 /*
-public fun <T> LayerPlotContext.y(value: T): PositionalSetting<T> {
+public fun <T> PlotContext.y(value: T): PositionalSetting<T> {
     return addPositionalSetting(Y, value)
 }
 
  */
 
-public fun <T> LayerPlotContext.y(
+public fun <T> PlotContext.y(
     column: ColumnReference<T>,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
@@ -93,7 +93,7 @@ public fun <T> LayerPlotContext.y(
     )
 }
 
-public fun <T> LayerPlotContext.y(
+public fun <T> PlotContext.y(
     values: Iterable<T>,
     name: String? = null,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
@@ -106,7 +106,7 @@ public fun <T> LayerPlotContext.y(
     )
 }
 
-public fun LayerPlotContext.y(
+public fun PlotContext.y(
     column: String,
     parameters: LetsPlotPositionalMappingParametersContinuous<Any?>.() -> Unit = {}
 ): PositionalMapping<Any?> {
@@ -117,7 +117,7 @@ public fun LayerPlotContext.y(
     )
 }
 
-public fun <T> LayerPlotContext.y(
+public fun <T> PlotContext.y(
     values: DataColumn<T>,
     //name: String? = null,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
@@ -130,14 +130,14 @@ public fun <T> LayerPlotContext.y(
 }
 
 @Suppress("UNCHECKED_CAST")
-public val LayerPlotContext.y: AxisParametersWithSetter
+public val PlotContext.y: AxisParametersWithSetter
     get() {
         return AxisParametersWithSetter(bindingCollector.freeScales.getOrPut(Y) {
             PositionalFreeScale(Y, LetsPlotPositionalMappingParametersContinuous<Any?>())
         }.parameters as LetsPlotPositionalMappingParametersContinuous<Any?>, Y, this)
     }
 
-public fun LayerPlotContext.y(
+public fun PlotContext.y(
     parameters: AxisParametersWithSetter.() -> Unit = {}
 ) {
     y.apply(parameters)
