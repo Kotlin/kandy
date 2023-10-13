@@ -33,9 +33,9 @@ class DatasetHandlerTest {
         handler = DatasetHandler(NamedData(dataFrame))
 
         val groupedData = GroupedData(groupedDf)
-        internalNumbers = groupedData.origin.dataFrame["numbers"]
-        internalType = groupedData.origin.dataFrame["TYPE"]
-        internalCond = groupedData.origin.dataFrame["cond"]
+        internalNumbers = groupedData.dataFrame["numbers"]
+        internalType = groupedData.dataFrame["TYPE"]
+        internalCond = groupedData.dataFrame["cond"]
         handlerWithGrouped = DatasetHandler(groupedData)
     }
 
@@ -62,7 +62,7 @@ class DatasetHandlerTest {
         )
         val handler = DatasetHandler(initialDataset)
 
-        assertEquals(initialDataset.origin, handler.initialNamedData)
+        assertEquals(initialDataset.dataFrame, handler.initialNamedData.dataFrame)
     }
 
     @Test
@@ -143,8 +143,9 @@ class DatasetHandlerTest {
 
     @Test
     fun `test take non-exist column`() {
-        assertFailsWith<IllegalStateException>(message = "invalid column id") {
-            handler.takeColumn("columnNonExist")
+        val name = "columnNonExist"
+        assertFailsWith<IllegalStateException>(message = "invalid column id: $name") {
+            handler.takeColumn(name)
         }
     }
 
@@ -230,8 +231,9 @@ class DatasetHandlerTest {
 
     @Test
     fun `test take non-exist column with GroupedData`() {
-        assertFailsWith<IllegalStateException>(message = "invalid column id") {
-            handlerWithGrouped.takeColumn("columnNonExist")
+        val name = "columnNonExist"
+        assertFailsWith<IllegalStateException>(message = "invalid column id: $name") {
+            handlerWithGrouped.takeColumn(name)
         }
     }
 }

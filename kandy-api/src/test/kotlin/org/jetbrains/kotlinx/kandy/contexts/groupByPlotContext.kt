@@ -87,8 +87,8 @@ class GroupByPlotContextTest {
         val emptyPlot2 = plot(dataFrame.groupBy("a")) {}
 
         assertEquals(
-            (emptyPlot1.datasets.first() as GroupedData).origin,
-            (emptyPlot2.datasets.first() as GroupedData).origin
+            (emptyPlot1.datasets.first() as GroupedData).dataFrame,
+            (emptyPlot2.datasets.first() as GroupedData).dataFrame
         )
         assertEquals(
             (emptyPlot1.datasets.first() as GroupedData).keys,
