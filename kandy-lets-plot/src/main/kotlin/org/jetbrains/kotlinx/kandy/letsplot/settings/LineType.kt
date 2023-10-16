@@ -2,12 +2,10 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.letsplot.util.linetype
+package org.jetbrains.kotlinx.kandy.letsplot.settings
 
 /**
  * Type of line.
- *
- * TODO detailed?
  */
 public data class LineType internal constructor(public val description: String, public val codeNumber: Int) {
     public companion object {

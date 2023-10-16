@@ -9,8 +9,8 @@ import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.letsplot.util.SimpleValueWrapper
-import org.jetbrains.kotlinx.kandy.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.kandy.letsplot.util.symbol.Symbol
+import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
+import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.color.StandardColor
 

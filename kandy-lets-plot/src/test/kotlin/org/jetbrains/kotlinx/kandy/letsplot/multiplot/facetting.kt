@@ -4,11 +4,10 @@ import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
-import org.jetbrains.kotlinx.kandy.letsplot.export.save
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 import org.jetbrains.kotlinx.kandy.letsplot.layers.line
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.*
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -159,7 +158,6 @@ class FacetTests {
                 line { x(col1);y(col2) }
             }
         }
-        plot.save("test_facet.png")
 
         val expectedFacet = FacetWrapFeature(
             facets = listOf("col2", "col3"),

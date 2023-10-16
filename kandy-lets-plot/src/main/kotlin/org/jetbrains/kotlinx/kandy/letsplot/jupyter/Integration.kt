@@ -5,7 +5,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.jupyter
 
 import org.jetbrains.kotlinx.jupyter.api.HTML
-import org.jetbrains.kotlinx.jupyter.api.Notebook
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.declare
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
@@ -22,10 +21,7 @@ import org.jetbrains.letsPlot.core.util.PlotHtmlHelper
 import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
 
 @JupyterLibrary
-internal class Integration(
-    private val notebook: Notebook,
-    private val options: MutableMap<String, String?>,
-) : JupyterIntegration() {
+internal class Integration : JupyterIntegration() {
     private val jsVersion = "4.0.0"
 
     private val frontendContext: NotebookFrontendContext = LetsPlot.setupNotebook(jsVersion, true) {
@@ -43,30 +39,21 @@ internal class Integration(
 
         onLoaded {
             display(frontendContext.getConfigureHtml(), null)
-            //LetsPlot.apiVersion = "4.3.0"
-            //display(HTML(frontendContext.getConfigureHtml()), null)
         }
 
         import("org.jetbrains.kotlinx.kandy.letsplot.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.export.*")
-        import("org.jetbrains.kotlinx.kandy.letsplot.facet.*")
+        import("org.jetbrains.kotlinx.kandy.letsplot.feature.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.layers.*")
-        //import("org.jetbrains.kotlinx.kandy.letsplot.layers.stat.*")
-        //import("org.jetbrains.kotlinx.kandy.letsplot.series.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.multiplot.*")
+        import("org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.translator.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.scales.*")
-        //import("org.jetbrains.kotlinx.kandy.letsplot.stat.*")
-        //import("org.jetbrains.kotlinx.kandy.letsplot.stat.bin.*")
-        //import("org.jetbrains.kotlinx.kandy.letsplot.stat.layers.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.scales.guide.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.theme.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.tooltips.*")
-        import("org.jetbrains.kotlinx.kandy.letsplot.position.*")
-        import("org.jetbrains.kotlinx.kandy.letsplot.util.linetype.*")
-        import("org.jetbrains.kotlinx.kandy.letsplot.util.symbol.*")
-        import("org.jetbrains.kotlinx.kandy.letsplot.util.font.*")
-        // import("org.jetbrains.kotlinx.kandy.letsplot.util.statParameters.*")
+        import("org.jetbrains.kotlinx.kandy.letsplot.settings.*")
+        import("org.jetbrains.kotlinx.kandy.letsplot.settings.font.*")
 
         onLoaded {
             declare("kandyConfig" to config)

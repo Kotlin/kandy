@@ -17,8 +17,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.line
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.position
-import org.jetbrains.kotlinx.kandy.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.kandy.letsplot.util.symbol.Symbol
+import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
+import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.letsplot.y
 import org.jetbrains.kotlinx.kandy.util.color.Color
