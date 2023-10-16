@@ -43,12 +43,12 @@ public sealed class Position private constructor(public val name: String) : Laye
     /**
      * Don't adjust position.
      */
-    internal object Identity : Position("identity")
+    internal data object Identity : Position("identity")
 
     /**
      * Stack overlapping objects on top of each another
      */
-    internal object Stack : Position("stack")
+    internal data object Stack : Position("stack")
 
     /**
      * Dodge overlapping objects side-to-side.
