@@ -4,10 +4,10 @@ import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.layers.bars
 import org.jetbrains.kotlinx.kandy.letsplot.layers.barsH
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class ReversedTest {
 
-    // TODO error
     @Test
     fun `test reversed plot`() {
         val plot = plot {
@@ -18,10 +18,9 @@ class ReversedTest {
             }
         }
 
-        println(plot.features[Reversed.FEATURE_NAME])
+        assertEquals(Reversed(true), plot.layers.first().features[Reversed.FEATURE_NAME])
     }
 
-    // TODO error
     @Test
     fun `reversed by barH`() {
         val plot = plot {
@@ -31,6 +30,6 @@ class ReversedTest {
             }
         }
 
-        println(plot.features[Reversed.FEATURE_NAME])
+        assertEquals(Reversed(true), plot.layers.first().features[Reversed.FEATURE_NAME])
     }
 }
