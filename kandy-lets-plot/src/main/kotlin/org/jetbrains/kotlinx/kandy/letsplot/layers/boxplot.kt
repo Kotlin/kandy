@@ -7,8 +7,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxplotContext
-import org.jetbrains.kotlinx.kandy.letsplot.position.Position
-import org.jetbrains.kotlinx.kandy.letsplot.position.position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.position
 
 /**
  * Adds a new boxplot layer.
@@ -61,6 +61,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.position.position
  * }
  * ```
  */
+@Suppress("invisible_member")
 public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
     // todo letsplot fix
     addLayer(BoxplotContext(this).apply {

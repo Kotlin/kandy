@@ -2,12 +2,12 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.letsplot.facet.feature
+package org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature
 
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.kandy.letsplot.facet.OrderDirection
-import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.OrderDirection
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing
 
 /**
  * Splits data by one or two faceting variables.

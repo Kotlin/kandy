@@ -2,17 +2,17 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.letsplot.facet.context
+package org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.context
 
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.kandy.letsplot.facet.Direction
-import org.jetbrains.kotlinx.kandy.letsplot.facet.OrderDirection
-import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing
-import org.jetbrains.kotlinx.kandy.letsplot.facet.facetWrap
-import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetWrapFeature
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.Direction
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.OrderDirection
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.facetWrap
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 
 /**
  * Represents the context for configuring and adding facets to a plot within the [LayerPlotContext].

@@ -2,18 +2,18 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.letsplot.facet
+package org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.kandy.letsplot.facet.OrderDirection.Companion.ASCENDING
-import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing.Companion.FIXED
-import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing.Companion.FREE
-import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing.Companion.FREE_X
-import org.jetbrains.kotlinx.kandy.letsplot.facet.ScalesSharing.Companion.FREE_Y
-import org.jetbrains.kotlinx.kandy.letsplot.facet.context.FacetWrapContext
-import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetGridFeature
-import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetWrapFeature
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.OrderDirection.Companion.ASCENDING
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing.Companion.FIXED
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing.Companion.FREE
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing.Companion.FREE_X
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing.Companion.FREE_Y
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.context.FacetWrapContext
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 
 /**
  * Scales sharing parameter across all facets.
@@ -156,7 +156,7 @@ public fun LayerPlotContext.facetGrid(
 public fun LayerPlotContext.facetWrap(
     nCol: Int? = null,
     nRow: Int? = null,
-    scalesSharing: ScalesSharing = ScalesSharing.FIXED,
+    scalesSharing: ScalesSharing = FIXED,
     direction: Direction = Direction.HORIZONTAL,
     block: FacetWrapContext.() -> Unit
 ) {

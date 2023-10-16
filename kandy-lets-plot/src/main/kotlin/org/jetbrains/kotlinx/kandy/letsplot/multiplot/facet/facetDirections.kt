@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.kandy.letsplot.facet
+package org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet
 
 /**
  * Specifies ordering direction of columns and rows in the facet.

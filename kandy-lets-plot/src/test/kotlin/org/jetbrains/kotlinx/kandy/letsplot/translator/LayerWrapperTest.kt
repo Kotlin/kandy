@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BAR
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
-import org.jetbrains.kotlinx.kandy.letsplot.position.Position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.letsPlot.intern.toSpec
 import kotlin.test.Test

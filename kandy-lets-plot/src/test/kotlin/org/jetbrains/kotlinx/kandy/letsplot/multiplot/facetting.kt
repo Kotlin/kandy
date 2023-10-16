@@ -5,10 +5,10 @@ import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.letsplot.export.save
-import org.jetbrains.kotlinx.kandy.letsplot.facet.*
-import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetGridFeature
-import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetWrapFeature
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 import org.jetbrains.kotlinx.kandy.letsplot.layers.line
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

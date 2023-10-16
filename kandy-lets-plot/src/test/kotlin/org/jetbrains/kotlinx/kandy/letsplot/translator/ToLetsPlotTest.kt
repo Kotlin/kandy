@@ -10,13 +10,13 @@ import org.jetbrains.kotlinx.dataframe.api.toMap
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.plot
-import org.jetbrains.kotlinx.kandy.letsplot.facet.OrderDirection
-import org.jetbrains.kotlinx.kandy.letsplot.facet.facetGrid
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.OrderDirection
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.facetGrid
 import org.jetbrains.kotlinx.kandy.letsplot.layers.bars
 import org.jetbrains.kotlinx.kandy.letsplot.layers.line
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
-import org.jetbrains.kotlinx.kandy.letsplot.position.Position
-import org.jetbrains.kotlinx.kandy.letsplot.position.position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.position
 import org.jetbrains.kotlinx.kandy.letsplot.util.linetype.LineType
 import org.jetbrains.kotlinx.kandy.letsplot.util.symbol.Symbol
 import org.jetbrains.kotlinx.kandy.letsplot.x
