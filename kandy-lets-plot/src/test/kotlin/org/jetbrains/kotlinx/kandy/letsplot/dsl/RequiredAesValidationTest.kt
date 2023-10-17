@@ -17,20 +17,4 @@ internal class RequiredAesValidationTest {
             }
         }
     }
-
-   /* @Test
-    fun testStatBin() {
-        val valCol = column<Int>("val")
-        assertFailsWith<IllegalArgumentException>("\"y\" is not assigned.") {
-            plot(mapOf("val" to listOf(1, 2, 3, 4, 5))) {
-                y(valCol)
-                statBin(valCol, Bins.byNumber(5)) {
-                    points {
-                        x(listOf(1, 2, 3))
-                    }
-                }
-            }
-        }
-    }*/
-
 }
