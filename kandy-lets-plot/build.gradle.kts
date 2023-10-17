@@ -13,20 +13,21 @@ val html_version: String by project
 val datetime_version: String by project
 val lets_plot_kotlin_version: String by project
 val lets_plot_image_version: String by project
-//val serialization_version: String by project
+val mockk_version: String by project
 
 dependencies {
+    api(project(":kandy-api"))
     implementation(kotlin("stdlib"))
-    implementation(project(mapOf("path" to ":kandy-api")))
-    testImplementation(kotlin("test"))
+    implementation(project(":kandy-util"))
+
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:$html_version")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime-jvm:$datetime_version")
     implementation("org.jetbrains.lets-plot:lets-plot-kotlin-jvm:$lets_plot_kotlin_version")
     implementation("org.jetbrains.lets-plot:lets-plot-image-export:$lets_plot_image_version")
-    // todo(multiplatform library)
-    implementation("org.jetbrains.lets-plot:platf-awt-jvm:$lets_plot_image_version")
-    api(project(":kandy-api"))
-    implementation(project(":kandy-util"))
+    implementation("org.jetbrains.lets-plot:platf-awt-jvm:$lets_plot_image_version") // todo(multiplatform library)
+
+    testImplementation(kotlin("test"))
+    testImplementation("io.mockk:mockk:${mockk_version}")
 }
 
 
