@@ -15,13 +15,6 @@ public interface WithLower : BindingContext {
     public val lower: ConstantSetter
         get() = ConstantSetter(LOWER, bindingCollector)
 
-    /*
-    public fun <T> lower(value: T): PositionalSetting<T> {
-        return addPositionalSetting(LOWER, value)
-    }
-
-     */
-
     public fun <T> lower(
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
