@@ -17,7 +17,7 @@ import org.jetbrains.kotlinx.kandy.util.color.StandardColor
 internal fun TableData.dataFrame(): DataFrame<*> {
     return when (this) {
         is NamedData -> dataFrame
-        is GroupedData -> origin.dataFrame
+        is GroupedData -> dataFrame
     }
 }
 

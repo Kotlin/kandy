@@ -4,8 +4,14 @@
 
 package org.jetbrains.kotlinx.kandy.dsl.internal
 
+import org.jetbrains.kotlinx.dataframe.ColumnsContainer
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.GroupBy
+import org.jetbrains.kotlinx.dataframe.api.concat
+import org.jetbrains.kotlinx.dataframe.api.getColumns
+import org.jetbrains.kotlinx.dataframe.api.toColumnGroup
+import org.jetbrains.kotlinx.dataframe.columns.ColumnGroup
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
@@ -473,11 +479,23 @@ public abstract class LayerContext(parent: LayerCollectorContext) : LayerContext
  * @property _plotContext Reference to the [LayerPlotContext], which provides a broader context encompassing multiple layers and datasets.
  * @property _layers List of layers derived from the grouped dataset. These layers are managed within the broader [LayerPlotContext].
  */
-public class GroupedContext(
-    override val _datasetIndex: Int,
-    override val _plotContext: LayerPlotContext
+public abstract class WithGroupedDataLayerCollectorContext<T, G>(
+    internal val groupBy: GroupBy<T, G>,
 ) : LayerCollectorContext() {
-    override val _layers: MutableList<Layer> = _plotContext.layers
+    abstract override val _datasetIndex: Int
+    @Suppress("UNCHECKED_CAST")
+    public val key: ColumnGroup<T> =
+        groupBy.concatFixed().getColumns(*groupBy.keys.columnNames().toTypedArray()).toColumnGroup(
+            "key"
+        ) as ColumnGroup<T>
+}
+
+public class GroupedContext<T, G>(groupBy: GroupBy<T, G>, initialBuffer: DataFrame<*>, override val _plotContext: LayerPlotContext): WithGroupedDataLayerCollectorContext<T, G>(
+    groupBy
+), ColumnsContainer<G> by groupBy.groups.concat() {
+    override val _datasetIndex: Int = addDataset(groupBy, initialBuffer)
+    override val _layers: MutableList<Layer>
+        get() = _plotContext.layers
 }
 
 /**
@@ -507,6 +525,27 @@ public interface SingleLayerPlotContext : PlotContext {
  */
 public abstract class LayerPlotContext : LayerCollectorContext(), PlotContext {
     override val bindingCollector: BindingCollector = BindingCollector()
+
+    public override fun toPlot(): Plot {
+        return Plot(
+            datasetHandlers.map { it.data() },
+            layers,
+            bindingCollector.mappings,
+            bindingCollector.settings,
+            plotFeatures,
+            bindingCollector.freeScales
+        )
+    }
+}
+
+public abstract class GroupedLayerPlotContext<T, G>(groupBy: GroupBy<T, G>) : WithGroupedDataLayerCollectorContext<T, G>(
+    groupBy
+), PlotContext {
+    override val bindingCollector: BindingCollector = BindingCollector()
+    override val _plotContext: PlotContext
+        get() = this
+
+    override val _datasetIndex: Int = 0
 
     public override fun toPlot(): Plot {
         return Plot(
