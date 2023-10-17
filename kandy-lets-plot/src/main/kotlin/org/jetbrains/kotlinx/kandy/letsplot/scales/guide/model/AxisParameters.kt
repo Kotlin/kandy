@@ -33,6 +33,10 @@ public open class AxisParameters(
         get() = mappingParameters.axis
 
     override var scale: PositionalScale<out Any?> = mappingParameters.scale
+        set(value) {
+            mappingParameters.scale = value
+            field = value
+        }
 }
 
 /**
