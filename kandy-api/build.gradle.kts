@@ -1,7 +1,6 @@
 plugins {
     kotlin("jvm")
     kotlin("jupyter.api")
-    //kotlin("plugin.serialization")
 }
 
 repositories {
@@ -19,5 +18,4 @@ dependencies {
     testImplementation("io.mockk:mockk:${mockk_version}")
     api("org.jetbrains.kotlinx:kotlinx-datetime:$datetime_version")
     api("org.jetbrains.kotlinx:dataframe:$dataframe_version")
-   // implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version")
 }

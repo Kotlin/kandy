@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm")
     kotlin("jupyter.api")
-    // kotlin("plugin.serialization")
 }
 
 repositories {
@@ -24,7 +23,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-datetime-jvm:$datetime_version")
     implementation("org.jetbrains.lets-plot:lets-plot-kotlin-jvm:$lets_plot_kotlin_version")
     implementation("org.jetbrains.lets-plot:lets-plot-image-export:$lets_plot_image_version")
-    // kostyl'
+    // todo(multiplatform library)
     implementation("org.jetbrains.lets-plot:platf-awt-jvm:$lets_plot_image_version")
     api(project(":kandy-api"))
     implementation(project(":kandy-util"))
