@@ -27,8 +27,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class ABLineTests {
-    private val xAxis = listOf(1).toColumn("xAxis")
-    private val yAxis = listOf(2).toColumn("yAxis")
     private val type = listOf("dot").toColumn("type")
     private val color = listOf("blue").toColumn("color")
     private val alpha = listOf(0.5).toColumn("alpha")
@@ -36,7 +34,7 @@ class ABLineTests {
     private val slope = listOf(2).toColumn("slope")
     private val intercept = listOf(0).toColumn("intercept")
 
-    private val df = dataFrameOf(xAxis, yAxis, type, color, alpha, width, slope, intercept)
+    private val df = dataFrameOf(type, color, alpha, width, slope, intercept)
 
     private val parentContext = DataFramePlotContext(df)
     private lateinit var context: ABLineContext
