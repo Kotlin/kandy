@@ -15,13 +15,6 @@ public interface WithIntercept : BindingContext {
     public val intercept: ConstantSetter
         get() = ConstantSetter(INTERCEPT, bindingCollector)
 
-    /*
-    public fun <T> lower(value: T): PositionalSetting<T> {
-        return addPositionalSetting(LOWER, value)
-    }
-
-     */
-
     public fun <T> intercept(
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
@@ -34,10 +27,10 @@ public interface WithIntercept : BindingContext {
         return addPositionalMapping<T>(INTERCEPT, column.name, null)
     }
 
-    public fun <T> intercept(
+    public fun intercept(
         column: String,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(INTERCEPT, column, null)
+    ): PositionalMapping<Any?> {
+        return addPositionalMapping<Any?>(INTERCEPT, column, null)
     }
 
     public fun <T> intercept(

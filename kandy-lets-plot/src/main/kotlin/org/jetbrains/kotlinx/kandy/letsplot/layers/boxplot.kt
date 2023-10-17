@@ -61,7 +61,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.position
  * }
  * ```
  */
-@Suppress("invisible_member")
+@Suppress("invisible_reference")
 public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
     // todo letsplot fix
     addLayer(BoxplotContext(this).apply {

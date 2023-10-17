@@ -27,6 +27,12 @@ public interface WithSlope : BindingContext {
         return addPositionalMapping<T>(SLOPE, column.name, null)
     }
 
+    public fun slope(
+        column: String,
+    ): PositionalMapping<Any?> {
+        return addPositionalMapping<Any?>(SLOPE, column, null)
+    }
+
     public fun <T> slope(
         values: Iterable<T>,
     ): PositionalMapping<T> {
