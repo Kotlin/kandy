@@ -12,16 +12,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.EXPLODE
 import kotlin.reflect.KProperty
 
 public interface WithExplode : BindingContext {
-    /*public val explode: ConstantSetter
-        get() = ConstantSetter(EXPLODE, bindingCollector)
-*/
-    /*
-    public fun <T> xMin(value: T): PositionalSetting<T> {
-        return addPositionalSetting(X_MIN, value)
-    }
-
-     */
-
     public fun <T> explode(
         column: ColumnReference<T>,
     ): PositionalMapping<T> {
@@ -34,10 +24,10 @@ public interface WithExplode : BindingContext {
         return addPositionalMapping<T>(EXPLODE, column.name, null)
     }
 
-    public fun <T> explode(
+    public fun explode(
         column: String,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(EXPLODE, column, null)
+    ): PositionalMapping<Any?> {
+        return addPositionalMapping<Any?>(EXPLODE, column, null)
     }
 
     public fun <T> explode(

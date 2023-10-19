@@ -12,15 +12,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.SLICE
 import kotlin.reflect.KProperty
 
 public interface WithSlice : BindingContext {
-    /*public val slice: ConstantSetter
-        get() = ConstantSetter(SLICE, bindingCollector)
-*/
-    /*
-    public fun <T> xMin(value: T): PositionalSetting<T> {
-        return addPositionalSetting(X_MIN, value)
-    }
-
-     */
 
     public fun <T> slice(
         column: ColumnReference<T>,
@@ -34,10 +25,10 @@ public interface WithSlice : BindingContext {
         return addPositionalMapping<T>(SLICE, column.name, null)
     }
 
-    public fun <T> slice(
+    public fun slice(
         column: String,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(SLICE, column, null)
+    ): PositionalMapping<Any?> {
+        return addPositionalMapping<Any?>(SLICE, column, null)
     }
 
     public fun <T> slice(
