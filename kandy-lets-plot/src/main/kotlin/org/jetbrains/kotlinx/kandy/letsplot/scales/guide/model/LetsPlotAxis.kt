@@ -20,6 +20,8 @@ public data class Axis<DomainType> @PublishedApi internal constructor(
     internal var labels: List<String>? = null,
     @PublishedApi
     internal var format: String? = null,
+    @PublishedApi
+    internal var expand: List<Double>? = null,
     // todo expand & trans
 ) : SelfInvocationContext, ScaleParameters {
 
@@ -57,4 +59,10 @@ public data class Axis<DomainType> @PublishedApi internal constructor(
         this.labels = labels
     }
 
+    /**
+     * Sets multiplicative and additive expansion constants.
+     */
+    public fun expand(multiplicative: Double = 0.0, additive: Double = 0.2) {
+        expand = listOf(multiplicative, additive)
+    }
 }

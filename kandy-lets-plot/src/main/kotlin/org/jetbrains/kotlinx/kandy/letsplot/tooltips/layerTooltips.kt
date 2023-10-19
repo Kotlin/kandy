@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.tooltips
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.context.LayerTooltipsContext
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
 import kotlin.reflect.KProperty
@@ -17,7 +17,7 @@ import kotlin.reflect.KProperty
  * @param column column whose value will be inserted into the tooltip
  * @return formatted string
  */
-public fun LayerContext.value(column: ColumnReference<*>): String {
+public fun LayerContextInterface.value(column: ColumnReference<*>): String {
     @Suppress("invisible_reference")
     return "@${datasetHandler.addColumn(column)}"
 }
@@ -29,7 +29,7 @@ public fun LayerContext.value(column: ColumnReference<*>): String {
  * @param column column whose value will be inserted into the tooltip
  * @return formatted string
  *//*
-public fun LayerContext.value(column: DataColumn<*>): String {
+public fun LayerContextInterface.value(column: DataColumn<*>): String {
     return "@${datasetHandler.addColumn(column)}"
 }*/
 
@@ -39,7 +39,7 @@ public fun LayerContext.value(column: DataColumn<*>): String {
  * @param columnName name of column whose value will be inserted into the tooltip
  * @return formatted string
  */
-public fun LayerContext.value(columnName: String): String {
+public fun LayerContextInterface.value(columnName: String): String {
     @Suppress("invisible_reference")
     return "@${datasetHandler.takeColumn(columnName)}"
 }
@@ -50,7 +50,7 @@ public fun LayerContext.value(columnName: String): String {
  * @param column name of column whose value will be inserted into the tooltip
  * @return formatted string
  */
-public fun LayerContext.value(column: KProperty<*>): String {
+public fun LayerContextInterface.value(column: KProperty<*>): String {
     @Suppress("invisible_reference")
     return "@${datasetHandler.takeColumn(column.name)}"
 }
@@ -60,7 +60,7 @@ public fun LayerContext.value(column: KProperty<*>): String {
  *
  * @param hide flag of tooltips displaying.
  */
-public fun LayerContext.tooltips(
+public fun LayerContextInterface.tooltips(
     hide: Boolean = false,
 ) {
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
@@ -89,7 +89,7 @@ public fun LayerContext.tooltips(
  * @param formats map of columns to format string of its value.
  * @see value
  */
-public inline fun LayerContext.tooltips(
+public inline fun LayerContextInterface.tooltips(
     vararg variables: ColumnReference<*>,
     formats: Map<ColumnReference<*>, String> = mapOf(),
     title: String? = null,
@@ -121,7 +121,7 @@ public inline fun LayerContext.tooltips(
  * @param hide flag of tooltips displaying.
  * @see value
  */
-public fun LayerContext.tooltips(
+public fun LayerContextInterface.tooltips(
     variable: String,
     vararg variables: String,
     formats: Map<String, String> = mapOf(),
@@ -150,7 +150,7 @@ public fun LayerContext.tooltips(
  * @param hide flag of tooltips displaying.
  * @see value
  */
-public fun LayerContext.tooltips(
+public fun LayerContextInterface.tooltips(
     variable: ColumnReference<*>,
     vararg variables: ColumnReference<*>,
     formats: Map<ColumnReference<*>, String> = mapOf(),
@@ -183,7 +183,7 @@ public fun LayerContext.tooltips(
  * @param hide flag of tooltips displaying.
  * @see value
  */
-public fun LayerContext.tooltips(
+public fun LayerContextInterface.tooltips(
     variable:KProperty<*>,
     vararg variables: KProperty<*>,
     formats: Map<KProperty<*>, String> = mapOf(),

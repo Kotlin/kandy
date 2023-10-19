@@ -76,6 +76,7 @@ internal fun Scale.wrap(
             val breaks = axis?.breaks
             val labels = axis?.labels
             val format = axis?.format
+            val expand = axis?.expand
 
             // todo discrete datetime
             /*
@@ -113,6 +114,7 @@ internal fun Scale.wrap(
                             breaks = breaks?.wrap(),
                             labels = labels,
                             format = format,
+                            expand = expand
                             // naValue = nullValue as? Number
                         )
 
@@ -122,6 +124,7 @@ internal fun Scale.wrap(
                             breaks = breaks?.wrap(),
                             labels = labels,
                             format = format,
+                            expand = expand
                             //  naValue = nullValue as? Number
                         )
 
@@ -137,7 +140,8 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
-                                format = format
+                                format = format,
+                                expand = expand
                             )
                         } else if (domainType in timeTypes) {
                             scaleXTime(
@@ -145,6 +149,7 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
+                                expand = expand
                                 // format = format
                             )
                         } else {
@@ -155,6 +160,7 @@ internal fun Scale.wrap(
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
                                 format = format,
+                                expand = expand,
                                 naValue = naValue as? Number
                             )
                         }
@@ -166,6 +172,7 @@ internal fun Scale.wrap(
                                 breaks = breaks?.wrap(),
                                 labels = labels,
                                 format = format,
+                                expand = expand,
                                 naValue = naValue
                             )
                         } else if (domainType in timeTypes) {
@@ -174,6 +181,7 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
+                                expand = expand,
                                 // format = format
                             )
                         } else {
@@ -184,6 +192,7 @@ internal fun Scale.wrap(
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
                                 format = format,
+                                expand = expand,
                                 naValue = naValue as? Number
                             )
                         }
