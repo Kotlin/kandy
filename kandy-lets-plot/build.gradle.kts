@@ -13,7 +13,6 @@ val html_version: String by project
 val datetime_version: String by project
 val lets_plot_kotlin_version: String by project
 val lets_plot_image_version: String by project
-val mockk_version: String by project
 
 dependencies {
     api(project(":kandy-api"))
@@ -27,7 +26,6 @@ dependencies {
     implementation("org.jetbrains.lets-plot:platf-awt-jvm:$lets_plot_image_version") // todo(multiplatform library)
 
     testImplementation(kotlin("test"))
-    testImplementation("io.mockk:mockk:${mockk_version}")
 }
 
 
