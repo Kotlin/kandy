@@ -252,7 +252,9 @@ internal fun Scale.wrap(
             }
 
             when (this) {
-                is NonPositionalDefaultScale<*, *> -> if (domainType.isCategoricalType() || aes in discreteAes || isGroupKey) {
+                is NonPositionalDefaultScale<*, *> -> if (
+                    this is NonPositionalDefaultCategoricalScale<*, *> ||
+                    domainType.isCategoricalType() || aes in discreteAes || isGroupKey) {
                     NonPositionalCategoricalScale<String, String>(null, null).wrap(
                         aes,
                         domainType,
