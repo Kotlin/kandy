@@ -14,6 +14,7 @@ import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 class ContextImplTest {
     private val emptyDataset = DataFrame.Empty
@@ -80,17 +81,8 @@ class ContextImplTest {
 
     @Test
     fun testPlotEmpty() {
-        val plot = plot(emptyDataset.toMap()) { }
-        assertEquals(
-            Plot(
-                listOf(NamedData(emptyDataset)),
-                listOf(),
-                emptyMap(),
-                emptyMap(),
-                emptyMap(),
-                emptyMap()
-            ),
-            plot
-        )
+        assertFailsWith<IllegalStateException>("No layers in plot") {
+            plot(emptyDataset.toMap()) { }
+        }
     }
 }
