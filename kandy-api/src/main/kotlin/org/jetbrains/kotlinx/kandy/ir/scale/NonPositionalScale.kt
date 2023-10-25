@@ -80,7 +80,7 @@ public interface CustomNonPositionalScale<DomainType, RangeType>
  * @property DomainType the type of data domain.
  * @property RangeType the type of aesthetic range.
  */
-public class NonPositionalDefaultScale<DomainType, RangeType> :
+public open class NonPositionalDefaultScale<DomainType, RangeType> :
     NonPositionalScale<DomainType, RangeType>, DefaultScale {
     override fun equals(other: Any?): Boolean {
         return other is NonPositionalDefaultScale<*, *>
@@ -98,7 +98,7 @@ public class NonPositionalDefaultScale<DomainType, RangeType> :
  * @property DomainType the type of data domain.
  * @property RangeType the type of aesthetic range.
  */
-public class NonPositionalDefaultCategoricalScale<DomainType, RangeType> :
+public class NonPositionalDefaultCategoricalScale<DomainType, RangeType> : NonPositionalDefaultScale<DomainType, RangeType>(),
     NonPositionalCategoricalScaleBase<DomainType, RangeType>, DefaultScale {
     override fun equals(other: Any?): Boolean {
         return other is NonPositionalDefaultScale<*, *>
