@@ -29,11 +29,11 @@ class RectTests {
     private val df = dataFrameOf(xMin, xMax, yMin, yMax, color, alpha)
 
     private val parentContext = DataFramePlotContext(df)
-    private lateinit var context: RectContext
+    private lateinit var context: RectanglesContext
 
     @BeforeTest
     fun setUp() {
-        context = RectContext(parentContext)
+        context = RectanglesContext(parentContext)
     }
 
     @Test

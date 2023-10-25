@@ -34,11 +34,11 @@ class SegmentTests {
     private val df = dataFrameOf(xBegin, xEnd, yBegin, yEnd, color, type, alpha, width)
 
     private val parentContext = DataFramePlotContext(df)
-    private lateinit var context: SegmentContext
+    private lateinit var context: SegmentsContext
 
     @BeforeTest
     fun setUp() {
-        context = SegmentContext(parentContext)
+        context = SegmentsContext(parentContext)
     }
 
     @Test

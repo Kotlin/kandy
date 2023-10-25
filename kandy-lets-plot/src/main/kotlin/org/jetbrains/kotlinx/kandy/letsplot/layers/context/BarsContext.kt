@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BAR
 
-public interface BarsContextInterface : LayerContextInterface, WithBorderLineContext, WithX, WithY,
+public interface BarsContextInterface : LayerContextInterface, WithBorderLine, WithX, WithY,
     WithAlpha, WithFillColor, WithWidth {
     public override val geom: Geom
         get() = BAR

@@ -1,16 +1,14 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
+
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ErrorBarContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LetsPlotGeom
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RectanglesContext
 
-
-// todo rename to error bars
 /**
- * Adds a new error bars layer.
+ * Adds a new rectangles layer.
  *
  * Creates a context in which you can configure layer. Within it, you can set mappings and settings
  * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
@@ -21,12 +19,13 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LetsPlotGeom
  * Setting for positional attributes can be performed with `.constant()` method of special property with
  * the same name as the attribute.
  *
- * Error bars aesthetics:
- * * `x`
+ * Rectangles aesthetics:
+ * * `xMin`
+ * * `xMax`
  * * `yMin`
  * * `yMax`
+ * * `fillColor`
  * * `alpha`
- * * `width`
  * * `borderLine.color`
  * * `borderLine.width`
  * * `borderLine.type`
@@ -34,26 +33,26 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LetsPlotGeom
  * Example:
  *
  * ```
- * errorBar {
+ * rectangles {
  *    // positional mapping
- *    x(time) {
+ *    xMin(startTime) {
  *       ... // some mapping parameters
  *    }
  *    yMax.constant(100.0)
- *    // even though the error bars have no "y" attribute we can adjust the `Y` axis
+ *    // even though the rect has no "y" attribute we can adjust the `Y` axis
  *    y.limits = 0.0 .. 110.0
  *
  *    // non-positional settings
- *    alpha = 0.9
  *    borderLine.width = 2.5
  *    borderLine {
  *       color = Color.BLACK
  *    }
  *    // non-positional mapping
- *    width("capacity")
+ *    fillColor("density")
+ *
  * }
  * ```
  */
-public inline fun LayerCollectorContext.errorBar(block: ErrorBarContext.() -> Unit) {
-    addLayer(ErrorBarContext(this).apply(block))
+public inline fun LayerCollectorContext.rectangles(block: RectanglesContext.() -> Unit) {
+    addLayer(RectanglesContext(this).apply(block))
 }

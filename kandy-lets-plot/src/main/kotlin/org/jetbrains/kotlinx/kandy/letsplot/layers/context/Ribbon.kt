@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RIBBON
 
-public interface RibbonInterface: LayerContextInterface, WithX, WithYMin,
+public interface RibbonInterface: LayerContextInterface, WithBorderLine, WithX, WithYMin,
     WithYMax, WithFillColor, WithAlpha, WithYFree {
     override val geom: Geom
         get() = RIBBON

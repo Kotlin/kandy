@@ -5,12 +5,11 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarsContext
 
 
-// todo rename to cross bars
 /**
- * Adds a new crossbars layer.
+ * Adds a new cross bars layer.
  *
  * Creates a context in which you can configure layer. Within it, you can set mappings and settings
  * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
@@ -21,10 +20,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarContext
  * Setting for positional attributes can be performed with `.constant()` method of special property with
  * the same name as the attribute.
  *
- * Crossbar aesthetics:
+ * Cross bars aesthetics:
  * * `x`
+ * * `y`
  * * `yMin`
- * * `middle`
  * * `yMax`
  * * `fillColor`
  * * `alpha`
@@ -37,7 +36,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarContext
  * Example:
  *
  * ```
- * crossBar {
+ * crossBars {
  *    // positional mapping
  *    x(time) {
  *       ... // some mapping parameters
@@ -57,6 +56,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.crossBar(block: CrossBarContext.() -> Unit) {
-    addLayer(CrossBarContext(this).apply(block))
+public inline fun LayerCollectorContext.crossBars(block: CrossBarsContext.() -> Unit) {
+    addLayer(CrossBarsContext(this).apply(block))
 }

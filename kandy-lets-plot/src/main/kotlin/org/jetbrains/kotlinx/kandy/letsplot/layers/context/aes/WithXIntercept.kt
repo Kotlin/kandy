@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
-import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.dataframe.columns.ColumnAccessor
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X_INTERCEPT
@@ -23,7 +23,7 @@ public interface WithXIntercept : BindingContext {
      */
 
     public fun <T> xIntercept(
-        column: ColumnReference<T>,
+        column: ColumnAccessor<T>,
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(X_INTERCEPT, column.name(), null)
     }

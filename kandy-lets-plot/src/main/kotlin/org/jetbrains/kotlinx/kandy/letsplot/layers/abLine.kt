@@ -4,12 +4,12 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.SegmentContext
 
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ABLineContext
 
 /**
- * Adds a new segment layer.
+ * Adds a new abLine layer.
  *
  * Creates a context in which you can configure layer. Within it, you can set mappings and settings
  * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
@@ -20,36 +20,32 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.SegmentContext
  * Setting for positional attributes can be performed with `.constant()` method of special property with
  * the same name as the attribute.
  *
- * Segment aesthetics:
- * * `xBegin`
- * * `xEnd`
- * * `yBegin`
- * * `yEnd`
+ * ABLine aesthetics:
+ * * `slope`
+ * * `intercept`
  * * `color`
- * * `alpha`
+ * * `type`
  * * `width`
- * * `lineType`
+ * * `alpha`
  *
  * Example:
  *
  * ```
- * segment {
+ * abLine {
  *    // positional mapping
- *    xBegin(startTime) {
- *       ... // some mapping parameters
- *    }
- *    yEnd.constant(100.0)
- *    // even though the segment has no "y" attribute we can adjust the `Y` axis
- *    y.limits = 0.0 .. 110.0
+ *    intercept(time)
+ *    // positional setting
+ *    y.constant(12.5)
  *
  *    // non-positional setting
  *    width = 2.5
  *    // non-positional mapping
- *    color("density")
- *
+ *    color("type") {
+ *       ... // some mapping parameters
+ *    }
  * }
  * ```
  */
-public inline fun LayerCollectorContext.segment(block: SegmentContext.() -> Unit) {
-    addLayer(SegmentContext(this).apply(block))
+public inline fun LayerCollectorContext.abLine(block: ABLineContext.() -> Unit) {
+    addLayer(ABLineContext(this).apply(block))
 }

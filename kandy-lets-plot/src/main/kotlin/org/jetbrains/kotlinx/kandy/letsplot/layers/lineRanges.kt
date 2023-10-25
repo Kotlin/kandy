@@ -5,11 +5,11 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointRangeContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.LineRangesContext
 
 
 /**
- * Adds a new point-range layer.
+ * Adds a new line-ranges layer.
  *
  * Creates a context in which you can configure layer. Within it, you can set mappings and settings
  * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
@@ -20,40 +20,37 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointRangeContext
  * Setting for positional attributes can be performed with `.constant()` method of special property with
  * the same name as the attribute.
  *
- * Point-range aesthetics:
+ * Line-ranges aesthetics:
  * * `x`
- * * `y`
  * * `yMin`
  * * `yMax`
  * * `alpha`
- * * `color`
- * * `size`
- * * `fatten`
- * * `innerLine.type`
- * * `innerPoint.symbol`
- * * `innerPoint.fillColor`
- * * `innerPoint.symbol`
+ * * `borderLine.color`
+ * * `borderLine.width`
+ * * `borderLine.type`
  *
  * Example:
  *
  * ```
- * pointRange {
+ * lineRangess {
  *    // positional mapping
  *    x(time) {
  *       ... // some mapping parameters
  *    }
  *    yMax.constant(100.0)
+ *    // even though the line-range bars have no "y" attribute we can adjust the `Y` axis
+ *    y.limits = 0.0 .. 110.0
  *
  *    // non-positional settings
  *    alpha = 0.9
- *    innerLine.type = LineType.DOTTED
+ *    borderLine.width = 2.5
  *    // non-positional mapping
- *    innerPoint {
- *       symbol("capacity")
+ *    borderLine {
+ *       color("capacity")
  *    }
  * }
  * ```
  */
-public inline fun LayerCollectorContext.pointRange(block: PointRangeContext.() -> Unit) {
-    addLayer(PointRangeContext(this).apply(block))
+public inline fun LayerCollectorContext.lineRanges(block: LineRangesContext.() -> Unit) {
+    addLayer(LineRangesContext(this).apply(block))
 }

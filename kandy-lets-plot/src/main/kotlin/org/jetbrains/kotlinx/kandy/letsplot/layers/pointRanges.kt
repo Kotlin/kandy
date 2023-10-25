@@ -5,13 +5,11 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxplotContext
-import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
-import org.jetbrains.kotlinx.kandy.letsplot.feature.position
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointsRangeContext
+
 
 /**
- * Adds a new boxplot layer.
+ * Adds a new point-ranges layer.
  *
  * Creates a context in which you can configure layer. Within it, you can set mappings and settings
  * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
@@ -22,51 +20,40 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.position
  * Setting for positional attributes can be performed with `.constant()` method of special property with
  * the same name as the attribute.
  *
- * Boxplot aesthetics:
+ * Point-ranges aesthetics:
  * * `x`
+ * * `y`
  * * `yMin`
- * * `lower`
- * * `middle`
- * * `upper`
  * * `yMax`
- * * `fillColor`
  * * `alpha`
- * * `width`
+ * * `color`
+ * * `size`
  * * `fatten`
- * * `borderLine.color`
- * * `borderLine.width`
- * * `borderLine.type`
+ * * `innerLine.type`
+ * * `innerPoint.symbol`
+ * * `innerPoint.fillColor`
+ * * `innerPoint.symbol`
  *
  * Example:
  *
  * ```
- * boxplot {
+ * pointRanges {
  *    // positional mapping
  *    x(time) {
  *       ... // some mapping parameters
  *    }
  *    yMax.constant(100.0)
- *    // even though the boxplot has no "y" attribute we can adjust the `Y` axis
- *    y.limits = 0.0 .. 110.0
  *
  *    // non-positional settings
- *    fatten = 0.8
- *    borderLine.width = 2.5
- *    borderLine {
- *       color = Color.BLACK
- *    }
+ *    alpha = 0.9
+ *    innerLine.type = LineType.DOTTED
  *    // non-positional mapping
- *    fillColor("type")
- *
+ *    innerPoint {
+ *       symbol("capacity")
+ *    }
  * }
  * ```
  */
-@Suppress("invisible_reference")
-public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
-    // todo letsplot fix
-    addLayer(BoxplotContext(this).apply {
-        position = Position.dodge()
-    }.apply(block).apply {
-        addPositionalMapping(Y, List(datasetHandler.rowsCount()) { null }, null, null)
-    })
+public inline fun LayerCollectorContext.pointRanges(block: PointsRangeContext.() -> Unit) {
+    addLayer(PointsRangeContext(this).apply(block))
 }

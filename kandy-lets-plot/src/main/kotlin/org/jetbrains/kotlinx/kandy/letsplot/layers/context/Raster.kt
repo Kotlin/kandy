@@ -16,7 +16,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.WithX
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.WithY
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RASTER
 
-public interface RasterInterface: LayerContextInterface, WithX, WithY,
+public interface RasterInterface: LayerContextInterface, WithBorderLine, WithX, WithY,
     WithFillColor, WithAlpha {
     override val geom: Geom
         get() = RASTER

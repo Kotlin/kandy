@@ -22,7 +22,7 @@ public class InnerPointContext internal constructor(override val parentContext: 
 public class InnerLineContext internal constructor(override val parentContext: BindingContext) :
     SelfInvocationContext, SubBindingContext, WithType
 
-public interface PointRangeInterface: LayerContextInterface , WithX, WithY, WithAlpha,
+public interface PointsRangeInterface: LayerContextInterface , WithX, WithY, WithAlpha,
     WithColor, WithYMin, WithYMax, WithSize {
     public val innerPoint: InnerPointContext
     public val innerLine: InnerLineContext
@@ -33,7 +33,7 @@ public interface PointRangeInterface: LayerContextInterface , WithX, WithY, With
 }
 
 
-public open class PointRangeContext(parent: LayerCollectorContext) : LayerContext(parent), PointRangeInterface {
+public open class PointsRangeContext(parent: LayerCollectorContext) : LayerContext(parent), PointsRangeInterface {
     // todo fix
     public override val innerPoint: InnerPointContext = InnerPointContext(this)
     public override val innerLine: InnerLineContext = InnerLineContext(this)
