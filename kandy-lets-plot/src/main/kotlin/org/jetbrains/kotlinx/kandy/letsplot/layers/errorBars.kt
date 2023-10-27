@@ -4,6 +4,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.position
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ErrorBarsContext
 
 
@@ -53,5 +55,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ErrorBarsContext
  * ```
  */
 public inline fun LayerCollectorContext.errorBars(block: ErrorBarsContext.() -> Unit) {
-    addLayer(ErrorBarsContext(this).apply(block))
+    addLayer(ErrorBarsContext(this).apply {
+        position = Position.dodge()
+    }.apply(block))
 }

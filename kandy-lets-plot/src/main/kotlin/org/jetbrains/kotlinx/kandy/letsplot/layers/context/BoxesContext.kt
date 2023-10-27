@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BOXPLOT
 
-public interface BoxplotsInterface : LayerContextInterface, WithBorderLine, WithX, WithAlpha,
+public interface BoxesInterface : LayerContextInterface, WithBorderLine, WithX, WithAlpha,
     WithFillColor, WithWidth,
     WithLower, WithUpper, WithMiddle, WithYMin, WithYMax, WithFatten, WithYFree {
     override val geom: Geom
@@ -20,4 +20,4 @@ public interface BoxplotsInterface : LayerContextInterface, WithBorderLine, With
     override val requiredAes: Set<Aes> get() = setOf(X, LOWER, UPPER, MIDDLE, Y_MIN, Y_MAX)
 }
 
-public open class BoxplotsContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), BoxplotsInterface
+public open class BoxesContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), BoxesInterface

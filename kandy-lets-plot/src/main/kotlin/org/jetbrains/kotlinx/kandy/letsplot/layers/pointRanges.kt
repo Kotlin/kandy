@@ -5,6 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.position
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointsRangeContext
 
 
@@ -55,5 +57,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointsRangeContext
  * ```
  */
 public inline fun LayerCollectorContext.pointRanges(block: PointsRangeContext.() -> Unit) {
-    addLayer(PointsRangeContext(this).apply(block))
+    addLayer(PointsRangeContext(this).apply {
+        position = Position.dodge()
+    }.apply(block))
 }

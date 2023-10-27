@@ -5,6 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.position
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarsContext
 
 
@@ -57,5 +59,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarsContext
  * ```
  */
 public inline fun LayerCollectorContext.crossBars(block: CrossBarsContext.() -> Unit) {
-    addLayer(CrossBarsContext(this).apply(block))
+    addLayer(CrossBarsContext(this).apply {
+        position = Position.dodge()
+    }.apply(block))
 }
