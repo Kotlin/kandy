@@ -6,11 +6,6 @@ package org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.OrderDirection.Companion.ASCENDING
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing.Companion.FIXED
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing.Companion.FREE
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing.Companion.FREE_X
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing.Companion.FREE_Y
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.context.FacetWrapContext
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
@@ -53,14 +48,14 @@ public data class ScalesSharing internal constructor(val name: String) {
 public fun LayerPlotContext.facetGridX(
     x: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
-    order: OrderDirection = ASCENDING,
+    order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
 ) {
-    @Suppress("invisible_member")
+    @Suppress("invisible_reference")
     val xColName = datasetHandler.takeColumn(x.name())
     plotFeatures[FacetGridFeature.FEATURE_NAME] =
         FacetGridFeature(
-            xColName, null, scalesSharing, order, ASCENDING, format, null
+            xColName, null, scalesSharing, order, OrderDirection.ASCENDING, format, null
         )
 }
 
@@ -85,13 +80,13 @@ public fun LayerPlotContext.facetGridX(
 public fun LayerPlotContext.facetGridY(
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
-    order: OrderDirection = ASCENDING,
+    order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
 ) {
-    @Suppress("invisible_member")
+    @Suppress("invisible_reference")
     val yColName = datasetHandler.takeColumn(y.name())
     plotFeatures[FacetGridFeature.FEATURE_NAME] =
-        FacetGridFeature(null, yColName, scalesSharing, ASCENDING, order, null, format)
+        FacetGridFeature(null, yColName, scalesSharing, OrderDirection.ASCENDING, order, null, format)
 }
 
 /**
@@ -116,13 +111,13 @@ public fun LayerPlotContext.facetGridY(
  * "Score: {.2f}" -> "Score: 12.45"
  * "'Score: {}' "-> "Score: 12.454789"
  */
-@Suppress("invisible_member")
+@Suppress("invisible_reference")
 public fun LayerPlotContext.facetGrid(
     x: ColumnReference<*>,
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
-    xOrder: OrderDirection = ASCENDING,
-    yOrder: OrderDirection = ASCENDING,
+    xOrder: OrderDirection = OrderDirection.ASCENDING,
+    yOrder: OrderDirection = OrderDirection.ASCENDING,
     xFormat: String? = null,
     yFormat: String? = null
 ) {
@@ -156,11 +151,11 @@ public fun LayerPlotContext.facetGrid(
 public fun LayerPlotContext.facetWrap(
     nCol: Int? = null,
     nRow: Int? = null,
-    scalesSharing: ScalesSharing = FIXED,
+    scalesSharing: ScalesSharing = ScalesSharing.FIXED,
     direction: Direction = Direction.HORIZONTAL,
     block: FacetWrapContext.() -> Unit
 ) {
-    @Suppress("invisible_member")
+    @Suppress("invisible_reference")
     plotFeatures[FacetWrapFeature.FEATURE_NAME] =
         FacetWrapContext().apply(block).toFeature(datasetHandler, nCol, nRow, scalesSharing, direction)
 }
