@@ -527,9 +527,7 @@ public abstract class LayerPlotContext : LayerCollectorContext(), PlotContext {
     override val bindingCollector: BindingCollector = BindingCollector()
 
     public override fun toPlot(): Plot {
-        if (layers.isEmpty()) {
-            error("No layers in plot.")
-        }
+        check (layers.isNotEmpty()) { "No layers in plot." }
         return Plot(
             datasetHandlers.map { it.data() },
             layers,
