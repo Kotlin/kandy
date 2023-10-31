@@ -25,9 +25,9 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
  *     .geomBar { x = "category"; y = "value" }
  * p.coordFlip()
  * ```
+ * [test](kandy-lets-plot/lets-plot-images/test.png)
  *
- *
- * <img src="/Users/pavel.gorgulov/Projects/main_project/kandy/kandy-lets-plot/lets-plot-images/test.png" alt="example">
+ * <img src="kandy-lets-plot/lets-plot-images/test.png" alt="example">
  */
 public fun PlotContext.coordFlip() {
     plotFeatures[CoordFlip.FEATURE_NAME] = CoordFlip
