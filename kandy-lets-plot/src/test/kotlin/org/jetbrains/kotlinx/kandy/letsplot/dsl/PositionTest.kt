@@ -18,8 +18,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.bars
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BAR
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
-import org.jetbrains.kotlinx.kandy.letsplot.position.Position
-import org.jetbrains.kotlinx.kandy.letsplot.position.position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.position
 import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.letsplot.y
 import kotlin.test.Test

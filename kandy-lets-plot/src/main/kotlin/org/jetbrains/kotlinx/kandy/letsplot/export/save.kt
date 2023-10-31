@@ -12,23 +12,27 @@ import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
 import org.jetbrains.letsPlot.export.ggsave
 
 /**
- * Exports plot to a file.
- * Supported formats: SVG, HTML, PNG, JPEG and TIFF.
- * Note: in some configurations raster formats might not be supported.
+ * Exports a plot to a file in one of the supported formats: `SVG`, `HTML`, `PNG`, `JPG`/`JPEG`, or `TIFF`.
  *
- * The exported file is created in directory ${user.dir}/lets-plot-images
- * if not specified otherwise (see the `path` parameter).
+ * > In certain configurations, raster formats might not be supported.
  *
- * @receiver [Plot] for export.
- * @param filename name of file. It must end with file extension corresponding
- *      to one of the supported formats: svg, html (or htm), png, jpeg (or jpg) or tiff (or tif)
- * @param scale scaling factor (only for raster formats). Default: 2.0
- * @param dpi dot-per-inch value to store in the exported file metadata (only for raster formats).
- *      By default, no metadata is stored.
- * @param path path to a directory to save image files in.
- *      By default, it is `${user.dir}/lets-plot-images`
+ * The exported file will be created in the directory `${user.dir}/lets-plot-images`,
+ * unless a different directory is specified using the [path] parameter.
  *
- * @return Absolute pathname of created file.
+ * @receiver [Plot] - the plot to export.
+ * @param filename the name of the output file.
+ * The filename must include an extension corresponding to one of the supported formats:
+ * **svg**, **html** (or **htm**), **png**, **jpeg** (or **jpg**), or **tiff** (or **tif**).
+ * @param scale The scaling is applied to the plot when exporting to raster formats (`PNG`, `JPEG`, `TIFF`).
+ * This parameter is ignored for vector formats (`SVG`, `HTML`).
+ * The default value is 1.
+ * @param dpi the resolution of the exported image in dots per inch (DPI) when exporting to raster formats.
+ * This parameter is ignored for vector formats.
+ * By default, no DPI metadata is stored in the file.
+ * @param path the path to the directory where the image files will be saved.
+ * If not specified, the default directory is `${user.dir}/lets-plot-images`.
+ *
+ * @return The absolute pathname of the created file.
  */
 public fun Plot.save(
     filename: String,
@@ -38,23 +42,27 @@ public fun Plot.save(
 ): String = ggsave(toLetsPlot(), filename, scale, dpi, path)
 
 /**
- * Exports plot grid to a file.
- * Supported formats: SVG, HTML, PNG, JPEG and TIFF.
- * Note: in some configurations raster formats might not be supported.
+ * Exports a plot grid to a file in one of the supported formats: `SVG`, `HTML`, `PNG`, `JPG`/`JPEG`, or `TIFF`.
  *
- * The exported file is created in directory ${user.dir}/lets-plot-images
- * if not specified otherwise (see the `path` parameter).
+ * > In certain configurations, raster formats might not be supported.
  *
- * @receiver [PlotGrid] to export.
- * @param filename The name of file. It must end with file extention corresponding
- *      to one of the supported formats: svg, html (or htm), png, jpeg (or jpg) or tiff (or tif)
- * @param scale Scaling factor (only for raster formats). Default: 2.0
- * @param dpi Dot-per-Inch value to store in the exported file metadata (only for raster formats).
- *      By default, no metadata is stored.
- * @param path Path to a directory to save image files in.
- *      By default, it is `${user.dir}/lets-plot-images`
+ * The exported file will be created in the directory `${user.dir}/lets-plot-images`,
+ * unless a different directory is specified using the [path] parameter.
  *
- * @return Absolute pathname of created file.
+ * @receiver [Plot] - the plot to export.
+ * @param filename the name of the output file.
+ * The filename must include an extension corresponding to one of the supported formats:
+ * **svg**, **html** (or **htm**), **png**, **jpeg** (or **jpg**), or **tiff** (or **tif**).
+ * @param scale The scaling is applied to the plot when exporting to raster formats (`PNG`, `JPEG`, `TIFF`).
+ * This parameter is ignored for vector formats (`SVG`, `HTML`).
+ * The default value is 1.
+ * @param dpi the resolution of the exported image in dots per inch (DPI) when exporting to raster formats.
+ * This parameter is ignored for vector formats.
+ * By default, no DPI metadata is stored in the file.
+ * @param path the path to the directory where the image files will be saved.
+ * If not specified, the default directory is `${user.dir}/lets-plot-images`.
+ *
+ * @return The absolute pathname of the created file.
  */
 public fun PlotGrid.save(
     filename: String,
@@ -64,23 +72,27 @@ public fun PlotGrid.save(
 ): String = ggsave(wrap(), filename, scale, dpi, path)
 
 /**
- * Exports plot bunch to a file.
- * Supported formats: SVG, HTML, PNG, JPEG and TIFF.
- * Note: in some configurations raster formats might not be supported.
+ * Exports a plot bunch to a file in one of the supported formats: `SVG`, `HTML`, `PNG`, `JPG`/`JPEG`, or `TIFF`.
  *
- * The exported file is created in directory ${user.dir}/lets-plot-images
- * if not specified otherwise (see the `path` parameter).
+ * > In certain configurations, raster formats might not be supported.
  *
- * @receiver [PlotBunch] to export.
- * @param filename The name of file. It must end with file extention corresponding
- *      to one of the supported formats: svg, html (or htm), png, jpeg (or jpg) or tiff (or tif)
- * @param scale Scaling factor (only for raster formats). Default: 2.0
- * @param dpi Dot-per-Inch value to store in the exported file metadata (only for raster formats).
- *      By default, no metadata is stored.
- * @param path Path to a directory to save image files in.
- *      By default, it is `${user.dir}/lets-plot-images`
+ * The exported file will be created in the directory `${user.dir}/lets-plot-images`,
+ * unless a different directory is specified using the [path] parameter.
  *
- * @return Absolute pathname of created file.
+ * @receiver [Plot] - the plot to export.
+ * @param filename the name of the output file.
+ * The filename must include an extension corresponding to one of the supported formats:
+ * **svg**, **html** (or **htm**), **png**, **jpeg** (or **jpg**), or **tiff** (or **tif**).
+ * @param scale The scaling is applied to the plot when exporting to raster formats (`PNG`, `JPEG`, `TIFF`).
+ * This parameter is ignored for vector formats (`SVG`, `HTML`).
+ * The default value is 1.
+ * @param dpi the resolution of the exported image in dots per inch (DPI) when exporting to raster formats.
+ * This parameter is ignored for vector formats.
+ * By default, no DPI metadata is stored in the file.
+ * @param path the path to the directory where the image files will be saved.
+ * If not specified, the default directory is `${user.dir}/lets-plot-images`.
+ *
+ * @return The absolute pathname of the created file.
  */
 public fun PlotBunch.save(
     filename: String,

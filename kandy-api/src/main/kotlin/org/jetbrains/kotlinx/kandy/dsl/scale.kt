@@ -152,7 +152,7 @@ public fun <DomainType> Scale.Companion.continuousPos(
  * @return new [PositionalCategoricalScale] with given categories.
  */
 public fun <DomainType> PositionalMappingParameters<DomainType>.categorical(
-    categories: List<DomainType>? = null,
+    categories: List<DomainType>? = null, // TODO(add varargs)
 ): PositionalCategoricalScale<DomainType> = PositionalCategoricalScale(categories)
 
 /**

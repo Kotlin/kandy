@@ -18,8 +18,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Axis
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Legend
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.ScaleParameters
-import org.jetbrains.kotlinx.kandy.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.kandy.letsplot.util.symbol.Symbol
+import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
+import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.letsPlot.core.plot.base.Aes
 import org.jetbrains.letsPlot.core.spec.Option

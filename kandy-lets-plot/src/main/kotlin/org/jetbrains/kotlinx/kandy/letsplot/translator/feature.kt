@@ -5,12 +5,12 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetGridFeature
-import org.jetbrains.kotlinx.kandy.letsplot.facet.feature.FacetWrapFeature
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 import org.jetbrains.kotlinx.kandy.letsplot.feature.CoordFlip
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Reversed
-import org.jetbrains.kotlinx.kandy.letsplot.position.Position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.theme.Flavor
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
 import org.jetbrains.letsPlot.coord.coordFlip

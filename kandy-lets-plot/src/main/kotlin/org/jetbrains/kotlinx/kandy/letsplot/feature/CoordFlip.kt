@@ -4,8 +4,16 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
+import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
+
+/**
+ * Flip axis of default coordinate system so that horizontal axis becomes vertical and vice versa.
+ */
+public fun PlotContext.coordFlip() {
+    plotFeatures[CoordFlip.FEATURE_NAME] = CoordFlip
+}
 
 public object CoordFlip : PlotFeature {
     public val FEATURE_NAME: FeatureName = FeatureName("COORD_FLIP")

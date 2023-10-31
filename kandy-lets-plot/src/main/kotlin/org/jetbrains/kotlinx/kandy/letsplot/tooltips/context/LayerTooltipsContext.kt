@@ -6,7 +6,6 @@ package org.jetbrains.kotlinx.kandy.letsplot.tooltips.context
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.*
-import org.jetbrains.kotlinx.kandy.letsplot.tooltips.value
 import kotlin.reflect.KProperty
 
 /**
@@ -34,7 +33,7 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
      * @return formatted string.
      */
     public fun KProperty<*>.tooltipValue(format: String? = null): String {
-        @Suppress("invisible_member")
+        @Suppress("invisible_reference")
         val colID = LayerContextInterface.datasetHandler.takeColumn(this.name)
         addFormat(colID, format)
         return "@$colID"
@@ -48,7 +47,7 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
      * @return formatted string.
      */
     public fun String.tooltipValue(format: String? = null): String {
-        @Suppress("invisible_member")
+        @Suppress("invisible_reference")
         val colID = LayerContextInterface.datasetHandler.takeColumn(this)
         addFormat(colID, format)
         return "@$colID"
@@ -62,7 +61,7 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
      * @return formatted string.
      */
     public fun ColumnReference<*>.tooltipValue(format: String? = null): String {
-        @Suppress("invisible_member")
+        @Suppress("invisible_reference")
         val colID = LayerContextInterface.datasetHandler.addColumn(this)
         addFormat(colID, format)
         return "@$colID"
@@ -96,7 +95,7 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
      * @param column column whose value will be displayed.
      */
     public fun line(column: ColumnReference<*>, format: String? = null) {
-        @Suppress("invisible_member")
+        @Suppress("invisible_reference")
         addVarLine(LayerContextInterface.datasetHandler.addColumn(column).also {
             addFormat(it, format)
         })
@@ -109,7 +108,7 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
      * @param property property with the name of column whose value will be displayed.
      */
     public fun line(property: KProperty<*>, format: String? = null) {
-        @Suppress("invisible_member")
+        @Suppress("invisible_reference")
         addVarLine(LayerContextInterface.datasetHandler.takeColumn(property.name).also {
             addFormat(it, format)
         })
@@ -122,7 +121,7 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
      * @param columnName name of column whose value will be displayed.
      */
     public fun varLine(columnName: String, format: String? = null) {
-        @Suppress("invisible_member")
+        @Suppress("invisible_reference")
         addVarLine(LayerContextInterface.datasetHandler.takeColumn(columnName).also {
             addFormat(it, format)
         })

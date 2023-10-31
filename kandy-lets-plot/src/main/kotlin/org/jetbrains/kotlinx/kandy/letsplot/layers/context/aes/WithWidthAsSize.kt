@@ -68,7 +68,6 @@ public interface WithWidthAsSize : BindingContext {
 
     public fun <T> width(
         values: DataColumn<T>,
-        //name: String? = null,
         parameters: LetsPlotNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping(

@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LINE_TYPE
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParametersCategorical
-import org.jetbrains.kotlinx.kandy.letsplot.util.linetype.LineType
+import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
 import kotlin.reflect.KProperty
 
 public interface WithType : BindingContext {

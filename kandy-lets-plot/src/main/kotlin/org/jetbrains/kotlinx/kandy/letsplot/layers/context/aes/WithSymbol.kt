@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParametersCategorical
 import org.jetbrains.kotlinx.kandy.letsplot.internal.SHAPE
-import org.jetbrains.kotlinx.kandy.letsplot.util.symbol.Symbol
+import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import kotlin.reflect.KProperty
 
 public interface WithSymbol : BindingContext {

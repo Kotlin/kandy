@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.theme
 
-import org.jetbrains.kotlinx.kandy.letsplot.util.font.FontFace
-import org.jetbrains.kotlinx.kandy.letsplot.util.font.FontFamily
+import org.jetbrains.kotlinx.kandy.letsplot.settings.font.FontFace
+import org.jetbrains.kotlinx.kandy.letsplot.settings.font.FontFamily
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
