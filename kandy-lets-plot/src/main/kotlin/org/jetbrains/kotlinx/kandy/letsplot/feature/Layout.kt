@@ -20,13 +20,16 @@ import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
  * ### Example
  *
  * ```kotlin
- * val p = plotOf(data)
- *     .layout {
+ * plot {
+ *     line { x(listOf(1, 2, 3)); y.constant(5) }
+ *     layout {
  *         title = "Main Title"
  *         subtitle = "Subtitle"
  *         xAxisLabel = "X-Axis"
  *         yAxisLabel = "Y-Axis"
+ *         theme(Theme.Grey)
  *     }
+ * }
  * ```
  */
 public inline fun PlotContext.layout(block: Layout.() -> Unit) {
