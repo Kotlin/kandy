@@ -7,6 +7,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.feature
 import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.kandy.letsplot.feature.CoordFlip.FEATURE_NAME
 
 /**
  * Flip the axes of the default coordinate system.
@@ -17,17 +18,14 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
  * ### Example
  *
  * ```kotlin
- * plot(data) {
+ * plot {
  *     bars {
- *     x("category")
- *     y("value")
- *
- *     .geomBar { x = "category"; y = "value" }
- * p.coordFlip()
+ *         x(listOf("a", "b", "c"))
+ *         y(listOf(4, 3, 5))
+ *     }
+ *     coordFlip()
+ * }
  * ```
- * ![test](kandy-lets-plot/lets-plot-images/test.png)
- *
- * <img src="kandy-lets-plot/lets-plot-images/test.png" alt="example">
  */
 public fun PlotContext.coordFlip() {
     plotFeatures[CoordFlip.FEATURE_NAME] = CoordFlip
