@@ -9,7 +9,6 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.FONT_FAMILY
-import org.jetbrains.kotlinx.kandy.letsplot.settings.font.FontFace
 import org.jetbrains.kotlinx.kandy.letsplot.settings.font.FontFamily
 import kotlin.reflect.KProperty
 
