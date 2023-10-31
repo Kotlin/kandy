@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.PATH
 
-public class PathContext(parent: LayerCollectorContext) : LayerContext(parent), LineInterface {
+public open class PathContext(parent: LayerCollectorContext) : LayerContext(parent), LineInterface {
     override val geom: Geom
         get() = PATH
 }
