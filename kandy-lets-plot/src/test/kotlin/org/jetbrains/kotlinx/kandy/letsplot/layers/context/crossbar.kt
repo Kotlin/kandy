@@ -9,6 +9,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalContinuousScale
+import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.internal.ALPHA
 import org.jetbrains.kotlinx.kandy.letsplot.internal.FATTEN
 import org.jetbrains.kotlinx.kandy.letsplot.internal.FILL
@@ -30,7 +31,7 @@ import kotlin.test.assertTrue
 
 class CrossbarTests {
     private val xAxis = listOf(0.5).toColumn("xAxis")
-    private val middle = listOf(20).toColumn("middle")
+    private val y = listOf(20).toColumn("y")
     private val yMin = listOf(5).toColumn("yMin")
     private val yMax = listOf(35).toColumn("yMax")
     private val fatten = listOf(1.5).toColumn("fatten")
@@ -39,14 +40,14 @@ class CrossbarTests {
     private val alpha = listOf(0.5).toColumn("alpha")
     private val width = listOf(0.9).toColumn("width")
 
-    private val df = dataFrameOf(xAxis, middle, yMin, yMax, fatten, type, color, alpha, width)
+    private val df = dataFrameOf(xAxis, y, yMin, yMax, fatten, type, color, alpha, width)
 
     private val parentContext = DataFramePlotContext(df)
-    private lateinit var context: CrossBarContext
+    private lateinit var context: CrossBarsContext
 
     @BeforeTest
     fun setUp() {
-        context = CrossBarContext(parentContext)
+        context = CrossBarsContext(parentContext)
     }
 
     @Test
@@ -57,7 +58,7 @@ class CrossbarTests {
     @Test
     fun `requiredAes contains X, MIDDLE, Y_MIN, Y_MAX`() {
         assertTrue(context.requiredAes.contains(X))
-        assertTrue(context.requiredAes.contains(MIDDLE))
+        assertTrue(context.requiredAes.contains(Y))
         assertTrue(context.requiredAes.contains(Y_MIN))
         assertTrue(context.requiredAes.contains(Y_MAX))
     }
@@ -206,9 +207,9 @@ class CrossbarTests {
 
     @Test
     fun `middle for crossbar`() {
-        context.middle(middle)
-        assertEquals(MIDDLE, context.bindingCollector.mappings[MIDDLE]?.aes)
-        assertEquals("middle", context.bindingCollector.mappings[MIDDLE]?.columnID)
+        context.y(y)
+        assertEquals(Y, context.bindingCollector.mappings[Y]?.aes)
+        assertEquals("y", context.bindingCollector.mappings[Y]?.columnID)
     }
 
     @Test

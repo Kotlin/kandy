@@ -6,6 +6,7 @@ package org.jetbrains.kotlinx.kandy.dsl
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.columns.ColumnAccessor
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 
 /**
@@ -16,5 +17,5 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
  * @param T type of the column
  * @receiver name of the column
  */
-public inline operator fun <reified T> String.invoke(): ColumnReference<T> =
+public inline operator fun <reified T> String.invoke(): ColumnAccessor<T> =
     column(this)

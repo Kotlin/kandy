@@ -110,6 +110,7 @@ public inline fun LayerCollectorContext.bars(block: BarsContext.() -> Unit) {
  */
 public inline fun LayerCollectorContext.barsH(block: BarsContext.() -> Unit) {
     addLayer(BarsContext(this).apply {
+        position = Position.dodge()
         reversed = true
     }.apply(block))
 }

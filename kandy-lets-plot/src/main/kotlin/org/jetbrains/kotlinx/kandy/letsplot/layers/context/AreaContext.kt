@@ -16,7 +16,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.WithX
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.WithY
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.AREA
 
-public interface AreaInterface : LayerContextInterface, WithX, WithY, WithAlpha,
+public interface AreaInterface : LayerContextInterface, WithBorderLine, WithX, WithY, WithAlpha,
     WithFillColor {
     override val geom: Geom get() = AREA
     override val requiredAes: Set<Aes> get() = setOf(X, Y)

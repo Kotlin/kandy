@@ -5,12 +5,11 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.SegmentsContext
 
 
-// todo rename to cross bars
 /**
- * Adds a new crossbars layer.
+ * Adds a new segments layer.
  *
  * Creates a context in which you can configure layer. Within it, you can set mappings and settings
  * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
@@ -21,42 +20,36 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarContext
  * Setting for positional attributes can be performed with `.constant()` method of special property with
  * the same name as the attribute.
  *
- * Crossbar aesthetics:
- * * `x`
- * * `yMin`
- * * `middle`
- * * `yMax`
- * * `fillColor`
+ * Segments aesthetics:
+ * * `xBegin`
+ * * `xEnd`
+ * * `yBegin`
+ * * `yEnd`
+ * * `color`
  * * `alpha`
  * * `width`
- * * `fatten`
- * * `borderLine.color`
- * * `borderLine.width`
- * * `borderLine.type`
+ * * `lineType`
  *
  * Example:
  *
  * ```
- * crossBar {
+ * segments {
  *    // positional mapping
- *    x(time) {
+ *    xBegin(startTime) {
  *       ... // some mapping parameters
  *    }
- *    yMax.constant(100.0)
- *    // even though the crossbars have no "y" attribute we can adjust the `Y` axis
+ *    yEnd.constant(100.0)
+ *    // even though the segment has no "y" attribute we can adjust the `Y` axis
  *    y.limits = 0.0 .. 110.0
  *
- *    // non-positional settings
- *    fatten = 3.5
- *    borderLine.width = 2.5
- *    borderLine {
- *       color = Color.BLACK
- *    }
+ *    // non-positional setting
+ *    width = 2.5
  *    // non-positional mapping
- *    fillColor("type")
+ *    color("density")
+ *
  * }
  * ```
  */
-public inline fun LayerCollectorContext.crossBar(block: CrossBarContext.() -> Unit) {
-    addLayer(CrossBarContext(this).apply(block))
+public inline fun LayerCollectorContext.segments(block: SegmentsContext.() -> Unit) {
+    addLayer(SegmentsContext(this).apply(block))
 }

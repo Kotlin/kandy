@@ -36,11 +36,11 @@ class LineRangeTests {
     private val df = dataFrameOf(xAxis, yMin, yMax, type, color, alpha, width)
 
     private val parentContext = DataFramePlotContext(df)
-    private lateinit var context: LineRangeContext
+    private lateinit var context: LineRangesContext
 
     @BeforeTest
     fun setUp() {
-        context = LineRangeContext(parentContext)
+        context = LineRangesContext(parentContext)
     }
 
     @Test

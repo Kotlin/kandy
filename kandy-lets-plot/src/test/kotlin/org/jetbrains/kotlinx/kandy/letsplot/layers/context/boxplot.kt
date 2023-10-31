@@ -46,11 +46,11 @@ class BoxplotTests {
     private val df = dataFrameOf(xAxis, lower, upper, middle, yMin, yMax, fatten, type, color, alpha, width)
 
     private val parentContext = DataFramePlotContext(df)
-    private lateinit var context: BoxplotContext
+    private lateinit var context: BoxesContext
 
     @BeforeTest
     fun setUp() {
-        context = BoxplotContext(parentContext)
+        context = BoxesContext(parentContext)
     }
 
     @Test

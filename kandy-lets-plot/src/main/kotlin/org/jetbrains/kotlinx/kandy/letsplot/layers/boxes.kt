@@ -6,12 +6,12 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxplotContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxesContext
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.position
 
 /**
- * Adds a new boxplot layer.
+ * Adds a new boxes layer.
  *
  * Creates a context in which you can configure layer. Within it, you can set mappings and settings
  * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
@@ -22,7 +22,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.position
  * Setting for positional attributes can be performed with `.constant()` method of special property with
  * the same name as the attribute.
  *
- * Boxplot aesthetics:
+ * Boxes aesthetics:
  * * `x`
  * * `yMin`
  * * `lower`
@@ -40,7 +40,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.position
  * Example:
  *
  * ```
- * boxplot {
+ * boxes {
  *    // positional mapping
  *    x(time) {
  *       ... // some mapping parameters
@@ -61,12 +61,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.position
  * }
  * ```
  */
-@Suppress("invisible_reference")
-public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
-    // todo letsplot fix
-    addLayer(BoxplotContext(this).apply {
+public inline fun LayerCollectorContext.boxes(block: BoxesContext.() -> Unit) {
+    addLayer(BoxesContext(this).apply {
         position = Position.dodge()
-    }.apply(block).apply {
-        addPositionalMapping(Y, List(datasetHandler.rowsCount()) { null }, null, null)
-    })
+    }.apply(block))
 }

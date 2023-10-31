@@ -1,9 +1,18 @@
 package org.jetbrains.kotlinx.kandy.letsplot.multiplot
 
+import io.mockk.every
+import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.api.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
 import org.jetbrains.kotlinx.kandy.dsl.plot
+import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
+import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
+import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.line
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.*
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
@@ -177,14 +186,27 @@ class FacetTests {
         val dataset: Map<String, List<*>> = mapOf(
             "xSrc" to listOf(1, 2, 3)
         )
+        val geom = mockk<Geom>()
+        val mockLayer = Layer(
+            datasetIndex = 0, geom = geom,
+            mappings = mapOf(Aes("a") to mockk<Mapping>()),
+            settings = mapOf(Aes("a") to mockk<Setting>()),
+            features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
+        )
+        val layerContext = mockk<LayerContextInterface> {
+            every { requiredAes } returns emptySet()
+            every { bindingCollector } returns BindingCollector()
+            every { toLayer(true) } returns mockLayer
+        }
         val plot = plot(dataset) {
+            addLayer(layerContext)
             facetGridX(
                 x = column<String>("xSrc")
             )
         }
 
         val expectedPlot = Plot(
-            listOf(NamedData(dataset.toDataFrame())), emptyList(), emptyMap(), emptyMap(),
+            listOf(NamedData(dataset.toDataFrame())), listOf(mockLayer), emptyMap(), emptyMap(),
             mapOf(
                 FacetGridFeature.FEATURE_NAME to FacetGridFeature(
                     "xSrc",
@@ -208,7 +230,20 @@ class FacetTests {
             "xArg" to listOf(1, 2, 3),
             "yArg" to listOf(0.1, 0.2, 0.3)
         )
+        val geom = mockk<Geom>()
+        val mockLayer = Layer(
+            datasetIndex = 0, geom = geom,
+            mappings = mapOf(Aes("a") to mockk<Mapping>()),
+            settings = mapOf(Aes("a") to mockk<Setting>()),
+            features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
+        )
+        val layerContext = mockk<LayerContextInterface> {
+            every { requiredAes } returns emptySet()
+            every { bindingCollector } returns BindingCollector()
+            every { toLayer(true) } returns mockLayer
+        }
         val plot = plot(dataset) {
+            addLayer(layerContext)
             facetGrid(
                 x = column<String>("xArg"),
                 y = column<Int>("yArg"),
@@ -218,7 +253,7 @@ class FacetTests {
         }
 
         val expectedPlot = Plot(
-            listOf(NamedData(dataset.toDataFrame())), emptyList(), emptyMap(), emptyMap(),
+            listOf(NamedData(dataset.toDataFrame())), listOf(mockLayer), emptyMap(), emptyMap(),
             mapOf(
                 FacetGridFeature.FEATURE_NAME to FacetGridFeature(
                     x = "xArg",

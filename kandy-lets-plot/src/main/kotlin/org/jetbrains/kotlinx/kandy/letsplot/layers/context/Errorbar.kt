@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.ERROR_BAR
 
-public interface ErrorBarInterface : LayerContextInterface, WithX, WithYMin,
+public interface ErrorBarsInterface : LayerContextInterface, WithBorderLine, WithX, WithYMin,
     WithYMax, WithWidth, WithAlpha, WithYFree {
     override val geom: Geom
         get() = ERROR_BAR
@@ -22,4 +22,4 @@ public interface ErrorBarInterface : LayerContextInterface, WithX, WithYMin,
         get ()= setOf(X, Y_MIN, Y_MAX)
 }
 
-public open class ErrorBarContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), ErrorBarInterface
+public open class ErrorBarsContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), ErrorBarsInterface

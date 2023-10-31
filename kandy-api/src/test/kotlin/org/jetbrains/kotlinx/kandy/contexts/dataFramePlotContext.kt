@@ -24,6 +24,7 @@ import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 class DataFramePlotContextTest {
     @Test
@@ -123,19 +124,16 @@ class DataFramePlotContextTest {
     @Test
     fun `test empty plot`() {
         val emptyMap = emptyMap<String, List<Any>>()
-        val plot = emptyMap.plot {}
-        val expected = Plot(
-            datasets = mutableListOf(NamedData(emptyDataFrame<Any>())), layers = emptyList(),
-            globalMappings = emptyMap(), globalSettings = emptyMap(), features = emptyMap(), freeScales = emptyMap()
-        )
-        assertEquals(expected, plot)
+        assertFailsWith<IllegalStateException>("No layers in plot") {
+            emptyMap.plot {}
+        }
     }
 
     @Test
     fun `test plot with map`() {
         val map = mapOf("A" to listOf("a", "b", "c"), "B" to listOf(1, 2, 3))
 
-        assertEquals(map.plot {}, plot(map) {})
+        //assertEquals(map.plot {}, plot(map) {})
 
         val geom = mockk<Geom>()
         val mockLayer = Layer(
@@ -169,7 +167,7 @@ class DataFramePlotContextTest {
             "B" to listOf(1, 2, 3)
         )
 
-        assertEquals(dataFrame.plot {}, plot(dataFrame) {})
+       // assertEquals(dataFrame.plot {}, plot(dataFrame) {})
 
         val geom = mockk<Geom>()
         val mockLayer = Layer(

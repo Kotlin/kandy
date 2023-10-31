@@ -25,4 +25,4 @@ public interface SegmentInterface: LayerContextInterface, WithColor, WithAlpha, 
         get() = setOf(X_BEGIN, Y_BEGIN, X_END, Y_END)
 }
 
-public open class SegmentContext(parent: LayerCollectorContext) : LayerContext(parent), SegmentInterface
+public open class SegmentsContext(parent: LayerCollectorContext) : LayerContext(parent), SegmentInterface

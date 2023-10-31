@@ -34,11 +34,11 @@ class ErrorBarTests {
     private val df = dataFrameOf(xAxis, yMin, yMax, type, alpha, width)
 
     private val parentContext = DataFramePlotContext(df)
-    private lateinit var context: ErrorBarContext
+    private lateinit var context: ErrorBarsContext
 
     @BeforeTest
     fun setUp() {
-        context = ErrorBarContext(parentContext)
+        context = ErrorBarsContext(parentContext)
     }
 
     @Test
