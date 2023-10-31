@@ -13,13 +13,33 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappin
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.reflect.KProperty
 
+/**
+ * Interface for configuring the `color` aesthetic in a plot layer.
+ *
+ * It defines methods and properties that allow you to set the color either as a constant
+ * or by mapping it to a column in your data.
+ * The mapped colors can also be further customized.
+ */
 public interface WithColor : BindingContext {
+
+    /**
+     * Sets a constant color for the layer.
+     *
+     * @property color the value to be set.
+     */
     public var color: Color?
         get() = null
         set(value) {
             addNonPositionalSetting(COLOR, value)
         }
 
+    /**
+     * Maps the color aesthetic to a data column by [ColumnReference].
+     *
+     * @param column the data column to map to the color.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> color(
         column: ColumnReference<T>,
         parameters: LetsPlotNonPositionalMappingParametersContinuous<T, Color>.() -> Unit = {}
@@ -31,6 +51,13 @@ public interface WithColor : BindingContext {
         )
     }
 
+    /**
+     * Maps the color aesthetic to a data column by [KProperty].
+     *
+     * @param column the data column to map to the color.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> color(
         column: KProperty<T>,
         parameters: LetsPlotNonPositionalMappingParametersContinuous<T, Color>.() -> Unit = {}
@@ -42,6 +69,13 @@ public interface WithColor : BindingContext {
         )
     }
 
+    /**
+     * Maps the color aesthetic to a data column by [String].
+     *
+     * @param column the data column to map to the color.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun color(
         column: String,
         parameters: LetsPlotNonPositionalMappingParametersContinuous<Any?, Color>.() -> Unit = {}
@@ -53,7 +87,14 @@ public interface WithColor : BindingContext {
         )
     }
 
-    // Iterable, Array, PrimArray, DataColumn,
+    /**
+     * Maps the color aesthetic to an iterable collection of discrete values.
+     *
+     * @param values an iterable collection containing the discrete values.
+     * @param name optional name for this aesthetic mapping.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> color(
         values: Iterable<T>,
         name: String? = null,
@@ -67,9 +108,15 @@ public interface WithColor : BindingContext {
         )
     }
 
+    /**
+     * Maps the color aesthetic to a data column.
+     *
+     * @param values the data column to map to the color.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> color(
         values: DataColumn<T>,
-        //name: String? = null,
         parameters: LetsPlotNonPositionalMappingParametersContinuous<T, Color>.() -> Unit = {}
     ): NonPositionalMapping<T, Color> {
         return addNonPositionalMapping<T, Color>(
