@@ -20,7 +20,8 @@ public interface WithBorderLineContext {
     public val borderLine: BorderLineContext
 }
 
-public abstract class LayerWithBorderLineContext(parent: LayerCollectorContext) : LayerContext(parent), WithBorderLineContext {
+public abstract class LayerWithBorderLineContext(parent: LayerCollectorContext) : LayerContext(parent),
+    WithBorderLineContext {
     // todo fix
     public override val borderLine: BorderLineContext = BorderLineContext(this)
 }
