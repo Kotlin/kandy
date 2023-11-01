@@ -33,13 +33,13 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ABLineContext
  * ```kotlin
  * plot {
  *     abLine {
- *         // Map 'time' variable to intercept aesthetic
+ *         // Map values to intercept aesthetic
  *         intercept(listOf(.1, .2, .3, .4, .5))
  *         // Set a constant slope
  *         slope.constant(0.5)
  *         // Set a constant width for the line
  *         width = 2.5
- *         // Map 'type' variable to color aesthetic
+ *         // Map categorical values to color aesthetic
  *         color(listOf("A", "A", "B", "B", "C")) {
  *             // Additional mapping parameters, e.g., you can specify a color palette here
  *             scale = categorical("A" to Color.RED, "B" to Color.PURPLE, "C" to Color.BLUE)
