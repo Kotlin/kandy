@@ -56,7 +56,7 @@ public interface WithExplode : BindingContext {
     }
 
     /**
-     * Maps the `explode` aesthetic to an iterable collection of values.
+     * Maps the `explode` aesthetic to iterable of values.
      *
      * @param values The iterable of values to be mapped.
      * @return A [PositionalMapping] object representing the mapping.
@@ -64,12 +64,7 @@ public interface WithExplode : BindingContext {
     public fun <T> explode(
         values: Iterable<T>,
     ): PositionalMapping<T> {
-        return addPositionalMapping<T>(
-            EXPLODE,
-            values.toList(),
-            null,
-            null
-        )
+        return addPositionalMapping<T>(EXPLODE, values.toList(), null, null)
     }
 
     /**
@@ -81,10 +76,6 @@ public interface WithExplode : BindingContext {
     public fun <T> explode(
         values: DataColumn<T>,
     ): PositionalMapping<T> {
-        return addPositionalMapping<T>(
-            EXPLODE,
-            values,
-            null
-        )
+        return addPositionalMapping<T>(EXPLODE, values, null)
     }
 }
