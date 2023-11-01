@@ -11,53 +11,74 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X_MIN
 import kotlin.reflect.KProperty
 
+/**
+ * Interface for managing the 'xMin' aesthetic in rectangle plots.
+ *
+ * The `xMin` aesthetic defines the minimum x-coordinate of each rectangle in a plot.
+ * This interface offers multiple methods to set this value, either as a constant
+ * or by mapping it to different types of data columns.
+ *
+ * This interface allows you to set a constant value,
+ * map it to a column in your data, or provide an iterable list of values.
+ */
 public interface WithXMin : BindingContext {
+
+
+    /**
+     * Provides a constant setter for the `xMin` value.
+     *
+     * @property xMin a [ConstantSetter] object to directly set the minimum x-coordinate.
+     */
     public val xMin: ConstantSetter
         get() = ConstantSetter(X_MIN, bindingCollector)
 
-    /*
-    public fun <T> xMin(value: T): PositionalSetting<T> {
-        return addPositionalSetting(X_MIN, value)
-    }
-
+    /**
+     * Maps the `xMin` aesthetic to a data column specified by a [ColumnReference].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
      */
-
-    public fun <T> xMin(
-        column: ColumnReference<T>,
-    ): PositionalMapping<T> {
+    public fun <T> xMin(column: ColumnReference<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(X_MIN, column.name(), null)
     }
 
-    public fun <T> xMin(
-        column: KProperty<T>,
-    ): PositionalMapping<T> {
+    /**
+     * Maps the `xMin` aesthetic to a data column specified by a [KProperty].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> xMin(column: KProperty<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(X_MIN, column.name, null)
     }
 
-    public fun <T> xMin(
-        column: String,
-    ): PositionalMapping<T> {
+    /**
+     * Maps the `xMin` aesthetic to a data column specified by a [String].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> xMin(column: String): PositionalMapping<T> {
         return addPositionalMapping<T>(X_MIN, column, null)
     }
 
-    public fun <T> xMin(
-        values: Iterable<T>,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(
-            X_MIN,
-            values.toList(),
-            null,
-            null
-        )
+    /**
+     * Maps the `xMin` aesthetic to iterable of values.
+     *
+     * @param values the iterable of values to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> xMin(values: Iterable<T>): PositionalMapping<T> {
+        return addPositionalMapping<T>(X_MIN, values.toList(), null, null)
     }
 
-    public fun <T> xMin(
-        values: DataColumn<T>,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(
-            X_MIN,
-            values,
-            null
-        )
+    /**
+     * Maps the `xMin` aesthetic to a data column.
+     *
+     * @param values the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> xMin(values: DataColumn<T>): PositionalMapping<T> {
+        return addPositionalMapping<T>(X_MIN, values, null)
     }
 }

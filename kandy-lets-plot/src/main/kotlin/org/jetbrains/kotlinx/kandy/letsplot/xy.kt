@@ -14,6 +14,13 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisParametersWithSetter
 
+/**
+ * Maps the `x` aesthetic to a data column by [ColumnReference].
+ *
+ * @param column the data column to map to the x-coordinate.
+ * @param parameters additional mapping parameters.
+ * @return a [PositionalMapping] object representing the mapping.
+ */
 public fun <T> PlotContext.x(
     column: ColumnReference<T>,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
@@ -25,6 +32,14 @@ public fun <T> PlotContext.x(
     )
 }
 
+/**
+ * Maps the `x` aesthetic to iterable of values.
+ *
+ * @param values the iterable containing the x-coordinate values.
+ * @param name optional name for this aesthetic mapping.
+ * @param parameters additional mapping parameters.
+ * @return a [PositionalMapping] object representing the mapping.
+ */
 public fun <T> PlotContext.x(
     values: Iterable<T>,
     name: String? = null,
@@ -38,6 +53,13 @@ public fun <T> PlotContext.x(
     )
 }
 
+/**
+ * Maps the `x` aesthetic to a data column by [String].
+ *
+ * @param column the data column to map to the x-coordinate.
+ * @param parameters additional mapping parameters.
+ * @return a [PositionalMapping] object representing the mapping.
+ */
 public fun PlotContext.x(
     column: String,
     parameters: LetsPlotPositionalMappingParametersContinuous<Any?>.() -> Unit = {}
@@ -49,9 +71,15 @@ public fun PlotContext.x(
     )
 }
 
+/**
+ * Maps the `x` aesthetic to a data column.
+ *
+ * @param values the data column to map to the x-coordinate.
+ * @param parameters additional mapping parameters.
+ * @return a [PositionalMapping] object representing the mapping.
+ */
 public fun <T> PlotContext.x(
     values: DataColumn<T>,
-    //name: String? = null,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
     return addPositionalMapping<T>(
@@ -61,6 +89,11 @@ public fun <T> PlotContext.x(
     )
 }
 
+/**
+ * Provides a mechanism for setting or retrieving x-axis parameters.
+ *
+ * @property x an [AxisParametersWithSetter] object for x-axis configuration.
+ */
 @Suppress("UNCHECKED_CAST")
 public val PlotContext.x: AxisParametersWithSetter
     get() {
@@ -69,9 +102,12 @@ public val PlotContext.x: AxisParametersWithSetter
         }.parameters as LetsPlotPositionalMappingParametersContinuous<Any?>, X, this)
     }
 
-public fun PlotContext.x(
-    parameters: AxisParametersWithSetter.() -> Unit = {}
-) {
+/**
+ * Applies configurations to x-axis parameters.
+ *
+ * @param parameters the configurations to apply to the x-axis parameters.
+ */
+public fun PlotContext.x(parameters: AxisParametersWithSetter.() -> Unit = {}) {
     x.apply(parameters)
 }
 
