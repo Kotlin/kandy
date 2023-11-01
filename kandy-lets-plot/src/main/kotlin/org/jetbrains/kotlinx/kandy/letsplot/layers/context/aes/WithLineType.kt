@@ -13,13 +13,31 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappin
 import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
 import kotlin.reflect.KProperty
 
+/**
+ * Interface for configuring the `lineType` aesthetic, which specifies the type of lines in the plot.
+ *
+ * This interface allows you to specify the lineType as a constant, map it to a column, or provide iterable of values.
+ */
 public interface WithLineType : BindingContext {
+
+    /**
+     * Sets a constant `lineType` for the layer.
+     *
+     * @property lineType the value to be set.
+     */
     public var lineType: LineType?
         get() = null
         set(value) {
             addNonPositionalSetting(LINE_TYPE, value)
         }
 
+    /**
+     * Maps the `lineType` aesthetic to a data column by [ColumnReference].
+     *
+     * @param column the data column to map to the color.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> lineType(
         column: ColumnReference<T>,
         parameters: LetsPlotNonPositionalMappingParametersCategorical<T, LineType>.() -> Unit = {}
@@ -31,6 +49,13 @@ public interface WithLineType : BindingContext {
         )
     }
 
+    /**
+     * Maps the `lineType` aesthetic to a data column by [KProperty].
+     *
+     * @param column the data column to map to the color.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> lineType(
         column: KProperty<T>,
         parameters: LetsPlotNonPositionalMappingParametersCategorical<T, LineType>.() -> Unit = {}
@@ -42,6 +67,13 @@ public interface WithLineType : BindingContext {
         )
     }
 
+    /**
+     * Maps the `lineType` aesthetic to a data column by [String].
+     *
+     * @param column the data column to map to the color.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun lineType(
         column: String,
         parameters: LetsPlotNonPositionalMappingParametersCategorical<Any?, LineType>.() -> Unit = {}
@@ -53,7 +85,14 @@ public interface WithLineType : BindingContext {
         )
     }
 
-    // Iterable, Array, PrimArray, DataColumn,
+    /**
+     * Maps the `lineType` aesthetic to iterable of values.
+     *
+     * @param values the iterable containing the values.
+     * @param name optional name for this aesthetic mapping.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> lineType(
         values: Iterable<T>,
         name: String? = null,
@@ -67,6 +106,13 @@ public interface WithLineType : BindingContext {
         )
     }
 
+    /**
+     * Maps the `lineType` aesthetic to a data column.
+     *
+     * @param values the data column to map to the color.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> lineType(
         values: DataColumn<T>,
         //name: String? = null,
