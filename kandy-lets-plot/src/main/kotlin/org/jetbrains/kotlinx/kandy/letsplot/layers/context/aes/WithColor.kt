@@ -23,7 +23,7 @@ import kotlin.reflect.KProperty
 public interface WithColor : BindingContext {
 
     /**
-     * Sets a constant color for the layer.
+     * Sets a constant `color` for the layer.
      *
      * @property color the value to be set.
      */
@@ -34,7 +34,7 @@ public interface WithColor : BindingContext {
         }
 
     /**
-     * Maps the color aesthetic to a data column by [ColumnReference].
+     * Maps the `color` aesthetic to a data column by [ColumnReference].
      *
      * @param column the data column to map to the color.
      * @param parameters optional lambda to configure additional scale parameters.
@@ -52,7 +52,7 @@ public interface WithColor : BindingContext {
     }
 
     /**
-     * Maps the color aesthetic to a data column by [KProperty].
+     * Maps the `color` aesthetic to a data column by [KProperty].
      *
      * @param column the data column to map to the color.
      * @param parameters optional lambda to configure additional scale parameters.
@@ -70,7 +70,7 @@ public interface WithColor : BindingContext {
     }
 
     /**
-     * Maps the color aesthetic to a data column by [String].
+     * Maps the `color` aesthetic to a data column by [String].
      *
      * @param column the data column to map to the color.
      * @param parameters optional lambda to configure additional scale parameters.
@@ -88,9 +88,9 @@ public interface WithColor : BindingContext {
     }
 
     /**
-     * Maps the color aesthetic to an iterable collection of discrete values.
+     * Maps the `color` aesthetic to iterable of discrete values.
      *
-     * @param values an iterable collection containing the discrete values.
+     * @param values the iterable containing the discrete values.
      * @param name optional name for this aesthetic mapping.
      * @param parameters optional lambda to configure additional scale parameters.
      * @return a [NonPositionalMapping] object representing the mapping.
@@ -109,7 +109,7 @@ public interface WithColor : BindingContext {
     }
 
     /**
-     * Maps the color aesthetic to a data column.
+     * Maps the `color` aesthetic to a data column.
      *
      * @param values the data column to map to the color.
      * @param parameters optional lambda to configure additional scale parameters.
