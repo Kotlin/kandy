@@ -14,16 +14,16 @@ import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
 import kotlin.reflect.KProperty
 
 /**
- * Interface for configuring the `label` aesthetic, used for adding text labels to visual elements.
+ * Interface for configuring the `type` aesthetic, which specifies the type of lines in the plot.
  *
  * This interface allows you to specify the label as a constant, map it to a column, or provide iterable of values.
  */
 public interface WithType : BindingContext {
 
     /**
-     * Sets a constant color for the layer.
+     * Sets a constant `type` for line in the layer.
      *
-     * @property color the value to be set.
+     * @property type the value to be set.
      */
     public var type: LineType?
         get() = null
@@ -32,9 +32,9 @@ public interface WithType : BindingContext {
         }
 
     /**
-     * Maps the `color` aesthetic to a data column by [ColumnReference].
+     * Maps the `type` aesthetic to a data column by [ColumnReference].
      *
-     * @param column the data column to map to the color.
+     * @param column the data column to map to the type.
      * @param parameters optional lambda to configure additional scale parameters.
      * @return a [NonPositionalMapping] object representing the mapping.
      */
@@ -50,9 +50,9 @@ public interface WithType : BindingContext {
     }
 
     /**
-     * Maps the `color` aesthetic to a data column by [KProperty].
+     * Maps the `type` aesthetic to a data column by [KProperty].
      *
-     * @param column the data column to map to the color.
+     * @param column the data column to map to the type.
      * @param parameters optional lambda to configure additional scale parameters.
      * @return a [NonPositionalMapping] object representing the mapping.
      */
@@ -68,9 +68,9 @@ public interface WithType : BindingContext {
     }
 
     /**
-     * Maps the `color` aesthetic to a data column by [String].
+     * Maps the `type` aesthetic to a data column by [String].
      *
-     * @param column the data column to map to the color.
+     * @param column the data column to map to the type.
      * @param parameters optional lambda to configure additional scale parameters.
      * @return a [NonPositionalMapping] object representing the mapping.
      */
@@ -86,7 +86,7 @@ public interface WithType : BindingContext {
     }
 
     /**
-     * Maps the `color` aesthetic to iterable of values.
+     * Maps the `type` aesthetic to iterable of values.
      *
      * @param values the iterable containing the categorical values.
      * @param name optional name for this aesthetic mapping.
@@ -107,9 +107,9 @@ public interface WithType : BindingContext {
     }
 
     /**
-     * Maps the `color` aesthetic to a data column.
+     * Maps the `type` aesthetic to a data column.
      *
-     * @param values the data column to map to the color.
+     * @param values the data column to map to the type.
      * @param parameters optional lambda to configure additional scale parameters.
      * @return a [NonPositionalMapping] object representing the mapping.
      */
