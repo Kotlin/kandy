@@ -5,59 +5,63 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxplotContext
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.position
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxplotContext
 
 /**
- * Adds a new boxplot layer.
+ * Adds a new `boxplot` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `boxplot` layer visualizes the distribution of a dataset through its quartiles.
+ * It provides a useful representation of the data's spread and skewness.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Boxplot aesthetics:
- * * `x`
- * * `yMin`
- * * `lower`
- * * `middle`
- * * `upper`
- * * `yMax`
- * * `fillColor`
- * * `alpha`
- * * `width`
- * * `fatten`
- * * `borderLine.color`
- * * `borderLine.width`
- * * `borderLine.type`
+ * ## Boxplot Aesthetics
+ * * **`x`** - The X-coordinate specifying the categories.
+ * * **`yMin`** - The minimum value for the Y-coordinate (the lowest whisker).
+ * * **`lower`** - The lower quartile value.
+ * * **`middle`** - The median value.
+ * * **`upper`** - The upper quartile value.
+ * * **`yMax`** - The maximum value for the Y-coordinate (the highest whisker).
+ * * **`fillColor`** - The fill color of the boxplot.
+ * * **`alpha`** - The transparency of the boxplot.
+ * * **`width`** - The width of the boxplot.
+ * * **`fatten`** - The factor by which to "fatten" the width of the notch relative to the body.
+ * * **`borderLine.color`** - Color of the boxplot borderline.
+ * * **`borderLine.width`** - Width of the boxplot borderline.
+ * * **`borderLine.type`** - Type of the boxplot borderline, such as dashed or dotted.
  *
- * Example:
+ * ## Example
  *
- * ```
- * boxplot {
- *    // positional mapping
- *    x(time) {
- *       ... // some mapping parameters
- *    }
- *    yMax.constant(100.0)
- *    // even though the boxplot has no "y" attribute we can adjust the `Y` axis
- *    y.limits = 0.0 .. 110.0
+ * ```kotlin
+ * plot {
+ *     boxplot {
+ *         // Positional mapping
+ *         x(listOf("A", "B", "C", "D"))
+ *         yMin(listOf(10, 20, 5, 12))
+ *         lower(listOf(20, 30, 12, 22))
+ *         middle(listOf(30, 40, 20, 35))
+ *         upper(listOf(40, 50, 35, 45))
+ *         yMax(listOf(50, 55, 40, 48))
  *
- *    // non-positional settings
- *    fatten = 0.8
- *    borderLine.width = 2.5
- *    borderLine {
- *       color = Color.BLACK
- *    }
- *    // non-positional mapping
- *    fillColor("type")
+ *         // Adjust the Y-axis
+ *         y.limits = 0.0..60.0
  *
+ *         // Non-positional settings
+ *         fatten = 0.8
+ *         width = 0.5
+ *
+ *         // BorderLine settings
+ *         borderLine.width = .5
+ *
+ *         // Non-positional mapping
+ *         fillColor = Color.BLUE
+ *     }
  * }
  * ```
  */
