@@ -11,53 +11,73 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_INTERCEPT
 import kotlin.reflect.KProperty
 
+/**
+ * Interface for managing the 'yIntercept' aesthetic in horizontal line plots.
+ *
+ * The `yIntercept` aesthetic represents the y-coordinate at which the horizontal line will intercept the y-axis.
+ * This interface provides various methods for specifying this value,
+ * either as a constant or by mapping it to data columns.
+ *
+ * This interface allows you to set a constant value,
+ * map it to a column in your data, or provide an iterable list of values.
+ */
 public interface WithYIntercept : BindingContext {
+
+    /**
+     * Provides a constant setter for the `yIntercept` value.
+     *
+     * @property yIntercept a [ConstantSetter] object to directly set the y-intercept.
+     */
     public val yIntercept: ConstantSetter
         get() = ConstantSetter(Y_INTERCEPT, bindingCollector)
 
-    /*
-    public fun <T> xMin(value: T): PositionalSetting<T> {
-        return addPositionalSetting(X_MIN, value)
-    }
-
+    /**
+     * Maps the `yIntercept` aesthetic to a data column by [ColumnReference].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
      */
-
-    public fun <T> yIntercept(
-        column: ColumnReference<T>,
-    ): PositionalMapping<T> {
+    public fun <T> yIntercept(column: ColumnReference<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(Y_INTERCEPT, column.name(), null)
     }
 
-    public fun <T> yIntercept(
-        column: KProperty<T>,
-    ): PositionalMapping<T> {
+    /**
+     * Maps the `yIntercept` aesthetic to a data column by [KProperty].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> yIntercept(column: KProperty<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(Y_INTERCEPT, column.name, null)
     }
 
-    public fun <T> yIntercept(
-        column: String,
-    ): PositionalMapping<T> {
+    /**
+     * Maps the `yIntercept` aesthetic to a data column by [String].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> yIntercept(column: String): PositionalMapping<T> {
         return addPositionalMapping<T>(Y_INTERCEPT, column, null)
     }
 
-    public fun <T> yIntercept(
-        values: Iterable<T>,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(
-            Y_INTERCEPT,
-            values.toList(),
-            null,
-            null
-        )
+    /**
+     * Maps the `yIntercept` aesthetic to iterable of values.
+     *
+     * @param values the iterable of values to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> yIntercept(values: Iterable<T>): PositionalMapping<T> {
+        return addPositionalMapping<T>(Y_INTERCEPT, values.toList(), null, null)
     }
 
-    public fun <T> yIntercept(
-        values: DataColumn<T>,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(
-            Y_INTERCEPT,
-            values,
-            null
-        )
+    /**
+     * Maps the `yIntercept` aesthetic to a data column.
+     *
+     * @param values the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> yIntercept(values: DataColumn<T>): PositionalMapping<T> {
+        return addPositionalMapping<T>(Y_INTERCEPT, values, null)
     }
 }

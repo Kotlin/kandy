@@ -11,53 +11,75 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import kotlin.reflect.KProperty
 
+
+/**
+ * Interface for managing the 'yMin' aesthetic in rectangle plots.
+ *
+ * The `yMin` aesthetic defines the minimum y-coordinate of each rectangle in a plot.
+ * This interface offers multiple methods to set this value, either as a constant
+ * or by mapping it to different types of data columns.
+ *
+ * This interface allows you to set a constant value,
+ * map it to a column in your data, or provide an iterable list of values.
+ */
 public interface WithYMin : BindingContext {
+
+
+    /**
+     * Provides a constant setter for the `yMin` value.
+     *
+     * @property yMin a [ConstantSetter] object to directly set the minimum y-coordinate.
+     */
     public val yMin: ConstantSetter
         get() = ConstantSetter(Y_MIN, bindingCollector)
 
-    /*
-    public fun <T> yMin(value: T): PositionalSetting<T> {
-        return addPositionalSetting(Y_MIN, value)
-    }
-
+    /**
+     * Maps the `yMin` aesthetic to a data column specified by a [ColumnReference].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
      */
-
-    public fun <T> yMin(
-        column: ColumnReference<T>,
-    ): PositionalMapping<T> {
+    public fun <T> yMin(column: ColumnReference<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(Y_MIN, column.name(), null)
     }
 
-    public fun <T> yMin(
-        column: KProperty<T>,
-    ): PositionalMapping<T> {
+    /**
+     * Maps the `yMin` aesthetic to a data column specified by a [KProperty].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> yMin(column: KProperty<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(Y_MIN, column.name, null)
     }
 
-    public fun <T> yMin(
-        column: String,
-    ): PositionalMapping<T> {
+    /**
+     * Maps the `yMin` aesthetic to a data column specified by a [String].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> yMin(column: String): PositionalMapping<T> {
         return addPositionalMapping<T>(Y_MIN, column, null)
     }
 
-    public fun <T> yMin(
-        values: Iterable<T>,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(
-            Y_MIN,
-            values.toList(),
-            null,
-            null
-        )
+    /**
+     * Maps the `yMin` aesthetic to iterable of values.
+     *
+     * @param values the iterable of values to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> yMin(values: Iterable<T>): PositionalMapping<T> {
+        return addPositionalMapping<T>(Y_MIN, values.toList(), null, null)
     }
 
-    public fun <T> yMin(
-        values: DataColumn<T>,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(
-            Y_MIN,
-            values,
-            null
-        )
+    /**
+     * Maps the `yMin` aesthetic to a data column.
+     *
+     * @param values the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> yMin(values: DataColumn<T>): PositionalMapping<T> {
+        return addPositionalMapping<T>(Y_MIN, values, null)
     }
 }
