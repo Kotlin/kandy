@@ -8,40 +8,48 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PathContext
 
 /**
- * Adds a new path layer.
+ * Adds a new `path` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `path` layer connects data points in the order they appear in the data frame,
+ * unlike `line` which sorts the points before connecting them.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Path aesthetics:
- * * `x`
- * * `y`
- * * `color`
- * * `lineType`
- * * `width`
- * * `alpha`
+ * ## Path Aesthetics
+ * * **`x`** - The X-coordinate specifying the position.
+ * * **`y`** - The Y-coordinate specifying the position.
+ * * **`color`** - The color of the path.
+ * * **`type`** - The type of the line, such as dashed or dotted.
+ * * **`width`** - The width of the path.
+ * * **`alpha`** - The transparency of the path.
  *
- * Example:
+ * ## Example
  *
- * ```
- * path {
- *    // positional mapping
- *    x(time) {
- *       ... // some mapping parameters
- *    }
- *    // positional setting
- *    y.constant(12.5)
+ * ```kotlin
+ * plot {
+ *     path {
+ *         // Positional mapping
+ *         // Here we would have our mapping parameters to define the scale and possibly transformations
+ *         x(listOf("01:00", "02:00", "03:00", "04:00", "05:00"))
+ *         // Similarly, mapping parameters for the Y-axis
+ *         y(listOf(14, 16, 15, 17, 18))
  *
- *    // non-positional setting
- *    width = 2.5
- *    // non-positional mapping
- *    color("type")
+ *         // Non-positional settings
+ *         width = 2.0 // Sets the width of the path
+ *
+ *         // Non-positional mapping
+ *         // color("type") {
+ *         //      Inside this block, we would define how "type" is mapped to color,
+ *         //      e.g., providing a color scale if "type" is a categorical variable
+ *         // }
+ *
+ *         // Here, we specify the line type and alpha if needed
+ *         type = LineType.DOTDASH // Example setting, if your DSL allows direct assignments like this
+ *         alpha = 0.6 // Setting the transparency of the path
+ *     }
  * }
  * ```
  */
