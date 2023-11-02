@@ -1,13 +1,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.kdoc
 
 import org.intellij.lang.annotations.Language
-import org.jetbrains.kotlinx.kandy.dsl.continuous
-import org.jetbrains.kotlinx.kandy.dsl.plot
-import org.jetbrains.kotlinx.kandy.letsplot.export.save
 import org.jetbrains.kotlinx.kandy.letsplot.jupyter.KandyLetsPlotJupyterTest
-import org.jetbrains.kotlinx.kandy.letsplot.layers.area
-import org.jetbrains.kotlinx.kandy.util.color.Color
-import org.jetbrains.kotlinx.kandy.util.context.invoke
 import kotlin.test.Test
 
 class AreaTest : KandyLetsPlotJupyterTest() {

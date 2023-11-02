@@ -22,17 +22,6 @@ public fun LayerContextInterface.value(column: ColumnReference<*>): String {
     return "@${datasetHandler.addColumn(column)}"
 }
 
-/*
-*//**
- * Inserts value of given column into formatted string.
- *
- * @param column column whose value will be inserted into the tooltip
- * @return formatted string
- *//*
-public fun LayerContextInterface.value(column: DataColumn<*>): String {
-    return "@${datasetHandler.addColumn(column)}"
-}*/
-
 /**
  * Inserts value of given column into formatted string.
  *
@@ -76,12 +65,12 @@ public fun LayerContextInterface.tooltips(
  * Defines the tooltips format for this layer.
  *
  * Creates a [LayerTooltipsContext]. In this context, you can configure lines of tooltip
- * by using line(..) methods.
+ * by using line(…) methods.
  *
  * @see [LayerTooltipsContext].
  *
- * @param variables list of columns to crete a general multiline tooltip with.
- * Useful for specifying the tooltip content quickly, instead of configuring it via the line(..) methods.
+ * @param variables list of columns to create a general multiline tooltip with.
+ * Useful for specifying the tooltip content quickly, instead of configuring it via the line(…) methods.
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
@@ -113,7 +102,7 @@ public inline fun LayerContextInterface.tooltips(
 /**
  * Defines the tooltips format for this layer.
  *
- * @param variables list of column names to crete a general multiline tooltip with.
+ * @param variables list of column names to create a general multiline tooltip with.
  * @param formats map of columns to format string of its value.
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
@@ -142,7 +131,7 @@ public fun LayerContextInterface.tooltips(
 /**
  * Defines the tooltips format for this layer.
  *
- * @param variables list of columns to crete a general multiline tooltip with.
+ * @param variables list of columns to create a general multiline tooltip with.
  * @param formats map of columns to format string of its value.
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
@@ -175,7 +164,7 @@ public fun LayerContextInterface.tooltips(
 /**
  * Defines the tooltips format for this layer.
  *
- * @param variables list of column names to crete a general multiline tooltip with.
+ * @param variables list of column names to create a general multiline tooltip with.
  * @param formats map of columns to format string of its value.
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.

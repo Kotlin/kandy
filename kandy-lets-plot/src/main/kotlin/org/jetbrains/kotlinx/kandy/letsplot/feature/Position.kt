@@ -29,7 +29,7 @@ public var LayerContextInterface.position: Position
  * [Position.jitterDodge] to control the relative arrangement of elements.
  * TODO grouping
  */
-public sealed class Position private constructor(public val name: String) : LayerFeature {
+public sealed class Position(public val name: String) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
     public companion object {

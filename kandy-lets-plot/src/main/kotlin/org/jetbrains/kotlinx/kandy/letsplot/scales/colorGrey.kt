@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
 
 /**
  * Sequential grey continuous color scale for color aesthetic.
- * The palette is computed using HSV (hue, saturation, value) color model.
+ * The palette is computed using an HSV (hue, saturation, value) color model.
  *
  * @param DomainType type of domain
  * @param paletteRange grey values range (between [0, 1]).
@@ -36,7 +36,7 @@ public inline fun <reified DomainType : Comparable<DomainType>> continuousColorG
 
 /**
  * Sequential grey color continuous scale for color aesthetic.
- * The palette is computed using HSV (hue, saturation, value) color model.
+ * The palette is computed using an HSV (hue, saturation, value) color model.
  *
  * @param DomainType type of domain
  * @param paletteRange grey values range (between [0, 1]).

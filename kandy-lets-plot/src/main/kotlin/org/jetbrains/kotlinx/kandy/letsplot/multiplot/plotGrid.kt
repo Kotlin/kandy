@@ -11,10 +11,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
  *  Combines several plots on one figure, organized in a regular grid.
 
  *  @param plots Collection of plots.
- *          Use Null-value to fill-in empty cells in grid.
+ *          Use Null-value to fill in empty cells in the grid.
  *  @param nCol Number of columns in grid.
  *          If not specified, shows plots horizontally, in one row.
- *  @param widths Relative width of each column of grid, left to right.
+ *  @param widths Relative width of each column of the grid, left to right.
  *  @param heights Relative height of each row of grid, top-down.
  *  @param hspace Cell horizontal spacing in px. Default: 4px.
  *  @param vspace Cell vertical spacing in px. Default: 4px.

@@ -5,12 +5,12 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 import org.jetbrains.kotlinx.kandy.letsplot.feature.CoordFlip
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
-import org.jetbrains.kotlinx.kandy.letsplot.feature.Reversed
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Reversed
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 import org.jetbrains.kotlinx.kandy.letsplot.theme.Flavor
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
 import org.jetbrains.letsPlot.coord.coordFlip
@@ -120,86 +120,6 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
     }
     //return featureBuffer
 }
-
-//internal val palette = listOf(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE)
-/*
-internal fun Gathering.toLayer(): Layer {
-    val dataFrame = data.dataFrame
-    val size = dataFrame.rowsCount()
-    val mappingAesthetics = series.first().settings.keys
-    val xBuffer = mutableListOf<Any?>()
-    val yBuffer = mutableListOf<Any?>()
-    val labelBuffer = mutableListOf<String>()
-    val scaleBuffer = mappingAesthetics.associateWith {
-        mutableListOf<String>() to mutableListOf<Any?>()
-    }
-
-    val xType = series.first().mappings[X]!!.domainType
-    val yType = series.first().mappings[Y]!!.domainType
-
-    series.forEach {series ->
-        xBuffer.addAll(dataFrame[series.mappings[X]!!.columnName()].values())
-        yBuffer.addAll(dataFrame[series.mappings[Y]!!.columnName()].values())
-        labelBuffer.addAll(List(size){series.label})
-        series.settings.forEach { (aes, setting) ->
-            scaleBuffer[aes]!!.let {
-                it.first.add(series.label)
-                it.second.add((setting as NonPositionalSetting<*>).value!!)
-            }
-        }
-    }
-
-
-    val nonPosScales: Map<Aes, Mapping> = if (scaleBuffer.isEmpty()) {
-        mapOf(
-            COLOR to ScaledNonPositionalUnspecifiedMapping<String, Color>(
-            COLOR,
-            "label"<String>().scaled(categorical()),
-            typeOf<String>()
-        ))
-    } else {
-        scaleBuffer.map { (aes, buffer) ->
-            aes to ScaledNonPositionalMapping<String, Any?>(
-                aes,
-                "label"<String>().scaled(
-                    categorical(
-                        buffer.first,
-                        buffer.second
-                    )
-                ),
-                typeOf<String>()
-            )
-        }.toMap()
-    }
-
-    val df = dataFrameOf(
-        "x" to xBuffer,
-        "y" to yBuffer,
-        "label" to labelBuffer
-    )
-    val newData = NamedData(df)
-    return Layer(
-        newData,
-        geom,
-        mapOf(
-            X to ScaledUnspecifiedDefaultPositionalMapping<Any>(
-                X,
-                "x"<Any>().scaled(),
-                xType
-            ),
-            Y to ScaledUnspecifiedDefaultPositionalMapping<Any>(
-                Y,
-                "y"<Any>().scaled(),
-                yType
-            )
-        ) + nonPosScales,
-        globalSettings,
-        mapOf(Position.FEATURE_NAME to position)
-    )
-}
-
-
- */
 
 internal fun Position.wrap(): PosOptions {
     return when (this) {

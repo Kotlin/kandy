@@ -49,7 +49,7 @@ internal fun Mapping.wrapScale(domainType: KType, groupKeys: List<String>?): org
         aes, domainType,
         (parameters as? LetsPlotPositionalMappingParameters<*>)?.axis
             ?: (parameters as? LetsPlotNonPositionalMappingParameters<*, *>)?.legend,
-        groupKeys?.contains(columnID) ?: false
+        groupKeys?.contains(columnID) == true
     )
 }
 
