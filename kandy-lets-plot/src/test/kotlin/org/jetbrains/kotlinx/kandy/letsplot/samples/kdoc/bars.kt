@@ -1,12 +1,10 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.kdoc
 
-import org.intellij.lang.annotations.Language
 import org.jetbrains.kotlinx.kandy.letsplot.jupyter.KandyLetsPlotJupyterTest
 import kotlin.test.Test
 
 class BarsTest : KandyLetsPlotJupyterTest() {
 
-    @Language("kts")
     private val plotBars = """
         plot {
             bars {
@@ -40,7 +38,6 @@ class BarsTest : KandyLetsPlotJupyterTest() {
     fun `bars output in jupyter`() = assertOutput(exec(plotBars))
 
 
-    @Language("kts")
     private val plotBarsH = """
         plot {
             barsH {

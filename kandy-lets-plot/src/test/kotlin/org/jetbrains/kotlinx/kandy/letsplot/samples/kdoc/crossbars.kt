@@ -1,12 +1,10 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.kdoc
 
-import org.intellij.lang.annotations.Language
 import org.jetbrains.kotlinx.kandy.letsplot.jupyter.KandyLetsPlotJupyterTest
 import kotlin.test.Test
 
 class CrossBarsTest : KandyLetsPlotJupyterTest() {
 
-    @Language("kts")
     private val plotCrossBars = """
         plot {
             crossBars {

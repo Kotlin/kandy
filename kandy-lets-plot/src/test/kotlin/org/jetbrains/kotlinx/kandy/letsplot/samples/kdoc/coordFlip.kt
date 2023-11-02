@@ -1,12 +1,10 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.kdoc
 
-import org.intellij.lang.annotations.Language
 import org.jetbrains.kotlinx.kandy.letsplot.jupyter.KandyLetsPlotJupyterTest
 import kotlin.test.Test
 
 class CoordFlipTest : KandyLetsPlotJupyterTest() {
 
-    @Language("kts")
     private val plotCoordFlip = """
             plot {
                 bars {
