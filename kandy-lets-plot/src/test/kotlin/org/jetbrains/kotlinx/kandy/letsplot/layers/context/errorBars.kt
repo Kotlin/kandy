@@ -23,7 +23,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class ErrorBarTests {
+class ErrorBarsTests {
     private val xAxis = listOf(0.5).toColumn("xAxis")
     private val yMin = listOf(5).toColumn("yMin")
     private val yMax = listOf(35).toColumn("yMax")
@@ -54,110 +54,110 @@ class ErrorBarTests {
     }
 
     @Test
-    fun `border type const for errorbar`() {
+    fun `border type const for errorBars`() {
         context.borderLine.type = LineType.DOTDASH
         assertEquals(LineType.DOTDASH, (context.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `border type str mapping for errorbar`() {
+    fun `border type str mapping for errorBars`() {
         context.borderLine.type("type")
         assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border type dataColumn mapping for errorbar`() {
+    fun `border type dataColumn mapping for errorBars`() {
         context.borderLine.type(type)
         assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border type iterable mapping for errorbar`() {
+    fun `border type iterable mapping for errorBars`() {
         context.borderLine.type(listOf("dot"))
         assertEquals("linetype", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border width const for errorbar`() {
+    fun `border width const for errorBars`() {
         context.borderLine.width = .5
         assertEquals(.5, (context.bindingCollector.settings[SIZE] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `border width str mapping for errorbar`() {
+    fun `border width str mapping for errorBars`() {
         context.borderLine.width("width")
         assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border width dataColumn mapping for errorbar`() {
+    fun `border width dataColumn mapping for errorBars`() {
         context.borderLine.width(width)
         assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border width iterable mapping for errorbar`() {
+    fun `border width iterable mapping for errorBars`() {
         context.borderLine.width(listOf(0.2, .1))
         assertEquals("size", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha const for errorbar`() {
+    fun `alpha const for errorBars`() {
         context.alpha = 0.1
         assertEquals(0.1, (context.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `alpha str mapping for errorbar`() {
+    fun `alpha str mapping for errorBars`() {
         context.alpha("alpha")
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha dataColumn mapping for errorbar`() {
+    fun `alpha dataColumn mapping for errorBars`() {
         context.alpha(alpha)
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha iterable mapping for errorbar`() {
+    fun `alpha iterable mapping for errorBars`() {
         context.alpha(listOf(0.2, 0.5, .1))
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `width const for errorbar`() {
+    fun `width const for errorBars`() {
         context.width = .5
         assertEquals(.5, (context.bindingCollector.settings[WIDTH] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `width str mapping for errorbar`() {
+    fun `width str mapping for errorBars`() {
         context.width("width")
         assertEquals("width", (context.bindingCollector.mappings[WIDTH] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `width dataColumn mapping for errorbar`() {
+    fun `width dataColumn mapping for errorBars`() {
         context.width(width)
         assertEquals("width", (context.bindingCollector.mappings[WIDTH] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `width iterable mapping for errorbar`() {
+    fun `width iterable mapping for errorBars`() {
         context.width(listOf(0.2, .1))
         assertEquals("width", (context.bindingCollector.mappings[WIDTH] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `x const for errorbar`() {
+    fun `x const for errorBars`() {
         context.x.constant(5.0)
         assertEquals(X, (context.bindingCollector.settings[X] as PositionalSetting<*>).aes)
         assertEquals(5.0, (context.bindingCollector.settings[X] as PositionalSetting<*>).value)
     }
 
     @Test
-    fun `x for errorbar`() {
+    fun `x for errorBars`() {
         context.x(xAxis) {
             axis {
                 name = "x axis"
@@ -172,14 +172,14 @@ class ErrorBarTests {
     }
 
     @Test
-    fun `yMin for errorbar`() {
+    fun `yMin for errorBars`() {
         context.yMin(yMin)
         assertEquals(Y_MIN, context.bindingCollector.mappings[Y_MIN]?.aes)
         assertEquals("yMin", context.bindingCollector.mappings[Y_MIN]?.columnID)
     }
 
     @Test
-    fun `yMax for errorbar`() {
+    fun `yMax for errorBars`() {
         context.yMax(yMax)
         assertEquals(Y_MAX, context.bindingCollector.mappings[Y_MAX]?.aes)
         assertEquals("yMax", context.bindingCollector.mappings[Y_MAX]?.columnID)
