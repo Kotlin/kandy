@@ -5,12 +5,12 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarContext
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarsContext
 
 
-// todo rename to cross bars
 /**
- * Adds a new `crossBar` layer to the plot.
+ * Adds a new `crossBars` layer to the plot.
  *
  * The `crossBar` layer displays the distribution of a dataset by marking the minimum, median, and maximum values.
  *
@@ -36,7 +36,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarContext
  *
  * ```kotlin
  * plot {
- *     crossBar {
+ *     crossBars {
  *         // Positional mapping
  *         x(listOf("A", "B", "C", "D"))
  *         yMin(listOf(10.0, 15.0, 5.0, 20.0))
@@ -68,6 +68,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.crossBar(block: CrossBarContext.() -> Unit) {
-    addLayer(CrossBarContext(this).apply(block))
+public inline fun LayerCollectorContext.crossBars(block: CrossBarsContext.() -> Unit) {
+    addLayer(CrossBarsContext(this).apply {
+        position = Position.dodge()
+    }.apply(block))
 }

@@ -5,11 +5,11 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.LineRangeContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.SegmentsContext
 
 
 /**
- * Adds a new line-range layer.
+ * Adds a new segments layer.
  *
  * Creates a context in which you can configure layer. Within it, you can set mappings and settings
  * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
@@ -20,37 +20,36 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.LineRangeContext
  * Setting for positional attributes can be performed with `.constant()` method of special property with
  * the same name as the attribute.
  *
- * Line-range aesthetics:
- * * `x`
- * * `yMin`
- * * `yMax`
+ * Segments aesthetics:
+ * * `xBegin`
+ * * `xEnd`
+ * * `yBegin`
+ * * `yEnd`
+ * * `color`
  * * `alpha`
- * * `borderLine.color`
- * * `borderLine.width`
- * * `borderLine.type`
+ * * `width`
+ * * `lineType`
  *
  * Example:
  *
  * ```
- * lineRange {
+ * segments {
  *    // positional mapping
- *    x(time) {
+ *    xBegin(startTime) {
  *       ... // some mapping parameters
  *    }
- *    yMax.constant(100.0)
- *    // even though the line-range bars have no "y" attribute we can adjust the `Y` axis
+ *    yEnd.constant(100.0)
+ *    // even though the segment has no "y" attribute we can adjust the `Y` axis
  *    y.limits = 0.0 .. 110.0
  *
- *    // non-positional settings
- *    alpha = 0.9
- *    borderLine.width = 2.5
+ *    // non-positional setting
+ *    width = 2.5
  *    // non-positional mapping
- *    borderLine {
- *       color("capacity")
- *    }
+ *    color("density")
+ *
  * }
  * ```
  */
-public inline fun LayerCollectorContext.lineRange(block: LineRangeContext.() -> Unit) {
-    addLayer(LineRangeContext(this).apply(block))
+public inline fun LayerCollectorContext.segments(block: SegmentsContext.() -> Unit) {
+    addLayer(SegmentsContext(this).apply(block))
 }

@@ -34,11 +34,11 @@ class TileTests {
     private val df = dataFrameOf(xAxis, yAxis, alpha, color, width, height)
 
     private val parentContext = DataFramePlotContext(df)
-    private lateinit var context: TileContext
+    private lateinit var context: TilesContext
 
     @BeforeTest
     fun setUp() {
-        context = TileContext(parentContext)
+        context = TilesContext(parentContext)
     }
 
     @Test

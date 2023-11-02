@@ -5,11 +5,11 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TileContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TilesContext
 
 
 /**
- * Adds a new tile layer.
+ * Adds a new tiles layer.
  *
  * Creates a context in which you can configure layer. Within it, you can set mappings and settings
  * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
@@ -20,7 +20,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TileContext
  * Setting for positional attributes can be performed with `.constant()` method of special property with
  * the same name as the attribute.
  *
- * Tile aesthetics:
+ * Tiles aesthetics:
  * * `x`
  * * `y`
  * * `fillColor`
@@ -34,7 +34,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TileContext
  * Example:
  *
  * ```
- * tile {
+ * tiles {
  *    // positional mapping
  *    x(waiting) {
  *       ... // some mapping parameters
@@ -52,6 +52,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TileContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.tile(block: TileContext.() -> Unit) {
-    addLayer(TileContext(this).apply(block))
+public inline fun LayerCollectorContext.tiles(block: TilesContext.() -> Unit) {
+    addLayer(TilesContext(this).apply(block))
 }

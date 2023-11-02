@@ -5,11 +5,13 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointRangeContext
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.position
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointsRangeContext
 
 
 /**
- * Adds a new point-range layer.
+ * Adds a new point-ranges layer.
  *
  * Creates a context in which you can configure layer. Within it, you can set mappings and settings
  * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
@@ -20,7 +22,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointRangeContext
  * Setting for positional attributes can be performed with `.constant()` method of special property with
  * the same name as the attribute.
  *
- * Point-range aesthetics:
+ * Point-ranges aesthetics:
  * * `x`
  * * `y`
  * * `yMin`
@@ -37,7 +39,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointRangeContext
  * Example:
  *
  * ```
- * pointRange {
+ * pointRanges {
  *    // positional mapping
  *    x(time) {
  *       ... // some mapping parameters
@@ -54,6 +56,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointRangeContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.pointRange(block: PointRangeContext.() -> Unit) {
-    addLayer(PointRangeContext(this).apply(block))
+public inline fun LayerCollectorContext.pointRanges(block: PointsRangeContext.() -> Unit) {
+    addLayer(PointsRangeContext(this).apply {
+        position = Position.dodge()
+    }.apply(block))
 }

@@ -23,11 +23,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.CROSS_BAR
  * This interface provides various aesthetics like `x`, `yMin`, `yMax`, `middle`, `fatten`, `width`,
  * `fillColor`, `alpha`, and `y` to enable full customization.
  *
- * Required aesthetics for CrossBar are `X`, `Y_MIN`, `Y_MAX`, and `MIDDLE`.
+ * Required aesthetics for CrossBar are `X`, `Y`, `Y_MIN`, `Y_MAX`.
  */
-public interface CrossBarInterface : LayerContextInterface, WithX, WithYMin,
-    WithYMax, WithMiddle,
-    WithFatten, WithWidth, WithFillColor, WithAlpha, WithYFree {
+public interface CrossBarsInterface: LayerContextInterface, WithBorderLine, WithX, WithY, WithYMin, WithYMax,
+    WithFatten, WithWidth, WithFillColor, WithAlpha {
 
     /**
      * Gets the Geom object specific to **crossBars** layers.
@@ -43,15 +42,15 @@ public interface CrossBarInterface : LayerContextInterface, WithX, WithYMin,
      * @return the set of required aesthetics.
      */
     override val requiredAes: Set<Aes>
-        get() = setOf(X, Y_MIN, Y_MAX, MIDDLE)
+        get() = setOf(X, Y, Y_MIN, Y_MAX)
 }
 
 /**
  * Context class for managing CrossBar layers.
  *
  * This class provides the context in which CrossBar layers can be configured.
- * It inherits from [LayerWithBorderLineContext] and implements the [CrossBarInterface].
+ * It inherits from [LayerWithBorderLineContext] and implements the [CrossBarsInterface].
  *
  * @param parent the parent context for the layer.
  */
-public open class CrossBarContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), CrossBarInterface
+public open class CrossBarsContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), CrossBarsInterface

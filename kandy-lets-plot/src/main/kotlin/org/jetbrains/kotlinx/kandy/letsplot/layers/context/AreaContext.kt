@@ -25,7 +25,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.AREA
  *
  * Required aesthetics for Area are `X` and `Y`.
  */
-public interface AreaInterface : LayerContextInterface, WithX, WithY, WithAlpha,
+public interface AreaInterface : LayerContextInterface, WithBorderLine, WithX, WithY, WithAlpha,
     WithFillColor {
 
     /**

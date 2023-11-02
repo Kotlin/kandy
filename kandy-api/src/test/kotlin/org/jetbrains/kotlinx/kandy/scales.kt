@@ -215,7 +215,7 @@ class ScaleTest {
         val domain = listOf("A", "B", "C")
 
         val firstScale = CommonNonPositionalMappingParameters<String, Int>().categorical(range, domain)
-        val secondScale = Scale.categorical<String, Int>(range, domain)
+        val secondScale = Scale.categorical<Int, String>(range, domain)
         val expectedScale = NonPositionalCategoricalScale(domain, range)
 
         assertEquals(expectedScale, firstScale)
@@ -227,7 +227,7 @@ class ScaleTest {
         val domain = listOf("A", "B", "C")
 
         val firstScale = CommonNonPositionalMappingParameters<String, Int>().categorical(domain = domain)
-        val secondScale = Scale.categorical<String, Int>(domain = domain)
+        val secondScale = Scale.categorical<Int, String>(domain = domain)
         val expectedScale = NonPositionalCategoricalScale<String, Int>(domain, null)
 
         assertEquals(expectedScale, firstScale)
@@ -239,7 +239,7 @@ class ScaleTest {
         val range = listOf(1, 2, 3)
 
         val firstScale = CommonNonPositionalMappingParameters<String, Int>().categorical(range = range)
-        val secondScale = Scale.categorical<String, Int>(range = range)
+        val secondScale = Scale.categorical<Int, String>(range = range)
         val expectedScale = NonPositionalCategoricalScale<String, Int>(null, range)
 
         assertEquals(expectedScale, firstScale)

@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LINE_RANGE
 
-public interface LineRangeInterface: LayerContextInterface, WithX, WithYMin,
+public interface LineRangesInterface: LayerContextInterface, WithBorderLine, WithX, WithYMin,
     WithYMax, WithAlpha, WithYFree {
     override val geom: Geom
         get() = LINE_RANGE
@@ -22,5 +22,5 @@ public interface LineRangeInterface: LayerContextInterface, WithX, WithYMin,
         get() = setOf(X, Y_MIN, Y_MAX)
 }
 
-public open class LineRangeContext(parent: LayerCollectorContext)
-    : LayerWithBorderLineContext(parent), LineRangeInterface
+public open class LineRangesContext(parent: LayerCollectorContext)
+    : LayerWithBorderLineContext(parent), LineRangesInterface

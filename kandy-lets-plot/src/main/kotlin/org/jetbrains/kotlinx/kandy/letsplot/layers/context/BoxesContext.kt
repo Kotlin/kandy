@@ -13,22 +13,22 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BOXPLOT
 
 /**
- * Interface defining the necessary aesthetics and methods for Boxplot layers.
+ * Interface defining the necessary aesthetics and methods for Boxes layers.
  *
- * Boxplot are often used to represent the distribution and spread of a dataset.
+ * Boxes are often used to represent the distribution and spread of a dataset.
  * This interface provides various aesthetics like `x`, `alpha`, `fillColor`, `width`,
  * `lower`, `upper`, `middle`, `yMin`, `yMax`, and `fatten` for full customization of the boxplot.
  *
  * Required aesthetics for Boxplot are `X`, `LOWER`, `UPPER`, `MIDDLE`, `Y_MIN`, and `Y_MAX`.
  */
-public interface BoxplotInterface : LayerContextInterface, WithX, WithAlpha,
+public interface BoxesInterface : LayerContextInterface, WithBorderLine, WithX, WithAlpha,
     WithFillColor, WithWidth,
     WithLower, WithUpper, WithMiddle, WithYMin, WithYMax, WithFatten, WithYFree {
 
     /**
      * Gets the Geom object specific to **boxplot** layers.
      *
-     * @return the [Geom] object for **boxplot**.
+     * @return the [Geom] object for **boxes**.
      */
     override val geom: Geom
         get() = BOXPLOT
@@ -50,4 +50,4 @@ public interface BoxplotInterface : LayerContextInterface, WithX, WithAlpha,
  *
  * @param parent the parent context for the layer.
  */
-public open class BoxplotContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), BoxplotInterface
+public open class BoxesContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), BoxesInterface

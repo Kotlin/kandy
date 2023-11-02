@@ -15,7 +15,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RECT
 
-public interface RectInterface: LayerContextInterface, WithXMin, WithXMax,
+public interface RectanglesInterface: LayerContextInterface, WithBorderLine, WithXMin, WithXMax,
     WithYMin, WithYMax,
     WithFillColor, WithAlpha, WithXFree, WithYFree {
     override val geom: Geom
@@ -24,4 +24,4 @@ public interface RectInterface: LayerContextInterface, WithXMin, WithXMax,
         get() = setOf(X_MIN, X_MAX, Y_MIN, Y_MAX)
 }
 
-public open class RectContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), RectInterface
+public open class RectanglesContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), RectanglesInterface

@@ -307,7 +307,7 @@ public fun <DomainType, RangeType> Scale.Companion.continuous(
  * @param domain [List] defining the scale domain.
  * @return new [NonPositionalCategoricalScale] with given domain and range.
  */
-public inline fun <reified DomainType, reified RangeType> NonPositionalMappingParameters<DomainType, RangeType>.categorical(
+public inline fun <reified RangeType, reified DomainType> NonPositionalMappingParameters<DomainType, RangeType>.categorical(
     range: List<RangeType>? = null,
     domain: List<DomainType>? = null,
 ): NonPositionalCategoricalScale<DomainType, RangeType> =
@@ -322,7 +322,7 @@ public inline fun <reified DomainType, reified RangeType> NonPositionalMappingPa
  * @param domain [List] defining the scale domain.
  * @return new [NonPositionalCategoricalScale] with given domain and range.
  */
-public inline fun <reified DomainType, reified RangeType> Scale.Companion.categorical(
+public inline fun <reified RangeType, reified DomainType> Scale.Companion.categorical(
     range: List<RangeType>? = null,
     domain: List<DomainType>? = null,
 ): NonPositionalCategoricalScale<DomainType, RangeType> =

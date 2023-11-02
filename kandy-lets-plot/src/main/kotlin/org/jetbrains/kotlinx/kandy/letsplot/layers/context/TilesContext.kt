@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.TILE
 
-public interface TileInterface: LayerContextInterface, WithX, WithY, WithAlpha,
+public interface TilesInterface: LayerContextInterface, WithBorderLine, WithX, WithY, WithAlpha,
     WithFillColor, WithWidth, WithHeight {
     override val geom: Geom
         get() = TILE
@@ -21,4 +21,4 @@ public interface TileInterface: LayerContextInterface, WithX, WithY, WithAlpha,
         get() = setOf(X, Y)
 }
 
-public open class TileContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), TileInterface
+public open class TilesContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), TilesInterface

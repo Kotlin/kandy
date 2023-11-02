@@ -8,12 +8,12 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.position
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxplotContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxesContext
 
 /**
- * Adds a new `boxplot` layer to the plot.
+ * Adds a new `boxes` layer to the plot.
  *
- * The `boxplot` layer visualizes the distribution of a dataset through its quartiles.
+ * The `boxes` layer visualizes the distribution of a dataset through its quartiles.
  * It provides a useful representation of the data's spread and skewness.
  *
  * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
@@ -40,7 +40,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxplotContext
  *
  * ```kotlin
  * plot {
- *     boxplot {
+ *     boxes {
  *         // Positional mapping
  *         x(listOf("A", "B", "C", "D"))
  *         yMin(listOf(10, 20, 5, 12))
@@ -65,12 +65,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxplotContext
  * }
  * ```
  */
-@Suppress("invisible_reference")
-public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
-    // todo letsplot fix
-    addLayer(BoxplotContext(this).apply {
+public inline fun LayerCollectorContext.boxes(block: BoxesContext.() -> Unit) {
+    addLayer(BoxesContext(this).apply {
         position = Position.dodge()
-    }.apply(block).apply {
-        addPositionalMapping(Y, List(datasetHandler.rowsCount()) { null }, null, null)
-    })
+    }.apply(block))
 }

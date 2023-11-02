@@ -22,7 +22,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BAR
  *
  * Required aesthetics for Bars are `X` and `Y`.
  */
-public interface BarsContextInterface : LayerContextInterface, WithBorderLineContext, WithX, WithY,
+public interface BarsContextInterface : LayerContextInterface, WithBorderLine, WithX, WithY,
     WithAlpha, WithFillColor, WithWidth {
 
     /**
