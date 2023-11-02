@@ -8,48 +8,59 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RectanglesContext
 
 /**
- * Adds a new rectangles layer.
+ * Adds a new `rectangles` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `rectangles` layer is used for drawing rectangles on the plot, often used to mark areas or ranges.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Rectangles aesthetics:
- * * `xMin`
- * * `xMax`
- * * `yMin`
- * * `yMax`
- * * `fillColor`
- * * `alpha`
- * * `borderLine.color`
- * * `borderLine.width`
- * * `borderLine.type`
+ * ## Rectangle Aesthetics
+ * * **`xMin`** - The minimum X-coordinate specifying one corner of the rectangle.
+ * * **`xMax`** - The maximum X-coordinate specifying the opposite corner of the rectangle.
+ * * **`yMin`** - The minimum Y-coordinate specifying one corner of the rectangle.
+ * * **`yMax`** - The maximum Y-coordinate specifying the opposite corner of the rectangle.
+ * * **`fillColor`** - The fill color of the rectangle.
+ * * **`alpha`** - The transparency of the rectangle.
+ * * **`borderLine.color`** - Color of the rectangle's borderline.
+ * * **`borderLine.width`** - Width of the rectangle's borderline.
+ * * **`borderLine.type`** - Type of the rectangle's borderline, such as dashed or dotted.
  *
- * Example:
+ * ## Example Usage
  *
- * ```
- * rectangles {
- *    // positional mapping
- *    xMin(startTime) {
- *       ... // some mapping parameters
- *    }
- *    yMax.constant(100.0)
- *    // even though the rect has no "y" attribute we can adjust the `Y` axis
- *    y.limits = 0.0 .. 110.0
+ * ```kotlin
+ * val startTime by columnOf(1, 2, 3)
+ * val endTime by columnOf(2, 3.5, 4)
+ * val startCnt by columnOf(5.1, 2.3, 3.7)
+ * val endCnt by columnOf(5.3, 2.4, 4.3)
+ * val event by columnOf("Event A", "Event B", "Event C")
  *
- *    // non-positional settings
- *    borderLine.width = 2.5
- *    borderLine {
- *       color = Color.BLACK
- *    }
- *    // non-positional mapping
- *    fillColor("density")
+ * val data = dataFrameOf(event, startTime, endTime, startCnt, endCnt)
  *
+ * // Now, let's visualize the duration of each event as a rectangle.
+ * data.plot {
+ *     rectangles {
+ *         // Map the start and end times to the X-axis to create the rectangles
+ *         xMin(startTime)
+ *         xMax(endTime)
+ *         // Map the start and end counts to the Y-axis
+ *         yMin(startCnt)
+ *         yMax(endCnt)
+ *
+ *         // Set the fill color based on the event
+ *         fillColor(event) {
+ *             // Additional scale parameters can be set here if needed
+ *         }
+ *
+ *         // Set transparency and border properties for the rectangles
+ *         alpha = 0.7
+ *         borderLine {
+ *             color = Color.GREY
+ *             width = 1.0
+ *         }
+ *     }
  * }
  * ```
  */
