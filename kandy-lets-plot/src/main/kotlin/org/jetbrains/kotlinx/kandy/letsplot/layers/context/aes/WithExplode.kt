@@ -25,9 +25,7 @@ public interface WithExplode : BindingContext {
      * @param column the data column to be mapped.
      * @return a [PositionalMapping] object representing the mapping.
      */
-    public fun <T> explode(
-        column: ColumnReference<T>,
-    ): PositionalMapping<T> {
+    public fun <T> explode(column: ColumnReference<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(EXPLODE, column.name(), null)
     }
 
@@ -37,9 +35,7 @@ public interface WithExplode : BindingContext {
      * @param column the data column to be mapped.
      * @return a [PositionalMapping] object representing the mapping.
      */
-    public fun <T> explode(
-        column: KProperty<T>,
-    ): PositionalMapping<T> {
+    public fun <T> explode(column: KProperty<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(EXPLODE, column.name, null)
     }
 
@@ -49,9 +45,7 @@ public interface WithExplode : BindingContext {
      * @param column the data column to be mapped.
      * @return a [PositionalMapping] object representing the mapping.
      */
-    public fun explode(
-        column: String,
-    ): PositionalMapping<Any?> {
+    public fun explode(column: String): PositionalMapping<Any?> {
         return addPositionalMapping<Any?>(EXPLODE, column, null)
     }
 
@@ -61,9 +55,7 @@ public interface WithExplode : BindingContext {
      * @param values The iterable of values to be mapped.
      * @return A [PositionalMapping] object representing the mapping.
      */
-    public fun <T> explode(
-        values: Iterable<T>,
-    ): PositionalMapping<T> {
+    public fun <T> explode(values: Iterable<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(EXPLODE, values.toList(), null, null)
     }
 
@@ -73,9 +65,7 @@ public interface WithExplode : BindingContext {
      * @param values the data column to be mapped.
      * @return a [PositionalMapping] object representing the mapping.
      */
-    public fun <T> explode(
-        values: DataColumn<T>,
-    ): PositionalMapping<T> {
+    public fun <T> explode(values: DataColumn<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(EXPLODE, values, null)
     }
 }
