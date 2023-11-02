@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.settings
 /**
  * Type of line.
  */
-public data class LineType internal constructor(public val description: String, public val codeNumber: Int) {
+public data class LineType internal constructor(val description: String, val codeNumber: Int) {
     public companion object {
         public val BLANK: LineType = LineType("blank", 0)
         public val SOLID: LineType = LineType("solid", 1)
