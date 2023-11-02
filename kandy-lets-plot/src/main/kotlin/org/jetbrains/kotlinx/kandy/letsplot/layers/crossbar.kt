@@ -10,50 +10,61 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarContext
 
 // todo rename to cross bars
 /**
- * Adds a new crossbars layer.
+ * Adds a new `crossBar` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `crossBar` layer displays the distribution of a dataset by marking the minimum, median, and maximum values.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Crossbar aesthetics:
- * * `x`
- * * `yMin`
- * * `middle`
- * * `yMax`
- * * `fillColor`
- * * `alpha`
- * * `width`
- * * `fatten`
- * * `borderLine.color`
- * * `borderLine.width`
- * * `borderLine.type`
+ * ## CrossBar Aesthetics
+ * * **`x`** - The X-coordinate specifying the categories.
+ * * **`yMin`** - The minimum value for the Y-coordinate.
+ * * **`middle`** - The median value for the Y-coordinate.
+ * * **`yMax`** - The maximum value for the Y-coordinate.
+ * * **`fillColor`** - The fill color of the crossbars.
+ * * **`alpha`** - The transparency of the crossbars.
+ * * **`width`** - The width of the crossbars.
+ * * **`fatten`** - The factor by which to "fatten" the width of the bars.
+ * * **`borderLine.color`** - Color of the crossbars' borderline.
+ * * **`borderLine.width`** - Width of the crossbars' borderline.
+ * * **`borderLine.type`** - Type of the crossbars' borderline, such as dashed or dotted.
  *
- * Example:
+ * ## Example
  *
- * ```
- * crossBar {
- *    // positional mapping
- *    x(time) {
- *       ... // some mapping parameters
- *    }
- *    yMax.constant(100.0)
- *    // even though the crossbars have no "y" attribute we can adjust the `Y` axis
- *    y.limits = 0.0 .. 110.0
+ * ```kotlin
+ * plot {
+ *     crossBar {
+ *         // Positional mapping
+ *         x(listOf("A", "B", "C", "D"))
+ *         yMin(listOf(10.0, 15.0, 5.0, 20.0))
+ *         middle(listOf(25.0, 30.0, 22.0, 35.0))
+ *         yMax(listOf(40.0, 35.0, 30.0, 50.0))
  *
- *    // non-positional settings
- *    fatten = 3.5
- *    borderLine.width = 2.5
- *    borderLine {
- *       color = Color.BLACK
- *    }
- *    // non-positional mapping
- *    fillColor("type")
+ *         // Adjust the Y-axis
+ *         y.limits = 0.0..55.0
+ *
+ *         // Non-positional settings
+ *         fatten = 1.2
+ *         width = 0.6
+ *
+ *         // BorderLine settings
+ *         borderLine {
+ *             color = Color.BLACK
+ *             width = 1.5
+ *             type = LineType.SOLID
+ *         }
+ *
+ *         // Non-positional mapping
+ *         fillColor(listOf("red", "green", "blue", "yellow")) {
+ *             scale = categorical(
+ *                 "red" to Color.RED, "green" to Color.GREEN,
+ *                 "blue" to Color.BLUE, "yellow" to Color.YELLOW
+ *             )
+ *         }
+ *     }
  * }
  * ```
  */
