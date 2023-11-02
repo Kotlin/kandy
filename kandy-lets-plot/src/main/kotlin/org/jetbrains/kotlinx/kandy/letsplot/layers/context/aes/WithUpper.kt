@@ -12,10 +12,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.UPPER
 import kotlin.reflect.KProperty
 
 /**
- * Interface for managing the `upper` aesthetic in a boxplot.
+ * Interface for managing the `upper` aesthetic in boxes.
  *
  * The `upper` aesthetic represents the upper quartile of the data,
- * often displayed as the top edge of the box in a boxplot.
+ * often displayed as the top edge of the box in boxes.
  *
  * This interface allows you to specify the upper quartile as a constant,
  * map it to a column, or provide iterable of values.

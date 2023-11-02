@@ -9,11 +9,11 @@ class CrossBarsTest : KandyLetsPlotJupyterTest() {
     @Language("kts")
     private val plotCrossBars = """
         plot {
-            crossBar {
+            crossBars {
                 // Positional mapping
                 x(listOf("A", "B", "C", "D"))
+                y(listOf(25.0, 30.0, 22.0, 35.0))
                 yMin(listOf(10.0, 15.0, 5.0, 20.0))
-                middle(listOf(25.0, 30.0, 22.0, 35.0))
                 yMax(listOf(40.0, 35.0, 30.0, 50.0))
 
                 // Adjust the Y-axis
@@ -40,6 +40,7 @@ class CrossBarsTest : KandyLetsPlotJupyterTest() {
             }
         }
         """.trimIndent()
+
 
     @Test
     fun `compilation of crossBars in jupyter`() = plotCrossBars.checkCompilation()

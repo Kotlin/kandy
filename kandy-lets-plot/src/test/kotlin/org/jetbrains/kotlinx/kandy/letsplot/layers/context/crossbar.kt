@@ -14,7 +14,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.ALPHA
 import org.jetbrains.kotlinx.kandy.letsplot.internal.FATTEN
 import org.jetbrains.kotlinx.kandy.letsplot.internal.FILL
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LINE_TYPE
-import org.jetbrains.kotlinx.kandy.letsplot.internal.MIDDLE
 import org.jetbrains.kotlinx.kandy.letsplot.internal.SIZE
 import org.jetbrains.kotlinx.kandy.letsplot.internal.WIDTH
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
@@ -64,134 +63,134 @@ class CrossbarTests {
     }
 
     @Test
-    fun `fillColor const for crossbar`() {
+    fun `fillColor const for crossbars`() {
         context.fillColor = Color.BLUE
         assertEquals(Color.BLUE, (context.bindingCollector.settings[FILL] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `fillColor str mapping for crossbar`() {
+    fun `fillColor str mapping for crossbars`() {
         context.fillColor("color")
         assertEquals("color", (context.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `fillColor dataColumn mapping for crossbar`() {
+    fun `fillColor dataColumn mapping for crossbars`() {
         context.fillColor(color)
         assertEquals("color", (context.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `fillColor iterable mapping for crossbar`() {
+    fun `fillColor iterable mapping for crossbars`() {
         context.fillColor(listOf("red"))
         assertEquals("fill", (context.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border type const for crossbar`() {
+    fun `border type const for crossbars`() {
         context.borderLine.type = LineType.DOTDASH
         assertEquals(LineType.DOTDASH, (context.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `border type str mapping for crossbar`() {
+    fun `border type str mapping for crossbars`() {
         context.borderLine.type("type")
         assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border type dataColumn mapping for crossbar`() {
+    fun `border type dataColumn mapping for crossbars`() {
         context.borderLine.type(type)
         assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border type iterable mapping for crossbar`() {
+    fun `border type iterable mapping for crossbars`() {
         context.borderLine.type(listOf("dot"))
         assertEquals("linetype", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border width const for crossbar`() {
+    fun `border width const for crossbars`() {
         context.borderLine.width = .5
         assertEquals(.5, (context.bindingCollector.settings[SIZE] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `border width str mapping for crossbar`() {
+    fun `border width str mapping for crossbars`() {
         context.borderLine.width("width")
         assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border width dataColumn mapping for crossbar`() {
+    fun `border width dataColumn mapping for crossbars`() {
         context.borderLine.width(width)
         assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border width iterable mapping for crossbar`() {
+    fun `border width iterable mapping for crossbars`() {
         context.borderLine.width(listOf(0.2, .1))
         assertEquals("size", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha const for crossbar`() {
+    fun `alpha const for crossbars`() {
         context.alpha = 0.1
         assertEquals(0.1, (context.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `alpha str mapping for crossbar`() {
+    fun `alpha str mapping for crossbars`() {
         context.alpha("alpha")
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha dataColumn mapping for crossbar`() {
+    fun `alpha dataColumn mapping for crossbars`() {
         context.alpha(alpha)
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha iterable mapping for crossbar`() {
+    fun `alpha iterable mapping for crossbars`() {
         context.alpha(listOf(0.2, 0.5, .1))
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `width const for crossbar`() {
+    fun `width const for crossbars`() {
         context.width = .5
         assertEquals(.5, (context.bindingCollector.settings[WIDTH] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `width str mapping for crossbar`() {
+    fun `width str mapping for crossbars`() {
         context.width("width")
         assertEquals("width", (context.bindingCollector.mappings[WIDTH] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `width dataColumn mapping for crossbar`() {
+    fun `width dataColumn mapping for crossbars`() {
         context.width(width)
         assertEquals("width", (context.bindingCollector.mappings[WIDTH] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `width iterable mapping for crossbar`() {
+    fun `width iterable mapping for crossbars`() {
         context.width(listOf(0.2, .1))
         assertEquals("width", (context.bindingCollector.mappings[WIDTH] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `x const for crossbar`() {
+    fun `x const for crossbars`() {
         context.x.constant(5.0)
         assertEquals(X, (context.bindingCollector.settings[X] as PositionalSetting<*>).aes)
         assertEquals(5.0, (context.bindingCollector.settings[X] as PositionalSetting<*>).value)
     }
 
     @Test
-    fun `x for crossbar`() {
+    fun `x for crossbars`() {
         context.x(xAxis) {
             axis {
                 name = "x axis"
@@ -206,28 +205,28 @@ class CrossbarTests {
     }
 
     @Test
-    fun `middle for crossbar`() {
+    fun `middle for crossbars`() {
         context.y(y)
         assertEquals(Y, context.bindingCollector.mappings[Y]?.aes)
         assertEquals("y", context.bindingCollector.mappings[Y]?.columnID)
     }
 
     @Test
-    fun `yMin for crossbar`() {
+    fun `yMin for crossbars`() {
         context.yMin(yMin)
         assertEquals(Y_MIN, context.bindingCollector.mappings[Y_MIN]?.aes)
         assertEquals("yMin", context.bindingCollector.mappings[Y_MIN]?.columnID)
     }
 
     @Test
-    fun `yMax for crossbar`() {
+    fun `yMax for crossbars`() {
         context.yMax(yMax)
         assertEquals(Y_MAX, context.bindingCollector.mappings[Y_MAX]?.aes)
         assertEquals("yMax", context.bindingCollector.mappings[Y_MAX]?.columnID)
     }
 
     @Test
-    fun `fatten for crossbar`() {
+    fun `fatten for crossbars`() {
         context.fatten = fatten.first()
         assertEquals(FATTEN, (context.bindingCollector.settings[FATTEN] as NonPositionalSetting<*>).aes)
         assertEquals(1.5, (context.bindingCollector.settings[FATTEN] as NonPositionalSetting<*>).value)

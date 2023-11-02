@@ -6,65 +6,54 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.position
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.CrossBarsContext
 
 
 /**
- * Adds a new `crossBars` layer to the plot.
+ * Adds a new `errorBars` layer to the plot.
  *
- * The `crossBar` layer displays the distribution of a dataset by marking the minimum, median, and maximum values.
+ * The `errorBars` layer represents the uncertainty around a measurement
+ * by displaying vertical lines above and below the point estimate.
  *
  * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
  * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
  * - Constants are directly assigned using properties with the names corresponding to aesthetics.
  *   For positional aesthetics, you can use the `.constant()` method.
  *
- * ## CrossBar Aesthetics
+ * ## ErrorBars Aesthetics
  * * **`x`** - The X-coordinate specifying the categories.
- * * **`yMin`** - The minimum value for the Y-coordinate.
- * * **`middle`** - The median value for the Y-coordinate.
- * * **`yMax`** - The maximum value for the Y-coordinate.
+ * * **`y`** - The medium value for the Y-coordinate, representing the medium of the error bar.
+ * * **`yMin`** - The minimum value for the Y-coordinate, representing the lower end of the error bar.
+ * * **`yMax`** - The maximum value for the Y-coordinate, representing the upper end of the error bar.
+ * * **`alpha`** - The transparency of the error bars.
+ * * **`fatten`** - The factor by which to "fatten" the width of the notch relative to the body.
+ * * **`width`** - The width of the error bars.
  * * **`fillColor`** - The fill color of the crossbars.
- * * **`alpha`** - The transparency of the crossbars.
- * * **`width`** - The width of the crossbars.
- * * **`fatten`** - The factor by which to "fatten" the width of the bars.
- * * **`borderLine.color`** - Color of the crossbars' borderline.
- * * **`borderLine.width`** - Width of the crossbars' borderline.
- * * **`borderLine.type`** - Type of the crossbars' borderline, such as dashed or dotted.
+ * * **`borderLine.color`** - The color of the error bars' borderline.
+ * * **`borderLine.width`** - The width of the error bars' borderline.
+ * * **`borderLine.type`** - The type of the error bars' borderline, such as dashed or dotted.
  *
  * ## Example
  *
  * ```kotlin
- * plot {
- *     crossBars {
- *         // Positional mapping
- *         x(listOf("A", "B", "C", "D"))
- *         yMin(listOf(10.0, 15.0, 5.0, 20.0))
- *         middle(listOf(25.0, 30.0, 22.0, 35.0))
- *         yMax(listOf(40.0, 35.0, 30.0, 50.0))
+ * errorBars {
+ *    // Positional mapping
+ *    x(time) {
+ *       ... // some mapping parameters
+ *    }
+ *    yMax.constant(100.0)
+ *    // Even though the error bars have no "y" attribute, we can adjust the Y-axis
+ *    y.limits = 0.0 .. 110.0
  *
- *         // Adjust the Y-axis
- *         y.limits = 0.0..55.0
- *
- *         // Non-positional settings
- *         fatten = 1.2
- *         width = 0.6
- *
- *         // BorderLine settings
- *         borderLine {
- *             color = Color.BLACK
- *             width = 1.5
- *             type = LineType.SOLID
- *         }
- *
- *         // Non-positional mapping
- *         fillColor(listOf("red", "green", "blue", "yellow")) {
- *             scale = categorical(
- *                 "red" to Color.RED, "green" to Color.GREEN,
- *                 "blue" to Color.BLUE, "yellow" to Color.YELLOW
- *             )
- *         }
- *     }
+ *    // Non-positional settings
+ *    alpha = 0.9
+ *    borderLine.width = 2.5
+ *    borderLine {
+ *       color = Color.BLACK
+ *    }
+ *    // Non-positional mapping
+ *    width("capacity")
  * }
  * ```
  */

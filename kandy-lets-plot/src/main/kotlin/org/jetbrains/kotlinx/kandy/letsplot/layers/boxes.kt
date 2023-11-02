@@ -7,7 +7,6 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.position
-import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxesContext
 
 /**
@@ -21,20 +20,20 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxesContext
  * - Constants are directly assigned using properties with the names corresponding to aesthetics.
  *   For positional aesthetics, you can use the `.constant()` method.
  *
- * ## Boxplot Aesthetics
+ * ## Boxes Aesthetics
  * * **`x`** - The X-coordinate specifying the categories.
  * * **`yMin`** - The minimum value for the Y-coordinate (the lowest whisker).
  * * **`lower`** - The lower quartile value.
  * * **`middle`** - The median value.
  * * **`upper`** - The upper quartile value.
  * * **`yMax`** - The maximum value for the Y-coordinate (the highest whisker).
- * * **`fillColor`** - The fill color of the boxplot.
- * * **`alpha`** - The transparency of the boxplot.
- * * **`width`** - The width of the boxplot.
+ * * **`fillColor`** - The fill color of the boxes.
+ * * **`alpha`** - The transparency of the boxes.
+ * * **`width`** - The width of the boxes.
  * * **`fatten`** - The factor by which to "fatten" the width of the notch relative to the body.
- * * **`borderLine.color`** - Color of the boxplot borderline.
- * * **`borderLine.width`** - Width of the boxplot borderline.
- * * **`borderLine.type`** - Type of the boxplot borderline, such as dashed or dotted.
+ * * **`borderLine.color`** - Color of the boxes borderline.
+ * * **`borderLine.width`** - Width of the boxes borderline.
+ * * **`borderLine.type`** - Type of the boxes borderline, such as dashed or dotted.
  *
  * ## Example
  *

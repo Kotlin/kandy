@@ -12,9 +12,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.MIDDLE
 import kotlin.reflect.KProperty
 
 /**
- * Interface for managing the `middle` aesthetic in both boxplot and crossbars.
+ * Interface for managing the `middle` aesthetic in both boxes and crossbars.
  *
- * In boxplot, the `middle` aesthetic represents the median of the data, commonly displayed
+ * In boxes, the `middle` aesthetic represents the median of the data, commonly displayed
  * as a line inside the box.
  *
  * In crossbars, the `middle` aesthetic typically represents the central value around which

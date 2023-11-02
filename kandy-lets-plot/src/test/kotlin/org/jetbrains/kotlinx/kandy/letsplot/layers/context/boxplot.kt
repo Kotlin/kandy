@@ -69,134 +69,134 @@ class BoxplotTests {
     }
 
     @Test
-    fun `fillColor const for boxplot`() {
+    fun `fillColor const for boxes`() {
         context.fillColor = Color.BLUE
         assertEquals(Color.BLUE, (context.bindingCollector.settings[FILL] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `fillColor str mapping for boxplot`() {
+    fun `fillColor str mapping for boxes`() {
         context.fillColor("color")
         assertEquals("color", (context.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `fillColor dataColumn mapping for boxplot`() {
+    fun `fillColor dataColumn mapping for boxes`() {
         context.fillColor(color)
         assertEquals("color", (context.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `fillColor iterable mapping for boxplot`() {
+    fun `fillColor iterable mapping for boxes`() {
         context.fillColor(listOf("red"))
         assertEquals("fill", (context.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border type const for boxplot`() {
+    fun `border type const for boxes`() {
         context.borderLine.type = LineType.DOTDASH
         assertEquals(LineType.DOTDASH, (context.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `border type str mapping for boxplot`() {
+    fun `border type str mapping for boxes`() {
         context.borderLine.type("type")
         assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border type dataColumn mapping for boxplot`() {
+    fun `border type dataColumn mapping for boxes`() {
         context.borderLine.type(type)
         assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border type iterable mapping for boxplot`() {
+    fun `border type iterable mapping for boxes`() {
         context.borderLine.type(listOf("dot"))
         assertEquals("linetype", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border width const for boxplot`() {
+    fun `border width const for boxes`() {
         context.borderLine.width = .5
         assertEquals(.5, (context.bindingCollector.settings[SIZE] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `border width str mapping for boxplot`() {
+    fun `border width str mapping for boxes`() {
         context.borderLine.width("width")
         assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border width dataColumn mapping for boxplot`() {
+    fun `border width dataColumn mapping for boxes`() {
         context.borderLine.width(width)
         assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border width iterable mapping for boxplot`() {
+    fun `border width iterable mapping for boxes`() {
         context.borderLine.width(listOf(0.2, .1))
         assertEquals("size", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha const for boxplot`() {
+    fun `alpha const for boxes`() {
         context.alpha = 0.1
         assertEquals(0.1, (context.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `alpha str mapping for boxplot`() {
+    fun `alpha str mapping for boxes`() {
         context.alpha("alpha")
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha dataColumn mapping for boxplot`() {
+    fun `alpha dataColumn mapping for boxes`() {
         context.alpha(alpha)
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha iterable mapping for boxplot`() {
+    fun `alpha iterable mapping for boxes`() {
         context.alpha(listOf(0.2, 0.5, .1))
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `width const for boxplot`() {
+    fun `width const for boxes`() {
         context.width = .5
         assertEquals(.5, (context.bindingCollector.settings[WIDTH] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `width str mapping for boxplot`() {
+    fun `width str mapping for boxes`() {
         context.width("width")
         assertEquals("width", (context.bindingCollector.mappings[WIDTH] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `width dataColumn mapping for boxplot`() {
+    fun `width dataColumn mapping for boxes`() {
         context.width(width)
         assertEquals("width", (context.bindingCollector.mappings[WIDTH] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `width iterable mapping for boxplot`() {
+    fun `width iterable mapping for boxes`() {
         context.width(listOf(0.2, .1))
         assertEquals("width", (context.bindingCollector.mappings[WIDTH] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `x const for boxplot`() {
+    fun `x const for boxes`() {
         context.x.constant(5.0)
         assertEquals(X, (context.bindingCollector.settings[X] as PositionalSetting<*>).aes)
         assertEquals(5.0, (context.bindingCollector.settings[X] as PositionalSetting<*>).value)
     }
 
     @Test
-    fun `x for boxplot`() {
+    fun `x for boxes`() {
         context.x(xAxis) {
             axis {
                 name = "x axis"
@@ -211,42 +211,42 @@ class BoxplotTests {
     }
 
     @Test
-    fun `lower for boxplot`() {
+    fun `lower for boxes`() {
         context.lower(lower)
         assertEquals(LOWER, context.bindingCollector.mappings[LOWER]?.aes)
         assertEquals("lower", context.bindingCollector.mappings[LOWER]?.columnID)
     }
 
     @Test
-    fun `upper for boxplot`() {
+    fun `upper for boxes`() {
         context.upper(upper)
         assertEquals(UPPER, context.bindingCollector.mappings[UPPER]?.aes)
         assertEquals("upper", context.bindingCollector.mappings[UPPER]?.columnID)
     }
 
     @Test
-    fun `middle for boxplot`() {
+    fun `middle for boxes`() {
         context.middle(middle)
         assertEquals(MIDDLE, context.bindingCollector.mappings[MIDDLE]?.aes)
         assertEquals("middle", context.bindingCollector.mappings[MIDDLE]?.columnID)
     }
 
     @Test
-    fun `yMin for boxplot`() {
+    fun `yMin for boxes`() {
         context.yMin(yMin)
         assertEquals(Y_MIN, context.bindingCollector.mappings[Y_MIN]?.aes)
         assertEquals("yMin", context.bindingCollector.mappings[Y_MIN]?.columnID)
     }
 
     @Test
-    fun `yMax for boxplot`() {
+    fun `yMax for boxes`() {
         context.yMax(yMax)
         assertEquals(Y_MAX, context.bindingCollector.mappings[Y_MAX]?.aes)
         assertEquals("yMax", context.bindingCollector.mappings[Y_MAX]?.columnID)
     }
 
     @Test
-    fun `fatten for boxplot`() {
+    fun `fatten for boxes`() {
         context.fatten = fatten.first()
         assertEquals(FATTEN, (context.bindingCollector.settings[FATTEN] as NonPositionalSetting<*>).aes)
         assertEquals(1.5, (context.bindingCollector.settings[FATTEN] as NonPositionalSetting<*>).value)

@@ -4,12 +4,12 @@ import org.intellij.lang.annotations.Language
 import org.jetbrains.kotlinx.kandy.letsplot.jupyter.KandyLetsPlotJupyterTest
 import kotlin.test.Test
 
-class BoxplotTest : KandyLetsPlotJupyterTest() {
+class BoxesTest : KandyLetsPlotJupyterTest() {
 
     @Language("kts")
-    private val plotBoxplot = """
+    private val plotBoxes = """
         plot {
-            boxplot {
+            boxes {
                 // Positional mapping
                 x(listOf("A", "B", "C", "D"))
                 yMin(listOf(10, 20, 5, 12))
@@ -35,8 +35,8 @@ class BoxplotTest : KandyLetsPlotJupyterTest() {
         """.trimIndent()
 
     @Test
-    fun `compilation of boxplot in jupyter`() = plotBoxplot.checkCompilation()
+    fun `compilation of boxes in jupyter`() = plotBoxes.checkCompilation()
 
     @Test
-    fun `boxplot output in jupyter`() = assertOutput(exec(plotBoxplot))
+    fun `boxes output in jupyter`() = assertOutput(exec(plotBoxes))
 }
