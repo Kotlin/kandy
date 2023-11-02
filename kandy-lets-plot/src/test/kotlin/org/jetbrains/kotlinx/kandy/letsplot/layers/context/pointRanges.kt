@@ -44,11 +44,11 @@ class PointRangeTests {
     private val df = dataFrameOf(xAxis, yAxis, yMin, yMax, type, color, alpha, size)
 
     private val parentContext = DataFramePlotContext(df)
-    private lateinit var context: PointsRangeContext
+    private lateinit var context: PointRangesContext
 
     @BeforeTest
     fun setUp() {
-        context = PointsRangeContext(parentContext)
+        context = PointRangesContext(parentContext)
     }
 
     @Test
