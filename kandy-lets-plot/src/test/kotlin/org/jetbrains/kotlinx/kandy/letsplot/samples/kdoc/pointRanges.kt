@@ -33,7 +33,7 @@ class PointRangesTest : KandyLetsPlotJupyterTest() {
                 }
 
                 innerPoint {
-                    symbol = Symbol.DIAMOND // The symbol used for the point
+                    symbol = Symbol.DIAMOND_FILLED // The symbol used for the point
                     fillColor = Color.RED // The fill color of the symbol
                 }
 
