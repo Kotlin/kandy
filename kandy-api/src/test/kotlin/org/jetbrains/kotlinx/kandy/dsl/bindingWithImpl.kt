@@ -194,7 +194,7 @@ class BindingImplTest {
             dataFrameOf("mock_source" to listOf<Int>())
         )
         val mockSource = column<Int>("mock_source")
-        val scaleColorCont = Scale.continuous<Int, Color>(
+        val scaleColorCont = Scale.continuous<Color, Int>(
             range = Color.rgb(1, 1, 1)..Color.rgb(1, 100, 100)
         )
         val context = TestContext(plotContext).apply {

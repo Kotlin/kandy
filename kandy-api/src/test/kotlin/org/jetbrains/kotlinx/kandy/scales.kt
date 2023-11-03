@@ -102,9 +102,9 @@ class ScaleTest {
     fun `test continuous function with non-null range and null transform and nullValue`() {
         val range = 0..10
 
-        val firstScale = CommonNonPositionalMappingParametersContinuous<Float, Int>().continuous(range)
-        val secondScale = Scale.continuous<Float, Int>(range)
-        val expectedScale = NonPositionalContinuousScale<Float, Int>(null, null, range.first, range.last, null, null)
+        val firstScale = CommonNonPositionalMappingParametersContinuous<Float, Int>().continuous<Int, Float>(range)
+        val secondScale = Scale.continuous<Int, Float>(range)
+        val expectedScale = NonPositionalContinuousScale<Float, Int>(null, null, range.start, range.endInclusive, null, null)
 
         assertEquals(expectedScale, firstScale)
         assertEquals(expectedScale, secondScale)
@@ -116,7 +116,7 @@ class ScaleTest {
         val transform: NonPositionalTransform = mockk()
 
         val firstScale =
-            CommonNonPositionalMappingParametersContinuous<Int, Int>().continuous(range, transform = transform)
+            CommonNonPositionalMappingParametersContinuous<Int, Int>().continuous<Int, Int>(range, transform = transform)
         val secondScale = Scale.continuous<Int, Int>(range, transform = transform)
         val expectedScale = NonPositionalContinuousScale<Int, Int>(null, null, range.first, range.last, null, transform)
 
@@ -130,8 +130,8 @@ class ScaleTest {
         val nullValue = -1.3
 
         val firstScale =
-            CommonNonPositionalMappingParametersContinuous<Int, Double>().continuous(range, nullValue = nullValue)
-        val secondScale = Scale.continuous<Int, Double>(range, nullValue)
+            CommonNonPositionalMappingParametersContinuous<Int, Double>().continuous<Double, Int>(range, nullValue = nullValue)
+        val secondScale = Scale.continuous<Double, Int>(range, nullValue)
         val expectedScale =
             NonPositionalContinuousScale<Int, Double>(null, null, range.start, range.endInclusive, nullValue, null)
 
@@ -160,7 +160,7 @@ class ScaleTest {
     fun `test categorical function with null categories`() {
         val mapping = CommonPositionalMappingParameters<Int>()
 
-        val scale = mapping.categorical()
+        val scale = mapping.categorical<Int>()
 
         assertNull(scale.categories)
     }
@@ -226,7 +226,7 @@ class ScaleTest {
     fun `test categorical function with null range and non-null domain`() {
         val domain = listOf("A", "B", "C")
 
-        val firstScale = CommonNonPositionalMappingParameters<String, Int>().categorical(domain = domain)
+        val firstScale = CommonNonPositionalMappingParameters<String, Int>().categorical<Int, String>(domain = domain)
         val secondScale = Scale.categorical<Int, String>(domain = domain)
         val expectedScale = NonPositionalCategoricalScale<String, Int>(domain, null)
 
@@ -238,7 +238,7 @@ class ScaleTest {
     fun `test categorical function with non-null range and null domain`() {
         val range = listOf(1, 2, 3)
 
-        val firstScale = CommonNonPositionalMappingParameters<String, Int>().categorical(range = range)
+        val firstScale = CommonNonPositionalMappingParameters<String, Int>().categorical<Int, String>(range = range)
         val secondScale = Scale.categorical<Int, String>(range = range)
         val expectedScale = NonPositionalCategoricalScale<String, Int>(null, range)
 
@@ -248,7 +248,7 @@ class ScaleTest {
 
     @Test
     fun `test categorical function with null range and null domain`() {
-        val firstScale = CommonNonPositionalMappingParameters<String, String>().categorical()
+        val firstScale = CommonNonPositionalMappingParameters<String, String>().categorical<String, String>()
         val secondScale = Scale.categorical<String, String>()
 
         assertNull(firstScale.rangeValues)
@@ -303,7 +303,7 @@ class ScaleTest {
         val categoriesToValues = domain.zip(range).toTypedArray()
 
 
-        val firstScale = CommonNonPositionalMappingParameters<Int, Color>().categorical(*categoriesToValues)
+        val firstScale = CommonNonPositionalMappingParameters<Int, Color>().categorical<Int, Color>(*categoriesToValues)
         val secondScale = Scale.categorical<Int, Color>(*categoriesToValues)
 
         val expectedScale = NonPositionalCategoricalScale<Int, Color>(domain, range)
