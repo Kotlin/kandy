@@ -37,10 +37,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RectanglesContext
  * val endCnt by columnOf(5.3, 2.4, 4.3)
  * val event by columnOf("Event A", "Event B", "Event C")
  *
- * val data = dataFrameOf(event, startTime, endTime, startCnt, endCnt)
- *
  * // Now, let's visualize the duration of each event as a rectangle.
- * data.plot {
+ * plot {
  *     rectangles {
  *         // Map the start and end times to the X-axis to create the rectangles
  *         xMin(startTime)
