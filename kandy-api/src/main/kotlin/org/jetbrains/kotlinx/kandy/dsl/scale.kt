@@ -18,7 +18,7 @@ import org.jetbrains.kotlinx.kandy.ir.scale.*
  * @param transform the transformation of scale.
  * @return new [PositionalContinuousScale] with given limits.
  */
-public fun <DomainType : Comparable<DomainType>> PositionalMappingParametersContinuous<DomainType>.continuous(
+public fun <DomainType : Comparable<DomainType>> PositionalMappingParametersContinuous<*>.continuous(
     limits: ClosedRange<DomainType>,
     transform: PositionalTransform? = null
 ): PositionalContinuousScale<DomainType> = PositionalContinuousScale(
@@ -49,7 +49,7 @@ public fun <DomainType : Comparable<DomainType>> Scale.Companion.continuousPos(
  * @param transform the transformation of scale.
  * @return new [PositionalContinuousScale] with given limits.
  */
-public fun <DomainType : Comparable<DomainType>> PositionalMappingParametersContinuous<DomainType?>.continuous(
+public fun <DomainType : Comparable<DomainType>> PositionalMappingParametersContinuous<*>.continuous(
     limits: ClosedRange<DomainType>,
     nullValue: DomainType? = null,
     transform: PositionalTransform? = null
@@ -83,7 +83,7 @@ public fun <DomainType : Comparable<DomainType>> Scale.Companion.continuousPos(
  * @param transform the transformation of scale.
  * @return new [PositionalContinuousScale] with given limits.
  */
-public fun <DomainType> PositionalMappingParametersContinuous<DomainType>.continuous(
+public fun <DomainType> PositionalMappingParametersContinuous<*>.continuous(
     min: DomainType? = null,
     max: DomainType? = null,
     transform: PositionalTransform? = null
@@ -116,7 +116,7 @@ public fun <DomainType> Scale.Companion.continuousPos(
  * @param transform the transformation of scale.
  * @return new [PositionalContinuousScale] with given limits.
  */
-public fun <DomainType> PositionalMappingParametersContinuous<DomainType?>.continuous(
+public fun <DomainType> PositionalMappingParametersContinuous<*>.continuous(
     min: DomainType? = null,
     max: DomainType? = null,
     nullValue: DomainType? = null,
@@ -151,7 +151,7 @@ public fun <DomainType> Scale.Companion.continuousPos(
  * @param categories [List] defining the scale domain.
  * @return new [PositionalCategoricalScale] with given categories.
  */
-public fun <DomainType> PositionalMappingParameters<DomainType>.categorical(
+public fun <DomainType> PositionalMappingParameters<*>.categorical(
     categories: List<DomainType>? = null, // TODO(add varargs)
 ): PositionalCategoricalScale<DomainType> = PositionalCategoricalScale(categories)
 
@@ -176,7 +176,7 @@ public fun <DomainType> Scale.Companion.categoricalPos(
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given range.
  */
-public fun <DomainType, RangeType : Comparable<RangeType>> NonPositionalMappingParametersContinuous<DomainType, RangeType>.continuous(
+public fun <RangeType : Comparable<RangeType>, DomainType> NonPositionalMappingParametersContinuous<*, *>.continuous(
     range: ClosedRange<RangeType>,
     nullValue: RangeType? = null,
     transform: NonPositionalTransform? = null
@@ -195,7 +195,7 @@ public fun <DomainType, RangeType : Comparable<RangeType>> NonPositionalMappingP
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given range.
  */
-public fun <DomainType, RangeType : Comparable<RangeType>> Scale.Companion.continuous(
+public fun <RangeType : Comparable<RangeType>, DomainType> Scale.Companion.continuous(
     range: ClosedRange<RangeType>,
     nullValue: RangeType? = null,
     transform: NonPositionalTransform? = null
@@ -215,8 +215,8 @@ public fun <DomainType, RangeType : Comparable<RangeType>> Scale.Companion.conti
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given domain and range.
  */
-public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeType>>
-        NonPositionalMappingParametersContinuous<DomainType, RangeType>.continuous(
+public fun <RangeType : Comparable<RangeType>, DomainType : Comparable<DomainType>>
+        NonPositionalMappingParametersContinuous<*, *>.continuous(
     range: ClosedRange<RangeType>? = null,
     domain: ClosedRange<DomainType>,
     nullValue: RangeType? = null,
@@ -237,7 +237,7 @@ public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeTyp
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given domain and range.
  */
-public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeType>>
+public fun <RangeType : Comparable<RangeType>, DomainType : Comparable<DomainType>>
         Scale.Companion.continuous(
     range: ClosedRange<RangeType>? = null,
     domain: ClosedRange<DomainType>,
@@ -261,7 +261,7 @@ public fun <DomainType : Comparable<DomainType>, RangeType : Comparable<RangeTyp
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given domain and range.
  */
-public fun <DomainType, RangeType> NonPositionalMappingParametersContinuous<DomainType, RangeType>.continuous(
+public fun <RangeType, DomainType> NonPositionalMappingParametersContinuous<*, *>.continuous(
     rangeMin: RangeType? = null,
     rangeMax: RangeType? = null,
     domainMin: DomainType? = null,
@@ -286,7 +286,7 @@ public fun <DomainType, RangeType> NonPositionalMappingParametersContinuous<Doma
  * @param transform scale transformation.
  * @return new [NonPositionalContinuousScale] with the given domain and range.
  */
-public fun <DomainType, RangeType> Scale.Companion.continuous(
+public fun <RangeType, DomainType> Scale.Companion.continuous(
     rangeMin: RangeType? = null,
     rangeMax: RangeType? = null,
     domainMin: DomainType? = null,
@@ -307,7 +307,7 @@ public fun <DomainType, RangeType> Scale.Companion.continuous(
  * @param domain [List] defining the scale domain.
  * @return new [NonPositionalCategoricalScale] with given domain and range.
  */
-public inline fun <reified RangeType, reified DomainType> NonPositionalMappingParameters<DomainType, RangeType>.categorical(
+public inline fun <reified RangeType, reified DomainType> NonPositionalMappingParameters<*, *>.categorical(
     range: List<RangeType>? = null,
     domain: List<DomainType>? = null,
 ): NonPositionalCategoricalScale<DomainType, RangeType> =
@@ -336,7 +336,7 @@ public inline fun <reified RangeType, reified DomainType> Scale.Companion.catego
  * @param categoriesToValues [List] of pairs of category to corresponding value.
  * @return new [NonPositionalCategoricalScale] by domain-to-range correspondence.
  */
-public fun <DomainType, RangeType> NonPositionalMappingParameters<DomainType, RangeType>.categorical(
+public fun <DomainType, RangeType> NonPositionalMappingParameters<*, *>.categorical(
     vararg categoriesToValues: Pair<DomainType, RangeType>,
 ): NonPositionalCategoricalScale<DomainType, RangeType> =
     NonPositionalCategoricalScale(

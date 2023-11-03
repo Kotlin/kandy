@@ -38,7 +38,7 @@ public interface PositionalMappingParameters<DomainType> : MappingParameters {
 }
 
 /**
- * Parameters for continuous positional data visualization mapping.
+ * Parameters for positional data visualization mapping for continuous aes.
  *
  * Specifies how continuous data is visually mapped to a plot's position.
  *
