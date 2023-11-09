@@ -12,8 +12,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxesContext
 /**
  * Adds a new `boxes` layer to the plot.
  *
- * The `boxes` layer visualizes the distribution of a dataset through its quartiles.
- * It provides a useful representation of the data's spread and skewness.
+ * The `boxes` layer is responsible for constructing a boxplot representation,
+ * which visualizes the distribution of a dataset by depicting its quartiles
+ * and thereby provides insights into the data's spread and potential skewness.
  *
  * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
  * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).

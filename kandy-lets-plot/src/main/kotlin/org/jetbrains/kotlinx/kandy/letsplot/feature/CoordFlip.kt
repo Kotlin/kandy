@@ -14,6 +14,8 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
  * After applying this function, the horizontal axis (typically the x-axis) will become vertical,
  * and the vertical axis (typically the y-axis) will become horizontal.
  *
+ * > **Warning**: The API `coordFlip` will be revised in future releases.
+ *
  * ### Example
  *
  * ```kotlin

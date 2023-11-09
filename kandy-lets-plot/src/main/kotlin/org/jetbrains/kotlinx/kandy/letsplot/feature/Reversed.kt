@@ -14,6 +14,8 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
  * When set to `true`, the direction of the axes will be reversed.
  * For example, a y-axis that normally goes from bottom to top could go from top to bottom.
  *
+ * > **Warning**: The API `reversed` will be revised in future releases.
+ *
  * @see [Reversed]
  */
 public var LayerContextInterface.reversed: Boolean
