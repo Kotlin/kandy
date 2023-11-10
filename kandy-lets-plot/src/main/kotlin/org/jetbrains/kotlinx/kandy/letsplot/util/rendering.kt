@@ -10,23 +10,28 @@ import org.jetbrains.kotlinx.kandy.util.serialization.serializeSpec
 import org.jetbrains.letsPlot.Figure
 import org.jetbrains.letsPlot.GGBunch
 import org.jetbrains.letsPlot.awt.plot.PlotSvgExport
+import org.jetbrains.letsPlot.core.util.PlotHtmlExport
+import org.jetbrains.letsPlot.core.util.PlotHtmlHelper
 import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
 import org.jetbrains.letsPlot.intern.figure.SubPlotsFigure
 import org.jetbrains.letsPlot.intern.toSpec
 import java.util.*
 
 internal class NotebookRenderingContext(
-    val frontendContext: NotebookFrontendContext,
+    //val frontendContext: NotebookFrontendContext,
+    val jsVersion: String,
     val config: JupyterConfig,
 )
 
 internal fun NotebookRenderingContext.figureToHtml(figure: Figure): String {
-    return when (figure) {
+    val spec = figure.toSpec()
+    return PlotHtmlExport.buildHtmlFromRawSpecs(spec, PlotHtmlHelper.scriptUrl(jsVersion), true)
+    /*return when (figure) {
         is org.jetbrains.letsPlot.intern.Plot -> frontendContext.getHtml(figure)
         is SubPlotsFigure -> frontendContext.getHtml(figure)
         is GGBunch -> frontendContext.getHtml(figure)
         else -> error("Unsupported Figure")
-    }
+    }*/
 }
 
 internal fun NotebookRenderingContext.figureToMimeJson(figure: Figure): JsonObject {
