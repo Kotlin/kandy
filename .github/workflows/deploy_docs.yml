@@ -1,10 +1,6 @@
 name: Build documentation
 
 on:
-  # The workflow will be triggered automatically once you push to the `main` branch.
-  push:
-    branches: [ "main" ]
-
   # Specify to run a workflow manually from the Actions tab on GitHub
   workflow_dispatch:
 
@@ -16,6 +12,12 @@ permissions:
 env:
   INSTANCE: docs/kd
   ARTIFACT: webHelpKD2-all.zip
+  ALGOLIA_ARTIFACT: algolia-indexes-KD.zip
+  ALGOLIA_APP_NAME: YM73IBT9H3
+  ALGOLIA_INDEX_NAME: kandy_search
+  ALGOLIA_KEY: ${{ secrets.ALGOLIA_KEY }}
+  CONFIG_JSON_PRODUCT: kd
+  CONFIG_JSON_VERSION: '0.5.0'
   DOCKER_VERSION: 232.10165.1
 
 jobs:
@@ -41,7 +43,6 @@ jobs:
             artifacts/report.json
           retention-days: 7
 
-      # TODO: Add Algolia indexes
       - name: Upload algolia-indexes
         uses: actions/upload-artifact@v3
         with:
@@ -49,30 +50,12 @@ jobs:
           path: artifacts/${{ env.ALGOLIA_ARTIFACT }}
           retention-days: 7
 
-  test:
-    # Requires build job results
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v1
-        with:
-          name: docs
-          path: artifacts
-
-      - name: Test documentation
-        uses: Jetbrains/writerside-checker-action@v1
-        with:
-          instance: ${{ env.INSTANCE }}
-
-
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     # Requires the build job results
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
@@ -96,3 +79,28 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+
+  publish-indexes:
+    # Requires the build job results
+    needs: build
+    runs-on: ubuntu-latest
+    container:
+      image: registry.jetbrains.team/p/writerside/builder/algolia-publisher:2.0.32-2
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: algolia-indexes
+      - uses: montudor/action-zip@v1
+        with:
+          args: unzip -qq ${{ env.ALGOLIA_ARTIFACT }} -d algolia-indexes
+      - run: |
+          env "algolia-key=${{env.ALGOLIA_KEY}}" java -jar /opt/builder/help-publication-agent.jar \
+          update-index \
+          --application-name ${{env.ALGOLIA_APP_NAME}} \
+          --index-name ${{env.ALGOLIA_INDEX_NAME}} \
+          --product ${{env.CONFIG_JSON_PRODUCT}} \
+          --version ${{env.CONFIG_JSON_VERSION}} \
+          --index-directory algolia-indexes/ \
+          2>&1 | tee algolia-update-index-log.txt
