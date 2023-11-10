@@ -11,53 +11,74 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X_MAX
 import kotlin.reflect.KProperty
 
+/**
+ * Interface for managing the 'xMax' aesthetic in rectangle plots.
+ *
+ * The `xMax` aesthetic defines the maximum x-coordinate of each rectangle in a plot.
+ * This interface provides various methods to set this value, either as a constant
+ * or by mapping it to different types of data columns.
+ *
+ * This interface allows you to set a constant value,
+ * map it to a column in your data, or provide an iterable list of values.
+ */
 public interface WithXMax : BindingContext {
+
+    /**
+     * Provides a constant setter for the `xMax` value.
+     *
+     * @property xMax a [ConstantSetter] object to directly set the maximum x-coordinate.
+     */
     public val xMax: ConstantSetter
         get() = ConstantSetter(X_MAX, bindingCollector)
 
-    /*
-    public fun <T> xMax(value: T): PositionalSetting<T> {
-        return addPositionalSetting(X_MAX, value)
-    }
-
+    /**
+     * Maps the `xMax` aesthetic to a data column specified by a [ColumnReference].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
      */
-
-    public fun <T> xMax(
-        column: ColumnReference<T>,
-    ): PositionalMapping<T> {
+    public fun <T> xMax(column: ColumnReference<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(X_MAX, column.name(), null)
     }
 
-    public fun <T> xMax(
-        column: KProperty<T>,
-    ): PositionalMapping<T> {
+    /**
+     * Maps the `xMax` aesthetic to a data column specified by a [KProperty].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> xMax(column: KProperty<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(X_MAX, column.name, null)
     }
 
-    public fun <T> xMax(
-        column: String,
-    ): PositionalMapping<T> {
+    /**
+     * Maps the `xMax` aesthetic to a data column specified by a [String].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> xMax(column: String): PositionalMapping<T> {
         return addPositionalMapping<T>(X_MAX, column, null)
     }
 
-    public fun <T> xMax(
-        values: Iterable<T>,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(
-            X_MAX,
-            values.toList(),
-            null,
-            null
-        )
+
+    /**
+     * Maps the `xMax` aesthetic to iterable of values.
+     *
+     * @param values the iterable of values to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> xMax(values: Iterable<T>): PositionalMapping<T> {
+        return addPositionalMapping<T>(X_MAX, values.toList(), null, null)
     }
 
-    public fun <T> xMax(
-        values: DataColumn<T>,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(
-            X_MAX,
-            values,
-            null
-        )
+    /**
+     * Maps the `xMax` aesthetic to a data column.
+     *
+     * @param values the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> xMax(values: DataColumn<T>): PositionalMapping<T> {
+        return addPositionalMapping<T>(X_MAX, values, null)
     }
 }

@@ -23,7 +23,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class TileTests {
+class TilesTests {
     private val xAxis = listOf(0.5).toColumn("xAxis")
     private val yAxis = listOf("first").toColumn("yAxis")
     private val alpha = listOf(0.5).toColumn("alpha")
@@ -53,93 +53,93 @@ class TileTests {
     }
 
     @Test
-    fun `alpha const for tile`() {
+    fun `alpha const for tiles`() {
         context.alpha = 0.1
         assertEquals(0.1, (context.bindingCollector.settings[ALPHA] as? NonPositionalSetting<*>)?.value)
     }
 
     @Test
-    fun `alpha str mapping for tile`() {
+    fun `alpha str mapping for tiles`() {
         context.alpha("alpha")
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as? NonPositionalMapping<*, *>)?.columnID)
     }
 
     @Test
-    fun `alpha dataColumn mapping for tile`() {
+    fun `alpha dataColumn mapping for tiles`() {
         context.alpha(alpha)
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as? NonPositionalMapping<*, *>)?.columnID)
     }
 
     @Test
-    fun `alpha iterable mapping for tile`() {
+    fun `alpha iterable mapping for tiles`() {
         context.alpha(listOf(0.2, 0.5, .1))
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as? NonPositionalMapping<*, *>)?.columnID)
     }
 
     @Test
-    fun `width const for tile`() {
+    fun `width const for tiles`() {
         context.width = 0.3
         assertEquals(0.3, (context.bindingCollector.settings[WIDTH] as? NonPositionalSetting<*>)?.value)
     }
 
     @Test
-    fun `width str mapping for tile`() {
+    fun `width str mapping for tiles`() {
         context.width("width")
         assertEquals("width", (context.bindingCollector.mappings[WIDTH] as? NonPositionalMapping<*, *>)?.columnID)
     }
 
     @Test
-    fun `width dataColumn mapping for tile`() {
+    fun `width dataColumn mapping for tiles`() {
         context.width(width)
         assertEquals("width", (context.bindingCollector.mappings[WIDTH] as? NonPositionalMapping<*, *>)?.columnID)
     }
 
     @Test
-    fun `width iterable mapping for tile`() {
+    fun `width iterable mapping for tiles`() {
         context.width(listOf(0.2, 0.5, .1))
         assertEquals("width", (context.bindingCollector.mappings[WIDTH] as? NonPositionalMapping<*, *>)?.columnID)
     }
 
     @Test
-    fun `height const for tile`() {
+    fun `height const for tiles`() {
         context.height = 0.3
         assertEquals(0.3, (context.bindingCollector.settings[HEIGHT] as? NonPositionalSetting<*>)?.value)
     }
 
     @Test
-    fun `height str mapping for tile`() {
+    fun `height str mapping for tiles`() {
         context.height("height")
         assertEquals("height", (context.bindingCollector.mappings[HEIGHT] as? NonPositionalMapping<*, *>)?.columnID)
     }
 
     @Test
-    fun `height dataColumn mapping for tile`() {
+    fun `height dataColumn mapping for tiles`() {
         context.height(height)
         assertEquals("height", (context.bindingCollector.mappings[HEIGHT] as? PositionalMapping<*>)?.columnID)
     }
 
     @Test
-    fun `height iterable mapping for tile`() {
+    fun `height iterable mapping for tiles`() {
         context.height(listOf(0.2, 0.5, .1))
         assertEquals("height", (context.bindingCollector.mappings[HEIGHT] as? NonPositionalMapping<*, *>)?.columnID)
     }
 
     @Test
-    fun `x const for tile`() {
+    fun `x const for tiles`() {
         context.x.constant(5.0)
         assertEquals(X, (context.bindingCollector.settings[X] as? PositionalSetting<*>)?.aes)
         assertEquals(5.0, (context.bindingCollector.settings[X] as? PositionalSetting<*>)?.value)
     }
 
     @Test
-    fun `y const for tile`() {
+    fun `y const for tiles`() {
         context.y.constant(10)
         assertEquals(Y, (context.bindingCollector.settings[Y] as? PositionalSetting<*>)?.aes)
         assertEquals(10, (context.bindingCollector.settings[Y] as? PositionalSetting<*>)?.value)
     }
 
     @Test
-    fun `x for tile`() {
+    fun `x for tiles`() {
         context.x(xAxis) {
             axis {
                 name = "x axis"
@@ -160,7 +160,7 @@ class TileTests {
     }
 
     @Test
-    fun `y for tile`() {
+    fun `y for tiles`() {
         context.y(yAxis) {
             axis {
                 name = "x axis"

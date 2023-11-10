@@ -15,12 +15,42 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
 
 // todo add Stroke
-public interface PointsInterface: LayerContextInterface, WithX, WithY, WithColor, WithSymbol,
+/**
+ * Interface defining the necessary aesthetics and methods for points layers.
+ *
+ * Points layers are primarily used in scatter plots to represent individual data points in two-dimensional space.
+ * The interface provides aesthetics such as `x`, `y`, `color`, `symbol`, `size`, `alpha`, and `fillColor`
+ * to allow for a comprehensive customization of point representation.
+ *
+ * Required aesthetics for points layers are `x` and `y`.
+ */
+public interface PointsInterface : LayerContextInterface, WithX, WithY, WithColor, WithSymbol,
     WithSize, WithAlpha, WithFillColor {
+
+    /**
+     * Gets the Geom object specific to **points** layers.
+     *
+     * @return the [Geom] object for **points**.
+     */
     override val geom: Geom
         get() = POINT
+
+    /**
+     * Gets the set of required aesthetics for **points** layers.
+     *
+     * @return the set of required aesthetics.
+     */
     override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 }
+
+/**
+ * Context class for managing points layers.
+ *
+ * This class provides the context in which points layers can be configured.
+ * It inherits from [LayerContext] and implements the [PointsInterface].
+ *
+ * @param parent the parent context for the layer.
+ */
 
 public open class PointsContext(parent: LayerCollectorContext) : LayerContext(parent), PointsInterface

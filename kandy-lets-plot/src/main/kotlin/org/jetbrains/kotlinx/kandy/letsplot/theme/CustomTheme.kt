@@ -117,18 +117,7 @@ public data class Global internal constructor(
     override var text: TextParameters? = null,
     override var title: TextParameters? = null,
     // TODO  var axis: LineParameters? = null,
-) : SelfInvocationContext, WithLine, WithBackground, WithText, WithTitle {
-    /*
-    fun axis(block: LineParameters.() -> Unit) {
-        axis = LineParameters().apply(block)
-    }
-
-    fun axis(parameters: LineParameters) {
-        axis = parameters
-    }
-
-     */
-}
+) : SelfInvocationContext, WithLine, WithBackground, WithText, WithTitle
 
 public data class LayerTooltips internal constructor(
     override var background: BackgroundParameters? = null,

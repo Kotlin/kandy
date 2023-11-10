@@ -14,13 +14,41 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.STEP
 
-public interface StepInterface: LayerContextInterface, WithX, WithY, WithAlpha, WithColor,
+/**
+ * Interface defining the necessary aesthetics and methods for step layers.
+ *
+ * Step layers are used for step charts,
+ * which display data points in a series connected by vertical and horizontal lines.
+ * The interface provides aesthetics like `x`, `y`, `alpha`, `color`, `width`, and `lineType` for customization.
+ *
+ * Required aesthetics for step layers are `x` and `y`.
+ */
+public interface StepInterface : LayerContextInterface, WithX, WithY, WithAlpha, WithColor,
     WithWidthAsSize, WithLineType {
+
+    /**
+     * Gets the Geom object specific to **step** layers.
+     *
+     * @return the [Geom] object for **step**.
+     */
     override val geom: Geom
         get() = STEP
+
+    /**
+     * Gets the set of required aesthetics for **step** layers.
+     *
+     * @return the set of required aesthetics.
+     */
     override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 }
 
-
+/**
+ * Context class for managing step layers.
+ *
+ * This class provides the context in which step layers can be configured.
+ * It inherits from [LayerContext] and implements the [StepInterface].
+ *
+ * @param parent the parent context for the layer.
+ */
 public open class StepContext(parent: LayerCollectorContext) : LayerContext(parent), StepInterface

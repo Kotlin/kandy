@@ -14,11 +14,21 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisParametersWithSetter
 import kotlin.reflect.KProperty
 
+/**
+ * Interface for managing the `x` aesthetic, representing the x-coordinate of elements in the plot.
+ *
+ * This interface allows you to map the x-coordinate to a data column, provide iterable of x-values,
+ * or configure axis parameters for the x-coordinate.
+ */
 public interface WithX : BindingContext {
-    /*public fun <T> x(value: T): PositionalSetting<T> {
-        return addPositionalSetting(X, value)
-    }*/
 
+    /**
+     * Maps the `x` aesthetic to a data column by [ColumnReference].
+     *
+     * @param column the data column to map to the x-coordinate.
+     * @param parameters additional mapping parameters.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
     public fun <T> x(
         column: ColumnReference<T>,
         parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
@@ -30,6 +40,13 @@ public interface WithX : BindingContext {
         )
     }
 
+    /**
+     * Maps the `x` aesthetic to a data column by [KProperty].
+     *
+     * @param column the data column to map to the x-coordinate.
+     * @param parameters additional mapping parameters.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
     public fun <T> x(
         column: KProperty<T>,
         parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
@@ -41,6 +58,13 @@ public interface WithX : BindingContext {
         )
     }
 
+    /**
+     * Maps the `x` aesthetic to a data column by [String].
+     *
+     * @param column the data column to map to the x-coordinate.
+     * @param parameters additional mapping parameters.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
     public fun x(
         column: String,
         parameters: LetsPlotPositionalMappingParametersContinuous<Any?>.() -> Unit = {}
@@ -52,6 +76,14 @@ public interface WithX : BindingContext {
         )
     }
 
+    /**
+     * Maps the `x` aesthetic to iterable of values.
+     *
+     * @param values the iterable containing the x-coordinate values.
+     * @param name optional name for this aesthetic mapping.
+     * @param parameters additional mapping parameters.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
     public fun <T> x(
         values: Iterable<T>,
         name: String? = null,
@@ -65,9 +97,15 @@ public interface WithX : BindingContext {
         )
     }
 
+    /**
+     * Maps the `x` aesthetic to a data column.
+     *
+     * @param values the data column to map to the x-coordinate.
+     * @param parameters additional mapping parameters.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
     public fun <T> x(
         values: DataColumn<T>,
-        //name: String? = null,
         parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> {
         return addPositionalMapping<T>(
@@ -77,6 +115,11 @@ public interface WithX : BindingContext {
         )
     }
 
+    /**
+     * Provides a mechanism for setting or retrieving x-axis parameters.
+     *
+     * @property x an [AxisParametersWithSetter] object for x-axis configuration.
+     */
     @Suppress("UNCHECKED_CAST")
     public val x: AxisParametersWithSetter
         get() {
@@ -85,9 +128,12 @@ public interface WithX : BindingContext {
             }.parameters as LetsPlotPositionalMappingParametersContinuous<Any?>, X, this)
         }
 
-    public fun x(
-        parameters: AxisParametersWithSetter.() -> Unit = {}
-    ) {
+    /**
+     * Applies configurations to x-axis parameters.
+     *
+     * @param parameters the configurations to apply to the x-axis parameters.
+     */
+    public fun x(parameters: AxisParametersWithSetter.() -> Unit = {}) {
         x.apply(parameters)
     }
 }

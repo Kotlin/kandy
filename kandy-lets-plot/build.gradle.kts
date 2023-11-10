@@ -30,6 +30,10 @@ dependencies {
     testImplementation("io.mockk:mockk:${mockk_version}")
 }
 
+tasks.test {
+    jvmArgs("-Xmx4G")
+}
+
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {

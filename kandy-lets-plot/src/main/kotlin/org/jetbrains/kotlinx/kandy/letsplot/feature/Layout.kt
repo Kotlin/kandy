@@ -12,7 +12,25 @@ import org.jetbrains.kotlinx.kandy.letsplot.theme.Flavor
 import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
 
 /**
- * Opens [Layout] context for layout configuration.
+ * Provides a context for configuring the layout of a plot.
+ *
+ * Inside this context, you can set various layout properties such as
+ * title, subtitle, caption, size, and others.
+ *
+ * ### Example
+ *
+ * ```kotlin
+ * plot {
+ *     line { x(listOf(1, 2, 3)); y.constant(5) }
+ *     layout {
+ *         title = "Main Title"
+ *         subtitle = "Subtitle"
+ *         xAxisLabel = "X-Axis"
+ *         yAxisLabel = "Y-Axis"
+ *         theme(Theme.Grey)
+ *     }
+ * }
+ * ```
  */
 public inline fun PlotContext.layout(block: Layout.() -> Unit) {
     if (plotFeatures[Layout.NAME] == null) {
@@ -22,8 +40,8 @@ public inline fun PlotContext.layout(block: Layout.() -> Unit) {
 }
 
 /**
- * Plot [Layout] accessor. Returns an existed [Layout]
- * if it has not already been created or creates a new one otherwise.
+ * Accessor for the [Layout] of a plot.
+ * Returns an existing [Layout] if one exists, or creates a new one otherwise.
  */
 public val PlotContext.layout: Layout
     get() {
@@ -35,13 +53,15 @@ public val PlotContext.layout: Layout
 
 // todo separate model and context!!!
 /**
- * Plot layout parameters.
+ * Represents the layout configuration parameters for a plot.
  *
- * @property title plot title.
- * @property subtitle plot subtitle.
- * @property caption plot caption.
- * @property flavor plot flavor (color scheme).
- * @property size plot size.
+ * @property title the main title of the plot.
+ * @property subtitle the subtitle displayed below the main title.
+ * @property caption additional text displayed at the bottom of the plot.
+ * @property xAxisLabel label for the X-Axis.
+ * @property yAxisLabel label for the Y-Axis.
+ * @property flavor the color scheme (flavor) of the plot.
+ * @property size the dimensions (width x height) of the plot in pixels.
  */
 public data class Layout(
     var title: String? = null,
@@ -63,10 +83,10 @@ public data class Layout(
     internal var customTheme: CustomTheme? = null
 
     /**
-     * Sets up plot theme.
+     * Configures the theme of the plot.
      *
-     * @param theme one of pre-cooked theme.
-     * @param block customization in addition to the main theme.
+     * @param theme one of the predefined themes.
+     * @param block additional customizations to apply on top of the main theme.
      */
     public inline fun theme(theme: Theme, block: CustomTheme.() -> Unit = {}) {
         this.theme = theme
@@ -74,9 +94,9 @@ public data class Layout(
     }
 
     /**
-     * Sets up plot theme.
+     * Configures a custom theme for the plot.
      *
-     * @param block custom theme builder.
+     * @param block a lambda function to define the custom theme.
      */
     public inline fun theme(block: CustomTheme.() -> Unit) {
         theme = CustomTheme().apply(block)

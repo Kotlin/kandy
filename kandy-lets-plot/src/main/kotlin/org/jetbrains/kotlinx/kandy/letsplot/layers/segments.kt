@@ -9,44 +9,51 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.SegmentsContext
 
 
 /**
- * Adds a new segments layer.
+ * Adds a new `segments` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `segments` layer is used to draw line segments between two points,
+ * and is useful for visualizing connections, relationships, or flow between elements in a plot.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Segments aesthetics:
- * * `xBegin`
- * * `xEnd`
- * * `yBegin`
- * * `yEnd`
- * * `color`
- * * `alpha`
- * * `width`
- * * `lineType`
+ * ## Segments Aesthetics
+ * * **`xBegin`** - The X-coordinate specifying the beginning point of the segment.
+ * * **`xEnd`** - The X-coordinate specifying the ending point of the segment.
+ * * **`yBegin`** - The Y-coordinate specifying the beginning point of the segment.
+ * * **`yEnd`** - The Y-coordinate specifying the ending point of the segment.
+ * * **`color`** - The color of the segment line.
+ * * **`alpha`** - The transparency of the segment line.
+ * * **`width`** - The width of the segment line.
+ * * **`lineType`** - The type of the segment line, such as dashed or dotted.
  *
- * Example:
+ * ## Example Usage
  *
- * ```
- * segments {
- *    // positional mapping
- *    xBegin(startTime) {
- *       ... // some mapping parameters
- *    }
- *    yEnd.constant(100.0)
- *    // even though the segment has no "y" attribute we can adjust the `Y` axis
- *    y.limits = 0.0 .. 110.0
+ * ```kotlin
+ * val xS by columnOf(1, 2, 3, 4, 5)
+ * val xE by columnOf(4, 5, 6, 7, 8)
+ * val yS by columnOf(10, 20, 30, 40, 50)
+ * val yE by columnOf(50, 40, 30, 20, 10)
+ * val city by columnOf("CityA", "CityB", "CityC", "CityD", "CityE")
  *
- *    // non-positional setting
- *    width = 2.5
- *    // non-positional mapping
- *    color("density")
+ * plot {
+ *     segments {
+ *         // Positional mapping
+ *         xBegin(xS)
+ *         xEnd(xE)
+ *         yBegin(yS)
+ *         yEnd(yE)
  *
+ *         // Non-positional mapping
+ *         color(city)
+ *
+ *         // Non-positional settings
+ *         width = 2.5
+ *         alpha = 0.8
+ *         lineType = LineType.DASHED
+ *     }
  * }
  * ```
  */

@@ -9,40 +9,44 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ABLineContext
 
 /**
- * Adds a new abLine layer.
+ * Adds an `abLine` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `abLine` layer draws a line defined by its slope and y-intercept,
+ * which is commonly used for regression lines or simple references in plots.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
  *
- * ABLine aesthetics:
- * * `slope`
- * * `intercept`
- * * `color`
- * * `type`
- * * `width`
- * * `alpha`
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ * For positional aesthetics, you can use the `.constant()` method.
  *
- * Example:
+ * ## ABLine Aesthetics
+ * * `slope` - Slope of the line.
+ * * `intercept` - Y-intercept at which the line crosses the vertical axis.
+ * * `color` - Color of the line.
+ * * `type` - Style of the line, such as dashed or dotted.
+ * * `width` - Width of the line.
+ * * `alpha` - Transparency of the line.
  *
- * ```
- * abLine {
- *    // positional mapping
- *    intercept(time)
- *    // positional setting
- *    y.constant(12.5)
+ * ## Example
  *
- *    // non-positional setting
- *    width = 2.5
- *    // non-positional mapping
- *    color("type") {
- *       ... // some mapping parameters
- *    }
+ * ```kotlin
+ * plot {
+ *     abLine {
+ *         // Map values to intercept aesthetic
+ *         intercept(listOf(.1, .2, .3, .4, .5))
+ *         // Set a constant slope
+ *         slope.constant(0.5)
+ *         // Set a constant width for the line
+ *         width = 2.5
+ *         // Map categorical values to color aesthetic
+ *         color(listOf("A", "A", "B", "B", "C")) {
+ *             // Additional mapping parameters, e.g., you can specify a color palette here
+ *             scale = categorical("A" to Color.RED, "B" to Color.PURPLE, "C" to Color.BLUE)
+ *         }
+ *         // Set alpha (transparency) of the line
+ *         alpha = 0.7
+ *     }
  * }
  * ```
  */

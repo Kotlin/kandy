@@ -6,10 +6,9 @@ package org.jetbrains.kotlinx.kandy.letsplot.multiplot.context
 
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotBunch
 
 /**
- *  Context created by [plotBunch].
+ *  Context created by [org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotBunch].
  */
 public class PlotBunchBuffer {
     @PublishedApi

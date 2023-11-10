@@ -5,54 +5,56 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BarsContext
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.reversed
+import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BarsContext
 
 /**
- * Adds a new bars layer.
+ * Adds a new `bars` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `bars` layer is used to create bar charts, which are useful for comparing quantities among discrete categories.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Bars aesthetics:
- * * `x`
- * * `y`
- * * `fillColor`
- * * `alpha`
- * * `width`
- * * `borderLine.color`
- * * `borderLine.width`
- * * `borderLine.type`
+ * ## Bars Aesthetics
+ * * **`x`** - The X-coordinate specifying the categories.
+ * * **`y`** - The Y-coordinate specifying the height of the bars.
+ * * **`fillColor`** - The fill color of the bars.
+ * * **`alpha`** - The transparency of the bars.
+ * * **`width`** - The width of the bars.
+ * * **`borderLine.color`** - Color of the bars' borderline.
+ * * **`borderLine.width`** - Width of the bars' borderline.
+ * * **`borderLine.type`** - Type of the bars' borderline, such as dashed or dotted.
  *
- * Example:
+ * ## Example Usage
  *
- * ```
- * bars {
- *    // positional mapping
- *    x(time) {
- *       ... // some mapping parameters
- *    }
- *    y.constant(100.0)
+ * ```kotlin
+ * plot {
+ *     bars {
+ *         // Positional mapping
+ *         x(listOf("Apple", "Banana", "Cherry", "Orange", "Strawberry"))
+ *         y(listOf(5.0, 7.5, 3.0, 4.5, 6.0)) {
+ *             axis.breaks((0..16).map { it / 2.0 })
+ *         }
  *
- *    // non-positional settings
- *    alpha = 0.8
- *    borderLine.width = 2.5
- *    borderLine {
- *       color = Color.BLACK
- *    }
- *    // non-positional mapping
- *    fillColor("type")
+ *         // Non-positional settings
+ *         alpha = 0.7
+ *         width = 0.4
  *
- *    // position adjustment
- *    position = Position.Stack
+ *         // BorderLine settings
+ *         borderLine {
+ *             color = Color.BLACK
+ *             width = 2.5
+ *             type = LineType.DASHED
+ *         }
+ *
+ *         // Non-positional mapping
+ *         fillColor(listOf("a", "b", "b", "c", "a"))
+ *     }
  * }
  * ```
  */
@@ -63,48 +65,51 @@ public inline fun LayerCollectorContext.bars(block: BarsContext.() -> Unit) {
 }
 
 /**
- * Adds a new horizontal bars layer.
+ * Adds a new `barsH` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `barsH` layer is designed to visualize data using horizontal bars.
+ * It serves a similar purpose as `bars`, but the orientation of the bars is horizontal rather than vertical.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ * For positional aesthetics, you can use the `.constant()` method.
  *
- * Bars aesthetics:
- * * `x`
- * * `y`
- * * `fillColor`
- * * `alpha`
- * * `width`
- * * `borderLine.color`
- * * `borderLine.width`
- * * `borderLine.type`
+ * ## BarsH Aesthetics
+ * * **`x`** - The X-coordinate specifying the length of the bars.
+ * * **`y`** - The Y-coordinate specifying the categories.
+ * * **`fillColor`** - The fill color of the bars.
+ * * **`alpha`** - The transparency of the bars.
+ * * **`width`** - The width of the bars.
+ * * **`borderLine.color`** - Color of the bars' borderline.
+ * * **`borderLine.width`** - Width of the bars' borderline.
+ * * **`borderLine.type`** - Type of the bars' borderline, such as dashed or dotted.
  *
- * Example:
+ * ## Example
  *
- * ```
- * barsH {
- *    // positional mapping
- *    y(time) {
- *       ... // some mapping parameters
- *    }
- *    x.constant(100.0)
+ * ```kotlin
+ * plot {
+ *     barsH {
+ *         // Positional mapping
+ *         y(listOf("Apple", "Banana", "Cherry", "Orange", "Strawberry"))
+ *         x(listOf(5.0, 7.5, 3.0, 4.5, 6.0)) {
+ *             axis.breaks((0..16).map { it / 2.0 })
+ *         }
  *
- *    // non-positional settings
- *    alpha = 0.8
- *    borderLine.width = 2.5
- *    borderLine {
- *       color = Color.BLACK
- *    }
- *    // non-positional mapping
- *    fillColor("type")
+ *         // Non-positional settings
+ *         alpha = 0.7
+ *         width = 0.4
  *
- *    // position adjustment
- *    position = Position.Stack
+ *         // BorderLine settings
+ *         borderLine {
+ *             color = Color.BLACK
+ *             width = 2.5
+ *             type = LineType.DASHED
+ *         }
+ *
+ *         // Non-positional mapping
+ *         fillColor(listOf("a", "b", "b", "c", "a"))
+ *     }
  * }
  * ```
  */

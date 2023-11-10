@@ -9,9 +9,9 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.*
 import kotlin.reflect.KProperty
 
 /**
- * Context created by [LayerContextInterface.tooltips] methods.
+ * Context created by [org.jetbrains.kotlinx.kandy.letsplot.tooltips.tooltips] methods.
  */
-public class LayerTooltipsContext(private val LayerContextInterface: LayerContextInterface) {
+public class LayerTooltipsContext(private val layerContextInterface: LayerContextInterface) {
     internal val lineBuffer = mutableListOf<String>()
     internal val formatsBuffer = mutableMapOf<String, String>()
 
@@ -19,7 +19,6 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
      * Adds solid line to tooltips with given string value.
      *
      * @param string text of the line.
-     * @see value
      */
     public fun line(string: String) {
         lineBuffer.add(string)
@@ -34,7 +33,7 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
      */
     public fun KProperty<*>.tooltipValue(format: String? = null): String {
         @Suppress("invisible_reference")
-        val colID = LayerContextInterface.datasetHandler.takeColumn(this.name)
+        val colID = layerContextInterface.datasetHandler.takeColumn(this.name)
         addFormat(colID, format)
         return "@$colID"
     }
@@ -48,7 +47,7 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
      */
     public fun String.tooltipValue(format: String? = null): String {
         @Suppress("invisible_reference")
-        val colID = LayerContextInterface.datasetHandler.takeColumn(this)
+        val colID = layerContextInterface.datasetHandler.takeColumn(this)
         addFormat(colID, format)
         return "@$colID"
     }
@@ -62,7 +61,7 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
      */
     public fun ColumnReference<*>.tooltipValue(format: String? = null): String {
         @Suppress("invisible_reference")
-        val colID = LayerContextInterface.datasetHandler.addColumn(this)
+        val colID = layerContextInterface.datasetHandler.addColumn(this)
         addFormat(colID, format)
         return "@$colID"
     }
@@ -72,7 +71,6 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
      *
      * @param leftSide text of the left side of line
      * @param rightSide text of the right side of line
-     * @see value
      */
     public fun line(leftSide: String? = null, rightSide: String? = null) {
         lineBuffer.add("${leftSide ?: ""}|${rightSide ?: ""}")
@@ -89,14 +87,14 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
     }
 
     /**
-     * Adds standard line for given column
+     * Adds standard line for the given column
      * (name of the column on the left side and the corresponding value on the right side).
      *
      * @param column column whose value will be displayed.
      */
     public fun line(column: ColumnReference<*>, format: String? = null) {
         @Suppress("invisible_reference")
-        addVarLine(LayerContextInterface.datasetHandler.addColumn(column).also {
+        addVarLine(layerContextInterface.datasetHandler.addColumn(column).also {
             addFormat(it, format)
         })
     }
@@ -109,26 +107,26 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
      */
     public fun line(property: KProperty<*>, format: String? = null) {
         @Suppress("invisible_reference")
-        addVarLine(LayerContextInterface.datasetHandler.takeColumn(property.name).also {
+        addVarLine(layerContextInterface.datasetHandler.takeColumn(property.name).also {
             addFormat(it, format)
         })
     }
 
     /**
-     * Adds standard line for given column
+     * Adds standard line for the given column
      * (name of the column on the left side and the corresponding value on the right side).
      *
      * @param columnName name of column whose value will be displayed.
      */
     public fun varLine(columnName: String, format: String? = null) {
         @Suppress("invisible_reference")
-        addVarLine(LayerContextInterface.datasetHandler.takeColumn(columnName).also {
+        addVarLine(layerContextInterface.datasetHandler.takeColumn(columnName).also {
             addFormat(it, format)
         })
     }
 
     /**
-     * Adds standard line for given column
+     * Adds standard line for the given column
      * (name of the column on the left side and the corresponding value on the right side).
      *
      * @param property property with the name of column whose value will be displayed.
@@ -138,7 +136,7 @@ public class LayerTooltipsContext(private val LayerContextInterface: LayerContex
     }
 
     /**
-     * Adds standard line for given column
+     * Adds standard line for the given column
      * (name of the column on the left side and the corresponding value on the right side).
      *
      * @param column column whose value will be displayed.

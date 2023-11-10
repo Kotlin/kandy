@@ -7,46 +7,55 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RasterContext
 
-
 /**
- * Adds a new raster layer.
+ * Adds a new `raster` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `raster` layer displays data as colored or shaded rectangles with respect to an x and y coordinate,
+ * like an image or heat map.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Raster aesthetics:
- * * `x`
- * * `y`
- * * `fillColor`
- * * `alpha`
- * * `borderLine.color`
- * * `borderLine.width`
- * * `borderLine.type`
+ * ## Raster Aesthetics
+ * * **`x`** - The X-coordinate specifying the position of the rectangles.
+ * * **`y`** - The Y-coordinate specifying the position of the rectangles.
+ * * **`fillColor`** - The fill color of the rectangles.
+ * * **`alpha`** - The transparency of the rectangles.
+ * * **`borderLine.color`** - Color of the rectangles' borderline.
+ * * **`borderLine.width`** - Width of the rectangles' borderline.
+ * * **`borderLine.type`** - Type of the rectangles' borderline, such as dashed or dotted.
  *
- * Example:
+ * ## Example Usage
  *
- * ```
- * raster {
- *    // positional mapping
- *    x(waiting) {
- *       ... // some mapping parameters
- *    }
- *    y.constant(100.0)
+ * ```kotlin
+ * // Assume we have data on average monthly temperatures in various cities.
+ * val data = dataFrameOf(
+ *     "month" to List(4) { listOf("January", "February", "March", "April", "May") }.flatten(),
+ *     "city" to List(5) { listOf("London", "Berlin", "Saint-Petersburg", "Yerevan") }.flatten(),
+ *     "temp" to listOf(-5, -3, 0, 5, 10, -7, -5, -1, 4, 9, -10, -8, -5, 2, 7, -8, -6, -3, 3, 8)
+ * )
  *
- *    // non-positional settings
- *    alpha = 0.8
- *    borderLine.width = 2.5
- *    borderLine {
- *       color = Color.BLACK
- *    }
- *    // non-positional mapping
- *    fillColor("density")
+ * // Now, let's create a heatmap based on this data.
+ * data.plot {
+ *     raster {
+ *         // Map temperatures to the x and y axes
+ *         x("month")
+ *         y("city")
+ *
+ *         // Set the colors based on temperature
+ *         fillColor("temp") {
+ *             // Here, you can set scale parameters so the colors correspond to temperatures
+ *         }
+ *
+ *         // Transparency and border parameters for each rectangle
+ *         alpha = 0.8
+ *         borderLine {
+ *             color = Color.BLACK
+ *             width = 0.5
+ *         }
+ *     }
  * }
  * ```
  */
