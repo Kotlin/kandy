@@ -15,33 +15,20 @@ import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Legend
 /**
  * Lets-plot positional mapping parameters.
  *
- * @property DomainType scale domain type.
- * @property scale positional scale of this mapping.
- * @property axis scale axis settings.
+ * @property DomainType the type of the domain values for the scale.
+ * @property scale the positional scale used in the mapping.
+ * @property axis configuration settings for the scale axis.
  */
 public interface LetsPlotPositionalMappingParameters<DomainType> : PositionalMappingParameters<DomainType> {
     public val axis: Axis<DomainType>
 }
 
-/* TODO Do we need it?
-*//**
- * Lets-plot positional mapping parameters for categorical aes.
- *
- * @property DomainType scale domain type.
- * @property scale positional scale of this mapping.
- * @property axis scale axis settings.
- *//*
-public data class LetsPlotPositionalMappingParametersCategorical<DomainType>(
-    override var scale: PositionalScale<out DomainType> = PositionalDefaultScale(),
-    public override val axis: Axis<DomainType> = Axis()
-) : LetsPlotPositionalMappingParameters<DomainType>*/
-
 /**
  * Lets-plot positional mapping parameters for continuous aes.
  *
- * @property DomainType scale domain type.
- * @property scale positional scale of this mapping.
- * @property axis scale axis settings.
+ * @property DomainType the type of the domain values for the scale.
+ * @property scale the positional scale used in this mapping.
+ * @property axis configuration settings for the scale axis.
  */
 public data class LetsPlotPositionalMappingParametersContinuous<DomainType>(
     override var scale: PositionalScale<out DomainType> = PositionalDefaultScale(),
@@ -52,10 +39,10 @@ public data class LetsPlotPositionalMappingParametersContinuous<DomainType>(
 /**
  * Lets-plot non-positional mapping parameters.
  *
- * @property DomainType scale domain type.
- * @property RangeType scale domain type.
- * @property scale positional scale of this mapping.
- * @property legend scale legend settings.
+ * @property DomainType the type of the domain values for the scale.
+ * @property RangeType the type of the range values for the scale.
+ * @property scale the scale used in the mapping.
+ * @property legend configuration settings for the scale legend.
  */
 public interface LetsPlotNonPositionalMappingParameters<DomainType, RangeType>
     : NonPositionalMappingParameters<DomainType, RangeType> {
@@ -65,10 +52,10 @@ public interface LetsPlotNonPositionalMappingParameters<DomainType, RangeType>
 /**
  * Lets-plot non-positional mapping parameters for continuous aes.
  *
- * @property DomainType scale domain type.
- * @property RangeType scale domain type.
- * @property scale positional scale of this mapping.
- * @property legend scale legend settings.
+ * @property DomainType the type of the domain values for the scale.
+ * @property RangeType the type of the range values for the scale.
+ * @property scale the scale used in this mapping.
+ * @property legend configuration settings for the scale legend.
  */
 public data class LetsPlotNonPositionalMappingParametersCategorical<DomainType, RangeType>(
     override var scale: NonPositionalCategoricalScaleBase<out DomainType, out RangeType> =
@@ -79,10 +66,10 @@ public data class LetsPlotNonPositionalMappingParametersCategorical<DomainType, 
 /**
  * Lets-plot non-positional mapping parameters.
  *
- * @property DomainType scale domain type.
- * @property RangeType scale domain type.
- * @property scale positional scale of this mapping.
- * @property legend scale legend settings.
+ * @property DomainType the type of the domain values for the scale.
+ * @property RangeType the type of the range values for the scale.
+ * @property scale the scale used in this mapping.
+ * @property legend configuration settings for the scale legend.
  */
 public data class LetsPlotNonPositionalMappingParametersContinuous<DomainType, RangeType>(
     override var scale: NonPositionalScale<out DomainType, out RangeType> = NonPositionalDefaultScale(),

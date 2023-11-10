@@ -22,7 +22,7 @@ import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
 
 @JupyterLibrary
 internal class Integration : JupyterIntegration() {
-    private val jsVersion = "4.0.0"
+     private val jsVersion = "4.0.1"
 
     private val frontendContext: NotebookFrontendContext = LetsPlot.setupNotebook(jsVersion, true) {
         HTML(it)

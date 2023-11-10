@@ -9,45 +9,42 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.LineRangesContext
 
 
 /**
- * Adds a new line-ranges layer.
+ * Adds a new `lineRanges` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `lineRanges` layer displays vertical lines, usually to indicate the range of some variable.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Line-ranges aesthetics:
- * * `x`
- * * `yMin`
- * * `yMax`
- * * `alpha`
- * * `borderLine.color`
- * * `borderLine.width`
- * * `borderLine.type`
+ * ## LineRanges Aesthetics
+ * * **`x`** - The X-coordinate specifying the categories.
+ * * **`yMin`** - The minimum value for the Y-coordinate.
+ * * **`yMax`** - The maximum value for the Y-coordinate.
+ * * **`alpha`** - The transparency of the line-range.
+ * * **`borderLine.color`** - The color of the line-range's borderline.
+ * * **`borderLine.width`** - The width of the line-range's borderline.
+ * * **`borderLine.type`** - The type of the line-range's borderline, such as dashed or dotted.
  *
- * Example:
+ * ## Example
  *
- * ```
- * lineRangess {
- *    // positional mapping
- *    x(time) {
- *       ... // some mapping parameters
- *    }
- *    yMax.constant(100.0)
- *    // even though the line-range bars have no "y" attribute we can adjust the `Y` axis
- *    y.limits = 0.0 .. 110.0
+ * ```kotlin
+ * plot {
+ *     lineRanges {
+ *         // Positional mapping
+ *         x(listOf("Jan", "Feb", "Mar", "Apr", "May"))
+ *         yMin(listOf(10, 12, 8, 14, 9))
+ *         yMax(listOf(20, 22, 18, 24, 19))
  *
- *    // non-positional settings
- *    alpha = 0.9
- *    borderLine.width = 2.5
- *    // non-positional mapping
- *    borderLine {
- *       color("capacity")
- *    }
+ *         // Non-positional settings
+ *         alpha = 0.7
+ *         borderLine {
+ *             color = Color.GREY
+ *             width = 2.0
+ *             type = LineType.DASHED
+ *         }
+ *     }
  * }
  * ```
  */

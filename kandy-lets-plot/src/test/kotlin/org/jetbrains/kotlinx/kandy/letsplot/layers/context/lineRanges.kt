@@ -24,7 +24,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class LineRangeTests {
+class LineRangesTests {
     private val xAxis = listOf(0.5).toColumn("xAxis")
     private val yMin = listOf(5).toColumn("yMin")
     private val yMax = listOf(15).toColumn("yMax")
@@ -56,110 +56,110 @@ class LineRangeTests {
     }
 
     @Test
-    fun `border color const for lineRange`() {
+    fun `border color const for lineRanges`() {
         context.borderLine.color = Color.BLUE
         assertEquals(Color.BLUE, (context.bindingCollector.settings[COLOR] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `border color str mapping for lineRange`() {
+    fun `border color str mapping for lineRanges`() {
         context.borderLine.color("color")
         assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border color dataColumn mapping for lineRange`() {
+    fun `border color dataColumn mapping for lineRanges`() {
         context.borderLine.color(color)
         assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border color iterable mapping for lineRange`() {
+    fun `border color iterable mapping for lineRanges`() {
         context.borderLine.color(listOf("red"))
         assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border type const for lineRange`() {
+    fun `border type const for lineRanges`() {
         context.borderLine.type = LineType.DOTDASH
         assertEquals(LineType.DOTDASH, (context.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `border type str mapping for lineRange`() {
+    fun `border type str mapping for lineRanges`() {
         context.borderLine.type("type")
         assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border type dataColumn mapping for lineRange`() {
+    fun `border type dataColumn mapping for lineRanges`() {
         context.borderLine.type(type)
         assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border type iterable mapping for lineRange`() {
+    fun `border type iterable mapping for lineRanges`() {
         context.borderLine.type(listOf("dot"))
         assertEquals("linetype", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border width const for lineRange`() {
+    fun `border width const for lineRanges`() {
         context.borderLine.width = .5
         assertEquals(.5, (context.bindingCollector.settings[SIZE] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `border width str mapping for lineRange`() {
+    fun `border width str mapping for lineRanges`() {
         context.borderLine.width("width")
         assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border width dataColumn mapping for lineRange`() {
+    fun `border width dataColumn mapping for lineRanges`() {
         context.borderLine.width(width)
         assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `border width iterable mapping for lineRange`() {
+    fun `border width iterable mapping for lineRanges`() {
         context.borderLine.width(listOf(0.2, .1))
         assertEquals("size", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha const for lineRange`() {
+    fun `alpha const for lineRanges`() {
         context.alpha = 0.1
         assertEquals(0.1, (context.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `alpha str mapping for lineRange`() {
+    fun `alpha str mapping for lineRanges`() {
         context.alpha("alpha")
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha dataColumn mapping for lineRange`() {
+    fun `alpha dataColumn mapping for lineRanges`() {
         context.alpha(alpha)
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha iterable mapping for lineRange`() {
+    fun `alpha iterable mapping for lineRanges`() {
         context.alpha(listOf(0.2, 0.5, .1))
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `x const for lineRange`() {
+    fun `x const for lineRanges`() {
         context.x.constant(5.0)
         assertEquals(X, (context.bindingCollector.settings[X] as PositionalSetting<*>).aes)
         assertEquals(5.0, (context.bindingCollector.settings[X] as PositionalSetting<*>).value)
     }
 
     @Test
-    fun `x for lineRange`() {
+    fun `x for lineRanges`() {
         context.x(xAxis) {
             axis {
                 name = "x axis"
@@ -174,14 +174,14 @@ class LineRangeTests {
     }
 
     @Test
-    fun `yMin for lineRange`() {
+    fun `yMin for lineRanges`() {
         context.yMin(yMin)
         assertEquals(Y_MIN, context.bindingCollector.mappings[Y_MIN]?.aes)
         assertEquals("yMin", context.bindingCollector.mappings[Y_MIN]?.columnID)
     }
 
     @Test
-    fun `yMax for lineRange`() {
+    fun `yMax for lineRanges`() {
         context.yMax(yMax)
         assertEquals(Y_MAX, context.bindingCollector.mappings[Y_MAX]?.aes)
         assertEquals("yMax", context.bindingCollector.mappings[Y_MAX]?.columnID)

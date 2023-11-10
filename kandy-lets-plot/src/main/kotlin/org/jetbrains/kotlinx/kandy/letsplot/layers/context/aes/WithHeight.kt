@@ -12,70 +12,72 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.HEIGHT
 import kotlin.reflect.KProperty
 
+/**
+ * Interface for configuring the `height` aesthetic specifically used for tile-like plot elements.
+ * This interface provides methods for setting the aesthetic directly or through data mappings.
+ *
+ * Implementing this interface allows the aesthetic to be directly set as a [Double], or mapped to a data column.
+ */
 public interface WithHeight : BindingContext {
+
+    /**
+     * Sets the `height` for tile-like plot elements.
+     *
+     * @property height a [Double] value to set as the height.
+     */
     public var height: Double?
         get() = null
         set(value) {
             addNonPositionalSetting(HEIGHT, value)
         }
 
+    /**
+     * Maps the `height` aesthetic to a data column by [ColumnReference].
+     *
+     * @param column the data column to map to the color.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> height(
         column: ColumnReference<T>,
-        //parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> {
-        return addNonPositionalMapping<T, Double>(
-            HEIGHT,
-            column.name(),
-            null//LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
-        )
-    }
+    ): NonPositionalMapping<T, Double> =
+        addNonPositionalMapping<T, Double>(HEIGHT, column.name(), null)
 
+    /**
+     * Maps the `height` aesthetic to a data column by [KProperty].
+     *
+     * @param column the data column to map to the color.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> height(
         column: KProperty<T>,
-        //parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> {
-        return addNonPositionalMapping<T, Double>(
-            HEIGHT,
-            column.name,
-            null//LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
-        )
-    }
+    ): NonPositionalMapping<T, Double> =
+        addNonPositionalMapping<T, Double>(HEIGHT, column.name, null)
 
-    public fun height(
-        column: String,
-        // parameters: LetsPlotNonPositionalMappingParameters<Any?, Double>.() -> Unit = {}
-    ): NonPositionalMapping<Any?, Double> {
-        return addNonPositionalMapping(
-            HEIGHT,
-            column,
-            null
-            //LetsPlotNonPositionalMappingParameters<Any?, Double>().apply(parameters)
-        )
-    }
+    /**
+     * Maps the `height` aesthetic to a data column by [String].
+     *
+     * @param column the data column to map to the color.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
+    public fun height(column: String): NonPositionalMapping<Any?, Double> =
+        addNonPositionalMapping(HEIGHT, column, null)
 
-    // Iterable, Array, PrimArray, DataColumn,
-    public fun <T> height(
-        values: Iterable<T>,
-        name: String? = null,
-        //parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> {
-        return addNonPositionalMapping(
-            HEIGHT,
-            values.toList(),
-            name,
-            null
-            //LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
-        )
-    }
+    /**
+     * Maps the `height` aesthetic to the iterable of values.
+     *
+     * @param values the iterable of values to be mapped.
+     * @param name optional name for this aesthetic mapping.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
+    public fun <T> height(values: Iterable<T>, name: String? = null): NonPositionalMapping<T, Double> =
+        addNonPositionalMapping(HEIGHT, values.toList(), name, null)
 
-    public fun <T> height(
-        values: DataColumn<T>,
-    ): PositionalMapping<T> {
-        return addPositionalMapping(
-            HEIGHT,
-            values,
-            null
-            // LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
-        )
-    }
+    /**
+     * Maps the `height` aesthetic to a data column.
+     *
+     * @param values the data column to map to the color.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
+    public fun <T> height(values: DataColumn<T>): PositionalMapping<T> =
+        addPositionalMapping(HEIGHT, values, null)
 }

@@ -33,11 +33,11 @@ public data class ScalesSharing internal constructor(val name: String) {
  *
  * @param x Variable which defines columns of the facet grid.
  * @param scalesSharing Specifies whether scales are shared across all facets.
- * @param order Specifies ordering direction of columns
+ * @param order Specifies the ordering direction of columns
  * @param format Specifies the format pattern for displaying faceting values in columns.
  *
  * Format pattern in the format parameters can be just a number format (like "d") or
- * a string template where number format is surrounded by curly braces: "{d} cylinders".
+ * a string template where a number format is surrounded by curly braces: "{d} cylinders".
  * Note: the "$" must be escaped as "\$"
  *
  * Examples:
@@ -65,11 +65,11 @@ public fun LayerPlotContext.facetGridX(
  *
  * @param y variable which defines rows of the facet grid.
  * @param scalesSharing specifies whether scales are shared across all facets.
- * @param order specifies ordering direction of rows
+ * @param order specifies the ordering direction of rows
  * @param format specifies the format pattern for displaying faceting values in rows.
  *
  * Format pattern in the format parameters can be just a number format (like "d") or
- * a string template where number format is surrounded by curly braces: "{d} cylinders".
+ * a string template where the number format is surrounded by curly braces: "{d} cylinders".
  * Note: the "$" must be escaped as "\$"
  *
  * Examples:
@@ -92,18 +92,18 @@ public fun LayerPlotContext.facetGridY(
 /**
  * Splits data by two faceting variables across X and Y.
  * For each data subset creates a plot panel and lays out panels as grid.
- * The grid columns are defined by X faceting variable and rows are defined by Y faceting variable.
+ * The grid columns are defined by X faceting variable, and rows are defined by Y faceting variable.
  *
  * @param x variable which defines columns of the facet grid.
  * @param y variable which defines rows of the facet grid.
  * @param scalesSharing specifies whether scales are shared across all facets.
- * @param xOrder specifies ordering direction of columns
- * @param yOrder specifies ordering direction of rows
+ * @param xOrder specifies the ordering direction of columns
+ * @param yOrder specifies the ordering direction of rows
  * @param xFormat specifies the format pattern for displaying faceting values in columns.
  * @param yFormat specifies the format pattern for displaying faceting values in rows.
  *
  * Format pattern in the xFormat/yFormat parameters can be just a number format (like "d") or
- * a string template where number format is surrounded by curly braces: "{d} cylinders".
+ * a string template where the number format is surrounded by curly braces: "{d} cylinders".
  * Note: the "$" must be escaped as "\$"
  *
  * Examples:
@@ -133,7 +133,7 @@ public fun LayerPlotContext.facetGrid(
  * nCol`, `nRow` and `direction` settings.
  *
  * Opens a [FacetWrapContext]. [FacetWrapContext.facets] is defined in this context. This method adds
- * a new facet by a given variable.
+ * a new facet to a given variable.
  *
  * ```
  * facetWrap(nRow = 3, scalesSharing = ScalesSharing.FREE_X) {

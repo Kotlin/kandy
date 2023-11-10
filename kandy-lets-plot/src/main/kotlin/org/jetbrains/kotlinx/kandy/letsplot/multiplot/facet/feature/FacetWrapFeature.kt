@@ -26,7 +26,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing
  * @param direction direction of the facet.
  *
  * Format patterns in the `format` parameter can be just a number format (like "d") or
- * a string template where number format is surrounded by curly braces: "{d} cylinders".
+ * a string template where the number format is surrounded by curly braces: "{d} cylinders".
  * Note: the "$" must be escaped as "\$"
  * For more info see: https://github.com/JetBrains/lets-plot-kotlin/blob/master/docs/formats.md
  *

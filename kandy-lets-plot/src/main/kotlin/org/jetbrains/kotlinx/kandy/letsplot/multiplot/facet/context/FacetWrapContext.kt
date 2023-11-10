@@ -7,16 +7,14 @@ package org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.context
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.Direction
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.OrderDirection
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing
-import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.facetWrap
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 
 /**
- * Represents the context for configuring and adding facets to a plot within the [LayerPlotContext].
- * This context is initiated by invoking [LayerPlotContext.facetWrap],
+ * Represents the context for configuring and adding facets to a plot within the [org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext].
+ * This context is initiated by invoking [org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.facetWrap],
  * which collects variables that are used to create facet plots.
  */
 public class FacetWrapContext @PublishedApi internal constructor() {

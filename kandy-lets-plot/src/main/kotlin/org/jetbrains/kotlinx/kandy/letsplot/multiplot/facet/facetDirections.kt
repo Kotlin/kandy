@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet
 
 /**
- * Specifies ordering direction of columns and rows in the facet.
+ * Specifies the ordering direction of columns and rows in the facet.
  *
  * @property ASCENDING ascending ordering direction (by default).
  * @property DESCENDING descending ordering direction.

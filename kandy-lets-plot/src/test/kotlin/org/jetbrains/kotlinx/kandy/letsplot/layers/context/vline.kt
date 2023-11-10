@@ -52,103 +52,103 @@ class VLineTests {
     }
 
     @Test
-    fun `color const for vline`() {
+    fun `color const for vLine`() {
         context.color = Color.BLUE
         assertEquals(Color.BLUE, (context.bindingCollector.settings[COLOR] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `color str mapping for vline`() {
+    fun `color str mapping for vLine`() {
         context.color("color")
         assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `color dataColumn mapping for vline`() {
+    fun `color dataColumn mapping for vLine`() {
         context.color(color)
         assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `color iterable mapping for vline`() {
+    fun `color iterable mapping for vLine`() {
         context.color(listOf("red"))
         assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `type const for vline`() {
+    fun `type const for vLine`() {
         context.type = LineType.DOTDASH
         assertEquals(LineType.DOTDASH, (context.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `type str mapping for vline`() {
+    fun `type str mapping for vLine`() {
         context.type("type")
         assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `type dataColumn mapping for vline`() {
+    fun `type dataColumn mapping for vLine`() {
         context.type(type)
         assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `type iterable mapping for vline`() {
+    fun `type iterable mapping for vLine`() {
         context.type(listOf("dot"))
         assertEquals("linetype", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha const for vline`() {
+    fun `alpha const for vLine`() {
         context.alpha = 0.1
         assertEquals(0.1, (context.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `alpha str mapping for vline`() {
+    fun `alpha str mapping for vLine`() {
         context.alpha("alpha")
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha dataColumn mapping for vline`() {
+    fun `alpha dataColumn mapping for vLine`() {
         context.alpha(alpha)
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `alpha iterable mapping for vline`() {
+    fun `alpha iterable mapping for vLine`() {
         context.alpha(listOf(0.2, 0.5, .1))
         assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `width const for vline`() {
+    fun `width const for vLine`() {
         context.width = .5
         assertEquals(.5, (context.bindingCollector.settings[SIZE] as NonPositionalSetting<*>).value)
     }
 
     @Test
-    fun `width str mapping for vline`() {
+    fun `width str mapping for vLine`() {
         context.width("width")
         assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `width dataColumn mapping for vline`() {
+    fun `width dataColumn mapping for vLine`() {
         context.width(width)
         assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `width iterable mapping for vline`() {
+    fun `width iterable mapping for vLine`() {
         context.width(listOf(0.2, .1))
         assertEquals("size", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
-    fun `y free for vline`() {
+    fun `y free for vLine`() {
         context.y {
             axis {
                 name = "yAxis"
@@ -164,13 +164,13 @@ class VLineTests {
     }
 
     @Test
-    fun `x intercept const for vline`() {
+    fun `x intercept const for vLine`() {
         context.xIntercept.constant(3)
         assertEquals(3, (context.bindingCollector.settings[X_INTERCEPT] as? PositionalSetting<*>)?.value)
     }
 
     @Test
-    fun `x intercept mapping for vline`() {
+    fun `x intercept mapping for vLine`() {
         context.xIntercept(xIntercept)
 
         assertEquals(X_INTERCEPT, context.bindingCollector.mappings[X_INTERCEPT]?.aes)
