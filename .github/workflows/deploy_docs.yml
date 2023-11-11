@@ -26,7 +26,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Build Writerside docs using Docker
         uses: JetBrains/writerside-github-action@v4
         with:
@@ -40,7 +39,6 @@ jobs:
           name: docs
           path: |
             artifacts/${{ env.ARTIFACT }}
-            artifacts/report.json
           retention-days: 7
 
       - name: Upload algolia-indexes

@@ -14,7 +14,7 @@
         <algolia-index>kandy_search</algolia-index>
         <algolia-api-key>5c2b297123233b10b657e49979194b21</algolia-api-key>
         <search-scopes-provider>https://www.jetbrains.com/search/json/</search-scopes-provider>
-        <generate-sitemap-url-prefix>https://kotlin.github.io/kandy/</generate-sitemap-url-prefix>
+<!--        <generate-sitemap-url-prefix>https://kotlin.github.io/kandy/</generate-sitemap-url-prefix>-->
     </variables>
     <build-profile instance="kandy">
         <variables>
