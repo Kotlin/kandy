@@ -16,7 +16,7 @@
         <search-scopes-provider>https://www.jetbrains.com/search/json/</search-scopes-provider>
 <!--        <generate-sitemap-url-prefix>https://kotlin.github.io/kandy/</generate-sitemap-url-prefix>-->
     </variables>
-    <build-profile instance="kandy">
+    <build-profile instance="kd">
         <variables>
             <noindex-content>false</noindex-content>
         </variables>
