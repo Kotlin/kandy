@@ -18,7 +18,6 @@ import org.jetbrains.letsPlot.intern.toSpec
 import java.util.*
 
 internal class NotebookRenderingContext(
-    //val frontendContext: NotebookFrontendContext,
     val jsVersion: String,
     val config: JupyterConfig,
 )
@@ -26,12 +25,6 @@ internal class NotebookRenderingContext(
 internal fun NotebookRenderingContext.figureToHtml(figure: Figure): String {
     val spec = figure.toSpec()
     return PlotHtmlExport.buildHtmlFromRawSpecs(spec, PlotHtmlHelper.scriptUrl(jsVersion), true)
-    /*return when (figure) {
-        is org.jetbrains.letsPlot.intern.Plot -> frontendContext.getHtml(figure)
-        is SubPlotsFigure -> frontendContext.getHtml(figure)
-        is GGBunch -> frontendContext.getHtml(figure)
-        else -> error("Unsupported Figure")
-    }*/
 }
 
 internal fun NotebookRenderingContext.figureToMimeJson(figure: Figure): JsonObject {
