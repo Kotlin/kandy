@@ -62,7 +62,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.bars
 fun main() {
     // Create a DataFrame with data on average temperatures in various cities
     val averageTemperature = dataFrameOf(
-        "city" to listOf("New York", "London", "Berlin", "Erevan", "Tokyo"),
+        "city" to listOf("New York", "London", "Berlin", "Yerevan", "Tokyo"),
         "average temperature" to listOf(12.5, 11.0, 9.6, 11.5, 16.0)
     )
 
