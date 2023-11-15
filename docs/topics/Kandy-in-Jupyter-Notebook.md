@@ -92,4 +92,12 @@ jupyter-notebook
 
 You now have access to the Kandy library within your Kotlin Notebook in Jupyter.
 
-<include from="Getting-Started.md" element-id="plotting-a-simple-example"/>
+<include from="Getting-Started.md" element-id="plotting-a-simple-example"></include>
+
+<seealso>
+<category ref="ext">
+<a href="https://jupyter.org/">Jupyter</a>
+<a href="https://github.com/Kotlin/kotlin-jupyter">Kotlin Jupyter</a>
+<a href="https://github.com/Kotlin/kotlin-jupyter/tree/master/docs">Kotlin Jupyter Docs</a>
+</category>
+</seealso>

@@ -30,8 +30,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointRangesContext
  * * **`alpha`** - The transparency of the point and range line.
  * * **`color`** - The color of the point.
  * * **`size`** - The size of the point.
- * * **`fatten`** - The amount to fatten the point relative to the line.
  * * **`innerLine.type`** - The type of line for the range.
+ * * **`innerPoint.fatten`** - The amount to fatten the point relative to the line.
  * * **`innerPoint.symbol`** - The symbol used for the point.
  * * **`innerPoint.fillColor`** - The fill color of the symbol.
  * * **`innerPoint.symbol`** - The symbol used for the point.
