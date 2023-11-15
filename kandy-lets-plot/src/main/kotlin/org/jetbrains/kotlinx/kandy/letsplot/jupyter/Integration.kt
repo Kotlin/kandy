@@ -24,22 +24,9 @@ import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
 internal class Integration : JupyterIntegration() {
      private val jsVersion = "4.0.1"
 
-    private val frontendContext: NotebookFrontendContext = LetsPlot.setupNotebook(jsVersion, true) {
-        HTML(it)
-    }
     private val config = JupyterConfig()
 
     override fun Builder.onLoaded() {
-
-        resources {
-            js("kandyLetsPlot") {
-                url(PlotHtmlHelper.scriptUrl(jsVersion))
-            }
-        }
-
-        onLoaded {
-            display(frontendContext.getConfigureHtml(), null)
-        }
 
         import("org.jetbrains.kotlinx.kandy.letsplot.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.export.*")
@@ -59,7 +46,7 @@ internal class Integration : JupyterIntegration() {
             declare("kandyConfig" to config)
         }
 
-        with(NotebookRenderingContext(frontendContext, config)) {
+        with(NotebookRenderingContext(jsVersion, config)) {
             render<Plot> { figureToMimeResult(it.toLetsPlot()) }
             render<PlotBunch> { figureToMimeResult(it.wrap()) }
             render<PlotGrid> { figureToMimeResult(it.wrap()) }
