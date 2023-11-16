@@ -15,10 +15,10 @@
 You can utilize Kandy both in Kotlin projects and in interactive editors.
 For detailed instructions, refer to the respective pages:
 
-* [![Kotlin Notebook logo](ktn_plugin_icon.svg){style="inline" width="16"} Kotlin Notebook](Kandy-in-Kotlin-Notebook.md)
-* [![Datalore logo](datalore_icon.svg){style="inline" width="18"} Datalore](Kandy-in-Datalore.md)
-* [![Jupyter Notebook logo](jupyter_icon.png){style="inline" width="20"} Jupyter Notebook](Kandy-in-Jupyter-Notebook.md)
-* [![Gradle logo](gradle_icon.svg){style="inline" width="20"} Gradle Configuration](Kandy-with-Gradle.md)
+* [![Kotlin Notebook logo](ktn_plugin_icon.svg){style="inline" width="20"} Kotlin Notebook](Kandy-in-Kotlin-Notebook.md)
+* [![Datalore logo](datalore_icon.svg){style="inline" width="22"} Datalore](Kandy-in-Datalore.md)
+* [![Jupyter Notebook logo](jupyter_icon.png){style="inline" width="24"} Jupyter Notebook](Kandy-in-Jupyter-Notebook.md)
+* [![Gradle logo](gradle_icon.svg){style="inline" width="24"} Gradle Configuration](Kandy-with-Gradle.md)
 
 ## Getting Kandy
 
@@ -108,7 +108,7 @@ First, create a DataFrame containing data on the average temperatures in differe
 ```kotlin
 // Create a DataFrame with data on average temperatures in various cities
 val averageTemperature = dataFrameOf(
-    "city" to listOf("New York", "London", "Berlin", "Erevan", "Tokyo"),
+    "city" to listOf("New York", "London", "Berlin", "Yerevan", "Tokyo"),
     "average temperature" to listOf(12.5, 11.0, 9.6, 11.5, 16.0)
 )
 ```
@@ -132,3 +132,10 @@ averageTemperature.plot {
 ```
 
 ![Kandy Getting Started Example](getting_sample.svg){ border-effect="rounded" }
+
+This supplementary schema outlines the key elements of Kandy's DSL,
+providing a quick reference to assist you in building your visualizations.
+
+![Basic structure of DSL](tree_basic.svg) { thumbnail="true" }
+
+For more examples, please see the [Examples](Examples.topic) section.

@@ -103,7 +103,7 @@ language support Kotlin offers within the IDE, paired with the versatile visuali
 
 You now have access to the Kandy library within your Kotlin Notebook.
 
-<include from="Getting-Started.md" element-id="plotting-a-simple-example"/>
+<include from="Getting-Started.md" element-id="plotting-a-simple-example"></include>
 
 <seealso>
 <category ref="ext">

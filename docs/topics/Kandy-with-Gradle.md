@@ -62,7 +62,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.bars
 fun main() {
     // Create a DataFrame with data on average temperatures in various cities
     val averageTemperature = dataFrameOf(
-        "city" to listOf("New York", "London", "Berlin", "Erevan", "Tokyo"),
+        "city" to listOf("New York", "London", "Berlin", "Yerevan", "Tokyo"),
         "average temperature" to listOf(12.5, 11.0, 9.6, 11.5, 16.0)
     )
 
@@ -83,3 +83,10 @@ fun main() {
 ```
 
 ![Kandy Getting Started Example](getting_sample.svg){ border-effect="rounded" }
+
+This supplementary schema outlines the key elements of Kandy's DSL,
+providing a quick reference to assist you in building your visualizations.
+
+![Basic structure of DSL](tree_basic.svg) { thumbnail="true" }
+
+For more examples, please see the [Examples](Examples.topic) section.

@@ -45,4 +45,4 @@ offering computational resources tailored to your requirements.
 
 You now have access to the Kandy library within your Kotlin Notebook in Datalore.
 
-<include from="Getting-Started.md" element-id="plotting-a-simple-example"/>
+<include from="Getting-Started.md" element-id="plotting-a-simple-example"></include>

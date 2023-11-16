@@ -46,22 +46,37 @@ enhancing its versatility and performance for a streamlined and powerful graph-b
 
 ## DSL and Syntax
 
-The DSL of Kandy is both hierarchical and sequential,
-comprising components such as plot configurations, layers, mappings, and scales.
-This structure fosters a potent tool that is user-friendly, allowing for straightforward navigation and utilization.
+The Domain-Specific Language (DSL) of Kandy is designed for intuitive use,
+offering a hierarchical and sequential approach to building data visualizations.
+It combines flexibility with a clear structure,
+enabling both novice and experienced users to efficiently create complex visualizations.
+Below is a simplified overview of the Kandy DSL structure, as depicted in the following diagram:
 
-As with many data visualization libraries, Kandy adopts a data-driven approach,
-wherein the construction of graphs is fundamentally based on the underlying data,
-enhancing the accuracy and relevance of visualizations.
+![Kandy DSL Schema](kandy_dsl_schema.svg)
 
-The following diagram offers a simplified sketch of the DSL structure,
-providing a foundational understanding of the DSL approach without delving into intricate details:
+* **Plot** — the `plot` block forms the foundation of every visualization in Kandy, setting the stage for all other
+  elements.
+* **Data Manipulation** — this block plays a key role in transforming the initial data utilized in `plot`.
+    * **Grouping** — this method groups data according to specified keys,
+      allowing for organized and structured visualization based on distinct data segments.
+    * **Statistical** — this set of methods applies statistical operations to the data,
+      producing new datasets derived from these computations.
+* **Layout** — this part deals with the graph's design, including elements like titles, subtitles, size,
+  and thematic elements.
+* **Layers** — it introduces different types of visual elements, such as lines, points, bars, etc.
+* **Aesthetic Mappings / Settings** — This feature enables mapping data attributes to visual properties like color,
+  shape, and size, offering extensive customization options.
+* **Scale Specification** — this aspect is crucial for translating data values into appropriate visual scales on the
+  graph, including settings for color gradients, size ranges, and positioning.
 
-![Basic structure of DSL](tree_basic.svg) { thumbnail="true" }
+This structured approach provides a clear and logical pathway for navigating through Kandy's DSL,
+enabling the construction of both informative and visually appealing visualizations.
+The DSL is design is crafted to ensure ease of use, facilitating the efficient creation of sophisticated graphs.
 
-Moreover, Kandy leverages the diverse functionalities of Kotlin to streamline code writing processes,
-making the task of creating visual representations more intuitive and less time-consuming.
-Here is an example of the syntax that Kandy employs:
+Having explored the key components and organization of Kandy's DSL,
+let's now illustrate how these elements come together in practice.
+The following example demonstrates how the DSL is structure facilitates the creation of a visualization,
+showcasing the ease and flexibility of crafting a plot in Kandy:
 
 ```kotlin
 val time = columnOf(0, 1, 2, 4, 5, 7, 8, 9) named "time"
@@ -96,6 +111,7 @@ plot(simpleDataFrame) {
     }
 }
 ```
+
 { validate="false" }
 
 ![Simple plot with Kandy](overview_sample.svg) { border-effect="rounded" }
