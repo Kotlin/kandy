@@ -11,12 +11,111 @@
         From simple to intricate, our examples will guide you through Kandy's capabilities.
     </web-summary>
     <card-summary>
-        Explore a vast collection of plot demonstrations, ranging from simple to intricate, each accompanied by code and visuals.
+        Explore a vast collection of plot demonstrations, ranging from simple to intricate, each accompanied by code and
+        visuals.
     </card-summary>
     <link-summary>
         Kandy's Showcase: Plots, Codes, and Visuals.
     </link-summary>
 
+    <chapter title="Line" id="examples-line" collapsible="true" default-state="expanded">
+        <list id="list-of-line-examples" type="none" columns="3">
+            <li>
+                <a href="Simple-Line.md">
+                    <img src="simple_line.png" alt="Simple Line" border-effect="line"/>
+                    Simple Line
+                </a>
+            </li>
 
-    <p>Start typing here...</p>
+            <li>
+                <a href="Line-Settings.md">
+                    <img src="simple_line_settings.png" alt="Line Settings" border-effect="line"/>
+                    Line Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="Line-with-Points.md">
+                    <img src="line_with_points.png" alt="Line with Points" border-effect="line"/>
+                    Line with Points
+                </a>
+            </li>
+
+            <li>
+                <a href="Fixed-Line-Coordinate.md">
+                    <img src="line_fixed_coord.png" alt="Fixed Line Coordinate" border-effect="line"/>
+                    Fixed Line Coordinate
+                </a>
+            </li>
+
+            <li>
+                <a href="Line-Gradient.md">
+                    <img src="line_color_gradient.png" alt="Line with Color Gradient" border-effect="line"/>
+                    Line Gradient
+                </a>
+            </li>
+
+            <li>
+                <a href="Line-with-Reversed-Axis.md">
+                    <img src="line_reversed_axis.png" alt="Line with Reversed Axis" border-effect="line"/>
+                    Line with Reversed Axis
+                </a>
+            </li>
+
+            <li>
+                <a href="Several-Lines.md">
+                    <img src="several_lines.png" alt="Several Lines" border-effect="line"/>
+                    Several Lines
+                </a>
+            </li>
+
+            <li>
+                <a href="Functional-Line-Plot.md">
+                    <img src="line_by_fun.png" alt="Functional Line Plot" border-effect="line"/>
+                    Functional Line Plot
+                </a>
+            </li>
+
+            <li>
+                <a href="Marked-Line.md">
+                    <img src="line_mark.png" alt="Marked Line" border-effect="line"/>
+                    Marked Line
+                </a>
+            </li>
+
+            <li>
+                <a href="Path-Line.md">
+                    <img src="path_line.png" alt="Path line" border-effect="line"/>
+                    Path Line
+                </a>
+            </li>
+            <li>
+                <a href="Step-Line.md">
+                    <img src="step_line.png" alt="Step Line" border-effect="line"/>
+                    Step Line
+                </a>
+            </li>
+
+            <li>
+                <a href="Smoothed-Line.md">
+                    <img src="smoothed_line.png" alt="Smoothed Line" border-effect="line"/>
+                    Smoothed Line
+                </a>
+            </li>
+
+            <li>
+                <a href="Smoothed-Line-with-Points.md">
+                    <img src="smoothed_line_with_points.png" alt="Smoothed line with Points" border-effect="line"/>
+                    Smoothed Line with Points
+                </a>
+            </li>
+
+            <li>
+                <a href="Line-and-Path-Comparison.md">
+                    <img src="prew_line_and_path_comp.svg" alt="Line and Path Comparison" border-effect="line"/>
+                    Line and Path Comparison
+                </a>
+            </li>
+        </list>
+    </chapter>
 </topic>
