@@ -59,8 +59,8 @@ public interface WithYMin : BindingContext {
      * @param column the data column to be mapped.
      * @return a [PositionalMapping] object representing the mapping.
      */
-    public fun <T> yMin(column: String): PositionalMapping<T> {
-        return addPositionalMapping<T>(Y_MIN, column, null)
+    public fun yMin(column: String): PositionalMapping<Any?> {
+        return addPositionalMapping(Y_MIN, column, null)
     }
 
     /**

@@ -56,8 +56,8 @@ public interface WithYEnd : BindingContext {
      * @param column the data column to be mapped.
      * @return a [PositionalMapping] object representing the mapping.
      */
-    public fun <T> yEnd(column: String): PositionalMapping<T> {
-        return addPositionalMapping<T>(Y_END, column, null)
+    public fun yEnd(column: String): PositionalMapping<Any?> {
+        return addPositionalMapping(Y_END, column, null)
     }
 
     /**
