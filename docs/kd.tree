@@ -16,5 +16,22 @@
     </toc-element>
     <toc-element topic="User-Guide.md"/>
     <toc-element topic="API.md"/>
-    <toc-element topic="Examples.topic"/>
+    <toc-element topic="Examples.topic">
+        <toc-element topic="Line.md">
+            <toc-element topic="Simple-Line.md"/>
+            <toc-element topic="Line-Settings.md"/>
+            <toc-element topic="Line-with-Points.md"/>
+            <toc-element topic="Fixed-Line-Coordinate.md"/>
+            <toc-element topic="Line-Gradient.md"/>
+            <toc-element topic="Line-with-Reversed-Axis.md"/>
+            <toc-element topic="Several-Lines.md"/>
+            <toc-element topic="Functional-Line-Plot.md"/>
+            <toc-element topic="Marked-Line.md"/>
+            <toc-element topic="Path-Line.md"/>
+            <toc-element topic="Step-Line.md"/>
+            <toc-element topic="Smoothed-Line.md"/>
+            <toc-element topic="Smoothed-Line-with-Points.md"/>
+            <toc-element topic="Line-and-Path-Comparison.md"/>
+        </toc-element>
+    </toc-element>
 </instance-profile>
