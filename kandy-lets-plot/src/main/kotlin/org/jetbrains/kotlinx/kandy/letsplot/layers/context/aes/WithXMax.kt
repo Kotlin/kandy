@@ -57,8 +57,8 @@ public interface WithXMax : BindingContext {
      * @param column the data column to be mapped.
      * @return a [PositionalMapping] object representing the mapping.
      */
-    public fun <T> xMax(column: String): PositionalMapping<T> {
-        return addPositionalMapping<T>(X_MAX, column, null)
+    public fun xMax(column: String): PositionalMapping<Any?> {
+        return addPositionalMapping(X_MAX, column, null)
     }
 
 

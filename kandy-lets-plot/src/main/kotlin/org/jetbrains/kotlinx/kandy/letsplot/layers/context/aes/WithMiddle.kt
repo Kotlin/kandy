@@ -62,10 +62,10 @@ public interface WithMiddle : BindingContext {
      * @param column the data column to be mapped.
      * @return a [PositionalMapping] object representing the mapping.
      */
-    public fun <T> middle(
+    public fun middle(
         column: String,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(MIDDLE, column, null)
+    ): PositionalMapping<Any?> {
+        return addPositionalMapping(MIDDLE, column, null)
     }
 
     /**

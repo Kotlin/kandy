@@ -59,10 +59,10 @@ public interface WithLower : BindingContext {
      * @param column the data column to be mapped.
      * @return a [PositionalMapping] object representing the mapping.
      */
-    public fun <T> lower(
+    public fun lower(
         column: String,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(LOWER, column, null)
+    ): PositionalMapping<Any?> {
+        return addPositionalMapping(LOWER, column, null)
     }
 
     /**

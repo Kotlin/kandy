@@ -56,8 +56,8 @@ public interface WithXBegin : BindingContext {
      * @param column the data column to be mapped.
      * @return a [PositionalMapping] object representing the mapping.
      */
-    public fun <T> xBegin(column: String): PositionalMapping<T> {
-        return addPositionalMapping<T>(X_BEGIN, column, null)
+    public fun xBegin(column: String): PositionalMapping<Any?> {
+        return addPositionalMapping(X_BEGIN, column, null)
     }
 
     /**

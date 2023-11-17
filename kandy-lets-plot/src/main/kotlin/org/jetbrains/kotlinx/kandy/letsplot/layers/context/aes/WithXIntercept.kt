@@ -57,8 +57,8 @@ public interface WithXIntercept : BindingContext {
      * @param column the data column to be mapped.
      * @return a [PositionalMapping] object representing the mapping.
      */
-    public fun <T> xIntercept(column: String): PositionalMapping<T> {
-        return addPositionalMapping<T>(X_INTERCEPT, column, null)
+    public fun xIntercept(column: String): PositionalMapping<Any?> {
+        return addPositionalMapping(X_INTERCEPT, column, null)
     }
 
     /**
