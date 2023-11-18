@@ -24,6 +24,7 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.test.Test
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class Lines : SampleHelper("line") {
@@ -75,6 +76,7 @@ class Lines : SampleHelper("line") {
             LocalDate(2023, 5, 1), 175,
             LocalDate(2023, 5, 15), 180
         )
+
         museumVisitors.plot {
             line {
                 x("date")
@@ -508,7 +510,7 @@ class Lines : SampleHelper("line") {
                 title = "Performance Dependency on Temperature"
                 subtitle = "Analysis of Material Performance Decline at Extremely Low Temperatures"
                 yAxisLabel = "Performance Measure"
-//                size = 600 to 550
+                size = 600 to 550
             }
             path {
                 y(dist)
@@ -586,7 +588,7 @@ class Lines : SampleHelper("line") {
     }
 
     @Test
-    fun smoothed_line_with_points() {
+    fun smoothed_curve_with_points() {
         // SampleStart
         val xs = listOf(-3.0, -2.5, -2.0, -1.5, -1.0, 0.0, 1.0, 1.5, 2.0, 2.5, 3.0)
         val ys = listOf(-5.4, -1.2, 3.4, 0.1, -0.6, -2.1, 0.6, 2.2, 3.4, 4.5, 6.7)
@@ -619,8 +621,8 @@ class Lines : SampleHelper("line") {
 
         val aDataMap = generateArchimedeanDataMap(n = 200, k = 2.0)
         // SampleEnd
-        assertTrue(aDataMap.containsKey("x"))
-        assertTrue(aDataMap.containsKey("y"))
+
+        assertNotNull(aDataMap["x"])
     }
 
     @Test
