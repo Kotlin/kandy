@@ -3,10 +3,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm")
     kotlin("jupyter.api")
+    id("io.github.devcrocod.korro") version "0.1.5"
 }
 
 repositories {
     mavenCentral()
+    maven("https://packages.jetbrains.team/maven/p/kds/kotlin-ds-maven")
 }
 
 val html_version: String by project
@@ -28,6 +30,7 @@ dependencies {
 
     testImplementation(kotlin("test"))
     testImplementation("io.mockk:mockk:${mockk_version}")
+    testImplementation("org.jetbrains.kotlinx:kotlin-statistics-jvm:0.0.3")
 }
 
 tasks.test {
@@ -41,5 +44,30 @@ tasks.withType<KotlinCompile> {
         val jarTask = friendModule.tasks.getByName("jar") as Jar
         val jarPath = jarTask.archiveFile.get().asFile.absolutePath
         freeCompilerArgs += "-Xfriend-paths=$jarPath"
+    }
+}
+
+korro {
+    docs = fileTree(rootProject.rootDir) {
+        include("docs/topics/samples/*.md")
+        include("docs/topics/samples/line/*.md")
+    }
+
+    samples = fileTree(project.projectDir) {
+        include("src/test/kotlin/org/jetbrains/kotlinx/kandy/letsplot/samples/*.kt")
+    }
+
+    groupSamples {
+        beforeSample.set("<tab title=\"NAME\">\n")
+        afterSample.set("\n</tab>")
+
+        funSuffix("_dataframe") {
+            replaceText("NAME", "Dataframe")
+        }
+        funSuffix("_collections") {
+            replaceText("NAME", "Collections")
+        }
+        beforeGroup.set("<tabs>\n")
+        afterGroup.set("</tabs>")
     }
 }
