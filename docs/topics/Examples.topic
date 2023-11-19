@@ -195,6 +195,75 @@
 
     <chapter title="Bars" id="examples-bars" collapsible="true" default-state="expanded">
         <list id="list-of-bars-examples" type="none" columns="3">
+            <li>
+                <a href="Simple-Bars.md">
+                    <img src="simple_bar_plot.png" alt="Simple Bar" border-effect="line"/>
+                    Simple Bar
+                </a>
+            </li>
+
+            <li>
+                <a href="Bar-Settings.md">
+                    <img src="bar_settings.png" alt="Bar Settings" border-effect="line"/>
+                    Bar Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="Bar-Gradient.md">
+                    <img src="bar_gradient.png" alt="Bar Gradient" border-effect="line"/>
+                    Bar Gradient
+                </a>
+            </li>
+
+            <li>
+                <a href="Fixed-Bar-Coordinate.md">
+                    <img src="fixed_bar.png" alt="Fixed Bar Coordinate" border-effect="line"/>
+                    Fixed Bar Coordinate
+                </a>
+            </li>
+
+            <li>
+                <a href="Bar-with-Reversed-Axis.md">
+                    <img src="bar_with_reversed_axis.png" alt="Bar with Reversed Axis" border-effect="line"/>
+                    Bar with Reversed Axis
+                </a>
+            </li>
+
+            <li>
+                <a href="Horizontal-Bars.md">
+                    <img src="horizontal_bars.png" alt="Horizontal Bars" border-effect="line"/>
+                    Horizontal Bars
+                </a>
+            </li>
+
+            <li>
+                <a href="Grouped-Bars.md">
+                    <img src="grouped_bars.png" alt="Grouped Bars" border-effect="line"/>
+                    Grouped Bars
+                </a>
+            </li>
+
+            <li>
+                <a href="Stacked-Bars.md">
+                    <img src="stacked_bars.png" alt="Stacked Bars" border-effect="line"/>
+                    Stacked Bars
+                </a>
+            </li>
+
+            <li>
+                <a href="Functional-Bars.md">
+                    <img src="functional_bars_plot.png" alt="Functional Bar Plot" border-effect="line"/>
+                    Functional Bar Plot
+                </a>
+            </li>
+
+            <li>
+                <a href="Histogram-Bar-Plot.md">
+                    <img src="histogram_2.png" alt="Histogram Plot" border-effect="line"/>
+                    Histogram Plot
+                </a>
+            </li>
         </list>
     </chapter>
 
