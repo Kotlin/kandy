@@ -118,4 +118,98 @@
             </li>
         </list>
     </chapter>
+
+    <chapter title="Area" id="examples-area" collapsible="true" default-state="expanded">
+        <list id="list-of-area-examples" type="none" columns="3">
+            <li>
+                <a href="Simple-Area.md">
+                    <img src="simple_area.png" alt="Simple Area" border-effect="line"/>
+                    Simple Area
+                </a>
+            </li>
+
+            <li>
+                <a href="Area-Settings.md">
+                    <img src="area_settings.png" alt="Area Settings" border-effect="line"/>
+                    Area Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="Fixed-Area-Coordinate.md">
+                    <img src="area_fixed.png" alt="Fixed Area" border-effect="line"/>
+                    Area with Fixed Coordinate
+                </a>
+            </li>
+
+            <li>
+                <a href="Area-with-Reversed-Axis.md">
+                    <img src="area_with_reversed_axis.png" alt="Area with Reversed Axis" border-effect="line"/>
+                    Area with Reversed Axis
+                </a>
+            </li>
+
+            <li>
+                <a href="Several-Areas.md">
+                    <img src="several_areas.png" alt="Several Areas" border-effect="line"/>
+                    Several Areas
+                </a>
+            </li>
+
+            <li>
+                <a href="Functional-Area.md">
+                    <img src="functional_area_plot.png" alt="Functional Area Plot" border-effect="line"/>
+                    Functional Area Plot
+                </a>
+            </li>
+
+            <li>
+                <a href="Area-with-Mark-Line.md">
+                    <img src="area_with_mark_line.png" alt="Area with Mark Line" border-effect="line"/>
+                    Area with Mark Line
+                </a>
+            </li>
+
+            <li>
+                <a href="Smoothed-Area.md">
+                    <img src="smoothed_area.png" alt="Smoothed Area" border-effect="line"/>
+                    Smoothed Area
+                </a>
+            </li>
+
+            <li>
+                <a href="Smoothed-Area-with-Points.md">
+                    <img src="smoothed_area_with_points.png" alt="Smoothed Area with Points" border-effect="line"/>
+                    Smoothed Area with Points
+                </a>
+            </li>
+
+            <li>
+                <a href="Density-Plot.md">
+                    <img src="density_plot.png" alt="Density Plot" border-effect="line"/>
+                    Density Plot
+                </a>
+            </li>
+        </list>
+    </chapter>
+
+    <chapter title="Bars" id="examples-bars" collapsible="true" default-state="expanded">
+        <list id="list-of-bars-examples" type="none" columns="3">
+        </list>
+    </chapter>
+
+    <chapter title="Points" id="examples-points" collapsible="true" default-state="expanded">
+        <list id="list-of-points-examples" type="none" columns="3">
+        </list>
+    </chapter>
+
+    <chapter title="Error Bars" id="examples-errorBars" collapsible="true" default-state="expanded">
+        <list id="list-of-errorBars-examples" type="none" columns="3">
+        </list>
+    </chapter>
+
+    <chapter title="Tiles" id="examples-tiles" collapsible="true" default-state="expanded">
+        <list id="list-of-tiles-examples" type="none" columns="3">
+        </list>
+    </chapter>
 </topic>

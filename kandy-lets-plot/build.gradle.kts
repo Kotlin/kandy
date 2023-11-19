@@ -51,6 +51,11 @@ korro {
     docs = fileTree(rootProject.rootDir) {
         include("docs/topics/samples/*.md")
         include("docs/topics/samples/line/*.md")
+        include("docs/topics/samples/area/*.md")
+        include("docs/topics/samples/bars/*.md")
+        include("docs/topics/samples/points/*.md")
+        include("docs/topics/samples/errorBars/*.md")
+        include("docs/topics/samples/tiles/*.md")
     }
 
     samples = fileTree(project.projectDir) {
