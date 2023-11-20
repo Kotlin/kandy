@@ -36,10 +36,9 @@ plot {
 
 ![Functional Area Plot](functional_area_plot.png) { border-effect="rounded" }
 
-[//]: # (TODO)
 <seealso style="cards">
        <category ref="example-ktnb">
            <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/area/functional_area.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
-           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/NFGYJFW8oMlsu5aROAxRGq" summary="Experiment with this example on Datalore">Datalore Notebook</a>
+           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/6i9x0ZrStJjS6xVHP7NTfj" summary="Experiment with this example on Datalore">Datalore Notebook</a>
        </category>
 </seealso>

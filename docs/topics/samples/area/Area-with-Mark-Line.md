@@ -63,10 +63,6 @@ df.plot {
     }
     layout.size = 1000 to 450
 }
-    .apply {
-        val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
-        (this.features as MutableMap)[FeatureName("layout")] = layout?.copy(size = null) ?: Layout(size = null)
-    }
 ```
 
 </tab>
@@ -122,10 +118,9 @@ df.plot {
 
 ![Area with Mark Line](area_with_mark_line.png) { border-effect="rounded" }
 
-[//]: # (TODO)
 <seealso style="cards">
        <category ref="example-ktnb">
            <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/area/area_with_mark_line.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
-           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/NFGYJFW8oMlsu5aROAxRGq" summary="Experiment with this example on Datalore">Datalore Notebook</a>
+           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/TkrTBZDadEWHeBmsxwfqiP" summary="Experiment with this example on Datalore">Datalore Notebook</a>
        </category>
 </seealso>

@@ -369,11 +369,11 @@ class Area : SampleHelper("area") {
             }
             layout.size = 1000 to 450
         }
+            // SampleEnd
             .apply {
                 val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
                 (this.features as MutableMap)[FeatureName("layout")] = layout?.copy(size = null) ?: Layout(size = null)
             }
-            // SampleEnd
             .saveSample()
     }
 
