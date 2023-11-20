@@ -195,9 +195,10 @@ class Points : SampleHelper("points") {
     @Test
     fun points_gradient() {
         // SampleStart
-        val xs = List(100) { kotlin.random.Random.nextDouble(0.0, 10.0) }
-        val ys = List(100) { kotlin.random.Random.nextDouble(0.0, 10.0) }
-        val gradient = List(100) { kotlin.random.Random.nextDouble(0.0, 100.0) }
+        val random = kotlin.random.Random(42)
+        val xs = List(100) { random.nextDouble(0.0, 10.0) }
+        val ys = List(100) { random.nextDouble(0.0, 10.0) }
+        val gradient = List(100) { random.nextDouble(0.0, 100.0) }
         plot {
             points {
                 x(xs)
@@ -298,10 +299,11 @@ class Points : SampleHelper("points") {
     @Test
     fun jittered_points_dataframe() {
         // SampleStart
+        val random = kotlin.random.Random(42)
         val data = dataFrameOf(
             "type" to List(50) { "a" } + List(50) { "b" },
             "value" to List(50) { kotlin.random.Random.nextDouble(0.1, 0.6) } +
-                    List(50) { kotlin.random.Random.nextDouble(-0.5, 0.4) }
+                    List(50) { random.nextDouble(-0.5, 0.4) }
         )
 
         val type = column<String>("type")
@@ -322,9 +324,10 @@ class Points : SampleHelper("points") {
     @Test
     fun jittered_points_collections() {
         // SampleStart
+        val random = kotlin.random.Random(42)
         val type = List(50) { "a" } + List(50) { "b" }
-        val value = List(50) { kotlin.random.Random.nextDouble(0.1, 0.6) } +
-                List(50) { kotlin.random.Random.nextDouble(-0.5, 0.4) }
+        val value = List(50) { random.nextDouble(0.1, 0.6) } +
+                List(50) { random.nextDouble(-0.5, 0.4) }
 
         plot {
             points {

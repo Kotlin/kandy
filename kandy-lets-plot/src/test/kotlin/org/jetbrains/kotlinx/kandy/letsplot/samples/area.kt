@@ -479,7 +479,7 @@ class Area : SampleHelper("area") {
     @Test
     fun density_plot() {
         // SampleStart
-        val random = java.util.Random()
+        val random = java.util.Random(42)
 
         val sample = List(1000) { random.nextGaussian() }
 

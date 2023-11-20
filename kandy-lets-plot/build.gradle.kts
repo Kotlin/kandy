@@ -30,10 +30,11 @@ dependencies {
 
     testImplementation(kotlin("test"))
     testImplementation("io.mockk:mockk:${mockk_version}")
-    testImplementation("org.jetbrains.kotlinx:kotlin-statistics-jvm:0.0.3")
+    testImplementation("org.jetbrains.kotlinx:kotlin-statistics-jvm:0.0.5")
 }
 
 tasks.test {
+    dependsOn("jar")
     jvmArgs("-Xmx4G")
 }
 
