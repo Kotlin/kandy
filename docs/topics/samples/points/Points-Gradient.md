@@ -30,7 +30,7 @@ plot {
         y(ys)
         size = 7.5
         color(gradient) {
-            scale = continuous(Color.LIGHT_BLUE..Color.PURPLE)
+            scale = continuous(Color.LIGHT_BLUE..Color.PURPLE, domain = 0.0..100.0)
         }
     }
 }
