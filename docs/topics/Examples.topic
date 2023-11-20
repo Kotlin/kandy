@@ -343,6 +343,54 @@
 
     <chapter title="Error Bars" id="examples-errorBars" collapsible="true" default-state="expanded">
         <list id="list-of-errorBars-examples" type="none" columns="3">
+            <li>
+                <a href="Simple-ErrorBars.md">
+                    <img src="simple_error_bar_plot.png" alt="Simple ErrorBars" border-effect="line"/>
+                    Simple ErrorBars
+                </a>
+            </li>
+
+            <li>
+                <a href="ErrorBars-Settings.md">
+                    <img src="error_bars_settings.png" alt="ErrorBars Settings" border-effect="line"/>
+                    ErrorBars Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="ErrorBars-with-Line.md">
+                    <img src="error_bars_with_line.png" alt="ErrorBars with Line" border-effect="line"/>
+                    ErrorBars with Line
+                </a>
+            </li>
+
+            <li>
+                <a href="Fixed-ErrorBars.md">
+                    <img src="fixed_error_bars.png" alt="Fixed ErrorBars Coordinate" border-effect="line"/>
+                    Fixed ErrorBars Coordinate
+                </a>
+            </li>
+
+            <li>
+                <a href="BorderLine-ErrorBars.md">
+                    <img src="border_line_error_bars.png" alt="BorderLine in ErrorBars" border-effect="line"/>
+                    BorderLine in ErrorBars
+                </a>
+            </li>
+
+            <li>
+                <a href="Grouped-ErrorBars.md">
+                    <img src="grouped_error_bars.png" alt="Grouped ErrorBars" border-effect="line"/>
+                    Grouped ErrorBars
+                </a>
+            </li>
+
+            <li>
+                <a href="ErrorBars-with-Boxplot.md">
+                    <img src="error_bars_with_boxplot.png" alt="ErrorBars with Boxplot" border-effect="line"/>
+                    ErrorBars with Boxplot
+                </a>
+            </li>
         </list>
     </chapter>
 

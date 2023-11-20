@@ -21,9 +21,10 @@ where color gradients in scatter plots bring a new level of insight and aestheti
 <!---FUN points_gradient-->
 
 ```kotlin
-val xs = List(100) { kotlin.random.Random.nextDouble(0.0, 10.0) }
-val ys = List(100) { kotlin.random.Random.nextDouble(0.0, 10.0) }
-val gradient = List(100) { kotlin.random.Random.nextDouble(0.0, 100.0) }
+val random = kotlin.random.Random(42)
+val xs = List(100) { random.nextDouble(0.0, 10.0) }
+val ys = List(100) { random.nextDouble(0.0, 10.0) }
+val gradient = List(100) { random.nextDouble(0.0, 100.0) }
 plot {
     points {
         x(xs)

@@ -22,10 +22,11 @@ Dive into 'Jittered Points' using Kotlin and Kandy, where jittering techniques a
 <tab title="Dataframe">
 
 ```kotlin
+val random = kotlin.random.Random(42)
 val data = dataFrameOf(
     "type" to List(50) { "a" } + List(50) { "b" },
     "value" to List(50) { kotlin.random.Random.nextDouble(0.1, 0.6) } +
-            List(50) { kotlin.random.Random.nextDouble(-0.5, 0.4) }
+            List(50) { random.nextDouble(-0.5, 0.4) }
 )
 
 val type = column<String>("type")
@@ -45,9 +46,10 @@ data.plot {
 <tab title="Collections">
 
 ```kotlin
+val random = kotlin.random.Random(42)
 val type = List(50) { "a" } + List(50) { "b" }
-val value = List(50) { kotlin.random.Random.nextDouble(0.1, 0.6) } +
-        List(50) { kotlin.random.Random.nextDouble(-0.5, 0.4) }
+val value = List(50) { random.nextDouble(0.1, 0.6) } +
+        List(50) { random.nextDouble(-0.5, 0.4) }
 
 plot {
     points {

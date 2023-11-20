@@ -21,7 +21,7 @@ a fundamental technique in statistical visualization.
 <!---FUN density_plot-->
 
 ```kotlin
-val random = java.util.Random()
+val random = java.util.Random(42)
 
 val sample = List(1000) { random.nextGaussian() }
 
