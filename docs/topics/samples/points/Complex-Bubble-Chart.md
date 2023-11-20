@@ -136,10 +136,9 @@ data.filter { "year"<Int>() == 2023 }.plot {
 
 ![Complex Bubble Chart](complex_bubble_chart_part3.png) { border-effect="rounded" }
 
-[//]: # (TODO)
 <seealso style="cards">
        <category ref="example-ktnb">
            <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/points/complex_bubble_chart.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
-           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/NFGYJFW8oMlsu5aROAxRGq" summary="Experiment with this example on Datalore">Datalore Notebook</a>
+           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/UYByVDOspLWvTPEsMqOEZs" summary="Experiment with this example on Datalore">Datalore Notebook</a>
        </category>
 </seealso>

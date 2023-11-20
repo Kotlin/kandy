@@ -82,10 +82,9 @@ plot {
 
 ![Points Settings](points_settings.png) { border-effect="rounded" }
 
-[//]: # (TODO)
 <seealso style="cards">
        <category ref="example-ktnb">
            <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/points/points_settings.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
-           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/NFGYJFW8oMlsu5aROAxRGq" summary="Experiment with this example on Datalore">Datalore Notebook</a>
+           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/W74JFIy2FImeuIHH0N4C2H" summary="Experiment with this example on Datalore">Datalore Notebook</a>
        </category>
 </seealso>
