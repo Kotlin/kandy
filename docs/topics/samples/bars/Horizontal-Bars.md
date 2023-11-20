@@ -73,10 +73,9 @@ plot {
 
 ![Horizontal Bars](horizontal_bars.png) { border-effect="rounded" }
 
-[//]: # (TODO)
 <seealso style="cards">
        <category ref="example-ktnb">
            <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/bars/horizontal_bars.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
-           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/NFGYJFW8oMlsu5aROAxRGq" summary="Experiment with this example on Datalore">Datalore Notebook</a>
+           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/dCru6yzGCKmGNZipnQC2kt" summary="Experiment with this example on Datalore">Datalore Notebook</a>
        </category>
 </seealso>

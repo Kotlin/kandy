@@ -58,10 +58,9 @@ plot {
 
 ![Simple Bars](simple_bar_plot.png) { border-effect="rounded" }
 
-[//]: # (TODO)
 <seealso style="cards">
        <category ref="example-ktnb">
            <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/bars/simple_bar.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
-           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/NFGYJFW8oMlsu5aROAxRGq" summary="Experiment with this example on Datalore">Datalore Notebook</a>
+           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/zqcG2BuEoeeo8Ce1XZFcJL" summary="Experiment with this example on Datalore">Datalore Notebook</a>
        </category>
 </seealso>
