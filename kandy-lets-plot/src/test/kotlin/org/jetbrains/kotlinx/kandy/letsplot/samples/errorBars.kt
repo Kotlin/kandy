@@ -13,7 +13,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.letsplot.y
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
-import org.jetbrains.kotlinx.statistics.kandy.layers.boxplot
 import org.jetbrains.kotlinx.statistics.kandy.stattransform.statBoxplot
 import kotlin.test.Test
 
@@ -170,7 +169,7 @@ class ErrorBars : SampleHelper("errorBars") {
                 borderLine.width = 1.3
             }
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
@@ -213,7 +212,7 @@ class ErrorBars : SampleHelper("errorBars") {
                 }
             }
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
@@ -274,7 +273,7 @@ class ErrorBars : SampleHelper("errorBars") {
 
         val df = dataFrameOf(
             "value" to valuesA + valuesB + valuesC,
-            "group" to  List(100) {"a"} + List(100) {"b"} + List(100) {"c"}
+            "group" to List(100) { "a" } + List(100) { "b" } + List(100) { "c" }
         )
 
         df.plot {
@@ -287,7 +286,7 @@ class ErrorBars : SampleHelper("errorBars") {
                 }
             }
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 }

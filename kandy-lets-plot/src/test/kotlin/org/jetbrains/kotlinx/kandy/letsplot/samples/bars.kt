@@ -361,7 +361,7 @@ class Bars : SampleHelper("bars") {
                 position = Position.stack()
             }
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
