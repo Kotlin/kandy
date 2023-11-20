@@ -30,10 +30,11 @@ dependencies {
 
     testImplementation(kotlin("test"))
     testImplementation("io.mockk:mockk:${mockk_version}")
-    testImplementation("org.jetbrains.kotlinx:kotlin-statistics-jvm:0.0.3")
+    testImplementation("org.jetbrains.kotlinx:kotlin-statistics-jvm:0.0.5")
 }
 
 tasks.test {
+    dependsOn("jar")
     jvmArgs("-Xmx4G")
 }
 
@@ -51,6 +52,12 @@ korro {
     docs = fileTree(rootProject.rootDir) {
         include("docs/topics/samples/*.md")
         include("docs/topics/samples/line/*.md")
+        include("docs/topics/samples/area/*.md")
+        include("docs/topics/samples/bars/*.md")
+        include("docs/topics/samples/points/*.md")
+        include("docs/topics/samples/errorBars/*.md")
+        include("docs/topics/samples/boxplot/*.md")
+        include("docs/topics/samples/tiles/*.md")
     }
 
     samples = fileTree(project.projectDir) {

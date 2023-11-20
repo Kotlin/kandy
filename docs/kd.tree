@@ -33,5 +33,64 @@
             <toc-element topic="Smoothed-Curve-with-Points.md"/>
             <toc-element topic="Comparing-Line-vs-Path-Plots.md"/>
         </toc-element>
+        <toc-element topic="Area.md">
+            <toc-element topic="Simple-Area.md"/>
+            <toc-element topic="Area-Settings.md"/>
+            <toc-element topic="Fixed-Area-Coordinate.md"/>
+            <toc-element topic="Area-with-Reversed-Axis.md"/>
+            <toc-element topic="Several-Areas.md"/>
+            <toc-element topic="Functional-Area.md"/>
+            <toc-element topic="Area-with-Mark-Line.md"/>
+            <toc-element topic="Smoothed-Area.md"/>
+            <toc-element topic="Smoothed-Area-with-Points.md"/>
+            <toc-element topic="Density-Plot.md"/>
+        </toc-element>
+        <toc-element topic="Bars.md">
+            <toc-element topic="Simple-Bars.md"/>
+            <toc-element topic="Bar-Settings.md"/>
+            <toc-element topic="Bar-Gradient.md"/>
+            <toc-element topic="Fixed-Bar-Coordinate.md"/>
+            <toc-element topic="Bar-with-Reversed-Axis.md"/>
+            <toc-element topic="Horizontal-Bars.md"/>
+            <toc-element topic="Grouped-Bars.md"/>
+            <toc-element topic="Stacked-Bars.md"/>
+            <toc-element topic="Functional-Bars.md"/>
+            <toc-element topic="Histogram-Bar-Plot.md"/>
+        </toc-element>
+        <toc-element topic="Points.md">
+            <toc-element topic="Basic-Points-Plot.md"/>
+            <toc-element topic="Points-Settings.md"/>
+            <toc-element topic="Points-with-ABLine.md"/>
+            <toc-element topic="Points-Gradient.md"/>
+            <toc-element topic="Points-with-Color-by-Category.md"/>
+            <toc-element topic="Fixed-Points.md"/>
+            <toc-element topic="Jittered-Points.md"/>
+            <toc-element topic="Bubble-Chart.md"/>
+            <toc-element topic="Complex-Bubble-Chart.md"/>
+            <toc-element topic="Functional-Scatter-Plot.md"/>
+        </toc-element>
+        <toc-element topic="Error-Bars.md">
+            <toc-element topic="Simple-ErrorBars.md"/>
+            <toc-element topic="ErrorBars-Settings.md"/>
+            <toc-element topic="ErrorBars-with-Line.md"/>
+            <toc-element topic="Fixed-ErrorBars.md"/>
+            <toc-element topic="BorderLine-ErrorBars.md"/>
+            <toc-element topic="Grouped-ErrorBars.md"/>
+            <toc-element topic="ErrorBars-with-Boxplot.md"/>
+        </toc-element>
+        <toc-element topic="Boxplot.md">
+            <toc-element topic="Boxplot-Expr.md"/>
+            <toc-element topic="Boxplot-Life-Exp.md"/>
+            <toc-element topic="Boxplot-Categories.md"/>
+        </toc-element>
+        <toc-element topic="Tiles.md">
+            <toc-element topic="Basic-Tile-Plot.md"/>
+            <toc-element topic="Tiles-Settings.md"/>
+            <toc-element topic="Fixed-Tiles.md"/>
+            <toc-element topic="Tiles-Gradient.md"/>
+            <toc-element topic="Tiles-Color-Categories.md"/>
+            <toc-element topic="Basic-Heatmap.md"/>
+            <toc-element topic="Tiles-Logo.md"/>
+        </toc-element>
     </toc-element>
 </instance-profile>

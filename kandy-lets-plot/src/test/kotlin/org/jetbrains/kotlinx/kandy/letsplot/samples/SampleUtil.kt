@@ -20,7 +20,10 @@ abstract class SampleHelper(sampleName: String) {
         this.save("$name.png", scale, path = pathToImageFolder)
         val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
         (this.features as MutableMap)[FeatureName("layout")] =
-            layout?.copy(flavor = Flavor.DARCULA) ?: Layout(flavor = Flavor.DARCULA)
+            layout?.copy(flavor = Flavor.DARCULA).also {
+                it?.theme = layout?.theme
+                it?.customTheme = layout?.customTheme
+            } ?: Layout(flavor = Flavor.DARCULA)
         this.save("${name}_dark.png", scale, path = pathToImageFolder)
     }
 }

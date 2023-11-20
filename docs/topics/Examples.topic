@@ -118,4 +118,358 @@
             </li>
         </list>
     </chapter>
+
+    <chapter title="Area" id="examples-area" collapsible="true" default-state="expanded">
+        <list id="list-of-area-examples" type="none" columns="3">
+            <li>
+                <a href="Simple-Area.md">
+                    <img src="simple_area.png" alt="Simple Area" border-effect="line"/>
+                    Simple Area
+                </a>
+            </li>
+
+            <li>
+                <a href="Area-Settings.md">
+                    <img src="area_settings.png" alt="Area Settings" border-effect="line"/>
+                    Area Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="Fixed-Area-Coordinate.md">
+                    <img src="area_fixed.png" alt="Fixed Area" border-effect="line"/>
+                    Area with Fixed Coordinate
+                </a>
+            </li>
+
+            <li>
+                <a href="Area-with-Reversed-Axis.md">
+                    <img src="area_with_reversed_axis.png" alt="Area with Reversed Axis" border-effect="line"/>
+                    Area with Reversed Axis
+                </a>
+            </li>
+
+            <li>
+                <a href="Several-Areas.md">
+                    <img src="several_areas.png" alt="Several Areas" border-effect="line"/>
+                    Several Areas
+                </a>
+            </li>
+
+            <li>
+                <a href="Functional-Area.md">
+                    <img src="functional_area_plot.png" alt="Functional Area Plot" border-effect="line"/>
+                    Functional Area Plot
+                </a>
+            </li>
+
+            <li>
+                <a href="Area-with-Mark-Line.md">
+                    <img src="area_with_mark_line.png" alt="Area with Mark Line" border-effect="line"/>
+                    Area with Mark Line
+                </a>
+            </li>
+
+            <li>
+                <a href="Smoothed-Area.md">
+                    <img src="smoothed_area.png" alt="Smoothed Area" border-effect="line"/>
+                    Smoothed Area
+                </a>
+            </li>
+
+            <li>
+                <a href="Smoothed-Area-with-Points.md">
+                    <img src="smoothed_area_with_points.png" alt="Smoothed Area with Points" border-effect="line"/>
+                    Smoothed Area with Points
+                </a>
+            </li>
+
+            <li>
+                <a href="Density-Plot.md">
+                    <img src="density_plot.png" alt="Density Plot" border-effect="line"/>
+                    Density Plot
+                </a>
+            </li>
+        </list>
+    </chapter>
+
+    <chapter title="Bars" id="examples-bars" collapsible="true" default-state="expanded">
+        <list id="list-of-bars-examples" type="none" columns="3">
+            <li>
+                <a href="Simple-Bars.md">
+                    <img src="simple_bar_plot.png" alt="Simple Bar" border-effect="line"/>
+                    Simple Bar
+                </a>
+            </li>
+
+            <li>
+                <a href="Bar-Settings.md">
+                    <img src="bar_settings.png" alt="Bar Settings" border-effect="line"/>
+                    Bar Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="Bar-Gradient.md">
+                    <img src="bar_gradient.png" alt="Bar Gradient" border-effect="line"/>
+                    Bar Gradient
+                </a>
+            </li>
+
+            <li>
+                <a href="Fixed-Bar-Coordinate.md">
+                    <img src="fixed_bar.png" alt="Fixed Bar Coordinate" border-effect="line"/>
+                    Fixed Bar Coordinate
+                </a>
+            </li>
+
+            <li>
+                <a href="Bar-with-Reversed-Axis.md">
+                    <img src="bar_with_reversed_axis.png" alt="Bar with Reversed Axis" border-effect="line"/>
+                    Bar with Reversed Axis
+                </a>
+            </li>
+
+            <li>
+                <a href="Horizontal-Bars.md">
+                    <img src="horizontal_bars.png" alt="Horizontal Bars" border-effect="line"/>
+                    Horizontal Bars
+                </a>
+            </li>
+
+            <li>
+                <a href="Grouped-Bars.md">
+                    <img src="grouped_bars.png" alt="Grouped Bars" border-effect="line"/>
+                    Grouped Bars
+                </a>
+            </li>
+
+            <li>
+                <a href="Stacked-Bars.md">
+                    <img src="stacked_bars.png" alt="Stacked Bars" border-effect="line"/>
+                    Stacked Bars
+                </a>
+            </li>
+
+            <li>
+                <a href="Functional-Bars.md">
+                    <img src="functional_bars_plot.png" alt="Functional Bar Plot" border-effect="line"/>
+                    Functional Bar Plot
+                </a>
+            </li>
+
+            <li>
+                <a href="Histogram-Bar-Plot.md">
+                    <img src="histogram_2.png" alt="Histogram Plot" border-effect="line"/>
+                    Histogram Plot
+                </a>
+            </li>
+        </list>
+    </chapter>
+
+    <chapter title="Points" id="examples-points" collapsible="true" default-state="expanded">
+        <list id="list-of-points-examples" type="none" columns="3">
+            <li>
+                <a href="Basic-Points-Plot.md">
+                    <img src="basic_points_plot.png" alt="Basic Points Plot" border-effect="line"/>
+                    Basic Points Plot
+                </a>
+            </li>
+
+            <li>
+                <a href="Points-Settings.md">
+                    <img src="points_settings.png" alt="Points Settings" border-effect="line"/>
+                    Points Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="Points-with-ABLine.md">
+                    <img src="points_with_abLine.png" alt="Points with ABLine" border-effect="line"/>
+                    Points with ABLine
+                </a>
+            </li>
+
+            <li>
+                <a href="Points-Gradient.md">
+                    <img src="points_gradient.png" alt="Points Gradient" border-effect="line"/>
+                    Points Gradient
+                </a>
+            </li>
+
+            <li>
+                <a href="Points-with-Color-by-Category.md">
+                    <img src="points_with_color_by_category.png" alt="Points with Color by Category"
+                         border-effect="line"/>
+                    Points with Color by Category
+                </a>
+            </li>
+
+            <li>
+                <a href="Fixed-Points.md">
+                    <img src="fixed_points.png" alt="Fixed Points Coordinate" border-effect="line"/>
+                    Fixed Points Coordinate
+                </a>
+            </li>
+
+            <li>
+                <a href="Jittered-Points.md">
+                    <img src="jittered_points.png" alt="Jittered Points" border-effect="line"/>
+                    Jittered Points
+                </a>
+            </li>
+
+            <li>
+                <a href="Bubble-Chart.md">
+                    <img src="bubble_chart.png" alt="Bubble Chart" border-effect="line"/>
+                    Bubble Chart
+                </a>
+            </li>
+
+            <li>
+                <a href="Complex-Bubble-Chart.md">
+                    <img src="complex_bubble_chart.png" alt="Complex Bubble Chart" border-effect="line"/>
+                    Complex Bubble Chart
+                </a>
+            </li>
+
+            <li>
+                <a href="Functional-Scatter-Plot.md">
+                    <img src="functional_scatter_plot.png" alt="Functional Scatter Plot" border-effect="line"/>
+                    Functional Scatter Plot
+                </a>
+            </li>
+        </list>
+    </chapter>
+
+    <chapter title="Error Bars" id="examples-errorBars" collapsible="true" default-state="expanded">
+        <list id="list-of-errorBars-examples" type="none" columns="3">
+            <li>
+                <a href="Simple-ErrorBars.md">
+                    <img src="simple_error_bar_plot.png" alt="Simple ErrorBars" border-effect="line"/>
+                    Simple ErrorBars
+                </a>
+            </li>
+
+            <li>
+                <a href="ErrorBars-Settings.md">
+                    <img src="error_bars_settings.png" alt="ErrorBars Settings" border-effect="line"/>
+                    ErrorBars Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="ErrorBars-with-Line.md">
+                    <img src="error_bars_with_line.png" alt="ErrorBars with Line" border-effect="line"/>
+                    ErrorBars with Line
+                </a>
+            </li>
+
+            <li>
+                <a href="Fixed-ErrorBars.md">
+                    <img src="fixed_error_bars.png" alt="Fixed ErrorBars Coordinate" border-effect="line"/>
+                    Fixed ErrorBars Coordinate
+                </a>
+            </li>
+
+            <li>
+                <a href="BorderLine-ErrorBars.md">
+                    <img src="border_line_error_bars.png" alt="BorderLine in ErrorBars" border-effect="line"/>
+                    BorderLine in ErrorBars
+                </a>
+            </li>
+
+            <li>
+                <a href="Grouped-ErrorBars.md">
+                    <img src="grouped_error_bars.png" alt="Grouped ErrorBars" border-effect="line"/>
+                    Grouped ErrorBars
+                </a>
+            </li>
+
+            <li>
+                <a href="ErrorBars-with-Boxplot.md">
+                    <img src="error_bars_with_boxplot.png" alt="ErrorBars with Boxplot" border-effect="line"/>
+                    ErrorBars with Boxplot
+                </a>
+            </li>
+        </list>
+    </chapter>
+
+    <chapter title="Boxplot" id="examples-boxplot" collapsible="true" default-state="expanded">
+        <list id="list-of-boxplot-examples" type="none" columns="3">
+            <li>
+                <a href="Boxplot-Expr.md">
+                    <img src="boxplot_expr.png" alt="Boxplot of Experiments" border-effect="line"/>
+                    Boxplot of Experiments
+                </a>
+            </li>
+
+            <li>
+                <a href="Boxplot-Life-Exp.md">
+                    <img src="boxplot_life_exp.png" alt="Boxplot Life Expectations by Country" border-effect="line"/>
+                    Boxplot Life Expectations by Country
+                </a>
+            </li>
+
+            <li>
+                <a href="Boxplot-Categories.md">
+                    <img src="boxplot_categories.png" alt="Boxplot Categories" border-effect="line"/>
+                    Boxplot Categories
+                </a>
+            </li>
+        </list>
+    </chapter>
+
+    <chapter title="Tiles" id="examples-tiles" collapsible="true" default-state="expanded">
+        <list id="list-of-tiles-examples" type="none" columns="3">
+            <li>
+                <a href="Basic-Tile-Plot.md">
+                    <img src="basic_tile_plot.png" alt="Basic Tile Plot" border-effect="line"/>
+                    Basic Tile Plot
+                </a>
+            </li>
+
+            <li>
+                <a href="Tiles-Settings.md">
+                    <img src="tiles_settings.png" alt="Tiles Settings" border-effect="line"/>
+                    Tiles Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="Fixed-Tiles.md">
+                    <img src="fixed_tile.png" alt="Fixed Tiles Coordinate" border-effect="line"/>
+                    Fixed Tiles Coordinate
+                </a>
+            </li>
+
+            <li>
+                <a href="Tiles-Gradient.md">
+                    <img src="tiles_gradient.png" alt="Tiles Gradient" border-effect="line"/>
+                    Tiles Gradient
+                </a>
+            </li>
+
+            <li>
+                <a href="Tiles-Color-Categories.md">
+                    <img src="tiles_color_categories.png" alt="Tiles with Color by Category" border-effect="line"/>
+                    Tiles with Color by Category
+                </a>
+            </li>
+
+            <li>
+                <a href="Basic-Heatmap.md">
+                    <img src="basic_heatmap.png" alt="Basic Heatmap" border-effect="line"/>
+                    Basic Heatmap
+                </a>
+            </li>
+
+            <li>
+                <a href="Tiles-Logo.md">
+                    <img src="tiles_ktnb_logo.png" alt="Ktnb Logo Tiles" border-effect="line"/>
+                    Ktnb Logo Tiles
+                </a>
+            </li>
+        </list>
+    </chapter>
 </topic>
