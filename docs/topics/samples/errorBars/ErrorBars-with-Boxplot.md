@@ -29,7 +29,7 @@ val valuesC = valuesA.zip(valuesB).map { (it.first + it.second) / 2.0 }
 
 val df = dataFrameOf(
     "value" to valuesA + valuesB + valuesC,
-    "group" to  List(100) {"a"} + List(100) {"b"} + List(100) {"c"}
+    "group" to List(100) { "a" } + List(100) { "b" } + List(100) { "c" }
 )
 
 df.plot {

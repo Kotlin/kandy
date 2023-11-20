@@ -299,7 +299,8 @@
 
             <li>
                 <a href="Points-with-Color-by-Category.md">
-                    <img src="points_with_color_by_category.png" alt="Points with Color by Category" border-effect="line"/>
+                    <img src="points_with_color_by_category.png" alt="Points with Color by Category"
+                         border-effect="line"/>
                     Points with Color by Category
                 </a>
             </li>
@@ -389,6 +390,31 @@
                 <a href="ErrorBars-with-Boxplot.md">
                     <img src="error_bars_with_boxplot.png" alt="ErrorBars with Boxplot" border-effect="line"/>
                     ErrorBars with Boxplot
+                </a>
+            </li>
+        </list>
+    </chapter>
+
+    <chapter title="Boxplot" id="examples-boxplot" collapsible="true" default-state="expanded">
+        <list id="list-of-boxplot-examples" type="none" columns="3">
+            <li>
+                <a href="Boxplot-Expr.md">
+                    <img src="boxplot_expr.png" alt="Boxplot of Experiments" border-effect="line"/>
+                    Boxplot of Experiments
+                </a>
+            </li>
+
+            <li>
+                <a href="Boxplot-Life-Exp.md">
+                    <img src="boxplot_life_exp.png" alt="Boxplot Life Expectations by Country" border-effect="line"/>
+                    Boxplot Life Expectations by Country
+                </a>
+            </li>
+
+            <li>
+                <a href="Boxplot-Categories.md">
+                    <img src="boxplot_categories.png" alt="Boxplot Categories" border-effect="line"/>
+                    Boxplot Categories
                 </a>
             </li>
         </list>
