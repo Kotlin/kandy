@@ -422,6 +422,54 @@
 
     <chapter title="Tiles" id="examples-tiles" collapsible="true" default-state="expanded">
         <list id="list-of-tiles-examples" type="none" columns="3">
+            <li>
+                <a href="Basic-Tile-Plot.md">
+                    <img src="basic_tile_plot.png" alt="Basic Tile Plot" border-effect="line"/>
+                    Basic Tile Plot
+                </a>
+            </li>
+
+            <li>
+                <a href="Tiles-Settings.md">
+                    <img src="tiles_settings.png" alt="Tiles Settings" border-effect="line"/>
+                    Tiles Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="Fixed-Tiles.md">
+                    <img src="fixed_tile.png" alt="Fixed Tiles Coordinate" border-effect="line"/>
+                    Fixed Tiles Coordinate
+                </a>
+            </li>
+
+            <li>
+                <a href="Tiles-Gradient.md">
+                    <img src="tiles_gradient.png" alt="Tiles Gradient" border-effect="line"/>
+                    Tiles Gradient
+                </a>
+            </li>
+
+            <li>
+                <a href="Tiles-Color-Categories.md">
+                    <img src="tiles_color_categories.png" alt="Tiles with Color by Category" border-effect="line"/>
+                    Tiles with Color by Category
+                </a>
+            </li>
+
+            <li>
+                <a href="Basic-Heatmap.md">
+                    <img src="basic_heatmap.png" alt="Basic Heatmap" border-effect="line"/>
+                    Basic Heatmap
+                </a>
+            </li>
+
+            <li>
+                <a href="Tiles-Logo.md">
+                    <img src="tiles_ktnb_logo.png" alt="Ktnb Logo Tiles" border-effect="line"/>
+                    Ktnb Logo Tiles
+                </a>
+            </li>
         </list>
     </chapter>
 </topic>
