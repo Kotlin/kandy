@@ -269,6 +269,75 @@
 
     <chapter title="Points" id="examples-points" collapsible="true" default-state="expanded">
         <list id="list-of-points-examples" type="none" columns="3">
+            <li>
+                <a href="Basic-Points-Plot.md">
+                    <img src="basic_points_plot.png" alt="Basic Points Plot" border-effect="line"/>
+                    Basic Points Plot
+                </a>
+            </li>
+
+            <li>
+                <a href="Points-Settings.md">
+                    <img src="points_settings.png" alt="Points Settings" border-effect="line"/>
+                    Points Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="Points-with-ABLine.md">
+                    <img src="points_with_abLine.png" alt="Points with ABLine" border-effect="line"/>
+                    Points with ABLine
+                </a>
+            </li>
+
+            <li>
+                <a href="Points-Gradient.md">
+                    <img src="points_gradient.png" alt="Points Gradient" border-effect="line"/>
+                    Points Gradient
+                </a>
+            </li>
+
+            <li>
+                <a href="Points-with-Color-by-Category.md">
+                    <img src="points_with_color_by_category.png" alt="Points with Color by Category" border-effect="line"/>
+                    Points with Color by Category
+                </a>
+            </li>
+
+            <li>
+                <a href="Fixed-Points.md">
+                    <img src="fixed_points.png" alt="Fixed Points Coordinate" border-effect="line"/>
+                    Fixed Points Coordinate
+                </a>
+            </li>
+
+            <li>
+                <a href="Jittered-Points.md">
+                    <img src="jittered_points.png" alt="Jittered Points" border-effect="line"/>
+                    Jittered Points
+                </a>
+            </li>
+
+            <li>
+                <a href="Bubble-Chart.md">
+                    <img src="bubble_chart.png" alt="Bubble Chart" border-effect="line"/>
+                    Bubble Chart
+                </a>
+            </li>
+
+            <li>
+                <a href="Complex-Bubble-Chart.md">
+                    <img src="complex_bubble_chart.png" alt="Complex Bubble Chart" border-effect="line"/>
+                    Complex Bubble Chart
+                </a>
+            </li>
+
+            <li>
+                <a href="Functional-Scatter-Plot.md">
+                    <img src="functional_scatter_plot.png" alt="Functional Scatter Plot" border-effect="line"/>
+                    Functional Scatter Plot
+                </a>
+            </li>
         </list>
     </chapter>
 
