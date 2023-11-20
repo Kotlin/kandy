@@ -317,8 +317,8 @@ class Points : SampleHelper("points") {
                 position = Position.jitter()
             }
         }
-            // SampleEnd
-            .saveSample()
+        // SampleEnd
+        //    .saveSample()
     }
 
     @Test
