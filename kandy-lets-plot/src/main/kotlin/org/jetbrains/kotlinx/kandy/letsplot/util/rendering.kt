@@ -41,16 +41,25 @@ internal fun NotebookRenderingContext.figureToMimeJson(figure: Figure): JsonObje
     }
 }
 
+internal fun updateSvgSize(svgString: String): String {
+    val regex = Regex("""width=["']([^"']*)["']\s*height=["']([^"']*)["']""")
+
+    return regex.replace(svgString) {
+        val currentWidth = it.groupValues[1]
+        val currentHeight = it.groupValues[2]
+        """width="100%" height="100%" viewBox="0 0 $currentWidth $currentHeight" preserveAspectRatio="xMinYMin meet""""
+    }
+}
+
 internal fun NotebookRenderingContext.figureToMimeResult(figure: Figure): MimeTypedResultEx {
     val basicResult = figureToMimeJson(figure)
 
     val plotSVG = PlotSvgExport.buildSvgImageFromRawSpecs(figure.toSpec())
     val id = UUID.randomUUID().toString()
     val svgWithID = with(plotSVG) {
-        take(4) + " id=$id" + drop(4)
+        updateSvgSize(take(4) + " id=$id" + drop(4))
     }
     val extraHTML = """
-        
         $svgWithID
         <script>document.getElementById("$id").style.display = "none";</script>
     """.trimIndent()
