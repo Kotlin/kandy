@@ -608,7 +608,7 @@ class Lines : SampleHelper("line") {
     }
 
     @Test
-    fun line_and_path_comp_1() {
+    fun line_and_path_comp_test_data() {
         // SampleStart
         fun generateArchimedeanDataMap(n: Int = 25, k: Double = 1.0, a: Double = 1.0): Map<String, List<Double>> {
             val phi = List(n) { i -> 2.0 * PI * k * i.toDouble() / (n - 1) }
@@ -625,7 +625,7 @@ class Lines : SampleHelper("line") {
     }
 
     @Test
-    fun line_and_path_comp_2() {
+    fun line_and_path_comp() {
         fun generateArchimedeanDataMap(n: Int = 25, k: Double = 1.0, a: Double = 1.0): Map<String, List<Double>> {
             val phi = List(n) { i -> 2.0 * PI * k * i.toDouble() / (n - 1) }
             val r = phi.map { angle -> (a * angle) / (2.0 * PI) }
@@ -650,21 +650,8 @@ class Lines : SampleHelper("line") {
             }
             layout.title = "`path` layer"
         }
-        plotGrid(listOf(linePlot, pathPlot)).saveSample()
-        /*     // SampleEnd
-            .save("line_and_path_comp.png", scale = 3, path = pathToImageFolder)
-
-//        plotBunch {
-//            add(linePlot, 0, 0, 350, 470)
-//            add(pathPlot, 350, 0, 350, 470)
-//        }.save("prew_line_and_path_comp.svg", path = pathToImageFolder)
-
-        val lineLayout = (linePlot.features as MutableMap)[FeatureName("layout")] as Layout
-        (linePlot.features as MutableMap)[FeatureName("layout")] = lineLayout.copy(flavor = Flavor.DARCULA)
-        val pathLayout = (pathPlot.features as MutableMap)[FeatureName("layout")] as Layout
-        (pathPlot.features as MutableMap)[FeatureName("layout")] = pathLayout.copy(flavor = Flavor.DARCULA)
-
-        plotGrid(listOf(linePlot, pathPlot)).save("line_and_path_comp_dark.png", scale = 3, path = pathToImageFolder)
-    }*/
+        plotGrid(listOf(linePlot, pathPlot))
+            // SampleEnd
+            .saveSample(true)
     }
 }

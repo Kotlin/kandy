@@ -9,6 +9,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
 import org.jetbrains.letsPlot.Figure
 import org.jetbrains.letsPlot.awt.plot.PlotSvgExport
+import org.jetbrains.letsPlot.ggsize
 import org.jetbrains.letsPlot.intern.toSpec
 import org.junit.Rule
 import org.junit.rules.TestName
@@ -17,24 +18,26 @@ import java.io.File
 abstract class SampleHelper(sampleName: String) {
     protected val pathToImageFolder = "../docs/images/samples/$sampleName"
 
+    private val previewSize = ggsize(600, 400)
+
     private fun Figure.toSVG(): String {
         return replaceIdsWithConstant(PlotSvgExport.buildSvgImageFromRawSpecs(this.toSpec()))
     }
 
-    private fun Plot.toSVG(): String {
-        return toLetsPlot().toSVG()
+    private fun Plot.saveAsSVG(name: String, savePreview: Boolean = false) {
+        val figure = toLetsPlot()
+        File(pathToImageFolder,"$name.svg").writeText(figure.toSVG())
+        if (savePreview) {
+            File(pathToImageFolder,"preview_$name.svg").writeText((figure + previewSize).toSVG())
+        }
     }
 
-    private fun PlotGrid.toSVG(): String {
-        return wrap().toSVG()
-    }
-
-    private fun Plot.saveAsSVG(name: String) {
-        File(pathToImageFolder,"$name.svg").writeText(toSVG())
-    }
-
-    private fun PlotGrid.saveAsSVG(name: String) {
-        File(pathToImageFolder,"$name.svg").writeText(toSVG())
+    private fun PlotGrid.saveAsSVG(name: String, savePreview: Boolean = false) {
+        val figure = wrap()
+        File(pathToImageFolder,"$name.svg").writeText(figure.toSVG())
+        if (savePreview) {
+            File(pathToImageFolder,"preview_$name.svg").writeText((figure + previewSize).toSVG())
+        }
     }
 
     private fun replaceIdsWithConstant(svgString: String): String {
@@ -63,9 +66,9 @@ abstract class SampleHelper(sampleName: String) {
         saveAsSVG("${name}_dark")
     }
 
-    fun PlotGrid.saveSample() {
+    fun PlotGrid.saveSample(savePreview: Boolean = false) {
         val name = testName.methodName.replace("_dataframe", "")
-        saveAsSVG(name)
+        saveAsSVG(name, savePreview)
         plots.forEach {
             it ?: return
             val layout = (it.features as MutableMap)[FeatureName("layout")] as? Layout
@@ -75,6 +78,6 @@ abstract class SampleHelper(sampleName: String) {
                     it?.customTheme = layout?.customTheme
                 } ?: Layout(flavor = Flavor.DARCULA)
         }
-        saveAsSVG("${name}_dark")
+        saveAsSVG("${name}_dark", savePreview)
     }
 }

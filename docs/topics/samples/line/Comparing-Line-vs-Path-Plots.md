@@ -55,7 +55,7 @@ plotGrid(listOf(linePlot, pathPlot))
 
 <!---END-->
 
-![Comparing Line vs. Path Plots](line_and_path_comp_2.svg) { border-effect="rounded" }
+![Comparing Line vs. Path Plots](line_and_path_comp.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">
