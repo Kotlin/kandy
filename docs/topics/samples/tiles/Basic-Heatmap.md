@@ -21,8 +21,18 @@ This introductory example showcases how to effectively represent matrix data usi
 <!---FUN basic_heatmap-->
 
 ```kotlin
-val cols = (List(100) { "col1" } + List(60) { "col2" } + List(20) { "col3" }).shuffled()
-val rows = (List(20) { "row1" } + List(40) { "row2" } + List(120) { "row3" }).shuffled()
+val cols = listOf(
+    "col1", "col1", "col2", "col2", "col1", "col3", "col2", "col1", "col3", "col2",
+    "col3", "col2", "col2", "col1", "col3", "col2", "col1", "col2", "col1", "col2",
+    "col2", "col1", "col2", "col3", "col2", "col3", "col2", "col1", "col3", "col2",
+    "col1", "col3", "col1", "col1", "col2", "col1", "col3", "col1", "col2", "col3"
+)
+val rows = listOf(
+    "row1", "row1", "row1", "row2", "row3", "row2", "row1", "row3", "row2", "row3",
+    "row2", "row3", "row1", "row1", "row2", "row3", "row1", "row1", "row2", "row2",
+    "row3", "row2", "row2", "row3", "row1", "row3", "row3", "row3", "row1", "row3",
+    "row3", "row1", "row1", "row1", "row1", "row2", "row1", "row1", "row2", "row3"
+)
 
 plot {
     heatmap(cols, rows)
