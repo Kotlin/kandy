@@ -34,7 +34,7 @@ plot {
 
 <!---END-->
 
-![Functional Area Plot](functional_area_plot.png) { border-effect="rounded" }
+![Functional Area Plot](functional_area_plot.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

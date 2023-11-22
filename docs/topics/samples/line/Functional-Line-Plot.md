@@ -39,7 +39,7 @@ plot {
 
 <!---END-->
 
-![Functional Line Plot](line_by_fun.png) { border-effect="rounded" }
+![Functional Line Plot](line_by_fun.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

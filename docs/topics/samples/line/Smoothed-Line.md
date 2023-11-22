@@ -31,7 +31,7 @@ plot {
 
 <!---END-->
 
-![Smoothed Line](smoothed_line.png) { border-effect="rounded" }
+![Smoothed Line](smoothed_line.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

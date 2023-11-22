@@ -72,7 +72,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![ErrorBars with Line](error_bars_with_line.png) { border-effect="rounded" }
+![ErrorBars with Line](error_bars_with_line.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

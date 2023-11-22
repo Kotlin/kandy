@@ -31,7 +31,7 @@ plot {
 
 <!---END-->
 
-![Basic Heatmap](basic_heatmap.png) { border-effect="rounded" }
+![Basic Heatmap](basic_heatmap.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

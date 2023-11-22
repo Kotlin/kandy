@@ -77,7 +77,7 @@ data.plot {
 </tab></tabs>
 <!---END-->
 
-![Tiles Gradient](tiles_gradient.png) { border-effect="rounded" }
+![Tiles Gradient](tiles_gradient.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

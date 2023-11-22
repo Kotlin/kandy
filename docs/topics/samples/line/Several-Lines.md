@@ -68,7 +68,7 @@ data.plot {
 </tab></tabs>
 <!---END-->
 
-![Several Lines](several_lines.png) { border-effect="rounded" }
+![Several Lines](several_lines.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

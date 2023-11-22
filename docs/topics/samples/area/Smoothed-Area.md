@@ -40,7 +40,7 @@ plot {
 
 <!---END-->
 
-![Smoothed Area](smoothed_area.png) { border-effect="rounded" }
+![Smoothed Area](smoothed_area.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

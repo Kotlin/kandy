@@ -279,7 +279,7 @@ class Tiles : SampleHelper("tiles") {
         val colorFactor = xs.zip(ys).map { it.first + it.second }
 
         plot {
-            raster {
+            tiles {
                 x(xs)
                 y(ys)
                 fillColor(colorFactor) {

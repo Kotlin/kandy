@@ -41,7 +41,7 @@ plot {
 
 <!---END-->
 
-![Path Line](path_line.png) { border-effect="rounded" }
+![Path Line](path_line.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

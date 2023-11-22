@@ -90,7 +90,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Points with Color by Category](points_with_color_by_category.png) { border-effect="rounded" }
+![Points with Color by Category](points_with_color_by_category.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

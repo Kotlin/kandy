@@ -46,7 +46,7 @@ df.plot {
 
 <!---END-->
 
-![ErrorBars with Boxplot](error_bars_with_boxplot.png) { border-effect="rounded" }
+![ErrorBars with Boxplot](error_bars_with_boxplot.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

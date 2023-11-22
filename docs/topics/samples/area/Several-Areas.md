@@ -95,7 +95,7 @@ plot(data) {
 </tab></tabs>
 <!---END-->
 
-![Several Areas](several_areas.png) { border-effect="rounded" }
+![Several Areas](several_areas.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

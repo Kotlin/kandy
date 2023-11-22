@@ -74,7 +74,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Basic Points Plot](basic_points_plot.png) { border-effect="rounded" }
+![Basic Points Plot](basic_points_plot.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

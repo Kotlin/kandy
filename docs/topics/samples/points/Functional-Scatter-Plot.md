@@ -34,7 +34,7 @@ plot {
 
 <!---END-->
 
-![Functional Scatter Plot](functional_scatter_plot.png) { border-effect="rounded" }
+![Functional Scatter Plot](functional_scatter_plot.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

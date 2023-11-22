@@ -72,7 +72,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Fixed Line Coordinate](line_fixed_coord.png) { border-effect="rounded" }
+![Fixed Line Coordinate](line_fixed_coord.svg) { border-effect="rounded" }
 
 
 <seealso style="cards">
