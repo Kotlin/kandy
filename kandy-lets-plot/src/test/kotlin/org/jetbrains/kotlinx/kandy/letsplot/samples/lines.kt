@@ -396,7 +396,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample(scale = 9.9)
+            .saveSample()
     }
 
     @Test
@@ -650,8 +650,8 @@ class Lines : SampleHelper("line") {
             }
             layout.title = "`path` layer"
         }
-        plotGrid(listOf(linePlot, pathPlot))
-            // SampleEnd
+        plotGrid(listOf(linePlot, pathPlot)).saveSample()
+        /*     // SampleEnd
             .save("line_and_path_comp.png", scale = 3, path = pathToImageFolder)
 
 //        plotBunch {
@@ -665,5 +665,6 @@ class Lines : SampleHelper("line") {
         (pathPlot.features as MutableMap)[FeatureName("layout")] = pathLayout.copy(flavor = Flavor.DARCULA)
 
         plotGrid(listOf(linePlot, pathPlot)).save("line_and_path_comp_dark.png", scale = 3, path = pathToImageFolder)
+    }*/
     }
 }

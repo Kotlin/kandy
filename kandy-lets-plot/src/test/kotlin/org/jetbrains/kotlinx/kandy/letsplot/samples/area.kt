@@ -321,7 +321,7 @@ class Area : SampleHelper("area") {
             }
         }
             // SampleEnd
-            .saveSample(3)
+            .saveSample()
     }
 
     @Test
@@ -487,6 +487,6 @@ class Area : SampleHelper("area") {
             densityPlot(sample)
         }
             // SampleEnd
-            .saveSample(3)
+            .saveSample()
     }
 }
