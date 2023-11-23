@@ -21,7 +21,7 @@ This introductory example showcases how to effectively represent matrix data usi
 <!---FUN basic_heatmap-->
 
 ```kotlin
-val random = Random(42)
+val random = kotlin.random.Random(42)
 val cols = (List(20) { "col1" } + List(50) { "col2" } + List(70) { "col3" }).shuffled(random)
 val rows = (List(40) { "row1" } + List(80) { "row2" } + List(20) { "row3" }).shuffled(random)
 

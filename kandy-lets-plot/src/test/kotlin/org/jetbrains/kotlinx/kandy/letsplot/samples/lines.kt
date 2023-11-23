@@ -103,7 +103,7 @@ class Lines : SampleHelper("line") {
             LocalDate(2023, 4, 15),
             LocalDate(2023, 5, 1),
             LocalDate(2023, 5, 15)
-        )
+        ).map { it.toString() }
         val visitors = listOf(120, 95, 110, 123, 130, 140, 150, 160, 175, 180)
 
         plot {
@@ -378,15 +378,15 @@ class Lines : SampleHelper("line") {
     @Test
     fun line_by_fun() {
         // SampleStart
-        val xs = (-2000..2000).map { it.toDouble() / 500.0 }
-        val function = { x: Double -> sin(x) * cos(x * 2 + 1) * sin(3 * x + 2.0) }
+        val xs = (-2000..2000).map { it / 500.0f }
+        val function = { x: Float -> sin(x) * cos(x * 2 + 1) * sin(3 * x + 2) }
         val ys = xs.map(function)
 
         plot {
             line {
                 x(xs)
                 y(ys) {
-                    scale = continuous(-1.0..1.0)
+                    scale = continuous(-1.0f..1.0f)
                 }
                 hLine {
                     yIntercept.constant(0.0)
@@ -578,6 +578,10 @@ class Lines : SampleHelper("line") {
 
         plot {
             smoothLine(xs, ys, smootherPointCount = 30) {
+                // SampleEnd
+                x(Stat.x.map { it.toFloat() })
+                y(Stat.y.map { it.toFloat() })
+                // SampleStart
                 width = 2.3
                 color = Color.GREEN
             }
@@ -594,6 +598,10 @@ class Lines : SampleHelper("line") {
 
         plot {
             smoothLine(xs, ys, method = SmoothMethod.LOESS(span = 0.3)) {
+                // SampleEnd
+                x(Stat.x.map { it.toFloat() })
+                y(Stat.y.map { it.toFloat() })
+                // SampleStart
                 color = Color.GREEN
             }
             points {
@@ -608,7 +616,7 @@ class Lines : SampleHelper("line") {
     }
 
     @Test
-    fun line_and_path_comp_test_data() {
+    fun line_and_path_comp_1() {
         // SampleStart
         fun generateArchimedeanDataMap(n: Int = 25, k: Double = 1.0, a: Double = 1.0): Map<String, List<Double>> {
             val phi = List(n) { i -> 2.0 * PI * k * i.toDouble() / (n - 1) }
@@ -625,16 +633,16 @@ class Lines : SampleHelper("line") {
     }
 
     @Test
-    fun line_and_path_comp() {
-        fun generateArchimedeanDataMap(n: Int = 25, k: Double = 1.0, a: Double = 1.0): Map<String, List<Double>> {
-            val phi = List(n) { i -> 2.0 * PI * k * i.toDouble() / (n - 1) }
-            val r = phi.map { angle -> (a * angle) / (2.0 * PI) }
+    fun line_and_path_comp_2() {
+        fun generateArchimedeanDataMap(n: Int = 25, k: Float = 1.0f, a: Float = 1.0f): Map<String, List<Float>> {
+            val phi = List(n) { i -> 2.0f * PI.toFloat() * k * i.toFloat() / (n - 1) }
+            val r = phi.map { angle -> (a * angle) / (2.0f * PI.toFloat()) }
             val x = (r zip phi).map { p -> p.first * cos(p.second) }
             val y = (r zip phi).map { p -> p.first * sin(p.second) }
             return mapOf("x" to x, "y" to y)
         }
 
-        val aDataMap = generateArchimedeanDataMap(n = 200, k = 2.0)
+        val aDataMap = generateArchimedeanDataMap(n = 200, k = 2.0f)
         // SampleStart
         val linePlot = plot(aDataMap) {
             line {
