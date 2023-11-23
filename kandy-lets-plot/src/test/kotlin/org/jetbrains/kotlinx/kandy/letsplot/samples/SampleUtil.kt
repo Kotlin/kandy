@@ -85,16 +85,16 @@ abstract class SampleHelper(sampleName: String) {
     @Rule
     val testName: TestName = TestName()
 
-    fun Plot.saveSample() {
+    fun Plot.saveSample(savePreview: Boolean = false) {
         val name = testName.methodName.replace("_dataframe", "")
-        saveAsSVG(name)
+        saveAsSVG(name, savePreview)
         val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
         (this.features as MutableMap)[FeatureName("layout")] =
             layout?.copy(flavor = Flavor.DARCULA).also {
                 it?.theme = layout?.theme
                 it?.customTheme = layout?.customTheme
             } ?: Layout(flavor = Flavor.DARCULA)
-        saveAsSVG("${name}_dark")
+        saveAsSVG("${name}_dark", savePreview)
     }
 
     fun PlotGrid.saveSample(savePreview: Boolean = false) {
