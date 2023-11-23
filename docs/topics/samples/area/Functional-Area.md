@@ -20,8 +20,8 @@ Dive into 'Functional Area Plot' using Kotlin and Kandy, where mathematics meets
 <!---FUN functional_area_plot-->
 
 ```kotlin
-val xs = (-2000..2000).map { it.toDouble() / 500.0 }
-val function = { x: Double -> sin(x) * cos(x * 2 + 1) * sin(3 * x + 2.0) }
+val xs = (-2000..2000).map { it / 500.0f }
+val function = { x: Float -> sin(x) * cos(x * 2 + 1) * sin(3 * x + 2) }
 val ys = xs.map(function)
 
 plot {

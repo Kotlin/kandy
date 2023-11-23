@@ -59,7 +59,7 @@ val date = listOf(
     LocalDate(2023, 4, 15),
     LocalDate(2023, 5, 1),
     LocalDate(2023, 5, 15)
-)
+).map { it.toString() }
 val visitors = listOf(120, 95, 110, 123, 130, 140, 150, 160, 175, 180)
 
 plot {

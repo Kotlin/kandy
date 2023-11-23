@@ -484,8 +484,7 @@ class Area : SampleHelper("area") {
         val sample = List(1000) { random.nextGaussian() }
 
         plot {
-            densityPlot(sample)
-            // SampleEnd
+            densityPlot(sample)// SampleEnd
             {
                 x(Stat.x.map { it.toFloat() })
                 y(Stat.density.map { it.toFloat() })

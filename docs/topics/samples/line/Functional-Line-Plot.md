@@ -18,15 +18,15 @@ Dive into the 'Functional Line Plot' in Kotlin with Kandy, showcasing the art of
 <!---FUN line_by_fun-->
 
 ```kotlin
-val xs = (-2000..2000).map { it.toDouble() / 500.0 }
-val function = { x: Double -> sin(x) * cos(x * 2 + 1) * sin(3 * x + 2.0) }
+val xs = (-2000..2000).map { it / 500.0f }
+val function = { x: Float -> sin(x) * cos(x * 2 + 1) * sin(3 * x + 2) }
 val ys = xs.map(function)
 
 plot {
     line {
         x(xs)
         y(ys) {
-            scale = continuous(-1.0..1.0)
+            scale = continuous(-1.0f..1.0f)
         }
         hLine {
             yIntercept.constant(0.0)

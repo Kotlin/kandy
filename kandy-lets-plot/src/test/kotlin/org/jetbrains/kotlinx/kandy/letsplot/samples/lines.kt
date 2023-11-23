@@ -577,8 +577,7 @@ class Lines : SampleHelper("line") {
         val ys = listOf(-5.4, -1.2, 3.4, 0.1, -0.6, -2.1, 0.6, 2.2, 3.4, 4.5, 6.7)
 
         plot {
-            smoothLine(xs, ys, smootherPointCount = 30) {
-                // SampleEnd
+            smoothLine(xs, ys, smootherPointCount = 30) {// SampleEnd
                 x(Stat.x.map { it.toFloat() })
                 y(Stat.y.map { it.toFloat() })
                 // SampleStart
@@ -597,11 +596,9 @@ class Lines : SampleHelper("line") {
         val ys = listOf(-5.4, -1.2, 3.4, 0.1, -0.6, -2.1, 0.6, 2.2, 3.4, 4.5, 6.7)
 
         plot {
-            smoothLine(xs, ys, method = SmoothMethod.LOESS(span = 0.3)) {
-                // SampleEnd
+            smoothLine(xs, ys, method = SmoothMethod.LOESS(span = 0.3)) {// SampleEnd
                 x(Stat.x.map { it.toFloat() })
-                y(Stat.y.map { it.toFloat() })
-                // SampleStart
+                y(Stat.y.map { it.toFloat() }) // SampleStart
                 color = Color.GREEN
             }
             points {
