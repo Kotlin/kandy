@@ -79,7 +79,7 @@ For detailed instructions, refer to the respective pages:
             <step>Add the Kandy dependency to your <path>build.gradle.kts</path> file:
                 <code-block lang="kotlin">
                     dependencies {
-                        implementation("org.jetbrains.kotlinx:kandy-lets-plot:%latest_version%"))
+                        implementation("org.jetbrains.kotlinx:kandy-lets-plot:%kandy_latest_version%")
                     }
                 </code-block>
             </step>

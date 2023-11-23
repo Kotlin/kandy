@@ -33,7 +33,7 @@ Using the Kandy library is possible in Kotlin projects on the JVM managed by Gra
 
 ```kotlin
 dependencies {
-    implementation("org.jetbrains.kotlinx:kandy-lets-plot:%latest_version%")
+    implementation("org.jetbrains.kotlinx:kandy-lets-plot:%kandy_latest_version%")
 }
 ```
 
@@ -42,7 +42,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    implementation 'org.jetbrains.kotlinx:kandy-lets-plot:%latest_version%'
+    implementation 'org.jetbrains.kotlinx:kandy-lets-plot:%kandy_latest_version%'
 }
 ```
 
