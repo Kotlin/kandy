@@ -74,7 +74,7 @@ class Lines : SampleHelper("line") {
             LocalDate(2023, 4, 15), 160,
             LocalDate(2023, 5, 1), 175,
             LocalDate(2023, 5, 15), 180
-        )
+        ).convert("date").to<String>()
 
         museumVisitors.plot {
             line {
