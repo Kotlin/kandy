@@ -9,7 +9,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
 import org.jetbrains.letsPlot.Figure
 import org.jetbrains.letsPlot.awt.plot.PlotSvgExport
-import org.jetbrains.letsPlot.core.util.PlotSizeHelper
 import org.jetbrains.letsPlot.ggsize
 import org.jetbrains.letsPlot.intern.toSpec
 import org.junit.Rule
@@ -17,17 +16,51 @@ import org.junit.rules.TestName
 import java.io.File
 
 abstract class SampleHelper(sampleName: String) {
+
+    @JvmField
+    @Rule
+    val testName: TestName = TestName()
+
     protected val pathToImageFolder = "../docs/images/samples/$sampleName"
 
     private val defaultWidth = 600
     private val defaultHeight = 400
     private val previewSize = ggsize(defaultWidth, defaultHeight)
     private val fixedWidth = 705
+
+    fun Plot.saveSample(savePreview: Boolean = false) {
+        val name = testName.methodName.replace("_dataframe", "")
+        saveAsSVG(name, savePreview)
+        val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
+        (this.features as MutableMap)[FeatureName("layout")] =
+            layout?.copy(flavor = Flavor.DARCULA).also {
+                it?.theme = layout?.theme
+                it?.customTheme = layout?.customTheme
+            } ?: Layout(flavor = Flavor.DARCULA)
+        saveAsSVG("${name}_dark", savePreview)
+    }
+
+    fun PlotGrid.saveSample(savePreview: Boolean = false) {
+        val name = testName.methodName.replace("_dataframe", "")
+        saveAsSVG(name, savePreview)
+        plots.forEach {
+            it ?: return
+            val layout = (it.features as MutableMap)[FeatureName("layout")] as? Layout
+            (it.features as MutableMap)[FeatureName("layout")] =
+                layout?.copy(flavor = Flavor.DARCULA).also {
+                    it?.theme = layout?.theme
+                    it?.customTheme = layout?.customTheme
+                } ?: Layout(flavor = Flavor.DARCULA)
+        }
+        saveAsSVG("${name}_dark", savePreview)
+    }
+
     private fun scaledHeight(width: Int, height: Int): Int = (fixedWidth.toFloat() * height / width).toInt()
     private fun scaledHeight(plot: Plot): Int {
         val (width, height) = (plot.features[Layout.NAME] as? Layout)?.size ?: (defaultWidth to defaultHeight)
         return scaledHeight(width, height)
     }
+
     private fun scaledHeight(plotGrid: PlotGrid): Int {
         val size = plotGrid.plots.size
         val nCol = plotGrid.nCol ?: size
@@ -58,16 +91,16 @@ abstract class SampleHelper(sampleName: String) {
     }
 
     private fun Plot.saveAsSVG(name: String, savePreview: Boolean = false) {
-        File(pathToImageFolder,"$name.svg").writeText(toFullSvg())
+        File(pathToImageFolder, "$name.svg").writeText(toFullSvg())
         if (savePreview) {
-            File(pathToImageFolder,"preview_$name.svg").writeText(toPreviewSvg())
+            File(pathToImageFolder, "preview_$name.svg").writeText(toPreviewSvg())
         }
     }
 
     private fun PlotGrid.saveAsSVG(name: String, savePreview: Boolean = false) {
-        File(pathToImageFolder,"$name.svg").writeText(toFullSvg())
+        File(pathToImageFolder, "$name.svg").writeText(toFullSvg())
         if (savePreview) {
-            File(pathToImageFolder,"preview_$name.svg").writeText(toPreviewSvg())
+            File(pathToImageFolder, "preview_$name.svg").writeText(toPreviewSvg())
         }
     }
 
@@ -79,36 +112,5 @@ abstract class SampleHelper(sampleName: String) {
             result = result.replace(it.groupValues[2], "xXxprefixXx${count++}")
         }
         return result
-    }
-
-    @JvmField
-    @Rule
-    val testName: TestName = TestName()
-
-    fun Plot.saveSample(savePreview: Boolean = false) {
-        val name = testName.methodName.replace("_dataframe", "")
-        saveAsSVG(name, savePreview)
-        val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
-        (this.features as MutableMap)[FeatureName("layout")] =
-            layout?.copy(flavor = Flavor.DARCULA).also {
-                it?.theme = layout?.theme
-                it?.customTheme = layout?.customTheme
-            } ?: Layout(flavor = Flavor.DARCULA)
-        saveAsSVG("${name}_dark", savePreview)
-    }
-
-    fun PlotGrid.saveSample(savePreview: Boolean = false) {
-        val name = testName.methodName.replace("_dataframe", "")
-        saveAsSVG(name, savePreview)
-        plots.forEach {
-            it ?: return
-            val layout = (it.features as MutableMap)[FeatureName("layout")] as? Layout
-            (it.features as MutableMap)[FeatureName("layout")] =
-                layout?.copy(flavor = Flavor.DARCULA).also {
-                    it?.theme = layout?.theme
-                    it?.customTheme = layout?.customTheme
-                } ?: Layout(flavor = Flavor.DARCULA)
-        }
-        saveAsSVG("${name}_dark", savePreview)
     }
 }

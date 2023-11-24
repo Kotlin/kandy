@@ -128,9 +128,11 @@ text {
     <path fill-rule="evenodd" fill="rgb(255,255,255)" fill-opacity="1.0" d="M0.0 0.0 L0.0 470.0 L705.0 470.0 L705.0 0.0 Z">
     </path>
     <g transform="translate(300.2596972722659 10.0 ) ">
-      <g transform="translate(13.980605455468202 414.0 ) ">
-        <line x1="51.75" y1="-0.0" x2="51.75" y2="-414.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+      <g transform="translate(13.980605455468202 0.0 ) ">
+        <line x1="51.75" y1="414.0" x2="51.75" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
+      </g>
+      <g transform="translate(13.980605455468202 414.0 ) ">
         <g transform="translate(51.75 0.0 ) ">
           <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
           </line>
@@ -144,14 +146,16 @@ text {
         </line>
       </g>
       <g transform="translate(13.980605455468202 0.0 ) ">
-        <line x1="0.0" y1="348.1363636363636" x2="103.5" y2="348.1363636363636" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="348.1363636363636" x2="103.5" y2="348.1363636363636" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="254.04545454545456" x2="103.5" y2="254.04545454545456" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="254.04545454545456" x2="103.5" y2="254.04545454545456" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="159.95454545454547" x2="103.5" y2="159.95454545454547" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="159.95454545454547" x2="103.5" y2="159.95454545454547" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="65.86363636363637" x2="103.5" y2="65.86363636363637" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="65.86363636363637" x2="103.5" y2="65.86363636363637" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
+      </g>
+      <g transform="translate(13.980605455468202 0.0 ) ">
         <g transform="translate(0.0 348.1363636363636 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
