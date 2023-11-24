@@ -42,7 +42,7 @@ plot {
 
 <!---END-->
 
-![BorderLine in ErrorBars](border_line_error_bars.png) { border-effect="rounded" }
+![BorderLine in ErrorBars](border_line_error_bars.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

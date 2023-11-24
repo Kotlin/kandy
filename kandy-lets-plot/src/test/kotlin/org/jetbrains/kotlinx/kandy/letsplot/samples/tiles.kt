@@ -12,6 +12,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import org.jetbrains.kotlinx.statistics.kandy.layers.heatmap
+import kotlin.random.Random
 import kotlin.test.Test
 
 class Tiles : SampleHelper("tiles") {
@@ -235,8 +236,9 @@ class Tiles : SampleHelper("tiles") {
     @Test
     fun basic_heatmap() {
         // SampleStart
-        val cols = (List(100) { "col1" } + List(60) { "col2" } + List(20) { "col3" }).shuffled()
-        val rows = (List(20) { "row1" } + List(40) { "row2" } + List(120) { "row3" }).shuffled()
+        val random = kotlin.random.Random(42)
+        val cols = (List(20) { "col1" } + List(50) { "col2" } + List(70) { "col3" }).shuffled(random)
+        val rows = (List(40) { "row1" } + List(80) { "row2" } + List(20) { "row3" }).shuffled(random)
 
         plot {
             heatmap(cols, rows)
@@ -279,7 +281,7 @@ class Tiles : SampleHelper("tiles") {
         val colorFactor = xs.zip(ys).map { it.first + it.second }
 
         plot {
-            raster {
+            tiles {
                 x(xs)
                 y(ys)
                 fillColor(colorFactor) {

@@ -20,8 +20,8 @@ where the scatter plot format is used to visually interpret mathematical functio
 <!---FUN functional_scatter_plot-->
 
 ```kotlin
-val xs = (-30..30).map { it.toDouble() / 5.0 }
-val function = { x: Double -> sin(x) }
+val xs = (-30..30).map { it / 5.0f }
+val function = { x: Float -> sin(x) }
 val ys = xs.map(function)
 
 plot {
@@ -34,7 +34,7 @@ plot {
 
 <!---END-->
 
-![Functional Scatter Plot](functional_scatter_plot.png) { border-effect="rounded" }
+![Functional Scatter Plot](functional_scatter_plot.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

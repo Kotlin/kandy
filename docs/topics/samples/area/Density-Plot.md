@@ -32,7 +32,7 @@ plot {
 
 <!---END-->
 
-![Density Plot](density_plot.png) { border-effect="rounded" }
+![Density Plot](density_plot.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

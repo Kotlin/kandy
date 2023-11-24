@@ -537,8 +537,8 @@ class Points : SampleHelper("points") {
     fun functional_scatter_plot() {
         // SampleStart
 
-        val xs = (-30..30).map { it.toDouble() / 5.0 }
-        val function = { x: Double -> sin(x) }
+        val xs = (-30..30).map { it / 5.0f }
+        val function = { x: Float -> sin(x) }
         val ys = xs.map(function)
 
         plot {

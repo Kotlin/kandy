@@ -80,7 +80,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Tiles Settings](tiles_settings.png) { border-effect="rounded" }
+![Tiles Settings](tiles_settings.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

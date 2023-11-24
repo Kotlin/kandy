@@ -74,7 +74,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Area Settings](area_settings.png) { border-effect="rounded" }
+![Area Settings](area_settings.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

@@ -35,7 +35,7 @@ plot {
 
 <!---END-->
 
-![Fixed Bar Coordinate](fixed_bar.png) { border-effect="rounded" }
+![Fixed Bar Coordinate](fixed_bar.svg) { border-effect="rounded" }
 
 [//]: # (TODO)
 <seealso style="cards">

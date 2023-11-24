@@ -71,7 +71,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Horizontal Bars](horizontal_bars.png) { border-effect="rounded" }
+![Horizontal Bars](horizontal_bars.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

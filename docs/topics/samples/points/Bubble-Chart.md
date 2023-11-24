@@ -56,7 +56,7 @@ plot {
 
 <!---END-->
 
-![Bubble Chart](bubble_chart.png) { border-effect="rounded" }
+![Bubble Chart](bubble_chart.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

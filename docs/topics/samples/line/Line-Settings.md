@@ -31,7 +31,7 @@ val museumVisitors = dataFrameOf("date", "visitors")(
     LocalDate(2023, 4, 15), 160,
     LocalDate(2023, 5, 1), 175,
     LocalDate(2023, 5, 15), 180
-)
+).convert("date").to<String>()
 
 museumVisitors.plot {
     line {
@@ -59,7 +59,7 @@ val date = listOf(
     LocalDate(2023, 4, 15),
     LocalDate(2023, 5, 1),
     LocalDate(2023, 5, 15)
-)
+).map { it.toString() }
 val visitors = listOf(120, 95, 110, 123, 130, 140, 150, 160, 175, 180)
 
 plot {
@@ -76,7 +76,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Line Settings](simple_line_settings.png) { border-effect="rounded" }
+![Line Settings](simple_line_settings.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

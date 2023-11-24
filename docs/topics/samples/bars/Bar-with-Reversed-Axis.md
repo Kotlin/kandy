@@ -62,7 +62,7 @@ data.plot {
 </tab></tabs>
 <!---END-->
 
-![Bar with Reversed Axis](bar_with_reversed_axis.png) { border-effect="rounded" }
+![Bar with Reversed Axis](bar_with_reversed_axis.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">
