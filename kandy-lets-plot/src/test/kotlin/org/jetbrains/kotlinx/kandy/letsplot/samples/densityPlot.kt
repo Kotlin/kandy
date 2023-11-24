@@ -25,7 +25,12 @@ class DensityPlot : SampleHelper("densityPlot") {
         )
 
         dataframe.plot {
-            densityPlot("sample")
+            densityPlot("sample")// SampleEnd
+            {
+                x(Stat.x.map { it.toFloat() })
+                y(Stat.density.map { it.toFloat() })
+            }
+            // SampleStart
         }
             // SampleEnd
             .saveSample()
@@ -64,7 +69,9 @@ class DensityPlot : SampleHelper("densityPlot") {
         )
 
         experimentalDataDf.plot {
-            densityPlot("length", adjust = 0.8) {
+            densityPlot("length", adjust = 0.8) {// SampleEnd
+                x(Stat.x.map { it.toFloat() })
+                y(Stat.density.map { it.toFloat() }) // SampleStart
                 alpha = 0.5
                 fillColor = Color.RED
                 borderLine {
@@ -151,7 +158,9 @@ class DensityPlot : SampleHelper("densityPlot") {
         )
 
         df.groupBy("group").plot {
-            densityPlot("weight") {
+            densityPlot("weight") {// SampleEnd
+                x(Stat.x.map { it.toFloat() })
+                y(Stat.density.map { it.toFloat() }) // SampleStart
                 alpha = 0.5
             }
         }
@@ -171,10 +180,14 @@ class DensityPlot : SampleHelper("densityPlot") {
         plot {
             histogram(ages) {
                 alpha = 0.9
-                fillColor = Color.WHITE
+                fillColor = Color.WHITE// SampleEnd
+                x(Stat.x.map { it.toFloat() })
+                y(Stat.density.map { it.toFloat() }) // SampleStart
                 y(Stat.density)
             }
-            densityPlot(ages) {
+            densityPlot(ages) {// SampleEnd
+                x(Stat.x.map { it.toFloat() })
+                y(Stat.density.map { it.toFloat() }) // SampleStart
                 alpha = 0.5
                 fillColor = Color.hex(0xFF6666)
             }

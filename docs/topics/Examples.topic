@@ -472,4 +472,15 @@
             </li>
         </list>
     </chapter>
+
+    <chapter title="Histogram" id="examples-histogram" collapsible="true" default-state="expanded">
+        <list id="list-of-histogram-examples" type="none" columns="3">
+            <li>
+                <a href="Histogram-Simple.md">
+                    <img src="histogram_simple.svg" alt="Histogram Simple" border-effect="line"/>
+                    Histogram Simple
+                </a>
+            </li>
+        </list>
+    </chapter>
 </topic>
