@@ -40,7 +40,7 @@ data.groupBy("category").plot {
 
 <!---END-->
 
-![Boxplot Categories](boxplot_categories.png) { border-effect="rounded" }
+![Boxplot Categories](boxplot_categories.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

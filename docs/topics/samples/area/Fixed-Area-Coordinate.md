@@ -95,7 +95,7 @@ plot(reservoirDf) {
 </tab></tabs>
 <!---END-->
 
-![Fixed Area Coordinate ](area_fixed.png) { border-effect="rounded" }
+![Fixed Area Coordinate ](area_fixed.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

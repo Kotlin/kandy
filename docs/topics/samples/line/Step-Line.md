@@ -57,7 +57,7 @@ plot {
 
 <!---END-->
 
-![Step Line](step_line.png) { border-effect="rounded" }
+![Step Line](step_line.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

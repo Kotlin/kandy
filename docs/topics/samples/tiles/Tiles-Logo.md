@@ -52,7 +52,7 @@ val ys = cells.map { it.second }
 val colorFactor = xs.zip(ys).map { it.first + it.second }
 
 plot {
-    raster {
+    tiles {
         x(xs)
         y(ys)
         fillColor(colorFactor) {
@@ -70,7 +70,7 @@ plot {
 
 <!---END-->
 
-![Ktnb Logo Tiles](tiles_ktnb_logo.png) { border-effect="rounded" }
+![Ktnb Logo Tiles](tiles_ktnb_logo.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

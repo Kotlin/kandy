@@ -69,7 +69,7 @@ data.plot {
 </tab></tabs>
 <!---END-->
 
-![Bar Gradient](bar_gradient.png) { border-effect="rounded" }
+![Bar Gradient](bar_gradient.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

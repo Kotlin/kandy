@@ -64,7 +64,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Jittered Points](jittered_points.png) { border-effect="rounded" }
+![Jittered Points](jittered_points.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

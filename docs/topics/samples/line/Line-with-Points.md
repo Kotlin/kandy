@@ -63,7 +63,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Line with Points](line_with_points.png) { border-effect="rounded" }
+![Line with Points](line_with_points.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

@@ -52,7 +52,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Simple Line](simple_line.png) { border-effect="rounded" }
+![Simple Line](simple_line.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">
