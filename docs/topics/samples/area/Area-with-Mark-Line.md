@@ -116,7 +116,7 @@ df.plot {
 </tab></tabs>
 <!---END-->
 
-![Area with Mark Line](area_with_mark_line.png) { border-effect="rounded" }
+![Area with Mark Line](area_with_mark_line.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

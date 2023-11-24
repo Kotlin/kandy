@@ -54,7 +54,7 @@ data.plot {
 
 <!---END-->
 
-![Boxplot of Experiments](boxplot_expr.png) { border-effect="rounded" }
+![Boxplot of Experiments](boxplot_expr.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

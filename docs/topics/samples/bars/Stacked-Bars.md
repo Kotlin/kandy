@@ -81,7 +81,7 @@ data.plot {
 </tab></tabs>
 <!---END-->
 
-![Stacked Bars](stacked_bars.png) { border-effect="rounded" }
+![Stacked Bars](stacked_bars.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

@@ -31,7 +31,7 @@ plot {
 
 <!---END-->
 
-![Fixed Points Coordinate](fixed_points.png) { border-effect="rounded" }
+![Fixed Points Coordinate](fixed_points.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

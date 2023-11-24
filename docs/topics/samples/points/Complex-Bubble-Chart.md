@@ -84,7 +84,7 @@ data.groupBy("year").plot {
 
 <!---END-->
 
-![Complex Bubble Chart](complex_bubble_chart.png) { border-effect="rounded" }
+![Complex Bubble Chart](complex_bubble_chart.svg) { border-effect="rounded" }
 
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.Points-->
 
@@ -109,7 +109,7 @@ data.filter { "year"<Int>() == 1998 }.plot {
 
 <!---END-->
 
-![Complex Bubble Chart](complex_bubble_chart_part2.png) { border-effect="rounded" }
+![Complex Bubble Chart](complex_bubble_chart_part2.svg) { border-effect="rounded" }
 
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.Points-->
 
@@ -134,7 +134,7 @@ data.filter { "year"<Int>() == 2023 }.plot {
 
 <!---END-->
 
-![Complex Bubble Chart](complex_bubble_chart_part3.png) { border-effect="rounded" }
+![Complex Bubble Chart](complex_bubble_chart_part3.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

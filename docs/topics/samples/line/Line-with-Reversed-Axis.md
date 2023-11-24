@@ -61,7 +61,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Line with Reversed Axis](line_reversed_axis.png) { border-effect="rounded" }
+![Line with Reversed Axis](line_reversed_axis.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

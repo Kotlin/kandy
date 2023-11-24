@@ -87,7 +87,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Tiles with Color by Category](tiles_color_categories.png) { border-effect="rounded" }
+![Tiles with Color by Category](tiles_color_categories.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

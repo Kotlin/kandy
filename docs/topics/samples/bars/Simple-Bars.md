@@ -56,7 +56,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Simple Bars](simple_bar_plot.png) { border-effect="rounded" }
+![Simple Bars](simple_bar_plot.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

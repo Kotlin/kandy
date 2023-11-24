@@ -21,8 +21,9 @@ This introductory example showcases how to effectively represent matrix data usi
 <!---FUN basic_heatmap-->
 
 ```kotlin
-val cols = (List(100) { "col1" } + List(60) { "col2" } + List(20) { "col3" }).shuffled()
-val rows = (List(20) { "row1" } + List(40) { "row2" } + List(120) { "row3" }).shuffled()
+val random = kotlin.random.Random(42)
+val cols = (List(20) { "col1" } + List(50) { "col2" } + List(70) { "col3" }).shuffled(random)
+val rows = (List(40) { "row1" } + List(80) { "row2" } + List(20) { "row3" }).shuffled(random)
 
 plot {
     heatmap(cols, rows)
@@ -31,7 +32,7 @@ plot {
 
 <!---END-->
 
-![Basic Heatmap](basic_heatmap.png) { border-effect="rounded" }
+![Basic Heatmap](basic_heatmap.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

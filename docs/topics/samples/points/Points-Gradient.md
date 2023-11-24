@@ -39,7 +39,7 @@ plot {
 
 <!---END-->
 
-![Points Gradient](points_gradient.png) { border-effect="rounded" }
+![Points Gradient](points_gradient.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

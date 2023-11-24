@@ -34,7 +34,7 @@ plot {
 
 <!---END-->
 
-![Fixed Tiles Coordinate](fixed_tile.png) { border-effect="rounded" }
+![Fixed Tiles Coordinate](fixed_tile.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">
