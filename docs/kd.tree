@@ -6,7 +6,6 @@
                   name="kandy"
                   start-page="Welcome.topic" is-library="true" status="eap">
 
-    <toc-element topic="Histogram-Simple.md"/>
     <toc-element topic="Welcome.topic"/>
     <toc-element topic="Overview.md"/>
     <toc-element topic="Getting-Started.md">
@@ -93,6 +92,11 @@
             <toc-element topic="Basic-Heatmap.md"/>
             <toc-element topic="Tiles-Logo.md"/>
         </toc-element>
+        <toc-element topic="Histogram.md">
+            <toc-element topic="Histogram-Simple.md"/>
+            <toc-element topic="Histogram-Settings.md"/>
+            <toc-element topic="Histogram-Grouped.md"/>
+            <toc-element topic="Histogram-With-Line.md"/>
+        </toc-element>
     </toc-element>
-    <toc-element topic="Histogram.md"/>
 </instance-profile>
