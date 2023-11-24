@@ -57,7 +57,7 @@ plot {
 
 <seealso style="cards">
        <category ref="example-ktnb">
-           <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/bars/histogram_bar_plot.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
-           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/MXxEf1q7ACuzgCkFtV0bkT" summary="Experiment with this example on Datalore">Datalore Notebook</a>
+           <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/histogram/histogram_simple.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
+           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/c0z2x3H4svD595YuuqpexU" summary="Experiment with this example on Datalore">Datalore Notebook</a>
        </category>
 </seealso>

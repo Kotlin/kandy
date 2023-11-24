@@ -112,7 +112,7 @@ class Histogram : SampleHelper("histogram") {
     }
 
     @Test
-    fun histogram_grouped() {
+    fun histogram_grouped_dataframe() {
         // SampleStart
         val random = java.util.Random(42)
 
@@ -132,7 +132,56 @@ class Histogram : SampleHelper("histogram") {
     }
 
     @Test
-    fun histogram_with_line() {
+    fun histogram_grouped_collections() {
+        // SampleStart
+        val random = java.util.Random(42)
+
+        val sampleA = List(1000) {random.nextGaussian() * 0.7 + 2.0}
+        val sampleB = List(1000) {random.nextGaussian() * 1.4 + 3.5}
+
+        val data = mapOf(
+            "sample" to sampleA + sampleB,
+            "group" to sampleA.map { "A" } + sampleB.map { "B" }
+        )
+
+        data.plot {
+            groupBy("group") {
+                histogram("sample")
+            }
+        }// SampleEnd
+    }
+
+    @Test
+    fun histogram_with_line_dataframe() {
+        // SampleStart
+        val random = java.util.Random(42)
+
+        val sampleDf = dataFrameOf(
+            "sample" to List(1000) {random.nextGaussian()}
+        )
+
+        sampleDf.plot {
+            statBin("sample", binsOption = BinsOption.byNumber(15)) {
+                bars {
+                    alpha = 0.9
+                    x(Stat.x)
+                    y(Stat.count)
+                }
+                line {
+                    x(Stat.x)
+                    y(Stat.count)
+                    color = Color.RED
+                    width = 1.5
+                    type = LineType.LONGDASH
+                }
+            }
+        }
+            // SampleEnd
+            .saveSample()
+    }
+
+    @Test
+    fun histogram_with_line_collections() {
         // SampleStart
         val random = java.util.Random(42)
 
@@ -153,9 +202,6 @@ class Histogram : SampleHelper("histogram") {
                     type = LineType.LONGDASH
                 }
             }
-        }
-            // SampleEnd
-            .saveSample()
+        } // SampleEnd
     }
-
 }
