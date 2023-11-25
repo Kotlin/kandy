@@ -112,8 +112,6 @@ plot(simpleDataFrame) {
 }
 ```
 
-{ validate="false" }
-
 ![Simple plot with Kandy](overview_sample.svg) { border-effect="rounded" }
 
 More examples of working with the library can be found [here](Examples.topic).

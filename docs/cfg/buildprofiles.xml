@@ -15,6 +15,8 @@
         <algolia-api-key>5c2b297123233b10b657e49979194b21</algolia-api-key>
         <search-scopes-provider>https://www.jetbrains.com/search/json/</search-scopes-provider>
         <generate-sitemap-url-prefix>https://kotlin.github.io/kandy/</generate-sitemap-url-prefix>
+
+        <analytics-head-script-file>google-search.html</analytics-head-script-file>
     </variables>
     <build-profile instance="kd">
         <variables>
