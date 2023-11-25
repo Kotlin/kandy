@@ -6,7 +6,7 @@ This example is ideal for learning how to tweak histogram plot appearances for m
 </web-summary>
 
 <card-summary>
-'Histogram Settings' in Kotlin with Kandy: A detailed demonstration of the versatility in hsitogram plot customization,
+'Histogram Settings' in Kotlin with Kandy: A detailed demonstration of the versatility in histogram plot customization,
 perfect for tailoring visual representations to specific data storytelling needs.
 </card-summary>
 
@@ -17,9 +17,9 @@ Explore the 'Histogram Settings' example using Kotlin and Kandy to understand th
 
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.Histogram-->
 
+<!---FUN histogram_settings-->
 <tabs>
-<tab title="DataFrame">
-<!---FUN histogram_settings_dataframe-->
+<tab title="Dataframe">
 
 ```kotlin
 val expreimentalDF = dataFrameOf("length" to listOf(
@@ -50,10 +50,8 @@ expreimentalDF.plot {
 }
 ```
 
-<!---END-->
 </tab>
 <tab title="Collections">
-<!---FUN histogram_settings_collections-->
 
 ```kotlin
 val experimentalData = listOf(
@@ -85,10 +83,9 @@ plot {
 }
 ```
 
+</tab></tabs>
 <!---END-->
 
-</tab>
-</tabs>
 
 ![Histogram Settings](histogram_settings.svg) { border-effect="rounded" }
 

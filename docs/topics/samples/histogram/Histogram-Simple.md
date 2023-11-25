@@ -11,15 +11,15 @@ perfect for statistical analysis and understanding data trends.
 </card-summary>
 
 <link-summary>
-Dive into 'Histogram Simple' using Kotlin and Kandy, a fundamental tool in data analysis for visualizing the distribution and frequency of dataset values."
+Dive into 'Histogram Simple' using Kotlin and Kandy, a fundamental tool in data analysis for visualizing the distribution and frequency of dataset values.
 </link-summary>
 
 
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.Histogram-->
 
+<!---FUN histogram_simple-->
 <tabs>
-<tab title="DataFrame">
-<!---FUN histogram_simple_dataframe-->
+<tab title="Dataframe">
 
 ```kotlin
 val random = java.util.Random(42)
@@ -33,10 +33,8 @@ dataframe.plot {
 }
 ```
 
-<!---END-->
 </tab>
 <tab title="Collections">
-<!---FUN histogram_simple_collections-->
 
 ```kotlin
 val random = java.util.Random(42)
@@ -48,10 +46,9 @@ plot {
 }
 ```
 
+</tab></tabs>
 <!---END-->
 
-</tab>
-</tabs>
 
 ![Histogram Simple](histogram_simple.svg) { border-effect="rounded" }
 

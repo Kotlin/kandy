@@ -501,4 +501,98 @@
             </li>
         </list>
     </chapter>
+    <chapter title="Density-Plot" id="examples-density-plot" collapsible="true" default-state="expanded">
+        <list id="list-of-density-plot-examples" type="none" columns="3">
+            <li>
+                <a href="Density-Plot-Simple.md">
+                    <img src="densityPlot_simple.svg" alt="Density Plot Simple" border-effect="line"/>
+                    Density Plot Simple
+                </a>
+            </li>
+            <li>
+                <a href="Density-Plot-Settings.md">
+                    <img src="densityPlot_settings.svg" alt="Density Plot Settings" border-effect="line"/>
+                    Density Plot Settings
+                </a>
+            </li>
+            <li>
+                <a href="Density-Plot-Grouped.md">
+                    <img src="densityPlot_grouped.svg" alt="Density Plot Grouped" border-effect="line"/>
+                    Density Plot Grouped
+                </a>
+            </li>
+            <li>
+                <a href="Density-Plot-With-Histogram.md">
+                    <img src="densityPlot_with_histogram.svg" alt="Density Plot With Histogram" border-effect="line"/>
+                    Density Plot With Histogram
+                </a>
+            </li>
+        </list>
+    </chapter>
+    <chapter title="Count-Plot" id="examples-count-plot" collapsible="true" default-state="expanded">
+        <list id="list-of-count-plot-examples" type="none" columns="3">
+            <li>
+                <a href="Count-Plot-Simple.md">
+                    <img src="countPlot_simple.svg" alt="Count Plot Simple" border-effect="line"/>
+                    Count Plot Simple
+                </a>
+            </li>
+            <li>
+                <a href="Count-Plot-Settings.md">
+                    <img src="countPlot_settings.svg" alt="Count Plot Settings" border-effect="line"/>
+                    Count Plot Settings
+                </a>
+            </li>
+            <li>
+                <a href="Count-Plot-Grouped.md">
+                    <img src="countPlot_grouped.svg" alt="Count Plot Grouped" border-effect="line"/>
+                    Count Plot Grouped
+                </a>
+            </li>
+            <li>
+                <a href="Count-Plot-Horizontal.md">
+                    <img src="countPlot_horizontal.svg" alt="Count Plot With Histogram" border-effect="line"/>
+                    Count Plot Horizontal
+                </a>
+            </li>
+        </list>
+    </chapter>
+    <chapter title="Heatmap" id="examples-heatmap" collapsible="true" default-state="expanded">
+        <list id="list-of-heatmap-examples" type="none" columns="3">
+            <li>
+                <a href="Heatmap-Simple.md">
+                    <img src="heatmap_simple.svg" alt="Heatmap Simple" border-effect="line"/>
+                    Heatmap Simple
+                </a>
+            </li>
+            <li>
+                <a href="Heatmap-Settings.md">
+                    <img src="heatmap_settings.svg" alt="Heatmap Settings" border-effect="line"/>
+                    Heatmap Settings
+                </a>
+            </li>
+        </list>
+    </chapter>
+    <chapter title="Layout" id="examples-layout" collapsible="true" default-state="expanded">
+        <list id="list-of-layout-examples" type="none" columns="3">
+            <li>
+                <a href="Base-Layout-Settings.md">
+                    <img src="preview_base_layout_settings.svg" alt="Base Layout Settings" border-effect="line"/>
+                    Base Layout Settings
+                </a>
+            </li>
+            <li>
+                <a href="Subtitle-And-Caption.md">
+                    <img src="preview_subtitle_and_caption.svg" alt="Subtitle And Caption" border-effect="line"/>
+                    Subtitle And Caption
+                </a>
+            </li>
+            <li>
+                <a href="Axis-And-Legend-Configuration.md">
+                    <img src="axis_and_legend_configuration.svg" alt="Axis And Legend Configuration" border-effect="line"/>
+                    Axis And Legend Configuration
+                </a>
+            </li>
+        </list>
+    </chapter>
 </topic>

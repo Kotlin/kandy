@@ -18,9 +18,9 @@ where the concept of grouped histogram plotting is used to juxtapose different d
 
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.Histogram-->
 
+<!---FUN histogram_grouped-->
 <tabs>
-<tab title="DataFrame">
-<!---FUN histogram_grouped_dataframe-->
+<tab title="Dataframe">
 
 ```kotlin
 val random = java.util.Random(42)
@@ -38,10 +38,8 @@ df.groupBy("group").plot {
 }
 ```
 
-<!---END-->
 </tab>
 <tab title="Collections">
-<!---FUN histogram_grouped_collections-->
 
 ```kotlin
 val random = java.util.Random(42)
@@ -61,10 +59,8 @@ data.plot {
 }
 ```
 
+</tab></tabs>
 <!---END-->
-
-</tab>
-</tabs>
 
 ![Histogram Grouped](histogram_grouped.svg) { border-effect="rounded" }
 

@@ -118,7 +118,7 @@ class CountPlot : SampleHelper("countPlot") {
     }
 
     @Test
-    fun countPlot_grouped() {
+    fun countPlot_grouped_dataframe() {
         // SampleStart
         val categories = listOf(
             "easy", "medium", "hard", "medium", "easy",
@@ -135,9 +135,14 @@ class CountPlot : SampleHelper("countPlot") {
         )
 
         val years = listOf(
-            "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023"
+            "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022",
+            "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022",
+            "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022",
+            "2022", "2022", "2023", "2023", "2023", "2023", "2023", "2023",
+            "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023",
+            "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023",
+            "2023", "2023", "2023", "2023", "2023", "2023", "2023"
         )
-
 
         val df = dataFrameOf(
             "category" to categories,
@@ -152,19 +157,63 @@ class CountPlot : SampleHelper("countPlot") {
     }
 
     @Test
+    fun countPlot_grouped_collections() {
+        // SampleStart
+        val categories = listOf(
+            "easy", "medium", "hard", "medium", "easy",
+            "hard", "hard", "easy", "easy", "hard", "medium",
+            "hard", "easy", "easy", "easy", "medium",
+            "hard", "hard", "hard", "medium", "easy",
+            "hard", "medium", "hard", "hard", "hard",
+            "medium", "medium", "easy", "medium", "hard",
+            "hard", "easy", "hard", "medium", "medium",
+            "hard", "hard", "hard", "easy", "hard",
+            "hard", "easy", "medium", "medium", "hard",
+            "medium", "medium", "easy", "hard", "medium",
+            "hard", "medium", "easy", "easy",
+        )
+
+        val years = listOf(
+            "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022",
+            "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022",
+            "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022",
+            "2022", "2022", "2023", "2023", "2023", "2023", "2023", "2023",
+            "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023",
+            "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023",
+            "2023", "2023", "2023", "2023", "2023", "2023", "2023"
+        )
+
+        val dataset = mapOf(
+            "category" to categories,
+            "year" to years
+        )
+
+        dataset.plot {
+            groupBy("category") {
+                countPlot("year")
+            }
+        }
+        // SampleEnd
+    }
+
+    @Test
     fun countPlot_horizontal_dataframe() {
         // SampleStart
-        val transportsDF = dataFrameOf("transports" to listOf(
-            "metro", "bicycle", "car", "bus", "bus", "bicycle", "bicycle", "bus", "bus", "bus",
-            "bus", "bus", "bus", "bus", "bicycle", "bicycle", "bus", "bicycle", "bus", "car",
-            "metro", "bus", "metro", "metro", "bus", "bus", "bus", "metro", "bicycle", "metro",
-            "bus", "metro", "bicycle", "metro", "bicycle", "bicycle", "bus", "bicycle", "metro",
-            "bicycle", "metro", "bicycle", "bus", "bicycle", "bus", "bicycle", "bicycle", "bicycle",
-            "bus", "bicycle", "metro", "bus", "bicycle", "bus", "bus", "bus", "bus", "bus", "bus",
-            "metro", "metro", "bicycle", "metro", "bus", "bus", "metro", "metro", "bicycle", "bus",
-            "metro", "metro", "bicycle", "bus", "bus", "bicycle", "car", "bus", "bicycle", "bus",
-            "metro", "bus", "metro", "bicycle", "metro", "bicycle", "bicycle", "bicycle", "bicycle"
-        ))
+        val transportsDF = dataFrameOf(
+            "transports" to listOf(
+                "metro", "bicycle", "car", "bus", "bus", "bicycle", "bicycle",
+                "bus", "bus", "bus", "bus", "bus", "bus", "bus", "bicycle", "bicycle",
+                "bus", "bicycle", "bus", "car", "metro", "bus", "metro", "metro",
+                "bus", "bus", "bus", "metro", "bicycle", "metro", "bus", "metro",
+                "bicycle", "metro", "bicycle", "bicycle", "bus", "bicycle", "metro",
+                "bicycle", "metro", "bicycle", "bus", "bicycle", "bus", "bicycle",
+                "bicycle", "bicycle", "bus", "bicycle", "metro", "bus", "bicycle",
+                "bus", "bus", "bus", "bus", "bus", "bus", "metro", "metro", "bicycle",
+                "metro", "bus", "bus", "metro", "metro", "bicycle", "bus", "metro",
+                "metro", "bicycle", "bus", "bus", "bicycle", "car", "bus", "bicycle",
+                "bus", "metro", "bus", "metro", "bicycle", "metro", "bicycle", "bicycle"
+            )
+        )
 
         transportsDF.plot {
             statCount("transports") {
@@ -185,7 +234,7 @@ class CountPlot : SampleHelper("countPlot") {
             }
             layout.title = "Distribution of transport used by students"
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
@@ -193,15 +242,17 @@ class CountPlot : SampleHelper("countPlot") {
     fun countPlot_horizontal_collections() {
         // SampleStart
         val transports = listOf(
-            "metro", "bicycle", "car", "bus", "bus", "bicycle", "bicycle", "bus", "bus", "bus",
-            "bus", "bus", "bus", "bus", "bicycle", "bicycle", "bus", "bicycle", "bus", "car",
-            "metro", "bus", "metro", "metro", "bus", "bus", "bus", "metro", "bicycle", "metro",
-            "bus", "metro", "bicycle", "metro", "bicycle", "bicycle", "bus", "bicycle", "metro",
-            "bicycle", "metro", "bicycle", "bus", "bicycle", "bus", "bicycle", "bicycle", "bicycle",
-            "bus", "bicycle", "metro", "bus", "bicycle", "bus", "bus", "bus", "bus", "bus", "bus",
-            "metro", "metro", "bicycle", "metro", "bus", "bus", "metro", "metro", "bicycle", "bus",
-            "metro", "metro", "bicycle", "bus", "bus", "bicycle", "car", "bus", "bicycle", "bus",
-            "metro", "bus", "metro", "bicycle", "metro", "bicycle", "bicycle", "bicycle", "bicycle"
+            "metro", "bicycle", "car", "bus", "bus", "bicycle", "bicycle",
+            "bus", "bus", "bus", "bus", "bus", "bus", "bus", "bicycle", "bicycle",
+            "bus", "bicycle", "bus", "car", "metro", "bus", "metro", "metro",
+            "bus", "bus", "bus", "metro", "bicycle", "metro", "bus", "metro",
+            "bicycle", "metro", "bicycle", "bicycle", "bus", "bicycle", "metro",
+            "bicycle", "metro", "bicycle", "bus", "bicycle", "bus", "bicycle",
+            "bicycle", "bicycle", "bus", "bicycle", "metro", "bus", "bicycle",
+            "bus", "bus", "bus", "bus", "bus", "bus", "metro", "metro", "bicycle",
+            "metro", "bus", "bus", "metro", "metro", "bicycle", "bus", "metro",
+            "metro", "bicycle", "bus", "bus", "bicycle", "car", "bus", "bicycle",
+            "bus", "metro", "bus", "metro", "bicycle", "metro", "bicycle", "bicycle"
         )
 
         plot {

@@ -18,7 +18,7 @@ class Heatmap : SampleHelper("heatmap") {
         // SampleStart
         val dataframe = dataFrameOf(
             "days" to listOf(
-                "Thu", "Sun", "Tue", "Sat", "Mon", "Wed", "Fri", "Sun",
+                "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Sun",
                 "Sat", "Thu", "Fri", "Tue", "Wed", "Sun", "Mon", "Thu",
                 "Sun", "Sat", "Tue", "Mon", "Thu", "Wed", "Fri", "Sat",
                 "Tue", "Sun", "Fri", "Sat", "Thu", "Mon", "Wed", "Tue",
@@ -62,7 +62,7 @@ class Heatmap : SampleHelper("heatmap") {
     fun heatmap_simple_collections() {
         // SampleStart
         val days = listOf(
-            "Thu", "Sun", "Tue", "Sat", "Mon", "Wed", "Fri", "Sun",
+            "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Sun",
             "Sat", "Thu", "Fri", "Tue", "Wed", "Sun", "Mon", "Thu",
             "Sun", "Sat", "Tue", "Mon", "Thu", "Wed", "Fri", "Sat",
             "Tue", "Sun", "Fri", "Sat", "Thu", "Mon", "Wed", "Tue",

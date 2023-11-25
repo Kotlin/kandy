@@ -62,6 +62,7 @@ korro {
         include("docs/topics/samples/countPlot/*.md")
         include("docs/topics/samples/densityPlot/*.md")
         include("docs/topics/samples/heatmap/*.md")
+        include("docs/topics/samples/layout/*.md")
     }
 
     samples = fileTree(project.projectDir) {

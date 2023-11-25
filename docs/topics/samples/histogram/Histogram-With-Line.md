@@ -1,7 +1,7 @@
 # Histogram With Line
 
 <web-summary>
-Explore 'Histogram With Line' in Kotlin using Kandy, whew histogram is enhanced with line.
+Explore 'Histogram With Line' in Kotlin using Kandy, where histogram is enhanced with line.
 This example effectively showcases the usage of statistics with several layers, useful when you want to visualise distribution in several ways on one plot.
 </web-summary>
 
@@ -16,9 +16,10 @@ Dive into 'Histogram With Line' using Kotlin and Kandy, showing multiple layers 
 
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.Histogram-->
 
+
+<!---FUN histogram_with_line-->
 <tabs>
-<tab title="DataFrame">
-<!---FUN histogram_with_line_dataframe-->
+<tab title="Dataframe">
 
 ```kotlin
 val random = java.util.Random(42)
@@ -45,10 +46,8 @@ sampleDf.plot {
 }
 ```
 
-<!---END-->
 </tab>
 <tab title="Collections">
-<!---FUN histogram_with_line_collections-->
 
 ```kotlin
 val random = java.util.Random(42)
@@ -73,10 +72,9 @@ plot {
 }
 ```
 
+</tab></tabs>
 <!---END-->
 
-</tab>
-</tabs>
 
 ![Histogram With Line](histogram_with_line.svg) { border-effect="rounded" }
 
