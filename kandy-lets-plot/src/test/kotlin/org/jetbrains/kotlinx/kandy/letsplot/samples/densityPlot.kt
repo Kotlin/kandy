@@ -215,7 +215,6 @@ class DensityPlot : SampleHelper("densityPlot") {
             }
         }
             // SampleEnd
-            .saveSample()
     }
 
     @Test
