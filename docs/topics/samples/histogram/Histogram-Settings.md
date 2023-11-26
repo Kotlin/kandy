@@ -22,7 +22,7 @@ Explore the 'Histogram Settings' example using Kotlin and Kandy to understand th
 <tab title="Dataframe">
 
 ```kotlin
-val expreimentalDF = dataFrameOf("length" to listOf(
+val experimentalData = dataFrameOf("length" to listOf(
     5.92, 6.44, 5.87, 4.99, 5.23,
     5.67, 4.89, 5.34, 5.78, 5.12,
     5.56, 5.23, 5.78, 6.01, 5.56,
@@ -35,7 +35,7 @@ val expreimentalDF = dataFrameOf("length" to listOf(
     6.56, 5.45, 5.78, 5.89, 6.12,
     4.67, 4.79, 5.14, 5.28, 5.22,
 ))
-expreimentalDF.plot {
+experimentalData.plot {
     histogram("length", binsOption = BinsOption.byNumber(12)) {
         width = 0.8
         alpha = 0.9

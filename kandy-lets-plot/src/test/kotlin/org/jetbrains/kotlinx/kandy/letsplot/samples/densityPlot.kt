@@ -52,7 +52,7 @@ class DensityPlot : SampleHelper("densityPlot") {
     @Test
     fun densityPlot_settings_dataframe() {
         // SampleStart
-        val experimentalDataDf = dataFrameOf(
+        val experimentalData = dataFrameOf(
             "length" to listOf(
                 5.92, 6.44, 5.87, 4.99, 5.23,
                 5.67, 4.89, 5.34, 5.78, 5.12,
@@ -68,7 +68,7 @@ class DensityPlot : SampleHelper("densityPlot") {
             )
         )
 
-        experimentalDataDf.plot {
+        experimentalData.plot {
             densityPlot("length", adjust = 0.8) {// SampleEnd
                 x(Stat.x.map { it.toFloat() })
                 y(Stat.density.map { it.toFloat() }) // SampleStart
