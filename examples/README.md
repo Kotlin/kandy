@@ -22,6 +22,87 @@ we suggest referring to the cheatsheet which covers the fundamental aspects and 
   </tr>
 </table>
 
+            <iframe src='about:blank' style='border:none !important;' width='700' height='450' srcdoc="&lt;html lang=&quot;en&quot;>
+&lt;head>
+&lt;meta charset=&quot;UTF-8&quot;>
+&lt;style> html, body { margin: 0; overflow: hidden; } &lt;/style>
+&lt;script type=&quot;text/javascript&quot; data-lets-plot-script=&quot;library&quot; src=&quot;https://cdn.jsdelivr.net/gh/JetBrains/lets-plot@v4.1.0/js-package/distr/lets-plot.min.js&quot;>&lt;/script>
+&lt;/head>
+&lt;body>
+&lt;div id=&quot;6YRgIL&quot;>&lt;/div>
+&lt;script type=&quot;text/javascript&quot; data-lets-plot-script=&quot;plot&quot;>
+var plotSpec={
+&quot;ggtitle&quot;:{
+&quot;text&quot;:&quot;Simple plot with kandy-lets-plot&quot;
+},
+&quot;mapping&quot;:{
+},
+&quot;data&quot;:{
+&quot;temperature&quot;:[12.0,14.2,15.1,15.9,17.9,15.6,14.2,24.3],
+&quot;humidity&quot;:[0.5,0.32,0.11,0.89,0.68,0.57,0.56,0.5],
+&quot;time&quot;:[0.0,1.0,2.0,4.0,5.0,7.0,8.0,9.0]
+},
+&quot;ggsize&quot;:{
+&quot;width&quot;:700.0,
+&quot;height&quot;:450.0
+},
+&quot;kind&quot;:&quot;plot&quot;,
+&quot;scales&quot;:[{
+&quot;aesthetic&quot;:&quot;x&quot;,
+&quot;limits&quot;:[null,null]
+},{
+&quot;aesthetic&quot;:&quot;y&quot;,
+&quot;limits&quot;:[0.0,25.5]
+},{
+&quot;aesthetic&quot;:&quot;fill&quot;,
+&quot;scale_mapper_kind&quot;:&quot;color_gradient&quot;,
+&quot;high&quot;:&quot;#ee6666&quot;,
+&quot;low&quot;:&quot;#fac858&quot;,
+&quot;limits&quot;:[null,null]
+},{
+&quot;aesthetic&quot;:&quot;x&quot;,
+&quot;limits&quot;:[null,null]
+},{
+&quot;aesthetic&quot;:&quot;y&quot;,
+&quot;limits&quot;:[0.0,25.5]
+}],
+&quot;layers&quot;:[{
+&quot;mapping&quot;:{
+&quot;x&quot;:&quot;time&quot;,
+&quot;y&quot;:&quot;temperature&quot;,
+&quot;fill&quot;:&quot;humidity&quot;
+},
+&quot;stat&quot;:&quot;identity&quot;,
+&quot;size&quot;:0.0,
+&quot;sampling&quot;:&quot;none&quot;,
+&quot;position&quot;:&quot;dodge&quot;,
+&quot;geom&quot;:&quot;bar&quot;,
+&quot;data&quot;:{
+}
+},{
+&quot;mapping&quot;:{
+&quot;x&quot;:&quot;time&quot;,
+&quot;y&quot;:&quot;temperature&quot;
+},
+&quot;stat&quot;:&quot;identity&quot;,
+&quot;size&quot;:3.0,
+&quot;color&quot;:&quot;#6e5596&quot;,
+&quot;linetype&quot;:&quot;dotdash&quot;,
+&quot;sampling&quot;:&quot;none&quot;,
+&quot;position&quot;:&quot;identity&quot;,
+&quot;geom&quot;:&quot;line&quot;,
+&quot;data&quot;:{
+}
+}],
+&quot;caption&quot;:{
+&quot;text&quot;:&quot;See `examples` section for more\n complicated and interesting examples!&quot;
+}
+};
+var plotContainer = document.getElementById(&quot;6YRgIL&quot;);
+LetsPlot.buildPlotFromProcessedSpecs(plotSpec, -1, -1, plotContainer);
+&lt;/script>
+&lt;/body>
+&lt;/html>"></iframe>
 
 ### Lets-Plot Cheatsheet
 
