@@ -3,6 +3,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.theme.Flavor
 import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
@@ -21,7 +22,7 @@ abstract class SampleHelper(sampleName: String) {
     @Rule
     val testName: TestName = TestName()
 
-    protected val pathToImageFolder = "../docs/images/samples/$sampleName"
+    protected open val pathToImageFolder = "../docs/images/samples/$sampleName"
 
     private val defaultWidth = 600
     private val defaultHeight = 400
@@ -40,9 +41,9 @@ abstract class SampleHelper(sampleName: String) {
         saveAsSVG("${name}_dark", savePreview)
     }
 
-    fun PlotGrid.saveSample(savePreview: Boolean = false) {
+    fun PlotGrid.saveSample(savePreview: Boolean = false, scaling: Boolean = true) {
         val name = testName.methodName.replace("_dataframe", "")
-        saveAsSVG(name, savePreview)
+        saveAsSVG(name, savePreview, scaling)
         plots.forEach {
             it ?: return
             val layout = (it.features as MutableMap)[FeatureName("layout")] as? Layout
@@ -52,7 +53,21 @@ abstract class SampleHelper(sampleName: String) {
                     it?.customTheme = layout?.customTheme
                 } ?: Layout(flavor = Flavor.DARCULA)
         }
-        saveAsSVG("${name}_dark", savePreview)
+        saveAsSVG("${name}_dark", savePreview, scaling)
+    }
+
+    fun PlotBunch.saveSample() {
+        val name = testName.methodName.replace("_dataframe", "")
+        saveAsSVG(name)
+        this.items.forEach {
+            val layout = (it.plot.features as MutableMap)[FeatureName("layout")] as? Layout
+            (it.plot.features as MutableMap)[FeatureName("layout")] =
+                layout?.copy(flavor = Flavor.DARCULA).also { lay ->
+                    lay?.theme = layout?.theme
+                    lay?.customTheme = layout?.customTheme
+                } ?: Layout(flavor = Flavor.DARCULA)
+        }
+        saveAsSVG("${name}_dark")
     }
 
     private fun scaledHeight(width: Int, height: Int): Int = (fixedWidth.toFloat() * height / width).toInt()
@@ -97,11 +112,18 @@ abstract class SampleHelper(sampleName: String) {
         }
     }
 
-    private fun PlotGrid.saveAsSVG(name: String, savePreview: Boolean = false) {
-        File(pathToImageFolder, "$name.svg").writeText(toFullSvg())
+    private fun PlotGrid.saveAsSVG(name: String, savePreview: Boolean = false, scaling: Boolean) {
+        if (scaling)
+            File(pathToImageFolder, "$name.svg").writeText(toFullSvg())
+        else
+            File(pathToImageFolder, "$name.svg").writeText(wrap().toSVG())
         if (savePreview) {
             File(pathToImageFolder, "preview_$name.svg").writeText(toPreviewSvg())
         }
+    }
+
+    private fun PlotBunch.saveAsSVG(name: String) {
+        File(pathToImageFolder, "$name.svg").writeText(wrap().toSVG())
     }
 
     private fun replaceIdsWithConstant(svgString: String): String {

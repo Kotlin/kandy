@@ -58,10 +58,12 @@ korro {
         include("docs/topics/samples/errorBars/*.md")
         include("docs/topics/samples/boxplot/*.md")
         include("docs/topics/samples/tiles/*.md")
+        include("docs/topics/guides/*.md")
     }
 
     samples = fileTree(project.projectDir) {
         include("src/test/kotlin/org/jetbrains/kotlinx/kandy/letsplot/samples/*.kt")
+        include("src/test/kotlin/org/jetbrains/kotlinx/kandy/letsplot/samples/guides/*.kt")
     }
 
     groupSamples {

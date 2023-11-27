@@ -5,9 +5,9 @@ we suggest referring to the cheatsheet which covers the fundamental aspects and 
 
 ### Lets-Plot Cheatsheet
 
-[![lets-plot cheatsheet](images/lp_cheatsheet.png "Lets-Plot Cheatsheet")](notebooks/lets-plot/lets_plot_cheatsheet.ipynb)
+[![lets-plot cheatsheet](images/lp_cheatsheet.png "Lets-Plot Cheatsheet")](notebooks/lets-plot/guides/quick_start_guide.ipynb)
 
-[Notebook](notebooks/lets-plot/lets_plot_cheatsheet.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/Q82jBGHFgEmJhUHh7wBMmh)
+[Notebook](notebooks/lets-plot/guides/quick_start_guide.ipynb)/[Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/TKul6gxAVDbJmocwQi9UjB)
 
 ### Echarts Cheatsheet
 
