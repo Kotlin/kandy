@@ -3,6 +3,26 @@
 To get started with the library,
 we suggest referring to the cheatsheet which covers the fundamental aspects and features.
 
+<table style="border-collapse: collapse; border: none;">
+  <tr style="border: none;">
+    <td style="border: none;">
+      <b>Geoms</b>
+      <ul>
+        <li>algebraic_curve</li>
+        <li>error_bars</li>
+      </ul>
+    </td>
+    <td style="border: none;">
+      <b>Statistical</b>
+      <ul>
+        <li>statistics</li>
+        <li>smoothing</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+
 ### Lets-Plot Cheatsheet
 
 <table>
