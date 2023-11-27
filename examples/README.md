@@ -1,182 +1,312 @@
-# Examples of Kandy
+<h1>Examples of Kandy</h1>
 
-To get started with the library,
-we suggest referring to the cheatsheet which covers the fundamental aspects and features.
+<p>To get started with the library, we suggest referring to the cheatsheet which covers the fundamental aspects and features.</p>
 
-### Lets-Plot Cheatsheet
+<h3>Lets-Plot Cheatsheet</h3>
+<div style="display: flex;">
+  <div style="flex: 50%;">
+    <p><a href="notebooks/lets-plot/guides/quick_start_guide.ipynb">Notebook</a>/<a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/TKul6gxAVDbJmocwQi9UjB">Datalore</a></p>
+  </div>
+  <div style="flex: 50%;">
+    <a href="notebooks/lets-plot/guides/quick_start_guide.ipynb"><img src="images/lp_cheatsheet.png" alt="Lets-Plot Cheatsheet" title="Lets-Plot Cheatsheet"></a>
+  </div>
+</div>
 
-[![lets-plot cheatsheet](images/lp_cheatsheet.png "Lets-Plot Cheatsheet")](notebooks/lets-plot/guides/quick_start_guide.ipynb)
+<h3>Echarts Cheatsheet</h3>
+<div style="display: flex;">
+  <div style="flex: 50%;">
+    <p><a href="notebooks/echarts/echarts_cheatsheet.ipynb">Notebook</a>/<a href="https://datalore.jetbrains.com/view/notebook/kCKb37O2P9ZYEHGPnOZc9r">Datalore</a></p>
+  </div>
+  <div style="flex: 50%;">
+    <a href="notebooks/echarts/echarts_cheatsheet.ipynb"><img src="images/ech_cheatsheet.png" alt="Echarts Cheatsheet" title="Echarts Cheatsheet"></a>
+  </div>
+</div>
 
-[Notebook](notebooks/lets-plot/guides/quick_start_guide.ipynb)/[Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/TKul6gxAVDbJmocwQi9UjB)
 
-### Echarts Cheatsheet
+[//]: # (# Examples of Kandy)
 
-[![echarts cheatsheet](images/ech_cheatsheet.png "Echarts Cheatsheet")](notebooks/echarts/echarts_cheatsheet.ipynb)
-[Notebook](notebooks/echarts/echarts_cheatsheet.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/kCKb37O2P9ZYEHGPnOZc9r)
+[//]: # ()
+[//]: # (To get started with the library,)
 
-## Table of Contents
+[//]: # (we suggest referring to the cheatsheet which covers the fundamental aspects and features.)
 
-<!--- TOC -->
+[//]: # ()
+[//]: # (### Lets-Plot Cheatsheet)
 
-* [IDEA Examples](#idea-examples)
-* [Notebook Examples](#notebook-examples)
-    * [Lets-Plot Examples](#lets-plot-examples)
-    * [Echarts Examples](#echarts-examples)
+[//]: # ()
+[//]: # ([![lets-plot cheatsheet]&#40;images/lp_cheatsheet.png "Lets-Plot Cheatsheet"&#41;]&#40;notebooks/lets-plot/guides/quick_start_guide.ipynb&#41;)
 
-<!--- END -->
+[//]: # ()
+[//]: # ([Notebook]&#40;notebooks/lets-plot/guides/quick_start_guide.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/TKul6gxAVDbJmocwQi9UjB&#41;)
 
-## IDEA examples
+[//]: # ()
+[//]: # (### Echarts Cheatsheet)
 
-[**lets-plot-simple**](idea-examples/lets-plot-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/letsplot/simple_lets_plot.kt) —
-The following is an example of using the `kandy-lets-plot` library in an IntelliJ IDEA project.
-___
+[//]: # ()
+[//]: # ([![echarts cheatsheet]&#40;images/ech_cheatsheet.png "Echarts Cheatsheet"&#41;]&#40;notebooks/echarts/echarts_cheatsheet.ipynb&#41;)
 
-[**echarts-simple**](idea-examples/echarts-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/echarts/simple_echarts.kt) —
-The following is an example of using the `kandy-echarts` library in an IntelliJ IDEA project.
+[//]: # ([Notebook]&#40;notebooks/echarts/echarts_cheatsheet.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/kCKb37O2P9ZYEHGPnOZc9r&#41;)
 
-## Notebook examples
+[//]: # ()
+[//]: # (## Table of Contents)
 
-### Lets-Plot Examples
+[//]: # ()
+[//]: # (<!--- TOC -->)
 
-#### Line
+[//]: # ()
+[//]: # (* [IDEA Examples]&#40;#idea-examples&#41;)
 
-This notebook covers everything you need to work with `line` plots.
+[//]: # (* [Notebook Examples]&#40;#notebook-examples&#41;)
 
-[![lets-plot line](images/lp_lines.png "Lets-Plot Lines")](notebooks/lets-plot/lines.ipynb)
-[Notebook](notebooks/lets-plot/lines.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/l9tr3GIjFZtsF03gvZb0jt)
+[//]: # (    * [Lets-Plot Examples]&#40;#lets-plot-examples&#41;)
 
-#### Scatter
+[//]: # (    * [Echarts Examples]&#40;#echarts-examples&#41;)
 
-Here you will find how to work with `point` plots.
+[//]: # ()
+[//]: # (<!--- END -->)
 
-[![lets-plot scatter](images/lp_scatter.png "Lets-Plot Scatter")](notebooks/lets-plot/scatter_plot.ipynb)
-[Notebook](notebooks/lets-plot/scatter_plot.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/xqKxAjGJ6DKYh3hkBODokl)
+[//]: # ()
+[//]: # (## IDEA examples)
 
-#### Stats and Histogram
+[//]: # ()
+[//]: # ([**lets-plot-simple**]&#40;idea-examples/lets-plot-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/letsplot/simple_lets_plot.kt&#41; —)
 
-This notebook covers basic work with `statistics` and `histograms`.
+[//]: # (The following is an example of using the `kandy-lets-plot` library in an IntelliJ IDEA project.)
 
-[![lets-plot stats and histogram](images/lp_binstat_histogram.png "Statistics and Histograms")](notebooks/lets-plot/binstat_histogram.ipynb)
-[Notebook](notebooks/lets-plot/binstat_histogram.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/JQ7nzqPmY0G4LdHccErRkP)
+[//]: # (___)
 
-#### Error Bars
+[//]: # ()
+[//]: # ([**echarts-simple**]&#40;idea-examples/echarts-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/echarts/simple_echarts.kt&#41; —)
 
-Here you will learn how to work with plots known as `error bars`.
+[//]: # (The following is an example of using the `kandy-echarts` library in an IntelliJ IDEA project.)
 
-[![lets-plot error bars](images/lp_error_bars.png "Error Bars")](notebooks/lets-plot/error_bars.ipynb)
-[Notebook](notebooks/lets-plot/error_bars.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/0oIfPyFmtyBOa9AceZi1ft)
+[//]: # ()
+[//]: # (## Notebook examples)
 
-#### Algebraic Curve
+[//]: # ()
+[//]: # (### Lets-Plot Examples)
 
-This example plots an elliptic curve.
+[//]: # ()
+[//]: # (#### Line)
 
-[![lets-plot algebraic curve](images/lp_algebraic_curve.png "Algebraic Curve")](notebooks/lets-plot/algebraic_curve.ipynb)
-[Notebook](notebooks/lets-plot/algebraic_curve.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/BTOH6iKT0o8o7RKwdmb1U3)
+[//]: # ()
+[//]: # (This notebook covers everything you need to work with `line` plots.)
 
-#### Jitter Points
+[//]: # ()
+[//]: # ([![lets-plot line]&#40;images/lp_lines.png "Lets-Plot Lines"&#41;]&#40;notebooks/lets-plot/lines.ipynb&#41;)
 
-A simple example of building `jitter points`.
+[//]: # ([Notebook]&#40;notebooks/lets-plot/lines.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/l9tr3GIjFZtsF03gvZb0jt&#41;)
 
-[![lets-plot jitter points](images/lp_jittered_points.png "Jitter Points")](notebooks/lets-plot/jitter_points.ipynb)
-[Notebook](notebooks/lets-plot/jitter_points.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/i2WfipisdguG1eHYio9EbY)
+[//]: # ()
+[//]: # (#### Scatter)
 
-#### Ribbon
+[//]: # ()
+[//]: # (Here you will find how to work with `point` plots.)
 
-Example of building a `ribbon`.
+[//]: # ()
+[//]: # ([![lets-plot scatter]&#40;images/lp_scatter.png "Lets-Plot Scatter"&#41;]&#40;notebooks/lets-plot/scatter_plot.ipynb&#41;)
 
-[![lets-plot ribbon](images/lp_ribbon.png "Ribbon")](notebooks/lets-plot/ribbon.ipynb)
-[Notebook](notebooks/lets-plot/ribbon.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/w0TFVkKNVK4tFKYVhvaccm)
+[//]: # ([Notebook]&#40;notebooks/lets-plot/scatter_plot.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/xqKxAjGJ6DKYh3hkBODokl&#41;)
 
-#### Facets
+[//]: # ()
+[//]: # (#### Stats and Histogram)
 
-If you want to build a matrix of panel plots, you can use the `facet`,
-and in this example, you will learn how to work with it.
+[//]: # ()
+[//]: # (This notebook covers basic work with `statistics` and `histograms`.)
 
-[![lets-plot facets](images/lp_facets.png "Facets")](notebooks/lets-plot/facets.ipynb)
-[Notebook](notebooks/lets-plot/facets.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/mtEsSYfcU4X0S37AMCM8Ws)
+[//]: # ()
+[//]: # ([![lets-plot stats and histogram]&#40;images/lp_binstat_histogram.png "Statistics and Histograms"&#41;]&#40;notebooks/lets-plot/binstat_histogram.ipynb&#41;)
 
-___
+[//]: # ([Notebook]&#40;notebooks/lets-plot/binstat_histogram.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/JQ7nzqPmY0G4LdHccErRkP&#41;)
 
-Also, this notebook will help you work with `free scales` and `facet`.
+[//]: # ()
+[//]: # (#### Error Bars)
 
-[![lets-plot facets with free scales](images/lp_facets_free_scales.png "Facets with free scales")](notebooks/lets-plot/facets_free_scales.ipynb)
-[Notebook](notebooks/lets-plot/facets_free_scales.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/soZpIeVYbJV3EoJCz0DCJL)
+[//]: # ()
+[//]: # (Here you will learn how to work with plots known as `error bars`.)
 
-#### Plot Bunch
+[//]: # ()
+[//]: # ([![lets-plot error bars]&#40;images/lp_error_bars.png "Error Bars"&#41;]&#40;notebooks/lets-plot/error_bars.ipynb&#41;)
 
-If you want to display multiple plots in one output, you can use `plotBunch`, and you can learn about it here.
+[//]: # ([Notebook]&#40;notebooks/lets-plot/error_bars.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/0oIfPyFmtyBOa9AceZi1ft&#41;)
 
-[![lets-plot facets](images/lp_ggbunch.png "Plot Bunch")](notebooks/lets-plot/plot_bunch.ipynb)
-[Notebook](notebooks/lets-plot/plot_bunch.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/5QBS2btBdnPq3Ia4CNb4Px)
+[//]: # ()
+[//]: # (#### Algebraic Curve)
 
-#### Legend and Axis
+[//]: # ()
+[//]: # (This example plots an elliptic curve.)
 
-Customizing the `legend` and `axes`.
+[//]: # ()
+[//]: # ([![lets-plot algebraic curve]&#40;images/lp_algebraic_curve.png "Algebraic Curve"&#41;]&#40;notebooks/lets-plot/algebraic_curve.ipynb&#41;)
 
-[![lets-plot legend and axis](images/lp_legend_and_axis.png "Legend and Axis")](notebooks/lets-plot/legend_and_axis.ipynb)
-[Notebook](notebooks/lets-plot/legend_and_axis.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/m4XQAzyDqS1uzzE56XBKDR)
+[//]: # ([Notebook]&#40;notebooks/lets-plot/algebraic_curve.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/BTOH6iKT0o8o7RKwdmb1U3&#41;)
 
-#### Titles
+[//]: # ()
+[//]: # (#### Jitter Points)
 
-Everything related to `titles`, `subtitles`, and `captions`.
+[//]: # ()
+[//]: # (A simple example of building `jitter points`.)
 
-[![lets-plot titles](images/lp_title_subtitle_caption.png "Titles")](notebooks/lets-plot/title_subtitle_caption.ipynb)
-[Notebook](notebooks/lets-plot/title_subtitle_caption.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/lHYmEXJHNrKWmcTdU8z2rC)
+[//]: # ()
+[//]: # ([![lets-plot jitter points]&#40;images/lp_jittered_points.png "Jitter Points"&#41;]&#40;notebooks/lets-plot/jitter_points.ipynb&#41;)
 
-#### Tooltips
+[//]: # ([Notebook]&#40;notebooks/lets-plot/jitter_points.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/i2WfipisdguG1eHYio9EbY&#41;)
 
-We have three examples of working with tooltips.
+[//]: # ()
+[//]: # (#### Ribbon)
 
-![lets-plot tooltips](images/lp_tooltip.png "Tooltips")
+[//]: # ()
+[//]: # (Example of building a `ribbon`.)
 
-**Tooltip settings** - [Notebook](notebooks/lets-plot/tooltip_config.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/Yz9XXpdunbd23jL7aLxAlx)
+[//]: # ()
+[//]: # ([![lets-plot ribbon]&#40;images/lp_ribbon.png "Ribbon"&#41;]&#40;notebooks/lets-plot/ribbon.ipynb&#41;)
 
-___
+[//]: # ([Notebook]&#40;notebooks/lets-plot/ribbon.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/w0TFVkKNVK4tFKYVhvaccm&#41;)
 
-**Tooltip labels** - [Notebook](notebooks/lets-plot/tooltip_title.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/VyVuqcDEhvjfRGPJNWKYQn)
+[//]: # ()
+[//]: # (#### Facets)
 
-___
+[//]: # ()
+[//]: # (If you want to build a matrix of panel plots, you can use the `facet`,)
 
-**Tooltip themes** - [Notebook](notebooks/lets-plot/tooltips_theme.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/QMZuOW6397gbRn0PRSPjM3)
+[//]: # (and in this example, you will learn how to work with it.)
 
-#### Themes
+[//]: # ()
+[//]: # ([![lets-plot facets]&#40;images/lp_facets.png "Facets"&#41;]&#40;notebooks/lets-plot/facets.ipynb&#41;)
 
-You can change the themes of your plot, and here is how you can do it.
+[//]: # ([Notebook]&#40;notebooks/lets-plot/facets.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/mtEsSYfcU4X0S37AMCM8Ws&#41;)
 
-[![lets-plot themes](images/lp_themes.png "Themes")](notebooks/lets-plot/themes.ipynb)
-[Notebook](notebooks/lets-plot/themes.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/bSOcGvMRbHhDvSpWvQ0vzZ)
+[//]: # ()
+[//]: # (___)
 
-#### Kotlin Notebook Features
+[//]: # ()
+[//]: # (Also, this notebook will help you work with `free scales` and `facet`.)
 
-This notebook covers features that work only
-in [Kotlin Notebook](https://plugins.jetbrains.com/plugin/16340-kotlin-notebook).
+[//]: # ()
+[//]: # ([![lets-plot facets with free scales]&#40;images/lp_facets_free_scales.png "Facets with free scales"&#41;]&#40;notebooks/lets-plot/facets_free_scales.ipynb&#41;)
 
-[![lets-plot kotlin notebook features](images/lp_kt_nb_features.png)](notebooks/lets-plot/kotlin_notebook_features.ipynb)
-[Notebook](notebooks/lets-plot/kotlin_notebook_features.ipynb)
+[//]: # ([Notebook]&#40;notebooks/lets-plot/facets_free_scales.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/soZpIeVYbJV3EoJCz0DCJL&#41;)
 
-### Echarts Examples
+[//]: # ()
+[//]: # (#### Plot Bunch)
 
-#### Line
+[//]: # ()
+[//]: # (If you want to display multiple plots in one output, you can use `plotBunch`, and you can learn about it here.)
 
-[![echarts lines](images/ech_lines.png "Echarts Lines")](notebooks/echarts/lines.ipynb)
-[Notebook](notebooks/echarts/lines.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/S3c9VeDQQe7P8cxK4cGU3I)
+[//]: # ()
+[//]: # ([![lets-plot facets]&#40;images/lp_ggbunch.png "Plot Bunch"&#41;]&#40;notebooks/lets-plot/plot_bunch.ipynb&#41;)
 
-#### Area
+[//]: # ([Notebook]&#40;notebooks/lets-plot/plot_bunch.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/5QBS2btBdnPq3Ia4CNb4Px&#41;)
 
-[![echarts areas](images/ech_areas.png "Echarts Areas")](notebooks/echarts/areas.ipynb)
-[Notebook](notebooks/echarts/areas.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/zN1Y7cq5xod3mVd61JFmcH)
+[//]: # ()
+[//]: # (#### Legend and Axis)
 
-#### Bar
+[//]: # ()
+[//]: # (Customizing the `legend` and `axes`.)
 
-[![echarts bars](images/ech_bars.png "Echarts Bars")](notebooks/echarts/bars.ipynb)
-[Notebook](notebooks/echarts/bars.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/SyoHzSRWjrS5GH3ptM1Hqb)
+[//]: # ()
+[//]: # ([![lets-plot legend and axis]&#40;images/lp_legend_and_axis.png "Legend and Axis"&#41;]&#40;notebooks/lets-plot/legend_and_axis.ipynb&#41;)
 
-#### Point
+[//]: # ([Notebook]&#40;notebooks/lets-plot/legend_and_axis.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/m4XQAzyDqS1uzzE56XBKDR&#41;)
 
-[![echarts points](images/ech_points.png "Echarts Points")](notebooks/echarts/points.ipynb)
-[Notebook](notebooks/echarts/points.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/UT2PGyWS9nQvwwuh9KmSFM)
+[//]: # ()
+[//]: # (#### Titles)
 
-#### Marks
+[//]: # ()
+[//]: # (Everything related to `titles`, `subtitles`, and `captions`.)
 
-[![echarts marks](images/ech_marks.png "Echarts Marks")](notebooks/echarts/marks.ipynb)
-[Notebook](notebooks/echarts/marks.ipynb)/[Datalore](https://datalore.jetbrains.com/view/notebook/GXPihGhWJEwSHFI7RXneJx)
+[//]: # ()
+[//]: # ([![lets-plot titles]&#40;images/lp_title_subtitle_caption.png "Titles"&#41;]&#40;notebooks/lets-plot/title_subtitle_caption.ipynb&#41;)
+
+[//]: # ([Notebook]&#40;notebooks/lets-plot/title_subtitle_caption.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/lHYmEXJHNrKWmcTdU8z2rC&#41;)
+
+[//]: # ()
+[//]: # (#### Tooltips)
+
+[//]: # ()
+[//]: # (We have three examples of working with tooltips.)
+
+[//]: # ()
+[//]: # (![lets-plot tooltips]&#40;images/lp_tooltip.png "Tooltips"&#41;)
+
+[//]: # ()
+[//]: # (**Tooltip settings** - [Notebook]&#40;notebooks/lets-plot/tooltip_config.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/Yz9XXpdunbd23jL7aLxAlx&#41;)
+
+[//]: # ()
+[//]: # (___)
+
+[//]: # ()
+[//]: # (**Tooltip labels** - [Notebook]&#40;notebooks/lets-plot/tooltip_title.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/VyVuqcDEhvjfRGPJNWKYQn&#41;)
+
+[//]: # ()
+[//]: # (___)
+
+[//]: # ()
+[//]: # (**Tooltip themes** - [Notebook]&#40;notebooks/lets-plot/tooltips_theme.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/QMZuOW6397gbRn0PRSPjM3&#41;)
+
+[//]: # ()
+[//]: # (#### Themes)
+
+[//]: # ()
+[//]: # (You can change the themes of your plot, and here is how you can do it.)
+
+[//]: # ()
+[//]: # ([![lets-plot themes]&#40;images/lp_themes.png "Themes"&#41;]&#40;notebooks/lets-plot/themes.ipynb&#41;)
+
+[//]: # ([Notebook]&#40;notebooks/lets-plot/themes.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/bSOcGvMRbHhDvSpWvQ0vzZ&#41;)
+
+[//]: # ()
+[//]: # (#### Kotlin Notebook Features)
+
+[//]: # ()
+[//]: # (This notebook covers features that work only)
+
+[//]: # (in [Kotlin Notebook]&#40;https://plugins.jetbrains.com/plugin/16340-kotlin-notebook&#41;.)
+
+[//]: # ()
+[//]: # ([![lets-plot kotlin notebook features]&#40;images/lp_kt_nb_features.png&#41;]&#40;notebooks/lets-plot/kotlin_notebook_features.ipynb&#41;)
+
+[//]: # ([Notebook]&#40;notebooks/lets-plot/kotlin_notebook_features.ipynb&#41;)
+
+[//]: # ()
+[//]: # (### Echarts Examples)
+
+[//]: # ()
+[//]: # (#### Line)
+
+[//]: # ()
+[//]: # ([![echarts lines]&#40;images/ech_lines.png "Echarts Lines"&#41;]&#40;notebooks/echarts/lines.ipynb&#41;)
+
+[//]: # ([Notebook]&#40;notebooks/echarts/lines.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/S3c9VeDQQe7P8cxK4cGU3I&#41;)
+
+[//]: # ()
+[//]: # (#### Area)
+
+[//]: # ()
+[//]: # ([![echarts areas]&#40;images/ech_areas.png "Echarts Areas"&#41;]&#40;notebooks/echarts/areas.ipynb&#41;)
+
+[//]: # ([Notebook]&#40;notebooks/echarts/areas.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/zN1Y7cq5xod3mVd61JFmcH&#41;)
+
+[//]: # ()
+[//]: # (#### Bar)
+
+[//]: # ()
+[//]: # ([![echarts bars]&#40;images/ech_bars.png "Echarts Bars"&#41;]&#40;notebooks/echarts/bars.ipynb&#41;)
+
+[//]: # ([Notebook]&#40;notebooks/echarts/bars.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/SyoHzSRWjrS5GH3ptM1Hqb&#41;)
+
+[//]: # ()
+[//]: # (#### Point)
+
+[//]: # ()
+[//]: # ([![echarts points]&#40;images/ech_points.png "Echarts Points"&#41;]&#40;notebooks/echarts/points.ipynb&#41;)
+
+[//]: # ([Notebook]&#40;notebooks/echarts/points.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/UT2PGyWS9nQvwwuh9KmSFM&#41;)
+
+[//]: # ()
+[//]: # (#### Marks)
+
+[//]: # ()
+[//]: # ([![echarts marks]&#40;images/ech_marks.png "Echarts Marks"&#41;]&#40;notebooks/echarts/marks.ipynb&#41;)
+
+[//]: # ([Notebook]&#40;notebooks/echarts/marks.ipynb&#41;/[Datalore]&#40;https://datalore.jetbrains.com/view/notebook/GXPihGhWJEwSHFI7RXneJx&#41;)
