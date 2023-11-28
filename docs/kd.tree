@@ -18,13 +18,13 @@
     <toc-element topic="User-Guide.topic">
         <toc-element topic="Quick-Start-Guide.md"/>
         <toc-element toc-title="Geoms">
-            <toc-element toc-title="algebraic_curve"/>
-            <toc-element toc-title="error_bars"/>
-            <toc-element toc-title="jitter_points"/>
-            <toc-element toc-title="lines"/>
-            <toc-element toc-title="pie"/>
-            <toc-element toc-title="ribbon"/>
-            <toc-element toc-title="scatter_plot"/>
+            <toc-element topic="Algebraic-Curve.md"/>
+            <toc-element topic="ErrorBars-Guide.md"/>
+            <toc-element topic="Jitter-Points-Guide.md"/>
+            <toc-element topic="Lines-Guide.md"/>
+            <toc-element topic="Pie-Guide.md"/>
+            <toc-element topic="Ribbon-Guide.md"/>
+            <toc-element topic="Scatter-Guide.md"/>
         </toc-element>
         <toc-element toc-title="Statistical">
             <toc-element toc-title="statistics"/>
