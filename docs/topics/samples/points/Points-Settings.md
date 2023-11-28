@@ -80,7 +80,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Points Settings](points_settings.png) { border-effect="rounded" }
+![Points Settings](points_settings.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

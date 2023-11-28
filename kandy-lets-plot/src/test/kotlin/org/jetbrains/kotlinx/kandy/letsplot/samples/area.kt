@@ -310,8 +310,8 @@ class Area : SampleHelper("area") {
     @Test
     fun functional_area_plot() {
         // SampleStart
-        val xs = (-2000..2000).map { it.toDouble() / 500.0 }
-        val function = { x: Double -> sin(x) * cos(x * 2 + 1) * sin(3 * x + 2.0) }
+        val xs = (-2000..2000).map { it / 500.0f }
+        val function = { x: Float -> sin(x) * cos(x * 2 + 1) * sin(3 * x + 2) }
         val ys = xs.map(function)
 
         plot {
@@ -321,7 +321,7 @@ class Area : SampleHelper("area") {
             }
         }
             // SampleEnd
-            .saveSample(3)
+            .saveSample()
     }
 
     @Test
@@ -370,11 +370,7 @@ class Area : SampleHelper("area") {
             layout.size = 1000 to 450
         }
             // SampleEnd
-            .apply {
-                val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
-                (this.features as MutableMap)[FeatureName("layout")] = layout?.copy(size = null) ?: Layout(size = null)
-            }
-            .saveSample()
+            .saveSample(true)
     }
 
     @Test
@@ -484,9 +480,14 @@ class Area : SampleHelper("area") {
         val sample = List(1000) { random.nextGaussian() }
 
         plot {
-            densityPlot(sample)
+            densityPlot(sample)// SampleEnd
+            {
+                x(Stat.x.map { it.toFloat() })
+                y(Stat.density.map { it.toFloat() })
+            }
+            // SampleStart
         }
             // SampleEnd
-            .saveSample(3)
+            .saveSample()
     }
 }

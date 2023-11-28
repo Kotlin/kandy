@@ -136,6 +136,6 @@ class Boxplot : SampleHelper("boxplot") {
             }
         }
             // SampleEnd
-            .saveSample(3)
+            .saveSample()
     }
 }

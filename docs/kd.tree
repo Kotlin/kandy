@@ -7,6 +7,7 @@
                   start-page="Welcome.topic" is-library="true" status="eap">
 
     <toc-element topic="Welcome.topic"/>
+    <toc-element topic="Quickstart.md"/>
     <toc-element topic="Overview.md"/>
     <toc-element topic="Getting-Started.md">
         <toc-element topic="Kandy-in-Kotlin-Notebook.md"/>
@@ -14,8 +15,102 @@
         <toc-element topic="Kandy-in-Jupyter-Notebook.md"/>
         <toc-element topic="Kandy-with-Gradle.md"/>
     </toc-element>
-    <toc-element topic="User-Guide.md"/>
-    <toc-element topic="API.md"/>
+    <toc-element topic="User-Guide.topic">
+        <toc-element toc-title="Quick Start Guide"/>
+        <toc-element toc-title="Geoms">
+            <toc-element toc-title="algebraic_curve"/>
+            <toc-element toc-title="error_bars"/>
+            <toc-element toc-title="jitter_points"/>
+            <toc-element toc-title="lines"/>
+            <toc-element toc-title="pie"/>
+            <toc-element toc-title="ribbon"/>
+            <toc-element toc-title="scatter_plot"/>
+        </toc-element>
+        <toc-element toc-title="Statistical">
+            <toc-element toc-title="statistics"/>
+            <toc-element toc-title="smoothing"/>
+            <toc-element toc-title="histogram"/>
+            <toc-element toc-title="boxplot"/>
+            <toc-element toc-title="heatmap"/>
+            <toc-element toc-title="countPlot"/>
+            <toc-element toc-title="densityPlot"/>
+        </toc-element>
+        <toc-element toc-title="Multiplot">
+            <toc-element toc-title="anscombes_quartet"/>
+            <toc-element toc-title="facets"/>
+            <toc-element toc-title="plot_bunch"/>
+        </toc-element>
+        <toc-element toc-title="Layout customization">
+            <toc-element toc-title="label_format"/>
+            <toc-element toc-title="legend_and_axis"/>
+            <toc-element toc-title="themes"/>
+            <toc-element toc-title="title_subtitle_caption"/>
+            <toc-element toc-title="tooltips"/>
+        </toc-element>
+        <toc-element toc-title="Other features">
+            <toc-element toc-title="export_to_file"/>
+            <toc-element toc-title="kotlin_notebook_features"/>
+            <toc-element toc-title="series_hack"/>
+        </toc-element>
+    </toc-element>
+    <toc-element topic="API.md">
+        <toc-element toc-title="plot"/>
+        <toc-element toc-title="Data Manipulation">
+            <toc-element toc-title="groupBy"/>
+            <toc-element toc-title="statistics">
+                <toc-element toc-title="statBin"/>
+                <toc-element toc-title="statBoxplot"/>
+                <toc-element toc-title="statCount"/>
+                <toc-element toc-title="statCount2D"/>
+                <toc-element toc-title="statDensity"/>
+                <toc-element toc-title="statSmooth"/>
+                <toc-element toc-title="statSmooth"/>
+            </toc-element>
+        </toc-element>
+        <toc-element toc-title="layers">
+            <toc-element toc-title="abLine"/>
+            <toc-element toc-title="area"/>
+            <toc-element toc-title="bars"/>
+            <toc-element toc-title="boxes"/>
+            <toc-element toc-title="boxplot"/>
+            <toc-element toc-title="countPlot"/>
+            <toc-element toc-title="crossBars"/>
+            <toc-element toc-title="densityPlot"/>
+            <toc-element toc-title="errorBars"/>
+            <toc-element toc-title="heatmap"/>
+            <toc-element toc-title="histogram"/>
+            <toc-element toc-title="hLine"/>
+            <toc-element toc-title="line"/>
+            <toc-element toc-title="lineRanges"/>
+            <toc-element toc-title="path"/>
+            <toc-element toc-title="pie"/>
+            <toc-element toc-title="pointRanges"/>
+            <toc-element toc-title="points"/>
+            <toc-element toc-title="raster"/>
+            <toc-element toc-title="rectangles"/>
+            <toc-element toc-title="ribbon"/>
+            <toc-element toc-title="segments"/>
+            <toc-element toc-title="smoothLine"/>
+            <toc-element toc-title="step"/>
+            <toc-element toc-title="text"/>
+            <toc-element toc-title="tiles"/>
+            <toc-element toc-title="vLine"/>
+        </toc-element>
+        <toc-element toc-title="multiplot">
+            <toc-element toc-title="facet"/>
+            <toc-element toc-title="plotBunch"/>
+            <toc-element toc-title="plotGrid"/>
+        </toc-element>
+        <toc-element toc-title="layout"/>
+        <toc-element toc-title="tooltips"/>
+        <toc-element toc-title="scales"/>
+        <toc-element toc-title="export">
+            <toc-element toc-title="save"/>
+            <toc-element toc-title="toBufferedImage"/>
+        </toc-element>
+        <toc-element toc-title="coordFlip"/>
+        <toc-element toc-title="reversed"/>
+    </toc-element>
     <toc-element topic="Examples.topic">
         <toc-element topic="Line.md">
             <toc-element topic="Simple-Line.md"/>
@@ -43,7 +138,6 @@
             <toc-element topic="Area-with-Mark-Line.md"/>
             <toc-element topic="Smoothed-Area.md"/>
             <toc-element topic="Smoothed-Area-with-Points.md"/>
-            <toc-element topic="Density-Plot.md"/>
         </toc-element>
         <toc-element topic="Bars.md">
             <toc-element topic="Simple-Bars.md"/>
@@ -91,6 +185,33 @@
             <toc-element topic="Tiles-Color-Categories.md"/>
             <toc-element topic="Basic-Heatmap.md"/>
             <toc-element topic="Tiles-Logo.md"/>
+        </toc-element>
+        <toc-element topic="Histogram.md">
+            <toc-element topic="Histogram-Simple.md"/>
+            <toc-element topic="Histogram-Settings.md"/>
+            <toc-element topic="Histogram-Grouped.md"/>
+            <toc-element topic="Histogram-With-Line.md"/>
+        </toc-element>
+        <toc-element topic="Density-Plot.md">
+            <toc-element topic="Density-Plot-Simple.md"/>
+            <toc-element topic="Density-Plot-Settings.md"/>
+            <toc-element topic="Density-Plot-Grouped.md"/>
+            <toc-element topic="Density-Plot-With-Histogram.md"/>
+        </toc-element>
+        <toc-element topic="Count-Plot.md">
+            <toc-element topic="Count-Plot-Simple.md"/>
+            <toc-element topic="Count-Plot-Settings.md"/>
+            <toc-element topic="Count-Plot-Grouped.md"/>
+            <toc-element topic="Count-Plot-Horizontal.md"/>
+        </toc-element>
+        <toc-element topic="Heatmap.md">
+            <toc-element topic="Heatmap-Simple.md"/>
+            <toc-element topic="Heatmap-Settings.md"/>
+        </toc-element>
+        <toc-element topic="Layout.md">
+            <toc-element topic="Base-Layout-Settings.md"/>
+            <toc-element topic="Subtitle-And-Caption.md"/>
+            <toc-element topic="Axis-And-Legend-Configuration.md"/>
         </toc-element>
     </toc-element>
 </instance-profile>

@@ -64,7 +64,7 @@ data.plot {
 </tab></tabs>
 <!---END-->
 
-![Grouped ErrorBars](grouped_error_bars.png) { border-effect="rounded" }
+![Grouped ErrorBars](grouped_error_bars.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

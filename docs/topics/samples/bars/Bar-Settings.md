@@ -79,7 +79,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Bar Settings](bar_settings.png) { border-effect="rounded" }
+![Bar Settings](bar_settings.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

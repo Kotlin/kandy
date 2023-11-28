@@ -81,7 +81,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Points with ABLine](points_with_abLine.png) { border-effect="rounded" }
+![Points with ABLine](points_with_abLine.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

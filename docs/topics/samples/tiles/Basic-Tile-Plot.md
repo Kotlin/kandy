@@ -29,7 +29,7 @@ plot {
 
 <!---END-->
 
-![Basic Tile Plot](basic_tile_plot.png) { border-effect="rounded" }
+![Basic Tile Plot](basic_tile_plot.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

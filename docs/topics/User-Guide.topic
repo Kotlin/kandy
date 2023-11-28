@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="User Guide" id="User-Guide">
+
+    <web-summary>
+        Unpack the full potential of the Kandy library, understand its unique philosophy,
+        and primary its fundamental concepts such as datasets, layers, and aesthetics.
+        Discover how to integrate Kandy seamlessly into your projects and to use in interactive platforms.
+    </web-summary>
+    <card-summary>
+        Kandy's Comprehensive Guide: From philosophy to core concepts and seamless integration.
+    </card-summary>
+    <link-summary>
+        Kandy Unveiled: Integration, Philosophy, and Core Concepts.
+    </link-summary>
+
+    <p>
+        <b>
+            Quick Start Guide
+        </b>
+    </p>
+
+    <list columns="2">
+        <li>
+            <p>
+                <b>
+                    Geoms
+                </b>
+            </p>
+            <list type="none">
+                <li>
+                    <p>
+                        algebraic_curve
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        error_bars
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        jitter_points
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        lines
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        pie
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        ribbon
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        scatter_plot
+                    </p>
+                </li>
+            </list>
+        </li>
+        <li>
+            <p>
+                <b>
+                    Statistical
+                </b>
+            </p>
+            <list type="none">
+                <li>
+                    <p>
+                        statistics
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        smoothing
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        histogram
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        boxplot
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        heatmap
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        countPlot
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        densityPlot
+                    </p>
+                </li>
+            </list>
+        </li>
+        <li>
+            <p>
+                <b>
+                    Multiplot
+                </b>
+            </p>
+            <list type="none">
+                <li>
+                    <p>
+                        anscombes_quartet
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        facets
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        plot_bunch
+                    </p>
+                </li>
+            </list>
+        </li>
+        <li>
+            <p>
+                <b>
+                    Layout customization
+                </b>
+            </p>
+            <list type="none">
+                <li>
+                    <p>
+                        label_format
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        legend_and_axis
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        themes
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        title_subtitle_caption
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        tooltips
+                    </p>
+                </li>
+            </list>
+        </li>
+        <li>
+            <p>
+                <b>
+                    Other guides
+                </b>
+            </p>
+            <list type="none">
+                <li>
+                    <p>
+                        export_to_file
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        kotlin_notebook_features
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        series_hack
+                    </p>
+                </li>
+            </list>
+        </li>
+    </list>
+
+</topic>

@@ -7,7 +7,7 @@ This example effectively showcases the comparison of multiple data sets side by 
 
 <card-summary>
 'Grouped Bars' in Kotlin with Kandy: A powerful tool for visual comparison,
-this example highlights how to group data sets in bar charts for a comprehensive comparative view."
+this example highlights how to group data sets in bar charts for a comprehensive comparative view.
 </card-summary>
 
 <link-summary>
@@ -81,7 +81,7 @@ data.plot {
 </tab></tabs>
 <!---END-->
 
-![Grouped Bars](grouped_bars.png) { border-effect="rounded" }
+![Grouped Bars](grouped_bars.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

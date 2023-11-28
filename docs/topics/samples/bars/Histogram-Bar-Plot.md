@@ -66,7 +66,7 @@ plot {
 </tab>
 </tabs>
 
-![Histogram Plot](histogram_2.png) { border-effect="rounded" }
+![Histogram Plot](histogram_2.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

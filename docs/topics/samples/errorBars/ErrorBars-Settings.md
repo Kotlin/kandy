@@ -65,7 +65,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![ErrorBars Settings](error_bars_settings.png) { border-effect="rounded" }
+![ErrorBars Settings](error_bars_settings.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

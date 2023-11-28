@@ -79,7 +79,7 @@ lifeExpectancyData.boxplot("country", "lifeExp").configure { coordFlip() }
 
 <!---END-->
 
-![Boxplot Life Expectations by Country](boxplot_life_exp.png) { border-effect="rounded" }
+![Boxplot Life Expectations by Country](boxplot_life_exp.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

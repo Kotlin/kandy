@@ -82,7 +82,7 @@ monthTemp.plot {
 </tab></tabs>
 <!---END-->
 
-![Line with Color Gradient](line_color_gradient.png) { border-effect="rounded" }
+![Line with Color Gradient](line_color_gradient.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

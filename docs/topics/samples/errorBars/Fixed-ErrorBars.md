@@ -58,7 +58,7 @@ plot {
 </tab></tabs>
 <!---END-->
 
-![Fixed ErrorBars Coordinate](fixed_error_bars.png) { border-effect="rounded" }
+![Fixed ErrorBars Coordinate](fixed_error_bars.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

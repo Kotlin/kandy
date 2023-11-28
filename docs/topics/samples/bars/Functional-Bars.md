@@ -34,7 +34,7 @@ plot {
 
 <!---END-->
 
-![Functional Bar Plot](functional_bars_plot.png) { border-effect="rounded" }
+![Functional Bar Plot](functional_bars_plot.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">
