@@ -7,19 +7,19 @@
 * [User Guide](#user-guide)
 * [IDEA Examples](#idea-examples)
 * [Notebook Examples](#notebook-examples)
-  * [Line](#line)
-  * [Area](#area)
-  * [Bars](#bars)
-  * [Points](#points)
-  * [Error Bars](#error-bars)
-  * [Boxplot](#boxplot)
-  * [Tiles](#tiles)
+    * [Line](#line)
+    * [Area](#area)
+    * [Bars](#bars)
+    * [Points](#points)
+    * [Error Bars](#error-bars)
+    * [Boxplot](#boxplot)
+    * [Tiles](#tiles)
 
 <!--- END -->
 
 ## User Guide
 
-* **Quick Start Guide** - Notebook / Datalore
+* [**Quick Start Guide**](https://kotlin.github.io/kandy/quick-start-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/quick_start_guide.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/TKul6gxAVDbJmocwQi9UjB)
 * **Geoms**
     * algebraic_curve - Notebook / Datalore
     * error_bars - Notebook / Datalore
@@ -53,17 +53,13 @@
 
 ## IDEA examples
 
-[**lets-plot-simple
-**](idea-examples/lets-plot-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/letsplot/simple_lets_plot.kt) —
-
+[**lets-plot-simple**](idea-examples/lets-plot-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/letsplot/simple_lets_plot.kt) —
 The following is an example of using the `kandy-lets-plot` library in an IntelliJ IDEA project.
 
 ___
 
 
-[**echarts-simple
-**](idea-examples/echarts-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/echarts/simple_echarts.kt) —
-
+[**echarts-simple**](idea-examples/echarts-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/echarts/simple_echarts.kt) —
 The following is an example of using the `kandy-echarts` library in an IntelliJ IDEA project.
 
 ## Notebook Examples
