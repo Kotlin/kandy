@@ -138,7 +138,6 @@
             <toc-element topic="Area-with-Mark-Line.md"/>
             <toc-element topic="Smoothed-Area.md"/>
             <toc-element topic="Smoothed-Area-with-Points.md"/>
-            <toc-element topic="Density-Plot.md"/>
         </toc-element>
         <toc-element topic="Bars.md">
             <toc-element topic="Simple-Bars.md"/>
@@ -186,6 +185,33 @@
             <toc-element topic="Tiles-Color-Categories.md"/>
             <toc-element topic="Basic-Heatmap.md"/>
             <toc-element topic="Tiles-Logo.md"/>
+        </toc-element>
+        <toc-element topic="Histogram.md">
+            <toc-element topic="Histogram-Simple.md"/>
+            <toc-element topic="Histogram-Settings.md"/>
+            <toc-element topic="Histogram-Grouped.md"/>
+            <toc-element topic="Histogram-With-Line.md"/>
+        </toc-element>
+        <toc-element topic="Density-Plot.md">
+            <toc-element topic="Density-Plot-Simple.md"/>
+            <toc-element topic="Density-Plot-Settings.md"/>
+            <toc-element topic="Density-Plot-Grouped.md"/>
+            <toc-element topic="Density-Plot-With-Histogram.md"/>
+        </toc-element>
+        <toc-element topic="Count-Plot.md">
+            <toc-element topic="Count-Plot-Simple.md"/>
+            <toc-element topic="Count-Plot-Settings.md"/>
+            <toc-element topic="Count-Plot-Grouped.md"/>
+            <toc-element topic="Count-Plot-Horizontal.md"/>
+        </toc-element>
+        <toc-element topic="Heatmap.md">
+            <toc-element topic="Heatmap-Simple.md"/>
+            <toc-element topic="Heatmap-Settings.md"/>
+        </toc-element>
+        <toc-element topic="Layout.md">
+            <toc-element topic="Base-Layout-Settings.md"/>
+            <toc-element topic="Subtitle-And-Caption.md"/>
+            <toc-element topic="Axis-And-Legend-Configuration.md"/>
         </toc-element>
     </toc-element>
 </instance-profile>
