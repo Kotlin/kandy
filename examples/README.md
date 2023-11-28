@@ -14,6 +14,11 @@
     * [Error Bars](#error-bars)
     * [Boxplot](#boxplot)
     * [Tiles](#tiles)
+    * [Histogram](#histogram)
+    * [Density Plot](#density-plot)
+    * [Count Plot](#count-plot)
+    * [Heatmap](#heatmap)
+    * [Layout](#layout)
 
 <!--- END -->
 
@@ -508,6 +513,149 @@ The following is an example of using the `kandy-echarts` library in an IntelliJ 
             <a href="https://kotlin.github.io/kandy/tiles-logo.html">
                 <img src="../docs/images/samples/tiles/tiles_ktnb_logo.svg" alt="Ktnb Logo Tiles"/>
                 <b>Ktnb Logo Tiles</b>
+            </a>
+        </td>
+    </tr>
+</table>
+
+### Histogram
+
+<table>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/histogram-simple.html">
+                <img src="../docs/images/samples/histogram/histogram_simple.svg" alt="Histogram Simple"/>
+                <b>Histogram Simple</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/histogram-settings.html">
+                <img src="../docs/images/samples/histogram/histogram_settings.svg" alt="Histogram Settings"/>
+                <b>Histogram Settings</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/histogram-grouped.html">
+                <img src="../docs/images/samples/histogram/histogram_grouped.svg" alt="Histogram Grouped"/>
+                <b>Histogram Grouped</b>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/histogram-with-line.html">
+                <img src="../docs/images/samples/histogram/histogram_with_line.svg" alt="Histogram With Line"/>
+                <b>Histogram With Line</b>
+            </a>
+        </td>
+    </tr>
+</table>
+
+### Density Plot
+
+<table>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/density-plot-simple.html">
+                <img src="../docs/images/samples/densityPlot/densityPlot_simple.svg" alt="Density Plot Simple"/>
+                <b>Density Plot Simple</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/density-plot-settings.html">
+                <img src="../docs/images/samples/densityPlot/densityPlot_settings.svg" alt="Density Plot Settings"/>
+                <b>Density Plot Settings</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/density-plot-grouped.html">
+                <img src="../docs/images/samples/densityPlot/densityPlot_grouped.svg" alt="Density Plot Grouped"/>
+                <b>Density Plot Grouped</b>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/density-plot-with-histogram.html">
+                <img src="../docs/images/samples/densityPlot/densityPlot_with_histogram.svg" alt="Density Plot With Histogram"/>
+                <b>Density Plot With Histogram</b>
+            </a>
+        </td>
+    </tr>
+</table>
+
+### Count Plot
+
+<table>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/count-plot-simple.html">
+                <img src="../docs/images/samples/countPlot/countPlot_simple.svg" alt="Count Plot Simple"/>
+                <b>Count Plot Simple</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/count-plot-settings.html">
+                <img src="../docs/images/samples/countPlot/countPlot_settings.svg" alt="Count Plot Settings"/>
+                <b>Count Plot Settings</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/count-plot-grouped.html">
+                <img src="../docs/images/samples/countPlot/countPlot_grouped.svg" alt="Count Plot Grouped"/>
+                <b>Count Plot Grouped</b>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/count-plot-horizontal.html">
+                <img src="../docs/images/samples/countPlot/countPlot_horizontal.svg" alt="Count Plot Horizontal"/>
+                <b>Count Plot Horizontal</b>
+            </a>
+        </td>
+    </tr>
+</table>
+
+### Heatmap
+
+<table>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/heatmap-simple.html">
+                <img src="../docs/images/samples/heatmap/heatmap_simple.svg" alt="Heatmap Simple"/>
+                <b>Heatmap Simple</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/heatmap-settings.html">
+                <img src="../docs/images/samples/heatmap/heatmap_settings.svg" alt="Heatmap Settings"/>
+                <b>Heatmap Settings</b>
+            </a>
+        </td>
+    </tr>
+</table>
+
+### Layout
+
+<table>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/base-layout-settings.html">
+                <img src="../docs/images/samples/layout/base_layout_settings.svg" alt="Base Layout Settings"/>
+                <b>Base Layout Settings</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/subtitle-and-caption.html">
+                <img src="../docs/images/samples/layout/subtitle_and_caption.svg" alt="Subtitle And Caption"/>
+                <b>Subtitle And Caption</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/axis-and-legend-configuration.html">
+                <img src="../docs/images/samples/layout/axis_and_legend_configuration.svg" alt="Axis And Legend Configuration"/>
+                <b>Axis And Legend Configuration</b>
             </a>
         </td>
     </tr>
