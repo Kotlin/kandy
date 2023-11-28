@@ -16,13 +16,13 @@ import org.junit.Rule
 import org.junit.rules.TestName
 import java.io.File
 
-abstract class SampleHelper(sampleName: String) {
+abstract class SampleHelper(sampleName: String, folder: String = "samples") {
 
     @JvmField
     @Rule
     val testName: TestName = TestName()
 
-    protected open val pathToImageFolder = "../docs/images/samples/$sampleName"
+    private val pathToImageFolder = "../docs/images/$folder/$sampleName"
 
     init {
         File(pathToImageFolder).mkdirs()

@@ -37,9 +37,7 @@ import org.jetbrains.letsPlot.core.spec.back.transform.bistro.util.tooltips
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 
-class QuickStartGuide : SampleHelper("quickStartGuide") {
-
-    override val pathToImageFolder = "../docs/images/guides/quickStartGuide"
+class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
 
     // Initial Dataset
     private val simpleDataset = mapOf(
