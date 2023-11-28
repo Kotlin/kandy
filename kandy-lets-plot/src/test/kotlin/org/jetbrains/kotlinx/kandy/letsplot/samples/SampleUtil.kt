@@ -24,6 +24,10 @@ abstract class SampleHelper(sampleName: String) {
 
     protected open val pathToImageFolder = "../docs/images/samples/$sampleName"
 
+    init {
+        File(pathToImageFolder).mkdirs()
+    }
+
     private val defaultWidth = 600
     private val defaultHeight = 400
     private val previewSize = ggsize(defaultWidth, defaultHeight)
