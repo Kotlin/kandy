@@ -1,108 +1,166 @@
 # Examples of Kandy
 
-To get started with the library,
-we suggest referring to the cheatsheet which covers the fundamental aspects and features.
+## User Guide
 
-<table style="border-collapse: collapse; border: none;">
-  <tr style="border: none;">
-    <td style="border: none;">
-      <b>Geoms</b>
-      <ul>
-        <li>algebraic_curve</li>
-        <li>error_bars</li>
-      </ul>
-    </td>
-    <td style="border: none;">
-      <b>Statistical</b>
-      <ul>
-        <li>statistics</li>
-        <li>smoothing</li>
-      </ul>
-    </td>
-  </tr>
+* **Quick Start Guide** - Notebook / Datalore
+* **Geoms**
+    * algebraic_curve - Notebook / Datalore
+    * error_bars - Notebook / Datalore
+    * jitter_points - Notebook / Datalore
+    * lines - Notebook / Datalore
+    * pie - Notebook / Datalore
+    * ribbon - Notebook / Datalore
+    * scatter_plot - Notebook / Datalore
+* **Statistical**
+    * statistics - Notebook / Datalore
+    * smoothing - Notebook / Datalore
+    * histogram - Notebook / Datalore
+    * boxplot - Notebook / Datalore
+    * heatmap - Notebook / Datalore
+    * countPlot - Notebook / Datalore
+    * densityPlot - Notebook / Datalore
+* **Multiplot**
+    * anscombes_quartet
+    * facets
+    * plot_bunch
+* **Layout customization**
+    * label_format - Notebook / Datalore
+    * legend_and_axis - Notebook / Datalore
+    * themes - Notebook / Datalore
+    * title_subtitle_caption - Notebook / Datalore
+    * tooltips - Notebook / Datalore
+* **Other guides**
+    * export_to_file
+    * kotlin_notebook_features
+    * series_hack
+
+## IDEA examples
+
+[**lets-plot-simple
+**](idea-examples/lets-plot-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/letsplot/simple_lets_plot.kt) —
+
+The following is an example of using the `kandy-lets-plot` library in an IntelliJ IDEA project.
+
+___
+
+
+[**echarts-simple
+**](idea-examples/echarts-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/echarts/simple_echarts.kt) —
+
+The following is an example of using the `kandy-echarts` library in an IntelliJ IDEA project.
+
+## Notebook Examples
+
+### Line
+
+<table>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/simple-line.html">
+                <img src="../docs/images/samples/line/simple_line.svg" alt="Simple Line"/>
+                <b>Simple Line</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/line-settings.html">
+                <img src="../docs/images/samples/line/simple_line_settings.svg" alt="Line Settings"/>
+                <b>Line Settings</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/line-with-points.html">
+                <img src="../docs/images/samples/line/line_with_points.svg" alt="Line with Points"/>
+                <b>Line with Points</b>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/fixed-line-coordinate.html">
+                <img src="../docs/images/samples/line/line_fixed_coord.svg" alt="Fixed Line Coordinate"/>
+                <b>Fixed Line Coordinate</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/line-gradient.html">
+                <img src="../docs/images/samples/line/line_color_gradient.svg" alt="Line Gradient"/>
+                <b>Line Gradient</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/line-with-reversed-axis.html">
+                <img src="../docs/images/samples/line/line_reversed_axis.svg" alt="Line with Reversed Axis"/>
+                <b>Line with Reversed Axis</b>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/several-lines.html">
+                <img src="../docs/images/samples/line/several_lines.svg" alt="Several Lines"/>
+                <b>Several Lines</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/functional-line-plot.html">
+                <img src="../docs/images/samples/line/line_by_fun.svg" alt="Functional Line Plot"/>
+                <b>Functional Line Plot</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/marked-line.html">
+                <img src="../docs/images/samples/line/line_mark.svg" alt="Marked Line"/>
+                <b>Marked Line</b>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/path-line.html">
+                <img src="../docs/images/samples/line/path_line.svg" alt="Path Line"/>
+                <b>Path Line</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/step-line.html">
+                <img src="../docs/images/samples/line/step_line.svg" alt="Step Line"/>
+                <b>Step Line</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/smoothed-line.html">
+                <img src="../docs/images/samples/line/smoothed_line.svg" alt="Smoothed Line"/>
+                <b>Smoothed Line</b>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/smoothed-curve-with-points.html">
+                <img src="../docs/images/samples/line/smoothed_curve_with_points.svg" alt="Smoothed Curve with Points"/>
+                <b>Smoothed Curve with Points</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/comparing-line-vs-path-plots.html">
+                <img src="../docs/images/samples/line/preview_line_and_path_comp.svg" alt="Comparing Line vs. Path Plots"/>
+                <b>Comparing Line vs. Path Plots</b>
+            </a>
+        </td>
+    </tr>
 </table>
 
-            <iframe src='about:blank' style='border:none !important;' width='700' height='450' srcdoc="&lt;html lang=&quot;en&quot;>
-&lt;head>
-&lt;meta charset=&quot;UTF-8&quot;>
-&lt;style> html, body { margin: 0; overflow: hidden; } &lt;/style>
-&lt;script type=&quot;text/javascript&quot; data-lets-plot-script=&quot;library&quot; src=&quot;https://cdn.jsdelivr.net/gh/JetBrains/lets-plot@v4.1.0/js-package/distr/lets-plot.min.js&quot;>&lt;/script>
-&lt;/head>
-&lt;body>
-&lt;div id=&quot;6YRgIL&quot;>&lt;/div>
-&lt;script type=&quot;text/javascript&quot; data-lets-plot-script=&quot;plot&quot;>
-var plotSpec={
-&quot;ggtitle&quot;:{
-&quot;text&quot;:&quot;Simple plot with kandy-lets-plot&quot;
-},
-&quot;mapping&quot;:{
-},
-&quot;data&quot;:{
-&quot;temperature&quot;:[12.0,14.2,15.1,15.9,17.9,15.6,14.2,24.3],
-&quot;humidity&quot;:[0.5,0.32,0.11,0.89,0.68,0.57,0.56,0.5],
-&quot;time&quot;:[0.0,1.0,2.0,4.0,5.0,7.0,8.0,9.0]
-},
-&quot;ggsize&quot;:{
-&quot;width&quot;:700.0,
-&quot;height&quot;:450.0
-},
-&quot;kind&quot;:&quot;plot&quot;,
-&quot;scales&quot;:[{
-&quot;aesthetic&quot;:&quot;x&quot;,
-&quot;limits&quot;:[null,null]
-},{
-&quot;aesthetic&quot;:&quot;y&quot;,
-&quot;limits&quot;:[0.0,25.5]
-},{
-&quot;aesthetic&quot;:&quot;fill&quot;,
-&quot;scale_mapper_kind&quot;:&quot;color_gradient&quot;,
-&quot;high&quot;:&quot;#ee6666&quot;,
-&quot;low&quot;:&quot;#fac858&quot;,
-&quot;limits&quot;:[null,null]
-},{
-&quot;aesthetic&quot;:&quot;x&quot;,
-&quot;limits&quot;:[null,null]
-},{
-&quot;aesthetic&quot;:&quot;y&quot;,
-&quot;limits&quot;:[0.0,25.5]
-}],
-&quot;layers&quot;:[{
-&quot;mapping&quot;:{
-&quot;x&quot;:&quot;time&quot;,
-&quot;y&quot;:&quot;temperature&quot;,
-&quot;fill&quot;:&quot;humidity&quot;
-},
-&quot;stat&quot;:&quot;identity&quot;,
-&quot;size&quot;:0.0,
-&quot;sampling&quot;:&quot;none&quot;,
-&quot;position&quot;:&quot;dodge&quot;,
-&quot;geom&quot;:&quot;bar&quot;,
-&quot;data&quot;:{
-}
-},{
-&quot;mapping&quot;:{
-&quot;x&quot;:&quot;time&quot;,
-&quot;y&quot;:&quot;temperature&quot;
-},
-&quot;stat&quot;:&quot;identity&quot;,
-&quot;size&quot;:3.0,
-&quot;color&quot;:&quot;#6e5596&quot;,
-&quot;linetype&quot;:&quot;dotdash&quot;,
-&quot;sampling&quot;:&quot;none&quot;,
-&quot;position&quot;:&quot;identity&quot;,
-&quot;geom&quot;:&quot;line&quot;,
-&quot;data&quot;:{
-}
-}],
-&quot;caption&quot;:{
-&quot;text&quot;:&quot;See `examples` section for more\n complicated and interesting examples!&quot;
-}
-};
-var plotContainer = document.getElementById(&quot;6YRgIL&quot;);
-LetsPlot.buildPlotFromProcessedSpecs(plotSpec, -1, -1, plotContainer);
-&lt;/script>
-&lt;/body>
-&lt;/html>"></iframe>
+### Area
+
+### Bars
+
+### Points
+
+### Error Bars
+
+### Boxplot
+
+### Tiles
 
 ### Lets-Plot Cheatsheet
 
@@ -143,21 +201,6 @@ LetsPlot.buildPlotFromProcessedSpecs(plotSpec, -1, -1, plotContainer);
     * [Echarts Examples](#echarts-examples)
 
 <!--- END -->
-
-## IDEA examples
-
-[**lets-plot-simple
-**](idea-examples/lets-plot-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/letsplot/simple_lets_plot.kt) —
-
-The following is an example of using the `kandy-lets-plot` library in an IntelliJ IDEA project.
-
-___
-
-
-[**echarts-simple
-**](idea-examples/echarts-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/echarts/simple_echarts.kt) —
-
-The following is an example of using the `kandy-echarts` library in an IntelliJ IDEA project.
 
 ## Notebook examples
 
