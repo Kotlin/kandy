@@ -43,7 +43,7 @@ class JitterPoints : SampleHelper("geoms", "guides") {
                 position = Position.jitter()
             }
         }
-            // SampleEnd
-            .saveSample()
+        // SampleEnd
+//            .saveSample()
     }
 }
