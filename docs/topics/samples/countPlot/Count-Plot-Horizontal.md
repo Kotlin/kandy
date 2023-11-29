@@ -101,7 +101,7 @@ plot {
 <!---END-->
 
 
-![Count Plot Horizontal](countPlot_settings.svg) { border-effect="rounded" }
+![Count Plot Horizontal](countPlot_horizontal.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">
