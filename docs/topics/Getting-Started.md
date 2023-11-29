@@ -37,7 +37,13 @@ For detailed instructions, refer to the respective pages:
             <step>Select <ui-path>Plugins</ui-path> from the menu and install the <a href="https://plugins.jetbrains.com/plugin/16340-kotlin-notebook">Kotlin Notebook plugin</a>.</step>
             <step>Click <ui-path>Ok</ui-path> to apply the changes and restart your IDE if prompted.</step>
             <step>Create a new Kotlin Notebook file.</step>
-            <step>Run this cell: <code-block>%use kandy</code-block></step>
+            <step>Run this cell:
+            <code-block>
+                %use kandy
+                // If you are using dataframe as data
+                %use dataframe
+            </code-block>
+            </step>
             <p>Congratulations, you now have access to the Kandy library in Kotlin Notebook.</p>
         </procedure>
     </tab>
@@ -48,7 +54,13 @@ For detailed instructions, refer to the respective pages:
             <step>Register if you don't have an account.</step>
             <step>Create a new notebook.</step>
             <step>Select the Kotlin Kernel.</step>
-            <step>Run this cell: <code-block>%use kandy</code-block></step>
+            <step>Run this cell: 
+            <code-block>
+                %use kandy
+                // If you are using dataframe as data
+                %use dataframe
+            </code-block>
+            </step>
             <p>Congratulations, you now have access to the Kandy library in Datalore.</p>
         </procedure>
     </tab>
@@ -68,7 +80,13 @@ For detailed instructions, refer to the respective pages:
             </step>
             <step>Run Jupyter by executing the following command in the terminal: <code-block>jupyter notebook</code-block></step>
             <step>Create a new notebook by selecting the Kotlin kernel.</step>
-            <step>Run this cell in the notebook: <code-block>%use kandy</code-block></step>
+            <step>Run this cell in the notebook:
+            <code-block>
+                %use kandy
+                // If you are using dataframe as data
+                %use dataframe
+            </code-block>
+            </step>
             <p>Congratulations, you now have access to the Kandy library in Jupyter Notebook.</p>
         </procedure>
     </tab>
@@ -136,6 +154,64 @@ averageTemperature.plot {
 This supplementary schema outlines the key elements of Kandy's DSL,
 providing a quick reference to assist you in building your visualizations.
 
-![Basic structure of DSL](tree_basic.svg) { thumbnail="true" }
+<list id="getting-started-list-of-api">
+<li>plot
+<list>
+<li>Data Manipulation
+<list>
+<li>groupBy</li>
+<li>statBin</li>
+<li>statDensity</li>
+<li>statBoxplot</li>
+<li>statsSmooth</li>
+<li>statCount</li>
+<li>statCount2D</li>
+</list>
+</li>
+<li>Layers
+<list>
+<li>abLine</li>
+<li>area</li>
+<li>bars</li>
+<li>boxplot</li>
+<li>boxes</li>
+<li>countPlot</li>
+<li>crossBars</li>
+<li>densityPlot</li>
+<li>errorBars</li>
+<li>hLine</li>
+<li>heatmap</li>
+<li>histogram</li>
+<li>line</li>
+<li>lineRanges</li>
+<li>path</li>
+<li>pie</li>
+<li>pointRanges</li>
+<li>path</li>
+<li>pie</li>
+<li>pointRanges</li>
+<li>raster</li>
+<li>rectangles</li>
+<li>ribbon</li>
+<li>segments</li>
+<li>smoothLine</li>
+<li>step</li>
+<li>text</li>
+<li>tiles</li>
+<li>vLine</li>
+</list>
+</li>
+<li>Layout</li>
+</list>
+</li>
+</list>
 
 For more examples, please see the [Examples](Examples.topic) section.
+
+<seealso style="cards">
+    <category ref="get-start">
+        <a href="User-Guide.topic">User Guide</a>
+        <a href="Examples.topic">Examples</a>
+        <a href="API.md">API Reference</a>
+    </category>
+</seealso>
