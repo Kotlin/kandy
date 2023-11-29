@@ -18,9 +18,7 @@
     </link-summary>
 
     <p>
-        <b>
-            Quick Start Guide
-        </b>
+        <a href="Quick-Start-Guide.md"><b>Quick Start Guide</b></a>
     </p>
 
     <list columns="2">
@@ -32,39 +30,25 @@
             </p>
             <list type="none">
                 <li>
-                    <p>
-                        algebraic_curve
-                    </p>
+                    <a href="Algebraic-Curve.md"/>
                 </li>
                 <li>
-                    <p>
-                        error_bars
-                    </p>
+                    <a href="ErrorBars-Guide.md"/>
                 </li>
                 <li>
-                    <p>
-                        jitter_points
-                    </p>
+                    <a href="Jitter-Points-Guide.md"/>
                 </li>
                 <li>
-                    <p>
-                        lines
-                    </p>
+                    <a href="Lines-Guide.md"/>
                 </li>
                 <li>
-                    <p>
-                        pie
-                    </p>
+                    <a href="Pie-Guide.md"/>
                 </li>
                 <li>
-                    <p>
-                        ribbon
-                    </p>
+                    <a href="Ribbon-Guide.md"/>
                 </li>
                 <li>
-                    <p>
-                        scatter_plot
-                    </p>
+                    <a href="Scatter-Guide.md"/>
                 </li>
             </list>
         </li>

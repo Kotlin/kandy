@@ -63,10 +63,12 @@ korro {
         include("docs/topics/samples/densityPlot/*.md")
         include("docs/topics/samples/heatmap/*.md")
         include("docs/topics/samples/layout/*.md")
+        include("docs/topics/guides/*.md")
     }
 
     samples = fileTree(project.projectDir) {
         include("src/test/kotlin/org/jetbrains/kotlinx/kandy/letsplot/samples/*.kt")
+        include("src/test/kotlin/org/jetbrains/kotlinx/kandy/letsplot/samples/guides/*.kt")
     }
 
     groupSamples {

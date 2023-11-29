@@ -45,7 +45,7 @@ val weatherData = mapOf(
     "humidity" to humidity
 )  // Combine data into a map
 
-plot(simpleDataFrame) { // Begin plotting
+plot(weatherData) { // Begin plotting
     x("time") // Set x-axis with time data
     y("temperature") { // Set y-axis with temperature data
         // Define scale for temperature (y-axis)
