@@ -25,7 +25,7 @@ Dive into 'Histogram With Line' using Kotlin and Kandy, showing multiple layers 
 val random = java.util.Random(42)
 
 val sampleDf = dataFrameOf(
-    "sample" to List(1000) {random.nextGaussian()}
+    "sample" to List(1000) { random.nextGaussian() }
 )
 
 sampleDf.plot {
@@ -52,7 +52,7 @@ sampleDf.plot {
 ```kotlin
 val random = java.util.Random(42)
 
-val sample = List(1000) {random.nextGaussian()}
+val sample = List(1000) { random.nextGaussian() }
 
 plot {
     statBin(sample, binsOption = BinsOption.byNumber(15)) {

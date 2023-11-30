@@ -27,13 +27,13 @@
             <toc-element topic="Scatter-Guide.md"/>
         </toc-element>
         <toc-element toc-title="Statistical">
-            <toc-element toc-title="statistics"/>
-            <toc-element toc-title="smoothing"/>
-            <toc-element toc-title="histogram"/>
-            <toc-element toc-title="boxplot"/>
-            <toc-element toc-title="heatmap"/>
-            <toc-element toc-title="countPlot"/>
-            <toc-element toc-title="densityPlot"/>
+            <toc-element topic="Statistics-Guide.md"/>
+            <toc-element topic="Smoothing-Guide.md"/>
+            <toc-element topic="Histogram-Guide.md"/>
+            <toc-element topic="Boxplot-Guide.md"/>
+            <toc-element topic="Heatmap-Guide.md"/>
+            <toc-element topic="Count-Plot-Guide.md"/>
+            <toc-element topic="Density-Plot-Guide.md"/>
         </toc-element>
         <toc-element toc-title="Multiplot">
             <toc-element toc-title="anscombes_quartet"/>

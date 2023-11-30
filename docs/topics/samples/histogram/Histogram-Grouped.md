@@ -25,8 +25,8 @@ where the concept of grouped histogram plotting is used to juxtapose different d
 ```kotlin
 val random = java.util.Random(42)
 
-val sampleA = List(1000) {random.nextGaussian() * 0.7 + 2.0}
-val sampleB = List(1000) {random.nextGaussian() * 1.4 + 3.5}
+val sampleA = List(1000) { random.nextGaussian() * 0.7 + 2.0 }
+val sampleB = List(1000) { random.nextGaussian() * 1.4 + 3.5 }
 
 val df = dataFrameOf(
     "sample" to sampleA + sampleB,
@@ -44,8 +44,8 @@ df.groupBy("group").plot {
 ```kotlin
 val random = java.util.Random(42)
 
-val sampleA = List(1000) {random.nextGaussian() * 0.7 + 2.0}
-val sampleB = List(1000) {random.nextGaussian() * 1.4 + 3.5}
+val sampleA = List(1000) { random.nextGaussian() * 0.7 + 2.0 }
+val sampleB = List(1000) { random.nextGaussian() * 1.4 + 3.5 }
 
 val data = mapOf(
     "sample" to sampleA + sampleB,
