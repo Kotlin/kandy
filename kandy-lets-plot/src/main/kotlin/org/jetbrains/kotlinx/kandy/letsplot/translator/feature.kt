@@ -22,10 +22,7 @@ import org.jetbrains.letsPlot.intern.OptionsMap
 import org.jetbrains.letsPlot.intern.layer.PosOptions
 import org.jetbrains.letsPlot.label.labs
 import org.jetbrains.letsPlot.pos.*
-import org.jetbrains.letsPlot.themes.flavorDarcula
-import org.jetbrains.letsPlot.themes.flavorHighContrastDark
-import org.jetbrains.letsPlot.themes.flavorHighContrastLight
-import org.jetbrains.letsPlot.themes.flavorSolarizedLight
+import org.jetbrains.letsPlot.themes.*
 import org.jetbrains.letsPlot.tooltips.TooltipOptions
 import org.jetbrains.letsPlot.tooltips.layerTooltips
 import org.jetbrains.letsPlot.tooltips.tooltipsNone
@@ -58,7 +55,7 @@ internal fun Flavor.wrap(): OptionsMap {
     return when (this) {
         Flavor.DARCULA -> flavorDarcula()
         Flavor.SOLARIZED_LIGHT -> flavorSolarizedLight()
-        Flavor.SOLARIZED_DARK -> flavorSolarizedLight()
+        Flavor.SOLARIZED_DARK -> flavorSolarizedDark()
         Flavor.HIGH_CONTRAST_LIGHT -> flavorHighContrastLight()
         Flavor.HIGH_CONTRAST_DARK -> flavorHighContrastDark()
     }

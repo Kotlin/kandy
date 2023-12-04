@@ -214,7 +214,7 @@ class DensityPlot : SampleHelper("densityPlot") {
                 alpha = 0.5
             }
         }
-            // SampleEnd
+        // SampleEnd
     }
 
     @Test

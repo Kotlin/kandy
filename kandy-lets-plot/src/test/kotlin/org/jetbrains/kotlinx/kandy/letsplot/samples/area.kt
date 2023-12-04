@@ -4,8 +4,6 @@ import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.plot
-import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
-import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.area
 import org.jetbrains.kotlinx.kandy.letsplot.layers.hLine

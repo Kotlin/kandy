@@ -158,7 +158,7 @@ class Scatter : SampleHelper("geoms", "guides") {
                 size = 700 to 350
             }
         }
-            // SampleEnd
-            .saveSample()
+        // SampleEnd
+//            .saveSample()
     }
 }

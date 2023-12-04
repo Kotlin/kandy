@@ -1,6 +1,5 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples
 
-import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.io.readCSV
 import org.jetbrains.kotlinx.kandy.dsl.plot
@@ -9,12 +8,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.bars
 import org.jetbrains.kotlinx.kandy.letsplot.layers.line
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
-import org.jetbrains.kotlinx.kandy.letsplot.x
-import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
-import org.jetbrains.kotlinx.statistics.binning.BinsOption
-import org.jetbrains.kotlinx.statistics.kandy.layers.histogram
-import org.jetbrains.kotlinx.statistics.kandy.stattransform.statBin
 import kotlin.test.Test
 
 class Layout : SampleHelper("layout") {
@@ -51,14 +45,15 @@ class Layout : SampleHelper("layout") {
                 size = 700 to 350
             }
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample(true)
     }
 
     @Test
     fun axis_and_legend_configuration() {
         // SampleStart
-        val df = DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+        val df =
+            DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 
         df.plot {
             points {

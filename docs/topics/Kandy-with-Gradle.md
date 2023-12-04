@@ -87,6 +87,6 @@ fun main() {
 This supplementary schema outlines the key elements of Kandy's DSL,
 providing a quick reference to assist you in building your visualizations.
 
-![Basic structure of DSL](tree_basic.svg) { thumbnail="true" }
+<include from="Getting-Started.md" element-id="getting-started-list-of-api"></include>
 
 For more examples, please see the [Examples](Examples.topic) section.

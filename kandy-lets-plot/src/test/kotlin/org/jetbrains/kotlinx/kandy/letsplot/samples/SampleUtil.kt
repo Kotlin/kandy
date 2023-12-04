@@ -5,9 +5,10 @@ import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Flavor
+import org.jetbrains.kotlinx.kandy.letsplot.theme.*
 import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
+import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.letsPlot.Figure
 import org.jetbrains.letsPlot.awt.plot.PlotSvgExport
 import org.jetbrains.letsPlot.ggsize
@@ -24,6 +25,8 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
 
     private val pathToImageFolder = "../docs/images/$folder/$sampleName"
 
+    private val darkColor = Color.hex("#19191c")
+
     init {
         File(pathToImageFolder).mkdirs()
     }
@@ -36,12 +39,7 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
     fun Plot.saveSample(savePreview: Boolean = false) {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name, savePreview)
-        val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
-        (this.features as MutableMap)[FeatureName("layout")] =
-            layout?.copy(flavor = Flavor.DARCULA).also {
-                it?.theme = layout?.theme
-                it?.customTheme = layout?.customTheme
-            } ?: Layout(flavor = Flavor.DARCULA)
+        this.changeThemeToDarkMode()
         saveAsSVG("${name}_dark", savePreview)
     }
 
@@ -50,12 +48,7 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
         saveAsSVG(name, savePreview, scaling)
         plots.forEach {
             it ?: return
-            val layout = (it.features as MutableMap)[FeatureName("layout")] as? Layout
-            (it.features as MutableMap)[FeatureName("layout")] =
-                layout?.copy(flavor = Flavor.DARCULA).also {
-                    it?.theme = layout?.theme
-                    it?.customTheme = layout?.customTheme
-                } ?: Layout(flavor = Flavor.DARCULA)
+            it.changeThemeToDarkMode()
         }
         saveAsSVG("${name}_dark", savePreview, scaling)
     }
@@ -64,14 +57,31 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name)
         this.items.forEach {
-            val layout = (it.plot.features as MutableMap)[FeatureName("layout")] as? Layout
-            (it.plot.features as MutableMap)[FeatureName("layout")] =
-                layout?.copy(flavor = Flavor.DARCULA).also { lay ->
-                    lay?.theme = layout?.theme
-                    lay?.customTheme = layout?.customTheme
-                } ?: Layout(flavor = Flavor.DARCULA)
+            it.plot.changeThemeToDarkMode()
         }
         saveAsSVG("${name}_dark")
+    }
+
+    private fun Plot.changeThemeToDarkMode() {
+        val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
+        val darkBackground = BackgroundParameters(fillColor = darkColor)
+        val customTheme = CustomTheme(legend = Legend(darkBackground), plotCanvas = PlotCanvas(darkBackground))
+
+        val darkLayout = layout?.apply {
+            flavor = Flavor.DARCULA
+            this.customTheme?.let {
+                if (it.plotCanvas.background?.fillColor == null) {
+                    it.plotCanvas.background = it.plotCanvas.background?.copy(fillColor = darkColor)
+                        ?: darkBackground
+                }
+                if (it.legend.background?.fillColor == null) {
+                    it.legend.background = it.legend.background?.copy(fillColor = darkColor)
+                        ?: darkBackground
+                }
+            } ?: run { theme = customTheme }
+        } ?: Layout(flavor = Flavor.DARCULA).apply { this.customTheme = customTheme }
+
+        (this.features as MutableMap)[FeatureName("layout")] = darkLayout
     }
 
     private fun scaledHeight(width: Int, height: Int): Int = (fixedWidth.toFloat() * height / width).toInt()

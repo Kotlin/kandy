@@ -2,7 +2,7 @@
 <buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <variables>
-        <header-logo>ktn_3d_icon.png</header-logo>
+        <header-logo>kotlin_logo.svg</header-logo>
         <enable-browser-edits>true</enable-browser-edits>
         <browser-edits-url>https://github.com/Kotlin/kandy/edit/main/docs/</browser-edits-url>
         <auto-convert-headings-to-chapters>true</auto-convert-headings-to-chapters>
@@ -27,8 +27,9 @@
         <social type="blog" href="https://blog.jetbrains.com/kotlin/category/data-science/"/>
         <social type="twitter" href="https://twitter.com/KotlinForData"/>
         <social type="youtube" href="https://www.youtube.com/@Kotlin"/>
-        <link href="https://github.com/Kotlin/kandy">GitHub</link>
         <link href="https://kotlinlang.slack.com/archives/C4W52CFEZ">Slack Community</link>
+        <link href="https://github.com/Kotlin/kandy">GitHub</link>
+        <link href="https://github.com/jetbrains#code-of-conduct">Code of Conduct</link>
         <copyright>2000–2024 JetBrains s.r.o.</copyright>
     </footer>
 </buildprofiles>

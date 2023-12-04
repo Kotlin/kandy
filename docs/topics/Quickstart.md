@@ -77,7 +77,7 @@ plot(weatherData) { // Begin plotting
 
 This code results in your inaugural plot using Kandy.
 
-![Simple plot with Kandy](overview_sample.svg) { border-effect="rounded" }
+![Simple plot with Kandy](quickstart_sample.svg) { border-effect="rounded" }
 
 
 
