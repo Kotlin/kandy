@@ -8,12 +8,9 @@ import org.jetbrains.kotlinx.jupyter.api.MimeTypes
 import org.jetbrains.kotlinx.kandy.letsplot.jupyter.JupyterConfig
 import org.jetbrains.kotlinx.kandy.util.serialization.serializeSpec
 import org.jetbrains.letsPlot.Figure
-import org.jetbrains.letsPlot.GGBunch
 import org.jetbrains.letsPlot.awt.plot.PlotSvgExport
 import org.jetbrains.letsPlot.core.util.PlotHtmlExport
 import org.jetbrains.letsPlot.core.util.PlotHtmlHelper
-import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
-import org.jetbrains.letsPlot.intern.figure.SubPlotsFigure
 import org.jetbrains.letsPlot.intern.toSpec
 import java.util.*
 
@@ -41,16 +38,26 @@ internal fun NotebookRenderingContext.figureToMimeJson(figure: Figure): JsonObje
     }
 }
 
+internal fun updateSvg(svgString: String, id: String): String {
+    val regex = Regex("""width=["']([^"']*)["']\s*height=["']([^"']*)["']""")
+
+    return regex.replace(svgString) {
+        val currentWidth = it.groupValues[1]
+        val currentHeight = it.groupValues[2]
+        """id=$id width="100%" height="100%" style="max-width: ${currentWidth}px; max-height: ${currentHeight}px;" viewBox="0 0 $currentWidth $currentHeight" preserveAspectRatio="xMinYMin meet""""
+    }
+}
+
 internal fun NotebookRenderingContext.figureToMimeResult(figure: Figure): MimeTypedResultEx {
     val basicResult = figureToMimeJson(figure)
 
     val plotSVG = PlotSvgExport.buildSvgImageFromRawSpecs(figure.toSpec())
     val id = UUID.randomUUID().toString()
     val svgWithID = with(plotSVG) {
-        take(4) + " id=$id" + drop(4)
+        val splitted = split('\n')
+        (listOf(updateSvg(splitted.first(), id)) + splitted.drop(1)).joinToString("\n")
     }
     val extraHTML = """
-        
         $svgWithID
         <script>document.getElementById("$id").style.display = "none";</script>
     """.trimIndent()
