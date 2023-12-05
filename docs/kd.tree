@@ -36,21 +36,21 @@
             <toc-element topic="Density-Plot-Guide.md"/>
         </toc-element>
         <toc-element toc-title="Multiplot">
-            <toc-element toc-title="anscombes_quartet"/>
-            <toc-element toc-title="facets"/>
-            <toc-element toc-title="plot_bunch"/>
+            <toc-element topic="Anscombes-Quartet-Guide.md"/>
+            <toc-element topic="Facets-Guide.md"/>
+            <toc-element topic="Plot-Bunch-Guide.md"/>
         </toc-element>
         <toc-element toc-title="Layout customization">
-            <toc-element toc-title="label_format"/>
-            <toc-element toc-title="legend_and_axis"/>
-            <toc-element toc-title="themes"/>
-            <toc-element toc-title="title_subtitle_caption"/>
-            <toc-element toc-title="tooltips"/>
+            <toc-element topic="Label-Format-Guide.md"/>
+            <toc-element topic="Legend-and-Axis-Guide.md"/>
+            <toc-element topic="Themes-Guide.md"/>
+            <toc-element topic="Title-Subtitle-Caption-Guide.md"/>
+            <toc-element topic="Tooltips-Guide.md"/>
         </toc-element>
         <toc-element toc-title="Other features">
-            <toc-element toc-title="export_to_file"/>
-            <toc-element toc-title="kotlin_notebook_features"/>
-            <toc-element toc-title="series_hack"/>
+            <toc-element topic="Export-to-File-Guide.md"/>
+            <toc-element topic="Kotlin-Notebook-Features-Guide.md"/>
+            <toc-element topic="Series-Hack-Guide.md"/>
         </toc-element>
     </toc-element>
     <toc-element topic="API.md">
