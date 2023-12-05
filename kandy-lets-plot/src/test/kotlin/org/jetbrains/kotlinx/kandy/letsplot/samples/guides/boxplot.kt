@@ -129,6 +129,7 @@ class Boxplot : SampleHelper("stat", "guides") {
     }
 
     @Test
+    @Suppress("UNUSED_EXPRESSION")
     fun guideBoxplotManualBoxes() {
         // SampleStart
         val manualBoxplot = df.plot {
@@ -161,6 +162,7 @@ class Boxplot : SampleHelper("stat", "guides") {
     }
 
     @Test
+    @Suppress("UNUSED_EXPRESSION")
     fun guideBoxplotDefaultMappings() {
         // SampleStart
         val boxplotPlot = df.plot {

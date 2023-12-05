@@ -26,25 +26,25 @@
 
 * [**Quick Start Guide**](https://kotlin.github.io/kandy/quick-start-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/quick_start_guide.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/TKul6gxAVDbJmocwQi9UjB)
 * **Geoms**
-    * algebraic_curve - Notebook / Datalore
-    * error_bars - Notebook / Datalore
-    * jitter_points - Notebook / Datalore
-    * lines - Notebook / Datalore
-    * pie - Notebook / Datalore
-    * ribbon - Notebook / Datalore
-    * scatter_plot - Notebook / Datalore
+    * [Algebraic Curve](https://kotlin.github.io/kandy/algebraic-curve.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/algebraic_curve.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/h5iGaQfTkJudmpdSBaGh7j)
+    * [ErrorBars](https://kotlin.github.io/kandy/errorbars-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/error_bars.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/Sq7CLBITOQPqlAyu54Nx02)
+    * [Jitter Points](https://kotlin.github.io/kandy/jitter-points-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/jitter_points.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/ffObHscoZ3iq8CDD8cMngG)
+    * [Lines](https://kotlin.github.io/kandy/lines-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/lines.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/wQEVUIyGlfq53YtiaZjUPD)
+    * [Pie](https://kotlin.github.io/kandy/pie-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/pie.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/NLBjw7czv1wZOB7wyuIQz7)
+    * [Ribbon](https://kotlin.github.io/kandy/ribbon-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/ribbon.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/IUovTaQR0LSlg60f5GdSSp)
+    * [Scatter](https://kotlin.github.io/kandy/scatter-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/scatter.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/p6dtdln0YInK4dwtOY5fWs)
 * **Statistical**
-    * statistics - Notebook / Datalore
-    * smoothing - Notebook / Datalore
-    * histogram - Notebook / Datalore
-    * boxplot - Notebook / Datalore
-    * heatmap - Notebook / Datalore
-    * countPlot - Notebook / Datalore
-    * densityPlot - Notebook / Datalore
+    * [Statistics Guide](https://kotlin.github.io/kandy/statistics-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/statistics_guide.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/1pLl2eMo1hN8Ujn2vIK3VP)
+    * [Smoothing](https://kotlin.github.io/kandy/smoothing-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/smoothing.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/TW5QSgta5WysX0zhtCfja2)
+    * [Histogram](https://kotlin.github.io/kandy/histogram-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/histogram.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/3w385Us8bVePkCFn0glPeg)
+    * [Boxplot](https://kotlin.github.io/kandy/boxplot-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/boxplot.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/LqqkzoO6iMxIpActrtStpw)
+    * [Heatmap](https://kotlin.github.io/kandy/heatmap-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/heatmap.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/2W0Os6XQiMJLuoctHDLos4)
+    * [Count Plot](https://kotlin.github.io/kandy/count-plot-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/count_plot.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/iuxAAQoiG5rCczGotibJ1S)
+    * [Density Plot](https://kotlin.github.io/kandy/density-plot-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/density_plot.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/hnLsJe6iBhGTTqjTbszDDy)
 * **Multiplot**
-    * anscombes_quartet
-    * facets
-    * plot_bunch
+    * [Anscombe's quartet](https://kotlin.github.io/kandy/anscombes-quartet-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/anscombes_quartet.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/EfOrYMfWAwoPvTdkXsQr64)
+    * [Facets](https://kotlin.github.io/kandy/facets-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/facets.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/dmNOKlhZ7bfnXUS3GhvZIu)
+    * [Plot Bunch](https://kotlin.github.io/kandy/plot-bunch-guide.html) - [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/plot_bunch.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/oL0VY2neMbB7xKITtPQzaw)
 * **Layout customization**
     * label_format - Notebook / Datalore
     * legend_and_axis - Notebook / Datalore
@@ -161,7 +161,7 @@ The following is an example of using the `kandy-echarts` library in an IntelliJ 
         </td>
         <td>
             <a href="https://kotlin.github.io/kandy/comparing-line-vs-path-plots.html">
-                <img src="../docs/images/samples/line/preview_line_and_path_comp.svg" alt="Comparing Line vs. Path Plots"/>
+                <img src="../docs/images/samples/line/preview_line_and_path_comp_2.svg" alt="Comparing Line vs. Path Plots"/>
                 <b>Comparing Line vs. Path Plots</b>
             </a>
         </td>
