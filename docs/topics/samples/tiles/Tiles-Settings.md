@@ -21,7 +21,7 @@ Dive into sophisticated heatmap customizations with 'Tiles Settings' in Kandy, p
 <tab title="Dataframe">
 
 ```kotlin
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "store" to listOf("A", "B", "C", "A", "B", "C", "A", "B", "C"),
     "time" to listOf(
         "morning", "morning", "morning",
@@ -31,7 +31,7 @@ val data = dataFrameOf(
     "money" to listOf(75, 64, 59, 82, 88, 91, 69, 77, 73)
 )
 
-data.plot {
+dataset.plot {
     tiles {
         x("store")
         y("time")

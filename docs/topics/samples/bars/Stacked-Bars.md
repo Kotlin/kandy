@@ -22,14 +22,14 @@ Dive into 'Stacked Bars' using Kotlin and Kandy, where bar plots are transformed
 <tab title="Dataframe">
 
 ```kotlin
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "day" to listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
     "coffee" to listOf(0.81, 0.78, 0.72, 0.65, 0.73, 0.49, 0.38),
     "tea" to listOf(0.12, 0.16, 0.21, 0.26, 0.24, 0.22, 0.30),
     "soda" to listOf(0.07, 0.06, 0.07, 0.09, 0.03, 0.29, 0.32),
 ).gather("coffee", "tea", "soda").into("drink", "amount")
 
-data.groupBy("drink").plot {
+dataset.groupBy("drink").plot {
     layout.title = "Weekly Beverage Consumption Trends"
     bars {
         x("day")
@@ -54,13 +54,13 @@ val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 val coffee = listOf(0.81, 0.78, 0.72, 0.65, 0.73, 0.49, 0.38)
 val tea = listOf(0.12, 0.16, 0.21, 0.26, 0.24, 0.22, 0.30)
 val soda = listOf(0.07, 0.06, 0.07, 0.09, 0.03, 0.29, 0.32)
-val data = mapOf(
+val dataset = mapOf(
     "day" to days + days + days,
     "amount" to coffee + tea + soda,
     "drink" to List(7) { "coffee" } + List(7) { "tea" } + List(7) { "soda" }
 )
 
-data.plot {
+dataset.plot {
     layout.title = "Weekly Beverage Consumption Trends"
     groupBy("drink") {
         bars {

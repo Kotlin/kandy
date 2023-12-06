@@ -38,12 +38,12 @@ To learn more about formatting templates, see:
 <!---FUN guideFacetsReadDataFrame-->
 
 ```kotlin
-val data = DataFrame.readCSV(
+val dataset = DataFrame.readCSV(
     "https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg2.csv",
     parserOptions = ParserOptions(Locale.ENGLISH)
 )
 
-data.head(3)
+dataset.head(3)
 ```
 
 <!---END-->
@@ -63,7 +63,7 @@ Also use the `color` aesthetic to visualize the region where a car was designed.
 <!---FUN guideFacetsScatterPlotByHorsePower-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     x(`engine horsepower`)
     y(`miles per gallon`)
     points {
@@ -103,7 +103,7 @@ Let's split up the data by `number of cylinders`.
 <!---FUN guideFacetsGridXPlot-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     points {
         x(`engine horsepower`)
         y(`miles per gallon`)
@@ -127,7 +127,7 @@ Split up the data by two faceting variables: `number of cylinders` and `origin o
 <!---FUN guideFacetsTwoPlotsGrid-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     points {
         x(`engine horsepower`)
         y(`miles per gallon`)
@@ -155,7 +155,7 @@ To learn more about formatting templates, see:
 <!---FUN guideFacetsWithFormattingAndSorting-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     points {
         x(`engine horsepower`)
         y(`miles per gallon`)
@@ -184,7 +184,7 @@ Split data by the `number of cylinders` variable and arrange tiles in two rows.
 <!---FUN guideFacetsWrapOnePlot-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     points {
         x(`engine horsepower`)
         y(`miles per gallon`)
@@ -210,7 +210,7 @@ Split data by `origin of car` and `number of cylinders` and arrange tiles in fiv
 <!---FUN guideFacetsWrapTwoPlots-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     points {
         x(`engine horsepower`)
         y(`miles per gallon`)
@@ -239,7 +239,7 @@ Also, format `number of cylinders` labels and reverse the sorting direction for 
 <!---FUN guideFacetsArrangeVertically-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     points {
         x(`engine horsepower`)
         y(`miles per gallon`)
@@ -264,7 +264,7 @@ data.plot {
 <!---FUN guideFreeFacetSimplePlot-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     x(`engine horsepower`)
     y("engine displacement (cu. inches)"<Double>())
     points {
@@ -290,7 +290,7 @@ Scales are constant across all panels.
 <!---FUN guideFreeFacetWithFixedScales-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     x(`engine horsepower`)
     y("engine displacement (cu. inches)"<Double>())
     points {
@@ -313,7 +313,7 @@ data.plot {
 <!---FUN guideFreeFacetGridYFree-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     x(`engine horsepower`)
     y("engine displacement (cu. inches)"<Double>())
     points {
@@ -338,7 +338,7 @@ Scales are constant across all panels.
 <!---FUN guideFreeFacetWrapWithFixedScale-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     x(`engine horsepower`)
     y("engine displacement (cu. inches)"<Double>())
     points {
@@ -363,7 +363,7 @@ data.plot {
 <!---FUN guideFreeFacetWrapWithFreeScale-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     x(`engine horsepower`)
     y("engine displacement (cu. inches)"<Double>())
     points {

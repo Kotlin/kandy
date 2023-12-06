@@ -232,7 +232,7 @@ class Area : SampleHelper("area") {
     @Test
     fun several_areas_dataframe() {
         // SampleStart
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "year" to listOf("2016", "2017", "2018", "2019", "2020", "2021"),
             "Apple" to listOf(700, 800, 750, 900, 850, 950),
             "Google" to listOf(1000, 950, 1200, 1150, 1250, 1300),
@@ -241,7 +241,7 @@ class Area : SampleHelper("area") {
             "Amazon" to listOf(300, 400, 350, 450, 500, 600)
         ).gather("Apple", "Google", "Microsoft", "Meta", "Amazon").into("company", "users")
 
-        data.groupBy("company").plot {
+        dataset.groupBy("company").plot {
             layout.title = "User Growth Dynamics"
             area {
                 x("year")
@@ -274,7 +274,7 @@ class Area : SampleHelper("area") {
         val usersMeta = listOf(1100, 1200, 1150, 1300, 1250, 1350)
         val usersAmazon = listOf(300, 400, 350, 450, 500, 600)
 
-        val data = mapOf(
+        val dataset = mapOf(
             "year" to year + year + year + year + year,
             "users" to usersApple + usersGoogle + usersMicrosoft + usersMeta + usersAmazon,
             "company" to List(6) { "Apple" } + List(6) { "Google" } + List(6) { "Microsoft" } + List(6) { "Meta" } + List(
@@ -282,7 +282,7 @@ class Area : SampleHelper("area") {
             ) { "Amazon" }
         )
 
-        plot(data) {
+        plot(dataset) {
             layout.title = "User Growth Dynamics"
             groupBy("company") {
                 area {

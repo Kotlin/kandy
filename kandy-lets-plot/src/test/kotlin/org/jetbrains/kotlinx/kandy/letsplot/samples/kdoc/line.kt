@@ -9,9 +9,9 @@ class LineTest : KandyLetsPlotJupyterTest() {
         // or use mapOf<String, List<Any>>(...)
         val months by columnOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
         val sales by columnOf(120, 150, 170, 210, 240, 220, 230, 210, 200, 230, 250, 280)
-        val data = dataFrameOf(months, sales)
+        val dataset = dataFrameOf(months, sales)
 
-        plot(data) {
+        plot(dataset) {
             line {
                 // Positional mapping for the x-axis using months
                 x(months)

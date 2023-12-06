@@ -47,12 +47,12 @@ val random = java.util.Random(42)
 val sampleA = List(1000) { random.nextGaussian() * 0.7 + 2.0 }
 val sampleB = List(1000) { random.nextGaussian() * 1.4 + 3.5 }
 
-val data = mapOf(
+val dataset = mapOf(
     "sample" to sampleA + sampleB,
     "group" to sampleA.map { "A" } + sampleB.map { "B" }
 )
 
-data.plot {
+dataset.plot {
     groupBy("group") {
         histogram("sample")
     }

@@ -21,14 +21,14 @@ See how 'Grouped ErrorBars' in Kandy enhance comparative data analysis across mu
 <tab title="Dataframe">
 
 ```kotlin
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "time" to (1..5).toList() + (1..5).toList(),
     "min" to listOf(2.0, 3.4, 3.5, 5.5, 2.5) + listOf(1.0, 2.0, 3.0, 4.0, 3.7),
     "max" to listOf(3.0, 5.2, 5.0, 5.8, 3.4) + listOf(5.0, 4.0, 3.5, 5.0, 4.2),
     "category" to List(5) { "a" } + List(5) { "b" }
 )
 
-data.groupBy("category").plot {
+dataset.groupBy("category").plot {
     errorBars {
         x("time") {
             axis.breaks((1..5).toList(), format = "d")
@@ -44,14 +44,14 @@ data.groupBy("category").plot {
 <tab title="Collections">
 
 ```kotlin
-val data = mapOf(
+val dataset = mapOf(
     "time" to (1..5).toList() + (1..5).toList(),
     "min" to listOf(2.0, 3.4, 3.5, 5.5, 2.5) + listOf(1.0, 2.0, 3.0, 4.0, 3.7),
     "max" to listOf(3.0, 5.2, 5.0, 5.8, 3.4) + listOf(5.0, 4.0, 3.5, 5.0, 4.2),
     "category" to List(5) { "a" } + List(5) { "b" }
 )
 
-data.plot {
+dataset.plot {
     groupBy("category") {
         errorBars {
             x("time") {

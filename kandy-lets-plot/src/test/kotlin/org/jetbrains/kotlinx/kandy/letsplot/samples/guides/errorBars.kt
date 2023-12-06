@@ -24,7 +24,7 @@ class ErrorBars : SampleHelper("geoms", "guides") {
     private val length by columnOf(13.23, 22.70, 26.06, 7.98, 16.77, 26.14)
     private val len_min by columnOf(11.83, 21.2, 24.50, 4.24, 15.26, 23.35)
     private val len_max by columnOf(15.63, 24.9, 27.11, 10.72, 19.28, 28.93)
-    private val data = dataFrameOf(supp, dose, length, len_min, len_max)
+    private val dataset = dataFrameOf(supp, dose, length, len_min, len_max)
 
     private val posD = Position.dodge(0.1)
 
@@ -41,19 +41,19 @@ class ErrorBars : SampleHelper("geoms", "guides") {
         val length by columnOf(13.23, 22.70, 26.06, 7.98, 16.77, 26.14)
         val len_min by columnOf(11.83, 21.2, 24.50, 4.24, 15.26, 23.35)
         val len_max by columnOf(15.63, 24.9, 27.11, 10.72, 19.28, 28.93)
-        val data = dataFrameOf(supp, dose, length, len_min, len_max)
+        val dataset = dataFrameOf(supp, dose, length, len_min, len_max)
         // SampleEnd
-        assertNotNull(data[supp])
-        assertNotNull(data[dose])
-        assertNotNull(data[length])
-        assertNotNull(data[len_min])
-        assertNotNull(data[len_max])
+        assertNotNull(dataset[supp])
+        assertNotNull(dataset[dose])
+        assertNotNull(dataset[length])
+        assertNotNull(dataset[len_min])
+        assertNotNull(dataset[len_max])
     }
 
     @Test
     fun guideErrorBarsWithLines() {
         // SampleStart
-        plot(data) {
+        plot(dataset) {
             x(dose)
             errorBars {
                 yMin(len_min)
@@ -80,7 +80,7 @@ class ErrorBars : SampleHelper("geoms", "guides") {
     fun guideErrorBarsWithLinesAndPosition() {
         // SampleStart
         val posD = Position.dodge(0.1)
-        plot(data) {
+        plot(dataset) {
             x(dose)
 
             errorBars {
@@ -113,7 +113,7 @@ class ErrorBars : SampleHelper("geoms", "guides") {
     @Test
     fun guideErrorBarsWithLinesGrouped() {
         // SampleStart
-        plot(data) {
+        plot(dataset) {
             x(dose)
             groupBy(supp) {
                 errorBars {
@@ -159,7 +159,7 @@ class ErrorBars : SampleHelper("geoms", "guides") {
     @Test
     fun guideErrorBarsWithLinesCustomColorScale() {
         // SampleStart
-        plot(data) {
+        plot(dataset) {
             x(dose)
 
             groupBy(supp) {
@@ -212,7 +212,7 @@ class ErrorBars : SampleHelper("geoms", "guides") {
     @Test
     fun guideErrorBarsOnBars() {
         // SampleStart
-        plot(data) {
+        plot(dataset) {
             x(dose)
 
             bars {
@@ -255,7 +255,7 @@ class ErrorBars : SampleHelper("geoms", "guides") {
     @Test
     fun guideErrorBarsCrossbars() {
         // SampleStart
-        plot(data) {
+        plot(dataset) {
             x(dose)
 
             crossBars {
@@ -281,7 +281,7 @@ class ErrorBars : SampleHelper("geoms", "guides") {
     @Test
     fun guideErrorBarsLineRanges() {
         // SampleStart
-        plot(data) {
+        plot(dataset) {
             x(dose)
 
             lineRanges {
@@ -312,7 +312,7 @@ class ErrorBars : SampleHelper("geoms", "guides") {
     @Test
     fun guideErrorBarsPointRanges() {
         // SampleStart
-        plot(data) {
+        plot(dataset) {
             x(dose)
 
             pointRanges {
@@ -344,7 +344,7 @@ class ErrorBars : SampleHelper("geoms", "guides") {
     @Test
     fun guideErrorBarsConfiguredPointRanges() {
         // SampleStart
-        plot(data) {
+        plot(dataset) {
             x(dose)
 
             line {

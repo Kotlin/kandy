@@ -24,13 +24,13 @@ val salesProducts = listOf(200.0, 220.0, 180.0, 240.0, 210.0)
 val salesClothes = listOf(150.0, 130.0, 160.0, 140.0, 170.0)
 val salesElectronics = listOf(300.0, 320.0, 310.0, 330.0, 340.0)
 
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "month" to months + months + months,
     "sales" to salesProducts + salesClothes + salesElectronics,
     "category" to List(5) { "Products" } + List(5) { "Clothes" } + List(5) { "Electronics" }
 )
 
-data.groupBy("category").plot {
+dataset.groupBy("category").plot {
     line {
         x("month")
         y("sales")
@@ -48,13 +48,13 @@ val salesProducts = listOf(200.0, 220.0, 180.0, 240.0, 210.0)
 val salesClothes = listOf(150.0, 130.0, 160.0, 140.0, 170.0)
 val salesElectronics = listOf(300.0, 320.0, 310.0, 330.0, 340.0)
 
-val data = mapOf(
+val dataset = mapOf(
     "month" to months + months + months,
     "sales" to salesProducts + salesClothes + salesElectronics,
     "category" to List(5) { "Products" } + List(5) { "Clothes" } + List(5) { "Electronics" }
 )
 
-data.plot {
+dataset.plot {
     groupBy("category") {
         line {
             x("month")
