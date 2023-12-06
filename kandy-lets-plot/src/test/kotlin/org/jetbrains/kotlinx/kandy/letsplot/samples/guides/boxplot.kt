@@ -134,7 +134,6 @@ class Boxplot : SampleHelper("stat", "guides") {
         // SampleStart
         val manualBoxplot = df.plot {
             statBoxplot(cond, rate) {
-                // Non-statistical `boxplot` layer
                 boxes {
                     // All positional aesthetics match boxplot statistics
                     x(Stat.x)
@@ -152,7 +151,7 @@ class Boxplot : SampleHelper("stat", "guides") {
                 }
             }
             layout {
-                title = "`statBoxplot` + non-statistical `boxplot` \n" +
+                title = "`statBoxplot` + `boxes` \n" +
                         "and `statBoxplotOutliers` + `points`"
             }
         }
@@ -187,7 +186,7 @@ class Boxplot : SampleHelper("stat", "guides") {
             statBoxplotOutliers(cond, rate) {
                 points { x(Stat.x); y(Stat.y) }
             }
-            layout.title = "`statBoxplot` + non-statistical `boxplot` \n and `statBoxplotOutliers` + `points`"
+            layout.title = "`statBoxplot` + `boxes` \n and `statBoxplotOutliers` + `points`"
         }
         val boxplotPlot = df.plot {
             boxplot(cond, rate); layout.title = "`boxplot()`"
@@ -204,7 +203,7 @@ class Boxplot : SampleHelper("stat", "guides") {
         df.plot {
             boxplot(cond, rate) {
                 boxes {
-                    // Non-stat boxplot context + StatBoxplot context
+                    // Boxes context + StatBoxplot context
                     // filling color depends on `x` category
                     fillColor(Stat.x)
                 }
