@@ -36,12 +36,15 @@ val contributions = listOf(
 plot {
     points {
         x(week) {
-            axis.name = "Week"
+            axis {
+                name = "Week"
+                breaks(week.distinct(), format = "d")
+            }
         }
         y(dayOfWeek) {
             axis {
-                breaks(listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun").reversed())
                 name = "Day of week"
+                breaks(listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun").reversed())
             }
         }
         color = Color.BLUE
