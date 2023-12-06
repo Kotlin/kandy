@@ -21,7 +21,7 @@ Get hands-on with 'ErrorBars Settings' for advanced error bar customization in K
 <tab title="Dataframe">
 
 ```kotlin
-val years by columnOf(2018, 2019, 2020, 2021, 2022)
+val years by columnOf("2018", "2019", "2020", "2021", "2022")
 val costMin by columnOf(62.7, 64.7, 72.1, 73.7, 68.5)
 val costMax by columnOf(68.9, 71.3, 78.9, 76.5, 72.1)
 val data = dataFrameOf(years, costMin, costMax)
@@ -44,7 +44,7 @@ data.plot {
 <tab title="Collections">
 
 ```kotlin
-val years = listOf(2018, 2019, 2020, 2021, 2022)
+val years = listOf("2018", "2019", "2020", "2021", "2022")
 val costMin = listOf(62.7, 64.7, 72.1, 73.7, 68.5)
 val costMax = listOf(68.9, 71.3, 78.9, 76.5, 72.1)
 

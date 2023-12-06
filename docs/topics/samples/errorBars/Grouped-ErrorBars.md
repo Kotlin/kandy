@@ -30,7 +30,9 @@ val data = dataFrameOf(
 
 data.groupBy("category").plot {
     errorBars {
-        x("time")
+        x("time") {
+            axis.breaks((1..5).toList(), format = "d")
+        }
         yMin("min")
         yMax("max")
         borderLine.color("category")
@@ -52,7 +54,9 @@ val data = mapOf(
 data.plot {
     groupBy("category") {
         errorBars {
-            x("time")
+            x("time") {
+                axis.breaks((1..5).toList(), format = "d")
+            }
             yMin("min")
             yMax("max")
             borderLine.color("category")

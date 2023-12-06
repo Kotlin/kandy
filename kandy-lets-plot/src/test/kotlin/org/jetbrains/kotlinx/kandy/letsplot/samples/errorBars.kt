@@ -21,7 +21,7 @@ class ErrorBars : SampleHelper("errorBars") {
     @Test
     fun simple_error_bar_plot_dataframe() {
         // SampleStart
-        val years by columnOf(2018, 2019, 2020, 2021, 2022)
+        val years by columnOf("2018", "2019", "2020", "2021", "2022")
         val costMin by columnOf(62.7, 64.7, 72.1, 73.7, 68.5)
         val costMax by columnOf(68.9, 71.3, 78.9, 76.5, 72.1)
 
@@ -39,7 +39,7 @@ class ErrorBars : SampleHelper("errorBars") {
     @Test
     fun simple_error_bar_plot_collections() {
         // SampleStart
-        val years = listOf(2018, 2019, 2020, 2021, 2022)
+        val years = listOf("2018", "2019", "2020", "2021", "2022")
         val costMin = listOf(62.7, 64.7, 72.1, 73.7, 68.5)
         val costMax = listOf(68.9, 71.3, 78.9, 76.5, 72.1)
 
@@ -56,7 +56,7 @@ class ErrorBars : SampleHelper("errorBars") {
     @Test
     fun error_bars_settings_dataframe() {
         // SampleStart
-        val years by columnOf(2018, 2019, 2020, 2021, 2022)
+        val years by columnOf("2018", "2019", "2020", "2021", "2022")
         val costMin by columnOf(62.7, 64.7, 72.1, 73.7, 68.5)
         val costMax by columnOf(68.9, 71.3, 78.9, 76.5, 72.1)
         val data = dataFrameOf(years, costMin, costMax)
@@ -80,7 +80,7 @@ class ErrorBars : SampleHelper("errorBars") {
     @Test
     fun error_bars_settings_collections() {
         // SampleStart
-        val years = listOf(2018, 2019, 2020, 2021, 2022)
+        val years = listOf("2018", "2019", "2020", "2021", "2022")
         val costMin = listOf(62.7, 64.7, 72.1, 73.7, 68.5)
         val costMax = listOf(68.9, 71.3, 78.9, 76.5, 72.1)
 
@@ -102,7 +102,7 @@ class ErrorBars : SampleHelper("errorBars") {
     @Test
     fun error_bars_with_line_dataframe() {
         // SampleStart
-        val years = listOf(2018, 2019, 2020, 2021, 2022)
+        val years = listOf("2018", "2019", "2020", "2021", "2022")
         val costMin = listOf(62.7, 64.7, 72.1, 73.7, 68.5)
         val costMax = listOf(68.9, 71.3, 78.9, 76.5, 72.1)
         val mid = costMin.zip(costMax).map { (it.first + it.second) / 2.0 }
@@ -132,7 +132,7 @@ class ErrorBars : SampleHelper("errorBars") {
     @Test
     fun error_bars_with_line_collections() {
         // SampleStart
-        val years = listOf(2018, 2019, 2020, 2021, 2022)
+        val years = listOf("2018", "2019", "2020", "2021", "2022")
         val costMin = listOf(62.7, 64.7, 72.1, 73.7, 68.5)
         val costMax = listOf(68.9, 71.3, 78.9, 76.5, 72.1)
         val mid = costMin.zip(costMax).map { (it.first + it.second) / 2.0 }
@@ -155,7 +155,7 @@ class ErrorBars : SampleHelper("errorBars") {
     @Test
     fun fixed_error_bars_dataframe() {
         // SampleStart
-        val years = listOf(2018, 2019, 2020, 2021, 2022)
+        val years = listOf("2018", "2019", "2020", "2021", "2022")
         val costMin = listOf(62.7, 64.7, 72.1, 73.7, 68.5)
         val costMax = listOf(68.9, 71.3, 78.9, 76.5, 72.1)
         val data = dataFrameOf(years.toColumn("years"), costMin.toColumn("min"), costMax.toColumn("max"))
@@ -176,7 +176,7 @@ class ErrorBars : SampleHelper("errorBars") {
     @Test
     fun fixed_error_bars_collections() {
         // SampleStart
-        val years = listOf(2018, 2019, 2020, 2021, 2022)
+        val years = listOf("2018", "2019", "2020", "2021", "2022")
         val costMax = listOf(68.9, 71.3, 78.9, 76.5, 72.1)
 
         plot {
@@ -194,7 +194,7 @@ class ErrorBars : SampleHelper("errorBars") {
     @Test
     fun border_line_error_bars() {
         // SampleStart
-        val years = listOf(2018, 2019, 2020, 2021, 2022)
+        val years = listOf("2018", "2019", "2020", "2021", "2022")
         val costMin = listOf(62.7, 64.7, 72.1, 73.7, 68.5)
         val costMax = listOf(68.9, 71.3, 78.9, 76.5, 72.1)
         val mid = costMin.zip(costMax).map { (it.first + it.second) / 2.0 }
@@ -228,7 +228,9 @@ class ErrorBars : SampleHelper("errorBars") {
 
         data.groupBy("category").plot {
             errorBars {
-                x("time")
+                x("time") {
+                    axis.breaks((1..5).toList(), format = "d")
+                }
                 yMin("min")
                 yMax("max")
                 borderLine.color("category")
@@ -251,7 +253,9 @@ class ErrorBars : SampleHelper("errorBars") {
         data.plot {
             groupBy("category") {
                 errorBars {
-                    x("time")
+                    x("time") {
+                        axis.breaks((1..5).toList(), format = "d")
+                    }
                     yMin("min")
                     yMax("max")
                     borderLine.color("category")
