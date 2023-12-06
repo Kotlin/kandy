@@ -24,7 +24,7 @@ Unlock the potential of scatter plots in Kotlin using the Kandy Scatter Guide.
 // www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)
 val rand = java.util.Random(123)
 val n = 20
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "cond" to List(n / 2) { "A" } + List(n / 2) { "B" },
     "xvar" to List(n) { i: Int -> i },
     "yvar" to List(n) { i: Int -> i + rand.nextGaussian() * 3 }
@@ -41,7 +41,7 @@ val yvar = "yvar"<Double>()
 <!---FUN guideScatterBasicScatterPlot-->
 
 ```kotlin
-plot(data) {
+plot(dataset) {
     points {
         x(xvar)
         y(yvar)
@@ -57,7 +57,7 @@ plot(data) {
 <!---FUN guideScatterScatterPlotWithDiffSymbol-->
 
 ```kotlin
-plot(data) {
+plot(dataset) {
     points {
         x(xvar)
         y(yvar)
@@ -78,7 +78,7 @@ plot(data) {
 <!---FUN guideScatterScatterPlotWithOpenSymbol-->
 
 ```kotlin
-plot(data) {
+plot(dataset) {
     points {
         x(xvar)
         y(yvar)
@@ -101,20 +101,12 @@ plot(data) {
 ### Handling Over-plotting
 
 <!---FUN guideScatterData1-->
-
-```kotlin
-// Create data with overlapping points.
-val data1 = data.convert { xvar and yvar }.with {
-    (it.toDouble() / 5).toInt() * 5
-}
-```
-
 <!---END-->
 
 <!---FUN guideScatterHandlingOverPlotting-->
 
 ```kotlin
-plot(data1) {
+plot(datasetOverlapping) {
     points {
         x(xvar) {
             axis.breaks(listOf(0, 5, 10, 15))
@@ -136,7 +128,7 @@ plot(data1) {
 <!---FUN guideScatterHandlingOverPlottingJitter-->
 
 ```kotlin
-plot(data1) {
+plot(datasetOverlapping) {
     points {
         x(xvar) {
             axis.breaks(listOf(0, 5, 10, 15))

@@ -30,14 +30,14 @@ val year22 = List(4) { types.random(random) }
 val year23 = List(4) { types.random(random) }
 val year24 = List(4) { types.random(random) }
 
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "city" to cities,
     "2022" to year22,
     "2023" to year23,
     "2024" to year24
 ).gather("2022", "2023", "2024").into("year", "value")
 
-plot(data) {
+plot(dataset) {
     tiles {
         x("city")
         y("year") {

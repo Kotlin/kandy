@@ -35,7 +35,7 @@ val dose by columnOf(0.5, 1.0, 2.0, 0.5, 1.0, 2.0)
 val length by columnOf(13.23, 22.70, 26.06, 7.98, 16.77, 26.14)
 val len_min by columnOf(11.83, 21.2, 24.50, 4.24, 15.26, 23.35)
 val len_max by columnOf(15.63, 24.9, 27.11, 10.72, 19.28, 28.93)
-val data = dataFrameOf(supp, dose, length, len_min, len_max)
+val dataset = dataFrameOf(supp, dose, length, len_min, len_max)
 ```
 
 <!---END-->
@@ -45,7 +45,7 @@ val data = dataFrameOf(supp, dose, length, len_min, len_max)
 <!---FUN guideErrorBarsWithLines-->
 
 ```kotlin
-plot(data) {
+plot(dataset) {
     x(dose)
     errorBars {
         yMin(len_min)
@@ -73,7 +73,7 @@ plot(data) {
 
 ```kotlin
 val posD = Position.dodge(0.1)
-plot(data) {
+plot(dataset) {
     x(dose)
 
     errorBars {
@@ -108,7 +108,7 @@ plot(data) {
 <!---FUN guideErrorBarsWithLinesGrouped-->
 
 ```kotlin
-plot(data) {
+plot(dataset) {
     x(dose)
     groupBy(supp) {
         errorBars {
@@ -156,7 +156,7 @@ val customColorScale = Scale.categorical<Color, String>(
 <!---FUN guideErrorBarsWithLinesCustomColorScale-->
 
 ```kotlin
-plot(data) {
+plot(dataset) {
     x(dose)
 
     groupBy(supp) {
@@ -213,7 +213,7 @@ plot(data) {
 <!---FUN guideErrorBarsOnBars-->
 
 ```kotlin
-plot(data) {
+plot(dataset) {
     x(dose)
 
     bars {
@@ -260,7 +260,7 @@ plot(data) {
 <!---FUN guideErrorBarsCrossbars-->
 
 ```kotlin
-plot(data) {
+plot(dataset) {
     x(dose)
 
     crossBars {
@@ -290,7 +290,7 @@ plot(data) {
 <!---FUN guideErrorBarsLineRanges-->
 
 ```kotlin
-plot(data) {
+plot(dataset) {
     x(dose)
 
     lineRanges {
@@ -325,7 +325,7 @@ plot(data) {
 <!---FUN guideErrorBarsPointRanges-->
 
 ```kotlin
-plot(data) {
+plot(dataset) {
     x(dose)
 
     pointRanges {
@@ -359,7 +359,7 @@ plot(data) {
 <!---FUN guideErrorBarsConfiguredPointRanges-->
 
 ```kotlin
-plot(data) {
+plot(dataset) {
     x(dose)
 
     line {

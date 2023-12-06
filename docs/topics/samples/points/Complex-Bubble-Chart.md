@@ -43,7 +43,7 @@ val gdpPerCapita1998 = columnOf(
     600, 12000, 22000, 40000, 9000,
     4000, 3000, 28000, 35000
 ) named "gdp"
-val data1998 = dataFrameOf(country, lifeExp1998, pop1998, gdpPerCapita1998).add("year") { 1998 }
+val dataset1998 = dataFrameOf(country, lifeExp1998, pop1998, gdpPerCapita1998).add("year") { 1998 }
 
 val lifeExp2023 = columnOf(
     79.44, 73.60, 70.46, 63.34, 72.10, 78.15, 80.70,
@@ -62,11 +62,11 @@ val gdpPerCapita2023 = columnOf(
     1200, 30000, 34000, 70000, 15000,
     9000, 10000, 40000, 60000
 ) named "gdp"
-val data2023 = dataFrameOf(country, lifeExp2023, pop2023, gdpPerCapita2023).add("year") { 2023 }
+val dataset2023 = dataFrameOf(country, lifeExp2023, pop2023, gdpPerCapita2023).add("year") { 2023 }
 
-val data = data1998.fullJoin(data2023)
+val dataset = dataset1998.fullJoin(dataset2023)
 
-data.groupBy("year").plot {
+dataset.groupBy("year").plot {
     layout.title = "Life Expectancy and GDP by Country"
     points {
         x("gdp") { axis.name = "GDP per capita (in dollars)" }
@@ -76,7 +76,10 @@ data.groupBy("year").plot {
             scale = continuous(5.0..20.0)
         }
         color("year") {
-            legend.name = ""
+            legend {
+                name = ""
+                breaks(format = "d")
+            }
         }
     }
 }
@@ -91,7 +94,7 @@ data.groupBy("year").plot {
 <!---FUN complex_bubble_chart_part2-->
 
 ```kotlin
-data.filter { "year"<Int>() == 1998 }.plot {
+dataset.filter { "year"<Int>() == 1998 }.plot {
     layout.title = "Life Expectancy and GDP by Country (1998)"
     points {
         x("gdp") { axis.name = "GDP per capita (in dollars)" }
@@ -116,7 +119,7 @@ data.filter { "year"<Int>() == 1998 }.plot {
 <!---FUN complex_bubble_chart_part3-->
 
 ```kotlin
-data.filter { "year"<Int>() == 2023 }.plot {
+dataset.filter { "year"<Int>() == 2023 }.plot {
     layout.title = "Life Expectancy and GDP by Country (2023)"
     points {
         x("gdp") { axis.name = "GDP per capita (in dollars)" }

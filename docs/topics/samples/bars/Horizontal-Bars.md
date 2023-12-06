@@ -29,9 +29,9 @@ val actors by columnOf(
 )
 val screenTime by columnOf(90, 75, 60, 85, 50, 40, 95)
 
-val data = dataFrameOf(actors, screenTime)
+val dataset = dataFrameOf(actors, screenTime)
 
-data.plot {
+dataset.plot {
     layout.title = "Screen Time of Hollywood Actors"
     barsH {
         y(actors) { axis.name = "Actors" }

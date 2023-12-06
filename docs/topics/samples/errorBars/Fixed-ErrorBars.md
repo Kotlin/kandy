@@ -21,12 +21,12 @@ Explore precision in error visualization with 'Fixed ErrorBars Coordinate' in Ka
 <tab title="Dataframe">
 
 ```kotlin
-val years = listOf(2018, 2019, 2020, 2021, 2022)
+val years = listOf("2018", "2019", "2020", "2021", "2022")
 val costMin = listOf(62.7, 64.7, 72.1, 73.7, 68.5)
 val costMax = listOf(68.9, 71.3, 78.9, 76.5, 72.1)
-val data = dataFrameOf(years.toColumn("years"), costMin.toColumn("min"), costMax.toColumn("max"))
+val dataset = dataFrameOf(years.toColumn("years"), costMin.toColumn("min"), costMax.toColumn("max"))
 
-plot(data) {
+plot(dataset) {
     errorBars {
         x("years")
         yMin.constant(20.0)
@@ -41,7 +41,7 @@ plot(data) {
 <tab title="Collections">
 
 ```kotlin
-val years = listOf(2018, 2019, 2020, 2021, 2022)
+val years = listOf("2018", "2019", "2020", "2021", "2022")
 val costMax = listOf(68.9, 71.3, 78.9, 76.5, 72.1)
 
 plot {

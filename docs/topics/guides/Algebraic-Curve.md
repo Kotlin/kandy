@@ -54,7 +54,7 @@ val yRange = linspace(-3.0, 3.0, n + 1)
 val zippedData = xRange.map { x ->
     yRange.map { y -> Triple(x, y, level(F(x, y, a = a, b = b), c = 10.0)) }
 }.flatten()
-val data = mapOf(
+val dataset = mapOf(
     "x" to zippedData.map { it.first },
     "y" to zippedData.map { it.second },
     "z" to zippedData.map { it.third },
@@ -66,7 +66,7 @@ val data = mapOf(
 <!---FUN guideAlgebraicCurvePlot-->
 
 ```kotlin
-plot(data) {
+plot(dataset) {
     raster {
         x("x"<Double>())
         y("y"<Double>())

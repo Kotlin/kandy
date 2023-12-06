@@ -36,7 +36,7 @@ val blankTheme = theme {
 <!---FUN guidePieData-->
 
 ```kotlin
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "name" to listOf('a', 'b', 'c', 'd', 'b'),
     "value" to listOf(40, 90, 10, 50, 20)
 )
@@ -49,7 +49,7 @@ val data = dataFrameOf(
 <!---FUN guidePieBasicPieChart-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     pie {
         slice(value)
         fillColor(name)
@@ -72,7 +72,7 @@ data.plot {
 <!---FUN guidePieCustomizedPieChart-->
 
 ```kotlin
-data.plot {
+dataset.plot {
     pie {
         slice(value)
         fillColor(name) {

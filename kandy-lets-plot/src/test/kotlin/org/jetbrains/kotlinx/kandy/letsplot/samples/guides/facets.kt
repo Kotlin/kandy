@@ -19,7 +19,7 @@ import kotlin.test.Test
 
 class Facets : SampleHelper("multiplot", "guides") {
 
-    private val data = DataFrame.readCSV(
+    private val dataset = DataFrame.readCSV(
         "https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg2.csv",
         parserOptions = ParserOptions(Locale.ENGLISH)
     )
@@ -31,19 +31,19 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFacetsReadDataFrame() {
         // SampleStart
-        val data = DataFrame.readCSV(
+        val dataset = DataFrame.readCSV(
             "https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg2.csv",
             parserOptions = ParserOptions(Locale.ENGLISH)
         )
 
-        data.head(3)
+        dataset.head(3)
         // SampleEnd
     }
 
     @Test
     fun guideFacetsScatterPlotByHorsePower() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             x(`engine horsepower`)
             y(`miles per gallon`)
             points {
@@ -61,7 +61,7 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFacetsGridXPlot() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             points {
                 x(`engine horsepower`)
                 y(`miles per gallon`)
@@ -79,7 +79,7 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFacetsTwoPlotsGrid() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             points {
                 x(`engine horsepower`)
                 y(`miles per gallon`)
@@ -97,7 +97,7 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFacetsWithFormattingAndSorting() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             points {
                 x(`engine horsepower`)
                 y(`miles per gallon`)
@@ -115,7 +115,7 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFacetsWrapOnePlot() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             points {
                 x(`engine horsepower`)
                 y(`miles per gallon`)
@@ -135,7 +135,7 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFacetsWrapTwoPlots() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             points {
                 x(`engine horsepower`)
                 y(`miles per gallon`)
@@ -156,7 +156,7 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFacetsArrangeVertically() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             points {
                 x(`engine horsepower`)
                 y(`miles per gallon`)
@@ -177,7 +177,7 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFreeFacetSimplePlot() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             x(`engine horsepower`)
             y("engine displacement (cu. inches)"<Double>())
             points {
@@ -195,7 +195,7 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFreeFacetWithFixedScales() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             x(`engine horsepower`)
             y("engine displacement (cu. inches)"<Double>())
             points {
@@ -214,7 +214,7 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFreeFacetGridYFree() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             x(`engine horsepower`)
             y("engine displacement (cu. inches)"<Double>())
             points {
@@ -233,7 +233,7 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFreeFacetWrapWithFixedScale() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             x(`engine horsepower`)
             y("engine displacement (cu. inches)"<Double>())
             points {
@@ -254,7 +254,7 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFreeFacetWrapWithFreeScale() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             x(`engine horsepower`)
             y("engine displacement (cu. inches)"<Double>())
             points {

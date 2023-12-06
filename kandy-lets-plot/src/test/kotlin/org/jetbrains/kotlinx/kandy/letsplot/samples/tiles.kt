@@ -31,7 +31,7 @@ class Tiles : SampleHelper("tiles") {
     @Test
     fun tiles_settings_dataframe() {
         // SampleStart
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "store" to listOf("A", "B", "C", "A", "B", "C", "A", "B", "C"),
             "time" to listOf(
                 "morning", "morning", "morning",
@@ -41,7 +41,7 @@ class Tiles : SampleHelper("tiles") {
             "money" to listOf(75, 64, 59, 82, 88, 91, 69, 77, 73)
         )
 
-        data.plot {
+        dataset.plot {
             tiles {
                 x("store")
                 y("time")
@@ -116,14 +116,14 @@ class Tiles : SampleHelper("tiles") {
         val year23 = List(4) { random.nextDouble() }
         val year24 = List(4) { random.nextDouble() }
 
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "city" to cities,
             "2022" to year22,
             "2023" to year23,
             "2024" to year24
         ).gather("2022", "2023", "2024").into("year", "value")
 
-        data.plot {
+        dataset.plot {
             tiles {
                 x("city")
                 y("year") {
@@ -146,13 +146,13 @@ class Tiles : SampleHelper("tiles") {
         val year23 = List(4) { random.nextDouble() }
         val year24 = List(4) { random.nextDouble() }
 
-        val data = mapOf(
+        val dataset = mapOf(
             "city" to cities + cities + cities,
             "year" to List(4) { "2022" } + List(4) { "2023" } + List(4) { "2024" },
             "value" to year22 + year23 + year24,
         )
 
-        data.plot {
+        dataset.plot {
             tiles {
                 x("city")
                 y("year") {
@@ -175,14 +175,14 @@ class Tiles : SampleHelper("tiles") {
         val year23 = List(4) { types.random(random) }
         val year24 = List(4) { types.random(random) }
 
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "city" to cities,
             "2022" to year22,
             "2023" to year23,
             "2024" to year24
         ).gather("2022", "2023", "2024").into("year", "value")
 
-        plot(data) {
+        plot(dataset) {
             tiles {
                 x("city")
                 y("year") {

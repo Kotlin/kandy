@@ -19,7 +19,7 @@ Unravel the complexity of experimental data with 'Boxplot of Experiments' in Kan
 <!---FUN boxplot_expr-->
 
 ```kotlin
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "expr0" to listOf(
         850, 740, 900, 1070, 930, 850, 950, 980, 980,
         880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960
@@ -43,7 +43,7 @@ val data = dataFrameOf(
 ).gather("expr0", "expr1", "expr2", "expr3", "expr4").into("expr", "value")
 
 
-data.plot {
+dataset.plot {
     boxplot("expr", "value") {
         boxes {
             borderLine.color = Color.BLUE

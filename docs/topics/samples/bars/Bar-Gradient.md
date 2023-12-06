@@ -26,9 +26,9 @@ val cities by columnOf("London", "Paris", "Berlin", "Madrid", "Rome", "Amsterdam
 val airPollution by columnOf(70, 65, 50, 60, 55, 45, 53)
 val numberOfCars by columnOf(3000, 2800, 1800, 2500, 2100, 1300, 2000)
 
-val data = dataFrameOf(cities, airPollution, numberOfCars)
+val dataset = dataFrameOf(cities, airPollution, numberOfCars)
 
-data.plot {
+dataset.plot {
     layout.title = "Air Pollution and Vehicle Count Analysis"
     bars {
         x(cities) { axis.name = "City" }
@@ -46,13 +46,13 @@ data.plot {
 <tab title="Collections">
 
 ```kotlin
-val data = mapOf(
+val dataset = mapOf(
     "city" to listOf("London", "Paris", "Berlin", "Madrid", "Rome", "Amsterdam", "Prague"),
     "airPollution" to listOf(70, 65, 55, 60, 50, 45, 52),
     "numberOfCars" to listOf(3000, 2800, 2000, 2500, 2200, 1500, 1800)
 )
 
-data.plot {
+dataset.plot {
     bars {
         x("city") { axis.name = "City" }
         y("numberOfCars") { axis.name = "Number of cars (thousands)" }

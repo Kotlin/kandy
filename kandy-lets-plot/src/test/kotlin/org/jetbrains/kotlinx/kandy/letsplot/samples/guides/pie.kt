@@ -24,7 +24,7 @@ class Pie : SampleHelper("geoms", "guides") {
         blankAxes()
     }
 
-    private val data = dataFrameOf(
+    private val dataset = dataFrameOf(
         "name" to listOf("a", "b", "c", "d", "b"),
         "value" to listOf(40, 90, 10, 50, 20)
     )
@@ -75,19 +75,19 @@ class Pie : SampleHelper("geoms", "guides") {
     @Test
     fun guidePieData() {
         // SampleStart
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "name" to listOf('a', 'b', 'c', 'd', 'b'),
             "value" to listOf(40, 90, 10, 50, 20)
         )
         // SampleEnd
-        assertNotNull(data["name"])
-        assertNotNull(data["value"])
+        assertNotNull(dataset["name"])
+        assertNotNull(dataset["value"])
     }
 
     @Test
     fun guidePieBasicPieChart() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             pie {
                 slice(value)
                 fillColor(name)
@@ -100,7 +100,7 @@ class Pie : SampleHelper("geoms", "guides") {
     @Test
     fun guidePieCustomizedPieChart() {
         // SampleStart
-        data.plot {
+        dataset.plot {
             pie {
                 slice(value)
                 fillColor(name) {
