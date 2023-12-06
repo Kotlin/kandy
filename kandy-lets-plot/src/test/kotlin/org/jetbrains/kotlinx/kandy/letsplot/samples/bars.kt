@@ -170,7 +170,9 @@ class Bars : SampleHelper("bars") {
     fun fixed_bar() {
         // SampleStart
         plot {
-            x(listOf(2017, 2018, 2019, 2020, 2021, 2022, 2023))
+            x(listOf(2017, 2018, 2019, 2020, 2021, 2022, 2023)) {
+                axis.breaks(format = "d")
+            }
             bars {
                 y.constant(100)
                 width = 0.5

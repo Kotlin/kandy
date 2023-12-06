@@ -23,7 +23,7 @@ where scatter plots are fine-tuned with various settings to enhance clarity and 
 <tab title="Dataframe">
 
 ```kotlin
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "xs" to listOf(
         5.93, 9.15, 3.76, 5.04, 2.23,
         7.47, 2.59, 11.67, 7.90, 3.71,
@@ -38,7 +38,7 @@ val data = dataFrameOf(
     )
 )
 
-data.plot {
+dataset.plot {
     points {
         x("xs")
         y("ys")

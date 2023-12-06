@@ -414,10 +414,12 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
                     scale = continuous(8..34)
                 }
                 symbol = Symbol.CIRCLE_FILLED
-                color = Color.WHITE
+                color = Color.GREY
+                alpha = 0.7
                 fillColor(drv)
                 size(hwy) {
                     scale = continuous(5.0..15.0)
+                    legend.breaks(listOf(15, 30, 40), format = "d")
                 }
             }
         }
@@ -550,7 +552,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             bars {
                 x(drv)
                 y(cty)
-                fillColor(cyl)
+                fillColor(cyl) { legend.breaks(format = "d") }
 
                 position = Position.dodge()
             }
@@ -568,7 +570,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             bars {
                 x(drv)
                 y(cty)
-                fillColor(cyl)
+                fillColor(cyl) { legend.breaks(format = "d") }
                 alpha = 0.4
 
                 position = Position.identity()
@@ -586,7 +588,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             bars {
                 x(drv)
                 y(cty)
-                fillColor(cyl)
+                fillColor(cyl) { legend.breaks(format = "d") }
 
                 position = Position.stack()
             }
@@ -599,10 +601,18 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
     fun experimentalMultiplotPlotGrid() {
         val mpgInfoPlot = mpgDF.plot {
             points {
-                x(displ)
-                y(cty) { scale = continuous(8..34) }
-                size(hwy) { scale = continuous(5.0..15.0) }
-                symbol = Symbol.CIRCLE_FILLED; color = Color.WHITE; fillColor(drv)
+                x(displ) // Auto-generated DataFrame columns
+                y(cty) {
+                    scale = continuous(8..34)
+                }
+                symbol = Symbol.CIRCLE_FILLED
+                color = Color.GREY
+                alpha = 0.7
+                fillColor(drv)
+                size(hwy) {
+                    scale = continuous(5.0..15.0)
+                    legend.breaks(listOf(15, 30, 40), format = "d")
+                }
             }
         }
         val mpgCountPlot = mpgDF.groupBy { drv }.count().plot {
@@ -611,7 +621,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         val meanCylDf = mpgDF.groupBy { cyl and drv }.mean { cty }
         val meanCylPlot = meanCylDf.groupBy { cyl }.plot {
             bars {
-                x(drv); y(cty); fillColor(cyl); position = Position.dodge()
+                x(drv); y(cty); fillColor(cyl) {legend.breaks(format = "d")}; position = Position.dodge()
             }
         }
         // SampleStart
@@ -624,10 +634,18 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
     fun experimentalMultiplotPlotBunch() {
         val mpgInfoPlot = mpgDF.plot {
             points {
-                x(displ)
-                y(cty) { scale = continuous(8..34) }
-                size(hwy) { scale = continuous(5.0..15.0) }
-                symbol = Symbol.CIRCLE_FILLED; color = Color.WHITE; fillColor(drv)
+                x(displ) // Auto-generated DataFrame columns
+                y(cty) {
+                    scale = continuous(8..34)
+                }
+                symbol = Symbol.CIRCLE_FILLED
+                color = Color.GREY
+                alpha = 0.7
+                fillColor(drv)
+                size(hwy) {
+                    scale = continuous(5.0..15.0)
+                    legend.breaks(listOf(15, 30, 40), format = "d")
+                }
             }
         }
         val mpgCountPlot = mpgDF.groupBy { drv }.count().plot {
@@ -636,7 +654,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         val meanCylDf = mpgDF.groupBy { cyl and drv }.mean { cty }
         val meanCylPlot = meanCylDf.groupBy { cyl }.plot {
             bars {
-                x(drv); y(cty); fillColor(cyl); position = Position.dodge()
+                x(drv); y(cty); fillColor(cyl) {legend.breaks(format = "d")}; position = Position.dodge()
             }
         }
         // SampleStart
@@ -658,9 +676,9 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
                 y(cty) {
                     scale = continuous(8..34)
                 }
-
                 symbol = Symbol.CIRCLE_FILLED
-                color = Color.WHITE
+                color = Color.GREY
+                alpha = 0.7
                 fillColor(drv)
                 size(hwy) {
                     scale = continuous(2.0..10.0)
@@ -684,9 +702,9 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
                 y(cty) {
                     scale = continuous(8..34)
                 }
-
                 symbol = Symbol.CIRCLE_FILLED
-                color = Color.WHITE
+                color = Color.GREY
+                alpha = 0.7
                 fillColor(drv)
                 size(hwy) {
                     scale = continuous(2.0..10.0)
@@ -695,7 +713,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
 
             layout.size = 750 to 450
 
-            facetGridY(cyl)
+            facetGridY(cyl, format = "d")
         }
             // SampleEnd
             .saveSample()
@@ -712,7 +730,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
                 }
 
                 symbol = Symbol.CIRCLE_FILLED
-                color = Color.WHITE
+                color = Color.GREY
                 fillColor(drv)
                 size(hwy) {
                     scale = continuous(2.0..10.0)
@@ -721,7 +739,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
 
             layout.size = 750 to 450
 
-            facetGrid(drv, cyl)
+            facetGrid(drv, cyl, yFormat = "d")
         }
             // SampleEnd
             .saveSample()
@@ -738,7 +756,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
                 }
 
                 symbol = Symbol.CIRCLE_FILLED
-                color = Color.WHITE
+                color = Color.GREY
                 fillColor(drv)
                 size(hwy) {
                     scale = continuous(2.0..10.0)
@@ -749,7 +767,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
 
             facetWrap(nCol = 3, scalesSharing = ScalesSharing.FREE) {
                 facet(drv)
-                facet(cyl, order = OrderDirection.DESCENDING)
+                facet(cyl, order = OrderDirection.DESCENDING, format = "d")
             }
         }
             // SampleEnd

@@ -20,7 +20,9 @@ Dive into 'Fixed Bar Coordinate' using Kotlin and Kandy, where bar plots are tra
 
 ```kotlin
 plot {
-    x(listOf(2017, 2018, 2019, 2020, 2021, 2022, 2023))
+    x(listOf(2017, 2018, 2019, 2020, 2021, 2022, 2023)) {
+        axis.breaks(format = "d")
+    }
     bars {
         y.constant(100)
         width = 0.5
