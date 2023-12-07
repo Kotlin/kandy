@@ -21,7 +21,7 @@ class Scatter : SampleHelper("geoms", "guides") {
 
     private val rand = java.util.Random(123)
     private val n = 20
-    private val data = dataFrameOf(
+    private val dataset = dataFrameOf(
         "cond" to List(n / 2) { "A" } + List(n / 2) { "B" },
         "xvar" to List(n) { i: Int -> i },
         "yvar" to List(n) { i: Int -> i + rand.nextGaussian() * 3 }
@@ -30,7 +30,7 @@ class Scatter : SampleHelper("geoms", "guides") {
     private val xvar = "xvar"<Int>()
     private val yvar = "yvar"<Double>()
 
-    private val data1 = data.convert { xvar and yvar }.with {
+    private val datasetOverlapping = dataset.convert { xvar and yvar }.with {
         (it.toDouble() / 5).toInt() * 5
     }
 
@@ -41,7 +41,7 @@ class Scatter : SampleHelper("geoms", "guides") {
         // www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)
         val rand = java.util.Random(123)
         val n = 20
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "cond" to List(n / 2) { "A" } + List(n / 2) { "B" },
             "xvar" to List(n) { i: Int -> i },
             "yvar" to List(n) { i: Int -> i + rand.nextGaussian() * 3 }
@@ -50,15 +50,15 @@ class Scatter : SampleHelper("geoms", "guides") {
         val xvar = "xvar"<Int>()
         val yvar = "yvar"<Double>()
         // SampleEnd
-        assertNotNull(data[cond])
-        assertNotNull(data[xvar])
-        assertNotNull(data[yvar])
+        assertNotNull(dataset[cond])
+        assertNotNull(dataset[xvar])
+        assertNotNull(dataset[yvar])
     }
 
     @Test
     fun guideScatterBasicScatterPlot() {
         // SampleStart
-        plot(data) {
+        plot(dataset) {
             points {
                 x(xvar)
                 y(yvar)
@@ -72,7 +72,7 @@ class Scatter : SampleHelper("geoms", "guides") {
     @Test
     fun guideScatterScatterPlotWithDiffSymbol() {
         // SampleStart
-        plot(data) {
+        plot(dataset) {
             points {
                 x(xvar)
                 y(yvar)
@@ -91,7 +91,7 @@ class Scatter : SampleHelper("geoms", "guides") {
     @Test
     fun guideScatterScatterPlotWithOpenSymbol() {
         // SampleStart
-        plot(data) {
+        plot(dataset) {
             points {
                 x(xvar)
                 y(yvar)
@@ -110,21 +110,21 @@ class Scatter : SampleHelper("geoms", "guides") {
     }
 
     @Test
-    fun guideScatterData1() {
+    fun guideScatterdatasetOverlapping() {
         // SampleStart
         // Create data with overlapping points.
-        val data1 = data.convert { xvar and yvar }.with {
+        val datasetOverlapping = dataset.convert { xvar and yvar }.with {
             (it.toDouble() / 5).toInt() * 5
         }
         // SampleEnd
-        assertEquals(typeOf<Int>(), data1[xvar].type())
-        assertEquals(typeOf<Int>(), data1[yvar].type())
+        assertEquals(typeOf<Int>(), datasetOverlapping[xvar].type())
+        assertEquals(typeOf<Int>(), datasetOverlapping[yvar].type())
     }
 
     @Test
     fun guideScatterHandlingOverPlotting() {
         // SampleStart
-        plot(data1) {
+        plot(datasetOverlapping) {
             points {
                 x(xvar) {
                     axis.breaks(listOf(0, 5, 10, 15))
@@ -144,7 +144,7 @@ class Scatter : SampleHelper("geoms", "guides") {
     @Test
     fun guideScatterHandlingOverPlottingJitter() {
         // SampleStart
-        plot(data1) {
+        plot(datasetOverlapping) {
             points {
                 x(xvar) {
                     axis.breaks(listOf(0, 5, 10, 15))

@@ -22,7 +22,7 @@ class Points : SampleHelper("points") {
     @Test
     fun basic_points_plot_dataframe() {
         // SampleStart
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "xs" to listOf(
                 5.93, 9.15, 3.76, 5.04, 2.23,
                 7.47, 2.59, 11.67, 7.90, 3.71,
@@ -37,7 +37,7 @@ class Points : SampleHelper("points") {
             )
         )
 
-        data.plot {
+        dataset.plot {
             points {
                 x("xs")
                 y("ys")
@@ -75,7 +75,7 @@ class Points : SampleHelper("points") {
     @Test
     fun points_settings_dataframe() {
         // SampleStart
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "xs" to listOf(
                 5.93, 9.15, 3.76, 5.04, 2.23,
                 7.47, 2.59, 11.67, 7.90, 3.71,
@@ -90,7 +90,7 @@ class Points : SampleHelper("points") {
             )
         )
 
-        data.plot {
+        dataset.plot {
             points {
                 x("xs")
                 y("ys")
@@ -216,7 +216,7 @@ class Points : SampleHelper("points") {
     @Test
     fun points_with_color_by_category_dataframe() {
         // SampleStart
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "xShot" to listOf(
                 4.02, 5.24, 4.41, 3.99, 3.10, 4.73, 3.20, 6.53, 7.05, 2.81,
                 5.80, 3.87, 4.16, 6.78, 0.52, 0.64, 0.15, 6.09, 5.70, 6.37
@@ -231,8 +231,7 @@ class Points : SampleHelper("points") {
             )
         )
 
-        data.plot {
-            layout.title = "Penalty Shot Outcomes Analysis"
+        dataset.plot {
             points {
                 x("xShot") { axis.name = "Horizontal Position (meters)" }
                 y("yShot") { axis.name = "Vertical Position (meters)" }
@@ -241,9 +240,13 @@ class Points : SampleHelper("points") {
                     scale = categorical(
                         true to Color.GREEN, false to Color.RED
                     )
-                    legend.name = "Outcome\n(Green for Goals\nRed for Misses)"
+                    legend {
+                        name = "Outcome"
+                        breaksLabeled(true to "Goal", false to "Miss")
+                    }
                 }
             }
+            layout.title = "Penalty Shot Outcomes Analysis"
         }
             // SampleEnd
             .saveSample()
@@ -265,20 +268,29 @@ class Points : SampleHelper("points") {
             true, true, false, false, true, false, false, true, true, false
         )
 
+        val dataset = mapOf(
+            "xShot" to xShot,
+            "yShot" to yShot,
+            "outcome" to outcome
+        )
 
-        plot {
-            layout.title = "Penalty Shot Outcomes Analysis"
+
+        plot(dataset) {
             points {
-                x(xShot) { axis.name = "Horizontal Position (meters)" }
-                y(yShot) { axis.name = "Vertical Position (meters)" }
+                x("xShot") { axis.name = "Horizontal Position (meters)" }
+                y("yShot") { axis.name = "Vertical Position (meters)" }
                 size = 8.5
-                color(outcome) {
+                color("outcome") {
                     scale = categorical(
                         true to Color.GREEN, false to Color.RED
                     )
-                    legend.name = "Outcome\n(Green for Goals\nRed for Misses)"
+                    legend {
+                        name = "Outcome"
+                        breaksLabeled(true to "Goal", false to "Miss")
+                    }
                 }
             }
+            layout.title = "Penalty Shot Outcomes Analysis"
         }
         // SampleEnd
     }
@@ -300,7 +312,7 @@ class Points : SampleHelper("points") {
     fun jittered_points_dataframe() {
         // SampleStart
         val random = kotlin.random.Random(42)
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "type" to List(50) { "a" } + List(50) { "b" },
             "value" to List(50) { kotlin.random.Random.nextDouble(0.1, 0.6) } +
                     List(50) { random.nextDouble(-0.5, 0.4) }
@@ -309,7 +321,7 @@ class Points : SampleHelper("points") {
         val type = column<String>("type")
         val value = column<Double>("value")
 
-        data.plot {
+        dataset.plot {
             points {
                 x(type)
                 y(value)
@@ -359,12 +371,15 @@ class Points : SampleHelper("points") {
         plot {
             points {
                 x(week) {
-                    axis.name = "Week"
+                    axis {
+                        name = "Week"
+                        breaks(week.distinct(), format = "d")
+                    }
                 }
                 y(dayOfWeek) {
                     axis {
-                        breaks(listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun").reversed())
                         name = "Day of week"
+                        breaks(listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun").reversed())
                     }
                 }
                 color = Color.BLUE
@@ -404,7 +419,7 @@ class Points : SampleHelper("points") {
             600, 12000, 22000, 40000, 9000,
             4000, 3000, 28000, 35000
         ) named "gdp"
-        val data1998 = dataFrameOf(country, lifeExp1998, pop1998, gdpPerCapita1998).add("year") { 1998 }
+        val dataset1998 = dataFrameOf(country, lifeExp1998, pop1998, gdpPerCapita1998).add("year") { 1998 }
 
         val lifeExp2023 = columnOf(
             79.44, 73.60, 70.46, 63.34, 72.10, 78.15, 80.70,
@@ -423,11 +438,11 @@ class Points : SampleHelper("points") {
             1200, 30000, 34000, 70000, 15000,
             9000, 10000, 40000, 60000
         ) named "gdp"
-        val data2023 = dataFrameOf(country, lifeExp2023, pop2023, gdpPerCapita2023).add("year") { 2023 }
+        val dataset2023 = dataFrameOf(country, lifeExp2023, pop2023, gdpPerCapita2023).add("year") { 2023 }
 
-        val data = data1998.fullJoin(data2023)
+        val dataset = dataset1998.fullJoin(dataset2023)
 
-        data.groupBy("year").plot {
+        dataset.groupBy("year").plot {
             layout.title = "Life Expectancy and GDP by Country"
             points {
                 x("gdp") { axis.name = "GDP per capita (in dollars)" }
@@ -437,7 +452,10 @@ class Points : SampleHelper("points") {
                     scale = continuous(5.0..20.0)
                 }
                 color("year") {
-                    legend.name = ""
+                    legend {
+                        name = ""
+                        breaks(format = "d")
+                    }
                 }
             }
         }
@@ -469,9 +487,9 @@ class Points : SampleHelper("points") {
             600, 12000, 22000, 40000, 9000,
             4000, 3000, 28000, 35000
         ) named "gdp"
-        val data = dataFrameOf(country, lifeExp1998, pop1998, gdpPerCapita1998).add("year") { 1998 }
+        val dataset = dataFrameOf(country, lifeExp1998, pop1998, gdpPerCapita1998).add("year") { 1998 }
         // SampleStart
-        data.filter { "year"<Int>() == 1998 }.plot {
+        dataset.filter { "year"<Int>() == 1998 }.plot {
             layout.title = "Life Expectancy and GDP by Country (1998)"
             points {
                 x("gdp") { axis.name = "GDP per capita (in dollars)" }
@@ -513,9 +531,9 @@ class Points : SampleHelper("points") {
             1200, 30000, 34000, 70000, 15000,
             9000, 10000, 40000, 60000
         ) named "gdp"
-        val data = dataFrameOf(country, lifeExp2023, pop2023, gdpPerCapita2023).add("year") { 2023 }
+        val dataset = dataFrameOf(country, lifeExp2023, pop2023, gdpPerCapita2023).add("year") { 2023 }
         // SampleStart
-        data.filter { "year"<Int>() == 2023 }.plot {
+        dataset.filter { "year"<Int>() == 2023 }.plot {
             layout.title = "Life Expectancy and GDP by Country (2023)"
             points {
                 x("gdp") { axis.name = "GDP per capita (in dollars)" }

@@ -21,9 +21,9 @@ Explore the unique approach of 'Line with Reversed Axis' in Kotlin using Kandy, 
 ```kotlin
 val product = ('A'..'F').toColumn("product")
 val rating = listOf(10, 7, 3, 5, 2, 1).toColumn("rating")
-val data = dataFrameOf(product, rating)
+val dataset = dataFrameOf(product, rating)
 
-plot(data) {
+plot(dataset) {
     line {
         x(rating) {
             scale = continuous(min = 0, max = 12)

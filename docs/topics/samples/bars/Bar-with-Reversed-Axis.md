@@ -23,12 +23,12 @@ offering fresh insights by inverting the conventional axis arrangement.
 <tab title="Dataframe">
 
 ```kotlin
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "task" to listOf("a", "b", "c", "d", "e"),
     "time" to listOf(30, 25, 20, 35, 28)
 )
 
-data.plot {
+dataset.plot {
     bars {
         x("task")
         y("time") {
@@ -43,12 +43,12 @@ data.plot {
 <tab title="Collections">
 
 ```kotlin
-val data = mapOf(
+val dataset = mapOf(
     "task" to listOf("a", "b", "c", "d", "e"),
     "time" to listOf(30, 25, 20, 35, 28)
 )
 
-data.plot {
+dataset.plot {
     bars {
         x("task")
         y("time") {

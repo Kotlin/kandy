@@ -27,14 +27,14 @@ val year22 = List(4) { random.nextDouble() }
 val year23 = List(4) { random.nextDouble() }
 val year24 = List(4) { random.nextDouble() }
 
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "city" to cities,
     "2022" to year22,
     "2023" to year23,
     "2024" to year24
 ).gather("2022", "2023", "2024").into("year", "value")
 
-data.plot {
+dataset.plot {
     tiles {
         x("city")
         y("year") {
@@ -56,13 +56,13 @@ val year22 = List(4) { random.nextDouble() }
 val year23 = List(4) { random.nextDouble() }
 val year24 = List(4) { random.nextDouble() }
 
-val data = mapOf(
+val dataset = mapOf(
     "city" to cities + cities + cities,
     "year" to List(4) { "2022" } + List(4) { "2023" } + List(4) { "2024" },
     "value" to year22 + year23 + year24,
 )
 
-data.plot {
+dataset.plot {
     tiles {
         x("city")
         y("year") {

@@ -20,7 +20,7 @@ focusing on defined border lines for better data understanding.
 <!---FUN border_line_error_bars-->
 
 ```kotlin
-val years = listOf(2018, 2019, 2020, 2021, 2022)
+val years = listOf("2018", "2019", "2020", "2021", "2022")
 val costMin = listOf(62.7, 64.7, 72.1, 73.7, 68.5)
 val costMax = listOf(68.9, 71.3, 78.9, 76.5, 72.1)
 val mid = costMin.zip(costMax).map { (it.first + it.second) / 2.0 }

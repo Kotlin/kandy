@@ -22,12 +22,12 @@ demonstrating the ease and clarity of representing categorical data visually.
 <tab title="Dataframe">
 
 ```kotlin
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "city" to listOf("London", "Paris", "Berlin", "Madrid", "Rome"),
     "perc" to listOf(45, 50, 60, 40, 30)
 )
 
-data.plot {
+dataset.plot {
     layout.title = "Public Transport Usage in European Cities"
     bars {
         x("city") { axis.name = "City" }

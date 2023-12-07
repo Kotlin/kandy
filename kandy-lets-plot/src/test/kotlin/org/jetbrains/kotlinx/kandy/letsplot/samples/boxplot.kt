@@ -17,7 +17,7 @@ class Boxplot : SampleHelper("boxplot") {
     @Test
     fun boxplot_expr() {
         // SampleStart
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "expr0" to listOf(
                 850, 740, 900, 1070, 930, 850, 950, 980, 980,
                 880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960
@@ -41,7 +41,7 @@ class Boxplot : SampleHelper("boxplot") {
         ).gather("expr0", "expr1", "expr2", "expr3", "expr4").into("expr", "value")
 
 
-        data.plot {
+        dataset.plot {
             boxplot("expr", "value") {
                 boxes {
                     borderLine.color = Color.BLUE
@@ -124,11 +124,11 @@ class Boxplot : SampleHelper("boxplot") {
                 .gather(*(0..<10).map { it.toString() }.toTypedArray())
                 .into("num", "value").add("category") { category }
 
-        val data = generateData("category0")
+        val dataset = generateData("category0")
             .concat(generateData("category1"))
             .concat(generateData("category2"))
 
-        data.groupBy("category").plot {
+        dataset.groupBy("category").plot {
             boxplot("num", "value") {
                 boxes {
                     position = Position.dodge()

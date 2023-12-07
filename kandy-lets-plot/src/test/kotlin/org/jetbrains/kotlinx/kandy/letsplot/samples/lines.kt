@@ -283,9 +283,9 @@ class Lines : SampleHelper("line") {
         // SampleStart
         val product = ('A'..'F').toColumn("product")
         val rating = listOf(10, 7, 3, 5, 2, 1).toColumn("rating")
-        val data = dataFrameOf(product, rating)
+        val dataset = dataFrameOf(product, rating)
 
-        plot(data) {
+        plot(dataset) {
             line {
                 x(rating) {
                     scale = continuous(min = 0, max = 12)
@@ -330,13 +330,13 @@ class Lines : SampleHelper("line") {
         val salesClothes = listOf(150.0, 130.0, 160.0, 140.0, 170.0)
         val salesElectronics = listOf(300.0, 320.0, 310.0, 330.0, 340.0)
 
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "month" to months + months + months,
             "sales" to salesProducts + salesClothes + salesElectronics,
             "category" to List(5) { "Products" } + List(5) { "Clothes" } + List(5) { "Electronics" }
         )
 
-        data.groupBy("category").plot {
+        dataset.groupBy("category").plot {
             line {
                 x("month")
                 y("sales")
@@ -355,13 +355,13 @@ class Lines : SampleHelper("line") {
         val salesClothes = listOf(150.0, 130.0, 160.0, 140.0, 170.0)
         val salesElectronics = listOf(300.0, 320.0, 310.0, 330.0, 340.0)
 
-        val data = mapOf(
+        val dataset = mapOf(
             "month" to months + months + months,
             "sales" to salesProducts + salesClothes + salesElectronics,
             "category" to List(5) { "Products" } + List(5) { "Clothes" } + List(5) { "Electronics" }
         )
 
-        data.plot {
+        dataset.plot {
             groupBy("category") {
                 line {
                     x("month")

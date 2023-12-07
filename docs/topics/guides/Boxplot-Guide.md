@@ -312,7 +312,6 @@ Also, we can add outliers using `boxplotOutliers` statistic and `points` layer.
 ```kotlin
 val manualBoxplot = df.plot {
     statBoxplot(cond, rate) {
-        // Non-statistical `boxplot` layer
         boxes {
             // All positional aesthetics match boxplot statistics
             x(Stat.x)
@@ -330,7 +329,7 @@ val manualBoxplot = df.plot {
         }
     }
     layout {
-        title = "`statBoxplot` + non-statistical `boxplot` \n" +
+        title = "`statBoxplot` + `boxes` \n" +
                 "and `statBoxplotOutliers` + `points`"
     }
 }
@@ -385,7 +384,7 @@ Also, we can hide outliers.
 df.plot {
     boxplot(cond, rate) {
         boxes {
-            // Non-stat boxplot context + StatBoxplot context
+            // Boxes context + StatBoxplot context
             // filling color depends on `x` category
             fillColor(Stat.x)
         }

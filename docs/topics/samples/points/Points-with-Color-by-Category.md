@@ -22,7 +22,7 @@ Explore 'Points with Color by Category' using Kandy, where color coding in scatt
 <tab title="Dataframe">
 
 ```kotlin
-val data = dataFrameOf(
+val dataset = dataFrameOf(
     "xShot" to listOf(
         4.02, 5.24, 4.41, 3.99, 3.10, 4.73, 3.20, 6.53, 7.05, 2.81,
         5.80, 3.87, 4.16, 6.78, 0.52, 0.64, 0.15, 6.09, 5.70, 6.37
@@ -37,8 +37,7 @@ val data = dataFrameOf(
     )
 )
 
-data.plot {
-    layout.title = "Penalty Shot Outcomes Analysis"
+dataset.plot {
     points {
         x("xShot") { axis.name = "Horizontal Position (meters)" }
         y("yShot") { axis.name = "Vertical Position (meters)" }
@@ -47,9 +46,13 @@ data.plot {
             scale = categorical(
                 true to Color.GREEN, false to Color.RED
             )
-            legend.name = "Outcome\n(Green for Goals\nRed for Misses)"
+            legend {
+                name = "Outcome"
+                breaksLabeled(true to "Goal", false to "Miss")
+            }
         }
     }
+    layout.title = "Penalty Shot Outcomes Analysis"
 }
 ```
 
@@ -70,20 +73,29 @@ val outcome = listOf(
     true, true, false, false, true, false, false, true, true, false
 )
 
+val dataset = mapOf(
+    "xShot" to xShot,
+    "yShot" to yShot,
+    "outcome" to outcome
+)
 
-plot {
-    layout.title = "Penalty Shot Outcomes Analysis"
+
+plot(dataset) {
     points {
-        x(xShot) { axis.name = "Horizontal Position (meters)" }
-        y(yShot) { axis.name = "Vertical Position (meters)" }
+        x("xShot") { axis.name = "Horizontal Position (meters)" }
+        y("yShot") { axis.name = "Vertical Position (meters)" }
         size = 8.5
-        color(outcome) {
+        color("outcome") {
             scale = categorical(
                 true to Color.GREEN, false to Color.RED
             )
-            legend.name = "Outcome\n(Green for Goals\nRed for Misses)"
+            legend {
+                name = "Outcome"
+                breaksLabeled(true to "Goal", false to "Miss")
+            }
         }
     }
+    layout.title = "Penalty Shot Outcomes Analysis"
 }
 ```
 

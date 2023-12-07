@@ -625,10 +625,12 @@ val mpgInfoPlot = mpgDF.plot {
             scale = continuous(8..34)
         }
         symbol = Symbol.CIRCLE_FILLED
-        color = Color.WHITE
+        color = Color.GREY
+        alpha = 0.7
         fillColor(drv)
         size(hwy) {
             scale = continuous(5.0..15.0)
+            legend.breaks(listOf(15, 30, 40), format = "d")
         }
     }
 }
@@ -832,7 +834,7 @@ val meanCylPlot = meanCylDf.groupBy { cyl }.plot {
     bars {
         x(drv)
         y(cty)
-        fillColor(cyl)
+        fillColor(cyl) { legend.breaks(format = "d") }
 
         position = Position.dodge()
     }
@@ -853,7 +855,7 @@ meanCylDf.groupBy { cyl }.plot {
     bars {
         x(drv)
         y(cty)
-        fillColor(cyl)
+        fillColor(cyl) { legend.breaks(format = "d") }
         alpha = 0.4
 
         position = Position.identity()
@@ -874,7 +876,7 @@ meanCylDf.groupBy { cyl }.plot {
     bars {
         x(drv)
         y(cty)
-        fillColor(cyl)
+        fillColor(cyl) { legend.breaks(format = "d") }
 
         position = Position.stack()
     }
@@ -950,9 +952,9 @@ mpgDF.plot {
         y(cty) {
             scale = continuous(8..34)
         }
-
         symbol = Symbol.CIRCLE_FILLED
-        color = Color.WHITE
+        color = Color.GREY
+        alpha = 0.7
         fillColor(drv)
         size(hwy) {
             scale = continuous(2.0..10.0)
@@ -978,9 +980,9 @@ mpgDF.plot {
         y(cty) {
             scale = continuous(8..34)
         }
-
         symbol = Symbol.CIRCLE_FILLED
-        color = Color.WHITE
+        color = Color.GREY
+        alpha = 0.7
         fillColor(drv)
         size(hwy) {
             scale = continuous(2.0..10.0)
@@ -989,7 +991,7 @@ mpgDF.plot {
 
     layout.size = 750 to 450
 
-    facetGridY(cyl)
+    facetGridY(cyl, format = "d")
 }
 ```
 
@@ -1010,7 +1012,7 @@ mpgDF.plot {
         }
 
         symbol = Symbol.CIRCLE_FILLED
-        color = Color.WHITE
+        color = Color.GREY
         fillColor(drv)
         size(hwy) {
             scale = continuous(2.0..10.0)
@@ -1019,7 +1021,7 @@ mpgDF.plot {
 
     layout.size = 750 to 450
 
-    facetGrid(drv, cyl)
+    facetGrid(drv, cyl, yFormat = "d")
 }
 ```
 
@@ -1040,7 +1042,7 @@ mpgDF.plot {
         }
 
         symbol = Symbol.CIRCLE_FILLED
-        color = Color.WHITE
+        color = Color.GREY
         fillColor(drv)
         size(hwy) {
             scale = continuous(2.0..10.0)
@@ -1051,7 +1053,7 @@ mpgDF.plot {
 
     facetWrap(nCol = 3, scalesSharing = ScalesSharing.FREE) {
         facet(drv)
-        facet(cyl, order = OrderDirection.DESCENDING)
+        facet(cyl, order = OrderDirection.DESCENDING, format = "d")
     }
 }
 ```

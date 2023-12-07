@@ -25,12 +25,12 @@ class Bars : SampleHelper("bars") {
     @Test
     fun simple_bar_plot_dataframe() {
         // SampleStart
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "city" to listOf("London", "Paris", "Berlin", "Madrid", "Rome"),
             "perc" to listOf(45, 50, 60, 40, 30)
         )
 
-        data.plot {
+        dataset.plot {
             layout.title = "Public Transport Usage in European Cities"
             bars {
                 x("city") { axis.name = "City" }
@@ -124,9 +124,9 @@ class Bars : SampleHelper("bars") {
         val airPollution by columnOf(70, 65, 50, 60, 55, 45, 53)
         val numberOfCars by columnOf(3000, 2800, 1800, 2500, 2100, 1300, 2000)
 
-        val data = dataFrameOf(cities, airPollution, numberOfCars)
+        val dataset = dataFrameOf(cities, airPollution, numberOfCars)
 
-        data.plot {
+        dataset.plot {
             layout.title = "Air Pollution and Vehicle Count Analysis"
             bars {
                 x(cities) { axis.name = "City" }
@@ -145,13 +145,13 @@ class Bars : SampleHelper("bars") {
     @Test
     fun bar_gradient_collections() {
         // SampleStart
-        val data = mapOf(
+        val dataset = mapOf(
             "city" to listOf("London", "Paris", "Berlin", "Madrid", "Rome", "Amsterdam", "Prague"),
             "airPollution" to listOf(70, 65, 55, 60, 50, 45, 52),
             "numberOfCars" to listOf(3000, 2800, 2000, 2500, 2200, 1500, 1800)
         )
 
-        data.plot {
+        dataset.plot {
             bars {
                 x("city") { axis.name = "City" }
                 y("numberOfCars") { axis.name = "Number of cars (thousands)" }
@@ -170,7 +170,9 @@ class Bars : SampleHelper("bars") {
     fun fixed_bar() {
         // SampleStart
         plot {
-            x(listOf(2017, 2018, 2019, 2020, 2021, 2022, 2023))
+            x(listOf(2017, 2018, 2019, 2020, 2021, 2022, 2023)) {
+                axis.breaks(format = "d")
+            }
             bars {
                 y.constant(100)
                 width = 0.5
@@ -188,12 +190,12 @@ class Bars : SampleHelper("bars") {
     @Test
     fun bar_with_reversed_axis_dataframe() {
         // SampleStart
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "task" to listOf("a", "b", "c", "d", "e"),
             "time" to listOf(30, 25, 20, 35, 28)
         )
 
-        data.plot {
+        dataset.plot {
             bars {
                 x("task")
                 y("time") {
@@ -209,12 +211,12 @@ class Bars : SampleHelper("bars") {
     @Test
     fun bar_with_reversed_axis_collections() {
         // SampleStart
-        val data = mapOf(
+        val dataset = mapOf(
             "task" to listOf("a", "b", "c", "d", "e"),
             "time" to listOf(30, 25, 20, 35, 28)
         )
 
-        data.plot {
+        dataset.plot {
             bars {
                 x("task")
                 y("time") {
@@ -235,9 +237,9 @@ class Bars : SampleHelper("bars") {
         )
         val screenTime by columnOf(90, 75, 60, 85, 50, 40, 95)
 
-        val data = dataFrameOf(actors, screenTime)
+        val dataset = dataFrameOf(actors, screenTime)
 
-        data.plot {
+        dataset.plot {
             layout.title = "Screen Time of Hollywood Actors"
             barsH {
                 y(actors) { axis.name = "Actors" }
@@ -279,14 +281,14 @@ class Bars : SampleHelper("bars") {
     @Test
     fun grouped_bars_dataframe() {
         // SampleStart
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "day" to listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
             "coffee" to listOf(0.81, 0.78, 0.72, 0.65, 0.73, 0.49, 0.38),
             "tea" to listOf(0.12, 0.16, 0.21, 0.26, 0.24, 0.22, 0.30),
             "soda" to listOf(0.07, 0.06, 0.07, 0.09, 0.03, 0.29, 0.32),
         ).gather("coffee", "tea", "soda").into("drink", "amount")
 
-        data.groupBy("drink").plot {
+        dataset.groupBy("drink").plot {
             layout.title = "Weekly Beverage Consumption Trends"
             bars {
                 x("day")
@@ -311,13 +313,13 @@ class Bars : SampleHelper("bars") {
         val coffee = listOf(0.81, 0.78, 0.72, 0.65, 0.73, 0.49, 0.38)
         val tea = listOf(0.12, 0.16, 0.21, 0.26, 0.24, 0.22, 0.30)
         val soda = listOf(0.07, 0.06, 0.07, 0.09, 0.03, 0.29, 0.32)
-        val data = mapOf(
+        val dataset = mapOf(
             "day" to days + days + days,
             "amount" to coffee + tea + soda,
             "drink" to List(7) { "coffee" } + List(7) { "tea" } + List(7) { "soda" }
         )
 
-        data.plot {
+        dataset.plot {
             layout.title = "Weekly Beverage Consumption Trends"
             groupBy("drink") {
                 bars {
@@ -339,14 +341,14 @@ class Bars : SampleHelper("bars") {
     @Test
     fun stacked_bars_dataframe() {
         // SampleStart
-        val data = dataFrameOf(
+        val dataset = dataFrameOf(
             "day" to listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
             "coffee" to listOf(0.81, 0.78, 0.72, 0.65, 0.73, 0.49, 0.38),
             "tea" to listOf(0.12, 0.16, 0.21, 0.26, 0.24, 0.22, 0.30),
             "soda" to listOf(0.07, 0.06, 0.07, 0.09, 0.03, 0.29, 0.32),
         ).gather("coffee", "tea", "soda").into("drink", "amount")
 
-        data.groupBy("drink").plot {
+        dataset.groupBy("drink").plot {
             layout.title = "Weekly Beverage Consumption Trends"
             bars {
                 x("day")
@@ -372,13 +374,13 @@ class Bars : SampleHelper("bars") {
         val coffee = listOf(0.81, 0.78, 0.72, 0.65, 0.73, 0.49, 0.38)
         val tea = listOf(0.12, 0.16, 0.21, 0.26, 0.24, 0.22, 0.30)
         val soda = listOf(0.07, 0.06, 0.07, 0.09, 0.03, 0.29, 0.32)
-        val data = mapOf(
+        val dataset = mapOf(
             "day" to days + days + days,
             "amount" to coffee + tea + soda,
             "drink" to List(7) { "coffee" } + List(7) { "tea" } + List(7) { "soda" }
         )
 
-        data.plot {
+        dataset.plot {
             layout.title = "Weekly Beverage Consumption Trends"
             groupBy("drink") {
                 bars {

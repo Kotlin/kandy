@@ -37,7 +37,7 @@ class AlgebraicCurve : SampleHelper("geoms", "guides") {
     private val zippedData = xRange.map { x ->
         yRange.map { y -> Triple(x, y, level(F(x, y, a = a, b = b), c = 10.0)) }
     }.flatten()
-    private val data = mapOf(
+    private val dataset = mapOf(
         "x" to zippedData.map { it.first },
         "y" to zippedData.map { it.second },
         "z" to zippedData.map { it.third },
@@ -76,21 +76,21 @@ class AlgebraicCurve : SampleHelper("geoms", "guides") {
         val zippedData = xRange.map { x ->
             yRange.map { y -> Triple(x, y, level(F(x, y, a = a, b = b), c = 10.0)) }
         }.flatten()
-        val data = mapOf(
+        val dataset = mapOf(
             "x" to zippedData.map { it.first },
             "y" to zippedData.map { it.second },
             "z" to zippedData.map { it.third },
         )
         // SampleEnd
-        assertNotNull(data["x"])
-        assertNotNull(data["y"])
-        assertNotNull(data["z"])
+        assertNotNull(dataset["x"])
+        assertNotNull(dataset["y"])
+        assertNotNull(dataset["z"])
     }
 
     @Test
     fun guideAlgebraicCurvePlot() {
         // SampleStart
-        plot(data) {
+        plot(dataset) {
             raster {
                 x("x"<Double>())
                 y("y"<Double>())

@@ -25,11 +25,11 @@ fun generateData(category: String) =
         .gather(*(0..<10).map { it.toString() }.toTypedArray())
         .into("num", "value").add("category") { category }
 
-val data = generateData("category0")
+val dataset = generateData("category0")
     .concat(generateData("category1"))
     .concat(generateData("category2"))
 
-data.groupBy("category").plot {
+dataset.groupBy("category").plot {
     boxplot("num", "value") {
         boxes {
             position = Position.dodge()
