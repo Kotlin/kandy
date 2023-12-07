@@ -17,8 +17,8 @@ Tailor your plot labels for maximum clarity and impact.
 
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.guides.LabelFormat-->
 
-> This guide is taken from
-> lets-plot: [Formatting](https://github.com/JetBrains/lets-plot-kotlin/blob/master/docs/formats.md).
+> This guide is taken from lets-plot:
+> [Formatting](https://github.com/JetBrains/lets-plot-kotlin/blob/master/docs/formats.md).
 
 Formatting provides the ability to do complex variable substitutions and value formatting.
 
