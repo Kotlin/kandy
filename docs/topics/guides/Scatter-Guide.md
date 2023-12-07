@@ -100,7 +100,15 @@ plot(dataset) {
 
 ### Handling Over-plotting
 
-<!---FUN guideScatterData1-->
+<!---FUN guideScatterDatasetOverlapping-->
+
+```kotlin
+// Create data with overlapping points.
+val datasetOverlapping = dataset.convert { xvar and yvar }.with {
+    (it.toDouble() / 5).toInt() * 5
+}
+```
+
 <!---END-->
 
 <!---FUN guideScatterHandlingOverPlotting-->
