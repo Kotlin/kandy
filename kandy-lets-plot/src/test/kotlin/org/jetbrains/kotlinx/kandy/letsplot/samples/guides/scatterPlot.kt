@@ -110,7 +110,7 @@ class Scatter : SampleHelper("geoms", "guides") {
     }
 
     @Test
-    fun guideScatterdatasetOverlapping() {
+    fun guideScatterDatasetOverlapping() {
         // SampleStart
         // Create data with overlapping points.
         val datasetOverlapping = dataset.convert { xvar and yvar }.with {
