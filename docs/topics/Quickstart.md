@@ -83,11 +83,11 @@ This code results in your inaugural plot using Kandy.
 
 
 
-<seealso style="cards">
-       <category ref="example-ktnb">
-           <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/quickstart.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
-           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/9pkiPYPuxkuLtYIkLuqifc" summary="Experiment with this example on Datalore">Datalore Notebook</a>
-       </category>
+<seealso>
+    <category ref="example-ktnb">
+        <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/quickstart.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
+        <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/9pkiPYPuxkuLtYIkLuqifc" summary="Experiment with this example on Datalore">Datalore Notebook</a>
+    </category>
     <category ref="get-start">
         <a href="Getting-Started.md">Getting Started</a>
         <a href="User-Guide.topic">User Guide</a>
