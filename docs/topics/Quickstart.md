@@ -1,18 +1,18 @@
 # Quickstart
 
-<web-summary xmlns="">
-Discover Kandy, a Kotlin library crafted for efficient and versatile data visualization,
-offering a distinctive DSL tailored for diverse charting needs.
+<web-summary>
+Quickly get started with Kandy.
+This guide provides straightforward steps
+for integrating Kandy and a basic example to kickstart your journey into advanced data visualization.
 </web-summary>
 
 <card-summary>
-Kandy: Transform your data visualization in Kotlin projects.
-Kandy simplifies crafting complex charts with its intuitive and flexible DSL.
+Discover how to easily integrate this versatile library for data visualization and create your first plot.
 </card-summary>
 
 <link-summary>
-Unveil the power of Kandy for data visualization in Kotlin.
-Kandy streamlines chart creation, combining flexibility and simplicity in its DSL.
+Kickstart your data visualization with Kandy.
+Follow easy steps to integrate and explore Kandy's basic plotting capabilities.
 </link-summary>
 
 Kandy can be integrated into Kotlin projects and interactive editors.

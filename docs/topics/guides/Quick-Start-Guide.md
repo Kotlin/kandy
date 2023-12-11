@@ -10,7 +10,7 @@ From data preparation to crafting detailed plots, this guide ensures a smooth st
 </web-summary>
 
 <card-summary>
-Kandy Quick Start Guide: This guide covers all the essentials, from data handling to advanced plotting techniques,
+This guide covers all the essentials, from data handling to advanced plotting techniques,
 to kickstart your Kandy experience.
 </card-summary>
 

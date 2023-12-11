@@ -5,10 +5,8 @@
     Each function, class, and method is accompanied by meticulous descriptions and hands-on examples.
 </web-summary>
 <card-summary>
-    Kandy's API at your fingertips: Organized documentation, in-depth details, and illustrative examples.
+    Organized documentation, in-depth details, and illustrative examples for Kandy's API.
 </card-summary>
 <link-summary>
-    Kandy API: Comprehensive Documentation and Practical Examples.
+    Kandy API: comprehensive documentation and practical examples.
 </link-summary>
-
-Start typing here...

@@ -1,16 +1,18 @@
 # Getting Started
 
 <web-summary>
-    Embark on your Kandy journey with an easy guide to creating compelling visualizations.
-    Start by crafting your very first plot and explore further with more intricate visual scenarios.
+    Start your journey with Kandy, learning to create engaging visualizations effortlessly.
+    Explore Kandy's functionalities in various environments including Kotlin Notebook,
+    Datalore, Jupyter Notebook, and Gradle projects.
 </web-summary>
 <card-summary>
-    Dive into Kandy: Your guide to crafting captivating visualizations from your first plot to advanced graphs.
+    Mastering effortless visualization across diverse platforms.
 </card-summary>
 <link-summary>
-    Kandy's Introduction and Your First Graph Creation.
+    Kandy's introduction and your first plot creation.
 </link-summary>
-<show-structure for="Getting Started" depth="0"/>
+
+<show-structure for="Getting Started" depth="0"></show-structure>
 
 You can utilize Kandy both in Kotlin projects and in interactive editors.
 For detailed instructions, refer to the respective pages:
