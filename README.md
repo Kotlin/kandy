@@ -8,18 +8,18 @@
 Kandy is an open-source plotting library for Kotlin
 that provides a powerful and flexible DSL for creating graphs and utilizes various popular engines.
 
-* Simplicity — provides an easy-to-use, simple and intuitive API,
-  allowing users to quickly get started with creating visualizations.
-* Flexibility — offers a wide range of options to implement diverse visualization requirements
-* Readable — utilizes a concise DSL that provides a clear and concise representation of the constructed graph.
-  The DSL is designed to be easy to understand and read, making it accessible to users of all levels of experience.
-* Multi-engine — provides a common DSL that can be used with different well-known engines.
-  This allows users to choose the engine that best suits their needs and preferences,
-  without having to learn a new syntax.
-* Typesafe — provides safe handling of various data types and supports Kotlin null safety,
-  ensuring that users can work with their data in a secure and efficient manner.
-* Data flexibility — seamlessly supports collections and [dataframe](https://github.com/Kotlin/dataframe#readme),
-  enabling users to work with a wide range of data formats in their visualizations.
+* Cross-platform compatibility — Works effortlessly within Kotlin notebooks on various platforms,
+  including IntelliJ IDEA, [Datalore](https://datalore.jetbrains.com/),
+  and [Jupyter](https://jupyter.org/), as well as in standard Kotlin projects.
+* Swing rendering — Features Swing rendering for outputs in the
+  [Kotlin Notebook plugin](https://plugins.jetbrains.com/plugin/16340-kotlin-notebook).
+* Interactive Chart features — Includes interactive tooltips for charts rendered in HTML and Swing.
+* Multiple format export — Allows charts to be saved in various formats like `svg`, `png`, `html`, `jpg`/`jpeg`,
+  and `tiff`.
+* Kotlin collections and DataFrame support — Seamlessly integrates with Kotlin collections
+  and allows graph construction using [Kotlin DataFrame](https://kotlin.github.io/dataframe/overview.html),
+  especially suitable for hierarchical dataframes.
+* Type and null safety — Ensures type safety and Kotlin null safety.
 
 Inspired by [The Grammar of Graphics](https://www.goodreads.com/book/show/2549408.The_Grammar_of_Graphics).
 
@@ -40,11 +40,10 @@ plot {
 }
 ```
 
-To get started, use these cheatsheets
-for
-[`kandy-lets-plot`](examples/notebooks/lets-plot/lets_plot_cheatsheet.ipynb)([Datalore link](https://datalore.jetbrains.com/view/notebook/Q82jBGHFgEmJhUHh7wBMmh))
-and
-[`kandy-echarts`](examples/notebooks/echarts/echarts_cheatsheet.ipynb)([Datalore link](https://datalore.jetbrains.com/view/notebook/kCKb37O2P9ZYEHGPnOZc9r)).
+![Bar Plot](docs/images/readme_quickstart.svg)
+
+For guidance on getting started, additional examples, and tutorials,
+please refer to our [documentation](https://kotlin.github.io/kandy/welcome.html).
 
 ## Table of Contents
 
@@ -70,7 +69,7 @@ to make it easy and quick for users to create both basic and complex charts with
 without the need for lengthy documentation.
 Depending on the task, users can choose from different engines for the perfect visualization.
 
-Kandy integrates with [dataframe](https://github.com/Kotlin/dataframe#readme),
+Kandy integrates with [Kotlin DataFrame](https://kotlin.github.io/dataframe/overview.html),
 another Kotlin library for working with data, allowing for a seamless transition from data processing to final
 visualization.
 Additionally,
@@ -87,53 +86,60 @@ The library comprises the following modules:
   and is a proven tool for creating visualizations.
 * `kandy-echarts` — This module provides an implementation of
   the [Apache ECharts](https://echarts.apache.org/en/index.html) library,
-  which is a widely-used tool for creating interactive visualizations.
+  which is a widely used tool for creating interactive visualizations.
 
 ## Examples
 
 ### Lets-Plot
 
+<!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.QuickStart-->
+
+<!---FUN quickstart_sample_collections-->
+
 ```kotlin
-val simpleDataset = mapOf(
+val weatherData = mapOf(
     "time" to listOf(0, 1, 2, 4, 5, 7, 8, 9),
     "temperature" to listOf(12.0, 14.2, 15.1, 15.9, 17.9, 15.6, 14.2, 24.3),
     "humidity" to listOf(0.5, 0.32, 0.11, 0.89, 0.68, 0.57, 0.56, 0.5)
-)
+)  // Combine data into a map
 
-plot(simpleDataset) {
-    x("time"<Int>())
-
-    y("temperature"<Double>()) {
+plot(weatherData) { // Begin plotting
+    x("time") // Set x-axis with time data
+    y("temperature") { // Set y-axis with temperature data
+        // Define scale for temperature (y-axis)
         scale = continuous(0.0..25.5)
     }
 
-    bars {
-        fillColor("humidity"<Double>()) {
+    bars { // Add a bar layer
+        fillColor("humidity") { // Customizing bar colors based on humidity
+            // Setting the color range
             scale = continuous(range = Color.YELLOW..Color.RED)
         }
-        borderLine.width = 0.0
+        borderLine.width = 0.0 // Define border line width
     }
 
     line {
-        width = 3.0
-        color = Color.hex("#6e5596")
-        type = LineType.DOTDASH
+        width = 3.0 // Set line width
+        color = Color.hex("#6e5596") // Define line color
+        type = LineType.DOTDASH // Specify the line type
     }
 
-    layout {
-        title = "Simple plot with lets-plot"
+    layout { // Set plot layout
+        title = "Simple plot with kandy-lets-plot" // Add title
+        // Add caption
         caption = "See `examples` section for more\n complicated and interesting examples!"
+        size = 700 to 450 // Plot dimension settings
     }
-
 }
 ```
 
-![Kandy example via Lets-plot](examples/images/lets_plot_simple.png)
+<!---END-->
 
-> You can get this example as a [notebook](examples/notebooks/lets-plot/simple_lets_plot.ipynb),
-> as [Datalore notebook](https://datalore.jetbrains.com/view/notebook/9p6A2HMfKhsltuAzsNYu4M),
-> or as
-> a [Kotlin project](examples/idea-examples/lets-plot-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/letsplot/simple_lets_plot.kt).
+![kandy-lets-plot example](docs/images/quickstart_sample.svg)
+
+> You can get this example as a [notebook](examples/notebooks/lets-plot/quickstart.ipynb),
+> as [Datalore notebook](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/9pkiPYPuxkuLtYIkLuqifc),
+> or as a [Kotlin project](examples/idea-examples/lets-plot-simple).
 
 ### ECharts
 
@@ -174,18 +180,20 @@ plot(dataset) {
 }
 ```
 
-![Kandy example echarts](examples/images/echarts_readme_sample.png)
+![kandy-echarts example](examples/images/echarts_readme_sample.png)
 
 > You can get this example as a [notebook](examples/notebooks/echarts/simple_echarts.ipynb),
 > as a [Datalore notebook](https://datalore.jetbrains.com/view/notebook/uJ6jVPCpNAhH7DeHq7344L),
-> or as
-> a [Kotlin project](examples/idea-examples/echarts-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/echarts/simple_echarts.kt).
+> or as a [Kotlin project](examples/idea-examples/echarts-simple).
 
-More examples of working with the library can be found [here](examples/README.md).
+More examples of working with the library can be found [here](https://kotlin.github.io/kandy/examples.html).
 
 ## Using Kandy
 
 ### Kotlin Notebook, Datalore, Kotlin Jupyter Notebook
+
+> For more detailed instructions on how to get started with Kandy, refer to the
+> [Getting Started](https://kotlin.github.io/kandy/getting-started.html).
 
 You can use Kandy in Kotlin-supported notebooks,
 namely in [Kotlin Notebook](https://plugins.jetbrains.com/plugin/16340-kotlin-notebook),

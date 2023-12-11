@@ -50,6 +50,7 @@ tasks.withType<KotlinCompile> {
 
 korro {
     docs = fileTree(rootProject.rootDir) {
+        include("docs/topics/Quickstart.md")
         include("docs/topics/samples/*.md")
         include("docs/topics/samples/line/*.md")
         include("docs/topics/samples/area/*.md")
@@ -64,6 +65,7 @@ korro {
         include("docs/topics/samples/heatmap/*.md")
         include("docs/topics/samples/layout/*.md")
         include("docs/topics/guides/*.md")
+        include("README.md")
     }
 
     samples = fileTree(project.projectDir) {
