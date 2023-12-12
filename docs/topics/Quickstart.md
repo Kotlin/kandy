@@ -1,18 +1,18 @@
 # Quickstart
 
-<web-summary xmlns="">
-Discover Kandy, a Kotlin library crafted for efficient and versatile data visualization,
-offering a distinctive DSL tailored for diverse charting needs.
+<web-summary>
+Quickly get started with Kandy.
+This guide provides straightforward steps
+for integrating Kandy and a basic example to kickstart your journey into advanced data visualization.
 </web-summary>
 
 <card-summary>
-Kandy: Transform your data visualization in Kotlin projects.
-Kandy simplifies crafting complex charts with its intuitive and flexible DSL.
+Discover how to easily integrate this versatile library for data visualization and create your first plot.
 </card-summary>
 
 <link-summary>
-Unveil the power of Kandy for data visualization in Kotlin.
-Kandy streamlines chart creation, combining flexibility and simplicity in its DSL.
+Kickstart your data visualization with Kandy.
+Follow easy steps to integrate and explore Kandy's basic plotting capabilities.
 </link-summary>
 
 Kandy can be integrated into Kotlin projects and interactive editors.
@@ -34,15 +34,15 @@ This command makes all necessary classes and methods available for chart constru
 
 Now, let's create a chart. Use the code below to build your first plot with Kandy:
 
-```kotlin
-val time = listOf(0, 1, 2, 4, 5, 7, 8, 9)
-val temperature = listOf(12.0, 14.2, 15.1, 15.9, 17.9, 15.6, 14.2, 24.3)
-val humidity = listOf(0.5, 0.32, 0.11, 0.89, 0.68, 0.57, 0.56, 0.5)
+<!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.QuickStart-->
 
+<!---FUN quickstart_sample_collections-->
+
+```kotlin
 val weatherData = mapOf(
-    "time" to time,
-    "temperature" to temperature,
-    "humidity" to humidity
+    "time" to listOf(0, 1, 2, 4, 5, 7, 8, 9),
+    "temperature" to listOf(12.0, 14.2, 15.1, 15.9, 17.9, 15.6, 14.2, 24.3),
+    "humidity" to listOf(0.5, 0.32, 0.11, 0.89, 0.68, 0.57, 0.56, 0.5)
 )  // Combine data into a map
 
 plot(weatherData) { // Begin plotting
@@ -63,7 +63,7 @@ plot(weatherData) { // Begin plotting
     line {
         width = 3.0 // Set line width
         color = Color.hex("#6e5596") // Define line color
-        type = LineType.DOTDASH // Specify line type
+        type = LineType.DOTDASH // Specify the line type
     }
 
     layout { // Set plot layout
@@ -75,13 +75,19 @@ plot(weatherData) { // Begin plotting
 }
 ```
 
+<!---END-->
+
 This code results in your inaugural plot using Kandy.
 
 ![Simple plot with Kandy](quickstart_sample.svg) { border-effect="rounded" }
 
 
 
-<seealso style="cards">
+<seealso>
+    <category ref="example-ktnb">
+        <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/quickstart.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
+        <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/9pkiPYPuxkuLtYIkLuqifc" summary="Experiment with this example on Datalore">Datalore Notebook</a>
+    </category>
     <category ref="get-start">
         <a href="Getting-Started.md">Getting Started</a>
         <a href="User-Guide.topic">User Guide</a>

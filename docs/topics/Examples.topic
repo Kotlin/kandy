@@ -11,11 +11,11 @@
         From simple to intricate, our examples will guide you through Kandy's capabilities.
     </web-summary>
     <card-summary>
-        Explore a vast collection of plot demonstrations, ranging from simple to intricate, each accompanied by code and
-        visuals.
+        Explore an extensive collection of plot demonstrations,
+        ranging from simple to complex, each accompanied by code and charts.
     </card-summary>
     <link-summary>
-        Kandy's Showcase: Plots, Codes, and Visuals.
+        Kandy Gallery: Plots, Codes, and Visuals.
     </link-summary>
 
     <chapter title="Line" id="examples-line" collapsible="true" default-state="expanded">
@@ -112,7 +112,8 @@
 
             <li>
                 <a href="Comparing-Line-vs-Path-Plots.md">
-                    <img src="preview_line_and_path_comp_2.svg" alt="Comparing Line vs. Path Plots" border-effect="line"/>
+                    <img src="preview_line_and_path_comp_2.svg" alt="Comparing Line vs. Path Plots"
+                         border-effect="line"/>
                     Comparing Line vs. Path Plots
                 </a>
             </li>
@@ -589,7 +590,8 @@
             </li>
             <li>
                 <a href="Axis-And-Legend-Configuration.md">
-                    <img src="axis_and_legend_configuration.svg" alt="Axis And Legend Configuration" border-effect="line"/>
+                    <img src="axis_and_legend_configuration.svg" alt="Axis And Legend Configuration"
+                         border-effect="line"/>
                     Axis And Legend Configuration
                 </a>
             </li>
