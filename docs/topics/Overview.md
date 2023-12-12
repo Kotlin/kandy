@@ -13,44 +13,42 @@
 
 ## What is Kandy?
 
-Kandy is an open-source data visualization library crafted exclusively for Kotlin.
-Embracing a contemporary approach to data visualization within a statically typed language framework,
-Kandy presents an idiomatic and flexible DSL.
-This DSL integrates seamlessly with Kotlin's type safety and robust tooling,
-facilitating the rapid crafting of graphs with markedly reduced exceptions.
-Furthermore, it capitalizes on various popular engines,
-enhancing its versatility and performance for a streamlined and powerful graph-building experience.
+Kandy is an open-source data visualization library designed for Kotlin.
+It adopts a modern approach to data visualization, offering an idiomatic and flexible DSL.
+This DSL, integrating seamlessly with Kotlin's type safety, facilitates quick graph creation with fewer exceptions.
+Kandy also supports various popular engines, enhancing its versatility and performance for efficient chart-building.
 
-## Main Features
+Kandy utilizes the [Lets-Plot library](https://github.com/JetBrains/lets-plot-kotlin),
+which allows it to display in interactive notebooks,
+saved as standalone _HTML_ files, and export in formats like _PNG_, _SVG_, and _JPEG_.
+This capability enables the use of Kandy in [Kotlin projects](Kandy-with-Gradle.md).
 
-* _**Simplicity**_ — Kandy offers an easy-to-use, straightforward, and intuitive API that facilitates a quick start in
-  crafting visualizations, removing the steep learning curve usually associated with data visualization tools.
-* _**Flexibility**_ — with Kandy, users are granted a vast array of options to cater to a diverse range of visualization
-  needs, making it a versatile choice for data representation projects.
-* _**Readability**_ — leveraging a concise DSL, Kandy ensures a clear and succinct representation of the graphs being
-  constructed.
-  This DSL, which is both easy to read and understand, opens the door to users with varying levels of
-  experience, promoting accessibility and user-friendliness.
-* _**Multi-engine**_ — Kandy features a universal DSL compatible with various renowned engines, affording users the
-  luxury to select an engine that aligns with their needs and preferences, all without the necessity to grasp a new
-  syntax.
-* _**Type Safety**_ — Kandy prioritizes secure data handling by offering type safety and fully supporting Kotlin's null
-  safety features, thereby guaranteeing a secure and efficient data manipulation experience.
-* _**Data Flexibility**_ —
-  Kandy effortlessly accommodates collections and [DataFrame](https://kotlin.github.io/dataframe/overview.html),
-  empowering users to integrate a
-  broad spectrum of data formats into their visualizations, enhancing both utility and adaptability.
-* _**Tooling Support**_ — Kandy is fully integrated with
-  [![Kotlin Notebook logo](ktn_plugin_icon.svg){style="inline"}Kotlin Notebook](https://plugins.jetbrains.com/plugin/16340-kotlin-notebook),
-  leveraging the comprehensive capabilities and features of IntelliJ IDEA.
+Alongside `kandy-lets-plot`, there is an ongoing development of `kandy-echarts`,
+an experimental module utilizing [`echarts.js`](https://echarts.apache.org/en/index.html) for rendering.
+
+## Features
+
+* _**Hierarchical DSL**_ — Provides an intuitive and straightforward approach to constructing graphs.
+* _**Support for Kotlin notebooks**_ — Facilitates working with Kandy on platforms like
+  IntelliJ IDEA with the
+  [![Kotlin Notebook logo](ktn_plugin_icon.svg){style="inline" width="20"} Kotlin Notebook plugin](Kandy-in-Kotlin-Notebook.md),
+  [![Datalore logo](datalore_icon.svg){style="inline" width="22"} Datalore](Kandy-in-Datalore.md),
+  and [![Jupyter Notebook logo](jupyter_icon.png){style="inline" width="24"} Jupyter Notebook](Kandy-in-Jupyter-Notebook.md).
+* _**Swing rendering in Kotlin notebook**_ — Available in IntelliJ IDEA.
+* _**Interactive tooltips**_ — Offers dynamic tooltips during rendering in both Swing and HTML.
+* _**Kotlin collections support**_ — Seamlessly works with Kotlin’s standard collections as data sources.
+* _**Kotlin DataFrame support**_ — Integrates with [Kotlin DataFrame](https://kotlin.github.io/dataframe/overview.html),
+  utilizing generated extension properties and hierarchical data for plot construction.
+* _**Type and null safety**_ — Ensures type safety and Kotlin null safety.
 
 ## DSL and Syntax
 
-The Domain-Specific Language (DSL) of Kandy is designed for intuitive use,
-offering a hierarchical and sequential approach to building data visualizations.
-It combines flexibility with a clear structure,
-enabling both novice and experienced users to efficiently create complex visualizations.
-Below is a simplified overview of the Kandy DSL structure, as depicted in the following diagram:
+Kandy features a common API that facilitates the Plot Intermediate Representation (IR).
+Both `kandy-lets-plot` and `kandy-echarts` are developed to be compatible with this API.
+
+Kandy's DSL offers an intuitive, hierarchical approach to creating data visualizations.
+Its flexible yet structured design is suitable for both beginners and experienced users.
+Here's a simplified overview of the Kandy DSL structure:
 
 ![Kandy DSL Schema](kandy_dsl_schema.svg)
 
@@ -69,48 +67,207 @@ Below is a simplified overview of the Kandy DSL structure, as depicted in the fo
 * **Scale Specification** — this aspect is crucial for translating data values into appropriate visual scales on the
   graph, including settings for color gradients, size ranges, and positioning.
 
-This structured approach provides a clear and logical pathway for navigating through Kandy's DSL,
-enabling the construction of both informative and visually appealing visualizations.
-The DSL is design is crafted to ensure ease of use, facilitating the efficient creation of sophisticated graphs.
+Kandy's DSL offers a straightforward path for creating visualizations, combining clarity and aesthetic appeal.
+Its design focuses on ease of use, enabling the efficient crafting of complex charts.
 
-Having explored the key components and organization of Kandy's DSL,
-let's now illustrate how these elements come together in practice.
-The following example demonstrates how the DSL is structure facilitates the creation of a visualization,
-showcasing the ease and flexibility of crafting a plot in Kandy:
+### Syntax
 
-```kotlin
-val time = columnOf(0, 1, 2, 4, 5, 7, 8, 9) named "time"
-val temperature = columnOf(12.0, 14.2, 15.1, 15.9, 17.9, 15.6, 14.2, 24.3) named "temperature"
-val humidity = columnOf(0.5, 0.32, 0.11, 0.89, 0.68, 0.57, 0.56, 0.5) named "humidity"
+Kandy's API follows the structure outlined below:
 
-val simpleDataFrame = dataFrameOf(time, temperature, humidity)
+* Basic plotting with initial data:
 
-plot(simpleDataFrame) {
-    x("time")
-    y("temperature") {
-        scale = continuous(0.0..25.5)
+```
+plot(data) {
+    // layer (geoms)
+    line[bars | points | area | pie | ...] {
+        ... // aesthetics     
     }
 
-    bars {
-        fillColor("humidity") {
-            scale = continuous(range = Color.YELLOW..Color.RED)
+    line[bars | points | area | pie | ...] {
+        ...
+    }
+
+      ...
+}
+```
+
+* Transforming data into plotting context:
+
+```
+plot(data) {
+    // data manipulation
+    groupBy(Strings| Columns) [statBin|statBoxplot|statDensity|...] {
+        line[bars | points | area | pie | ...] {
+            ...
         }
-        borderLine.width = 0.0
-    }
+        line[bars | points | area | pie | ...] {
+            ...
+        }
 
-    line {
-        width = 3.0
-        color = Color.hex("#6e5596")
-        type = LineType.DOTDASH
-    }
-
-    layout {
-        title = "Simple plot with kandy-lets-plot"
-        size = 700 to 450
-        caption = "See `examples` section for more\n complicated and interesting examples!"
+      ...
     }
 }
 ```
+
+* Combining original and transformed data:
+
+```
+plot(data) {
+    groupBy(Strings| Columns) [statBin|statBoxplot|statDensity|...] {
+        line[bars | points | area | pie | ...] {
+            ...
+        }
+        line[bars | points | area | pie | ...] {
+            ...
+        }
+      ...
+    }
+
+    line[bars | points | area | pie | ...] {
+        ...
+    }
+    line[bars | points | area | pie | ...] {
+        ...
+    }
+
+      ...
+}
+```
+
+* Modifying plot layout:
+
+```
+plot(data) {
+    line[bars | points | area | pie | ...] {
+        ...
+    }
+      ...
+
+    layout {
+        title
+        subtitle
+          ...
+        theme { ... }
+        legend { ... }
+        grid { ... }
+          ...
+    }
+}
+```
+
+For mappings and settings, Kandy uses the following approach:
+
+* Mapping to a _Collection_ or _Column_ is done through function calls:
+
+```kotlin
+x("time") // map to the column `time`
+y(listOf(1, 2, 3)) // map to a list
+color(type) // map to the type column
+```
+
+* Settings for positional aesthetics:
+
+```kotlin
+x.constant(3)
+yIntercept.constant(5.7)
+```
+
+* Settings for other aesthetics:
+
+```kotlin
+color = Color.RED
+size = 4.5
+type = LineType.DASHED
+```
+
+Now that we've covered Kandy's DSL components and structure, let's see how they work together in a practical example.
+This demonstrates the DSL's capability in crafting a visualization with ease and flexibility:
+
+<!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.QuickStart-->
+
+<!---FUN quickstart_sample-->
+<tabs>
+<tab title="Dataframe">
+
+```kotlin
+val weatherData = dataFrameOf(
+    "time" to listOf(0, 1, 2, 4, 5, 7, 8, 9),
+    "temperature" to listOf(12.0, 14.2, 15.1, 15.9, 17.9, 15.6, 14.2, 24.3),
+    "humidity" to listOf(0.5, 0.32, 0.11, 0.89, 0.68, 0.57, 0.56, 0.5)
+)
+
+weatherData.plot { // Begin plotting
+    x(time) // Set x-axis with time data
+    y(temperature) { // Set y-axis with temperature data
+        // Define scale for temperature (y-axis)
+        scale = continuous(0.0..25.5)
+    }
+
+    bars { // Add a bar layer
+        fillColor(humidity) { // Customizing bar colors based on humidity
+            // Setting the color range
+            scale = continuous(range = Color.YELLOW..Color.RED)
+        }
+        borderLine.width = 0.0 // Define border line width
+    }
+
+    line {
+        width = 3.0 // Set line width
+        color = Color.hex("#6e5596") // Define line color
+        type = LineType.DOTDASH // Specify the line type
+    }
+
+    layout { // Set plot layout
+        title = "Simple plot with kandy-lets-plot" // Add title
+        // Add caption
+        caption = "See `examples` section for more\n complicated and interesting examples!"
+        size = 700 to 450 // Plot dimension settings
+    }
+}
+```
+
+</tab>
+<tab title="Collections">
+
+```kotlin
+val weatherData = mapOf(
+    "time" to listOf(0, 1, 2, 4, 5, 7, 8, 9),
+    "temperature" to listOf(12.0, 14.2, 15.1, 15.9, 17.9, 15.6, 14.2, 24.3),
+    "humidity" to listOf(0.5, 0.32, 0.11, 0.89, 0.68, 0.57, 0.56, 0.5)
+)  // Combine data into a map
+
+plot(weatherData) { // Begin plotting
+    x("time") // Set x-axis with time data
+    y("temperature") { // Set y-axis with temperature data
+        // Define scale for temperature (y-axis)
+        scale = continuous(0.0..25.5)
+    }
+
+    bars { // Add a bar layer
+        fillColor("humidity") { // Customizing bar colors based on humidity
+            // Setting the color range
+            scale = continuous(range = Color.YELLOW..Color.RED)
+        }
+        borderLine.width = 0.0 // Define border line width
+    }
+
+    line {
+        width = 3.0 // Set line width
+        color = Color.hex("#6e5596") // Define line color
+        type = LineType.DOTDASH // Specify the line type
+    }
+
+    layout { // Set plot layout
+        title = "Simple plot with kandy-lets-plot" // Add title
+        // Add caption
+        caption = "See `examples` section for more\n complicated and interesting examples!"
+        size = 700 to 450 // Plot dimension settings
+    }
+}
+```
+
+</tab></tabs>
+<!---END-->
 
 ![Simple plot with Kandy](quickstart_sample.svg) { border-effect="rounded" }
 
