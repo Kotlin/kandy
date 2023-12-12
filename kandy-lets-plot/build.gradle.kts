@@ -56,6 +56,7 @@ korro {
         include("docs/topics/samples/bars/*.md")
         include("docs/topics/samples/points/*.md")
         include("docs/topics/samples/errorBars/*.md")
+        include("docs/topics/samples/ribbon/*.md")
         include("docs/topics/samples/boxplot/*.md")
         include("docs/topics/samples/tiles/*.md")
         include("docs/topics/samples/histogram/*.md")

@@ -440,6 +440,51 @@ The following is an example of using the `kandy-echarts` library in an IntelliJ 
     </tr>
 </table>
 
+### Ribbon
+
+<table>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/simple-ribbon.html">
+                <img src="../docs/images/samples/ribbon/ribbon_simple.svg" alt="Simple Ribbon"/>
+                <b>Simple Ribbon</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/ribbon-settings.html">
+                <img src="../docs/images/samples/ribbon/ribbon_settings.svg" alt="Ribbon Settings"/>
+                <b>Ribbon Settings</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/ribbon-with-line.html">
+                <img src="../docs/images/samples/ribbon/ribbon_with_line.svg" alt="Ribbon with Line"/>
+                <b>Ribbon with Line</b>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="https://kotlin.github.io/kandy/several-ribbons.html">
+                <img src="../docs/images/samples/ribbon/ribbon_grouped.svg" alt="Several Ribbons"/>
+                <b>Several Ribbons</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/function-ribbon-graph.html">
+                <img src="../docs/images/samples/ribbon/ribbon_function_plot.svg" alt="Function Ribbon Graph"/>
+                <b>Function Ribbon Graph</b>
+            </a>
+        </td>
+        <td>
+            <a href="https://kotlin.github.io/kandy/regression-confidence-band.html">
+                <img src="../docs/images/samples/ribbon/regression_confidence_band.svg" alt="Regression Confidence Band"/>
+                <b>Regression Confidence Band</b>
+            </a>
+        </td>
+    </tr>
+</table>
+
 ### Boxplot
 
 <table>
