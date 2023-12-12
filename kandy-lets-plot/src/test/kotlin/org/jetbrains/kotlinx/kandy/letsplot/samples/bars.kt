@@ -393,6 +393,7 @@ class Bars : SampleHelper("bars") {
                             "soda" to Color.hex("#B5651D")
                         )
                     }
+                    position = Position.stack()
                 }
             }
         }
