@@ -62,12 +62,14 @@ Here's a simplified overview of the Kandy DSL structure:
 * **Layout** — this part deals with the graph's design, including elements like titles, subtitles, size,
   and thematic elements.
 * **Layers** — it introduces different types of visual elements, such as lines, points, bars, etc.
-* **Aesthetic Mappings / Settings** — This feature enables mapping data attributes to visual properties like color,
+* **<tooltip term="aes">Aesthetic</tooltip> Mappings / Settings** —
+  This feature enables mapping data attributes to visual properties like color,
   shape, and size, offering extensive customization options.
 * **Scale Specification** — this aspect is crucial for translating data values into appropriate visual scales on the
   graph, including settings for color gradients, size ranges, and positioning.
 
-Kandy's DSL offers a straightforward path for creating visualizations, combining clarity and aesthetic appeal.
+Kandy's DSL offers a straightforward path for creating visualizations, combining clarity
+and <tooltip term="aes">aesthetic</tooltip> appeal.
 Its design focuses on ease of use, enabling the efficient crafting of complex charts.
 
 ### Syntax
@@ -165,14 +167,14 @@ y(listOf(1, 2, 3)) // map to a list
 color(type) // map to the type column
 ```
 
-* Settings for positional aesthetics:
+* Settings for <tooltip term="posAes">positional aesthetics</tooltip>:
 
 ```kotlin
 x.constant(3)
 yIntercept.constant(5.7)
 ```
 
-* Settings for other aesthetics:
+* Settings for other <tooltip term="aes">aesthetics</tooltip>:
 
 ```kotlin
 color = Color.RED

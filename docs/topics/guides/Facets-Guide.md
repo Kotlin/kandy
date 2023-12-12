@@ -21,7 +21,8 @@ Discover advanced strategies for comparative visualization, bringing clarity to 
 
 #### Problem
 
-You want to see more aspects of your data, and it's not practical to use the regular `aesthetics` approach for that.
+You want to see more aspects of your data, and it's not practical to use the regular
+<tooltip term="aes">`aesthetics`</tooltip> approach for that.
 
 #### Solution - `facets`
 
@@ -58,7 +59,7 @@ dataset.head(3)
 
 Create a scatter plot to show how `mpg` is related to a car's `engine horsepower`.
 
-Also use the `color` aesthetic to visualize the region where a car was designed.
+Also use the `color` <tooltip term="aes">aesthetic</tooltip> to visualize the region where a car was designed.
 
 <!---FUN guideFacetsScatterPlotByHorsePower-->
 
