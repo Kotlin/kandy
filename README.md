@@ -8,6 +8,14 @@
 Kandy is an open-source plotting library for Kotlin
 that provides a powerful and flexible DSL for creating graphs and utilizes various popular engines.
 
+<p align="center">
+  <a href="https://kotlin.github.io/kandy/welcome.html" target="_blank" rel="noopener noreferrer"
+    style="display: inline-block; background-color: #645bff; color: white; padding: 10px 20px; text-decoration: none;
+    border-radius: 30px; font-weight: bold;">
+    Kandy Documentation
+  </a>
+</p>
+
 * Cross-platform compatibility — Works effortlessly within Kotlin notebooks on various platforms,
   including IntelliJ IDEA, [Datalore](https://datalore.jetbrains.com/),
   and [Jupyter](https://jupyter.org/), as well as in standard Kotlin projects.
