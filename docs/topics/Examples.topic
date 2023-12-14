@@ -396,6 +396,52 @@
         </list>
     </chapter>
 
+    <chapter title="Ribbon" id="examples-ribbon" collapsible="true" default-state="expanded">
+        <list id="list-of-ribbon-examples" type="none" columns="3">
+            <li>
+                <a href="Simple-Ribbon.md">
+                    <img src="ribbon_simple.svg" alt="Simple Ribbon" border-effect="line"/>
+                    Simple Ribbon
+                </a>
+            </li>
+
+            <li>
+                <a href="Ribbon-Settings.md">
+                    <img src="ribbon_settings.svg" alt="Ribbon Settings" border-effect="line"/>
+                    Ribbon Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="Ribbon-With-Line.md">
+                    <img src="ribbon_with_line.svg" alt="Ribbon with Line" border-effect="line"/>
+                    Ribbon With Line
+                </a>
+            </li>
+
+            <li>
+                <a href="Several-Ribbons.md">
+                    <img src="ribbon_grouped.svg" alt="Several Ribbons" border-effect="line"/>
+                    Several Ribbons
+                </a>
+            </li>
+
+            <li>
+                <a href="Function-Ribbon-Graph.md">
+                    <img src="ribbon_function_plot.svg" alt="Function Ribbon Graph" border-effect="line"/>
+                    Function Ribbon Graph
+                </a>
+            </li>
+
+            <li>
+                <a href="Regression-Confidence-Band.md">
+                    <img src="regression_confidence_band.svg" alt="Regression Confidence Band" border-effect="line"/>
+                    Regression Confidence Band
+                </a>
+            </li>
+        </list>
+    </chapter>
+
     <chapter title="Boxplot" id="examples-boxplot" collapsible="true" default-state="expanded">
         <list id="list-of-boxplot-examples" type="none" columns="3">
             <li>
