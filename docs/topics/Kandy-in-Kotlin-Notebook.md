@@ -5,9 +5,7 @@
     Follow our guided steps to set up and start creating immersive data visualizations right within your Kotlin notebook.
 </web-summary>
 <card-summary>
-    Embark on a seamless visualization journey with Kandy in Kotlin Notebook.
-    This section guides you from installation to crafting your first graph,
-    offering a smooth start to your data visualization project.
+    Seamlessly integrate Kandy for visualizations in Kotlin Notebook.
 </card-summary>
 <link-summary>
     Kickstart Your Data Visualization Journey with Kandy in Kotlin Notebook

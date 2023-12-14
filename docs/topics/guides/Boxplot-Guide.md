@@ -303,7 +303,7 @@ df.plot {
 
 ### `boxplot` layer
 
-To make a boxplot (statistical chart), we need boxplot statistics and `boxes` geom.
+To make a boxplot (statistical chart), we need boxplot statistics and `boxes` <tooltip term="geom">geom</tooltip>.
 Boxes attributes and boxplot statistics match.
 Also, we can add outliers using `boxplotOutliers` statistic and `points` layer.
 

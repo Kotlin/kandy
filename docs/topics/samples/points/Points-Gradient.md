@@ -12,7 +12,7 @@ where gradient colors add layers of meaning to each data point.
 
 <link-summary>
 Explore 'Points Gradient' using Kotlin and Kandy,
-where color gradients in scatter plots bring a new level of insight and aesthetic to data visualization."
+where color gradients in scatter plots bring a new level of insight and aesthetic to data visualization.
 </link-summary>
 
 

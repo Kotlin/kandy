@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-<show-structure for="chapter,procedure" depth="3"></show-structure>
+<show-structure for="chapter,procedure" depth="3" xmlns=""></show-structure>
 
 <web-summary>
 Embark on your journey with Kandy, the Kotlin-based data visualization library.
@@ -10,7 +10,7 @@ From data preparation to crafting detailed plots, this guide ensures a smooth st
 </web-summary>
 
 <card-summary>
-Kandy Quick Start Guide: This guide covers all the essentials, from data handling to advanced plotting techniques,
+This guide covers all the essentials, from data handling to advanced plotting techniques,
 to kickstart your Kandy experience.
 </card-summary>
 
@@ -147,10 +147,12 @@ plot(simpleDataset) {
 
 #### Layers, aesthetics, mappings, and scales
 
-Each plot layer is defined by its _geometrical entity_ (or _geom_), which determines the layer's visual representation.
-Geoms have associated _aesthetic attributes_ (or _aesthetics/aes_),
-which can be either _positional_ (like `x`, `y`, `yMin`, `yMax`, `middle`) or _non-positional_ (such
-as `color`, `size`, `width`).
+Each plot layer is defined by its _geometrical entity_ (or <tooltip term="geom">_geom_</tooltip>),
+which determines the layer's visual representation.
+<tooltip term="geom">Geoms</tooltip> have associated _aesthetic attributes_
+(or <tooltip term="aes">_aesthetics/aes_</tooltip>),
+which can be either <tooltip term="posAes">_positional_</tooltip>
+(like `x`, `y`, `yMin`, `yMax`, `middle`) or _non-positional_ (such as `color`, `size`, `width`).
 Non-positional aesthetics have specific types (e.g., `size` is associated with `Double`, `color` with `Color`).
 
 Aesthetic values can be assigned in two ways: _setting_ and _mapping_.
@@ -167,7 +169,8 @@ size = 5.0
 color = Color.RED
 ```
 
-* _Mapping_ links data column values to aesthetic attributes. This can be defined in various ways:
+* _Mapping_ links data column values to <tooltip term="aes">aesthetic</tooltip> attributes.
+   This can be defined in various ways:
 
 ```kotlin
 // With `ColumnReference`:
@@ -388,8 +391,8 @@ plot(simpleDataset) {
 **Free scale** mechanism in Kandy:
 
 This feature, known as _"free scale"_ allows the setting of scale parameters without direct data mapping.
-It's particularly useful for sub-positional aesthetics that don't have individual scales but depend on the parent
-positional aesthetics scale.
+It's particularly useful for sub-positional <<tooltip term="aes">aesthetics</tooltip>
+that don't have individual scales but depend on the parent <tooltip term="posAes">positional aesthetics</tooltip> scale.
 
 Example of using free scale in a `boxplot`:
 
@@ -1165,7 +1168,7 @@ plotGrid(listOf(histPlot, binBarPlot), 2)
 ![StatBin Bars and Histogram](experimentalStatisticsStatBinsAndHist.svg)
 
 The `histogram` in Kandy is flexible,
-allowing for custom aesthetic bindings and the use of "stat-bin" statistics for mapping:
+allowing for custom <tooltip term="aes">aesthetic</tooltip> bindings and the use of "stat-bin" statistics for mapping:
 
 <!---FUN experimentalStatisticsConfiguredHistogram-->
 

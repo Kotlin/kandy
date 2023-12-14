@@ -115,7 +115,7 @@ Specifies the string template to use in a general tooltip. If you add `line()`, 
 #### Labels configuration
 
 The default tooltip has a label before the value, usually containing the name of the mapped variable.
-It has its own behavior similar to a blank label for an axis aesthetics.
+It has its own behavior similar to a blank label for an axis <tooltip term="aes">aesthetics</tooltip>.
 This default label can be set in the template by using a pair of symbols `@|`.
 You can override the label by specifying a string value before `|` symbol.
 
@@ -292,8 +292,8 @@ irisDf.groupBy { species }.plot {
 
 ## Side tooltips configuration
 
-In Kandy, certain aesthetics by default are represented by a so-called "side tooltip" — a small tipped box containing
-just a single numeric value.
+In Kandy, certain <tooltip term="aes">aesthetics</tooltip> by default are represented by a so-called "side tooltip"
+— a small tipped box containing just a single numeric value.
 
 You can override these defaults using the `line()` function.
 Configuring a "line" in a general multi-line tooltip disables side tooltip for the correspondent aesthetic.
