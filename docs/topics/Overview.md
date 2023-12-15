@@ -13,6 +13,8 @@
 
 ## What is Kandy?
 
+<img src="../gifs/kandy_preview.gif" alt=""/>
+
 Kandy is an open-source data visualization library designed for Kotlin.
 It adopts a modern approach to data visualization, offering an idiomatic and flexible DSL.
 This DSL, integrating seamlessly with Kotlin's type safety, facilitates quick graph creation with fewer exceptions.
