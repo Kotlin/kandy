@@ -24,7 +24,6 @@ import org.jetbrains.kotlinx.statistics.kandy.statplots.histogram
 import org.jetbrains.kotlinx.statistics.kandy.stattransform.statBin
 import org.jetbrains.kotlinx.statistics.plotting.bin.statBin
 import org.jetbrains.kotlinx.statistics.stats.mean
-import java.util.Random
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 
