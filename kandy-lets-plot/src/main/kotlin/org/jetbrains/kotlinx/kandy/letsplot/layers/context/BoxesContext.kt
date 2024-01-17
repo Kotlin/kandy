@@ -22,7 +22,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BOXPLOT
  * Required aesthetics for Boxes are `X`, `LOWER`, `UPPER`, `MIDDLE`, `Y_MIN`, and `Y_MAX`.
  */
 public interface BoxesInterface : LayerContextInterface, WithBorderLine, WithX, WithAlpha,
-    WithFillColor, WithWidth,
+    WithFillColor, WithWidth, WithWhiskerWidth,
     WithLower, WithUpper, WithMiddle, WithYMin, WithYMax, WithFatten, WithYFree {
 
     /**

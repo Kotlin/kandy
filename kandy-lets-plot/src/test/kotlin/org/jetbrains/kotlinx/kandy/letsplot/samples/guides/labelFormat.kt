@@ -162,7 +162,7 @@ class LabelFormat : SampleHelper("layout", "guides") {
                 yIntercept.constant(unemploymentMean)
                 color = Color.RED
                 type = LineType.DASHED
-                tooltips(hide = true)
+                tooltips(enable = false)
             }
             text {
                 label = "${String.format("%.2f", unemploymentMean)} %"

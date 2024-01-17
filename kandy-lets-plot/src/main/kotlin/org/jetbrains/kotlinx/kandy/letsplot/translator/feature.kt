@@ -130,7 +130,7 @@ internal fun Position.wrap(): PosOptions {
 }
 
 internal fun LayerTooltips.wrap(): TooltipOptions {
-    if (hide) {
+    if (!enable) {
         return tooltipsNone
     }
     var buffer = layerTooltips(*(variables.toTypedArray()))
@@ -148,6 +148,9 @@ internal fun LayerTooltips.wrap(): TooltipOptions {
     }
     lines?.forEach {
         buffer = buffer.line(it)
+    }
+    if (!enableSideTooltips) {
+        buffer = buffer.disableSplitting()
     }
     return buffer
 }

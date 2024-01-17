@@ -50,14 +50,15 @@ public fun LayerContextInterface.value(column: KProperty<*>): String {
  * @param hide flag of tooltips displaying.
  */
 public fun LayerContextInterface.tooltips(
-    hide: Boolean = false,
+    enable: Boolean = true,
+    enableSideTooltips: Boolean = false
 ) {
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         listOf(),
         null,
         listOf(),
         null, null, null,
-        hide
+        enable, enableSideTooltips
     )
 }
 
@@ -84,7 +85,7 @@ public inline fun LayerContextInterface.tooltips(
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
-    hide: Boolean = false,
+    enableSideTooltips: Boolean = false,
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     @Suppress("invisible_reference")
@@ -93,7 +94,8 @@ public inline fun LayerContextInterface.tooltips(
         title,
         anchor,
         minWidth,
-        hide,
+        true,
+        enableSideTooltips,
         formats.map { (column, format) -> datasetHandler.takeColumn(column.name()) to format },
         LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
@@ -117,14 +119,14 @@ public fun LayerContextInterface.tooltips(
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
-    hide: Boolean = false,
+    enableSideTooltips: Boolean = false
 ) {
     @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it) },
         null,
         formats.toList(),
-        title, anchor, minWidth, hide
+        title, anchor, minWidth, true, enableSideTooltips
     )
 }
 
@@ -146,7 +148,7 @@ public fun LayerContextInterface.tooltips(
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
-    hide: Boolean = false,
+    enableSideTooltips: Boolean = false
 ) {
     @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
@@ -156,7 +158,8 @@ public fun LayerContextInterface.tooltips(
         title,
         anchor,
         minWidth,
-        hide
+        true,
+        enableSideTooltips
     )
 }
 
@@ -179,13 +182,13 @@ public fun LayerContextInterface.tooltips(
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
-    hide: Boolean = false,
+    enableSideTooltips: Boolean = false
 ) {
     @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it.name) },
         null,
         formats.map { (property, format) ->  datasetHandler.takeColumn(property.name) to format },
-        title, anchor, minWidth, hide
+        title, anchor, minWidth, true, enableSideTooltips
     )
 }
