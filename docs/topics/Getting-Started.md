@@ -189,9 +189,6 @@ providing a quick reference to assist you in building your visualizations.
 <li>path</li>
 <li>pie</li>
 <li>pointRanges</li>
-<li>path</li>
-<li>pie</li>
-<li>pointRanges</li>
 <li>raster</li>
 <li>rectangles</li>
 <li>ribbon</li>
