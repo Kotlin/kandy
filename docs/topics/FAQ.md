@@ -1,4 +1,4 @@
-# FAQs
+# FAQ
 
 <web-summary>
     Answers to the most frequently asked questions about Kandy
@@ -11,11 +11,9 @@
 </link-summary>
 
 
-## Where can I ask a question about Kandy, leave feedback or request a feature?
-
-* We would welcome any feedback, question or suggestion related to Kandy you may have on 
-[issues in the GitHub repository](https://github.com/Kotlin/kandy/issues)
-* Also, you can ask any question or discuss anything related to Kandy on 
+We would welcome any feedback, question, feature request or suggestion related to Kandy you may have on 
+[issues in the GitHub repository](https://github.com/Kotlin/kandy/issues).
+Also, you can ask any question or discuss anything related to Kandy on 
 [#datascience](https://slack-chats.kotlinlang.org/c/datascience?_ga=2.2771440.1927802643.1705492406-2056581211.1698239845&_gl=1*i9jk3b*_ga*MjA1NjU4MTIxMS4xNjk4MjM5ODQ1*_ga_9J976DJZ68*MTcwNTU3MjM0NC42NC4xLjE3MDU1NzIzNjUuMzkuMC4w) Kotlin Slack channel
 
 ## Does kandy support Compose Multiplatform?
