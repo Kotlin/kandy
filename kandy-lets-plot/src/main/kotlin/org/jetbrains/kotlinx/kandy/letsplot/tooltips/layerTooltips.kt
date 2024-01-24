@@ -47,7 +47,8 @@ public fun LayerContextInterface.value(column: KProperty<*>): String {
 /**
  * Hides tooltips.
  *
- * @param hide flag of tooltips displaying.
+ * @param enable flag of tooltips displaying.
+ * @param enableSideTooltips flag of side tooltips displaying.
  */
 public fun LayerContextInterface.tooltips(
     enable: Boolean = true,
@@ -75,7 +76,8 @@ public fun LayerContextInterface.tooltips(
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
- * @param hide flag of tooltips displaying.
+ * @param enable flag of tooltips displaying.
+ * @param enableSideTooltips flag of side tooltips displaying.
  * @param formats map of columns to format string of its value.
  * @see value
  */
@@ -109,7 +111,8 @@ public inline fun LayerContextInterface.tooltips(
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
- * @param hide flag of tooltips displaying.
+ * @param enable flag of tooltips displaying.
+ * @param enableSideTooltips flag of side tooltips displaying.
  * @see value
  */
 public fun LayerContextInterface.tooltips(
@@ -138,7 +141,8 @@ public fun LayerContextInterface.tooltips(
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
- * @param hide flag of tooltips displaying.
+ * @param enable flag of tooltips displaying.
+ * @param enableSideTooltips flag of side tooltips displaying.
  * @see value
  */
 public fun LayerContextInterface.tooltips(
@@ -172,7 +176,8 @@ public fun LayerContextInterface.tooltips(
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
- * @param hide flag of tooltips displaying.
+ * @param enable flag of tooltips displaying.
+ * @param enableSideTooltips flag of side tooltips displaying.
  * @see value
  */
 public fun LayerContextInterface.tooltips(

@@ -9,18 +9,17 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.FATTEN
 import org.jetbrains.kotlinx.kandy.letsplot.internal.WHISKER_WIDTH
 
 /**
- * Interface for managing the `fatten` aesthetic, which is particularly useful for controlling
- * the size of elements in specific types of plots like box plots, crossbars, and inner points.
+ * Interface for managing the `whiskerWidth` aesthetic, which is responsible for the length of boxplor whiskers.
  *
  * Implementing this interface allows the aesthetic to be directly set as a numeric value.
  */
 public interface WithWhiskerWidth : BindingContext {
 
     /**
-     * Sets the `fatten` aesthetic, determining the thickness or size factor for specific elements.
-     * This aesthetic is specifically applicable in plot types like box plots, crossbars, and inner points.
+     * Sets the `whiskerWidth` aesthetic, determining the ratio of the length of box ends to the width of the box.
+     * This aesthetic is specifically applicable in boxes-based plots (boxplot, candlestick, etc.).
      *
-     * @property fatten a numeric value that represents the factor by which the elements in those specific plot types should be _fattened_.
+     * @property whiskerWidth a numeric value that represents the ratio of the length of box ends to the width of the box.
      */
     public var whiskerWidth: Double?
         get() = null
