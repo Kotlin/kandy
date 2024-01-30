@@ -1,1 +1,3 @@
 # densityPlot
+
+## Properties

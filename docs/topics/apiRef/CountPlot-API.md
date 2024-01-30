@@ -1,1 +1,3 @@
 # countPlot
+
+## Properties

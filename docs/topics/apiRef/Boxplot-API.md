@@ -1,1 +1,3 @@
 # boxplot
+
+## Properties

@@ -1,1 +1,3 @@
 # histogram
+
+## Properties

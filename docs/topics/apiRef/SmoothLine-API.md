@@ -1,1 +1,3 @@
 # smoothLine
+
+## Properties
