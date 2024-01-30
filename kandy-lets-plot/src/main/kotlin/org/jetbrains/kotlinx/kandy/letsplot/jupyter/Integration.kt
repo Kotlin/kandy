@@ -16,13 +16,13 @@ import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
 import org.jetbrains.kotlinx.kandy.letsplot.util.NotebookRenderingContext
 import org.jetbrains.kotlinx.kandy.letsplot.util.figureToMimeResult
+import org.jetbrains.kotlinx.kandy.letsplot.internal.LETS_PLOT_JS_VERSION
 import org.jetbrains.letsPlot.LetsPlot
 import org.jetbrains.letsPlot.core.util.PlotHtmlHelper
 import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
 
 @JupyterLibrary
 internal class Integration : JupyterIntegration() {
-     private val jsVersion = "4.0.1"
 
     private val config = JupyterConfig()
 
@@ -46,7 +46,7 @@ internal class Integration : JupyterIntegration() {
             declare("kandyConfig" to config)
         }
 
-        with(NotebookRenderingContext(jsVersion, config)) {
+        with(NotebookRenderingContext(LETS_PLOT_JS_VERSION, config)) {
             render<Plot> { figureToMimeResult(it.toLetsPlot()) }
             render<PlotBunch> { figureToMimeResult(it.wrap()) }
             render<PlotGrid> { figureToMimeResult(it.wrap()) }
