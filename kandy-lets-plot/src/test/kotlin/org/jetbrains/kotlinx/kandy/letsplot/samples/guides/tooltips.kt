@@ -87,7 +87,7 @@ class Tooltips : SampleHelper("layout", "guides") {
             }
 
             layout {
-                theme {
+                style {
                     legend.position = LegendPosition.None
                 }
             }
@@ -172,7 +172,7 @@ class Tooltips : SampleHelper("layout", "guides") {
                 }
             }
             layout {
-                theme { legend.position = LegendPosition.None }
+                style { legend.position = LegendPosition.None }
             }
         }
         // SampleEnd
@@ -270,7 +270,7 @@ class Tooltips : SampleHelper("layout", "guides") {
                 tooltips(title = "${value(manufacturer)} ${value(model)}") {}
             }
             layout {
-                theme { legend.position = LegendPosition.None }
+                style { legend.position = LegendPosition.None }
             }
         }
         // SampleEnd
@@ -292,7 +292,7 @@ class Tooltips : SampleHelper("layout", "guides") {
                 tooltips(`class`, year, title = "${value(manufacturer)} ${value(model)}") {}
             }
             layout {
-                theme { legend.position = LegendPosition.None }
+                style { legend.position = LegendPosition.None }
             }
         }
         // SampleEnd
@@ -318,7 +318,7 @@ class Tooltips : SampleHelper("layout", "guides") {
                 }
             }
             layout {
-                theme { legend.position = LegendPosition.None }
+                style { legend.position = LegendPosition.None }
             }
         }
         // SampleEnd
@@ -367,7 +367,7 @@ class Tooltips : SampleHelper("layout", "guides") {
                 }
             }
 
-            layout.theme {
+            layout.style {
                 layerTooltips {
                     background {
                         borderLineColor = Color.hex("#225e32")

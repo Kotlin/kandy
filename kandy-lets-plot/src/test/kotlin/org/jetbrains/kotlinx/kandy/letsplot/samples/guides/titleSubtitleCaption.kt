@@ -130,7 +130,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
                 title = "The plot title"
                 subtitle = "The plot subtitle"
                 caption = "The plot caption"
-                theme {
+                style {
                     global.title {
                         color = Color.BLUE
                     }
@@ -154,7 +154,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
                 title = "The plot title"
                 subtitle = "The plot subtitle"
                 caption = "The plot caption"
-                theme {
+                style {
                     global {
                         text {
                             fontFace = FontFace.ITALIC
@@ -194,7 +194,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
                 title = "The plot title"
                 subtitle = "The plot subtitle"
                 caption = "The plot caption"
-                theme {
+                style {
                     plotCanvas {
                         title {
                             color = Color.BLUE
@@ -226,7 +226,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
                 title = "The plot title:\nFuel efficiency for most popular models of car"
                 subtitle = "The plot subtitle:\nPoints are colored by the type of drive train"
                 caption = "The plot caption:\nmpg dataset"
-                theme {
+                style {
                     plotCanvas {
                         subtitle {
                             color = Color.GREY
@@ -266,7 +266,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
                 symbol(drv) { legend.name = "Drive type" }
                 size = 4.0
             }
-            layout.theme {
+            layout.style {
                 legend.position = LegendPosition.Bottom
             }
         }
@@ -301,7 +301,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
                 symbol(drv) { legend.name = "Drive type\n(front/4/rear wheel)" }
                 size = 4.0
             }
-            layout.theme {
+            layout.style {
                 legend.position = LegendPosition.Bottom
             }
         }
@@ -325,7 +325,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
                 }
                 size = 4.0
             }
-            layout.theme {
+            layout.style {
                 legend.position = LegendPosition.Bottom
             }
         }

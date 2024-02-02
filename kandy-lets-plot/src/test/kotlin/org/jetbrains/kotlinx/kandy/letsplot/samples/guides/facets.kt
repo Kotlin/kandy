@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.*
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
+import org.jetbrains.kotlinx.kandy.letsplot.theme.Style
 import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.letsplot.y
 import java.util.*
@@ -50,7 +50,7 @@ class Facets : SampleHelper("multiplot", "guides") {
                 color(`origin of car`)
             }
             layout {
-                theme(Theme.Grey)
+                style(Style.Grey)
                 size = 800 to 350
             }
         }
@@ -68,7 +68,7 @@ class Facets : SampleHelper("multiplot", "guides") {
                 color(`origin of car`)
             }
             layout {
-                theme(Theme.Grey)
+                style(Style.Grey)
             }
             facetGridX(`number of cylinders`)
         }
@@ -86,7 +86,7 @@ class Facets : SampleHelper("multiplot", "guides") {
                 color(`origin of car`)
             }
             layout {
-                theme(Theme.Grey)
+                style(Style.Grey)
             }
             facetGrid(`number of cylinders`, `origin of car`)
         }
@@ -104,7 +104,7 @@ class Facets : SampleHelper("multiplot", "guides") {
                 color(`origin of car`)
             }
             layout {
-                theme(Theme.Grey)
+                style(Style.Grey)
             }
             facetGrid(`number of cylinders`, `origin of car`, xFormat = "{d} cyl", yOrder = OrderDirection.DESCENDING)
         }
@@ -122,7 +122,7 @@ class Facets : SampleHelper("multiplot", "guides") {
                 color(`origin of car`)
             }
             layout {
-                theme(Theme.Grey)
+                style(Style.Grey)
             }
             facetWrap(nRow = 2) {
                 facet(`number of cylinders`)
@@ -142,7 +142,7 @@ class Facets : SampleHelper("multiplot", "guides") {
                 color(`origin of car`)
             }
             layout {
-                theme(Theme.Grey)
+                style(Style.Grey)
             }
             facetWrap(nCol = 5) {
                 facet(`origin of car`)
@@ -163,7 +163,7 @@ class Facets : SampleHelper("multiplot", "guides") {
                 color(`origin of car`)
             }
             layout {
-                theme(Theme.Grey)
+                style(Style.Grey)
             }
             facetWrap(nCol = 3, direction = Direction.VERTICAL) {
                 facet(`origin of car`, OrderDirection.ASCENDING, null)
@@ -184,7 +184,7 @@ class Facets : SampleHelper("multiplot", "guides") {
                 color(`origin of car`)
             }
             layout {
-                theme(Theme.Grey)
+                style(Style.Grey)
                 size = 800 to 350
             }
         }
@@ -202,7 +202,7 @@ class Facets : SampleHelper("multiplot", "guides") {
                 color(`origin of car`)
             }
             layout {
-                theme(Theme.Grey)
+                style(Style.Grey)
                 size = 800 to 500
             }
             facetGridY(`origin of car`)
@@ -221,7 +221,7 @@ class Facets : SampleHelper("multiplot", "guides") {
                 color(`origin of car`)
             }
             layout {
-                theme(Theme.Grey)
+                style(Style.Grey)
                 size = 800 to 500
             }
             facetGridY(`origin of car`, scalesSharing = ScalesSharing.FREE_Y)
@@ -240,7 +240,7 @@ class Facets : SampleHelper("multiplot", "guides") {
                 color(`origin of car`)
             }
             layout {
-                theme(Theme.Grey)
+                style(Style.Grey)
                 size = 800 to 500
             }
             facetWrap {
@@ -261,7 +261,7 @@ class Facets : SampleHelper("multiplot", "guides") {
                 color(`origin of car`)
             }
             layout {
-                theme(Theme.Grey)
+                style(Style.Grey)
                 size = 800 to 500
             }
             facetWrap(scalesSharing = ScalesSharing.FREE) {

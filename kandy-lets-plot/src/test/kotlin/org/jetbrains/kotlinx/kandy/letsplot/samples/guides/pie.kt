@@ -10,14 +10,14 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.scales.BrewerPalette
 import org.jetbrains.kotlinx.kandy.letsplot.scales.categoricalColorBrewer
-import org.jetbrains.kotlinx.kandy.letsplot.theme.theme
+import org.jetbrains.kotlinx.kandy.letsplot.theme.style
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 
 class Pie : SampleHelper("geoms", "guides") {
 
-    private val blankTheme = theme {
+    private val blankTheme = style {
         global.line {
             blank = true
         }
@@ -62,7 +62,7 @@ class Pie : SampleHelper("geoms", "guides") {
     @Test
     fun guidePieBlankTheme() {
         // SampleStart
-        val blankTheme = theme {
+        val blankTheme = style {
             global.line {
                 blank = true
             }
@@ -112,7 +112,7 @@ class Pie : SampleHelper("geoms", "guides") {
                 hole = 0.5
             }
             layout {
-                theme(blankTheme)
+                style(blankTheme)
             }
         }
             // SampleEnd
@@ -157,7 +157,7 @@ class Pie : SampleHelper("geoms", "guides") {
                 strokeColor = Color.BLACK
                 size = 20.0
             }
-            layout.theme(blankTheme)
+            layout.style(blankTheme)
         }
             // SampleEnd
             .saveSample()
@@ -192,7 +192,7 @@ class Pie : SampleHelper("geoms", "guides") {
                         size = 15.0
                     }
                     layout {
-                        theme(blankTheme)
+                        style(blankTheme)
                     }
                 },
                 calories.plot {
@@ -206,7 +206,7 @@ class Pie : SampleHelper("geoms", "guides") {
                         hole = 0.8
                     }
                     layout {
-                        theme(blankTheme)
+                        style(blankTheme)
                     }
                 }
             )

@@ -6,7 +6,7 @@ import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Flavor
+import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.tooltips
 import kotlin.random.Random
 import kotlin.test.Test
@@ -78,7 +78,7 @@ class KotlinNotebookFeatures : SampleHelper("other", "guides") {
                 tooltips(type, active)
             }
 
-            layout.flavor = Flavor.HIGH_CONTRAST_DARK
+            layout.flavor = Theme.HIGH_CONTRAST_DARK
         }
         // SampleEnd
     }

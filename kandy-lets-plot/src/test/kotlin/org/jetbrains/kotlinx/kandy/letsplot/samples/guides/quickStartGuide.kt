@@ -20,8 +20,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.scales.*
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.letsplot.theme.LayoutParameters
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
-import org.jetbrains.kotlinx.kandy.letsplot.theme.theme
+import org.jetbrains.kotlinx.kandy.letsplot.theme.Style
+import org.jetbrains.kotlinx.kandy.letsplot.theme.style
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.Anchor
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.tooltips
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.value
@@ -929,7 +929,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
                 x(cty)
                 y(hwy)
             }
-            layout.theme(Theme.Classic)
+            layout.style(Style.Classic)
         }
             // SampleEnd
             .saveSample()
@@ -938,33 +938,33 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
     @Test
     fun experimentalLayoutFunPlotWithTheme() {
         // SampleStart
-        fun plotWithTheme(theme: Theme? = null, title: String? = null): org.jetbrains.kotlinx.kandy.ir.Plot {
+        fun plotWithTheme(style: Style? = null, title: String? = null): org.jetbrains.kotlinx.kandy.ir.Plot {
             return mpgDF.plot {
                 points {
                     x(cty)
                     y(hwy)
                 }
                 layout {
-                    theme?.let {
-                        theme(it)
+                    style?.let {
+                        style(it)
                     }
                     this.title = title
                 }
             }
         }
         // SampleEnd
-        assertNotNull(plotWithTheme(Theme.Classic, "Test theme"))
+        assertNotNull(plotWithTheme(Style.Classic, "Test theme"))
     }
 
-    private fun plotWithTheme(theme: Theme? = null, title: String? = null): org.jetbrains.kotlinx.kandy.ir.Plot {
+    private fun plotWithTheme(style: Style? = null, title: String? = null): org.jetbrains.kotlinx.kandy.ir.Plot {
         return mpgDF.plot {
             points {
                 x(cty)
                 y(hwy)
             }
             layout {
-                theme?.let {
-                    theme(it)
+                style?.let {
+                    style(it)
                 }
                 this.title = title
             }
@@ -976,12 +976,12 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         // SampleStart
         plotGrid(
             listOf(
-                plotWithTheme(Theme.Classic, "\"Classic\" theme"),
-                plotWithTheme(Theme.Grey, "\"Grey\" theme"),
-                plotWithTheme(Theme.Light, "\"Light\" theme"),
-                plotWithTheme(Theme.Minimal, "\"Minimal\" theme"),
-                plotWithTheme(Theme.Minimal2, "\"Minimal2\" theme (by default)"),
-                plotWithTheme(Theme.None, "\"None\" theme"),
+                plotWithTheme(Style.Classic, "\"Classic\" theme"),
+                plotWithTheme(Style.Grey, "\"Grey\" theme"),
+                plotWithTheme(Style.Light, "\"Light\" theme"),
+                plotWithTheme(Style.Minimal, "\"Minimal\" theme"),
+                plotWithTheme(Style.Minimal2, "\"Minimal2\" theme (by default)"),
+                plotWithTheme(Style.None, "\"None\" theme"),
             ), 2
         )
             // SampleEnd
@@ -993,7 +993,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         // SampleStart
         val redLine = LayoutParameters.line(Color.RED)
 
-        val simpleCustomTheme = theme {
+        val simpleCustomTheme = style {
             // use previously created parameters
             xAxis.line(redLine)
             // set up parameters
@@ -1015,7 +1015,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
     @Test
     fun experimentalLayoutCustomThemeBlankAxes() {
         // SampleStart
-        val blankAxesTheme = theme {
+        val blankAxesTheme = style {
             blankAxes()
         }
         plotWithTheme(blankAxesTheme)

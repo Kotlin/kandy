@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotBunch
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
-import org.jetbrains.kotlinx.kandy.letsplot.theme.theme
+import org.jetbrains.kotlinx.kandy.letsplot.theme.style
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.statistics.kandy.layers.histogram
 import kotlin.test.Test
@@ -29,7 +29,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
 
     private val scaleX = Scale.continuousPos(-3.5..3.5)
 
-    private val upperTheme = theme {
+    private val upperTheme = style {
         blankAxes()
         axis.text { }
         yAxis.title { }
@@ -37,7 +37,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
             blank = true
         }
     }
-    private val lowerTheme = theme {
+    private val lowerTheme = style {
         blankAxes()
         yAxis.text { }
         axis.title { }
@@ -135,7 +135,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
     @Test
     fun guideBunchCreateThemes() {
         // SampleStart
-        val upperTheme = theme {
+        val upperTheme = style {
             blankAxes()
             axis.text { }
             yAxis.title { }
@@ -143,7 +143,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 blank = true
             }
         }
-        val lowerTheme = theme {
+        val lowerTheme = style {
             blankAxes()
             yAxis.text { }
             axis.title { }
@@ -165,7 +165,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 layout {
                     size = 600 to 200
                     xAxisLabel = "x"
-                    theme(upperTheme)
+                    style(upperTheme)
                 }
             }, 0, 0)
             add(plot {
@@ -179,7 +179,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                     size = 600 to 200
                     xAxisLabel = "x"
                     yAxisLabel = "y"
-                    theme(lowerTheme)
+                    style(lowerTheme)
                 }
             }, 0, 200)
         }
@@ -199,7 +199,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 layout {
                     size = 600 to 200
                     xAxisLabel = "x"
-                    theme(upperTheme)
+                    style(upperTheme)
                 }
             }, 0, 0, 600, 100)
             add(plot {
@@ -213,7 +213,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                     size = 600 to 200
                     xAxisLabel = "x"
                     yAxisLabel = "y"
-                    theme(lowerTheme)
+                    style(lowerTheme)
                 }
             }, 0, 100, 600, 300)
         }

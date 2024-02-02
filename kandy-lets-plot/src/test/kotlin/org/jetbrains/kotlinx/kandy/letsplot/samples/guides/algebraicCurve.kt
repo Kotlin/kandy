@@ -7,7 +7,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.raster
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
+import org.jetbrains.kotlinx.kandy.letsplot.theme.Style
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.math.abs
 import kotlin.math.exp
@@ -105,7 +105,7 @@ class AlgebraicCurve : SampleHelper("geoms", "guides") {
                 subtitle = "Simple way to draw an algebraic curve - with `raster` layer"
                 size = 800 to 600
 
-                theme(Theme.Classic) {
+                style(Style.Classic) {
                     blankAxes()
                 }
             }

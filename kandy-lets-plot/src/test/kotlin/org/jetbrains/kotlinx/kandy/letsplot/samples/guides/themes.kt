@@ -49,8 +49,8 @@ class Themes : SampleHelper("layout", "guides") {
 
     private fun pointPlotWithTheme(
         name: String,
-        inTheme: Theme = Theme.Minimal2,
-        cusTheme: CustomTheme.() -> Unit = {}
+        inStyle: Style = Style.Minimal2,
+        cusTheme: CustomStyle.() -> Unit = {}
     ) =
         df.plot {
             points {
@@ -59,11 +59,11 @@ class Themes : SampleHelper("layout", "guides") {
             }
             layout {
                 title = name
-                theme(inTheme, cusTheme)
+                style(inStyle, cusTheme)
             }
         }
 
-    private fun barPlotWithTheme(name: String, inTheme: Theme = Theme.Minimal2, cusTheme: CustomTheme.() -> Unit = {}) =
+    private fun barPlotWithTheme(name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}) =
         bPlotDf.plot {
             bars {
                 x(fl)
@@ -72,12 +72,12 @@ class Themes : SampleHelper("layout", "guides") {
             }
             layout {
                 title = name
-                theme(inTheme, cusTheme)
+                style(inStyle, cusTheme)
             }
         }
 
     private fun barFacetPlotWithTheme(
-        name: String, inTheme: Theme = Theme.Minimal2, cusTheme: CustomTheme.() -> Unit = {}
+        name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}
     ) =
         fPlotDf.plot {
             bars {
@@ -88,7 +88,7 @@ class Themes : SampleHelper("layout", "guides") {
             facetGridX(year)
             layout {
                 title = name
-                theme(inTheme, cusTheme)
+                style(inStyle, cusTheme)
             }
         }
 
@@ -104,7 +104,7 @@ class Themes : SampleHelper("layout", "guides") {
     @Test
     fun guideThemesPointPlotWithoutTheme() {
         // SampleStart
-        fun pointPlotWithTheme(name: String, inTheme: Theme = Theme.Minimal2, cusTheme: CustomTheme.() -> Unit = {}) =
+        fun pointPlotWithTheme(name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}) =
             df.plot {
                 points {
                     x(cty)
@@ -112,7 +112,7 @@ class Themes : SampleHelper("layout", "guides") {
                 }
                 layout {
                     title = name
-                    theme(inTheme, cusTheme)
+                    style(inStyle, cusTheme)
                 }
             }
 
@@ -138,7 +138,7 @@ class Themes : SampleHelper("layout", "guides") {
     @Test
     fun guideThemesBarPlotWithoutTheme() {
         // SampleStart
-        fun barPlotWithTheme(name: String, inTheme: Theme = Theme.Minimal2, cusTheme: CustomTheme.() -> Unit = {}) =
+        fun barPlotWithTheme(name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}) =
             bPlotDf.plot {
                 bars {
                     x(fl)
@@ -147,7 +147,7 @@ class Themes : SampleHelper("layout", "guides") {
                 }
                 layout {
                     title = name
-                    theme(inTheme, cusTheme)
+                    style(inStyle, cusTheme)
                 }
             }
 
@@ -174,7 +174,7 @@ class Themes : SampleHelper("layout", "guides") {
     fun guideThemesBarsFacetGridX() {
         // SampleStart
         fun barFacetPlotWithTheme(
-            name: String, inTheme: Theme = Theme.Minimal2, cusTheme: CustomTheme.() -> Unit = {}
+            name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}
         ) =
             fPlotDf.plot {
                 bars {
@@ -185,7 +185,7 @@ class Themes : SampleHelper("layout", "guides") {
                 facetGridX(year)
                 layout {
                     title = name
-                    theme(inTheme, cusTheme)
+                    style(inStyle, cusTheme)
                 }
             }
 
@@ -230,11 +230,11 @@ class Themes : SampleHelper("layout", "guides") {
         plotGrid(
             listOf(
                 pointPlotWithTheme("Minimal2 Theme - by default"),
-                pointPlotWithTheme("Light Theme", Theme.Light),
-                pointPlotWithTheme("Classic Theme", Theme.Classic),
-                pointPlotWithTheme("Grey Theme", Theme.Grey),
-                pointPlotWithTheme("Minimal Theme", Theme.Minimal),
-                pointPlotWithTheme("None Theme", Theme.None)
+                pointPlotWithTheme("Light Theme", Style.Light),
+                pointPlotWithTheme("Classic Theme", Style.Classic),
+                pointPlotWithTheme("Grey Theme", Style.Grey),
+                pointPlotWithTheme("Minimal Theme", Style.Minimal),
+                pointPlotWithTheme("None Theme", Style.None)
             ),
             nCol = 2,
             fit = true
@@ -251,7 +251,7 @@ class Themes : SampleHelper("layout", "guides") {
         val orangeNormal = Color.hex("#f16913")
         val orangeLight = Color.hex("#fff5eb")
 
-        val themeOrangeConstructor: CustomTheme.() -> Unit = {
+        val themeOrangeConstructor: CustomStyle.() -> Unit = {
             global {
                 line {
                     color = orangeNormal
@@ -300,8 +300,8 @@ class Themes : SampleHelper("layout", "guides") {
 
         plotGrid(
             listOf(
-                pointPlotWithTheme("Scatter plot", Theme.None, themeOrangeConstructor),
-                barPlotWithTheme("Bar plot", Theme.None, themeOrangeConstructor)
+                pointPlotWithTheme("Scatter plot", Style.None, themeOrangeConstructor),
+                barPlotWithTheme("Bar plot", Style.None, themeOrangeConstructor)
             ),
             nCol = 2,
             fit = true
@@ -365,8 +365,8 @@ class Themes : SampleHelper("layout", "guides") {
         // SampleStart
         plotGrid(
             listOf(
-                barPlotWithTheme("None Theme", Theme.None),
-                barPlotWithTheme("None theme + Rect", Theme.None) {
+                barPlotWithTheme("None Theme", Style.None),
+                barPlotWithTheme("None theme + Rect", Style.None) {
                     global.background(eBackground)
                 }
             ),
@@ -482,7 +482,7 @@ class Themes : SampleHelper("layout", "guides") {
         // SampleStart
         plotGrid(
             listOf(
-                barFacetPlotWithTheme("Grey Theme", Theme.Grey),
+                barFacetPlotWithTheme("Grey Theme", Style.Grey),
                 barFacetPlotWithTheme("Strip background") { strip.background(eBackground) },
                 barFacetPlotWithTheme("Blank strip background") {
                     strip.background {
@@ -545,7 +545,7 @@ class Themes : SampleHelper("layout", "guides") {
                     coordFlip()
                     layout {
                         title = "Plot 1"
-                        theme {
+                        style {
                             global {
                                 line(eLine)
                                 text(eText)
@@ -562,7 +562,7 @@ class Themes : SampleHelper("layout", "guides") {
                     coordFlip()
                     layout {
                         title = "Plot 2"
-                        theme {
+                        style {
                             axis {
                                 line(eLine)
                                 onTop = true
@@ -580,7 +580,7 @@ class Themes : SampleHelper("layout", "guides") {
                     coordFlip()
                     layout {
                         title = "Plot 3"
-                        theme {
+                        style {
                             plotCanvas.title(eText)
                             panel {
                                 background(eBackground)
@@ -607,7 +607,7 @@ class Themes : SampleHelper("layout", "guides") {
                     coordFlip()
                     layout {
                         title = "Plot 4"
-                        theme {
+                        style {
                             strip {
                                 background(eBackground)
                                 text(eText)
@@ -624,7 +624,7 @@ class Themes : SampleHelper("layout", "guides") {
                     coordFlip()
                     layout {
                         title = "Plot 5"
-                        theme {
+                        style {
                             xAxis {
                                 text(eText)
                                 title(eText)
@@ -669,7 +669,7 @@ class Themes : SampleHelper("layout", "guides") {
                     }
                     layout {
                         title = "Grey background"
-                        theme {
+                        style {
                             panel.background {
                                 borderLineColor = Color.PURPLE
                                 fillColor = Color.GREY

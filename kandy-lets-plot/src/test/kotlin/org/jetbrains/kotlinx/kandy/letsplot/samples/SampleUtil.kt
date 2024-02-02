@@ -65,14 +65,14 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
     private fun Plot.changeThemeToDarkMode() {
         val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
         val darkBackground = BackgroundParameters(fillColor = darkColor)
-        val customTheme = CustomTheme(legend = Legend(darkBackground), plotCanvas = PlotCanvas(darkBackground))
+        val customTheme = CustomStyle(legend = Legend(darkBackground), plotCanvas = PlotCanvas(darkBackground))
 
         val darkLayout = layout?.apply {
-            flavor = Flavor.DARCULA
+            flavor = Theme.DARCULA
             val cusTheme = when {
-                this.theme != null && this.customTheme == null && theme is CustomTheme -> theme as CustomTheme
-                theme != null -> this.customTheme
-                else -> this.customTheme
+                this.style != null && this.customStyle == null && style is CustomStyle -> style as CustomStyle
+                style != null -> this.customStyle
+                else -> this.customStyle
             }
 
             println(cusTheme)
@@ -86,8 +86,8 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
                     it.legend.background = it.legend.background?.copy(fillColor = darkColor)
                         ?: darkBackground
                 }
-            } ?: run { theme = customTheme }
-        } ?: Layout(flavor = Flavor.DARCULA).apply { this.customTheme = customTheme }
+            } ?: run { style = customTheme }
+        } ?: Layout(flavor = Theme.DARCULA).apply { this.customStyle = customTheme }
 
         (this.features as MutableMap)[FeatureName("layout")] = darkLayout
     }
