@@ -32,7 +32,7 @@ internal fun NotebookRenderingContext.figureToMimeJson(figure: Figure): JsonObje
         put("application/plot+json", buildJsonObject {
             put("output_type", JsonPrimitive("lets_plot_spec"))
             put("output", serializeSpec(spec))
-            put("apply_color_scheme", JsonPrimitive(config.applyColorScheme))
+            put("apply_color_scheme", JsonPrimitive(config.themeApplied))
             put("swing_enabled", JsonPrimitive(config.swingEnabled))
         })
     }

@@ -4,14 +4,14 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.theme
 
-/**
- * Plot theme.
- */
-public sealed interface Theme {
-    public object Grey : Theme
-    public object Light : Theme
-    public object Classic : Theme
-    public object Minimal : Theme
-    public object Minimal2 : Theme
-    public object None : Theme
+public enum class Theme {
+    DARCULA,
+    SOLARIZED_LIGHT,
+    SOLARIZED_DARK,
+    HIGH_CONTRAST_LIGHT,
+    HIGH_CONTRAST_DARK;
+
+    override fun toString(): String {
+        return super.toString().lowercase()
+    }
 }

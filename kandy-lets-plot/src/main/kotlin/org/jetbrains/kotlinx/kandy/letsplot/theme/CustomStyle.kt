@@ -324,7 +324,7 @@ public data class Strip internal constructor(
     override var text: TextParameters? = null
 ) : SelfInvocationContext, WithText, WithBackground
 
-public data class CustomTheme @PublishedApi internal constructor(
+public data class CustomStyle @PublishedApi internal constructor(
     val global: Global = Global(),
     val axis: Axis = Axis(),
     val xAxis: Axis = Axis(),
@@ -334,12 +334,12 @@ public data class CustomTheme @PublishedApi internal constructor(
     val plotCanvas: PlotCanvas = PlotCanvas(),
     val strip: Strip = Strip(),
     val layerTooltips: LayerTooltips = LayerTooltips()
-) : Theme {
+) : Style {
     public fun blankAxes() {
         axis.blank = true
     }
 }
 
-public inline fun theme(block: CustomTheme.() -> Unit): CustomTheme {
-    return CustomTheme().apply(block)
+public inline fun style(block: CustomStyle.() -> Unit): CustomStyle {
+    return CustomStyle().apply(block)
 }

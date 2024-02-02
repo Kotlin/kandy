@@ -36,7 +36,7 @@ public fun TextParameters.wrap(): Map<String, Any> {
     )
 }
 
-public fun CustomTheme.wrap(): theme {
+public fun CustomStyle.wrap(): theme {
     var buffer = theme(
         line = global.line?.wrap(),
         rect = global.background?.wrap(),
@@ -129,14 +129,14 @@ public fun CustomTheme.wrap(): theme {
     return buffer
 }
 
-public fun Theme.wrap(): OptionsMap {
+public fun Style.wrap(): OptionsMap {
     return when (this) {
-        Theme.Grey -> themeGrey()
-        Theme.Classic -> themeClassic()
-        Theme.Light -> themeLight()
-        Theme.Minimal -> themeMinimal()
-        Theme.Minimal2 -> themeMinimal2()
-        Theme.None -> themeNone()
-        is CustomTheme -> this.wrap()
+        Style.Grey -> themeGrey()
+        Style.Classic -> themeClassic()
+        Style.Light -> themeLight()
+        Style.Minimal -> themeMinimal()
+        Style.Minimal2 -> themeMinimal2()
+        Style.None -> themeNone()
+        is CustomStyle -> this.wrap()
     }
 }

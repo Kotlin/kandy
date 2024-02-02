@@ -7,9 +7,9 @@ package org.jetbrains.kotlinx.kandy.letsplot.feature
 import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.kandy.letsplot.theme.CustomTheme
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Flavor
+import org.jetbrains.kotlinx.kandy.letsplot.theme.CustomStyle
 import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
+import org.jetbrains.kotlinx.kandy.letsplot.theme.Style
 
 /**
  * Provides a context for configuring the layout of a plot.
@@ -71,26 +71,26 @@ public data class Layout(
     var xAxisLabel: String? = null,
     var yAxisLabel: String? = null,
 
-    var flavor: Flavor? = null,
+    var flavor: Theme? = null,
 
     var size: Pair<Int, Int>? = null
 ) : PlotFeature {
 
     @PublishedApi
-    internal var theme: Theme? = null
+    internal var style: Style? = null
 
     @PublishedApi
-    internal var customTheme: CustomTheme? = null
+    internal var customStyle: CustomStyle? = null
 
     /**
      * Configures the theme of the plot.
      *
-     * @param theme one of the predefined themes.
+     * @param style one of the predefined themes.
      * @param block additional customizations to apply on top of the main theme.
      */
-    public inline fun theme(theme: Theme, block: CustomTheme.() -> Unit = {}) {
-        this.theme = theme
-        customTheme = CustomTheme().apply(block)
+    public inline fun style(style: Style, block: CustomStyle.() -> Unit = {}) {
+        this.style = style
+        customStyle = CustomStyle().apply(block)
     }
 
     /**
@@ -98,8 +98,8 @@ public data class Layout(
      *
      * @param block a lambda function to define the custom theme.
      */
-    public inline fun theme(block: CustomTheme.() -> Unit) {
-        theme = CustomTheme().apply(block)
+    public inline fun style(block: CustomStyle.() -> Unit) {
+        style = CustomStyle().apply(block)
     }
 
     override val featureName: FeatureName = NAME
