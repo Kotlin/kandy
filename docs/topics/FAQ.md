@@ -27,19 +27,20 @@ See an [example app](https://github.com/AndreiKingsley/kandy_android_skiko)
 
 ## Can I use Kandy plots with Java Swing/JavaFX?
 * There is currently no native support. However, you can convert Kandy plot into Lets-Plot specification and use 
-[Lets-Plot tools](https://github.com/JetBrains/lets-plot-kotlin/blob/master/USAGE_BATIK_JFX_JS.md) 
+[Lets-Plot tools](https://github.com/JetBrains/lets-plot-kotlin/blob/master/USAGE_BATIK_JFX_JS.md, https://github.com/JetBrains/lets-plot-skia) 
  for this purpose. See an [example app](https://github.com/AndreiKingsley/kandy-swing-app-example)
 * Also follow the updates in the [corresponding issue](https://github.com/Kotlin/kandy/issues/283)
 * You can export Kandy Plot to `BufferedImage` ([see](https://kotlin.github.io/kandy/quick-start-guide.html#export))
 
 ## Is there geo tools/geo visualization support?
-At the moment, no. Follow the updates in the [corresponding issue](https://github.com/Kotlin/kandy/issues/280)
+At the moment, no. We are currently investigating adding support for GeoTools (https://www.geotools.org/) using lets-plot-geo (https://github.com/JetBrains/lets-plot-kotlin/blob/master/docs/geotools.md). f you need it, please follow the updates and vote in the corresponding issue: https://github.com/Kotlin/kandy/issues/280. It would also be appreciated if you could describe your case and current tools.
+
 
 ## Does Kandy support 3D plotting?
-At the moment, no. Follow the updates in the [corresponding issue](https://github.com/Kotlin/kandy/issues/209)
+At the moment, no. This is a limitation of the Lets-Plot engine that specializes exactly in 2D charts. If you need it, please follow the updates and vote in the corresponding issue: https://github.com/Kotlin/kandy/issues/209
 
 ## Does Kandy support dynamic plotting / animations?
-At the moment, no.
+Kandy supports tooltips: see documentation (https://kotlin.github.io/kandy/tooltips-guide.html)
 
 ## Is there matplotlib-like (series) plotting?
 Because of Lets-Plot restrictions, it’s not supported for now, but you can use 
