@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.layers.tiles
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
-import org.jetbrains.kotlinx.kandy.letsplot.theme.LegendPosition
+import org.jetbrains.kotlinx.kandy.letsplot.style.LegendPosition
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.Anchor
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.tooltips
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.value

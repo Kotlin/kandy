@@ -1,7 +1,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Style
+import org.jetbrains.kotlinx.kandy.letsplot.style.Theme
+import org.jetbrains.kotlinx.kandy.letsplot.style.Style
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import kotlin.test.Test
 import kotlin.test.assertEquals

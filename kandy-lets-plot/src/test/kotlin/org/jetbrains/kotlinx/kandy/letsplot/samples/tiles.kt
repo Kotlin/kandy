@@ -7,7 +7,7 @@ import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.tiles
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Style
+import org.jetbrains.kotlinx.kandy.letsplot.style.Style
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import org.jetbrains.kotlinx.statistics.kandy.layers.heatmap

@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.*
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Style
+import org.jetbrains.kotlinx.kandy.letsplot.style.Style
 import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.letsplot.y
 import java.util.*

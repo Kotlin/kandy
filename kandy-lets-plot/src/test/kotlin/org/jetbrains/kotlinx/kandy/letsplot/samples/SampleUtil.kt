@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
-import org.jetbrains.kotlinx.kandy.letsplot.theme.*
+import org.jetbrains.kotlinx.kandy.letsplot.style.*
 import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
 import org.jetbrains.kotlinx.kandy.util.color.Color

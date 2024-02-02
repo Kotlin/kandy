@@ -10,8 +10,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
-import org.jetbrains.kotlinx.kandy.letsplot.theme.LegendDirection
-import org.jetbrains.kotlinx.kandy.letsplot.theme.LegendPosition
+import org.jetbrains.kotlinx.kandy.letsplot.style.LegendDirection
+import org.jetbrains.kotlinx.kandy.letsplot.style.LegendPosition
 import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.letsplot.y
 import org.jetbrains.kotlinx.kandy.util.color.Color

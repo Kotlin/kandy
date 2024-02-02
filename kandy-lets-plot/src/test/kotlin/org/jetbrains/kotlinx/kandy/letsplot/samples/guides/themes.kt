@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.facetGridX
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
-import org.jetbrains.kotlinx.kandy.letsplot.theme.*
+import org.jetbrains.kotlinx.kandy.letsplot.style.*
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.Anchor
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.tooltips
 import org.jetbrains.kotlinx.kandy.util.color.Color

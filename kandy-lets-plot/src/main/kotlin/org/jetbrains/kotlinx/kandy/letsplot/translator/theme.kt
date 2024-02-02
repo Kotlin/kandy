@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
-import org.jetbrains.kotlinx.kandy.letsplot.theme.*
+import org.jetbrains.kotlinx.kandy.letsplot.style.*
 import org.jetbrains.letsPlot.intern.OptionsMap
 import org.jetbrains.letsPlot.themes.*
 

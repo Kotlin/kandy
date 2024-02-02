@@ -7,9 +7,9 @@ package org.jetbrains.kotlinx.kandy.letsplot.feature
 import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.kandy.letsplot.theme.CustomStyle
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Style
+import org.jetbrains.kotlinx.kandy.letsplot.style.CustomStyle
+import org.jetbrains.kotlinx.kandy.letsplot.style.Theme
+import org.jetbrains.kotlinx.kandy.letsplot.style.Style
 
 /**
  * Provides a context for configuring the layout of a plot.

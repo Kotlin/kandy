@@ -37,7 +37,7 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.kandy.letsplot.translator.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.scales.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.scales.guide.*")
-        import("org.jetbrains.kotlinx.kandy.letsplot.theme.*")
+        import("org.jetbrains.kotlinx.kandy.letsplot.style.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.tooltips.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.settings.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.settings.font.*")

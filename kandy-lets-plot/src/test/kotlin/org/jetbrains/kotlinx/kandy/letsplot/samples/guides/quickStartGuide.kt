@@ -19,9 +19,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.scales.*
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
-import org.jetbrains.kotlinx.kandy.letsplot.theme.LayoutParameters
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Style
-import org.jetbrains.kotlinx.kandy.letsplot.theme.style
+import org.jetbrains.kotlinx.kandy.letsplot.style.LayoutParameters
+import org.jetbrains.kotlinx.kandy.letsplot.style.Style
+import org.jetbrains.kotlinx.kandy.letsplot.style.style
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.Anchor
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.tooltips
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.value
