@@ -142,7 +142,7 @@ mpgDf.plot {
         title = "The plot title"
         subtitle = "The plot subtitle"
         caption = "The plot caption"
-        theme {
+        style {
             global.title {
                 color = Color.BLUE
             }
@@ -168,7 +168,7 @@ mpgDf.plot {
         title = "The plot title"
         subtitle = "The plot subtitle"
         caption = "The plot caption"
-        theme {
+        style {
             global {
                 text {
                     fontFace = FontFace.ITALIC
@@ -210,7 +210,7 @@ mpgDf.plot {
         title = "The plot title"
         subtitle = "The plot subtitle"
         caption = "The plot caption"
-        theme {
+        style {
             plotCanvas {
                 title {
                     color = Color.BLUE
@@ -244,7 +244,7 @@ mpgDf.plot {
         title = "The plot title:\nFuel efficiency for most popular models of car"
         subtitle = "The plot subtitle:\nPoints are colored by the type of drive train"
         caption = "The plot caption:\nmpg dataset"
-        theme {
+        style {
             plotCanvas {
                 subtitle {
                     color = Color.GREY
@@ -288,7 +288,7 @@ mpgDf.plot {
         symbol(drv) { legend.name = "Drive type" }
         size = 4.0
     }
-    layout.theme {
+    layout.style {
         legend.position = LegendPosition.Bottom
     }
 }
@@ -327,7 +327,7 @@ mpgDf.plot {
         symbol(drv) { legend.name = "Drive type\n(front/4/rear wheel)" }
         size = 4.0
     }
-    layout.theme {
+    layout.style {
         legend.position = LegendPosition.Bottom
     }
 }
@@ -353,7 +353,7 @@ mpgDf.plot {
         }
         size = 4.0
     }
-    layout.theme {
+    layout.style {
         legend.position = LegendPosition.Bottom
     }
 }

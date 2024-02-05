@@ -180,7 +180,7 @@ mpgDf.plot {
     }
 
     layout {
-        theme {
+        style {
             legend.position = LegendPosition.None
         }
     }
@@ -281,7 +281,7 @@ irisDf.groupBy { species }.plot {
         }
     }
     layout {
-        theme { legend.position = LegendPosition.None }
+        style { legend.position = LegendPosition.None }
     }
 }
 ```
@@ -414,7 +414,7 @@ mpgDf.plot {
         tooltips(title = "${value(manufacturer)} ${value(model)}") {}
     }
     layout {
-        theme { legend.position = LegendPosition.None }
+        style { legend.position = LegendPosition.None }
     }
 }
 ```
@@ -439,7 +439,7 @@ mpgDf.plot {
         tooltips(`class`, year, title = "${value(manufacturer)} ${value(model)}") {}
     }
     layout {
-        theme { legend.position = LegendPosition.None }
+        style { legend.position = LegendPosition.None }
     }
 }
 ```
@@ -468,7 +468,7 @@ mpgDf.plot {
         }
     }
     layout {
-        theme { legend.position = LegendPosition.None }
+        style { legend.position = LegendPosition.None }
     }
 }
 ```
@@ -521,7 +521,7 @@ plot(dataset) {
         }
     }
 
-    layout.theme {
+    layout.style {
         layerTooltips {
             background {
                 borderLineColor = Color.hex("#225e32")

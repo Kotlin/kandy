@@ -23,7 +23,7 @@ Learn to effectively represent categorical data with visually engaging charts.
 <!---FUN guidePieBlankTheme-->
 
 ```kotlin
-val blankTheme = theme {
+val blankTheme = style {
     global.line {
         blank = true
     }
@@ -84,7 +84,7 @@ dataset.plot {
         hole = 0.5
     }
     layout {
-        theme(blankTheme)
+        style(blankTheme)
     }
 }
 ```
@@ -131,7 +131,7 @@ length.plot {
         strokeColor = Color.BLACK
         size = 20.0
     }
-    layout.theme(blankTheme)
+    layout.style(blankTheme)
 }
 ```
 
@@ -166,7 +166,7 @@ plotGrid(
                 size = 15.0
             }
             layout {
-                theme(blankTheme)
+                style(blankTheme)
             }
         },
         calories.plot {
@@ -180,7 +180,7 @@ plotGrid(
                 hole = 0.8
             }
             layout {
-                theme(blankTheme)
+                style(blankTheme)
             }
         }
     )

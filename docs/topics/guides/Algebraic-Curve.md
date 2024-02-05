@@ -81,7 +81,7 @@ plot(dataset) {
         subtitle = "Simple way to draw an algebraic curve - with `raster` layer"
         size = 800 to 600
 
-        theme(Theme.Classic) {
+        style(Style.Classic) {
             blankAxes()
         }
     }

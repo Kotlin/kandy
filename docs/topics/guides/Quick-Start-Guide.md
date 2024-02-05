@@ -1269,7 +1269,7 @@ mpgDF.plot {
         x(cty)
         y(hwy)
     }
-    layout.theme(Theme.Classic)
+    layout.style(Style.Classic)
 }
 ```
 
@@ -1282,15 +1282,15 @@ For example, creating a plot with different themes:
 <!---FUN experimentalLayoutFunPlotWithTheme-->
 
 ```kotlin
-fun plotWithTheme(theme: Theme? = null, title: String? = null): org.jetbrains.kotlinx.kandy.ir.Plot {
+fun plotWithTheme(style: Style? = null, title: String? = null): org.jetbrains.kotlinx.kandy.ir.Plot {
     return mpgDF.plot {
         points {
             x(cty)
             y(hwy)
         }
         layout {
-            theme?.let {
-                theme(it)
+            style?.let {
+                style(it)
             }
             this.title = title
         }
@@ -1305,12 +1305,12 @@ fun plotWithTheme(theme: Theme? = null, title: String? = null): org.jetbrains.ko
 ```kotlin
 plotGrid(
     listOf(
-        plotWithTheme(Theme.Classic, "\"Classic\" theme"),
-        plotWithTheme(Theme.Grey, "\"Grey\" theme"),
-        plotWithTheme(Theme.Light, "\"Light\" theme"),
-        plotWithTheme(Theme.Minimal, "\"Minimal\" theme"),
-        plotWithTheme(Theme.Minimal2, "\"Minimal2\" theme (by default)"),
-        plotWithTheme(Theme.None, "\"None\" theme"),
+        plotWithTheme(Style.Classic, "\"Classic\" theme"),
+        plotWithTheme(Style.Grey, "\"Grey\" theme"),
+        plotWithTheme(Style.Light, "\"Light\" theme"),
+        plotWithTheme(Style.Minimal, "\"Minimal\" theme"),
+        plotWithTheme(Style.Minimal2, "\"Minimal2\" theme (by default)"),
+        plotWithTheme(Style.None, "\"None\" theme"),
     ), 2
 )
 ```
@@ -1331,7 +1331,7 @@ Creating a simple custom theme:
 ```kotlin
 val redLine = LayoutParameters.line(Color.RED)
 
-val simpleCustomTheme = theme {
+val simpleCustomTheme = style {
     // use previously created parameters
     xAxis.line(redLine)
     // set up parameters
@@ -1357,7 +1357,7 @@ Example of a theme with blank axes:
 <!---FUN experimentalLayoutCustomThemeBlankAxes-->
 
 ```kotlin
-val blankAxesTheme = theme {
+val blankAxesTheme = style {
     blankAxes()
 }
 plotWithTheme(blankAxesTheme)

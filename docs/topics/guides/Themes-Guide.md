@@ -38,7 +38,7 @@ df.head(3)
 <!---FUN guideThemesPointPlotWithoutTheme-->
 
 ```kotlin
-fun pointPlotWithTheme(name: String, inTheme: Theme = Theme.Minimal2, cusTheme: CustomTheme.() -> Unit = {}) =
+fun pointPlotWithTheme(name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}) =
     df.plot {
         points {
             x(cty)
@@ -46,7 +46,7 @@ fun pointPlotWithTheme(name: String, inTheme: Theme = Theme.Minimal2, cusTheme: 
         }
         layout {
             title = name
-            theme(inTheme, cusTheme)
+            style(inStyle, cusTheme)
         }
     }
 
@@ -73,7 +73,7 @@ val bPlotDf = df.groupBy { fl }.count()
 <!---FUN guideThemesBarPlotWithoutTheme-->
 
 ```kotlin
-fun barPlotWithTheme(name: String, inTheme: Theme = Theme.Minimal2, cusTheme: CustomTheme.() -> Unit = {}) =
+fun barPlotWithTheme(name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}) =
     bPlotDf.plot {
         bars {
             x(fl)
@@ -82,7 +82,7 @@ fun barPlotWithTheme(name: String, inTheme: Theme = Theme.Minimal2, cusTheme: Cu
         }
         layout {
             title = name
-            theme(inTheme, cusTheme)
+            style(inStyle, cusTheme)
         }
     }
 
@@ -112,7 +112,7 @@ val fPlotDf = df.groupBy { fl and year }.count()
 
 ```kotlin
 fun barFacetPlotWithTheme(
-    name: String, inTheme: Theme = Theme.Minimal2, cusTheme: CustomTheme.() -> Unit = {}
+    name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}
 ) =
     fPlotDf.plot {
         bars {
@@ -123,7 +123,7 @@ fun barFacetPlotWithTheme(
         facetGridX(year)
         layout {
             title = name
-            theme(inTheme, cusTheme)
+            style(inStyle, cusTheme)
         }
     }
 
@@ -168,11 +168,11 @@ val (w, h) = listOf(400) to listOf(300)
 plotGrid(
     listOf(
         pointPlotWithTheme("Minimal2 Theme - by default"),
-        pointPlotWithTheme("Light Theme", Theme.Light),
-        pointPlotWithTheme("Classic Theme", Theme.Classic),
-        pointPlotWithTheme("Grey Theme", Theme.Grey),
-        pointPlotWithTheme("Minimal Theme", Theme.Minimal),
-        pointPlotWithTheme("None Theme", Theme.None)
+        pointPlotWithTheme("Light Theme", Style.Light),
+        pointPlotWithTheme("Classic Theme", Style.Classic),
+        pointPlotWithTheme("Grey Theme", Style.Grey),
+        pointPlotWithTheme("Minimal Theme", Style.Minimal),
+        pointPlotWithTheme("None Theme", Style.None)
     ),
     nCol = 2,
     fit = true
@@ -193,7 +193,7 @@ val orangeDark = Color.hex("#7f2704")
 val orangeNormal = Color.hex("#f16913")
 val orangeLight = Color.hex("#fff5eb")
 
-val themeOrangeConstructor: CustomTheme.() -> Unit = {
+val themeOrangeConstructor: CustomStyle.() -> Unit = {
     global {
         line {
             color = orangeNormal
@@ -242,8 +242,8 @@ val themeOrangeConstructor: CustomTheme.() -> Unit = {
 
 plotGrid(
     listOf(
-        pointPlotWithTheme("Scatter plot", Theme.None, themeOrangeConstructor),
-        barPlotWithTheme("Bar plot", Theme.None, themeOrangeConstructor)
+        pointPlotWithTheme("Scatter plot", Style.None, themeOrangeConstructor),
+        barPlotWithTheme("Bar plot", Style.None, themeOrangeConstructor)
     ),
     nCol = 2,
     fit = true
@@ -319,8 +319,8 @@ plotGrid(
 ```kotlin
 plotGrid(
     listOf(
-        barPlotWithTheme("None Theme", Theme.None),
-        barPlotWithTheme("None theme + Rect", Theme.None) {
+        barPlotWithTheme("None Theme", Style.None),
+        barPlotWithTheme("None theme + Rect", Style.None) {
             global.background(eBackground)
         }
     ),
@@ -448,7 +448,7 @@ plotGrid(
 ```kotlin
 plotGrid(
     listOf(
-        barFacetPlotWithTheme("Grey Theme", Theme.Grey),
+        barFacetPlotWithTheme("Grey Theme", Style.Grey),
         barFacetPlotWithTheme("Strip background") { strip.background(eBackground) },
         barFacetPlotWithTheme("Blank strip background") {
             strip.background {
@@ -517,7 +517,7 @@ plotGrid(
             coordFlip()
             layout {
                 title = "Plot 1"
-                theme {
+                style {
                     global {
                         line(eLine)
                         text(eText)
@@ -534,7 +534,7 @@ plotGrid(
             coordFlip()
             layout {
                 title = "Plot 2"
-                theme {
+                style {
                     axis {
                         line(eLine)
                         onTop = true
@@ -552,7 +552,7 @@ plotGrid(
             coordFlip()
             layout {
                 title = "Plot 3"
-                theme {
+                style {
                     plotCanvas.title(eText)
                     panel {
                         background(eBackground)
@@ -579,7 +579,7 @@ plotGrid(
             coordFlip()
             layout {
                 title = "Plot 4"
-                theme {
+                style {
                     strip {
                         background(eBackground)
                         text(eText)
@@ -596,7 +596,7 @@ plotGrid(
             coordFlip()
             layout {
                 title = "Plot 5"
-                theme {
+                style {
                     xAxis {
                         text(eText)
                         title(eText)
@@ -643,7 +643,7 @@ plotGrid(
             }
             layout {
                 title = "Grey background"
-                theme {
+                style {
                     panel.background {
                         borderLineColor = Color.PURPLE
                         fillColor = Color.GREY

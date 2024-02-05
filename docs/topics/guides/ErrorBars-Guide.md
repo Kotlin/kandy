@@ -193,7 +193,7 @@ plot(dataset) {
         xAxisLabel = "Dose (mg)"
         yAxisLabel = "Tooth length (mm)"
 
-        theme {
+        style {
             legend {
                 justification(1.0, 0.0)
                 position(1.0, 0.0)
@@ -241,7 +241,7 @@ plot(dataset) {
         xAxisLabel = "Dose (mg)"
         yAxisLabel = "Tooth length (mm)"
 
-        theme {
+        style {
             legend {
                 justification(0.0, 1.0)
                 position(0.0, 1.0)

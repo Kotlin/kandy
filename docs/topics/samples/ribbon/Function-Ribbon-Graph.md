@@ -21,10 +21,10 @@ Dive into 'Function Ribbon Graph' using Kotlin and Kandy, where mathematics meet
 
 ```kotlin
 val xs = (-1000..1000).map { it / 250.0f }
-val function = { x: Float -> sin(2 * x) * cos(x / 2 - 3.0) }
+val function = { x: Float -> sin(2 * x) * cos(x / 2 - 3f) }
 val yActual = xs.map(function)
-val yLow = yActual.map { it - 0.25 }
-val yHigh = yActual.map { it + 0.25 }
+val yLow = yActual.map { it - 0.25f }
+val yHigh = yActual.map { it + 0.25f }
 
 plot {
     ribbon {

@@ -121,7 +121,7 @@ plotBunch {
 <!---FUN guideBunchCreateThemes-->
 
 ```kotlin
-val upperTheme = theme {
+val upperTheme = style {
     blankAxes()
     axis.text { }
     yAxis.title { }
@@ -129,7 +129,7 @@ val upperTheme = theme {
         blank = true
     }
 }
-val lowerTheme = theme {
+val lowerTheme = style {
     blankAxes()
     yAxis.text { }
     axis.title { }
@@ -151,7 +151,7 @@ plotBunch {
         layout {
             size = 600 to 200
             xAxisLabel = "x"
-            theme(upperTheme)
+            style(upperTheme)
         }
     }, 0, 0)
     add(plot {
@@ -165,7 +165,7 @@ plotBunch {
             size = 600 to 200
             xAxisLabel = "x"
             yAxisLabel = "y"
-            theme(lowerTheme)
+            style(lowerTheme)
         }
     }, 0, 200)
 }
@@ -193,7 +193,7 @@ plotBunch {
         layout {
             size = 600 to 200
             xAxisLabel = "x"
-            theme(upperTheme)
+            style(upperTheme)
         }
     }, 0, 0, 600, 100)
     add(plot {
@@ -207,7 +207,7 @@ plotBunch {
             size = 600 to 200
             xAxisLabel = "x"
             yAxisLabel = "y"
-            theme(lowerTheme)
+            style(lowerTheme)
         }
     }, 0, 100, 600, 300)
 }
