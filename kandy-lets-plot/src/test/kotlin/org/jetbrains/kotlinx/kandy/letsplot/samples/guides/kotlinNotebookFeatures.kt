@@ -78,7 +78,7 @@ class KotlinNotebookFeatures : SampleHelper("other", "guides") {
                 tooltips(type, active)
             }
 
-            layout.flavor = Theme.HIGH_CONTRAST_DARK
+            layout.theme = Theme.HIGH_CONTRAST_DARK
         }
         // SampleEnd
     }

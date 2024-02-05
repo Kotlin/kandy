@@ -68,7 +68,7 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
         val customTheme = CustomStyle(legend = Legend(darkBackground), plotCanvas = PlotCanvas(darkBackground))
 
         val darkLayout = layout?.apply {
-            flavor = Theme.DARCULA
+            theme = Theme.DARCULA
             val cusTheme = when {
                 this.style != null && this.customStyle == null && style is CustomStyle -> style as CustomStyle
                 style != null -> this.customStyle
@@ -87,7 +87,7 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
                         ?: darkBackground
                 }
             } ?: run { style = customTheme }
-        } ?: Layout(flavor = Theme.DARCULA).apply { this.customStyle = customTheme }
+        } ?: Layout(theme = Theme.DARCULA).apply { this.customStyle = customTheme }
 
         (this.features as MutableMap)[FeatureName("layout")] = darkLayout
     }

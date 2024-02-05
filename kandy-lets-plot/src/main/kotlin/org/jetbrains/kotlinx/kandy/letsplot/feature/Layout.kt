@@ -60,7 +60,7 @@ public val PlotContext.layout: Layout
  * @property caption additional text displayed at the bottom of the plot.
  * @property xAxisLabel label for the X-Axis.
  * @property yAxisLabel label for the Y-Axis.
- * @property flavor the color scheme (flavor) of the plot.
+ * @property theme the color scheme (flavor) of the plot.
  * @property size the dimensions (width x height) of the plot in pixels.
  */
 public data class Layout(
@@ -71,7 +71,7 @@ public data class Layout(
     var xAxisLabel: String? = null,
     var yAxisLabel: String? = null,
 
-    var flavor: Theme? = null,
+    var theme: Theme? = null,
 
     var size: Pair<Int, Int>? = null
 ) : PlotFeature {

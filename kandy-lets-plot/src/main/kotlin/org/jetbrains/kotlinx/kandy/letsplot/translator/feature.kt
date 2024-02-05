@@ -75,7 +75,7 @@ internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
     customStyle?.let {
         featureBuffer.add(it.wrap())
     }
-    flavor?.let {
+    theme?.let {
         featureBuffer.add(it.wrap())
     }
 }

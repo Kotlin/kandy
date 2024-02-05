@@ -16,7 +16,7 @@ class LayoutTests {
             caption = "Test Caption",
             xAxisLabel = "x",
             yAxisLabel = "y",
-            flavor = Theme.DARCULA,
+            theme = Theme.DARCULA,
             size = Pair(800, 600)
         )
 
@@ -25,7 +25,7 @@ class LayoutTests {
         assertEquals("Test Caption", layout.caption)
         assertEquals("x", layout.xAxisLabel)
         assertEquals("y", layout.yAxisLabel)
-        assertEquals(Theme.DARCULA, layout.flavor)
+        assertEquals(Theme.DARCULA, layout.theme)
         assertEquals(Pair(800, 600), layout.size)
     }
 
