@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="properties" id="properties_library" is-library="true">
+
+    <snippet id="signature-of-positional">
+        <emphasis>(Iterable | Column | String) | .constant(Any)</emphasis>
+    </snippet>
+
+    <snippet id="signature-of-nonpos-alpha">
+        <emphasis>(Iterable | Column | String) | Double in 0.0..1.0</emphasis>
+    </snippet>
+
+    <snippet id="signature-of-nonpos-color">
+        <emphasis>(Iterable | Column | String) | Color</emphasis>
+    </snippet>
+
+    <snippet id="signature-of-nonpos-linetype">
+        <emphasis>(Iterable | Column | String) | LineType</emphasis>
+    </snippet>
+
+    <snippet id="signature-of-nonpos-double">
+        <emphasis>(Iterable | Column | String) | Double</emphasis>
+    </snippet>
+
+    <snippet id="signature-of-axis">
+        <emphasis>{ AxisParameters }</emphasis>
+    </snippet>
+
+    <snippet id="alpha-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Double</format>
+        </p>
+        <p>
+            The alpha aesthetic controls the transparency of elements in a plot.
+            It provides a means to adjust the visual prominence of elements,
+            ranging from fully transparent (0.0) to fully opaque (1.0).
+        </p>
+        <p><b>Setting</b></p>
+        <list><li><code>alpha = Double</code>: applies a uniform transparency level to all elements within a layer.
+            The Double value should be within the range of 0.0 (completely transparent) to 1.0 (completely opaque).</li></list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>alpha(Iterable)</code>: associates the transparency of each element with a value from an iterable collection.</li>
+            <li><code>alpha(ColumnReference | KProperty | DataColumn)</code>: links transparency with data from a specified DataFrame column.</li>
+            <li><code>alpha(String)</code>: transparency is associated with data from a DataFrame column specified by its name or with data from a Map by key.</li>
+        </list>
+
+        <p><b>Characteristics of the <code>alpha</code> aesthetic</b></p>
+        <list>
+            <li><b>Value range</b> — It is crucial to ensure that all alpha values are within the 0.0 to 1.0 range.
+                Values outside this range will trigger an <code>IllegalArgumentException</code>.</li>
+            <li><b>Scaling and validation</b> — When mapping <code>alpha</code> to data,
+                additional scaling adjustments and value validation ensure proper representation of transparency.</li>
+        </list>
+
+    </snippet>
+
+    <snippet id="color-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Color</format>
+        </p>
+
+        <p>
+            The color aesthetic is a key feature in data visualization,
+            allowing you to set the color of plot elements to enhance the interpretability and visual appeal of your graphs.
+            This aesthetic facilitates both the differentiation of data points and the conveyance of additional data dimensions through color.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list><li><code> color = Color</code>: assigns a uniform color to all elements within a layer.
+            The value can be a predefined <code>Color</code> constant like <code>Color.RED</code>
+            or a custom color defined by <code>Color.hex("#ff0000")</code>.</li></list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>color(Iterable)</code>: links the color of each element to a value from an iterable collection, allowing for varied color assignments within a layer.</li>
+            <li><code>color(ColumnReference | KProperty | DataColumn)</code>: associates element colors with a column in the DataFrame, enabling data-driven color variations.</li>
+            <li><code>color(String)</code>: connects colors to data based on the column name in the DataFrame or by key in a Map, offering flexibility in data representation.</li>
+        </list>
+
+        <p><b>Characteristics of the <code>color</code> aesthetic</b></p>
+        <list>
+            <li><b>Versatility in data representation</b> — The <code>color</code> aesthetic can be used to represent different categories,
+                intensities, or other data dimensions, providing a rich layer of information in visualizations.</li>
+            <li><b>Scaling and validation</b> — When mapping <code>color</code> to data,
+                you can customize the color scale and adjust the mapping to fit specific visualization needs.</li>
+        </list>
+    </snippet>
+
+    <snippet id="fatten-property">
+        Fatten
+    </snippet>
+
+    <snippet id="fillColor-property">
+        FillColor
+    </snippet>
+
+    <snippet id="lineType-property">
+        LineType
+    </snippet>
+
+    <snippet id="size-property">
+        Size
+    </snippet>
+
+    <snippet id="symbol-property">
+        Symbol
+    </snippet>
+
+    <snippet id="type-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">LineType</format>
+        </p>
+
+        <p>
+            The type aesthetic is used to specify the style of lines in a plot, allowing for a diverse range of visual representations.
+            This aesthetic enables the customization of line styles, providing clarity and distinction in data visualizations.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li>
+                <p><code>type = LineType</code>: applies a specific line style to lines within a layer. The value can be one of the predefined LineType constants:</p>
+                <list>
+                    <li><i>LineType.BLANK</i></li>
+                    <li><i>LineType.SOLID</i></li>
+                    <li><i>LineType.DASHED</i></li>
+                    <li><i>LineType.DOTTED</i></li>
+                    <li><i>LineType.DOTDASH</i></li>
+                    <li><i>LineType.LONGDASH</i></li>
+                    <li><i>LineType.TWODASH</i></li>
+                </list>
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>type(Iterable)</code>: links the line style of each element to a value from an iterable collection, allowing for various line styles within a single layer.</li>
+            <li><code>type(ColumnReference | KProperty | DataColumn)</code>: associates line styles with a column in the DataFrame, facilitating data-driven line style variations.</li>
+            <li><code>type(String)</code>: connects line styles to data based on the column name in the DataFrame or by key in a Map, offering flexibility in line style representation.</li>
+        </list>
+    </snippet>
+
+    <snippet id="width-property">
+        Width
+    </snippet>
+
+    <snippet id="widthAsSize-property">
+        WidthAsSize
+    </snippet>
+
+    <snippet id="x-property">
+        X
+    </snippet>
+
+    <snippet id="xBegin-property">
+        XBegin
+    </snippet>
+
+    <snippet id="xEnd-property">
+        XEnd
+    </snippet>
+
+    <snippet id="xFree-property">
+        XFree
+    </snippet>
+
+    <snippet id="xIntercept-property">
+        XIntercept
+    </snippet>
+
+    <snippet id="xMax-property">
+        XMax
+    </snippet>
+
+    <snippet id="xMin-property">
+        XMin
+    </snippet>
+
+    <snippet id="y-property">
+        Y
+    </snippet>
+
+    <snippet id="yBegin-property">
+        YBegin
+    </snippet>
+
+    <snippet id="yEnd-property">
+        YEnd
+    </snippet>
+
+    <snippet id="yFree-property">
+        YFree
+    </snippet>
+
+    <snippet id="yIntercept-property">
+        YIntercept
+    </snippet>
+
+    <snippet id="yMax-property">
+        YMax
+    </snippet>
+
+    <snippet id="yMin-property">
+        YMin
+    </snippet>
+
+</topic>
