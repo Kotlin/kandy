@@ -46,7 +46,7 @@ internal class Integration : JupyterIntegration() {
             declare("kandyConfig" to config)
         }
 
-        with(NotebookRenderingContext(LETS_PLOT_JS_VERSION, config)) {
+        with(NotebookRenderingContext(config)) {
             render<Plot> { figureToMimeResult(it.toLetsPlot()) }
             render<PlotBunch> { figureToMimeResult(it.wrap()) }
             render<PlotGrid> { figureToMimeResult(it.wrap()) }

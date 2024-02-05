@@ -17,6 +17,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
 
 /**
  * Convert plot spec to `BufferedImage`
+ *
+ * @receiver the plot spec represented as `MutableMap`
  */
 internal fun MutableMap<String, Any>.toBufferedImage(scale: Number = 1, dpi: Number? = null): BufferedImage {
     val byteArray = PlotImageExport.buildImageFromRawSpecs(
