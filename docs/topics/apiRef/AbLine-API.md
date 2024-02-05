@@ -79,23 +79,14 @@ which is designed to draw a line defined by its slope ([slope](#slope)) and y-in
 
 ### width
 
-<p>
-<format style="superscript" color="LightSlateGray">Optional</format>
-<format style="superscript" color="#89CFF0">NonPositional</format>
-</p>
-<p>
-<format style="superscript" color="#E8488B">Iterable</format>
-<format style="superscript" color="#E8488B">Column</format>
-<format style="superscript" color="#E8488B">String</format>
-<format style="superscript" color="#E8488B">Double</format>
-</p>
+<include from="properties.topic" element-id="widthAsSize-property"/>
+
+## Free Scales
 
 ### xFree
 
-<p><format style="superscript" color="LightSlateGray">Optional</format></p>
-<p><format style="superscript" color="#E8488B">AxisParameters</format></p>
+<include from="properties.topic" element-id="xFree-property"></include>
 
 ### yFree
 
-<p><format style="superscript" color="LightSlateGray">Optional</format></p>
-<p><format style="superscript" color="#E8488B">AxisParameters</format></p>
+<include from="properties.topic" element-id="yFree-property"/>
