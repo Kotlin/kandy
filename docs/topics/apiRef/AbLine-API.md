@@ -28,11 +28,11 @@
 <include from="properties.topic" element-id="signature-of-nonpos-double"></include>
 </li>
 <li>
-<a href="#xfree"><format style="bold" color="DarkGray">xFree</format></a>
+<a href="#x"><format style="bold" color="DarkGray">x</format></a>
 <include from="properties.topic" element-id="signature-of-axis"></include>
 </li>
 <li>
-<a href="#yfree"><format style="bold" color="DarkGray">yFree</format></a>
+<a href="#y"><format style="bold" color="DarkGray">y</format></a>
 <include from="properties.topic" element-id="signature-of-axis"></include>
 </li>
 </list>
@@ -83,10 +83,10 @@ which is designed to draw a line defined by its slope ([slope](#slope)) and y-in
 
 ## Free Scales
 
-### xFree
+### x
 
 <include from="properties.topic" element-id="xFree-property"></include>
 
-### yFree
+### y
 
 <include from="properties.topic" element-id="yFree-property"/>

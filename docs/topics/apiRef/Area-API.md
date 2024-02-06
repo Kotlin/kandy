@@ -20,8 +20,8 @@
 <include from="properties.topic" element-id="signature-of-nonpos-color"></include>
 </li>
 <li>
-<a href="#borderline"><format style="bold" color="DarkGray">borderLine</format></a> <format style="superscript">NonPositional</format>
-<include from="properties.topic" element-id="signature-of-nonpos-double"></include>
+<a href="#borderline"><format style="bold" color="DarkGray">borderLine</format></a> <format style="superscript">TODO</format>
+TODO
 </li>
 </list>
 <format style="italic">}</format>
