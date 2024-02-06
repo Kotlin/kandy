@@ -1123,7 +1123,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
                 color(drv)
                 size = 3.5
 
-                tooltips(enable = false)
+                tooltips(isEnabled = false)
             }
         }
             // SampleEnd

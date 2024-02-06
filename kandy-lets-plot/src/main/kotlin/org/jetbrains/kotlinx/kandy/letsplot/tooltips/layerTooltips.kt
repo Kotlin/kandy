@@ -47,19 +47,17 @@ public fun LayerContextInterface.value(column: KProperty<*>): String {
 /**
  * Hides tooltips.
  *
- * @param enable flag of tooltips displaying.
- * @param enableSideTooltips flag of side tooltips displaying.
+ * @param isEnabled flag of tooltips displaying.
  */
 public fun LayerContextInterface.tooltips(
-    enable: Boolean = true,
-    enableSideTooltips: Boolean = false
+    isEnabled: Boolean = true,
 ) {
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         listOf(),
         null,
         listOf(),
         null, null, null,
-        enable, enableSideTooltips
+        isEnabled,
     )
 }
 
@@ -76,8 +74,6 @@ public fun LayerContextInterface.tooltips(
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
- * @param enable flag of tooltips displaying.
- * @param enableSideTooltips flag of side tooltips displaying.
  * @param formats map of columns to format string of its value.
  * @see value
  */
@@ -87,7 +83,6 @@ public inline fun LayerContextInterface.tooltips(
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
-    enableSideTooltips: Boolean = false,
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     @Suppress("invisible_reference")
@@ -97,7 +92,6 @@ public inline fun LayerContextInterface.tooltips(
         anchor,
         minWidth,
         true,
-        enableSideTooltips,
         formats.map { (column, format) -> datasetHandler.takeColumn(column.name()) to format },
         LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
@@ -111,8 +105,6 @@ public inline fun LayerContextInterface.tooltips(
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
- * @param enable flag of tooltips displaying.
- * @param enableSideTooltips flag of side tooltips displaying.
  * @see value
  */
 public fun LayerContextInterface.tooltips(
@@ -122,14 +114,13 @@ public fun LayerContextInterface.tooltips(
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
-    enableSideTooltips: Boolean = false
 ) {
     @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it) },
         null,
         formats.toList(),
-        title, anchor, minWidth, true, enableSideTooltips
+        title, anchor, minWidth, true
     )
 }
 
@@ -141,8 +132,6 @@ public fun LayerContextInterface.tooltips(
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
- * @param enable flag of tooltips displaying.
- * @param enableSideTooltips flag of side tooltips displaying.
  * @see value
  */
 public fun LayerContextInterface.tooltips(
@@ -152,7 +141,6 @@ public fun LayerContextInterface.tooltips(
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
-    enableSideTooltips: Boolean = false
 ) {
     @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
@@ -162,8 +150,7 @@ public fun LayerContextInterface.tooltips(
         title,
         anchor,
         minWidth,
-        true,
-        enableSideTooltips
+        true
     )
 }
 
@@ -176,8 +163,6 @@ public fun LayerContextInterface.tooltips(
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
- * @param enable flag of tooltips displaying.
- * @param enableSideTooltips flag of side tooltips displaying.
  * @see value
  */
 public fun LayerContextInterface.tooltips(
@@ -187,13 +172,12 @@ public fun LayerContextInterface.tooltips(
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
-    enableSideTooltips: Boolean = false
 ) {
     @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it.name) },
         null,
         formats.map { (property, format) ->  datasetHandler.takeColumn(property.name) to format },
-        title, anchor, minWidth, true, enableSideTooltips
+        title, anchor, minWidth, true
     )
 }
