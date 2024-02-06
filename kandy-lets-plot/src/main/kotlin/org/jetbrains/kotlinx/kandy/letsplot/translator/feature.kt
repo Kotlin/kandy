@@ -150,7 +150,10 @@ internal fun LayerTooltips.wrap(): TooltipOptions {
         buffer = buffer.line(it)
     }
     // TODO: temporary solution, moves side tooltips to main
-    buffer = buffer.disableSplitting()
+    if (variables.isNotEmpty() || lines?.isNotEmpty() == true) {
+        buffer = buffer.disableSplitting()
+    }
+
     return buffer
 }
 
