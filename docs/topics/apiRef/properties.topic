@@ -29,6 +29,19 @@
         <emphasis>{ AxisParameters }</emphasis>
     </snippet>
 
+    <snippet id="req-position-aes-desc">
+        <p>
+            <format style="superscript" color="Red">Required</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Any</format>
+        </p>
+    </snippet>
+
     <snippet id="alpha-property">
         <p>
             <format style="superscript" color="LightSlateGray">Optional</format>
