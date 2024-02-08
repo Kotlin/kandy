@@ -1,6 +1,6 @@
 # area
 
-<tldr>
+<tldr xmlns="">
 <p><format style="bold" color="GoldenRod">area</format> <format style="italic">{ this: AreaContext -></format></p>
 <list type="none">
 <li>
@@ -20,8 +20,7 @@
 <include from="properties.topic" element-id="signature-of-nonpos-color"></include>
 </li>
 <li>
-<a href="#borderline"><format style="bold" color="DarkGray">borderLine</format></a> <format style="superscript">TODO</format>
-TODO
+<include from="properties.topic" element-id="signature-of-borderLine"/>
 </li>
 </list>
 <format style="italic">}</format>
@@ -46,3 +45,5 @@ TODO
 <include from="properties.topic" element-id="fillColor-property"/>
 
 ### borderLine
+
+<include from="properties.topic" element-id="borderLine-property"/>

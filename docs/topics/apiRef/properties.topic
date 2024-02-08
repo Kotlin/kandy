@@ -29,6 +29,37 @@
         <emphasis>{ AxisParameters }</emphasis>
     </snippet>
 
+    <snippet id="signature-of-borderLine">
+        <a href="#borderline">
+            <format style="bold" color="DarkGray">borderLine</format>
+        </a>
+        <format style="italic">{ this: BorderLineContext -></format>
+        <list type="none">
+            <li>
+                <a href="#borderline-color">
+                    <format style="bold" color="DarkGray">color</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-color"></include>
+            </li>
+            <li>
+                <a href="#borderline-type">
+                    <format style="bold" color="DarkGray">type</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-linetype"></include>
+            </li>
+            <li>
+                <a href="#borderline-width">
+                    <format style="bold" color="DarkGray">width</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-double"></include>
+            </li>
+        </list>
+        <format style="italic"> }</format>
+    </snippet>
+
     <snippet id="req-position-aes-desc">
         <p>
             <format style="superscript" color="Red">Required</format>
@@ -755,5 +786,43 @@
                 representation of lower data boundaries.
             </li>
         </list>
+    </snippet>
+
+    <snippet id="borderLine-property">
+        <p>
+            The <code>borderLine</code> group of aesthetics provides a comprehensive way to customize the appearance of
+            borders around plot
+            elements such as boxes, bars, and other geometries that support border customization. This set of aesthetics
+            allows you
+            to adjust the color, line type, and width of the borderlines to enhance the visual appeal and clarity of
+            your plots.
+        </p>
+
+        <p>Available aesthetics within <code>borderLine</code>:</p>
+
+        <list>
+            <li><a href="#borderline-color"><code>borderLine.color</code></a> — Specifies the color of the borderline.
+            </li>
+            <li><a href="#borderline-type"><code>borderLine.type</code></a> — Determines the style of the borderline.
+            </li>
+            <li><a href="#borderline-width"><code>borderLine.width</code></a> — Controls the thickness of the
+                borderline.
+            </li>
+        </list>
+
+        <chapter title="borderLine.color" id="borderline-color" collapsible="true">
+
+            <include from="properties.topic" element-id="color-property"/>
+        </chapter>
+
+        <chapter title="borderLine.type" id="borderline-type" collapsible="true">
+
+            <include from="properties.topic" element-id="type-property"/>
+        </chapter>
+
+        <chapter title="borderLine.width" id="borderline-width" collapsible="true">
+
+            <include from="properties.topic" element-id="width-property"/>
+        </chapter>
     </snippet>
 </topic>
