@@ -26,8 +26,7 @@
 <include from="properties.topic" element-id="signature-of-nonpos-color"/>
 </li>
 <li>
-<a href="#borderline"><format style="bold" color="DarkGray">borderLine</format></a> <format style="superscript">TODO</format>
-TODO
+<include from="properties.topic" element-id="signature-of-borderLine"/>
 </li>
 <li>
 <a href="#y"><format style="bold" color="DarkGray">y</format></a>
@@ -60,6 +59,8 @@ TODO
 <include from="properties.topic" element-id="fillColor-property"/>
 
 ### borderLine
+
+<include from="properties.topic" element-id="borderLine-property"/>
 
 ## Free Scales
 
