@@ -44,5 +44,5 @@ class CrossBarsTest : KandyLetsPlotJupyterTest() {
     fun `compilation of crossBars in jupyter`() = plotCrossBars.checkCompilation()
 
     @Test
-    fun `crossBars output in jupyter`() = assertOutput(exec(plotCrossBars))
+    fun `crossBars output in jupyter`() = assertOutput(execRendered(plotCrossBars))
 }

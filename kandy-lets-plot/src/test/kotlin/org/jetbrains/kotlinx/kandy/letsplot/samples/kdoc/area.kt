@@ -36,5 +36,5 @@ class AreaTest : KandyLetsPlotJupyterTest() {
     fun `compilation of area in jupyter`() = plotArea.checkCompilation()
 
     @Test
-    fun `area output in jupyter`() = assertOutput(exec(plotArea))
+    fun `area output in jupyter`() = assertOutput(execRendered(plotArea))
 }

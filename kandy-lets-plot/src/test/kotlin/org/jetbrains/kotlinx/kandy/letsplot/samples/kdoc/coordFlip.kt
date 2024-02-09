@@ -19,5 +19,5 @@ class CoordFlipTest : KandyLetsPlotJupyterTest() {
     fun `compilation of coordFlip in jupyter`() = plotCoordFlip.checkCompilation()
 
     @Test
-    fun `coordFlip output in jupyter`() = assertOutput(exec(plotCoordFlip))
+    fun `coordFlip output in jupyter`() = assertOutput(execRendered(plotCoordFlip))
 }

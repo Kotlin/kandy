@@ -27,5 +27,5 @@ class StepTest : KandyLetsPlotJupyterTest() {
     fun `compilation of step in jupyter`() = plotStep.checkCompilation()
 
     @Test
-    fun `step output in jupyter`() = assertOutput(exec(plotStep))
+    fun `step output in jupyter`() = assertOutput(execRendered(plotStep))
 }

@@ -30,5 +30,5 @@ class TextTest : KandyLetsPlotJupyterTest() {
     fun `compilation of text in jupyter`() = plotText.checkCompilation()
 
     @Test
-    fun `text output in jupyter`() = assertOutput(exec(plotText))
+    fun `text output in jupyter`() = assertOutput(execRendered(plotText))
 }

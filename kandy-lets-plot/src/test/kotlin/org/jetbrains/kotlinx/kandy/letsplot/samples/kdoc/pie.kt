@@ -44,5 +44,5 @@ class PieTest : KandyLetsPlotJupyterTest() {
     fun `compilation of pie in jupyter`() = plotPie.checkCompilation()
 
     @Test
-    fun `pie output in jupyter`() = assertOutput(exec(plotPie))
+    fun `pie output in jupyter`() = assertOutput(execRendered(plotPie))
 }

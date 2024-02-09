@@ -39,5 +39,5 @@ class RasterTest : KandyLetsPlotJupyterTest() {
     fun `compilation of raster in jupyter`() = plotRaster.checkCompilation()
 
     @Test
-    fun `raster output in jupyter`() = assertOutput(exec(plotRaster))
+    fun `raster output in jupyter`() = assertOutput(execRendered(plotRaster))
 }

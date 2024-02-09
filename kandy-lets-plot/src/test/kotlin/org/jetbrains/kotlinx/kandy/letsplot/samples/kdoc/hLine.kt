@@ -33,5 +33,5 @@ class HLineTest : KandyLetsPlotJupyterTest() {
     fun `compilation of hLine in jupyter`() = plotHLine.checkCompilation()
 
     @Test
-    fun `hLine output in jupyter`() = assertOutput(exec(plotHLine))
+    fun `hLine output in jupyter`() = assertOutput(execRendered(plotHLine))
 }
