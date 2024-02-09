@@ -49,7 +49,7 @@ class Styles : SampleHelper("layout", "guides") {
 
     private fun pointPlotWithStyle(
         name: String,
-        inStyle: Style = Style.Minimal2,
+        baseStyle: Style = Style.Minimal2,
         customStyleBuilder: CustomStyle.() -> Unit = {}
     ) =
         df.plot {
@@ -59,11 +59,15 @@ class Styles : SampleHelper("layout", "guides") {
             }
             layout {
                 title = name
-                style(inStyle, customStyleBuilder)
+                style(baseStyle, customStyleBuilder)
             }
         }
 
-    private fun barPlotWithStyle(name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}) =
+    private fun barPlotWithStyle(
+        name: String,
+        baseStyle: Style = Style.Minimal2,
+        customStyleBuilder: CustomStyle.() -> Unit = {}
+    ) =
         bPlotDf.plot {
             bars {
                 x(fl)
@@ -72,12 +76,14 @@ class Styles : SampleHelper("layout", "guides") {
             }
             layout {
                 title = name
-                style(inStyle, customStyleBuilder)
+                style(baseStyle, customStyleBuilder)
             }
         }
 
     private fun barFacetPlotWithStyle(
-        name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}
+        name: String,
+        baseStyle: Style = Style.Minimal2,
+        customStyleBuilder: CustomStyle.() -> Unit = {}
     ) =
         fPlotDf.plot {
             bars {
@@ -88,7 +94,7 @@ class Styles : SampleHelper("layout", "guides") {
             facetGridX(year)
             layout {
                 title = name
-                style(inStyle, customStyleBuilder)
+                style(baseStyle, customStyleBuilder)
             }
         }
 
@@ -104,7 +110,11 @@ class Styles : SampleHelper("layout", "guides") {
     @Test
     fun guideStylesPointPlotWithoutStyle() {
         // SampleStart
-        fun pointPlotWithStyle(name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}) =
+        fun pointPlotWithStyle(
+            name: String,
+            baseStyle: Style = Style.Minimal2,
+            customStyleBuilder: CustomStyle.() -> Unit = {}
+        ) =
             df.plot {
                 points {
                     x(cty)
@@ -112,7 +122,7 @@ class Styles : SampleHelper("layout", "guides") {
                 }
                 layout {
                     title = name
-                    style(inStyle, customStyleBuilder)
+                    style(baseStyle, customStyleBuilder)
                 }
             }
 
@@ -138,7 +148,11 @@ class Styles : SampleHelper("layout", "guides") {
     @Test
     fun guideStylesBarPlotWithoutStyle() {
         // SampleStart
-        fun barPlotWithStyle(name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}) =
+        fun barPlotWithStyle(
+            name: String,
+            baseStyle: Style = Style.Minimal2,
+            customStyleBuilder: CustomStyle.() -> Unit = {}
+        ) =
             bPlotDf.plot {
                 bars {
                     x(fl)
@@ -147,7 +161,7 @@ class Styles : SampleHelper("layout", "guides") {
                 }
                 layout {
                     title = name
-                    style(inStyle, customStyleBuilder)
+                    style(baseStyle, customStyleBuilder)
                 }
             }
 
@@ -174,7 +188,9 @@ class Styles : SampleHelper("layout", "guides") {
     fun guideStylesBarsFacetGridX() {
         // SampleStart
         fun barFacetPlotWithStyle(
-            name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}
+            name: String,
+            baseStyle: Style = Style.Minimal2,
+            customStyleBuilder: CustomStyle.() -> Unit = {}
         ) =
             fPlotDf.plot {
                 bars {
@@ -185,7 +201,7 @@ class Styles : SampleHelper("layout", "guides") {
                 facetGridX(year)
                 layout {
                     title = name
-                    style(inStyle, customStyleBuilder)
+                    style(baseStyle, customStyleBuilder)
                 }
             }
 

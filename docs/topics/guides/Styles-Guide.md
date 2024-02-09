@@ -38,7 +38,11 @@ df.head(3)
 <!---FUN guideStylesPointPlotWithoutStyle-->
 
 ```kotlin
-fun pointPlotWithStyle(name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}) =
+fun pointPlotWithStyle(
+    name: String,
+    baseStyle: Style = Style.Minimal2,
+    customStyleBuilder: CustomStyle.() -> Unit = {}
+) =
     df.plot {
         points {
             x(cty)
@@ -46,7 +50,7 @@ fun pointPlotWithStyle(name: String, inStyle: Style = Style.Minimal2, customStyl
         }
         layout {
             title = name
-            style(inStyle, customStyleBuilder)
+            style(baseStyle, customStyleBuilder)
         }
     }
 
@@ -73,7 +77,11 @@ val bPlotDf = df.groupBy { fl }.count()
 <!---FUN guideStylesBarPlotWithoutStyle-->
 
 ```kotlin
-fun barPlotWithStyle(name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}) =
+fun barPlotWithStyle(
+    name: String,
+    baseStyle: Style = Style.Minimal2,
+    customStyleBuilder: CustomStyle.() -> Unit = {}
+) =
     bPlotDf.plot {
         bars {
             x(fl)
@@ -82,7 +90,7 @@ fun barPlotWithStyle(name: String, inStyle: Style = Style.Minimal2, customStyleB
         }
         layout {
             title = name
-            style(inStyle, customStyleBuilder)
+            style(baseStyle, customStyleBuilder)
         }
     }
 
@@ -112,7 +120,9 @@ val fPlotDf = df.groupBy { fl and year }.count()
 
 ```kotlin
 fun barFacetPlotWithStyle(
-    name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}
+    name: String,
+    baseStyle: Style = Style.Minimal2,
+    customStyleBuilder: CustomStyle.() -> Unit = {}
 ) =
     fPlotDf.plot {
         bars {
@@ -123,7 +133,7 @@ fun barFacetPlotWithStyle(
         facetGridX(year)
         layout {
             title = name
-            style(inStyle, customStyleBuilder)
+            style(baseStyle, customStyleBuilder)
         }
     }
 
