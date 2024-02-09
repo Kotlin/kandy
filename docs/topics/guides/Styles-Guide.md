@@ -1,25 +1,25 @@
-# Themes
+# Styles
 
 <web-summary>
-Unleash the power of visual styling with Kandy's Themes guide.
-Explore a variety of themes to add a professional and aesthetically pleasing touch to your data visualizations.
+Unleash the power of visual styling with Kandy's Styles guide.
+Explore a variety of styles to add a professional and aesthetically pleasing touch to your data visualizations.
 </web-summary>
 
 <card-summary>
-Transform your data plots with Kandy's Themes guide.
-Learn how to apply different themes to enhance the visual appeal and clarity of your charts.
+Transform your data plots with Kandy's Styles guide.
+Learn how to apply different styles to enhance the visual appeal and clarity of your charts.
 </card-summary>
 
 <link-summary>
-Step into the world of thematic data visualization with Kandy's Themes guide.
-Discover how to select and apply themes for more engaging and informative charts.
+Step into the world of thematic data visualization with Kandy's Styles guide.
+Discover how to select and apply styles for more engaging and informative charts.
 </link-summary>
 
-<!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.guides.Themes-->
+<!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.guides.Styles-->
 
 ## Preparation
 
-<!---FUN guideThemesReadData-->
+<!---FUN guideStylesReadData-->
 
 ```kotlin
 val df =
@@ -35,10 +35,10 @@ df.head(3)
 | 2        | audi         | a4    | 18    | 1999 | 4   | manual\(m5\) | f   | 21  | 29  | p  | compact |
 | 3        | audi         | a4    | 2     | 2008 | 4   | manual\(m6\) | f   | 20  | 31  | p  | compact |
 
-<!---FUN guideThemesPointPlotWithoutTheme-->
+<!---FUN guideStylesPointPlotWithoutStyle-->
 
 ```kotlin
-fun pointPlotWithTheme(name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}) =
+fun pointPlotWithStyle(name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}) =
     df.plot {
         points {
             x(cty)
@@ -46,7 +46,7 @@ fun pointPlotWithTheme(name: String, inStyle: Style = Style.Minimal2, cusTheme: 
         }
         layout {
             title = name
-            style(inStyle, cusTheme)
+            style(inStyle, customStyleBuilder)
         }
     }
 
@@ -60,9 +60,9 @@ df.plot {
 
 <!---END-->
 
-![Point Plot without Theme](guideThemesPointPlotWithoutTheme.svg)
+![Point Plot without Style](guideStylesPointPlotWithoutStyle.svg)
 
-<!---FUN guideThemesCountFlDf-->
+<!---FUN guideStylesCountFlDf-->
 
 ```kotlin
 val bPlotDf = df.groupBy { fl }.count()
@@ -70,10 +70,10 @@ val bPlotDf = df.groupBy { fl }.count()
 
 <!---END-->
 
-<!---FUN guideThemesBarPlotWithoutTheme-->
+<!---FUN guideStylesBarPlotWithoutStyle-->
 
 ```kotlin
-fun barPlotWithTheme(name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}) =
+fun barPlotWithStyle(name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}) =
     bPlotDf.plot {
         bars {
             x(fl)
@@ -82,7 +82,7 @@ fun barPlotWithTheme(name: String, inStyle: Style = Style.Minimal2, cusTheme: Cu
         }
         layout {
             title = name
-            style(inStyle, cusTheme)
+            style(inStyle, customStyleBuilder)
         }
     }
 
@@ -97,9 +97,9 @@ bPlotDf.plot {
 
 <!---END-->
 
-![Bar Plot without Theme](guideThemesBarPlotWithoutTheme.svg)
+![Bar Plot without Style](guideStylesBarPlotWithoutStyle.svg)
 
-<!---FUN guideThemesCountFlAndYearDf-->
+<!---FUN guideStylesCountFlAndYearDf-->
 
 ```kotlin
 val fPlotDf = df.groupBy { fl and year }.count()
@@ -108,11 +108,11 @@ val fPlotDf = df.groupBy { fl and year }.count()
 <!---END-->
 
 
-<!---FUN guideThemesBarsFacetGridX-->
+<!---FUN guideStylesBarsFacetGridX-->
 
 ```kotlin
-fun barFacetPlotWithTheme(
-    name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}
+fun barFacetPlotWithStyle(
+    name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}
 ) =
     fPlotDf.plot {
         bars {
@@ -123,7 +123,7 @@ fun barFacetPlotWithTheme(
         facetGridX(year)
         layout {
             title = name
-            style(inStyle, cusTheme)
+            style(inStyle, customStyleBuilder)
         }
     }
 
@@ -139,11 +139,11 @@ fPlotDf.plot {
 
 <!---END-->
 
-![Bar Facet Grid X Plot without Theme](guideThemesBarsFacetGridX.svg)
+![Bar Facet Grid X Plot without Style](guideStylesBarsFacetGridX.svg)
 
 ### Elements
 
-<!---FUN guideThemesUtilElements-->
+<!---FUN guideStylesUtilElements-->
 
 ```kotlin
 val eLine = LayoutParameters.line(color = Color.RED, width = 4.0)
@@ -160,19 +160,19 @@ val (w, h) = listOf(400) to listOf(300)
 
 <!---END-->
 
-## Themes
+## Styles
 
-<!---FUN guideThemesAllPrepThemes-->
+<!---FUN guideStylesAllPrepStyles-->
 
 ```kotlin
 plotGrid(
     listOf(
-        pointPlotWithTheme("Minimal2 Theme - by default"),
-        pointPlotWithTheme("Light Theme", Style.Light),
-        pointPlotWithTheme("Classic Theme", Style.Classic),
-        pointPlotWithTheme("Grey Theme", Style.Grey),
-        pointPlotWithTheme("Minimal Theme", Style.Minimal),
-        pointPlotWithTheme("None Theme", Style.None)
+        pointPlotWithStyle("Minimal2 Style - by default"),
+        pointPlotWithStyle("Light Style", Style.Light),
+        pointPlotWithStyle("Classic Style", Style.Classic),
+        pointPlotWithStyle("Grey Style", Style.Grey),
+        pointPlotWithStyle("Minimal Style", Style.Minimal),
+        pointPlotWithStyle("None Style", Style.None)
     ),
     nCol = 2,
     fit = true
@@ -181,11 +181,11 @@ plotGrid(
 
 <!---END-->
 
-![All Default Themes](guideThemesAllPrepThemes.svg)
+![All Default Styles](guideStylesAllPrepStyles.svg)
 
-## Custom Theme
+## Custom Style
 
-<!---FUN guideThemesOrangeCustomTheme-->
+<!---FUN guideStylesOrangeCustomStyle-->
 
 ```kotlin
 val yellowLight = Color.hex("#ffffcc")
@@ -193,7 +193,7 @@ val orangeDark = Color.hex("#7f2704")
 val orangeNormal = Color.hex("#f16913")
 val orangeLight = Color.hex("#fff5eb")
 
-val themeOrangeConstructor: CustomStyle.() -> Unit = {
+val styleOrangeConstructor: CustomStyle.() -> Unit = {
     global {
         line {
             color = orangeNormal
@@ -242,8 +242,8 @@ val themeOrangeConstructor: CustomStyle.() -> Unit = {
 
 plotGrid(
     listOf(
-        pointPlotWithTheme("Scatter plot", Style.None, themeOrangeConstructor),
-        barPlotWithTheme("Bar plot", Style.None, themeOrangeConstructor)
+        pointPlotWithStyle("Scatter plot", Style.None, styleOrangeConstructor),
+        barPlotWithStyle("Bar plot", Style.None, styleOrangeConstructor)
     ),
     nCol = 2,
     fit = true
@@ -252,12 +252,12 @@ plotGrid(
 
 <!---END-->
 
-![Orange Custom Theme](guideThemesOrangeCustomTheme.svg)
+![Orange Custom Style](guideStylesOrangeCustomStyle.svg)
 
-<!---FUN guideThemesCustomThemeForLegend-->
+<!---FUN guideStylesCustomStyleForLegend-->
 
 ```kotlin
-barPlotWithTheme("Place legend") {
+barPlotWithStyle("Place legend") {
     legend {
         position(1.0, 1.0)
         justification(1.0, 1.0)
@@ -268,21 +268,21 @@ barPlotWithTheme("Place legend") {
 
 <!---END-->
 
-![Custom Legend](guideThemesCustomThemeForLegend.svg)
+![Custom Legend](guideStylesCustomStyleForLegend.svg)
 
 ### Axis Tooltip
 
-<!---FUN guideThemesAxisTooltip-->
+<!---FUN guideStylesAxisTooltip-->
 
 ```kotlin
 plotGrid(
     listOf(
-        pointPlotWithTheme("blank tooltip x-axis") {
+        pointPlotWithStyle("blank tooltip x-axis") {
             xAxis.tooltip.background {
                 blank = true
             }
         },
-        pointPlotWithTheme("background tooltip x-axis") {
+        pointPlotWithStyle("background tooltip x-axis") {
             xAxis.tooltip.background(eBackground)
         }
     ),
@@ -292,17 +292,17 @@ plotGrid(
 
 <!---END-->
 
-![Axis Tooltip](guideThemesAxisTooltip.svg)
+![Axis Tooltip](guideStylesAxisTooltip.svg)
 
 ### Line, Background, Text
 
-<!---FUN guideThemesConfigureGridLine-->
+<!---FUN guideStylesConfigureGridLine-->
 
 ```kotlin
 plotGrid(
     listOf(
-        pointPlotWithTheme("Default"),
-        pointPlotWithTheme("Configured grid line") {
+        pointPlotWithStyle("Default"),
+        pointPlotWithStyle("Configured grid line") {
             global.line(eLine)
         }
     ),
@@ -312,15 +312,15 @@ plotGrid(
 
 <!---END-->
 
-![Configured Grid Line](guideThemesConfigureGridLine.svg)
+![Configured Grid Line](guideStylesConfigureGridLine.svg)
 
-<!---FUN guideThemesConfigureBackgroundGrid-->
+<!---FUN guideStylesConfigureBackgroundGrid-->
 
 ```kotlin
 plotGrid(
     listOf(
-        barPlotWithTheme("None Theme", Style.None),
-        barPlotWithTheme("None theme + Rect", Style.None) {
+        barPlotWithStyle("None style", Style.None),
+        barPlotWithStyle("None style + Rect", Style.None) {
             global.background(eBackground)
         }
     ),
@@ -330,17 +330,17 @@ plotGrid(
 
 <!---END-->
 
-![Configured Background Grid](guideThemesConfigureBackgroundGrid.svg)
+![Configured Background Grid](guideStylesConfigureBackgroundGrid.svg)
 
-<!---FUN guideThemesTextLegendStrip-->
+<!---FUN guideStylesTextLegendStrip-->
 
 ```kotlin
 plotGrid(
     listOf(
-        barFacetPlotWithTheme("Default"),
-        barFacetPlotWithTheme("Text") { global.text(eText) },
-        barFacetPlotWithTheme("Legend text") { legend.text(eText) },
-        barFacetPlotWithTheme("Strip text") { strip.text(eText) }
+        barFacetPlotWithStyle("Default"),
+        barFacetPlotWithStyle("Text") { global.text(eText) },
+        barFacetPlotWithStyle("Legend text") { legend.text(eText) },
+        barFacetPlotWithStyle("Strip text") { strip.text(eText) }
     ),
     nCol = 2
 )
@@ -348,17 +348,17 @@ plotGrid(
 
 <!---END-->
 
-![Custom Text 1](guideThemesTextLegendStrip.svg)
+![Custom Text 1](guideStylesTextLegendStrip.svg)
 
-<!---FUN guideThemesTextTitleLegend-->
+<!---FUN guideStylesTextTitleLegend-->
 
 ```kotlin
 plotGrid(
     listOf(
-        barPlotWithTheme("Default"),
-        barPlotWithTheme("Text") { global.text(eText) },
-        barPlotWithTheme("Plot title") { plotCanvas.title(eText) },
-        barPlotWithTheme("Legend title") { legend.title(eText) }
+        barPlotWithStyle("Default"),
+        barPlotWithStyle("Text") { global.text(eText) },
+        barPlotWithStyle("Plot title") { plotCanvas.title(eText) },
+        barPlotWithStyle("Legend title") { legend.title(eText) }
     ),
     nCol = 2
 )
@@ -366,15 +366,15 @@ plotGrid(
 
 <!---END-->
 
-![Custom Text 2](guideThemesTextTitleLegend.svg)
+![Custom Text 2](guideStylesTextTitleLegend.svg)
 
-<!---FUN guideThemesBlankAxis-->
+<!---FUN guideStylesBlankAxis-->
 
 ```kotlin
 plotGrid(
     listOf(
-        pointPlotWithTheme("Default"),
-        pointPlotWithTheme("Blank axis") {
+        pointPlotWithStyle("Default"),
+        pointPlotWithStyle("Blank axis") {
             axis.line {
                 blank = true
             }
@@ -386,15 +386,15 @@ plotGrid(
 
 <!---END-->
 
-![Blank Axis](guideThemesBlankAxis.svg)
+![Blank Axis](guideStylesBlankAxis.svg)
 
-<!---FUN guideThemesBackgroundPanel-->
+<!---FUN guideStylesBackgroundPanel-->
 
 ```kotlin
 plotGrid(
     listOf(
-        pointPlotWithTheme("Default"),
-        pointPlotWithTheme("Panel background") {
+        pointPlotWithStyle("Default"),
+        pointPlotWithStyle("Panel background") {
             panel.background(eBackground)
         }
     ),
@@ -404,28 +404,28 @@ plotGrid(
 
 <!---END-->
 
-![Bakground Panel](guideThemesBackgroundPanel.svg)
+![Bakground Panel](guideStylesBackgroundPanel.svg)
 
-<!---FUN guideThemesPanelGrid-->
+<!---FUN guideStylesPanelGrid-->
 
 ```kotlin
 plotGrid(
     listOf(
-        barPlotWithTheme("Blank panel grid") {
+        barPlotWithStyle("Blank panel grid") {
             panel.grid.lineGlobal {
                 blank = true
             }
         },
-        pointPlotWithTheme("Line panel grid") {
+        pointPlotWithStyle("Line panel grid") {
             panel.grid.lineGlobal(eLine)
         },
-        pointPlotWithTheme("Major line panel grid\n Minor line panel grid") {
+        pointPlotWithStyle("Major line panel grid\n Minor line panel grid") {
             panel.grid {
                 majorLine(eLine)
                 minorLine(eLine2)
             }
         },
-        barPlotWithTheme("Blank major x-line panel grid\n major y-line panel grid\n minor y-line panel grid") {
+        barPlotWithStyle("Blank major x-line panel grid\n major y-line panel grid\n minor y-line panel grid") {
             panel.grid {
                 majorXLine {
                     blank = true
@@ -441,21 +441,21 @@ plotGrid(
 
 <!---END-->
 
-![Panel Grid](guideThemesPanelGrid.svg)
+![Panel Grid](guideStylesPanelGrid.svg)
 
-<!---FUN guideThemesStripBackground-->
+<!---FUN guideStylesStripBackground-->
 
 ```kotlin
 plotGrid(
     listOf(
-        barFacetPlotWithTheme("Grey Theme", Style.Grey),
-        barFacetPlotWithTheme("Strip background") { strip.background(eBackground) },
-        barFacetPlotWithTheme("Blank strip background") {
+        barFacetPlotWithStyle("Grey Style", Style.Grey),
+        barFacetPlotWithStyle("Strip background") { strip.background(eBackground) },
+        barFacetPlotWithStyle("Blank strip background") {
             strip.background {
                 blank = true
             }
         },
-        barFacetPlotWithTheme("Blank strip text") {
+        barFacetPlotWithStyle("Blank strip text") {
             strip.text {
                 blank = true
             }
@@ -467,15 +467,15 @@ plotGrid(
 
 <!---END-->
 
-![Background Strip](guideThemesStripBackground.svg)
+![Background Strip](guideStylesStripBackground.svg)
 
-<!---FUN guideThemesOnTopXAxis-->
+<!---FUN guideStylesOnTopXAxis-->
 
 ```kotlin
 plotGrid(
     listOf(
-        barPlotWithTheme("x-axis line") { xAxis.line(eLine3) },
-        barPlotWithTheme("On top x-axis line") {
+        barPlotWithStyle("x-axis line") { xAxis.line(eLine3) },
+        barPlotWithStyle("On top x-axis line") {
             xAxis {
                 line(eLine3)
                 onTop = true
@@ -488,11 +488,11 @@ plotGrid(
 
 <!---END-->
 
-![Configured X-Axis Line](guideThemesOnTopXAxis.svg)
+![Configured X-Axis Line](guideStylesOnTopXAxis.svg)
 
 ### Miscellaneous
 
-<!---FUN guideThemesCoordFlip-->
+<!---FUN guideStylesCoordFlip-->
 
 ```kotlin
 plotGrid(
@@ -616,9 +616,9 @@ plotGrid(
 
 <!---END-->
 
-![Miscellaneous](guideThemesCoordFlip.svg)
+![Miscellaneous](guideStylesCoordFlip.svg)
 
-<!---FUN guideThemesTooltipAndBackground-->
+<!---FUN guideStylesTooltipAndBackground-->
 
 ```kotlin
 plotGrid(
@@ -658,12 +658,12 @@ plotGrid(
 
 <!---END-->
 
-![Configured Tooltip and Background](guideThemesTooltipAndBackground.svg)
+![Configured Tooltip and Background](guideStylesTooltipAndBackground.svg)
 
 
 <seealso style="cards">
        <category ref="example-ktnb">
-           <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/themes.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
+           <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/styles.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
            <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/1UjHFJP6F7W9OO42UpevDA" summary="Experiment with this example on Datalore">Datalore Notebook</a>
        </category>
 </seealso>

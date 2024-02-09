@@ -29,7 +29,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
 
     private val scaleX = Scale.continuousPos(-3.5..3.5)
 
-    private val upperTheme = style {
+    private val upperStyle = style {
         blankAxes()
         axis.text { }
         yAxis.title { }
@@ -37,7 +37,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
             blank = true
         }
     }
-    private val lowerTheme = style {
+    private val lowerStyle = style {
         blankAxes()
         yAxis.text { }
         axis.title { }
@@ -133,9 +133,9 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
     }
 
     @Test
-    fun guideBunchCreateThemes() {
+    fun guideBunchCreateStyles() {
         // SampleStart
-        val upperTheme = style {
+        val upperStyle = style {
             blankAxes()
             axis.text { }
             yAxis.title { }
@@ -143,18 +143,18 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 blank = true
             }
         }
-        val lowerTheme = style {
+        val lowerStyle = style {
             blankAxes()
             yAxis.text { }
             axis.title { }
         }
         // SampleEnd
-        assertNotNull(upperTheme)
-        assertNotNull(lowerTheme)
+        assertNotNull(upperStyle)
+        assertNotNull(lowerStyle)
     }
 
     @Test
-    fun guideBunchCombineWithThemes() {
+    fun guideBunchCombineWithStyles() {
         // SampleStart
         plotBunch {
             add(plot {
@@ -165,7 +165,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 layout {
                     size = 600 to 200
                     xAxisLabel = "x"
-                    style(upperTheme)
+                    style(upperStyle)
                 }
             }, 0, 0)
             add(plot {
@@ -179,12 +179,12 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                     size = 600 to 200
                     xAxisLabel = "x"
                     yAxisLabel = "y"
-                    style(lowerTheme)
+                    style(lowerStyle)
                 }
             }, 0, 200)
         }
         // SampleEnd
-//            .saveSample()
+            .saveSample()
     }
 
     @Test
@@ -199,7 +199,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 layout {
                     size = 600 to 200
                     xAxisLabel = "x"
-                    style(upperTheme)
+                    style(upperStyle)
                 }
             }, 0, 0, 600, 100)
             add(plot {
@@ -213,7 +213,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                     size = 600 to 200
                     xAxisLabel = "x"
                     yAxisLabel = "y"
-                    style(lowerTheme)
+                    style(lowerStyle)
                 }
             }, 0, 100, 600, 300)
         }

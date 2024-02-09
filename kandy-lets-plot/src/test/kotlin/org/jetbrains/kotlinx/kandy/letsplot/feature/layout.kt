@@ -48,10 +48,10 @@ class LayoutTests {
     }
 
 //    @Test // TODO(issue #145/#127)
-//    fun `theme function sets custom theme`() {
+//    fun `style function sets custom style`() {
 //        val layout = Layout()
 //
-//        layout.theme {
+//        layout.style {
 //            panel {
 //                grid.lineGlobal {
 //                    color = Color.RED
@@ -59,6 +59,6 @@ class LayoutTests {
 //            }
 //        }
 //
-//        assertEquals(Color.RED, layout.customTheme?.panel?.grid?.lineGlobal?.color)
+//        assertEquals(Color.RED, layout.customStyle?.panel?.grid?.lineGlobal?.color)
 //    }
 }

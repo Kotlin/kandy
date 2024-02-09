@@ -27,7 +27,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.style.Style
  *         subtitle = "Subtitle"
  *         xAxisLabel = "X-Axis"
  *         yAxisLabel = "Y-Axis"
- *         theme(Theme.Grey)
+ *         style(Style.Grey)
  *     }
  * }
  * ```
@@ -60,7 +60,7 @@ public val PlotContext.layout: Layout
  * @property caption additional text displayed at the bottom of the plot.
  * @property xAxisLabel label for the X-Axis.
  * @property yAxisLabel label for the Y-Axis.
- * @property theme the color scheme (flavor) of the plot.
+ * @property theme the theme of the plot.
  * @property size the dimensions (width x height) of the plot in pixels.
  */
 public data class Layout(
@@ -83,10 +83,10 @@ public data class Layout(
     internal var customStyle: CustomStyle? = null
 
     /**
-     * Configures the theme of the plot.
+     * Configures the style of the plot.
      *
-     * @param style one of the predefined themes.
-     * @param block additional customizations to apply on top of the main theme.
+     * @param style one of the predefined styles.
+     * @param block additional customizations to apply on top of the main style.
      */
     public inline fun style(style: Style, block: CustomStyle.() -> Unit = {}) {
         this.style = style
@@ -94,9 +94,9 @@ public data class Layout(
     }
 
     /**
-     * Configures a custom theme for the plot.
+     * Configures a custom style for the plot.
      *
-     * @param block a lambda function to define the custom theme.
+     * @param block a lambda function to define the custom style.
      */
     public inline fun style(block: CustomStyle.() -> Unit) {
         style = CustomStyle().apply(block)

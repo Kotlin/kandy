@@ -22,7 +22,7 @@ import org.jetbrains.kotlinx.kandy.util.context.invoke
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 
-class Themes : SampleHelper("layout", "guides") {
+class Styles : SampleHelper("layout", "guides") {
 
     private val df =
         DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
@@ -47,10 +47,10 @@ class Themes : SampleHelper("layout", "guides") {
     )
     private val eText = LayoutParameters.text(color = Color.hex("#31a354"))
 
-    private fun pointPlotWithTheme(
+    private fun pointPlotWithStyle(
         name: String,
         inStyle: Style = Style.Minimal2,
-        cusTheme: CustomStyle.() -> Unit = {}
+        customStyleBuilder: CustomStyle.() -> Unit = {}
     ) =
         df.plot {
             points {
@@ -59,11 +59,11 @@ class Themes : SampleHelper("layout", "guides") {
             }
             layout {
                 title = name
-                style(inStyle, cusTheme)
+                style(inStyle, customStyleBuilder)
             }
         }
 
-    private fun barPlotWithTheme(name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}) =
+    private fun barPlotWithStyle(name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}) =
         bPlotDf.plot {
             bars {
                 x(fl)
@@ -72,12 +72,12 @@ class Themes : SampleHelper("layout", "guides") {
             }
             layout {
                 title = name
-                style(inStyle, cusTheme)
+                style(inStyle, customStyleBuilder)
             }
         }
 
-    private fun barFacetPlotWithTheme(
-        name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}
+    private fun barFacetPlotWithStyle(
+        name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}
     ) =
         fPlotDf.plot {
             bars {
@@ -88,12 +88,12 @@ class Themes : SampleHelper("layout", "guides") {
             facetGridX(year)
             layout {
                 title = name
-                style(inStyle, cusTheme)
+                style(inStyle, customStyleBuilder)
             }
         }
 
     @Test
-    fun guideThemesReadData() {
+    fun guideStylesReadData() {
         // SampleStart
         val df =
             DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
@@ -102,9 +102,9 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesPointPlotWithoutTheme() {
+    fun guideStylesPointPlotWithoutStyle() {
         // SampleStart
-        fun pointPlotWithTheme(name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}) =
+        fun pointPlotWithStyle(name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}) =
             df.plot {
                 points {
                     x(cty)
@@ -112,7 +112,7 @@ class Themes : SampleHelper("layout", "guides") {
                 }
                 layout {
                     title = name
-                    style(inStyle, cusTheme)
+                    style(inStyle, customStyleBuilder)
                 }
             }
 
@@ -128,7 +128,7 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesCountFlDf() {
+    fun guideStylesCountFlDf() {
         // SampleStart
         val bPlotDf = df.groupBy { fl }.count()
         // SampleEnd
@@ -136,9 +136,9 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesBarPlotWithoutTheme() {
+    fun guideStylesBarPlotWithoutStyle() {
         // SampleStart
-        fun barPlotWithTheme(name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}) =
+        fun barPlotWithStyle(name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}) =
             bPlotDf.plot {
                 bars {
                     x(fl)
@@ -147,7 +147,7 @@ class Themes : SampleHelper("layout", "guides") {
                 }
                 layout {
                     title = name
-                    style(inStyle, cusTheme)
+                    style(inStyle, customStyleBuilder)
                 }
             }
 
@@ -163,7 +163,7 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesCountFlAndYearDf() {
+    fun guideStylesCountFlAndYearDf() {
         // SampleStart
         val fPlotDf = df.groupBy { fl and year }.count()
         // SampleEnd
@@ -171,10 +171,10 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesBarsFacetGridX() {
+    fun guideStylesBarsFacetGridX() {
         // SampleStart
-        fun barFacetPlotWithTheme(
-            name: String, inStyle: Style = Style.Minimal2, cusTheme: CustomStyle.() -> Unit = {}
+        fun barFacetPlotWithStyle(
+            name: String, inStyle: Style = Style.Minimal2, customStyleBuilder: CustomStyle.() -> Unit = {}
         ) =
             fPlotDf.plot {
                 bars {
@@ -185,7 +185,7 @@ class Themes : SampleHelper("layout", "guides") {
                 facetGridX(year)
                 layout {
                     title = name
-                    style(inStyle, cusTheme)
+                    style(inStyle, customStyleBuilder)
                 }
             }
 
@@ -202,7 +202,7 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesUtilElements() {
+    fun guideStylesUtilElements() {
         // SampleStart
         val eLine = LayoutParameters.line(color = Color.RED, width = 4.0)
         val eLine2 = LayoutParameters.line(color = Color.hex("#fcae91"), width = 1.0)
@@ -225,16 +225,16 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesAllPrepThemes() {
+    fun guideStylesAllPrepStyles() {
         // SampleStart
         plotGrid(
             listOf(
-                pointPlotWithTheme("Minimal2 Theme - by default"),
-                pointPlotWithTheme("Light Theme", Style.Light),
-                pointPlotWithTheme("Classic Theme", Style.Classic),
-                pointPlotWithTheme("Grey Theme", Style.Grey),
-                pointPlotWithTheme("Minimal Theme", Style.Minimal),
-                pointPlotWithTheme("None Theme", Style.None)
+                pointPlotWithStyle("Minimal2 Style - by default"),
+                pointPlotWithStyle("Light Style", Style.Light),
+                pointPlotWithStyle("Classic Style", Style.Classic),
+                pointPlotWithStyle("Grey Style", Style.Grey),
+                pointPlotWithStyle("Minimal Style", Style.Minimal),
+                pointPlotWithStyle("None Style", Style.None)
             ),
             nCol = 2,
             fit = true
@@ -244,14 +244,14 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesOrangeCustomTheme() {
+    fun guideStylesOrangeCustomStyle() {
         // SampleStart
         val yellowLight = Color.hex("#ffffcc")
         val orangeDark = Color.hex("#7f2704")
         val orangeNormal = Color.hex("#f16913")
         val orangeLight = Color.hex("#fff5eb")
 
-        val themeOrangeConstructor: CustomStyle.() -> Unit = {
+        val styleOrangeConstructor: CustomStyle.() -> Unit = {
             global {
                 line {
                     color = orangeNormal
@@ -300,8 +300,8 @@ class Themes : SampleHelper("layout", "guides") {
 
         plotGrid(
             listOf(
-                pointPlotWithTheme("Scatter plot", Style.None, themeOrangeConstructor),
-                barPlotWithTheme("Bar plot", Style.None, themeOrangeConstructor)
+                pointPlotWithStyle("Scatter plot", Style.None, styleOrangeConstructor),
+                barPlotWithStyle("Bar plot", Style.None, styleOrangeConstructor)
             ),
             nCol = 2,
             fit = true
@@ -311,9 +311,9 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesCustomThemeForLegend() {
+    fun guideStylesCustomStyleForLegend() {
         // SampleStart
-        barPlotWithTheme("Place legend") {
+        barPlotWithStyle("Place legend") {
             legend {
                 position(1.0, 1.0)
                 justification(1.0, 1.0)
@@ -325,16 +325,16 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesAxisTooltip() {
+    fun guideStylesAxisTooltip() {
         // SampleStart
         plotGrid(
             listOf(
-                pointPlotWithTheme("blank tooltip x-axis") {
+                pointPlotWithStyle("blank tooltip x-axis") {
                     xAxis.tooltip.background {
                         blank = true
                     }
                 },
-                pointPlotWithTheme("background tooltip x-axis") {
+                pointPlotWithStyle("background tooltip x-axis") {
                     xAxis.tooltip.background(eBackground)
                 }
             ),
@@ -345,12 +345,12 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesConfigureGridLine() {
+    fun guideStylesConfigureGridLine() {
         // SampleStart
         plotGrid(
             listOf(
-                pointPlotWithTheme("Default"),
-                pointPlotWithTheme("Configured grid line") {
+                pointPlotWithStyle("Default"),
+                pointPlotWithStyle("Configured grid line") {
                     global.line(eLine)
                 }
             ),
@@ -361,12 +361,12 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesConfigureBackgroundGrid() {
+    fun guideStylesConfigureBackgroundGrid() {
         // SampleStart
         plotGrid(
             listOf(
-                barPlotWithTheme("None Theme", Style.None),
-                barPlotWithTheme("None theme + Rect", Style.None) {
+                barPlotWithStyle("None style", Style.None),
+                barPlotWithStyle("None style + Rect", Style.None) {
                     global.background(eBackground)
                 }
             ),
@@ -377,14 +377,14 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesTextLegendStrip() {
+    fun guideStylesTextLegendStrip() {
         // SampleStart
         plotGrid(
             listOf(
-                barFacetPlotWithTheme("Default"),
-                barFacetPlotWithTheme("Text") { global.text(eText) },
-                barFacetPlotWithTheme("Legend text") { legend.text(eText) },
-                barFacetPlotWithTheme("Strip text") { strip.text(eText) }
+                barFacetPlotWithStyle("Default"),
+                barFacetPlotWithStyle("Text") { global.text(eText) },
+                barFacetPlotWithStyle("Legend text") { legend.text(eText) },
+                barFacetPlotWithStyle("Strip text") { strip.text(eText) }
             ),
             nCol = 2
         )
@@ -393,14 +393,14 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesTextTitleLegend() {
+    fun guideStylesTextTitleLegend() {
         // SampleStart
         plotGrid(
             listOf(
-                barPlotWithTheme("Default"),
-                barPlotWithTheme("Text") { global.text(eText) },
-                barPlotWithTheme("Plot title") { plotCanvas.title(eText) },
-                barPlotWithTheme("Legend title") { legend.title(eText) }
+                barPlotWithStyle("Default"),
+                barPlotWithStyle("Text") { global.text(eText) },
+                barPlotWithStyle("Plot title") { plotCanvas.title(eText) },
+                barPlotWithStyle("Legend title") { legend.title(eText) }
             ),
             nCol = 2
         )
@@ -409,12 +409,12 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesBlankAxis() {
+    fun guideStylesBlankAxis() {
         // SampleStart
         plotGrid(
             listOf(
-                pointPlotWithTheme("Default"),
-                pointPlotWithTheme("Blank axis") {
+                pointPlotWithStyle("Default"),
+                pointPlotWithStyle("Blank axis") {
                     axis.line {
                         blank = true
                     }
@@ -427,12 +427,12 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesBackgroundPanel() {
+    fun guideStylesBackgroundPanel() {
         // SampleStart
         plotGrid(
             listOf(
-                pointPlotWithTheme("Default"),
-                pointPlotWithTheme("Panel background") {
+                pointPlotWithStyle("Default"),
+                pointPlotWithStyle("Panel background") {
                     panel.background(eBackground)
                 }
             ),
@@ -443,25 +443,25 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesPanelGrid() {
+    fun guideStylesPanelGrid() {
         // SampleStart
         plotGrid(
             listOf(
-                barPlotWithTheme("Blank panel grid") {
+                barPlotWithStyle("Blank panel grid") {
                     panel.grid.lineGlobal {
                         blank = true
                     }
                 },
-                pointPlotWithTheme("Line panel grid") {
+                pointPlotWithStyle("Line panel grid") {
                     panel.grid.lineGlobal(eLine)
                 },
-                pointPlotWithTheme("Major line panel grid\n Minor line panel grid") {
+                pointPlotWithStyle("Major line panel grid\n Minor line panel grid") {
                     panel.grid {
                         majorLine(eLine)
                         minorLine(eLine2)
                     }
                 },
-                barPlotWithTheme("Blank major x-line panel grid\n major y-line panel grid\n minor y-line panel grid") {
+                barPlotWithStyle("Blank major x-line panel grid\n major y-line panel grid\n minor y-line panel grid") {
                     panel.grid {
                         majorXLine {
                             blank = true
@@ -478,18 +478,18 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesStripBackground() {
+    fun guideStylesStripBackground() {
         // SampleStart
         plotGrid(
             listOf(
-                barFacetPlotWithTheme("Grey Theme", Style.Grey),
-                barFacetPlotWithTheme("Strip background") { strip.background(eBackground) },
-                barFacetPlotWithTheme("Blank strip background") {
+                barFacetPlotWithStyle("Grey Style", Style.Grey),
+                barFacetPlotWithStyle("Strip background") { strip.background(eBackground) },
+                barFacetPlotWithStyle("Blank strip background") {
                     strip.background {
                         blank = true
                     }
                 },
-                barFacetPlotWithTheme("Blank strip text") {
+                barFacetPlotWithStyle("Blank strip text") {
                     strip.text {
                         blank = true
                     }
@@ -502,12 +502,12 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesOnTopXAxis() {
+    fun guideStylesOnTopXAxis() {
         // SampleStart
         plotGrid(
             listOf(
-                barPlotWithTheme("x-axis line") { xAxis.line(eLine3) },
-                barPlotWithTheme("On top x-axis line") {
+                barPlotWithStyle("x-axis line") { xAxis.line(eLine3) },
+                barPlotWithStyle("On top x-axis line") {
                     xAxis {
                         line(eLine3)
                         onTop = true
@@ -521,7 +521,7 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesCoordFlip() {
+    fun guideStylesCoordFlip() {
         // SampleStart
         plotGrid(
             listOf(
@@ -645,7 +645,7 @@ class Themes : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideThemesTooltipAndBackground() {
+    fun guideStylesTooltipAndBackground() {
         // SampleStart
         plotGrid(
             listOf(

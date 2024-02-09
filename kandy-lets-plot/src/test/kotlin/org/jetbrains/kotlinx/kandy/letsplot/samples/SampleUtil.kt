@@ -69,15 +69,15 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
 
         val darkLayout = layout?.apply {
             theme = Theme.DARCULA
-            val cusTheme = when {
+            val customStyle = when {
                 this.style != null && this.customStyle == null && style is CustomStyle -> style as CustomStyle
                 style != null -> this.customStyle
                 else -> this.customStyle
             }
 
-            println(cusTheme)
+            println(customStyle)
 
-            cusTheme?.let {
+            customStyle?.let {
                 if (it.plotCanvas.background?.fillColor == null) {
                     it.plotCanvas.background = it.plotCanvas.background?.copy(fillColor = darkColor)
                         ?: darkBackground

@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.style
 
 /**
- * Plot theme.
+ * Plot stlye.
  */
 public sealed interface Style {
     public object Grey : Style

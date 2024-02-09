@@ -17,7 +17,7 @@ import kotlin.test.assertNotNull
 
 class Pie : SampleHelper("geoms", "guides") {
 
-    private val blankTheme = style {
+    private val blankStyle = style {
         global.line {
             blank = true
         }
@@ -60,16 +60,16 @@ class Pie : SampleHelper("geoms", "guides") {
 
 
     @Test
-    fun guidePieBlankTheme() {
+    fun guidePieBlankStyle() {
         // SampleStart
-        val blankTheme = style {
+        val blankStyle = style {
             global.line {
                 blank = true
             }
             blankAxes()
         }
         // SampleEnd
-        assertNotNull(blankTheme.global.line?.blank)
+        assertNotNull(blankStyle.global.line?.blank)
     }
 
     @Test
@@ -112,7 +112,7 @@ class Pie : SampleHelper("geoms", "guides") {
                 hole = 0.5
             }
             layout {
-                style(blankTheme)
+                style(blankStyle)
             }
         }
             // SampleEnd
@@ -157,7 +157,7 @@ class Pie : SampleHelper("geoms", "guides") {
                 strokeColor = Color.BLACK
                 size = 20.0
             }
-            layout.style(blankTheme)
+            layout.style(blankStyle)
         }
             // SampleEnd
             .saveSample()
@@ -192,7 +192,7 @@ class Pie : SampleHelper("geoms", "guides") {
                         size = 15.0
                     }
                     layout {
-                        style(blankTheme)
+                        style(blankStyle)
                     }
                 },
                 calories.plot {
@@ -206,7 +206,7 @@ class Pie : SampleHelper("geoms", "guides") {
                         hole = 0.8
                     }
                     layout {
-                        style(blankTheme)
+                        style(blankStyle)
                     }
                 }
             )

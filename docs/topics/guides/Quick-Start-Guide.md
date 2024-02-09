@@ -1253,15 +1253,15 @@ mpgDF.plot {
 
 ![Plot with Title, Subtitle, Caption, and Size](experimentalLayoutTitleSubtitleCapSize.svg)
 
-#### Themes
+#### Styles
 
-Themes in Kandy offer extensive customization options for your plot's appearance,
+Styles in Kandy offer extensive customization options for your plot's appearance,
 including styles for lines, text, backgrounds, and more.
-You can use a pre-built theme or create your own custom theme.
+You can use a pre-built style or create your own custom style.
 
-To apply a `theme`:
+To apply a `style`:
 
-<!---FUN experimentalLayoutWithClassicTheme-->
+<!---FUN experimentalLayoutWithClassicStyle-->
 
 ```kotlin
 mpgDF.plot {
@@ -1275,14 +1275,14 @@ mpgDF.plot {
 
 <!---END-->
 
-![Plot with Classic Theme](experimentalLayoutWithClassicTheme.svg)
+![Plot with Classic Style](experimentalLayoutWithClassicStyle.svg)
 
-For example, creating a plot with different themes:
+For example, creating a plot with different styles:
 
-<!---FUN experimentalLayoutFunPlotWithTheme-->
+<!---FUN experimentalLayoutFunPlotWithStyle-->
 
 ```kotlin
-fun plotWithTheme(style: Style? = null, title: String? = null): org.jetbrains.kotlinx.kandy.ir.Plot {
+fun plotWithStyle(style: Style? = null, title: String? = null): org.jetbrains.kotlinx.kandy.ir.Plot {
     return mpgDF.plot {
         points {
             x(cty)
@@ -1300,38 +1300,38 @@ fun plotWithTheme(style: Style? = null, title: String? = null): org.jetbrains.ko
 
 <!---END-->
 
-<!---FUN experimentalLayoutPlotAllThemes-->
+<!---FUN experimentalLayoutPlotAllStyles-->
 
 ```kotlin
 plotGrid(
     listOf(
-        plotWithTheme(Style.Classic, "\"Classic\" theme"),
-        plotWithTheme(Style.Grey, "\"Grey\" theme"),
-        plotWithTheme(Style.Light, "\"Light\" theme"),
-        plotWithTheme(Style.Minimal, "\"Minimal\" theme"),
-        plotWithTheme(Style.Minimal2, "\"Minimal2\" theme (by default)"),
-        plotWithTheme(Style.None, "\"None\" theme"),
+        plotWithStyle(Style.Classic, "\"Classic\" style"),
+        plotWithStyle(Style.Grey, "\"Grey\" style"),
+        plotWithStyle(Style.Light, "\"Light\" style"),
+        plotWithStyle(Style.Minimal, "\"Minimal\" style"),
+        plotWithStyle(Style.Minimal2, "\"Minimal2\" style (by default)"),
+        plotWithStyle(Style.None, "\"None\" style"),
     ), 2
 )
 ```
 
 <!---END-->
 
-![Plot with All Themes](experimentalLayoutPlotAllThemes.svg)
+![Plot with All Styles](experimentalLayoutPlotAllStyles.svg)
 
-##### Custom Themes
+##### Custom Styles
 
-Kandy's DSL allows you to craft custom themes.
+Kandy's DSL allows you to craft custom styles.
 You can set parameters for lines, text, backgrounds, etc.,either separately or in-place.
 
-Creating a simple custom theme:
+Creating a simple custom style:
 
-<!---FUN experimentalLayoutSimpleCustomTheme-->
+<!---FUN experimentalLayoutSimpleCustomStyle-->
 
 ```kotlin
 val redLine = LayoutParameters.line(Color.RED)
 
-val simpleCustomTheme = style {
+val simpleCustomStyle = style {
     // use previously created parameters
     xAxis.line(redLine)
     // set up parameters
@@ -1345,27 +1345,27 @@ val simpleCustomTheme = style {
     }
 }
 
-plotWithTheme(simpleCustomTheme)
+plotWithStyle(simpleCustomStyle)
 ```
 
 <!---END-->
 
-![Plot with Simple Custom Theme](experimentalLayoutSimpleCustomTheme.svg)
+![Plot with Simple Custom Style](experimentalLayoutSimpleCustomStyle.svg)
 
-Example of a theme with blank axes:
+Example of a style with blank axes:
 
-<!---FUN experimentalLayoutCustomThemeBlankAxes-->
+<!---FUN experimentalLayoutCustomStyleBlankAxes-->
 
 ```kotlin
-val blankAxesTheme = style {
+val blankAxesStyle = style {
     blankAxes()
 }
-plotWithTheme(blankAxesTheme)
+plotWithStyle(blankAxesStyle)
 ```
 
 <!---END-->
 
-![Plot with Blank Axes](experimentalLayoutCustomThemeBlankAxes.svg)
+![Plot with Blank Axes](experimentalLayoutCustomStyleBlankAxes.svg)
 
 ### Custom scales
 
