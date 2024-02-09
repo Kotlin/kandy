@@ -128,21 +128,23 @@ text {
     <path fill-rule="evenodd" fill="rgb(25,25,28)" fill-opacity="1.0" d="M0.0 0.0 L0.0 470.0 L705.0 470.0 L705.0 0.0 Z">
     </path>
     <g transform="translate(23.0 34.0 ) ">
+      <g transform="translate(132.38654742168382 0.0 ) ">
+        <line x1="73.43089773010492" y1="390.0" x2="73.43089773010492" y2="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="146.86179546020983" y1="390.0" x2="146.86179546020983" y2="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="220.29269319031474" y1="390.0" x2="220.29269319031474" y2="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="293.72359092041967" y1="390.0" x2="293.72359092041967" y2="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+      </g>
       <g transform="translate(132.38654742168382 390.0 ) ">
-        <line x1="73.43089773010492" y1="-0.0" x2="73.43089773010492" y2="-390.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="146.86179546020983" y1="-0.0" x2="146.86179546020983" y2="-390.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="220.29269319031474" y1="-0.0" x2="220.29269319031474" y2="-390.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="293.72359092041967" y1="-0.0" x2="293.72359092041967" y2="-390.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
         <g transform="translate(0.0 0.0 ) ">
           <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            0
+              <tspan>0</tspan>
             </text>
           </g>
         </g>
@@ -151,7 +153,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            20
+              <tspan>20</tspan>
             </text>
           </g>
         </g>
@@ -160,7 +162,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            40
+              <tspan>40</tspan>
             </text>
           </g>
         </g>
@@ -169,7 +171,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            60
+              <tspan>60</tspan>
             </text>
           </g>
         </g>
@@ -178,7 +180,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            80
+              <tspan>80</tspan>
             </text>
           </g>
         </g>
@@ -186,66 +188,68 @@ text {
         </line>
       </g>
       <g transform="translate(132.38654742168382 0.0 ) ">
-        <line x1="0.0" y1="355.2739726027397" x2="366.23660242889827" y2="355.2739726027397" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="355.2739726027397" x2="366.23660242889827" y2="355.2739726027397" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="301.8493150684931" x2="366.23660242889827" y2="301.8493150684931" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="301.8493150684931" x2="366.23660242889827" y2="301.8493150684931" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="248.4246575342466" x2="366.23660242889827" y2="248.4246575342466" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="248.4246575342466" x2="366.23660242889827" y2="248.4246575342466" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="195.0" x2="366.23660242889827" y2="195.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="195.0" x2="366.23660242889827" y2="195.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="141.57534246575344" x2="366.23660242889827" y2="141.57534246575344" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="141.57534246575344" x2="366.23660242889827" y2="141.57534246575344" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="88.15068493150687" x2="366.23660242889827" y2="88.15068493150687" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="88.15068493150687" x2="366.23660242889827" y2="88.15068493150687" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="34.72602739726028" x2="366.23660242889827" y2="34.72602739726028" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="34.72602739726028" x2="366.23660242889827" y2="34.72602739726028" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
+      </g>
+      <g transform="translate(132.38654742168382 0.0 ) ">
         <g transform="translate(0.0 355.2739726027397 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            John Doe
+              <tspan>John Doe</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 301.8493150684931 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            Emma Stone
+              <tspan>Emma Stone</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 248.4246575342466 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            Ryan Gosling
+              <tspan>Ryan Gosling</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 195.0 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            Natalie Portman
+              <tspan>Natalie Portman</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 141.57534246575344 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            Brad Pitt
+              <tspan>Brad Pitt</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 88.15068493150687 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            Marilyn Monroe
+              <tspan>Marilyn Monroe</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 34.72602739726028 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            Leonardo DiCaprio
+              <tspan>Leonardo DiCaprio</tspan>
             </text>
           </g>
         </g>
@@ -257,35 +261,35 @@ text {
             </rect>
           </clipPath>
         </defs>
-        <rect x="0.0" y="10.684931506849352" height="48.082191780821915" width="348.7967642179983" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(230,115,135)" fill-opacity="0.75" stroke-width="1.6500000000000001">
+        <rect x="0.0" y="10.684931506849352" height="48.082191780821915" width="348.7967642179983" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(251,97,215)" fill-opacity="0.75" stroke-width="1.6500000000000001">
         </rect>
-        <rect x="0.0" y="64.10958904109589" height="48.082191780821944" width="146.86179546020983" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(225,115,230)" fill-opacity="0.75" stroke-width="1.6500000000000001">
+        <rect x="0.0" y="64.10958904109589" height="48.082191780821944" width="146.86179546020983" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(165,138,255)" fill-opacity="0.75" stroke-width="1.6500000000000001">
         </rect>
-        <rect x="0.0" y="117.53424657534248" height="48.082191780821915" width="183.57724432526228" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(127,115,230)" fill-opacity="0.75" stroke-width="1.6500000000000001">
+        <rect x="0.0" y="117.53424657534248" height="48.082191780821915" width="183.57724432526228" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(0,182,235)" fill-opacity="0.75" stroke-width="1.6500000000000001">
         </rect>
-        <rect x="0.0" y="170.95890410958907" height="48.082191780821915" width="312.08131535294586" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(115,201,230)" fill-opacity="0.75" stroke-width="1.6500000000000001">
+        <rect x="0.0" y="170.95890410958907" height="48.082191780821915" width="312.08131535294586" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(0,192,148)" fill-opacity="0.75" stroke-width="1.6500000000000001">
         </rect>
-        <rect x="0.0" y="224.3835616438356" height="48.082191780821915" width="220.29269319031474" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(115,230,160)" fill-opacity="0.75" stroke-width="1.6500000000000001">
+        <rect x="0.0" y="224.3835616438356" height="48.082191780821915" width="220.29269319031474" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(83,180,0)" fill-opacity="0.75" stroke-width="1.6500000000000001">
         </rect>
-        <rect x="0.0" y="277.8082191780822" height="48.082191780821915" width="275.3658664878934" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(168,230,115)" fill-opacity="0.75" stroke-width="1.6500000000000001">
+        <rect x="0.0" y="277.8082191780822" height="48.082191780821915" width="275.3658664878934" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(196,154,0)" fill-opacity="0.75" stroke-width="1.6500000000000001">
         </rect>
-        <rect x="0.0" y="331.2328767123288" height="48.08219178082186" width="330.4390397854721" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(230,193,115)" fill-opacity="0.75" stroke-width="1.6500000000000001">
+        <rect x="0.0" y="331.2328767123288" height="48.08219178082186" width="330.4390397854721" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(248,118,109)" fill-opacity="0.75" stroke-width="1.6500000000000001">
         </rect>
       </g>
     </g>
     <g transform="translate(155.38654742168382 15.2 ) ">
       <text class="plot-title" y="0.0">
-      Screen Time of Hollywood Actors
+        <tspan>Screen Time of Hollywood Actors</tspan>
       </text>
     </g>
     <g transform="translate(14.5 229.0 ) rotate(-90.0 ) ">
       <text class="axis-title-y" y="0.0" text-anchor="middle">
-      Actors
+        <tspan>Actors</tspan>
       </text>
     </g>
     <g transform="translate(338.5048486361329 461.5 ) ">
       <text class="axis-title-x" y="0.0" text-anchor="middle">
-      minutes
+        <tspan>minutes</tspan>
       </text>
     </g>
     <g transform="translate(531.6231498505821 127.25 ) ">
@@ -294,7 +298,7 @@ text {
       <g transform="translate(10.0 10.0 ) ">
         <g transform="translate(0.0 10.5 ) ">
           <text class="legend-title" y="0.0">
-          actors
+            <tspan>actors</tspan>
           </text>
         </g>
         <g transform="translate(0.0 22.5 ) ">
@@ -304,7 +308,7 @@ text {
               </rect>
               <g transform="translate(1.0 1.0 ) ">
                 <g>
-                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(230,193,115)" fill-opacity="1.0" stroke-width="1.5">
+                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(248,118,109)" fill-opacity="1.0" stroke-width="1.5">
                   </rect>
                 </g>
               </g>
@@ -313,7 +317,7 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              John Doe
+                <tspan>John Doe</tspan>
               </text>
             </g>
           </g>
@@ -323,7 +327,7 @@ text {
               </rect>
               <g transform="translate(1.0 1.0 ) ">
                 <g>
-                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(168,230,115)" fill-opacity="1.0" stroke-width="1.5">
+                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(196,154,0)" fill-opacity="1.0" stroke-width="1.5">
                   </rect>
                 </g>
               </g>
@@ -332,7 +336,7 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              Emma Stone
+                <tspan>Emma Stone</tspan>
               </text>
             </g>
           </g>
@@ -342,7 +346,7 @@ text {
               </rect>
               <g transform="translate(1.0 1.0 ) ">
                 <g>
-                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(115,230,160)" fill-opacity="1.0" stroke-width="1.5">
+                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(83,180,0)" fill-opacity="1.0" stroke-width="1.5">
                   </rect>
                 </g>
               </g>
@@ -351,7 +355,7 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              Ryan Gosling
+                <tspan>Ryan Gosling</tspan>
               </text>
             </g>
           </g>
@@ -361,7 +365,7 @@ text {
               </rect>
               <g transform="translate(1.0 1.0 ) ">
                 <g>
-                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(115,201,230)" fill-opacity="1.0" stroke-width="1.5">
+                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(0,192,148)" fill-opacity="1.0" stroke-width="1.5">
                   </rect>
                 </g>
               </g>
@@ -370,7 +374,7 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              Natalie Portman
+                <tspan>Natalie Portman</tspan>
               </text>
             </g>
           </g>
@@ -380,7 +384,7 @@ text {
               </rect>
               <g transform="translate(1.0 1.0 ) ">
                 <g>
-                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(127,115,230)" fill-opacity="1.0" stroke-width="1.5">
+                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(0,182,235)" fill-opacity="1.0" stroke-width="1.5">
                   </rect>
                 </g>
               </g>
@@ -389,7 +393,7 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              Brad Pitt
+                <tspan>Brad Pitt</tspan>
               </text>
             </g>
           </g>
@@ -399,7 +403,7 @@ text {
               </rect>
               <g transform="translate(1.0 1.0 ) ">
                 <g>
-                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(225,115,230)" fill-opacity="1.0" stroke-width="1.5">
+                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(165,138,255)" fill-opacity="1.0" stroke-width="1.5">
                   </rect>
                 </g>
               </g>
@@ -408,7 +412,7 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              Marilyn Monroe
+                <tspan>Marilyn Monroe</tspan>
               </text>
             </g>
           </g>
@@ -418,7 +422,7 @@ text {
               </rect>
               <g transform="translate(1.0 1.0 ) ">
                 <g>
-                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(230,115,135)" fill-opacity="1.0" stroke-width="1.5">
+                  <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(48,48,48)" stroke-opacity="1.0" fill="rgb(251,97,215)" fill-opacity="1.0" stroke-width="1.5">
                   </rect>
                 </g>
               </g>
@@ -427,7 +431,7 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              Leonardo DiCaprio
+                <tspan>Leonardo DiCaprio</tspan>
               </text>
             </g>
           </g>
