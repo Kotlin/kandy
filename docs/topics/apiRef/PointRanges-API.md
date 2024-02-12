@@ -1,7 +1,7 @@
 # pointRanges
 
 <tldr>
-<p><format style="bold" color="GoldenRod">points</format> <format style="italic">{ this: PointsContext -></format></p>
+<p><format style="bold" color="GoldenRod">pointRanges</format> <format style="italic">{ this: PointRangesContext -></format></p>
 <list type="none">
 <li>
 <a href="#x"><format style="bold" color="CadetBlue">x</format></a> <format style="superscript">Positional</format>
