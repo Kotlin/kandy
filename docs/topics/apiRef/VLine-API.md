@@ -36,6 +36,31 @@
 
 ### xIntercept
 
+<include from="properties.topic" element-id="req-position-aes-desc"/>
+
+The `xIntercept`
+aesthetic is crucial for defining the point at which vertical lines intersect the x-axis in vertical line plots.
+This aesthetic specifies the x-coordinate for the intersection point,
+allowing for precise placement of vertical lines within the plot to represent thresholds,
+boundaries, or specific values of interest.
+
+**Setting**
+
+* `xIntercept.constant(Any)`: assigns a fixed x-coordinate for the intersection point of all vertical lines within the
+  plot.
+  This approach is useful for highlighting specific values or thresholds that are consistent across the plot.
+  Example: `xIntercept.constant(0.5)` sets a uniform x-coordinate at 0.5 for all vertical lines,
+  marking a specific threshold or value.
+
+**Mapping**
+
+* `xIntercept(Iterable)`: links the intersection point of each vertical line to values from an iterable collection,
+  enabling variable placement of vertical lines based on the iterable's values.
+* `xMax(ColumnReference | KProperty | DataColumn)`: dynamically associates the intersection point of vertical lines with
+  a DataFrame column, allowing for data-driven placement of lines.
+* `xIntercept(String)`: ties the intersection point of vertical lines to data based on the column name in the DataFrame
+  or by key in a Map, offering flexibility in highlighting data-specific thresholds or values.
+
 ### alpha
 
 <include from="properties.topic" element-id="alpha-property"/>
