@@ -50,8 +50,7 @@
 <include from="properties.topic" element-id="req-position-aes-desc"/>
 
 The `xMin` aesthetic is essential for defining the starting point of rectangles in various plots, particularly in
-creating
-rectangle plots.
+creating rectangle plots.
 It specifies the minimum x-coordinate for each rectangle,
 effectively determining where each rectangle begins along the x-axis.
 This aesthetic is crucial for accurately positioning rectangles to represent data ranges,
