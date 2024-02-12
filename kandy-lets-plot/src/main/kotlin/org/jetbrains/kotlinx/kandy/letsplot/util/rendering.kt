@@ -5,6 +5,7 @@ import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
 import org.jetbrains.kotlinx.jupyter.api.MimeTypedResultEx
 import org.jetbrains.kotlinx.jupyter.api.MimeTypes
+import org.jetbrains.kotlinx.kandy.letsplot.internal.letsPlotJSUrl
 import org.jetbrains.kotlinx.kandy.letsplot.jupyter.JupyterConfig
 import org.jetbrains.kotlinx.kandy.util.serialization.serializeSpec
 import org.jetbrains.letsPlot.Figure
@@ -15,13 +16,12 @@ import org.jetbrains.letsPlot.intern.toSpec
 import java.util.*
 
 internal class NotebookRenderingContext(
-    val jsVersion: String,
-    val config: JupyterConfig,
+    val config: JupyterConfig
 )
 
 internal fun NotebookRenderingContext.figureToHtml(figure: Figure): String {
     val spec = figure.toSpec()
-    return PlotHtmlExport.buildHtmlFromRawSpecs(spec, PlotHtmlHelper.scriptUrl(jsVersion), true)
+    return PlotHtmlExport.buildHtmlFromRawSpecs(spec, letsPlotJSUrl, true)
 }
 
 internal fun NotebookRenderingContext.figureToMimeJson(figure: Figure): JsonObject {
