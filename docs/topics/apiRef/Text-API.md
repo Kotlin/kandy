@@ -60,6 +60,9 @@
 <format style="italic">}</format>
 </tldr>
 
+>  Because `text` is still in development, this API may be subject to change.
+{style="warning"}
+
 ## Properties
 
 ### x
