@@ -225,7 +225,7 @@ class Tooltips : SampleHelper("layout", "guides") {
                 symbol = Symbol.CIRCLE_FILLED
                 color = Color.GREY
 
-                tooltips(isEnabled = false)
+                tooltips(enable = false)
             }
         }
         // SampleEnd

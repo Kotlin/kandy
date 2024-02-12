@@ -47,17 +47,17 @@ public fun LayerContextInterface.value(column: KProperty<*>): String {
 /**
  * Hides tooltips.
  *
- * @param isEnabled flag of tooltips displaying.
+ * @param enable flag of tooltips displaying.
  */
 public fun LayerContextInterface.tooltips(
-    isEnabled: Boolean = true,
+    enable: Boolean = true,
 ) {
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         listOf(),
         null,
         listOf(),
         null, null, null,
-        isEnabled,
+        enable,
     )
 }
 
@@ -91,7 +91,7 @@ public inline fun LayerContextInterface.tooltips(
         title,
         anchor,
         minWidth,
-        true,
+        enable = true,
         formats.map { (column, format) -> datasetHandler.takeColumn(column.name()) to format },
         LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
@@ -120,7 +120,7 @@ public fun LayerContextInterface.tooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it) },
         null,
         formats.toList(),
-        title, anchor, minWidth, true
+        title, anchor, minWidth, enable = true
     )
 }
 
@@ -150,7 +150,7 @@ public fun LayerContextInterface.tooltips(
         title,
         anchor,
         minWidth,
-        true
+        enable = true
     )
 }
 
@@ -178,6 +178,6 @@ public fun LayerContextInterface.tooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it.name) },
         null,
         formats.map { (property, format) ->  datasetHandler.takeColumn(property.name) to format },
-        title, anchor, minWidth, true
+        title, anchor, minWidth, enable = true
     )
 }

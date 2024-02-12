@@ -367,7 +367,7 @@ economics.plot {
         yIntercept.constant(unemploymentMean)
         color = Color.RED
         type = LineType.DASHED
-        tooltips(isEnabled = false)
+        tooltips(enable = false)
     }
     text {
         label = "${String.format("%.2f", unemploymentMean)} %"

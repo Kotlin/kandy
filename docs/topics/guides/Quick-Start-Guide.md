@@ -1493,7 +1493,7 @@ mpgDF.plot {
         color(drv)
         size = 3.5
 
-        tooltips(isEnabled = false)
+        tooltips(enable = false)
     }
 }
 ```
