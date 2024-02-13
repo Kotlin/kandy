@@ -128,27 +128,29 @@ text {
     <path fill-rule="evenodd" fill="rgb(255,255,255)" fill-opacity="1.0" d="M0.0 0.0 L0.0 470.0 L705.0 470.0 L705.0 0.0 Z">
     </path>
     <g transform="translate(23.0 10.0 ) ">
+      <g transform="translate(21.961210910936405 0.0 ) ">
+        <line x1="20.313712159033237" y1="414.0" x2="20.313712159033237" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="121.88227295419941" y1="414.0" x2="121.88227295419941" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="223.4508337493656" y1="414.0" x2="223.4508337493656" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="325.0193945445318" y1="414.0" x2="325.0193945445318" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="426.58795533969794" y1="414.0" x2="426.58795533969794" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="528.1565161348641" y1="414.0" x2="528.1565161348641" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="629.7250769300304" y1="414.0" x2="629.7250769300304" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+      </g>
       <g transform="translate(21.961210910936405 414.0 ) ">
-        <line x1="20.313712159033237" y1="-0.0" x2="20.313712159033237" y2="-414.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="121.88227295419941" y1="-0.0" x2="121.88227295419941" y2="-414.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="223.4508337493656" y1="-0.0" x2="223.4508337493656" y2="-414.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="325.0193945445318" y1="-0.0" x2="325.0193945445318" y2="-414.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="426.58795533969794" y1="-0.0" x2="426.58795533969794" y2="-414.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="528.1565161348641" y1="-0.0" x2="528.1565161348641" y2="-414.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="629.7250769300304" y1="-0.0" x2="629.7250769300304" y2="-414.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
         <g transform="translate(20.313712159033237 0.0 ) ">
           <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            2017
+              <tspan>2017</tspan>
             </text>
           </g>
         </g>
@@ -157,7 +159,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            2018
+              <tspan>2018</tspan>
             </text>
           </g>
         </g>
@@ -166,7 +168,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            2019
+              <tspan>2019</tspan>
             </text>
           </g>
         </g>
@@ -175,7 +177,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            2020
+              <tspan>2020</tspan>
             </text>
           </g>
         </g>
@@ -184,7 +186,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            2021
+              <tspan>2021</tspan>
             </text>
           </g>
         </g>
@@ -193,7 +195,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            2022
+              <tspan>2022</tspan>
             </text>
           </g>
         </g>
@@ -202,7 +204,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            2023
+              <tspan>2023</tspan>
             </text>
           </g>
         </g>
@@ -210,82 +212,84 @@ text {
         </line>
       </g>
       <g transform="translate(21.961210910936405 0.0 ) ">
-        <line x1="0.0" y1="365.9749434487559" x2="650.0387890890636" y2="365.9749434487559" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="365.9749434487559" x2="650.0387890890636" y2="365.9749434487559" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="317.94988689751176" x2="650.0387890890636" y2="317.94988689751176" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="317.94988689751176" x2="650.0387890890636" y2="317.94988689751176" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="269.92483034626764" x2="650.0387890890636" y2="269.92483034626764" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="269.92483034626764" x2="650.0387890890636" y2="269.92483034626764" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="221.8997737950235" x2="650.0387890890636" y2="221.8997737950235" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="221.8997737950235" x2="650.0387890890636" y2="221.8997737950235" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="173.87471724377937" x2="650.0387890890636" y2="173.87471724377937" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="173.87471724377937" x2="650.0387890890636" y2="173.87471724377937" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="125.84966069253522" x2="650.0387890890636" y2="125.84966069253522" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="125.84966069253522" x2="650.0387890890636" y2="125.84966069253522" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="77.8246041412911" x2="650.0387890890636" y2="77.8246041412911" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="77.8246041412911" x2="650.0387890890636" y2="77.8246041412911" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="29.799547590046984" x2="650.0387890890636" y2="29.799547590046984" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="29.799547590046984" x2="650.0387890890636" y2="29.799547590046984" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
+      </g>
+      <g transform="translate(21.961210910936405 0.0 ) ">
         <g transform="translate(0.0 414.0 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            0
+              <tspan>0</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 365.9749434487559 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            10
+              <tspan>10</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 317.94988689751176 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            20
+              <tspan>20</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 269.92483034626764 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            30
+              <tspan>30</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 221.8997737950235 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            40
+              <tspan>40</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 173.87471724377937 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            50
+              <tspan>50</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 125.84966069253522 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            60
+              <tspan>60</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 77.8246041412911 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            70
+              <tspan>70</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 29.799547590046984 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            80
+              <tspan>80</tspan>
             </text>
           </g>
         </g>
@@ -309,12 +313,12 @@ text {
     </g>
     <g transform="translate(14.5 217.0 ) rotate(-90.0 ) ">
       <text class="axis-title-y" y="0.0" text-anchor="middle">
-      cost
+        <tspan>cost</tspan>
       </text>
     </g>
     <g transform="translate(369.9806054554682 461.5 ) ">
       <text class="axis-title-x" y="0.0" text-anchor="middle">
-      years
+        <tspan>years</tspan>
       </text>
     </g>
     <path fill="rgb(0,0,0)" fill-opacity="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="0.0" d="M0.0 0.0 L0.0 470.0 L705.0 470.0 L705.0 0.0 Z">

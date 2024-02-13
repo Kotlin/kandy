@@ -46,5 +46,5 @@ class PointRangesTest : KandyLetsPlotJupyterTest() {
     fun `compilation of pointRanges in jupyter`() = plotPointRanges.checkCompilation()
 
     @Test
-    fun `pointRanges output in jupyter`() = assertOutput(exec(plotPointRanges))
+    fun `pointRanges output in jupyter`() = assertOutput(execRendered(plotPointRanges))
 }

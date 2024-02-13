@@ -29,5 +29,5 @@ class ABLineTest : KandyLetsPlotJupyterTest() {
     fun `compilation of abLine in jupyter`() = plotABLine.checkCompilation()
 
     @Test
-    fun `abLine output in jupyter`() = assertOutput(exec(plotABLine))
+    fun `abLine output in jupyter`() = assertOutput(execRendered(plotABLine))
 }
