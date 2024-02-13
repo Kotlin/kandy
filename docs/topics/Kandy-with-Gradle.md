@@ -51,6 +51,40 @@ dependencies {
 
 You now have access to the Kandy library in your Kotlin project.
 
+To also use statistical functions with Kandy, add the following to your build script:
+
+<tabs>
+   <tab title="Kotlin DSL">
+
+```kotlin
+repositories {
+   maven("https://packages.jetbrains.team/maven/p/kds/kotlin-ds-maven")
+}
+
+dependencies {
+   implementation("org.jetbrains.kotlinx:kotlin-statistics-jvm:%kandy_stat_latest_version%")
+}
+```
+
+   </tab>
+   <tab title="Groovy DSL">
+
+```groovy
+repositories {
+   maven "https://packages.jetbrains.team/maven/p/kds/kotlin-ds-maven"
+}
+
+dependencies {
+   implementation "org.jetbrains.kotlinx:kotlin-statistics-jvm:0.1.0"
+}
+```
+
+   </tab>
+</tabs>
+
+> Note that the actual version may differ from the one specified here.
+{style=warning}
+
 ## Plotting a Simple Example
 
 ```kotlin
