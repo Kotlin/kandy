@@ -276,7 +276,7 @@
         <list>
             <li>
                 <p><code>lineType = LineType</code>: applies a specific line style to lines within a layer.
-                    The value can be one of the predefined LineType constants:</p>
+                    The value can be one of the predefined <code>LineType</code> constants:</p>
                 <list>
                     <li><i>LineType.BLANK</i></li>
                     <li><i>LineType.SOLID</i></li>
@@ -431,7 +431,7 @@
         <list>
             <li>
                 <p><code>type = LineType</code>: applies a specific line style to lines within a layer.
-                    The value can be one of the predefined LineType constants:</p>
+                    The value can be one of the predefined <code>LineType</code> constants:</p>
                 <list>
                     <li><i>LineType.BLANK</i></li>
                     <li><i>LineType.SOLID</i></li>
