@@ -34,5 +34,5 @@ class PathTest : KandyLetsPlotJupyterTest() {
     fun `compilation of path in jupyter`() = plotPath.checkCompilation()
 
     @Test
-    fun `path output in jupyter`() = assertOutput(exec(plotPath))
+    fun `path output in jupyter`() = assertOutput(execRendered(plotPath))
 }

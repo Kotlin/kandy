@@ -34,5 +34,5 @@ class PointsTest : KandyLetsPlotJupyterTest() {
     fun `compilation of points in jupyter`() = plotPoints.checkCompilation()
 
     @Test
-    fun `points output in jupyter`() = assertOutput(exec(plotPoints))
+    fun `points output in jupyter`() = assertOutput(execRendered(plotPoints))
 }

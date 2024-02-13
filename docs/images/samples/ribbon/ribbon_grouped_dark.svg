@@ -128,23 +128,25 @@ text {
     <path fill-rule="evenodd" fill="rgb(25,25,28)" fill-opacity="1.0" d="M0.0 0.0 L0.0 470.0 L705.0 470.0 L705.0 0.0 Z">
     </path>
     <g transform="translate(23.0 10.0 ) ">
+      <g transform="translate(29.941816366404606 0.0 ) ">
+        <line x1="23.515551994013023" y1="414.0" x2="23.515551994013023" y2="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="141.0933119640781" y1="414.0" x2="141.0933119640781" y2="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="258.67107193414324" y1="414.0" x2="258.67107193414324" y2="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="376.2488319042083" y1="414.0" x2="376.2488319042083" y2="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="493.82659187427345" y1="414.0" x2="493.82659187427345" y2="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+      </g>
       <g transform="translate(29.941816366404606 414.0 ) ">
-        <line x1="23.515551994013023" y1="-0.0" x2="23.515551994013023" y2="-414.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="141.0933119640781" y1="-0.0" x2="141.0933119640781" y2="-414.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="258.67107193414324" y1="-0.0" x2="258.67107193414324" y2="-414.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="376.2488319042083" y1="-0.0" x2="376.2488319042083" y2="-414.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
-        <line x1="493.82659187427345" y1="-0.0" x2="493.82659187427345" y2="-414.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
-        </line>
         <g transform="translate(23.515551994013023 0.0 ) ">
           <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            00:00
+              <tspan>00:00</tspan>
             </text>
           </g>
         </g>
@@ -153,7 +155,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            06:00
+              <tspan>06:00</tspan>
             </text>
           </g>
         </g>
@@ -162,7 +164,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            12:00
+              <tspan>12:00</tspan>
             </text>
           </g>
         </g>
@@ -171,7 +173,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            18:00
+              <tspan>18:00</tspan>
             </text>
           </g>
         </g>
@@ -180,7 +182,7 @@ text {
           </line>
           <g transform="translate(0.0 7.0 ) ">
             <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-            24:00
+              <tspan>24:00</tspan>
             </text>
           </g>
         </g>
@@ -188,48 +190,50 @@ text {
         </line>
       </g>
       <g transform="translate(29.941816366404606 0.0 ) ">
-        <line x1="0.0" y1="346.09090909090907" x2="517.3421438682865" y2="346.09090909090907" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="346.09090909090907" x2="517.3421438682865" y2="346.09090909090907" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="264.27272727272725" x2="517.3421438682865" y2="264.27272727272725" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="264.27272727272725" x2="517.3421438682865" y2="264.27272727272725" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="182.45454545454544" x2="517.3421438682865" y2="182.45454545454544" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="182.45454545454544" x2="517.3421438682865" y2="182.45454545454544" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="100.63636363636363" x2="517.3421438682865" y2="100.63636363636363" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="100.63636363636363" x2="517.3421438682865" y2="100.63636363636363" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
-        <line x1="0.0" y1="18.818181818181756" x2="517.3421438682865" y2="18.818181818181756" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0">
+        <line x1="0.0" y1="18.818181818181756" x2="517.3421438682865" y2="18.818181818181756" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
         </line>
+      </g>
+      <g transform="translate(29.941816366404606 0.0 ) ">
         <g transform="translate(0.0 346.09090909090907 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            200
+              <tspan>200</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 264.27272727272725 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            250
+              <tspan>250</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 182.45454545454544 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            300
+              <tspan>300</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 100.63636363636363 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            350
+              <tspan>350</tspan>
             </text>
           </g>
         </g>
         <g transform="translate(0.0 18.818181818181756 ) ">
           <g transform="translate(-3.0 0.0 ) ">
             <text class="axis-text-y" text-anchor="end" dy="0.35em">
-            400
+              <tspan>400</tspan>
             </text>
           </g>
         </g>
@@ -269,12 +273,12 @@ text {
     </g>
     <g transform="translate(14.5 217.0 ) rotate(-90.0 ) ">
       <text class="axis-title-y" y="0.0" text-anchor="middle">
-      price, tokens
+        <tspan>price, tokens</tspan>
       </text>
     </g>
     <g transform="translate(311.61288830054787 461.5 ) ">
       <text class="axis-title-x" y="0.0" text-anchor="middle">
-      time
+        <tspan>time</tspan>
       </text>
     </g>
     <g transform="translate(580.2839602346911 165.41666666666669 ) ">
@@ -283,7 +287,7 @@ text {
       <g transform="translate(10.0 10.0 ) ">
         <g transform="translate(0.0 10.5 ) ">
           <text class="legend-title" y="0.0">
-          currency
+            <tspan>currency</tspan>
           </text>
         </g>
         <g transform="translate(0.0 22.5 ) ">
@@ -302,10 +306,10 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              Bubble Tea
+                <tspan>Bubble Tea</tspan>
               </text>
               <text class="legend-item" y="13.0">
-              Coin
+                <tspan>Coin</tspan>
               </text>
             </g>
           </g>
@@ -324,10 +328,10 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              E-Traders
+                <tspan>E-Traders</tspan>
               </text>
               <text class="legend-item" y="13.0">
-              Hedgehogs
+                <tspan>Hedgehogs</tspan>
               </text>
             </g>
           </g>

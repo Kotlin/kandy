@@ -38,5 +38,5 @@ class TilesTest : KandyLetsPlotJupyterTest() {
     fun `compilation of tiles in jupyter`() = plotTiles.checkCompilation()
 
     @Test
-    fun `tiles output in jupyter`() = assertOutput(exec(plotTiles))
+    fun `tiles output in jupyter`() = assertOutput(execRendered(plotTiles))
 }

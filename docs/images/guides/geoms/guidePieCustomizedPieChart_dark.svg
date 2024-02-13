@@ -128,7 +128,11 @@ text {
     <path fill-rule="evenodd" fill="rgb(25,25,28)" fill-opacity="1.0" d="M0.0 0.0 L0.0 470.0 L705.0 470.0 L705.0 0.0 Z">
     </path>
     <g transform="translate(10.0 10.0 ) ">
+      <g transform="">
+      </g>
       <g transform="translate(0.0 450.0 ) ">
+      </g>
+      <g transform="">
       </g>
       <g transform="">
       </g>
@@ -207,7 +211,7 @@ text {
       <g transform="translate(10.0 10.0 ) ">
         <g transform="translate(0.0 10.5 ) ">
           <text class="legend-title" y="0.0">
-          name
+            <tspan>name</tspan>
           </text>
         </g>
         <g transform="translate(0.0 22.5 ) ">
@@ -226,7 +230,7 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              a
+                <tspan>a</tspan>
               </text>
             </g>
           </g>
@@ -245,7 +249,7 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              b
+                <tspan>b</tspan>
               </text>
             </g>
           </g>
@@ -264,7 +268,7 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              c
+                <tspan>c</tspan>
               </text>
             </g>
           </g>
@@ -283,7 +287,7 @@ text {
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
-              d
+                <tspan>d</tspan>
               </text>
             </g>
           </g>

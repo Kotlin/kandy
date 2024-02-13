@@ -36,5 +36,5 @@ class BoxesTest : KandyLetsPlotJupyterTest() {
     fun `compilation of boxes in jupyter`() = plotBoxes.checkCompilation()
 
     @Test
-    fun `boxes output in jupyter`() = assertOutput(exec(plotBoxes))
+    fun `boxes output in jupyter`() = assertOutput(execRendered(plotBoxes))
 }

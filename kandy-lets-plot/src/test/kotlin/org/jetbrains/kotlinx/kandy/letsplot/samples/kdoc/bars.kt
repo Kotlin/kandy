@@ -35,7 +35,7 @@ class BarsTest : KandyLetsPlotJupyterTest() {
     fun `compilation of bars in jupyter`() = plotBars.checkCompilation()
 
     @Test
-    fun `bars output in jupyter`() = assertOutput(exec(plotBars))
+    fun `bars output in jupyter`() = assertOutput(execRendered(plotBars))
 
 
     private val plotBarsH = """
@@ -68,5 +68,5 @@ class BarsTest : KandyLetsPlotJupyterTest() {
     fun `compilation of barsH in jupyter`() = plotBarsH.checkCompilation()
 
     @Test
-    fun `barsH output in jupyter`() = assertOutput(exec(plotBarsH))
+    fun `barsH output in jupyter`() = assertOutput(execRendered(plotBarsH))
 }

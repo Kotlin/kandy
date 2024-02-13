@@ -35,5 +35,5 @@ class ErrorBarsTest : KandyLetsPlotJupyterTest() {
     fun `compilation of errorBars in jupyter`() = plotErrorBars.checkCompilation()
 
     @Test
-    fun `errorBars output in jupyter`() = assertOutput(exec(plotErrorBars))
+    fun `errorBars output in jupyter`() = assertOutput(execRendered(plotErrorBars))
 }

@@ -41,5 +41,5 @@ class RectanglesTest : KandyLetsPlotJupyterTest() {
     fun `compilation of rectangles in jupyter`() = plotRectangles.checkCompilation()
 
     @Test
-    fun `rectangles output in jupyter`() = assertOutput(exec(plotRectangles))
+    fun `rectangles output in jupyter`() = assertOutput(execRendered(plotRectangles))
 }

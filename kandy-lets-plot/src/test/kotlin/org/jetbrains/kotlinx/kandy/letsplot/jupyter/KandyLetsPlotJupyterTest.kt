@@ -24,7 +24,7 @@ abstract class KandyLetsPlotJupyterTest : JupyterReplTestCase(
     private val classLoader = (this::class as Any).javaClass.classLoader
 
     internal fun Code.checkCompilation() {
-        exec(this)
+        execRendered(this)
     }
 
     internal fun assertOutput(actualOutputText: Any?) {

@@ -28,5 +28,5 @@ class LineRangesTest : KandyLetsPlotJupyterTest() {
     fun `compilation of lineRanges in jupyter`() = plotLineRanges.checkCompilation()
 
     @Test
-    fun `lineRanges output in jupyter`() = assertOutput(exec(plotLineRanges))
+    fun `lineRanges output in jupyter`() = assertOutput(execRendered(plotLineRanges))
 }
