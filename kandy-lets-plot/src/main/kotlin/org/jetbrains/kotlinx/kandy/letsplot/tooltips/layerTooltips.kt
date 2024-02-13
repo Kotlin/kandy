@@ -45,9 +45,9 @@ public fun LayerContextInterface.value(column: KProperty<*>): String {
 }
 
 /**
- * Hides tooltips.
+ * Hides tooltips. Applies to all kinds of tooltips: axis, side and general tooltips.
  *
- * @param enable flag of tooltips displaying.
+ * @param enable If `true` (by default), tooltips are displayed. If `false`, tooltips are not displayed.
  */
 public fun LayerContextInterface.tooltips(
     enable: Boolean = true,
