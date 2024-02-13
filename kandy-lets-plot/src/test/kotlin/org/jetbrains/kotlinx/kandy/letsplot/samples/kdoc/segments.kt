@@ -35,5 +35,5 @@ class SegmentsTest : KandyLetsPlotJupyterTest() {
     fun `compilation of segments in jupyter`() = plotSegments.checkCompilation()
 
     @Test
-    fun `segments output in jupyter`() = assertOutput(exec(plotSegments))
+    fun `segments output in jupyter`() = assertOutput(execRendered(plotSegments))
 }

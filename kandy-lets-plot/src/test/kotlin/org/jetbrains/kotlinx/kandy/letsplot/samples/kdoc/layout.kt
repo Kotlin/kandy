@@ -24,5 +24,5 @@ class LayoutTest : KandyLetsPlotJupyterTest() {
     fun `compilation of layout in jupyter`() = plotLayout.checkCompilation()
 
     @Test
-    fun `layout output in jupyter`() = assertOutput(exec(plotLayout))
+    fun `layout output in jupyter`() = assertOutput(execRendered(plotLayout))
 }

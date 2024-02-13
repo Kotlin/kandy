@@ -34,5 +34,5 @@ class LineTest : KandyLetsPlotJupyterTest() {
     fun `compilation of line in jupyter`() = plotLine.checkCompilation()
 
     @Test
-    fun `line output in jupyter`() = assertOutput(exec(plotLine))
+    fun `line output in jupyter`() = assertOutput(execRendered(plotLine))
 }

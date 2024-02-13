@@ -41,5 +41,5 @@ class RibbonTest : KandyLetsPlotJupyterTest() {
     fun `compilation of ribbon in jupyter`() = plotRibbon.checkCompilation()
 
     @Test
-    fun `ribbon output in jupyter`() = assertOutput(exec(plotRibbon))
+    fun `ribbon output in jupyter`() = assertOutput(execRendered(plotRibbon))
 }

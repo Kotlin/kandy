@@ -33,5 +33,5 @@ class VLineTest : KandyLetsPlotJupyterTest() {
     fun `compilation of vLine in jupyter`() = plotVLine.checkCompilation()
 
     @Test
-    fun `vLine output in jupyter`() = assertOutput(exec(plotVLine))
+    fun `vLine output in jupyter`() = assertOutput(execRendered(plotVLine))
 }
