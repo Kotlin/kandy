@@ -359,7 +359,7 @@ mpgDf.plot {
         symbol = Symbol.CIRCLE_FILLED
         color = Color.GREY
 
-        tooltips(hide = true)
+        tooltips(enable = false)
     }
 }
 ```
