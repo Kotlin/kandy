@@ -505,7 +505,7 @@ plot(dataset) {
 
 <!---END-->
 
-![](guideTooltipWithoutStyle.svg)
+![](guideTooltipWithoutStyle.png)
 
 <!---FUN guideTooltipWithStyle-->
 
