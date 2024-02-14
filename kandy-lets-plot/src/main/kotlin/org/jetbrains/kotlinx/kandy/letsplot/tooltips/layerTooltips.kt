@@ -45,19 +45,19 @@ public fun LayerContextInterface.value(column: KProperty<*>): String {
 }
 
 /**
- * Hides tooltips.
+ * Hides tooltips. Applies to all kinds of tooltips: axis, side and general tooltips.
  *
- * @param hide flag of tooltips displaying.
+ * @param enable If `true` (by default), tooltips are displayed. If `false`, tooltips are not displayed.
  */
 public fun LayerContextInterface.tooltips(
-    hide: Boolean = false,
+    enable: Boolean = true,
 ) {
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         listOf(),
         null,
         listOf(),
         null, null, null,
-        hide
+        enable,
     )
 }
 
@@ -74,7 +74,6 @@ public fun LayerContextInterface.tooltips(
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
- * @param hide flag of tooltips displaying.
  * @param formats map of columns to format string of its value.
  * @see value
  */
@@ -84,7 +83,6 @@ public inline fun LayerContextInterface.tooltips(
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
-    hide: Boolean = false,
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
     @Suppress("invisible_reference")
@@ -93,7 +91,7 @@ public inline fun LayerContextInterface.tooltips(
         title,
         anchor,
         minWidth,
-        hide,
+        enable = true,
         formats.map { (column, format) -> datasetHandler.takeColumn(column.name()) to format },
         LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
@@ -107,7 +105,6 @@ public inline fun LayerContextInterface.tooltips(
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
- * @param hide flag of tooltips displaying.
  * @see value
  */
 public fun LayerContextInterface.tooltips(
@@ -117,14 +114,13 @@ public fun LayerContextInterface.tooltips(
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
-    hide: Boolean = false,
 ) {
     @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it) },
         null,
         formats.toList(),
-        title, anchor, minWidth, hide
+        title, anchor, minWidth, enable = true
     )
 }
 
@@ -136,7 +132,6 @@ public fun LayerContextInterface.tooltips(
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
- * @param hide flag of tooltips displaying.
  * @see value
  */
 public fun LayerContextInterface.tooltips(
@@ -146,7 +141,6 @@ public fun LayerContextInterface.tooltips(
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
-    hide: Boolean = false,
 ) {
     @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
@@ -156,7 +150,7 @@ public fun LayerContextInterface.tooltips(
         title,
         anchor,
         minWidth,
-        hide
+        enable = true
     )
 }
 
@@ -169,7 +163,6 @@ public fun LayerContextInterface.tooltips(
  * @param title the string template to use as a title in the multi-line tooltip.
  * @param anchor the fixed position for the general tooltip.
  * @param minWidth minimum width of a general tooltip in pixels.
- * @param hide flag of tooltips displaying.
  * @see value
  */
 public fun LayerContextInterface.tooltips(
@@ -179,13 +172,12 @@ public fun LayerContextInterface.tooltips(
     title: String? = null,
     anchor: Anchor? = null,
     minWidth: Double? = null,
-    hide: Boolean = false,
 ) {
     @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it.name) },
         null,
         formats.map { (property, format) ->  datasetHandler.takeColumn(property.name) to format },
-        title, anchor, minWidth, hide
+        title, anchor, minWidth, enable = true
     )
 }
