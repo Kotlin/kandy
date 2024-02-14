@@ -328,7 +328,7 @@ class Tooltips : SampleHelper("layout", "guides") {
 
 
     @Test
-    fun guideTooltipDatasetForTheme() {
+    fun guideTooltipDatasetForStyle() {
         // SampleStart
         val dataset = dataFrameOf("x" to listOf(0.0, 1.0), "y" to listOf(0.0, 1.0))
         // SampleEnd
@@ -337,7 +337,7 @@ class Tooltips : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideTooltipWithoutTheme() {
+    fun guideTooltipWithoutStyle() {
         // SampleStart
         plot(dataset) {
             tiles {
@@ -354,7 +354,7 @@ class Tooltips : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideTooltipWithTheme() {
+    fun guideTooltipWithStyle() {
         // SampleStart
         plot(dataset) {
             tiles {

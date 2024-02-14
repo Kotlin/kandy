@@ -344,7 +344,7 @@ mpgDf.plot {
 
 Set `tooltips(true)` to hide tooltips from the layer.
 
-To hide axis tooltips, you can set "blank" parameters of the `theme()` function.
+To hide axis tooltips, you can set "blank" parameters of the `style()` function.
 
 <!---FUN guideTooltipHide-->
 
@@ -477,9 +477,9 @@ mpgDf.plot {
 
 ![](guideTooltipSplittingTextInTitle.png)
 
-## Tooltip Theme
+## Tooltip Style
 
-<!---FUN guideTooltipDatasetForTheme-->
+<!---FUN guideTooltipDatasetForStyle-->
 
 ```kotlin
 val dataset = dataFrameOf("x" to listOf(0.0, 1.0), "y" to listOf(0.0, 1.0))
@@ -487,7 +487,7 @@ val dataset = dataFrameOf("x" to listOf(0.0, 1.0), "y" to listOf(0.0, 1.0))
 
 <!---END-->
 
-<!---FUN guideTooltipWithoutTheme-->
+<!---FUN guideTooltipWithoutStyle-->
 
 ```kotlin
 plot(dataset) {
@@ -505,9 +505,9 @@ plot(dataset) {
 
 <!---END-->
 
-![](guideTooltipWithoutTheme.png)
+![](guideTooltipWithoutStyle.svg)
 
-<!---FUN guideTooltipWithTheme-->
+<!---FUN guideTooltipWithStyle-->
 
 ```kotlin
 plot(dataset) {
@@ -544,7 +544,7 @@ plot(dataset) {
 
 <!---END-->
 
-![](guideTooltipWithTheme.png)
+![](guideTooltipWithStyle.png)
 
 
 <seealso style="cards">
