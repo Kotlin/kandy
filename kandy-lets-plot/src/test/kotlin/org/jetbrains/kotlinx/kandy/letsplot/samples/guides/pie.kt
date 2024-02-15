@@ -17,7 +17,7 @@ import kotlin.test.assertNotNull
 
 class Pie : SampleHelper("geoms", "guides") {
 
-    private val blankStyle = Style.style {
+    private val blankStyle = Style.custom {
         global.line {
             blank = true
         }
@@ -62,7 +62,7 @@ class Pie : SampleHelper("geoms", "guides") {
     @Test
     fun guidePieBlankStyle() {
         // SampleStart
-        val blankStyle = Style.style {
+        val blankStyle = Style.custom {
             global.line {
                 blank = true
             }
