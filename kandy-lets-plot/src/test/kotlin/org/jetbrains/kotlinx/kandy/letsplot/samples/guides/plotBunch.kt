@@ -29,7 +29,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
 
     private val scaleX = Scale.continuousPos(-3.5..3.5)
 
-    private val upperStyle = Style.custom {
+    private val upperStyle = Style.createCustom {
         blankAxes()
         axis.text { }
         yAxis.title { }
@@ -37,7 +37,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
             blank = true
         }
     }
-    private val lowerStyle = Style.custom {
+    private val lowerStyle = Style.createCustom {
         blankAxes()
         yAxis.text { }
         axis.title { }
@@ -135,7 +135,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
     @Test
     fun guideBunchCreateStyles() {
         // SampleStart
-        val upperStyle = Style.custom {
+        val upperStyle = Style.createCustom {
             blankAxes()
             axis.text { }
             yAxis.title { }
@@ -143,7 +143,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 blank = true
             }
         }
-        val lowerStyle = Style.custom {
+        val lowerStyle = Style.createCustom {
             blankAxes()
             yAxis.text { }
             axis.title { }

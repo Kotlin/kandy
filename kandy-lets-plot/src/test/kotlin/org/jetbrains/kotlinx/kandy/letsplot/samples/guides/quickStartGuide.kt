@@ -992,7 +992,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         // SampleStart
         val redLine = LayoutParameters.line(Color.RED)
 
-        val simpleCustomStyle = Style.custom {
+        val simpleCustomStyle = Style.createCustom {
             // use previously created parameters
             xAxis.line(redLine)
             // set up parameters
@@ -1014,7 +1014,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
     @Test
     fun experimentalLayoutCustomStyleBlankAxes() {
         // SampleStart
-        val blankAxesStyle = Style.custom {
+        val blankAxesStyle = Style.createCustom {
             blankAxes()
         }
         plotWithStyle(blankAxesStyle)

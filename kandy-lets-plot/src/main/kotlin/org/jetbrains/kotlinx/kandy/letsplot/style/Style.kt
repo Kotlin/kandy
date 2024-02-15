@@ -18,7 +18,7 @@ public sealed interface Style {
     public data object Void: Style
 
     public companion object {
-        public inline fun custom(block: CustomStyle.() -> Unit): CustomStyle {
+        public inline fun createCustom(block: CustomStyle.() -> Unit): CustomStyle {
             return CustomStyle().apply(block)
         }
     }
