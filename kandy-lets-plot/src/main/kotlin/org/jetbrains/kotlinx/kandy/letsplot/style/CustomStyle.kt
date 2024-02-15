@@ -25,7 +25,7 @@ public sealed interface LayoutParameters {
             angle: Double? = null,
             hJust: Double? = null,
             vJust: Double? = null,
-            margin: Margin?,
+            margin: Margin? = null,
             blank: Boolean = false
         ): TextParameters = TextParameters(color, fontFamily, fontFace, fontSize, angle, hJust, vJust, margin, blank)
 
@@ -76,7 +76,7 @@ public data class TextParameters internal constructor(
     var angle: Double? = null,
     var hJust: Double? = null,
     var vJust: Double? = null,
-    override var margin: Margin? = null
+    override var margin: Margin? = null,
     var blank: Boolean = false,
 ) : LayoutParameters, WithMargin
 
