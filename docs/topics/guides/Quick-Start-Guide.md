@@ -1343,7 +1343,7 @@ Creating a simple custom style:
 ```kotlin
 val redLine = LayoutParameters.line(Color.RED)
 
-val simpleCustomStyle = style {
+val simpleCustomStyle = Style.style {
     // use previously created parameters
     xAxis.line(redLine)
     // set up parameters
@@ -1369,7 +1369,7 @@ Example of a style with blank axes:
 <!---FUN experimentalLayoutCustomStyleBlankAxes-->
 
 ```kotlin
-val blankAxesStyle = style {
+val blankAxesStyle = Style.style {
     blankAxes()
 }
 plotWithStyle(blankAxesStyle)

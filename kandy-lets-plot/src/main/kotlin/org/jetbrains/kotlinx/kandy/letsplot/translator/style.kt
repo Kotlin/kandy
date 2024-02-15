@@ -5,25 +5,31 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import org.jetbrains.kotlinx.kandy.letsplot.style.*
-import org.jetbrains.letsPlot.intern.OptionsMap
+import org.jetbrains.letsPlot.intern.Feature
 import org.jetbrains.letsPlot.themes.*
 
-public fun LineParameters.wrap(): Map<String, Any> {
+internal fun Margin.wrap(): List<Double> {
+    return listOf(top, right, bottom, left)
+}
+
+internal fun LineParameters.wrap(): Map<String, Any> {
     return elementLine(
-        color?.wrap(),
-        width, blank
+        color = color?.wrap(),
+        size = width,
+        blank = blank
     )
 }
 
-public fun BackgroundParameters.wrap(): Map<String, Any> {
+internal fun BackgroundParameters.wrap(): Map<String, Any> {
     return elementRect(
-        fillColor?.wrap(),
-        borderLineColor?.wrap(),
-        borderLineWidth, blank
+        fill = fillColor?.wrap(),
+        color = borderLineColor?.wrap(),
+        size = borderLineWidth,
+        blank = blank
     )
 }
 
-public fun TextParameters.wrap(): Map<String, Any> {
+internal fun TextParameters.wrap(): Map<String, Any> {
     return elementText(
         color = color?.wrap(),
         family = fontFamily?.value,
@@ -32,11 +38,12 @@ public fun TextParameters.wrap(): Map<String, Any> {
         angle = angle,
         hjust = hJust,
         vjust = vJust,
+        margin = margin?.wrap(),
         blank = blank
     )
 }
 
-public fun CustomStyle.wrap(): theme {
+internal fun CustomStyle.wrap(): theme {
     var buffer = theme(
         line = global.line?.wrap(),
         rect = global.background?.wrap(),
@@ -79,6 +86,7 @@ public fun CustomStyle.wrap(): theme {
         plotCaption = plotCanvas.caption?.wrap(),
         plotSubtitle = plotCanvas.subtitle?.wrap(),
         plotTitle = plotCanvas.title?.wrap(),
+        plotMargin = plotCanvas.margin?.wrap(),
         stripBackground = strip.background?.wrap(),
         stripText = strip.text?.wrap(),
         axisTooltip = axis.tooltip.background?.wrap(),
@@ -129,7 +137,7 @@ public fun CustomStyle.wrap(): theme {
     return buffer
 }
 
-public fun Style.wrap(): OptionsMap {
+internal fun Style.wrap(): Feature {
     return when (this) {
         Style.Grey -> themeGrey()
         Style.Classic -> themeClassic()
@@ -137,6 +145,8 @@ public fun Style.wrap(): OptionsMap {
         Style.Minimal -> themeMinimal()
         Style.Minimal2 -> themeMinimal2()
         Style.None -> themeNone()
+        Style.BW -> themeBW()
+        Style.Void -> themeVoid()
         is CustomStyle -> this.wrap()
     }
 }

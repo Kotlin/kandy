@@ -23,7 +23,7 @@ Learn to effectively represent categorical data with visually engaging charts.
 <!---FUN guidePieBlankStyle-->
 
 ```kotlin
-val blankStyle = style {
+val blankStyle = Style.style {
     global.line {
         blank = true
     }

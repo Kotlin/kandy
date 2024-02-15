@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotBunch
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
-import org.jetbrains.kotlinx.kandy.letsplot.style.style
+import org.jetbrains.kotlinx.kandy.letsplot.style.Style
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.statistics.kandy.layers.histogram
 import kotlin.test.Test
@@ -29,7 +29,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
 
     private val scaleX = Scale.continuousPos(-3.5..3.5)
 
-    private val upperStyle = style {
+    private val upperStyle = Style.style {
         blankAxes()
         axis.text { }
         yAxis.title { }
@@ -37,7 +37,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
             blank = true
         }
     }
-    private val lowerStyle = style {
+    private val lowerStyle = Style.style {
         blankAxes()
         yAxis.text { }
         axis.title { }
@@ -135,7 +135,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
     @Test
     fun guideBunchCreateStyles() {
         // SampleStart
-        val upperStyle = style {
+        val upperStyle = Style.style {
             blankAxes()
             axis.text { }
             yAxis.title { }
@@ -143,7 +143,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 blank = true
             }
         }
-        val lowerStyle = style {
+        val lowerStyle = Style.style {
             blankAxes()
             yAxis.text { }
             axis.title { }

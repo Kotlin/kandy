@@ -25,8 +25,9 @@ public sealed interface LayoutParameters {
             angle: Double? = null,
             hJust: Double? = null,
             vJust: Double? = null,
+            margin: Margin?,
             blank: Boolean = false
-        ): TextParameters = TextParameters(color, fontFamily, fontFace, fontSize, angle, hJust, vJust, blank)
+        ): TextParameters = TextParameters(color, fontFamily, fontFace, fontSize, angle, hJust, vJust, margin, blank)
 
         public fun background(
             fillColor: Color? = null,
@@ -34,6 +35,30 @@ public sealed interface LayoutParameters {
             borderLineWidth: Double? = null,
             blank: Boolean = false
         ): BackgroundParameters = BackgroundParameters(fillColor, borderLineColor, borderLineWidth, blank)
+    }
+}
+
+public data class Margin(val top: Double, val right: Double, val bottom: Double, val left: Double) {
+    public constructor(all: Double): this(all, all, all, all)
+
+    public constructor(vertical: Double, horizontal: Double): this(vertical, horizontal, vertical, horizontal)
+
+    public constructor(top: Double, horizontal: Double, bottom: Double): this(top, horizontal, bottom, horizontal)
+}
+
+public interface WithMargin {
+    public var margin: Margin?
+    public fun margin(all: Double) {
+        margin = Margin(all, all, all, all)
+    }
+    public fun margin(vertical: Double, horizontal: Double) {
+        margin = Margin(vertical, horizontal, vertical, horizontal)
+    }
+    public fun margin(top: Double, horizontal: Double, bottom: Double) {
+        margin = Margin(top, horizontal, bottom, horizontal)
+    }
+    public fun margin(top: Double, right: Double, bottom: Double, left: Double) {
+        margin = Margin(top, right, bottom, left)
     }
 }
 
@@ -51,9 +76,9 @@ public data class TextParameters internal constructor(
     var angle: Double? = null,
     var hJust: Double? = null,
     var vJust: Double? = null,
-    // todo margin
-    var blank: Boolean = false
-) : LayoutParameters
+    override var margin: Margin? = null
+    var blank: Boolean = false,
+) : LayoutParameters, WithMargin
 
 public data class BackgroundParameters internal constructor(
     var fillColor: Color? = null,
@@ -151,17 +176,17 @@ public data class Axis internal constructor(
 }
 
 public sealed interface LegendPosition {
-    public object None : LegendPosition
-    public object Left : LegendPosition
-    public object Right : LegendPosition
-    public object Bottom : LegendPosition
-    public object Top : LegendPosition
+    public data object None : LegendPosition
+    public data object Left : LegendPosition
+    public data object Right : LegendPosition
+    public data object Bottom : LegendPosition
+    public data object Top : LegendPosition
 
     public data class Custom(val x: Double, val y: Double) : LegendPosition
 }
 
 public sealed interface LegendJustification {
-    public object Center : LegendJustification
+    public data object Center : LegendJustification
     public data class Custom(val x: Double, val y: Double) : LegendJustification
 }
 
@@ -301,7 +326,8 @@ public data class PlotCanvas internal constructor(
     override var title: TextParameters? = null,
     var subtitle: TextParameters? = null,
     var caption: TextParameters? = null,
-) : SelfInvocationContext, WithBackground, WithTitle {
+    override var margin: Margin? = null
+) : SelfInvocationContext, WithBackground, WithTitle, WithMargin {
     public fun subtitle(block: TextParameters.() -> Unit) {
         subtitle = TextParameters().apply(block)
     }
@@ -338,8 +364,4 @@ public data class CustomStyle @PublishedApi internal constructor(
     public fun blankAxes() {
         axis.blank = true
     }
-}
-
-public inline fun style(block: CustomStyle.() -> Unit): CustomStyle {
-    return CustomStyle().apply(block)
 }

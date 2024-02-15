@@ -121,7 +121,7 @@ plotBunch {
 <!---FUN guideBunchCreateStyles-->
 
 ```kotlin
-val upperStyle = style {
+val upperStyle = Style.style {
     blankAxes()
     axis.text { }
     yAxis.title { }
@@ -129,7 +129,7 @@ val upperStyle = style {
         blank = true
     }
 }
-val lowerStyle = style {
+val lowerStyle = Style.style {
     blankAxes()
     yAxis.text { }
     axis.title { }
