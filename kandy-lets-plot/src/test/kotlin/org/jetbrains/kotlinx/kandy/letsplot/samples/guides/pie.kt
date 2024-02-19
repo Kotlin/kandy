@@ -10,14 +10,14 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.scales.BrewerPalette
 import org.jetbrains.kotlinx.kandy.letsplot.scales.categoricalColorBrewer
-import org.jetbrains.kotlinx.kandy.letsplot.style.style
 import org.jetbrains.kotlinx.kandy.util.color.Color
+import org.jetbrains.kotlinx.kandy.letsplot.style.Style
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 
 class Pie : SampleHelper("geoms", "guides") {
 
-    private val blankStyle = style {
+    private val blankStyle = Style.createCustom {
         global.line {
             blank = true
         }
@@ -62,7 +62,7 @@ class Pie : SampleHelper("geoms", "guides") {
     @Test
     fun guidePieBlankStyle() {
         // SampleStart
-        val blankStyle = style {
+        val blankStyle = Style.createCustom {
             global.line {
                 blank = true
             }
