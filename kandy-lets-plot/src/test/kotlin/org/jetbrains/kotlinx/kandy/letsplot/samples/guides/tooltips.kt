@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.layers.tiles
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
-import org.jetbrains.kotlinx.kandy.letsplot.theme.LegendPosition
+import org.jetbrains.kotlinx.kandy.letsplot.style.LegendPosition
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.Anchor
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.tooltips
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.value
@@ -87,7 +87,7 @@ class Tooltips : SampleHelper("layout", "guides") {
             }
 
             layout {
-                theme {
+                style {
                     legend.position = LegendPosition.None
                 }
             }
@@ -172,7 +172,7 @@ class Tooltips : SampleHelper("layout", "guides") {
                 }
             }
             layout {
-                theme { legend.position = LegendPosition.None }
+                style { legend.position = LegendPosition.None }
             }
         }
         // SampleEnd
@@ -270,7 +270,7 @@ class Tooltips : SampleHelper("layout", "guides") {
                 tooltips(title = "${value(manufacturer)} ${value(model)}") {}
             }
             layout {
-                theme { legend.position = LegendPosition.None }
+                style { legend.position = LegendPosition.None }
             }
         }
         // SampleEnd
@@ -292,7 +292,7 @@ class Tooltips : SampleHelper("layout", "guides") {
                 tooltips(`class`, year, title = "${value(manufacturer)} ${value(model)}") {}
             }
             layout {
-                theme { legend.position = LegendPosition.None }
+                style { legend.position = LegendPosition.None }
             }
         }
         // SampleEnd
@@ -318,7 +318,7 @@ class Tooltips : SampleHelper("layout", "guides") {
                 }
             }
             layout {
-                theme { legend.position = LegendPosition.None }
+                style { legend.position = LegendPosition.None }
             }
         }
         // SampleEnd
@@ -328,7 +328,7 @@ class Tooltips : SampleHelper("layout", "guides") {
 
 
     @Test
-    fun guideTooltipDatasetForTheme() {
+    fun guideTooltipDatasetForStyle() {
         // SampleStart
         val dataset = dataFrameOf("x" to listOf(0.0, 1.0), "y" to listOf(0.0, 1.0))
         // SampleEnd
@@ -337,7 +337,7 @@ class Tooltips : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideTooltipWithoutTheme() {
+    fun guideTooltipWithoutStyle() {
         // SampleStart
         plot(dataset) {
             tiles {
@@ -354,7 +354,7 @@ class Tooltips : SampleHelper("layout", "guides") {
     }
 
     @Test
-    fun guideTooltipWithTheme() {
+    fun guideTooltipWithStyle() {
         // SampleStart
         plot(dataset) {
             tiles {
@@ -367,7 +367,7 @@ class Tooltips : SampleHelper("layout", "guides") {
                 }
             }
 
-            layout.theme {
+            layout.style {
                 layerTooltips {
                     background {
                         borderLineColor = Color.hex("#225e32")

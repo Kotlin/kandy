@@ -128,7 +128,7 @@ simpleData.plot {
         tooltips(type, active)
     }
 
-    layout.flavor = Flavor.HIGH_CONTRAST_DARK
+    layout.theme = Theme.HIGH_CONTRAST_DARK
 }
 ```
 

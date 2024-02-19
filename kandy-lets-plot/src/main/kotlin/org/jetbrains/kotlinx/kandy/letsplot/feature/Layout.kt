@@ -7,9 +7,9 @@ package org.jetbrains.kotlinx.kandy.letsplot.feature
 import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.kandy.letsplot.theme.CustomTheme
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Flavor
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
+import org.jetbrains.kotlinx.kandy.letsplot.style.CustomStyle
+import org.jetbrains.kotlinx.kandy.letsplot.style.Theme
+import org.jetbrains.kotlinx.kandy.letsplot.style.Style
 
 /**
  * Provides a context for configuring the layout of a plot.
@@ -27,7 +27,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.theme.Theme
  *         subtitle = "Subtitle"
  *         xAxisLabel = "X-Axis"
  *         yAxisLabel = "Y-Axis"
- *         theme(Theme.Grey)
+ *         style(Style.Grey)
  *     }
  * }
  * ```
@@ -60,7 +60,7 @@ public val PlotContext.layout: Layout
  * @property caption additional text displayed at the bottom of the plot.
  * @property xAxisLabel label for the X-Axis.
  * @property yAxisLabel label for the Y-Axis.
- * @property flavor the color scheme (flavor) of the plot.
+ * @property theme the theme of the plot.
  * @property size the dimensions (width x height) of the plot in pixels.
  */
 public data class Layout(
@@ -71,35 +71,35 @@ public data class Layout(
     var xAxisLabel: String? = null,
     var yAxisLabel: String? = null,
 
-    var flavor: Flavor? = null,
+    var theme: Theme? = null,
 
     var size: Pair<Int, Int>? = null
 ) : PlotFeature {
 
     @PublishedApi
-    internal var theme: Theme? = null
+    internal var style: Style? = null
 
     @PublishedApi
-    internal var customTheme: CustomTheme? = null
+    internal var customStyle: CustomStyle? = null
 
     /**
-     * Configures the theme of the plot.
+     * Configures the style of the plot.
      *
-     * @param theme one of the predefined themes.
-     * @param block additional customizations to apply on top of the main theme.
+     * @param style one of the predefined styles.
+     * @param block additional customizations to apply on top of the main style.
      */
-    public inline fun theme(theme: Theme, block: CustomTheme.() -> Unit = {}) {
-        this.theme = theme
-        customTheme = CustomTheme().apply(block)
+    public inline fun style(style: Style, block: CustomStyle.() -> Unit = {}) {
+        this.style = style
+        customStyle = CustomStyle().apply(block)
     }
 
     /**
-     * Configures a custom theme for the plot.
+     * Configures a custom style for the plot.
      *
-     * @param block a lambda function to define the custom theme.
+     * @param block a lambda function to define the custom style.
      */
-    public inline fun theme(block: CustomTheme.() -> Unit) {
-        theme = CustomTheme().apply(block)
+    public inline fun style(block: CustomStyle.() -> Unit) {
+        style = CustomStyle().apply(block)
     }
 
     override val featureName: FeatureName = NAME

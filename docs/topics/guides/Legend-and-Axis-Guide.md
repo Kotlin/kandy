@@ -113,7 +113,7 @@ mpgDf.plot {
     layout {
         title = "Five rows legend and below"
         size = 700 to 400
-        theme {
+        style {
             axis.title { blank = true }
             legend.position = LegendPosition.Bottom
         }
@@ -157,7 +157,7 @@ mpgDf.plot {
     }
     layout {
         size = 700 to 350
-        theme {
+        style {
             legend {
                 justification(1.0, 1.0)
                 position(1.0, 1.0)
@@ -196,7 +196,7 @@ mpgDf.plot {
     }
     layout {
         size = 700 to 350
-        theme {
+        style {
             yAxis.line { blank = true }
             legend {
                 justification(1.0, 1.0)

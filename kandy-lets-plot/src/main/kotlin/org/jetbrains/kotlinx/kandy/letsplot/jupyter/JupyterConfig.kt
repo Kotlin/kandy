@@ -7,6 +7,18 @@ package org.jetbrains.kotlinx.kandy.letsplot.jupyter
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
 public class JupyterConfig : SelfInvocationContext {
-    public var applyColorScheme: Boolean = true
+    /**
+     * Is IDEA theme applied to plots in the notebook outputs rendered with Swing.
+     *
+     * Enabled by default.
+     */
+    public var themeApplied: Boolean = true
+
+    /**
+     * Is Java Swing applied to plots in the notebook outputs.
+     * Otherwise, web (HTML + JS) rendering is used.
+     *
+     * Enabled by default.
+     */
     public var swingEnabled: Boolean = true
 }

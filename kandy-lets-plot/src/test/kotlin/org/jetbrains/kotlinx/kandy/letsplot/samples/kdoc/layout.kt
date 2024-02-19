@@ -15,7 +15,7 @@ class LayoutTest : KandyLetsPlotJupyterTest() {
                             subtitle = "Subtitle"
                             xAxisLabel = "X-Axis"
                             yAxisLabel = "Y-Axis"
-                            theme(Theme.Grey)
+                            style(Style.Grey)
                         }
                     }
                     """.trimIndent()

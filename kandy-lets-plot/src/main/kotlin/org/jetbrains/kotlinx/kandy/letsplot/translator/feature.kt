@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Reversed
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
-import org.jetbrains.kotlinx.kandy.letsplot.theme.Flavor
+import org.jetbrains.kotlinx.kandy.letsplot.style.Theme
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
 import org.jetbrains.letsPlot.coord.coordFlip
 import org.jetbrains.letsPlot.facet.facetGrid
@@ -51,13 +51,13 @@ internal fun FacetWrapFeature.wrap(): OptionsMap {
     )
 }
 
-internal fun Flavor.wrap(): OptionsMap {
+internal fun Theme.wrap(): OptionsMap {
     return when (this) {
-        Flavor.DARCULA -> flavorDarcula()
-        Flavor.SOLARIZED_LIGHT -> flavorSolarizedLight()
-        Flavor.SOLARIZED_DARK -> flavorSolarizedDark()
-        Flavor.HIGH_CONTRAST_LIGHT -> flavorHighContrastLight()
-        Flavor.HIGH_CONTRAST_DARK -> flavorHighContrastDark()
+        Theme.DARCULA -> flavorDarcula()
+        Theme.SOLARIZED_LIGHT -> flavorSolarizedLight()
+        Theme.SOLARIZED_DARK -> flavorSolarizedDark()
+        Theme.HIGH_CONTRAST_LIGHT -> flavorHighContrastLight()
+        Theme.HIGH_CONTRAST_DARK -> flavorHighContrastDark()
     }
 }
 
@@ -69,13 +69,13 @@ internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
     size?.let {
         featureBuffer.add(ggsize(it.first, it.second))
     }
+    style?.let {
+        featureBuffer.add(it.wrap())
+    }
+    customStyle?.let {
+        featureBuffer.add(it.wrap())
+    }
     theme?.let {
-        featureBuffer.add(it.wrap())
-    }
-    customTheme?.let {
-        featureBuffer.add(it.wrap())
-    }
-    flavor?.let {
         featureBuffer.add(it.wrap())
     }
 }

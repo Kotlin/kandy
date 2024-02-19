@@ -118,10 +118,10 @@ plotBunch {
 
 ### Adjust visuals of the bunch figure
 
-<!---FUN guideBunchCreateThemes-->
+<!---FUN guideBunchCreateStyles-->
 
 ```kotlin
-val upperTheme = theme {
+val upperStyle = style {
     blankAxes()
     axis.text { }
     yAxis.title { }
@@ -129,7 +129,7 @@ val upperTheme = theme {
         blank = true
     }
 }
-val lowerTheme = theme {
+val lowerStyle = style {
     blankAxes()
     yAxis.text { }
     axis.title { }
@@ -139,7 +139,7 @@ val lowerTheme = theme {
 <!---END-->
 
 
-<!---FUN guideBunchCombineWithThemes-->
+<!---FUN guideBunchCombineWithStyles-->
 
 ```kotlin
 plotBunch {
@@ -151,7 +151,7 @@ plotBunch {
         layout {
             size = 600 to 200
             xAxisLabel = "x"
-            theme(upperTheme)
+            style(upperStyle)
         }
     }, 0, 0)
     add(plot {
@@ -165,7 +165,7 @@ plotBunch {
             size = 600 to 200
             xAxisLabel = "x"
             yAxisLabel = "y"
-            theme(lowerTheme)
+            style(lowerStyle)
         }
     }, 0, 200)
 }
@@ -173,7 +173,7 @@ plotBunch {
 
 <!---END-->
 
-![Plot Bunch with Themes](guideBunchCombineWithThemes.svg)
+![Plot Bunch with Styles](guideBunchCombineWithStyles.svg)
 
 ### Adjust plot sizes
 
@@ -193,7 +193,7 @@ plotBunch {
         layout {
             size = 600 to 200
             xAxisLabel = "x"
-            theme(upperTheme)
+            style(upperStyle)
         }
     }, 0, 0, 600, 100)
     add(plot {
@@ -207,7 +207,7 @@ plotBunch {
             size = 600 to 200
             xAxisLabel = "x"
             yAxisLabel = "y"
-            theme(lowerTheme)
+            style(lowerStyle)
         }
     }, 0, 100, 600, 300)
 }

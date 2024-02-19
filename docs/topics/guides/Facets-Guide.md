@@ -71,7 +71,7 @@ dataset.plot {
         color(`origin of car`)
     }
     layout {
-        theme(Theme.Grey)
+        style(Style.Grey)
         size = 800 to 350
     }
 }
@@ -111,7 +111,7 @@ dataset.plot {
         color(`origin of car`)
     }
     layout {
-        theme(Theme.Grey)
+        style(Style.Grey)
     }
     facetGridX(`number of cylinders`)
 }
@@ -135,7 +135,7 @@ dataset.plot {
         color(`origin of car`)
     }
     layout {
-        theme(Theme.Grey)
+        style(Style.Grey)
     }
     facetGrid(`number of cylinders`, `origin of car`)
 }
@@ -163,7 +163,7 @@ dataset.plot {
         color(`origin of car`)
     }
     layout {
-        theme(Theme.Grey)
+        style(Style.Grey)
     }
     facetGrid(`number of cylinders`, `origin of car`, xFormat = "{d} cyl", yOrder = OrderDirection.DESCENDING)
 }
@@ -192,7 +192,7 @@ dataset.plot {
         color(`origin of car`)
     }
     layout {
-        theme(Theme.Grey)
+        style(Style.Grey)
     }
     facetWrap(nRow = 2) {
         facet(`number of cylinders`)
@@ -218,7 +218,7 @@ dataset.plot {
         color(`origin of car`)
     }
     layout {
-        theme(Theme.Grey)
+        style(Style.Grey)
     }
     facetWrap(nCol = 5) {
         facet(`origin of car`)
@@ -247,7 +247,7 @@ dataset.plot {
         color(`origin of car`)
     }
     layout {
-        theme(Theme.Grey)
+        style(Style.Grey)
     }
     facetWrap(nCol = 3, direction = Direction.VERTICAL) {
         facet(`origin of car`, OrderDirection.ASCENDING, null)
@@ -272,7 +272,7 @@ dataset.plot {
         color(`origin of car`)
     }
     layout {
-        theme(Theme.Grey)
+        style(Style.Grey)
         size = 800 to 350
     }
 }
@@ -298,7 +298,7 @@ dataset.plot {
         color(`origin of car`)
     }
     layout {
-        theme(Theme.Grey)
+        style(Style.Grey)
         size = 800 to 500
     }
     facetGridY(`origin of car`)
@@ -321,7 +321,7 @@ dataset.plot {
         color(`origin of car`)
     }
     layout {
-        theme(Theme.Grey)
+        style(Style.Grey)
         size = 800 to 500
     }
     facetGridY(`origin of car`, scalesSharing = ScalesSharing.FREE_Y)
@@ -346,7 +346,7 @@ dataset.plot {
         color(`origin of car`)
     }
     layout {
-        theme(Theme.Grey)
+        style(Style.Grey)
         size = 800 to 500
     }
     facetWrap {
@@ -371,7 +371,7 @@ dataset.plot {
         color(`origin of car`)
     }
     layout {
-        theme(Theme.Grey)
+        style(Style.Grey)
         size = 800 to 500
     }
     facetWrap(scalesSharing = ScalesSharing.FREE) {

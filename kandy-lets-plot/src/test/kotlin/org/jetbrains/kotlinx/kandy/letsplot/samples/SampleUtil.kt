@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
-import org.jetbrains.kotlinx.kandy.letsplot.theme.*
+import org.jetbrains.kotlinx.kandy.letsplot.style.*
 import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
 import org.jetbrains.kotlinx.kandy.util.color.Color
@@ -65,19 +65,19 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
     private fun Plot.changeThemeToDarkMode() {
         val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
         val darkBackground = BackgroundParameters(fillColor = darkColor)
-        val customTheme = CustomTheme(legend = Legend(darkBackground), plotCanvas = PlotCanvas(darkBackground))
+        val customTheme = CustomStyle(legend = Legend(darkBackground), plotCanvas = PlotCanvas(darkBackground))
 
         val darkLayout = layout?.apply {
-            flavor = Flavor.DARCULA
-            val cusTheme = when {
-                this.theme != null && this.customTheme == null && theme is CustomTheme -> theme as CustomTheme
-                theme != null -> this.customTheme
-                else -> this.customTheme
+            theme = Theme.DARCULA
+            val customStyle = when {
+                this.style != null && this.customStyle == null && style is CustomStyle -> style as CustomStyle
+                style != null -> this.customStyle
+                else -> this.customStyle
             }
 
-            println(cusTheme)
+            println(customStyle)
 
-            cusTheme?.let {
+            customStyle?.let {
                 if (it.plotCanvas.background?.fillColor == null) {
                     it.plotCanvas.background = it.plotCanvas.background?.copy(fillColor = darkColor)
                         ?: darkBackground
@@ -86,8 +86,8 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
                     it.legend.background = it.legend.background?.copy(fillColor = darkColor)
                         ?: darkBackground
                 }
-            } ?: run { theme = customTheme }
-        } ?: Layout(flavor = Flavor.DARCULA).apply { this.customTheme = customTheme }
+            } ?: run { style = customTheme }
+        } ?: Layout(theme = Theme.DARCULA).apply { this.customStyle = customTheme }
 
         (this.features as MutableMap)[FeatureName("layout")] = darkLayout
     }
