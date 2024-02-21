@@ -161,46 +161,46 @@ providing a quick reference to assist you in building your visualizations.
 <list>
 <li>Data Manipulation
 <list>
-<li>groupBy</li>
-<li>statBin</li>
-<li>statDensity</li>
-<li>statBoxplot</li>
-<li>statsSmooth</li>
-<li>statCount</li>
-<li>statCount2D</li>
+<li><a href="GroupBy-API.md">groupBy</a></li>
+<li><a href="StatBin-API.md">statBin</a></li>
+<li><a href="StatDensity-API.md">statDensity</a></li>
+<li><a href="StatBoxplot-API.md">statBoxplot</a></li>
+<li><a href="StatSmooth-API.md">statSmooth</a></li>
+<li><a href="StatCount-API.md">statCount</a></li>
+<li><a href="StatCount2D-API.md">statCount2D</a></li>
 </list>
 </li>
 <li>Layers
 <list>
-<li>abLine</li>
-<li>area</li>
-<li>bars</li>
-<li>boxplot</li>
-<li>boxes</li>
-<li>countPlot</li>
-<li>crossBars</li>
-<li>densityPlot</li>
-<li>errorBars</li>
-<li>hLine</li>
-<li>heatmap</li>
-<li>histogram</li>
-<li>line</li>
-<li>lineRanges</li>
-<li>path</li>
-<li>pie</li>
-<li>pointRanges</li>
-<li>raster</li>
-<li>rectangles</li>
-<li>ribbon</li>
-<li>segments</li>
-<li>smoothLine</li>
-<li>step</li>
-<li>text</li>
-<li>tiles</li>
-<li>vLine</li>
+<li><a href="AbLine-API.md">abLine</a></li>
+<li><a href="Area-API.md">area</a></li>
+<li><a href="Bars-API.md">bars</a></li>
+<li><a href="Boxplot-API.md">boxplot</a></li>
+<li><a href="Boxes-API.md">boxes</a></li>
+<li><a href="CountPlot-API.md">countPlot</a></li>
+<li><a href="CrossBars-API.md">crossBars</a></li>
+<li><a href="DensityPlot-API.md">densityPlot</a></li>
+<li><a href="ErrorBars-API.md">errorBars</a></li>
+<li><a href="HLine-API.md">hLine</a></li>
+<li><a href="Heatmap-API.md">heatmap</a></li>
+<li><a href="Histogram-API.md">histogram</a></li>
+<li><a href="Line-API.md">line</a></li>
+<li><a href="LineRanges-API.md">lineRanges</a></li>
+<li><a href="Path-API.md">path</a></li>
+<li><a href="Pie-API.md">pie</a></li>
+<li><a href="PointRanges-API.md">pointRanges</a></li>
+<li><a href="Raster-API.md">raster</a></li>
+<li><a href="Rectangles-API.md">rectangles</a></li>
+<li><a href="Ribbon-API.md">ribbon</a></li>
+<li><a href="Segments-API.md">segments</a></li>
+<li><a href="SmoothLine-API.md">smoothLine</a></li>
+<li><a href="Step-API.md">step</a></li>
+<li><a href="Text-API.md">text</a></li>
+<li><a href="Tiles-API.md">tiles</a></li>
+<li><a href="VLine-API.md">vLine</a></li>
 </list>
 </li>
-<li>Layout</li>
+<li><a href="Layout-API.md">Layout</a></li>
 </list>
 </li>
 </list>
