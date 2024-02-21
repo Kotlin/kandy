@@ -11,9 +11,11 @@ import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
  * Axis, i.e. guide for positional scale.
  *
  * @property name name of axis.
+ * @property position position of axis.
  */
 public data class Axis<DomainType> @PublishedApi internal constructor(
     var name: String? = null,
+    var position: AxisPosition = AxisPosition.DEFAULT,
     @PublishedApi
     internal var breaks: List<DomainType>? = null,
     @PublishedApi

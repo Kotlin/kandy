@@ -14,5 +14,7 @@ public enum class Transformation(public val description: String) : PositionalTra
     IDENTITY("identity"),
     LOG10("log10"),
     REVERSE("reverse"),
-    SQRT("sqrt");
+    SQRT("sqrt"),
+    SYMLOG("symlog"),
+    LOG2("log2");
 }

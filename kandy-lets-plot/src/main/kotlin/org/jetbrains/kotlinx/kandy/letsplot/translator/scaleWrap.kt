@@ -16,6 +16,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.scales.*
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Axis
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisPosition
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Legend
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.ScaleParameters
 import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
@@ -77,6 +78,17 @@ internal fun Scale.wrap(
             val labels = axis?.labels
             val format = axis?.format
             val expand = axis?.expand
+            val position = axis?.position?.let {
+                when(it) {
+                    AxisPosition.DEFAULT -> null
+                    AxisPosition.INVERSE -> when(aes) {
+                        X -> "right"
+                        Y -> "top"
+                        else -> null
+                    }
+                    AxisPosition.BOTH -> "both"
+                }
+            }
 
             // todo discrete datetime
             /*
@@ -114,7 +126,8 @@ internal fun Scale.wrap(
                             breaks = breaks?.wrap(),
                             labels = labels,
                             format = format,
-                            expand = expand
+                            expand = expand,
+                            position = position
                             // naValue = nullValue as? Number
                         )
 
@@ -124,7 +137,8 @@ internal fun Scale.wrap(
                             breaks = breaks?.wrap(),
                             labels = labels,
                             format = format,
-                            expand = expand
+                            expand = expand,
+                            position = position
                             //  naValue = nullValue as? Number
                         )
 
@@ -141,7 +155,8 @@ internal fun Scale.wrap(
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
                                 format = format,
-                                expand = expand
+                                expand = expand,
+                                position = position
                             )
                         } else if (domainType in timeTypes) {
                             scaleXTime(
@@ -149,7 +164,8 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
-                                expand = expand
+                                expand = expand,
+                                position = position
                                 // format = format
                             )
                         } else {
@@ -161,7 +177,8 @@ internal fun Scale.wrap(
                                 trans = (transform as? Transformation)?.name,
                                 format = format,
                                 expand = expand,
-                                naValue = naValue as? Number
+                                naValue = naValue as? Number,
+                                position = position
                             )
                         }
 
@@ -173,7 +190,8 @@ internal fun Scale.wrap(
                                 labels = labels,
                                 format = format,
                                 expand = expand,
-                                naValue = naValue
+                                naValue = naValue,
+                                position = position
                             )
                         } else if (domainType in timeTypes) {
                             scaleYTime(
@@ -182,6 +200,7 @@ internal fun Scale.wrap(
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
                                 expand = expand,
+                                position = position
                                 // format = format
                             )
                         } else {
@@ -193,7 +212,8 @@ internal fun Scale.wrap(
                                 trans = (transform as? Transformation)?.name,
                                 format = format,
                                 expand = expand,
-                                naValue = naValue as? Number
+                                naValue = naValue as? Number,
+                                position = position
                             )
                         }
 
@@ -642,6 +662,42 @@ internal fun Scale.wrap(
                             //type = type?.type,
                             type = null,
                             palette = palette?.name,
+                            name = name,
+                            breaks = breaks?.map { it as Number }, // todo
+                            labels = labels,
+                            guide = legendType,
+                            limits = limits,
+                            trans = transform?.name,
+                            format = format,
+                            naValue = naValue
+                        )
+
+                        else -> TODO()
+                    }
+
+                    is ScaleColorViridis<*> -> when (aes) {
+                        COLOR -> scaleColorViridis(
+                            option = colormap.name.lowercase(),
+                            alpha = null,
+                            begin = hueRange.start,
+                            end = hueRange.endInclusive,
+                            direction = direction.value,
+                            name = name,
+                            breaks = breaks?.map { it as Number }, // todo
+                            labels = labels,
+                            guide = legendType,
+                            limits = limits,
+                            trans = transform?.name,
+                            format = format,
+                            naValue = naValue
+                        )
+
+                        FILL -> scaleFillViridis(
+                            option = colormap.name.lowercase(),
+                            alpha = null,
+                            begin = hueRange.start,
+                            end = hueRange.endInclusive,
+                            direction = direction.value,
                             name = name,
                             breaks = breaks?.map { it as Number }, // todo
                             labels = labels,
