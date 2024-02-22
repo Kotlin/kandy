@@ -1,6 +1,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
 import org.apache.commons.math3.distribution.MultivariateNormalDistribution
+import org.apache.commons.math3.random.Well19937c
 import org.jetbrains.kotlinx.kandy.dsl.continuousPos
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.scale.Scale
@@ -22,7 +23,8 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
         doubleArrayOf(0.0, 1.0)
     )
     private val means: DoubleArray = doubleArrayOf(0.0, 0.0)
-    private val xy = MultivariateNormalDistribution(means, cov).sample(400)
+    private val random = Well19937c(42)
+    private val xy = MultivariateNormalDistribution(random, means, cov).sample(400)
 
     private val xs = xy.map { it[0] }
     private val ys = xy.map { it[1] }
@@ -52,7 +54,8 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
             doubleArrayOf(0.0, 1.0)
         )
         val means: DoubleArray = doubleArrayOf(0.0, 0.0)
-        val xy = MultivariateNormalDistribution(means, cov).sample(400)
+        val random = Well19937c(42)
+        val xy = MultivariateNormalDistribution(random, means, cov).sample(400)
 
         val xs = xy.map { it[0] }
         val ys = xy.map { it[1] }
