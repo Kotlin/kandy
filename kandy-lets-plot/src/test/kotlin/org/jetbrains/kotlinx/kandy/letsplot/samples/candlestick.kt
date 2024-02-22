@@ -110,7 +110,7 @@ class Candlestick : SampleHelper("candlestick") {
     fun candlestick_settings_2_dataframe() {
         // SampleStart
         val df = dataFrameOf(
-            "year" to listOf(2018, 2019, 2020, 2021, 2022, 2023),
+            "year" to listOf("2018", "2019", "2020", "2021", "2022", "2023"),
             "open" to listOf(10.0, 15.0, 12.0, 18.0, 14.0, 16.0),
             "high" to listOf(18.0, 17.0, 20.0, 22.0, 18.0, 22.0),
             "low" to listOf(8.0, 10.0, 9.0, 11.0, 12.0, 15.0),
@@ -142,7 +142,7 @@ class Candlestick : SampleHelper("candlestick") {
     @Test
     fun candlestick_settings_2_collections() {
         // SampleStart
-        val year = listOf(2018, 2019, 2020, 2021, 2022, 2023)
+        val year = listOf("2018", "2019", "2020", "2021", "2022", "2023")
         val opens = listOf(10.0, 15.0, 12.0, 18.0, 14.0, 16.0)
         val highs = listOf(18.0, 17.0, 20.0, 22.0, 18.0, 22.0)
         val lows = listOf(8.0, 10.0, 9.0, 11.0, 12.0, 15.0)

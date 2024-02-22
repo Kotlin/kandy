@@ -604,6 +604,28 @@
             </li>
         </list>
     </chapter>
+    <chapter title="Candlestick" id="examples-candlestick" collapsible="true" default-state="expanded">
+        <list id="list-of-candlestick-examples" type="none" columns="3">
+            <li>
+                <a href="Candlestick-Simple.md">
+                    <img src="candlestick_simple.svg" alt="Candlestick Simple" border-effect="line"/>
+                    Candlestick Simple
+                </a>
+            </li>
+            <li>
+                <a href="Candlestick-Settings-1.md">
+                    <img src="candlestick_settings_1.svg" alt="Candlestick Settings 1" border-effect="line"/>
+                    Candlestick Settings 1
+                </a>
+            </li>
+            <li>
+                <a href="Candlestick-Settings-2.md">
+                    <img src="preview_candlestick_settings_2.svg" alt="Candlestick Settings 1" border-effect="line"/>
+                    Candlestick Settings 2
+                </a>
+            </li>
+        </list>
+    </chapter>
     <chapter title="Heatmap" id="examples-heatmap" collapsible="true" default-state="expanded">
         <list id="list-of-heatmap-examples" type="none" columns="3">
             <li>
