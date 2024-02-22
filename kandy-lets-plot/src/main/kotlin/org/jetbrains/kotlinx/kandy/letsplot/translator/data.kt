@@ -25,14 +25,15 @@ internal fun process(data: DataFrame<*>): Map<String, List<*>> {
     return data.columns().map {
         val type = it.type()
         val values = it.values()
-        // TODO!!!
+        // TODO: local date/time values should be handled by Lets-Plot
+        // https://github.com/JetBrains/lets-plot-kotlin/issues/129
         it.name() to (when (type) {
-            typeOf<LocalDate>(), typeOf<LocalDate?>() -> values.map {
-                (it as? LocalDate)?.atStartOfDayIn((TimeZone.currentSystemDefault()))
+            typeOf<LocalDate>(), typeOf<LocalDate?>() -> values.map { date ->
+                (date as? LocalDate)?.atStartOfDayIn((TimeZone.UTC))
             }
 
             typeOf<LocalDateTime>(), typeOf<LocalDateTime?>() -> values.map { dateTime ->
-                (dateTime as? LocalDateTime)?.toInstant(TimeZone.currentSystemDefault())
+                (dateTime as? LocalDateTime)?.toInstant(TimeZone.UTC)
             }
 
             typeOf<LocalTime>(), typeOf<LocalTime?>() -> values.map { time ->
