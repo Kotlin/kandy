@@ -6,14 +6,11 @@ Learn how to effectively represent data variations and trends.
 </web-summary>
 
 <card-summary>
-Kandy's 'Candlestick' guide offers a deep dive into financial data visualization.
-Uncover the secrets of animating candlestick charts to breathe life into your financial data visualizations, 
-revealing dynamic price movements and market trends.
+Kandy's 'Candlestick' guide offers a deep dive into financial data visualization with candlestick charts.
 </card-summary>
 
 <link-summary>
 Explore Kandy's guide on creating candlesticks for insightful financial data analysis.
-Master the essential techniques for visualizing and interpreting candlestick patterns.
 </link-summary>
 
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.guides.Candlestick-->
@@ -30,6 +27,8 @@ price movement is typically represented by a green candle, indicating that the
 closing price is higher than the opening price (and by a red color otherwise). 
 Basically "candlestick" main statistic is an indicator of whether the price has increased.
 
+This guide describes comprehensively the process of building candlestick chart and all the details of its customization.
+
 This notebook uses definitions from [DataFrame](https://kotlin.github.io/dataframe/overview.html).
 
 ## Usage
@@ -41,11 +40,11 @@ Histogram (or any other plot with "bin" statistics) helps to give an overview of
 ## Arguments
 
 * Input (mandatory):
-    - `x` — candle `x`-position (often time or date describing);
-    - `open` — candle open value;
-    - `high` — candle high value;
-    - `low` — candle low value;
-    - `close` — candle close value;
+    - `x` — candle `x`-position (often time or date describing)
+    - `open` — candle open value
+    - `high` — candle high value
+    - `low` — candle low value
+    - `close` — candle close value
 
 ### Generalized signature
 
@@ -337,10 +336,10 @@ candlestick just uses statCandlestick and boxes and performs aesthetic mappings 
 
 We can customize candlestick layer: `candlestick()` optionally opens a new context,
 where we can configure it. We can set different color, borderline color, etc. for candles with 
-increasing and decreasing value, or make general settings 
+increasing and decreasing value with special DSL, or make general settings 
 (as in the usual context opened by `boxes { ... }`):
 
-<!---FUN guideCandlestickLayerCustomization1-->
+<!---FUN guideCandlestickLayerCustomizationDSL-->
 
 ```kotlin
 df.plot {
@@ -360,11 +359,12 @@ df.plot {
 
 <!---END-->
 
-![Candlestick Plot_customization](guideCandlestickLayerCustomization1.svg)
+![Candlestick Plot_Customization DSL](guideCandlestickLayerCustomizationDSL.svg)
 
-However, it can also be done as with other statistical layers (i.e., through mappings from statistics from `StatCandlestick` dataset):
+However, it can also be done as with other statistical layers API
+(i.e., through mappings from statistics from `StatCandlestick` dataset):
 
-<!---FUN guideCandlestickLayerCustomization2-->
+<!---FUN guideCandlestickLayerCustomizationStatAPI-->
 
 ```kotlin
 df.plot {
@@ -385,7 +385,7 @@ df.plot {
 
 <!---END-->
 
-![Candlestick Plot_customization_2](guideCandlestickLayerCustomization2.svg)
+![Candlestick Plot_customization_Stat API](guideCandlestickLayerCustomizationStatAPI.svg)
 
 ### `candlestick` plot
 

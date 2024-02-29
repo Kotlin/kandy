@@ -183,7 +183,7 @@ class Candlestick : SampleHelper("stat", "guides") {
     }
 
     @Test
-    fun guideCandlestickLayerCustomization1() {
+    fun guideCandlestickLayerCustomizationDSL() {
         // SampleStart
         df.plot {
             candlestick(x, open, high, low, close) {
@@ -203,7 +203,7 @@ class Candlestick : SampleHelper("stat", "guides") {
     }
 
     @Test
-    fun guideCandlestickLayerCustomization2() {
+    fun guideCandlestickLayerCustomizationStatAPI() {
         // SampleStart
         df.plot {
             candlestick(x, open, high, low, close) {
@@ -227,7 +227,7 @@ class Candlestick : SampleHelper("stat", "guides") {
     fun guideCandlestickSimpleCandlestickPlot() {
         // SampleStart
         candlestick(xList, openList, highList, lowList, closeList)
-            // SampleEnd
+         // SampleEnd
             .toPlot()
             .saveSample()
     }
@@ -236,7 +236,7 @@ class Candlestick : SampleHelper("stat", "guides") {
     fun guideCandlestickSimpleCandlestickPlotOnDf() {
         // SampleStart
         df.candlestick("x", "open", "high", "low", "close")
-            // SampleEnd
+        // SampleEnd
             .toPlot()
             .saveSample()
     }

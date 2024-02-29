@@ -1,8 +1,8 @@
 # Candlestick Simple
 
 <web-summary>
-Explore 'Candlestick Simple' in Kotlin using Kandy to understand the trend of a financial dataset.
-This example demonstrates the effective use of candlesticks in visualizing the "candle" data.
+Explore 'Candlestick Simple' in Kotlin using Kandy to understand the trend of a financial dataset
+with candlestick chart.
 </web-summary>
 
 <card-summary>

@@ -1,35 +1,31 @@
-# Candlestick Settings 2
+# Candlestick Settings Stat API
 
 <web-summary>
-Explore 'Candlestick Settings 1' in Kotlin using Kandy, showcasing various customizations 
-and settings for candlestick chart plots. This example is ideal for learning how to tweak 
-candlestick chart appearances for more engaging and 
-informative visualizations in the context of financial analysis.
+Explore 'Candlestick Settings Stat API' in Kotlin using Kandy, showcasing various customizations 
+and settings for candlestick chart plots. This example is ideal for learning how to customize
+your plot with statistics API.
 </web-summary>
 
 <card-summary>
-'Candlestick Settings 1' in Kotlin with Kandy: A detailed demonstration of the versatility in
-candlestick chart customization, perfect for tailoring visual representations to 
-specific data storytelling needs it in the context of financial analysis.
+'Candlestick Settings Stat API' in Kotlin with Kandy: A detailed demonstration of the versatility in
+candlestick chart customization with special statistical API.
 </card-summary>
 
 <link-summary>
-Explore the 'Candlestick Settings 1' example using Kotlin and Kandy to understand the depth of 
-customization available in candlestick chart plotting, from color adjustments to layout tweaks. 
-This provides insights into tailoring visual representations for a nuanced understanding in the context 
-of financial analysis.
+Explore the 'Candlestick Settings Stat API' example using Kotlin and Kandy to understand the depth of 
+customization available in candlestick chart plotting.
 </link-summary>
 
 
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.Candlestick-->
 
-<!---FUN candlestick_settings_2-->
+<!---FUN candlestick_settings_stat_api-->
 <tabs>
 <tab title="Dataframe">
 
 ```kotlin
 val df = dataFrameOf(
-    "year" to listOf(2018, 2019, 2020, 2021, 2022, 2023),
+    "year" to listOf("2018", "2019", "2020", "2021", "2022", "2023"),
     "open" to listOf(10.0, 15.0, 12.0, 18.0, 14.0, 16.0),
     "high" to listOf(18.0, 17.0, 20.0, 22.0, 18.0, 22.0),
     "low" to listOf(8.0, 10.0, 9.0, 11.0, 12.0, 15.0),
@@ -60,7 +56,7 @@ df.plot {
 <tab title="Collections">
 
 ```kotlin
-val year = listOf(2018, 2019, 2020, 2021, 2022, 2023)
+val year = listOf("2018", "2019", "2020", "2021", "2022", "2023")
 val opens = listOf(10.0, 15.0, 12.0, 18.0, 14.0, 16.0)
 val highs = listOf(18.0, 17.0, 20.0, 22.0, 18.0, 22.0)
 val lows = listOf(8.0, 10.0, 9.0, 11.0, 12.0, 15.0)
@@ -90,7 +86,7 @@ plot {
 <!---END-->
 
 
-![Candlestick Settings 2](candlestick_settings_2.svg) { border-effect="rounded" }
+![Candlestick Settings Stat Api](candlestick_settings_stat_api.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

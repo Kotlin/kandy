@@ -1,29 +1,25 @@
-# Candlestick Settings 1
+# Candlestick Settings DSL
 
 <web-summary>
-Explore 'Candlestick Settings 1' in Kotlin using Kandy, showcasing various customizations 
-and settings for candlestick chart plots. This example is ideal for learning how to tweak 
-candlestick chart appearances for more engaging and 
-informative visualizations in the context of financial analysis.
+Explore 'Candlestick Settings DSL' in Kotlin using Kandy, showcasing various customizations 
+and settings for candlestick chart plots. This example is ideal for learning how to customize
+your plot with special candlestick settings DSL.
 </web-summary>
 
 <card-summary>
-'Candlestick Settings 1' in Kotlin with Kandy: A detailed demonstration of the versatility in
-candlestick chart customization, perfect for tailoring visual representations to 
-specific data storytelling needs it in the context of financial analysis.
+'Candlestick Settings DSL' in Kotlin with Kandy: A detailed demonstration of the versatility in
+candlestick chart customization with special candlestick settings DSL.
 </card-summary>
 
 <link-summary>
-Explore the 'Candlestick Settings 1' example using Kotlin and Kandy to understand the depth of 
-customization available in candlestick chart plotting, from color adjustments to layout tweaks. 
-This provides insights into tailoring visual representations for a nuanced understanding in the context 
-of financial analysis.
+Explore the 'Candlestick Settings DSL' example using Kotlin and Kandy to understand the depth of 
+customization available in candlestick chart plotting.
 </link-summary>
 
 
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.Candlestick-->
 
-<!---FUN candlestick_settings_1-->
+<!---FUN candlestick_settings_dsl-->
 <tabs>
 <tab title="Dataframe">
 
@@ -86,11 +82,11 @@ plot {
 <!---END-->
 
 
-![Candlestick Settings 1](candlestick_settings_1.svg) { border-effect="rounded" }
+![Candlestick Settings DSL](candlestick_settings_dsl.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">
-           <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/candlestick/candlestick_settings_1.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
+           <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/candlestick/candlestick_settings_dsl.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
            <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/0VZzfzOogM3v1ePEqDdF4y" summary="Experiment with this example on Datalore">Datalore Notebook</a>
        </category>
 </seealso>

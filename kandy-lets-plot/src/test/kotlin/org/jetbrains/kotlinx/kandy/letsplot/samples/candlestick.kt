@@ -48,7 +48,7 @@ class Candlestick : SampleHelper("candlestick") {
     }
 
     @Test
-    fun candlestick_settings_1_dataframe() {
+    fun candlestick_settings_dsl_dataframe() {
         // SampleStart
         val df = dataFrameOf(
             "date" to List(10) { LocalDate(2022, 1, it + 1) },
@@ -79,7 +79,7 @@ class Candlestick : SampleHelper("candlestick") {
     }
 
     @Test
-    fun candlestick_settings_1_collections() {
+    fun candlestick_settings_dsl_collections() {
         // SampleStart
         val date = List(10) { LocalDate(2022, 1, it + 1) }
         val open = listOf(10.0, 15.0, 12.0, 18.0, 14.0, 16.0, 20.0, 22.0, 19.0, 25.0)
@@ -107,7 +107,7 @@ class Candlestick : SampleHelper("candlestick") {
     }
 
     @Test
-    fun candlestick_settings_2_dataframe() {
+    fun candlestick_settings_stat_api_dataframe() {
         // SampleStart
         val df = dataFrameOf(
             "year" to listOf("2018", "2019", "2020", "2021", "2022", "2023"),
@@ -140,7 +140,7 @@ class Candlestick : SampleHelper("candlestick") {
     }
 
     @Test
-    fun candlestick_settings_2_collections() {
+    fun candlestick_settings_stat_api_collections() {
         // SampleStart
         val year = listOf("2018", "2019", "2020", "2021", "2022", "2023")
         val opens = listOf(10.0, 15.0, 12.0, 18.0, 14.0, 16.0)
