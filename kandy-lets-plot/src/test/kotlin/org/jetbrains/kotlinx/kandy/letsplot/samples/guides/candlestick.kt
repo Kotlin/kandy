@@ -238,7 +238,6 @@ class Candlestick : SampleHelper("stat", "guides") {
         df.candlestick("x", "open", "high", "low", "close")
         // SampleEnd
             .toPlot()
-            .saveSample()
     }
 
     @Test
@@ -258,7 +257,6 @@ class Candlestick : SampleHelper("stat", "guides") {
         }
             // SampleEnd
             .toPlot()
-            .saveSample()
     }
 
     @Test
