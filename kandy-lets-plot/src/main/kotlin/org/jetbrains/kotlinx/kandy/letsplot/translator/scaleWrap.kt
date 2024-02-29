@@ -675,40 +675,47 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleColorViridis<*> -> when (aes) {
-                        COLOR -> scaleColorViridis(
-                            option = colormap.name.lowercase(),
-                            alpha = null,
-                            begin = hueRange.start,
-                            end = hueRange.endInclusive,
-                            direction = direction.value,
-                            name = name,
-                            breaks = breaks?.map { it as Number }, // todo
-                            labels = labels,
-                            guide = legendType,
-                            limits = limits,
-                            trans = transform?.name,
-                            format = format,
-                            naValue = naValue
-                        )
+                    is ScaleColorViridis<*> -> {
+                        val option = colormap.name.lowercase()
+                        val begin = hueRange.start
+                        val end = hueRange.endInclusive
+                        val direction = direction.value
+                        val trans = (this as? ScaleContinuousColorViridis<*>)?.transform?.name
+                        when (aes) {
+                            COLOR -> scaleColorViridis(
+                                option = option,
+                                alpha = null,
+                                begin = begin,
+                                end = end,
+                                direction = direction,
+                                name = name,
+                                breaks = breaks?.map { it as Number }, // todo
+                                labels = labels,
+                                guide = legendType,
+                                limits = limits,
+                                trans = trans,
+                                format = format,
+                                naValue = naValue
+                            )
 
-                        FILL -> scaleFillViridis(
-                            option = colormap.name.lowercase(),
-                            alpha = null,
-                            begin = hueRange.start,
-                            end = hueRange.endInclusive,
-                            direction = direction.value,
-                            name = name,
-                            breaks = breaks?.map { it as Number }, // todo
-                            labels = labels,
-                            guide = legendType,
-                            limits = limits,
-                            trans = transform?.name,
-                            format = format,
-                            naValue = naValue
-                        )
+                            FILL -> scaleFillViridis(
+                                option = option,
+                                alpha = null,
+                                begin = begin,
+                                end = end,
+                                direction = direction,
+                                name = name,
+                                breaks = breaks?.map { it as Number }, // todo
+                                labels = labels,
+                                guide = legendType,
+                                limits = limits,
+                                trans = trans,
+                                format = format,
+                                naValue = naValue
+                            )
 
-                        else -> TODO()
+                            else -> TODO()
+                        }
                     }
 
                     is ScaleContinuousColorGradient2<*> -> when (aes) {
