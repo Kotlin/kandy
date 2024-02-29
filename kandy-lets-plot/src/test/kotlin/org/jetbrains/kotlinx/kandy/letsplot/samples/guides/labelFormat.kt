@@ -166,7 +166,7 @@ class LabelFormat : SampleHelper("layout", "guides") {
             }
             text {
                 label = "${String.format("%.2f", unemploymentMean)} %"
-                x.constant(LocalDate(2001, 1, 1).atStartOfDayIn(TimeZone.currentSystemDefault()).toEpochMilliseconds())
+                x.constant(LocalDate(2001, 1, 1).atStartOfDayIn(TimeZone.UTC).toEpochMilliseconds())
                 y.constant(unemploymentMean + 0.5)
             }
             layout {
