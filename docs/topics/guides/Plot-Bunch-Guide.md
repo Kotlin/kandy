@@ -29,7 +29,7 @@ val cov: Array<DoubleArray> = arrayOf(
     doubleArrayOf(0.0, 1.0)
 )
 val means: DoubleArray = doubleArrayOf(0.0, 0.0)
-val random = Well19937c(42)
+val random = JDKRandomGenerator(42)
 val xy = MultivariateNormalDistribution(random, means, cov).sample(400)
 
 val xs = xy.map { it[0] }
