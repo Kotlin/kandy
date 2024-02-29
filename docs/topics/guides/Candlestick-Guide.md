@@ -411,7 +411,7 @@ df.candlestick("x", "open", "high", "low", "close")
 
 <!---END-->
 
-![Candlestick Plot_Simple](guideCandlestickSimpleCandlestickPlotOnDf.svg)
+![Candlestick Plot_Simple](guideCandlestickSimpleCandlestickPlot.svg)
 
 In case you want to provide inputs using column selection DSL, it’s a bit different from the usual one 
 — you should assign them throw invocation eponymous functions:
@@ -430,7 +430,7 @@ df.candlestick {
 
 <!---END-->
 
-![Candlestick Plot_Simple](guideCandlestickSimpleCandlestickPlotOnDfWithSelectors.svg)
+![Candlestick Plot_Simple](guideCandlestickSimpleCandlestickPlot.svg)
 
 Candlestick plot can be configured with `.configure {}` extension —
 it opens a context that combines bars, `StatCandlestick` and plot context.
