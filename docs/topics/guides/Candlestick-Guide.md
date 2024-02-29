@@ -15,9 +15,9 @@ Explore Kandy's guide on creating candlesticks for insightful financial data ana
 
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.guides.Candlestick-->
 
-Candlestick is a type of chart commonly used in financial markets to represent the price movement of an asset, 
-such as stocks or cryptocurrencies. It consists of individual "candles" that display the opening, 
-closing, high, and low prices for a specific time period. 
+***Candlestick*** is a type of chart commonly used in financial markets to represent the price movement of an asset, 
+such as stocks or cryptocurrencies. It consists of individual "candles" that display the *opening*, 
+*closing*, *high*, and *low* prices for a specific time period. 
 Each candle has a rectangular body, representing the opening and closing prices, 
 and thin lines, called wicks or shadows, indicating the highest and lowest prices during that time frame.
 
