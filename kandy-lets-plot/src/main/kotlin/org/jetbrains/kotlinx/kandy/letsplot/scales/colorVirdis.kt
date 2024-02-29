@@ -16,7 +16,18 @@ public enum class ViridisColormap {
     MAGMA, INFERNO, PLASMA, VIRIDIS, CIVIDIS, TURBO, TWILIGHT
 }
 
-public sealed interface ScaleColorViridis<DomainType> {
+/**
+ * Color scale with viridis color maps, designed to be perceptually-uniform,
+ * both in regular form and also when converted to black-and-white.
+ *
+ * @property limits domain [List] defining the scale domain.
+ * @property DomainType scale domain type.
+ * @property colormap [ViridisColormap] colormap
+ * @property hueRange [ClosedRange] of color hue, in [0, 1]
+ * @property direction colormap direction
+ * @property transform the transformation of scale.
+ */
+public sealed interface ScaleColorViridis<DomainType>: CustomNonPositionalScale<DomainType, Color> {
     public val limits: List<DomainType?>?
     public val colormap: ViridisColormap
     public val hueRange:  ClosedRange<Double>
@@ -25,6 +36,18 @@ public sealed interface ScaleColorViridis<DomainType> {
     public val transform: Transformation?
 }
 
+/**
+ * Continuous color scale with viridis color maps, designed to be perceptually-uniform,
+ * both in regular form and also when converted to black-and-white.
+ *
+ * @property limits domain [List] defining the scale domain.
+ * @property DomainType scale domain type.
+ * @property colormap [ViridisColormap] colormap
+ * @property hueRange [ClosedRange] of color hue, in [0, 1]
+ * @property direction colormap direction
+ * @property nullValue value which null is mapped to.
+ * @property transform the transformation of scale.
+ */
 public data class ScaleContinuousColorViridis<DomainType>(
     override val limits: List<DomainType?>?,
     override val colormap: ViridisColormap,
@@ -33,20 +56,30 @@ public data class ScaleContinuousColorViridis<DomainType>(
 
     override val nullValue: Color?,
     override val transform: Transformation?,
-) : ContinuousScale<Color>, CustomNonPositionalScale<DomainType, Color>, ScaleColorViridis<DomainType>
+) : ContinuousScale<Color>,  ScaleColorViridis<DomainType>
 
+/**
+ * Categorical color scale with viridis color maps, designed to be perceptually-uniform,
+ * both in regular form and also when converted to black-and-white.
+ *
+ * @property limits domain [List] defining the scale domain.
+ * @property DomainType scale domain type.
+ * @property colormap [ViridisColormap] colormap
+ * @property hueRange [ClosedRange] of color hue, in [0, 1]
+ * @property direction colormap direction
+ */
 public data class ScaleCategoricalColorViridis<DomainType>(
     override val limits: List<DomainType>?,
     override val colormap: ViridisColormap,
     override val hueRange: ClosedRange<Double>,
     override val direction: WheelDirection,
-) : CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorViridis<DomainType> {
+) : CategoricalScale, ScaleColorViridis<DomainType> {
     override val transform: Transformation? = null
 }
 
 
 /**
- * Color scale with viridis color maps, designed to be perceptually-uniform,
+ * Creates color scale with viridis color maps, designed to be perceptually-uniform,
  * both in regular form and also when converted to black-and-white.
  *
  * @param colormap [ViridisColormap] colormap
