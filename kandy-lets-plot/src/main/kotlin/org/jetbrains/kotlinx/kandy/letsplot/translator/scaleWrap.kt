@@ -243,6 +243,7 @@ internal fun Scale.wrap(
                         barWidth = it.barWidth,
                         nbin = it.nBin
                     )
+
                     is LegendType.DiscreteLegend -> guideLegend(
                         nrow = it.nRow,
                         ncol = it.nCol,
@@ -254,7 +255,8 @@ internal fun Scale.wrap(
             when (this) {
                 is NonPositionalDefaultScale<*, *> -> if (
                     this is NonPositionalDefaultCategoricalScale<*, *> ||
-                    domainType.isCategoricalType() || aes in discreteAes || isGroupKey) {
+                    domainType.isCategoricalType() || aes in discreteAes || isGroupKey
+                ) {
                     NonPositionalCategoricalScale<String, String>(null, null).wrap(
                         aes,
                         domainType,
@@ -294,7 +296,8 @@ internal fun Scale.wrap(
                                 labels = labels,
                                 guide = legendType,
                                 format = format,
-                                naValue = naValue as? Number
+                                // TODO(fill NA for categorical)
+//                                naValue = naValue as? Number
                             )
                         }
 
@@ -429,36 +432,25 @@ internal fun Scale.wrap(
                 is NonPositionalContinuousScale<*, *> -> {
                     when (aes) {
 
-                        SIZE -> {
-                            // todo
-                            val range: Pair<Double, Double>? = if (rangeMin == null && rangeMax == null) {
-                                null
-                            } else {
-                                if (rangeMax == null) {
-                                    (rangeMin as Double).let {
-                                        it to it + 7.0
-                                    }
-                                } else if (rangeMin == null) {
-                                    (rangeMax as Double).let {
-                                        (it - 7.0).coerceAtLeast(0.2) to it
-                                    }
-                                } else {
-                                    rangeMin as Double to rangeMax as Double
-                                }
-                            }
-                            scaleSize(
-                                limits = (domainMin to domainMax).wrap(),
-                                range = range,//(rangeMin to rangeMax).wrap() as Pair<Number, Number>?, // todo!!
-                                name = name,
-                                breaks = breaks?.map { it as Number },
-                                labels = labels,
-                                guide = legendType,
-                                trans = (transform as Transformation?)?.name,
-                                format = format,
-                                naValue = naValue as? Number
-                            )
-                        }
+                        SIZE -> scaleSize(
+                            limits = (domainMin to domainMax).wrap(),
+                            range = (rangeMin to rangeMax).computeRange(),
+                            name = name,
+                            breaks = breaks?.map { it as Number },
+                            labels = labels,
+                            guide = legendType,
+                            trans = (transform as Transformation?)?.name,
+                            format = format,
+                            naValue = naValue as? Number
+                        )
 
+                        STROKE -> scaleStroke(
+                            range = (rangeMin to rangeMax).computeRange(), name = name,
+                            breaks = breaks?.map { it as? Number }, labels = labels,
+                            limits = (domainMin to domainMax).wrap(), naValue = naValue as? Number,
+                            format = format, guide = legendType,
+                            trans = (transform as? Transformation)?.name
+                        )
 
                         COLOR -> {
                             val lowColor = (rangeMin as? Color)?.wrap()

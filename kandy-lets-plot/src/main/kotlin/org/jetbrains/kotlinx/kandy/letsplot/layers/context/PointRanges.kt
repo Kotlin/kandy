@@ -17,7 +17,7 @@ import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
 
 public class InnerPointContext internal constructor(override val parentContext: BindingContext) :
-    SelfInvocationContext, SubBindingContext, WithSymbol, WithFillColor, WithFatten
+    SelfInvocationContext, SubBindingContext, WithSymbol, WithFillColor, WithFatten, WithPointStroke
 
 public class InnerLineContext internal constructor(override val parentContext: BindingContext) :
     SelfInvocationContext, SubBindingContext, WithType

@@ -25,6 +25,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointsContext
  * * **`size`** - The size of the point.
  * * **`alpha`** - The transparency of the point.
  * * **`fillColor`** - The fill color for symbols that have a fill.
+ * * **`stroke`** - width of the shape border. Applied only to the shapes having border.
  *
  * ## Example
  *
@@ -43,6 +44,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointsContext
  *         color = Color.BLUE // Set a constant color for the points
  *         alpha = 0.7 // Set a constant transparency for the points
  *         fillColor = Color.GREEN // Set a fill color for the points (for filled symbols)
+ *         stroke = 3
  *
  *         // Map 'customerCounts' to 'size' to represent the number of customers as the size of the point
  *         size(customerCounts) {
