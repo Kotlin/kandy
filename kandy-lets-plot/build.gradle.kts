@@ -30,7 +30,7 @@ dependencies {
 
     testImplementation(kotlin("test"))
     testImplementation("io.mockk:mockk:${mockk_version}")
-    testImplementation("org.jetbrains.kotlinx:kotlin-statistics-jvm:0.1.0")
+    testImplementation("org.jetbrains.kotlinx:kotlin-statistics-jvm:0.1.1-dev-6")
 }
 
 tasks.test {
@@ -66,6 +66,7 @@ korro {
         include("docs/topics/samples/densityPlot/*.md")
         include("docs/topics/samples/heatmap/*.md")
         include("docs/topics/samples/layout/*.md")
+        include("docs/topics/samples/candlestick/*.md")
         include("docs/topics/guides/*.md")
         include("README.md")
     }

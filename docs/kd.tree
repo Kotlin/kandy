@@ -34,6 +34,7 @@
             <toc-element topic="Heatmap-Guide.md"/>
             <toc-element topic="Count-Plot-Guide.md"/>
             <toc-element topic="Density-Plot-Guide.md"/>
+            <toc-element topic="Candlestick-Guide.md"/>
         </toc-element>
         <toc-element toc-title="Multiplot">
             <toc-element topic="Anscombes-Quartet-Guide.md"/>
@@ -211,6 +212,11 @@
             <toc-element topic="Count-Plot-Settings.md"/>
             <toc-element topic="Count-Plot-Grouped.md"/>
             <toc-element topic="Count-Plot-Horizontal.md"/>
+        </toc-element>
+        <toc-element topic="Candlestick.md">
+            <toc-element topic="Candlestick-Simple.md"/>
+            <toc-element topic="Candlestick-Settings-DSL.md"/>
+            <toc-element topic="Candlestick-Settings-Stat-API.md"/>
         </toc-element>
         <toc-element topic="Heatmap.md">
             <toc-element topic="Heatmap-Simple.md"/>
