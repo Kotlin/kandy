@@ -72,6 +72,13 @@
         <format style="superscript">NonPositional</format>
         <emphasis>Double</emphasis>
     </li>
+    <li>
+        <a href="#innerpoint-stroke">
+            <format style="bold" color="DarkGray">stroke</format>
+        </a>
+        <format style="superscript">NonPositional</format>
+        <emphasis>(Iterable | Column | String) | Number</emphasis>
+    </li>
 </list>
 <format style="italic"> }</format>
 </li>
@@ -135,5 +142,11 @@
 <chapter title="innerPoint.fatten" collapsible="true" id="innerpoint-fatten">
 
 <include from="properties.topic" element-id="fatten-property"/>
+
+</chapter>
+
+<chapter title="innerPoint.stroke" collapsible="true" id="innerpoint-stroke">
+
+<include from="properties.topic" element-id="stroke-point-property"/>
 
 </chapter>
