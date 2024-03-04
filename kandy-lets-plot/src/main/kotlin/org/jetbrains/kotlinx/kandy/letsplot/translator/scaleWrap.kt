@@ -81,7 +81,7 @@ internal fun Scale.wrap(
             val position = axis?.position?.let {
                 when(it) {
                     AxisPosition.DEFAULT -> null
-                    AxisPosition.INVERSE -> when(aes) {
+                    AxisPosition.OPPOSITE -> when(aes) {
                         X -> "right"
                         Y -> "top"
                         else -> null
