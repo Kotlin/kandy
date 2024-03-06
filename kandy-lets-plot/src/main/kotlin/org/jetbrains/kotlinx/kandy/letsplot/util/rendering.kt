@@ -11,7 +11,6 @@ import org.jetbrains.kotlinx.kandy.util.serialization.serializeSpec
 import org.jetbrains.letsPlot.Figure
 import org.jetbrains.letsPlot.awt.plot.PlotSvgExport
 import org.jetbrains.letsPlot.core.util.PlotHtmlExport
-import org.jetbrains.letsPlot.core.util.PlotHtmlHelper
 import org.jetbrains.letsPlot.intern.toSpec
 import java.util.*
 
@@ -63,5 +62,5 @@ internal fun NotebookRenderingContext.figureToMimeResult(figure: Figure): MimeTy
     """.trimIndent()
 
     val extraResult = mapOf(MimeTypes.HTML to JsonPrimitive(extraHTML))
-    return MimeTypedResultEx(basicResult extendedByJson extraResult)
+    return MimeTypedResultEx(basicResult extendedByJson extraResult, id = null, metadataModifiers = emptyList())
 }
