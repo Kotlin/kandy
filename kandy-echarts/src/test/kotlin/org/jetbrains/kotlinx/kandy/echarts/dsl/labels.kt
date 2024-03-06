@@ -1,7 +1,3 @@
-/*
-* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
-*/
-
 package org.jetbrains.kotlinx.kandy.echarts.dsl
 
 import org.jetbrains.kotlinx.kandy.dsl.plot
@@ -10,6 +6,7 @@ import org.jetbrains.kotlinx.kandy.echarts.features.text.FontStyle
 import org.jetbrains.kotlinx.kandy.echarts.features.text.FontWeight
 import org.jetbrains.kotlinx.kandy.echarts.features.label.LabelPosition
 import org.jetbrains.kotlinx.kandy.echarts.features.label.label
+import org.jetbrains.kotlinx.kandy.echarts.io.toJson
 import org.jetbrains.kotlinx.kandy.echarts.layers.area
 import org.jetbrains.kotlinx.kandy.echarts.layers.bars
 import org.jetbrains.kotlinx.kandy.echarts.layers.line
@@ -17,7 +14,6 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.points
 import org.jetbrains.kotlinx.kandy.echarts.settings.LineType
 import org.jetbrains.kotlinx.kandy.echarts.settings.LinearGradient
 import org.jetbrains.kotlinx.kandy.echarts.settings.pct
-import org.jetbrains.kotlinx.kandy.echarts.toJson
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import kotlin.test.Test
