@@ -1,25 +1,51 @@
-/*
-* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
-*/
-
 package org.jetbrains.kotlinx.kandy.echarts.translator
 
-import kotlinx.datetime.*
+import kotlinx.datetime.DayOfWeek
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
+import kotlinx.datetime.Month
 import org.jetbrains.kotlinx.dataframe.api.fillNA
 import org.jetbrains.kotlinx.dataframe.api.map
 import org.jetbrains.kotlinx.dataframe.api.with
-import org.jetbrains.kotlinx.kandy.echarts.layers.*
+import org.jetbrains.kotlinx.kandy.echarts.layers.AREA
+import org.jetbrains.kotlinx.kandy.echarts.layers.BAR
+import org.jetbrains.kotlinx.kandy.echarts.layers.BOXPLOT
+import org.jetbrains.kotlinx.kandy.echarts.layers.CANDLESTICK
+import org.jetbrains.kotlinx.kandy.echarts.layers.EChartsLayout
+import org.jetbrains.kotlinx.kandy.echarts.layers.LINE
+import org.jetbrains.kotlinx.kandy.echarts.layers.PIE
+import org.jetbrains.kotlinx.kandy.echarts.layers.POINT
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.NAME
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.X
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.Y
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsPositionalMappingParameters
-import org.jetbrains.kotlinx.kandy.echarts.translator.option.*
-import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.*
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.AngleAxis
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.Axis
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.AxisType
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.Dataset
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.Option
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.Polar
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.Radar
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.RadiusAxis
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.VisualMap
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.Series
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.Encode
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.toAreaSeries
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.toBarSeries
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.toBoxplotSeries
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.toCandlestickSeries
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.toLineSeries
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.toPieSeries
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.toPointSeries
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
-import org.jetbrains.kotlinx.kandy.ir.bindings.*
+import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
+import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
+import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
+import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
+import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalContinuousScale
@@ -28,6 +54,8 @@ import org.jetbrains.kotlinx.kandy.ir.scale.PositionalContinuousScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalDefaultScale
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
+
+internal fun Plot.toOption(): Option = Parser(this).parse()
 
 @Suppress("UNCHECKED_CAST")
 internal fun <T> Map<Aes, Setting>.getNPSValue(key: Aes): T? {
