@@ -135,8 +135,7 @@ class NullableDataTest {
                         "type": "line",
                         "name": "days nums",
                         "showSymbol": false,
-                        "areaStyle": {
-                        },
+                        "areaStyle": {},
                         "encode": {
                             "x": "days",
                             "y": "nums"

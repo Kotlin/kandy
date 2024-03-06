@@ -92,8 +92,7 @@ class LabelTests {
                             "formatter": "formattec {a}, {b}, {c}, {d}",
                             "color": "blue"
                         },
-                        "areaStyle": {
-                        }
+                        "areaStyle": {}
                     }
                 ]
             }
