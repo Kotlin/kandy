@@ -33,7 +33,7 @@ class LayerContextTest {
     private val nonPositionalParameters = mockk<NonPositionalMappingParameters<Any, Any>>()
     private val columnID = "columnId"
 
-    private val dataHandler = mockk<DatasetHandler>() {
+    private val dataHandler = mockk<DatasetHandler> {
         every { initialNamedData } returns NamedData(DataFrame.Empty)
         every { buffer } returns DataFrame.Empty
     }

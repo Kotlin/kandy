@@ -57,7 +57,7 @@ internal data class LineStyle(
     val shadowOffsetY: Int? = null,
     val opacity: Double? = null
 ) {
-    public fun isEmpty(): Boolean =
+    fun isEmpty(): Boolean =
         color == null && width == null && type == null && dashOffset == null
             && cap == null && join == null && miterLimit == null && shadowBlur == null
             && shadowColor == null && shadowOffsetX == null && shadowOffsetY == null

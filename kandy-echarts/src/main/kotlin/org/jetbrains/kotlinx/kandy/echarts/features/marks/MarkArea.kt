@@ -47,7 +47,7 @@ internal class MarkAreaFeature(
  *
  * @see MarkPoint
  */
-public class MarkArea constructor(
+public class MarkArea(
     public val name: String,
     public val point1: MarkPoint,
     public val point2: MarkPoint

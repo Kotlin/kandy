@@ -67,7 +67,7 @@ class PlotContextsTest {
             override val _layers: MutableList<Layer> = mutableListOf(mockLayerFirst, mockLayerSecond)
             override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(mockDataHandler)
             override val plotFeatures: MutableMap<FeatureName, PlotFeature> = mockPlotFeatures
-            override val bindingCollector: BindingCollector = mockk() {
+            override val bindingCollector: BindingCollector = mockk {
                 every { mappings } returns mockMappings
                 every { settings } returns mockSettings
                 every { freeScales } returns mockFreeScales
