@@ -60,8 +60,7 @@ private fun assertAnimationEq(
                     {
                         "type": "line",
                         "showSymbol": false,
-                        "areaStyle": {
-                        },
+                        "areaStyle": {},
                         "animation": $animation,
                         "animationThreshold": $animationThreshold,
                         "animationDuration": $animationDuration,
