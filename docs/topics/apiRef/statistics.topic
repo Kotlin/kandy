@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="statistics" id="statistics_library" is-library="true">
+
+    <snippet id="x-statistic-numeric">
+        <p>
+            <format style="superscript" color="#E8488B">Double</format>
+        </p>
+
+        <p>
+            The <code>Stat.x</code> argument is used to provide the
+            sample (or its x-part) on which the statistic is computed.
+        </p>
+    </snippet>
+
+    <snippet id="y-argument">
+        <p>
+            <format style="superscript" color="Red">Required</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+        </p>
+
+        <p>
+            The <code>y</code> argument is used to provide the
+            y-part of the sample on which the statistic is computed.
+        </p>
+    </snippet>
+
+    <snippet id="weights-argument">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+        </p>
+
+        <p>
+            The <code>weights</code> argument is used to provide the weights of
+            sample elements.
+        </p>
+    </snippet>
+
+    <snippet id="bins-option-argument">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">BinsOption</format>
+        </p>
+
+        <p>
+            The <code>binsOption</code> argument is used to determine
+            whether bins are created by their total number or by their width.
+        </p>
+        <list>
+            <li>
+                <p><code>BinsOption.byNumber(n: Int)</code>: values are divided into <code>n</code> bins
+                    (bins width is derived).</p>
+            </li>
+            <li>
+                <p><code>BinsOption.byWidth(width: Double)</code>: values are divided into bins
+                    of the <code>width</code> (the number of bins is derived).</p>
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="bins-align-argument">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">BinsAlign</format>
+        </p>
+
+        <p>
+            The <code>binsAlign</code> argument is used to specify
+            bins aligning.
+        </p>
+        <list>
+            <li>
+                <p><code>BinsAlign.center(pos: Double)</code>: bins are aligned by
+                    centering bin in <code>pos</code>.</p>
+            </li>
+            <li>
+                <p><code>BinsAlign.boundary(pos: Double)</code>: bins are aligned by
+                    boundary between two bins in <code>pos</code>.</p>
+            </li>
+            <li>
+                <p><code>BinsAlign.none()</code>: no aligning.</p>
+            </li>
+        </list>
+    </snippet>
+
+</topic>

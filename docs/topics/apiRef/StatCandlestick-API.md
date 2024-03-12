@@ -1,19 +1,19 @@
-# statBoxplot
+# statCandlestick
 
 <tldr>
 <p><format style="bold" color="GoldenRod">
-statBoxplot<a href="#xtype"><format color="Blue">&lt;X></format></a>></format>(
+statCandlestick<a href="#xtype"><format color="Blue">&lt;X></format></a>></format>(
 <a href="#x"><format style="bold" color="CadetBlue">x</format></a>:
 <include from="arguments.topic" element-id="signature-of-sample-x"></include>,
 <a href="#y"><format style="bold" color="CadetBlue">y</format></a>:
 <include from="arguments.topic" element-id="signature-of-sample"></include>,
 <a href="#whiskeriqrratio"><format style="bold" color="DarkGray">whiskerIQRRatio</format></a>: 
-Double = 1.5)<format style="italic">{ this: StatBoxplotContext -></format></p>
+Double = 1.5)<format style="italic">{ this: StatCandlestickContext -></format></p>
 
 <format style="italic">}</format>
 </tldr>
 
-The `statBoxplot` function creates a new plotting context with new dataset
+The `statCandlestick` function creates a new plotting context with new dataset
 which contains the "boxplot" statistic calculated on sample of a single numeric variable [y](#y) 
 in a several groups defined by [x](#x). It serves as a statistical visualization technique, 
 illustrating the distribution and summary statistics of a dataset in a graphical format.

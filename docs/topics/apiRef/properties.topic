@@ -535,11 +535,7 @@
         </list>
     </snippet>
 
-    <snippet id="x-property">
-        <p>
-            <format style="superscript" color="Red">Required</format>
-            <format style="superscript" color="#89CFF0">Positional</format>
-        </p>
+    <snippet id="x-property-desc">
         <p>
             <format style="superscript" color="#E8488B">Iterable</format>
             <format style="superscript" color="#E8488B">Column</format>
@@ -587,6 +583,14 @@
         </list>
     </snippet>
 
+    <snippet id="x-property">
+        <p>
+            <format style="superscript" color="Red">Required</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
+        </p>
+        <include element-id="x-property-desc" from="properties.topic"/>
+    </snippet>
+
     <snippet id="xFree-property">
         <p>
             <format style="superscript" color="LightSlateGray">Optional</format>
@@ -617,6 +621,10 @@
             <format style="superscript" color="Red">Required</format>
             <format style="superscript" color="#89CFF0">Positional</format>
         </p>
+        <include element-id="y-property-desc" from="properties.topic"/>
+    </snippet>
+
+    <snippet id="y-property-desc">
         <p>
             <format style="superscript" color="#E8488B">Iterable</format>
             <format style="superscript" color="#E8488B">Column</format>
