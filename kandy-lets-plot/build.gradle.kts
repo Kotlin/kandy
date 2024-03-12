@@ -1,3 +1,4 @@
+import com.google.devtools.ksp.gradle.KspTaskJvm
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -31,6 +32,11 @@ tasks.test {
     jvmArgs("-Xmx4G")
 }
 
+tasks.withType<KspTaskJvm> {
+    if (name == "kspTestKotlin") {
+        dependsOn("jar")
+    }
+}
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
@@ -40,6 +46,7 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs += "-Xfriend-paths=$jarPath"
     }
 }
+
 
 korro {
     docs = fileTree(rootProject.rootDir) {
