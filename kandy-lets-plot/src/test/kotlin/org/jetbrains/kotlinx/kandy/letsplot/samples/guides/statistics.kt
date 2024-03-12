@@ -3,8 +3,10 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 import org.apache.commons.math3.distribution.NormalDistribution
 import org.apache.commons.math3.distribution.UniformRealDistribution
 import org.jetbrains.kotlinx.dataframe.api.*
+import org.jetbrains.kotlinx.dataframe.get
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
+import org.jetbrains.kotlinx.kandy.dsl.invoke
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
@@ -282,7 +284,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
 
     @Test
     fun guideStatConfiguredGroupedHistogram() {
-        val sample = dfAB[{ "sample"<Double>() }]
+        val sample = dfAB.get("sample"<Double>())
         val type = column<String>("type")
         // SampleStart
         gbAB.histogram(BinsOption.byNumber(20), binsAlign = BinsAlign.boundary(0.0)) {
