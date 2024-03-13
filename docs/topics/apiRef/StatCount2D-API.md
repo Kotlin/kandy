@@ -51,13 +51,13 @@ to create mappings, customize tooltips, etc.
 
 ### Stat.x
 
-<p><format style="superscript" color="#E8488B">Column&lt;Double></format></p>
+<p><format style="superscript" color="#E8488B">Column&lt;X></format></p>
 <p>The <code>Stat.x</code> contains x-part of categories. 
 </p>
 
 ### Stat.y
 
-<p><format style="superscript" color="#E8488B">Column&lt;Double></format></p>
+<p><format style="superscript" color="#E8488B">Column&lt;Y></format></p>
 <p>The <code>Stat.x</code> contains y-part categories. 
 </p>
 

@@ -15,7 +15,7 @@ Double = 1.5)<format style="italic">{ this: StatBoxplotContext -></format></p>
 
 The `statBoxplot` function creates a new plotting context with new dataset
 which contains the "boxplot" statistic calculated on sample of a single numeric variable [y](#y) 
-in a several groups defined by [x](#x). It serves as a statistical visualization technique, 
+in several groups defined by [x](#x). It serves as a statistical visualization technique, 
 illustrating the distribution and summary statistics of a dataset in a graphical format.
 
 ## Arguments
@@ -62,7 +62,7 @@ to create mappings, customize tooltips, etc.
 ### Stat.x
 
 <p><format style="superscript" color="#E8488B">Column&lt;X></format></p>
-<p>The <code>Stat.x</code> contains boxplot x categories. 
+<p>The <code>Stat.x</code> contains boxplot x category. 
 </p>
 
 ### Stat.min
