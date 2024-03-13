@@ -32,6 +32,10 @@
 <a href="#size"><format style="bold" color="DarkGray">size</format></a> <format style="superscript">NonPositional</format>
 <include from="properties.topic" element-id="signature-of-nonpos-double"/>
 </li>
+<li>
+<a href="#stroke"><format style="bold" color="DarkGray">stroke</format></a> <format style="superscript">NonPositional</format>
+<emphasis>(Iterable | Column | String) | Number</emphasis>
+</li>
 </list>
 <format style="italic">}</format>
 </tldr>
@@ -65,3 +69,7 @@
 ### size
 
 <include from="properties.topic" element-id="size-property"/>
+
+### stroke
+
+<include from="properties.topic" element-id="stroke-point-property"/>

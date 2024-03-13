@@ -17,6 +17,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.FILL
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LINE_TYPE
 import org.jetbrains.kotlinx.kandy.letsplot.internal.SHAPE
 import org.jetbrains.kotlinx.kandy.letsplot.internal.SIZE
+import org.jetbrains.kotlinx.kandy.letsplot.internal.STROKE
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
@@ -187,8 +188,9 @@ class InnerPointTests {
     private val symbol = listOf("rect").toColumn("symbol")
     private val color = listOf("blue").toColumn("color")
     private val fatten = listOf(0.5).toColumn("fatten")
+    private val stroke = listOf(1.5).toColumn("stroke")
 
-    private val df = dataFrameOf(symbol, color, fatten)
+    private val df = dataFrameOf(symbol, color, fatten, stroke)
 
     private val parentContext = DataFramePlotContext(df)
     private lateinit var context: InnerPointContext
@@ -244,6 +246,30 @@ class InnerPointTests {
     fun `symbol iterable mapping for innerPoint`() {
         context.symbol(listOf(1, 2, 3, 4))
         assertEquals("shape", (context.bindingCollector.mappings[SHAPE] as NonPositionalMapping<*, *>).columnID)
+    }
+
+    @Test
+    fun `stroke const for innerPoint`() {
+        context.stroke = 3.5
+        assertEquals(3.5, (context.bindingCollector.settings[STROKE] as NonPositionalSetting<*>).value)
+    }
+
+    @Test
+    fun `stroke str mapping for innerPoint`() {
+        context.stroke("stroke")
+        assertEquals("stroke", (context.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID)
+    }
+
+    @Test
+    fun `stroke dataColumn mapping for innerPoint`() {
+        context.stroke(stroke)
+        assertEquals("stroke", (context.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID)
+    }
+
+    @Test
+    fun `stroke iterable mapping for innerPoint`() {
+        context.stroke(listOf(1, 2, 3))
+        assertEquals("stroke", (context.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test

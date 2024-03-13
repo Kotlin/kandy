@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
+import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalCategoricalScale
@@ -15,6 +16,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.COLOR
 import org.jetbrains.kotlinx.kandy.letsplot.internal.FILL
 import org.jetbrains.kotlinx.kandy.letsplot.internal.SHAPE
 import org.jetbrains.kotlinx.kandy.letsplot.internal.SIZE
+import org.jetbrains.kotlinx.kandy.letsplot.internal.STROKE
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
@@ -34,8 +36,9 @@ class PointsTests {
     private val fillColor = listOf("blue").toColumn("fillColor")
     private val alpha = listOf(0.5).toColumn("alpha")
     private val size = listOf(0.9).toColumn("size")
+    private val stroke = listOf(1.9).toColumn("stroke")
 
-    private val df = dataFrameOf(xAxis, yAxis, symbol, color, fillColor, alpha, size)
+    private val df = dataFrameOf(xAxis, yAxis, symbol, color, fillColor, alpha, size, stroke)
 
     private val parentContext = DataFramePlotContext(df)
     private lateinit var context: PointsContext
@@ -174,6 +177,32 @@ class PointsTests {
     fun `size iterable mapping for points`() {
         context.size(listOf(5, 10))
         assertEquals("size", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+    }
+
+    @Test
+    fun `stroke const for points`() {
+        context.stroke = 3
+        assertEquals(3.0, (context.bindingCollector.settings[STROKE] as NonPositionalSetting<*>).value)
+    }
+
+    @Test
+    fun `stroke str mapping for points`() {
+        context.stroke("stroke")
+        assertEquals("stroke", (context.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID)
+    }
+
+    @Test
+    fun `stroke dataColumn mapping for points`() {
+        context.stroke(stroke)
+        assertEquals("stroke", (context.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID)
+    }
+
+    @Test
+    fun `stroke iterable mapping for points`() {
+        context.stroke(listOf(1.5, 8.0))
+        assertEquals("stroke", (context.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID)
+        println(((context.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).parameters as NonPositionalMappingParameters).scale)
+
     }
 
     @Test

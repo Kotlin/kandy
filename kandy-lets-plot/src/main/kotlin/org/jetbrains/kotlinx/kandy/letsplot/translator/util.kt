@@ -8,9 +8,9 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
-import org.jetbrains.kotlinx.kandy.letsplot.util.SimpleValueWrapper
 import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
+import org.jetbrains.kotlinx.kandy.letsplot.util.SimpleValueWrapper
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.color.StandardColor
 
@@ -54,3 +54,10 @@ internal fun wrapValue(value: Any?): Any? {
 // TODO
 internal fun ClosedRange<*>?.wrap() = this?.let { (it.start as Number) to (it.endInclusive as Number) }
 internal fun Pair<*, *>?.wrap() = this?.let { (it.first as? Number) to (it.second as? Number) }
+
+internal fun Pair<Any?, Any?>.computeRange(): Pair<Double, Double>? = when {
+    first == null && second == null -> null
+    second == null && first is Double -> (first as Double).let { it to it + 7.0 }
+    first == null && second is Double -> (second as Double).let { (it - 7.0).coerceAtLeast(0.2) to it }
+    else -> first as Double to second as Double
+}
