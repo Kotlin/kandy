@@ -13,6 +13,10 @@
         <emphasis>(Iterable | Column | String) | Double in 0.0..1.0</emphasis>
     </snippet>
 
+    <snippet id="signature-of-nonpos-alpha-setting">
+        <emphasis>Double in 0.0..1.0</emphasis>
+    </snippet>
+
     <snippet id="signature-of-nonpos-color">
         <emphasis>(Iterable | Column | String) | Color</emphasis>
     </snippet>
@@ -63,6 +67,19 @@
     <snippet id="req-position-aes-desc">
         <p>
             <format style="superscript" color="Red">Required</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Any</format>
+        </p>
+    </snippet>
+
+    <snippet id="req-position-aes-desc-default">
+        <p>
+            <format style="superscript" color="Green">Has default mapping</format>
             <format style="superscript" color="#89CFF0">Positional</format>
         </p>
         <p>
@@ -591,6 +608,14 @@
         <include element-id="x-property-desc" from="properties.topic"/>
     </snippet>
 
+    <snippet id="x-property-default">
+        <p>
+            <format style="superscript" color="Green">Has default mapping</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
+        </p>
+        <include from="properties.topic" element-id="x-property-desc"/>
+    </snippet>
+
     <snippet id="xFree-property">
         <p>
             <format style="superscript" color="LightSlateGray">Optional</format>
@@ -672,6 +697,14 @@
         </list>
     </snippet>
 
+    <snippet id="y-property-default">
+        <p>
+            <format style="superscript" color="Green">Has default mapping</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
+        </p>
+        <include from="properties.topic" element-id="y-property-desc"/>
+    </snippet>
+
     <snippet id="yFree-property">
         <p>
             <format style="superscript" color="LightSlateGray">Optional</format>
@@ -696,18 +729,7 @@
         </list>
     </snippet>
 
-    <snippet id="yMax-property">
-        <p>
-            <format style="superscript" color="Red">Required</format>
-            <format style="superscript" color="#89CFF0">Positional</format>
-        </p>
-        <p>
-            <format style="superscript" color="#E8488B">Iterable</format>
-            <format style="superscript" color="#E8488B">Column</format>
-            <format style="superscript" color="#E8488B">String</format>
-            <format style="superscript" color="#E8488B">Any</format>
-        </p>
-
+    <snippet id="yMax-property-desc">
         <p>
             The <code>yMax</code> aesthetic specifies the maximum y-coordinate for elements within plots, playing a
             critical role in defining the vertical extent of elements such as
@@ -746,7 +768,7 @@
         </list>
     </snippet>
 
-    <snippet id="yMin-property">
+    <snippet id="yMax-property">
         <p>
             <format style="superscript" color="Red">Required</format>
             <format style="superscript" color="#89CFF0">Positional</format>
@@ -758,12 +780,31 @@
             <format style="superscript" color="#E8488B">Any</format>
         </p>
 
+        <include from="properties.topic" element-id="yMax-property-desc"></include>
+    </snippet>
+
+    <snippet id="yMax-property-default">
         <p>
-            The <code>yMin</code> aesthetic specifies the minimum y-coordinate for elements within plots,
-            crucial for defining the vertical lower bounds of elements such as boxes, crossbars, error bars,
-            line ranges, point ranges, rectangles, and ribbons. This aesthetic is fundamental in accurately portraying
-            the lower limits of data within these types of visualizations.
+            <format style="superscript" color="Green">Has default mapping</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
         </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Any</format>
+        </p>
+
+        <include from="properties.topic" element-id="yMax-property-desc"></include>
+    </snippet>
+
+    <snippet id="yMin-property-desc">
+        <p>
+        The <code>yMin</code> aesthetic specifies the minimum y-coordinate for elements within plots,
+        crucial for defining the vertical lower bounds of elements such as boxes, crossbars, error bars,
+        line ranges, point ranges, rectangles, and ribbons. This aesthetic is fundamental in accurately portraying
+        the lower limits of data within these types of visualizations.
+    </p>
 
         <p><b>Setting</b></p>
         <list>
@@ -794,6 +835,36 @@
                 representation of lower data boundaries.
             </li>
         </list>
+    </snippet>
+
+    <snippet id="yMin-property">
+        <p>
+            <format style="superscript" color="Red">Required</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Any</format>
+        </p>
+
+        <include from="properties.topic" element-id="yMin-property-desc"></include>
+    </snippet>
+
+    <snippet id="yMin-property-default">
+        <p>
+            <format style="superscript" color="Green">Has default</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Any</format>
+        </p>
+
+        <include from="properties.topic" element-id="yMin-property-desc"></include>
     </snippet>
 
     <snippet id="borderLine-property">
@@ -832,5 +903,167 @@
 
             <include from="properties.topic" element-id="width-property"/>
         </chapter>
+    </snippet>
+
+    <snippet id="lower-property-desc">
+        <p>The <code>lower</code> aesthetic is specifically designed for use in box plots, where it represents the lower
+            quartile of the data.
+            This quartile marks the bottom edge of the box, indicating the value below which 25% of the data points
+            fall.
+            The <code>lower</code> aesthetic is critical for accurately displaying the distribution of data within a box
+            plot.</p>
+        <p>
+            <control>Setting</control>
+        </p>
+        <list>
+            <li><code>lower.constant(Any)</code>: directly sets the lower quartile value for all boxes in the plot.
+                This approach is useful for highlighting a specific threshold or for comparative analysis across
+                different datasets.
+                Example: <code>lower.constant(0.7)</code> uniformly sets the lower quartile to 0.7 for all boxes.
+            </li>
+        </list>
+        <p>
+            <control>Mapping</control>
+        </p>
+        <list>
+            <li><code>lower(Iterable)</code>: associates the lower quartile of each box with values from an iterable
+                collection. This method
+                allows for variable lower quartiles across boxes, useful for visualizing distributions from different
+                groups or
+                categories.
+            </li>
+            <li><code>lower(ColumnReference | KProperty | DataColumn)</code>: dynamically links the lower quartile of
+                boxes to a DataFrame
+                column.
+                This mapping is essential for directly visualizing the statistical properties of the dataset.
+            </li>
+            <li><code>lower(String)</code>: connects the lower quartile to data based on the column name in the
+                DataFrame or by key in a Map,
+                offering flexibility in data representation.
+            </li>
+        </list>
+
+    </snippet>
+
+    <snippet id="middle-property-desc">
+        <p>The <code>middle</code> aesthetic is instrumental in visualizing the central tendency within box plots and
+            crossbars,
+            representing the median of the data in box plots and the central value in crossbars.
+            This aesthetic is key to conveying the central point around which the distribution or error bars are
+            constructed,
+            providing a clear visual indicator of the dataset's middle value.</p>
+        <p>
+            <control>Setting</control>
+        </p>
+        <list>
+            <li><code>middle.constant(Any)</code>: applies a fixed value for the median or central value across all
+                applicable elements within a
+                layer.
+                This method is useful for comparative analysis or highlighting specific median values across groups.
+                Example: <code>middle.constant(1.1)</code> uniformly sets the median or central value to 1.1 for all
+                elements.
+            </li>
+        </list>
+        <p>
+            <control>Mapping</control>
+        </p>
+        <list>
+            <li><code>middle(Iterable)</code>: links each element's median or central value to a value from an iterable
+                collection, allowing for
+                the visualization of variable middle points across different data groups or categories.
+            </li>
+            <li><code>middle(ColumnReference | KProperty | DataColumn)</code>: dynamically associates the median or
+                central value with a
+                DataFrame column, enabling the representation of data-driven median values.
+            </li>
+            <li><code>middle(String)</code>: connects the median or central value to data based on the column name in
+                the DataFrame or by key in
+                a Map, offering flexibility in representing central tendencies through data.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="upper-property-desc">
+        <p>The <code>upper</code> aesthetic plays a crucial role in box plots by representing the upper quartile of the
+            dataset.
+            This quartile marks the top edge of the box, indicating the value above which 25% of the data points fall.
+            The <code>upper</code> aesthetic is essential for accurately displaying the spread and distribution of data
+            within a box plot.</p>
+        <p>
+            <control>Setting</control>
+        </p>
+        <list>
+            <li><code>upper.constant(Any)</code>: assigns a uniform upper quartile value across all boxes in the plot.
+                This method is beneficial for standardizing comparisons or highlighting specific thresholds across
+                datasets.
+                Example: <code>upper.constant(1.5)</code> sets a consistent upper quartile to 1.5 for all boxes.
+            </li>
+        </list>
+        <p>
+            <control>Mapping</control>
+        </p>
+        <list>
+            <li><code>upper(Iterable)</code>: each box's upper quartile is associated with a value from an iterable
+                collection, enabling the
+                visualization of varying upper quartiles across different data groups or categories.
+            </li>
+            <li><code>upper(ColumnReference | KProperty | DataColumn)</code>: dynamically links the upper quartile of
+                boxes to a DataFrame
+                column, allowing for the visualization of data-driven upper quartiles.
+            </li>
+            <li><code>upper(String)</code>: connects the upper quartile to data based on the column name in the
+                DataFrame or by key in a Map,
+                offering flexibility in representing upper limits through data.
+            </li>
+        </list>
+
+    </snippet>
+
+    <snippet id="height-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Double</format>
+        </p>
+        <p>The <code>height</code> aesthetic is fundamental in plotting tile-like elements,
+            offering control over the vertical dimension of these elements within the plot.
+            This aesthetic allows for precise adjustment of the height of tiles,
+            crucial for visualizing data in formats like heatmaps or tile-based visualizations
+            where the height of each tile may represent a value or category.</p>
+        <p>
+            <control>Setting</control>
+        </p>
+        <list>
+            <li><code>height = Double</code>: directly assigns a fixed height to all tile-like plot elements, providing
+                a uniform appearance
+                across the plot.
+                This is particularly useful for standardizing the presentation of data when the differentiation is
+                conveyed through other aesthetics like color.
+                Example: <code>height = 3.5</code> sets a uniform height of 3.5 units for all tiles in the plot.
+            </li>
+        </list>
+        <p>
+            <control>Mapping</control>
+        </p>
+        <list>
+            <li><code>height(Iterable)</code>: dynamically sets the height of tiles based on values from an iterable
+                collection, allowing the
+                height of each tile to vary according to the iterable's values.
+            </li>
+            <li><code>height(ColumnReference | KProperty | DataColumn)</code>: links the height of tiles to a DataFrame
+                column, enabling the
+                visualization of data-driven heights for each tile.
+            </li>
+            <li><code>height(String)</code>: associates the height of tiles with data based on the column name in the
+                DataFrame or by key in a
+                Map, offering flexibility in data representation through tile height.
+            </li>
+        </list>
+
     </snippet>
 </topic>

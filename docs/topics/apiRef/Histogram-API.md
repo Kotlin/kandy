@@ -10,37 +10,21 @@ histogram</format>(
 <a href="#binsoption"><format style="bold" color="DarkGray">binsOption</format></a>: 
 BinsOption = BinsOption.byNumber(20),
 <a href="#binsalign"><format style="bold" color="DarkGray">binsAlign</format></a>: 
-BinsAlign = BinsAlign.center(0.0)) <format style="italic">{ this: StatBinContext -></format></p>
-<list type="none">
-<li>
-<a href="#xaes"><format style="bold" color="CadetBlue">x</format></a> <format style="superscript">Positional</format>
-<include from="properties.topic" element-id="signature-of-positional"></include>
-</li>
-<li>
-<a href="#y"><format style="bold" color="CadetBlue">y</format></a> <format style="superscript">Positional</format>
-<include from="properties.topic" element-id="signature-of-positional"></include>
-</li>
-<li>
-<a href="#alpha"><format style="bold" color="DarkGray">alpha</format></a> <format style="superscript">NonPositional</format>
-<include from="properties.topic" element-id="signature-of-nonpos-alpha"></include>
-</li>
-<li>
-<a href="#fillcolor"><format style="bold" color="DarkGray">fillColor</format></a> <format style="superscript">NonPositional</format>
-<include from="properties.topic" element-id="signature-of-nonpos-color"></include>
-</li>
-<li>
-<include from="properties.topic" element-id="signature-of-borderLine"/>
-</li>
-</list>
+BinsAlign = BinsAlign.center(0.0)) <format style="italic">{ this: HistogramLayerContext -></format></p>
+<include from = "interfaces.topic" element-id="interface-of-bars"></include>
 <format style="italic">}</format>
 <format style="italic">}</format>
 </tldr>
 
-The `histogram` adds a histogram layer 
-(bars layer with bin statistics counted)
-function optionally creates a new context with bars aesthetics and new dataset
+The `histogram` adds a histogram layer
+function optionally creates a new context with [bars](https://kotlin.github.io/kandy/bars-api.html) aesthetics and new dataset
 which contains the "bin" statistic calculated on sample of a single numeric variable [x](#x). 
 In this context, all required aesthetics are assigned by default but can be overridden.
+
+A histogram is a statistical chart that serves to visually 
+approximate the distribution of a numerical variable.
+It's a bar plot where each bar is representing a bin: 
+its x coordinate is corresponding to bin range and y to count.
 
 ## Arguments
 
@@ -97,35 +81,27 @@ Without <code>weights</code> its values matches <code>Stat.count</code> values.
 Without <code>weights</code> its values matches <code>Stat.density</code> values.
 </p>
 
-## Aesthetic properties
+## Bars Aesthetic properties
 
 See [bars](https://kotlin.github.io/kandy/bars-api.html).
 
-### x {id="xaes"}
+### x {id="x_bars"}
 
-<p>
-<format style="superscript" color="Green">Has default mapping</format> 
-<format style="superscript" color="#89CFF0">Positional</format> 
-</p>
-<include from="properties.topic" element-id="x-property-desc"/>
+<include from="properties.topic" element-id="x-property-default"/>
 
-### y
+### y {id="y_bars"}
 
-<p>
-<format style="superscript" color="Green">Has default mapping</format> 
-<format style="superscript" color="#89CFF0">Positional</format> 
-</p>
-<include from="properties.topic" element-id="y-property-desc"/>
+<include from="properties.topic" element-id="y-property-default"/>
 
-### alpha
+### alpha {id="alpha_bars"}
 
 <include from="properties.topic" element-id="alpha-property"/>
 
-### width
+### width {id="width_bars"}
 
 <include from="properties.topic" element-id="width-property"/>
 
-### fillColor
+### fillColor {id="fill_color_bars"}
 
 <include from="properties.topic" element-id="fillColor-property"/>
 
