@@ -14,18 +14,17 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
 
-// todo add Stroke
 /**
  * Interface defining the necessary aesthetics and methods for points layers.
  *
  * Points layers are primarily used in scatter plots to represent individual data points in two-dimensional space.
- * The interface provides aesthetics such as `x`, `y`, `color`, `symbol`, `size`, `alpha`, and `fillColor`
+ * The interface provides aesthetics such as `x`, `y`, `color`, `symbol`, `size`, `alpha`, `stroke`, and `fillColor`
  * to allow for a comprehensive customization of point representation.
  *
  * Required aesthetics for points layers are `x` and `y`.
  */
 public interface PointsInterface : LayerContextInterface, WithX, WithY, WithColor, WithSymbol,
-    WithSize, WithAlpha, WithFillColor {
+    WithSize, WithAlpha, WithFillColor, WithPointStroke {
 
     /**
      * Gets the Geom object specific to **points** layers.

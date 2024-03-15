@@ -359,6 +359,44 @@
         </list>
     </snippet>
 
+    <snippet id="stroke-point-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Double</format>
+        </p>
+
+        <p>
+            The <code>stroke</code> aesthetic affects the thickness of a symbol borders (shapes).
+            This aesthetic can be used on <code>pointRanges</code> and <code>points</code> layers.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li>
+                <code>stroke = Number</code>: imposes a uniform size across all applicable elements within a layer.
+                The number value is factor indicating the thickness if the point boundaries, e.g., <code>size = 5</code>.
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>stroke(Iterable)</code>: each element's thickness is linked to a value from an iterable collection,
+                allowing for varied sizes within a layer to represent data variations.
+            </li>
+            <li><code>stroke(ColumnReference | KProperty | DataColumn)</code>: element thickness are associated with a
+                DataFrame column, enabling the visualization of data-driven size differences.
+            </li>
+            <li><code>stroke(String)</code>: thicknesses are tied to data based on the column name in the DataFrame or
+                by a key in a Map, facilitating flexible data representation through thickness of the point boundaries.
+            </li>
+        </list>
+    </snippet>
+
     <snippet id="symbol-property">
         <p>
             <format style="superscript" color="LightSlateGray">Optional</format>

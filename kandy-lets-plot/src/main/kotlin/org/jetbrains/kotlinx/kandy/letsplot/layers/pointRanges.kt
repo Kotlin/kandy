@@ -34,7 +34,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointRangesContext
  * * **`innerPoint.fatten`** - The amount to fatten the point relative to the line.
  * * **`innerPoint.symbol`** - The symbol used for the point.
  * * **`innerPoint.fillColor`** - The fill color of the symbol.
- * * **`innerPoint.symbol`** - The symbol used for the point.
+ * * **`innerPoint.stroke`** - Width of the shape border.
+ * Applied only to the shapes having border.
  *
  * ## Example
  *
@@ -68,6 +69,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointRangesContext
  *         innerPoint {
  *             symbol = Symbol.DIAMOND_FILLED // The symbol used for the point
  *             fillColor = Color.RED // The fill color of the symbol
+ *             stroke = 2
  *         }
  *
  *         color = Color.BLUE
