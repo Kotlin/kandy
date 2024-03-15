@@ -17,7 +17,7 @@ candlestick<a href="#xtype"><format color="Blue">&lt;X></format></a>></format>(
 <include from = "interfaces.topic" element-id="interface-of-boxes"></include>
 <list type="none">
 <li>
-<a href="#inc_dec">increase</a><format style="italic">{ this: CandlestickConfiguration -></format>
+<a href="#inc_dec">increase </a><format style="italic">{ this: CandlestickConfiguration -></format>
 <list type="none">
 <li>
  <a href="#fill_color_boxes"><format style="bold" color="DarkGray">fillColor</format></a>: Color = Color.GREEN
@@ -54,7 +54,7 @@ candlestick<a href="#xtype"><format color="Blue">&lt;X></format></a>></format>(
 <format style="italic">}</format>
 </li>
 <li>
-<a href="#inc_dec">decrease</a><format style="italic">{ this: CandlestickConfiguration -></format>
+<a href="#inc_dec">decrease </a><format style="italic">{ this: CandlestickConfiguration -></format>
 <list type="none">
 <li>
  <a href="#fill_color_boxes"><format style="bold" color="DarkGray">fillColor</format></a>: Color = Color.RED

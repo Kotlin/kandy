@@ -11,12 +11,12 @@ boxplot<a href="#xtype"><format color="Blue">&lt;X></format></a>></format>(
 Double = 1.5)<format style="italic">{ this: BoxplotStatLayerContext&lt;X> -></format></p>
 <list type="none">
 <li>
-<p>boxes <format style="italic">{ this: BoxesStatContext&lt;X> -></format></p>
+<p><a href="#boxes_aes">boxes</a> <format style="italic">{ this: BoxesStatContext&lt;X> -></format></p>
 <include from="interfaces.topic" element-id="interface-of-boxes"/>
 <format style="italic">}</format>
 </li>
 <li>
-<p>outliers <format style="italic">{ this: OutliersContext&lt;X> -></format></p>
+<p><a href="#outliers_aes">outliers</a> <format style="italic">{ this: OutliersContext&lt;X> -></format></p>
 <include from="interfaces.topic" element-id="interface-of-points"/>
 <format style="italic">}</format>
 </li>
@@ -112,7 +112,7 @@ to create mappings, customize tooltips, etc.
 <p>The <code>Stat.upper</code> contains upper whisker ends - the maximum non-outlier data point. 
 </p>
 
-## Boxes aesthetic properties
+## Boxes aesthetic properties {id=boxes_aes}
 
 ### x {id=x_boxes}
 
@@ -187,7 +187,7 @@ to create mappings, customize tooltips, etc.
 <p>The <code>Stat.y</code> contains outlier value. 
 </p>
 
-## Outliers aesthetic properties
+## Outliers aesthetic properties {id=outliers_aes}
 
 See [points](https://kotlin.github.io/kandy/points-api.html).
 
