@@ -36,6 +36,10 @@
                 <a href="#size_points"><format style="bold" color="DarkGray">size</format></a> <format style="superscript">NonPositional</format>
                 <include from="properties.topic" element-id="signature-of-nonpos-double"/>
             </li>
+            <li>
+                <a href="#stroke_points"><format style="bold" color="DarkGray">stroke</format></a> <format style="superscript">NonPositional</format>
+                <emphasis>(Iterable | Column | String) | Number</emphasis>
+            </li>
         </list>
     </snippet>
 

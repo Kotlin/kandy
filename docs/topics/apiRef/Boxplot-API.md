@@ -226,3 +226,7 @@ See [points](https://kotlin.github.io/kandy/points-api.html).
 ### size {id=size_points}
 
 <include from="properties.topic" element-id="size-property"/>
+
+### stroke {id=stroke_points}
+
+<include from="properties.topic" element-id="stroke-point-property"/>
