@@ -5,8 +5,13 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.Month
+import org.jetbrains.kotlinx.dataframe.AnyCol
+import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.fillNA
+import org.jetbrains.kotlinx.dataframe.api.getValue
+import org.jetbrains.kotlinx.dataframe.api.isNotEmpty
 import org.jetbrains.kotlinx.dataframe.api.map
+import org.jetbrains.kotlinx.dataframe.api.select
 import org.jetbrains.kotlinx.dataframe.api.with
 import org.jetbrains.kotlinx.kandy.echarts.layers.AREA
 import org.jetbrains.kotlinx.kandy.echarts.layers.BAR
@@ -20,14 +25,10 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.aes.NAME
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.X
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.Y
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsPositionalMappingParameters
-import org.jetbrains.kotlinx.kandy.echarts.translator.option.AngleAxis
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.Axis
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.AxisType
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.Dataset
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.Option
-import org.jetbrains.kotlinx.kandy.echarts.translator.option.Polar
-import org.jetbrains.kotlinx.kandy.echarts.translator.option.Radar
-import org.jetbrains.kotlinx.kandy.echarts.translator.option.RadiusAxis
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.VisualMap
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.Series
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.Encode
@@ -38,17 +39,19 @@ import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.toCandlestic
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.toLineSeries
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.toPieSeries
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.toPointSeries
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.Element
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
-import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
+import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalContinuousScale
+import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalCategoricalScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalContinuousScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalDefaultScale
@@ -169,12 +172,12 @@ internal class Parser(plot: Plot) {
      */
     private operator fun TableData.get(mapping: Mapping): AnyCol = when (this) {
         is NamedData -> this.dataFrame[mapping.columnID]
-        is GroupedData -> this.origin.dataFrame[mapping.columnID]
+        is GroupedData -> this.dataFrame[mapping.columnID]
     }
 
     private fun TableData.getType(mapping: Mapping): KType = when (this) {
         is NamedData -> this.dataFrame[mapping.columnID].type()
-        is GroupedData -> this.origin.dataFrame[mapping.columnID].type()
+        is GroupedData -> this.dataFrame[mapping.columnID].type()
     }
 
     private fun DataFrame<*>.fillNA(mapping: Mapping): DataFrame<*> {
@@ -183,7 +186,7 @@ internal class Parser(plot: Plot) {
             is NonPositionalContinuousScale<*, *> -> scale.nullValue
             else -> null
         }
-        return nullValue?.let { this.fillNA(mapping.columnID).withValue(it) } ?: this
+        return nullValue?.let { this.fillNA(mapping.columnID).with { it } } ?: this
     }
 
     private fun Mapping.toAxis(ktype: KType): Axis {
