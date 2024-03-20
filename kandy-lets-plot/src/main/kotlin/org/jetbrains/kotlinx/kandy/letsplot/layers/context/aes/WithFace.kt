@@ -9,16 +9,33 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.FONT_FACE
-import org.jetbrains.kotlinx.kandy.letsplot.util.font.FontFace
+import org.jetbrains.kotlinx.kandy.letsplot.settings.font.FontFace
 import kotlin.reflect.KProperty
 
+/**
+ * Interface for configuring the `face` aesthetic, which refers to the font face in text elements of a plot layer.
+ *
+ * This interface provides methods to either directly set the font face or map a data column to it.
+ */
 public interface WithFace : BindingContext {
+
+    /**
+     * Sets a constant font `face` for text elements in the plot layer.
+     *
+     * @property face the font face to be set, represented as a [FontFace] object.
+     */
     public var face: FontFace?
         get() = null
         set(value) {
             addNonPositionalSetting(FONT_FACE, value)
         }
 
+    /**
+     * Maps the `face` aesthetic to a data column by [ColumnReference].
+     *
+     * @param column the data column to be mapped.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> face(
         column: ColumnReference<T>,
     ): NonPositionalMapping<T, FontFace> {
@@ -29,6 +46,12 @@ public interface WithFace : BindingContext {
         )
     }
 
+    /**
+     * Maps the `face` aesthetic to a data column by [KProperty].
+     *
+     * @param column the data column to be mapped.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> face(
         column: KProperty<T>,
     ): NonPositionalMapping<T, FontFace> {
@@ -39,6 +62,12 @@ public interface WithFace : BindingContext {
         )
     }
 
+    /**
+     * Maps the `face` aesthetic to a data column by [String].
+     *
+     * @param column the data column to be mapped.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun face(
         column: String,
     ): NonPositionalMapping<Any?, FontFace> {
@@ -49,7 +78,13 @@ public interface WithFace : BindingContext {
         )
     }
 
-    // Iterable, Array, PrimArray, DataColumn,
+    /**
+     * Maps the `face` aesthetic to the iterable of values.
+     *
+     * @param values the iterable of values to be mapped.
+     * @param name optional name for this aesthetic mapping.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> face(
         values: Iterable<T>,
         name: String? = null
@@ -62,9 +97,14 @@ public interface WithFace : BindingContext {
         )
     }
 
+    /**
+     * Maps the `face` aesthetic to a data column.
+     *
+     * @param values the data column to be mapped.
+     * @return a [NonPositionalMapping] object representing the mapping.
+     */
     public fun <T> face(
         values: DataColumn<T>,
-        //name: String? = null,
     ): NonPositionalMapping<T, FontFace> {
         return addNonPositionalMapping<T, FontFace>(
             FONT_FACE,

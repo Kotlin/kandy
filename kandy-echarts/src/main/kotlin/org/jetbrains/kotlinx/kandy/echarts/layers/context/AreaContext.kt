@@ -4,21 +4,22 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
+import org.jetbrains.kotlinx.kandy.echarts.layers.AREA
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.*
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParameters
-import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMapping
+import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMappingCont
 import org.jetbrains.kotlinx.kandy.echarts.settings.AreaPosition
 import org.jetbrains.kotlinx.kandy.echarts.settings.Cap
 import org.jetbrains.kotlinx.kandy.echarts.settings.LineType
 import org.jetbrains.kotlinx.kandy.echarts.settings.Step
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.reflect.KProperty
 
@@ -52,9 +53,9 @@ import kotlin.reflect.KProperty
  * @see org.jetbrains.kotlinx.kandy.echarts.settings.LineType
  * @see Animation
  */
-/*@PlotDslMarker*/
 public class AreaContext(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
     WithAlpha, WithSymbol {
+    override val geom: Geom = AREA
     public var position: AreaPosition? = null
         set(value) {
             addNonPositionalSetting(AREA_POSITION, value)
@@ -120,43 +121,43 @@ public class AreaContext(parent: LayerCollectorContext) : EchartsLayerContext(pa
 
     public fun <T> lineAlpha(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> = nonPosMapping(LINE_ALPHA, column, params)
+    ): NonPositionalMapping<T, Double> = nonPosMappingCont(LINE_ALPHA, column, params)
 
     public fun <T> lineAlpha(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> = nonPosMapping(LINE_ALPHA, column, params)
+    ): NonPositionalMapping<T, Double> = nonPosMappingCont(LINE_ALPHA, column, params)
 
     public fun <T> lineAlpha(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> = nonPosMapping(LINE_ALPHA, values, name, params)
+    ): NonPositionalMapping<T, Double> = nonPosMappingCont(LINE_ALPHA, values, name, params)
 
     public fun lineAlpha(
         column: String, params: EchartsNonPositionalMappingParameters<*, Double>.() -> Unit = {}
-    ): NonPositionalMapping<*, Double> = nonPosMapping(LINE_ALPHA, column, params)
+    ): NonPositionalMapping<*, Double> = nonPosMappingCont(LINE_ALPHA, column, params)
 
     public fun <T> lineAlpha(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> = nonPosMapping(LINE_ALPHA, values, params)
+    ): NonPositionalMapping<T, Double> = nonPosMappingCont(LINE_ALPHA, values, params)
 
     public fun <T> lineColor(
         column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = nonPosMapping(LINE_COLOR, column, params)
+    ): NonPositionalMapping<T, Color> = nonPosMappingCont(LINE_COLOR, column, params)
 
     public fun <T> lineColor(
         column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = nonPosMapping(LINE_COLOR, column, params)
+    ): NonPositionalMapping<T, Color> = nonPosMappingCont(LINE_COLOR, column, params)
 
     public fun lineColor(
         column: String, params: EchartsNonPositionalMappingParameters<*, Color>.() -> Unit = {}
-    ): NonPositionalMapping<*, Color> = nonPosMapping(LINE_COLOR, column, params)
+    ): NonPositionalMapping<*, Color> = nonPosMappingCont(LINE_COLOR, column, params)
 
     public fun <T> lineColor(
         values: Iterable<T>, name: String? = null, params: NonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = nonPosMapping(LINE_COLOR, values, name, params)
+    ): NonPositionalMapping<T, Color> = nonPosMappingCont(LINE_COLOR, values, name, params)
 
     public fun <T> lineColor(
         values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, Color>.() -> Unit = {}
-    ): NonPositionalMapping<T, Color> = nonPosMapping(LINE_COLOR, values, params)
+    ): NonPositionalMapping<T, Color> = nonPosMappingCont(LINE_COLOR, values, params)
 
 
     /**

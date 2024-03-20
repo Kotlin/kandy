@@ -8,68 +8,96 @@ import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.dataframe.impl.asList
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
-import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import kotlin.reflect.KProperty
 
 
 internal fun <T> BindingContext.posMapping(
-    aesName: AesName, column: ColumnReference<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
+    aes: Aes, column: ColumnReference<T>, params: EchartsPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> =
-    addPositionalMapping(aesName, column.name(), EchartsPositionalMappingParameters<T>().apply(params))
+    addPositionalMapping(aes, column.name(), EchartsPositionalMappingParametersContinuous<T>().apply(params))
 
 internal fun <T> BindingContext.posMapping(
-    aesName: AesName, column: KProperty<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
+    aes: Aes, column: KProperty<T>, params: EchartsPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> =
-    addPositionalMapping(aesName, column.name, EchartsPositionalMappingParameters<T>().apply(params))
+    addPositionalMapping(aes, column.name, EchartsPositionalMappingParametersContinuous<T>().apply(params))
 
 internal fun <T> BindingContext.posMapping(
-    aesName: AesName, values: Iterable<T>,
-    name: String? = null, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
+    aes: Aes, values: Iterable<T>,
+    name: String? = null, params: EchartsPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> =
-    addPositionalMapping(aesName, values.asList(), name, EchartsPositionalMappingParameters<T>().apply(params))
+    addPositionalMapping(aes, values.asList(), name, EchartsPositionalMappingParametersContinuous<T>().apply(params))
 
 internal fun <T> BindingContext.posMapping(
-    aesName: AesName, values: DataColumn<T>, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
-): PositionalMapping<T> = addPositionalMapping(aesName, values, EchartsPositionalMappingParameters<T>().apply(params))
+    aes: Aes, values: DataColumn<T>, params: EchartsPositionalMappingParametersContinuous<T>.() -> Unit = {}
+): PositionalMapping<T> = addPositionalMapping(aes, values, EchartsPositionalMappingParametersContinuous<T>().apply(params))
 
 internal fun BindingContext.posMapping(
-    aesName: AesName, column: String,
-    parameters: EchartsPositionalMappingParameters<*>.() -> Unit = {}
+    aes: Aes, column: String,
+    parameters: EchartsPositionalMappingParametersContinuous<*>.() -> Unit = {}
 ): PositionalMapping<*> =
-    addPositionalMapping(aesName, column, EchartsPositionalMappingParameters<Any?>().apply(parameters))
+    addPositionalMapping(aes, column, EchartsPositionalMappingParametersContinuous<Any?>().apply(parameters))
 
 internal fun <T> BindingContext.posFreeScale(
-    aesName: AesName, params: EchartsPositionalMappingParameters<T>.() -> Unit = {}
-): Unit = addPositionalFreeScale(aesName, EchartsPositionalMappingParameters<T>().apply(params))
+    aes: Aes, params: EchartsPositionalMappingParametersContinuous<T>.() -> Unit = {}
+): Unit = addPositionalFreeScale(aes, EchartsPositionalMappingParametersContinuous<T>().apply(params))
 
-internal fun <T, D> BindingContext.nonPosMapping(
-    aesName: AesName, column: ColumnReference<T>, params: EchartsNonPositionalMappingParameters<T, D>.() -> Unit = {}
+internal fun <T, D> BindingContext.nonPosMappingCont(
+    aes: Aes, column: ColumnReference<T>, params: EchartsNonPositionalMappingParametersContinuous<T, D>.() -> Unit = {}
 ): NonPositionalMapping<T, D> = this.addNonPositionalMapping(
-    aesName, column.name(), EchartsNonPositionalMappingParameters<T, D>().apply(params)
+    aes, column.name(), EchartsNonPositionalMappingParametersContinuous<T, D>().apply(params)
 )
 
-internal fun <T, D> BindingContext.nonPosMapping(
-    aesName: AesName, column: KProperty<T>, params: EchartsNonPositionalMappingParameters<T, D>.() -> Unit = {}
+internal fun <T, D> BindingContext.nonPosMappingCont(
+    aes: Aes, column: KProperty<T>, params: EchartsNonPositionalMappingParametersContinuous<T, D>.() -> Unit = {}
 ): NonPositionalMapping<T, D> = this.addNonPositionalMapping(
-    aesName, column.name, EchartsNonPositionalMappingParameters<T, D>().apply(params)
+    aes, column.name, EchartsNonPositionalMappingParametersContinuous<T, D>().apply(params)
 )
 
-internal fun <T, D> BindingContext.nonPosMapping(
-    aesName: AesName, values: Iterable<T>,
-    name: String? = null, params: NonPositionalMappingParameters<T, D>.() -> Unit = {}
+internal fun <T, D> BindingContext.nonPosMappingCont(
+    aes: Aes, values: Iterable<T>,
+    name: String? = null, params: EchartsNonPositionalMappingParametersContinuous<T, D>.() -> Unit = {}
 ): NonPositionalMapping<T, D> = this.addNonPositionalMapping(
-    aesName, values.asList(), name, EchartsNonPositionalMappingParameters<T, D>().apply(params)
+    aes, values.asList(), name, EchartsNonPositionalMappingParametersContinuous<T, D>().apply(params)
 )
 
-internal fun <T, D> BindingContext.nonPosMapping(
-    aesName: AesName, values: DataColumn<T>, params: EchartsNonPositionalMappingParameters<T, D>.() -> Unit
+internal fun <T, D> BindingContext.nonPosMappingCont(
+    aes: Aes, values: DataColumn<T>, params: EchartsNonPositionalMappingParametersContinuous<T, D>.() -> Unit
 ): NonPositionalMapping<T, D> =
-    this.addNonPositionalMapping(aesName, values, EchartsNonPositionalMappingParameters<T, D>().apply(params))
+    this.addNonPositionalMapping(aes, values, EchartsNonPositionalMappingParametersContinuous<T, D>().apply(params))
 
-internal fun <D> BindingContext.nonPosMapping(
-    aesName: AesName, column: String, parameters: EchartsNonPositionalMappingParameters<*, D>.() -> Unit = {}
+internal fun <D> BindingContext.nonPosMappingCont(
+    aes: Aes, column: String, parameters: EchartsNonPositionalMappingParametersContinuous<*, D>.() -> Unit = {}
 ): NonPositionalMapping<*, D> =
-    addNonPositionalMapping(aesName, column, EchartsNonPositionalMappingParameters<Any?, D>().apply(parameters))
+    addNonPositionalMapping(aes, column, EchartsNonPositionalMappingParametersContinuous<Any?, D>().apply(parameters))
+
+internal fun <T, D> BindingContext.nonPosMappingCat(
+    aes: Aes, column: ColumnReference<T>, params: EchartsNonPositionalMappingParametersCategorical<T, D>.() -> Unit = {}
+): NonPositionalMapping<T, D> = this.addNonPositionalMapping(
+    aes, column.name(), EchartsNonPositionalMappingParametersCategorical<T, D>().apply(params)
+)
+
+internal fun <T, D> BindingContext.nonPosMappingCat(
+    aes: Aes, column: KProperty<T>, params: EchartsNonPositionalMappingParametersCategorical<T, D>.() -> Unit = {}
+): NonPositionalMapping<T, D> = this.addNonPositionalMapping(
+    aes, column.name, EchartsNonPositionalMappingParametersCategorical<T, D>().apply(params)
+)
+
+internal fun <T, D> BindingContext.nonPosMappingCat(
+    aes: Aes, values: Iterable<T>,
+    name: String? = null, params: EchartsNonPositionalMappingParametersCategorical<T, D>.() -> Unit = {}
+): NonPositionalMapping<T, D> = this.addNonPositionalMapping(
+    aes, values.asList(), name, EchartsNonPositionalMappingParametersCategorical<T, D>().apply(params)
+)
+
+internal fun <T, D> BindingContext.nonPosMappingCat(
+    aes: Aes, values: DataColumn<T>, params: EchartsNonPositionalMappingParametersCategorical<T, D>.() -> Unit
+): NonPositionalMapping<T, D> =
+    this.addNonPositionalMapping(aes, values, EchartsNonPositionalMappingParametersCategorical<T, D>().apply(params))
+
+internal fun <D> BindingContext.nonPosMappingCat(
+    aes: Aes, column: String, parameters: EchartsNonPositionalMappingParametersCategorical<*, D>.() -> Unit = {}
+): NonPositionalMapping<*, D> =
+    addNonPositionalMapping(aes, column, EchartsNonPositionalMappingParametersCategorical<Any?, D>().apply(parameters))

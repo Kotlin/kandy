@@ -16,7 +16,7 @@ public data class LayerTooltips internal constructor(
     val title: String?,
     val anchor: Anchor?,
     val minWidth: Double?,
-    val hide: Boolean,
+    val enable: Boolean,
 ) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME
 
@@ -30,15 +30,15 @@ public data class LayerTooltips internal constructor(
             title: String?,
             anchor: Anchor?,
             minWidth: Double?,
-            hide: Boolean,
+            enable: Boolean,
             valueFormats: List<Pair<String, String>>,
-            context: LayerTooltipsContext?
+            context: LayerTooltipsContext
         ): LayerTooltips {
             return LayerTooltips(
                 variables,
-                context?.lineBuffer,
-                valueFormats,
-                title, anchor, minWidth, hide
+                context.lineBuffer,
+                valueFormats + context.formatsBuffer.toList(),
+                title, anchor, minWidth, enable
             )
         }
     }

@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
-import org.jetbrains.kotlinx.kandy.letsplot.util.symbol.Symbol
+import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.letsPlot.intern.toSpec

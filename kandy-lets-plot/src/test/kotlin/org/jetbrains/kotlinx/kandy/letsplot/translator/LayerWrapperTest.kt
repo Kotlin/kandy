@@ -5,16 +5,16 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import org.jetbrains.kotlinx.kandy.ir.Layer
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*
-import org.jetbrains.kotlinx.kandy.letsplot.layers.BAR
-import org.jetbrains.kotlinx.kandy.letsplot.layers.POINT
-import org.jetbrains.kotlinx.kandy.letsplot.position.Position
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BAR
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.letsPlot.intern.toSpec
 import kotlin.test.Test
@@ -23,11 +23,11 @@ import kotlin.test.assertEquals
 internal class LayerWrapperTest {
     @Test
     fun testSimple() {
-        val mappings: Map<AesName, Mapping> = mapOf(
+        val mappings: Map<Aes, Mapping> = mapOf(
             FILL to NonPositionalMapping<Int, Color>(
                 FILL,
                 "F",
-                LetsPlotNonPositionalMappingParameters()
+                LetsPlotNonPositionalMappingParametersContinuous()
             )
         )
         val layer = Layer(
@@ -69,21 +69,21 @@ internal class LayerWrapperTest {
         )
 
 
-        val mappings: Map<AesName, Mapping> = mapOf(
+        val mappings: Map<Aes, Mapping> = mapOf(
             X to PositionalMapping<Float>(
                 X,
                 "TIME_T",
-                LetsPlotPositionalMappingParameters()
+                LetsPlotPositionalMappingParametersContinuous()
             ),
             Y to PositionalMapping<Double>(
                 Y,
                 "VAL_V",
-                LetsPlotPositionalMappingParameters()
+                LetsPlotPositionalMappingParametersContinuous()
             ),
             FILL to NonPositionalMapping(
                 FILL,
                 "BAFGA",
-                LetsPlotNonPositionalMappingParameters(
+                LetsPlotNonPositionalMappingParametersContinuous(
                     NonPositionalCategoricalScale<String, Color>(
                         null,
                         rangeValues = listOf(Color.BLACK, Color.WHITE, Color.GREY),
@@ -161,12 +161,12 @@ internal class LayerWrapperTest {
             "v1" to List(100) { it },
             "v2" to List(100) { it }
         )
-        val mappings: Map<AesName, Mapping> = mapOf(
+        val mappings: Map<Aes, Mapping> = mapOf(
             X to PositionalMapping<Int>(
-                X, "v1", LetsPlotPositionalMappingParameters()
+                X, "v1", LetsPlotPositionalMappingParametersContinuous()
             ),
             Y to PositionalMapping<Int>(
-                Y, "v2", LetsPlotPositionalMappingParameters()
+                Y, "v2", LetsPlotPositionalMappingParametersContinuous()
             )
         )
         val layer = Layer(

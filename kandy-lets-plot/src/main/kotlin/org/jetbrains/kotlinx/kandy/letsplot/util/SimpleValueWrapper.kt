@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.util
 
-// TODO to Inline Type???
-public interface SimpleValueWrapper {
-    public val value: Any
+internal interface SimpleValueWrapper {
+    val value: Any
 }

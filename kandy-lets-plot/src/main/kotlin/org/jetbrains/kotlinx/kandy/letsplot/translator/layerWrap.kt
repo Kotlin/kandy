@@ -5,7 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import org.jetbrains.kotlinx.kandy.ir.Layer
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
@@ -16,8 +16,8 @@ import org.jetbrains.letsPlot.intern.Feature
 internal fun Layer.wrap(
     featureBuffer: MutableList<Feature>,
     datasets: List<TableData>,
-    globalMappings: Map<AesName, Mapping>,
-    globalSettings: Map<AesName, Setting>,
+    globalMappings: Map<Aes, Mapping>,
+    globalSettings: Map<Aes, Setting>,
 ) {
     val dataset = if (datasetIndex == 0) {
         null
@@ -26,14 +26,12 @@ internal fun Layer.wrap(
     }
     val addGroups = datasets[datasetIndex] is GroupedData
     val groupKeys = (datasets[datasetIndex] as? GroupedData)?.keys
-    //todo
-    /*val mappings = if (datasetIndex == 0) {
+    val mappings = if (inheritsBindings) {
         globalMappings + mappings
     } else {
         mappings
-    }*/
-    val mappings = globalMappings + mappings
-    val settings = if (datasetIndex == 0) {
+    }
+    val settings = if (inheritsBindings) {
         globalSettings + settings
     } else {
         settings
@@ -42,7 +40,6 @@ internal fun Layer.wrap(
     featureBuffer.add(LayerWrapper(this, addGroups, dataset?.wrap(), mappings, settings, groupKeys))
     freeScales.forEach { (_, freeScale) -> freeScale.wrap(featureBuffer) }
     mappings.forEach { (_, mapping) ->
-        //todo group
         mapping.wrapScale(df[mapping.columnID].type(), groupKeys)?.let { featureBuffer.add(it) }
     }
 }

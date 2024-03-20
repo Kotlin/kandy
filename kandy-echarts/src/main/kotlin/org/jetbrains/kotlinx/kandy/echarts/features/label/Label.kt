@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.features.label
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.echarts.features.text.TextStyle
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
@@ -31,7 +30,6 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
  * @property textStyle [text style][TextStyle] settings
  * @property border [border][LabelBorder] settings
  */
-/*@PlotDslMarker*/
 public class LabelContext(
     public var position: LabelPosition? = null,
     public var formatter: String? = null,

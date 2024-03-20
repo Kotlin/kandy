@@ -5,6 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import kotlinx.datetime.*
+import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
@@ -12,7 +13,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.MERGED_GROUPS
 import kotlin.reflect.typeOf
 
 internal fun GroupedData.mergedKeys(): List<String> = buildList {
-    val dataFrame = origin.dataFrame
     val size = dataFrame.rowsCount()
     for (i in 0 until size) {
         add(keys.joinToString("$") {
@@ -21,35 +21,35 @@ internal fun GroupedData.mergedKeys(): List<String> = buildList {
     }
 }
 
-internal object DateTimeMaster {
-    internal fun postProcess(data: NamedData): Map<String, List<*>> {
-        return data.dataFrame.columns().map {
-            val type = it.type()
-            val values = it.values()
-            // TODO!!!
-            it.name() to (when (type) {
-                typeOf<LocalDate>(), typeOf<LocalDate?>() -> values.map {
-                    (it as? LocalDate)?.atStartOfDayIn((TimeZone.currentSystemDefault()))
-                }
+internal fun process(data: DataFrame<*>): Map<String, List<*>> {
+    return data.columns().map {
+        val type = it.type()
+        val values = it.values()
+        // TODO: local date/time values should be handled by Lets-Plot
+        // https://github.com/JetBrains/lets-plot-kotlin/issues/129
+        it.name() to (when (type) {
+            typeOf<LocalDate>(), typeOf<LocalDate?>() -> values.map { date ->
+                (date as? LocalDate)?.atStartOfDayIn((TimeZone.UTC))
+            }
 
-                typeOf<LocalDateTime>(), typeOf<LocalDateTime?>() -> values.map { dateTime ->
-                    (dateTime as? LocalDateTime)?.toInstant(TimeZone.currentSystemDefault())
-                }
+            typeOf<LocalDateTime>(), typeOf<LocalDateTime?>() -> values.map { dateTime ->
+                (dateTime as? LocalDateTime)?.toInstant(TimeZone.UTC)
+            }
 
-                typeOf<LocalTime>(), typeOf<LocalTime?>() -> values.map { time ->
-                    (time as? LocalTime)?.toMillisecondOfDay()
-                }
+            typeOf<LocalTime>(), typeOf<LocalTime?>() -> values.map { time ->
+                (time as? LocalTime)?.toMillisecondOfDay()
+            }
 
-                else -> values
-            }).toList()
-        }.toMap()
-    }
+            else -> values
+        }).toList()
+    }.toMap()
 }
 
+
 internal fun TableData.wrap(): Map<String, List<*>> {
-    return (when (this) {
-        is NamedData -> DateTimeMaster.postProcess(this)
-        is GroupedData -> DateTimeMaster.postProcess(origin) + (MERGED_GROUPS to mergedKeys())
-        else -> TODO()
-    })
+    return when (this) {
+        is NamedData -> process(dataFrame)
+        is GroupedData -> process(dataFrame) + (MERGED_GROUPS to mergedKeys())
+        else -> error("Unexpected data format")
+    }
 }

@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.features.marks
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 
@@ -23,7 +22,6 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.boxplot
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.candlestick
  */
-/*@PlotDslMarker*/
 public class MarkPointContext(
     public var points: List<MarkPoint>? = null
 ) {

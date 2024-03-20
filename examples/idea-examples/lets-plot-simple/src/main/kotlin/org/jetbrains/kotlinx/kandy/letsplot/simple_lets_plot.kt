@@ -2,15 +2,16 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.letsplot
-
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.invoke
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.export.save
+import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.bars
 import org.jetbrains.kotlinx.kandy.letsplot.layers.line
-import org.jetbrains.kotlinx.kandy.letsplot.util.linetype.LineType
+import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
+import org.jetbrains.kotlinx.kandy.letsplot.x
+import org.jetbrains.kotlinx.kandy.letsplot.y
 import org.jetbrains.kotlinx.kandy.util.color.Color
 
 public fun main() {
@@ -48,7 +49,6 @@ public fun main() {
             title = "Simple plot with lets-plot"
             caption = "See `examples` section for more\n complicated and interesting examples!"
         }
-
 
     }
 

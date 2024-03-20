@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.features.title
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
@@ -17,7 +16,6 @@ import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
  *
  * @see Color
  */
-/*@PlotDslMarker*/
 public class TitleBorder(
     public var color: Color? = null,
     public var width: Double? = null,

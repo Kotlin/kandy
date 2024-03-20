@@ -1,36 +1,12 @@
 plugins {
-    kotlin("jvm")
-    kotlin("jupyter.api")
-    //kotlin("plugin.serialization")
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.jupyter.api)
 }
-
-repositories {
-    mavenCentral()
-}
-
-//val serialization_version: String by project
-val datetime_version: String by project
-val dataframe_version: String by project
 
 dependencies {
-    implementation(kotlin("stdlib"))
-    testImplementation(kotlin("test"))
-    api("org.jetbrains.kotlinx:kotlinx-datetime:$datetime_version")
-    api("org.jetbrains.kotlinx:dataframe:$dataframe_version")
-   // implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version")
-}
+    api(libs.kotlinx.dataframe)
+    api(libs.kotlinx.datetime)
 
-tasks {
-    compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
-    }
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
-    }
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.mockk)
 }
-
-tasks.withType<JavaCompile> {
-    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-    targetCompatibility = JavaVersion.VERSION_1_8.toString()
-}
-

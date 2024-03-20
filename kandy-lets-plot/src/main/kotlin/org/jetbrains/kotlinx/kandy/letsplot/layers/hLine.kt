@@ -5,50 +5,52 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.HLineContext
 
-// TODO
-
-@PublishedApi
-internal val H_LINE: LetsPlotGeom = LetsPlotGeom("hLine")
 
 /**
- * Adds a new horizontal line layer.
+ * Adds a new `hLine` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `hLine` layer adds a horizontal line to a plot, which can serve as a reference line or highlight specific data ranges.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Line aesthetics:
- * * `y`
- * * `color`
- * * `type`
- * * `width`
- * * `alpha`
+ * ## HLine Aesthetics
+ * * **`y`** - The Y-coordinate where the horizontal line should appear.
+ * * **`color`** - The color of the line.
+ * * **`type`** - The type of the line, such as solid, dashed, or dotted.
+ * * **`width`** - The width of the line.
+ * * **`alpha`** - The transparency of the line.
  *
- * Example:
+ * ## Example
  *
- * ```
- * hLine {
- *    // positional mapping
- *    y(count) {
- *       ... // some mapping parameters
- *    }
- *    // even though the h-line have no "x" attribute we can adjust the `X` axis
- *    x.limits = 0.0 to 5.0
- *    // non-positional setting
- *    width = 2.5
- *    // non-positional mapping
- *    color("count")
+ * ```kotlin
+ * plot {
+ *     hLine {
+ *         // Set the Y-intercept of the horizontal line
+ *         yIntercept.constant(50.0)
+ *
+ *         // Optionally, set the color of the line
+ *         color = Color.RED
+ *
+ *         // Set the type or style of the line, such as solid, dashed, or dotted
+ *         type = LineType.DASHED
+ *
+ *         // Set the width of the line
+ *         width = 2.0
+ *
+ *         // Set the transparency of the line
+ *         alpha = 0.5
+ *
+ *         // Even though hLine does not have an "x" attribute, you can still adjust the X-axis limits if needed
+ *         x.limits = 0.0..100.0
+ *     }
  * }
  * ```
  */
 public inline fun LayerCollectorContext.hLine(block: HLineContext.() -> Unit) {
-    addLayer(HLineContext(this).apply(block), H_LINE)
+    addLayer(HLineContext(this).apply(block))
 }

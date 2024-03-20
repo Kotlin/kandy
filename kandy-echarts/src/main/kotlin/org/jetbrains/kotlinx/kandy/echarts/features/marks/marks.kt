@@ -24,7 +24,7 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.context.EchartsLayerContext
  * @see MarkPoint
  */
 public fun EchartsLayerContext.markPoint(block: MarkPointContext.() -> Unit) {
-    features[MarkPointFeature.FEATURE_NAME] = MarkPointContext().apply(block).toMarkPointFeature()
+    layerFeatures[MarkPointFeature.FEATURE_NAME] = MarkPointContext().apply(block).toMarkPointFeature()
 }
 
 /**
@@ -48,7 +48,7 @@ public fun EchartsLayerContext.markPoint(block: MarkPointContext.() -> Unit) {
  * @see MarkLine
  */
 public fun EchartsLayerContext.markLine(block: MarkLineContext.() -> Unit) {
-    features[MarkLineFeature.FEATURE_NAME] = MarkLineContext().apply(block).toMarkLineFeature()
+    layerFeatures[MarkLineFeature.FEATURE_NAME] = MarkLineContext().apply(block).toMarkLineFeature()
 }
 
 /**
@@ -69,5 +69,5 @@ public fun EchartsLayerContext.markLine(block: MarkLineContext.() -> Unit) {
  * @see MarkArea
  */
 public fun EchartsLayerContext.markArea(block: MarkAreaContext.() -> Unit) {
-    features[MarkAreaFeature.FEATURE_NAME] = MarkAreaContext().apply(block).toMarkAreaFeature()
+    layerFeatures[MarkAreaFeature.FEATURE_NAME] = MarkAreaContext().apply(block).toMarkAreaFeature()
 }

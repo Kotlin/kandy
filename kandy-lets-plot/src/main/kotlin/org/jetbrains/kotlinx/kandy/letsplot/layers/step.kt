@@ -4,50 +4,49 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.StepContext
 
-@PublishedApi
-internal val STEP: LetsPlotGeom = LetsPlotGeom("step")
-
 /**
- * Adds a new step layer.
+ * Adds a new `step` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `step` layer is used to create step plots,
+ * which are useful for representing data that changes at discrete intervals,
+ * often seen in time series or ordinal data.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Step aesthetics:
- * * `x`
- * * `y`
- * * `color`
- * * `lineType`
- * * `width`
- * * `alpha`
+ * ## Step Aesthetics
+ * * **`x`** - The X-coordinate specifying the points at which the steps change.
+ * * **`y`** - The Y-coordinate specifying the height of each step.
+ * * **`color`** - The color of the steps.
+ * * **`lineType`** - The type of the step line, such as dashed or dotted.
+ * * **`width`** - The width of the step line.
+ * * **`alpha`** - The transparency of the step line.
  *
- * Example:
+ * ## Example Usage
  *
- * ```
- * line {
- *    // positional mapping
- *    x(time) {
- *       ... // some mapping parameters
- *    }
+ * ```kotlin
+ * plot {
+ *     step {
+ *         // Positional mapping
+ *         x(listOf(1, 2, 3, 4, 5))
+ *         y(listOf(3, 5, 2, 8, 3))
  *
- *    // non-positional setting
- *    width = 2.5
- *    // non-positional mapping
- *    color("type")
+ *         // Non-positional mapping
+ *         color = Color.RED
+ *
+ *         // Non-positional settings
+ *         width = 2.5
+ *         alpha = 0.7
+ *         lineType = LineType.LONGDASH
+ *     }
  * }
  * ```
  */
 public inline fun LayerCollectorContext.step(block: StepContext.() -> Unit) {
-    addLayer(StepContext(this).apply(block), STEP)
+    addLayer(StepContext(this).apply(block))
 }

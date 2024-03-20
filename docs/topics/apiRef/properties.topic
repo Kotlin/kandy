@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="properties" id="properties_library" is-library="true">
+
+    <snippet id="signature-of-positional">
+        <emphasis>(Iterable | Column | String) | .constant(Any)</emphasis>
+    </snippet>
+
+    <snippet id="signature-of-nonpos-alpha">
+        <emphasis>(Iterable | Column | String) | Double in 0.0..1.0</emphasis>
+    </snippet>
+
+    <snippet id="signature-of-nonpos-color">
+        <emphasis>(Iterable | Column | String) | Color</emphasis>
+    </snippet>
+
+    <snippet id="signature-of-nonpos-linetype">
+        <emphasis>(Iterable | Column | String) | LineType</emphasis>
+    </snippet>
+
+    <snippet id="signature-of-nonpos-double">
+        <emphasis>(Iterable | Column | String) | Double</emphasis>
+    </snippet>
+
+    <snippet id="signature-of-axis">
+        <emphasis>{ AxisParameters }</emphasis>
+    </snippet>
+
+    <snippet id="signature-of-borderLine">
+        <a href="#borderline">
+            <format style="bold" color="DarkGray">borderLine</format>
+        </a>
+        <format style="italic">{ this: BorderLineContext -></format>
+        <list type="none">
+            <li>
+                <a href="#borderline-color">
+                    <format style="bold" color="DarkGray">color</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-color"></include>
+            </li>
+            <li>
+                <a href="#borderline-type">
+                    <format style="bold" color="DarkGray">type</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-linetype"></include>
+            </li>
+            <li>
+                <a href="#borderline-width">
+                    <format style="bold" color="DarkGray">width</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-double"></include>
+            </li>
+        </list>
+        <format style="italic"> }</format>
+    </snippet>
+
+    <snippet id="req-position-aes-desc">
+        <p>
+            <format style="superscript" color="Red">Required</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Any</format>
+        </p>
+    </snippet>
+
+    <snippet id="alpha-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Double</format>
+        </p>
+        <p>
+            The alpha aesthetic controls the transparency of elements in a plot.
+            It provides a means to adjust the visual prominence of elements,
+            ranging from fully transparent (0.0) to fully opaque (1.0).
+        </p>
+        <p><b>Setting</b></p>
+        <list>
+            <li><code>alpha = Double</code>: applies a uniform transparency level to all elements within a layer.
+                The Double value should be within the range of 0.0 (completely transparent) to 1.0 (completely opaque).
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>alpha(Iterable)</code>: associates the transparency of each element with a value from an iterable
+                collection.
+            </li>
+            <li><code>alpha(ColumnReference | KProperty | DataColumn)</code>: links transparency with data from a
+                specified DataFrame column.
+            </li>
+            <li><code>alpha(String)</code>: transparency is associated with data from a DataFrame column specified by
+                its name or with data from a Map by key.
+            </li>
+        </list>
+
+        <p><b>Characteristics of the <code>alpha</code> aesthetic</b></p>
+        <list>
+            <li><b>Value range</b> — It is crucial to ensure that all alpha values are within the 0.0 to 1.0 range.
+                Values outside this range will trigger an <code>IllegalArgumentException</code>.
+            </li>
+            <li><b>Scaling and validation</b> — When mapping <code>alpha</code> to data,
+                additional scaling adjustments and value validation ensure proper representation of transparency.
+            </li>
+        </list>
+
+    </snippet>
+
+    <snippet id="color-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Color</format>
+        </p>
+
+        <p>
+            The color aesthetic is a key feature in data visualization,
+            allowing you to set the color of plot elements to enhance the interpretability and visual appeal of your
+            graphs.
+            This aesthetic facilitates both the differentiation of data points and the conveyance of additional data
+            dimensions through color.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li><code> color = Color</code>: assigns a uniform color to all elements within a layer.
+                The value can be a predefined <code>Color</code> constant like <code>Color.RED</code>
+                or a custom color defined by <code>Color.hex("#ff0000")</code>.
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>color(Iterable)</code>: links the color of each element to a value from an iterable collection,
+                allowing for varied color assignments within a layer.
+            </li>
+            <li><code>color(ColumnReference | KProperty | DataColumn)</code>: associates element colors with a column in
+                the DataFrame, enabling data-driven color variations.
+            </li>
+            <li><code>color(String)</code>: connects colors to data based on the column name in the DataFrame or by key
+                in a Map, offering flexibility in data representation.
+            </li>
+        </list>
+
+        <p><b>Characteristics of the <code>color</code> aesthetic</b></p>
+        <list>
+            <li><b>Versatility in data representation</b> — The <code>color</code> aesthetic can be used to represent
+                different categories,
+                intensities, or other data dimensions, providing a rich layer of information in visualizations.
+            </li>
+            <li><b>Scaling and validation</b> — When mapping <code>color</code> to data,
+                you can customize the color scale and adjust the mapping to fit specific visualization needs.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="fatten-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Double</format>
+        </p>
+
+        <p>
+            The <code>fatten</code> aesthetic is designed
+            to adjust the thickness or size of elements in particular types of visual representations,
+            such as <code>boxes</code>, <code>crossBars</code>, and <code>pointRanges</code>.
+            It serves as a crucial aesthetic for emphasizing or de-emphasizing certain aspects of these plots.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li><code> fatten = Double</code>: directly modifies the thickness or enlargement factor of the applicable
+                elements within the specified layers.
+                The value is a numeric factor that determines how much the elements should be "fattened".
+                For example, setting <code>fatten = 0.3</code> adjusts the size of the elements according to the
+                specified factor.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="fillColor-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Color</format>
+        </p>
+
+        <p>
+            The <code>fillColor</code> aesthetic plays a crucial role
+            in defining the visual representation of plot elements by setting their fill color.
+            It allows for both uniform color application and data-driven color variations.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li><code> fillColor = Color</code>: provides a uniform fill color to all elements within a layer,
+                applicable for creating visually cohesive plot elements.
+                The value can be a predefined <code>Color</code> constant like <code>Color.RED</code>
+                or a custom color defined by <code>Color.hex("#ff0000")</code>.
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>fillColor(Iterable)</code>: associates the fill color of each element with a value from an
+                iterable collection,
+                allowing for a variety of fill colors within a single layer.
+            </li>
+            <li><code>fillColor(ColumnReference | KProperty | DataColumn)</code>: links element fill colors with a
+                column in the DataFrame,
+                enabling the visualization of data-driven color variations.
+            </li>
+            <li><code>fillColor(String)</code>: connects fill colors to data based on the column name in the DataFrame
+                or by key in a Map,
+                offering flexibility in data representation through color.
+            </li>
+        </list>
+
+        <p><b>Characteristics of the <code>fillColor</code> aesthetic</b></p>
+        <list>
+            <li><b>Versatility in data representation</b> — The <code>fillColor</code> aesthetic can be used to
+                represent different categories, intensities, or other data dimensions,
+                providing a rich layer of information in visualizations.
+            </li>
+            <li><b>Scaling and validation</b> — When mapping <code>fillColor</code> to data,
+                you can customize the color scale and adjust the mapping to fit specific visualization needs.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="lineType-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">LineType</format>
+        </p>
+
+        <p>
+            The <code>lineType</code> aesthetic is used to specify the style of lines in a plot,
+            allowing for a diverse range of visual representations.
+            This aesthetic enables the customization of line styles, providing clarity and distinction in data
+            visualizations.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li>
+                <p><code>lineType = LineType</code>: applies a specific line style to lines within a layer.
+                    The value can be one of the predefined <code>LineType</code> constants:</p>
+                <list>
+                    <li><i>LineType.BLANK</i></li>
+                    <li><i>LineType.SOLID</i></li>
+                    <li><i>LineType.DASHED</i></li>
+                    <li><i>LineType.DOTTED</i></li>
+                    <li><i>LineType.DOTDASH</i></li>
+                    <li><i>LineType.LONGDASH</i></li>
+                    <li><i>LineType.TWODASH</i></li>
+                </list>
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>lineType(Iterable)</code>: links the line style of each element to a value from an iterable
+                collection, allowing for various line styles within a single layer.
+            </li>
+            <li><code>lineType(ColumnReference | KProperty | DataColumn)</code>: associates line styles with a column in
+                the DataFrame, facilitating data-driven line style variations.
+            </li>
+            <li><code>lineType(String)</code>: connects line styles to data based on the column name in the DataFrame or
+                by key in a Map, offering flexibility in line style representation.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="size-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Double</format>
+        </p>
+
+        <p>
+            The <code>size</code> aesthetic is pivotal in controlling the visual size of plot elements, such as the
+            diameter of points in a scatter plot or the thickness of lines in a line plot. This aesthetic is versatile,
+            being utilized across various layers including <code>pie</code>, <code>pointRanges</code>,
+            <code>points</code>, and <code>text</code>.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li>
+                <code>size = Double</code>: imposes a uniform size across all applicable elements within a layer.
+                The double value is factor indicating the size, e.g., <code>size = 0.3</code>.
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>size(Iterable)</code>: each element's size is linked to a value from an iterable collection,
+                allowing for varied sizes within a layer to represent data variations.
+            </li>
+            <li><code>size(ColumnReference | KProperty | DataColumn)</code>: element sizes are associated with a
+                DataFrame column, enabling the visualization of data-driven size differences.
+            </li>
+            <li><code>size(String)</code>: sizes are tied to data based on the column name in the DataFrame or by a key
+                in a Map, facilitating flexible data representation through size.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="stroke-point-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Double</format>
+        </p>
+
+        <p>
+            The <code>stroke</code> aesthetic affects the thickness of a symbol borders (shapes).
+            This aesthetic can be used on <code>pointRanges</code> and <code>points</code> layers.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li>
+                <code>stroke = Number</code>: imposes a uniform size across all applicable elements within a layer.
+                The number value is factor indicating the thickness if the point boundaries, e.g., <code>size = 5</code>.
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>stroke(Iterable)</code>: each element's thickness is linked to a value from an iterable collection,
+                allowing for varied sizes within a layer to represent data variations.
+            </li>
+            <li><code>stroke(ColumnReference | KProperty | DataColumn)</code>: element thickness are associated with a
+                DataFrame column, enabling the visualization of data-driven size differences.
+            </li>
+            <li><code>stroke(String)</code>: thicknesses are tied to data based on the column name in the DataFrame or
+                by a key in a Map, facilitating flexible data representation through thickness of the point boundaries.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="symbol-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Symbol</format>
+        </p>
+
+        <p>
+            The <code>symbol</code> aesthetic is integral to plotting, especially in visualizations that rely on
+            markers, such as scatter plots and point ranges. This aesthetic enables the customization of marker shapes,
+            allowing for a diverse representation of data points.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li>
+                <p><code>symbol = Symbol</code>: Assigns a specific marker shape to all points within a layer:</p>
+                <list>
+                    <li><i>Symbol.ASTERIX</i></li>
+                    <li><i>Symbol.BULLET</i></li>
+                    <li><i>Symbol.CIRCLE</i></li>
+                    <li><i>Symbol.CIRCLE_CROSS</i></li>
+                    <li><i>Symbol.CIRCLE_FILLED</i></li>
+                    <li><i>Symbol.CIRCLE_OPEN</i></li>
+                    <li><i>Symbol.CIRCLE_PLUS</i></li>
+                    <li><i>Symbol.CIRCLE_SMALL</i></li>
+                    <li><i>Symbol.CROSS</i></li>
+                    <li><i>Symbol.DIAMOND</i></li>
+                    <li><i>Symbol.DIAMOND_FILLED</i></li>
+                    <li><i>Symbol.DIAMOND_OPEN</i></li>
+                    <li><i>Symbol.DIAMOND_PLUS</i></li>
+                    <li><i>Symbol.PLUS</i></li>
+                    <li><i>Symbol.SQUARE</i></li>
+                    <li><i>Symbol.SQUARE_CROSS</i></li>
+                    <li><i>Symbol.SQUARE_FILLED</i></li>
+                    <li><i>Symbol.SQUARE_OPEN</i></li>
+                    <li><i>Symbol.SQUARE_PLUS</i></li>
+                    <li><i>Symbol.SQUARE_TRIANGLE</i></li>
+                    <li><i>Symbol.STAR</i></li>
+                    <li><i>Symbol.TRIANGLE</i></li>
+                    <li><i>Symbol.TRIANGLE_DOWN_FILLED</i></li>
+                    <li><i>Symbol.TRIANGLE_DOWN_OPEN</i></li>
+                    <li><i>Symbol.TRIANGLE_FILLED</i></li>
+                    <li><i>Symbol.TRIANGLE_OPEN</i></li>
+                </list>
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>symbol(Iterable)</code>: each marker's shape is linked to a value from an iterable collection,
+                enabling variable marker shapes within a single layer to represent different data categories or values.
+            </li>
+            <li><code>symbol(ColumnReference | KProperty | DataColumn)</code>: marker shapes are associated with a
+                DataFrame column, allowing the visualization of data-driven shape variations.
+            </li>
+            <li><code>symbol(String)</code>: ties marker shapes to data based on the column name in the DataFrame or by
+                key in a Map, offering flexible and dynamic data representation through marker shapes.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="type-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">LineType</format>
+        </p>
+
+        <p>
+            The type aesthetic is used to specify the style of lines in a plot, allowing for a diverse range of visual
+            representations.
+            This aesthetic enables the customization of line styles, providing clarity and distinction in data
+            visualizations.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li>
+                <p><code>type = LineType</code>: applies a specific line style to lines within a layer.
+                    The value can be one of the predefined <code>LineType</code> constants:</p>
+                <list>
+                    <li><i>LineType.BLANK</i></li>
+                    <li><i>LineType.SOLID</i></li>
+                    <li><i>LineType.DASHED</i></li>
+                    <li><i>LineType.DOTTED</i></li>
+                    <li><i>LineType.DOTDASH</i></li>
+                    <li><i>LineType.LONGDASH</i></li>
+                    <li><i>LineType.TWODASH</i></li>
+                </list>
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>type(Iterable)</code>: links the line style of each element to a value from an iterable
+                collection, allowing for various line styles within a single layer.
+            </li>
+            <li><code>type(ColumnReference | KProperty | DataColumn)</code>: associates line styles with a column in the
+                DataFrame, facilitating data-driven line style variations.
+            </li>
+            <li><code>type(String)</code>: connects line styles to data based on the column name in the DataFrame or by
+                key in a Map, offering flexibility in line style representation.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="width-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Double</format>
+        </p>
+
+        <p>
+            The <code>width</code> aesthetic is crucial for adjusting the width of visual elements across various plot
+            types, including <code>bars</code>, <code>boxes</code>, <code>crossBars</code>,
+            <code>errorBars</code>, and <code>tiles</code>.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li><code> width = Double</code>: Provides a uniform width to all applicable elements within a layer.
+                The Double value is representation of width,
+                for instance, <code>width = 0.9</code> would set the width of elements to 0.9 units.
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>width(Iterable)</code>: each element's width is associated with a value from an iterable
+                collection, allowing for the representation of data variations through width differences.
+            </li>
+            <li><code>width(ColumnReference | KProperty | DataColumn)</code>: element widths are linked to a DataFrame
+                column, enabling visualization of data-driven width variations.
+            </li>
+            <li><code>width(String)</code>: connects widths to data based on the column name in the DataFrame or by a
+                key in a Map, providing flexibility in representing data through width.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="widthAsSize-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+            <format style="superscript" color="#89CFF0">NonPositional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Double</format>
+        </p>
+
+        <p>
+            The <code>width</code> aesthetic is a critical component in data visualization,
+            particularly useful in plots where the size of elements, such as lines, is a significant visual factor.
+            The <code>width</code> aesthetic allows for the encoding of numerical values or categories through the
+            visual dimension of size.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li><code> width = Double</code>: assigns a uniform width to all applicable elements within a layer.
+                The value is a numerical representation of the width, for example, <code>width = 0.3</code>.
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>width(Iterable)</code>: links the width of each element to a value from an iterable
+                collection, allowing for the representation of data variations through size differences.
+            </li>
+            <li><code>width(ColumnReference | KProperty | DataColumn)</code>: associates element widths with
+                a column in the DataFrame, enabling the visualization of data-driven size variations.
+            </li>
+            <li><code>width(String)</code>: Connects width to data based on the column name in the DataFrame or by key
+                in a Map, providing flexibility in representing data through size.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="x-property">
+        <p>
+            <format style="superscript" color="Red">Required</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Any</format>
+        </p>
+
+        <p>
+            The <code>x</code> aesthetic is foundational in plotting, representing the x-coordinate of elements within a
+            plot. This aesthetic is crucial for positioning elements along the x-axis, thereby defining their placement
+            within the plot's coordinate system.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li><code>x.constant(Any)</code>: Assigns a fixed x-coordinate to all elements within a layer, effectively
+                positioning them at a specific point along the x-axis. This is useful for aligning elements across
+                different layers or for creating reference lines. Example usage: <code>x.constant(0.9)</code> sets the
+                x-coordinate of all applicable elements to 0.9.
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>x(Iterable)</code>: Each element's x-coordinate is linked to a value from an iterable
+                collection, enabling the representation of data variations along the x-axis.
+            </li>
+            <li><code>x(ColumnReference | KProperty | DataColumn)</code>: element positions are associated with a
+                DataFrame column, allowing for the visualization of data-driven positioning along the x-axis.
+            </li>
+            <li><code>x(String)</code>: ties element positions to data based on the column name in the DataFrame or by a
+                key in a Map, offering flexibility in data representation through x-coordinates.
+            </li>
+        </list>
+
+        <p><b>Characteristics of the <code>x</code> aesthetic</b></p>
+        <list>
+            <li><b>Data Positioning</b> — The <code>x</code> aesthetic is essential for determining where elements are
+                placed along the x-axis,
+                impacting how data is visualized and interpreted within the plot's spatial context.
+            </li>
+            <li><b>Scaling</b> — Proper use of the <code>x</code> aesthetic can significantly enhance the dynamism and
+                readability of a plot,
+                facilitating the effective communication of complex data patterns and relationships.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="xFree-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">AxisParameters</format>
+        </p>
+
+        <p>
+            The <code>Free Scale X</code> aesthetic provides advanced customization for the x-axis in plots,
+            offering a flexible approach to setting axis parameters beyond the standard positional aesthetics.
+        </p>
+
+        <p><b>Modifying Axis Parameters</b></p>
+        <list>
+            <li>
+                <code>x { ... }</code> — Directly manipulates the x-axis parameters through a lambda function, providing
+                a straightforward way to apply custom configurations to the x-axis. The free scale <code>x</code> allows
+                for detailed customization of the x-axis, including but not limited to setting axis limits and adjusting
+                axis appearance.
+            </li>
+        </list>
+
+    </snippet>
+
+    <snippet id="y-property">
+        <p>
+            <format style="superscript" color="Red">Required</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Any</format>
+        </p>
+
+        <p>
+            The <code>y</code> aesthetic is foundational in plotting, representing the y-coordinate of elements within a
+            plot. This aesthetic is crucial for positioning elements along the y-axis, thereby defining their placement
+            within the plot's coordinate system.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li><code>y.constant(Any)</code>: Assigns a fixed y-coordinate to all elements within a layer, effectively
+                positioning them at a specific point along the y-axis. This is useful for aligning elements across
+                different layers or for creating reference lines. Example usage: <code>y.constant(13)</code> sets the
+                y-coordinate of all applicable elements to 13.
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>y(Iterable)</code>: Each element's y-coordinate is linked to a value from an iterable
+                collection, enabling the representation of data variations along the y-axis.
+            </li>
+            <li><code>y(ColumnReference | KProperty | DataColumn)</code>: element positions are associated with a
+                DataFrame column, allowing for the visualization of data-driven positioning along the y-axis.
+            </li>
+            <li><code>y(String)</code>: ties element positions to data based on the column name in the DataFrame or by a
+                key in a Map, offering flexibility in data representation through y-coordinates.
+            </li>
+        </list>
+
+        <p><b>Characteristics of the <code>y</code> aesthetic</b></p>
+        <list>
+            <li><b>Data Positioning</b> — The <code>y</code> aesthetic is essential for determining where elements are
+                placed along the y-axis,
+                impacting how data is visualized and interpreted within the plot's spatial context.
+            </li>
+            <li><b>Scaling</b> — Proper use of the <code>y</code> aesthetic can significantly enhance the dynamism and
+                readability of a plot,
+                facilitating the effective communication of complex data patterns and relationships.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="yFree-property">
+        <p>
+            <format style="superscript" color="LightSlateGray">Optional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">AxisParameters</format>
+        </p>
+
+        <p>
+            The <code>Free Scale Y</code> aesthetic provides advanced customization for the y-axis in plots,
+            offering a flexible approach to setting axis parameters beyond the standard positional aesthetics.
+        </p>
+
+        <p><b>Modifying Axis Parameters</b></p>
+        <list>
+            <li>
+                <code>y { ... }</code> — Directly manipulates the y-axis parameters through a lambda function, providing
+                a straightforward way to apply custom configurations to the y-axis. The free scale <code>y</code> allows
+                for detailed customization of the y-axis, including but not limited to setting axis limits and adjusting
+                axis appearance.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="yMax-property">
+        <p>
+            <format style="superscript" color="Red">Required</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Any</format>
+        </p>
+
+        <p>
+            The <code>yMax</code> aesthetic specifies the maximum y-coordinate for elements within plots, playing a
+            critical role in defining the vertical extent of elements such as
+            <code>boxes</code>, <code>crossBars</code>, errorBars, <code>lineRanges</code>, <code>pointRanges</code>,
+            <code>rectangles</code>, and <code>ribbons</code>. This aesthetic is essential for accurately representing
+            the upper boundaries of data within these plot types.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li><code>yMax.constant(Any)</code>: establishes a uniform maximum y-coordinate across all applicable
+                elements within a layer, useful for setting a fixed upper limit. Example usage:
+                <code>yMax.constant(0.9)</code> uniformly sets the upper boundary of elements to a y-coordinate of 0.9.
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>yMax(Iterable)</code>: associates each element's maximum y-coordinate with a value from an
+                iterable collection, allowing for varied upper boundaries within a single layer to represent different
+                data points or ranges.
+            </li>
+            <li><code>yMax(ColumnReference | KProperty | DataColumn)</code>: links the maximum y-coordinate of elements
+                to a DataFrame column, enabling the visualization of data-driven upper boundaries.
+            </li>
+            <li><code>yMax(String)</code>: connects the maximum y-coordinate of elements to data based on the column
+                name in the DataFrame or by a key in a Map, offering flexibility in representing upper limits through
+                y-coordinates.
+            </li>
+        </list>
+
+        <p><b>Characteristics of the <code>y</code> aesthetic</b></p>
+        <list>
+            <li><b>Scaling</b> — Mapping <code>yMax</code> to data or setting it as a constant value provides extensive
+                customization options, enabling precise control over the representation of upper data boundaries.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="yMin-property">
+        <p>
+            <format style="superscript" color="Red">Required</format>
+            <format style="superscript" color="#89CFF0">Positional</format>
+        </p>
+        <p>
+            <format style="superscript" color="#E8488B">Iterable</format>
+            <format style="superscript" color="#E8488B">Column</format>
+            <format style="superscript" color="#E8488B">String</format>
+            <format style="superscript" color="#E8488B">Any</format>
+        </p>
+
+        <p>
+            The <code>yMin</code> aesthetic specifies the minimum y-coordinate for elements within plots,
+            crucial for defining the vertical lower bounds of elements such as boxes, crossbars, error bars,
+            line ranges, point ranges, rectangles, and ribbons. This aesthetic is fundamental in accurately portraying
+            the lower limits of data within these types of visualizations.
+        </p>
+
+        <p><b>Setting</b></p>
+        <list>
+            <li><code>yMax.constant(Any)</code>: sets a uniform minimum y-coordinate across all relevant elements within
+                a layer, ideal for establishing a fixed lower limit. For example, <code>yMin.constant(0.1)</code>
+                uniformly sets the lower boundary of elements to a y-coordinate of 0.1.
+            </li>
+        </list>
+        <p><b>Mapping</b></p>
+        <list>
+            <li><code>yMax(Iterable)</code>: each element's minimum y-coordinate is linked to a value from an iterable
+                collection, allowing for the depiction of varying lower boundaries within a layer to represent different
+                data points or ranges.
+            </li>
+            <li><code>yMax(ColumnReference | KProperty | DataColumn)</code>: associates the minimum y-coordinate of
+                elements with a DataFrame column, facilitating the visualization of data-driven lower boundaries.
+            </li>
+            <li><code>yMax(String)</code>: ties the minimum y-coordinate of elements to data based on the column name in
+                the DataFrame or by key in a Map, offering adaptability in representing lower limits through
+                y-coordinates.
+            </li>
+        </list>
+
+        <p><b>Characteristics of the <code>y</code> aesthetic</b></p>
+        <list>
+            <li><b>Scaling</b> — The flexibility to map <code>yMin</code> to data or define it as a constant value
+                affords extensive customization opportunities, allowing for precise tailoring of the visual
+                representation of lower data boundaries.
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="borderLine-property">
+        <p>
+            The <code>borderLine</code> group of aesthetics provides a comprehensive way to customize the appearance of
+            borders around plot
+            elements such as boxes, bars, and other geometries that support border customization. This set of aesthetics
+            allows you
+            to adjust the color, line type, and width of the borderlines to enhance the visual appeal and clarity of
+            your plots.
+        </p>
+
+        <p>Available aesthetics within <code>borderLine</code>:</p>
+
+        <list>
+            <li><a href="#borderline-color"><code>borderLine.color</code></a> — Specifies the color of the borderline.
+            </li>
+            <li><a href="#borderline-type"><code>borderLine.type</code></a> — Determines the style of the borderline.
+            </li>
+            <li><a href="#borderline-width"><code>borderLine.width</code></a> — Controls the thickness of the
+                borderline.
+            </li>
+        </list>
+
+        <chapter title="borderLine.color" id="borderline-color" collapsible="true">
+
+            <include from="properties.topic" element-id="color-property"/>
+        </chapter>
+
+        <chapter title="borderLine.type" id="borderline-type" collapsible="true">
+
+            <include from="properties.topic" element-id="type-property"/>
+        </chapter>
+
+        <chapter title="borderLine.width" id="borderline-width" collapsible="true">
+
+            <include from="properties.topic" element-id="width-property"/>
+        </chapter>
+    </snippet>
+</topic>

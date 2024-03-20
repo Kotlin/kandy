@@ -4,14 +4,16 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
+import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
+import org.jetbrains.kotlinx.kandy.echarts.layers.BAR
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.WithAlpha
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.WithColor
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.WithX
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.WithY
-import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
-import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
 /**
  * Bar settings.
@@ -26,9 +28,12 @@ import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
  * @see org.jetbrains.kotlinx.kandy.util.color.Color
  * @see Animation
  */
-/*@PlotDslMarker*/
-public class BarContext(parent: LayerCollectorContext) : EchartsLayerContext(parent), WithX, WithY, WithColor,
-    WithAlpha {
+public interface BarInterface : LayerContextInterface, WithX, WithY, WithColor, WithAlpha {
+    override val geom: Geom
+        get() = BAR
+}
+
+public class BarContext(parent: LayerCollectorContext) : EchartsLayerContext(parent), BarInterface {
     /**
      * Animation options settings for [bars][org.jetbrains.kotlinx.kandy.echarts.layers.bars].
      * If a property isn't set or set to null, a default value will be used.

@@ -7,73 +7,158 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.checkInRange
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
+import org.jetbrains.kotlinx.kandy.ir.scale.*
 import org.jetbrains.kotlinx.kandy.letsplot.internal.ALPHA
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParametersContinuous
 import kotlin.reflect.KProperty
 
+/**
+ * Interface for configuring the `alpha` (transparency) aesthetic in a plot layer.
+ *
+ * The interface includes methods to set the alpha aesthetic to a constant value
+ * or to map it to a data column.
+ * The alpha value should range from 0.0 (fully transparent) to 1.0 (fully opaque).
+ */
 public interface WithAlpha : BindingContext {
+    private fun checkInRange(value: Double) {
+        checkInRange(ALPHA, value, 0.0..1.0)
+    }
+
+    private fun validateScale(scale: NonPositionalScale<*, out Double>) {
+        when (scale) {
+            is NonPositionalDefaultCategoricalScale, is NonPositionalDefaultScale -> return
+            is CustomNonPositionalScale -> return // TODO
+            is NonPositionalCategoricalScale -> scale.rangeValues?.forEach { checkInRange(it) }
+            is NonPositionalContinuousScale -> {
+                scale.rangeMin?.let { checkInRange(it) }
+                scale.rangeMax?.let { checkInRange(it) }
+            }
+        }
+    }
+
+    private fun validateParameters(parameters: LetsPlotNonPositionalMappingParametersContinuous<*, Double>) =
+        validateScale(parameters.scale)
+
+    /**
+     * Sets a constant alpha (transparency) value for the layer.
+     *
+     * @property alpha the value is ranging from 0.0 (fully transparent) to 1.0 (fully opaque).
+     * @throws IllegalArgumentException if value is not in the range [0.0, 1.0].
+     */
     public var alpha: Double?
         get() = null
         set(value) {
+            value?.let { checkInRange(it) }
             addNonPositionalSetting(ALPHA, value)
         }
 
+    /**
+     * Maps the alpha aesthetic to a data column by [ColumnReference].
+     *
+     * @param column the data column to map to alpha.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return the created [NonPositionalMapping].
+     * @throws IllegalArgumentException if any mapped alpha value is not in the range [0.0, 1.0].
+     */
     public fun <T> alpha(
         column: ColumnReference<T>,
-        parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+        parameters: LetsPlotNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping<T, Double>(
             ALPHA,
             column.name(),
-            LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
+            LetsPlotNonPositionalMappingParametersContinuous<T, Double>().apply(parameters).also {
+                validateParameters(it)
+            }
         )
     }
 
+    /**
+     * Maps the alpha aesthetic to a data column by [KProperty].
+     *
+     * @param column the data column to map to alpha.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return the created [NonPositionalMapping].
+     * @throws IllegalArgumentException if any mapped alpha value is not in the range [0.0, 1.0].
+     */
     public fun <T> alpha(
         column: KProperty<T>,
-        parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+        parameters: LetsPlotNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping<T, Double>(
             ALPHA,
             column.name,
-            LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
+            LetsPlotNonPositionalMappingParametersContinuous<T, Double>().apply(parameters).also {
+                validateParameters(it)
+            }
         )
     }
 
+    /**
+     * Maps the alpha aesthetic to a data column by [String].
+     *
+     * @param column the data column to map to alpha.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return the created [NonPositionalMapping].
+     * @throws IllegalArgumentException if any mapped alpha value is not in the range [0.0, 1.0].
+     */
     public fun alpha(
         column: String,
-        parameters: LetsPlotNonPositionalMappingParameters<Any?, Double>.() -> Unit = {}
+        parameters: LetsPlotNonPositionalMappingParametersContinuous<Any?, Double>.() -> Unit = {}
     ): NonPositionalMapping<Any?, Double> {
         return addNonPositionalMapping<Any?, Double>(
             ALPHA,
             column,
-            LetsPlotNonPositionalMappingParameters<Any?, Double>().apply(parameters)
+            LetsPlotNonPositionalMappingParametersContinuous<Any?, Double>().apply(parameters).also {
+                validateParameters(it)
+            }
         )
     }
 
+    /**
+     * Maps the alpha aesthetic to an iterable collection of discrete values.
+     *
+     * @param values an iterable collection containing the discrete values.
+     * @param name optional name for this aesthetic mapping.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return the created [NonPositionalMapping].
+     * @throws IllegalArgumentException if any mapped alpha value is not in the range [0.0, 1.0].
+     */
     public fun <T> alpha(
         values: Iterable<T>,
         name: String? = null,
-        parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+        parameters: LetsPlotNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping<T, Double>(
             ALPHA,
             values.toList(),
             name,
-            LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
+            LetsPlotNonPositionalMappingParametersContinuous<T, Double>().apply(parameters).also {
+                validateParameters(it)
+            }
         )
     }
 
+    /**
+     * Maps the alpha aesthetic to a data column.
+     *
+     * @param values the data column to map to alpha.
+     * @param parameters optional lambda to configure additional scale parameters.
+     * @return the created [NonPositionalMapping].
+     * @throws IllegalArgumentException if any mapped alpha value is not in the range [0.0, 1.0].
+     */
     public fun <T> alpha(
         values: DataColumn<T>,
-        //name: String? = null,
-        parameters: LetsPlotNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+        parameters: LetsPlotNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> {
         return addNonPositionalMapping<T, Double>(
             ALPHA,
             values,
-            LetsPlotNonPositionalMappingParameters<T, Double>().apply(parameters)
+            LetsPlotNonPositionalMappingParametersContinuous<T, Double>().apply(parameters).also {
+                validateParameters(it)
+            }
         )
     }
 }

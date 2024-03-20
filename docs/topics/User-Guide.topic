@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="User Guide" id="User-Guide">
+
+    <web-summary>
+        Explore the diverse capabilities of Kandy through an extensive user guide. This comprehensive resource covers everything from basic setup and plot creation to advanced features, offering practical examples and guidance for enhancing your data visualization projects.
+    </web-summary>
+    <card-summary>
+        An entry point to data visualization.
+        Uncover methods, examples, and insights to boost your data charting abilities.
+    </card-summary>
+    <link-summary>
+        Dive into Kandy’s User Guide for a thorough exploration of its features.
+        Learn to create impactful visualizations with practical examples and detailed instructions.
+    </link-summary>
+
+    <p>
+        <a href="Quick-Start-Guide.md"><b>Quick Start Guide</b></a>
+    </p>
+
+    <list columns="2">
+        <li>
+            <p>
+                <b>
+                    <tooltip term="geom">Geoms</tooltip>
+                </b>
+            </p>
+            <list type="none">
+                <li>
+                    <a href="Algebraic-Curve.md"/>
+                </li>
+                <li>
+                    <a href="ErrorBars-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Jitter-Points-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Lines-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Pie-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Ribbon-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Scatter-Guide.md"/>
+                </li>
+            </list>
+        </li>
+        <li>
+            <p>
+                <b>
+                    Statistical
+                </b>
+            </p>
+            <list type="none">
+                <li>
+                    <a href="Statistics-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Smoothing-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Histogram-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Boxplot-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Heatmap-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Count-Plot-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Density-Plot-Guide.md"/>
+                </li>
+            </list>
+        </li>
+        <li>
+            <p>
+                <b>
+                    Multiplot
+                </b>
+            </p>
+            <list type="none">
+                <li>
+                    <a href="Anscombes-Quartet-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Facets-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Plot-Bunch-Guide.md"/>
+                </li>
+            </list>
+        </li>
+        <li>
+            <p>
+                <b>
+                    Layout customization
+                </b>
+            </p>
+            <list type="none">
+                <li>
+                    <a href="Formatting-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Legend-and-Axis-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Styles-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Title-Subtitle-Caption-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Tooltips-Guide.md"/>
+                </li>
+            </list>
+        </li>
+        <li>
+            <p>
+                <b>
+                    Other guides
+                </b>
+            </p>
+            <list type="none">
+                <li>
+                    <a href="Export-to-File-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Kotlin-Notebook-Features-Guide.md"/>
+                </li>
+                <li>
+                    <a href="Series-Hack-Guide.md"/>
+                </li>
+            </list>
+        </li>
+    </list>
+
+</topic>

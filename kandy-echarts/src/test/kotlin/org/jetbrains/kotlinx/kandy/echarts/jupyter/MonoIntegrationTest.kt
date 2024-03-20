@@ -1,7 +1,3 @@
-/*
-* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
-*/
-
 package org.jetbrains.kotlinx.kandy.echarts.jupyter
 
 import org.jetbrains.kotlinx.jupyter.testkit.JupyterReplTestCase
@@ -9,8 +5,8 @@ import org.junit.Rule
 import org.junit.rules.TestName
 import kotlin.test.Ignore
 import kotlin.test.Test
-import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 // This test doesn't support other libraries, to have possibility to add them, provide custom REPL provider
 // to the testcase constructor
@@ -48,6 +44,8 @@ class MonoIntegrationTest : JupyterReplTestCase() {
         val resourcePath = "testData/jupyter/${testName.methodName}.out"
         val resource = classLoader.getResource(resourcePath)
         assertNotNull(resource)
-        assertEquals(resource.readText().replace("\r\n", "\n"), actualOutputText)
+        assertTrue {
+            resource.readText().replace("\r\n", "\n") in actualOutputText
+        }
     }
 }

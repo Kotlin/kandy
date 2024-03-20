@@ -5,56 +5,52 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TextContext
 
-@PublishedApi
-internal val TEXT: LetsPlotGeom = LetsPlotGeom("text")
-
 /**
- * Adds a new text layer.
+ * Adds a new `text` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `text` layer is used for annotating a plot with text labels,
+ * providing supplementary information that can help in data interpretation or presentation.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Text aesthetics:
- * * `x`
- * * `y`
- * * `label`
- * * `alpha`
- * * `width`
- * * `font.color`
- * * `font.family`
- * * `font.size`
- * * `font.face`
+ * ## Text Aesthetics
+ * * **`x`** - The X-coordinate specifying the position of the text.
+ * * **`y`** - The Y-coordinate specifying the position of the text.
+ * * **`label`** - The text content of the label.
+ * * **`alpha`** - The transparency of the text.
+ * * **`font.color`** - The color of the text.
+ * * **`font.family`** - The font family for the text.
+ * * **`font.size`** - The font size of the text.
+ * * **`font.face`** - The font style (italic, bold, etc.) of the text.
  *
- * Example:
+ * ## Example Usage
  *
- * ```
- * text {
- *    // positional mapping
- *    x(time) {
- *       ... // some mapping parameters
- *    }
- *    y.constant(20.0F)
+ * ```kotlin
+ * plot {
+ *     text {
+ *         // Positional mapping
+ *         x(listOf(1, 2, 3, 4, 5))
+ *         y(listOf(5, 10, 20, 15, 8))
  *
- *    // non-positional settings
- *    alpha = 0.8
- *    font.size = 2.5
- *    font {
- *       color = Color.RED
- *    }
- *    // non-positional mapping
- *    label("status")
+ *         // Non-positional mapping
+ *         label(listOf("Low", "Medium", "High", "Medium", "Low").toColumn("status"))
+ *
+ *         // Non-positional settings
+ *         alpha = 0.8
+ *         font {
+ *             size = 12.0
+ *             color = Color.BLUE
+ *             face = FontFace.BOLD
+ *         }
+ *     }
  * }
  * ```
  */
 public inline fun LayerCollectorContext.text(block: TextContext.() -> Unit) {
-    addLayer(TextContext(this).apply(block), TEXT)
+    addLayer(TextContext(this).apply(block))
 }

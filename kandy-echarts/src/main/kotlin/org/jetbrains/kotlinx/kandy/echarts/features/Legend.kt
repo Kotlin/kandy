@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.features
 
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 import org.jetbrains.kotlinx.kandy.echarts.layers.EChartsLayout
 import org.jetbrains.kotlinx.kandy.echarts.settings.SizeUnit
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.EchartsLegend
@@ -74,7 +73,6 @@ public enum class Orient(public val type: String) {
  * @see Orient
  * @see SizeUnit
  */
-/*@PlotDslMarker*/
 public class Legend(
     public var type: LegendType? = null,
     public var left: SizeUnit? = null,

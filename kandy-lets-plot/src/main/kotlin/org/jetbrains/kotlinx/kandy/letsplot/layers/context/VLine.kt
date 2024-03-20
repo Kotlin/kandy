@@ -6,32 +6,48 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X_INTERCEPT
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.V_LINE
 
+/**
+ * Interface for defining the necessary aesthetics and methods for vertical line layers.
+ *
+ * Vertical line layers are useful for indicating specific values along the X-axis.
+ * This interface provides the required aesthetics like `xIntercept`,
+ * `alpha`, `color`, `width`, and `type` for customization.
+ *
+ * The set of required aesthetics for vertical line layers includes `X_INTERCEPT`.
+ */
+public interface VLineInterface : LayerContextInterface, WithXIntercept, WithAlpha, WithColor,
+    WithWidthAsSize, WithType, WithYFree {
 
-public class VLineContext(parent: LayerCollectorContext) : LayerContext(parent), WithX, WithAlpha, WithColor,
-    WithWidthAsSize, WithType, WithYFree
-/*
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
-import org.jetbrains.kotlinx.kandy.letsplot.internal.*
+    /**
+     * Gets the Geom object specific to **vLine** layers.
+     *
+     * @return the [Geom] object for **vLine**.
+     */
+    override val geom: Geom
+        get() = V_LINE
 
-public interface VLineContextInterface: BindingContext {
-    public val x: XInterceptAes get() = XInterceptAes(this)
-
-    public val color: ColorAes get() = ColorAes(this)
-    public val alpha: AlphaAes get() = AlphaAes(this)
-    public val type: LineTypeAes get() = LineTypeAes(this)
-    public val width: SizeAes get() = SizeAes(this)
+    /**
+     * Gets the set of required aesthetics for **vLine** layers.
+     *
+     * @return the set of required aesthetics.
+     */
+    override val requiredAes: Set<Aes>
+        get() = setOf(X_INTERCEPT)
 }
 
-*/
-/*@PlotDslMarker*//*
-
-public class VLineContextImmutable(parent: LayerCollectorContextImmutable)
-    : LayerContextImmutable(parent), VLineContextInterface
-
-*/
-/*@PlotDslMarker*//*
-
-public class VLineContextMutable(parent: LayerCollectorContextMutable):
-    LayerContextMutable(parent), VLineContextInterface*/
+/**
+ * Context class for managing vertical line layers.
+ *
+ * This class serves as the context in which vertical line layers can be customized.
+ * It inherits from [LayerContext] and implements the [VLineInterface].
+ *
+ * @param parent the parent context for the layer.
+ */
+public open class VLineContext(parent: LayerCollectorContext) : LayerContext(parent), VLineInterface

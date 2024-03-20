@@ -5,48 +5,53 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.LineContext
 
-@PublishedApi
-internal val LINE: LetsPlotGeom = LetsPlotGeom("line")
-
 /**
- * Adds a new line layer.
+ * Adds a new `line` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `line` layer plots lines connecting data points, usually to show trends or patterns over time or other continuous variables.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Horizontal ine aesthetics:
- * * `x`
- * * `y`
- * * `color`
- * * `type`
- * * `width`
- * * `alpha`
+ * ## Line Aesthetics
+ * * **`x`** - The X-coordinate specifying the categories.
+ * * **`y`** - The Y-coordinate specifying the numerical values.
+ * * **`color`** - The color of the line.
+ * * **`type`** - The type of the line, such as solid, dashed, or dotted.
+ * * **`width`** - The width of the line.
+ * * **`alpha`** - The transparency of the line.
  *
- * Example:
+ * ## Example
  *
- * ```
- * line {
- *    // positional mapping
- *    x(time) {
- *       ... // some mapping parameters
- *    }
+ * ```kotlin
+ * // or use mapOf<String, List<Any>>(...)
+ * val months by columnOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+ * val sales by columnOf(120, 150, 170, 210, 240, 220, 230, 210, 200, 230, 250, 280)
+ * val data = dataFrameOf(months, sales)
  *
- *    // non-positional setting
- *    width = 2.5
- *    // non-positional mapping
- *    color("type")
+ * plot(data) {
+ *     line {
+ *         // Positional mapping for the x-axis using months
+ *         x(months)
+ *
+ *         // Positional mapping for the y-axis using sales data
+ *         y(sales) {
+ *             scale = continuous(100..300)
+ *         }
+ *
+ *         // Non-positional settings for the line aesthetics
+ *         width = 2.5
+ *         color = Color.RED
+ *         type = LineType.SOLID
+ *         alpha = 0.8
+ *     }
  * }
  * ```
  */
 public inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
-    addLayer(LineContext(this).apply(block), LINE)
+    addLayer(LineContext(this).apply(block))
 }

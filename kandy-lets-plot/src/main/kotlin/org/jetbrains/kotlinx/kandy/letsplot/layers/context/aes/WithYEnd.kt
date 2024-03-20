@@ -11,53 +11,72 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_END
 import kotlin.reflect.KProperty
 
+/**
+ * Interface for managing the `yEnd` aesthetic,
+ * which represents the ending y-coordinate for elements in a segment plot.
+ *
+ * The `yEnd` aesthetic is used to specify the ending point of a segment along the y-axis.
+ * This interface allows you to set a constant value,
+ * map it to a column in your data, or provide an iterable list of values.
+ */
 public interface WithYEnd : BindingContext {
+
+    /**
+     * Provides a constant setter for the `yEnd` aesthetic value.
+     *
+     * @property yEnd a [ConstantSetter] object to directly set the ending point of a segment.
+     */
     public val yEnd: ConstantSetter
         get() = ConstantSetter(Y_END, bindingCollector)
 
-    /*
-    public fun <T> xMin(value: T): PositionalSetting<T> {
-        return addPositionalSetting(X_MIN, value)
-    }
-
+    /**
+     * Maps the `yEnd` aesthetic to a data column by [ColumnReference].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
      */
-
-    public fun <T> yEnd(
-        column: ColumnReference<T>,
-    ): PositionalMapping<T> {
+    public fun <T> yEnd(column: ColumnReference<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(Y_END, column.name(), null)
     }
 
-    public fun <T> yEnd(
-        column: KProperty<T>,
-    ): PositionalMapping<T> {
+
+    /**
+     * Maps the `yEnd` aesthetic to a data column by [KProperty].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> yEnd(column: KProperty<T>): PositionalMapping<T> {
         return addPositionalMapping<T>(Y_END, column.name, null)
     }
 
-    public fun <T> yEnd(
-        column: String,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(Y_END, column, null)
+    /**
+     * Maps the `yEnd` aesthetic to a data column by [String].
+     *
+     * @param column the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun yEnd(column: String): PositionalMapping<Any?> {
+        return addPositionalMapping(Y_END, column, null)
     }
 
-    public fun <T> yEnd(
-        values: Iterable<T>,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(
-            Y_END,
-            values.toList(),
-            null,
-            null
-        )
+    /**
+     * Maps the `yEnd` aesthetic to iterable of values.
+     *
+     * @param values the iterable of values to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> yEnd(values: Iterable<T>): PositionalMapping<T> {
+        return addPositionalMapping<T>(Y_END, values.toList(), null, null)
     }
 
-    public fun <T> yEnd(
-        values: DataColumn<T>,
-    ): PositionalMapping<T> {
-        return addPositionalMapping<T>(
-            Y_END,
-            values,
-            null
-        )
+    /**
+     * Maps the `yEnd` aesthetic to a data column.
+     *
+     * @param values the data column to be mapped.
+     * @return a [PositionalMapping] object representing the mapping.
+     */
+    public fun <T> yEnd(values: DataColumn<T>): PositionalMapping<T> {
+        return addPositionalMapping<T>(Y_END, values, null)
     }
 }

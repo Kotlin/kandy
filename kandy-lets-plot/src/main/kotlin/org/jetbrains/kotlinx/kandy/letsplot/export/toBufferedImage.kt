@@ -4,32 +4,238 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.export
 
-import jetbrains.datalore.plot.PlotImageExport
+import org.jetbrains.letsPlot.core.plot.export.PlotImageExport
 import org.jetbrains.kotlinx.kandy.ir.Plot
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
+import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
 import org.jetbrains.letsPlot.intern.toSpec
 import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
 import javax.imageio.ImageIO
+import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
+import java.io.ByteArrayOutputStream
 
 /**
- * Exports plot as a [BufferedImage].
+ * Convert plot spec to `BufferedImage`
  *
- * @receiver [Plot] for export.
- * @param scale scaling factor (only for raster formats). Default: 2.0
- * @param dpi dot-per-inch value to store in the exported image.
- * @return Absolute pathname of created file.
+ * @receiver the plot spec represented as `MutableMap`
  */
-public fun Plot.toBufferedImage(
+internal fun MutableMap<String, Any>.toBufferedImage(
     scale: Number = 1,
-    dpi: Number? = null,
+    dpi: Number? = null
 ): BufferedImage {
     val byteArray = PlotImageExport.buildImageFromRawSpecs(
-        this.toLetsPlot().toSpec(),
+        this,
         PlotImageExport.Format.PNG,
-        scale.toDouble(),dpi?.toDouble() ?: Double.NaN
+        scale.toDouble(), dpi?.toDouble() ?: Double.NaN
     ).bytes
     return ImageIO.read(ByteArrayInputStream(byteArray))
 }
 
-// todo grid and bunch
+/**
+ * Exports the current plot as a [BufferedImage].
+ *
+ * The parameters [scale] and [dpi] influence the quality and size of the rasterized image.
+ *
+ * @receiver [Plot] - the plot to export.
+ * @param scale the scaling is applied to the plot when converting to a raster format (PNG).
+ * It affects the resolution and size of the resulting [BufferedImage].
+ * The default value is 1.
+ * @param dpi the resolution of the exported image in dots per inch (DPI).
+ * This parameter influences the quality of the rasterized image, with a higher value resulting in better quality.
+ * By default, no specific DPI value is assigned, and it utilizes the system's default settings.
+ * @return [BufferedImage] the created image representing the plot.
+ */
+public fun Plot.toBufferedImage(
+    scale: Number = 1,
+    dpi: Number? = null,
+): BufferedImage = this.toLetsPlot().toSpec().toBufferedImage(scale, dpi)
+
+/**
+ * Exports the current plot grid as a [ByteArray] in the JPG format.
+ *
+ * The parameters [scale] and [dpi] influence the quality and size of the rasterized image.
+ *
+ * @receiver [Plot] - the plot grid to export.
+ * @param scale the scaling is applied to the plot when converting to a raster format (PNG).
+ * It affects the resolution and size of the resulting [BufferedImage].
+ * The default value is 1.
+ * @param dpi the resolution of the exported image in dots per inch (DPI).
+ * This parameter influences the quality of the rasterized image, with a higher value resulting in better quality.
+ * By default, no specific DPI value is assigned, and it utilizes the system's default settings.
+ * @return [ByteArray] the created image representing the plot grid.
+ */
+
+public fun Plot.toJPG(
+    scale: Number = 1,
+    dpi: Number? = null,
+): ByteArray {
+    val bufferedImage = this.toLetsPlot().toSpec().toBufferedImage(scale, dpi)
+    val outputStream = ByteArrayOutputStream()
+    ImageIO.write(bufferedImage, "JPEG", outputStream)
+    return outputStream.toByteArray()
+}
+
+/**
+ * Exports the current plot grid as a [ByteArray] in the PNG format.
+ *
+ * The parameters [scale] and [dpi] influence the quality and size of the rasterized image.
+ *
+ * @receiver [Plot] - the plot grid to export.
+ * @param scale the scaling is applied to the plot when converting to a raster format (PNG).
+ * It affects the resolution and size of the resulting [BufferedImage].
+ * The default value is 1.
+ * @param dpi the resolution of the exported image in dots per inch (DPI).
+ * This parameter influences the quality of the rasterized image, with a higher value resulting in better quality.
+ * By default, no specific DPI value is assigned, and it utilizes the system's default settings.
+ * @return [ByteArray] the created image representing the plot grid.
+ */
+
+public fun Plot.toPNG(
+    scale: Number = 1,
+    dpi: Number? = null,
+): ByteArray {
+    val bufferedImage = this.toLetsPlot().toSpec().toBufferedImage(scale, dpi)
+    val outputStream = ByteArrayOutputStream()
+    ImageIO.write(bufferedImage, "PNG", outputStream)
+    return outputStream.toByteArray()
+}
+
+/**
+ * Exports the current plot grid as a [BufferedImage].
+ *
+ * The parameters [scale] and [dpi] influence the quality and size of the rasterized image.
+ *
+ * @receiver [PlotGrid] - the plot grid to export.
+ * @param scale the scaling is applied to the plot when converting to a raster format (PNG).
+ * It affects the resolution and size of the resulting [BufferedImage].
+ * The default value is 1.
+ * @param dpi the resolution of the exported image in dots per inch (DPI).
+ * This parameter influences the quality of the rasterized image, with a higher value resulting in better quality.
+ * By default, no specific DPI value is assigned, and it utilizes the system's default settings.
+ * @return [BufferedImage] the created image representing the plot grid.
+ */
+public fun PlotGrid.toBufferedImage(
+    scale: Number = 1,
+    dpi: Number? = null,
+): BufferedImage = this.wrap().toSpec().toBufferedImage(scale, dpi)
+
+/**
+ * Exports the current plot grid as a [ByteArray] in the JPG format.
+ *
+ * The parameters [scale] and [dpi] influence the quality and size of the rasterized image.
+ *
+ * @receiver [PlotGrid] - the plot grid to export.
+ * @param scale the scaling is applied to the plot when converting to a raster format (PNG).
+ * It affects the resolution and size of the resulting [BufferedImage].
+ * The default value is 1.
+ * @param dpi the resolution of the exported image in dots per inch (DPI).
+ * This parameter influences the quality of the rasterized image, with a higher value resulting in better quality.
+ * By default, no specific DPI value is assigned, and it utilizes the system's default settings.
+ * @return [ByteArray] the created image representing the plot grid.
+ */
+
+public fun PlotGrid.toJPG(
+    scale: Number = 1,
+    dpi: Number? = null,
+): ByteArray {
+    val bufferedImage = this.wrap().toSpec().toBufferedImage(scale, dpi)
+    val outputStream = ByteArrayOutputStream()
+    ImageIO.write(bufferedImage, "JPEG", outputStream)
+    return outputStream.toByteArray()
+}
+
+/**
+ * Exports the current plot grid as a [ByteArray] in the PNG format.
+ *
+ * The parameters [scale] and [dpi] influence the quality and size of the rasterized image.
+ *
+ * @receiver [PlotGrid] - the plot grid to export.
+ * @param scale the scaling is applied to the plot when converting to a raster format (PNG).
+ * It affects the resolution and size of the resulting [BufferedImage].
+ * The default value is 1.
+ * @param dpi the resolution of the exported image in dots per inch (DPI).
+ * This parameter influences the quality of the rasterized image, with a higher value resulting in better quality.
+ * By default, no specific DPI value is assigned, and it utilizes the system's default settings.
+ * @return [ByteArray] the created image representing the plot grid.
+ */
+
+public fun PlotGrid.toPNG(
+    scale: Number = 1,
+    dpi: Number? = null,
+): ByteArray {
+    val bufferedImage = this.wrap().toSpec().toBufferedImage(scale, dpi)
+    val outputStream = ByteArrayOutputStream()
+    ImageIO.write(bufferedImage, "PNG", outputStream)
+    return outputStream.toByteArray()
+}
+
+/**
+ * Exports the current plot bunch as a [BufferedImage].
+ *
+ * The parameters [scale] and [dpi] influence the quality and size of the rasterized image.
+ *
+ * @receiver [PlotBunch] - the plot bunch to export.
+ * @param scale the scaling is applied to the plot when converting to a raster format (PNG).
+ * It affects the resolution and size of the resulting [BufferedImage].
+ * The default value is 1.
+ * @param dpi the resolution of the exported image in dots per inch (DPI).
+ * This parameter influences the quality of the rasterized image, with a higher value resulting in better quality.
+ * By default, no specific DPI value is assigned, and it utilizes the system's default settings.
+ * @return [BufferedImage] the created image representing the plot bunch.
+ */
+public fun PlotBunch.toBufferedImage(
+    scale: Number = 1,
+    dpi: Number? = null,
+): BufferedImage = this.wrap().toSpec().toBufferedImage(scale, dpi)
+
+/**
+ * Exports the current plot grid as a [ByteArray] in the JPG format.
+ *
+ * The parameters [scale] and [dpi] influence the quality and size of the rasterized image.
+ *
+ * @receiver [PlotBunch] - the plot grid to export.
+ * @param scale the scaling is applied to the plot when converting to a raster format (PNG).
+ * It affects the resolution and size of the resulting [BufferedImage].
+ * The default value is 1.
+ * @param dpi the resolution of the exported image in dots per inch (DPI).
+ * This parameter influences the quality of the rasterized image, with a higher value resulting in better quality.
+ * By default, no specific DPI value is assigned, and it utilizes the system's default settings.
+ * @return [ByteArray] the created image representing the plot grid.
+ */
+
+public fun PlotBunch.toJPG(
+    scale: Number = 1,
+    dpi: Number? = null,
+): ByteArray {
+    val bufferedImage = this.wrap().toSpec().toBufferedImage(scale, dpi)
+    val outputStream = ByteArrayOutputStream()
+    ImageIO.write(bufferedImage, "JPEG", outputStream)
+    return outputStream.toByteArray()
+}
+
+/**
+ * Exports the current plot grid as a [ByteArray] in the PNG format.
+ *
+ * The parameters [scale] and [dpi] influence the quality and size of the rasterized image.
+ *
+ * @receiver [PlotBunch] - the plot grid to export.
+ * @param scale the scaling is applied to the plot when converting to a raster format (PNG).
+ * It affects the resolution and size of the resulting [BufferedImage].
+ * The default value is 1.
+ * @param dpi the resolution of the exported image in dots per inch (DPI).
+ * This parameter influences the quality of the rasterized image, with a higher value resulting in better quality.
+ * By default, no specific DPI value is assigned, and it utilizes the system's default settings.
+ * @return [ByteArray] the created image representing the plot grid.
+ */
+
+public fun PlotBunch.toPNG(
+    scale: Number = 1,
+    dpi: Number? = null,
+): ByteArray {
+    val bufferedImage = this.wrap().toSpec().toBufferedImage(scale, dpi)
+    val outputStream = ByteArrayOutputStream()
+    ImageIO.write(bufferedImage, "PNG", outputStream)
+    return outputStream.toByteArray()
+}

@@ -4,17 +4,21 @@
 
 package org.jetbrains.kotlinx.kandy.ir.scale
 
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
+
 /**
- * [ContinuousScale] transformation - function that converts the scale through a composition with the base function.
+ * Represents a transformation function applied to raw data values prior to their mapping to an aesthetic attribute.
  */
 public sealed interface Transform
 
 /**
- * Positional scale transformation.
+ * Represents a transformation function for [positional scales][PositionalScale],
+ * applied to data values to determine their placement within the plot space.
  */
 public interface PositionalTransform : Transform
 
 /**
- * Non-positional scale transformation.
+ * Represents a transformation function for [non-positional scales][NonPositionalScale],
+ * adjusting data values before they are mapped to [aesthetic attributes][Aes].
  */
 public interface NonPositionalTransform : Transform

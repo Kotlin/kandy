@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.kandy.echarts.translator.option.ContinuousVisualMap
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.PiecewiseVisualMap
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.VisualMap
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.createInRange
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalContinuousScale
 import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalDefaultScale
@@ -17,7 +17,7 @@ import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 internal fun NonPositionalScale<*, *>.toVisualMap(
-    aes: AesName, dim: String, seriesIndex: Int,
+    aes: Aes, dim: String, seriesIndex: Int,
     data: List<Any?>?, visualMapSize: Int, domainType: KType
 ): VisualMap {
     return when (this) {

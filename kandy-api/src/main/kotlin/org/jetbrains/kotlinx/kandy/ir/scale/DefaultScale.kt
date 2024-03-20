@@ -5,6 +5,7 @@
 package org.jetbrains.kotlinx.kandy.ir.scale
 
 /**
- * Unspecified scale, used by default in mapping.
+ * Represents the default [scale][Scale]
+ * employed for mapping based on the type of data and the aesthetic attribute in question.
  */
 public sealed interface DefaultScale

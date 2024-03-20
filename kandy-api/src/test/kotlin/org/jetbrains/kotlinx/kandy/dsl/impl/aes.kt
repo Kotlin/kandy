@@ -4,24 +4,14 @@
 
 package org.jetbrains.kotlinx.kandy.dsl.impl
 
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 
-val X = AesName("x")
+internal val X = Aes("x")
 
-val Y = AesName("y")
+internal val Y = Aes("y")
 
-val SIZE = AesName("size")
+internal val SIZE = Aes("size")
 
-val COLOR = AesName("color")
+internal val COLOR = Aes("color")
 
-val ALPHA = AesName("alpha")
-
-val BORDER_SIZE = AesName("border_size")
-
-val BORDER_COLOR = AesName("border_color")
-
-val WIDTH = AesName("width")
-
-val SYMBOL = AesName("symbol")
-
-val LINE_TYPE = AesName("line_type")
+internal val WIDTH = Aes("width")

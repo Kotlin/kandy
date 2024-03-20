@@ -6,23 +6,30 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
-import jetbrains.datalore.plot.base.Aes
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.scale.*
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.scales.*
-import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.*
-import org.jetbrains.kotlinx.kandy.letsplot.util.linetype.LineType
-import org.jetbrains.kotlinx.kandy.letsplot.util.symbol.Symbol
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Axis
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisPosition
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Legend
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.ScaleParameters
+import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
+import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.util.color.Color
+import org.jetbrains.letsPlot.core.plot.base.Aes
+import org.jetbrains.letsPlot.core.spec.Option
+import org.jetbrains.letsPlot.intern.Options
 import org.jetbrains.letsPlot.scale.*
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
+
+private typealias Aesthetic = org.jetbrains.kotlinx.kandy.ir.aes.Aes
 
 internal val dateTimeTypes = setOf(
     typeOf<Instant>(), typeOf<LocalDateTime>(), typeOf<LocalDate>(),
@@ -43,7 +50,7 @@ internal fun Mapping.wrapScale(domainType: KType, groupKeys: List<String>?): org
         aes, domainType,
         (parameters as? LetsPlotPositionalMappingParameters<*>)?.axis
             ?: (parameters as? LetsPlotNonPositionalMappingParameters<*, *>)?.legend,
-        groupKeys?.contains(columnID) ?: false
+        groupKeys?.contains(columnID) == true
     )
 }
 
@@ -51,7 +58,7 @@ internal fun Mapping.wrapScale(domainType: KType, groupKeys: List<String>?): org
  * TODO datetime
  */
 internal fun Scale.wrap(
-    aesName: AesName,
+    aes: Aesthetic,
     domainType: KType,
     scaleParameters: ScaleParameters?,
     isGroupKey: Boolean,
@@ -70,11 +77,23 @@ internal fun Scale.wrap(
             val breaks = axis?.breaks
             val labels = axis?.labels
             val format = axis?.format
+            val expand = axis?.expand
+            val position = axis?.position?.let {
+                when(it) {
+                    AxisPosition.DEFAULT -> null
+                    AxisPosition.OPPOSITE -> when(aes) {
+                        X -> "right"
+                        Y -> "top"
+                        else -> null
+                    }
+                    AxisPosition.BOTH -> "both"
+                }
+            }
 
             // todo discrete datetime
             /*
             if (domainType in dateTimeTypes) {
-                return when (aesName) {
+                return when (aes) {
                     X -> scaleXDateTime(
                         //  limits = limits.toLP(),
                         name = name,
@@ -100,13 +119,15 @@ internal fun Scale.wrap(
 
             when (this) {
                 is PositionalCategoricalScale<*> -> {
-                    when (aesName) {
+                    when (aes) {
                         X -> scaleXDiscrete(
                             limits = categories?.wrap(),
                             name = name,
                             breaks = breaks?.wrap(),
                             labels = labels,
                             format = format,
+                            expand = expand,
+                            position = position
                             // naValue = nullValue as? Number
                         )
 
@@ -116,6 +137,8 @@ internal fun Scale.wrap(
                             breaks = breaks?.wrap(),
                             labels = labels,
                             format = format,
+                            expand = expand,
+                            position = position
                             //  naValue = nullValue as? Number
                         )
 
@@ -124,14 +147,16 @@ internal fun Scale.wrap(
                 }
 
                 is PositionalContinuousScale<*> -> {
-                    when (aesName) {
+                    when (aes) {
                         X -> if (domainType in dateTimeTypes) {
                             scaleXDateTime(
                                 limits = (min to max).wrap(),
                                 name = name,
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
-                                format = format
+                                format = format,
+                                expand = expand,
+                                position = position
                             )
                         } else if (domainType in timeTypes) {
                             scaleXTime(
@@ -139,6 +164,8 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
+                                expand = expand,
+                                position = position
                                 // format = format
                             )
                         } else {
@@ -149,7 +176,9 @@ internal fun Scale.wrap(
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
                                 format = format,
-                                naValue = naValue as? Number
+                                expand = expand,
+                                naValue = naValue as? Number,
+                                position = position
                             )
                         }
 
@@ -160,7 +189,9 @@ internal fun Scale.wrap(
                                 breaks = breaks?.wrap(),
                                 labels = labels,
                                 format = format,
-                                naValue = naValue
+                                expand = expand,
+                                naValue = naValue,
+                                position = position
                             )
                         } else if (domainType in timeTypes) {
                             scaleYTime(
@@ -168,6 +199,8 @@ internal fun Scale.wrap(
                                 name = name,
                                 breaks = breaks?.filterNotNull(), // todo
                                 labels = labels,
+                                expand = expand,
+                                position = position
                                 // format = format
                             )
                         } else {
@@ -178,7 +211,9 @@ internal fun Scale.wrap(
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
                                 format = format,
-                                naValue = naValue as? Number
+                                expand = expand,
+                                naValue = naValue as? Number,
+                                position = position
                             )
                         }
 
@@ -187,10 +222,10 @@ internal fun Scale.wrap(
                 }
 
                 is PositionalDefaultScale<*> -> if (domainType.isCategoricalType() || isGroupKey) {
-                    PositionalCategoricalScale<String>(null).wrap(aesName, domainType, scaleParameters, isGroupKey)
+                    PositionalCategoricalScale<String>(null).wrap(aes, domainType, scaleParameters, isGroupKey)
                 } else {
                     PositionalContinuousScale<Double>(null, null, null, null).wrap(
-                        aesName,
+                        aes,
                         domainType,
                         scaleParameters,
                         isGroupKey
@@ -222,14 +257,14 @@ internal fun Scale.wrap(
             val format = legend?.format
             val legendType = legend?.type?.let {
                 when (it) {
-                    is None -> "none"
-                    is ColorBar -> guideColorbar(
+                    is LegendType.None -> "none"
+                    is LegendType.ColorBar -> guideColorbar(
                         barHeight = it.barHeight,
                         barWidth = it.barWidth,
                         nbin = it.nBin
                     )
 
-                    is DiscreteLegend -> guideLegend(
+                    is LegendType.DiscreteLegend -> guideLegend(
                         nrow = it.nRow,
                         ncol = it.nCol,
                         byRow = it.byRow
@@ -238,9 +273,12 @@ internal fun Scale.wrap(
             }
 
             when (this) {
-                is NonPositionalDefaultScale<*, *> -> if (domainType.isCategoricalType() || aesName in discreteAes || isGroupKey) {
+                is NonPositionalDefaultScale<*, *> -> if (
+                    this is NonPositionalDefaultCategoricalScale<*, *> ||
+                    domainType.isCategoricalType() || aes in discreteAes || isGroupKey
+                ) {
                     NonPositionalCategoricalScale<String, String>(null, null).wrap(
-                        aesName,
+                        aes,
                         domainType,
                         scaleParameters,
                         isGroupKey
@@ -249,7 +287,7 @@ internal fun Scale.wrap(
                     NonPositionalContinuousScale<Double, Double>(
                         null, null, null, null, null, null
                     ).wrap(
-                        aesName,
+                        aes,
                         domainType,
                         scaleParameters,
                         isGroupKey
@@ -257,7 +295,7 @@ internal fun Scale.wrap(
                 }
 
                 is NonPositionalCategoricalScale<*, *> -> {
-                    when (aesName) {
+                    when (aes) {
                         SIZE -> if (rangeValues != null) {
                             scaleSizeManual(
                                 values = rangeValues!!.map { it as Number },
@@ -278,7 +316,8 @@ internal fun Scale.wrap(
                                 labels = labels,
                                 guide = legendType,
                                 format = format,
-                                naValue = naValue as? Number
+                                // TODO(fill NA for categorical)
+//                                naValue = naValue as? Number
                             )
                         }
 
@@ -411,37 +450,27 @@ internal fun Scale.wrap(
                 }
 
                 is NonPositionalContinuousScale<*, *> -> {
-                    when (aesName) {
+                    when (aes) {
 
-                        SIZE -> {
-                            val range: Pair<Double, Double>? = if (rangeMin == null && rangeMax == null) {
-                                null
-                            } else {
-                                if (rangeMax == null) {
-                                    (rangeMin as Double).let {
-                                        it to it + 7.0
-                                    }
-                                } else if (rangeMin == null) {
-                                    (rangeMax as Double).let {
-                                        (it - 7.0).coerceAtLeast(0.2) to it
-                                    }
-                                } else {
-                                    rangeMin as Double to rangeMax as Double
-                                }
-                            }
-                            scaleSize(
-                                limits = (domainMin to domainMax).wrap(),
-                                range = range,//(rangeMin to rangeMax).wrap() as Pair<Number, Number>?, // todo!!
-                                name = name,
-                                breaks = breaks?.map { it as Number },
-                                labels = labels,
-                                guide = legendType,
-                                trans = (transform as Transformation?)?.name,
-                                format = format,
-                                naValue = naValue as? Number
-                            )
-                        }
+                        SIZE -> scaleSize(
+                            limits = (domainMin to domainMax).wrap(),
+                            range = (rangeMin to rangeMax).computeRange(),
+                            name = name,
+                            breaks = breaks?.map { it as Number },
+                            labels = labels,
+                            guide = legendType,
+                            trans = (transform as Transformation?)?.name,
+                            format = format,
+                            naValue = naValue as? Number
+                        )
 
+                        STROKE -> scaleStroke(
+                            range = (rangeMin to rangeMax).computeRange(), name = name,
+                            breaks = breaks?.map { it as? Number }, labels = labels,
+                            limits = (domainMin to domainMax).wrap(), naValue = naValue as? Number,
+                            format = format, guide = legendType,
+                            trans = (transform as? Transformation)?.name
+                        )
 
                         COLOR -> {
                             val lowColor = (rangeMin as? Color)?.wrap()
@@ -449,9 +478,9 @@ internal fun Scale.wrap(
 
                             val limits = (domainMin to domainMax).wrap() // todo datetime support here
 
-                            scaleColorContinuous(
-                                low = lowColor,
-                                high = highColor,
+                            /*scaleColorContinuous(
+                                //low = lowColor,
+                                //high = highColor,
                                 limits = limits,
                                 name = name,
                                 breaks = breaks?.map { it as Number },
@@ -461,6 +490,25 @@ internal fun Scale.wrap(
                                 format = format,
                                 naValue = naValue
 
+                            )*/
+
+                            org.jetbrains.letsPlot.intern.Scale(
+                                aesthetic = Aes.COLOR,
+                                name = name,
+                                breaks = breaks?.map { it.toString() },
+                                labels = labels,
+                                limits = limits,
+                                naValue = naValue,
+                                format = format,
+                                guide = legendType,
+                                trans = (transform as Transformation?)?.name,
+                                otherOptions = Options(
+                                    mapOf(
+                                        Option.Scale.LOW to lowColor,
+                                        Option.Scale.HIGH to highColor,
+                                        Option.Scale.SCALE_MAPPER_KIND to Option.Scale.MapperKind.COLOR_GRADIENT
+                                    )
+                                )
                             )
 
                         }
@@ -470,9 +518,9 @@ internal fun Scale.wrap(
                             val highColor = (rangeMax as? Color)?.wrap()
                             val limits = (domainMin to domainMax).wrap() //todo datetime support here
 
-                            scaleFillContinuous(
-                                low = lowColor,
-                                high = highColor,
+                            /*scaleFillContinuous(
+                                //low = lowColor,
+                                //high = highColor,
                                 limits = limits,
                                 name = name,
                                 breaks = breaks?.map { it as Number },
@@ -481,6 +529,25 @@ internal fun Scale.wrap(
                                 trans = (transform as Transformation?)?.name,
                                 format = format,
                                 naValue = naValue
+                            )*/
+
+                            org.jetbrains.letsPlot.intern.Scale(
+                                aesthetic = Aes.FILL,
+                                name = name,
+                                breaks = breaks?.map { it.toString() },
+                                labels = labels,
+                                limits = limits,
+                                naValue = naValue,
+                                format = format,
+                                guide = legendType,
+                                trans = (transform as Transformation?)?.name,
+                                otherOptions = Options(
+                                    mapOf(
+                                        Option.Scale.LOW to lowColor,
+                                        Option.Scale.HIGH to highColor,
+                                        Option.Scale.SCALE_MAPPER_KIND to Option.Scale.MapperKind.COLOR_GRADIENT
+                                    )
+                                )
                             )
 
                         }
@@ -502,7 +569,7 @@ internal fun Scale.wrap(
                 }
 
                 is CustomScale -> when (this) {
-                    is ScaleColorGrey<*> -> when (aesName) {
+                    is ScaleColorGrey<*> -> when (aes) {
                         COLOR -> scaleColorGrey(
                             paletteRange?.first,
                             paletteRange?.second,
@@ -532,7 +599,7 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleColorHue<*> -> when (aesName) {
+                    is ScaleColorHue<*> -> when (aes) {
                         COLOR -> scaleColorHue(
                             huesRange,
                             chroma,
@@ -568,10 +635,11 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleColorBrewer<*> -> when (aesName) {
+                    is ScaleColorBrewer<*> -> when (aes) {
                         COLOR -> scaleColorBrewer(
-                            type = type?.name,
-                            palette = type?.palette?.name,
+                            //type = type?.type,
+                            type = null,
+                            palette = palette?.name,
                             name = name,
                             breaks = breaks?.map { it as Number }, // todo
                             labels = labels,
@@ -583,8 +651,9 @@ internal fun Scale.wrap(
                         )
 
                         FILL -> scaleFillBrewer(
-                            type = type?.name,
-                            palette = type?.palette?.name,
+                            //type = type?.type,
+                            type = null,
+                            palette = palette?.name,
                             name = name,
                             breaks = breaks?.map { it as Number }, // todo
                             labels = labels,
@@ -598,7 +667,50 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleContinuousColorGradient2<*> -> when (aesName) {
+                    is ScaleColorViridis<*> -> {
+                        val option = colormap.name.lowercase()
+                        val begin = hueRange.start
+                        val end = hueRange.endInclusive
+                        val direction = direction.value
+                        val trans = (this as? ScaleContinuousColorViridis<*>)?.transform?.name
+                        when (aes) {
+                            COLOR -> scaleColorViridis(
+                                option = option,
+                                alpha = null,
+                                begin = begin,
+                                end = end,
+                                direction = direction,
+                                name = name,
+                                breaks = breaks?.map { it as Number }, // todo
+                                labels = labels,
+                                guide = legendType,
+                                limits = limits,
+                                trans = trans,
+                                format = format,
+                                naValue = naValue
+                            )
+
+                            FILL -> scaleFillViridis(
+                                option = option,
+                                alpha = null,
+                                begin = begin,
+                                end = end,
+                                direction = direction,
+                                name = name,
+                                breaks = breaks?.map { it as Number }, // todo
+                                labels = labels,
+                                guide = legendType,
+                                limits = limits,
+                                trans = trans,
+                                format = format,
+                                naValue = naValue
+                            )
+
+                            else -> TODO()
+                        }
+                    }
+
+                    is ScaleContinuousColorGradient2<*> -> when (aes) {
                         COLOR -> scaleColorGradient2(
                             low.wrap(),
                             mid.wrap(),
@@ -632,7 +744,7 @@ internal fun Scale.wrap(
                         else -> TODO()
                     }
 
-                    is ScaleContinuousColorGradientN<*> -> when (aesName) {
+                    is ScaleContinuousColorGradientN<*> -> when (aes) {
                         COLOR -> scaleColorGradientN(
                             rangeColors.map { it.wrap() },
                             name = name,

@@ -5,56 +5,58 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.AreaContext
 
-@PublishedApi
-internal val AREA: LetsPlotGeom = LetsPlotGeom("area")
-
 /**
- * Adds a new area layer.
+ * Adds a new `area` layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `area` layer is designed to visualize an area under a curve in a Cartesian coordinate system.
+ * The layer fills the area between the X-axis and the curve defined by the mapped values of X and Y.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
  *
- * Area aesthetics:
- * * `x`
- * * `y`
- * * `fillColor`
- * * `alpha`
- * * `borderLine.color`
- * * `borderLine.width`
- * * `borderLine.type`
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ * For positional aesthetics, you can use the `.constant()` method.
  *
- * Example:
+ * ## Area Aesthetics
+ * * `x` - The X-coordinate of the area.
+ * * `y` - The Y-coordinate of the area.
+ * * `fillColor` - The fill color of the area.
+ * * `alpha` - The transparency of the area.
+ * * `borderLine.color` - Color of the area's borderline.
+ * * `borderLine.width` - Width of the area's borderline.
+ * * `borderLine.type` - Type of the area's borderline.
  *
- * ```
- * area {
- *    // positional mapping
- *    x(time) {
- *       ... // some mapping parameters
- *    }
+ * ## Example
  *
- *    // non-positional settings
- *    alpha = 0.8
- *    borderLine.width = 2.5
- *    borderLine {
- *       color = Color.BLACK
- *    }
- *    // non-positional mapping
- *    fillColor("type")
+ * ```kotlin
+ * plot {
+ *     area {
+ *         // Positional mapping
+ *         x(listOf("January", "February", "March", "April", "May")) {
+ *             axis.name = "months"
+ *         }
+ *         y(listOf(200, 150, 300, 250, 420)) {
+ *             axis.name = "sales"
+ *             scale = continuous(min = 100, max = 500)
+ *         }
  *
- *    // position adjustment
- *    position = Position.Stack
+ *         // Non-positional settings
+ *         alpha = 0.5
+ *
+ *         // Non-positional mapping with constant fillColor
+ *         fillColor = Color.BLUE
+ *
+ *         // BorderLine settings
+ *         borderLine {
+ *             color = Color.BLACK
+ *             width = 1.5
+ *         }
+ *     }
  * }
  * ```
  */
 public inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
-    addLayer(AreaContext(this).apply(block), AREA)
+    addLayer(AreaContext(this).apply(block))
 }

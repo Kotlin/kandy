@@ -8,103 +8,99 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
-import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.util.color.Color
 
-interface WithX : BindingContext {
-    fun <T> x(value: T): PositionalSetting<T> {
-        return addPositionalSetting(X, value)
-    }
-
+internal interface WithX : BindingContext {
     fun <T> x(
         column: ColumnReference<T>,
-        parameters: CommonPositionalMappingParameters<T>.() -> Unit = {}
+        parameters: CommonPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> {
-        return addPositionalMapping<T>(X, column.name(), CommonPositionalMappingParameters<T>().apply(parameters))
+        return addPositionalMapping(
+            X,
+            column.name(),
+            CommonPositionalMappingParametersContinuous<T>().apply(parameters)
+        )
     }
 }
 
-interface WithY : BindingContext {
-    fun <T> y(value: T): PositionalSetting<T> {
-        return addPositionalSetting(Y, value)
-    }
-
+internal interface WithY : BindingContext {
     fun <T> y(
         column: ColumnReference<T>,
-        parameters: CommonPositionalMappingParameters<T>.() -> Unit = {}
+        parameters: CommonPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> {
-        return addPositionalMapping<T>(Y, column.name(), CommonPositionalMappingParameters<T>().apply(parameters))
+        return addPositionalMapping(
+            Y,
+            column.name(),
+            CommonPositionalMappingParametersContinuous<T>().apply(parameters)
+        )
     }
 }
 
-interface WithColor : BindingContext {
+internal interface WithColor : BindingContext {
     var color: Color?
         get() = null
         set(value) {
             bindingCollector.settings[COLOR] = NonPositionalSetting(COLOR, value)
         }
+
     fun <T> color(
         column: ColumnReference<T>,
-        parameters: CommonNonPositionalMappingParameters<T, Color>.() -> Unit = {}
+        parameters: CommonNonPositionalMappingParametersContinuous<T, Color>.() -> Unit = {}
     ): NonPositionalMapping<T, Color> {
-        return addNonPositionalMapping<T, Color>(
+        return addNonPositionalMapping(
             COLOR,
             column.name(),
-            CommonNonPositionalMappingParameters<T, Color>().apply(parameters)
+            CommonNonPositionalMappingParametersContinuous<T, Color>().apply(parameters)
         )
     }
 }
 
-interface WithSize : BindingContext {
+internal interface WithSize : BindingContext {
     var size: Double?
         get() = null
         set(value) {
             bindingCollector.settings[SIZE] = NonPositionalSetting(SIZE, value)
         }
+
     fun <T> size(
         column: ColumnReference<T>,
-        parameters: CommonNonPositionalMappingParameters<T, Double>.() -> Unit = {}
+        parameters: CommonNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> {
-        return addNonPositionalMapping<T, Double>(
+        return addNonPositionalMapping(
             SIZE,
             column.name(),
-            CommonNonPositionalMappingParameters<T, Double>().apply(parameters)
+            CommonNonPositionalMappingParametersContinuous<T, Double>().apply(parameters)
         )
     }
 }
 
-interface WithWidth : BindingContext {
+internal interface WithWidth : BindingContext {
     var width: Double?
         get() = null
         set(value) {
             bindingCollector.settings[WIDTH] = NonPositionalSetting(WIDTH, value)
         }
-    fun <T> width(
-        column: ColumnReference<T>,
-        parameters: CommonNonPositionalMappingParameters<T, Double>.() -> Unit = {}
-    ): NonPositionalMapping<T, Double> {
-        return addNonPositionalMapping<T, Double>(
-            WIDTH,
-            column.name(),
-            CommonNonPositionalMappingParameters<T, Double>().apply(parameters)
-        )
-    }
 }
 
-class PointsContext(parent: LayerCollectorContext) : LayerContext(parent), WithColor, WithSize, WithX, WithY {
-   // override var size: Double? = null
-   // override var color: Color? by settingDelegate(COLOR)
+internal class PointsContext(parent: LayerCollectorContext) : LayerContext(parent), WithColor, WithSize, WithX, WithY {
+    override val requiredAes: Set<Aes> = setOf()
+    override val geom: Geom
+        get() = POINT
 }
 
-class LineContext(parent: LayerCollectorContext) : LayerContext(parent), WithWidth, WithColor, WithX, WithY {
-   // override var color: Color? by settingDelegate(COLOR)
-   // override var width: Double? by settingDelegate(WIDTH)
+internal class LineContext(parent: LayerCollectorContext) : LayerContext(parent), WithWidth, WithColor, WithX, WithY {
+    override val requiredAes: Set<Aes> = setOf()
+    override val geom: Geom
+        get() = LINE
 }
 
-class BarsContext(parent: LayerCollectorContext) : LayerContext(parent), WithWidth, WithColor, WithX, WithY {
-  //  override var color: Color? by settingDelegate(COLOR)
-  //  override var width: Double? by settingDelegate(WIDTH)
+internal class BarsContext(parent: LayerCollectorContext) : LayerContext(parent), WithWidth, WithColor, WithX, WithY {
+    override val requiredAes: Set<Aes> = setOf()
+    override val geom: Geom
+        get() = BAR
 }

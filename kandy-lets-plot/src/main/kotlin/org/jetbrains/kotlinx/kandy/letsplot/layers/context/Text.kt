@@ -4,64 +4,60 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
-import org.jetbrains.kotlinx.kandy.dsl.internal.SubBindingContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
+import org.jetbrains.kotlinx.kandy.letsplot.internal.LABEL
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.TEXT
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
 
-public class FontContext internal constructor(override val parentContext: BindingContext) :
+public class FontContext(override val parentContext: BindingContext) :
     SelfInvocationContext, SubBindingContext, WithColor, WithSize, WithFace, WithFamily
 
-public class TextContext(parent: LayerCollectorContext) : LayerContext(parent), WithX, WithY, WithAlpha, WithLabel {
-    public val font: FontContext = FontContext(this)
+/**
+ * Interface defining the necessary aesthetics and methods for text layers.
+ *
+ * Text layers are used to display text labels on plots, typically indicating data points or other elements.
+ * The interface provides aesthetics like `x`, `y`, `alpha`, and `label` for customization.
+ * Additionally, it contains a nested `FontContext` for font styling.
+ *
+ * Required aesthetics for text layers are `X`, `Y`, and `LABEL`.
+ */
+public interface TextInterface : LayerContextInterface, WithX, WithY, WithAlpha, WithLabel {
+
+    /**
+     * Gets the Geom object specific to **text** layers.
+     *
+     * @return the [Geom] object for **text**.
+     */
+    override val geom: Geom
+        get() = TEXT
+
+    /**
+     * Gets the set of required aesthetics for **text** layers.
+     *
+     * @return the set of required aesthetics.
+     */
+    override val requiredAes: Set<Aes>
+        get() = setOf(X, Y, LABEL)
+
+    public val font: FontContext
 }
 
-/*
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
-import org.jetbrains.kotlinx.kandy.letsplot.internal.*
-import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
-
-public interface FontSubContextInterface : SelfInvocationContext {
-    public val parentContext: BindingContext
-    public val color: ColorAes get() = ColorAes(parentContext)
-    public val size: SizeAes get() = SizeAes(parentContext)
-    public val family: FontFamilyAes get() = FontFamilyAes(parentContext)
-    public val face: FontFaceAes get() = FontFaceAes(parentContext)
+/**
+ * Context class for managing text layers.
+ *
+ * This class provides the context in which text layers can be configured.
+ * It inherits from [LayerContext] and implements the [TextInterface].
+ * It also contains a nested `FontContext` object for managing font styling.
+ *
+ * @param parent the parent context for the layer.
+ */
+public open class TextContext(parent: LayerCollectorContext) : LayerContext(parent), TextInterface {
+    // todo fix
+    override val font: FontContext = FontContext(this)
 }
-
-public class FontSubContextImmutable(override val parentContext: BindingContext) : FontSubContextInterface
-public class FontSubContextMutable(override val parentContext: TableBindingContextInterfaceMutable) :
-    FontSubContextInterface, TableSubContextMutable(parentContext, false, false)
-
-public interface TextContextInterface : BindingContext {
-    public val x: XAes get() = XAes(this)
-    public val y: YAes get() = YAes(this)
-    public val label: LabelAes get() = LabelAes(this)
-
-    public val alpha: AlphaAes get() = AlphaAes(this)
-    public val angle: AngleAes get() = AngleAes(this)
-    public val format: FormatAes get() = FormatAes(this)
-    public val horizontalJustification: HorizontalJustificationAes get() = HorizontalJustificationAes(this)
-    public val verticalJustification: VerticalJustificationAes get() = VerticalJustificationAes(this)
-
-    public val font: FontSubContextInterface
-}
-
-*/
-/*@PlotDslMarker*//*
-
-public class TextContextImmutable(parent: LayerCollectorContextImmutable) : LayerContextImmutable(parent),
-    TextContextInterface {
-    override val font: FontSubContextImmutable = FontSubContextImmutable(this)
-}
-
-*/
-/*@PlotDslMarker*//*
-
-public class TextContextMutable(parent: LayerCollectorContextMutable) :
-    LayerContextMutable(parent), TextContextInterface {
-    override val font: FontSubContextMutable = FontSubContextMutable(this)
-}*/

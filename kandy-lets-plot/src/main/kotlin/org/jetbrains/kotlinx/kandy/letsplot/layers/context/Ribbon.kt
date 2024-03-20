@@ -5,36 +5,50 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RIBBON
 
-public class RibbonContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithX, WithYMin,
-    WithYMax, WithFillColor, WithAlpha, WithYFree
+/**
+ * Interface defining the necessary aesthetics and methods for ribbon layers.
+ *
+ * Ribbon layers are generally used to visualize a range around a line, such as confidence intervals.
+ * This interface provides aesthetics like `x`, `yMin`, `yMax`, `fillColor`, and `alpha` for customization.
+ *
+ * Required aesthetics for ribbon layers are `x`, `yMin`, and `yMax`.
+ */
+public interface RibbonInterface : LayerContextInterface, WithX, WithYMin,
+    WithYMax, WithFillColor, WithAlpha, WithYFree {
 
-/*
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextMutable
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.kandy.letsplot.internal.*
+    /**
+     * Gets the Geom object specific to **ribbon** layers.
+     *
+     * @return the [Geom] object for **ribbon**.
+     */
+    override val geom: Geom
+        get() = RIBBON
 
-public interface RibbonContextInterface : WithBorderLineContextInterface {
-    public val x: XAes get() = XAes(this)
-    public val y: YDummyAes get() = YDummyAes(this)
-
-    public val yMin: YMinAes get() = YMinAes(this)
-    public val yMax: YMaxAes get() = YMaxAes(this)
-
-    public val color: FillAes get() = FillAes(this)
-    public val alpha: AlphaAes get() = AlphaAes(this)
+    /**
+     * Gets the set of required aesthetics for **ribbon** layers.
+     *
+     * @return the set of required aesthetics.
+     */
+    override val requiredAes: Set<Aes>
+        get() = setOf(X, Y_MIN, Y_MAX)
 }
 
-*/
-/*@PlotDslMarker*//*
 
-public class RibbonContextImmutable(parent: LayerCollectorContextImmutable) :
-    LayerWithBorderLineContextImmutable(parent), RibbonContextInterface
-
-*/
-/*@PlotDslMarker*//*
-
-public class RibbonContextMutable(parent: LayerCollectorContextMutable)
-    : LayerWithBorderLineContextMutable(parent), RibbonContextInterface*/
+/**
+ * Context class for managing ribbon layers.
+ *
+ * This class provides the context in which ribbon layers can be configured.
+ * It inherits from [LayerWithBorderLineContext] and implements the [RibbonInterface].
+ *
+ * @param parent the parent context for the layer.
+ */
+public open class RibbonContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), RibbonInterface

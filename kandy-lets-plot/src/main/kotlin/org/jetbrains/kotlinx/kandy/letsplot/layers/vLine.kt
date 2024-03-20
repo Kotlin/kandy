@@ -5,50 +5,52 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotGeom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.VLineContext
 
-// TODO
-
-@PublishedApi
-internal val V_LINE: LetsPlotGeom = LetsPlotGeom("vLine")
-
 /**
- * Adds a new vertical line layer.
+ * Adds a new vertical line (`vLine`) layer to the plot.
  *
- * Creates a context in which you can configure layer. Within it, you can set mappings and settings
- * on aesthetic attributes. Mappings allow you to set a relationship between data and attribute values,
- * while settings allow you to assign a constant value to the attributes.
+ * The `vLine` layer is primarily used for adding vertical lines that serve as a reference line
+ * or to highlight specific values on the X-axis.
  *
- * Mapping can be performed via method with name of corresponding aes.
- * Setting for non-positional attributes can be performed with simple assignment of variable with name of aes.
- * Setting for positional attributes can be performed with `.constant()` method of special property with
- * the same name as the attribute.
+ * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
+ * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
+ * - Constants are directly assigned using properties with the names corresponding to aesthetics.
+ *   For positional aesthetics, you can use the `.constant()` method.
  *
- * Vertical ine aesthetics:
- * * `x`
- * * `color`
- * * `type`
- * * `width`
- * * `alpha`
+ * ## Vertical Line Aesthetics
+ * * **`x`** - The X-coordinate where the line is placed.
+ * * **`color`** - The color of the line.
+ * * **`type`** - The type of line (solid, dashed, etc.).
+ * * **`width`** - The width of the line.
+ * * **`alpha`** - The transparency of the line.
  *
- * Example:
+ * ## Example Usage
  *
- * ```
- * vLine {
- *    // positional mapping
- *    x(count) {
- *       ... // some mapping parameters
- *    }
- *    // even though the v-line have no "y" attribute we can adjust the `Y` axis
- *    y.limits = 0.0 to 5.0
- *    // non-positional setting
- *    width = 2.5
- *    // non-positional mapping
- *    color("count")
+ * ```kotlin
+ * plot {
+ *     vLine {
+ *         // Set the X-intercept of the vertical line
+ *         xIntercept.constant(10.0)
+ *
+ *         // Optionally, set the color of the line
+ *         color = Color.GREEN
+ *
+ *         // Set the type or style of the line, such as solid, dashed, or dotted
+ *         type = LineType.SOLID
+ *
+ *         // Set the width of the line
+ *         width = 3.0
+ *
+ *         // Set the transparency of the line
+ *         alpha = 0.7
+ *
+ *         // Although vLine does not have a "y" attribute, you can adjust the Y-axis limits if needed
+ *         y.limits = 0.0..30.0
+ *     }
  * }
  * ```
  */
 public inline fun LayerCollectorContext.vLine(block: VLineContext.() -> Unit) {
-    addLayer(VLineContext(this).apply(block), V_LINE)
+    addLayer(VLineContext(this).apply(block))
 }

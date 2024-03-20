@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.internal
 
-import org.jetbrains.kotlinx.kandy.ir.aes.AesName
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 
 internal const val MERGED_GROUPS: String = "&merged_groups"
 
-internal val GROUP: AesName = AesName("group")
+internal val GROUP: Aes = Aes("group")

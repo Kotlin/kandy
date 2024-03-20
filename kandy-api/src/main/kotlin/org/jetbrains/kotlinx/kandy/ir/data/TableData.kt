@@ -5,6 +5,6 @@
 package org.jetbrains.kotlinx.kandy.ir.data
 
 /**
- * Base table data model. Table is a generalized dataframe - a set of named columns.
+ * A foundational data model representing structured data for visualization.
  */
 public sealed interface TableData

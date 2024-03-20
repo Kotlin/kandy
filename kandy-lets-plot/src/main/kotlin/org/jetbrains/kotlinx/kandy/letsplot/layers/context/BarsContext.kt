@@ -5,31 +5,50 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
+import org.jetbrains.kotlinx.kandy.ir.geom.Geom
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.context.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BAR
 
-public open class BarsContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent), WithX, WithY,
-    WithAlpha, WithFillColor, WithWidth
-/*
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextImmutable
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContextMutable
-// import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
-import org.jetbrains.kotlinx.kandy.letsplot.internal.*
+/**
+ * Interface defining the necessary aesthetics and methods for Bars layers.
+ *
+ * Bars layers are used to create bar charts, which are often used to represent categorical data.
+ * The interface provides aesthetics such as `x`, `y`, `alpha`, `fillColor`,`width`,
+ * and `borderLine` customization to allow for full customization of the bars.
+ *
+ * Required aesthetics for Bars are `X` and `Y`.
+ */
+public interface BarsContextInterface : LayerContextInterface, WithBorderLine, WithX, WithY,
+    WithAlpha, WithFillColor, WithWidth {
 
-public interface BarContextInterface : WithBorderLineContextInterface {
-    public val x: XAes get() = XAes(this)
-    public val y: YAes get() = YAes(this)
+    /**
+     * Gets the Geom object specific to **bars** layers.
+     *
+     * @return the [Geom] object for **bars**.
+     */
+    public override val geom: Geom
+        get() = BAR
 
-    public val color: FillAes get() = FillAes(this)
-    public val alpha: AlphaAes get() = AlphaAes(this)
-    public val width: WidthAes get() = WidthAes(this)
+    /**
+     * Gets the set of required aesthetics for **bars** layers.
+     *
+     * @return the set of required aesthetics.
+     */
+    public override val requiredAes: Set<Aes>
+        get() = setOf(X, Y)
 }
 
-/*@PlotDslMarker*/
-public open class BarContextImmutable(parent: LayerCollectorContextImmutable) :
-    LayerWithBorderLineContextImmutable(parent), BarContextInterface
-
-/*@PlotDslMarker*/
-public open class BarContextMutable(parent: LayerCollectorContextMutable)
-    : LayerWithBorderLineContextMutable(parent), BarContextInterface
-
+/**
+ * Context class for managing Bars layers.
+ *
+ * This class provides the context in which Bars layers can be configured.
+ * It inherits from [LayerWithBorderLineContext] and implements the [BarsContextInterface].
+ *
+ * @param parent the parent context for the layer.
  */
+public open class BarsContext(parent: LayerCollectorContext) : LayerWithBorderLineContext(parent),
+    BarsContextInterface

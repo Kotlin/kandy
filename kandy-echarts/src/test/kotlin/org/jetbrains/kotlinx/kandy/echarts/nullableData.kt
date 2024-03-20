@@ -1,20 +1,15 @@
-/*
-* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
-*/
-
 package org.jetbrains.kotlinx.kandy.echarts
 
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.plot
+import org.jetbrains.kotlinx.kandy.echarts.io.toJson
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.x
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.y
 import org.jetbrains.kotlinx.kandy.echarts.layers.area
 import org.jetbrains.kotlinx.kandy.echarts.layers.bars
 import org.jetbrains.kotlinx.kandy.echarts.layers.line
-import org.jetbrains.kotlinx.kandy.echarts.layers.points
 import kotlin.test.Test
-import kotlin.test.Ignore
 import kotlin.test.assertEquals
 
 @Ignore
@@ -138,8 +133,7 @@ class NullableDataTest {
                         "type": "line",
                         "name": "days nums",
                         "showSymbol": false,
-                        "areaStyle": {
-                        },
+                        "areaStyle": {},
                         "encode": {
                             "x": "days",
                             "y": "nums"
@@ -217,9 +211,12 @@ class NullableDataTest {
                 scale = continuous(nullValue = 4)
             }
             bars {}
-        }.toJson()
+        }
 
-        assertEquals(expected, actual)
+        println("!!!!!")
+        println(actual)
+
+        assertEquals(expected, actual.toJson())
     }
 
 //    @Test
