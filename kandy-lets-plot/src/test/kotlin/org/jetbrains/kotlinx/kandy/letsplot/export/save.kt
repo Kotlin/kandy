@@ -95,15 +95,12 @@ class SaveTests {
     fun `save plot grid as html`() = gridPlot.testSavePlot("html")
 
     @Test
-    @Ignore
     fun `save plot grid as png`() = gridPlot.testSavePlot("png", scale = 2.0, dpi = 300)
 
     @Test
-    @Ignore
     fun `save plot grid as jpeg`() = gridPlot.testSavePlot("jpeg", scale = 2.5)
 
     @Test
-    @Ignore
     fun `save plot grid as tiff`() = gridPlot.testSavePlot("tiff", dpi = 350)
 
     @Test
@@ -113,14 +110,11 @@ class SaveTests {
     fun `save plot bunch as html`() = bunchPlot.testSavePlot("html")
 
     @Test
-    @Ignore
     fun `save plot bunch as png`() = bunchPlot.testSavePlot("png", scale = 2.0, dpi = 300)
 
     @Test
-    @Ignore
     fun `save plot bunch as jpeg`() = bunchPlot.testSavePlot("jpeg", scale = 2.5)
 
     @Test
-    @Ignore
     fun `save plot bunch as tiff`() = bunchPlot.testSavePlot("tiff", dpi = 350)
 }
