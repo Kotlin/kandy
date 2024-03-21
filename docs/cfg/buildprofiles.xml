@@ -26,6 +26,7 @@
         <variables>
             <noindex-content>false</noindex-content>
         </variables>
+        <sitemap priority="0.35" change-frequency="monthly"/>
     </build-profile>
     <footer>
         <social type="blog" href="https://blog.jetbrains.com/kotlin/category/data-science/"/>
