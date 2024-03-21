@@ -10,14 +10,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotBunch
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotGrid
 import java.io.File
+import java.nio.file.Paths
 import kotlin.test.*
 
 class SaveTests {
-    private val resourcePath = if(System.getProperty("os.name").startsWith("Windows")) {
-        "src\\test\\resources\\images"
-    } else {
-        "src/test/resources/images"
-    }
+    private val resourcePath = Paths.get("src/test/resources/images").toString()
     private val plot: Plot = plot { line { x(listOf(1, 2, 3)); y(listOf(0.3, 0.15, 0.53)) } }
     private val barsPlot = plot { bars { x(listOf("first", "second", "third")); y(listOf(5, 1, 4)) } }
     private val pointsPlot =
