@@ -13,7 +13,11 @@ import java.io.File
 import kotlin.test.*
 
 class SaveTests {
-    private val resourcePath = "src/test/resources/images"
+    private val resourcePath = if(System.getProperty("os.name").startsWith("Windows")) {
+        "src\\test\\resources\\images"
+    } else {
+        "src/test/resources/images"
+    }
     private val plot: Plot = plot { line { x(listOf(1, 2, 3)); y(listOf(0.3, 0.15, 0.53)) } }
     private val barsPlot = plot { bars { x(listOf("first", "second", "third")); y(listOf(5, 1, 4)) } }
     private val pointsPlot =
