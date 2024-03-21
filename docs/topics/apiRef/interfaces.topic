@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="interfaces" id="interfaces_library" is-library="true">
+
+    <snippet id="interface-of-points">
+        <list type="none">
+            <li>
+                <a href="#x_points"><format style="bold" color="CadetBlue">x</format></a> <format style="superscript">Positional</format>
+                <include from="properties.topic" element-id="signature-of-positional"/>
+            </li>
+            <li>
+                <a href="#y_points"><format style="bold" color="CadetBlue">y</format></a> <format style="superscript">Positional</format>
+                <include from="properties.topic" element-id="signature-of-positional"/>
+            </li>
+
+            <li>
+                <a href="#alpha_points"><format style="bold" color="DarkGray">alpha</format></a> <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-alpha"/>
+            </li>
+            <li>
+                <a href="#symbol_points"><format style="bold" color="DarkGray">symbol</format></a> <format style="superscript">NonPositional</format>
+                <emphasis>(Iterable | Column | String) | Symbol</emphasis>
+            </li>
+            <li>
+                <a href="#color_points"><format style="bold" color="DarkGray">color</format></a> <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-color"/>
+            </li>
+            <li>
+                <a href="#fill_color_points"><format style="bold" color="DarkGray">fillColor</format></a> <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-color"/>
+            </li>
+            <li>
+                <a href="#size_points"><format style="bold" color="DarkGray">size</format></a> <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-double"/>
+            </li>
+            <li>
+                <a href="#stroke_points"><format style="bold" color="DarkGray">stroke</format></a> <format style="superscript">NonPositional</format>
+                <emphasis>(Iterable | Column | String) | Number</emphasis>
+            </li>
+        </list>
+    </snippet>
+
+    <snippet id="interface-of-boxes">
+        <list type="none">
+        <li>
+            <a href="#x_boxes"><format style="bold" color="CadetBlue">x</format></a> <format style="superscript">Positional</format>
+            <include from="properties.topic" element-id="signature-of-positional"></include>
+        </li>
+        <li>
+            <a href="#lower_boxes"><format style="bold" color="CadetBlue">lower</format></a> <format style="superscript">Positional</format>
+            <include from="properties.topic" element-id="signature-of-positional"></include>
+        </li>
+        <li>
+            <a href="#middle_boxes"><format style="bold" color="CadetBlue">middle</format></a> <format style="superscript">Positional</format>
+            <include from="properties.topic" element-id="signature-of-positional"></include>
+        </li>
+        <li>
+            <a href="#upper_boxes"><format style="bold" color="CadetBlue">upper</format></a> <format style="superscript">Positional</format>
+            <include from="properties.topic" element-id="signature-of-positional"></include>
+        </li>
+        <li>
+            <a href="#ymin_boxes"><format style="bold" color="CadetBlue">yMin</format></a> <format style="superscript">Positional</format>
+            <include from="properties.topic" element-id="signature-of-positional"></include>
+        </li>
+        <li>
+            <a href="#ymax_boxes"><format style="bold" color="CadetBlue">yMax</format></a> <format style="superscript">Positional</format>
+            <include from="properties.topic" element-id="signature-of-positional"></include>
+        </li>
+
+        <li>
+            <a href="#alpha_boxes"><format style="bold" color="DarkGray">alpha</format></a> <format style="superscript">NonPositional</format>
+            <include from="properties.topic" element-id="signature-of-nonpos-alpha"></include>
+        </li>
+        <li>
+            <a href="#width_boxes"><format style="bold" color="DarkGray">width</format></a> <format style="superscript">NonPositional</format>
+            <include from="properties.topic" element-id="signature-of-nonpos-double"></include>
+        </li>
+        <li>
+            <a href="#fill_color_boxes"><format style="bold" color="DarkGray">fillColor</format></a> <format style="superscript">NonPositional</format>
+            <include from="properties.topic" element-id="signature-of-nonpos-color"></include>
+        </li>
+        <li>
+            <a href="#fatten_boxes"><format style="bold" color="DarkGray">fatten</format></a> <format style="superscript">NonPositional</format>
+            <emphasis>Double</emphasis>
+        </li>
+        <li>
+            <include from="properties.topic" element-id="signature-of-borderLine"/>
+        </li>
+        <li>
+            <a href="#y_boxes"><format style="bold" color="DarkGray">y</format></a>
+            <include from="properties.topic" element-id="signature-of-axis"></include>
+        </li>
+        </list>
+    </snippet>
+
+    <snippet id="interface-of-bars">
+        <list type="none">
+            <li>
+                <a href="#x_bars">
+                    <format style="bold" color="CadetBlue">x</format>
+                </a>
+                <format style="superscript">Positional</format>
+                <include from="properties.topic" element-id="signature-of-positional"></include>
+            </li>
+            <li>
+                <a href="#y_bars">
+                    <format style="bold" color="CadetBlue">y</format>
+                </a>
+                <format style="superscript">Positional</format>
+                <include from="properties.topic" element-id="signature-of-positional"></include>
+            </li>
+            <li>
+                <a href="#alpha_bars">
+                    <format style="bold" color="DarkGray">alpha</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-alpha"></include>
+            </li>
+            <li>
+                <a href="#fill_color_bars">
+                    <format style="bold" color="DarkGray">fillColor</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-color"></include>
+            </li>
+            <li>
+                <include from="properties.topic" element-id="signature-of-borderLine"/>
+            </li>
+        </list>
+
+    </snippet>
+
+    <snippet id="interface-of-line">
+        <list type="none">
+            <li>
+                <a href="#x_line">
+                    <format style="bold" color="CadetBlue">x</format>
+                </a>
+                <format style="superscript">Positional</format>
+                <include from="properties.topic" element-id="signature-of-positional"></include>
+            </li>
+            <li>
+                <a href="#y_line">
+                    <format style="bold" color="CadetBlue">y</format>
+                </a>
+                <format style="superscript">Positional</format>
+                <include from="properties.topic" element-id="signature-of-positional"></include>
+            </li>
+            <li>
+                <a href="#alpha_line">
+                    <format style="bold" color="DarkGray">alpha</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-alpha"></include>
+            </li>
+            <li>
+                <a href="#width_line">
+                    <format style="bold" color="DarkGray">width</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-double"></include>
+            </li>
+            <li>
+                <a href="#color_line">
+                    <format style="bold" color="DarkGray">color</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-color"></include>
+            </li>
+            <li>
+                <a href="#type_line">
+                    <format style="bold" color="DarkGray">type</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-linetype">
+            </li>
+        </list>
+
+    </snippet>
+
+    <snippet id="interface-of-area">
+        <list type="none">
+            <li>
+                <a href="#x_area">
+                    <format style="bold" color="CadetBlue">x</format>
+                </a>
+                <format style="superscript">Positional</format>
+                <include from="properties.topic" element-id="signature-of-positional"></include>
+            </li>
+            <li>
+                <a href="#y_area">
+                    <format style="bold" color="CadetBlue">y</format>
+                </a>
+                <format style="superscript">Positional</format>
+                <include from="properties.topic" element-id="signature-of-positional"></include>
+            </li>
+            <li>
+                <a href="#alpha_area">
+                    <format style="bold" color="DarkGray">alpha</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-alpha"></include>
+            </li>
+            <li>
+                <a href="#fill_color_area">
+                    <format style="bold" color="DarkGray">fillColor</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-color"></include>
+            </li>
+            <li>
+                <include from="properties.topic" element-id="signature-of-borderLine"/>
+            </li>
+        </list>
+
+    </snippet>
+
+    <snippet id="interface-of-tiles">
+        <list type="none">
+            <li>
+                <a href="#x_tiles">
+                    <format style="bold" color="CadetBlue">x</format>
+                </a>
+                <format style="superscript">Positional</format>
+                <include from="properties.topic" element-id="signature-of-positional"></include>
+            </li>
+            <li>
+                <a href="#y_tiles">
+                    <format style="bold" color="CadetBlue">y</format>
+                </a>
+                <format style="superscript">Positional</format>
+                <include from="properties.topic" element-id="signature-of-positional"></include>
+            </li>
+            <li>
+                <a href="#alpha_tiles">
+                    <format style="bold" color="DarkGray">alpha</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-alpha"></include>
+            </li>
+            <li>
+                <a href="#fill_color_tiles">
+                    <format style="bold" color="DarkGray">fillColor</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-color"></include>
+            </li>
+            <li>
+                <a href="#height_tiles">
+                    <format style="bold" color="DarkGray">height</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-double"></include>
+            </li>
+            <li>
+                <a href="#width_tiles">
+                    <format style="bold" color="DarkGray">width</format>
+                </a>
+                <format style="superscript">NonPositional</format>
+                <include from="properties.topic" element-id="signature-of-nonpos-double"></include>
+            </li>
+            <li>
+                <include from="properties.topic" element-id="signature-of-borderLine"/>
+            </li>
+        </list>
+
+    </snippet>
+
+</topic>
