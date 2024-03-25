@@ -2,7 +2,7 @@
 
 <tldr>
 <p><format style="bold" color="GoldenRod">
-statCandlestick&lt;<a href="#xtype"><format color="Blue">X></format></a>></format>(
+statCandlestick&lt;<a href="#xtype"><format color="Blue">X</format></a>></format>(
 <a href="#x"><format style="bold" color="CadetBlue">x</format></a>:
 <include from="arguments.topic" element-id="signature-of-sample-x"></include>,
 <a href="#open"><format style="bold" color="CadetBlue">open</format></a>:
