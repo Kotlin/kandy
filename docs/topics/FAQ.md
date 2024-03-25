@@ -19,7 +19,7 @@ on the [#datascience](https://slack-chats.kotlinlang.org/c/datascience?_ga=2.277
 Kotlin Slack channel.
 
 
-## Does kandy support Compose Multiplatform?
+## Does Kandy support Compose Multiplatform?
  * We’re looking into it, but currently Kandy’s only target is JVM. 
 If you need Compose Multiplatform support, please follow the
 [corresponding issue](https://github.com/Kotlin/kandy/issues/27) for updates and cast your vote there as well. 
