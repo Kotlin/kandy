@@ -2,8 +2,8 @@
 
 <tldr>
 <p><format style="bold" color="GoldenRod">
-heatmap<a href="#xtype"><format color="Blue">&lt;X></format></a>
-<a href="#ytype"><format color="Blue">&lt;Y></format></a>
+heatmap&lt;<a href="#xtype"><format color="Blue">X</format></a>,
+<a href="#ytype"><format color="Blue">Y</format></a>>
 </format>(
 <a href="#x"><format style="bold" color="CadetBlue">x</format></a>:
 <include from="arguments.topic" element-id="signature-of-sample-x"></include>,
