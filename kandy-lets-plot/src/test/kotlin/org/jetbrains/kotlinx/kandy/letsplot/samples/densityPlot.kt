@@ -229,7 +229,7 @@ class DensityPlot : SampleHelper("densityPlot") {
         plot {
             histogram(ages) {
                 alpha = 0.9
-                fillColor = Color.WHITE// SampleEnd
+                fillColor = Color.BLUE// SampleEnd
                 x(Stat.x.map { it.toFloat() })
                 y(Stat.density.map { it.toFloat() }) // SampleStart
                 y(Stat.density)

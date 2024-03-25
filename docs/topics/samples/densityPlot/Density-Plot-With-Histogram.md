@@ -29,7 +29,7 @@ val ages = df["age"].dropNulls().cast<Double>()
 plot {
     histogram(ages) {
         alpha = 0.9
-        fillColor = Color.WHITE
+        fillColor = Color.BLUE
         y(Stat.density)
     }
     densityPlot(ages) {
