@@ -288,9 +288,7 @@ class Tiles : SampleHelper("tiles") {
                 }
             }
             layout {
-                style(Style.Classic) {
-                    blankAxes()
-                }
+                style(Style.Void)
             }
         }
             // SampleEnd
