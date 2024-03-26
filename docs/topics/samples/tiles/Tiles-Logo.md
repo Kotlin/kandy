@@ -61,9 +61,7 @@ plot {
         }
     }
     layout {
-        style(Style.Classic) {
-            blankAxes()
-        }
+        style(Style.Void)
     }
 }
 ```

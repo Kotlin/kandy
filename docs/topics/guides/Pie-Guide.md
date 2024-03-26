@@ -20,19 +20,6 @@ Learn to effectively represent categorical data with visually engaging charts.
 
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.guides.Pie-->
 
-<!---FUN guidePieBlankStyle-->
-
-```kotlin
-val blankStyle = Style.createCustom {
-    global.line {
-        blank = true
-    }
-    blankAxes()
-}
-```
-
-<!---END-->
-
 <!---FUN guidePieData-->
 
 ```kotlin
@@ -84,7 +71,7 @@ dataset.plot {
         hole = 0.5
     }
     layout {
-        style(blankStyle)
+        style(Style.Void)
     }
 }
 ```
@@ -131,7 +118,7 @@ length.plot {
         strokeColor = Color.BLACK
         size = 20.0
     }
-    layout.style(blankStyle)
+    layout.style(Style.Void)
 }
 ```
 
@@ -166,7 +153,7 @@ plotGrid(
                 size = 15.0
             }
             layout {
-                style(blankStyle)
+                style(Style.Void)
             }
         },
         calories.plot {
@@ -180,7 +167,7 @@ plotGrid(
                 hole = 0.8
             }
             layout {
-                style(blankStyle)
+                style(Style.Void)
             }
         }
     )

@@ -17,13 +17,6 @@ import kotlin.test.assertNotNull
 
 class Pie : SampleHelper("geoms", "guides") {
 
-    private val blankStyle = Style.createCustom {
-        global.line {
-            blank = true
-        }
-        blankAxes()
-    }
-
     private val dataset = dataFrameOf(
         "name" to listOf("a", "b", "c", "d", "b"),
         "value" to listOf(40, 90, 10, 50, 20)
@@ -58,19 +51,6 @@ class Pie : SampleHelper("geoms", "guides") {
     private val slice = column<Int>("slice")
     private val label = column<String>("label")
 
-
-    @Test
-    fun guidePieBlankStyle() {
-        // SampleStart
-        val blankStyle = Style.createCustom {
-            global.line {
-                blank = true
-            }
-            blankAxes()
-        }
-        // SampleEnd
-        assertNotNull(blankStyle.global.line?.blank)
-    }
 
     @Test
     fun guidePieData() {
@@ -112,7 +92,7 @@ class Pie : SampleHelper("geoms", "guides") {
                 hole = 0.5
             }
             layout {
-                style(blankStyle)
+                style(Style.Void)
             }
         }
             // SampleEnd
@@ -157,7 +137,7 @@ class Pie : SampleHelper("geoms", "guides") {
                 strokeColor = Color.BLACK
                 size = 20.0
             }
-            layout.style(blankStyle)
+            layout.style(Style.Void)
         }
             // SampleEnd
             .saveSample()
@@ -192,7 +172,7 @@ class Pie : SampleHelper("geoms", "guides") {
                         size = 15.0
                     }
                     layout {
-                        style(blankStyle)
+                        style(Style.Void)
                     }
                 },
                 calories.plot {
@@ -206,7 +186,7 @@ class Pie : SampleHelper("geoms", "guides") {
                         hole = 0.8
                     }
                     layout {
-                        style(blankStyle)
+                        style(Style.Void)
                     }
                 }
             )
