@@ -461,3 +461,10 @@ df.candlestick("x", "open", "high", "low", "close").configure {
 <!---END-->
 
 ![Candlestick Plot_Simple](guideCandlestickCandlestickPlotConfigured.svg)
+
+<seealso style="cards">
+       <category ref="example-ktnb">
+           <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/candlestick.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
+           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/a3Q5v3cdhUj6qZ9Ub8ODz9" summary="Experiment with this example on Datalore">Datalore Notebook</a>
+       </category>
+</seealso>
