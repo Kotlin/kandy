@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.kandy.dsl.internal.*
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 
@@ -16,9 +16,10 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
  *
  * @see [Position]
  */
-public var LayerContextInterface.position: Position
+public var LayerBuilder.position: Position
     get() = Position.Identity // todo
     set(pos) {
+        @Suppress("INVISIBLE_MEMBER")
         layerFeatures[Position.FEATURE_NAME] = pos
     }
 

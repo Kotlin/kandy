@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.kandy.dsl.internal.*
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 
@@ -18,9 +18,10 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
  *
  * @see [Reversed]
  */
-public var LayerContextInterface.reversed: Boolean
+public var LayerBuilder.reversed: Boolean
     get() = true
     set(value) {
+        @Suppress("INVISIBLE_MEMBER")
         layerFeatures[Reversed.FEATURE_NAME] = Reversed(value)
     }
 

@@ -11,7 +11,8 @@ import kotlin.test.assertEquals
 import io.mockk.mockk
 import io.mockk.every
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
 
 class CoordFlipTest {
     @Test
@@ -23,7 +24,7 @@ class CoordFlipTest {
             settings = mapOf(Aes("a") to mockk<Setting>()),
             features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
         )
-        val layerContext = mockk<LayerContextInterface> {
+        val layerContext = mockk<LayerBuilderImpl> {
             every { requiredAes } returns emptySet()
             every { bindingCollector } returns BindingCollector()
             every { toLayer(true) } returns mockLayer

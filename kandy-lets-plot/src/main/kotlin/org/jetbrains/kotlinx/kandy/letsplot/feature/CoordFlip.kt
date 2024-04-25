@@ -4,7 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.PlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 
@@ -28,7 +29,8 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
  * }
  * ```
  */
-public fun PlotContext.coordFlip() {
+public fun PlotBuilder.coordFlip() {
+    @Suppress("INVISIBLE_MEMBER")
     plotFeatures[CoordFlip.FEATURE_NAME] = CoordFlip
 }
 

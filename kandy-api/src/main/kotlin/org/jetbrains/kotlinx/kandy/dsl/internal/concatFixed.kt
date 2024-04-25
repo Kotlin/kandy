@@ -4,6 +4,7 @@ import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
 
+// TODO should be fixed in dataframe: https://github.com/Kotlin/dataframe/issues/673
 internal fun GroupBy<*, *>.concatFixed(): DataFrame<*> {
     val keyNames = keys.columnNames()
     

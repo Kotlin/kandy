@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.VLineContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.VLineBuilder
 
 /**
  * Adds a new vertical line (`vLine`) layer to the plot.
@@ -51,6 +51,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.VLineContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.vLine(block: VLineContext.() -> Unit) {
-    addLayer(VLineContext(this).apply(block))
+public inline fun LayerCreatorScope.vLine(block: VLineBuilder.() -> Unit) {
+    createLayer(VLineBuilder(this), block)
 }

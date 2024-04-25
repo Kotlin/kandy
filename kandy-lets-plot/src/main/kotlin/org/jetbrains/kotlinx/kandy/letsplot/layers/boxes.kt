@@ -4,10 +4,10 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.position
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxesContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.BoxesBuilder
 
 /**
  * Adds a new `boxes` layer to the plot.
@@ -65,8 +65,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.BoxesContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.boxes(block: BoxesContext.() -> Unit) {
-    addLayer(BoxesContext(this).apply {
+public inline fun LayerCreatorScope.boxes(block: BoxesBuilder.() -> Unit) {
+    createLayer(BoxesBuilder(this).apply {
         position = Position.dodge()
-    }.apply(block))
+    }, block)
 }

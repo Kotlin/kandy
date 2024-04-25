@@ -4,14 +4,14 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationPie
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationType
 import org.jetbrains.kotlinx.kandy.echarts.layers.PIE
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-public class PieContext(parent: LayerCollectorContext) : EchartsLayerContext(parent) {
+public class PieContext(parent: LayerCreatorScope) : EchartsLayerContext(parent) {
     override val geom: Geom
         get() = PIE
 

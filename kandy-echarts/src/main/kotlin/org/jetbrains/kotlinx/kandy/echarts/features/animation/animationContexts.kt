@@ -21,11 +21,11 @@ import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
  *
  * @see AnimationEasing
  * @see org.jetbrains.kotlinx.kandy.ir.Plot
- * @see org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.AreaContext
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.LineContext
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.PointContext
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.BarContext
+ * @see org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.AreaHandler
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.LineHandler
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.PointHandler
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.BarHandler
  */
 public class Animation(
     public var enable: Boolean? = null,

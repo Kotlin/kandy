@@ -4,12 +4,14 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.PlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.letsplot.style.CustomStyle
 import org.jetbrains.kotlinx.kandy.letsplot.style.Theme
 import org.jetbrains.kotlinx.kandy.letsplot.style.Style
+import org.jetbrains.kotlinx.kandy.dsl.internal.*
 
 /**
  * Provides a context for configuring the layout of a plot.
@@ -32,7 +34,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.style.Style
  * }
  * ```
  */
-public inline fun PlotContext.layout(block: Layout.() -> Unit) {
+@Suppress("INVISIBLE_MEMBER")
+public inline fun PlotBuilder.layout(block: Layout.() -> Unit) {
     if (plotFeatures[Layout.NAME] == null) {
         plotFeatures[Layout.NAME] = Layout().apply(block)
     }
@@ -43,7 +46,8 @@ public inline fun PlotContext.layout(block: Layout.() -> Unit) {
  * Accessor for the [Layout] of a plot.
  * Returns an existing [Layout] if one exists, or creates a new one otherwise.
  */
-public val PlotContext.layout: Layout
+@Suppress("INVISIBLE_MEMBER")
+public val MultiLayerPlotBuilder.layout: Layout
     get() {
         if (plotFeatures[Layout.NAME] == null) {
             plotFeatures[Layout.NAME] = Layout()

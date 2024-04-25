@@ -5,8 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ABLineContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.ABLineBuilder
 
 /**
  * Adds an `abLine` layer to the plot.
@@ -50,6 +50,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ABLineContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.abLine(block: ABLineContext.() -> Unit) {
-    addLayer(ABLineContext(this).apply(block))
+public inline fun LayerCreatorScope.abLine(block: ABLineBuilder.() -> Unit) {
+    createLayer(ABLineBuilder(this), block)
 }

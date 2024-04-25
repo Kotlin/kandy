@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PieContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PieBuilder
 
 /**
  * Adds a new `pie` layer to the plot.
@@ -67,6 +67,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PieContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.pie(block: PieContext.() -> Unit) {
-    addLayer(PieContext(this).apply(block))
+public inline fun LayerCreatorScope.pie(block: PieBuilder.() -> Unit) {
+    createLayer(PieBuilder(this), block)
 }

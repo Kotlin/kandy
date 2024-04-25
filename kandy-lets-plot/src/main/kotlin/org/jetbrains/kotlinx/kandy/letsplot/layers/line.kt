@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.LineContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.LineBuilder
 
 /**
  * Adds a new `line` layer to the plot.
@@ -52,6 +52,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.LineContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
-    addLayer(LineContext(this).apply(block))
+public fun LayerCreatorScope.line(block: LineBuilder.() -> Unit) {
+    createLayer(LineBuilder(this), block)
 }

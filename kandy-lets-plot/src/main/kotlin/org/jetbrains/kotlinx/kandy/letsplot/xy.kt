@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.kandy.letsplot
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.PlotContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
@@ -21,11 +21,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisParametersWit
  * @param parameters additional mapping parameters.
  * @return a [PositionalMapping] object representing the mapping.
  */
-public fun <T> PlotContext.x(
+public fun <T> MultiLayerPlotBuilder.x(
     column: ColumnReference<T>,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    return addPositionalMapping<T>(
+    @Suppress("INVISIBLE_MEMBER")
+    return bindingHandler.addPositionalMapping<T>(
         X,
         column.name(),
         LetsPlotPositionalMappingParametersContinuous<T>().apply(parameters)
@@ -40,12 +41,13 @@ public fun <T> PlotContext.x(
  * @param parameters additional mapping parameters.
  * @return a [PositionalMapping] object representing the mapping.
  */
-public fun <T> PlotContext.x(
+public fun <T> MultiLayerPlotBuilder.x(
     values: Iterable<T>,
     name: String? = null,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    return addPositionalMapping<T>(
+    @Suppress("INVISIBLE_MEMBER")
+    return bindingHandler.addPositionalMapping<T>(
         X,
         values.toList(),
         name,
@@ -60,11 +62,12 @@ public fun <T> PlotContext.x(
  * @param parameters additional mapping parameters.
  * @return a [PositionalMapping] object representing the mapping.
  */
-public fun PlotContext.x(
+public fun MultiLayerPlotBuilder.x(
     column: String,
     parameters: LetsPlotPositionalMappingParametersContinuous<Any?>.() -> Unit = {}
 ): PositionalMapping<Any?> {
-    return addPositionalMapping<Any?>(
+    @Suppress("INVISIBLE_MEMBER")
+    return bindingHandler.addPositionalMapping<Any?>(
         X,
         column,
         LetsPlotPositionalMappingParametersContinuous<Any?>().apply(parameters)
@@ -78,11 +81,12 @@ public fun PlotContext.x(
  * @param parameters additional mapping parameters.
  * @return a [PositionalMapping] object representing the mapping.
  */
-public fun <T> PlotContext.x(
+public fun <T> MultiLayerPlotBuilder.x(
     values: DataColumn<T>,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    return addPositionalMapping<T>(
+    @Suppress("INVISIBLE_MEMBER")
+    return bindingHandler.addPositionalMapping<T>(
         X,
         values,
         LetsPlotPositionalMappingParametersContinuous<T>().apply(parameters)
@@ -95,11 +99,12 @@ public fun <T> PlotContext.x(
  * @property x an [AxisParametersWithSetter] object for x-axis configuration.
  */
 @Suppress("UNCHECKED_CAST")
-public val PlotContext.x: AxisParametersWithSetter
+public val MultiLayerPlotBuilder.x: AxisParametersWithSetter
     get() {
+        @Suppress("INVISIBLE_MEMBER")
         return AxisParametersWithSetter(bindingCollector.freeScales.getOrPut(X) {
             PositionalFreeScale(X, LetsPlotPositionalMappingParametersContinuous<Any?>())
-        }.parameters as LetsPlotPositionalMappingParametersContinuous<Any?>, X, this)
+        }.parameters as LetsPlotPositionalMappingParametersContinuous<Any?>, X, bindingHandler)
     }
 
 /**
@@ -107,7 +112,7 @@ public val PlotContext.x: AxisParametersWithSetter
  *
  * @param parameters the configurations to apply to the x-axis parameters.
  */
-public fun PlotContext.x(parameters: AxisParametersWithSetter.() -> Unit = {}) {
+public fun MultiLayerPlotBuilder.x(parameters: AxisParametersWithSetter.() -> Unit = {}) {
     x.apply(parameters)
 }
 
@@ -118,11 +123,12 @@ public fun PlotContext.x(parameters: AxisParametersWithSetter.() -> Unit = {}) {
  * @param parameters additional mapping parameters.
  * @return a [PositionalMapping] object representing the mapping.
  */
-public fun <T> PlotContext.y(
+public fun <T> MultiLayerPlotBuilder.y(
     column: ColumnReference<T>,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    return addPositionalMapping<T>(
+    @Suppress("INVISIBLE_MEMBER")
+    return bindingHandler.addPositionalMapping<T>(
         Y,
         column.name(),
         LetsPlotPositionalMappingParametersContinuous<T>().apply(parameters)
@@ -137,12 +143,13 @@ public fun <T> PlotContext.y(
  * @param parameters additional mapping parameters.
  * @return a [PositionalMapping] object representing the mapping.
  */
-public fun <T> PlotContext.y(
+public fun <T> MultiLayerPlotBuilder.y(
     values: Iterable<T>,
     name: String? = null,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    return addPositionalMapping<T>(
+    @Suppress("INVISIBLE_MEMBER")
+    return bindingHandler.addPositionalMapping<T>(
         Y,
         values.toList(),
         name,
@@ -157,11 +164,12 @@ public fun <T> PlotContext.y(
  * @param parameters additional mapping parameters.
  * @return a [PositionalMapping] object representing the mapping.
  */
-public fun PlotContext.y(
+public fun MultiLayerPlotBuilder.y(
     column: String,
     parameters: LetsPlotPositionalMappingParametersContinuous<Any?>.() -> Unit = {}
 ): PositionalMapping<Any?> {
-    return addPositionalMapping<Any?>(
+    @Suppress("INVISIBLE_MEMBER")
+    return bindingHandler.addPositionalMapping<Any?>(
         Y,
         column,
         LetsPlotPositionalMappingParametersContinuous<Any?>().apply(parameters)
@@ -175,11 +183,12 @@ public fun PlotContext.y(
  * @param parameters additional mapping parameters.
  * @return a [PositionalMapping] object representing the mapping.
  */
-public fun <T> PlotContext.y(
+public fun <T> MultiLayerPlotBuilder.y(
     values: DataColumn<T>,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    return addPositionalMapping<T>(
+    @Suppress("INVISIBLE_MEMBER")
+    return bindingHandler.addPositionalMapping<T>(
         Y,
         values,
         LetsPlotPositionalMappingParametersContinuous<T>().apply(parameters)
@@ -192,11 +201,12 @@ public fun <T> PlotContext.y(
  * @property y an [AxisParametersWithSetter] object for y-axis configuration.
  */
 @Suppress("UNCHECKED_CAST")
-public val PlotContext.y: AxisParametersWithSetter
+public val MultiLayerPlotBuilder.y: AxisParametersWithSetter
     get() {
+        @Suppress("INVISIBLE_MEMBER")
         return AxisParametersWithSetter(bindingCollector.freeScales.getOrPut(Y) {
             PositionalFreeScale(Y, LetsPlotPositionalMappingParametersContinuous<Any?>())
-        }.parameters as LetsPlotPositionalMappingParametersContinuous<Any?>, Y, this)
+        }.parameters as LetsPlotPositionalMappingParametersContinuous<Any?>, Y, bindingHandler)
     }
 
 /**
@@ -204,6 +214,6 @@ public val PlotContext.y: AxisParametersWithSetter
  *
  * @param parameters the configurations to apply to the y-axis parameters.
  */
-public fun PlotContext.y(parameters: AxisParametersWithSetter.() -> Unit = {}) {
+public fun MultiLayerPlotBuilder.y(parameters: AxisParametersWithSetter.() -> Unit = {}) {
     y.apply(parameters)
 }

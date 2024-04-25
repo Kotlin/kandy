@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 
 /**
- * Represents the context for configuring and adding facets to a plot within the [org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext].
+ * Represents the context for configuring and adding facets to a plot within the [org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder].
  * This context is initiated by invoking [org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.facetWrap],
  * which collects variables that are used to create facet plots.
  */

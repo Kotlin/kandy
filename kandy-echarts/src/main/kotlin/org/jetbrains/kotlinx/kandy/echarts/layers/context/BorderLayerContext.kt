@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.BORDER_COLOR
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.BORDER_TYPE
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.BORDER_WIDTH
@@ -21,14 +21,14 @@ import kotlin.reflect.KProperty
 /**
  * Adds [border][BorderLayerContext] settings to [bars][org.jetbrains.kotlinx.kandy.echarts.layers.bars].
  */
-public fun BarContext.border(block: BorderLayerContext.() -> Unit) {
+public fun BarHandler.border(block: BorderLayerContext.() -> Unit) {
     BorderLayerContext(this).apply(block)
 }
 
 /**
  * Adds [border][BorderLayerContext] settings to [points][org.jetbrains.kotlinx.kandy.echarts.layers.points].
  */
-public fun PointContext.border(block: BorderLayerContext.() -> Unit) {
+public fun PointHandler.border(block: BorderLayerContext.() -> Unit) {
     BorderLayerContext(this).apply(block)
 }
 
@@ -43,7 +43,7 @@ public fun PointContext.border(block: BorderLayerContext.() -> Unit) {
  * @see Color
  * @see LineType
  */
-public class BorderLayerContext(private val context: BindingContext) {
+public class BorderLayerContext(private val context: BindingHandler) {
     public var color: Color? = null
         set(value) {
             context.addNonPositionalSetting(BORDER_COLOR, value)

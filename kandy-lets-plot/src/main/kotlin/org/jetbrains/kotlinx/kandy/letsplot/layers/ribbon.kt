@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RibbonContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.RibbonBuilder
 
 /**
  * Adds a new `ribbon` layer to the plot.
@@ -62,6 +62,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RibbonContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.ribbon(block: RibbonContext.() -> Unit) {
-    addLayer(RibbonContext(this).apply(block))
+public inline fun LayerCreatorScope.ribbon(block: RibbonBuilder.() -> Unit) {
+    createLayer(RibbonBuilder(this), block)
 }
