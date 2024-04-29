@@ -9,14 +9,14 @@ import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWithBorderLineBuilder
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.BoxesInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.BoxesBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BOXPLOT
 
 /**
  * Context class for managing Boxes layers.
  *
  * This class provides the context in which `Boxes` layers can be configured.
- * It inherits from [LayerWithBorderLineBuilder] and implements the [BoxesInterface].
+ * It inherits from [LayerWithBorderLineBuilder] and implements the [BoxesBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */
@@ -24,7 +24,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BOXPLOT
 public open class BoxesBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
-) : LayerWithBorderLineBuilder(parent, datasetIndex), BoxesInterface {
+) : LayerWithBorderLineBuilder(parent, datasetIndex), BoxesBuilderInterface {
     /**
      * Gets the Geom object specific to **boxes** layers.
      *

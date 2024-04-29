@@ -11,14 +11,14 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.PointsInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.PointsBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
 
 /**
  * Context class for managing points layers.
  *
  * This class provides the context in which points layers can be configured.
- * It inherits from [LayerContext] and implements the [PointsInterface].
+ * It inherits from [LayerContext] and implements the [PointsBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */
@@ -26,7 +26,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
 public open class PointsBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
-) : LayerBuilderImpl(parent, datasetIndex), PointsInterface {
+) : LayerBuilderImpl(parent, datasetIndex), PointsBuilderInterface {
     /**
      * Gets the Geom object specific to **points** layers.
      *

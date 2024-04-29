@@ -11,5 +11,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * The set of required aesthetics for tile layers includes `X` and `Y`.
  */
-public interface TilesInterface : WithBorderLine, WithX, WithY, WithAlpha,
+public interface TilesBuilderInterface : WithBorderLine, WithX, WithY, WithAlpha,
     WithFillColor, WithWidth, WithHeight

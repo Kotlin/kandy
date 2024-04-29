@@ -10,14 +10,14 @@ import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_INTERCEPT
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.HLineInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.HLineBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.H_LINE
 
 /**
  * Context class for managing hLine layers.
  *
  * This class provides the context in which hLine layers can be configured.
- * It inherits from [LayerContext] and implements the [HLineInterface].
+ * It inherits from [LayerContext] and implements the [HLineBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */
@@ -26,7 +26,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.H_LINE
 public open class HLineBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
-) : LayerBuilderImpl(parent, datasetIndex), HLineInterface {
+) : LayerBuilderImpl(parent, datasetIndex), HLineBuilderInterface {
     /**
      * Gets the Geom object specific to **hLine** layers.
      *

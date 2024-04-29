@@ -10,5 +10,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Required aesthetics for ribbon layers are `x`, `yMin`, and `yMax`.
  */
-public interface RibbonInterface : WithX, WithYMin,
+public interface RibbonBuilderInterface : WithX, WithYMin,
     WithYMax, WithFillColor, WithAlpha, WithYFree

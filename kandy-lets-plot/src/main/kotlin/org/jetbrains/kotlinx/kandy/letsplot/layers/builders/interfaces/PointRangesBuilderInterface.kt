@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.InnerPoin
  *
  * Required aesthetics for pointRange layers are `x`, `y`, `yMin`, and `yMax`.
  */
-public interface PointRangesInterface : WithX, WithY, WithAlpha,
+public interface PointRangesBuilderInterface : WithX, WithY, WithAlpha,
     WithColor, WithYMin, WithYMax, WithSize {
     public val innerPoint: InnerPoint
     public val innerLine: InnerLine

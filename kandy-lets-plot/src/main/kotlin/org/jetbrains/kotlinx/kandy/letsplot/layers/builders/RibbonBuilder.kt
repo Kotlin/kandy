@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWithBorderLineBuilder
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.RibbonInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.RibbonBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RIBBON
 
 
@@ -19,7 +19,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RIBBON
  * Context class for managing ribbon layers.
  *
  * This class provides the context in which ribbon layers can be configured.
- * It inherits from [LayerWithBorderLineBuilder] and implements the [RibbonInterface].
+ * It inherits from [LayerWithBorderLineBuilder] and implements the [RibbonBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */
@@ -27,7 +27,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RIBBON
 public open class RibbonBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
-) : LayerWithBorderLineBuilder(parent, datasetIndex), RibbonInterface {
+) : LayerWithBorderLineBuilder(parent, datasetIndex), RibbonBuilderInterface {
     /**
      * Gets the Geom object specific to **ribbon** layers.
      *

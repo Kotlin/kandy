@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.LABEL
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.TextInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.TextBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.Font
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.TEXT
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
@@ -21,7 +21,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
  * Context class for managing text layers.
  *
  * This class provides the context in which text layers can be configured.
- * It inherits from [LayerContext] and implements the [TextInterface].
+ * It inherits from [LayerContext] and implements the [TextBuilderInterface].
  * It also contains a nested `FontContext` object for managing font styling.
  *
  * @param parent the parent context for the layer.
@@ -30,7 +30,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 public open class TextBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
-) : LayerBuilderImpl(parent, datasetIndex), TextInterface {
+) : LayerBuilderImpl(parent, datasetIndex), TextBuilderInterface {
     // todo doc
     override val font: Font = Font(bindingHandler)
 

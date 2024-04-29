@@ -11,5 +11,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Required aesthetics for hLine are `yIntercept`.
  */
-public interface HLineInterface : WithYIntercept, WithAlpha, WithColor,
+public interface HLineBuilderInterface : WithYIntercept, WithAlpha, WithColor,
     WithWidthAsSize, WithType, WithXFree

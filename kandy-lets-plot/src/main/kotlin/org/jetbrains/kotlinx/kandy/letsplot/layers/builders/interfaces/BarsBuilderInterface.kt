@@ -11,5 +11,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Required aesthetics for Bars are `X` and `Y`.
  */
-public interface BarsContextInterface : WithBorderLine, WithX, WithY,
+public interface BarsBuilderInterface : WithBorderLine, WithX, WithY,
     WithAlpha, WithFillColor, WithWidth

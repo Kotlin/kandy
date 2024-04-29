@@ -11,14 +11,14 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWithBorderLineBuilder
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LineRangesInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LineRangesBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LINE_RANGE
 
 /**
  * Context class for managing lineRanges layers.
  *
  * This class provides the context in which lineRanges layers can be configured.
- * It inherits from [LayerWithBorderLineBuilder] and implements the [LineRangesInterface].
+ * It inherits from [LayerWithBorderLineBuilder] and implements the [LineRangesBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */
@@ -26,7 +26,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LINE_RANGE
 public open class LineRangesBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
-) : LayerWithBorderLineBuilder(parent, datasetIndex), LineRangesInterface {
+) : LayerWithBorderLineBuilder(parent, datasetIndex), LineRangesBuilderInterface {
     /**
      * Gets the Geom object specific to **lineRanges** layers.
      *

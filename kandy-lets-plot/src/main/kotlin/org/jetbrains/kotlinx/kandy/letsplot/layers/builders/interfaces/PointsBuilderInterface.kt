@@ -11,5 +11,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Required aesthetics for points layers are `x` and `y`.
  */
-public interface PointsInterface : WithX, WithY, WithColor, WithSymbol,
+public interface PointsBuilderInterface : WithX, WithY, WithColor, WithSymbol,
     WithSize, WithAlpha, WithFillColor, WithPointStroke

@@ -10,5 +10,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Required aesthetics for lineRanges are `x`, `yMin`, and `yMax`.
  */
-public interface LineRangesInterface : WithX, WithYMin,
+public interface LineRangesBuilderInterface : WithX, WithYMin,
     WithYMax, WithAlpha, WithYFree

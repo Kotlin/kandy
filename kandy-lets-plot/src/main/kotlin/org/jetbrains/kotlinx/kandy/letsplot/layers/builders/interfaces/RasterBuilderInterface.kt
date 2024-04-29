@@ -15,5 +15,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.WithY
  *
  * Required aesthetics for raster layers are `x` and `y`.
  */
-public interface RasterInterface : WithX, WithY,
+public interface RasterBuilderInterface : WithX, WithY,
     WithFillColor, WithAlpha

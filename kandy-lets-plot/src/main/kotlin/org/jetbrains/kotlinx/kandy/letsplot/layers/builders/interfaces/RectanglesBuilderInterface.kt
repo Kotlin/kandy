@@ -12,6 +12,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Required aesthetics for rectangle layers are `xMin`, `xMax`, `yMin`, and `yMax`.
  */
-public interface RectanglesInterface : WithXMin, WithXMax,
+public interface RectanglesBuilderInterface : WithXMin, WithXMax,
     WithYMin, WithYMax,
     WithFillColor, WithAlpha, WithXFree, WithYFree

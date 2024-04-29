@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.PointRangesInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.PointRangesBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.InnerLine
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.InnerPoint
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT_RANGE
@@ -23,7 +23,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
  * Context class for managing pointRange layers.
  *
  * This class provides the context in which pointRange layers can be configured.
- * It inherits from [LayerContext] and implements the [PointRangesInterface].
+ * It inherits from [LayerContext] and implements the [PointRangesBuilderInterface].
  * It also initializes `innerPoint` and `innerLine` contexts for more granular customization.
  *
  * @param parent the parent context for the layer.
@@ -32,7 +32,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 public open class PointRangesBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
-) : LayerBuilderImpl(parent, datasetIndex), PointRangesInterface {
+) : LayerBuilderImpl(parent, datasetIndex), PointRangesBuilderInterface {
 
     // todo docs
     public override val innerPoint: InnerPoint = InnerPoint(bindingHandler)

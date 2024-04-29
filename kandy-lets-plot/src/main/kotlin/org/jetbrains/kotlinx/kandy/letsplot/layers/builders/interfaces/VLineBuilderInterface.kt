@@ -11,5 +11,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * The set of required aesthetics for vertical line layers includes `X_INTERCEPT`.
  */
-public interface VLineInterface : WithXIntercept, WithAlpha, WithColor,
+public interface VLineBuilderInterface : WithXIntercept, WithAlpha, WithColor,
     WithWidthAsSize, WithType, WithYFree

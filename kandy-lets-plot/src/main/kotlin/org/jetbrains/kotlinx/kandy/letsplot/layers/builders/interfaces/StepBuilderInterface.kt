@@ -11,5 +11,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Required aesthetics for step layers are `x` and `y`.
  */
-public interface StepInterface : WithX, WithY, WithAlpha, WithColor,
+public interface StepBuilderInterface : WithX, WithY, WithAlpha, WithColor,
     WithWidthAsSize, WithLineType

@@ -12,14 +12,14 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.X_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWithBorderLineBuilder
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.RectanglesInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.RectanglesBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RECT
 
 /**
  * Context class for managing rectangle layers.
  *
  * This class provides the context in which rectangle layers can be configured.
- * It inherits from [LayerWithBorderLineBuilder] and implements the [RectanglesInterface].
+ * It inherits from [LayerWithBorderLineBuilder] and implements the [RectanglesBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */
@@ -27,7 +27,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RECT
 public open class RectanglesBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
-) : LayerWithBorderLineBuilder(parent, datasetIndex), RectanglesInterface {
+) : LayerWithBorderLineBuilder(parent, datasetIndex), RectanglesBuilderInterface {
     /**
      * Gets the Geom object specific to **rect** layers.
      *

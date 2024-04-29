@@ -11,6 +11,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Required aesthetics for segment layers are `xBegin`, `yBegin`, `xEnd`, and `yEnd`.
  */
-public interface SegmentsInterface : WithColor, WithAlpha, WithLineType,
+public interface SegmentsBuilderInterface : WithColor, WithAlpha, WithLineType,
     WithWidthAsSize,
     WithXBegin, WithYBegin, WithXEnd, WithYEnd, WithXFree, WithYFree

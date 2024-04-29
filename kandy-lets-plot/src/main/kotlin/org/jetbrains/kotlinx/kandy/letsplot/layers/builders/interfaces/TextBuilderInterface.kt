@@ -15,6 +15,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.Font
  *
  * Required aesthetics for text layers are `X`, `Y`, and `LABEL`.
  */
-public interface TextInterface: WithX, WithY, WithAlpha, WithLabel {
+public interface TextBuilderInterface: WithX, WithY, WithAlpha, WithLabel {
     public val font: Font
 }

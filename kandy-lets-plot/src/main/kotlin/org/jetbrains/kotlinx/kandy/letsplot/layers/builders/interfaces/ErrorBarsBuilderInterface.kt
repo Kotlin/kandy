@@ -11,5 +11,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Required aesthetics for ErrorBars are `X`, `Y_MIN`, and `Y_MAX`.
  */
-public interface ErrorBarsInterface : WithX, WithYMin,
+public interface ErrorBarsBuilderInterface : WithX, WithYMin,
     WithYMax, WithWidth, WithAlpha, WithYFree

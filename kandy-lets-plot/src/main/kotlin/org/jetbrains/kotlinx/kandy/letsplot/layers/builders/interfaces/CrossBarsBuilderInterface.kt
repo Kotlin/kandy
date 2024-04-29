@@ -12,5 +12,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Required aesthetics for CrossBars are `X`, `Y`, `Y_MIN`, `Y_MAX`.
  */
-public interface CrossBarsInterface : WithBorderLine, WithX, WithY, WithYMin, WithYMax,
+public interface CrossBarsBuilderInterface : WithBorderLine, WithX, WithY, WithYMin, WithYMax,
     WithFatten, WithWidth, WithFillColor, WithAlpha

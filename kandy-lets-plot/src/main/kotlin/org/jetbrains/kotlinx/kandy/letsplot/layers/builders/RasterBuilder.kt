@@ -10,14 +10,14 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWithBorderLineBuilder
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.RasterInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.RasterBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RASTER
 
 /**
  * Context class for managing raster layers.
  *
  * This class provides the context in which raster layers can be configured.
- * It inherits from [LayerWithBorderLineBuilder] and implements the [RasterInterface].
+ * It inherits from [LayerWithBorderLineBuilder] and implements the [RasterBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */
@@ -25,7 +25,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RASTER
 public open class RasterBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
-) : LayerWithBorderLineBuilder(parent, datasetIndex), RasterInterface {
+) : LayerWithBorderLineBuilder(parent, datasetIndex), RasterBuilderInterface {
     /**
      * Gets the Geom object specific to **raster** layers.
      *

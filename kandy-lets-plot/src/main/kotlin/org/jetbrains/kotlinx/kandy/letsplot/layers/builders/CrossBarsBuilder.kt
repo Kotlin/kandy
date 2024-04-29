@@ -12,14 +12,14 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWithBorderLineBuilder
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.CrossBarsInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.CrossBarsBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.CROSS_BAR
 
 /**
  * Context class for managing CrossBars layers.
  *
  * This class provides the context in which CrossBars layers can be configured.
- * It inherits from [LayerWithBorderLineBuilder] and implements the [CrossBarsInterface].
+ * It inherits from [LayerWithBorderLineBuilder] and implements the [CrossBarsBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */
@@ -27,7 +27,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.CROSS_BAR
 public open class CrossBarsBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
-) : LayerWithBorderLineBuilder(parent, datasetIndex), CrossBarsInterface {
+) : LayerWithBorderLineBuilder(parent, datasetIndex), CrossBarsBuilderInterface {
     /**
      * Gets the Geom object specific to **crossBars** layers.
      *

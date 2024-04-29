@@ -13,14 +13,14 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.X_END
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_BEGIN
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_END
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.SegmentsInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.SegmentsBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.SEGMENT
 
 /**
  * Context class for managing segment layers.
  *
  * This class provides the context in which segment layers can be configured.
- * It inherits from [LayerContext] and implements the [SegmentsInterface].
+ * It inherits from [LayerContext] and implements the [SegmentsBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */
@@ -28,7 +28,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.SEGMENT
 public open class SegmentsBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
-) : LayerBuilderImpl(parent, datasetIndex), SegmentsInterface {
+) : LayerBuilderImpl(parent, datasetIndex), SegmentsBuilderInterface {
     /**
      * Gets the Geom object specific to **segment** layers.
      *

@@ -9,5 +9,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  * The interface provides aesthetics such as `x`, `y`, `slice`, `explode`, `hole`, `size`,
  * `alpha`, `fillColor`, `stroke`, and `strokeColor` for full customization of the pie chart.
  */
-public interface PieInterface : WithX, WithY, WithSlice, WithExplode, WithHole, WithSize,
+public interface PieBuilderInterface : WithX, WithY, WithSlice, WithExplode, WithHole, WithSize,
     WithAlpha, WithFillColor, WithStroke, WithStrokeColor
