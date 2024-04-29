@@ -13,13 +13,14 @@ import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
  * @property key `ColumnGroup` of key columns
  */
 public class GroupByScope<T>(
+    @PublishedApi
     internal val groupBy: GroupBy<T, *>,
     initialBuffer: DataFrame<*>,
     override val plotBuilder: MultiLayerPlotBuilder
-): LayerCreatorScope() {
+): LayerCreatorScope(), GroupedDataScope<T> {
 
     @Suppress("UNCHECKED_CAST")
-    public val key: ColumnGroup<T> =
+    public override val key: ColumnGroup<T> =
         groupBy.concatFixed().getColumns(*groupBy.keys.columnNames().toTypedArray()).toColumnGroup(
             "key"
         ) as ColumnGroup<T>

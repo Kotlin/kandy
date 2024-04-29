@@ -38,5 +38,3 @@ internal val PlotBuilder.plotFeatures: MutableMap<FeatureName, PlotFeature>
         is MultiLayerPlotBuilder -> plotFeatures
         is SingleLayerPlotBuilder -> plotFeatures
     }
-
-
