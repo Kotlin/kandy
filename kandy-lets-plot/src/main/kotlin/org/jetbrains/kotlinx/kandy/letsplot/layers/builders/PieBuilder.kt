@@ -20,7 +20,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.PIE
  *
  * @param parent the parent context for the layer.
  */
-@Suppress("INVISIBLE_MEMBER")
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class PieBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerBuilderImpl(parent),
     PieInterface {
 
@@ -29,7 +29,7 @@ public open class PieBuilder @PublishedApi internal constructor(parent: LayerCre
      *
      * @return the [Geom] object for **pie**.
      */
-    override val geom: Geom
+    internal override val geom: Geom
         get() = PIE
 
     /**
@@ -37,6 +37,6 @@ public open class PieBuilder @PublishedApi internal constructor(parent: LayerCre
      *
      * @return the set of required aesthetics.
      */
-    override val requiredAes: Set<Aes>  // todo
+    internal override val requiredAes: Set<Aes>  // todo
         get() = setOf()
 }

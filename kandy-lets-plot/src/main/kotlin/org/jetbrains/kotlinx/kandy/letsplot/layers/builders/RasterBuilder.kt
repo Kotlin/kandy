@@ -21,6 +21,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RASTER
  *
  * @param parent the parent context for the layer.
  */
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class RasterBuilder @PublishedApi internal constructor(parent: LayerCreatorScope)
     : LayerWithBorderLineBuilder(parent), RasterInterface {
     /**
@@ -28,7 +29,7 @@ public open class RasterBuilder @PublishedApi internal constructor(parent: Layer
      *
      * @return the [Geom] object for **raster**.
      */
-    override val geom: Geom
+    internal override val geom: Geom
         get() = RASTER
 
     /**
@@ -36,6 +37,6 @@ public open class RasterBuilder @PublishedApi internal constructor(parent: Layer
      *
      * @return the set of required aesthetics.
      */
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 }

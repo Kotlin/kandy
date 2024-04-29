@@ -9,6 +9,8 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
+import org.jetbrains.kotlinx.kandy.ir.data.NamedData
+import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
@@ -41,14 +43,14 @@ public abstract class LayerBuilderImpl internal constructor(
             }
         }
 
-    private fun overrideDataset() {
-        plotBuilder.addDataset(DataFrame.Empty)
+    protected fun overrideDataset(data: TableData) {
+        plotBuilder.addDataset(data)
         datasetIndex = plotBuilder.datasetHandlers.lastIndex
     }
 
     internal fun checkSourceSizeAndOverrideDataset(size: Int) {
         if (firstMapping && handlerRowsCount != size) {
-            overrideDataset()
+            overrideDataset(NamedData(DataFrame.Empty))
             inheritMappings = false
         }
         firstMapping = false

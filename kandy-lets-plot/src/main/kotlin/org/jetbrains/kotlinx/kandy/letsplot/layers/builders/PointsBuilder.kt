@@ -22,7 +22,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
  *
  * @param parent the parent context for the layer.
  */
-@Suppress("INVISIBLE_MEMBER")
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class PointsBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) :
     LayerBuilderImpl(parent), PointsInterface {
     /**
@@ -30,7 +30,7 @@ public open class PointsBuilder @PublishedApi internal constructor(parent: Layer
      *
      * @return the [Geom] object for **points**.
      */
-    override val geom: Geom
+    internal override val geom: Geom
         get() = POINT
 
     /**
@@ -38,6 +38,6 @@ public open class PointsBuilder @PublishedApi internal constructor(parent: Layer
      *
      * @return the set of required aesthetics.
      */
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 }

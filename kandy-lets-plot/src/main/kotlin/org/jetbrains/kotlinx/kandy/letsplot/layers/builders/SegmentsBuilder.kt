@@ -24,7 +24,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.SEGMENT
  *
  * @param parent the parent context for the layer.
  */
-@Suppress("INVISIBLE_MEMBER")
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class SegmentsBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerBuilderImpl(parent),
     SegmentsInterface {
     /**
@@ -32,7 +32,7 @@ public open class SegmentsBuilder @PublishedApi internal constructor(parent: Lay
      *
      * @return the [Geom] object for **segment**.
      */
-    override val geom: Geom
+    internal override val geom: Geom
     get() = SEGMENT
 
     /**
@@ -40,6 +40,6 @@ public open class SegmentsBuilder @PublishedApi internal constructor(parent: Lay
      *
      * @return the set of required aesthetics.
      */
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
     get() = setOf(X_BEGIN, Y_BEGIN, X_END, Y_END)
 }

@@ -21,11 +21,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BAR
  *
  * @param parent the parent context for the layer.
  */
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class BarsBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerWithBorderLineBuilder(parent),
     BarsContextInterface {
-    override val geom: Geom
+    internal override val geom: Geom
         get() = BAR
 
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 }

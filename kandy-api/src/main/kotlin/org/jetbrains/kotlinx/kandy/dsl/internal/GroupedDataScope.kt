@@ -7,6 +7,7 @@ import org.jetbrains.kotlinx.dataframe.api.concat
 import org.jetbrains.kotlinx.dataframe.api.getColumns
 import org.jetbrains.kotlinx.dataframe.api.toColumnGroup
 import org.jetbrains.kotlinx.dataframe.columns.ColumnGroup
+import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 
 /**
  * Represents a context specifically tailored for managing and visualizing grouped datasets.
@@ -25,6 +26,8 @@ public class GroupedDataScope<T>(
             "key"
         ) as ColumnGroup<T>
 
-    override val datasetIndex: Int = plotBuilder.addDataset(groupBy, initialBuffer)
+    override val datasetIndex: Int = plotBuilder.addDataset(
+        GroupedData(groupBy), initialBuffer
+    )
     override val layersInheritMappings: Boolean = true
 }

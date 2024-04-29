@@ -45,13 +45,9 @@ public abstract class MultiLayerPlotBuilder internal constructor(): LayerCreator
         )
     }
 
-    internal fun addDataset(df: DataFrame<*>): Int {
-        datasetHandlers.add(DatasetHandler(NamedData(df)))
+    internal fun addDataset(dataset: TableData, initialBuffer: DataFrame<*>? = null): Int {
+        datasetHandlers.add(DatasetHandler(dataset, initialBuffer))
         return datasetHandlers.lastIndex
     }
 
-    internal fun addDataset(gb: GroupBy<*, *>, initialBuffer: DataFrame<*>): Int {
-        datasetHandlers.add(DatasetHandler(GroupedData(gb), initialBuffer))
-        return datasetHandlers.lastIndex
-    }
 }

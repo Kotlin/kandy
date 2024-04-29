@@ -22,6 +22,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LINE_RANGE
  *
  * @param parent the parent context for the layer.
  */
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class LineRangesBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerWithBorderLineBuilder(parent),
     LineRangesInterface {
     /**
@@ -29,7 +30,7 @@ public open class LineRangesBuilder @PublishedApi internal constructor(parent: L
      *
      * @return the [Geom] object for **lineRanges**.
      */
-    override val geom: Geom
+    internal override val geom: Geom
         get() = LINE_RANGE
 
     /**
@@ -37,6 +38,6 @@ public open class LineRangesBuilder @PublishedApi internal constructor(parent: L
      *
      * @return the set of required aesthetics.
      */
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
         get() = setOf(X, Y_MIN, Y_MAX)
     }

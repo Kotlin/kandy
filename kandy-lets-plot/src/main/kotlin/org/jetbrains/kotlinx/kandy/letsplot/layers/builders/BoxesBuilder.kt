@@ -20,6 +20,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BOXPLOT
  *
  * @param parent the parent context for the layer.
  */
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class BoxesBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerWithBorderLineBuilder(parent),
     BoxesInterface {
     /**
@@ -27,7 +28,7 @@ public open class BoxesBuilder @PublishedApi internal constructor(parent: LayerC
      *
      * @return the [Geom] object for **boxes**.
      */
-    override val geom: Geom
+    internal override val geom: Geom
         get() = BOXPLOT
 
     /**
@@ -35,6 +36,6 @@ public open class BoxesBuilder @PublishedApi internal constructor(parent: LayerC
      *
      * @return the set of required aesthetics.
      */
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
         get() = setOf(X, LOWER, UPPER, MIDDLE, Y_MIN, Y_MAX)
 }

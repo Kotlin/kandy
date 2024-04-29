@@ -23,6 +23,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RIBBON
  *
  * @param parent the parent context for the layer.
  */
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class RibbonBuilder @PublishedApi internal constructor(parent: LayerCreatorScope)
     : LayerWithBorderLineBuilder(parent), RibbonInterface {
     /**
@@ -30,7 +31,7 @@ public open class RibbonBuilder @PublishedApi internal constructor(parent: Layer
      *
      * @return the [Geom] object for **ribbon**.
      */
-    override val geom: Geom
+    internal override val geom: Geom
         get() = RIBBON
 
     /**
@@ -38,6 +39,6 @@ public open class RibbonBuilder @PublishedApi internal constructor(parent: Layer
      *
      * @return the set of required aesthetics.
      */
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
         get() = setOf(X, Y_MIN, Y_MAX)
 }

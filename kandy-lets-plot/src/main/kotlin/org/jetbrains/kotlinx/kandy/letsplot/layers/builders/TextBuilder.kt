@@ -26,7 +26,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
  *
  * @param parent the parent context for the layer.
  */
-@Suppress("INVISIBLE_MEMBER")
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class TextBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerBuilderImpl(parent),
     TextInterface {
     override val font: Font = Font(bindingHandler)
@@ -36,7 +36,7 @@ public open class TextBuilder @PublishedApi internal constructor(parent: LayerCr
      *
      * @return the [Geom] object for **text**.
      */
-    override val geom: Geom
+    internal override val geom: Geom
     get() = TEXT
 
     /**
@@ -44,6 +44,6 @@ public open class TextBuilder @PublishedApi internal constructor(parent: LayerCr
      *
      * @return the set of required aesthetics.
      */
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
     get() = setOf(X, Y, LABEL)
 }

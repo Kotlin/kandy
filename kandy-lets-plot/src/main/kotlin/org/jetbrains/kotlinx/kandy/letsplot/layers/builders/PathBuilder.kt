@@ -21,11 +21,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.PATH
  *
  * @param parent the parent context for the layer.
  */
-@Suppress("INVISIBLE_MEMBER")
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class PathBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerBuilderImpl(parent),
     LineBuilderInterface {
-    override val geom: Geom
+    internal override val geom: Geom
         get() = PATH
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 }

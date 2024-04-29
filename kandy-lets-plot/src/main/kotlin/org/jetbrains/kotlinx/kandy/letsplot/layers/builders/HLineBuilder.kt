@@ -21,7 +21,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.H_LINE
  *
  * @param parent the parent context for the layer.
  */
-@Suppress("INVISIBLE_MEMBER")
+
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class HLineBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerBuilderImpl(parent),
     HLineInterface {
     /**
@@ -29,7 +30,7 @@ public open class HLineBuilder @PublishedApi internal constructor(parent: LayerC
      *
      * @return the [Geom] object for **hLine**.
      */
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
         get() = setOf(Y_INTERCEPT)
 
     /**
@@ -37,6 +38,6 @@ public open class HLineBuilder @PublishedApi internal constructor(parent: LayerC
      *
      * @return the set of required aesthetics.
      */
-    override val geom: Geom
+    internal override val geom: Geom
         get() = H_LINE
 }

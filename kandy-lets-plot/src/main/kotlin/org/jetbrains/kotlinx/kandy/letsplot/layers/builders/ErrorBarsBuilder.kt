@@ -22,6 +22,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.ERROR_BAR
  *
  * @param parent the parent context for the layer.
  */
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class ErrorBarsBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerWithBorderLineBuilder(parent),
     ErrorBarsInterface {
     /**
@@ -29,7 +30,7 @@ public open class ErrorBarsBuilder @PublishedApi internal constructor(parent: La
      *
      * @return the [Geom] object for **errorBars**.
      */
-    override val geom: Geom
+    internal override val geom: Geom
         get() = ERROR_BAR
 
     /**
@@ -37,6 +38,6 @@ public open class ErrorBarsBuilder @PublishedApi internal constructor(parent: La
      *
      * @return the set of required aesthetics.
      */
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
         get() = setOf(X, Y_MIN, Y_MAX)
     }

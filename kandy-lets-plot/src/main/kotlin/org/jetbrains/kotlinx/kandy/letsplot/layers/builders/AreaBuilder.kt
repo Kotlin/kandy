@@ -21,11 +21,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.AREA
  *
  * @param parent the parent context for the layer.
  */
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class AreaBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerWithBorderLineBuilder(parent),
     AreaBuilderInterface {
-    override val geom: Geom
+    internal override val geom: Geom
         get() = AREA
 
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 }

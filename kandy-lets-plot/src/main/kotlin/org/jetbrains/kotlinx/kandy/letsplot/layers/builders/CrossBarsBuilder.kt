@@ -23,6 +23,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.CROSS_BAR
  *
  * @param parent the parent context for the layer.
  */
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class CrossBarsBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerWithBorderLineBuilder(parent),
     CrossBarsInterface {
     /**
@@ -30,7 +31,7 @@ public open class CrossBarsBuilder @PublishedApi internal constructor(parent: La
      *
      * @return the [Geom] object for **crossBars**.
      */
-    override val geom: Geom
+    internal override val geom: Geom
         get() = CROSS_BAR
 
     /**
@@ -38,6 +39,6 @@ public open class CrossBarsBuilder @PublishedApi internal constructor(parent: La
      *
      * @return the set of required aesthetics.
      */
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
         get() = setOf(X, Y, Y_MIN, Y_MAX)
     }

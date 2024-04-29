@@ -23,6 +23,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RECT
  *
  * @param parent the parent context for the layer.
  */
+@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class RectanglesBuilder @PublishedApi internal constructor(parent: LayerCreatorScope)
     : LayerWithBorderLineBuilder(parent), RectanglesInterface {
     /**
@@ -30,7 +31,7 @@ public open class RectanglesBuilder @PublishedApi internal constructor(parent: L
      *
      * @return the [Geom] object for **rect**.
      */
-    override val geom: Geom
+    internal override val geom: Geom
         get() = RECT
 
     /**
@@ -38,6 +39,6 @@ public open class RectanglesBuilder @PublishedApi internal constructor(parent: L
      *
      * @return the set of required aesthetics.
      */
-    override val requiredAes: Set<Aes>
+    internal override val requiredAes: Set<Aes>
         get() = setOf(X_MIN, X_MAX, Y_MIN, Y_MAX)
     }
