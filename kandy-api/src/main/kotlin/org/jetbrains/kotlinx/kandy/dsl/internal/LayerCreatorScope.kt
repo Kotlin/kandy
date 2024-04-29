@@ -3,6 +3,8 @@ package org.jetbrains.kotlinx.kandy.dsl.internal
 /**
  * An abstract class that represents a context for collecting layers in a plot.
  *
+ * TODO should be reworked and named `DataScope` (needs context parameters) and provide only data-related logic
+ *
  * @property createLayer TODO
  */
 public abstract class LayerCreatorScope {
