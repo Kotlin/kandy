@@ -1,7 +1,9 @@
 package org.jetbrains.kotlinx.kandy.dsl.internal
 
 import org.jetbrains.kotlinx.kandy.ir.Layer
+import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
+import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
@@ -10,16 +12,18 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 /*
  todo: allow dataset overriding?
  */
-internal abstract class SingleLayerPlotBuilder : PlotBuilder, LayerBuilder {
-    internal abstract val datasetHandler: DatasetHandler
+// todo doc
+public abstract class SingleLayerPlotBuilder @PublishedApi internal constructor(data: TableData) : PlotBuilder,
+    LayerBuilder {
+    internal val datasetHandler: DatasetHandler = DatasetHandler(data)
     internal val plotFeatures: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
     internal val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 
-    abstract val geom: Geom
-    abstract val requiredAes: Set<Aes>
+    internal abstract val geom: Geom
+    internal abstract val requiredAes: Set<Aes>
 
-    internal abstract val bindingHandler: BindingHandlerDefault
+    internal val bindingHandler: BindingHandlerDefault = BindingHandlerDefault { datasetHandler }
     internal val bindingCollector
         get() = bindingHandler.bindingCollector
 
@@ -33,6 +37,17 @@ internal abstract class SingleLayerPlotBuilder : PlotBuilder, LayerBuilder {
             layerFeatures,
             bindingCollector.freeScales,
             false
+        )
+    }
+
+    override fun toPlot(): Plot {
+        return Plot(
+            listOf(datasetHandler.data()),
+            listOf(toLayer()),
+            bindingCollector.mappings,
+            bindingCollector.settings,
+            plotFeatures,
+            bindingCollector.freeScales
         )
     }
 

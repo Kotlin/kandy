@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
  *
  * @property key `ColumnGroup` of key columns
  */
-public class GroupByScope<T>(
+public class GroupByScope<T> @PublishedApi internal constructor(
     @PublishedApi
     internal val groupBy: GroupBy<T, *>,
     initialBuffer: DataFrame<*>,
