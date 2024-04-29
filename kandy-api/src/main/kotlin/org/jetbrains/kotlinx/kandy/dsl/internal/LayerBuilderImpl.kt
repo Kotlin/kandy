@@ -56,7 +56,7 @@ public abstract class LayerBuilderImpl internal constructor(
         firstMapping = false
     }
 
-    internal val bindingContext: BindingHandler = object : BindingHandler() {
+    internal val bindingHandler: BindingHandler = object : BindingHandler() {
         override val datasetHandler: DatasetHandler
             get() = this@LayerBuilderImpl.datasetHandler
 
@@ -158,6 +158,6 @@ public abstract class LayerBuilderImpl internal constructor(
         )
     }
 
-    internal val bindingCollector: BindingCollector = bindingContext.bindingCollector
+    internal val bindingCollector: BindingCollector = bindingHandler.bindingCollector
 
 }

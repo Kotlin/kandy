@@ -21,8 +21,8 @@ internal val LayerBuilder.layerFeatures: MutableMap<FeatureName, LayerFeature>
 @PublishedApi
 internal val LayerBuilder.bindingHandler: BindingHandler
     get() = when (this) {
-        is LayerBuilderImpl -> bindingContext
-        is SingleLayerPlotBuilder -> bindingContext
+        is LayerBuilderImpl -> bindingHandler
+        is SingleLayerPlotBuilder -> bindingHandler
     }
 
 @PublishedApi

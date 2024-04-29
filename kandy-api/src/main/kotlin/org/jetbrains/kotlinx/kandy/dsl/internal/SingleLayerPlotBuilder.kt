@@ -19,9 +19,9 @@ internal abstract class SingleLayerPlotBuilder : PlotBuilder, LayerBuilder {
     abstract val geom: Geom
     abstract val requiredAes: Set<Aes>
 
-    internal abstract val bindingContext: BindingHandlerDefault
+    internal abstract val bindingHandler: BindingHandlerDefault
     internal val bindingCollector
-        get() = bindingContext.bindingCollector
+        get() = bindingHandler.bindingCollector
 
     override fun toLayer(): Layer {
         checkRequiredAes()
