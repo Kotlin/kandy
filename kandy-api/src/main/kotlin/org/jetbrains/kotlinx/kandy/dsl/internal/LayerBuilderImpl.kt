@@ -18,6 +18,7 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
 public abstract class LayerBuilderImpl internal constructor(
     parent: LayerCreatorScope,
+    internal var datasetIndex: Int = parent.datasetIndex
 ) : LayerBuilder {
 
     internal abstract val geom: Geom
@@ -26,9 +27,7 @@ public abstract class LayerBuilderImpl internal constructor(
     @PublishedApi
     internal val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 
-
     internal val plotBuilder: MultiLayerPlotBuilder = parent.plotBuilder
-    internal var datasetIndex: Int = parent.datasetIndex
     private var firstMapping: Boolean = true
     internal val datasetHandler: DatasetHandler
         get() = plotBuilder.datasetHandlers[datasetIndex]
@@ -43,9 +42,8 @@ public abstract class LayerBuilderImpl internal constructor(
             }
         }
 
-    protected fun overrideDataset(data: TableData) {
-        plotBuilder.addDataset(data)
-        datasetIndex = plotBuilder.datasetHandlers.lastIndex
+    private fun overrideDataset(data: TableData) {
+        datasetIndex = plotBuilder.addDataset(data)
     }
 
     internal fun checkSourceSizeAndOverrideDataset(size: Int) {
@@ -122,7 +120,7 @@ public abstract class LayerBuilderImpl internal constructor(
      * If any of the required aesthetics are not found, an exception is thrown.
      *
      * @param requiredAes A set of aesthetics that need to be assigned.
-     * @param layerContext The context of the layer where the aesthetics could be assigned.
+     * @param layerBuilder The context of the layer where the aesthetics could be assigned.
      * @param plotContext The context of the plot where the aesthetics could be assigned (optional).
      *
      * @throws IllegalArgumentException If any of the required aesthetics is not assigned in either the layer or the plot context.
