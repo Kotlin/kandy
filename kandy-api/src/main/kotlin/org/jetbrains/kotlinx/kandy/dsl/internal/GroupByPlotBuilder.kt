@@ -12,7 +12,8 @@ import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 
 public class GroupByPlotBuilder<T, G> @PublishedApi internal constructor(
-    groupBy: GroupBy<T, G>,
+    @PublishedApi
+    internal val groupBy: GroupBy<T, G>,
 ) : MultiLayerPlotBuilder(), ColumnsContainer<G> by groupBy.concat() {
     override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(DatasetHandler(GroupedData(groupBy)))
 
