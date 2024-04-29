@@ -12,7 +12,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 
 // todo doc
 @Suppress("INVISIBLE_MEMBER")
-public abstract class LayerWithBorderLineBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerBuilderImpl(parent),
-    WithBorderLine, WithAes {
+public abstract class LayerWithBorderLineBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerBuilderImpl(parent, datasetIndex), WithBorderLine, WithAes {
     public override val borderLine: BorderLine = BorderLine(bindingHandler)
 }

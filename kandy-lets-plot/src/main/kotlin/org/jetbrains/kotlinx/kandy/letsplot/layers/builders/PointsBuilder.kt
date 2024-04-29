@@ -23,8 +23,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class PointsBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) :
-    LayerBuilderImpl(parent), PointsInterface {
+public open class PointsBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerBuilderImpl(parent, datasetIndex), PointsInterface {
     /**
      * Gets the Geom object specific to **points** layers.
      *

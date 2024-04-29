@@ -23,8 +23,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.AB_LINE
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class ABLineBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) :
-    LayerBuilderImpl(parent), ABLineBuilderInterface {
+public open class ABLineBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) :
+    LayerBuilderImpl(parent, datasetIndex), ABLineBuilderInterface {
     internal override val geom: Geom
         get() = AB_LINE
     internal override val requiredAes: Set<Aes>

@@ -22,8 +22,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.V_LINE
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class VLineBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerBuilderImpl(parent),
-    VLineInterface {
+public open class VLineBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerBuilderImpl(parent, datasetIndex), VLineInterface {
     /**
      * Gets the Geom object specific to **vLine** layers.
      *

@@ -24,8 +24,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RECT
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class RectanglesBuilder @PublishedApi internal constructor(parent: LayerCreatorScope)
-    : LayerWithBorderLineBuilder(parent), RectanglesInterface {
+public open class RectanglesBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerWithBorderLineBuilder(parent, datasetIndex), RectanglesInterface {
     /**
      * Gets the Geom object specific to **rect** layers.
      *

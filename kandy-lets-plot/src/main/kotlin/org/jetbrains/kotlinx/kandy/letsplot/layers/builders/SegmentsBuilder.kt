@@ -25,8 +25,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.SEGMENT
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class SegmentsBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerBuilderImpl(parent),
-    SegmentsInterface {
+public open class SegmentsBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerBuilderImpl(parent, datasetIndex), SegmentsInterface {
     /**
      * Gets the Geom object specific to **segment** layers.
      *

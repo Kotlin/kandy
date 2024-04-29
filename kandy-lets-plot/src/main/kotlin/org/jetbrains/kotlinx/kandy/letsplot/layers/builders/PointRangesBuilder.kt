@@ -29,9 +29,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class PointRangesBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) :
-    LayerBuilderImpl(parent), PointRangesInterface {
+public open class PointRangesBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerBuilderImpl(parent, datasetIndex), PointRangesInterface {
 
+    // todo docs
     public override val innerPoint: InnerPoint = InnerPoint(bindingHandler)
     public override val innerLine: InnerLine = InnerLine(bindingHandler)
 

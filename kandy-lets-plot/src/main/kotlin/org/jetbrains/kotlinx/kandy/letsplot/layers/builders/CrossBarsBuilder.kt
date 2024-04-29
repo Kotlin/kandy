@@ -24,8 +24,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.CROSS_BAR
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class CrossBarsBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerWithBorderLineBuilder(parent),
-    CrossBarsInterface {
+public open class CrossBarsBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerWithBorderLineBuilder(parent, datasetIndex), CrossBarsInterface {
     /**
      * Gets the Geom object specific to **crossBars** layers.
      *

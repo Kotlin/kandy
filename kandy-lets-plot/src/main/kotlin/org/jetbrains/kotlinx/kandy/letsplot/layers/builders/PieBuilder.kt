@@ -21,8 +21,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.PIE
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class PieBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerBuilderImpl(parent),
-    PieInterface {
+public open class PieBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope, datasetIndex: Int = parent.datasetIndex
+) : LayerBuilderImpl(parent, datasetIndex), PieInterface {
 
     /**
      * Gets the Geom object specific to **pie** layers.

@@ -22,8 +22,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RASTER
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class RasterBuilder @PublishedApi internal constructor(parent: LayerCreatorScope)
-    : LayerWithBorderLineBuilder(parent), RasterInterface {
+public open class RasterBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerWithBorderLineBuilder(parent, datasetIndex), RasterInterface {
     /**
      * Gets the Geom object specific to **raster** layers.
      *

@@ -23,8 +23,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LINE_RANGE
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class LineRangesBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerWithBorderLineBuilder(parent),
-    LineRangesInterface {
+public open class LineRangesBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerWithBorderLineBuilder(parent, datasetIndex), LineRangesInterface {
     /**
      * Gets the Geom object specific to **lineRanges** layers.
      *

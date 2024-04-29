@@ -27,8 +27,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class TextBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerBuilderImpl(parent),
-    TextInterface {
+public open class TextBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerBuilderImpl(parent, datasetIndex), TextInterface {
+    // todo doc
     override val font: Font = Font(bindingHandler)
 
     /**

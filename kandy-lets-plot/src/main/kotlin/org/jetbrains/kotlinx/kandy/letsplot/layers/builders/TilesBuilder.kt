@@ -22,8 +22,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.TILE
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class TilesBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerWithBorderLineBuilder(parent),
-    TilesInterface {
+public open class TilesBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerWithBorderLineBuilder(parent, datasetIndex), TilesInterface {
     /**
      * Gets the Geom object specific to **tiles** layers.
      *

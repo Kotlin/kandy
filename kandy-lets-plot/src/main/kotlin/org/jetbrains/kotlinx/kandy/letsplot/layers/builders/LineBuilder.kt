@@ -24,8 +24,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LINE
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class LineBuilder @PublishedApi internal constructor(
-    parent: LayerCreatorScope
-) : LayerBuilderImpl(parent), LineBuilderInterface {
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerBuilderImpl(parent, datasetIndex), LineBuilderInterface {
     internal override val geom: Geom
         get() = LINE
     internal override val requiredAes: Set<Aes>

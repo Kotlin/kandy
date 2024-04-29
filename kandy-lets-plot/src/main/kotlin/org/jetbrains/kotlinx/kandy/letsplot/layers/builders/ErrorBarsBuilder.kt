@@ -23,7 +23,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.ERROR_BAR
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class ErrorBarsBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerWithBorderLineBuilder(parent),
+public open class ErrorBarsBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerWithBorderLineBuilder(parent, datasetIndex),
     ErrorBarsInterface {
     /**
      * Gets the Geom object specific to **errorBars** layers.

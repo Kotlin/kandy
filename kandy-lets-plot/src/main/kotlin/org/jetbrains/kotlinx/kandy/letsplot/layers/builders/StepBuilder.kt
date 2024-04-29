@@ -23,8 +23,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.STEP
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class StepBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerBuilderImpl(parent),
-    StepInterface {
+public open class StepBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerBuilderImpl(parent, datasetIndex), StepInterface {
     /**
      * Gets the Geom object specific to **step** layers.
      *

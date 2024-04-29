@@ -23,8 +23,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.H_LINE
  */
 
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class HLineBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerBuilderImpl(parent),
-    HLineInterface {
+public open class HLineBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerBuilderImpl(parent, datasetIndex), HLineInterface {
     /**
      * Gets the Geom object specific to **hLine** layers.
      *

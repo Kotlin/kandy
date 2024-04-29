@@ -21,8 +21,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BOXPLOT
  * @param parent the parent context for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class BoxesBuilder @PublishedApi internal constructor(parent: LayerCreatorScope) : LayerWithBorderLineBuilder(parent),
-    BoxesInterface {
+public open class BoxesBuilder @PublishedApi internal constructor(
+    parent: LayerCreatorScope,
+    datasetIndex: Int = parent.datasetIndex
+) : LayerWithBorderLineBuilder(parent, datasetIndex), BoxesInterface {
     /**
      * Gets the Geom object specific to **boxes** layers.
      *
