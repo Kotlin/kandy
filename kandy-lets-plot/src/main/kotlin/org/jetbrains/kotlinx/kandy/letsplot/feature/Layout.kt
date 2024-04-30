@@ -47,7 +47,7 @@ public inline fun PlotBuilder.layout(block: Layout.() -> Unit) {
  * Returns an existing [Layout] if one exists, or creates a new one otherwise.
  */
 @Suppress("INVISIBLE_MEMBER")
-public val MultiLayerPlotBuilder.layout: Layout
+public val PlotBuilder.layout: Layout
     get() {
         if (plotFeatures[Layout.NAME] == null) {
             plotFeatures[Layout.NAME] = Layout()
