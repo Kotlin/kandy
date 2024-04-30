@@ -38,3 +38,10 @@ internal val PlotBuilder.plotFeatures: MutableMap<FeatureName, PlotFeature>
         is MultiLayerPlotBuilder -> plotFeatures
         is CustomPlotBuilder -> plotFeatures
     }
+
+@PublishedApi
+internal val GroupedDataScope<*, *>.datasetHandler: DatasetHandler
+    get() = when (this) {
+        is GroupByPlotBuilder -> datasetHandler
+        is GroupByScope -> datasetHandler
+    }
