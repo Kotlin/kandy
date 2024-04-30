@@ -37,7 +37,7 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
      */
     public inline fun groupBy(
         columns: Iterable<String>,
-        block: GroupByScope<T>.() -> Unit
+        block: GroupByScope<T, T>.() -> Unit
     ) {
         val groupBy = dataFrame.groupBy(*columns.toList().toTypedArray())
         GroupByScope(
@@ -55,7 +55,7 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
      */
     public inline fun groupBy(
         vararg columns: String,
-        block: GroupByScope<T>.() -> Unit
+        block: GroupByScope<T, T>.() -> Unit
     ): Unit = groupBy(columns.toList(), block)
 
     /**
@@ -66,7 +66,7 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
      */
     public inline fun groupBy(
         vararg columnReferences: ColumnReference<*>,
-        block: GroupByScope<T>.() -> Unit
+        block: GroupByScope<T, T>.() -> Unit
     ): Unit = groupBy(columnReferences.map { it.name() }, block)
 
     /**
@@ -77,7 +77,7 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
      */
     public inline fun groupBy(
         columnReferences: List<ColumnReference<*>>,
-        block: GroupByScope<T>.() -> Unit
+        block: GroupByScope<T, T>.() -> Unit
     ): Unit = groupBy(columnReferences.map { it.name() }, block)
 
 }

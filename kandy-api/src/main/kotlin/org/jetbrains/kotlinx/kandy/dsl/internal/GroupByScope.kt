@@ -12,12 +12,12 @@ import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
  *
  * @property key `ColumnGroup` of key columns
  */
-public class GroupByScope<T> @PublishedApi internal constructor(
+public class GroupByScope<T, G> @PublishedApi internal constructor(
     @PublishedApi
-    internal val groupBy: GroupBy<T, *>,
+    internal val groupBy: GroupBy<T, G>,
     initialBuffer: DataFrame<*>,
     override val plotBuilder: MultiLayerPlotBuilder
-): LayerCreatorScope(), GroupedDataScope<T> {
+): LayerCreatorScope(), GroupedDataScope<T, G> {
 
     @Suppress("UNCHECKED_CAST")
     public override val key: ColumnGroup<T> =

@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 public class GroupByPlotBuilder<T, G> @PublishedApi internal constructor(
     @PublishedApi
     internal val groupBy: GroupBy<T, G>,
-) : MultiLayerPlotBuilder(), ColumnsContainer<G> by groupBy.concat(), GroupedDataScope<T> {
+) : MultiLayerPlotBuilder(), ColumnsContainer<G> by groupBy.concat(), GroupedDataScope<T, G> {
     override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(DatasetHandler(GroupedData(groupBy)))
 
     @Suppress("UNCHECKED_CAST")
