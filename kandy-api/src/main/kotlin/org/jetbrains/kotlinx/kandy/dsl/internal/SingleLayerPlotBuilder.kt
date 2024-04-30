@@ -13,19 +13,14 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
  todo: allow dataset overriding?
  */
 // todo doc
-public abstract class SingleLayerPlotBuilder @PublishedApi internal constructor(data: TableData) : PlotBuilder,
-    LayerBuilder {
-    internal val datasetHandler: DatasetHandler = DatasetHandler(data)
-    internal val plotFeatures: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
+public abstract class SingleLayerPlotBuilder @PublishedApi internal constructor(data: TableData)
+    : CustomPlotBuilder(), LayerBuilder {
+    override val datasetHandler: DatasetHandler = DatasetHandler(data)
 
     internal val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 
     internal abstract val geom: Geom
     internal abstract val requiredAes: Set<Aes>
-
-    internal val bindingHandler: BindingHandlerDefault = BindingHandlerDefault { datasetHandler }
-    internal val bindingCollector
-        get() = bindingHandler.bindingCollector
 
     override fun toLayer(): Layer {
         checkRequiredAes()

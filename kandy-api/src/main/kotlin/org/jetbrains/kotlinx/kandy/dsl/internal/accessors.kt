@@ -29,12 +29,12 @@ internal val LayerBuilder.bindingHandler: BindingHandler
 internal val PlotBuilder.datasetHandler: DatasetHandler
     get() = when (this) {
         is MultiLayerPlotBuilder -> datasetHandler
-        is SingleLayerPlotBuilder -> datasetHandler
+        is CustomPlotBuilder -> datasetHandler
     }
 
 @PublishedApi
 internal val PlotBuilder.plotFeatures: MutableMap<FeatureName, PlotFeature>
     get() = when (this) {
         is MultiLayerPlotBuilder -> plotFeatures
-        is SingleLayerPlotBuilder -> plotFeatures
+        is CustomPlotBuilder -> plotFeatures
     }
