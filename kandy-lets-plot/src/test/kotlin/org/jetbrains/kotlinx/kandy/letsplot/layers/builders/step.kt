@@ -25,6 +25,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
+@Suppress("INVISIBLE_MEMBER")
 class StepTests {
     private val xAxis = listOf(0.5).toColumn("xAxis")
     private val yAxis = listOf("first").toColumn("yAxis")
@@ -35,164 +36,164 @@ class StepTests {
 
     private val df = dataFrameOf(xAxis, yAxis, color, type, alpha, width)
 
-    private val parentContext = DataFramePlotBuilder(df)
-    private lateinit var context: StepContext
+    private val parentBuilder = DataFramePlotBuilder(df)
+    private lateinit var builder: StepBuilder
 
     @BeforeTest
     fun setUp() {
-        context = StepContext(parentContext)
+        builder = StepBuilder(parentBuilder)
     }
 
     @Test
     fun `geom is STEP`() {
-        assertEquals(STEP, context.geom)
+        assertEquals(STEP, builder.geom)
     }
 
     @Test
     fun `requiredAes contains X and Y`() {
-        assertTrue(context.requiredAes.contains(X))
-        assertTrue(context.requiredAes.contains(Y))
+        assertTrue(builder.requiredAes.contains(X))
+        assertTrue(builder.requiredAes.contains(Y))
     }
 
     @Test
     fun `color const for step`() {
-        context.color = Color.BLUE
-        assertEquals(Color.BLUE, (context.bindingCollector.settings[COLOR] as NonPositionalSetting<*>).value)
+        builder.color = Color.BLUE
+        assertEquals(Color.BLUE, (builder.bindingCollector.settings[COLOR] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `color str mapping for step`() {
-        context.color("color")
-        assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
+        builder.color("color")
+        assertEquals("color", (builder.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `color dataColumn mapping for step`() {
-        context.color(color)
-        assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
+        builder.color(color)
+        assertEquals("color", (builder.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `color iterable mapping for step`() {
-        context.color(listOf("red"))
-        assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
+        builder.color(listOf("red"))
+        assertEquals("color", (builder.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `alpha const for step`() {
-        context.alpha = 0.1
-        assertEquals(0.1, (context.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
+        builder.alpha = 0.1
+        assertEquals(0.1, (builder.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `alpha str mapping for step`() {
-        context.alpha("alpha")
-        assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
+        builder.alpha("alpha")
+        assertEquals("alpha", (builder.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `alpha dataColumn mapping for step`() {
-        context.alpha(alpha)
-        assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
+        builder.alpha(alpha)
+        assertEquals("alpha", (builder.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `alpha iterable mapping for step`() {
-        context.alpha(listOf(0.2, 0.5, .1))
-        assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
+        builder.alpha(listOf(0.2, 0.5, .1))
+        assertEquals("alpha", (builder.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `type const for step`() {
-        context.lineType = LineType.DOTTED
-        assertEquals(LineType.DOTTED, (context.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value)
+        builder.lineType = LineType.DOTTED
+        assertEquals(LineType.DOTTED, (builder.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `type str mapping for step`() {
-        context.lineType("type")
-        assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
+        builder.lineType("type")
+        assertEquals("type", (builder.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `type dataColumn mapping for step`() {
-        context.lineType(type)
-        assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
+        builder.lineType(type)
+        assertEquals("type", (builder.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `type iterable mapping for step`() {
-        context.lineType(listOf("1", "2"))
-        assertEquals("linetype", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
+        builder.lineType(listOf("1", "2"))
+        assertEquals("linetype", (builder.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `width const for step`() {
-        context.width = 0.3
-        assertEquals(0.3, (context.bindingCollector.settings[SIZE] as NonPositionalSetting<*>).value)
+        builder.width = 0.3
+        assertEquals(0.3, (builder.bindingCollector.settings[SIZE] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `width str mapping for step`() {
-        context.width("width")
-        assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+        builder.width("width")
+        assertEquals("width", (builder.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `width dataColumn mapping for step`() {
-        context.width(width)
-        assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+        builder.width(width)
+        assertEquals("width", (builder.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `width iterable mapping for step`() {
-        context.width(listOf(0.2, 0.5, .1))
-        assertEquals("size", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+        builder.width(listOf(0.2, 0.5, .1))
+        assertEquals("size", (builder.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `x const for step`() {
-        context.x.constant(5.0)
-        assertEquals(X, (context.bindingCollector.settings[X] as PositionalSetting<*>).aes)
-        assertEquals(5.0, (context.bindingCollector.settings[X] as PositionalSetting<*>).value)
+        builder.x.constant(5.0)
+        assertEquals(X, (builder.bindingCollector.settings[X] as PositionalSetting<*>).aes)
+        assertEquals(5.0, (builder.bindingCollector.settings[X] as PositionalSetting<*>).value)
     }
 
     @Test
     fun `y const for step`() {
-        context.y.constant(10)
-        assertEquals(Y, (context.bindingCollector.settings[Y] as PositionalSetting<*>).aes)
-        assertEquals(10, (context.bindingCollector.settings[Y] as PositionalSetting<*>).value)
+        builder.y.constant(10)
+        assertEquals(Y, (builder.bindingCollector.settings[Y] as PositionalSetting<*>).aes)
+        assertEquals(10, (builder.bindingCollector.settings[Y] as PositionalSetting<*>).value)
     }
 
     @Test
     fun `x for step`() {
-        context.x(xAxis) {
+        builder.x(xAxis) {
             axis {
                 name = "x axis"
             }
             scale = continuous(0.1..3.7)
         }
 
-        assertEquals(X, context.bindingCollector.mappings[X]?.aes)
-        assertEquals("xAxis", context.bindingCollector.mappings[X]?.columnID)
-        assertEquals(.1, (context.bindingCollector.mappings[X]?.parameters?.scale as PositionalContinuousScale<*>).min)
-        assertEquals(3.7, (context.bindingCollector.mappings[X]?.parameters?.scale as PositionalContinuousScale<*>).max)
+        assertEquals(X, builder.bindingCollector.mappings[X]?.aes)
+        assertEquals("xAxis", builder.bindingCollector.mappings[X]?.columnID)
+        assertEquals(.1, (builder.bindingCollector.mappings[X]?.parameters?.scale as PositionalContinuousScale<*>).min)
+        assertEquals(3.7, (builder.bindingCollector.mappings[X]?.parameters?.scale as PositionalContinuousScale<*>).max)
     }
 
     @Test
     fun `y for step`() {
-        context.y(yAxis) {
+        builder.y(yAxis) {
             axis {
                 name = "x axis"
             }
             scale = categorical(listOf("one", "two"))
         }
 
-        assertEquals(Y, context.bindingCollector.mappings[Y]?.aes)
-        assertEquals("yAxis", context.bindingCollector.mappings[Y]?.columnID)
+        assertEquals(Y, builder.bindingCollector.mappings[Y]?.aes)
+        assertEquals("yAxis", builder.bindingCollector.mappings[Y]?.columnID)
         assertEquals(
             listOf("one", "two"),
-            (context.bindingCollector.mappings[Y]?.parameters?.scale as PositionalCategoricalScale<*>).categories
+            (builder.bindingCollector.mappings[Y]?.parameters?.scale as PositionalCategoricalScale<*>).categories
         )
     }
 }
