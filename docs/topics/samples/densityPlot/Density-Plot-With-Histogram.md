@@ -47,7 +47,7 @@ plot {
 
 <seealso style="cards">
        <category ref="example-ktnb">
-           <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/histogram/densityPlot_with_histogram.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
+           <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/densityPlot/densityPlot_with_histogram.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
            <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/i4hJKskkhnKmazY7pP1WXv" summary="Experiment with this example on Datalore">Datalore Notebook</a>
        </category>
 </seealso>
