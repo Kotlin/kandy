@@ -1,10 +1,13 @@
-package org.jetbrains.kotlinx.kandy.dsl.internal
+package org.jetbrains.kotlinx.kandy.dsl.internal.dataframe
 
 import org.jetbrains.kotlinx.dataframe.*
 import org.jetbrains.kotlinx.dataframe.api.getColumns
 import org.jetbrains.kotlinx.dataframe.api.groupBy
+import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.ir.data.NamedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
+import org.jetbrains.kotlinx.kandy.ir.data.TableData
 
 // TODO(waiting for Context Parameters release https://github.com/Kotlin/KEEP/issues/367)
 // workaround, waiting for context parameters
@@ -12,7 +15,7 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
     @PublishedApi
     internal val dataFrame: DataFrame<T>,
 ) : MultiLayerPlotBuilder(), ColumnsContainer<T> by dataFrame {
-    override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(DatasetHandler(NamedData(dataFrame)))
+    override val datasetBuilders: MutableList<DatasetBuilder> = mutableListOf(NamedDataBuilder(dataFrame))
     /**
      * Fetches the specified columns from the dataframe.
      *
@@ -42,8 +45,8 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
         val groupBy = dataFrame.groupBy(*columns.toList().toTypedArray())
         GroupByScope(
             groupBy,
-            datasetHandler.buffer,
-            this
+            this,
+            addDataset(groupBy)
         ).apply(block)
     }
 
@@ -80,4 +83,18 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
         block: GroupByScope<T, T>.() -> Unit
     ): Unit = groupBy(columnReferences.map { it.name() }, block)
 
+    @PublishedApi
+    internal fun addDataset(groupBy: GroupBy<*, *>): Int {
+        datasetBuilders.add(DatasetBuilderImpl.fromData(groupBy, datasetBuilder as DatasetBuilderImpl))
+        return datasetBuilders.lastIndex
+    }
+
+    override fun addDataset(dataset: TableData, initialBuilder: DatasetBuilder?): Int {
+        datasetBuilders.add(DatasetBuilderImpl.fromData(dataset, datasetBuilder as DatasetBuilderImpl))
+        return datasetBuilders.lastIndex
+    }
+
+    override fun addEmptyDataset(): Int {
+        return addDataset(NamedData(DataFrame.Empty))
+    }
 }

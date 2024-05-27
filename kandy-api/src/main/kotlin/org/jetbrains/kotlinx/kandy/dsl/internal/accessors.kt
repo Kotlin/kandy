@@ -1,14 +1,16 @@
 package org.jetbrains.kotlinx.kandy.dsl.internal
 
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupByScope
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedDataScope
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 
 @PublishedApi
-internal val LayerBuilder.datasetHandler: DatasetHandler
+internal val LayerBuilder.datasetBuilder: DatasetBuilder
         get() = when (this) {
-            is LayerBuilderImpl -> datasetHandler
-            is SingleLayerPlotBuilder -> datasetHandler
+            is LayerBuilderImpl -> datasetBuilder
+            is SingleLayerPlotBuilder -> datasetBuilder
         }
 
 @PublishedApi
@@ -26,10 +28,10 @@ internal val LayerBuilder.bindingHandler: BindingHandler
     }
 
 @PublishedApi
-internal val PlotBuilder.datasetHandler: DatasetHandler
+internal val PlotBuilder.datasetBuilder: DatasetBuilder
     get() = when (this) {
-        is MultiLayerPlotBuilder -> datasetHandler
-        is CustomPlotBuilder -> datasetHandler
+        is MultiLayerPlotBuilder -> datasetBuilder
+        is CustomPlotBuilder -> datasetBuilder
     }
 
 @PublishedApi
@@ -47,8 +49,8 @@ internal val PlotBuilder.bindingHandler: BindingHandler
     }
 
 @PublishedApi
-internal val GroupedDataScope<*, *>.datasetHandler: DatasetHandler
+internal val GroupedDataScope<*, *>.datasetBuilder: DatasetBuilder
     get() = when (this) {
-        is GroupByPlotBuilder -> datasetHandler
-        is GroupByScope -> datasetHandler
+        is GroupByPlotBuilder -> datasetBuilder
+        is GroupByScope -> datasetBuilder
     }

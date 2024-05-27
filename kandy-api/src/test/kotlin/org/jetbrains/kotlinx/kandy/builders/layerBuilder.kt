@@ -14,7 +14,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
-import org.jetbrains.kotlinx.kandy.ir.data.NamedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.*
 
@@ -30,18 +30,18 @@ class LayerBuilderImplTest {
     private val layersInheritMappings = false
     private val mockGeom = mockk<Geom>()
 
-    private lateinit var dataHandler: DatasetHandler
+    private lateinit var dataHandler: DatasetBuilder
 
     @BeforeTest
     fun setup() {
-        dataHandler = mockk<DatasetHandler> {
+        dataHandler = mockk<DatasetBuilder> {
             every { buffer } returns DataFrame.Empty
             every { initialNamedData } returns NamedData(DataFrame.Empty)
         }
 
         parentBuilder = object : LayerCreatorScope() {
             override val plotBuilder = object: MultiLayerPlotBuilder() {
-                override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(dataHandler)
+                override val datasetBuilders: MutableList<DatasetBuilder> = mutableListOf(dataHandler)
             }
             override val datasetIndex: Int = 0
             override val layersInheritMappings: Boolean = this@LayerBuilderImplTest.layersInheritMappings

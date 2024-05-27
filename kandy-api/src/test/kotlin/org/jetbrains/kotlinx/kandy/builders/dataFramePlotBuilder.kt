@@ -4,13 +4,11 @@
 
 package org.jetbrains.kotlinx.kandy.builders
 
-import io.mockk.every
 import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
-import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.dsl.plot
@@ -18,7 +16,7 @@ import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
-import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -35,8 +33,8 @@ class DataFramePlotBuilderTest {
 
         val plotBuilder = DataFramePlotBuilder(dataFrame)
 
-        assertEquals(1, plotBuilder.datasetHandlers.size)
-        assertEquals(dataFrame, plotBuilder.datasetHandlers[0].initialNamedData.dataFrame)
+        assertEquals(1, plotBuilder.datasetBuilders.size)
+        assertEquals(dataFrame, plotBuilder.datasetBuilders[0].initialNamedData.dataFrame)
     }
 
     @Test
@@ -92,8 +90,8 @@ class DataFramePlotBuilderTest {
         }
 
         assertEquals(2, builder.layers.size)
-        assertEquals(2, builder.datasetHandlers.size)
-        assertEquals(GroupedData::class, builder.datasetHandlers[1].initialDataset::class)
+        assertEquals(2, builder.datasetBuilders.size)
+        assertEquals(GroupedData::class, builder.datasetBuilders[1].initialDataset::class)
     }
 
     @Test
@@ -115,8 +113,8 @@ class DataFramePlotBuilderTest {
         }
 
         assertEquals(2, builder.layers.size)
-        assertEquals(2, builder.datasetHandlers.size)
-        assertEquals(GroupedData::class, builder.datasetHandlers[1].initialDataset::class)
+        assertEquals(2, builder.datasetBuilders.size)
+        assertEquals(GroupedData::class, builder.datasetBuilders[1].initialDataset::class)
     }
 
     @Test

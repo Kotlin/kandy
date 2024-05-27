@@ -8,13 +8,13 @@ import org.jetbrains.kotlinx.dataframe.AnyCol
 import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
-import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
-import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
-import org.jetbrains.kotlinx.kandy.ir.data.NamedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import kotlin.test.*
 
-class DatasetHandlerTest {
+class DatasetBuilderTest {
     private val numbers = listOf(12, 34, 56, 78, 90).toColumn("numbers")
     private val type = listOf("a", "b", "a", "c", "b").toColumn("TYPE")
     private val cond = listOf(true, false, false, true, true).toColumn("cond")
@@ -25,24 +25,24 @@ class DatasetHandlerTest {
     private lateinit var internalType: AnyCol
     private lateinit var internalCond: AnyCol
 
-    private lateinit var handler: DatasetHandler
-    private lateinit var handlerWithGrouped: DatasetHandler
+    private lateinit var handler: DatasetBuilder
+    private lateinit var handlerWithGrouped: DatasetBuilder
 
     @BeforeTest
     fun setup() {
-        handler = DatasetHandler(NamedData(dataFrame))
+        handler = DatasetBuilder(NamedData(dataFrame))
 
         val groupedData = GroupedData(groupedDf)
         internalNumbers = groupedData.dataFrame["numbers"]
         internalType = groupedData.dataFrame["TYPE"]
         internalCond = groupedData.dataFrame["cond"]
-        handlerWithGrouped = DatasetHandler(groupedData)
+        handlerWithGrouped = DatasetBuilder(groupedData)
     }
 
     @Test
     fun `test initial NamedData`() {
         val initialDataset = NamedData(emptyDataFrame<Any>())
-        val handler = DatasetHandler(initialDataset)
+        val handler = DatasetBuilder(initialDataset)
 
         assertEquals(initialDataset, handler.initialNamedData)
     }
@@ -60,7 +60,7 @@ class DatasetHandlerTest {
                 )
             ), listOf("column1")
         )
-        val handler = DatasetHandler(initialDataset)
+        val handler = DatasetBuilder(initialDataset)
 
         assertEquals(initialDataset.dataFrame, handler.initialNamedData.dataFrame)
     }
@@ -68,7 +68,7 @@ class DatasetHandlerTest {
     @Test
     fun `test add column with list values`() {
         val initialDataset = NamedData(emptyDataFrame<Any>())
-        val handler = DatasetHandler(initialDataset)
+        val handler = DatasetBuilder(initialDataset)
         val values = listOf(1, 2, 3)
         val name = "new_column"
 
@@ -81,7 +81,7 @@ class DatasetHandlerTest {
     @Test
     fun `test nameData with regular dataframe`() {
         assertEquals(DataFrame.Empty, handler.buffer)
-        assertEquals(NamedData(DataFrame.Empty), handler.data())
+        assertEquals(NamedData(DataFrame.Empty), handler.build())
     }
 
     @Test
@@ -110,7 +110,7 @@ class DatasetHandlerTest {
 
         assertEquals(dfOfTypeColumn, handler.buffer)
         assertEquals(type.name(), colTypeIDAfterAdd)
-        assertEquals(NamedData(dfOfTypeColumn), handler.data())
+        assertEquals(NamedData(dfOfTypeColumn), handler.build())
     }
 
     @Test
@@ -179,7 +179,7 @@ class DatasetHandlerTest {
         assertEquals(type.name(), colTypeIDAfterAdd)
 
         val expectedDf = dataFrameOf(internalType).groupBy(type)
-        val actualDf: TableData = handlerWithGrouped.data()
+        val actualDf: TableData = handlerWithGrouped.build()
         assertIs<GroupedData>(actualDf)
         assertEquals(expectedDf.keys.columnNames(), actualDf.groupBy.keys.columnNames())
         assertEquals(expectedDf.groups.concat(), actualDf.groupBy.groups.concat())
@@ -204,7 +204,7 @@ class DatasetHandlerTest {
         assertEquals(dataFrameOf(internalType, internalNumbers), handlerWithGrouped.buffer)
         assertEquals(numbers.name(), colNumbersIDAfterRepeatAdd)
 
-        val actualDf = handlerWithGrouped.data()
+        val actualDf = handlerWithGrouped.build()
         assertIs<GroupedData>(actualDf)
         assertEquals(expectedDf.keys.columnNames(), actualDf.groupBy.keys.columnNames())
         assertEquals(expectedDf.groups.concat(), actualDf.groupBy.groups.concat())

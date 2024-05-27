@@ -7,7 +7,10 @@ import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 
 internal abstract class BindingHandler {
     val bindingCollector: BindingCollector = BindingCollector()
-    abstract val datasetHandler: DatasetHandler
+    var firstMapping = false
+    abstract val datasetBuilder: DatasetBuilder
+
+    abstract fun checkMappingSourceSize(size: Int)
 
     /**
      * Adds a [non-positional setting][NonPositionalSetting] with the given aes and value.
@@ -48,12 +51,15 @@ internal abstract class BindingHandler {
      * @param parameters the positional mapping parameters (optional).
      * @return the created [positional mapping][PositionalMapping].
      */
-    open fun <DomainType> addPositionalMapping(
+    fun <DomainType> addPositionalMapping(
         aes: Aes, values: List<DomainType>, name: String?, parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
-        val columnID = datasetHandler.addColumn(values, name ?: aes.name)
+        checkMappingSourceSize(values.size)
+        val columnID = datasetBuilder.addColumn(values, name ?: aes.name)
         return PositionalMapping(aes, columnID, parameters).also {
             bindingCollector.mappings[aes] = it
+        }.also {
+            firstMapping = false
         }
     }
 
@@ -66,12 +72,14 @@ internal abstract class BindingHandler {
      * @param parameters the positional mapping parameters (optional).
      * @return the created [positional mapping][PositionalMapping].
      */
-    open fun <DomainType> addPositionalMapping(
+    fun <DomainType> addPositionalMapping(
         aes: Aes, columnID: String, parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
-        val newColumnID = datasetHandler.takeColumn(columnID)
+        val newColumnID = datasetBuilder.takeColumn(columnID)
         return PositionalMapping(aes, newColumnID, parameters).also {
             bindingCollector.mappings[aes] = it
+        }.also {
+            firstMapping = false
         }
     }
 
@@ -84,12 +92,15 @@ internal abstract class BindingHandler {
      * @param parameters the positional mapping parameters (optional).
      * @return the created [positional mapping][PositionalMapping].
      */
-    open fun <DomainType> addPositionalMapping(
+    fun <DomainType> addPositionalMapping(
         aes: Aes, values: DataColumn<DomainType>, parameters: PositionalMappingParameters<DomainType>?
     ): PositionalMapping<DomainType> {
-        val columnID = datasetHandler.addColumn(values)
+        checkMappingSourceSize(values.size())
+        val columnID = datasetBuilder.addColumn(values)
         return PositionalMapping(aes, columnID, parameters).also {
             bindingCollector.mappings[aes] = it
+        }.also {
+            firstMapping = false
         }
     }
 
@@ -103,15 +114,18 @@ internal abstract class BindingHandler {
      * @param parameters the non-positional mapping parameters (optional).
      * @return the created [non-positional mapping][NonPositionalMapping].
      */
-    open fun <DomainType, RangeType> addNonPositionalMapping(
+     fun <DomainType, RangeType> addNonPositionalMapping(
         aes: Aes,
         values: List<DomainType>,
         name: String?,
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?
     ): NonPositionalMapping<DomainType, RangeType> {
-        val columnID = datasetHandler.addColumn(values, name ?: aes.name)
+        checkMappingSourceSize(values.size)
+        val columnID = datasetBuilder.addColumn(values, name ?: aes.name)
         return NonPositionalMapping(aes, columnID, parameters).also {
             bindingCollector.mappings[aes] = it
+        }.also {
+            firstMapping = false
         }
     }
 
@@ -124,14 +138,17 @@ internal abstract class BindingHandler {
      * @param parameters the non-positional mapping parameters (optional).
      * @return the created [non-positional mapping][NonPositionalMapping].
      */
-    open fun <DomainType, RangeType> addNonPositionalMapping(
+    fun <DomainType, RangeType> addNonPositionalMapping(
         aes: Aes,
         values: DataColumn<DomainType>,
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?
     ): NonPositionalMapping<DomainType, RangeType> {
-        val columnID = datasetHandler.addColumn(values)
+        checkMappingSourceSize(values.size())
+        val columnID = datasetBuilder.addColumn(values)
         return NonPositionalMapping(aes, columnID, parameters).also {
             bindingCollector.mappings[aes] = it
+        }.also {
+            firstMapping = false
         }
     }
 
@@ -144,14 +161,16 @@ internal abstract class BindingHandler {
      * @param parameters the non-positional mapping parameters (optional).
      * @return the created [non-positional mapping][NonPositionalMapping].
      */
-    open fun <DomainType, RangeType> addNonPositionalMapping(
+     fun <DomainType, RangeType> addNonPositionalMapping(
         aes: Aes,
         columnID: String,
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?
     ): NonPositionalMapping<DomainType, RangeType> {
-        val newColumnID = datasetHandler.takeColumn(columnID)
+        val newColumnID = datasetBuilder.takeColumn(columnID)
         return NonPositionalMapping(aes, newColumnID, parameters).also {
             bindingCollector.mappings[aes] = it
+        }.also {
+            firstMapping = false
         }
     }
 

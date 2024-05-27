@@ -19,7 +19,7 @@ import kotlin.reflect.KProperty
  */
 public fun LayerBuilder.value(column: ColumnReference<*>): String {
     @Suppress("INVISIBLE_MEMBER")
-    return "@${datasetHandler.addColumn(column)}"
+    return "@${datasetBuilder.addColumn(column)}"
 }
 
 /**
@@ -30,7 +30,7 @@ public fun LayerBuilder.value(column: ColumnReference<*>): String {
  */
 public fun LayerBuilder.value(columnName: String): String {
     @Suppress("INVISIBLE_MEMBER")
-    return "@${datasetHandler.takeColumn(columnName)}"
+    return "@${datasetBuilder.takeColumn(columnName)}"
 }
 
 /**
@@ -41,7 +41,7 @@ public fun LayerBuilder.value(columnName: String): String {
  */
 public fun LayerBuilder.value(column: KProperty<*>): String {
     @Suppress("INVISIBLE_MEMBER")
-    return "@${datasetHandler.takeColumn(column.name)}"
+    return "@${datasetBuilder.takeColumn(column.name)}"
 }
 
 /**
@@ -88,12 +88,12 @@ public inline fun LayerBuilder.tooltips(
 ) {
     @Suppress("INVISIBLE_MEMBER")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
-        variables.map { datasetHandler.addColumn(it) },
+        variables.map { datasetBuilder.addColumn(it) },
         title,
         anchor,
         minWidth,
         enable = true,
-        formats.map { (column, format) -> datasetHandler.takeColumn(column.name()) to format },
+        formats.map { (column, format) -> datasetBuilder.takeColumn(column.name()) to format },
         LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
 }
@@ -118,7 +118,7 @@ public fun LayerBuilder.tooltips(
 ) {
     @Suppress("INVISIBLE_MEMBER")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
-        (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it) },
+        (listOf(variable) + variables.toList()).map { datasetBuilder.takeColumn(it) },
         null,
         formats.toList(),
         title, anchor, minWidth, enable = true
@@ -145,9 +145,9 @@ public fun LayerBuilder.tooltips(
 ) {
     @Suppress("INVISIBLE_MEMBER")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
-        (listOf(variable) + variables.toList()).map { datasetHandler.addColumn(it) },
+        (listOf(variable) + variables.toList()).map { datasetBuilder.addColumn(it) },
         null,
-        formats.map { (column, format) -> datasetHandler.takeColumn(column.name()) to format },
+        formats.map { (column, format) -> datasetBuilder.takeColumn(column.name()) to format },
         title,
         anchor,
         minWidth,
@@ -176,9 +176,9 @@ public fun LayerBuilder.tooltips(
 ) {
     @Suppress("INVISIBLE_MEMBER")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
-        (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it.name) },
+        (listOf(variable) + variables.toList()).map { datasetBuilder.takeColumn(it.name) },
         null,
-        formats.map { (property, format) ->  datasetHandler.takeColumn(property.name) to format },
+        formats.map { (property, format) ->  datasetBuilder.takeColumn(property.name) to format },
         title, anchor, minWidth, enable = true
     )
 }

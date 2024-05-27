@@ -15,8 +15,8 @@ public abstract class LayerCreatorScope {
     internal abstract val datasetIndex: Int
     internal abstract val layersInheritMappings: Boolean
     @PublishedApi
-    internal val datasetHandler: DatasetHandler
-        get() = plotBuilder.datasetHandlers[datasetIndex]
+    internal val datasetBuilder: DatasetBuilder
+        get() = plotBuilder.datasetBuilders[datasetIndex]
 
     // TODO(waiting for Context Parameters release https://github.com/Kotlin/KEEP/issues/367)
     // should create and return Layer (not add it) and be used with [MultiLayerPlotBuilder.addLayer]

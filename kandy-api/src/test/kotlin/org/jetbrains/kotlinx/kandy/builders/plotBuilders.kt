@@ -9,7 +9,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk
 import junit.framework.TestCase.assertEquals
-import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
+import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.SingleLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.Layer
@@ -17,7 +17,7 @@ import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
-import org.jetbrains.kotlinx.kandy.ir.data.NamedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
@@ -46,7 +46,7 @@ class PlotBuildersTest {
             override val requiredAes: Set<Aes> = setOf()
         })
 
-        every { singleLayerPlotBuilder.datasetHandler.data() } returns mockData
+        every { singleLayerPlotBuilder.datasetBuilder.build() } returns mockData
         every { singleLayerPlotBuilder.toLayer() } returns mockLayer
         every { singleLayerPlotBuilder.bindingCollector.mappings } returns mockMappings
         every { singleLayerPlotBuilder.bindingCollector.settings } returns mockSettings
@@ -73,19 +73,19 @@ class PlotBuildersTest {
         val mockLayerFirst: Layer = mockk<Layer>()
         val mockLayerSecond: Layer = mockk<Layer>()
 
-        val datasetHandler: DatasetHandler = mockk {
-            every { data() } returns mockData
+        val datasetBuilder: DatasetBuilder = mockk {
+            every { build() } returns mockData
         }
 
         val layerPlotBuilder = spyk(object : MultiLayerPlotBuilder() {
-            override val datasetHandlers: MutableList<DatasetHandler> = mutableListOf(
-                datasetHandler
+            override val datasetBuilders: MutableList<DatasetBuilder> = mutableListOf(
+                datasetBuilder
             )
         })
         layerPlotBuilder.layers.addAll(listOf(mockLayerFirst, mockLayerSecond))
         layerPlotBuilder.plotFeatures.putAll(mockPlotFeatures)
 
-        every { layerPlotBuilder.datasetHandler.data() } returns mockData
+        every { layerPlotBuilder.datasetBuilder.build() } returns mockData
 
         every { layerPlotBuilder.bindingCollector.mappings } returns mockMappings
         every { layerPlotBuilder.bindingCollector.settings } returns mockSettings

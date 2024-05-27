@@ -33,7 +33,7 @@ public class LayerTooltipsContext(private val LayerBuilder: LayerBuilder) {
      */
     public fun KProperty<*>.tooltipValue(format: String? = null): String {
         @Suppress("INVISIBLE_MEMBER")
-        val colID = LayerBuilder.datasetHandler.takeColumn(this.name)
+        val colID = LayerBuilder.datasetBuilder.takeColumn(this.name)
         addFormat(colID, format)
         return "@$colID"
     }
@@ -47,7 +47,7 @@ public class LayerTooltipsContext(private val LayerBuilder: LayerBuilder) {
      */
     public fun String.tooltipValue(format: String? = null): String {
         @Suppress("INVISIBLE_MEMBER")
-        val colID = LayerBuilder.datasetHandler.takeColumn(this)
+        val colID = LayerBuilder.datasetBuilder.takeColumn(this)
         addFormat(colID, format)
         return "@$colID"
     }
@@ -61,7 +61,7 @@ public class LayerTooltipsContext(private val LayerBuilder: LayerBuilder) {
      */
     public fun ColumnReference<*>.tooltipValue(format: String? = null): String {
         @Suppress("INVISIBLE_MEMBER")
-        val colID = LayerBuilder.datasetHandler.addColumn(this)
+        val colID = LayerBuilder.datasetBuilder.addColumn(this)
         addFormat(colID, format)
         return "@$colID"
     }
@@ -94,7 +94,7 @@ public class LayerTooltipsContext(private val LayerBuilder: LayerBuilder) {
      */
     public fun line(column: ColumnReference<*>, format: String? = null) {
         @Suppress("INVISIBLE_MEMBER")
-        addVarLine(LayerBuilder.datasetHandler.addColumn(column).also {
+        addVarLine(LayerBuilder.datasetBuilder.addColumn(column).also {
             addFormat(it, format)
         })
     }
@@ -107,7 +107,7 @@ public class LayerTooltipsContext(private val LayerBuilder: LayerBuilder) {
      */
     public fun line(property: KProperty<*>, format: String? = null) {
         @Suppress("INVISIBLE_MEMBER")
-        addVarLine(LayerBuilder.datasetHandler.takeColumn(property.name).also {
+        addVarLine(LayerBuilder.datasetBuilder.takeColumn(property.name).also {
             addFormat(it, format)
         })
     }
@@ -120,7 +120,7 @@ public class LayerTooltipsContext(private val LayerBuilder: LayerBuilder) {
      */
     public fun varLine(columnName: String, format: String? = null) {
         @Suppress("INVISIBLE_MEMBER")
-        addVarLine(LayerBuilder.datasetHandler.takeColumn(columnName).also {
+        addVarLine(LayerBuilder.datasetBuilder.takeColumn(columnName).also {
             addFormat(it, format)
         })
     }

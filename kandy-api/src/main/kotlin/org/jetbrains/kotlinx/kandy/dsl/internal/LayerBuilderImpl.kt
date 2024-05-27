@@ -5,12 +5,9 @@
 package org.jetbrains.kotlinx.kandy.dsl.internal
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
-import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
-import org.jetbrains.kotlinx.kandy.ir.data.NamedData
-import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
@@ -28,90 +25,32 @@ public abstract class LayerBuilderImpl internal constructor(
     internal val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 
     internal val plotBuilder: MultiLayerPlotBuilder = parent.plotBuilder
-    private var firstMapping: Boolean = true
-    internal val datasetHandler: DatasetHandler
-        get() = plotBuilder.datasetHandlers[datasetIndex]
+    internal val datasetBuilder: DatasetBuilder
+        get() = plotBuilder.datasetBuilders[datasetIndex]
     internal open var inheritMappings: Boolean = parent.layersInheritMappings
-    private val handlerRowsCount: Int
-        get() {
-            val buffer = datasetHandler.buffer
-            return if (buffer == DataFrame.Empty) {
-                datasetHandler.initialNamedData.dataFrame.rowsCount()
-            } else {
-                buffer.rowsCount()
-            }
-        }
 
-    private fun overrideDataset(data: TableData) {
-        datasetIndex = plotBuilder.addDataset(data)
+    private fun overrideDataset() {
+        datasetIndex = plotBuilder.addEmptyDataset()
     }
 
     internal fun checkSourceSizeAndOverrideDataset(size: Int) {
-        if (firstMapping && handlerRowsCount != size) {
-            overrideDataset(NamedData(DataFrame.Empty))
-            inheritMappings = false
+        val rowsCount = datasetBuilder.rowsCount()
+        if (rowsCount != size) {
+            if (bindingHandler.firstMapping) {
+                overrideDataset()
+                inheritMappings = false
+            } else {
+                error("Unexpected size of mapping source: excepted $rowsCount, but received $size")
+            }
         }
-        firstMapping = false
     }
 
     internal val bindingHandler: BindingHandler = object : BindingHandler() {
-        override val datasetHandler: DatasetHandler
-            get() = this@LayerBuilderImpl.datasetHandler
+        override val datasetBuilder: DatasetBuilder
+            get() = this@LayerBuilderImpl.datasetBuilder
 
-        override fun <DomainType, RangeType> addNonPositionalMapping(
-            aes: Aes,
-            columnID: String,
-            parameters: NonPositionalMappingParameters<DomainType, RangeType>?
-        ): NonPositionalMapping<DomainType, RangeType> {
-            firstMapping = false
-            return super.addNonPositionalMapping(aes, columnID, parameters)
-        }
-
-        override fun <DomainType, RangeType> addNonPositionalMapping(
-            aes: Aes,
-            values: DataColumn<DomainType>,
-            parameters: NonPositionalMappingParameters<DomainType, RangeType>?
-        ): NonPositionalMapping<DomainType, RangeType> {
-            checkSourceSizeAndOverrideDataset(values.size())
-            return super.addNonPositionalMapping(aes, values, parameters)
-        }
-
-        override fun <DomainType, RangeType> addNonPositionalMapping(
-            aes: Aes,
-            values: List<DomainType>,
-            name: String?,
-            parameters: NonPositionalMappingParameters<DomainType, RangeType>?
-        ): NonPositionalMapping<DomainType, RangeType> {
-            checkSourceSizeAndOverrideDataset(values.size)
-            return super.addNonPositionalMapping(aes, values, name, parameters)
-        }
-
-        override fun <DomainType> addPositionalMapping(
-            aes: Aes,
-            columnID: String,
-            parameters: PositionalMappingParameters<DomainType>?
-        ): PositionalMapping<DomainType> {
-            firstMapping = false
-            return super.addPositionalMapping(aes, columnID, parameters)
-        }
-
-        override fun <DomainType> addPositionalMapping(
-            aes: Aes,
-            values: DataColumn<DomainType>,
-            parameters: PositionalMappingParameters<DomainType>?
-        ): PositionalMapping<DomainType> {
-            checkSourceSizeAndOverrideDataset(values.size())
-            return super.addPositionalMapping(aes, values, parameters)
-        }
-
-        override fun <DomainType> addPositionalMapping(
-            aes: Aes,
-            values: List<DomainType>,
-            name: String?,
-            parameters: PositionalMappingParameters<DomainType>?
-        ): PositionalMapping<DomainType> {
-            checkSourceSizeAndOverrideDataset(values.size)
-            return super.addPositionalMapping(aes, values, name, parameters)
+        override fun checkMappingSourceSize(size: Int) {
+            checkSourceSizeAndOverrideDataset(size)
         }
     }
 

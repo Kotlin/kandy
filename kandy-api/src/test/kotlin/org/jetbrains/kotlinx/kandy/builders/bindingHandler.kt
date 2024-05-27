@@ -9,7 +9,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
-import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
+import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
@@ -21,7 +21,7 @@ import kotlin.test.assertEquals
 class BindingHandlerTest {
 
     private lateinit var bindingHandler: BindingHandler
-    private lateinit var mockDatasetHandler: DatasetHandler
+    private lateinit var mockDatasetBuilder: DatasetBuilder
 
     private val aes = mockk<Aes>()
     private val value = "testValue"
@@ -33,12 +33,12 @@ class BindingHandlerTest {
 
     @BeforeTest
     fun setup() {
-        mockDatasetHandler = mockk<DatasetHandler>()
+        mockDatasetBuilder = mockk<DatasetBuilder>()
 
         bindingHandler = object : BindingHandler() {
             val plotBuilder: MultiLayerPlotBuilder = mockk()
             val datasetIndex: Int = 0
-            override val datasetHandler: DatasetHandler = mockDatasetHandler
+            override val datasetBuilder: DatasetBuilder = mockDatasetBuilder
         }
     }
 
@@ -80,70 +80,70 @@ class BindingHandlerTest {
 
     @Test
     fun `test addPositionalMapping with list of values`() {
-        every { mockDatasetHandler.addColumn(values, name) } returns columnID
+        every { mockDatasetBuilder.addColumn(values, name) } returns columnID
 
         val result = bindingHandler.addPositionalMapping(aes, values, name, positionalParameters)
 
         assertMapping(aes, columnID, positionalParameters, result)
-        verify { mockDatasetHandler.addColumn(values, name) }
+        verify { mockDatasetBuilder.addColumn(values, name) }
     }
 
     @Test
     fun `test addPositionalMapping with columnID`() {
         val newColumnID = "newColumnId"
 
-        every { mockDatasetHandler.takeColumn(columnID) } returns newColumnID
+        every { mockDatasetBuilder.takeColumn(columnID) } returns newColumnID
 
         val result = bindingHandler.addPositionalMapping(aes, columnID, positionalParameters)
 
         assertMapping(aes, newColumnID, positionalParameters, result)
-        verify { mockDatasetHandler.takeColumn(columnID) }
+        verify { mockDatasetBuilder.takeColumn(columnID) }
     }
 
     @Test
     fun `test addPositionalMapping with DataColumn`() {
         val dataColumn = mockk<DataColumn<Any>>()
 
-        every { mockDatasetHandler.addColumn(dataColumn) } returns columnID
+        every { mockDatasetBuilder.addColumn(dataColumn) } returns columnID
 
         val result = bindingHandler.addPositionalMapping(aes, dataColumn, positionalParameters)
 
         assertMapping(aes, columnID, positionalParameters, result)
-        verify { mockDatasetHandler.addColumn(dataColumn) }
+        verify { mockDatasetBuilder.addColumn(dataColumn) }
     }
 
     @Test
     fun `test addNonPositionalMapping with list of values`() {
-        every { mockDatasetHandler.addColumn(values, name) } returns columnID
+        every { mockDatasetBuilder.addColumn(values, name) } returns columnID
 
         val result = bindingHandler.addNonPositionalMapping(aes, values, name, nonPositionalParameters)
 
         assertMapping(aes, columnID, nonPositionalParameters, result)
-        verify { mockDatasetHandler.addColumn(values, name) }
+        verify { mockDatasetBuilder.addColumn(values, name) }
     }
 
     @Test
     fun `test addNonPositionalMapping with columnID`() {
         val newColumnID = "newColumnId"
 
-        every { mockDatasetHandler.takeColumn(columnID) } returns newColumnID
+        every { mockDatasetBuilder.takeColumn(columnID) } returns newColumnID
 
         val result = bindingHandler.addNonPositionalMapping(aes, columnID, nonPositionalParameters)
 
         assertMapping(aes, newColumnID, nonPositionalParameters, result)
-        verify { mockDatasetHandler.takeColumn(columnID) }
+        verify { mockDatasetBuilder.takeColumn(columnID) }
     }
 
     @Test
     fun `test addNonPositionalMapping with DataColumn`() {
         val dataColumn = mockk<DataColumn<Any>>()
 
-        every { mockDatasetHandler.addColumn(dataColumn) } returns columnID
+        every { mockDatasetBuilder.addColumn(dataColumn) } returns columnID
 
         val result = bindingHandler.addNonPositionalMapping(aes, dataColumn, nonPositionalParameters)
 
         assertMapping(aes, columnID, nonPositionalParameters, result)
-        verify { mockDatasetHandler.addColumn(dataColumn) }
+        verify { mockDatasetBuilder.addColumn(dataColumn) }
     }
 
     @Test
