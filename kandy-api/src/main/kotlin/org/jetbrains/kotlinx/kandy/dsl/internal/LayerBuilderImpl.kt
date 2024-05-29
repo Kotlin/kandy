@@ -54,10 +54,7 @@ public abstract class LayerBuilderImpl internal constructor(
         firstMapping = false
     }
 
-    internal val bindingHandler: BindingHandler = object : BindingHandler() {
-        override val datasetHandler: DatasetHandler
-            get() = this@LayerBuilderImpl.datasetHandler
-
+    internal val bindingHandler: BindingHandler = object : BindingHandler({ datasetHandler }) {
         override fun <DomainType, RangeType> addNonPositionalMapping(
             aes: Aes,
             columnID: String,

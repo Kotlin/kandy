@@ -5,9 +5,10 @@ import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 
-internal abstract class BindingHandler {
+internal open class BindingHandler (private val datasetHandlerAccessor: () -> DatasetHandler) {
     val bindingCollector: BindingCollector = BindingCollector()
-    abstract val datasetHandler: DatasetHandler
+    val datasetHandler: DatasetHandler
+        get() = datasetHandlerAccessor()
 
     /**
      * Adds a [non-positional setting][NonPositionalSetting] with the given aes and value.

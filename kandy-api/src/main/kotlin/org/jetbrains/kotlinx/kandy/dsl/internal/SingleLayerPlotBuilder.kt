@@ -18,7 +18,7 @@ public abstract class SingleLayerPlotBuilder @PublishedApi internal constructor(
     override val datasetHandler: DatasetHandler = DatasetHandler(data)
 
     override val plotFeatures: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
-    override val bindingHandler: BindingHandlerDefault = BindingHandlerDefault { datasetHandler }
+    override val bindingHandler: BindingHandler = BindingHandler { datasetHandler }
     internal val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
 
     internal abstract val geom: Geom

@@ -32,7 +32,7 @@ public abstract class MultiLayerPlotBuilder internal constructor(): LayerCreator
     override val layersInheritMappings: Boolean
         get() = true
 
-    internal val bindingHandler: BindingHandlerDefault = BindingHandlerDefault { datasetHandler }
+    internal val bindingHandler: BindingHandler = BindingHandler { datasetHandler }
     internal val bindingCollector
         get() = bindingHandler.bindingCollector
 
