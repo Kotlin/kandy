@@ -45,10 +45,7 @@ public abstract class LayerBuilderImpl internal constructor(
         }
     }
 
-    internal val bindingHandler: BindingHandler = object : BindingHandler() {
-        override val datasetBuilder: DatasetBuilder
-            get() = this@LayerBuilderImpl.datasetBuilder
-
+    internal val bindingHandler: BindingHandler = object : BindingHandler ({datasetBuilder}) {
         override fun checkMappingSourceSize(size: Int) {
             checkSourceSizeAndOverrideDataset(size)
         }

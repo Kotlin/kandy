@@ -9,8 +9,6 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 
-// TODO(waiting for Context Parameters release https://github.com/Kotlin/KEEP/issues/367)
-// workaround, waiting for context parameters
 public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
     @PublishedApi
     internal val dataFrame: DataFrame<T>,

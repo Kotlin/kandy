@@ -13,7 +13,9 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnAccessor
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 
-
+/**
+ * [DatasetBuilder] implementation with DataFrame
+ */
 internal abstract class DatasetBuilderImpl(
     initialBuilder:DatasetBuilderImpl? = null
 ): DatasetBuilder {

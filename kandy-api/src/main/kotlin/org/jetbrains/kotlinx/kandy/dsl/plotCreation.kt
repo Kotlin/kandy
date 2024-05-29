@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
-import org.jetbrains.kotlinx.kandy.dsl.internal.GroupByPlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupByPlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.Plot
 
 /**

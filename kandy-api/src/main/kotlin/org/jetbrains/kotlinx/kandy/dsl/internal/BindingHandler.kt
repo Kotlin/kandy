@@ -5,12 +5,18 @@ import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 
-internal abstract class BindingHandler {
+internal open class BindingHandler(private val datasetBuilderAccessor: () -> DatasetBuilder) {
     val bindingCollector: BindingCollector = BindingCollector()
     var firstMapping = false
-    abstract val datasetBuilder: DatasetBuilder
+    val datasetBuilder: DatasetBuilder
+        get() = datasetBuilderAccessor()
 
-    abstract fun checkMappingSourceSize(size: Int)
+    open fun checkMappingSourceSize(size: Int) {
+        val rowsCount = datasetBuilder.rowsCount()
+        if (rowsCount != size) {
+            error("Unexpected size of mapping source: excepted $rowsCount, but received $size")
+        }
+    }
 
     /**
      * Adds a [non-positional setting][NonPositionalSetting] with the given aes and value.
@@ -84,27 +90,6 @@ internal abstract class BindingHandler {
     }
 
     /**
-     * Creates and adds a [positional mapping][PositionalMapping] for a given aesthetic attribute
-     * ([aes]), [values], and [parameters].
-     *
-     * @param aes the aesthetic attribute (aes) to be mapped.
-     * @param values the [DataColumn] of values to be mapped.
-     * @param parameters the positional mapping parameters (optional).
-     * @return the created [positional mapping][PositionalMapping].
-     */
-    fun <DomainType> addPositionalMapping(
-        aes: Aes, values: DataColumn<DomainType>, parameters: PositionalMappingParameters<DomainType>?
-    ): PositionalMapping<DomainType> {
-        checkMappingSourceSize(values.size())
-        val columnID = datasetBuilder.addColumn(values)
-        return PositionalMapping(aes, columnID, parameters).also {
-            bindingCollector.mappings[aes] = it
-        }.also {
-            firstMapping = false
-        }
-    }
-
-    /**
      * Creates and adds a [non-positional mapping][NonPositionalMapping] for a given aesthetic attribute
      * ([aes]) and [values].
      *
@@ -122,29 +107,6 @@ internal abstract class BindingHandler {
     ): NonPositionalMapping<DomainType, RangeType> {
         checkMappingSourceSize(values.size)
         val columnID = datasetBuilder.addColumn(values, name ?: aes.name)
-        return NonPositionalMapping(aes, columnID, parameters).also {
-            bindingCollector.mappings[aes] = it
-        }.also {
-            firstMapping = false
-        }
-    }
-
-    /**
-     * Creates and adds a [non-positional mapping][NonPositionalMapping] for a given aesthetic attribute
-     * ([aes]), [values], and [parameters].
-     *
-     * @param aes the aesthetic attribute (aes) to be mapped.
-     * @param values the [DataColumn] of values to be mapped.
-     * @param parameters the non-positional mapping parameters (optional).
-     * @return the created [non-positional mapping][NonPositionalMapping].
-     */
-    fun <DomainType, RangeType> addNonPositionalMapping(
-        aes: Aes,
-        values: DataColumn<DomainType>,
-        parameters: NonPositionalMappingParameters<DomainType, RangeType>?
-    ): NonPositionalMapping<DomainType, RangeType> {
-        checkMappingSourceSize(values.size())
-        val columnID = datasetBuilder.addColumn(values)
         return NonPositionalMapping(aes, columnID, parameters).also {
             bindingCollector.mappings[aes] = it
         }.also {

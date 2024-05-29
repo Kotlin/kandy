@@ -1,7 +1,5 @@
 package org.jetbrains.kotlinx.kandy.dsl.internal
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupByScope
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedDataScope
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
@@ -48,9 +46,3 @@ internal val PlotBuilder.bindingHandler: BindingHandler
         is CustomPlotBuilder -> bindingHandler
     }
 
-@PublishedApi
-internal val GroupedDataScope<*, *>.datasetBuilder: DatasetBuilder
-    get() = when (this) {
-        is GroupByPlotBuilder -> datasetBuilder
-        is GroupByScope -> datasetBuilder
-    }
