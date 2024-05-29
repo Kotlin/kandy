@@ -29,8 +29,8 @@ public interface WithMiddle : WithAes {
      *
      * @property middle A [ConstantSetter] object to directly set the middle.
      */
-    public val middle: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter
-        get() = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter(
+    public val middle: ConstantSetter
+        get() = ConstantSetter(
             MIDDLE,
             bindingHandler.bindingCollector
         )
