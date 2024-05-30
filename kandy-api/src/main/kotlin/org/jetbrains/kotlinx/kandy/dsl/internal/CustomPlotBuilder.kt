@@ -3,8 +3,9 @@ package org.jetbrains.kotlinx.kandy.dsl.internal
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 
-// todo doc
-// plot builder for cases when we don't want to add layers in the plot directly, needed for some statistic plots
+/**
+ * Base class for [PlotBuilder] with non-standard configuration method (i.e., not by adding layers).
+ */
 public abstract class CustomPlotBuilder: PlotBuilder {
     internal abstract val datasetBuilder: DatasetBuilder
     internal abstract val plotFeatures: MutableMap<FeatureName, PlotFeature>

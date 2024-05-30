@@ -9,9 +9,8 @@ import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
 
 // TODO docs
-@Suppress("INVISIBLE_REFERENCE")
+@Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 public class ConstantSetter internal constructor(private val aes: Aes, private val bindingCollector: BindingCollector) {
-    @Suppress("INVISIBLE_MEMBER")
     public fun <T> constant(value: T) {
         bindingCollector.settings[aes] = PositionalSetting<T>(aes, value)
     }

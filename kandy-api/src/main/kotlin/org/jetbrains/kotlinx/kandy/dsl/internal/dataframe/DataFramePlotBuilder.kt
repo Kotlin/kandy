@@ -9,6 +9,16 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 
+/**
+ * Represents a standard plotting context initialized with a [DataFrame] as its primary dataset.
+ * The class allows the seamless integration of the dataframe's columns into the plotting process.
+ * It also provides convenient methods for grouping data and creating grouped contexts.
+ *
+ * The implemented [ColumnsContainer] enables the user
+ * to leverage the columns of the dataframe directly in the plotting process.
+ *
+ * @param T the type of the DataFrame.
+ */
 public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
     @PublishedApi
     internal val dataFrame: DataFrame<T>,

@@ -35,11 +35,7 @@ class BindingHandlerTest {
     fun setup() {
         mockDatasetBuilder = mockk<DatasetBuilder>()
 
-        bindingHandler = object : BindingHandler() {
-            val plotBuilder: MultiLayerPlotBuilder = mockk()
-            val datasetIndex: Int = 0
-            override val datasetBuilder: DatasetBuilder = mockDatasetBuilder
-        }
+        bindingHandler = object : BindingHandler({mockDatasetBuilder}) {}
     }
 
     /**

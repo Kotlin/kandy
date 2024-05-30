@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.dsl.internal
 
-import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
@@ -12,7 +11,9 @@ import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-
+/**
+ * [LayerBuilder] implementation.
+ */
 public abstract class LayerBuilderImpl internal constructor(
     parent: LayerCreatorScope,
     internal var datasetIndex: Int = parent.datasetIndex

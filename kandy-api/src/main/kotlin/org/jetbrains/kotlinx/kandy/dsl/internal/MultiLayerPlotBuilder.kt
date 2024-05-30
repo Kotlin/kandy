@@ -6,10 +6,14 @@ import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 
-/// todo doc
+/**
+ * An abstract class representing a builder for creating plots by adding layers.
+ * This class provides methods for adding layers, datasets, and other plot features.
+ */
 public abstract class MultiLayerPlotBuilder internal constructor(): LayerCreatorScope(), PlotBuilder {
-
-    // todo public and use with `createLayer`
+    /**
+     * Adds a new layer.
+     */
     @PublishedApi
     internal fun addLayer(layer: Layer) {
         layers.add(layer)
@@ -44,6 +48,11 @@ public abstract class MultiLayerPlotBuilder internal constructor(): LayerCreator
         )
     }
 
+    /**
+     * Adds a new dataset.
+     *
+     * @return new dataset builder index in [datasetBuilders].
+     */
     internal abstract fun addDataset(dataset: TableData, initialBuilder: DatasetBuilder? = null): Int
     internal abstract fun addEmptyDataset(): Int
 
