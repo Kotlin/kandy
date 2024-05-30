@@ -28,8 +28,8 @@ public interface WithYIntercept : WithAes {
      *
      * @property yIntercept a [ConstantSetter] object to directly set the y-intercept.
      */
-    public val yIntercept: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter
-        get() = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter(
+    public val yIntercept: ConstantSetter
+        get() = ConstantSetter(
             Y_INTERCEPT,
             bindingHandler.bindingCollector
         )

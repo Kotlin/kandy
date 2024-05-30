@@ -9,10 +9,9 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-/*
- todo: allow dataset overriding?
+/**
+ * Base class for [PlotBuilder] with a single layer configured by [LayerBuilder]. Combines [PlotBuilder] and [LayerBuilder].
  */
-// todo doc
 public abstract class SingleLayerPlotBuilder @PublishedApi internal constructor(data: TableData)
     : CustomPlotBuilder(), LayerBuilder {
     override val datasetHandler: DatasetHandler = DatasetHandler(data)

@@ -26,8 +26,8 @@ public interface WithLower : WithAes {
      *
      * @property lower A [ConstantSetter] object to directly set the lower.
      */
-    public val lower: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter
-        get() = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter(
+    public val lower: ConstantSetter
+        get() = ConstantSetter(
             LOWER,
             bindingHandler.bindingCollector
         )

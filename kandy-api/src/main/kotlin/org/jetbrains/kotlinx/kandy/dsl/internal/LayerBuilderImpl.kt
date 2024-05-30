@@ -15,7 +15,9 @@ import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-
+/**
+ * [LayerBuilder] implementation.
+ */
 public abstract class LayerBuilderImpl internal constructor(
     parent: LayerCreatorScope,
     internal var datasetIndex: Int = parent.datasetIndex
