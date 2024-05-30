@@ -5,6 +5,9 @@ import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 
+/**
+ * The class responsible for handling bindings. It is used by builders in which bindings are made.
+ */
 internal open class BindingHandler (private val datasetHandlerAccessor: () -> DatasetHandler) {
     val bindingCollector: BindingCollector = BindingCollector()
     val datasetHandler: DatasetHandler

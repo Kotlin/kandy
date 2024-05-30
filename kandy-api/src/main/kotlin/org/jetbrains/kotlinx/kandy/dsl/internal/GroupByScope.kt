@@ -9,9 +9,13 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnGroup
 import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 
 /**
- * Represents a context specifically tailored for managing and visualizing grouped datasets.
+ * Represents a plot builder data scope with grouped dataset
+ * created by [DataFramePlotBuilder.groupBy].
  *
- * @property key `ColumnGroup` of key columns
+ * @param T The type of the key columns.
+ * @param G The type of the data columns.
+ *
+ * @property key `ColumnGroup` of key columns.
  */
 public class GroupByScope<T, G> @PublishedApi internal constructor(
     @PublishedApi
