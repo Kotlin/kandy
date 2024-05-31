@@ -10,6 +10,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.FONT_FAMILY
 import org.jetbrains.kotlinx.kandy.letsplot.settings.font.FontFamily
 import kotlin.reflect.KProperty
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 
 /**
  * Interface for configuring the `family` aesthetic, which refers to the font family in text elements of a plot layer.

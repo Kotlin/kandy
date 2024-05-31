@@ -6,6 +6,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.tooltips
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.letsplot.internal.datasetBuilderImpl
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.context.LayerTooltipsContext
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
 import kotlin.reflect.KProperty
@@ -19,7 +20,7 @@ import kotlin.reflect.KProperty
  */
 public fun LayerBuilder.value(column: ColumnReference<*>): String {
     @Suppress("INVISIBLE_MEMBER")
-    return "@${datasetBuilder.addColumn(column)}"
+    return "@${datasetBuilderImpl.addColumn(column)}"
 }
 
 /**
@@ -88,7 +89,7 @@ public inline fun LayerBuilder.tooltips(
 ) {
     @Suppress("INVISIBLE_MEMBER")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
-        variables.map { datasetBuilder.addColumn(it) },
+        variables.map { datasetBuilderImpl.addColumn(it) },
         title,
         anchor,
         minWidth,
@@ -145,7 +146,7 @@ public fun LayerBuilder.tooltips(
 ) {
     @Suppress("INVISIBLE_MEMBER")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
-        (listOf(variable) + variables.toList()).map { datasetBuilder.addColumn(it) },
+        (listOf(variable) + variables.toList()).map { datasetBuilderImpl.addColumn(it) },
         null,
         formats.map { (column, format) -> datasetBuilder.takeColumn(column.name()) to format },
         title,

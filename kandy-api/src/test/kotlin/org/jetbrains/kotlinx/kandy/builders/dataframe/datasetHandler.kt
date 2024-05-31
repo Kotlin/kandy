@@ -2,13 +2,14 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.builders
+package org.jetbrains.kotlinx.kandy.builders.dataframe
 
 import org.jetbrains.kotlinx.dataframe.AnyCol
 import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DatasetBuilderImpl
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedData
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
@@ -25,26 +26,26 @@ class DatasetBuilderTest {
     private lateinit var internalType: AnyCol
     private lateinit var internalCond: AnyCol
 
-    private lateinit var handler: DatasetBuilder
-    private lateinit var handlerWithGrouped: DatasetBuilder
+    private lateinit var handler: DatasetBuilderImpl
+    private lateinit var handlerWithGrouped: DatasetBuilderImpl
 
     @BeforeTest
     fun setup() {
-        handler = DatasetBuilder(NamedData(dataFrame))
+        handler = DatasetBuilderImpl.fromData(NamedData(dataFrame))
 
         val groupedData = GroupedData(groupedDf)
         internalNumbers = groupedData.dataFrame["numbers"]
         internalType = groupedData.dataFrame["TYPE"]
         internalCond = groupedData.dataFrame["cond"]
-        handlerWithGrouped = DatasetBuilder(groupedData)
+        handlerWithGrouped = DatasetBuilderImpl.fromData(groupedData)
     }
 
     @Test
     fun `test initial NamedData`() {
         val initialDataset = NamedData(emptyDataFrame<Any>())
-        val handler = DatasetBuilder(initialDataset)
+        val handler = DatasetBuilderImpl.fromData(initialDataset)
 
-        assertEquals(initialDataset, handler.initialNamedData)
+        assertEquals(initialDataset.dataFrame, handler.baseDataFrame)
     }
 
     @Test
@@ -60,15 +61,15 @@ class DatasetBuilderTest {
                 )
             ), listOf("column1")
         )
-        val handler = DatasetBuilder(initialDataset)
+        val handler = DatasetBuilderImpl.fromData(initialDataset)
 
-        assertEquals(initialDataset.dataFrame, handler.initialNamedData.dataFrame)
+        assertEquals(initialDataset.dataFrame, handler.baseDataFrame)
     }
 
     @Test
     fun `test add column with list values`() {
         val initialDataset = NamedData(emptyDataFrame<Any>())
-        val handler = DatasetBuilder(initialDataset)
+        val handler = DatasetBuilderImpl.fromData(initialDataset)
         val values = listOf(1, 2, 3)
         val name = "new_column"
 

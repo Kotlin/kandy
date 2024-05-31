@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
  */
 internal open class BindingHandler(private val datasetBuilderAccessor: () -> DatasetBuilder) {
     val bindingCollector: BindingCollector = BindingCollector()
-    var firstMapping = false
+    var firstMapping = true
     val datasetBuilder: DatasetBuilder
         get() = datasetBuilderAccessor()
 

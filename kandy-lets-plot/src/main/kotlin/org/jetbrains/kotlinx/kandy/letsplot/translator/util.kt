@@ -18,6 +18,7 @@ internal fun TableData.dataFrame(): DataFrame<*> {
     return when (this) {
         is NamedData -> dataFrame
         is GroupedData -> dataFrame
+        else -> TODO()
     }
 }
 

@@ -4,9 +4,12 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.tooltips.context
 
+import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.*
 import kotlin.reflect.KProperty
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
+import org.jetbrains.kotlinx.kandy.letsplot.internal.datasetBuilderImpl
 
 /**
  * Context created by [org.jetbrains.kotlinx.kandy.letsplot.tooltips.tooltips] methods.
@@ -47,7 +50,7 @@ public class LayerTooltipsContext(private val LayerBuilder: LayerBuilder) {
      */
     public fun String.tooltipValue(format: String? = null): String {
         @Suppress("INVISIBLE_MEMBER")
-        val colID = LayerBuilder.datasetBuilder.takeColumn(this)
+        val colID = (LayerBuilder.datasetBuilder).takeColumn(this)
         addFormat(colID, format)
         return "@$colID"
     }
@@ -61,7 +64,7 @@ public class LayerTooltipsContext(private val LayerBuilder: LayerBuilder) {
      */
     public fun ColumnReference<*>.tooltipValue(format: String? = null): String {
         @Suppress("INVISIBLE_MEMBER")
-        val colID = LayerBuilder.datasetBuilder.addColumn(this)
+        val colID = LayerBuilder.datasetBuilderImpl.addColumn(this)
         addFormat(colID, format)
         return "@$colID"
     }
@@ -94,7 +97,7 @@ public class LayerTooltipsContext(private val LayerBuilder: LayerBuilder) {
      */
     public fun line(column: ColumnReference<*>, format: String? = null) {
         @Suppress("INVISIBLE_MEMBER")
-        addVarLine(LayerBuilder.datasetBuilder.addColumn(column).also {
+        addVarLine(LayerBuilder.datasetBuilderImpl.addColumn(column).also {
             addFormat(it, format)
         })
     }

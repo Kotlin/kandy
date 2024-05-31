@@ -2,7 +2,7 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.builders
+package org.jetbrains.kotlinx.kandy.builders.dataframe
 
 import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataColumn
@@ -11,12 +11,14 @@ import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DatasetBuilderImpl
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedDataBuilder
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -34,7 +36,7 @@ class DataFramePlotBuilderTest {
         val plotBuilder = DataFramePlotBuilder(dataFrame)
 
         assertEquals(1, plotBuilder.datasetBuilders.size)
-        assertEquals(dataFrame, plotBuilder.datasetBuilders[0].initialNamedData.dataFrame)
+        assertEquals(dataFrame, (plotBuilder.datasetBuilders[0] as DatasetBuilderImpl).baseDataFrame)
     }
 
     @Test
@@ -91,7 +93,7 @@ class DataFramePlotBuilderTest {
 
         assertEquals(2, builder.layers.size)
         assertEquals(2, builder.datasetBuilders.size)
-        assertEquals(GroupedData::class, builder.datasetBuilders[1].initialDataset::class)
+        assertEquals(GroupedDataBuilder::class, builder.datasetBuilders[1]::class)
     }
 
     @Test
@@ -114,7 +116,7 @@ class DataFramePlotBuilderTest {
 
         assertEquals(2, builder.layers.size)
         assertEquals(2, builder.datasetBuilders.size)
-        assertEquals(GroupedData::class, builder.datasetBuilders[1].initialDataset::class)
+        assertEquals(GroupedDataBuilder::class, builder.datasetBuilders[1]::class)
     }
 
     @Test

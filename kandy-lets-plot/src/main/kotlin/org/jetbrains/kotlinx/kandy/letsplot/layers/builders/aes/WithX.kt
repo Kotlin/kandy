@@ -12,6 +12,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingPa
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisParametersWithSetter
 import kotlin.reflect.KProperty
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 
 
 /**

@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.letsplot.internal.STROKE
 import kotlin.reflect.KProperty
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 
 /**
  * Interface for managing the `stroke` aesthetic.

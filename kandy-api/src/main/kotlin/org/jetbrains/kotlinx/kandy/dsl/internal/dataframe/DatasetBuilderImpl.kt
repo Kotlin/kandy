@@ -10,16 +10,18 @@ import org.jetbrains.kotlinx.dataframe.api.Infer
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.api.copy
 import org.jetbrains.kotlinx.dataframe.columns.ColumnAccessor
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 
 /**
  * [DatasetBuilder] implementation with DataFrame
  */
+@PublishedApi
 internal abstract class DatasetBuilderImpl(
-    initialBuilder:DatasetBuilderImpl? = null
+    initialBuilder: DatasetBuilderImpl? = null
 ): DatasetBuilder {
-    protected abstract val baseDataFrame: DataFrame<*>
+    internal abstract val baseDataFrame: DataFrame<*>
     private val referredColumns: MutableMap<String, String> = mutableMapOf()
 
     @PublishedApi
@@ -39,6 +41,14 @@ internal abstract class DatasetBuilderImpl(
 
     fun takeColumn(column: ColumnAccessor<*>): String {
         return takeColumn(column.name())
+    }
+
+    fun addColumn(column: ColumnReference<*>): String {
+        return when(column) {
+            is ColumnAccessor<*> -> takeColumn(column)
+            is DataColumn<*> -> addColumn(column)
+            else -> TODO()
+        }
     }
 
     fun addColumn(column: DataColumn<*>): String {

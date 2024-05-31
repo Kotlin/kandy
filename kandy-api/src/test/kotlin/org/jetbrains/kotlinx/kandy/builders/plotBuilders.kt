@@ -18,6 +18,7 @@ import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
+import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
@@ -40,10 +41,13 @@ class PlotBuildersTest {
             every { geom } returns mockGeom
         }
 
-        val singleLayerPlotBuilder = spyk(object : SingleLayerPlotBuilder(mockData) {
+        val singleLayerPlotBuilder = spyk(object : SingleLayerPlotBuilder() {
             override val plotFeatures: MutableMap<FeatureName, PlotFeature> = mockPlotFeatures
             override val geom: Geom = mockGeom
             override val requiredAes: Set<Aes> = setOf()
+            override val datasetBuilder: DatasetBuilder = mockk() {
+                every { build() } returns mockData
+            }
         })
 
         every { singleLayerPlotBuilder.datasetBuilder.build() } returns mockData
@@ -81,6 +85,14 @@ class PlotBuildersTest {
             override val datasetBuilders: MutableList<DatasetBuilder> = mutableListOf(
                 datasetBuilder
             )
+
+            override fun addDataset(dataset: TableData, initialBuilder: DatasetBuilder?): Int {
+                return -1
+            }
+
+            override fun addEmptyDataset(): Int {
+                return -1
+            }
         })
         layerPlotBuilder.layers.addAll(listOf(mockLayerFirst, mockLayerSecond))
         layerPlotBuilder.plotFeatures.putAll(mockPlotFeatures)

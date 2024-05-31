@@ -12,6 +12,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingPa
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisParametersWithSetter
 import kotlin.reflect.KProperty
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 
 /**
  * Interface for managing the `y` aesthetic, representing the y-coordinate of elements in the plot.

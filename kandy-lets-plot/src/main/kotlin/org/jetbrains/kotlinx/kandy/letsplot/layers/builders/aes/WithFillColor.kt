@@ -11,6 +11,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.FILL
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.reflect.KProperty
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 
 /**
  * Interface for configuring the `fillColor` aesthetic in a plot layer.
