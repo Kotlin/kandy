@@ -10,5 +10,5 @@ internal val LayerBuilder.datasetBuilderImpl: DatasetBuilderImpl
 
 @Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
 @PublishedApi
-internal val PlotBuilder.datasetBuilderImpl: DatasetBuilder
+internal val PlotBuilder.datasetBuilderImpl: DatasetBuilderImpl
     get() = datasetBuilder as DatasetBuilderImpl

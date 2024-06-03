@@ -21,13 +21,16 @@ import org.jetbrains.kotlinx.kandy.ir.data.TableData
 internal abstract class DatasetBuilderImpl(
     initialBuilder: DatasetBuilderImpl? = null
 ): DatasetBuilder {
+    @PublishedApi
     internal abstract val baseDataFrame: DataFrame<*>
     private val referredColumns: MutableMap<String, String> = mutableMapOf()
 
     @PublishedApi
     internal var buffer: DataFrame<*> = initialBuilder?.buffer?.copy() ?: DataFrame.Empty
 
-    override fun rowsCount(): Int = buffer.rowsCount()
+    override fun rowsCount(): Int = if (baseDataFrame.isEmpty()) {
+        buffer.rowsCount()
+    } else baseDataFrame.rowsCount()
 
     override fun takeColumn(name: String): String {
         return referredColumns[name] ?: run {

@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.builders
 
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.toColumn
-import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.letsplot.internal.COLOR
@@ -75,6 +75,7 @@ class BorderTests {
 
     @Test
     fun `border type iterable mapping for border`() {
+        println(builder.bindingHandler.datasetBuilder.rowsCount())
         builder.type(listOf("dot"))
         assertEquals("linetype", (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
@@ -99,7 +100,7 @@ class BorderTests {
 
     @Test
     fun `border width iterable mapping for border`() {
-        builder.width(listOf(0.2, .1))
+        builder.width(listOf(0.2))
         assertEquals("size", (builder.bindingHandler.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 }

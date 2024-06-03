@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
-import org.jetbrains.kotlinx.kandy.ir.data.NamedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.layers.line
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.*

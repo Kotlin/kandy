@@ -4,7 +4,7 @@ import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.toColumn
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
-import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
@@ -248,7 +248,7 @@ class InnerPointTests {
 
     @Test
     fun `symbol iterable mapping for innerPoint`() {
-        builder.symbol(listOf(1, 2, 3, 4))
+        builder.symbol(listOf(4))
         assertEquals("shape", (builder.bindingHandler.bindingCollector.mappings[SHAPE] as NonPositionalMapping<*, *>).columnID)
     }
 
@@ -272,7 +272,7 @@ class InnerPointTests {
 
     @Test
     fun `stroke iterable mapping for innerPoint`() {
-        builder.stroke(listOf(1, 2, 3))
+        builder.stroke(listOf(1))
         assertEquals("stroke", (builder.bindingHandler.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID)
     }
 

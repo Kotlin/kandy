@@ -1,10 +1,8 @@
 package org.jetbrains.kotlinx.kandy.dsl.internal.dataframe
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
-
 @PublishedApi
-internal val GroupedDataScope<*, *>.datasetBuilder: DatasetBuilder
+internal val GroupedDataScope<*, *>.datasetBuilder: DatasetBuilderImpl
     get() = when (this) {
-        is GroupByScope -> datasetBuilder
-        is GroupByPlotBuilder -> datasetBuilder
+        is GroupByScope -> datasetBuilder as DatasetBuilderImpl
+        is GroupByPlotBuilder -> datasetBuilder as DatasetBuilderImpl
     }

@@ -4,7 +4,7 @@ import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.toColumn
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
-import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting

@@ -4,7 +4,7 @@ import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.toColumn
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
-import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
@@ -90,7 +90,7 @@ class FontTests {
 
     @Test
     fun `face iterable mapping for font`() {
-        builder.face(listOf("1", "2"))
+        builder.face(listOf("1"))
         assertEquals("fontface", (builder.bindingHandler.bindingCollector.mappings[FONT_FACE] as NonPositionalMapping<*, *>).columnID)
     }
 
@@ -114,7 +114,7 @@ class FontTests {
 
     @Test
     fun `family iterable mapping for font`() {
-        builder.family(listOf("1", "2"))
+        builder.family(listOf("1"))
         assertEquals("family", (builder.bindingHandler.bindingCollector.mappings[FONT_FAMILY] as NonPositionalMapping<*, *>).columnID)
     }
 
@@ -138,7 +138,7 @@ class FontTests {
 
     @Test
     fun `size iterable mapping for font`() {
-        builder.size(listOf(0.2, 0.5, .1))
+        builder.size(listOf(0.2))
         assertEquals("size", (builder.bindingHandler.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 }

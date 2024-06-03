@@ -15,6 +15,9 @@ internal open class BindingHandler(private val datasetBuilderAccessor: () -> Dat
 
     open fun checkMappingSourceSize(size: Int) {
         val rowsCount = datasetBuilder.rowsCount()
+        if (rowsCount == 0) {
+            return
+        }
         if (rowsCount != size) {
             error("Unexpected size of mapping source: excepted $rowsCount, but received $size")
         }

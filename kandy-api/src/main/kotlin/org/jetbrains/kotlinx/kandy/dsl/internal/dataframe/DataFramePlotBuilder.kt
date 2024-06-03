@@ -22,7 +22,7 @@ import org.jetbrains.kotlinx.kandy.ir.data.TableData
 public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
     @PublishedApi
     internal val dataFrame: DataFrame<T>,
-) : MultiLayerPlotBuilder(), ColumnsContainer<T> by dataFrame {
+) : MultiLayerPlotBuilderImpl(), ColumnsContainer<T> by dataFrame {
     override val datasetBuilders: MutableList<DatasetBuilder> = mutableListOf(NamedDataBuilder(dataFrame))
     /**
      * Fetches the specified columns from the dataframe.
@@ -95,14 +95,5 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
     internal fun addDataset(groupBy: GroupBy<*, *>): Int {
         datasetBuilders.add(DatasetBuilderImpl.fromData(groupBy, datasetBuilder as DatasetBuilderImpl))
         return datasetBuilders.lastIndex
-    }
-
-    override fun addDataset(dataset: TableData, initialBuilder: DatasetBuilder?): Int {
-        datasetBuilders.add(DatasetBuilderImpl.fromData(dataset, datasetBuilder as DatasetBuilderImpl))
-        return datasetBuilders.lastIndex
-    }
-
-    override fun addEmptyDataset(): Int {
-        return addDataset(NamedData(DataFrame.Empty))
     }
 }
