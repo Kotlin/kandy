@@ -23,7 +23,7 @@ class ValidationTests {
         val range = 1..10
         val aes = Aes("Test")
 
-        checkInRange(aes, value, range)
+        aes.checkInRange(value, range)
     }
 
     @Test
@@ -33,7 +33,7 @@ class ValidationTests {
         val aes = Aes("Test")
 
         val exception = assertFailsWith<IllegalArgumentException> {
-            checkInRange(aes, value, range)
+            aes.checkInRange(value, range)
         }
         assertEquals(
             "Value `$value` of `${aes.name}` is outside the range [${range.first}, ${range.last}].",

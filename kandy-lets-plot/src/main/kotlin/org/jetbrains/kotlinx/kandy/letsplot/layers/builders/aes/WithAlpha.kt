@@ -23,7 +23,7 @@ import kotlin.reflect.KProperty
 @Suppress("INVISIBLE_MEMBER")
 public interface WithAlpha : WithAes {
     private fun checkInRange(value: Double) {
-        checkInRange(ALPHA, value, 0.0..1.0)
+        ALPHA.checkInRange(value, 0.0..1.0)
     }
 
     private fun validateScale(scale: NonPositionalScale<*, out Double>) {
