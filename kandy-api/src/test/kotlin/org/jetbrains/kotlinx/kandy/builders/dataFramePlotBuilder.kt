@@ -4,12 +4,10 @@
 
 package org.jetbrains.kotlinx.kandy.builders
 
-import io.mockk.every
 import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
 import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope

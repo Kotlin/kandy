@@ -11,16 +11,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalCategoricalScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalContinuousScale
-import org.jetbrains.kotlinx.kandy.letsplot.internal.ALPHA
-import org.jetbrains.kotlinx.kandy.letsplot.internal.EXPLODE
-import org.jetbrains.kotlinx.kandy.letsplot.internal.FILL
-import org.jetbrains.kotlinx.kandy.letsplot.internal.HOLE
-import org.jetbrains.kotlinx.kandy.letsplot.internal.SIZE
-import org.jetbrains.kotlinx.kandy.letsplot.internal.SLICE
-import org.jetbrains.kotlinx.kandy.letsplot.internal.STROKE
-import org.jetbrains.kotlinx.kandy.letsplot.internal.STROKE_COLOR
-import org.jetbrains.kotlinx.kandy.letsplot.internal.X
-import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
+import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.PIE
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke

@@ -33,7 +33,7 @@ public open class RibbonBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **ribbon**.
      */
-    internal override val geom: Geom
+    override val geom: Geom
         get() = RIBBON
 
     /**
@@ -41,6 +41,6 @@ public open class RibbonBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, Y_MIN, Y_MAX)
 }

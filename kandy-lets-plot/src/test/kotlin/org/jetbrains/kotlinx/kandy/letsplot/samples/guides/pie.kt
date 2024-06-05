@@ -10,8 +10,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.scales.BrewerPalette
 import org.jetbrains.kotlinx.kandy.letsplot.scales.categoricalColorBrewer
-import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.letsplot.style.Style
+import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 

@@ -1,10 +1,10 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalContinuousScale
@@ -42,7 +42,6 @@ public open class AxisParameters internal constructor(
 /**
  * [AxisParameters] with additional setter for related aes.
  */
-@Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 public class AxisParametersWithSetter internal constructor(
     mappingParameters: LetsPlotPositionalMappingParametersContinuous<Any?>,
     private val aes: Aes,

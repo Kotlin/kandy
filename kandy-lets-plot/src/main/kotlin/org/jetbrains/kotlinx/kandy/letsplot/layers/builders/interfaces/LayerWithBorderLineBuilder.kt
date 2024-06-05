@@ -4,11 +4,12 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.WithAes
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.BorderLine
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.WithBorderLine
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.BorderLine
 
 // todo doc
 @Suppress("INVISIBLE_MEMBER")

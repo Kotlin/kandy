@@ -5,14 +5,7 @@ import org.jetbrains.kotlinx.dataframe.api.toColumn
 import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
-import org.jetbrains.kotlinx.kandy.letsplot.internal.ALPHA
-import org.jetbrains.kotlinx.kandy.letsplot.internal.COLOR
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LINE_TYPE
-import org.jetbrains.kotlinx.kandy.letsplot.internal.SIZE
-import org.jetbrains.kotlinx.kandy.letsplot.internal.X_BEGIN
-import org.jetbrains.kotlinx.kandy.letsplot.internal.X_END
-import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_BEGIN
-import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_END
+import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.SEGMENT
 import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
 import org.jetbrains.kotlinx.kandy.util.color.Color

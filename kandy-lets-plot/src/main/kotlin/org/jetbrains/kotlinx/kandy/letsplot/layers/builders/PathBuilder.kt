@@ -26,8 +26,8 @@ public open class PathBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
 ) : LayerBuilderImpl(parent, datasetIndex), LineBuilderInterface {
-    internal override val geom: Geom
+    override val geom: Geom
         get() = PATH
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 }

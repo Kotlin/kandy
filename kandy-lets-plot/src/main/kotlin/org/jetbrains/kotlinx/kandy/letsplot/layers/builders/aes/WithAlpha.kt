@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.checkInRange
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.scale.*
 import org.jetbrains.kotlinx.kandy.letsplot.internal.ALPHA
@@ -23,7 +23,7 @@ import kotlin.reflect.KProperty
 @Suppress("INVISIBLE_MEMBER")
 public interface WithAlpha : WithAes {
     private fun checkInRange(value: Double) {
-        checkInRange(ALPHA, value, 0.0..1.0)
+        ALPHA.checkInRange(value, 0.0..1.0)
     }
 
     private fun validateScale(scale: NonPositionalScale<*, out Double>) {

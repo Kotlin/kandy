@@ -27,8 +27,8 @@ public interface WithUpper : WithAes {
      *
      * @property upper A [ConstantSetter] object to directly set the upper quartile.
      */
-    public val upper: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter
-        get() = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter(
+    public val upper: ConstantSetter
+        get() = ConstantSetter(
             UPPER,
             bindingHandler.bindingCollector
         )

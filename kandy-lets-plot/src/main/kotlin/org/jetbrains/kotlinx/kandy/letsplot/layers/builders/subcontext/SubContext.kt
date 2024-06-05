@@ -1,6 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.WithAes
 
 @Suppress("INVISIBLE_REFERENCE")

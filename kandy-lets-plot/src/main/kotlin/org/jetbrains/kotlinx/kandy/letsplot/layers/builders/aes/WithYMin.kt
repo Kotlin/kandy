@@ -30,8 +30,8 @@ public interface WithYMin : WithAes {
      *
      * @property yMin a [ConstantSetter] object to directly set the minimum y-coordinate.
      */
-    public val yMin: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter
-        get() = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter(
+    public val yMin: ConstantSetter
+        get() = ConstantSetter(
             Y_MIN,
             bindingHandler.bindingCollector
         )

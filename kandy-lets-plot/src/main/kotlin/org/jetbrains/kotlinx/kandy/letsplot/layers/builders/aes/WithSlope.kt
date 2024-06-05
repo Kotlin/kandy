@@ -30,8 +30,8 @@ public interface WithSlope : WithAes {
      *
      * @property slope A [ConstantSetter] object to directly set the slope.
      */
-    public val slope: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter
-        get() = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter(
+    public val slope: ConstantSetter
+        get() = ConstantSetter(
             SLOPE,
             bindingHandler.bindingCollector
         )

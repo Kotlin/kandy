@@ -11,8 +11,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWithBorderLineBuilder
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.CrossBarsBuilderInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWithBorderLineBuilder
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.CROSS_BAR
 
 /**
@@ -33,7 +33,7 @@ public open class CrossBarsBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **crossBars**.
      */
-    internal override val geom: Geom
+    override val geom: Geom
         get() = CROSS_BAR
 
     /**
@@ -41,6 +41,6 @@ public open class CrossBarsBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, Y, Y_MIN, Y_MAX)
     }

@@ -31,7 +31,7 @@ public open class RasterBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **raster**.
      */
-    internal override val geom: Geom
+    override val geom: Geom
         get() = RASTER
 
     /**
@@ -39,6 +39,6 @@ public open class RasterBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 }

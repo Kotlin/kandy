@@ -2,8 +2,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples
 
 import kotlinx.datetime.LocalDate
 import org.jetbrains.kotlinx.dataframe.api.*
-import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.dsl.categorical
+import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.letsplot.y

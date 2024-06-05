@@ -1,10 +1,7 @@
 package org.jetbrains.kotlinx.kandy.dsl.internal
 
-import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
-import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
 /**
  * Base class for [PlotBuilder] with non-standard configuration method (i.e., not by adding layers).

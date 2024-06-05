@@ -1,5 +1,9 @@
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
+import io.mockk.every
+import io.mockk.mockk
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
