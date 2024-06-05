@@ -30,7 +30,7 @@ public open class BoxesBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **boxes**.
      */
-    internal override val geom: Geom
+    override val geom: Geom
         get() = BOXPLOT
 
     /**
@@ -38,6 +38,6 @@ public open class BoxesBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, LOWER, UPPER, MIDDLE, Y_MIN, Y_MAX)
 }

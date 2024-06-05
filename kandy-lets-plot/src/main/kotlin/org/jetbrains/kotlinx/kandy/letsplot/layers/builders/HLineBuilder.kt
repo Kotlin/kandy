@@ -32,7 +32,7 @@ public open class HLineBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **hLine**.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(Y_INTERCEPT)
 
     /**
@@ -40,6 +40,6 @@ public open class HLineBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val geom: Geom
+    override val geom: Geom
         get() = H_LINE
 }

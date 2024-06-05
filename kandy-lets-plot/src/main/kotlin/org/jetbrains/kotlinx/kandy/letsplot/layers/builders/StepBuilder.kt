@@ -32,7 +32,7 @@ public open class StepBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **step**.
      */
-    internal override val geom: Geom
+    override val geom: Geom
         get() = STEP
 
     /**
@@ -40,7 +40,7 @@ public open class StepBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 
 }

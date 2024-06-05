@@ -43,7 +43,7 @@ public open class PointRangesBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **pointRange**.
      */
-    internal override val geom: Geom
+    override val geom: Geom
         get() = POINT_RANGE
 
     /**
@@ -51,6 +51,6 @@ public open class PointRangesBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, Y, Y_MIN, Y_MAX)
 }

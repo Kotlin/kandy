@@ -26,9 +26,9 @@ public open class BarsBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
 ) : LayerWithBorderLineBuilder(parent, datasetIndex), BarsBuilderInterface {
-    internal override val geom: Geom
+    override val geom: Geom
         get() = BAR
 
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 }

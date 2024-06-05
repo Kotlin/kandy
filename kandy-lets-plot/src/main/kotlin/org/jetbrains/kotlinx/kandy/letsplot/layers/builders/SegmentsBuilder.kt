@@ -34,7 +34,7 @@ public open class SegmentsBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **segment**.
      */
-    internal override val geom: Geom
+    override val geom: Geom
     get() = SEGMENT
 
     /**
@@ -42,6 +42,6 @@ public open class SegmentsBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
     get() = setOf(X_BEGIN, Y_BEGIN, X_END, Y_END)
 }

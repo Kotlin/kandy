@@ -33,7 +33,7 @@ public open class RectanglesBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **rect**.
      */
-    internal override val geom: Geom
+    override val geom: Geom
         get() = RECT
 
     /**
@@ -41,6 +41,6 @@ public open class RectanglesBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(X_MIN, X_MAX, Y_MIN, Y_MAX)
     }
