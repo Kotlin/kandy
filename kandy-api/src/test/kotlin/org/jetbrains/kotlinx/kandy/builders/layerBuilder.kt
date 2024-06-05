@@ -8,7 +8,10 @@ import io.mockk.every
 import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
@@ -16,7 +19,9 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
-import kotlin.test.*
+import kotlin.test.BeforeTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class LayerBuilderImplTest {
 

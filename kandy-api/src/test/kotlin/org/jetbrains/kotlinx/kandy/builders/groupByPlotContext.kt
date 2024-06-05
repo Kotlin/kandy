@@ -4,13 +4,11 @@
 
 package org.jetbrains.kotlinx.kandy.builders
 
-import io.mockk.every
 import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.getColumn
 import org.jetbrains.kotlinx.dataframe.api.groupBy
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
 import org.jetbrains.kotlinx.kandy.dsl.internal.GroupByPlotBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
@@ -19,7 +17,6 @@ import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
-import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertEquals

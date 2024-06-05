@@ -1,5 +1,9 @@
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
+import io.mockk.every
+import io.mockk.mockk
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
@@ -8,11 +12,6 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import io.mockk.mockk
-import io.mockk.every
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
 
 class CoordFlipTest {
     @Test

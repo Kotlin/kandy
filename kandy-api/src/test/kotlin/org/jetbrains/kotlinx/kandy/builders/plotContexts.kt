@@ -5,20 +5,6 @@
 package org.jetbrains.kotlinx.kandy.builders
 
 
-import io.mockk.every
-import io.mockk.mockk
-import junit.framework.TestCase.assertEquals
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
-import org.jetbrains.kotlinx.kandy.ir.Layer
-import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.kotlinx.kandy.ir.aes.Aes
-import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
-import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
-import org.jetbrains.kotlinx.kandy.ir.data.TableData
-import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
-import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.kandy.ir.scale.FreeScale
-import kotlin.test.Test
 /* TODO rewrite
 class PlotBuildersTest {
     private val mockData = mockk<TableData>()

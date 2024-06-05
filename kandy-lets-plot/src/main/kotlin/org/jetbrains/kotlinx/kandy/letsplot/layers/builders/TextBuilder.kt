@@ -11,10 +11,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.LABEL
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.TextBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.Font
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.TEXT
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 
 
 /**

@@ -12,11 +12,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.PointRangesBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.InnerLine
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.InnerPoint
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT_RANGE
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 
 
 /**

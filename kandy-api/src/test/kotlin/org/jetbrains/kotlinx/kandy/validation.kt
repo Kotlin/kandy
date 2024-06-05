@@ -4,13 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy
 
-import io.mockk.every
-import io.mockk.mockk
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
-import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.checkInRange
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
-import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith

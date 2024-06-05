@@ -5,12 +5,7 @@ import org.jetbrains.kotlinx.dataframe.api.toColumn
 import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
-import org.jetbrains.kotlinx.kandy.letsplot.internal.ALPHA
-import org.jetbrains.kotlinx.kandy.letsplot.internal.FILL
-import org.jetbrains.kotlinx.kandy.letsplot.internal.X_MAX
-import org.jetbrains.kotlinx.kandy.letsplot.internal.X_MIN
-import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
-import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
+import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RECT
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.test.BeforeTest

@@ -1,10 +1,11 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-@file:Suppress("INVISIBLE_MEMBER")
+@file:Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.PlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.plotFeatures
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.letsplot.style.CustomStyle

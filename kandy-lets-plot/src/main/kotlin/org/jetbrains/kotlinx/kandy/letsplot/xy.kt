@@ -1,12 +1,13 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.letsplot
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.PlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.bindingHandler
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
@@ -25,7 +26,6 @@ public fun <T> PlotBuilder.x(
     column: ColumnReference<T>,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    @Suppress("INVISIBLE_MEMBER")
     return bindingHandler.addPositionalMapping<T>(
         X,
         column.name(),
@@ -46,7 +46,6 @@ public fun <T> PlotBuilder.x(
     name: String? = null,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    @Suppress("INVISIBLE_MEMBER")
     return bindingHandler.addPositionalMapping<T>(
         X,
         values.toList(),
@@ -66,7 +65,6 @@ public fun PlotBuilder.x(
     column: String,
     parameters: LetsPlotPositionalMappingParametersContinuous<Any?>.() -> Unit = {}
 ): PositionalMapping<Any?> {
-    @Suppress("INVISIBLE_MEMBER")
     return bindingHandler.addPositionalMapping<Any?>(
         X,
         column,
@@ -85,7 +83,6 @@ public fun <T> PlotBuilder.x(
     values: DataColumn<T>,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    @Suppress("INVISIBLE_MEMBER")
     return bindingHandler.addPositionalMapping<T>(
         X,
         values,
@@ -101,7 +98,6 @@ public fun <T> PlotBuilder.x(
 @Suppress("UNCHECKED_CAST")
 public val PlotBuilder.x: AxisParametersWithSetter
     get() {
-        @Suppress("INVISIBLE_MEMBER")
         return AxisParametersWithSetter(bindingHandler.bindingCollector.freeScales.getOrPut(X) {
             PositionalFreeScale(X, LetsPlotPositionalMappingParametersContinuous<Any?>())
         }.parameters as LetsPlotPositionalMappingParametersContinuous<Any?>, X, bindingHandler)
@@ -127,7 +123,6 @@ public fun <T> PlotBuilder.y(
     column: ColumnReference<T>,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    @Suppress("INVISIBLE_MEMBER")
     return bindingHandler.addPositionalMapping<T>(
         Y,
         column.name(),
@@ -148,7 +143,6 @@ public fun <T> PlotBuilder.y(
     name: String? = null,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    @Suppress("INVISIBLE_MEMBER")
     return bindingHandler.addPositionalMapping<T>(
         Y,
         values.toList(),
@@ -187,7 +181,6 @@ public fun <T> PlotBuilder.y(
     values: DataColumn<T>,
     parameters: LetsPlotPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    @Suppress("INVISIBLE_MEMBER")
     return bindingHandler.addPositionalMapping<T>(
         Y,
         values,
@@ -203,7 +196,6 @@ public fun <T> PlotBuilder.y(
 @Suppress("UNCHECKED_CAST")
 public val PlotBuilder.y: AxisParametersWithSetter
     get() {
-        @Suppress("INVISIBLE_MEMBER")
         return AxisParametersWithSetter(bindingHandler.bindingCollector.freeScales.getOrPut(Y) {
             PositionalFreeScale(Y, LetsPlotPositionalMappingParametersContinuous<Any?>())
         }.parameters as LetsPlotPositionalMappingParametersContinuous<Any?>, Y, bindingHandler)

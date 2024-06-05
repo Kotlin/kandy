@@ -11,8 +11,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWithBorderLineBuilder
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.CrossBarsBuilderInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWithBorderLineBuilder
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.CROSS_BAR
 
 /**

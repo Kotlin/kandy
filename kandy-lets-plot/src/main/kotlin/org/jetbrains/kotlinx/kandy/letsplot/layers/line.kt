@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.LineBuilder
 
 /**

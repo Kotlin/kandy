@@ -5,12 +5,10 @@
 package org.jetbrains.kotlinx.kandy.dsl.impl
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
-import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.util.color.Color

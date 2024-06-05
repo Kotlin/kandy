@@ -8,15 +8,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
-import org.jetbrains.kotlinx.kandy.letsplot.internal.ALPHA
-import org.jetbrains.kotlinx.kandy.letsplot.internal.COLOR
-import org.jetbrains.kotlinx.kandy.letsplot.internal.INTERCEPT
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LINE_TYPE
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
-import org.jetbrains.kotlinx.kandy.letsplot.internal.SIZE
-import org.jetbrains.kotlinx.kandy.letsplot.internal.SLOPE
-import org.jetbrains.kotlinx.kandy.letsplot.internal.X
-import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
+import org.jetbrains.kotlinx.kandy.letsplot.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.AB_LINE
 import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
 import org.jetbrains.kotlinx.kandy.util.color.Color

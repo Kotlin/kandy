@@ -1,6 +1,9 @@
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.bindingHandler
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.SubContext
 
 /**
@@ -8,7 +11,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.SubContex
  */
 public interface WithAes
 
-@Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 internal val WithAes.bindingHandler: BindingHandler
     get() = if (this is SubContext) {
         bindingHandler

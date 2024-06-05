@@ -1,10 +1,11 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.layerFeatures
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 
@@ -21,7 +22,6 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 public var LayerBuilder.reversed: Boolean
     get() = true
     set(value) {
-        @Suppress("INVISIBLE_MEMBER")
         layerFeatures[Reversed.FEATURE_NAME] = Reversed(value)
     }
 

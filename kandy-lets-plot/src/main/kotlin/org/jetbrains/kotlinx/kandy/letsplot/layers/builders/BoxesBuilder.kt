@@ -8,8 +8,8 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWithBorderLineBuilder
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.BoxesBuilderInterface
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWithBorderLineBuilder
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BOXPLOT
 
 /**

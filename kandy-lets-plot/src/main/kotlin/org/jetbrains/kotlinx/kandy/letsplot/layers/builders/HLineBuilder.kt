@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_INTERCEPT

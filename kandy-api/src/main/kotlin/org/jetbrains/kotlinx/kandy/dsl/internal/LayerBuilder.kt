@@ -1,7 +1,6 @@
 package org.jetbrains.kotlinx.kandy.dsl.internal
 
 import org.jetbrains.kotlinx.kandy.ir.Layer
-import org.jetbrains.kotlinx.kandy.ir.Plot
 
 /**
  * Represents the configuration context for a layer within a plot,

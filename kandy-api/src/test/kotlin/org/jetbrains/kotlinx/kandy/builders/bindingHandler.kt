@@ -10,7 +10,6 @@ import io.mockk.verify
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
-import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.*
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
