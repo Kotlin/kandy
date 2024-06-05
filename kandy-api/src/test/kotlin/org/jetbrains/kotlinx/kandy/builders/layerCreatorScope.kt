@@ -7,7 +7,6 @@ package org.jetbrains.kotlinx.kandy.builders
 import io.mockk.every
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
