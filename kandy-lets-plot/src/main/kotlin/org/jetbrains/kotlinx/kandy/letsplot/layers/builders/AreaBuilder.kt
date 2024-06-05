@@ -26,9 +26,9 @@ public open class AreaBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
 ) : LayerWithBorderLineBuilder(parent, datasetIndex), AreaBuilderInterface {
-    internal override val geom: Geom
+    override val geom: Geom
         get() = AREA
 
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, Y)
 }

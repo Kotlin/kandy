@@ -27,8 +27,8 @@ public interface WithYEnd : WithAes {
      *
      * @property yEnd a [ConstantSetter] object to directly set the ending point of a segment.
      */
-    public val yEnd: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter
-        get() = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter(
+    public val yEnd: ConstantSetter
+        get() = ConstantSetter(
             Y_END,
             bindingHandler.bindingCollector
         )

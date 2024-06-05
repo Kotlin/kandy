@@ -11,10 +11,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.LABEL
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.TextBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.Font
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.TEXT
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 
 
 /**
@@ -39,7 +39,7 @@ public open class TextBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **text**.
      */
-    internal override val geom: Geom
+    override val geom: Geom
     get() = TEXT
 
     /**
@@ -47,6 +47,6 @@ public open class TextBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
     get() = setOf(X, Y, LABEL)
 }

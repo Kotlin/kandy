@@ -15,8 +15,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.dsl.dataset
 import org.jetbrains.kotlinx.kandy.letsplot.dsl.time
 import org.jetbrains.kotlinx.kandy.letsplot.dsl.type
 import org.jetbrains.kotlinx.kandy.letsplot.internal.*
-import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.AREA
 import org.jetbrains.kotlinx.kandy.letsplot.layers.area
+import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.AREA
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals

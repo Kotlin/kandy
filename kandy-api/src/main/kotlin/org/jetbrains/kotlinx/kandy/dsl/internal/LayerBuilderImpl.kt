@@ -19,8 +19,8 @@ public abstract class LayerBuilderImpl internal constructor(
     internal var datasetIndex: Int = parent.datasetIndex
 ) : LayerBuilder {
 
-    internal abstract val geom: Geom
-    internal abstract val requiredAes: Set<Aes>
+    protected abstract val geom: Geom
+    protected abstract val requiredAes: Set<Aes>
 
     @PublishedApi
     internal val layerFeatures: MutableMap<FeatureName, LayerFeature> = mutableMapOf()
@@ -62,7 +62,7 @@ public abstract class LayerBuilderImpl internal constructor(
      *
      * @throws IllegalArgumentException If any of the required aesthetics is not assigned in either the layer or the plot context.
      */
-    internal fun checkRequiredAes() {
+    private fun checkRequiredAes() {
         val assignedAes: Set<Aes> = with(bindingCollector) {
             mappings.keys + settings.keys
         }.let { layerAssignedAes ->

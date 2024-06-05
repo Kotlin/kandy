@@ -32,7 +32,7 @@ public open class LineRangesBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **lineRanges**.
      */
-    internal override val geom: Geom
+    override val geom: Geom
         get() = LINE_RANGE
 
     /**
@@ -40,6 +40,6 @@ public open class LineRangesBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, Y_MIN, Y_MAX)
     }

@@ -4,11 +4,9 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.jupyter
 
-import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.declare
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
-import org.jetbrains.kotlinx.jupyter.api.libraries.resources
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
@@ -16,10 +14,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
 import org.jetbrains.kotlinx.kandy.letsplot.util.NotebookRenderingContext
 import org.jetbrains.kotlinx.kandy.letsplot.util.figureToMimeResult
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LETS_PLOT_JS_VERSION
-import org.jetbrains.letsPlot.LetsPlot
-import org.jetbrains.letsPlot.core.util.PlotHtmlHelper
-import org.jetbrains.letsPlot.frontend.NotebookFrontendContext
 
 @JupyterLibrary
 internal class Integration : JupyterIntegration() {

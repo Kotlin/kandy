@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X_BEGIN
@@ -34,7 +34,7 @@ public open class SegmentsBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **segment**.
      */
-    internal override val geom: Geom
+    override val geom: Geom
     get() = SEGMENT
 
     /**
@@ -42,6 +42,6 @@ public open class SegmentsBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
     get() = setOf(X_BEGIN, Y_BEGIN, X_END, Y_END)
 }

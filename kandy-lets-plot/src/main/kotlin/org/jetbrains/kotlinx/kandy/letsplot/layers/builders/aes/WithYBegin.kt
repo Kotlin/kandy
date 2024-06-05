@@ -28,8 +28,8 @@ public interface WithYBegin : WithAes {
      *
      * @property yBegin a [ConstantSetter] object to directly set the beginning point of a segment.
      */
-    public val yBegin: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter
-        get() = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter(
+    public val yBegin: ConstantSetter
+        get() = ConstantSetter(
             Y_BEGIN,
             bindingHandler.bindingCollector
         )

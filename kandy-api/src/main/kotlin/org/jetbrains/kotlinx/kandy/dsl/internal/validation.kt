@@ -13,9 +13,7 @@ import org.jetbrains.kotlinx.kandy.ir.aes.Aes
  *
  * @throws IllegalArgumentException If the provided aesthetic value is not within the specified range.
  */
-@PublishedApi
-internal fun <T : Comparable<T>> checkInRange(aes: Aes, value: T, range: ClosedRange<T>): Unit =
+public fun <T : Comparable<T>> Aes.checkInRange(value: T, range: ClosedRange<T>): Unit =
     require(value in range) {
-        "Value `$value` of `${aes.name}` is outside the range [${range.start}, ${range.endInclusive}]."
+        "Value `$value` of `${name}` is outside the range [${range.start}, ${range.endInclusive}]."
     }
-

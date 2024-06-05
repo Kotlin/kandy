@@ -1,17 +1,16 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.PlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.plotFeatures
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.letsplot.style.CustomStyle
-import org.jetbrains.kotlinx.kandy.letsplot.style.Theme
 import org.jetbrains.kotlinx.kandy.letsplot.style.Style
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.letsplot.style.Theme
 
 /**
  * Provides a context for configuring the layout of a plot.
@@ -34,7 +33,6 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.*
  * }
  * ```
  */
-@Suppress("INVISIBLE_MEMBER")
 public inline fun PlotBuilder.layout(block: Layout.() -> Unit) {
     if (plotFeatures[Layout.NAME] == null) {
         plotFeatures[Layout.NAME] = Layout().apply(block)
@@ -46,7 +44,6 @@ public inline fun PlotBuilder.layout(block: Layout.() -> Unit) {
  * Accessor for the [Layout] of a plot.
  * Returns an existing [Layout] if one exists, or creates a new one otherwise.
  */
-@Suppress("INVISIBLE_MEMBER")
 public val PlotBuilder.layout: Layout
     get() {
         if (plotFeatures[Layout.NAME] == null) {

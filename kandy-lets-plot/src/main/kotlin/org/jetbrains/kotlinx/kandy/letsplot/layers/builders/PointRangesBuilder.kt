@@ -12,11 +12,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.PointRangesBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.InnerLine
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.InnerPoint
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT_RANGE
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 
 
 /**
@@ -43,7 +43,7 @@ public open class PointRangesBuilder @PublishedApi internal constructor(
      *
      * @return the [Geom] object for **pointRange**.
      */
-    internal override val geom: Geom
+    override val geom: Geom
         get() = POINT_RANGE
 
     /**
@@ -51,6 +51,6 @@ public open class PointRangesBuilder @PublishedApi internal constructor(
      *
      * @return the set of required aesthetics.
      */
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(X, Y, Y_MIN, Y_MAX)
 }

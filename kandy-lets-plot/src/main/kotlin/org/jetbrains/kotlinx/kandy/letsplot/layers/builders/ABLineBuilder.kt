@@ -28,8 +28,8 @@ public open class ABLineBuilder @PublishedApi internal constructor(
     datasetIndex: Int = parent.datasetIndex
 ) :
     LayerBuilderImpl(parent, datasetIndex), ABLineBuilderInterface {
-    internal override val geom: Geom
+    override val geom: Geom
         get() = AB_LINE
-    internal override val requiredAes: Set<Aes>
+    override val requiredAes: Set<Aes>
         get() = setOf(SLOPE, INTERCEPT)
 }

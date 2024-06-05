@@ -29,8 +29,8 @@ public interface WithYMax : WithAes {
      *
      * @property yMax a [ConstantSetter] object to directly set the maximum y-coordinate.
      */
-    public val yMax: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter
-        get() = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.ConstantSetter(
+    public val yMax: ConstantSetter
+        get() = ConstantSetter(
             Y_MAX,
             bindingHandler.bindingCollector
         )

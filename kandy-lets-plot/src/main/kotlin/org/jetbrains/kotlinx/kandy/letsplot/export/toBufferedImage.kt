@@ -4,17 +4,17 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.export
 
-import org.jetbrains.letsPlot.core.plot.export.PlotImageExport
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
+import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
+import org.jetbrains.letsPlot.core.plot.export.PlotImageExport
 import org.jetbrains.letsPlot.intern.toSpec
 import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
-import javax.imageio.ImageIO
-import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
 import java.io.ByteArrayOutputStream
+import javax.imageio.ImageIO
 
 /**
  * Convert plot spec to `BufferedImage`

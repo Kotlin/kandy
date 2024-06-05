@@ -195,8 +195,6 @@ class FacetTests {
             features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
         )
         val layerBuilder = mockk<LayerBuilderImpl> {
-            every { requiredAes } returns emptySet()
-            every { bindingCollector } returns BindingCollector()
             every { toLayer() } returns mockLayer
         }
         val plot = plot(dataset) {
@@ -239,8 +237,6 @@ class FacetTests {
             features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
         )
         val layerBuilder = mockk<LayerBuilderImpl> {
-            every { requiredAes } returns emptySet()
-            every { bindingCollector } returns BindingCollector()
             every { toLayer() } returns mockLayer
         }
         val plot = plot(dataset) {
