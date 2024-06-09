@@ -45,7 +45,7 @@ public interface TextInterface : LayerContextInterface, WithX, WithY, WithAlpha,
     override val requiredAes: Set<Aes>
         get() = setOf(X, Y, LABEL)
 
-    public val font: FontContext
+    public var font: FontContext
 }
 
 /**
@@ -58,6 +58,10 @@ public interface TextInterface : LayerContextInterface, WithX, WithY, WithAlpha,
  * @param parent the parent context for the layer.
  */
 public open class TextContext(parent: LayerCollectorContext) : LayerContext(parent), TextInterface {
-    // todo fix
-    override val font: FontContext = FontContext(this)
+
+    override var font: FontContext = FontContext(this)
+
+    public inline fun font(block: FontContext.() -> Unit){
+        font = FontContext(this).apply(block)
+    }
 }
