@@ -1,13 +1,11 @@
 package org.jetbrains.kotlinx.kandy.dsl.internal.dataframe
 
 import org.jetbrains.kotlinx.dataframe.*
+import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.getColumns
 import org.jetbrains.kotlinx.dataframe.api.groupBy
-import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
-import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
-import org.jetbrains.kotlinx.kandy.ir.data.TableData
 
 /**
  * Represents a standard plotting context initialized with a [DataFrame] as its primary dataset.
