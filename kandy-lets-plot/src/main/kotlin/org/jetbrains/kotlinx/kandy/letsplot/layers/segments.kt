@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.SegmentsContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.SegmentsBuilder
 
 
 /**
@@ -57,6 +57,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.SegmentsContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.segments(block: SegmentsContext.() -> Unit) {
-    addLayer(SegmentsContext(this).apply(block))
+public inline fun LayerCreatorScope.segments(block: SegmentsBuilder.() -> Unit) {
+    createLayer(SegmentsBuilder(this), block)
 }

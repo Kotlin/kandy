@@ -4,8 +4,10 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.LineRangesContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
+import org.jetbrains.kotlinx.kandy.letsplot.feature.position
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.LineRangesBuilder
 
 
 /**
@@ -48,6 +50,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.LineRangesContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.lineRanges(block: LineRangesContext.() -> Unit) {
-    addLayer(LineRangesContext(this).apply(block))
+public inline fun LayerCreatorScope.lineRanges(block: LineRangesBuilder.() -> Unit) {
+    createLayer(LineRangesBuilder(this).apply {
+        position = Position.dodge()
+    }, block)
 }

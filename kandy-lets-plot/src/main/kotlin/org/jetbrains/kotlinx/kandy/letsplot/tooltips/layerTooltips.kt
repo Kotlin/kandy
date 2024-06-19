@@ -1,11 +1,13 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.letsplot.tooltips
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.datasetHandler
+import org.jetbrains.kotlinx.kandy.dsl.internal.layerFeatures
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.context.LayerTooltipsContext
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
 import kotlin.reflect.KProperty
@@ -17,8 +19,7 @@ import kotlin.reflect.KProperty
  * @param column column whose value will be inserted into the tooltip
  * @return formatted string
  */
-public fun LayerContextInterface.value(column: ColumnReference<*>): String {
-    @Suppress("invisible_reference")
+public fun LayerBuilder.value(column: ColumnReference<*>): String {
     return "@${datasetHandler.addColumn(column)}"
 }
 
@@ -28,8 +29,7 @@ public fun LayerContextInterface.value(column: ColumnReference<*>): String {
  * @param columnName name of column whose value will be inserted into the tooltip
  * @return formatted string
  */
-public fun LayerContextInterface.value(columnName: String): String {
-    @Suppress("invisible_reference")
+public fun LayerBuilder.value(columnName: String): String {
     return "@${datasetHandler.takeColumn(columnName)}"
 }
 
@@ -39,8 +39,7 @@ public fun LayerContextInterface.value(columnName: String): String {
  * @param column name of column whose value will be inserted into the tooltip
  * @return formatted string
  */
-public fun LayerContextInterface.value(column: KProperty<*>): String {
-    @Suppress("invisible_reference")
+public fun LayerBuilder.value(column: KProperty<*>): String {
     return "@${datasetHandler.takeColumn(column.name)}"
 }
 
@@ -49,7 +48,7 @@ public fun LayerContextInterface.value(column: KProperty<*>): String {
  *
  * @param enable If `true` (by default), tooltips are displayed. If `false`, tooltips are not displayed.
  */
-public fun LayerContextInterface.tooltips(
+public fun LayerBuilder.tooltips(
     enable: Boolean = true,
 ) {
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
@@ -77,7 +76,7 @@ public fun LayerContextInterface.tooltips(
  * @param formats map of columns to format string of its value.
  * @see value
  */
-public inline fun LayerContextInterface.tooltips(
+public inline fun LayerBuilder.tooltips(
     vararg variables: ColumnReference<*>,
     formats: Map<ColumnReference<*>, String> = mapOf(),
     title: String? = null,
@@ -85,7 +84,6 @@ public inline fun LayerContextInterface.tooltips(
     minWidth: Double? = null,
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
-    @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
         variables.map { datasetHandler.addColumn(it) },
         title,
@@ -107,7 +105,7 @@ public inline fun LayerContextInterface.tooltips(
  * @param minWidth minimum width of a general tooltip in pixels.
  * @see value
  */
-public fun LayerContextInterface.tooltips(
+public fun LayerBuilder.tooltips(
     variable: String,
     vararg variables: String,
     formats: Map<String, String> = mapOf(),
@@ -115,7 +113,6 @@ public fun LayerContextInterface.tooltips(
     anchor: Anchor? = null,
     minWidth: Double? = null,
 ) {
-    @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it) },
         null,
@@ -134,7 +131,7 @@ public fun LayerContextInterface.tooltips(
  * @param minWidth minimum width of a general tooltip in pixels.
  * @see value
  */
-public fun LayerContextInterface.tooltips(
+public fun LayerBuilder.tooltips(
     variable: ColumnReference<*>,
     vararg variables: ColumnReference<*>,
     formats: Map<ColumnReference<*>, String> = mapOf(),
@@ -142,7 +139,6 @@ public fun LayerContextInterface.tooltips(
     anchor: Anchor? = null,
     minWidth: Double? = null,
 ) {
-    @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.addColumn(it) },
         null,
@@ -165,7 +161,7 @@ public fun LayerContextInterface.tooltips(
  * @param minWidth minimum width of a general tooltip in pixels.
  * @see value
  */
-public fun LayerContextInterface.tooltips(
+public fun LayerBuilder.tooltips(
     variable:KProperty<*>,
     vararg variables: KProperty<*>,
     formats: Map<KProperty<*>, String> = mapOf(),
@@ -173,7 +169,6 @@ public fun LayerContextInterface.tooltips(
     anchor: Anchor? = null,
     minWidth: Double? = null,
 ) {
-    @Suppress("invisible_reference")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it.name) },
         null,

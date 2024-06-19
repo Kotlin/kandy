@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointsContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PointsBuilder
 
 /**
  * Adds a new `points` layer to the plot.
@@ -55,6 +55,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointsContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.points(block: PointsContext.() -> Unit) {
-    addLayer(PointsContext(this).apply(block))
+public inline fun LayerCreatorScope.points(block: PointsBuilder.() -> Unit) {
+    createLayer(PointsBuilder(this), block)
 }

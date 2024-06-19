@@ -4,10 +4,10 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.position
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointRangesContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PointRangesBuilder
 
 
 /**
@@ -77,8 +77,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PointRangesContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.pointRanges(block: PointRangesContext.() -> Unit) {
-    addLayer(PointRangesContext(this).apply {
+public inline fun LayerCreatorScope.pointRanges(block: PointRangesBuilder.() -> Unit) {
+    createLayer(PointRangesBuilder(this).apply {
         position = Position.dodge()
-    }.apply(block))
+    }, block)
 }

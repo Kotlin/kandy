@@ -48,11 +48,11 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.context.*
  * ```
  *
  * @see line
- * @see LineContext
+ * @see LineHandler
  * @see LabelContext
  * @see LabelPosition
  */
-public fun LineContext.label(block: LabelContext.() -> Unit) {
+public fun LineHandler.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
     if (label != null) layerFeatures[LabelFeature.FEATURE_NAME] = label
 }
@@ -97,11 +97,11 @@ public fun LineContext.label(block: LabelContext.() -> Unit) {
  * ```
  *
  * @see area
- * @see AreaContext
+ * @see AreaHandler
  * @see LabelContext
  * @see LabelPosition
  */
-public fun AreaContext.label(block: LabelContext.() -> Unit) {
+public fun AreaHandler.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
     if (label != null) layerFeatures[LabelFeature.FEATURE_NAME] = label
 }
@@ -142,11 +142,11 @@ public fun AreaContext.label(block: LabelContext.() -> Unit) {
  * ```
  *
  * @see bars
- * @see BarContext
+ * @see BarHandler
  * @see LabelContext
  * @see LabelPosition
  */
-public fun BarContext.label(block: LabelContext.() -> Unit) {
+public fun BarHandler.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
     if (label != null) layerFeatures[LabelFeature.FEATURE_NAME] = label
 }
@@ -186,11 +186,11 @@ public fun BarContext.label(block: LabelContext.() -> Unit) {
  * ```
  *
  * @see points
- * @see PointContext
+ * @see PointHandler
  * @see LabelContext
  * @see LabelPosition
  */
-public fun PointContext.label(block: LabelContext.() -> Unit) {
+public fun PointHandler.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
     if (label != null) layerFeatures[LabelFeature.FEATURE_NAME] = label
 }

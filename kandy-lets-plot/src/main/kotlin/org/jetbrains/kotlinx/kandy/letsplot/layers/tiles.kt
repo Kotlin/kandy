@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TilesContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.TilesBuilder
 
 
 /**
@@ -60,6 +60,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TilesContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.tiles(block: TilesContext.() -> Unit) {
-    addLayer(TilesContext(this).apply(block))
+public inline fun LayerCreatorScope.tiles(block: TilesBuilder.() -> Unit) {
+    createLayer(TilesBuilder(this), block)
 }

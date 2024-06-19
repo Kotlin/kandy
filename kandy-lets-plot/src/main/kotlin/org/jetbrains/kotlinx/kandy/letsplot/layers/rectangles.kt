@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RectanglesContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.RectanglesBuilder
 
 /**
  * Adds a new `rectangles` layer to the plot.
@@ -62,6 +62,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RectanglesContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.rectangles(block: RectanglesContext.() -> Unit) {
-    addLayer(RectanglesContext(this).apply(block))
+public inline fun LayerCreatorScope.rectangles(block: RectanglesBuilder.() -> Unit) {
+    createLayer(RectanglesBuilder(this), block)
 }

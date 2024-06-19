@@ -8,10 +8,10 @@ import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Reversed
 import org.jetbrains.kotlinx.kandy.letsplot.internal.GROUP
 import org.jetbrains.kotlinx.kandy.letsplot.internal.MERGED_GROUPS
-import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
 import org.jetbrains.letsPlot.Stat
 import org.jetbrains.letsPlot.intern.Options

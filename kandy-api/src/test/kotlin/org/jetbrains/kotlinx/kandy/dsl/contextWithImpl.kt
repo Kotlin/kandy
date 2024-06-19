@@ -7,21 +7,18 @@ package org.jetbrains.kotlinx.kandy.dsl
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.toMap
 import org.jetbrains.kotlinx.kandy.dsl.impl.*
-import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.Layer
-import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
-import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-class ContextImplTest {
+class BuilderImplTest {
     private val emptyDataset = DataFrame.Empty
 
     @Test
     fun testPoints() {
-        val context = DataFramePlotContext(emptyDataset).apply {
+        val builder = DataFramePlotBuilder(emptyDataset).apply {
             points {}
         }
         assertContentEquals(
@@ -35,13 +32,13 @@ class ContextImplTest {
                     emptyMap(),
                 )
             ),
-            context.layers
+            builder.layers
         )
     }
 
     @Test
     fun testLine() {
-        val context = DataFramePlotContext(emptyDataset).apply {
+        val builder = DataFramePlotBuilder(emptyDataset).apply {
             line {}
         }
         assertContentEquals(
@@ -55,13 +52,13 @@ class ContextImplTest {
                     emptyMap(),
                 )
             ),
-            context.layers
+            builder.layers
         )
     }
 
     @Test
     fun testBars() {
-        val context = DataFramePlotContext(emptyDataset).apply {
+        val builder = DataFramePlotBuilder(emptyDataset).apply {
             bars {}
         }
         assertContentEquals(
@@ -75,7 +72,7 @@ class ContextImplTest {
                     emptyMap(),
                 )
             ),
-            context.layers
+            builder.layers
         )
     }
 

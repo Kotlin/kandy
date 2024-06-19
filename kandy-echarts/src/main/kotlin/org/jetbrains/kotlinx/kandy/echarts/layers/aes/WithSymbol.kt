@@ -6,14 +6,14 @@ package org.jetbrains.kotlinx.kandy.echarts.layers.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParametersCategorical
 import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMappingCat
 import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import kotlin.reflect.KProperty
 
-public interface WithSymbol : BindingContext {
+public interface WithSymbol : BindingHandler {
     public var symbol: Symbol?
         get() = null
         set(value) {

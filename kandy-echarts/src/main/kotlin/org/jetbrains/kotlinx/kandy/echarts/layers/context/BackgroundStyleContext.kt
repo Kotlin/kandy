@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.*
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMappingCont
@@ -54,7 +54,7 @@ import kotlin.reflect.KProperty
  *
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.bars
  */
-public inline fun BarContext.background(crossinline block: BackgroundStyle.() -> Unit) {
+public inline fun BarHandler.background(crossinline block: BackgroundStyle.() -> Unit) {
     BackgroundStyle(this).apply(block)
 }
 
@@ -73,7 +73,7 @@ public inline fun BarContext.background(crossinline block: BackgroundStyle.() ->
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.bars
  */
 // TODO(add border setting)
-public class BackgroundStyle(private val context: BindingContext) : SelfInvocationContext {
+public class BackgroundStyle(private val context: BindingHandler) : SelfInvocationContext {
 
     /* BACKGROUND COLOR*/
     public var color: Color? = null

@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.echarts.layers.context.*
 
 /**
@@ -36,34 +36,34 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.context.*
  *
  * @see EChartsLayout
  */
-public inline fun LayerPlotContext.layout(block: EChartsLayout.() -> Unit) {
+public inline fun MultiLayerPlotBuilder.layout(block: EChartsLayout.() -> Unit) {
     plotFeatures[EChartsLayout.FEATURE_NAME] = EChartsLayout().apply(block)
 }
 
 /**
  * Adds a new [line] layer.
  *
- * Creates a [context][LineContext]
+ * Creates a [context][LineHandler]
  * in which you can create bindings using aesthetic attribute properties invocation and add features.
  *
- * - [ x][LineContext.x] - mapping data on the x-axis.
- * - [y][LineContext.y] - mapping data on the y-axis.
- * - [color][LineContext.color] - line [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- * - [symbol][LineContext.symbol] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] on line.
+ * - [ x][LineHandler.x] - mapping data on the x-axis.
+ * - [y][LineHandler.y] - mapping data on the y-axis.
+ * - [color][LineHandler.color] - line [color][org.jetbrains.kotlinx.kandy.util.color.Color].
+ * - [symbol][LineHandler.symbol] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] on line.
  *  Symbols are not shown by default.
- * - [smooth][LineContext.smooth] - smooth curve.
+ * - [smooth][LineHandler.smooth] - smooth curve.
  * `false` by default.
- * - [alpha][LineContext.alpha] - line opacity.
- * - [width][LineContext.width] - line width.
+ * - [alpha][LineHandler.alpha] - line opacity.
+ * - [width][LineHandler.width] - line width.
  * `2` by default.
- * - [lineType][LineContext.lineType] - [line type][org.jetbrains.kotlinx.kandy.echarts.settings.LineType].
+ * - [lineType][LineHandler.lineType] - [line type][org.jetbrains.kotlinx.kandy.echarts.settings.LineType].
  *  `solid` by default.
- * - [step][LineContext.step] - step line.
+ * - [step][LineHandler.step] - step line.
  * `false` by default.
- * - [cap][LineContext.cap] - [end points][org.jetbrains.kotlinx.kandy.echarts.settings.Cap] of line.
+ * - [cap][LineHandler.cap] - [end points][org.jetbrains.kotlinx.kandy.echarts.settings.Cap] of line.
  *  `butt` by default.
- * - [shadowColor][LineContext.shadowColor] - shadow color of line.
- * - [shadowBlur][LineContext.shadowBlur] - shadow blur size of line.
+ * - [shadowColor][LineHandler.shadowColor] - shadow color of line.
+ * - [shadowBlur][LineHandler.shadowBlur] - shadow blur size of line.
  *
  * ```kotlin
  * line {
@@ -82,44 +82,44 @@ public inline fun LayerPlotContext.layout(block: EChartsLayout.() -> Unit) {
  * }
  * ```
  *
- * @see LineContext
+ * @see LineHandler
  */
-public inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
-    addLayer(LineContext(this).apply(block))
+public inline fun LayerCreatorScope.line(block: LineHandler.() -> Unit) {
+    addLayer(LineHandler(this).apply(block))
 }
 
 /**
  * Adds a new [area] layer.
  *
- * Creates a [context][AreaContext]
+ * Creates a [context][AreaHandler]
  * in which you can create bindings using aesthetic attribute properties invocation and add features.
  *
- *  - [ x][AreaContext.x] - mapping data on the x-axis.
- *  - [y][AreaContext.y] - mapping data on the y-axis.
- *  - [color][AreaContext.color] - area fill [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- *  - [position][AreaContext.position] -
+ *  - [ x][AreaHandler.x] - mapping data on the x-axis.
+ *  - [y][AreaHandler.y] - mapping data on the y-axis.
+ *  - [color][AreaHandler.color] - area fill [color][org.jetbrains.kotlinx.kandy.util.color.Color].
+ *  - [position][AreaHandler.position] -
  *  origin [position][org.jetbrains.kotlinx.kandy.echarts.settings.AreaPosition] of area.
  *  `auto` by default.
- *  - [shadowBlur][AreaContext.shadowBlur] - size of shadow blur of area.
- *  - [shadowColor][AreaContext.shadowColor] -
+ *  - [shadowBlur][AreaHandler.shadowBlur] - size of shadow blur of area.
+ *  - [shadowColor][AreaHandler.shadowColor] -
  *  shadow [color][org.jetbrains.kotlinx.kandy.util.color.Color] of area.
- *  - [alpha][AreaContext.alpha] - opacity of area.
- *  - [lineColor][AreaContext.lineColor] - line [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- *  - [symbol][AreaContext.symbol] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] on line.
+ *  - [alpha][AreaHandler.alpha] - opacity of area.
+ *  - [lineColor][AreaHandler.lineColor] - line [color][org.jetbrains.kotlinx.kandy.util.color.Color].
+ *  - [symbol][AreaHandler.symbol] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] on line.
  *  Symbols are not shown by default.
- *  - [smooth][AreaContext.smooth] - smooth curve.
+ *  - [smooth][AreaHandler.smooth] - smooth curve.
  *  `false` by default.
- *  - [lineAlpha][AreaContext.lineAlpha] - line opacity.
- *  - [lineWidth][AreaContext.lineWidth] - line width.
+ *  - [lineAlpha][AreaHandler.lineAlpha] - line opacity.
+ *  - [lineWidth][AreaHandler.lineWidth] - line width.
  *  `2` by default.
- *  - [lineType][AreaContext.lineType] - [line type][org.jetbrains.kotlinx.kandy.echarts.settings.LineType].
+ *  - [lineType][AreaHandler.lineType] - [line type][org.jetbrains.kotlinx.kandy.echarts.settings.LineType].
  *  `solid` by default.
- *  - [step][AreaContext.step] - step line.
+ *  - [step][AreaHandler.step] - step line.
  *  `false` by default.
- *  - [cap][AreaContext.cap] - [end points][org.jetbrains.kotlinx.kandy.echarts.settings.Cap] of line.
+ *  - [cap][AreaHandler.cap] - [end points][org.jetbrains.kotlinx.kandy.echarts.settings.Cap] of line.
  *  `butt` by default.
- *  - [lineShadowColor][AreaContext.lineShadowColor] - shadow color of line.
- *  - [lineShadowBlur][AreaContext.lineShadowBlur] - shadow blur size of line.
+ *  - [lineShadowColor][AreaHandler.lineShadowColor] - shadow color of line.
+ *  - [lineShadowBlur][AreaHandler.lineShadowBlur] - shadow blur size of line.
  *
  * ```kotlin
  * area {
@@ -133,22 +133,22 @@ public inline fun LayerCollectorContext.line(block: LineContext.() -> Unit) {
  * }
  * ```
  *
- * @see AreaContext
+ * @see AreaHandler
  */
-public inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
-    addLayer(AreaContext(this).apply(block))
+public inline fun LayerCreatorScope.area(block: AreaHandler.() -> Unit) {
+    addLayer(AreaHandler(this).apply(block))
 }
 
 /**
  * Adds a new [bars] layer.
  *
- * Creates a [context][BarContext]
+ * Creates a [context][BarHandler]
  * in which you can create bindings using aesthetic attribute properties invocation and add features.
  *
- * - [ x][BarContext.x] - mapping data on the x-axis.
- * - [y][BarContext.y] - mapping data on the y-axis.
- * - [color][BarContext.color] - bars [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- * - [alpha][BarContext.alpha] - bars opacity.
+ * - [ x][BarHandler.x] - mapping data on the x-axis.
+ * - [y][BarHandler.y] - mapping data on the y-axis.
+ * - [color][BarHandler.color] - bars [color][org.jetbrains.kotlinx.kandy.util.color.Color].
+ * - [alpha][BarHandler.alpha] - bars opacity.
  *
  * ```kotlin
  * bars {
@@ -159,30 +159,30 @@ public inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
  * }
  * ```
  *
- * @see BarContext
+ * @see BarHandler
  */
-public inline fun LayerCollectorContext.bars(block: BarContext.() -> Unit) {
-    addLayer(BarContext(this).apply(block))
+public inline fun LayerCreatorScope.bars(block: BarHandler.() -> Unit) {
+    addLayer(BarHandler(this).apply(block))
 }
 
-public inline fun LayerCollectorContext.pie(block: PieContext.() -> Unit) {
+public inline fun LayerCreatorScope.pie(block: PieContext.() -> Unit) {
     addLayer(PieContext(this).apply(block))
 }
 
 /**
  * Adds a new [points] layer.
  *
- * Creates a [context][PointContext]
+ * Creates a [context][PointHandler]
  * in which you can create bindings using aesthetic attribute properties invocation and add features.
  *
- * - [ x][PointContext.x] - mapping data on the x-axis.
- * - [y][PointContext.y] - mapping data on the y-axis.
- * - [color][PointContext.color] - points [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- * - [symbol][PointContext.symbol] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] of points.
+ * - [ x][PointHandler.x] - mapping data on the x-axis.
+ * - [y][PointHandler.y] - mapping data on the y-axis.
+ * - [color][PointHandler.color] - points [color][org.jetbrains.kotlinx.kandy.util.color.Color].
+ * - [symbol][PointHandler.symbol] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] of points.
  * `circle` by default.
- * - [size][PointContext.size] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] size.
+ * - [size][PointHandler.size] - [symbol][org.jetbrains.kotlinx.kandy.echarts.settings.Symbol] size.
  * `10` by default.
- * - [alpha][PointContext.alpha] - opacity of points.
+ * - [alpha][PointHandler.alpha] - opacity of points.
  *
  * ```kotlin
  * points {
@@ -195,16 +195,16 @@ public inline fun LayerCollectorContext.pie(block: PieContext.() -> Unit) {
  * }
  * ```
  *
- * @see PointContext
+ * @see PointHandler
  */
-public inline fun LayerCollectorContext.points(block: PointContext.() -> Unit) {
-    addLayer(PointContext(this).apply(block))
+public inline fun LayerCreatorScope.points(block: PointHandler.() -> Unit) {
+    addLayer(PointHandler(this).apply(block))
 }
 
-public inline fun LayerCollectorContext.candlestick(block: CandlestickContext.() -> Unit) {
+public inline fun LayerCreatorScope.candlestick(block: CandlestickContext.() -> Unit) {
     addLayer(CandlestickContext(this).apply(block))
 }
 
-public inline fun LayerCollectorContext.boxplot(block: BoxplotContext.() -> Unit) {
+public inline fun LayerCreatorScope.boxplot(block: BoxplotContext.() -> Unit) {
     addLayer(BoxplotContext(this).apply(block))
 }

@@ -1,0 +1,54 @@
+package org.jetbrains.kotlinx.kandy.dsl.internal
+
+import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
+import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
+import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
+
+@PublishedApi
+internal val LayerBuilder.datasetHandler: DatasetHandler
+        get() = when (this) {
+            is LayerBuilderImpl -> datasetHandler
+            is SingleLayerPlotBuilder -> datasetHandler
+        }
+
+@PublishedApi
+internal val LayerBuilder.layerFeatures: MutableMap<FeatureName, LayerFeature>
+    get() = when (this) {
+        is LayerBuilderImpl -> layerFeatures
+        is SingleLayerPlotBuilder -> layerFeatures
+    }
+
+@PublishedApi
+internal val LayerBuilder.bindingHandler: BindingHandler
+    get() = when (this) {
+        is LayerBuilderImpl -> bindingHandler
+        is SingleLayerPlotBuilder -> bindingHandler
+    }
+
+@PublishedApi
+internal val PlotBuilder.datasetHandler: DatasetHandler
+    get() = when (this) {
+        is MultiLayerPlotBuilder -> datasetHandler
+        is CustomPlotBuilder -> datasetHandler
+    }
+
+@PublishedApi
+internal val PlotBuilder.plotFeatures: MutableMap<FeatureName, PlotFeature>
+    get() = when (this) {
+        is MultiLayerPlotBuilder -> plotFeatures
+        is CustomPlotBuilder -> plotFeatures
+    }
+
+@PublishedApi
+internal val PlotBuilder.bindingHandler: BindingHandler
+    get() = when (this) {
+        is MultiLayerPlotBuilder -> bindingHandler
+        is CustomPlotBuilder -> bindingHandler
+    }
+
+@PublishedApi
+internal val GroupedDataScope<*, *>.datasetHandler: DatasetHandler
+    get() = when (this) {
+        is GroupByPlotBuilder -> datasetHandler
+        is GroupByScope -> datasetHandler
+    }

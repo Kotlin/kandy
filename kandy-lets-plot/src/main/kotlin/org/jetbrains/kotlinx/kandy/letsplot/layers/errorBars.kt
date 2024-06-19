@@ -3,10 +3,10 @@
 */
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.position
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ErrorBarsContext
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.ErrorBarsBuilder
 
 
 /**
@@ -58,8 +58,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.ErrorBarsContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.errorBars(block: ErrorBarsContext.() -> Unit) {
-    addLayer(ErrorBarsContext(this).apply {
+public inline fun LayerCreatorScope.errorBars(block: ErrorBarsBuilder.() -> Unit) {
+    createLayer(ErrorBarsBuilder(this).apply {
         position = Position.dodge()
-    }.apply(block))
+    }, block)
 }

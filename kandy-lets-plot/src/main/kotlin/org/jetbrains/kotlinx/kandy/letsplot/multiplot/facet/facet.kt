@@ -1,11 +1,13 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.PlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.datasetHandler
+import org.jetbrains.kotlinx.kandy.dsl.internal.plotFeatures
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.context.FacetWrapContext
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
@@ -45,13 +47,12 @@ public data class ScalesSharing internal constructor(val name: String) {
  * "Score: {.2f}" -> "Score: 12.45"
  * "'Score: {}' "-> "Score: 12.454789"
  */
-public fun LayerPlotContext.facetGridX(
+public fun PlotBuilder.facetGridX(
     x: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
 ) {
-    @Suppress("invisible_reference")
     val xColName = datasetHandler.takeColumn(x.name())
     plotFeatures[FacetGridFeature.FEATURE_NAME] =
         FacetGridFeature(
@@ -77,13 +78,12 @@ public fun LayerPlotContext.facetGridX(
  * "Score: {.2f}" -> "Score: 12.45"
  * "'Score: {}' "-> "Score: 12.454789"
  */
-public fun LayerPlotContext.facetGridY(
+public fun PlotBuilder.facetGridY(
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
 ) {
-    @Suppress("invisible_reference")
     val yColName = datasetHandler.takeColumn(y.name())
     plotFeatures[FacetGridFeature.FEATURE_NAME] =
         FacetGridFeature(null, yColName, scalesSharing, OrderDirection.ASCENDING, order, null, format)
@@ -111,8 +111,7 @@ public fun LayerPlotContext.facetGridY(
  * "Score: {.2f}" -> "Score: 12.45"
  * "'Score: {}' "-> "Score: 12.454789"
  */
-@Suppress("invisible_reference")
-public fun LayerPlotContext.facetGrid(
+public fun PlotBuilder.facetGrid(
     x: ColumnReference<*>,
     y: ColumnReference<*>,
     scalesSharing: ScalesSharing? = null,
@@ -148,14 +147,13 @@ public fun LayerPlotContext.facetGrid(
  * @param scalesSharing specifies whether scales are shared across all facets.
  * @param direction direction of the facet.
  */
-public fun LayerPlotContext.facetWrap(
+public fun PlotBuilder.facetWrap(
     nCol: Int? = null,
     nRow: Int? = null,
     scalesSharing: ScalesSharing = ScalesSharing.FIXED,
     direction: Direction = Direction.HORIZONTAL,
     block: FacetWrapContext.() -> Unit
 ) {
-    @Suppress("invisible_reference")
     plotFeatures[FacetWrapFeature.FEATURE_NAME] =
         FacetWrapContext().apply(block).toFeature(datasetHandler, nCol, nRow, scalesSharing, direction)
 }

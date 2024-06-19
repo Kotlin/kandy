@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TextContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.TextBuilder
 
 /**
  * Adds a new `text` layer to the plot.
@@ -51,6 +51,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.TextContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.text(block: TextContext.() -> Unit) {
-    addLayer(TextContext(this).apply(block))
+public inline fun LayerCreatorScope.text(block: TextBuilder.() -> Unit) {
+    createLayer(TextBuilder(this), block)
 }

@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.HLineContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.HLineBuilder
 
 
 /**
@@ -51,6 +51,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.HLineContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.hLine(block: HLineContext.() -> Unit) {
-    addLayer(HLineContext(this).apply(block))
+public inline fun LayerCreatorScope.hLine(block: HLineBuilder.() -> Unit) {
+    createLayer(HLineBuilder(this), block)
 }

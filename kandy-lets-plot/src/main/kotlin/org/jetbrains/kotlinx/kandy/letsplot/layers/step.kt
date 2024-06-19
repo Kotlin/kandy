@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.StepContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.StepBuilder
 
 /**
  * Adds a new `step` layer to the plot.
@@ -47,6 +47,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.StepContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.step(block: StepContext.() -> Unit) {
-    addLayer(StepContext(this).apply(block))
+public inline fun LayerCreatorScope.step(block: StepBuilder.() -> Unit) {
+    createLayer(StepBuilder(this), block)
 }

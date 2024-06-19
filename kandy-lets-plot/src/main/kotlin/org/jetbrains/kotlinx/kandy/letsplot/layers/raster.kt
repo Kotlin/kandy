@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RasterContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.RasterBuilder
 
 /**
  * Adds a new `raster` layer to the plot.
@@ -59,6 +59,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.RasterContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.raster(block: RasterContext.() -> Unit) {
-    addLayer(RasterContext(this).apply(block))
+public inline fun LayerCreatorScope.raster(block: RasterBuilder.() -> Unit) {
+    createLayer(RasterBuilder(this), block)
 }

@@ -24,7 +24,8 @@ dependencies {
 
     testImplementation(libs.kotlin.test)
     testImplementation(libs.mockk)
-    testImplementation(libs.kotlinx.statistics)
+    // todo update statstics
+    //testImplementation(libs.kotlinx.statistics)
 }
 
 tasks.test {

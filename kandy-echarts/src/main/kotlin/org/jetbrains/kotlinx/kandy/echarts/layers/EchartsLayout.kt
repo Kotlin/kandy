@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerPlotContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.echarts.features.Grid
 import org.jetbrains.kotlinx.kandy.echarts.features.Legend
 import org.jetbrains.kotlinx.kandy.echarts.features.title.Title
@@ -75,7 +75,7 @@ public class EChartsLayout : PlotFeature {
      * }
      * ```
      *
-     * @see LayerPlotContext
+     * @see MultiLayerPlotBuilder
      * @see AnimationEasing
      */
     public var animation: Animation = Animation()

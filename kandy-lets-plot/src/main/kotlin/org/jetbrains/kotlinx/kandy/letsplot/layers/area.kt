@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.AreaContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.AreaBuilder
 
 /**
  * Adds a new `area` layer to the plot.
@@ -57,6 +57,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.AreaContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.area(block: AreaContext.() -> Unit) {
-    addLayer(AreaContext(this).apply(block))
+public inline fun LayerCreatorScope.area(block: AreaBuilder.() -> Unit) {
+    createLayer(AreaBuilder(this), block)
 }

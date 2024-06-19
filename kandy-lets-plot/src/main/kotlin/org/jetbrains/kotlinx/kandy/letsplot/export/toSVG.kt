@@ -5,9 +5,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
-import org.jetbrains.kotlinx.kandy.letsplot.translator.wrapValue
 import org.jetbrains.letsPlot.awt.plot.PlotSvgExport
-import org.jetbrains.letsPlot.export.ggsave
 import org.jetbrains.letsPlot.intern.toSpec
 
 /**

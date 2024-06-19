@@ -4,9 +4,9 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.features
 
-import org.jetbrains.kotlinx.kandy.echarts.layers.context.AreaContext
-import org.jetbrains.kotlinx.kandy.echarts.layers.context.BarContext
-import org.jetbrains.kotlinx.kandy.echarts.layers.context.LineContext
+import org.jetbrains.kotlinx.kandy.echarts.layers.context.AreaHandler
+import org.jetbrains.kotlinx.kandy.echarts.layers.context.BarHandler
+import org.jetbrains.kotlinx.kandy.echarts.layers.context.LineHandler
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 
@@ -30,7 +30,7 @@ internal data class StackFeature internal constructor(val name: String) : LayerF
 /**
  * Stack property for [line][org.jetbrains.kotlinx.kandy.echarts.layers.line].
  */
-public var LineContext.stack: Stack
+public var LineHandler.stack: Stack
     get() = Stack((layerFeatures[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
         layerFeatures[StackFeature.FEATURE_NAME] = StackFeature(value.name)
@@ -39,7 +39,7 @@ public var LineContext.stack: Stack
 /**
  * Stack property for [area][org.jetbrains.kotlinx.kandy.echarts.layers.area].
  */
-public var AreaContext.stack: Stack
+public var AreaHandler.stack: Stack
     get() = Stack((layerFeatures[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
         layerFeatures[StackFeature.FEATURE_NAME] = StackFeature(value.name)
@@ -48,7 +48,7 @@ public var AreaContext.stack: Stack
 /**
  * Stack property for [bars][org.jetbrains.kotlinx.kandy.echarts.layers.bars].
  */
-public var BarContext.stack: Stack
+public var BarHandler.stack: Stack
     get() = Stack((layerFeatures[StackFeature.FEATURE_NAME] as StackFeature).name)
     set(value) {
         layerFeatures[StackFeature.FEATURE_NAME] = StackFeature(value.name)

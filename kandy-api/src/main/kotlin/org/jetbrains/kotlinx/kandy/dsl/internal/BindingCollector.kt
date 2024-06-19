@@ -20,8 +20,8 @@ import org.jetbrains.kotlinx.kandy.ir.scale.FreeScale
  * @property settings a mutable map associating aesthetics to their respective settings.
  * @property freeScales a mutable map associating aesthetics to their respective free scales.
  */
-public class BindingCollector {
-    public val mappings: MutableMap<Aes, Mapping> = mutableMapOf()
-    public val settings: MutableMap<Aes, Setting> = mutableMapOf()
-    public val freeScales: MutableMap<Aes, FreeScale> = mutableMapOf()
+internal class BindingCollector {
+    val mappings: MutableMap<Aes, Mapping> = mutableMapOf()
+    val settings: MutableMap<Aes, Setting> = mutableMapOf()
+    val freeScales: MutableMap<Aes, FreeScale> = mutableMapOf()
 }

@@ -6,15 +6,13 @@ package org.jetbrains.kotlinx.kandy.echarts.layers.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingContext
-import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMappingCont
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
-import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import kotlin.reflect.KProperty
 
-public interface WithAlpha : BindingContext {
+public interface WithAlpha : BindingHandler {
     public var alpha: Double?
         get() = null
         set(value) {

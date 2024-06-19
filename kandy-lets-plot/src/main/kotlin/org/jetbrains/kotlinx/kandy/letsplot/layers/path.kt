@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
-import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PathContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PathBuilder
 
 /**
  * Adds a new `path` layer to the plot.
@@ -53,6 +53,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.context.PathContext
  * }
  * ```
  */
-public inline fun LayerCollectorContext.path(block: PathContext.() -> Unit) {
-    addLayer(PathContext(this).apply(block))
+public inline fun LayerCreatorScope.path(block: PathBuilder.() -> Unit) {
+    createLayer(PathBuilder(this), block)
 }

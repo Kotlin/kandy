@@ -4,7 +4,7 @@ import io.mockk.every
 import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContextInterface
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
@@ -193,7 +193,7 @@ class FacetTests {
             settings = mapOf(Aes("a") to mockk<Setting>()),
             features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
         )
-        val layerContext = mockk<LayerContextInterface> {
+        val layerContext = mockk<LayerBuilder> {
             every { requiredAes } returns emptySet()
             every { bindingCollector } returns BindingCollector()
             every { toLayer(true) } returns mockLayer
@@ -237,7 +237,7 @@ class FacetTests {
             settings = mapOf(Aes("a") to mockk<Setting>()),
             features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
         )
-        val layerContext = mockk<LayerContextInterface> {
+        val layerContext = mockk<LayerBuilder> {
             every { requiredAes } returns emptySet()
             every { bindingCollector } returns BindingCollector()
             every { toLayer(true) } returns mockLayer

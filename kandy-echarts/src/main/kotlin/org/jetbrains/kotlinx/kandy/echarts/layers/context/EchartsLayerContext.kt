@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerContext
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationBoxplotCandlestick
@@ -13,7 +13,7 @@ import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationPie
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.NAME
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 
-public sealed class EchartsLayerContext(parent: LayerCollectorContext) : LayerContext(parent) {
+public sealed class EchartsLayerContext(parent: LayerCreatorScope) : LayerContext(parent) {
 
     override val requiredAes: Set<Aes> = setOf()
     public var name: String? = null

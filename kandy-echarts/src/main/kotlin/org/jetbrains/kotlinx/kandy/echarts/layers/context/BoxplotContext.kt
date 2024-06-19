@@ -4,13 +4,13 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCollectorContext
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationBoxplotCandlestick
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
 import org.jetbrains.kotlinx.kandy.echarts.layers.BOXPLOT
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-public class BoxplotContext(parent: LayerCollectorContext) : EchartsLayerContext(parent) {
+public class BoxplotContext(parent: LayerCreatorScope) : EchartsLayerContext(parent) {
     override val geom: Geom
         get() = BOXPLOT
 
