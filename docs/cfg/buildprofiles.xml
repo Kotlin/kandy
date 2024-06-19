@@ -4,23 +4,28 @@
     <variables>
         <header-logo>kotlin_logo.svg</header-logo>
         <product-web-url>https://kotlin.github.io/kandy/welcome.html</product-web-url>
+        <!--For users contribute-->
         <enable-browser-edits>true</enable-browser-edits>
         <browser-edits-url>https://github.com/Kotlin/kandy/edit/main/docs/</browser-edits-url>
-        <auto-convert-headings-to-chapters>true</auto-convert-headings-to-chapters>
 
         <web-root>https://kotlin.github.io/kandy/</web-root>
         <feedback-widget>false</feedback-widget>
         <webmaster>webmaster@jetbrains.com</webmaster>
+        <!--Algolia Search-->
         <algolia-id>JWPLKSKZVF</algolia-id>
         <algolia-index>prod_KANDY_HELP</algolia-index>
         <algolia-api-key>bce9ba6ce7419efe813d671244d3bf6a</algolia-api-key>
-        <search-scopes-provider>https://www.jetbrains.com/search/json/</search-scopes-provider>
-        <generate-sitemap-url-prefix>https://kotlin.github.io/kandy/</generate-sitemap-url-prefix>
 
+        <!--Favicon-->
         <custom-favicons>https://kotlinlang.org/assets/images/favicon.svg?v2</custom-favicons>
+
         <generate-canonicals>true</generate-canonicals>
 
         <analytics-head-script-file>google-search.html</analytics-head-script-file>
+        <search-scopes-provider>https://www.jetbrains.com/search/json/</search-scopes-provider>
+        <generate-sitemap-url-prefix>https://kotlin.github.io/kandy/</generate-sitemap-url-prefix>
+
+        <og-twitter>@KotlinForData</og-twitter>
     </variables>
     <build-profile instance="kd">
         <variables>
