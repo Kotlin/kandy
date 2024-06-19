@@ -23,7 +23,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class GroupByMultiMultiLayerPlotBuilderInterfaceImplTest {
+class GroupByPlotBuilderTest {
     private val a = DataColumn.create("a", listOf(1, 4))
     private val b = DataColumn.create("b", listOf(2, 5))
     private val c = DataColumn.create("c", listOf(3, 6))

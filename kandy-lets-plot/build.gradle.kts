@@ -11,6 +11,7 @@ plugins {
 
 repositories {
     maven("https://packages.jetbrains.team/maven/p/kds/kotlin-ds-maven")
+    mavenLocal()
 }
 
 dependencies {
@@ -24,8 +25,7 @@ dependencies {
 
     testImplementation(libs.kotlin.test)
     testImplementation(libs.mockk)
-    // todo update statstics
-    //testImplementation(libs.kotlinx.statistics)
+    testImplementation(libs.kotlinx.statistics)
 }
 
 tasks.test {

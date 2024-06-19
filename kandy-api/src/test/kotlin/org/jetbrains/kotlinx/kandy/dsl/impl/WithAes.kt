@@ -4,8 +4,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.bindingHandler
 
-// todo doc
-public interface WithAes
+internal interface WithAes
 
 @Suppress("INVISIBLE_REFERENCE")
 internal val WithAes.bindingHandler: BindingHandler
