@@ -70,7 +70,7 @@ internal abstract class DatasetBuilderImpl(
     override fun addColumn(values: List<*>, name: String): String {
         val columnId = addColumn(DataColumn.createValueColumn(name, values, Infer.Type))
         referredColumns[name] = columnId
-        return addColumn(DataColumn.createValueColumn(name, values, Infer.Type))
+        return columnId
     }
 
     internal companion object {

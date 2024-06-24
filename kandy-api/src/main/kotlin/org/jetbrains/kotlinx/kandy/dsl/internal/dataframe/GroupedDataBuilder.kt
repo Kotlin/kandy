@@ -9,16 +9,12 @@ internal class GroupedDataBuilder(
     initialBuilder: DatasetBuilderImpl? = null
 ) : DatasetBuilderImpl(initialBuilder) {
     override val baseDataFrame: DataFrame<*> = groupedData.dataFrame
-    val keys = groupedData.keys
-
-    init {
-        keys.forEach { key -> takeColumn(key) }
+    val keys = groupedData.keys.apply {
+        forEach { key -> takeColumn(key) }
     }
 
     override fun build(): TableData {
-        return GroupedData(
-            buffer, keys
-        )
+        return GroupedData(buffer, keys)
     }
 
     constructor(groupBy: GroupBy<*, *>, initialBuilder: DatasetBuilderImpl? = null)
