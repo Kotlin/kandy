@@ -11,6 +11,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappin
 import org.jetbrains.kotlinx.kandy.letsplot.internal.SHAPE
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import kotlin.reflect.KProperty
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 
 /**
  * Interface for managing the `symbol` aesthetic.

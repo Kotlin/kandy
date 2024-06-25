@@ -5,10 +5,10 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 
 @PublishedApi
-internal val LayerBuilder.datasetHandler: DatasetHandler
+internal val LayerBuilder.datasetBuilder: DatasetBuilder
         get() = when (this) {
-            is LayerBuilderImpl -> datasetHandler
-            is SingleLayerPlotBuilder -> datasetHandler
+            is LayerBuilderImpl -> datasetBuilder
+            is SingleLayerPlotBuilder -> datasetBuilder
         }
 
 @PublishedApi
@@ -26,10 +26,10 @@ internal val LayerBuilder.bindingHandler: BindingHandler
     }
 
 @PublishedApi
-internal val PlotBuilder.datasetHandler: DatasetHandler
+internal val PlotBuilder.datasetBuilder: DatasetBuilder
     get() = when (this) {
-        is MultiLayerPlotBuilder -> datasetHandler
-        is CustomPlotBuilder -> datasetHandler
+        is MultiLayerPlotBuilder -> datasetBuilder
+        is CustomPlotBuilder -> datasetBuilder
     }
 
 @PublishedApi
@@ -46,9 +46,3 @@ internal val PlotBuilder.bindingHandler: BindingHandler
         is CustomPlotBuilder -> bindingHandler
     }
 
-@PublishedApi
-internal val GroupedDataScope<*, *>.datasetHandler: DatasetHandler
-    get() = when (this) {
-        is GroupByPlotBuilder -> datasetHandler
-        is GroupByScope -> datasetHandler
-    }

@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
-import org.jetbrains.kotlinx.kandy.ir.data.NamedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalCategoricalScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalContinuousScale
 import org.jetbrains.kotlinx.kandy.util.color.Color

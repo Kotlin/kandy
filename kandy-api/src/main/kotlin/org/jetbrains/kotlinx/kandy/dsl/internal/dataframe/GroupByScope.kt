@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.kandy.dsl.internal
+package org.jetbrains.kotlinx.kandy.dsl.internal.dataframe
 
 import org.jetbrains.kotlinx.dataframe.ColumnsContainer
 import org.jetbrains.kotlinx.dataframe.DataFrame
@@ -6,7 +6,8 @@ import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.getColumns
 import org.jetbrains.kotlinx.dataframe.api.toColumnGroup
 import org.jetbrains.kotlinx.dataframe.columns.ColumnGroup
-import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 
 /**
  * Represents a plot builder data scope with grouped dataset
@@ -20,8 +21,8 @@ import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
 public class GroupByScope<T, G> @PublishedApi internal constructor(
     @PublishedApi
     internal val groupBy: GroupBy<T, G>,
-    initialBuffer: DataFrame<*>,
     override val plotBuilder: MultiLayerPlotBuilder,
+    override val datasetIndex: Int,
     internal val dataframe: DataFrame<G> = groupBy.concatFixed()
 ): LayerCreatorScope(), GroupedDataScope<T, G>, ColumnsContainer<G> by dataframe {
 
@@ -30,10 +31,6 @@ public class GroupByScope<T, G> @PublishedApi internal constructor(
         dataframe.getColumns(*groupBy.keys.columnNames().toTypedArray()).toColumnGroup(
             "key"
         ) as ColumnGroup<T>
-
-    override val datasetIndex: Int = plotBuilder.addDataset(
-        GroupedData(dataframe, groupBy.keys.columnNames()), initialBuffer
-    )
 
     override val layersInheritMappings: Boolean = true
 }

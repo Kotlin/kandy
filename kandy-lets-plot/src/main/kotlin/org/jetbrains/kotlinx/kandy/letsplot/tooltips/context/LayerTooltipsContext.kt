@@ -1,18 +1,20 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.letsplot.tooltips.context
 
+import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
-import org.jetbrains.kotlinx.kandy.dsl.internal.datasetHandler
+import org.jetbrains.kotlinx.kandy.dsl.internal.*
 import kotlin.reflect.KProperty
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
+import org.jetbrains.kotlinx.kandy.letsplot.internal.datasetBuilderImpl
 
 /**
  * Context created by [org.jetbrains.kotlinx.kandy.letsplot.tooltips.tooltips] methods.
  */
-public class LayerTooltipsContext(private val layerBuilder: LayerBuilder) {
+public class LayerTooltipsContext(private val LayerBuilder: LayerBuilder) {
     internal val lineBuffer = mutableListOf<String>()
     internal val formatsBuffer = mutableMapOf<String, String>()
 
@@ -34,7 +36,7 @@ public class LayerTooltipsContext(private val layerBuilder: LayerBuilder) {
      */
     public fun KProperty<*>.tooltipValue(format: String? = null): String {
         @Suppress("INVISIBLE_MEMBER")
-        val colID = layerBuilder.datasetHandler.takeColumn(this.name)
+        val colID = LayerBuilder.datasetBuilder.takeColumn(this.name)
         addFormat(colID, format)
         return "@$colID"
     }
@@ -47,7 +49,8 @@ public class LayerTooltipsContext(private val layerBuilder: LayerBuilder) {
      * @return formatted string.
      */
     public fun String.tooltipValue(format: String? = null): String {
-        val colID = layerBuilder.datasetHandler.takeColumn(this)
+        @Suppress("INVISIBLE_MEMBER")
+        val colID = (LayerBuilder.datasetBuilder).takeColumn(this)
         addFormat(colID, format)
         return "@$colID"
     }
@@ -60,7 +63,8 @@ public class LayerTooltipsContext(private val layerBuilder: LayerBuilder) {
      * @return formatted string.
      */
     public fun ColumnReference<*>.tooltipValue(format: String? = null): String {
-        val colID = layerBuilder.datasetHandler.addColumn(this)
+        @Suppress("INVISIBLE_MEMBER")
+        val colID = LayerBuilder.datasetBuilderImpl.addColumn(this)
         addFormat(colID, format)
         return "@$colID"
     }
@@ -92,7 +96,8 @@ public class LayerTooltipsContext(private val layerBuilder: LayerBuilder) {
      * @param column column whose value will be displayed.
      */
     public fun line(column: ColumnReference<*>, format: String? = null) {
-        addVarLine(layerBuilder.datasetHandler.addColumn(column).also {
+        @Suppress("INVISIBLE_MEMBER")
+        addVarLine(LayerBuilder.datasetBuilderImpl.addColumn(column).also {
             addFormat(it, format)
         })
     }
@@ -104,7 +109,8 @@ public class LayerTooltipsContext(private val layerBuilder: LayerBuilder) {
      * @param property property with the name of column whose value will be displayed.
      */
     public fun line(property: KProperty<*>, format: String? = null) {
-        addVarLine(layerBuilder.datasetHandler.takeColumn(property.name).also {
+        @Suppress("INVISIBLE_MEMBER")
+        addVarLine(LayerBuilder.datasetBuilder.takeColumn(property.name).also {
             addFormat(it, format)
         })
     }
@@ -116,7 +122,8 @@ public class LayerTooltipsContext(private val layerBuilder: LayerBuilder) {
      * @param columnName name of column whose value will be displayed.
      */
     public fun varLine(columnName: String, format: String? = null) {
-        addVarLine(layerBuilder.datasetHandler.takeColumn(columnName).also {
+        @Suppress("INVISIBLE_MEMBER")
+        addVarLine(LayerBuilder.datasetBuilder.takeColumn(columnName).also {
             addFormat(it, format)
         })
     }

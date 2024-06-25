@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.kandy.dsl.internal
+package org.jetbrains.kotlinx.kandy.dsl.internal.dataframe
 
 import org.jetbrains.kotlinx.dataframe.ColumnsContainer
 import org.jetbrains.kotlinx.dataframe.columns.ColumnGroup

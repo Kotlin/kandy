@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
-import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.letsPlot.intern.Feature
 

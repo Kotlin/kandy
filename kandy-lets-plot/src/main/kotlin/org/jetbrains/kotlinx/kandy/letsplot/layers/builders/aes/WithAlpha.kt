@@ -12,6 +12,7 @@ import org.jetbrains.kotlinx.kandy.ir.scale.*
 import org.jetbrains.kotlinx.kandy.letsplot.internal.ALPHA
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParametersContinuous
 import kotlin.reflect.KProperty
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 
 /**
  * Interface for configuring the `alpha` (transparency) aesthetic in a plot layer.

@@ -11,6 +11,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.LINE_TYPE
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParametersCategorical
 import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
 import kotlin.reflect.KProperty
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 
 /**
  * Interface for configuring the `lineType` aesthetic, which specifies the type of lines in the plot.

@@ -7,6 +7,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 import org.jetbrains.kotlinx.kandy.letsplot.internal.COLOR
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.util.color.Color

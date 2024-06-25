@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.context
 
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetHandler
+import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.Direction
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.OrderDirection
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.ScalesSharing
@@ -52,11 +52,11 @@ public class FacetWrapContext @PublishedApi internal constructor() {
     }
 
     internal fun toFeature(
-        datasetHandler: DatasetHandler, nCol: Int?, nRow: Int?,
+        datasetBuilder: DatasetBuilder, nCol: Int?, nRow: Int?,
         scalesSharing: ScalesSharing, direction: Direction,
     ) =
         FacetWrapFeature(
-            facets.map { datasetHandler.takeColumn(it.name()) },
+            facets.map { datasetBuilder.takeColumn(it.name()) },
             nCol,
             nRow,
             orders,

@@ -2,12 +2,12 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-package org.jetbrains.kotlinx.kandy.ir.data
+package org.jetbrains.kotlinx.kandy.dsl.internal.dataframe
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.groupBy
-import org.jetbrains.kotlinx.kandy.dsl.internal.concatFixed
+import org.jetbrains.kotlinx.kandy.ir.data.TableData
 
 
 /**

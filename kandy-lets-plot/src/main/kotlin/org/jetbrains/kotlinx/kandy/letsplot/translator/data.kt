@@ -6,8 +6,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import kotlinx.datetime.*
 import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.kandy.ir.data.GroupedData
-import org.jetbrains.kotlinx.kandy.ir.data.NamedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedData
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.letsplot.internal.MERGED_GROUPS
 import kotlin.reflect.typeOf
@@ -50,6 +50,6 @@ internal fun TableData.wrap(): Map<String, List<*>> {
     return when (this) {
         is NamedData -> process(dataFrame)
         is GroupedData -> process(dataFrame) + (MERGED_GROUPS to mergedKeys())
-        else -> error("Unexpected data format")
+        else -> error("Unexpected data format: ${this::class}")
     }
 }

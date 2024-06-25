@@ -10,6 +10,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.FONT_FACE
 import org.jetbrains.kotlinx.kandy.letsplot.settings.font.FontFace
 import kotlin.reflect.KProperty
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 
 /**
  * Interface for configuring the `face` aesthetic, which refers to the font face in text elements of a plot layer.

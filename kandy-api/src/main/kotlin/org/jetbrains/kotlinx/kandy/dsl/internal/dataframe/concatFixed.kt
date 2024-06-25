@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.kandy.dsl.internal
+package org.jetbrains.kotlinx.kandy.dsl.internal.dataframe
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.DataFrame

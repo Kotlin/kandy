@@ -1,6 +1,5 @@
 package org.jetbrains.kotlinx.kandy.dsl.internal
 
-import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
@@ -20,7 +19,7 @@ public abstract class MultiLayerPlotBuilder internal constructor(): LayerCreator
         layers.add(layer)
     }
 
-    internal abstract val datasetHandlers: MutableList<DatasetHandler>
+    internal abstract val datasetBuilders: MutableList<DatasetBuilder>
     @PublishedApi
     internal val layers: MutableList<Layer> = mutableListOf()
     @PublishedApi
@@ -33,14 +32,14 @@ public abstract class MultiLayerPlotBuilder internal constructor(): LayerCreator
     override val layersInheritMappings: Boolean
         get() = true
 
-    internal val bindingHandler: BindingHandler = BindingHandler { datasetHandler }
+    internal val bindingHandler: BindingHandler = BindingHandler { datasetBuilder }
     internal val bindingCollector
         get() = bindingHandler.bindingCollector
 
     override fun toPlot(): Plot {
         check (layers.isNotEmpty()) { "No layers in plot." }
         return Plot(
-            datasetHandlers.map { it.data() },
+            datasetBuilders.map { it.build() },
             layers,
             bindingCollector.mappings,
             bindingCollector.settings,
@@ -52,11 +51,9 @@ public abstract class MultiLayerPlotBuilder internal constructor(): LayerCreator
     /**
      * Adds a new dataset.
      *
-     * @return new dataset handler index in [datasetHandlers].
+     * @return new dataset builder index in [datasetBuilders].
      */
-    internal fun addDataset(dataset: TableData, initialBuffer: DataFrame<*>? = null): Int {
-        datasetHandlers.add(DatasetHandler(dataset, initialBuffer))
-        return datasetHandlers.lastIndex
-    }
+    internal abstract fun addDataset(dataset: TableData, initialBuilder: DatasetBuilder? = null): Int
+    internal abstract fun addEmptyDataset(): Int
 
 }

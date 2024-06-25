@@ -2,7 +2,6 @@ package org.jetbrains.kotlinx.kandy.letsplot.feature
 
 import io.mockk.every
 import io.mockk.mockk
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Layer
@@ -23,13 +22,11 @@ class CoordFlipTest {
             settings = mapOf(Aes("a") to mockk<Setting>()),
             features = emptyMap(), freeScales = emptyMap(), inheritsBindings = true
         )
-        val layerContext = mockk<LayerBuilderImpl> {
-            every { requiredAes } returns emptySet()
-            every { bindingCollector } returns BindingCollector()
-            every { toLayer(true) } returns mockLayer
+        val layerBuilder = mockk<LayerBuilderImpl> {
+            every { toLayer() } returns mockLayer
         }
         val plot = plot {
-            addLayer(layerContext)
+            createLayer(layerBuilder) {}
             coordFlip()
         }
         assertEquals(CoordFlip, plot.features[CoordFlip.FEATURE_NAME])

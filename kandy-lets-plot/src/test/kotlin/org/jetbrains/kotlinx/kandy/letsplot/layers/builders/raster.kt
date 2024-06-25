@@ -4,7 +4,7 @@ import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.toColumn
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
-import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
@@ -22,6 +22,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
+@Suppress("INVISIBLE_MEMBER")
 class RasterTests {
     private val xAxis = listOf(0.5).toColumn("xAxis")
     private val yAxis = listOf("first").toColumn("yAxis")
@@ -30,116 +31,116 @@ class RasterTests {
 
     private val df = dataFrameOf(xAxis, yAxis, color, alpha)
 
-    private val parentContext = DataFramePlotBuilder(df)
-    private lateinit var context: RasterContext
+    private val parentBuilder = DataFramePlotBuilder(df)
+    private lateinit var builder: RasterBuilder
 
     @BeforeTest
     fun setUp() {
-        context = RasterContext(parentContext)
+        builder = RasterBuilder(parentBuilder)
     }
 
     @Test
     fun `geom is RASTER`() {
-        assertEquals(RASTER, context.geom)
+        assertEquals(RASTER, builder.geom)
     }
 
     @Test
     fun `requiredAes contains X and Y`() {
-        assertTrue(context.requiredAes.contains(X))
-        assertTrue(context.requiredAes.contains(Y))
+        assertTrue(builder.requiredAes.contains(X))
+        assertTrue(builder.requiredAes.contains(Y))
     }
 
     @Test
     fun `fillColor const for raster`() {
-        context.fillColor = Color.BLUE
-        assertEquals(Color.BLUE, (context.bindingCollector.settings[FILL] as NonPositionalSetting<*>).value)
+        builder.fillColor = Color.BLUE
+        assertEquals(Color.BLUE, (builder.bindingCollector.settings[FILL] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `fillColor str mapping for raster`() {
-        context.fillColor("color")
-        assertEquals("color", (context.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
+        builder.fillColor("color")
+        assertEquals("color", (builder.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `fillColor dataColumn mapping for raster`() {
-        context.fillColor(color)
-        assertEquals("color", (context.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
+        builder.fillColor(color)
+        assertEquals("color", (builder.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `fillColor iterable mapping for raster`() {
-        context.fillColor(listOf("red"))
-        assertEquals("fill", (context.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
+        builder.fillColor(listOf("red"))
+        assertEquals("fill", (builder.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `alpha const for raster`() {
-        context.alpha = 0.1
-        assertEquals(0.1, (context.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
+        builder.alpha = 0.1
+        assertEquals(0.1, (builder.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `alpha str mapping for raster`() {
-        context.alpha("alpha")
-        assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
+        builder.alpha("alpha")
+        assertEquals("alpha", (builder.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `alpha dataColumn mapping for raster`() {
-        context.alpha(alpha)
-        assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
+        builder.alpha(alpha)
+        assertEquals("alpha", (builder.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `alpha iterable mapping for raster`() {
-        context.alpha(listOf(0.2, 0.5, .1))
-        assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
+        builder.alpha(listOf(0.2, 0.5, .1))
+        assertEquals("alpha", (builder.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `x const for raster`() {
-        context.x.constant(5.0)
-        assertEquals(X, (context.bindingCollector.settings[X] as PositionalSetting<*>).aes)
-        assertEquals(5.0, (context.bindingCollector.settings[X] as PositionalSetting<*>).value)
+        builder.x.constant(5.0)
+        assertEquals(X, (builder.bindingCollector.settings[X] as PositionalSetting<*>).aes)
+        assertEquals(5.0, (builder.bindingCollector.settings[X] as PositionalSetting<*>).value)
     }
 
     @Test
     fun `y const for raster`() {
-        context.y.constant(10)
-        assertEquals(Y, (context.bindingCollector.settings[Y] as PositionalSetting<*>).aes)
-        assertEquals(10, (context.bindingCollector.settings[Y] as PositionalSetting<*>).value)
+        builder.y.constant(10)
+        assertEquals(Y, (builder.bindingCollector.settings[Y] as PositionalSetting<*>).aes)
+        assertEquals(10, (builder.bindingCollector.settings[Y] as PositionalSetting<*>).value)
     }
 
     @Test
     fun `x for raster`() {
-        context.x(xAxis) {
+        builder.x(xAxis) {
             axis {
                 name = "x axis"
             }
             scale = continuous(0.1..3.7)
         }
 
-        assertEquals(X, context.bindingCollector.mappings[X]?.aes)
-        assertEquals("xAxis", context.bindingCollector.mappings[X]?.columnID)
-        assertEquals(.1, (context.bindingCollector.mappings[X]?.parameters?.scale as PositionalContinuousScale<*>).min)
-        assertEquals(3.7, (context.bindingCollector.mappings[X]?.parameters?.scale as PositionalContinuousScale<*>).max)
+        assertEquals(X, builder.bindingCollector.mappings[X]?.aes)
+        assertEquals("xAxis", builder.bindingCollector.mappings[X]?.columnID)
+        assertEquals(.1, (builder.bindingCollector.mappings[X]?.parameters?.scale as PositionalContinuousScale<*>).min)
+        assertEquals(3.7, (builder.bindingCollector.mappings[X]?.parameters?.scale as PositionalContinuousScale<*>).max)
     }
 
     @Test
     fun `y for raster`() {
-        context.y(yAxis) {
+        builder.y(yAxis) {
             axis {
                 name = "x axis"
             }
             scale = categorical(listOf("one", "two"))
         }
 
-        assertEquals(Y, context.bindingCollector.mappings[Y]?.aes)
-        assertEquals("yAxis", context.bindingCollector.mappings[Y]?.columnID)
+        assertEquals(Y, builder.bindingCollector.mappings[Y]?.aes)
+        assertEquals("yAxis", builder.bindingCollector.mappings[Y]?.columnID)
         assertEquals(
             listOf("one", "two"),
-            (context.bindingCollector.mappings[Y]?.parameters?.scale as PositionalCategoricalScale<*>).categories
+            (builder.bindingCollector.mappings[Y]?.parameters?.scale as PositionalCategoricalScale<*>).categories
         )
     }
 }
