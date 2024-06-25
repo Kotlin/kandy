@@ -50,6 +50,6 @@ internal fun TableData.wrap(): Map<String, List<*>> {
     return when (this) {
         is NamedData -> process(dataFrame)
         is GroupedData -> process(dataFrame) + (MERGED_GROUPS to mergedKeys())
-        else -> error("Unexpected data format")
+        else -> error("Unexpected data format: ${this::class}")
     }
 }

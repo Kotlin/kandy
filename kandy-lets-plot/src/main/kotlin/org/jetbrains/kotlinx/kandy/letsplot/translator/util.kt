@@ -18,7 +18,7 @@ internal fun TableData.dataFrame(): DataFrame<*> {
     return when (this) {
         is NamedData -> dataFrame
         is GroupedData -> dataFrame
-        else -> TODO()
+        else -> error("Unexpected data format: ${this::class}")
     }
 }
 
