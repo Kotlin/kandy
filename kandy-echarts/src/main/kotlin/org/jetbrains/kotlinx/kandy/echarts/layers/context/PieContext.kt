@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationType
 import org.jetbrains.kotlinx.kandy.echarts.layers.PIE
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-public class PieContext(parent: LayerCreatorScope) : EchartsLayerContext(parent) {
+public class PieContext(parent: LayerCreatorScope) : EchartsLayerBuilder(parent) {
     override val geom: Geom
         get() = PIE
 

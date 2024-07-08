@@ -11,6 +11,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.SubContex
  */
 public interface WithAes
 
+@PublishedApi
 internal val WithAes.bindingHandler: BindingHandler
     get() = if (this is SubContext) {
         bindingHandler

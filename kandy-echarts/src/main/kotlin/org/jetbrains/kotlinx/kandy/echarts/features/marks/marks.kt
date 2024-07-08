@@ -1,10 +1,10 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.echarts.features.marks
 
-import org.jetbrains.kotlinx.kandy.echarts.layers.context.EchartsLayerContext
+import org.jetbrains.kotlinx.kandy.echarts.layers.context.EchartsLayerBuilder
 
 /**
  * Sets mark points on a layer.
@@ -23,7 +23,7 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.context.EchartsLayerContext
  *
  * @see MarkPoint
  */
-public fun EchartsLayerContext.markPoint(block: MarkPointContext.() -> Unit) {
+public fun EchartsLayerBuilder.markPoint(block: MarkPointContext.() -> Unit) {
     layerFeatures[MarkPointFeature.FEATURE_NAME] = MarkPointContext().apply(block).toMarkPointFeature()
 }
 
@@ -47,7 +47,7 @@ public fun EchartsLayerContext.markPoint(block: MarkPointContext.() -> Unit) {
  *
  * @see MarkLine
  */
-public fun EchartsLayerContext.markLine(block: MarkLineContext.() -> Unit) {
+public fun EchartsLayerBuilder.markLine(block: MarkLineContext.() -> Unit) {
     layerFeatures[MarkLineFeature.FEATURE_NAME] = MarkLineContext().apply(block).toMarkLineFeature()
 }
 
@@ -68,6 +68,6 @@ public fun EchartsLayerContext.markLine(block: MarkLineContext.() -> Unit) {
  *
  * @see MarkArea
  */
-public fun EchartsLayerContext.markArea(block: MarkAreaContext.() -> Unit) {
+public fun EchartsLayerBuilder.markArea(block: MarkAreaContext.() -> Unit) {
     layerFeatures[MarkAreaFeature.FEATURE_NAME] = MarkAreaContext().apply(block).toMarkAreaFeature()
 }

@@ -1,9 +1,10 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
@@ -40,7 +41,7 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
  * @see org.jetbrains.kotlinx.kandy.echarts.settings.Cap
  * @see Animation
  */
-public class LineHandler(parent: LayerCreatorScope) : EchartsLayerContext(parent), WithX, WithY, WithColor,
+public class LineHandler(parent: LayerCreatorScope) : EchartsLayerBuilder(parent), WithX, WithY, WithColor,
     WithAlpha, WithSymbol {
 
     override val geom: Geom
@@ -48,40 +49,40 @@ public class LineHandler(parent: LayerCreatorScope) : EchartsLayerContext(parent
 
     public var smooth: Boolean? = null
         set(value) {
-            addNonPositionalSetting(SMOOTH, value)
+            bindingHandler.addNonPositionalSetting(SMOOTH, value)
             field = smooth
         }
     public var width: Number? = null
         set(value) {
-            addNonPositionalSetting(WIDTH, value)
+            bindingHandler.addNonPositionalSetting(WIDTH, value)
             field = value
         }
 
     public var lineType: LineType? = null
         set(value) {
-            addNonPositionalSetting(LINE_TYPE, value)
+            bindingHandler.addNonPositionalSetting(LINE_TYPE, value)
             field = value
         }
 
     public var step: Step? = null
         set(value) {
-            addNonPositionalSetting(STEP, value)
+            bindingHandler.addNonPositionalSetting(STEP, value)
             field = value
         }
 
     public var cap: Cap? = null
         set(value) {
-            addNonPositionalSetting(CAP, value)
+            bindingHandler.addNonPositionalSetting(CAP, value)
             field = value
         }
     public var shadowColor: Color? = null
         set(value) {
-            addNonPositionalSetting(LINE_SHADOW_COLOR, value)
+            bindingHandler.addNonPositionalSetting(LINE_SHADOW_COLOR, value)
             field = value
         }
     public var shadowBlur: Number? = null
         set(value) {
-            addNonPositionalSetting(LINE_SHADOW_BLUR, value)
+            bindingHandler.addNonPositionalSetting(LINE_SHADOW_BLUR, value)
             field = value
         }
 

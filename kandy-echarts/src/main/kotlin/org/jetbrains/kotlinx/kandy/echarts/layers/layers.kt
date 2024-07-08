@@ -1,7 +1,7 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.echarts.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
@@ -85,7 +85,7 @@ public inline fun MultiLayerPlotBuilder.layout(block: EChartsLayout.() -> Unit) 
  * @see LineHandler
  */
 public inline fun LayerCreatorScope.line(block: LineHandler.() -> Unit) {
-    addLayer(LineHandler(this).apply(block))
+    createLayer(LineHandler(this), block)
 }
 
 /**
@@ -136,7 +136,7 @@ public inline fun LayerCreatorScope.line(block: LineHandler.() -> Unit) {
  * @see AreaHandler
  */
 public inline fun LayerCreatorScope.area(block: AreaHandler.() -> Unit) {
-    addLayer(AreaHandler(this).apply(block))
+    createLayer(AreaHandler(this), block)
 }
 
 /**
@@ -162,11 +162,11 @@ public inline fun LayerCreatorScope.area(block: AreaHandler.() -> Unit) {
  * @see BarHandler
  */
 public inline fun LayerCreatorScope.bars(block: BarHandler.() -> Unit) {
-    addLayer(BarHandler(this).apply(block))
+    createLayer(BarHandler(this), block)
 }
 
 public inline fun LayerCreatorScope.pie(block: PieContext.() -> Unit) {
-    addLayer(PieContext(this).apply(block))
+    createLayer(PieContext(this), block)
 }
 
 /**
@@ -198,13 +198,13 @@ public inline fun LayerCreatorScope.pie(block: PieContext.() -> Unit) {
  * @see PointHandler
  */
 public inline fun LayerCreatorScope.points(block: PointHandler.() -> Unit) {
-    addLayer(PointHandler(this).apply(block))
+    createLayer(PointHandler(this), block)
 }
 
 public inline fun LayerCreatorScope.candlestick(block: CandlestickContext.() -> Unit) {
-    addLayer(CandlestickContext(this).apply(block))
+    createLayer(CandlestickContext(this), block)
 }
 
 public inline fun LayerCreatorScope.boxplot(block: BoxplotContext.() -> Unit) {
-    addLayer(BoxplotContext(this).apply(block))
+    createLayer(BoxplotContext(this), block)
 }
