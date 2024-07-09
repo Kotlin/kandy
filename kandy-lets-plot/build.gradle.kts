@@ -11,7 +11,6 @@ plugins {
 
 repositories {
     maven("https://packages.jetbrains.team/maven/p/kds/kotlin-ds-maven")
-    //mavenLocal()
 }
 
 dependencies {

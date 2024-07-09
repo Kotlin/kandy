@@ -31,19 +31,19 @@ class DatasetBuilderTest {
 
     @BeforeTest
     fun setup() {
-        handler = DatasetBuilderImpl.fromData(NamedData(dataFrame))
+        handler = DatasetBuilderImpl(NamedData(dataFrame))
 
         val groupedData = GroupedData(groupedDf)
         internalNumbers = groupedData.dataFrame["numbers"]
         internalType = groupedData.dataFrame["TYPE"]
         internalCond = groupedData.dataFrame["cond"]
-        handlerWithGrouped = DatasetBuilderImpl.fromData(groupedData)
+        handlerWithGrouped = DatasetBuilderImpl(groupedData)
     }
 
     @Test
     fun `test initial NamedData`() {
         val initialDataset = NamedData(emptyDataFrame<Any>())
-        val handler = DatasetBuilderImpl.fromData(initialDataset)
+        val handler = DatasetBuilderImpl(initialDataset)
 
         assertEquals(initialDataset.dataFrame, handler.baseDataFrame)
     }
@@ -61,7 +61,7 @@ class DatasetBuilderTest {
                 )
             ), listOf("column1")
         )
-        val handler = DatasetBuilderImpl.fromData(initialDataset)
+        val handler = DatasetBuilderImpl(initialDataset)
 
         assertEquals(initialDataset.dataFrame, handler.baseDataFrame)
     }
@@ -69,7 +69,7 @@ class DatasetBuilderTest {
     @Test
     fun `test add column with list values`() {
         val initialDataset = NamedData(emptyDataFrame<Any>())
-        val handler = DatasetBuilderImpl.fromData(initialDataset)
+        val handler = DatasetBuilderImpl(initialDataset)
         val values = listOf(1, 2, 3)
         val name = "new_column"
 
