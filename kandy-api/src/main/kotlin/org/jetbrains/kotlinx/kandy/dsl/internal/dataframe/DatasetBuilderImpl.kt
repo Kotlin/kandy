@@ -50,7 +50,7 @@ internal abstract class DatasetBuilderImpl(
         return when(column) {
             is ColumnAccessor<*> -> takeColumn(column)
             is DataColumn<*> -> addColumn(column)
-            else -> TODO()
+            else -> error("Unexpected column reference type: ${column::class}")
         }
     }
 
