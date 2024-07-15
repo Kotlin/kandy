@@ -14,7 +14,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.y
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import org.jetbrains.kotlinx.statistics.kandy.stattransform.statSmooth
-import kotlin.math.*
+import kotlin.math.cos
+import kotlin.math.sin
 import kotlin.test.Test
 
 class Ribbon : SampleHelper("ribbon") {
