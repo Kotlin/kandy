@@ -14,12 +14,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.TilesBuil
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.TILE
 
 /**
- * Context class for managing tile layers.
+ * Builder class for managing tile layers.
  *
  * This class serves as the context in which tile layers can be customized.
  * It inherits from [LayerWithBorderLineBuilder] and implements the [TilesBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class TilesBuilder @PublishedApi internal constructor(

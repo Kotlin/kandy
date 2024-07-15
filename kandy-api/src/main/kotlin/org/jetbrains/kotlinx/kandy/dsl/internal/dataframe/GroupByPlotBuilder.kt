@@ -9,8 +9,8 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnGroup
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
 
 /**
- * Represents a plotting context where the data is initially grouped using [GroupBy].
- * This context facilitates the creation and management of visualizations with data that's grouped by certain criteria.
+ * Represents a plotting builder where the data is initially grouped using [GroupBy].
+ * This builder facilitates the creation and management of visualizations with data that's grouped by certain criteria.
  * It also provides column access via delegation to the concatenated representation of [groupBy].
  *
  * @param T The type of the key columns.

@@ -14,12 +14,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.RasterBui
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RASTER
 
 /**
- * Context class for managing raster layers.
+ * Builder class for managing raster layers.
  *
  * This class provides the context in which raster layers can be configured.
  * It inherits from [LayerWithBorderLineBuilder] and implements the [RasterBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class RasterBuilder @PublishedApi internal constructor(

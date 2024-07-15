@@ -4,14 +4,14 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MAX
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_MIN
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.PointRangesBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.InnerLine
@@ -20,13 +20,13 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT_RANGE
 
 
 /**
- * Context class for managing pointRange layers.
+ * Builder class for managing pointRange layers.
  *
  * This class provides the context in which pointRange layers can be configured.
- * It inherits from [LayerBuilder] and implements the [PointRangesBuilderInterface].
+ * It inherits from [LayerBuilderImpl] and implements the [PointRangesBuilderInterface].
  * It also initializes `innerPoint` and `innerLine` contexts for more granular customization.
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class PointRangesBuilder @PublishedApi internal constructor(

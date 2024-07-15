@@ -9,17 +9,16 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y_INTERCEPT
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.HLineBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.H_LINE
 
 /**
- * Context class for managing hLine layers.
+ * Builder class for managing hLine layers.
  *
  * This class provides the context in which hLine layers can be configured.
- * It inherits from [LayerBuilder] and implements the [HLineBuilderInterface].
+ * It inherits from [LayerBuilderImpl] and implements the [HLineBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")

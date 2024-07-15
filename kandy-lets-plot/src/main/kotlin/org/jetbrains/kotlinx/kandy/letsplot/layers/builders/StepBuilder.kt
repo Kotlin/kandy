@@ -10,17 +10,16 @@ import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.StepBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.STEP
 
 /**
- * Context class for managing step layers.
+ * Builder class for managing step layers.
  *
  * This class provides the context in which step layers can be configured.
- * It inherits from [LayerBuilder] and implements the [StepBuilderInterface].
+ * It inherits from [LayerBuilderImpl] and implements the [StepBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class StepBuilder @PublishedApi internal constructor(

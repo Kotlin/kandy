@@ -14,12 +14,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LineBuild
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.PATH
 
 /**
- * Context class for managing path layers.
+ * Builder class for managing path layers.
  *
  * This class provides the context in which path layers can be configured.
- * It inherits from [LayerBuilder] and implements the [LineBuilderInterface].
+ * It inherits from [LayerBuilderImpl] and implements the [LineBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class PathBuilder @PublishedApi internal constructor(

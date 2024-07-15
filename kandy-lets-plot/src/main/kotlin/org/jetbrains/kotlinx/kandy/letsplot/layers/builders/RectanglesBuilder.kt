@@ -16,12 +16,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.Rectangle
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RECT
 
 /**
- * Context class for managing rectangle layers.
+ * Builder class for managing rectangle layers.
  *
  * This class provides the context in which rectangle layers can be configured.
  * It inherits from [LayerWithBorderLineBuilder] and implements the [RectanglesBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class RectanglesBuilder @PublishedApi internal constructor(

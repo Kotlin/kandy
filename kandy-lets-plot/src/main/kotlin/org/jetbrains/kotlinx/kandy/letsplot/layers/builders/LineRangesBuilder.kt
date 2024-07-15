@@ -15,12 +15,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LineRange
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LINE_RANGE
 
 /**
- * Context class for managing lineRanges layers.
+ * Builder class for managing lineRanges layers.
  *
  * This class provides the context in which lineRanges layers can be configured.
  * It inherits from [LayerWithBorderLineBuilder] and implements the [LineRangesBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class LineRangesBuilder @PublishedApi internal constructor(
