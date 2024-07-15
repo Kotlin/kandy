@@ -1,11 +1,13 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.letsplot.tooltips
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.datasetBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.layerFeatures
 import org.jetbrains.kotlinx.kandy.letsplot.internal.datasetBuilderImpl
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.context.LayerTooltipsContext
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips

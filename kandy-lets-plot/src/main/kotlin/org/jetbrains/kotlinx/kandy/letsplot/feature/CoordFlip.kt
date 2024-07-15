@@ -8,6 +8,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.PlotBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.plotFeatures
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
+import org.jetbrains.kotlinx.kandy.letsplot.feature.CoordFlip.FEATURE_NAME
 
 /**
  * Flip the axes of the default coordinate system.
