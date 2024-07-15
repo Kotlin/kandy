@@ -12,12 +12,20 @@ internal fun <T> MultiLayerPlotBuilder.x(
     column: ColumnReference<T>,
     parameters: CommonPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    return bindingHandler.addPositionalMapping(X, column.name(), CommonPositionalMappingParametersContinuous<T>().apply(parameters))
+    return bindingHandler.addPositionalMapping(
+        X,
+        column.name(),
+        CommonPositionalMappingParametersContinuous<T>().apply(parameters)
+    )
 }
 
 internal fun <T> MultiLayerPlotBuilder.y(
     column: ColumnReference<T>,
     parameters: CommonPositionalMappingParametersContinuous<T>.() -> Unit = {}
 ): PositionalMapping<T> {
-    return bindingHandler.addPositionalMapping<T>(Y, column.name(), CommonPositionalMappingParametersContinuous<T>().apply(parameters))
+    return bindingHandler.addPositionalMapping<T>(
+        Y,
+        column.name(),
+        CommonPositionalMappingParametersContinuous<T>().apply(parameters)
+    )
 }

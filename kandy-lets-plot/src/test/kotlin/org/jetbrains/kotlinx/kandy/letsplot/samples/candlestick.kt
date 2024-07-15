@@ -135,7 +135,7 @@ class Candlestick : SampleHelper("candlestick") {
             }
             layout.size = 750 to 400
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample(savePreview = true)
     }
 

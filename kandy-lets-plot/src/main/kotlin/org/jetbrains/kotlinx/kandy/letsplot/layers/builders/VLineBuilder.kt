@@ -17,7 +17,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.V_LINE
  * Context class for managing vertical line layers.
  *
  * This class serves as the context in which vertical line layers can be customized.
- * It inherits from [LayerContext] and implements the [VLineBuilderInterface].
+ * It inherits from [LayerBuilder] and implements the [VLineBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */

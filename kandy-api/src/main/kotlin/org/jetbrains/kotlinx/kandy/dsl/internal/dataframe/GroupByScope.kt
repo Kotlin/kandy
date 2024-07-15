@@ -24,7 +24,7 @@ public class GroupByScope<T, G> @PublishedApi internal constructor(
     override val plotBuilder: MultiLayerPlotBuilder,
     override val datasetIndex: Int,
     internal val dataframe: DataFrame<G> = groupBy.concatFixed()
-): LayerCreatorScope(), GroupedDataScope<T, G>, ColumnsContainer<G> by dataframe {
+) : LayerCreatorScope(), GroupedDataScope<T, G>, ColumnsContainer<G> by dataframe {
 
     @Suppress("UNCHECKED_CAST")
     public override val key: ColumnGroup<T> =

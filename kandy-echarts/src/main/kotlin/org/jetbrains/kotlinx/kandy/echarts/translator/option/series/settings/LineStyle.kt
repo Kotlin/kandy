@@ -59,7 +59,7 @@ internal data class LineStyle(
 ) {
     fun isEmpty(): Boolean =
         color == null && width == null && type == null && dashOffset == null
-            && cap == null && join == null && miterLimit == null && shadowBlur == null
-            && shadowColor == null && shadowOffsetX == null && shadowOffsetY == null
-            && opacity == null
+                && cap == null && join == null && miterLimit == null && shadowBlur == null
+                && shadowColor == null && shadowOffsetX == null && shadowOffsetY == null
+                && opacity == null
 }

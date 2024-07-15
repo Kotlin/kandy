@@ -39,11 +39,11 @@ public sealed interface LayoutParameters {
 }
 
 public data class Margin(val top: Double, val right: Double, val bottom: Double, val left: Double) {
-    public constructor(all: Double): this(all, all, all, all)
+    public constructor(all: Double) : this(all, all, all, all)
 
-    public constructor(vertical: Double, horizontal: Double): this(vertical, horizontal, vertical, horizontal)
+    public constructor(vertical: Double, horizontal: Double) : this(vertical, horizontal, vertical, horizontal)
 
-    public constructor(top: Double, horizontal: Double, bottom: Double): this(top, horizontal, bottom, horizontal)
+    public constructor(top: Double, horizontal: Double, bottom: Double) : this(top, horizontal, bottom, horizontal)
 }
 
 public interface WithMargin {
@@ -51,12 +51,15 @@ public interface WithMargin {
     public fun margin(all: Double) {
         margin = Margin(all, all, all, all)
     }
+
     public fun margin(vertical: Double, horizontal: Double) {
         margin = Margin(vertical, horizontal, vertical, horizontal)
     }
+
     public fun margin(top: Double, horizontal: Double, bottom: Double) {
         margin = Margin(top, horizontal, bottom, horizontal)
     }
+
     public fun margin(top: Double, right: Double, bottom: Double, left: Double) {
         margin = Margin(top, right, bottom, left)
     }

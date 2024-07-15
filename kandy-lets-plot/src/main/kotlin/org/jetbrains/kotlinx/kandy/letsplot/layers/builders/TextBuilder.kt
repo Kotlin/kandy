@@ -21,7 +21,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.TEXT
  * Context class for managing text layers.
  *
  * This class provides the context in which text layers can be configured.
- * It inherits from [LayerContext] and implements the [TextBuilderInterface].
+ * It inherits from [LayerBuilder] and implements the [TextBuilderInterface].
  * It also contains a nested `FontContext` object for managing font styling.
  *
  * @param parent the parent context for the layer.
@@ -40,7 +40,7 @@ public open class TextBuilder @PublishedApi internal constructor(
      * @return the [Geom] object for **text**.
      */
     override val geom: Geom
-    get() = TEXT
+        get() = TEXT
 
     /**
      * Gets the set of required aesthetics for **text** layers.
@@ -48,5 +48,5 @@ public open class TextBuilder @PublishedApi internal constructor(
      * @return the set of required aesthetics.
      */
     override val requiredAes: Set<Aes>
-    get() = setOf(X, Y, LABEL)
+        get() = setOf(X, Y, LABEL)
 }

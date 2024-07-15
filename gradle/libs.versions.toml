@@ -38,7 +38,7 @@ mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-jupyter-api = { id = "org.jetbrains.kotlin.jupyter.api", version.ref = "jupyterApi" }
-nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexus"}
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka"}
+nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexus" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 korro = { id = "io.github.devcrocod.korro", version.ref = "korro" }
 

@@ -9,4 +9,4 @@ import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 public data class Axis internal constructor(
     var name: String? = null,
     var show: Boolean? = null
-): SelfInvocationContext
+) : SelfInvocationContext

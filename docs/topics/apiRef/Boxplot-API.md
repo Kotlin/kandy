@@ -8,7 +8,7 @@ boxplot&lt;<a href="#xtype"><format color="Blue">X</format></a>></format>(
 <a href="#y"><format style="bold" color="CadetBlue">y</format></a>:
 <include from="arguments.topic" element-id="signature-of-sample"></include>,
 <a href="#whiskeriqrratio"><format style="bold" color="DarkGray">whiskerIQRRatio</format></a>: 
-Double = 1.5)<format style="italic">{ this: BoxplotStatLayerContext&lt;X> -></format></p>
+Double = 1.5)<format style="italic">{ this: BoxplotStatLayerBuilder&lt;X> -></format></p>
 <list type="none">
 <li>
 <p><a href="#boxes_aes">boxes</a> <format style="italic">{ this: BoxesStatContext&lt;X> -></format></p>

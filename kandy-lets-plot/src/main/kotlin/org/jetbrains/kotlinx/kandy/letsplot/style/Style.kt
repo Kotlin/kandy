@@ -14,8 +14,8 @@ public sealed interface Style {
     public data object Minimal : Style
     public data object Minimal2 : Style
     public data object None : Style
-    public data object BW: Style
-    public data object Void: Style
+    public data object BW : Style
+    public data object Void : Style
 
     public companion object {
         public inline fun createCustom(block: CustomStyle.() -> Unit): CustomStyle {

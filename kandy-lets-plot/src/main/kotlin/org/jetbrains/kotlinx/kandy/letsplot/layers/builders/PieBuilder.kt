@@ -16,7 +16,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.PIE
  * Context class for managing Pie layers.
  *
  * This class provides the context in which Pie layers can be configured.
- * It inherits from [LayerContext] and implements the [PieBuilderInterface].
+ * It inherits from [LayerBuilder] and implements the [PieBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */

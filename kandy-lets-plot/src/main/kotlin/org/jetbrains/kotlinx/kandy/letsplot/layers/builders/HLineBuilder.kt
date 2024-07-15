@@ -17,7 +17,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.H_LINE
  * Context class for managing hLine layers.
  *
  * This class provides the context in which hLine layers can be configured.
- * It inherits from [LayerContext] and implements the [HLineBuilderInterface].
+ * It inherits from [LayerBuilder] and implements the [HLineBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */

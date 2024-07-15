@@ -164,7 +164,7 @@ class DataFramePlotBuilderTest {
             "B" to listOf(1, 2, 3)
         )
 
-       // assertEquals(dataFrame.plot {}, plot(dataFrame) {})
+        // assertEquals(dataFrame.plot {}, plot(dataFrame) {})
 
         val geom = mockk<Geom>()
         val mockLayer = Layer(

@@ -18,7 +18,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.LINE
  * Context class for managing line layers.
  *
  * This class provides the context in which line layers can be configured.
- * It inherits from [LayerContext] and implements the [LineBuilderInterface].
+ * It inherits from [LayerBuilder] and implements the [LineBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */

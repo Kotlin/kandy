@@ -11,7 +11,7 @@ import org.jetbrains.letsPlot.intern.layer.GeomOptions
 
 internal fun Geom.wrap(): GeomOptions {
     return when (this) {
-        is LetsPlotGeom -> when(this) {
+        is LetsPlotGeom -> when (this) {
             AB_LINE -> org.jetbrains.letsPlot.Geom.abline()
             AREA -> org.jetbrains.letsPlot.Geom.area()
             BAR -> org.jetbrains.letsPlot.Geom.bar()
@@ -35,6 +35,7 @@ internal fun Geom.wrap(): GeomOptions {
             V_LINE -> org.jetbrains.letsPlot.Geom.vline()
             else -> TODO("error unexpected geom")
         }
+
         else -> TODO("error unexpected geom")
     }
 }

@@ -46,7 +46,7 @@ public abstract class LayerBuilderImpl internal constructor(
         }
     }
 
-    internal val bindingHandler: BindingHandler = object : BindingHandler ({datasetBuilder}) {
+    internal val bindingHandler: BindingHandler = object : BindingHandler({ datasetBuilder }) {
         override fun checkMappingSourceSize(size: Int) {
             checkSourceSizeAndOverrideDataset(size)
         }
@@ -55,10 +55,6 @@ public abstract class LayerBuilderImpl internal constructor(
     /**
      * Ensures that all required aesthetics are assigned either in the layer or plot context.
      * If any of the required aesthetics are not found, an exception is thrown.
-     *
-     * @param requiredAes A set of aesthetics that need to be assigned.
-     * @param layerBuilder The context of the layer where the aesthetics could be assigned.
-     * @param plotContext The context of the plot where the aesthetics could be assigned (optional).
      *
      * @throws IllegalArgumentException If any of the required aesthetics is not assigned in either the layer or the plot context.
      */

@@ -53,10 +53,16 @@ internal object RangeSerializer : KSerializer<Range> {
                 descriptor, 4, ListSerializer(Double.serializer()), value.opacity?.map { (it as Number).toDouble() }
             )
             encodeNullableSerializableElement(
-                descriptor, 5, ListSerializer(Double.serializer()), value.colorLightness?.map { (it as Number).toDouble() }
+                descriptor,
+                5,
+                ListSerializer(Double.serializer()),
+                value.colorLightness?.map { (it as Number).toDouble() }
             )
             encodeNullableSerializableElement(
-                descriptor, 6, ListSerializer(Double.serializer()), value.colorSaturation?.map { (it as Number).toDouble() }
+                descriptor,
+                6,
+                ListSerializer(Double.serializer()),
+                value.colorSaturation?.map { (it as Number).toDouble() }
             )
             encodeNullableSerializableElement(
                 descriptor, 7, ListSerializer(Double.serializer()), value.colorHue?.map { (it as Number).toDouble() }

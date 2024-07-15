@@ -205,7 +205,7 @@ class CountPlot : SampleHelper("stat", "guides") {
         df.countPlot {
             x(`class`)
         }.configure {
-            // Bars + StatCount + PlotContext
+            // Bars + StatCount + PlotBuilder
             // can't add new layer
             // can add bars mapping, including for `Stat.*` columns
             fillColor(Stat.x)

@@ -2,6 +2,7 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
@@ -32,6 +33,7 @@ public interface BarBuilderInterface : WithX, WithY, WithColor, WithAlpha
 public class BarHandler(parent: LayerCreatorScope) : EchartsLayerBuilder(parent), BarBuilderInterface {
     override val geom: Geom
         get() = BAR
+
     /**
      * Animation options settings for [bars][org.jetbrains.kotlinx.kandy.echarts.layers.bars].
      * If a property isn't set or set to null, a default value will be used.

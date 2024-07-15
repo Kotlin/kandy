@@ -30,6 +30,7 @@ internal class PositionTest {
         "x" to listOf(1, 2, 3),
         "y" to listOf(0.1, 0.2, 3.0)
     )
+
     @Test
     fun testSimple() {
         val plot = plot(dataFrame) {
@@ -98,7 +99,7 @@ internal class PositionTest {
                         mapOf(),
                         mapOf(
                             Position.FEATURE_NAME to
-                                Position.JitterDodge(2.0, 3.0, 1.0)
+                                    Position.JitterDodge(2.0, 3.0, 1.0)
                         ),
                         emptyMap()
                     ),

@@ -47,8 +47,8 @@ public class Grid(
 
     internal fun isEmpty(): Boolean =
         left == null && top == null && right == null && bottom == null && width == null && height == null
-            && backgroundColor == null && borderColor == null && borderWidth == null && shadowBlur == null
-            && shadowColor == null && tooltip == null
+                && backgroundColor == null && borderColor == null && borderWidth == null && shadowBlur == null
+                && shadowColor == null && tooltip == null
 
     internal fun isNotEmpty(): Boolean = !isEmpty()
 

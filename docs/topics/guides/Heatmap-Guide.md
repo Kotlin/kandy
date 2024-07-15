@@ -431,7 +431,7 @@ df.heatmap {
     y(drv)
     weight(hwy)
 }.configure {
-    // Tile + StatCount2D + PlotContext
+    // Tile + StatCount2D + PlotBuilder
     // Can't add new layer
     // Can add tile mapping, including for `Stat.*` columns
     fillColor(Stat.count) {

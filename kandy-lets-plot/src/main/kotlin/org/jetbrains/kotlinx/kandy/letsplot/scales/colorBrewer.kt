@@ -17,7 +17,7 @@ public sealed interface BrewerPalette {
         PuRd, Purples, RdPu, Reds, YlGn, YlGnBu, YlOrBr, YlOrRd;
     }
 
-    public enum class Diverging: BrewerPalette {
+    public enum class Diverging : BrewerPalette {
         BrBG, PiYG, PRGn, PuOr, RdBu, RdGy, RdYlBu, RdYlGn, Spectral;
     }
 

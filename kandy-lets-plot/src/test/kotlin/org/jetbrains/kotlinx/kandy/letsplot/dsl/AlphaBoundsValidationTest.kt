@@ -10,7 +10,7 @@ import kotlin.test.assertFailsWith
 class AlphaBoundsValidationTest {
 
     @Test
-    fun testSetting(){
+    fun testSetting() {
         assertFailsWith<IllegalArgumentException>("Value \"1.1\" of \"alpha\" is outside the range [0.0, 1.0].") {
             plot(dataset) {
                 points {
@@ -23,7 +23,7 @@ class AlphaBoundsValidationTest {
     }
 
     @Test
-    fun testScaleContinuous(){
+    fun testScaleContinuous() {
         assertFailsWith<IllegalArgumentException>("Value \"-0.5\" of \"alpha\" is outside the range [0.0, 1.0].") {
             plot(dataset) {
                 points {
@@ -38,7 +38,7 @@ class AlphaBoundsValidationTest {
     }
 
     @Test
-    fun testScaleCategorical(){
+    fun testScaleCategorical() {
         assertFailsWith<IllegalArgumentException>("Value \"3.0\" of \"alpha\" is outside the range [0.0, 1.0].") {
             plot(dataset) {
                 points {

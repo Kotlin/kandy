@@ -18,7 +18,8 @@ class MonoIntegrationTest : JupyterReplTestCase() {
 
     @Test
     fun `echarts plot should render normally`() {
-        val plotHtml = execHtml("""
+        val plotHtml = execHtml(
+            """
             plot(mapOf()) {
                 line {
                     label {
@@ -32,7 +33,8 @@ class MonoIntegrationTest : JupyterReplTestCase() {
                     }
                 }
             }
-        """.trimIndent())
+        """.trimIndent()
+        )
 
         assertOutput(plotHtml)
     }

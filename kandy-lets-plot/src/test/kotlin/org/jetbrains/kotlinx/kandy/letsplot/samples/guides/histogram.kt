@@ -217,7 +217,7 @@ class Histogram : SampleHelper("stat", "guides") {
         df.histogram(binsOption = BinsOption.byNumber(15)) {
             x(depth)
         }.configure {
-            // Bars + StatBin + PlotContext
+            // Bars + StatBin + PlotBuilder
             // Can't add a new layer
             x.limits = 100..900
             // Can add bar mapping, include on `Stat.*` columns

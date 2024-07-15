@@ -15,7 +15,7 @@ import org.jetbrains.letsPlot.intern.toSpec
  *
  * @receiver [Plot] - the plot to export.
  * @param iFrame Whether to wrap HTML in IFrame
- * 
+ *
  * @return A [String] in HTML format representing the exported plot.
  */
 public fun Plot.toHTML(iFrame: Boolean = true): String =

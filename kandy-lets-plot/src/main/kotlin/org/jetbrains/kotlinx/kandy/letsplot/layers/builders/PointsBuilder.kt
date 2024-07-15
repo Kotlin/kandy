@@ -18,7 +18,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
  * Context class for managing points layers.
  *
  * This class provides the context in which points layers can be configured.
- * It inherits from [LayerContext] and implements the [PointsBuilderInterface].
+ * It inherits from [LayerBuilder] and implements the [PointsBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */

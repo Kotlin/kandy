@@ -43,4 +43,4 @@ public open class ErrorBarsBuilder @PublishedApi internal constructor(
      */
     override val requiredAes: Set<Aes>
         get() = setOf(X, Y_MIN, Y_MAX)
-    }
+}

@@ -33,7 +33,7 @@ public fun main() {
         bars {
             fillColor("humidity"<Double>()) {
                 scale = continuous(
-                    range = Color.YELLOW .. Color.RED
+                    range = Color.YELLOW..Color.RED
                 )
             }
             borderLine.width = 0.0

@@ -79,13 +79,14 @@ internal fun Scale.wrap(
             val format = axis?.format
             val expand = axis?.expand
             val position = axis?.position?.let {
-                when(it) {
+                when (it) {
                     AxisPosition.DEFAULT -> null
-                    AxisPosition.OPPOSITE -> when(aes) {
+                    AxisPosition.OPPOSITE -> when (aes) {
                         X -> "right"
                         Y -> "top"
                         else -> null
                     }
+
                     AxisPosition.BOTH -> "both"
                 }
             }

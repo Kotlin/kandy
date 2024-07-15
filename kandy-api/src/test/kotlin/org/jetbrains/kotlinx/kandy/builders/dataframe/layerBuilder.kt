@@ -56,13 +56,14 @@ class LayerBuilderImplTest {
         }
 
         parentBuilder = object : LayerCreatorScope() {
-            override val plotBuilder = object: MultiLayerPlotBuilder() {
+            override val plotBuilder = object : MultiLayerPlotBuilder() {
                 override val datasetBuilders: MutableList<DatasetBuilder> = mutableListOf(dataHandler)
                 override fun addDataset(dataset: TableData, initialBuilder: DatasetBuilder?): Int {
                     return datasetBuilders.also {
                         it.add(dataHandlerNew)
                     }.indices.last
                 }
+
                 override fun addEmptyDataset(): Int {
                     return datasetBuilders.also {
                         it.add(dataHandlerNew)

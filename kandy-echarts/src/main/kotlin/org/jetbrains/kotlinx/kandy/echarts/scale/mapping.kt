@@ -2,6 +2,7 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.echarts.scale
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
@@ -34,7 +35,8 @@ internal fun <T> BindingHandler.posMapping(
 
 internal fun <T> BindingHandler.posMapping(
     aes: Aes, values: DataColumn<T>, params: EchartsPositionalMappingParametersContinuous<T>.() -> Unit = {}
-): PositionalMapping<T> = addPositionalMapping(aes, values, EchartsPositionalMappingParametersContinuous<T>().apply(params))
+): PositionalMapping<T> =
+    addPositionalMapping(aes, values, EchartsPositionalMappingParametersContinuous<T>().apply(params))
 
 internal fun BindingHandler.posMapping(
     aes: Aes, column: String,

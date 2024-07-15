@@ -43,17 +43,52 @@ internal object DataMarkPointSerializer : KSerializer<DataMarkPoint> {
             value.coord?.let {
                 when {
                     value.coord[0]::class == Int::class && value.coord[1]::class == Int::class ->
-                        encodeNullableSerializableElement(descriptor, 3, ListSerializer(Int.serializer()), value.coord as List<Int>)
+                        encodeNullableSerializableElement(
+                            descriptor,
+                            3,
+                            ListSerializer(Int.serializer()),
+                            value.coord as List<Int>
+                        )
+
                     value.coord[0]::class == Float::class || value.coord[1]::class == Float::class ->
-                        encodeNullableSerializableElement(descriptor, 3, ListSerializer(Float.serializer()), value.coord as List<Float>)
+                        encodeNullableSerializableElement(
+                            descriptor,
+                            3,
+                            ListSerializer(Float.serializer()),
+                            value.coord as List<Float>
+                        )
+
                     value.coord[0]::class == Double::class || value.coord[1]::class == Double::class ->
-                        encodeNullableSerializableElement(descriptor, 3, ListSerializer(Double.serializer()), value.coord as List<Double>)
+                        encodeNullableSerializableElement(
+                            descriptor,
+                            3,
+                            ListSerializer(Double.serializer()),
+                            value.coord as List<Double>
+                        )
+
                     value.coord[0]::class == Long::class && value.coord[1]::class == Long::class ->
-                        encodeNullableSerializableElement(descriptor, 3, ListSerializer(Long.serializer()), value.coord as List<Long>)
+                        encodeNullableSerializableElement(
+                            descriptor,
+                            3,
+                            ListSerializer(Long.serializer()),
+                            value.coord as List<Long>
+                        )
+
                     value.coord[0]::class == Short::class && value.coord[1]::class == Short::class ->
-                        encodeNullableSerializableElement(descriptor, 3, ListSerializer(Short.serializer()), value.coord as List<Short>)
+                        encodeNullableSerializableElement(
+                            descriptor,
+                            3,
+                            ListSerializer(Short.serializer()),
+                            value.coord as List<Short>
+                        )
+
                     value.coord[0]::class == Byte::class && value.coord[1]::class == Byte::class ->
-                        encodeNullableSerializableElement(descriptor, 3, ListSerializer(Byte.serializer()), value.coord as List<Byte>)
+                        encodeNullableSerializableElement(
+                            descriptor,
+                            3,
+                            ListSerializer(Byte.serializer()),
+                            value.coord as List<Byte>
+                        )
                 }
             }
 

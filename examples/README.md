@@ -24,7 +24,8 @@
 
 ## User Guide
 
-* [**Quick Start Guide**](https://kotlin.github.io/kandy/quick-start-guide.html) — [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/quick_start_guide.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/TKul6gxAVDbJmocwQi9UjB)
+* [**Quick Start Guide
+  **](https://kotlin.github.io/kandy/quick-start-guide.html) — [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/quick_start_guide.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/TKul6gxAVDbJmocwQi9UjB)
 * **Geoms**
     * [Algebraic Curve](https://kotlin.github.io/kandy/algebraic-curve.html) — [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/algebraic_curve.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/h5iGaQfTkJudmpdSBaGh7j)
     * [ErrorBars](https://kotlin.github.io/kandy/errorbars-guide.html) — [Notebook](https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/guides/error_bars.ipynb) / [Datalore](https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/Sq7CLBITOQPqlAyu54Nx02)
@@ -58,13 +59,15 @@
 
 ## IDEA examples
 
-[**lets-plot-simple**](idea-examples/lets-plot-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/letsplot/simple_lets_plot.kt) —
+[**lets-plot-simple
+**](idea-examples/lets-plot-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/letsplot/simple_lets_plot.kt) —
 The following is an example of using the `kandy-lets-plot` library in an IntelliJ IDEA project.
 
 ___
 
 
-[**echarts-simple**](idea-examples/echarts-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/echarts/simple_echarts.kt) —
+[**echarts-simple
+**](idea-examples/echarts-simple/src/main/kotlin/org/jetbrains/kotlinx/kandy/echarts/simple_echarts.kt) —
 The following is an example of using the `kandy-echarts` library in an IntelliJ IDEA project.
 
 ## Notebook Examples

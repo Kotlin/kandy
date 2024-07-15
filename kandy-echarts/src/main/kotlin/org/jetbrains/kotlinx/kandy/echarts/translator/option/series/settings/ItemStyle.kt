@@ -52,6 +52,6 @@ internal data class ItemStyle(
 ) {
 
     internal fun isEmpty(): Boolean = color == null && borderColor == null && borderWidth == null && borderType == null
-        && borderDashOffset == null && borderGap == null && borderJoin == null && borderMiterLimit == null
-        && shadowBlur == null && shadowColor == null && shadowOffsetX == null && shadowOffsetY == null && opacity == null
+            && borderDashOffset == null && borderGap == null && borderJoin == null && borderMiterLimit == null
+            && shadowBlur == null && shadowColor == null && shadowOffsetX == null && shadowOffsetY == null && opacity == null
 }

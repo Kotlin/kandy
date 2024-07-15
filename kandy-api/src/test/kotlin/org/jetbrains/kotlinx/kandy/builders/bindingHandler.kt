@@ -35,7 +35,7 @@ class BindingHandlerTest {
             every { rowsCount() } returns 0
         }
 
-        bindingHandler = object : BindingHandler({mockDatasetBuilder}) {}
+        bindingHandler = object : BindingHandler({ mockDatasetBuilder }) {}
     }
 
     /**

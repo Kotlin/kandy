@@ -2,6 +2,7 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.echarts.layers.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
@@ -19,7 +20,8 @@ public interface WithSize : WithAes {
         }
 
     public fun <T> size(
-        column: ColumnReference<T>, parameters: EchartsNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
+        column: ColumnReference<T>,
+        parameters: EchartsNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> = bindingHandler.nonPosMappingCont(SIZE, column, parameters)
 
     public fun <T> size(
@@ -27,7 +29,9 @@ public interface WithSize : WithAes {
     ): NonPositionalMapping<T, Double> = bindingHandler.nonPosMappingCont(SIZE, column, params)
 
     public fun <T> size(
-        values: Iterable<T>, name: String? = null, params: EchartsNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
+        values: Iterable<T>,
+        name: String? = null,
+        params: EchartsNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> = bindingHandler.nonPosMappingCont(SIZE, values, name, params)
 
     public fun size(

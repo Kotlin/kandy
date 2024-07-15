@@ -17,7 +17,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.PATH
  * Context class for managing path layers.
  *
  * This class provides the context in which path layers can be configured.
- * It inherits from [LayerContext] and implements the [LineBuilderInterface].
+ * It inherits from [LayerBuilder] and implements the [LineBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */

@@ -6,10 +6,10 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 
 @PublishedApi
 internal val LayerBuilder.datasetBuilder: DatasetBuilder
-        get() = when (this) {
-            is LayerBuilderImpl -> this.datasetBuilder
-            is SingleLayerPlotBuilder -> this.datasetBuilder
-        }
+    get() = when (this) {
+        is LayerBuilderImpl -> this.datasetBuilder
+        is SingleLayerPlotBuilder -> this.datasetBuilder
+    }
 
 @PublishedApi
 internal val LayerBuilder.layerFeatures: MutableMap<FeatureName, LayerFeature>

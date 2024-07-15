@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
  * An abstract class representing a builder for creating plots by adding layers.
  * This class provides methods for adding layers, datasets, and other plot features.
  */
-public abstract class MultiLayerPlotBuilder internal constructor(): LayerCreatorScope(), PlotBuilder {
+public abstract class MultiLayerPlotBuilder internal constructor() : LayerCreatorScope(), PlotBuilder {
     /**
      * Adds a new layer.
      */
@@ -20,8 +20,10 @@ public abstract class MultiLayerPlotBuilder internal constructor(): LayerCreator
     }
 
     internal abstract val datasetBuilders: MutableList<DatasetBuilder>
+
     @PublishedApi
     internal val layers: MutableList<Layer> = mutableListOf()
+
     @PublishedApi
     internal val plotFeatures: MutableMap<FeatureName, PlotFeature> = mutableMapOf()
 
@@ -37,7 +39,7 @@ public abstract class MultiLayerPlotBuilder internal constructor(): LayerCreator
         get() = bindingHandler.bindingCollector
 
     override fun toPlot(): Plot {
-        check (layers.isNotEmpty()) { "No layers in plot." }
+        check(layers.isNotEmpty()) { "No layers in plot." }
         return Plot(
             datasetBuilders.map { it.build() },
             layers,

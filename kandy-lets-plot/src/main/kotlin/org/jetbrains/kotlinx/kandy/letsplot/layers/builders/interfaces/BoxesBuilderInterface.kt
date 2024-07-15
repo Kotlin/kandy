@@ -11,6 +11,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Required aesthetics for Boxes are `X`, `LOWER`, `UPPER`, `MIDDLE`, `Y_MIN`, and `Y_MAX`.
  */
-public interface BoxesBuilderInterface: WithBorderLine, WithX, WithAlpha,
+public interface BoxesBuilderInterface : WithBorderLine, WithX, WithAlpha,
     WithFillColor, WithWidth, WithWhiskerWidth,
     WithLower, WithUpper, WithMiddle, WithYMin, WithYMax, WithFatten, WithYFree

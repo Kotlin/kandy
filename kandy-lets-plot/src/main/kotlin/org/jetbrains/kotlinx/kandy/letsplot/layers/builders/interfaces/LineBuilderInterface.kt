@@ -11,5 +11,5 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Required aesthetics for line are `x` and `y`.
  */
-public interface LineBuilderInterface: WithX, WithY, WithAlpha, WithColor,
+public interface LineBuilderInterface : WithX, WithY, WithAlpha, WithColor,
     WithWidthAsSize, WithType

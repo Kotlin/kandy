@@ -37,7 +37,7 @@ class BindingHandlerTest {
             every { rowsCount() } returns 1
         }
 
-        bindingHandler = object : BindingHandler({mockDatasetBuilder}) {}
+        bindingHandler = object : BindingHandler({ mockDatasetBuilder }) {}
     }
 
     private fun assertMapping(aes: Aes, columnID: String, parameters: MappingParameters, result: Mapping) {

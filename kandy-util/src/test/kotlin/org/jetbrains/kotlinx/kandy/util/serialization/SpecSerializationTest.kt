@@ -28,7 +28,7 @@ internal class SpecSerializationTest {
             x(column<String>("origin"))
             points {
                 y(column<Double>("mpg")) {
-                    scale = continuous(limits = 1.0 .. 5.0)
+                    scale = continuous(limits = 1.0..5.0)
                 }
                 symbol = Symbol.CIRCLE_FILLED
                 fillColor = Color.RED

@@ -31,6 +31,7 @@ public class PointHandler(parent: LayerCreatorScope) : EchartsLayerBuilder(paren
     WithAlpha, WithColor, WithSize, WithSymbol {
     override val geom: Geom
         get() = POINT
+
     /**
      * Animation options settings for [points][org.jetbrains.kotlinx.kandy.echarts.layers.points].
      * If a property isn't set or set to null, a default value will be used.

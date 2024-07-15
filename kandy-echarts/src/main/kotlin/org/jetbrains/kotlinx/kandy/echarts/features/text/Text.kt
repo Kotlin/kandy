@@ -97,8 +97,8 @@ public class TextStyle(
 
     internal fun isEmpty(): Boolean =
         color == null && fontStyle == null && fontWeight == null && fontFamily == null
-            && fontSize == null && lineHeight == null && width == null && height == null
-            && border.isEmpty()
+                && fontSize == null && lineHeight == null && width == null && height == null
+                && border.isEmpty()
 
     internal fun isNotEmpty(): Boolean = !isEmpty()
 

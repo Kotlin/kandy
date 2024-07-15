@@ -18,7 +18,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.STEP
  * Context class for managing step layers.
  *
  * This class provides the context in which step layers can be configured.
- * It inherits from [LayerContext] and implements the [StepBuilderInterface].
+ * It inherits from [LayerBuilder] and implements the [StepBuilderInterface].
  *
  * @param parent the parent context for the layer.
  */

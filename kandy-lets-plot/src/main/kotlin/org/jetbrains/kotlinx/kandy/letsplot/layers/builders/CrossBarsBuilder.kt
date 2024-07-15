@@ -43,4 +43,4 @@ public open class CrossBarsBuilder @PublishedApi internal constructor(
      */
     override val requiredAes: Set<Aes>
         get() = setOf(X, Y, Y_MIN, Y_MAX)
-    }
+}

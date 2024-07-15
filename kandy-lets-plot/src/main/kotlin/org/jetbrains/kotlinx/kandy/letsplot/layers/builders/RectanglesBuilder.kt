@@ -43,4 +43,4 @@ public open class RectanglesBuilder @PublishedApi internal constructor(
      */
     override val requiredAes: Set<Aes>
         get() = setOf(X_MIN, X_MAX, Y_MIN, Y_MAX)
-    }
+}

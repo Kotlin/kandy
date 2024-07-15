@@ -22,6 +22,7 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
     internal val dataFrame: DataFrame<T>,
 ) : MultiLayerPlotBuilderImpl(), ColumnsContainer<T> by dataFrame {
     override val datasetBuilders: MutableList<DatasetBuilder> = mutableListOf(NamedDataBuilder(dataFrame))
+
     /**
      * Fetches the specified columns from the dataframe.
      *

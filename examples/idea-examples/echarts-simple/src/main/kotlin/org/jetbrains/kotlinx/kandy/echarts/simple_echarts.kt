@@ -35,10 +35,10 @@ public fun main() {
         bars {
             name = "Precipitation"
             y("precipitation"<Double>()) {
-                scale = continuous(0.0 .. 200.0)
+                scale = continuous(0.0..200.0)
             }
             color("temp"<Double>()) {
-                scale = continuous(range = Color.GREY .. Color.BLUE)
+                scale = continuous(range = Color.GREY..Color.BLUE)
             }
             label {
                 position = LabelPosition.TOP

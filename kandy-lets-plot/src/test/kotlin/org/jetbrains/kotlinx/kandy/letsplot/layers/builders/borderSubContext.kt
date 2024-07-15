@@ -34,50 +34,74 @@ class BorderTests {
     @Test
     fun `color const for border`() {
         builder.color = Color.BLUE
-        assertEquals(Color.BLUE, (builder.bindingHandler.bindingCollector.settings[COLOR] as NonPositionalSetting<*>).value)
+        assertEquals(
+            Color.BLUE,
+            (builder.bindingHandler.bindingCollector.settings[COLOR] as NonPositionalSetting<*>).value
+        )
     }
 
     @Test
     fun `color str mapping for border`() {
         builder.color("color")
-        assertEquals("color", (builder.bindingHandler.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "color",
+            (builder.bindingHandler.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `color dataColumn mapping for border`() {
         builder.color(color)
-        assertEquals("color", (builder.bindingHandler.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "color",
+            (builder.bindingHandler.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `color iterable mapping for border`() {
         builder.color(listOf("red"))
-        assertEquals("color", (builder.bindingHandler.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "color",
+            (builder.bindingHandler.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `type const for border`() {
         builder.type = LineType.DOTDASH
-        assertEquals(LineType.DOTDASH, (builder.bindingHandler.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value)
+        assertEquals(
+            LineType.DOTDASH,
+            (builder.bindingHandler.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value
+        )
     }
 
     @Test
     fun `type str mapping for border`() {
         builder.type("type")
-        assertEquals("type", (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "type",
+            (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `border type dataColumn mapping for border`() {
         builder.type(type)
-        assertEquals("type", (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "type",
+            (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `border type iterable mapping for border`() {
         println(builder.bindingHandler.datasetBuilder.rowsCount())
         builder.type(listOf("dot"))
-        assertEquals("linetype", (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "linetype",
+            (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
@@ -89,18 +113,27 @@ class BorderTests {
     @Test
     fun `border width str mapping for border`() {
         builder.width("width")
-        assertEquals("width", (builder.bindingHandler.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "width",
+            (builder.bindingHandler.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `border width dataColumn mapping for border`() {
         builder.width(width)
-        assertEquals("width", (builder.bindingHandler.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "width",
+            (builder.bindingHandler.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `border width iterable mapping for border`() {
         builder.width(listOf(0.2))
-        assertEquals("size", (builder.bindingHandler.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "size",
+            (builder.bindingHandler.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 }

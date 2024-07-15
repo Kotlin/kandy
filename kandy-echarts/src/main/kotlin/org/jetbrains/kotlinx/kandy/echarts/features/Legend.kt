@@ -87,7 +87,7 @@ public class Legend(
 
     internal fun isEmpty(): Boolean =
         type == null && left == null && top == null && right == null && bottom == null && width == null
-            && height == null && orient == null && formatter == null
+                && height == null && orient == null && formatter == null
 
     internal fun isNotEmpty(): Boolean = !isEmpty()
 

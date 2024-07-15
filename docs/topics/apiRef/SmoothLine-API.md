@@ -9,7 +9,7 @@ smoothLine</format>(
 <include from="arguments.topic" element-id="signature-of-sample"></include>,
 <a href="#method"><format style="bold" color="DarkGray">method</format></a>: SmoothMethod = SmoothMethod.LOESS(),
 <a href="#smootherpointcount"><format style="bold" color="DarkGray">smootherPointCount</format></a>: Int = 100
-) <format style="italic">{ this: SmoothLineLayerContext -></format></p>
+) <format style="italic">{ this: SmoothLineLayerBuilder -></format></p>
 <include from = "interfaces.topic" element-id="interface-of-line"></include>
 <format style="italic">}</format>
 </tldr>

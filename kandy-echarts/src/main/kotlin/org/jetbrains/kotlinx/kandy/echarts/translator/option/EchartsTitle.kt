@@ -42,9 +42,9 @@ internal data class EchartsTitle(
 ) {
     internal fun isEmpty(): Boolean =
         id == null && show == null && text == null && link == null && target == null && textStyle == null
-            && subtext == null && sublink == null && subtarget == null && subtextStyle == null && textAlign == null
-            && textVerticalAlign == null && triggerEvent == null && padding == null && itemGap == null && zlevel == null
-            && z == null && left == null && top == null && right == null && bottom == null && backgroundColor == null
-            && borderColor == null && borderWidth == null && borderRadius == null && shadowBlur == null
-            && shadowColor == null && shadowOffsetX == null && shadowOffsetY == null
+                && subtext == null && sublink == null && subtarget == null && subtextStyle == null && textAlign == null
+                && textVerticalAlign == null && triggerEvent == null && padding == null && itemGap == null && zlevel == null
+                && z == null && left == null && top == null && right == null && bottom == null && backgroundColor == null
+                && borderColor == null && borderWidth == null && borderRadius == null && shadowBlur == null
+                && shadowColor == null && shadowOffsetX == null && shadowOffsetY == null
 }

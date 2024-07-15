@@ -13,7 +13,7 @@ densityPlot</format>(
 <a href="#kernel"><format style="bold" color="DarkGray">kernel</format></a>: Kernel = Kernel.GAUSSIAN,
 <a href="#fullscanmax"><format style="bold" color="DarkGray">fullScanMax</format></a>: Int = 5000,
 <a href="#bandwidth"><format style="bold" color="DarkGray">bandWidth</format></a>: BandWidth = BandWidth.Method.NRD0,
-) <format style="italic">{ this: DensityPlotLayerContext -></format></p>
+) <format style="italic">{ this: DensityPlotLayerBuilder -></format></p>
 <include from = "interfaces.topic" element-id="interface-of-area"></include>
 <format style="italic">}</format>
 </tldr>

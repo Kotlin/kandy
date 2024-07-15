@@ -440,7 +440,7 @@ That means you can configure boxes settings, mappings using `StatCandlestick` da
 
 ```kotlin
 df.candlestick("x", "open", "high", "low", "close").configure {
-    // Boxes + StatCandlestick + PlotContext
+    // Boxes + StatCandlestick + PlotBuilder
     // Can't add a new layer
     y.limits = 3.0..17.0
     increase {

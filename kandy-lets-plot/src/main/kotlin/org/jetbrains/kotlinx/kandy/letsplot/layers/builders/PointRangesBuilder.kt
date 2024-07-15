@@ -23,7 +23,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT_RANGE
  * Context class for managing pointRange layers.
  *
  * This class provides the context in which pointRange layers can be configured.
- * It inherits from [LayerContext] and implements the [PointRangesBuilderInterface].
+ * It inherits from [LayerBuilder] and implements the [PointRangesBuilderInterface].
  * It also initializes `innerPoint` and `innerLine` contexts for more granular customization.
  *
  * @param parent the parent context for the layer.
