@@ -17,7 +17,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.AREA
  * Builder class for managing Area layers.
  *
  * This class provides the context in which Area layers can be configured.
- * It inherits from [LayerWithBorderLineBuilder] and implements the [AreaInterface].
+ * It inherits from [LayerWithBorderLineBuilder] and implements the [AreaBuilderInterface].
  *
  * @param parent the parent [LayerCreatorScope] for the layer.
  */
