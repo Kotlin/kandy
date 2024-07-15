@@ -50,7 +50,7 @@ internal abstract class DatasetBuilderImpl(
         return when(column) {
             is ColumnAccessor<*> -> takeColumn(column)
             is DataColumn<*> -> addColumn(column)
-            else -> TODO()
+            else -> error("Unexpected column reference type: ${column::class}")
         }
     }
 
@@ -72,20 +72,20 @@ internal abstract class DatasetBuilderImpl(
         referredColumns[name] = columnId
         return columnId
     }
+}
 
-    internal companion object {
-        fun fromData(dataFrame: DataFrame<*>, initialBuilder: DatasetBuilderImpl? = null): NamedDataBuilder {
-            return NamedDataBuilder(dataFrame, initialBuilder)
-        }
-        fun fromData(groupBy: GroupBy<*, *>, initialBuilder: DatasetBuilderImpl? = null): GroupedDataBuilder {
-            return GroupedDataBuilder(groupBy, initialBuilder)
-        }
-        fun fromData(dataset: TableData, initialBuilder: DatasetBuilderImpl? = null): DatasetBuilderImpl {
-            return when (dataset) {
-                is NamedData -> NamedDataBuilder(dataset, initialBuilder)
-                is GroupedData ->GroupedDataBuilder(dataset, initialBuilder)
-                else -> error("Unexpected dataset type: ${dataset::class}")
-            }
-        }
+internal fun DatasetBuilderImpl(dataFrame: DataFrame<*>, initialBuilder: DatasetBuilderImpl? = null): NamedDataBuilder {
+    return NamedDataBuilder(dataFrame, initialBuilder)
+}
+
+internal fun DatasetBuilderImpl(groupBy: GroupBy<*, *>, initialBuilder: DatasetBuilderImpl? = null): GroupedDataBuilder {
+    return GroupedDataBuilder(groupBy, initialBuilder)
+}
+
+internal fun DatasetBuilderImpl(dataset: TableData, initialBuilder: DatasetBuilderImpl? = null): DatasetBuilderImpl {
+    return when (dataset) {
+        is NamedData -> NamedDataBuilder(dataset, initialBuilder)
+        is GroupedData ->GroupedDataBuilder(dataset, initialBuilder)
+        else -> error("Unexpected dataset type: ${dataset::class}")
     }
 }

@@ -5,5 +5,5 @@ import org.jetbrains.kotlinx.kandy.ir.data.TableData
 
 public abstract class DataFrameSingleLayerPlotBuilder @PublishedApi internal constructor(data: TableData) :
     SingleLayerPlotBuilder() {
-    override val datasetBuilder = DatasetBuilderImpl.fromData(data)
+    override val datasetBuilder = DatasetBuilderImpl(data)
 }

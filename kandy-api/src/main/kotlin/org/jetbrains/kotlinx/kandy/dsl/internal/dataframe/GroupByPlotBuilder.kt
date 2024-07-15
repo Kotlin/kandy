@@ -24,7 +24,7 @@ public class GroupByPlotBuilder<T, G> @PublishedApi internal constructor(
     internal val groupBy: GroupBy<T, G>,
     internal val dataframe: DataFrame<G> = groupBy.concatFixed()
 ) : MultiLayerPlotBuilderImpl(), ColumnsContainer<G> by dataframe, GroupedDataScope<T, G> {
-    override val datasetBuilders: MutableList<DatasetBuilder> = mutableListOf(DatasetBuilderImpl.fromData(groupBy))
+    override val datasetBuilders: MutableList<DatasetBuilder> = mutableListOf(DatasetBuilderImpl(groupBy))
 
     @Suppress("UNCHECKED_CAST")
     public override val key: ColumnGroup<T> =

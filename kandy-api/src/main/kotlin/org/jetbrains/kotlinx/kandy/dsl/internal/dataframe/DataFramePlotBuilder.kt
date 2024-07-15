@@ -91,7 +91,7 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
 
     @PublishedApi
     internal fun addDataset(groupBy: GroupBy<*, *>): Int {
-        datasetBuilders.add(DatasetBuilderImpl.fromData(groupBy, datasetBuilder as DatasetBuilderImpl))
+        datasetBuilders.add(DatasetBuilderImpl(groupBy, datasetBuilder as DatasetBuilderImpl))
         return datasetBuilders.lastIndex
     }
 }
