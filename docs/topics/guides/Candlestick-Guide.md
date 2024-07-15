@@ -275,7 +275,7 @@ val statCandlestickBoxesPlot = df.plot {
             upper(Stat.upper)
             yMax(Stat.max)
             // temporary solution, middle shoudn't be necceasary
-            middle(List(Stat.x.size()) {null})
+            middle(List(Stat.x.size()) { null })
             val colorScale = Scale.categorical(true to Color.GREEN, false to Color.RED)
             fillColor(Stat.isIncreased) {
                 scale = colorScale
@@ -287,7 +287,7 @@ val statCandlestickBoxesPlot = df.plot {
                 // remove legend
                 legend.type = LegendType.None
             }
-            alpha= 0.6
+            alpha = 0.6
             // remove whisker ends
             whiskerWidth = 0.0
         }
