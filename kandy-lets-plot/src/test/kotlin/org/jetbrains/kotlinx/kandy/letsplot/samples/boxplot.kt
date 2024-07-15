@@ -113,10 +113,7 @@ class Boxplot : SampleHelper("boxplot") {
             "United States" to usaLifeExpectancy
         ).gather(*countries).into("country", "lifeExp")
 
-        lifeExpectancyData.boxplot("country", "lifeExp").configure { coordFlip() }.also {
-
-            println(it.toLetsPlot().toSpec())
-        }
+        lifeExpectancyData.boxplot("country", "lifeExp").configure { coordFlip() }
             // SampleEnd
             .saveSample()
     }
