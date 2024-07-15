@@ -4,9 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationBoxplotCandlestick
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationLayerFeature

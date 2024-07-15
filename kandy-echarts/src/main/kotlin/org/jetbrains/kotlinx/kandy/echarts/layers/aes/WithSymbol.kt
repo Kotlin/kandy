@@ -6,7 +6,6 @@ package org.jetbrains.kotlinx.kandy.echarts.layers.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParametersCategorical
 import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMappingCat
 import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol

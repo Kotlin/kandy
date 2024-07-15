@@ -4,14 +4,7 @@ import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationType
 import org.jetbrains.kotlinx.kandy.echarts.io.toJson
-import org.jetbrains.kotlinx.kandy.echarts.layers.area
-import org.jetbrains.kotlinx.kandy.echarts.layers.bars
-import org.jetbrains.kotlinx.kandy.echarts.layers.boxplot
-import org.jetbrains.kotlinx.kandy.echarts.layers.candlestick
-import org.jetbrains.kotlinx.kandy.echarts.layers.layout
-import org.jetbrains.kotlinx.kandy.echarts.layers.line
-import org.jetbrains.kotlinx.kandy.echarts.layers.pie
-import org.jetbrains.kotlinx.kandy.echarts.layers.points
+import org.jetbrains.kotlinx.kandy.echarts.layers.*
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import kotlin.test.Test

@@ -4,7 +4,6 @@
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing

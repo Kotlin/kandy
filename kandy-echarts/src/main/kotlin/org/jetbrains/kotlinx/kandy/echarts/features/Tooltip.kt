@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.features
 
+import org.jetbrains.kotlinx.kandy.echarts.features.Trigger.*
 import org.jetbrains.kotlinx.kandy.echarts.layers.EChartsLayout
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.EchartsTooltip
 

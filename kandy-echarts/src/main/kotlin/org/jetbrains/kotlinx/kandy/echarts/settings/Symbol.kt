@@ -4,6 +4,14 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.settings
 
+import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol.Companion.ARROW
+import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol.Companion.CIRCLE
+import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol.Companion.DIAMOND
+import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol.Companion.EMPTY_CIRCLE
+import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol.Companion.PIN
+import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol.Companion.RECT
+import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol.Companion.ROUND_RECT
+import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol.Companion.TRIANGLE
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.Measurement
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.pairOf
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.singleOf

@@ -1,11 +1,11 @@
 package org.jetbrains.kotlinx.kandy.echarts.dsl
 
 import org.jetbrains.kotlinx.kandy.dsl.plot
+import org.jetbrains.kotlinx.kandy.echarts.features.label.LabelPosition
+import org.jetbrains.kotlinx.kandy.echarts.features.label.label
 import org.jetbrains.kotlinx.kandy.echarts.features.text.FontFamily
 import org.jetbrains.kotlinx.kandy.echarts.features.text.FontStyle
 import org.jetbrains.kotlinx.kandy.echarts.features.text.FontWeight
-import org.jetbrains.kotlinx.kandy.echarts.features.label.LabelPosition
-import org.jetbrains.kotlinx.kandy.echarts.features.label.label
 import org.jetbrains.kotlinx.kandy.echarts.io.toJson
 import org.jetbrains.kotlinx.kandy.echarts.layers.area
 import org.jetbrains.kotlinx.kandy.echarts.layers.bars

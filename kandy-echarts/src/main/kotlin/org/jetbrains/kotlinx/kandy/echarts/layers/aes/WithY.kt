@@ -6,7 +6,6 @@ package org.jetbrains.kotlinx.kandy.echarts.layers.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.echarts.scale.posMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping

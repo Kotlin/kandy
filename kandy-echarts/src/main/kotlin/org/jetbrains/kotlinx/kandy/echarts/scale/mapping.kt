@@ -8,7 +8,8 @@ import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.dataframe.impl.asList
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.addNonPositionalMapping
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.addPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping

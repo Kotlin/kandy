@@ -1,16 +1,7 @@
 package org.jetbrains.kotlinx.kandy.echarts.io
 
-import kotlinx.html.body
-import kotlinx.html.div
-import kotlinx.html.head
-import kotlinx.html.html
-import kotlinx.html.id
-import kotlinx.html.meta
-import kotlinx.html.script
+import kotlinx.html.*
 import kotlinx.html.stream.createHTML
-import kotlinx.html.style
-import kotlinx.html.title
-import kotlinx.html.unsafe
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.PlotChangeAnimation

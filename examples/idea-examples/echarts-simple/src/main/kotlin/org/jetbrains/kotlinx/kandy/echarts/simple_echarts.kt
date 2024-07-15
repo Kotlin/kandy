@@ -5,10 +5,10 @@
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.invoke
 import org.jetbrains.kotlinx.kandy.dsl.plot
-import org.jetbrains.kotlinx.kandy.echarts.layers.aes.x
 import org.jetbrains.kotlinx.kandy.echarts.features.label.LabelPosition
 import org.jetbrains.kotlinx.kandy.echarts.features.label.label
 import org.jetbrains.kotlinx.kandy.echarts.features.legend
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.x
 import org.jetbrains.kotlinx.kandy.echarts.layers.bars
 import org.jetbrains.kotlinx.kandy.echarts.layers.layout
 import org.jetbrains.kotlinx.kandy.echarts.layers.line
