@@ -24,8 +24,8 @@ public abstract class LayerCreatorScope {
      * Default dataset handler.
      */
     @PublishedApi
-    internal val datasetHandler: DatasetHandler
-        get() = plotBuilder.datasetHandlers[datasetIndex]
+    internal val datasetBuilder: DatasetBuilder
+        get() = plotBuilder.datasetBuilders[datasetIndex]
 
 
     /**

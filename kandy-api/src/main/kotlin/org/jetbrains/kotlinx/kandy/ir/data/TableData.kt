@@ -7,4 +7,4 @@ package org.jetbrains.kotlinx.kandy.ir.data
 /**
  * A foundational data model representing structured data for visualization.
  */
-public sealed interface TableData
+public interface TableData

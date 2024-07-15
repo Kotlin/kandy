@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.layers.builders
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.toColumn
 import org.jetbrains.kotlinx.kandy.dsl.continuous
-import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
@@ -18,6 +18,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
+@Suppress("INVISIBLE_MEMBER")
 class HLineTests {
     private val yIntercept = listOf("first").toColumn("yIntercept")
     private val type = listOf("dot").toColumn("type")
@@ -27,147 +28,147 @@ class HLineTests {
 
     private val df = dataFrameOf(yIntercept, type, color, alpha, width)
 
-    private val parentContext = DataFramePlotBuilder(df)
-    private lateinit var context: HLineContext
+    private val parentBuilder = DataFramePlotBuilder(df)
+    private lateinit var builder: HLineBuilder
 
     @BeforeTest
     fun setUp() {
-        context = HLineContext(parentContext)
+        builder = HLineBuilder(parentBuilder)
     }
 
     @Test
     fun `geom is H_LINE`() {
-        assertEquals(H_LINE, context.geom)
+        assertEquals(H_LINE, builder.geom)
     }
 
     @Test
     fun `requiredAes contains Y_INTERCEPT`() {
-        assertTrue(context.requiredAes.contains(Y_INTERCEPT))
+        assertTrue(builder.requiredAes.contains(Y_INTERCEPT))
     }
 
     @Test
     fun `color const for hline`() {
-        context.color = Color.BLUE
-        assertEquals(Color.BLUE, (context.bindingCollector.settings[COLOR] as NonPositionalSetting<*>).value)
+        builder.color = Color.BLUE
+        assertEquals(Color.BLUE, (builder.bindingCollector.settings[COLOR] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `color str mapping for hline`() {
-        context.color("color")
-        assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
+        builder.color("color")
+        assertEquals("color", (builder.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `color dataColumn mapping for hline`() {
-        context.color(color)
-        assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
+        builder.color(color)
+        assertEquals("color", (builder.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `color iterable mapping for hline`() {
-        context.color(listOf("red"))
-        assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
+        builder.color(listOf("red"))
+        assertEquals("color", (builder.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `type const for hline`() {
-        context.type = LineType.DOTDASH
-        assertEquals(LineType.DOTDASH, (context.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value)
+        builder.type = LineType.DOTDASH
+        assertEquals(LineType.DOTDASH, (builder.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `type str mapping for hline`() {
-        context.type("type")
-        assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
+        builder.type("type")
+        assertEquals("type", (builder.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `type dataColumn mapping for hline`() {
-        context.type(type)
-        assertEquals("type", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
+        builder.type(type)
+        assertEquals("type", (builder.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `type iterable mapping for hline`() {
-        context.type(listOf("dot"))
-        assertEquals("linetype", (context.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
+        builder.type(listOf("dot"))
+        assertEquals("linetype", (builder.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `alpha const for hline`() {
-        context.alpha = 0.1
-        assertEquals(0.1, (context.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
+        builder.alpha = 0.1
+        assertEquals(0.1, (builder.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `alpha str mapping for hline`() {
-        context.alpha("alpha")
-        assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
+        builder.alpha("alpha")
+        assertEquals("alpha", (builder.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `alpha dataColumn mapping for hline`() {
-        context.alpha(alpha)
-        assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
+        builder.alpha(alpha)
+        assertEquals("alpha", (builder.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `alpha iterable mapping for hline`() {
-        context.alpha(listOf(0.2, 0.5, .1))
-        assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
+        builder.alpha(listOf(0.2, 0.5, .1))
+        assertEquals("alpha", (builder.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `width const for hline`() {
-        context.width = .5
-        assertEquals(.5, (context.bindingCollector.settings[SIZE] as NonPositionalSetting<*>).value)
+        builder.width = .5
+        assertEquals(.5, (builder.bindingCollector.settings[SIZE] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `width str mapping for hline`() {
-        context.width("width")
-        assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+        builder.width("width")
+        assertEquals("width", (builder.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `width dataColumn mapping for hline`() {
-        context.width(width)
-        assertEquals("width", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+        builder.width(width)
+        assertEquals("width", (builder.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `width iterable mapping for hline`() {
-        context.width(listOf(0.2, .1))
-        assertEquals("size", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+        builder.width(listOf(0.2, .1))
+        assertEquals("size", (builder.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `x free for hline`() {
-        context.x {
+        builder.x {
             axis {
                 name = "xAxis"
             }
             scale = continuous(-3.0, 3.0)
         }
 
-        assertEquals(X, context.bindingCollector.freeScales[X]?.aes)
+        assertEquals(X, builder.bindingCollector.freeScales[X]?.aes)
         assertEquals(
             "xAxis",
-            (context.bindingCollector.freeScales[X]?.parameters as? LetsPlotPositionalMappingParameters<*>)?.axis?.name
+            (builder.bindingCollector.freeScales[X]?.parameters as? LetsPlotPositionalMappingParameters<*>)?.axis?.name
         )
     }
 
     @Test
     fun `y intercept const for hline`() {
-        context.yIntercept.constant(5)
-        assertEquals(5, (context.bindingCollector.settings[Y_INTERCEPT] as? PositionalSetting<*>)?.value)
+        builder.yIntercept.constant(5)
+        assertEquals(5, (builder.bindingCollector.settings[Y_INTERCEPT] as? PositionalSetting<*>)?.value)
     }
 
     @Test
     fun `y intercept mapping for hline`() {
-        context.yIntercept(yIntercept)
+        builder.yIntercept(yIntercept)
 
-        assertEquals(Y_INTERCEPT, context.bindingCollector.mappings[Y_INTERCEPT]?.aes)
-        assertEquals("yIntercept", (context.bindingCollector.mappings[Y_INTERCEPT] as? PositionalMapping<*>)?.columnID)
+        assertEquals(Y_INTERCEPT, builder.bindingCollector.mappings[Y_INTERCEPT]?.aes)
+        assertEquals("yIntercept", (builder.bindingCollector.mappings[Y_INTERCEPT] as? PositionalMapping<*>)?.columnID)
     }
 }

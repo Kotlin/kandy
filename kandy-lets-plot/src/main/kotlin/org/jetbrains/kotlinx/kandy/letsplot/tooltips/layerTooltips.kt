@@ -1,13 +1,12 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.letsplot.tooltips
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilder
-import org.jetbrains.kotlinx.kandy.dsl.internal.datasetHandler
-import org.jetbrains.kotlinx.kandy.dsl.internal.layerFeatures
+import org.jetbrains.kotlinx.kandy.dsl.internal.*
+import org.jetbrains.kotlinx.kandy.letsplot.internal.datasetBuilderImpl
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.context.LayerTooltipsContext
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
 import kotlin.reflect.KProperty
@@ -20,7 +19,8 @@ import kotlin.reflect.KProperty
  * @return formatted string
  */
 public fun LayerBuilder.value(column: ColumnReference<*>): String {
-    return "@${datasetHandler.addColumn(column)}"
+    @Suppress("INVISIBLE_MEMBER")
+    return "@${datasetBuilderImpl.addColumn(column)}"
 }
 
 /**
@@ -30,7 +30,8 @@ public fun LayerBuilder.value(column: ColumnReference<*>): String {
  * @return formatted string
  */
 public fun LayerBuilder.value(columnName: String): String {
-    return "@${datasetHandler.takeColumn(columnName)}"
+    @Suppress("INVISIBLE_MEMBER")
+    return "@${datasetBuilder.takeColumn(columnName)}"
 }
 
 /**
@@ -40,7 +41,8 @@ public fun LayerBuilder.value(columnName: String): String {
  * @return formatted string
  */
 public fun LayerBuilder.value(column: KProperty<*>): String {
-    return "@${datasetHandler.takeColumn(column.name)}"
+    @Suppress("INVISIBLE_MEMBER")
+    return "@${datasetBuilder.takeColumn(column.name)}"
 }
 
 /**
@@ -51,6 +53,7 @@ public fun LayerBuilder.value(column: KProperty<*>): String {
 public fun LayerBuilder.tooltips(
     enable: Boolean = true,
 ) {
+    @Suppress("INVISIBLE_MEMBER")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
         listOf(),
         null,
@@ -84,13 +87,14 @@ public inline fun LayerBuilder.tooltips(
     minWidth: Double? = null,
     tooltipsContextAction: LayerTooltipsContext.() -> Unit
 ) {
+    @Suppress("INVISIBLE_MEMBER")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips.fromContext(
-        variables.map { datasetHandler.addColumn(it) },
+        variables.map { datasetBuilderImpl.addColumn(it) },
         title,
         anchor,
         minWidth,
         enable = true,
-        formats.map { (column, format) -> datasetHandler.takeColumn(column.name()) to format },
+        formats.map { (column, format) -> datasetBuilder.takeColumn(column.name()) to format },
         LayerTooltipsContext(this).apply(tooltipsContextAction)
     )
 }
@@ -113,8 +117,9 @@ public fun LayerBuilder.tooltips(
     anchor: Anchor? = null,
     minWidth: Double? = null,
 ) {
+    @Suppress("INVISIBLE_MEMBER")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
-        (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it) },
+        (listOf(variable) + variables.toList()).map { datasetBuilder.takeColumn(it) },
         null,
         formats.toList(),
         title, anchor, minWidth, enable = true
@@ -139,10 +144,11 @@ public fun LayerBuilder.tooltips(
     anchor: Anchor? = null,
     minWidth: Double? = null,
 ) {
+    @Suppress("INVISIBLE_MEMBER")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
-        (listOf(variable) + variables.toList()).map { datasetHandler.addColumn(it) },
+        (listOf(variable) + variables.toList()).map { datasetBuilderImpl.addColumn(it) },
         null,
-        formats.map { (column, format) -> datasetHandler.takeColumn(column.name()) to format },
+        formats.map { (column, format) -> datasetBuilder.takeColumn(column.name()) to format },
         title,
         anchor,
         minWidth,
@@ -169,10 +175,11 @@ public fun LayerBuilder.tooltips(
     anchor: Anchor? = null,
     minWidth: Double? = null,
 ) {
+    @Suppress("INVISIBLE_MEMBER")
     layerFeatures[LayerTooltips.FEATURE_NAME] = LayerTooltips(
-        (listOf(variable) + variables.toList()).map { datasetHandler.takeColumn(it.name) },
+        (listOf(variable) + variables.toList()).map { datasetBuilder.takeColumn(it.name) },
         null,
-        formats.map { (property, format) ->  datasetHandler.takeColumn(property.name) to format },
+        formats.map { (property, format) ->  datasetBuilder.takeColumn(property.name) to format },
         title, anchor, minWidth, enable = true
     )
 }

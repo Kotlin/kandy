@@ -1,13 +1,11 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet
 
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.PlotBuilder
-import org.jetbrains.kotlinx.kandy.dsl.internal.datasetHandler
-import org.jetbrains.kotlinx.kandy.dsl.internal.plotFeatures
+import org.jetbrains.kotlinx.kandy.dsl.internal.*
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.context.FacetWrapContext
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
@@ -53,7 +51,9 @@ public fun PlotBuilder.facetGridX(
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
 ) {
-    val xColName = datasetHandler.takeColumn(x.name())
+    @Suppress("INVISIBLE_MEMBER")
+    val xColName = datasetBuilder.takeColumn(x.name())
+    @Suppress("INVISIBLE_MEMBER")
     plotFeatures[FacetGridFeature.FEATURE_NAME] =
         FacetGridFeature(
             xColName, null, scalesSharing, order, OrderDirection.ASCENDING, format, null
@@ -84,7 +84,9 @@ public fun PlotBuilder.facetGridY(
     order: OrderDirection = OrderDirection.ASCENDING,
     format: String? = null
 ) {
-    val yColName = datasetHandler.takeColumn(y.name())
+    @Suppress("INVISIBLE_MEMBER")
+    val yColName = datasetBuilder.takeColumn(y.name())
+    @Suppress("INVISIBLE_MEMBER")
     plotFeatures[FacetGridFeature.FEATURE_NAME] =
         FacetGridFeature(null, yColName, scalesSharing, OrderDirection.ASCENDING, order, null, format)
 }
@@ -111,6 +113,7 @@ public fun PlotBuilder.facetGridY(
  * "Score: {.2f}" -> "Score: 12.45"
  * "'Score: {}' "-> "Score: 12.454789"
  */
+@Suppress("INVISIBLE_MEMBER")
 public fun PlotBuilder.facetGrid(
     x: ColumnReference<*>,
     y: ColumnReference<*>,
@@ -120,8 +123,8 @@ public fun PlotBuilder.facetGrid(
     xFormat: String? = null,
     yFormat: String? = null
 ) {
-    val xColName = datasetHandler.takeColumn(x.name())
-    val yColName = datasetHandler.takeColumn(y.name())
+    val xColName = datasetBuilder.takeColumn(x.name())
+    val yColName = datasetBuilder.takeColumn(y.name())
     plotFeatures[FacetGridFeature.FEATURE_NAME] =
         FacetGridFeature(xColName, yColName, scalesSharing, xOrder, yOrder, xFormat, yFormat)
 }
@@ -154,6 +157,7 @@ public fun PlotBuilder.facetWrap(
     direction: Direction = Direction.HORIZONTAL,
     block: FacetWrapContext.() -> Unit
 ) {
+    @Suppress("INVISIBLE_MEMBER")
     plotFeatures[FacetWrapFeature.FEATURE_NAME] =
-        FacetWrapContext().apply(block).toFeature(datasetHandler, nCol, nRow, scalesSharing, direction)
+        FacetWrapContext().apply(block).toFeature(datasetBuilder, nCol, nRow, scalesSharing, direction)
 }

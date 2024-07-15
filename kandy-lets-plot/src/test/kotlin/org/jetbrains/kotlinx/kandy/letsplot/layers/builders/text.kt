@@ -4,7 +4,7 @@ import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.toColumn
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
-import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
@@ -22,6 +22,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
+@Suppress("INVISIBLE_MEMBER")
 class FontTests {
     private val color = listOf("blue").toColumn("color")
     private val size = listOf(1.5).toColumn("size")
@@ -30,111 +31,112 @@ class FontTests {
 
     private val df = dataFrameOf(color, size, face, family)
 
-    private val parentContext = DataFramePlotBuilder(df)
-    private lateinit var context: Font
+    private val parentBuilder = DataFramePlotBuilder(df)
+    private lateinit var builder: Font
 
     @BeforeTest
     fun setUp() {
-        context = Font(parentContext)
+        builder = Font(parentBuilder.bindingHandler)
     }
 
     @Test
     fun `color const for font`() {
-        context.color = Color.BLUE
-        assertEquals(Color.BLUE, (context.bindingCollector.settings[COLOR] as NonPositionalSetting<*>).value)
+        builder.color = Color.BLUE
+        assertEquals(Color.BLUE, (builder.bindingHandler.bindingCollector.settings[COLOR] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `color str mapping for font`() {
-        context.color("color")
-        assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
+        builder.color("color")
+        assertEquals("color", (builder.bindingHandler.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `color dataColumn mapping for font`() {
-        context.color(color)
-        assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
+        builder.color(color)
+        assertEquals("color", (builder.bindingHandler.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `color iterable mapping for font`() {
-        context.color(listOf("red"))
-        assertEquals("color", (context.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
+        builder.color(listOf("red"))
+        assertEquals("color", (builder.bindingHandler.bindingCollector.mappings[COLOR] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `face const for font`() {
-        context.face = FontFace.BOLD
-        assertEquals(FontFace.BOLD, (context.bindingCollector.settings[FONT_FACE] as NonPositionalSetting<*>).value)
+        builder.face = FontFace.BOLD
+        assertEquals(FontFace.BOLD, (builder.bindingHandler.bindingCollector.settings[FONT_FACE] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `face str mapping for font`() {
-        context.face("face")
-        assertEquals("face", (context.bindingCollector.mappings[FONT_FACE] as NonPositionalMapping<*, *>).columnID)
+        builder.face("face")
+        assertEquals("face", (builder.bindingHandler.bindingCollector.mappings[FONT_FACE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `face dataColumn mapping for font`() {
-        context.face(face)
-        assertEquals("face", (context.bindingCollector.mappings[FONT_FACE] as NonPositionalMapping<*, *>).columnID)
+        builder.face(face)
+        assertEquals("face", (builder.bindingHandler.bindingCollector.mappings[FONT_FACE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `face iterable mapping for font`() {
-        context.face(listOf("1", "2"))
-        assertEquals("fontface", (context.bindingCollector.mappings[FONT_FACE] as NonPositionalMapping<*, *>).columnID)
+        builder.face(listOf("1"))
+        assertEquals("fontface", (builder.bindingHandler.bindingCollector.mappings[FONT_FACE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `family const for font`() {
-        context.family = FontFamily.MONO
-        assertEquals(FontFamily.MONO, (context.bindingCollector.settings[FONT_FAMILY] as NonPositionalSetting<*>).value)
+        builder.family = FontFamily.MONO
+        assertEquals(FontFamily.MONO, (builder.bindingHandler.bindingCollector.settings[FONT_FAMILY] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `family str mapping for font`() {
-        context.family("family")
-        assertEquals("family", (context.bindingCollector.mappings[FONT_FAMILY] as NonPositionalMapping<*, *>).columnID)
+        builder.family("family")
+        assertEquals("family", (builder.bindingHandler.bindingCollector.mappings[FONT_FAMILY] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `family dataColumn mapping for font`() {
-        context.family(family)
-        assertEquals("family", (context.bindingCollector.mappings[FONT_FAMILY] as NonPositionalMapping<*, *>).columnID)
+        builder.family(family)
+        assertEquals("family", (builder.bindingHandler.bindingCollector.mappings[FONT_FAMILY] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `family iterable mapping for font`() {
-        context.family(listOf("1", "2"))
-        assertEquals("family", (context.bindingCollector.mappings[FONT_FAMILY] as NonPositionalMapping<*, *>).columnID)
+        builder.family(listOf("1"))
+        assertEquals("family", (builder.bindingHandler.bindingCollector.mappings[FONT_FAMILY] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `size const for font`() {
-        context.size = 0.3
-        assertEquals(0.3, (context.bindingCollector.settings[SIZE] as NonPositionalSetting<*>).value)
+        builder.size = 0.3
+        assertEquals(0.3, (builder.bindingHandler.bindingCollector.settings[SIZE] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `size str mapping for font`() {
-        context.size("size")
-        assertEquals("size", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+        builder.size("size")
+        assertEquals("size", (builder.bindingHandler.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `size dataColumn mapping for font`() {
-        context.size(size)
-        assertEquals("size", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+        builder.size(size)
+        assertEquals("size", (builder.bindingHandler.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `size iterable mapping for font`() {
-        context.size(listOf(0.2, 0.5, .1))
-        assertEquals("size", (context.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
+        builder.size(listOf(0.2))
+        assertEquals("size", (builder.bindingHandler.bindingCollector.mappings[SIZE] as NonPositionalMapping<*, *>).columnID)
     }
 }
 
+@Suppress("INVISIBLE_MEMBER")
 class TextTests {
     private val xAxis = listOf(0.5).toColumn("xAxis")
     private val yAxis = listOf("first").toColumn("yAxis")
@@ -143,116 +145,116 @@ class TextTests {
 
     private val df = dataFrameOf(xAxis, yAxis, label, alpha)
 
-    private val parentContext = DataFramePlotBuilder(df)
-    private lateinit var context: TextContext
+    private val parentBuilder = DataFramePlotBuilder(df)
+    private lateinit var builder: TextBuilder
 
     @BeforeTest
     fun setUp() {
-        context = TextContext(parentContext)
+        builder = TextBuilder(parentBuilder)
     }
 
     @Test
     fun `geom is TEXT`() {
-        assertEquals(TEXT, context.geom)
+        assertEquals(TEXT, builder.geom)
     }
 
     @Test
     fun `requiredAes contains X and Y`() {
-        assertTrue(context.requiredAes.contains(X))
-        assertTrue(context.requiredAes.contains(Y))
+        assertTrue(builder.requiredAes.contains(X))
+        assertTrue(builder.requiredAes.contains(Y))
     }
 
     @Test
     fun `alpha const for text`() {
-        context.alpha = 0.1
-        assertEquals(0.1, (context.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
+        builder.alpha = 0.1
+        assertEquals(0.1, (builder.bindingHandler.bindingCollector.settings[ALPHA] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `alpha str mapping for text`() {
-        context.alpha("alpha")
-        assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
+        builder.alpha("alpha")
+        assertEquals("alpha", (builder.bindingHandler.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `alpha dataColumn mapping for text`() {
-        context.alpha(alpha)
-        assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
+        builder.alpha(alpha)
+        assertEquals("alpha", (builder.bindingHandler.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `alpha iterable mapping for text`() {
-        context.alpha(listOf(0.2, 0.5, .1))
-        assertEquals("alpha", (context.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
+        builder.alpha(listOf(0.2, 0.5, .1))
+        assertEquals("alpha", (builder.bindingHandler.bindingCollector.mappings[ALPHA] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `label const for text`() {
-        context.label = "label"
-        assertEquals("label", (context.bindingCollector.settings[LABEL] as NonPositionalSetting<*>).value)
+        builder.label = "label"
+        assertEquals("label", (builder.bindingHandler.bindingCollector.settings[LABEL] as NonPositionalSetting<*>).value)
     }
 
     @Test
     fun `label str mapping for text`() {
-        context.label("label")
-        assertEquals("label", (context.bindingCollector.mappings[LABEL] as NonPositionalMapping<*, *>).columnID)
+        builder.label("label")
+        assertEquals("label", (builder.bindingHandler.bindingCollector.mappings[LABEL] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `label dataColumn mapping for text`() {
-        context.label(label)
-        assertEquals("label", (context.bindingCollector.mappings[LABEL] as NonPositionalMapping<*, *>).columnID)
+        builder.label(label)
+        assertEquals("label", (builder.bindingHandler.bindingCollector.mappings[LABEL] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `label iterable mapping for text`() {
-        context.label(listOf("1", "2"))
-        assertEquals("label", (context.bindingCollector.mappings[LABEL] as NonPositionalMapping<*, *>).columnID)
+        builder.label(listOf("1", "2"))
+        assertEquals("label", (builder.bindingHandler.bindingCollector.mappings[LABEL] as NonPositionalMapping<*, *>).columnID)
     }
 
     @Test
     fun `x const for text`() {
-        context.x.constant(5.0)
-        assertEquals(X, (context.bindingCollector.settings[X] as PositionalSetting<*>).aes)
-        assertEquals(5.0, (context.bindingCollector.settings[X] as PositionalSetting<*>).value)
+        builder.x.constant(5.0)
+        assertEquals(X, (builder.bindingHandler.bindingCollector.settings[X] as PositionalSetting<*>).aes)
+        assertEquals(5.0, (builder.bindingHandler.bindingCollector.settings[X] as PositionalSetting<*>).value)
     }
 
     @Test
     fun `y const for text`() {
-        context.y.constant(10)
-        assertEquals(Y, (context.bindingCollector.settings[Y] as PositionalSetting<*>).aes)
-        assertEquals(10, (context.bindingCollector.settings[Y] as PositionalSetting<*>).value)
+        builder.y.constant(10)
+        assertEquals(Y, (builder.bindingHandler.bindingCollector.settings[Y] as PositionalSetting<*>).aes)
+        assertEquals(10, (builder.bindingHandler.bindingCollector.settings[Y] as PositionalSetting<*>).value)
     }
 
     @Test
     fun `x for text`() {
-        context.x(xAxis) {
+        builder.x(xAxis) {
             axis {
                 name = "x axis"
             }
             scale = continuous(0.1..3.7)
         }
 
-        assertEquals(X, context.bindingCollector.mappings[X]?.aes)
-        assertEquals("xAxis", context.bindingCollector.mappings[X]?.columnID)
-        assertEquals(.1, (context.bindingCollector.mappings[X]?.parameters?.scale as PositionalContinuousScale<*>).min)
-        assertEquals(3.7, (context.bindingCollector.mappings[X]?.parameters?.scale as PositionalContinuousScale<*>).max)
+        assertEquals(X, builder.bindingHandler.bindingCollector.mappings[X]?.aes)
+        assertEquals("xAxis", builder.bindingHandler.bindingCollector.mappings[X]?.columnID)
+        assertEquals(.1, (builder.bindingHandler.bindingCollector.mappings[X]?.parameters?.scale as PositionalContinuousScale<*>).min)
+        assertEquals(3.7, (builder.bindingHandler.bindingCollector.mappings[X]?.parameters?.scale as PositionalContinuousScale<*>).max)
     }
 
     @Test
     fun `y for text`() {
-        context.y(yAxis) {
+        builder.y(yAxis) {
             axis {
                 name = "x axis"
             }
             scale = categorical(listOf("one", "two"))
         }
 
-        assertEquals(Y, context.bindingCollector.mappings[Y]?.aes)
-        assertEquals("yAxis", context.bindingCollector.mappings[Y]?.columnID)
+        assertEquals(Y, builder.bindingHandler.bindingCollector.mappings[Y]?.aes)
+        assertEquals("yAxis", builder.bindingHandler.bindingCollector.mappings[Y]?.columnID)
         assertEquals(
             listOf("one", "two"),
-            (context.bindingCollector.mappings[Y]?.parameters?.scale as PositionalCategoricalScale<*>).categories
+            (builder.bindingHandler.bindingCollector.mappings[Y]?.parameters?.scale as PositionalCategoricalScale<*>).categories
         )
     }
 }

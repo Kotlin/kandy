@@ -7,7 +7,7 @@ package org.jetbrains.kotlinx.kandy.dsl
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.toMap
 import org.jetbrains.kotlinx.kandy.dsl.impl.*
-import org.jetbrains.kotlinx.kandy.dsl.internal.DataFramePlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
