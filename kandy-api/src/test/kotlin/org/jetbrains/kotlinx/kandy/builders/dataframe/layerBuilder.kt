@@ -8,17 +8,23 @@ import io.mockk.every
 import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
+import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DatasetBuilderImpl
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.addNonPositionalMapping
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.addPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
-import kotlin.test.*
+import kotlin.test.BeforeTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class LayerBuilderImplTest {
 

@@ -8,10 +8,15 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import org.jetbrains.kotlinx.dataframe.DataColumn
-import org.jetbrains.kotlinx.kandy.dsl.internal.*
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
+import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DatasetBuilderImpl
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.addNonPositionalMapping
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.addPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
-import org.jetbrains.kotlinx.kandy.ir.bindings.*
+import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
+import org.jetbrains.kotlinx.kandy.ir.bindings.MappingParameters
+import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -22,9 +27,6 @@ class BindingHandlerTest {
     private lateinit var mockDatasetBuilder: DatasetBuilderImpl
 
     private val aes = mockk<Aes>()
-    private val value = "testValue"
-    private val values = listOf<Any>()
-    private val name = "columnName"
     private val positionalParameters = mockk<PositionalMappingParameters<Any>>()
     private val nonPositionalParameters = mockk<NonPositionalMappingParameters<Any, Any>>()
     private val columnID = "columnId"

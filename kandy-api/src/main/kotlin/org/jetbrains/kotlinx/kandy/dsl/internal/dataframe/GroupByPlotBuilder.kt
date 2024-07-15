@@ -3,7 +3,6 @@ package org.jetbrains.kotlinx.kandy.dsl.internal.dataframe
 import org.jetbrains.kotlinx.dataframe.ColumnsContainer
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
-import org.jetbrains.kotlinx.dataframe.api.concat
 import org.jetbrains.kotlinx.dataframe.api.getColumns
 import org.jetbrains.kotlinx.dataframe.api.toColumnGroup
 import org.jetbrains.kotlinx.dataframe.columns.ColumnGroup
