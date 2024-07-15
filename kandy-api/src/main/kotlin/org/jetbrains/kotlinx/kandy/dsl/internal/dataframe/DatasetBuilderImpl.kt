@@ -11,10 +11,6 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnAccessor
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
-import kotlin.collections.List
-import kotlin.collections.MutableMap
-import kotlin.collections.mutableMapOf
-import kotlin.collections.set
 
 /**
  * [DatasetBuilder] implementation with DataFrame
