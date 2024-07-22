@@ -1,7 +1,7 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
@@ -21,19 +21,19 @@ import kotlin.reflect.KProperty
 /**
  * Sets background style for [bars][org.jetbrains.kotlinx.kandy.echarts.layers.bars].
  *
- * - [color][BackgroundStyle.color] - background [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- * - [borderColor][BackgroundStyle.borderColor] -
+ * - [color][BackgroundStyleBuilder.color] - background [color][org.jetbrains.kotlinx.kandy.util.color.Color].
+ * - [borderColor][BackgroundStyleBuilder.borderColor] -
  * background border [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- * - [borderWidth][BackgroundStyle.borderWidth] - background border width.
+ * - [borderWidth][BackgroundStyleBuilder.borderWidth] - background border width.
  * By default `0`.
- * - [borderType][BackgroundStyle.borderType] - border [type][LineType].
+ * - [borderType][BackgroundStyleBuilder.borderType] - border [type][LineType].
  * By default `solid`.
- * - [borderRadius][BackgroundStyle.borderRadius] - background border radius.
+ * - [borderRadius][BackgroundStyleBuilder.borderRadius] - background border radius.
  * By default `0`.
- * - [shadowBlur][BackgroundStyle.shadowBlur] - background shadow blur.
- * - [shadowColor][BackgroundStyle.shadowColor] -
+ * - [shadowBlur][BackgroundStyleBuilder.shadowBlur] - background shadow blur.
+ * - [shadowColor][BackgroundStyleBuilder.shadowColor] -
  * background shadow [color][org.jetbrains.kotlinx.kandy.util.color.Color].
- * - [alpha][BackgroundStyle.alpha] - background opacity.
+ * - [alpha][BackgroundStyleBuilder.alpha] - background opacity.
  *
  * ```kotlin
  * plot {
@@ -54,8 +54,8 @@ import kotlin.reflect.KProperty
  *
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.bars
  */
-public inline fun BarHandler.background(crossinline block: BackgroundStyle.() -> Unit) {
-    BackgroundStyle(this).apply(block)
+public inline fun BarHandler.background(crossinline block: BackgroundStyleBuilder.() -> Unit) {
+    BackgroundStyleBuilder(bindingHandler).apply(block)
 }
 
 /**
@@ -73,7 +73,7 @@ public inline fun BarHandler.background(crossinline block: BackgroundStyle.() ->
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.bars
  */
 // TODO(add border setting)
-public class BackgroundStyle(private val context: BindingHandler) : SelfInvocationContext {
+public class BackgroundStyleBuilder @PublishedApi internal constructor(private val context: BindingHandler) : SelfInvocationContext {
 
     /* BACKGROUND COLOR*/
     public var color: Color? = null

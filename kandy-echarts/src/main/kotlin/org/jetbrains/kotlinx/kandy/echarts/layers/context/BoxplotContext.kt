@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
 import org.jetbrains.kotlinx.kandy.echarts.layers.BOXPLOT
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-public class BoxplotContext(parent: LayerCreatorScope) : EchartsLayerContext(parent) {
+public class BoxplotContext(parent: LayerCreatorScope) : EchartsLayerBuilder(parent) {
     override val geom: Geom
         get() = BOXPLOT
 

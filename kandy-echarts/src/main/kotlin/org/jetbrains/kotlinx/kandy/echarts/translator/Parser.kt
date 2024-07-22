@@ -8,6 +8,7 @@ import kotlinx.datetime.Month
 import org.jetbrains.kotlinx.dataframe.api.fillNA
 import org.jetbrains.kotlinx.dataframe.api.map
 import org.jetbrains.kotlinx.dataframe.api.with
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.echarts.layers.AREA
 import org.jetbrains.kotlinx.kandy.echarts.layers.BAR
 import org.jetbrains.kotlinx.kandy.echarts.layers.BOXPLOT
@@ -46,7 +47,6 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalSetting
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
-import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.scale.NonPositionalContinuousScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalCategoricalScale

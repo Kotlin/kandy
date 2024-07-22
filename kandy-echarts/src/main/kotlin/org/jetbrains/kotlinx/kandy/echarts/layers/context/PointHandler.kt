@@ -27,7 +27,7 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
  * @see org.jetbrains.kotlinx.kandy.echarts.settings.Symbol
  * @see Animation
  */
-public class PointHandler(parent: LayerCreatorScope) : EchartsLayerContext(parent), WithX, WithY,
+public class PointHandler(parent: LayerCreatorScope) : EchartsLayerBuilder(parent), WithX, WithY,
     WithAlpha, WithColor, WithSize, WithSymbol {
     override val geom: Geom
         get() = POINT

@@ -4,8 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.features.animation
 
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.kotlinx.kandy.ir.data.NamedData
 
 
 public data class DataChangeAnimation internal constructor(

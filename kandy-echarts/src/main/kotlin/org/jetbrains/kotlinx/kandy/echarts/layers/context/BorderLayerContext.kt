@@ -1,7 +1,7 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
@@ -10,6 +10,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.BORDER_COLOR
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.BORDER_TYPE
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.BORDER_WIDTH
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.bindingHandler
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMappingCont
 import org.jetbrains.kotlinx.kandy.echarts.settings.LineType
@@ -19,17 +20,17 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.reflect.KProperty
 
 /**
- * Adds [border][BorderLayerContext] settings to [bars][org.jetbrains.kotlinx.kandy.echarts.layers.bars].
+ * Adds [border][BorderLayerBuilder] settings to [bars][org.jetbrains.kotlinx.kandy.echarts.layers.bars].
  */
-public fun BarHandler.border(block: BorderLayerContext.() -> Unit) {
-    BorderLayerContext(this).apply(block)
+public fun BarHandler.border(block: BorderLayerBuilder.() -> Unit) {
+    BorderLayerBuilder(bindingHandler).apply(block)
 }
 
 /**
- * Adds [border][BorderLayerContext] settings to [points][org.jetbrains.kotlinx.kandy.echarts.layers.points].
+ * Adds [border][BorderLayerBuilder] settings to [points][org.jetbrains.kotlinx.kandy.echarts.layers.points].
  */
-public fun PointHandler.border(block: BorderLayerContext.() -> Unit) {
-    BorderLayerContext(this).apply(block)
+public fun PointHandler.border(block: BorderLayerBuilder.() -> Unit) {
+    BorderLayerBuilder(bindingHandler).apply(block)
 }
 
 /**
@@ -43,7 +44,7 @@ public fun PointHandler.border(block: BorderLayerContext.() -> Unit) {
  * @see Color
  * @see LineType
  */
-public class BorderLayerContext(private val context: BindingHandler) {
+public class BorderLayerBuilder @PublishedApi internal constructor(private val context: BindingHandler) {
     public var color: Color? = null
         set(value) {
             context.addNonPositionalSetting(BORDER_COLOR, value)

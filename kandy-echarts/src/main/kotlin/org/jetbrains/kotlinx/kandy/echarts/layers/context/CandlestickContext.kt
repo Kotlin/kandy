@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
 import org.jetbrains.kotlinx.kandy.echarts.layers.CANDLESTICK
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-public class CandlestickContext(parent: LayerCreatorScope) : EchartsLayerContext(parent) {
+public class CandlestickContext(parent: LayerCreatorScope) : EchartsLayerBuilder(parent) {
     override val geom: Geom
         get() = CANDLESTICK
 
