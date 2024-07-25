@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="plt-container" width="705.0" height="470.0">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" display="block" class="plt-container" width="705.0" height="470.0">
   <style type="text/css">
   .plt-container {
    font-family: Lucida Grande, sans-serif;
@@ -127,189 +127,205 @@ text {
   <g id="xXxprefixXx0">
     <path fill-rule="evenodd" fill="rgb(255,255,255)" fill-opacity="1.0" d="M0.0 0.0 L0.0 470.0 L705.0 470.0 L705.0 0.0 Z">
     </path>
-    <g transform="translate(23.0 34.0 ) ">
-      <g transform="translate(21.961210910936405 0.0 ) ">
-        <line x1="57.880166151765934" y1="390.0" x2="57.880166151765934" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-        <line x1="146.9265756160212" y1="390.0" x2="146.9265756160212" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-        <line x1="235.9729850802765" y1="390.0" x2="235.9729850802765" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-        <line x1="325.0193945445318" y1="390.0" x2="325.0193945445318" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-        <line x1="414.06580400878704" y1="390.0" x2="414.06580400878704" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-        <line x1="503.1122134730423" y1="390.0" x2="503.1122134730423" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-        <line x1="592.1586229372977" y1="390.0" x2="592.1586229372977" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-      </g>
-      <g transform="translate(21.961210910936405 390.0 ) ">
-        <g transform="translate(57.880166151765934 0.0 ) ">
-          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
-          </line>
-          <g transform="translate(0.0 7.0 ) ">
-            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-              <tspan>compact</tspan>
-            </text>
+    <g transform="translate(29.5 26.5 ) ">
+      <g>
+        <g transform="translate(21.961210910936405 0.0 ) ">
+          <g>
+            <line x1="57.613042864094695" y1="0.0" x2="57.613042864094695" y2="391.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
+            <line x1="146.2484934242404" y1="0.0" x2="146.2484934242404" y2="391.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
+            <line x1="234.88394398438606" y1="0.0" x2="234.88394398438606" y2="391.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
+            <line x1="323.5193945445318" y1="0.0" x2="323.5193945445318" y2="391.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
+            <line x1="412.1548451046774" y1="0.0" x2="412.1548451046774" y2="391.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
+            <line x1="500.79029566482313" y1="0.0" x2="500.79029566482313" y2="391.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
+            <line x1="589.4257462249689" y1="0.0" x2="589.4257462249689" y2="391.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
           </g>
         </g>
-        <g transform="translate(146.9265756160212 0.0 ) ">
-          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
-          </line>
-          <g transform="translate(0.0 7.0 ) ">
-            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-              <tspan>midsize</tspan>
-            </text>
-          </g>
-        </g>
-        <g transform="translate(235.9729850802765 0.0 ) ">
-          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
-          </line>
-          <g transform="translate(0.0 7.0 ) ">
-            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-              <tspan>suv</tspan>
-            </text>
-          </g>
-        </g>
-        <g transform="translate(325.0193945445318 0.0 ) ">
-          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
-          </line>
-          <g transform="translate(0.0 7.0 ) ">
-            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-              <tspan>2seater</tspan>
-            </text>
-          </g>
-        </g>
-        <g transform="translate(414.06580400878704 0.0 ) ">
-          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
-          </line>
-          <g transform="translate(0.0 7.0 ) ">
-            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-              <tspan>minivan</tspan>
-            </text>
-          </g>
-        </g>
-        <g transform="translate(503.1122134730423 0.0 ) ">
-          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
-          </line>
-          <g transform="translate(0.0 7.0 ) ">
-            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-              <tspan>pickup</tspan>
-            </text>
-          </g>
-        </g>
-        <g transform="translate(592.1586229372977 0.0 ) ">
-          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
-          </line>
-          <g transform="translate(0.0 7.0 ) ">
-            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
-              <tspan>subcompact</tspan>
-            </text>
-          </g>
-        </g>
-        <line x1="0.0" y1="0.0" x2="650.0387890890636" y2="0.0" stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0">
-        </line>
-      </g>
-      <g transform="translate(21.961210910936405 0.0 ) ">
-        <line x1="0.0" y1="330.0921658986175" x2="650.0387890890636" y2="330.0921658986175" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-        <line x1="0.0" y1="270.184331797235" x2="650.0387890890636" y2="270.184331797235" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-        <line x1="0.0" y1="210.27649769585253" x2="650.0387890890636" y2="210.27649769585253" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-        <line x1="0.0" y1="150.36866359447004" x2="650.0387890890636" y2="150.36866359447004" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-        <line x1="0.0" y1="90.46082949308754" x2="650.0387890890636" y2="90.46082949308754" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-        <line x1="0.0" y1="30.552995391705053" x2="650.0387890890636" y2="30.552995391705053" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
-        </line>
-      </g>
-      <g transform="translate(21.961210910936405 0.0 ) ">
-        <g transform="translate(0.0 390.0 ) ">
-          <g transform="translate(-3.0 0.0 ) ">
-            <text class="axis-text-y" text-anchor="end" dy="0.35em">
-              <tspan>0</tspan>
-            </text>
-          </g>
-        </g>
-        <g transform="translate(0.0 330.0921658986175 ) ">
-          <g transform="translate(-3.0 0.0 ) ">
-            <text class="axis-text-y" text-anchor="end" dy="0.35em">
-              <tspan>10</tspan>
-            </text>
-          </g>
-        </g>
-        <g transform="translate(0.0 270.184331797235 ) ">
-          <g transform="translate(-3.0 0.0 ) ">
-            <text class="axis-text-y" text-anchor="end" dy="0.35em">
-              <tspan>20</tspan>
-            </text>
-          </g>
-        </g>
-        <g transform="translate(0.0 210.27649769585253 ) ">
-          <g transform="translate(-3.0 0.0 ) ">
-            <text class="axis-text-y" text-anchor="end" dy="0.35em">
-              <tspan>30</tspan>
-            </text>
-          </g>
-        </g>
-        <g transform="translate(0.0 150.36866359447004 ) ">
-          <g transform="translate(-3.0 0.0 ) ">
-            <text class="axis-text-y" text-anchor="end" dy="0.35em">
-              <tspan>40</tspan>
-            </text>
-          </g>
-        </g>
-        <g transform="translate(0.0 90.46082949308754 ) ">
-          <g transform="translate(-3.0 0.0 ) ">
-            <text class="axis-text-y" text-anchor="end" dy="0.35em">
-              <tspan>50</tspan>
-            </text>
-          </g>
-        </g>
-        <g transform="translate(0.0 30.552995391705053 ) ">
-          <g transform="translate(-3.0 0.0 ) ">
-            <text class="axis-text-y" text-anchor="end" dy="0.35em">
-              <tspan>60</tspan>
-            </text>
+        <g transform="translate(21.961210910936405 0.0 ) ">
+          <g>
+            <line x1="0.0" y1="391.0" x2="647.0387890890636" y2="391.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
+            <line x1="0.0" y1="330.9385560675883" x2="647.0387890890636" y2="330.9385560675883" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
+            <line x1="0.0" y1="270.8771121351766" x2="647.0387890890636" y2="270.8771121351766" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
+            <line x1="0.0" y1="210.81566820276498" x2="647.0387890890636" y2="210.81566820276498" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
+            <line x1="0.0" y1="150.7542242703533" x2="647.0387890890636" y2="150.7542242703533" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
+            <line x1="0.0" y1="90.6927803379416" x2="647.0387890890636" y2="90.6927803379416" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
+            <line x1="0.0" y1="30.631336405529964" x2="647.0387890890636" y2="30.631336405529964" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            </line>
           </g>
         </g>
       </g>
-      <g transform="translate(21.961210910936405 0.0 ) " clip-path="url(#xXxprefixXx1)" clip-bounds-jfx="[rect (0.0, 0.0), (650.0387890890636, 390.0)]">
+      <g clip-path="url(#xXxprefixXx1)" clip-bounds-jfx="[rect (21.961210910936405, 0.0), (647.0387890890636, 391.0)]">
+        <g transform="translate(21.961210910936405 0.0 ) ">
+          <g>
+            <g>
+              <rect x="549.5397934729033" y="180.78494623655914" height="210.21505376344086" width="79.77190550413115" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
+              </rect>
+              <rect x="460.90434291275756" y="192.79723502304148" height="198.20276497695852" width="79.77190550413115" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
+              </rect>
+              <rect x="372.26889235261183" y="324.9324116743471" height="66.06758832565288" width="79.77190550413115" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
+              </rect>
+              <rect x="283.6334417924662" y="360.9692780337942" height="30.030721966205817" width="79.77190550413104" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
+              </rect>
+              <rect x="194.99799123232052" y="18.619047619047592" height="372.3809523809524" width="79.77190550413113" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
+              </rect>
+              <rect x="106.36254067217482" y="144.74807987711213" height="246.25192012288787" width="79.77190550413113" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
+              </rect>
+              <rect x="17.72709011202914" y="108.7112135176651" height="282.2887864823349" width="79.7719055041311" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
+              </rect>
+            </g>
+          </g>
+        </g>
         <defs>
           <clipPath id="xXxprefixXx1">
-            <rect x="0.0" y="0.0" width="650.0387890890636" height="390.0">
+            <rect x="21.961210910936405" y="0.0" width="647.0387890890636" height="391.0">
             </rect>
           </clipPath>
         </defs>
-        <rect x="552.0877386783827" y="180.32258064516128" height="209.67741935483872" width="80.14176851782975" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
-        </rect>
-        <rect x="463.0413292141274" y="192.30414746543778" height="197.69585253456222" width="80.1417685178298" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
-        </rect>
-        <rect x="373.99491974987217" y="324.10138248847926" height="65.89861751152074" width="80.14176851782975" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
-        </rect>
-        <rect x="284.94851028561686" y="360.04608294930875" height="29.953917050691246" width="80.14176851782975" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
-        </rect>
-        <rect x="195.9021008213616" y="18.571428571428555" height="371.42857142857144" width="80.14176851782975" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
-        </rect>
-        <rect x="106.85569135710634" y="144.3778801843318" height="245.6221198156682" width="80.14176851782977" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
-        </rect>
-        <rect x="17.80928189285106" y="108.43317972350229" height="281.5668202764977" width="80.14176851782975" stroke="rgb(255,255,255)" stroke-opacity="1.0" fill="rgb(17,142,216)" fill-opacity="1.0" stroke-width="1.6500000000000001">
-        </rect>
+      </g>
+      <g>
+        <g transform="translate(21.961210910936405 391.0 ) ">
+          <g transform="translate(57.613042864094695 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>compact</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(146.2484934242404 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>midsize</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(234.88394398438606 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>suv</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(323.5193945445318 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>2seater</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(412.1548451046774 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>minivan</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(500.79029566482313 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>pickup</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(589.4257462249689 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>subcompact</tspan>
+              </text>
+            </g>
+          </g>
+          <line x1="0.0" y1="0.0" x2="647.0387890890636" y2="0.0" stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0">
+          </line>
+        </g>
+        <g transform="translate(21.961210910936405 0.0 ) ">
+          <g transform="translate(0.0 391.0 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>0</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 330.9385560675883 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>10</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 270.8771121351766 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>20</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 210.81566820276498 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>30</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 150.7542242703533 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>40</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 90.6927803379416 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>50</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 30.631336405529964 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>60</tspan>
+              </text>
+            </g>
+          </g>
+        </g>
       </g>
     </g>
-    <g transform="translate(44.9612109109364 15.2 ) ">
+    <g transform="translate(51.4612109109364 16.8 ) ">
       <text class="plot-title" y="0.0">
         <tspan>`countPlot()` layer</tspan>
       </text>
     </g>
-    <g transform="translate(14.5 229.0 ) rotate(-90.0 ) ">
+    <g transform="translate(16.0 222.0 ) rotate(-90.0 ) ">
       <text class="axis-title-y" y="0.0" text-anchor="middle">
         <tspan>count</tspan>
       </text>
     </g>
-    <g transform="translate(369.9806054554682 461.5 ) ">
+    <g transform="translate(374.9806054554682 463.0 ) ">
       <text class="axis-title-x" y="0.0" text-anchor="middle">
         <tspan>class</tspan>
       </text>
