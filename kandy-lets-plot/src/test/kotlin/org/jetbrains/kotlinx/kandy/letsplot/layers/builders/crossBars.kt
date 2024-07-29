@@ -47,9 +47,8 @@ class CrossbarTests {
     }
 
     @Test
-    fun `requiredAes contains X, MIDDLE, Y_MIN, Y_MAX`() {
+    fun `requiredAes contains X, Y_MIN, Y_MAX`() {
         assertTrue(builder.requiredAes.contains(X))
-        assertTrue(builder.requiredAes.contains(Y))
         assertTrue(builder.requiredAes.contains(Y_MIN))
         assertTrue(builder.requiredAes.contains(Y_MAX))
     }

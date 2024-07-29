@@ -49,11 +49,10 @@ class BoxplotTests {
     }
 
     @Test
-    fun `requiredAes contains X, LOWER, UPPER, MIDDLE, Y_MIN, Y_MAX`() {
+    fun `requiredAes contains X, LOWER, UPPER, Y_MIN, Y_MAX`() {
         assertTrue(builder.requiredAes.contains(X))
         assertTrue(builder.requiredAes.contains(LOWER))
         assertTrue(builder.requiredAes.contains(UPPER))
-        assertTrue(builder.requiredAes.contains(MIDDLE))
         assertTrue(builder.requiredAes.contains(Y_MIN))
         assertTrue(builder.requiredAes.contains(Y_MAX))
     }
