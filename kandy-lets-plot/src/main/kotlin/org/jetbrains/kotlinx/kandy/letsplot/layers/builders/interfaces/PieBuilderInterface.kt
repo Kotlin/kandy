@@ -10,4 +10,4 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  * `alpha`, `fillColor`, `stroke`, and `strokeColor` for full customization of the pie chart.
  */
 public interface PieBuilderInterface : WithX, WithY, WithSlice, WithExplode, WithHole, WithSize,
-    WithAlpha, WithFillColor, WithStroke, WithStrokeColor
+    WithAlpha, WithFillColor, WithStroke, WithStrokeColor, WithSpacerWidth
