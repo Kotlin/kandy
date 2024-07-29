@@ -42,5 +42,5 @@ public open class CrossBarsBuilder @PublishedApi internal constructor(
      * @return the set of required aesthetics.
      */
     override val requiredAes: Set<Aes>
-        get() = setOf(X, Y, Y_MIN, Y_MAX)
+        get() = setOf(X, Y_MIN, Y_MAX)
 }

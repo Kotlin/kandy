@@ -39,5 +39,5 @@ public open class BoxesBuilder @PublishedApi internal constructor(
      * @return the set of required aesthetics.
      */
     override val requiredAes: Set<Aes>
-        get() = setOf(X, LOWER, UPPER, MIDDLE, Y_MIN, Y_MAX)
+        get() = setOf(X, LOWER, UPPER, Y_MIN, Y_MAX)
 }
