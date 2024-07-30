@@ -34,11 +34,11 @@ class CrossbarTests {
     private val df = dataFrameOf(xAxis, y, yMin, yMax, fatten, type, color, alpha, width)
 
     private val parentBuilder = DataFramePlotBuilder(df)
-    private lateinit var builder: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.CrossBarsBuilder
+    private lateinit var builder: CrossBarsBuilder
 
     @BeforeTest
     fun setUp() {
-        builder = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.CrossBarsBuilder(parentBuilder)
+        builder = CrossBarsBuilder(parentBuilder)
     }
 
     @Test

@@ -36,11 +36,11 @@ class BoxplotTests {
     private val df = dataFrameOf(xAxis, lower, upper, middle, yMin, yMax, fatten, type, color, alpha, width)
 
     private val parentBuilder = DataFramePlotBuilder(df)
-    private lateinit var builder: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.BoxesBuilder
+    private lateinit var builder: BoxesBuilder
 
     @BeforeTest
     fun setUp() {
-        builder = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.BoxesBuilder(parentBuilder)
+        builder = BoxesBuilder(parentBuilder)
     }
 
     @Test

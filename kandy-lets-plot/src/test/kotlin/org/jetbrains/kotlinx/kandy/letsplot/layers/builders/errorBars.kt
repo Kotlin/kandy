@@ -29,11 +29,11 @@ class ErrorBarsTests {
     private val df = dataFrameOf(xAxis, yMin, yMax, type, alpha, width)
 
     private val parentBuilder = DataFramePlotBuilder(df)
-    private lateinit var builder: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.ErrorBarsBuilder
+    private lateinit var builder: ErrorBarsBuilder
 
     @BeforeTest
     fun setUp() {
-        builder = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.ErrorBarsBuilder(parentBuilder)
+        builder = ErrorBarsBuilder(parentBuilder)
     }
 
     @Test

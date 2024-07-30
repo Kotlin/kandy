@@ -33,11 +33,11 @@ class BarsTests {
     private val df = dataFrameOf(xAxis, yAxis, type, color, alpha, width)
 
     private val parentBuilder = DataFramePlotBuilder(df)
-    private lateinit var builder: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.BarsBuilder
+    private lateinit var builder: BarsBuilder
 
     @BeforeTest
     fun setUp() {
-        builder = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.BarsBuilder(parentBuilder)
+        builder = BarsBuilder(parentBuilder)
     }
 
     @Test
