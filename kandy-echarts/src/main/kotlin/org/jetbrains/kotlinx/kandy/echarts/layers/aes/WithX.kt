@@ -2,11 +2,11 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.echarts.layers.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.echarts.scale.posMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
@@ -27,10 +27,15 @@ public interface WithX : WithAes {
     ): PositionalMapping<T> = bindingHandler.posMapping(X, column, params)
 
     public fun <T> x(
-        values: Iterable<T>, name: String? = null, params: EchartsPositionalMappingParametersContinuous<T>.() -> Unit = {}
+        values: Iterable<T>,
+        name: String? = null,
+        params: EchartsPositionalMappingParametersContinuous<T>.() -> Unit = {}
     ): PositionalMapping<T> = bindingHandler.posMapping(X, values, name, params)
 
-    public fun x(column: String, params: EchartsPositionalMappingParametersContinuous<*>.() -> Unit = {}): PositionalMapping<*> =
+    public fun x(
+        column: String,
+        params: EchartsPositionalMappingParametersContinuous<*>.() -> Unit = {}
+    ): PositionalMapping<*> =
         bindingHandler.posMapping(X, column, params)
 
     public fun <T> x(

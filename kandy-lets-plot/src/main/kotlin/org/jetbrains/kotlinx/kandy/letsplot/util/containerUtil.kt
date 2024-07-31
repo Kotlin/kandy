@@ -7,7 +7,7 @@ import kotlinx.serialization.json.JsonPrimitive
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
-internal fun <K, V: Any> Map<K, V>.extendedBy(other: Map<K, V>, join: (V, V) -> V): Map<K, V> {
+internal fun <K, V : Any> Map<K, V>.extendedBy(other: Map<K, V>, join: (V, V) -> V): Map<K, V> {
     return (this + other).mapValues { (k, v) ->
         if (k in this && k in other)
             join(this[k]!!, other[k]!!)

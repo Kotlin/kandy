@@ -14,12 +14,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWith
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.AREA
 
 /**
- * Context class for managing Area layers.
+ * Builder class for managing Area layers.
  *
  * This class provides the context in which Area layers can be configured.
- * It inherits from [LayerWithBorderLineBuilder] and implements the [AreaInterface].
+ * It inherits from [LayerWithBorderLineBuilder] and implements the [AreaBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class AreaBuilder @PublishedApi internal constructor(

@@ -13,7 +13,7 @@ candlestick&lt;<a href="#xtype"><format color="Blue">X</format></a>></format>(
 <include from="arguments.topic" element-id="signature-of-sample"></include>,
 <a href="#close"><format style="bold" color="CadetBlue">close</format></a>:
 <include from="arguments.topic" element-id="signature-of-sample"></include>
-<format style="italic">{ this: CandlestickLayerContext&lt;X> -></format></p>
+<format style="italic">{ this: CandlestickLayerBuilder&lt;X> -></format></p>
 <include from = "interfaces.topic" element-id="interface-of-boxes"></include>
 <list type="none">
 <li>

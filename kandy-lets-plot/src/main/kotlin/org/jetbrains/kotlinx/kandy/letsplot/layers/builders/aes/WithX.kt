@@ -1,18 +1,19 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.addPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalFreeScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisParametersWithSetter
 import kotlin.reflect.KProperty
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 
 
 /**

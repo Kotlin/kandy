@@ -20,7 +20,7 @@ Dive into 'Regression Confidence Band' using Kotlin and Kandy, showcasing the el
 ```kotlin
 val xs = listOf(
     -3.0, -2.8, -2.7, -2.6, -2.6, -2.5, -2.2, -3.1, -1.5,
-    -0.2,  2.0, 1.2, 2.6, 2.1, 0.1, 1.2, 1.7, 0.0, 2.8,
+    -0.2, 2.0, 1.2, 2.6, 2.1, 0.1, 1.2, 1.7, 0.0, 2.8,
     2.5, 0.2, 1.3, 2.5
 )
 val ys = listOf(

@@ -196,49 +196,73 @@ class InnerPointTests {
     @Test
     fun `fillColor const for innerPoint`() {
         builder.fillColor = Color.BLUE
-        assertEquals(Color.BLUE, (builder.bindingHandler.bindingCollector.settings[FILL] as NonPositionalSetting<*>).value)
+        assertEquals(
+            Color.BLUE,
+            (builder.bindingHandler.bindingCollector.settings[FILL] as NonPositionalSetting<*>).value
+        )
     }
 
     @Test
     fun `fillColor str mapping for innerPoint`() {
         builder.fillColor("color")
-        assertEquals("color", (builder.bindingHandler.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "color",
+            (builder.bindingHandler.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `fillColor dataColumn mapping for innerPoint`() {
         builder.fillColor(color)
-        assertEquals("color", (builder.bindingHandler.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "color",
+            (builder.bindingHandler.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `fillColor iterable mapping for innerPoint`() {
         builder.fillColor(listOf("red"))
-        assertEquals("fill", (builder.bindingHandler.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "fill",
+            (builder.bindingHandler.bindingCollector.mappings[FILL] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `symbol const for innerPoint`() {
         builder.symbol = Symbol.DIAMOND
-        assertEquals(Symbol.DIAMOND, (builder.bindingHandler.bindingCollector.settings[SHAPE] as NonPositionalSetting<*>).value)
+        assertEquals(
+            Symbol.DIAMOND,
+            (builder.bindingHandler.bindingCollector.settings[SHAPE] as NonPositionalSetting<*>).value
+        )
     }
 
     @Test
     fun `symbol str mapping for innerPoint`() {
         builder.symbol("symbol")
-        assertEquals("symbol", (builder.bindingHandler.bindingCollector.mappings[SHAPE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "symbol",
+            (builder.bindingHandler.bindingCollector.mappings[SHAPE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `symbol dataColumn mapping for innerPoint`() {
         builder.symbol(symbol)
-        assertEquals("symbol", (builder.bindingHandler.bindingCollector.mappings[SHAPE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "symbol",
+            (builder.bindingHandler.bindingCollector.mappings[SHAPE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `symbol iterable mapping for innerPoint`() {
         builder.symbol(listOf(4))
-        assertEquals("shape", (builder.bindingHandler.bindingCollector.mappings[SHAPE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "shape",
+            (builder.bindingHandler.bindingCollector.mappings[SHAPE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
@@ -250,19 +274,28 @@ class InnerPointTests {
     @Test
     fun `stroke str mapping for innerPoint`() {
         builder.stroke("stroke")
-        assertEquals("stroke", (builder.bindingHandler.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "stroke",
+            (builder.bindingHandler.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `stroke dataColumn mapping for innerPoint`() {
         builder.stroke(stroke)
-        assertEquals("stroke", (builder.bindingHandler.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "stroke",
+            (builder.bindingHandler.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `stroke iterable mapping for innerPoint`() {
         builder.stroke(listOf(1))
-        assertEquals("stroke", (builder.bindingHandler.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "stroke",
+            (builder.bindingHandler.bindingCollector.mappings[STROKE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
@@ -289,24 +322,36 @@ class InnerLineTests {
     @Test
     fun `type const for innerLine`() {
         builder.type = LineType.TWODASH
-        assertEquals(LineType.TWODASH, (builder.bindingHandler.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value)
+        assertEquals(
+            LineType.TWODASH,
+            (builder.bindingHandler.bindingCollector.settings[LINE_TYPE] as NonPositionalSetting<*>).value
+        )
     }
 
     @Test
     fun `type str mapping for innerLine`() {
         builder.type("type")
-        assertEquals("type", (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "type",
+            (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `type dataColumn mapping for innerLine`() {
         builder.type(type)
-        assertEquals("type", (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "type",
+            (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 
     @Test
     fun `type iterable mapping for innerLine`() {
         builder.type(listOf("dot"))
-        assertEquals("linetype", (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID)
+        assertEquals(
+            "linetype",
+            (builder.bindingHandler.bindingCollector.mappings[LINE_TYPE] as NonPositionalMapping<*, *>).columnID
+        )
     }
 }

@@ -7,7 +7,7 @@ countPlot&lt;<a href="#xtype"><format color="Blue">X</format></a>></format>(
 <include from="arguments.topic" element-id="signature-of-sample-x"></include>,
 <a href="#weights"><format style="bold" color="DarkGray">weights</format></a>:
 <include from="arguments.topic" element-id="signature-of-sample"></include> = null
-) <format style="italic">{ this: CountPlotLayerContext -></format></p>
+) <format style="italic">{ this: CountPlotLayerBuilder -></format></p>
 <include from = "interfaces.topic" element-id="interface-of-bars"></include>
 <format style="italic">}</format>
 </tldr>

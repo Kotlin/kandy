@@ -6,9 +6,9 @@ package org.jetbrains.kotlinx.kandy.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.*
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.marks.EchartsMarkArea
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.marks.EchartsMarkLine
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.marks.EchartsMarkPoint
-import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.marks.EchartsMarkArea
 import org.jetbrains.kotlinx.kandy.echarts.translator.serializers.SeriesSerializer
 
 @Serializable(with = SeriesSerializer::class)

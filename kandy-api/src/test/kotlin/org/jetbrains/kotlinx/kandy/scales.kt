@@ -104,7 +104,8 @@ class ScaleTest {
 
         val firstScale = CommonNonPositionalMappingParametersContinuous<Float, Int>().continuous<Int, Float>(range)
         val secondScale = Scale.continuous<Int, Float>(range)
-        val expectedScale = NonPositionalContinuousScale<Float, Int>(null, null, range.start, range.endInclusive, null, null)
+        val expectedScale =
+            NonPositionalContinuousScale<Float, Int>(null, null, range.start, range.endInclusive, null, null)
 
         assertEquals(expectedScale, firstScale)
         assertEquals(expectedScale, secondScale)
@@ -116,7 +117,10 @@ class ScaleTest {
         val transform: NonPositionalTransform = mockk()
 
         val firstScale =
-            CommonNonPositionalMappingParametersContinuous<Int, Int>().continuous<Int, Int>(range, transform = transform)
+            CommonNonPositionalMappingParametersContinuous<Int, Int>().continuous<Int, Int>(
+                range,
+                transform = transform
+            )
         val secondScale = Scale.continuous<Int, Int>(range, transform = transform)
         val expectedScale = NonPositionalContinuousScale<Int, Int>(null, null, range.first, range.last, null, transform)
 
@@ -130,7 +134,10 @@ class ScaleTest {
         val nullValue = -1.3
 
         val firstScale =
-            CommonNonPositionalMappingParametersContinuous<Int, Double>().continuous<Double, Int>(range, nullValue = nullValue)
+            CommonNonPositionalMappingParametersContinuous<Int, Double>().continuous<Double, Int>(
+                range,
+                nullValue = nullValue
+            )
         val secondScale = Scale.continuous<Double, Int>(range, nullValue)
         val expectedScale =
             NonPositionalContinuousScale<Int, Double>(null, null, range.start, range.endInclusive, nullValue, null)

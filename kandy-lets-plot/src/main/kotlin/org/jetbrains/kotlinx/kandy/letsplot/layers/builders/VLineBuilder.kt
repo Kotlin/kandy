@@ -9,17 +9,16 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X_INTERCEPT
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.VLineBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.V_LINE
 
 /**
- * Context class for managing vertical line layers.
+ * Builder class for managing vertical line layers.
  *
  * This class serves as the context in which vertical line layers can be customized.
- * It inherits from [LayerContext] and implements the [VLineBuilderInterface].
+ * It inherits from [LayerBuilderImpl] and implements the [VLineBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class VLineBuilder @PublishedApi internal constructor(

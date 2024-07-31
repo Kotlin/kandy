@@ -104,7 +104,7 @@ internal open class BindingHandler(private val datasetBuilderAccessor: () -> Dat
      * @param parameters the non-positional mapping parameters (optional).
      * @return the created [non-positional mapping][NonPositionalMapping].
      */
-     fun <DomainType, RangeType> addNonPositionalMapping(
+    fun <DomainType, RangeType> addNonPositionalMapping(
         aes: Aes,
         values: List<DomainType>,
         name: String?,
@@ -128,7 +128,7 @@ internal open class BindingHandler(private val datasetBuilderAccessor: () -> Dat
      * @param parameters the non-positional mapping parameters (optional).
      * @return the created [non-positional mapping][NonPositionalMapping].
      */
-     fun <DomainType, RangeType> addNonPositionalMapping(
+    fun <DomainType, RangeType> addNonPositionalMapping(
         aes: Aes,
         columnID: String,
         parameters: NonPositionalMappingParameters<DomainType, RangeType>?

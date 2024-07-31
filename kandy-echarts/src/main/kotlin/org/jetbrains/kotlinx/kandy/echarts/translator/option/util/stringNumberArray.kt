@@ -12,4 +12,4 @@ internal sealed interface StringNumberArray
 
 @Serializable
 @JvmInline
-internal value class StringValue(val value: String): StringNumberArray
+internal value class StringValue(val value: String) : StringNumberArray

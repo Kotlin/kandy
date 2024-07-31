@@ -1,12 +1,14 @@
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.addNonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParametersContinuous
 import org.jetbrains.kotlinx.kandy.letsplot.internal.STROKE
 import kotlin.reflect.KProperty
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 
 /**
  * Interface for managing the `stroke` aesthetic.

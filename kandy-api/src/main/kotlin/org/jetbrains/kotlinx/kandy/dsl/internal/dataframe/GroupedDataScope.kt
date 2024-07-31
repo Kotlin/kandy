@@ -11,6 +11,6 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnGroup
  *
  * @property key The key columns as [ColumnGroup].
  */
-public sealed interface GroupedDataScope<T, G>: ColumnsContainer<G> {
+public sealed interface GroupedDataScope<T, G> : ColumnsContainer<G> {
     public val key: ColumnGroup<T>
 }

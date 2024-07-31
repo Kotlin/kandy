@@ -207,7 +207,7 @@ class Facets : SampleHelper("multiplot", "guides") {
             }
             facetGridY(`origin of car`)
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
@@ -226,7 +226,7 @@ class Facets : SampleHelper("multiplot", "guides") {
             }
             facetGridY(`origin of car`, scalesSharing = ScalesSharing.FREE_Y)
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 

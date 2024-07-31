@@ -19,7 +19,7 @@ internal data class Dataset(
 
     fun isEmpty(): Boolean =
         id == null && source?.all { it.isEmpty() } ?: true && sourceHeader == null && fromDatasetIndex == null
-            && fromDatasetId == null && fromTransformResult == null
+                && fromDatasetId == null && fromTransformResult == null
 
     fun isNotEmpty(): Boolean = !this.isEmpty()
 }

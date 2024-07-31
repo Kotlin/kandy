@@ -2,6 +2,7 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.echarts.layers.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
@@ -27,7 +28,9 @@ public interface WithAlpha : WithAes {
     ): NonPositionalMapping<T, Double> = bindingHandler.nonPosMappingCont(ALPHA, column, params)
 
     public fun <T> alpha(
-        values: Iterable<T>, name: String? = null, params: EchartsNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
+        values: Iterable<T>,
+        name: String? = null,
+        params: EchartsNonPositionalMappingParametersContinuous<T, Double>.() -> Unit = {}
     ): NonPositionalMapping<T, Double> = bindingHandler.nonPosMappingCont(ALPHA, values, name, params)
 
     public fun alpha(

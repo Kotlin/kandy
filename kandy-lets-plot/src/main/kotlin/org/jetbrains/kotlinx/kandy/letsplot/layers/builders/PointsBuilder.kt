@@ -10,17 +10,16 @@ import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.PointsBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POINT
 
 /**
- * Context class for managing points layers.
+ * Builder class for managing points layers.
  *
  * This class provides the context in which points layers can be configured.
- * It inherits from [LayerContext] and implements the [PointsBuilderInterface].
+ * It inherits from [LayerBuilderImpl] and implements the [PointsBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class PointsBuilder @PublishedApi internal constructor(

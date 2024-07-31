@@ -32,7 +32,7 @@ internal fun rectangleOf(arg0: Double, arg1: Double, arg2: Double, arg3: Double)
     Measurement.Rectangle(listOf(DoubleUnit(arg0), DoubleUnit(arg1), DoubleUnit(arg2), DoubleUnit(arg3)))
 
 @Serializable(with = MeasurementSerializer::class)
-internal sealed interface Measurement: StringNumberArray {
+internal sealed interface Measurement : StringNumberArray {
 
     @Serializable
     @JvmInline

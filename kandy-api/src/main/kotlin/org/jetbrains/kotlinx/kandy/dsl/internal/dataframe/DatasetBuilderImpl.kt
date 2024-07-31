@@ -4,11 +4,9 @@
 
 package org.jetbrains.kotlinx.kandy.dsl.internal.dataframe
 
-import org.jetbrains.kotlinx.dataframe.*
+import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.dataframe.api.Infer
 import org.jetbrains.kotlinx.dataframe.api.*
-import org.jetbrains.kotlinx.dataframe.api.copy
 import org.jetbrains.kotlinx.dataframe.columns.ColumnAccessor
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
@@ -20,7 +18,7 @@ import org.jetbrains.kotlinx.kandy.ir.data.TableData
 @PublishedApi
 internal abstract class DatasetBuilderImpl(
     initialBuilder: DatasetBuilderImpl? = null
-): DatasetBuilder {
+) : DatasetBuilder {
     @PublishedApi
     internal abstract val baseDataFrame: DataFrame<*>
     private val referredColumns: MutableMap<String, String> = mutableMapOf()
@@ -47,7 +45,7 @@ internal abstract class DatasetBuilderImpl(
     }
 
     fun addColumn(column: ColumnReference<*>): String {
-        return when(column) {
+        return when (column) {
             is ColumnAccessor<*> -> takeColumn(column)
             is DataColumn<*> -> addColumn(column)
             else -> error("Unexpected column reference type: ${column::class}")
@@ -78,14 +76,17 @@ internal fun DatasetBuilderImpl(dataFrame: DataFrame<*>, initialBuilder: Dataset
     return NamedDataBuilder(dataFrame, initialBuilder)
 }
 
-internal fun DatasetBuilderImpl(groupBy: GroupBy<*, *>, initialBuilder: DatasetBuilderImpl? = null): GroupedDataBuilder {
+internal fun DatasetBuilderImpl(
+    groupBy: GroupBy<*, *>,
+    initialBuilder: DatasetBuilderImpl? = null
+): GroupedDataBuilder {
     return GroupedDataBuilder(groupBy, initialBuilder)
 }
 
 internal fun DatasetBuilderImpl(dataset: TableData, initialBuilder: DatasetBuilderImpl? = null): DatasetBuilderImpl {
     return when (dataset) {
         is NamedData -> NamedDataBuilder(dataset, initialBuilder)
-        is GroupedData ->GroupedDataBuilder(dataset, initialBuilder)
+        is GroupedData -> GroupedDataBuilder(dataset, initialBuilder)
         else -> error("Unexpected dataset type: ${dataset::class}")
     }
 }

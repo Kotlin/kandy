@@ -620,7 +620,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         val meanCylDf = mpgDF.groupBy { cyl and drv }.mean { cty }
         val meanCylPlot = meanCylDf.groupBy { cyl }.plot {
             bars {
-                x(drv); y(cty); fillColor(cyl) {legend.breaks(format = "d")}; position = Position.dodge()
+                x(drv); y(cty); fillColor(cyl) { legend.breaks(format = "d") }; position = Position.dodge()
             }
         }
         // SampleStart
@@ -653,7 +653,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         val meanCylDf = mpgDF.groupBy { cyl and drv }.mean { cty }
         val meanCylPlot = meanCylDf.groupBy { cyl }.plot {
             bars {
-                x(drv); y(cty); fillColor(cyl) {legend.breaks(format = "d")}; position = Position.dodge()
+                x(drv); y(cty); fillColor(cyl) { legend.breaks(format = "d") }; position = Position.dodge()
             }
         }
         // SampleStart

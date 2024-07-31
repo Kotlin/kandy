@@ -5,9 +5,9 @@
 package org.jetbrains.kotlinx.kandy.echarts.translator.option.series
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationLayerFeature
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.SIZE
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.SYMBOL
-import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationLayerFeature
 import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol
 import org.jetbrains.kotlinx.kandy.echarts.translator.getNPSValue
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.*

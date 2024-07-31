@@ -1,15 +1,16 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.addNonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.WIDTH
 import kotlin.reflect.KProperty
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.*
 
 /**
  * Interface for managing the `width` aesthetic, which determines the width of visual elements like bars in a bar chart.

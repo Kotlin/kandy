@@ -13,12 +13,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWith
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.BOXPLOT
 
 /**
- * Context class for managing Boxes layers.
+ * Builder class for managing Boxes layers.
  *
  * This class provides the context in which `Boxes` layers can be configured.
  * It inherits from [LayerWithBorderLineBuilder] and implements the [BoxesBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class BoxesBuilder @PublishedApi internal constructor(

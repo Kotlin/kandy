@@ -13,7 +13,7 @@ public fun serializeSpec(spec: LetsPlotSpec): JsonElement {
 }
 
 private fun serializeAny(obj: Any?): JsonElement {
-    return when(obj) {
+    return when (obj) {
         null -> JsonNull
         is Map<*, *> -> serialize(obj)
         is List<*> -> serialize(obj)
@@ -54,7 +54,7 @@ public fun deserializeSpec(json: JsonElement): LetsPlotSpec {
 }
 
 private fun deserializeAny(json: JsonElement): Any? {
-    return when(json) {
+    return when (json) {
         is JsonObject -> deserializeMap(json)
         is JsonArray -> deserializeList(json)
         is JsonPrimitive -> deserializePrimitive(json)
@@ -66,9 +66,7 @@ private fun deserializePrimitive(json: JsonPrimitive): Any? {
         json is JsonNull -> null
         json.isString -> json.content
         else -> {
-            json.booleanOrNull ?:
-            json.doubleOrNull ?:
-            error("Unknown JSON primitive type: [$json]")
+            json.booleanOrNull ?: json.doubleOrNull ?: error("Unknown JSON primitive type: [$json]")
         }
     }
 }

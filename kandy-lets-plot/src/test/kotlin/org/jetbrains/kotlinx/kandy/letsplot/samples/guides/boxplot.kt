@@ -108,7 +108,7 @@ class Boxplot : SampleHelper("stat", "guides") {
                 position = Position.jitter()
             }
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -125,7 +125,7 @@ class Boxplot : SampleHelper("stat", "guides") {
                 }
             }
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -157,7 +157,7 @@ class Boxplot : SampleHelper("stat", "guides") {
             }
         }
         manualBoxplot
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -171,7 +171,7 @@ class Boxplot : SampleHelper("stat", "guides") {
             layout.title = "`boxplot()`"
         }
         boxplotPlot
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -194,7 +194,7 @@ class Boxplot : SampleHelper("stat", "guides") {
         }
         // SampleStart
         plotGrid(listOf(manualBoxplot, boxplotPlot))
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -212,7 +212,7 @@ class Boxplot : SampleHelper("stat", "guides") {
                 outliers.show = false
             }
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -235,7 +235,7 @@ class Boxplot : SampleHelper("stat", "guides") {
                 }
             }
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -245,7 +245,7 @@ class Boxplot : SampleHelper("stat", "guides") {
         plot {
             boxplot(rateC)
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -254,7 +254,7 @@ class Boxplot : SampleHelper("stat", "guides") {
         // SampleStart
         // There's an additional argument "showOutliers"
         df.boxplot("cond", "rate", showOutliers = false)
-            // SampleEnd
+        // SampleEnd
 //            .toPlot()
 //            .saveSample()
     }
@@ -268,7 +268,7 @@ class Boxplot : SampleHelper("stat", "guides") {
             x(cond)
             y(rate)
         }
-            // SampleEnd
+        // SampleEnd
 //            .toPlot()
 //            .saveSample()
     }
@@ -282,7 +282,7 @@ class Boxplot : SampleHelper("stat", "guides") {
             x(cond)
             y(rate)
         }.configure {
-            // BoxplotLayer + PlotContext
+            // BoxplotLayer + PlotBuilder
             // can't add new layer but can configure `boxes` and `outliers`
             boxes {
                 alpha = 0.7
@@ -299,7 +299,7 @@ class Boxplot : SampleHelper("stat", "guides") {
                 size = 600 to 350
             }
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -417,7 +417,7 @@ class Boxplot : SampleHelper("stat", "guides") {
     fun guideBoxplotSimpleGrBoxplotOnDf() {
         // SampleStart
         groupedDF.boxplot("class", "hwy")
-        // SampleEnd
+            // SampleEnd
             .toPlot()
             .saveSample()
     }

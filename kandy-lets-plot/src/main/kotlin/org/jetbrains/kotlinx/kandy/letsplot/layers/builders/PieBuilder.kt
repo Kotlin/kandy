@@ -8,17 +8,16 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.PieBuilderInterface
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.PIE
 
 /**
- * Context class for managing Pie layers.
+ * Builder class for managing Pie layers.
  *
  * This class provides the context in which Pie layers can be configured.
- * It inherits from [LayerContext] and implements the [PieBuilderInterface].
+ * It inherits from [LayerBuilderImpl] and implements the [PieBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class PieBuilder @PublishedApi internal constructor(

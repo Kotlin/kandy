@@ -46,6 +46,6 @@ internal data class BackgroundStyle(
     val opacity: Double? = null
 ) {
     internal fun isEmpty(): Boolean = color == null && borderColor == null && borderWidth == null && borderType == null
-        && borderRadius == null && shadowBlur == null && shadowColor == null && shadowOffsetX == null
-        && shadowOffsetY == null && opacity == null
+            && borderRadius == null && shadowBlur == null && shadowColor == null && shadowOffsetX == null
+            && shadowOffsetY == null && opacity == null
 }

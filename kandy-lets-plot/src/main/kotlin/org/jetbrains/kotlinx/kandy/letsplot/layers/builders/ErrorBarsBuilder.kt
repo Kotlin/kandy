@@ -15,12 +15,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWith
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.ERROR_BAR
 
 /**
- * Context class for managing ErrorBars layers.
+ * Builder class for managing ErrorBars layers.
  *
  * This class provides the context in which ErrorBars layers can be configured.
  * It inherits from [LayerWithBorderLineBuilder] and implements the [ErrorBarsBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class ErrorBarsBuilder @PublishedApi internal constructor(
@@ -43,4 +43,4 @@ public open class ErrorBarsBuilder @PublishedApi internal constructor(
      */
     override val requiredAes: Set<Aes>
         get() = setOf(X, Y_MIN, Y_MAX)
-    }
+}

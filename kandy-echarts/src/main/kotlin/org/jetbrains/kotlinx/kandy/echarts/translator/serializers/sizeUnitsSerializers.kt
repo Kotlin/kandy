@@ -11,8 +11,6 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import org.jetbrains.kotlinx.kandy.echarts.settings.*
-import org.jetbrains.kotlinx.kandy.echarts.settings.DoubleUnit
-import org.jetbrains.kotlinx.kandy.echarts.settings.IntUnit
 
 internal object SizeUnitSerializer : KSerializer<SizeUnit> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("sizeUnit", PrimitiveKind.STRING)

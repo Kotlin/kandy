@@ -6,13 +6,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.coordFlip
 import org.jetbrains.kotlinx.kandy.letsplot.feature.position
 import org.jetbrains.kotlinx.kandy.letsplot.layers.boxes
-import org.jetbrains.kotlinx.kandy.letsplot.translator.toLetsPlot
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.statistics.kandy.layers.boxplot
 import org.jetbrains.kotlinx.statistics.kandy.statplots.boxplot
 import org.jetbrains.kotlinx.statistics.kandy.statplots.configure
-import org.jetbrains.letsPlot.coord.coordFlip
-import org.jetbrains.letsPlot.intern.toSpec
 import kotlin.test.Test
 
 class Boxplot : SampleHelper("boxplot") {
@@ -113,10 +110,7 @@ class Boxplot : SampleHelper("boxplot") {
             "United States" to usaLifeExpectancy
         ).gather(*countries).into("country", "lifeExp")
 
-        lifeExpectancyData.boxplot("country", "lifeExp").configure { coordFlip() }.also {
-
-            println(it.toLetsPlot().toSpec())
-        }
+        lifeExpectancyData.boxplot("country", "lifeExp").configure { coordFlip() }
             // SampleEnd
             .saveSample()
     }

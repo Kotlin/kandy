@@ -6,7 +6,6 @@ package org.jetbrains.kotlinx.kandy.dsl.internal
 
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
-import org.jetbrains.kotlinx.kandy.ir.bindings.*
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
@@ -16,6 +15,7 @@ import org.jetbrains.kotlinx.kandy.ir.geom.Geom
  */
 public abstract class LayerBuilderImpl internal constructor(
     parent: LayerCreatorScope,
+    // index in parental plot builder list of dataset builders
     internal var datasetIndex: Int = parent.datasetIndex
 ) : LayerBuilder {
 
@@ -30,15 +30,26 @@ public abstract class LayerBuilderImpl internal constructor(
         get() = plotBuilder.datasetBuilders[datasetIndex]
     internal open var inheritMappings: Boolean = parent.layersInheritMappings
 
-    private fun overrideDataset() {
+    /**
+     *  Adds a new empty dataset builder into [plotBuilder] dataset builders list
+     *  and update this layer builder dataset builder pointer with this new one
+     *  by updating its index in the list.
+     */
+    private fun overrideDatasetBuilderWithNewEmpty() {
         datasetIndex = plotBuilder.addEmptyDataset()
     }
 
-    internal fun checkSourceSizeAndOverrideDataset(size: Int) {
+    /**
+     * Checks the validity of the mapping source size.
+     * If the size is not compatible with the original dataset,
+     * but it is the first mapping in this builder,
+     * it pre-overrides the dataset builder with a new empty one.
+     */
+    internal fun checkSourceSizeAndOverrideDatasetIfNeeded(size: Int) {
         val rowsCount = datasetBuilder.rowsCount()
         if (rowsCount != size) {
             if (bindingHandler.firstMapping) {
-                overrideDataset()
+                overrideDatasetBuilderWithNewEmpty()
                 inheritMappings = false
             } else {
                 error("Unexpected size of mapping source: excepted $rowsCount, but received $size")
@@ -46,19 +57,20 @@ public abstract class LayerBuilderImpl internal constructor(
         }
     }
 
-    internal val bindingHandler: BindingHandler = object : BindingHandler ({datasetBuilder}) {
+    internal val bindingHandler: BindingHandler = object : BindingHandler({ datasetBuilder }) {
+        /**
+         * Overrides [checkMappingSourceSize]:
+         * allows seamless use of data sources with a size
+         * different from that of the original dataset.
+         */
         override fun checkMappingSourceSize(size: Int) {
-            checkSourceSizeAndOverrideDataset(size)
+            checkSourceSizeAndOverrideDatasetIfNeeded(size)
         }
     }
 
     /**
      * Ensures that all required aesthetics are assigned either in the layer or plot context.
      * If any of the required aesthetics are not found, an exception is thrown.
-     *
-     * @param requiredAes A set of aesthetics that need to be assigned.
-     * @param layerBuilder The context of the layer where the aesthetics could be assigned.
-     * @param plotContext The context of the plot where the aesthetics could be assigned (optional).
      *
      * @throws IllegalArgumentException If any of the required aesthetics is not assigned in either the layer or the plot context.
      */

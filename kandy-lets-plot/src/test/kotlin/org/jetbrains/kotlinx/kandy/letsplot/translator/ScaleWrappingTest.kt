@@ -113,7 +113,7 @@ internal class ScaleWrappingTest {
     }
 
     @Test
-    fun testSizeRangeNull(){
+    fun testSizeRangeNull() {
         val scale = NonPositionalContinuousScale<Double, Double>(
             null, null, null, null, null, null
         )

@@ -2,6 +2,7 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.echarts.features.marks
 
 import org.jetbrains.kotlinx.kandy.echarts.layers.context.EchartsLayerBuilder
@@ -39,7 +40,7 @@ public fun EchartsLayerBuilder.markPoint(block: MarkPointContext.() -> Unit) {
  *          lines = listOf(
  *              MarkLine("max", MarkType.MAX),
  *              MarkLine("two points", MarkPoint(MarkType.MIN), MarkPoint(5, 3))
-*              )
+ *              )
  *      }
  *  }
  * }

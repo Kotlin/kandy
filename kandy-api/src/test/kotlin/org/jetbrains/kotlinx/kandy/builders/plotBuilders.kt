@@ -12,12 +12,12 @@ import junit.framework.TestCase.assertEquals
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.SingleLayerPlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
@@ -117,7 +117,6 @@ class PlotBuildersTest {
 
         assertEquals(expectedPlot, plot)
     }
-
 
 
 }

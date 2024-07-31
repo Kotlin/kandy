@@ -17,7 +17,7 @@ import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParameters
  * @param parameters the positional mapping parameters (optional).
  * @return the created [positional mapping][PositionalMapping].
  */
-internal fun<DomainType> BindingHandler.addPositionalMapping(
+internal fun <DomainType> BindingHandler.addPositionalMapping(
     aes: Aes, values: DataColumn<DomainType>, parameters: PositionalMappingParameters<DomainType>?
 ): PositionalMapping<DomainType> {
     checkMappingSourceSize(values.size())

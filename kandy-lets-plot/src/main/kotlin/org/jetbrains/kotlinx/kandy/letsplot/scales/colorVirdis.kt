@@ -26,10 +26,10 @@ public enum class ViridisColormap {
  * @property hueRange [ClosedRange] of color hue, in [0, 1]
  * @property direction colormap direction
  */
-public sealed interface ScaleColorViridis<DomainType>: CustomNonPositionalScale<DomainType, Color> {
+public sealed interface ScaleColorViridis<DomainType> : CustomNonPositionalScale<DomainType, Color> {
     public val limits: List<DomainType?>?
     public val colormap: ViridisColormap
-    public val hueRange:  ClosedRange<Double>
+    public val hueRange: ClosedRange<Double>
     public val direction: WheelDirection
 }
 
@@ -53,7 +53,7 @@ public data class ScaleContinuousColorViridis<DomainType>(
 
     override val nullValue: Color?,
     override val transform: Transformation?,
-) : ContinuousScale<Color>,  ScaleColorViridis<DomainType>
+) : ContinuousScale<Color>, ScaleColorViridis<DomainType>
 
 /**
  * Categorical color scale with viridis color maps, designed to be perceptually-uniform,

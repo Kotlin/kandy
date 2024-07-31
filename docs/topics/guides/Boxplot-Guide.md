@@ -480,7 +480,7 @@ df.boxplot {
     x(cond)
     y(rate)
 }.configure {
-    // BoxplotLayer + PlotContext
+    // BoxplotLayer + PlotBuilder
     // can't add new layer but can configure `boxes` and `outliers`
     boxes {
         alpha = 0.7

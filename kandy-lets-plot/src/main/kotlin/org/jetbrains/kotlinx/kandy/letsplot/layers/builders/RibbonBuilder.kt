@@ -16,12 +16,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.RIBBON
 
 
 /**
- * Context class for managing ribbon layers.
+ * Builder class for managing ribbon layers.
  *
  * This class provides the context in which ribbon layers can be configured.
  * It inherits from [LayerWithBorderLineBuilder] and implements the [RibbonBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class RibbonBuilder @PublishedApi internal constructor(

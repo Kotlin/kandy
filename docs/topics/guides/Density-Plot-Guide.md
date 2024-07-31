@@ -374,7 +374,7 @@ That means you can configure bars settings, mappings using `StatDensity` dataset
 df.densityPlot {
     x(depth)
 }.configure {
-    // Area + StatDensity + PlotContext
+    // Area + StatDensity + PlotBuilder
     // Can't add new layer
     // Can add area mapping, including for `Stat.*` columns
     fillColor(Stat.scaled) // doesn't work properly for now

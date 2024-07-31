@@ -148,8 +148,8 @@ There are different types of APIs for this purpose, which are described in the n
 
 ### Stat-transform API
 
-"Stat-transform" API allows you to transform a dataset right inside `PlotContext`, calculating stats on the fly.
-It is essentially a set of extensions for `PlotContext` that have the usual statistics API (input samples, weights and
+"Stat-transform" API allows you to transform a dataset right inside `PlotBuilder`, calculating stats on the fly.
+It is essentially a set of extensions for `PlotBuilder` that have the usual statistics API (input samples, weights and
 parameters) but also open a new context. As usual, new layers can be created in this context, but within it, they will
 have a new dataset — a dataset with a statistical transformation.
 

@@ -16,12 +16,12 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces.LayerWith
 import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.CROSS_BAR
 
 /**
- * Context class for managing CrossBars layers.
+ * Builder class for managing CrossBars layers.
  *
  * This class provides the context in which CrossBars layers can be configured.
  * It inherits from [LayerWithBorderLineBuilder] and implements the [CrossBarsBuilderInterface].
  *
- * @param parent the parent context for the layer.
+ * @param parent the parent [LayerCreatorScope] for the layer.
  */
 @Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
 public open class CrossBarsBuilder @PublishedApi internal constructor(
@@ -43,4 +43,4 @@ public open class CrossBarsBuilder @PublishedApi internal constructor(
      */
     override val requiredAes: Set<Aes>
         get() = setOf(X, Y, Y_MIN, Y_MAX)
-    }
+}

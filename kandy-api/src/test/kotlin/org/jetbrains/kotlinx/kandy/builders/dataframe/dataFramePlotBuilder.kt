@@ -8,17 +8,16 @@ import io.mockk.mockk
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DataFramePlotBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.DatasetBuilderImpl
+import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedDataBuilder
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.ir.Layer
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedData
-import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedDataBuilder
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -165,7 +164,7 @@ class DataFramePlotBuilderTest {
             "B" to listOf(1, 2, 3)
         )
 
-       // assertEquals(dataFrame.plot {}, plot(dataFrame) {})
+        // assertEquals(dataFrame.plot {}, plot(dataFrame) {})
 
         val geom = mockk<Geom>()
         val mockLayer = Layer(

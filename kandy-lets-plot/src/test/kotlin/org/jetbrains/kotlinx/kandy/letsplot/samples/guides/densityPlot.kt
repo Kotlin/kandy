@@ -221,7 +221,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
         df.densityPlot {
             x(depth)
         }.configure {
-            // Area + StatDensity + PlotContext
+            // Area + StatDensity + PlotBuilder
             // Can't add new layer
             // Can add area mapping, including for `Stat.*` columns
             fillColor(Stat.scaled) // doesn't work properly for now

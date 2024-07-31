@@ -4,6 +4,11 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.settings
 
+import org.jetbrains.kotlinx.kandy.echarts.settings.LineType.Companion.DASHED
+import org.jetbrains.kotlinx.kandy.echarts.settings.LineType.Companion.DOTTED
+import org.jetbrains.kotlinx.kandy.echarts.settings.LineType.Companion.SOLID
+import org.jetbrains.kotlinx.kandy.echarts.settings.LineType.Companion.pairPxOf
+import org.jetbrains.kotlinx.kandy.echarts.settings.LineType.Companion.px
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.StringNumberArray
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.StringValue
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.pairOf

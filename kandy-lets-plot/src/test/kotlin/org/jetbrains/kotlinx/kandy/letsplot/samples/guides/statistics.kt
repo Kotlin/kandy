@@ -88,8 +88,8 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             }
             layout.title = "Our awesome histogram!"
         }
-            // SampleEnd
-            // .saveSample()
+        // SampleEnd
+        // .saveSample()
     }
 
     @Test
@@ -120,8 +120,8 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
                 color = Color.RED
             }
         }
-            // SampleEnd
-            // .saveSample()
+        // SampleEnd
+        // .saveSample()
     }
 
     @Test
@@ -131,8 +131,8 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             // Equal to `statBin` + `bars` + x/y mappings on Stat.x/Stat.count
             histogram(sample)
         }
-            // SampleEnd
-            // .saveSample()
+        // SampleEnd
+        // .saveSample()
     }
 
     @Test
@@ -151,8 +151,8 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             }
             x.limits = -3.5..3.5
         }
-            // SampleEnd
-            // .saveSample()
+        // SampleEnd
+        // .saveSample()
     }
 
     @Test
@@ -161,7 +161,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
         histogram(sample)
             // SampleEnd
             .toPlot()
-            // .saveSample()
+        // .saveSample()
     }
 
     @Test
@@ -170,7 +170,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
         df.histogram("sample", binsOption = BinsOption.byNumber(10))
             // SampleEnd
             .toPlot()
-            // .saveSample()
+        // .saveSample()
     }
 
     @Test
@@ -184,7 +184,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
         }
             // SampleEnd
             .toPlot()
-            // .saveSample()
+        // .saveSample()
     }
 
     @Test
@@ -200,8 +200,8 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             borderLine.color = Color.BLACK
             layout.title = "Configured histogram"
         }
-            // SampleEnd
-            // .saveSample()
+        // SampleEnd
+        // .saveSample()
     }
 
     @Test
@@ -241,8 +241,8 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
                 }
             }
         }
-            // SampleEnd
-            // .saveSample()
+        // SampleEnd
+        // .saveSample()
     }
 
     @Test
@@ -252,8 +252,8 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
         gbAB.plot {
             histogram(sample)
         }
-            // SampleEnd
-            // .saveSample()
+        // SampleEnd
+        // .saveSample()
     }
 
     @Test
@@ -268,8 +268,8 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
                 position = Position.stack()
             }
         }
-            // SampleEnd
-            // .saveSample()
+        // SampleEnd
+        // .saveSample()
     }
 
     @Test
@@ -278,7 +278,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
         gbAB.histogram("sample")
             // SampleEnd
             .toPlot()
-            // .saveSample()
+        // .saveSample()
     }
 
     @Test
@@ -297,7 +297,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
                 title = "Configured grouped histogram!"
             }
         }
-            // SampleEnd
-            // .saveSample()
+        // SampleEnd
+        // .saveSample()
     }
 }

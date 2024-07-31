@@ -4,6 +4,10 @@
 
 package org.jetbrains.kotlinx.kandy.echarts.settings
 
+import org.jetbrains.kotlinx.kandy.echarts.settings.AreaPosition.Companion.AUTO
+import org.jetbrains.kotlinx.kandy.echarts.settings.AreaPosition.Companion.END
+import org.jetbrains.kotlinx.kandy.echarts.settings.AreaPosition.Companion.START
+import org.jetbrains.kotlinx.kandy.echarts.settings.AreaPosition.Companion.number
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.StringNumberArray
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.StringValue
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.singleOf

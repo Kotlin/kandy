@@ -275,7 +275,7 @@ val statCandlestickBoxesPlot = df.plot {
             upper(Stat.upper)
             yMax(Stat.max)
             // temporary solution, middle shoudn't be necceasary
-            middle(List(Stat.x.size()) {null})
+            middle(List(Stat.x.size()) { null })
             val colorScale = Scale.categorical(true to Color.GREEN, false to Color.RED)
             fillColor(Stat.isIncreased) {
                 scale = colorScale
@@ -287,7 +287,7 @@ val statCandlestickBoxesPlot = df.plot {
                 // remove legend
                 legend.type = LegendType.None
             }
-            alpha= 0.6
+            alpha = 0.6
             // remove whisker ends
             whiskerWidth = 0.0
         }
@@ -440,7 +440,7 @@ That means you can configure boxes settings, mappings using `StatCandlestick` da
 
 ```kotlin
 df.candlestick("x", "open", "high", "low", "close").configure {
-    // Boxes + StatCandlestick + PlotContext
+    // Boxes + StatCandlestick + PlotBuilder
     // Can't add a new layer
     y.limits = 3.0..17.0
     increase {

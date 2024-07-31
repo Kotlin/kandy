@@ -7,11 +7,11 @@ package org.jetbrains.kotlinx.kandy.echarts.layers
 import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.echarts.features.Grid
 import org.jetbrains.kotlinx.kandy.echarts.features.Legend
-import org.jetbrains.kotlinx.kandy.echarts.features.title.Title
 import org.jetbrains.kotlinx.kandy.echarts.features.Tooltip
-import org.jetbrains.kotlinx.kandy.echarts.features.text.TextStyle
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.Animation
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
+import org.jetbrains.kotlinx.kandy.echarts.features.text.TextStyle
+import org.jetbrains.kotlinx.kandy.echarts.features.title.Title
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 

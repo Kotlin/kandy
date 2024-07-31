@@ -94,7 +94,7 @@ class Smoothing : SampleHelper("stat", "guides") {
                 y(newYs)
             }
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -115,7 +115,7 @@ class Smoothing : SampleHelper("stat", "guides") {
                 y(efficiency)
             }
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -128,7 +128,7 @@ class Smoothing : SampleHelper("stat", "guides") {
             layout.title = "`smoothLine()` layer"
         }
         smoothLineLayerPlot
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -150,7 +150,7 @@ class Smoothing : SampleHelper("stat", "guides") {
             layout.title = "`statSmooth()` + non-statistical `line` layer"
         }
         plotGrid(listOf(smoothLineLayerPlot, statSmoothAndLinePlot))
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -169,7 +169,7 @@ class Smoothing : SampleHelper("stat", "guides") {
                 y(efficiency)
             }
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -267,7 +267,7 @@ class Smoothing : SampleHelper("stat", "guides") {
                 }
             }
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -283,7 +283,7 @@ class Smoothing : SampleHelper("stat", "guides") {
                 }
             }
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -293,7 +293,7 @@ class Smoothing : SampleHelper("stat", "guides") {
         groupedDF.plot {
             smoothLine(time, value)
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -306,7 +306,7 @@ class Smoothing : SampleHelper("stat", "guides") {
                 type(category)
             }
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 
@@ -318,7 +318,7 @@ class Smoothing : SampleHelper("stat", "guides") {
                 smoothLine(time, value)
             }
         }
-            // SampleEnd
+        // SampleEnd
 //            .saveSample()
     }
 }

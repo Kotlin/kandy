@@ -10,7 +10,7 @@ histogram</format>(
 <a href="#binsoption"><format style="bold" color="DarkGray">binsOption</format></a>: 
 BinsOption = BinsOption.byNumber(20),
 <a href="#binsalign"><format style="bold" color="DarkGray">binsAlign</format></a>: 
-BinsAlign = BinsAlign.center(0.0)) <format style="italic">{ this: HistogramLayerContext -></format></p>
+BinsAlign = BinsAlign.center(0.0)) <format style="italic">{ this: HistogramLayerBuilder -></format></p>
 <include from = "interfaces.topic" element-id="interface-of-bars"></include>
 <format style="italic">}</format>
 <format style="italic">}</format>

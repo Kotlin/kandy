@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.kandy.dsl.internal
 
 /**
  * An abstract class that represents a scope for creating plot layers.
- * Provides default dataset for new layers created in it.
+ * Provides a default dataset for new layers created in it.
  */
 public abstract class LayerCreatorScope {
 
@@ -11,10 +11,12 @@ public abstract class LayerCreatorScope {
      */
     @PublishedApi
     internal abstract val plotBuilder: MultiLayerPlotBuilder
+
     /**
-     * Default dataset index in [MultiLayerPlotBuilder.datasetHandlers].
+     * Default dataset index in [MultiLayerPlotBuilder.datasetBuilders].
      */
     internal abstract val datasetIndex: Int
+
     /**
      * Whether the layers should inherit [MultiLayerPlotBuilder] high-level mappings
      */

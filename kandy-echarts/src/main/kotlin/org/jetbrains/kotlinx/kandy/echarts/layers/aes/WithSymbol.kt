@@ -2,11 +2,11 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.echarts.layers.aes
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
-import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.echarts.scale.EchartsNonPositionalMappingParametersCategorical
 import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMappingCat
 import org.jetbrains.kotlinx.kandy.echarts.settings.Symbol
@@ -21,7 +21,8 @@ public interface WithSymbol : WithAes {
         }
 
     public fun <T> symbol(
-        column: ColumnReference<T>, parameters: EchartsNonPositionalMappingParametersCategorical<T, Symbol>.() -> Unit = {}
+        column: ColumnReference<T>,
+        parameters: EchartsNonPositionalMappingParametersCategorical<T, Symbol>.() -> Unit = {}
     ): NonPositionalMapping<T, Symbol> = bindingHandler.nonPosMappingCat(SYMBOL, column, parameters)
 
     public fun <T> symbol(
@@ -29,7 +30,9 @@ public interface WithSymbol : WithAes {
     ): NonPositionalMapping<T, Symbol> = bindingHandler.nonPosMappingCat(SYMBOL, column, params)
 
     public fun <T> symbol(
-        values: Iterable<T>, name: String? = null, params: EchartsNonPositionalMappingParametersCategorical<T, Symbol>.() -> Unit = {}
+        values: Iterable<T>,
+        name: String? = null,
+        params: EchartsNonPositionalMappingParametersCategorical<T, Symbol>.() -> Unit = {}
     ): NonPositionalMapping<T, Symbol> = bindingHandler.nonPosMappingCat(SYMBOL, values, name, params)
 
     public fun symbol(

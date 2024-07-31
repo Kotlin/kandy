@@ -424,7 +424,7 @@ That means you can configure bars settings, mappings using `StatCount` dataset a
 df.countPlot {
     x(`class`)
 }.configure {
-    // Bars + StatCount + PlotContext
+    // Bars + StatCount + PlotBuilder
     // can't add new layer
     // can add bars mapping, including for `Stat.*` columns
     fillColor(Stat.x)

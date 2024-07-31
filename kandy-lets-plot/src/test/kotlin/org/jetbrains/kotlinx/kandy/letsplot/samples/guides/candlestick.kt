@@ -87,7 +87,7 @@ class Candlestick : SampleHelper("stat", "guides") {
                 }
             }
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
@@ -104,7 +104,7 @@ class Candlestick : SampleHelper("stat", "guides") {
                     upper(Stat.upper)
                     yMax(Stat.max)
                     // temporary solution, middle shoudn't be necceasary
-                    middle(List(Stat.x.size()) {null})
+                    middle(List(Stat.x.size()) { null })
                     val colorScale = Scale.categorical(true to Color.GREEN, false to Color.RED)
                     fillColor(Stat.isIncreased) {
                         scale = colorScale
@@ -116,7 +116,7 @@ class Candlestick : SampleHelper("stat", "guides") {
                         // remove legend
                         legend.type = LegendType.None
                     }
-                    alpha= 0.6
+                    alpha = 0.6
                     // remove whisker ends
                     whiskerWidth = 0.0
                 }
@@ -124,7 +124,7 @@ class Candlestick : SampleHelper("stat", "guides") {
             layout.title = "`statCandlestick` + `boxes`"
         }
         statCandlestickBoxesPlot
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
@@ -138,7 +138,7 @@ class Candlestick : SampleHelper("stat", "guides") {
             layout.title = "`candlestick`"
         }
         candlestickPlot
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
@@ -198,7 +198,7 @@ class Candlestick : SampleHelper("stat", "guides") {
                 borderLine.color = Color.GREY
             }
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
@@ -227,7 +227,7 @@ class Candlestick : SampleHelper("stat", "guides") {
     fun guideCandlestickSimpleCandlestickPlot() {
         // SampleStart
         candlestick(xList, openList, highList, lowList, closeList)
-         // SampleEnd
+            // SampleEnd
             .toPlot()
             .saveSample()
     }
@@ -236,7 +236,7 @@ class Candlestick : SampleHelper("stat", "guides") {
     fun guideCandlestickSimpleCandlestickPlotOnDf() {
         // SampleStart
         df.candlestick("x", "open", "high", "low", "close")
-        // SampleEnd
+            // SampleEnd
             .toPlot()
     }
 
@@ -263,7 +263,7 @@ class Candlestick : SampleHelper("stat", "guides") {
     fun guideCandlestickCandlestickPlotConfigured() {
         // SampleStart
         df.candlestick("x", "open", "high", "low", "close").configure {
-            // Boxes + StatCandlestick + PlotContext
+            // Boxes + StatCandlestick + PlotBuilder
             // Can't add a new layer
             y.limits = 3.0..17.0
             increase {
