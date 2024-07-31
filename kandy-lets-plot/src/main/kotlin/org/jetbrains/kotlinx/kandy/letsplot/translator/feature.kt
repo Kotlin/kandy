@@ -85,8 +85,8 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
         featureBuffer += wrap()
         return
     }
-    // todo featureName
-    //TODO check is lp feature
+
+    // TODO(https://github.com/Kotlin/kandy/issues/409)
     when (featureName) {
         FacetGridFeature.FEATURE_NAME -> {
             featureBuffer.add((this as FacetGridFeature).wrap())
@@ -104,18 +104,8 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
             (this as Layout).wrap(featureBuffer)
         }
 
-        /*
-        GatheringList.FEATURE_NAME -> {
-            (this as GatheringList).gatheringList.forEach {
-                it.toLayer().wrap(featureBuffer, null)
-            }
-        }
-
-         */
-
-        else -> TODO()
+        else -> error("Unexpected feature: $featureName")
     }
-    //return featureBuffer
 }
 
 internal fun Position.wrap(): PosOptions {
@@ -149,7 +139,7 @@ internal fun LayerTooltips.wrap(): TooltipOptions {
     lines?.forEach {
         buffer = buffer.line(it)
     }
-    // TODO: temporary solution (#321), moves side tooltips to main
+    // TODO(https://github.com/Kotlin/kandy/issues/321)
     if (variables.isNotEmpty() || !lines.isNullOrEmpty()) {
         buffer = buffer.disableSplitting()
     }

@@ -30,15 +30,12 @@ public sealed interface BrewerPalette {
 public sealed interface ScaleColorBrewer<DomainType> {
     public val limits: List<DomainType?>?
     public val palette: BrewerPalette?
-
-    // todo direction
     public val transform: Transformation?
 }
 
 public data class ScaleContinuousColorBrewer<DomainType>(
     override val limits: List<DomainType?>?,
     override val palette: BrewerPalette?,
-    // todo direction
     override val nullValue: Color?,
     override val transform: Transformation?,
 ) : ContinuousScale<Color>, CustomNonPositionalScale<DomainType, Color>, ScaleColorBrewer<DomainType>
@@ -46,8 +43,6 @@ public data class ScaleContinuousColorBrewer<DomainType>(
 public data class ScaleCategoricalColorBrewer<DomainType>(
     override val limits: List<DomainType>?,
     override val palette: BrewerPalette?,
-    //override val nullValue: TypedValue?,
-    // todo direction
 ) : CategoricalScale, CustomNonPositionalScale<DomainType, Color>, ScaleColorBrewer<DomainType> {
     override val transform: Transformation? = null
 }

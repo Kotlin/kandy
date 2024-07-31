@@ -31,7 +31,7 @@ public interface WithAlpha : WithAes {
     private fun validateScale(scale: NonPositionalScale<*, out Double>) {
         when (scale) {
             is NonPositionalDefaultCategoricalScale, is NonPositionalDefaultScale -> return
-            is CustomNonPositionalScale -> return // TODO
+            is CustomNonPositionalScale -> return
             is NonPositionalCategoricalScale -> scale.rangeValues?.forEach { checkInRange(it) }
             is NonPositionalContinuousScale -> {
                 scale.rangeMin?.let { checkInRange(it) }

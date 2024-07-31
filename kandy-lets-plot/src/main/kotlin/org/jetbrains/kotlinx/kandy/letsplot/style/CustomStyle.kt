@@ -151,7 +151,7 @@ public data class Global internal constructor(
     override var background: BackgroundParameters? = null,
     override var text: TextParameters? = null,
     override var title: TextParameters? = null,
-    // TODO  var axis: LineParameters? = null,
+    // var axis: LineParameters? = null,
 ) : SelfInvocationContext, WithLine, WithBackground, WithText, WithTitle
 
 public data class LayerTooltips internal constructor(
@@ -173,7 +173,6 @@ public data class Axis internal constructor(
     var ticksLength: Double? = null,
     override var line: LineParameters? = null,
     val tooltip: AxisTooltip = AxisTooltip(),
-    // TODO blank all??
 ) : SelfInvocationContext, WithText, WithTitle, WithLine {
     internal var blank: Boolean? = null
     public fun ticks(block: LineParameters.() -> Unit) {
@@ -302,19 +301,6 @@ public data class Grid internal constructor(
     public fun minorYLine(parameters: LineParameters) {
         minorYLine = parameters
     }
-    // TODO
-    /*
-    var blank: Boolean = false
-        set(value) {
-            if (value) {
-                majorLine.blank = true
-                majorXLine.blank = true
-                majorYLine.blank = true
-            }
-            field = value
-        }
-
-     */
 }
 
 public data class Panel internal constructor(

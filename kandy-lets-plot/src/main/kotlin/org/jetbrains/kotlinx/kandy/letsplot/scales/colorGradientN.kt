@@ -8,8 +8,6 @@ import org.jetbrains.kotlinx.kandy.ir.scale.ContinuousScale
 import org.jetbrains.kotlinx.kandy.ir.scale.CustomNonPositionalScale
 import org.jetbrains.kotlinx.kandy.util.color.Color
 
-// todo categorical and nullable
-
 public data class ScaleContinuousColorGradientN<DomainType>(
     val domainLimits: Pair<DomainType?, DomainType?>?,
     val rangeColors: List<Color>,

@@ -21,7 +21,7 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
  * @see [Reversed]
  */
 public var LayerBuilder.reversed: Boolean
-    get() = true
+    get() = true // TODO(https://github.com/Kotlin/kandy/issues/412)
     set(value) {
         layerFeatures[Reversed.FEATURE_NAME] = Reversed(value)
     }

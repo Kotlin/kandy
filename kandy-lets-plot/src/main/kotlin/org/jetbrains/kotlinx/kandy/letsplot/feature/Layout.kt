@@ -53,7 +53,7 @@ public val PlotBuilder.layout: Layout
         return plotFeatures[Layout.NAME] as Layout
     }
 
-// todo separate model and context!!!
+// TODO(https://github.com/Kotlin/kandy/issues/410)
 /**
  * Represents the layout configuration parameters for a plot.
  *
@@ -69,12 +69,10 @@ public data class Layout(
     var title: String? = null,
     var subtitle: String? = null,
     var caption: String? = null,
-    // todo remove?
+    // TODO(https://github.com/Kotlin/kandy/issues/411)
     var xAxisLabel: String? = null,
     var yAxisLabel: String? = null,
-
     var theme: Theme? = null,
-
     var size: Pair<Int, Int>? = null
 ) : PlotFeature {
 

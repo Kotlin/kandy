@@ -33,9 +33,9 @@ internal fun Geom.wrap(): GeomOptions {
             TILE -> org.jetbrains.letsPlot.Geom.tile()
             TEXT -> org.jetbrains.letsPlot.Geom.text()
             V_LINE -> org.jetbrains.letsPlot.Geom.vline()
-            else -> TODO("error unexpected geom")
+            else -> error("Unknown geom: $this")
         }
 
-        else -> TODO("error unexpected geom")
+        else -> error("Unknown geom: $this")
     }
 }

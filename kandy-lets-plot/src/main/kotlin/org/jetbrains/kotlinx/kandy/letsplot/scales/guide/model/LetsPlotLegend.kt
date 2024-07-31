@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
 
-// todo separate model and context
+// TODO(https://github.com/Kotlin/kandy/issues/410)
 /**
  * Legend, i.e. guide for non-positional scale.
  *
@@ -17,7 +17,6 @@ import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
  */
 public data class Legend<DomainType, out RangeType> @PublishedApi internal constructor(
     var name: String? = null,
-    // todo expand & trans
     var type: LegendType? = null,
     internal var breaks: List<DomainType>? = null,
     internal var labels: List<String>? = null,
@@ -53,7 +52,7 @@ public data class Legend<DomainType, out RangeType> @PublishedApi internal const
      * @param labels list of corresponding labels.
      */
     public fun breaksLabeled(breaks: List<DomainType>, labels: List<String>) {
-        // todo check equal sizes
+        // TODO(https://github.com/Kotlin/kandy/issues/416)
         this.breaks = breaks
         this.labels = labels
     }

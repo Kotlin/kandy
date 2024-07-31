@@ -9,12 +9,11 @@ import org.jetbrains.letsPlot.intern.FeatureList
 import org.jetbrains.letsPlot.letsPlot
 
 public fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
-    // todo validate datasets
+    // TODO(https://github.com/Kotlin/kandy/issues/126)
     val featureBuffer = buildList {
         layers.forEach { it.wrap(this, datasets, globalMappings, globalSettings) }
         freeScales.forEach { it.value.wrap(this) }
         features.forEach { it.value.wrap(this) }
-        //  (layout as? LetsPlotLayout)?.wrap(this) // todo
     }
     return letsPlot(datasets[0].wrap()) + FeatureList(featureBuffer)
 }

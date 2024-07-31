@@ -71,7 +71,8 @@ public inline fun <reified DomainType : Comparable<DomainType>> continuousColorH
     }, chroma, luminance, hueStart, direction, nullValue, transform
 )
 
-// todo(LP) categories support
+
+// TODO(https://github.com/Kotlin/kandy/issues/418)
 /**
  * Creates a qualitative categorical color scale with evenly spaced hues.
  *

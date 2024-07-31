@@ -81,23 +81,6 @@ class GroupByPlotBuilderTest {
 
     @Test
     fun `test empty plot with grouped DataFrame`() {
-        // TODO handle error
-        /*val emptyPlot1 = dataFrame.groupBy("a").plot {}
-        val emptyPlot2 = plot(dataFrame.groupBy("a")) {}
-
-        assertEquals(
-            (emptyPlot1.datasets.first() as GroupedData).dataFrame,
-            (emptyPlot2.datasets.first() as GroupedData).dataFrame
-        )
-        assertEquals(
-            (emptyPlot1.datasets.first() as GroupedData).keys,
-            (emptyPlot2.datasets.first() as GroupedData).keys
-        )
-        assertEquals(
-            (emptyPlot1.datasets.first() as GroupedData).groupBy.groups,
-            (emptyPlot2.datasets.first() as GroupedData).groupBy.groups
-        )*/
-
         val geom = mockk<Geom>()
         val mockLayer = Layer(
             datasetIndex = 0, geom = geom,

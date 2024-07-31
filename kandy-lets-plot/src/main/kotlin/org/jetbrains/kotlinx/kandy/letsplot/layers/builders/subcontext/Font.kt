@@ -9,7 +9,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.WithFamily
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.WithSize
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
-// TODO doc
+/**
+ * TODO(https://github.com/Kotlin/kandy/issues/414)
+ */
 public class Font @PublishedApi internal constructor(
     bindingHandler: BindingHandler
 ) : SelfInvocationContext, WithColor, WithSize, WithFace, WithFamily, SubContext(bindingHandler)

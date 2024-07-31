@@ -6,7 +6,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model
 
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
-// todo separate model and context
+// TODO(https://github.com/Kotlin/kandy/issues/410)
 /**
  * Axis, i.e. guide for positional scale.
  *
@@ -24,7 +24,6 @@ public data class Axis<DomainType> @PublishedApi internal constructor(
     internal var format: String? = null,
     @PublishedApi
     internal var expand: List<Double>? = null,
-    // todo expand & trans
 ) : SelfInvocationContext, ScaleParameters {
 
 
@@ -56,7 +55,7 @@ public data class Axis<DomainType> @PublishedApi internal constructor(
      * @param labels list of corresponding labels.
      */
     public fun breaksLabeled(breaks: List<DomainType>, labels: List<String>) {
-        // todo check equal sizes
+        // TODO(https://github.com/Kotlin/kandy/issues/416)
         this.breaks = breaks
         this.labels = labels
     }

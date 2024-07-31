@@ -9,7 +9,9 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.BindingCollector
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalSetting
 
-// TODO docs
+/**
+ * TODO(https://github.com/Kotlin/kandy/issues/414)
+ */
 public class ConstantSetter internal constructor(private val aes: Aes, private val bindingCollector: BindingCollector) {
     public fun <T> constant(value: T) {
         bindingCollector.settings[aes] = PositionalSetting<T>(aes, value)

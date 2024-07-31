@@ -54,9 +54,6 @@ internal fun Mapping.wrapScale(domainType: KType, groupKeys: List<String>?): org
     )
 }
 
-/**
- * TODO datetime
- */
 internal fun Scale.wrap(
     aes: Aesthetic,
     domainType: KType,
@@ -69,7 +66,8 @@ internal fun Scale.wrap(
             val naValue = if (this is ContinuousScale<*>) {
                 wrapValue(nullValue)
             } else {
-                null //(this as PositionalCategoricalScale<*>).c
+                // TODO(https://github.com/Kotlin/kandy/issues/135)
+                null
             }
             val axis = scaleParameters as? Axis<*>?
 
@@ -91,14 +89,14 @@ internal fun Scale.wrap(
                 }
             }
 
-            // todo discrete datetime
+            // TODO(https://github.com/Kotlin/kandy/issues/128)
             /*
             if (domainType in dateTimeTypes) {
                 return when (aes) {
                     X -> scaleXDateTime(
                         //  limits = limits.toLP(),
                         name = name,
-                        breaks = breaks?.map { it as Number }, // TODO() }
+                        breaks = breaks?.map { it as Number },
                         labels = labels,
                         //   trans = (transform as? Transformation)?.name,
                         format = format
@@ -111,8 +109,6 @@ internal fun Scale.wrap(
                         labels = labels,
                         format = format
                     )
-
-                    else -> TODO()
                 }
             }
 
@@ -143,7 +139,7 @@ internal fun Scale.wrap(
                             //  naValue = nullValue as? Number
                         )
 
-                        else -> TODO("error")
+                        else -> error("Unexpected aes: $aes")
                     }
                 }
 
@@ -153,7 +149,8 @@ internal fun Scale.wrap(
                             scaleXDateTime(
                                 limits = (min to max).wrap(),
                                 name = name,
-                                breaks = breaks?.filterNotNull(), // todo
+                                // TODO(https://github.com/Kotlin/kandy/issues/128)
+                                breaks = breaks?.filterNotNull(),
                                 labels = labels,
                                 format = format,
                                 expand = expand,
@@ -163,7 +160,8 @@ internal fun Scale.wrap(
                             scaleXTime(
                                 limits = (min to max).wrap(),
                                 name = name,
-                                breaks = breaks?.filterNotNull(), // todo
+                                // TODO(https://github.com/Kotlin/kandy/issues/128)
+                                breaks = breaks?.filterNotNull(),
                                 labels = labels,
                                 expand = expand,
                                 position = position
@@ -173,7 +171,8 @@ internal fun Scale.wrap(
                             scaleXContinuous(
                                 limits = (min to max).wrap(),
                                 name = name,
-                                breaks = breaks?.map { it as Number }, // TODO() }
+                                // TODO(https://github.com/Kotlin/kandy/issues/128)
+                                breaks = breaks?.map { it as Number },
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
                                 format = format,
@@ -198,7 +197,8 @@ internal fun Scale.wrap(
                             scaleYTime(
                                 limits = (min to max).wrap(),
                                 name = name,
-                                breaks = breaks?.filterNotNull(), // todo
+                                // TODO(https://github.com/Kotlin/kandy/issues/128)
+                                breaks = breaks?.filterNotNull(),
                                 labels = labels,
                                 expand = expand,
                                 position = position
@@ -208,7 +208,8 @@ internal fun Scale.wrap(
                             scaleYContinuous(
                                 limits = (min to max).wrap(),
                                 name = name,
-                                breaks = breaks?.map { it as Number }, // TODO() }
+                                // TODO(https://github.com/Kotlin/kandy/issues/128)
+                                breaks = breaks?.map { it as Number },
                                 labels = labels,
                                 trans = (transform as? Transformation)?.name,
                                 format = format,
@@ -218,7 +219,7 @@ internal fun Scale.wrap(
                             )
                         }
 
-                        else -> TODO()
+                        else -> error("Unexpected aes: $aes")
                     }
                 }
 
@@ -239,7 +240,7 @@ internal fun Scale.wrap(
             val naValue = if (this is ContinuousScale<*>) {
                 wrapValue(nullValue)
             } else {
-                // todo custom scales
+                // TODO(https://github.com/Kotlin/kandy/issues/370)
                 (this as? NonPositionalCategoricalScale<*, *>)?.domainCategories?.indexOf(null)?.let {
                     if (it == -1) {
                         null
@@ -317,8 +318,8 @@ internal fun Scale.wrap(
                                 labels = labels,
                                 guide = legendType,
                                 format = format,
-                                // TODO(fill NA for categorical)
-//                                naValue = naValue as? Number
+                                // TODO(https://github.com/Kotlin/kandy/issues/135)
+                                // naValue = naValue as? Number
                             )
                         }
 
@@ -336,7 +337,7 @@ internal fun Scale.wrap(
                             } else {
                                 scaleColorManual(
                                     limits = domainCategories?.wrap(),
-                                    values = rangeValues!!.map { (it as Color).wrap() }, //todo
+                                    values = rangeValues!!.map { (it as Color).wrap() },
                                     name = name,
                                     breaks = breaks?.wrap(),
                                     labels = labels,
@@ -371,7 +372,6 @@ internal fun Scale.wrap(
                                 )
                             }
                         }
-                        // TODO
 
                         ALPHA -> if (rangeValues != null) {
                             scaleAlphaManual(
@@ -408,7 +408,6 @@ internal fun Scale.wrap(
                                 format = format,
                                 naValue = naValue
                             )
-                            // TODO
                         } else {
                             org.jetbrains.letsPlot.intern.Scale(
                                 Aes.LINETYPE,
@@ -446,7 +445,7 @@ internal fun Scale.wrap(
                             )
                         }
 
-                        else -> TODO()
+                        else -> error("Unexpected aes: $aes")
                     }
                 }
 
@@ -477,7 +476,8 @@ internal fun Scale.wrap(
                             val lowColor = (rangeMin as? Color)?.wrap()
                             val highColor = (rangeMax as? Color)?.wrap()
 
-                            val limits = (domainMin to domainMax).wrap() // todo datetime support here
+                            // TODO(https://github.com/Kotlin/kandy/issues/128)
+                            val limits = (domainMin to domainMax).wrap()
 
                             /*scaleColorContinuous(
                                 //low = lowColor,
@@ -517,7 +517,8 @@ internal fun Scale.wrap(
                         FILL -> {
                             val lowColor = (rangeMin as? Color)?.wrap()
                             val highColor = (rangeMax as? Color)?.wrap()
-                            val limits = (domainMin to domainMax).wrap() //todo datetime support here
+                            // TODO(https://github.com/Kotlin/kandy/issues/128)
+                            val limits = (domainMin to domainMax).wrap()
 
                             /*scaleFillContinuous(
                                 //low = lowColor,
@@ -555,7 +556,8 @@ internal fun Scale.wrap(
 
                         ALPHA -> scaleAlpha(
                             limits = (domainMin to domainMax).wrap(),
-                            range = (rangeMin to rangeMax).wrap() as Pair<Number, Number>?, //todo
+                            // TODO(https://github.com/Kotlin/kandy/issues/126)
+                            range = (rangeMin to rangeMax).wrap() as Pair<Number, Number>?,
                             name = name,
                             breaks = breaks?.map { it as Number },
                             labels = labels,
@@ -564,8 +566,8 @@ internal fun Scale.wrap(
                             format = format,
                             naValue = naValue as? Number
                         )
-                        // TODO  SYMBOL -> TODO("cant apply contunuous scale")
-                        else -> TODO()
+
+                        else -> error("Unexpected aes: $aes")
                     }
                 }
 
@@ -575,7 +577,7 @@ internal fun Scale.wrap(
                             paletteRange?.first,
                             paletteRange?.second,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            breaks = breaks?.map { it as Number },
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -588,7 +590,8 @@ internal fun Scale.wrap(
                             paletteRange?.first,
                             paletteRange?.second,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            // TODO(https://github.com/Kotlin/kandy/issues/126)
+                            breaks = breaks?.map { it as Number },
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -597,7 +600,7 @@ internal fun Scale.wrap(
                             naValue = naValue
                         )
 
-                        else -> TODO()
+                        else -> error("Unexpected aes: $aes")
                     }
 
                     is ScaleColorHue<*> -> when (aes) {
@@ -608,7 +611,8 @@ internal fun Scale.wrap(
                             hueStart,
                             direction?.value,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            // TODO(https://github.com/Kotlin/kandy/issues/126)
+                            breaks = breaks?.map { it as Number },
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -624,7 +628,8 @@ internal fun Scale.wrap(
                             hueStart,
                             direction?.value,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            // TODO(https://github.com/Kotlin/kandy/issues/126)
+                            breaks = breaks?.map { it as Number },
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -633,7 +638,7 @@ internal fun Scale.wrap(
                             naValue = naValue
                         )
 
-                        else -> TODO()
+                        else -> error("Unexpected aes: $aes")
                     }
 
                     is ScaleColorBrewer<*> -> when (aes) {
@@ -642,7 +647,8 @@ internal fun Scale.wrap(
                             type = null,
                             palette = palette?.name,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            // TODO(https://github.com/Kotlin/kandy/issues/126)
+                            breaks = breaks?.map { it as Number },
                             labels = labels,
                             guide = legendType,
                             limits = limits,
@@ -656,7 +662,8 @@ internal fun Scale.wrap(
                             type = null,
                             palette = palette?.name,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            // TODO(https://github.com/Kotlin/kandy/issues/126)
+                            breaks = breaks?.map { it as Number },
                             labels = labels,
                             guide = legendType,
                             limits = limits,
@@ -665,7 +672,7 @@ internal fun Scale.wrap(
                             naValue = naValue
                         )
 
-                        else -> TODO()
+                        else -> error("Unexpected aes: $aes")
                     }
 
                     is ScaleColorViridis<*> -> {
@@ -682,7 +689,8 @@ internal fun Scale.wrap(
                                 end = end,
                                 direction = direction,
                                 name = name,
-                                breaks = breaks?.map { it as Number }, // todo
+                                // TODO(https://github.com/Kotlin/kandy/issues/126)
+                                breaks = breaks?.map { it as Number },
                                 labels = labels,
                                 guide = legendType,
                                 limits = limits,
@@ -698,7 +706,8 @@ internal fun Scale.wrap(
                                 end = end,
                                 direction = direction,
                                 name = name,
-                                breaks = breaks?.map { it as Number }, // todo
+                                // TODO(https://github.com/Kotlin/kandy/issues/126)
+                                breaks = breaks?.map { it as Number },
                                 labels = labels,
                                 guide = legendType,
                                 limits = limits,
@@ -707,7 +716,7 @@ internal fun Scale.wrap(
                                 naValue = naValue
                             )
 
-                            else -> TODO()
+                            else -> error("Unexpected aes: $aes")
                         }
                     }
 
@@ -718,7 +727,8 @@ internal fun Scale.wrap(
                             high.wrap(),
                             midpoint,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            // TODO(https://github.com/Kotlin/kandy/issues/126)
+                            breaks = breaks?.map { it as Number },
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -733,7 +743,8 @@ internal fun Scale.wrap(
                             high.wrap(),
                             midpoint,
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            // TODO(https://github.com/Kotlin/kandy/issues/126)
+                            breaks = breaks?.map { it as Number },
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -742,14 +753,15 @@ internal fun Scale.wrap(
                             naValue = naValue
                         )
 
-                        else -> TODO()
+                        else -> error("Unexpected aes: $aes")
                     }
 
                     is ScaleContinuousColorGradientN<*> -> when (aes) {
                         COLOR -> scaleColorGradientN(
                             rangeColors.map { it.wrap() },
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            // TODO(https://github.com/Kotlin/kandy/issues/126)
+                            breaks = breaks?.map { it as Number },
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -761,7 +773,8 @@ internal fun Scale.wrap(
                         FILL -> scaleFillGradientN(
                             rangeColors.map { it.wrap() },
                             name = name,
-                            breaks = breaks?.map { it as Number }, // todo
+                            // TODO(https://github.com/Kotlin/kandy/issues/126)
+                            breaks = breaks?.map { it as Number },
                             labels = labels,
                             guide = legendType,
                             limits = domainLimits.wrap(),
@@ -770,24 +783,23 @@ internal fun Scale.wrap(
                             naValue = naValue
                         )
 
-                        else -> TODO()
+                        else -> error("Unexpected aes: $aes")
                     }
 
-                    else -> TODO()
+                    else -> error("Unexpected scale: ${this::class}")
                 }
 
-                else -> TODO()
+                else -> error("Unexpected scale: ${this::class}")
             }
         }
 
-        else -> TODO("error")
+        else -> error("Unexpected scale: ${this::class}")
     }
 
 }
 
 internal val categoricalTypes = listOf(typeOf<String>(), typeOf<Boolean>(), typeOf<Char>())
 
-// todo
 internal fun KType.isCategoricalType(): Boolean {
     return this in categoricalTypes
 }

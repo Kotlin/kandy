@@ -31,7 +31,9 @@ public open class TextBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
 ) : LayerBuilderImpl(parent, datasetIndex), TextBuilderInterface {
-    // todo doc
+    /**
+     * TODO(https://github.com/Kotlin/kandy/issues/414)
+     */
     override val font: Font = Font(bindingHandler)
 
     /**

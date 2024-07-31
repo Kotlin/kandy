@@ -35,7 +35,7 @@ class ValidationTests {
             exception.message
         )
     }
-    // TODO fix tests
+    // TODO(https://github.com/Kotlin/kandy/issues/422)
     /*
     class LayerBuilderMockk(
         parentBuilder: MultiLayerPlotBuilder,

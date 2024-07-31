@@ -27,7 +27,7 @@ internal class LayerWrapper internal constructor(
 ) :
     org.jetbrains.letsPlot.intern.Layer(
         data = dataset,
-        // todo group
+        // TODO(https://github.com/Kotlin/kandy/issues/420)
         mapping = Options(mappings.map { (_, mapping) -> mapping.wrap(groupKeys) }.toMap().toMutableMap().apply {
             if (addGroups) {
                 this[GROUP.name] = MERGED_GROUPS
@@ -41,7 +41,6 @@ internal class LayerWrapper internal constructor(
         orientation = (layer.features[Reversed.FEATURE_NAME] as? Reversed)?.wrap(),
         sampling = samplingNone
     ) {
-    // TODO
     override fun seal() = Options(
         settings.map { (_, setting) ->
             setting.wrap()

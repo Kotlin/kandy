@@ -34,8 +34,13 @@ public open class PointRangesBuilder @PublishedApi internal constructor(
     datasetIndex: Int = parent.datasetIndex
 ) : LayerBuilderImpl(parent, datasetIndex), PointRangesBuilderInterface {
 
-    // todo docs
+    /**
+     * TODO(https://github.com/Kotlin/kandy/issues/414)
+     */
     public override val innerPoint: InnerPoint = InnerPoint(bindingHandler)
+    /**
+     * TODO(https://github.com/Kotlin/kandy/issues/414)
+     */
     public override val innerLine: InnerLine = InnerLine(bindingHandler)
 
     /**

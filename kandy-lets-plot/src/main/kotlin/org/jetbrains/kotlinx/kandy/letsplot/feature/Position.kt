@@ -19,7 +19,7 @@ import org.jetbrains.kotlinx.kandy.ir.feature.LayerFeature
  * @see [Position]
  */
 public var LayerBuilder.position: Position
-    get() = Position.Identity // todo
+    get() = Position.Identity // TODO(https://github.com/Kotlin/kandy/issues/412)
     set(pos) {
         layerFeatures[Position.FEATURE_NAME] = pos
     }
@@ -29,7 +29,7 @@ public var LayerBuilder.position: Position
  *
  * Use [Position.identity], [Position.stack], [Position.dodge], [Position.jitter], [Position.nudge],
  * [Position.jitterDodge] to control the relative arrangement of elements.
- * TODO grouping
+ * TODO(https://github.com/Kotlin/kandy/issues/413)
  */
 public sealed class Position(public val name: String) : LayerFeature {
     override val featureName: FeatureName = FEATURE_NAME

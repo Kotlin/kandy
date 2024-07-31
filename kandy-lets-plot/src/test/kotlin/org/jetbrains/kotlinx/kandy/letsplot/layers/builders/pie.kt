@@ -46,7 +46,7 @@ class PieTests {
 
     @Test
     fun `requiredAes contains `() {
-        // TODO(add required aes)
+        // TODO(https://github.com/Kotlin/kandy/issues/279)
     }
 
     @Test
