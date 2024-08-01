@@ -7,26 +7,27 @@ import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.addNonPositionalMapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.NonPositionalMapping
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotNonPositionalMappingParametersContinuous
-import org.jetbrains.kotlinx.kandy.letsplot.internal.SPACER_WIDTH
+import org.jetbrains.kotlinx.kandy.letsplot.internal.SPACER_COLOR
+import org.jetbrains.kotlinx.kandy.util.color.Color
 import kotlin.reflect.KProperty
 
 /**
- * Interface for managing the `spacerWidth` aesthetic.
+ * Interface for managing the `spacerColor` aesthetic.
  *
- * Affects the line width between sectors. Spacers are not applied
+ * Affects the color for spacers between sectors. Spacers are not applied
  * to exploded sectors and to sides of adjacent sectors.
  */
 @Suppress("INVISIBLE_MEMBER")
-public interface WithSpacerWidth : WithAes {
+public interface WithSpacerColor : WithAes {
 
     /**
      *
-     * @property stroke a numeric value that represents the spacer width.
+     * @property stroke a numeric value that represents the spacer color.
      */
-    public var spacerWidth: Number?
+    public var spacerColor: Color?
         get() = null
         set(value) {
-            bindingHandler.addNonPositionalSetting(SPACER_WIDTH, value?.toDouble())
+            bindingHandler.addNonPositionalSetting(SPACER_COLOR, value)
         }
 
 }

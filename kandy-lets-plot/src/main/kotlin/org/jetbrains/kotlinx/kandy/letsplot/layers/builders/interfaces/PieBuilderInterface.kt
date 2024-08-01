@@ -7,7 +7,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.*
  *
  * Pie layers are used to create pie charts, which are often used to represent categorical data.
  * The interface provides aesthetics such as `x`, `y`, `slice`, `explode`, `hole`, `size`,
- * `alpha`, `fillColor`, `stroke`, and `strokeColor` for full customization of the pie chart.
+ * `alpha`, `fillColor`, `stroke`, `strokeColor`, spacerWidth` and spacerColor`
+ *  for full customization of the pie chart.
  */
 public interface PieBuilderInterface : WithX, WithY, WithSlice, WithExplode, WithHole, WithSize,
-    WithAlpha, WithFillColor, WithStroke, WithStrokeColor, WithSpacerWidth
+    WithAlpha, WithFillColor, WithStroke, WithStrokeColor, WithSpacerWidth, WithSpacerColor
