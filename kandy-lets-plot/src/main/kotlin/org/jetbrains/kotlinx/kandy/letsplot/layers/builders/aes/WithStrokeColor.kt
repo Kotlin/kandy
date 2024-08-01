@@ -4,7 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes
 
-import org.jetbrains.kotlinx.kandy.letsplot.internal.STROKE_COLOR
+import org.jetbrains.kotlinx.kandy.letsplot.internal.COLOR
 import org.jetbrains.kotlinx.kandy.util.color.Color
 
 /**
@@ -27,6 +27,6 @@ public interface WithStrokeColor : WithAes {
     public var strokeColor: Color?
         get() = null
         set(value) {
-            bindingHandler.addNonPositionalSetting(STROKE_COLOR, value)
+            bindingHandler.addNonPositionalSetting(COLOR, value)
         }
 }

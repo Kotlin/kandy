@@ -72,8 +72,6 @@ internal val HOLE = Aes("hole")
 
 internal val STROKE = Aes("stroke")
 
-internal val STROKE_COLOR = Aes("stroke_color")
-
 internal val X_INTERCEPT: Aes = Aes("xintercept")
 
 internal val Y_INTERCEPT: Aes = Aes("yintercept")
@@ -81,3 +79,5 @@ internal val Y_INTERCEPT: Aes = Aes("yintercept")
 internal val WHISKER_WIDTH: Aes = Aes("whisker_width")
 
 internal val SPACER_WIDTH: Aes = Aes("spacer_width")
+
+internal val SPACER_COLOR = Aes("spacer_color")

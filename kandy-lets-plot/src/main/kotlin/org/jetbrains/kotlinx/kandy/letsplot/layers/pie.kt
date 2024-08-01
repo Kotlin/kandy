@@ -57,6 +57,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PieBuilder
  *         alpha = 0.8 // Sets the transparency of the pie slices
  *         stroke = 1.0 // Sets the stroke width around each slice
  *         strokeColor = Color.BLACK // Sets the color of the stroke around each slice
+ *         spacerWidth = 0.5 // Sets  Line width between sectors.
+ *         // Spacers are not applied to exploded sectors and to sides of adjacent sectors
+ *         spacerColor = Color.RED // Sets the color for spacers between sectors
  *
  *         // If you want to create a donut chart, set the hole radius
  *         hole = 0.2 // Assuming this creates a hole with radius equal to 20% of the pie chart radius
