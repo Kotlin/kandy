@@ -1,17 +1,17 @@
 # Pie
 
 <web-summary>
-Line plot examples in the Kandy Kotlin library
+Pie chart examples in the Kandy Kotlin library
 </web-summary>
 
 <card-summary>
-Line Examples
+Pie Examples
 </card-summary>
 
 <link-summary>
-Line Examples
+Pie Examples
 </link-summary>
 
 
 
-<include from="Examples.topic" element-id="list-of-line-examples"></include>
+<include from="Examples.topic" element-id="list-of-pie-examples"></include>
