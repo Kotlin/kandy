@@ -1,6 +1,4 @@
-/*
-* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
-*/
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes
 
@@ -16,7 +14,6 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
  * Implementing this interface allows you to either set a constant stroke color or map the `strokeColor` aesthetic
  * to a data column for dynamic control over the visual elements.
  */
-@Suppress("INVISIBLE_MEMBER")
 public interface WithStrokeColor : WithAes {
 
     /**
