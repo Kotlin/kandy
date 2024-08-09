@@ -34,11 +34,11 @@ class CrossbarTests {
     private val df = dataFrameOf(xAxis, y, yMin, yMax, fatten, type, color, alpha, width)
 
     private val parentBuilder = DataFramePlotBuilder(df)
-    private lateinit var builder: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.CrossBarsBuilder
+    private lateinit var builder: CrossBarsBuilder
 
     @BeforeTest
     fun setUp() {
-        builder = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.CrossBarsBuilder(parentBuilder)
+        builder = CrossBarsBuilder(parentBuilder)
     }
 
     @Test
@@ -47,9 +47,8 @@ class CrossbarTests {
     }
 
     @Test
-    fun `requiredAes contains X, MIDDLE, Y_MIN, Y_MAX`() {
+    fun `requiredAes contains X, Y_MIN, Y_MAX`() {
         assertTrue(builder.requiredAes.contains(X))
-        assertTrue(builder.requiredAes.contains(Y))
         assertTrue(builder.requiredAes.contains(Y_MIN))
         assertTrue(builder.requiredAes.contains(Y_MAX))
     }

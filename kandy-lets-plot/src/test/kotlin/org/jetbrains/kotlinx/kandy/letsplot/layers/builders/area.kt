@@ -32,11 +32,11 @@ class AreaTests {
     private val df = dataFrameOf(xAxis, yAxis, type, color, alpha, width)
 
     private val parentBuilder = DataFramePlotBuilder(df)
-    private lateinit var builder: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.AreaBuilder
+    private lateinit var builder: AreaBuilder
 
     @BeforeTest
     fun setUp() {
-        builder = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.AreaBuilder(parentBuilder)
+        builder = AreaBuilder(parentBuilder)
     }
 
     @Test

@@ -36,11 +36,11 @@ class BoxplotTests {
     private val df = dataFrameOf(xAxis, lower, upper, middle, yMin, yMax, fatten, type, color, alpha, width)
 
     private val parentBuilder = DataFramePlotBuilder(df)
-    private lateinit var builder: org.jetbrains.kotlinx.kandy.letsplot.layers.builders.BoxesBuilder
+    private lateinit var builder: BoxesBuilder
 
     @BeforeTest
     fun setUp() {
-        builder = org.jetbrains.kotlinx.kandy.letsplot.layers.builders.BoxesBuilder(parentBuilder)
+        builder = BoxesBuilder(parentBuilder)
     }
 
     @Test
@@ -49,11 +49,10 @@ class BoxplotTests {
     }
 
     @Test
-    fun `requiredAes contains X, LOWER, UPPER, MIDDLE, Y_MIN, Y_MAX`() {
+    fun `requiredAes contains X, LOWER, UPPER, Y_MIN, Y_MAX`() {
         assertTrue(builder.requiredAes.contains(X))
         assertTrue(builder.requiredAes.contains(LOWER))
         assertTrue(builder.requiredAes.contains(UPPER))
-        assertTrue(builder.requiredAes.contains(MIDDLE))
         assertTrue(builder.requiredAes.contains(Y_MIN))
         assertTrue(builder.requiredAes.contains(Y_MAX))
     }

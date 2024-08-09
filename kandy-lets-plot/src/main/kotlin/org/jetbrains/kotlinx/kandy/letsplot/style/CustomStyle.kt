@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.style
 
+import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
 import org.jetbrains.kotlinx.kandy.letsplot.settings.font.FontFace
 import org.jetbrains.kotlinx.kandy.letsplot.settings.font.FontFamily
 import org.jetbrains.kotlinx.kandy.util.color.Color
@@ -14,8 +15,9 @@ public sealed interface LayoutParameters {
         public fun line(
             color: Color? = null,
             width: Double? = null,
+            lineType: LineType? = null,
             blank: Boolean = false
-        ): LineParameters = LineParameters(color, width, blank)
+        ): LineParameters = LineParameters(color, width, lineType, blank)
 
         public fun text(
             color: Color? = null,
@@ -33,8 +35,11 @@ public sealed interface LayoutParameters {
             fillColor: Color? = null,
             borderLineColor: Color? = null,
             borderLineWidth: Double? = null,
+            borderLineType: LineType? = null,
             blank: Boolean = false
-        ): BackgroundParameters = BackgroundParameters(fillColor, borderLineColor, borderLineWidth, blank)
+        ): BackgroundParameters = BackgroundParameters(
+            fillColor, borderLineColor, borderLineWidth, borderLineType, blank
+        )
     }
 }
 
@@ -68,6 +73,7 @@ public interface WithMargin {
 public data class LineParameters internal constructor(
     var color: Color? = null,
     var width: Double? = null,
+    var lineType: LineType? = null,
     var blank: Boolean = false,
 ) : LayoutParameters
 
@@ -87,6 +93,7 @@ public data class BackgroundParameters internal constructor(
     var fillColor: Color? = null,
     var borderLineColor: Color? = null,
     var borderLineWidth: Double? = null,
+    var borderLineType: LineType? = null,
     var blank: Boolean = false
 ) : LayoutParameters
 

@@ -16,6 +16,7 @@ internal fun LineParameters.wrap(): Map<String, Any> {
     return elementLine(
         color = color?.wrap(),
         size = width,
+        linetype = lineType?.description,
         blank = blank
     )
 }
@@ -25,6 +26,7 @@ internal fun BackgroundParameters.wrap(): Map<String, Any> {
         fill = fillColor?.wrap(),
         color = borderLineColor?.wrap(),
         size = borderLineWidth,
+        linetype = borderLineType?.description,
         blank = blank
     )
 }

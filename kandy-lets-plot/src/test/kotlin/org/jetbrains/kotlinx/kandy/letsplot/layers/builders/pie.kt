@@ -172,7 +172,19 @@ class PieTests {
     @Test
     fun `strokeColor const for pie`() {
         builder.strokeColor = Color.ORANGE
-        assertEquals(Color.ORANGE, (builder.bindingCollector.settings[STROKE_COLOR] as NonPositionalSetting<*>).value)
+        assertEquals(Color.ORANGE, (builder.bindingCollector.settings[COLOR] as NonPositionalSetting<*>).value)
+    }
+
+    @Test
+    fun `spacerWidth const for pie`() {
+        builder.spacerWidth = 3.0
+        assertEquals(3.0, (builder.bindingCollector.settings[SPACER_WIDTH] as NonPositionalSetting<*>).value)
+    }
+
+    @Test
+    fun `spacerColor const for pie`() {
+        builder.spacerColor = Color.PEACH
+        assertEquals(Color.PEACH, (builder.bindingCollector.settings[SPACER_COLOR] as NonPositionalSetting<*>).value)
     }
 
     @Test
