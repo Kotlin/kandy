@@ -61,6 +61,7 @@ korro {
         include("docs/topics/samples/ribbon/*.md")
         include("docs/topics/samples/boxplot/*.md")
         include("docs/topics/samples/tiles/*.md")
+        include("docs/topics/samples/pie/*.md")
         include("docs/topics/samples/histogram/*.md")
         include("docs/topics/samples/countPlot/*.md")
         include("docs/topics/samples/densityPlot/*.md")

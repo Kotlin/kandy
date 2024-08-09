@@ -95,7 +95,8 @@ class ScaleTest {
         val expectedScale = PositionalContinuousScale(limits.first, limits.last, null, null)
         scale.max
         expectedScale.max
-//        assertEquals(expectedScale, scale) // TODO
+        // TODO(https://github.com/Kotlin/kandy/issues/205)
+        // assertEquals(expectedScale, scale)
     }
 
     @Test

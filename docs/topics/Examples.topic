@@ -520,6 +520,47 @@
         </list>
     </chapter>
 
+    <chapter title="Pie" id="examples-pie" collapsible="true" default-state="expanded">
+        <list id="list-of-pie-examples" type="none" columns="3">
+            <li>
+                <a href="Pie-Base.md">
+                    <img src="pie_base.svg" alt="Pie Base" border-effect="line"/>
+                    Pie Base
+                </a>
+            </li>
+            <li>
+                <a href="Pie-With-Void-Style.md">
+                    <img src="pie_with_void.svg" alt="Pie With Void Style" border-effect="line"/>
+                    Pie With Void Style
+                </a>
+            </li>
+            <li>
+                <a href="Pie-Settings.md">
+                    <img src="pie_settings.svg" alt="Pie Settings" border-effect="line"/>
+                    Pie Settings
+                </a>
+            </li>
+            <li>
+                <a href="Pie-With-Explode.md">
+                    <img src="pie_explode.svg" alt="Pie With Explode" border-effect="line"/>
+                    Pie With Explode
+                </a>
+            </li>
+            <li>
+                <a href="Nightingale-Chart.md">
+                    <img src="nightingale_chart.svg" alt="Nightingale Chart" border-effect="line"/>
+                    Nightingale Chart
+                </a>
+            </li>
+            <li>
+                <a href="Pie-With-Count.md">
+                    <img src="pie_with_count.svg" alt="Pie With Count" border-effect="line"/>
+                    Pie With Count
+                </a>
+            </li>
+        </list>
+    </chapter>
+
     <chapter title="Histogram" id="examples-histogram" collapsible="true" default-state="expanded">
         <list id="list-of-histogram-examples" type="none" columns="3">
             <li>

@@ -197,6 +197,14 @@
             <toc-element topic="Basic-Heatmap.md"/>
             <toc-element topic="Tiles-Logo.md"/>
         </toc-element>
+        <toc-element topic="Pie.md">
+            <toc-element topic="Pie-Base.md"/>
+            <toc-element topic="Pie-With-Void-Style.md"/>
+            <toc-element topic="Pie-Settings.md"/>
+            <toc-element topic="Pie-With-Explode.md"/>
+            <toc-element topic="Nightingale-Chart.md"/>
+            <toc-element topic="Pie-With-Count.md"/>
+        </toc-element>
         <toc-element topic="Histogram.md">
             <toc-element topic="Histogram-Simple.md"/>
             <toc-element topic="Histogram-Settings.md"/>

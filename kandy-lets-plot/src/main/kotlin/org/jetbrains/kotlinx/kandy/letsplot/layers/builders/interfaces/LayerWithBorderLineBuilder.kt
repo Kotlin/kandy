@@ -11,7 +11,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.WithBorderLine
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.bindingHandler
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.BorderLine
 
-// todo doc
+/**
+ * TODO(https://github.com/Kotlin/kandy/issues/414)
+ */
 @Suppress("INVISIBLE_MEMBER")
 public abstract class LayerWithBorderLineBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,

@@ -27,12 +27,12 @@ internal fun Color.wrap(): String {
         is StandardColor.Hex -> hexString
         is StandardColor.Named -> name
         is StandardColor.RGB -> hexString
-        is StandardColor.RGBA -> TODO()
-        else -> TODO()
+        // TODO("https://github.com/Kotlin/kandy/issues/421")
+        is StandardColor.RGBA -> error("RGBA color not supported")
+        else -> error("Unexpected color type: ${this::class}")
     }
 }
 
-// TODO
 internal fun wrapValue(value: Any?): Any? {
     if (value is Enum<*>) {
         return value.toString()
@@ -52,7 +52,6 @@ internal fun wrapValue(value: Any?): Any? {
     return value
 }
 
-// TODO
 internal fun ClosedRange<*>?.wrap() = this?.let { (it.start as Number) to (it.endInclusive as Number) }
 internal fun Pair<*, *>?.wrap() = this?.let { (it.first as? Number) to (it.second as? Number) }
 

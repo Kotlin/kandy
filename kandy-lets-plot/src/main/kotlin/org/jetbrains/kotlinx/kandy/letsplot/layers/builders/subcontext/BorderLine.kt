@@ -8,7 +8,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.WithType
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.WithWidthAsSize
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
-// todo doc
+/**
+ * TODO(https://github.com/Kotlin/kandy/issues/414)
+ */
 public class BorderLine @PublishedApi internal constructor(
     bindingHandler: BindingHandler
 ) : SelfInvocationContext, WithColor, WithType, WithWidthAsSize, SubContext(bindingHandler)

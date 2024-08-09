@@ -49,11 +49,11 @@ internal fun CustomStyle.wrap(): theme {
     var buffer = theme(
         line = global.line?.wrap(),
         rect = global.background?.wrap(),
-        text = global.text?.wrap(),// TODO
-        title = global.title?.wrap(),// TODO
+        text = global.text?.wrap(),
+        title = global.title?.wrap(),
         axis = if (axis.blank == true) {
             "blank"
-        } else null, //TODO
+        } else null,
         axisOntop = axis.onTop,
         axisOntopX = xAxis.onTop,
         axisOntopY = yAxis.onTop,

@@ -20,6 +20,6 @@ internal fun FreeScale.wrap(featureBuffer: MutableList<Feature>) {
             )
         )
 
-        else -> TODO()
+        else -> error("Unexpected FreeScale type: ${this::class}")
     }
 }

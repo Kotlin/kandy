@@ -11,6 +11,6 @@ package org.jetbrains.kotlinx.kandy.ir.feature
  * @property featureName the unique identifier or name of the layer-specific feature.
  */
 public interface LayerFeature {
-    // todo remove
+    // TODO(https://github.com/Kotlin/kandy/issues/409)
     public val featureName: FeatureName
 }

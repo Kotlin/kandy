@@ -51,7 +51,7 @@ public sealed interface StandardColor : Color {
         }
 
         override fun compareTo(other: Color): Int {
-            //TODO("Not yet implemented")
+            // TODO(https://github.com/Kotlin/kandy/issues/419)
             return 1
         }
     }
@@ -78,7 +78,7 @@ public sealed interface StandardColor : Color {
         }
 
         override fun compareTo(other: Color): Int {
-            //TODO("Not yet implemented")
+            // TODO(https://github.com/Kotlin/kandy/issues/419)
             return 1
         }
     }
@@ -99,7 +99,7 @@ public sealed interface StandardColor : Color {
         }
 
         override fun compareTo(other: Color): Int {
-            //TODO("Not yet implemented")
+            // TODO(https://github.com/Kotlin/kandy/issues/419)
             return 1
         }
     }
@@ -119,9 +119,8 @@ public sealed interface StandardColor : Color {
         }
 
         override fun compareTo(other: Color): Int {
-            //TODO("Not yet implemented")
+            // TODO(https://github.com/Kotlin/kandy/issues/419)
             return 1
         }
-        //todo toRgb/toRgba
     }
 }

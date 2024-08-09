@@ -74,7 +74,7 @@ internal class ScaleWrappingTest {
                 mapOf(
                     "aesthetic" to "size",
                     "limits" to categories.map { it.toDouble() },
-                    "values" to values + nullValue, // TODO!!
+                    "values" to values + nullValue,
                     "na_value" to nullValue,
                 )
             ),
