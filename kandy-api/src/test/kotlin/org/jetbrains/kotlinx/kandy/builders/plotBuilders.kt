@@ -37,7 +37,7 @@ class PlotBuildersTest {
 
     @Test
     fun `test singleLayerPlotBuilder toPlot`() {
-        val mockLayer: Layer = mockk<Layer>() {
+        val mockLayer: Layer = mockk<Layer> {
             every { geom } returns mockGeom
         }
 
@@ -45,7 +45,7 @@ class PlotBuildersTest {
             override val plotFeatures: MutableMap<FeatureName, PlotFeature> = mockPlotFeatures
             override val geom: Geom = mockGeom
             override val requiredAes: Set<Aes> = setOf()
-            override val datasetBuilder: DatasetBuilder = mockk() {
+            override val datasetBuilder: DatasetBuilder = mockk {
                 every { build() } returns mockData
             }
         })

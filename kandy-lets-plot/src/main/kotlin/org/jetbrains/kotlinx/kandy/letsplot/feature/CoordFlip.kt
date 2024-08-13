@@ -32,7 +32,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.CoordFlip.FEATURE_NAME
  * ```
  */
 public fun PlotBuilder.coordFlip() {
-    plotFeatures[CoordFlip.FEATURE_NAME] = CoordFlip
+    plotFeatures[FEATURE_NAME] = CoordFlip
 }
 
 /**

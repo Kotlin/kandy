@@ -19,7 +19,7 @@ class LayerCreatorScopeTest {
     fun `test addLayer`() {
         val mockLayer = mockk<Layer>()
         val layers = mutableListOf<Layer>()
-        val plotBuilder = mockk<MultiLayerPlotBuilder>() {
+        val plotBuilder = mockk<MultiLayerPlotBuilder> {
             every { addLayer(any()) } answers { layers.add(firstArg()) }
         }
         val layersInheritMappings = true

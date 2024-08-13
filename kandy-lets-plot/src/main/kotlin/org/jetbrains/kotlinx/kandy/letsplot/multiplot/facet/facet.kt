@@ -160,7 +160,7 @@ public fun PlotBuilder.facetGrid(
 public fun PlotBuilder.facetWrap(
     nCol: Int? = null,
     nRow: Int? = null,
-    scalesSharing: ScalesSharing = ScalesSharing.FIXED,
+    scalesSharing: ScalesSharing = FIXED,
     direction: Direction = Direction.HORIZONTAL,
     block: FacetWrapContext.() -> Unit
 ) {

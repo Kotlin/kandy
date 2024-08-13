@@ -33,7 +33,7 @@ class BindingHandlerTest {
 
     @BeforeTest
     fun setup() {
-        mockDatasetBuilder = mockk<DatasetBuilderImpl>() {
+        mockDatasetBuilder = mockk<DatasetBuilderImpl> {
             every { rowsCount() } returns 1
         }
 
@@ -50,7 +50,7 @@ class BindingHandlerTest {
 
     @Test
     fun `test addPositionalMapping with DataColumn`() {
-        val dataColumn = mockk<DataColumn<Any>>() {
+        val dataColumn = mockk<DataColumn<Any>> {
             every { size() } returns 1
         }
 
@@ -64,7 +64,7 @@ class BindingHandlerTest {
 
     @Test
     fun `test addNonPositionalMapping with DataColumn`() {
-        val dataColumn = mockk<DataColumn<Any>>() {
+        val dataColumn = mockk<DataColumn<Any>> {
             every { size() } returns 1
         }
 

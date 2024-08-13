@@ -31,7 +31,7 @@ class BindingHandlerTest {
 
     @BeforeTest
     fun setup() {
-        mockDatasetBuilder = mockk<DatasetBuilder>() {
+        mockDatasetBuilder = mockk<DatasetBuilder> {
             every { rowsCount() } returns 0
         }
 
