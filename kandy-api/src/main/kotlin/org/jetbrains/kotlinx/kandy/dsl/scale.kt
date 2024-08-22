@@ -159,34 +159,12 @@ public fun <DomainType> PositionalMappingParameters<*>.categorical(
  * Creates a new categorical positional scale.
  *
  * @param DomainType scale domain type.
- * @param categories [DomainType] varargs defining the scale domain.
- * @return new [PositionalCategoricalScale] with given categories.
- */
-public fun <DomainType> PositionalMappingParameters<*>.categorical(
-    vararg categories: DomainType,
-): PositionalCategoricalScale<DomainType> = PositionalCategoricalScale(categories.toList())
-
-/**
- * Creates a new categorical positional scale.
- *
- * @param DomainType scale domain type.
  * @param categories [List] defining the scale domain.
  * @return new [PositionalCategoricalScale] with given categories.
  */
 public fun <DomainType> Scale.Companion.categoricalPos(
     categories: List<DomainType>? = null,
 ): PositionalCategoricalScale<DomainType> = PositionalCategoricalScale(categories)
-
-/**
- * Creates a new categorical positional scale.
- *
- * @param DomainType scale domain type.
- * @param categories [DomainType] varargs defining the scale domain.
- * @return new [PositionalCategoricalScale] with given categories.
- */
-public fun <DomainType> Scale.Companion.categoricalPos(
-    vararg categories: DomainType,
-): PositionalCategoricalScale<DomainType> = PositionalCategoricalScale(categories.toList())
 
 /**
  * Creates a new continuous non-positional scale.

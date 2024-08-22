@@ -194,15 +194,6 @@ class ScaleTest {
     }
 
     @Test
-    fun `test categorical function with non-empty vararg categories`() {
-        val mapping = CommonPositionalMappingParameters<String>()
-
-        val scale = mapping.categorical("A", "B", "C")
-
-        assertEquals(listOf("A", "B", "C"), scale.categories)
-    }
-
-    @Test
     fun `test categoricalPos function with null categories`() {
         val scale = Scale.categoricalPos<String>()
         assertNull(scale.categories)
@@ -224,13 +215,6 @@ class ScaleTest {
         val scale = Scale.categoricalPos(categories)
 
         assertEquals(categories, scale.categories)
-    }
-
-    @Test
-    fun `test categoricalPos function with non-empty vararg categories`() {
-        val scale = Scale.categoricalPos("A", "B", "C")
-
-        assertEquals(listOf("A", "B", "C"), scale.categories)
     }
 
     @Test
