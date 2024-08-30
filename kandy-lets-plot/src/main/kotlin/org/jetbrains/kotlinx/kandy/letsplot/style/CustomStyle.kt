@@ -355,7 +355,8 @@ public data class CustomStyle @PublishedApi internal constructor(
     val panel: Panel = Panel(),
     val plotCanvas: PlotCanvas = PlotCanvas(),
     val strip: Strip = Strip(),
-    val layerTooltips: LayerTooltips = LayerTooltips()
+    val layerTooltips: LayerTooltips = LayerTooltips(),
+    var plotInset: Any? = null
 ) : Style {
     public fun blankAxes() {
         axis.blank = true

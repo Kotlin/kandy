@@ -89,6 +89,7 @@ internal fun CustomStyle.wrap(): theme {
         plotSubtitle = plotCanvas.subtitle?.wrap(),
         plotTitle = plotCanvas.title?.wrap(),
         plotMargin = plotCanvas.margin?.wrap(),
+        plotInset = plotInset,
         stripBackground = strip.background?.wrap(),
         stripText = strip.text?.wrap(),
         axisTooltip = axis.tooltip.background?.wrap(),
@@ -100,8 +101,6 @@ internal fun CustomStyle.wrap(): theme {
         tooltip = layerTooltips.background?.wrap(),
         tooltipText = layerTooltips.text?.wrap(),
         tooltipTitleText = layerTooltips.title?.wrap()
-        /*
-              */
     )
 
     when (val justification = this@wrap.legend.justification) {
