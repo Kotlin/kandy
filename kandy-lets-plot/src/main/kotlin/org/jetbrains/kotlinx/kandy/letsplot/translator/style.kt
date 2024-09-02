@@ -12,6 +12,10 @@ internal fun Margin.wrap(): List<Double> {
     return listOf(top, right, bottom, left)
 }
 
+internal fun Inset.wrap(): List<Double> {
+    return listOf(top, right, bottom, left)
+}
+
 internal fun LineParameters.wrap(): Map<String, Any> {
     return elementLine(
         color = color?.wrap(),
@@ -89,7 +93,7 @@ internal fun CustomStyle.wrap(): theme {
         plotSubtitle = plotCanvas.subtitle?.wrap(),
         plotTitle = plotCanvas.title?.wrap(),
         plotMargin = plotCanvas.margin?.wrap(),
-        plotInset = plotInset,
+        plotInset = plotCanvas.inset?.wrap(),
         stripBackground = strip.background?.wrap(),
         stripText = strip.text?.wrap(),
         axisTooltip = axis.tooltip.background?.wrap(),

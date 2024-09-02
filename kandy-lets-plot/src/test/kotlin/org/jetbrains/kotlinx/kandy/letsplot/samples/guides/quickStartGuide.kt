@@ -21,6 +21,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.letsplot.style.LayoutParameters
 import org.jetbrains.kotlinx.kandy.letsplot.style.Style
+import org.jetbrains.kotlinx.kandy.letsplot.style.Inset
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.Anchor
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.tooltips
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.value
@@ -1009,6 +1010,27 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         plotWithStyle(simpleCustomStyle)
             // SampleEnd
             .saveSample()
+    }
+
+    @Test
+    fun experimentalLayoutSimpleCustomStyleWithInset(){
+        val redLine = LayoutParameters.line(Color.RED)
+        val simpleCustomStyle = Style.createCustom {
+
+            xAxis.line(redLine)
+
+            yAxis.line {
+                color = Color.RED
+                width = 0.3
+            }
+
+            axis.ticks {
+                blank = true
+            }
+
+            plotCanvas.inset(50.0)
+        }
+        plotWithStyle(simpleCustomStyle).saveSample()
     }
 
     @Test
