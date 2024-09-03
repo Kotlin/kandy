@@ -70,13 +70,7 @@ public interface WithMargin {
     }
 }
 
-public data class Inset(val top: Double, val right: Double, val bottom: Double, val left: Double) {
-    public constructor(all: Double) : this(all, all, all, all)
-
-    public constructor(vertical: Double, horizontal: Double) : this(vertical, horizontal, vertical, horizontal)
-
-    public constructor(top: Double, horizontal: Double, bottom: Double) : this(top, horizontal, bottom, horizontal)
-}
+public typealias Inset = Margin
 
 public interface WithInset {
     public var inset: Inset?
