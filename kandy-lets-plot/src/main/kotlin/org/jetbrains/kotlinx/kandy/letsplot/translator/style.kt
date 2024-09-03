@@ -12,10 +12,6 @@ internal fun Margin.wrap(): List<Double> {
     return listOf(top, right, bottom, left)
 }
 
-internal fun Inset.wrap(): List<Double> {
-    return listOf(top, right, bottom, left)
-}
-
 internal fun LineParameters.wrap(): Map<String, Any> {
     return elementLine(
         color = color?.wrap(),
