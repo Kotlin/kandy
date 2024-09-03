@@ -1013,27 +1013,6 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
     }
 
     @Test
-    fun experimentalLayoutSimpleCustomStyleWithInset(){
-        val redLine = LayoutParameters.line(Color.RED)
-        val simpleCustomStyle = Style.createCustom {
-
-            xAxis.line(redLine)
-
-            yAxis.line {
-                color = Color.RED
-                width = 0.3
-            }
-
-            axis.ticks {
-                blank = true
-            }
-
-            plotCanvas.inset(50.0)
-        }
-        plotWithStyle(simpleCustomStyle).saveSample()
-    }
-
-    @Test
     fun experimentalLayoutCustomStyleBlankAxes() {
         // SampleStart
         val blankAxesStyle = Style.createCustom {
