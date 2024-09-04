@@ -70,6 +70,27 @@ public interface WithMargin {
     }
 }
 
+public typealias Inset = Margin
+
+public interface WithInset {
+    public var inset: Inset?
+    public fun inset(all: Double) {
+        inset = Inset(all, all, all, all)
+    }
+
+    public fun inset(vertical: Double, horizontal: Double) {
+        inset = Inset(vertical, horizontal, vertical, horizontal)
+    }
+
+    public fun inset(top: Double, horizontal: Double, bottom: Double) {
+        inset = Inset(top, horizontal, bottom, horizontal)
+    }
+
+    public fun inset(top: Double, right: Double, bottom: Double, left: Double) {
+        inset = Inset(top, right, bottom, left)
+    }
+}
+
 public data class LineParameters internal constructor(
     var color: Color? = null,
     var width: Double? = null,
@@ -322,8 +343,9 @@ public data class PlotCanvas internal constructor(
     override var title: TextParameters? = null,
     var subtitle: TextParameters? = null,
     var caption: TextParameters? = null,
-    override var margin: Margin? = null
-) : SelfInvocationContext, WithBackground, WithTitle, WithMargin {
+    override var margin: Margin? = null,
+    override var inset: Inset? = null,
+) : SelfInvocationContext, WithBackground, WithTitle, WithMargin, WithInset {
     public fun subtitle(block: TextParameters.() -> Unit) {
         subtitle = TextParameters().apply(block)
     }
