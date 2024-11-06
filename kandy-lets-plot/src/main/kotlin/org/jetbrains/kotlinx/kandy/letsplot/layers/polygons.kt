@@ -10,26 +10,18 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PolygonsBuilder
 /**
  * Adds a new `polygons` layer to the plot.
  *
- * The `polygons` layer is responsible for constructing a boxplot representation,
- * which visualizes the distribution of a dataset by depicting its quartiles
- * and thereby provides insights into the data's spread and potential skewness.
+ * The `polygons` layer is responsible for constructing a polygons by points.
  *
  * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
  * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
  * - Constants are directly assigned using properties with the names corresponding to aesthetics.
  *   For positional aesthetics, you can use the `.constant()` method.
  *
- * ## polygons Aesthetics
- * * **`x`** - The X-coordinate specifying the categories.
- * * **`yMin`** - The minimum value for the Y-coordinate (the lowest whisker).
- * * **`lower`** - The lower quartile value.
- * * **`middle`** - The median value.
- * * **`upper`** - The upper quartile value.
- * * **`yMax`** - The maximum value for the Y-coordinate (the highest whisker).
+ * ## Polygons Aesthetics
+ * * **`x`** - The X-coordinate of polygons points.
+ * * **`y`** - The Y-coordinate of polygons points.
  * * **`fillColor`** - The fill color of the polygons.
  * * **`alpha`** - The transparency of the polygons.
- * * **`width`** - The width of the polygons.
- * * **`fatten`** - The factor by which to "fatten" the width of the notch relative to the body.
  * * **`borderLine.color`** - Color of the polygons borderline.
  * * **`borderLine.width`** - Width of the polygons borderline.
  * * **`borderLine.type`** - Type of the polygons borderline, such as dashed or dotted.
@@ -40,19 +32,14 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PolygonsBuilder
  * plot {
  *     polygons {
  *         // Positional mapping
- *         x(listOf("A", "B", "C", "D"))
- *         yMin(listOf(10, 20, 5, 12))
- *         lower(listOf(20, 30, 12, 22))
- *         middle(listOf(30, 40, 20, 35))
- *         upper(listOf(40, 50, 35, 45))
- *         yMax(listOf(50, 55, 40, 48))
+ *         x(listOf(1.0, 2.0, 3.0))
+ *         y(listOf(1.0, 2.0, 1.0))
  *
  *         // Adjust the Y-axis
  *         y.limits = 0.0..60.0
  *
  *         // Non-positional settings
- *         fatten = 0.8
- *         width = 0.5
+ *         alpha = 0.8
  *
  *         // BorderLine settings
  *         borderLine.width = .5
