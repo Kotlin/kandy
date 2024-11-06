@@ -15,8 +15,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.MERGED_GROUPS
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
 import org.jetbrains.letsPlot.Stat
 import org.jetbrains.letsPlot.intern.Options
+import org.jetbrains.letsPlot.intern.layer.WithSpatialParameters
 import org.jetbrains.letsPlot.pos.positionIdentity
 import org.jetbrains.letsPlot.sampling.samplingNone
+import org.jetbrains.letsPlot.spatial.SpatialDataset
 
 internal class LayerWrapper internal constructor(
     private val layer: Layer, addGroups: Boolean,
@@ -24,6 +26,9 @@ internal class LayerWrapper internal constructor(
     mappings: Map<Aes, Mapping>,
     private val settings: Map<Aes, Setting>,
     groupKeys: List<String>?,
+    override val map: SpatialDataset?,
+    override val mapJoin: Pair<Any, Any>?,
+    override val useCRS: String?,
 ) :
     org.jetbrains.letsPlot.intern.Layer(
         data = dataset,
@@ -40,7 +45,7 @@ internal class LayerWrapper internal constructor(
         showLegend = true,
         orientation = (layer.features[Reversed.FEATURE_NAME] as? Reversed)?.wrap(),
         sampling = samplingNone
-    ) {
+    ), WithSpatialParameters {
     override fun seal() = Options(
         settings.map { (_, setting) ->
             setting.wrap()

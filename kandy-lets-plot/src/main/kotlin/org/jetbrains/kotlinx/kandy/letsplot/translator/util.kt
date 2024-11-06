@@ -8,6 +8,7 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedData
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
+import org.jetbrains.kotlinx.kandy.letsplot.data.GeoSpatialData
 import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.letsplot.util.SimpleValueWrapper
@@ -18,6 +19,7 @@ internal fun TableData.dataFrame(): DataFrame<*> {
     return when (this) {
         is NamedData -> dataFrame
         is GroupedData -> dataFrame
+        is GeoSpatialData -> dataFrame
         else -> error("Unexpected data format: ${this::class}")
     }
 }

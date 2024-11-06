@@ -15,6 +15,8 @@ statistics = "0.3.1-dev-31"
 letsPlot = "4.7.3"
 letsPlotImage = "4.3.3"
 mockk = "1.13.10"
+geotools = "32.0"
+jai-core = "1.1.3"
 
 [libraries]
 # Kotlinx libraries
@@ -27,6 +29,15 @@ kotlinx-statistics = { group = "org.jetbrains.kotlinx", name = "kotlin-statistic
 lets-plot = { group = "org.jetbrains.lets-plot", name = "lets-plot-kotlin-jvm", version.ref = "letsPlot" }
 lets-plot-image = { group = "org.jetbrains.lets-plot", name = "lets-plot-image-export", version.ref = "letsPlotImage" }
 lets-plot-awt = { group = "org.jetbrains.lets-plot", name = "platf-awt-jvm", version.ref = "letsPlotImage" }
+lets-plot-geotools = { group = "org.jetbrains.lets-plot", name = "lets-plot-kotlin-geotools", version.ref = "letsPlot" }
+#Geootools
+jai-core = { module = "javax.media:jai-core", version.ref = "jai-core" }
+
+geotools-main = { module = "org.geotools:gt-main", version.ref = "geotools" }
+geotools-shapefile = { module = "org.geotools:gt-shapefile", version.ref = "geotools" }
+geotools-geojson = { module = "org.geotools:gt-geojson", version.ref = "geotools" }
+geotools-referencing = { module = "org.geotools:gt-referencing", version.ref = "geotools" }
+geotools-epsg-hsql = { module = "org.geotools:gt-epsg-hsql", version.ref = "geotools" }
 
 # Testing
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }

@@ -10,7 +10,9 @@ import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.Mapping
 import org.jetbrains.kotlinx.kandy.ir.bindings.Setting
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
+import org.jetbrains.kotlinx.kandy.letsplot.data.GeoSpatialData
 import org.jetbrains.letsPlot.intern.Feature
+import org.jetbrains.letsPlot.spatial.CRSCode
 
 
 internal fun Layer.wrap(
@@ -20,7 +22,13 @@ internal fun Layer.wrap(
     globalSettings: Map<Aes, Setting>,
 ) {
     val dataset = if (datasetIndex == 0) {
-        null
+        val dataset = datasets[datasetIndex]
+        // can't provide geodata as main dataset
+        if (dataset is GeoSpatialData) {
+            dataset
+        } else {
+            null
+        }
     } else {
         datasets[datasetIndex]
     }
@@ -36,9 +44,19 @@ internal fun Layer.wrap(
     } else {
         settings
     }
-    val df = (datasets[datasetIndex]).dataFrame()
-    featureBuffer.add(LayerWrapper(this, addGroups, dataset?.wrap(), mappings, settings, groupKeys))
+    val map = if (dataset is GeoSpatialData) {
+        dataset.toSpatialDataset()
+    } else null
+    val crsProvided = map?.let {
+        val crs = it.crs
+        if ((crs != null) && !CRSCode.isWGS84Code(crs)) {
+            "provided"
+        } else null
+    }
+    featureBuffer.add(LayerWrapper(
+        this, addGroups, dataset?.wrap(), mappings, settings, groupKeys, map, null, crsProvided))
     freeScales.forEach { (_, freeScale) -> freeScale.wrap(featureBuffer) }
+    val df = (datasets[datasetIndex]).dataFrame()
     mappings.forEach { (_, mapping) ->
         mapping.wrapScale(df[mapping.columnID].type(), groupKeys)?.let { featureBuffer.add(it) }
     }

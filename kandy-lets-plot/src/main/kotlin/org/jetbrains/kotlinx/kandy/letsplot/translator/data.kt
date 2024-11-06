@@ -9,6 +9,7 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedData
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
+import org.jetbrains.kotlinx.kandy.letsplot.data.GeoSpatialData
 import org.jetbrains.kotlinx.kandy.letsplot.internal.MERGED_GROUPS
 import kotlin.reflect.typeOf
 
@@ -45,10 +46,12 @@ internal fun process(data: DataFrame<*>): Map<String, List<*>> {
 }
 
 
-internal fun TableData.wrap(): Map<String, List<*>> {
+internal fun TableData.wrap(): Map<String, List<*>>? {
     return when (this) {
         is NamedData -> process(dataFrame)
         is GroupedData -> process(dataFrame) + (MERGED_GROUPS to mergedKeys())
+        // provide via `map` argument
+        is GeoSpatialData -> null
         else -> error("Unexpected data format: ${this::class}")
     }
 }
