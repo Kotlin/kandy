@@ -43,6 +43,9 @@ internal val POINT_RANGE: LetsPlotGeom = LetsPlotGeom("pointrange")
 internal val RASTER: LetsPlotGeom = LetsPlotGeom("raster")
 
 @PublishedApi
+internal val POLYGON: LetsPlotGeom = LetsPlotGeom("polygon")
+
+@PublishedApi
 internal val RECT: LetsPlotGeom = LetsPlotGeom("rect")
 
 @PublishedApi
