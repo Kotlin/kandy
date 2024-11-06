@@ -28,8 +28,8 @@ You can submit them [here](https://github.com/Kotlin/kandy/pulls).
 However, please keep in mind that the maintainers will have to support the resulting code of the project,
 so do familiarize yourself with the following guidelines:
 
-* All development (including new features and bug fixes) is performed in the `main` branch.
-    * Base Pull Requests against the `main` branch.
+* All development (including new features and bug fixes) is performed in the `dev` branch.
+    * Base Pull Requests against the `dev` branch.
     * The PR should be linked with the issue, except for minor documentation changes, adding unit tests, and fixing
       typos.
 * If you make any code changes:
@@ -60,12 +60,12 @@ so do familiarize yourself with the following guidelines:
    (Looks good to me) if they approve the changes.
 5. If there are comments, the contributor should address them and make the necessary changes to the pull request.
 6. The reviewer will mark the pull request with "LGTM" once all comments are addressed, and they approve the changes.
-7. The maintainer may suggest merging the `main` branch to the pull request branch multiple times during the review
-   process to incorporate changes from the `main` branch.
+7. The maintainer may suggest merging the `dev` branch to the pull request branch multiple times during the review
+   process to incorporate changes from the `dev` branch.
 8. The maintainer will run integration tests (unit tests and examples) using TC (TeamCity) builds.
 9. TC will report the result (pass or fail) of the tests in the checks section at the bottom of the pull request.
 10. If there are any failed tests, the maintainer will share the details with the contributor.
-11. Once all checks pass, and there are no conflicts with the `main` branch, the maintainer will merge the pull request.
+11. Once all checks pass, and there are no conflicts with the `dev` branch, the maintainer will merge the pull request.
 
 ## How to Fix an Existing Issue
 

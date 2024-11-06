@@ -80,8 +80,8 @@ internal fun Scale.wrap(
                 when (it) {
                     AxisPosition.DEFAULT -> null
                     AxisPosition.OPPOSITE -> when (aes) {
-                        X -> "right"
-                        Y -> "top"
+                        X -> "top"
+                        Y -> "right"
                         else -> null
                     }
 
