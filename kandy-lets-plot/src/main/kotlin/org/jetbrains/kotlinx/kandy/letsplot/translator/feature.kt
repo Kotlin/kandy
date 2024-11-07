@@ -5,14 +5,13 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.kandy.letsplot.feature.CoordFlip
-import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
-import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
-import org.jetbrains.kotlinx.kandy.letsplot.feature.Reversed
+import org.jetbrains.kotlinx.kandy.letsplot.feature.*
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 import org.jetbrains.kotlinx.kandy.letsplot.style.Theme
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
+import org.jetbrains.letsPlot.coord.coordCartesian
+import org.jetbrains.letsPlot.coord.coordFixed
 import org.jetbrains.letsPlot.coord.coordFlip
 import org.jetbrains.letsPlot.facet.facetGrid
 import org.jetbrains.letsPlot.facet.facetWrap
@@ -80,6 +79,15 @@ internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
     }
 }
 
+internal fun Coordinates.wrap(): OptionsMap {
+    return when(this) {
+        is CartesianCoordinates -> coordCartesian()
+        is CartesianFixedCoordinates -> coordFixed(ratio)
+        is CartesianFlippedCoordinates -> coordFlip()
+        is CustomCoordinates -> error("unreachable")
+    }
+}
+
 internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
     if (this is ExternalLetsPlotFeature) {
         featureBuffer += wrap()
@@ -96,8 +104,8 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
             featureBuffer.add((this as FacetWrapFeature).wrap())
         }
 
-        CoordFlip.FEATURE_NAME -> {
-            featureBuffer.add(coordFlip())
+        Coordinates.FEATURE_NAME -> {
+            featureBuffer.add((this as Coordinates).wrap())
         }
 
         Layout.NAME -> {
