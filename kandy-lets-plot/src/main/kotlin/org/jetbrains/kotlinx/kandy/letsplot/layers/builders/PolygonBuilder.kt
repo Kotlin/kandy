@@ -21,8 +21,8 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POLYGON
  *
  * @param parent the parent [LayerCreatorScope] for the layer.
  */
-@Suppress("INVISIBLE_MEMBER", "CANNOT_OVERRIDE_INVISIBLE_MEMBER")
-public open class PolygonsBuilder @PublishedApi internal constructor(
+@Suppress("INVISIBLE_MEMBER")
+public open class PolygonBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex
 ) : LayerWithBorderLineBuilder(parent, datasetIndex), PolygonsBuilderInterface {

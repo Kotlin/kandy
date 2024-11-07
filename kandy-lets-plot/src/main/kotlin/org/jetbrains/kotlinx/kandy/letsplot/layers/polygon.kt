@@ -5,32 +5,32 @@
 package org.jetbrains.kotlinx.kandy.letsplot.layers
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
-import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PolygonsBuilder
+import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PolygonBuilder
 
 /**
- * Adds a new `polygons` layer to the plot.
+ * Adds a new `polygon` layer to the plot.
  *
- * The `polygons` layer is responsible for constructing a polygons by points.
+ * The `polygon` layer is responsible for constructing a polygon by points.
  *
  * This function creates a context where you can set aesthetic mappings (`aes`) or aesthetic constants.
  * - Mappings are specified by calling methods that correspond to aesthetic names (`aes`).
  * - Constants are directly assigned using properties with the names corresponding to aesthetics.
  *   For positional aesthetics, you can use the `.constant()` method.
  *
- * ## Polygons Aesthetics
- * * **`x`** - The X-coordinate of polygons points.
- * * **`y`** - The Y-coordinate of polygons points.
- * * **`fillColor`** - The fill color of the polygons.
- * * **`alpha`** - The transparency of the polygons.
- * * **`borderLine.color`** - Color of the polygons borderline.
- * * **`borderLine.width`** - Width of the polygons borderline.
- * * **`borderLine.type`** - Type of the polygons borderline, such as dashed or dotted.
+ * ## Polygon Aesthetics
+ * * **`x`** - The X-coordinate of polygon points.
+ * * **`y`** - The Y-coordinate of polygon points.
+ * * **`fillColor`** - The fill color of the polygon.
+ * * **`alpha`** - The transparency of the polygon.
+ * * **`borderLine.color`** - Color of the polygon borderline.
+ * * **`borderLine.width`** - Width of the polygon borderline.
+ * * **`borderLine.type`** - Type of the polygon borderline, such as dashed or dotted.
  *
  * ## Example
  *
  * ```kotlin
  * plot {
- *     polygons {
+ *     polygon {
  *         // Positional mapping
  *         x(listOf(1.0, 2.0, 3.0))
  *         y(listOf(1.0, 2.0, 1.0))
@@ -50,6 +50,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PolygonsBuilder
  * }
  * ```
  */
-public inline fun LayerCreatorScope.polygons(block: PolygonsBuilder.() -> Unit) {
-    createLayer(PolygonsBuilder(this), block)
+public inline fun LayerCreatorScope.polygon(block: PolygonBuilder.() -> Unit) {
+    createLayer(PolygonBuilder(this), block)
 }
