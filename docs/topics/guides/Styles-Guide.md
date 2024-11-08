@@ -513,7 +513,7 @@ plotGrid(
                 y(count)
                 fillColor(fl)
             }
-            coordFlip()
+            coordinates = Coordinates.cartesianFlipped()
             layout {
                 title = "Default"
             }
@@ -524,7 +524,7 @@ plotGrid(
                 y(count)
                 fillColor(fl)
             }
-            coordFlip()
+            coordinates = Coordinates.cartesianFlipped()
             layout {
                 title = "Plot 1"
                 style {
@@ -541,7 +541,7 @@ plotGrid(
                 y(count)
                 fillColor(fl)
             }
-            coordFlip()
+            coordinates = Coordinates.cartesianFlipped()
             layout {
                 title = "Plot 2"
                 style {
@@ -559,7 +559,7 @@ plotGrid(
                 y(count)
                 fillColor(fl)
             }
-            coordFlip()
+            coordinates = Coordinates.cartesianFlipped()
             layout {
                 title = "Plot 3"
                 style {
@@ -586,7 +586,7 @@ plotGrid(
                 y(count)
                 fillColor(fl)
             }
-            coordFlip()
+            coordinates = Coordinates.cartesianFlipped()
             layout {
                 title = "Plot 4"
                 style {
@@ -603,7 +603,7 @@ plotGrid(
                 y(count)
                 fillColor(fl)
             }
-            coordFlip()
+            coordinates = Coordinates.cartesianFlipped()
             layout {
                 title = "Plot 5"
                 style {
