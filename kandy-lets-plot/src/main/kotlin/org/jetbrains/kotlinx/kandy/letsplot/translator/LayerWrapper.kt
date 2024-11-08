@@ -26,9 +26,9 @@ internal class LayerWrapper internal constructor(
     mappings: Map<Aes, Mapping>,
     private val settings: Map<Aes, Setting>,
     groupKeys: List<String>?,
-    override val map: SpatialDataset?,
-    override val mapJoin: Pair<Any, Any>?,
-    override val useCRS: String?,
+    override val map: SpatialDataset? = null,
+    override val mapJoin: Pair<Any, Any>? = null,
+    override val useCRS: String? = null,
 ) :
     org.jetbrains.letsPlot.intern.Layer(
         data = dataset,
