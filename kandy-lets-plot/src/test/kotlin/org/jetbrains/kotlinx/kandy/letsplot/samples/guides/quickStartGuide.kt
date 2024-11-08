@@ -18,6 +18,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.scales.*
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.limits
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.letsplot.style.LayoutParameters
 import org.jetbrains.kotlinx.kandy.letsplot.style.Style
@@ -310,8 +311,8 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
                 color(flowOn)
             }
             // Alternate brief notation if we want to set the axis limits (continuous scale)
-            x.limits = 0..80
-            y.limits = 0.0..1.0
+            x.axis.limits = 0..80
+            y.axis.limits = 0.0..1.0
         }
             // SampleEnd
             .saveSample()

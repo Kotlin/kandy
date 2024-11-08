@@ -24,6 +24,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.letsPlot.core.plot.base.Aes
 import org.jetbrains.letsPlot.core.spec.Option
+import org.jetbrains.letsPlot.intern.Feature
 import org.jetbrains.letsPlot.intern.Options
 import org.jetbrains.letsPlot.scale.*
 import kotlin.reflect.KType
@@ -45,12 +46,13 @@ internal val timeTypes = setOf(
     typeOf<LocalTime>(), typeOf<LocalTime?>(),
 )
 
-internal fun Mapping.wrapScale(domainType: KType, groupKeys: List<String>?): org.jetbrains.letsPlot.intern.Scale? {
-    return parameters?.scale?.wrap(
+internal fun Mapping.wrapScale(domainType: KType, groupKeys: List<String>?, featureBuffer: MutableList<Feature>) {
+     parameters?.scale?.wrap(
         aes, domainType,
         (parameters as? LetsPlotPositionalMappingParameters<*>)?.axis
             ?: (parameters as? LetsPlotNonPositionalMappingParameters<*, *>)?.legend,
-        groupKeys?.contains(columnID) == true
+        groupKeys?.contains(columnID) == true,
+         featureBuffer
     )
 }
 
@@ -59,8 +61,9 @@ internal fun Scale.wrap(
     domainType: KType,
     scaleParameters: ScaleParameters?,
     isGroupKey: Boolean,
-): org.jetbrains.letsPlot.intern.Scale {
-    return when (this) {
+    featureBuffer: MutableList<Feature>
+) {
+     val scale = when (this) {
 
         is PositionalScale<*> -> {
             val naValue = if (this is ContinuousScale<*>) {
@@ -70,6 +73,17 @@ internal fun Scale.wrap(
                 null
             }
             val axis = scaleParameters as? Axis<*>?
+
+            val min = axis?.min
+            val max = axis?.min
+
+            val limits = when(aes) {
+                X -> xlim(min to max)
+                Y -> ylim(min to max)
+                else -> null
+            }
+
+            limits?.let { featureBuffer.add(it) }
 
             val name = axis?.name
             val breaks = axis?.breaks
@@ -224,13 +238,14 @@ internal fun Scale.wrap(
                 }
 
                 is PositionalDefaultScale<*> -> if (domainType.isCategoricalType() || isGroupKey) {
-                    PositionalCategoricalScale<String>(null).wrap(aes, domainType, scaleParameters, isGroupKey)
+                    return PositionalCategoricalScale<String>(null).wrap(aes, domainType, scaleParameters, isGroupKey, featureBuffer)
                 } else {
-                    PositionalContinuousScale<Double>(null, null, null, null).wrap(
+                    return PositionalContinuousScale<Double>(null, null, null, null).wrap(
                         aes,
                         domainType,
                         scaleParameters,
-                        isGroupKey
+                        isGroupKey,
+                        featureBuffer
                     )
                 }
             }
@@ -279,20 +294,22 @@ internal fun Scale.wrap(
                     this is NonPositionalDefaultCategoricalScale<*, *> ||
                     domainType.isCategoricalType() || aes in discreteAes || isGroupKey
                 ) {
-                    NonPositionalCategoricalScale<String, String>(null, null).wrap(
+                    return NonPositionalCategoricalScale<String, String>(null, null).wrap(
                         aes,
                         domainType,
                         scaleParameters,
-                        isGroupKey
+                        isGroupKey,
+                        featureBuffer
                     )
                 } else {
-                    NonPositionalContinuousScale<Double, Double>(
+                    return NonPositionalContinuousScale<Double, Double>(
                         null, null, null, null, null, null
                     ).wrap(
                         aes,
                         domainType,
                         scaleParameters,
-                        isGroupKey
+                        isGroupKey,
+                        featureBuffer
                     )
                 }
 
@@ -796,6 +813,7 @@ internal fun Scale.wrap(
         else -> error("Unexpected scale: ${this::class}")
     }
 
+    featureBuffer.add(scale)
 }
 
 internal val categoricalTypes = listOf(typeOf<String>(), typeOf<Boolean>(), typeOf<Char>())

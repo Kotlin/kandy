@@ -21,15 +21,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingPa
 public open class AxisParameters internal constructor(
     private val mappingParameters: LetsPlotPositionalMappingParametersContinuous<Any?>,
 ) : PositionalMappingParametersContinuous<Any?> by mappingParameters {
-    public var limits: ClosedRange<*>? = null
-        set(value) {
-            mappingParameters.scale = PositionalContinuousScale(
-                value?.start,
-                value?.endInclusive,
-                null, null
-            )
-            field = value
-        }
     public val axis: Axis<Any?>
         get() = mappingParameters.axis
 

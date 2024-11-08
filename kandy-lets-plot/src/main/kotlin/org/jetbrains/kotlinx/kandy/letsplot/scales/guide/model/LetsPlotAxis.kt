@@ -16,6 +16,8 @@ import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 public data class Axis<DomainType> @PublishedApi internal constructor(
     var name: String? = null,
     var position: AxisPosition = AxisPosition.DEFAULT,
+    var min: DomainType? = null,
+    var max: DomainType? = null,
     @PublishedApi
     internal var breaks: List<DomainType>? = null,
     @PublishedApi
@@ -67,3 +69,21 @@ public data class Axis<DomainType> @PublishedApi internal constructor(
         expand = listOf(multiplicative, additive)
     }
 }
+
+public var <T: Comparable<T>> Axis<T>.limits: ClosedRange<T>?
+    // TODO(https://github.com/Kotlin/kandy/issues/412)
+    get() = null
+    set(value) {
+        min = value?.start
+        max = value?.endInclusive
+    }
+
+@get:JvmName("limitsAny")
+@set:JvmName("limitsAny")
+public var Axis<Any?>.limits: ClosedRange<*>?
+    // TODO(https://github.com/Kotlin/kandy/issues/412)
+    get() = null
+    set(value) {
+        min = value?.start
+        max = value?.endInclusive
+    }

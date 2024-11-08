@@ -15,7 +15,7 @@ class CrossBarsTest : KandyLetsPlotJupyterTest() {
                 yMax(listOf(40.0, 35.0, 30.0, 50.0))
 
                 // Adjust the Y-axis
-                y.limits = 0.0..55.0
+                y.axis.limits = 0.0..55.0
 
                 // Non-positional settings
                 fatten = 1.2

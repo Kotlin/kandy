@@ -391,8 +391,8 @@ plot(simpleDataset) {
         color(flowOn)
     }
     // Alternate brief notation if we want to set the axis limits (continuous scale)
-    x.limits = 0..80
-    y.limits = 0.0..1.0
+    x.axis.limits = 0..80
+    y.axis.limits = 0.0..1.0
 }
 ```
 
