@@ -17,6 +17,7 @@ import org.jetbrains.kotlinx.statistics.kandy.stattransform.statSmooth
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.test.Test
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.limits
 
 class Ribbon : SampleHelper("ribbon") {
 
@@ -215,7 +216,7 @@ class Ribbon : SampleHelper("ribbon") {
             ribbon {
                 x("time")
                 y {
-                    limits = 170..400
+                    axis.limits = 170..400
                     axis.name = "price, tokens"
                 }
                 yMin("min")
@@ -252,7 +253,7 @@ class Ribbon : SampleHelper("ribbon") {
                 ribbon {
                     x("time")
                     y {
-                        limits = 170..400
+                        axis.limits = 170..400
                         axis.name = "price, tokens"
                     }
                     yMin("min")

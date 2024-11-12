@@ -16,6 +16,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.y
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import org.jetbrains.kotlinx.statistics.kandy.layers.candlestick
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.limits
 import org.jetbrains.kotlinx.statistics.kandy.statplots.candlestick
 import org.jetbrains.kotlinx.statistics.kandy.statplots.configure
 import org.jetbrains.kotlinx.statistics.kandy.stattransform.statCandlestick

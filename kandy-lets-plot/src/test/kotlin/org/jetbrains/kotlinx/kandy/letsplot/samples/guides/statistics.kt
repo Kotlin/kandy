@@ -27,6 +27,7 @@ import org.jetbrains.kotlinx.statistics.plotting.bin.statBin
 import org.jetbrains.kotlinx.statistics.stats.mean
 import kotlin.test.Test
 import kotlin.test.assertNotNull
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.limits
 
 class StatisticsGuide : SampleHelper("stat", "guides") {
 

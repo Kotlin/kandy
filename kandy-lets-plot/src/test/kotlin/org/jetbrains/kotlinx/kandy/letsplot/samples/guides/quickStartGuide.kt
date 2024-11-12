@@ -348,7 +348,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
             y {
                 axis.name = "weight"
-                limits = 0.0..5.0
+                axis.limits = 0.0..5.0
             }
         }
             // SampleEnd
