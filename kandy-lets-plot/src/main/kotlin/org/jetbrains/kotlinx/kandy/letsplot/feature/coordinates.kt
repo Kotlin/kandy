@@ -78,7 +78,8 @@ public sealed interface Coordinates : PlotFeature {
  *
  * The `coordinates` property allows the customization of the plot's coordinate system,
  * which defines how data points are mapped onto the plot's axes.
- * By default, TODO
+ * If the coordinate system is not explicitly specified,
+ * it is automatically determined based on the data provided.
  *
  * Examples:
  * ```kotlin
@@ -94,11 +95,11 @@ public sealed interface Coordinates : PlotFeature {
  * }
  * ```
  */
-public var PlotBuilder.coordinates: Coordinates
+public var PlotBuilder.coordinates: Coordinates?
     // TODO(https://github.com/Kotlin/kandy/issues/412)
-    get() = Coordinates.cartesian()
+    get() = null
     set(value) {
-        plotFeatures[Coordinates.FEATURE_NAME] = value
+        value?.let { plotFeatures[Coordinates.FEATURE_NAME] = it }
     }
 
 internal data object DefaultCoordinates : Coordinates
