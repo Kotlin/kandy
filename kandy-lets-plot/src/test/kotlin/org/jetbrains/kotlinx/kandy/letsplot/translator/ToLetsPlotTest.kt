@@ -48,12 +48,6 @@ class ToLetsPlotTest {
         assertEquals(
             mapOf(
                 "mapping" to mapOf<String, String>(),
-                "coord" to mapOf(
-                    "name" to "cartesian",
-                    "xlim" to listOf(null, null),
-                    "flip" to false,
-                    "ylim" to listOf(null, null),
-                ),
                 "data" to dataset.toMap(),
                 "kind" to "plot",
                 "scales" to listOf(
@@ -130,12 +124,6 @@ class ToLetsPlotTest {
         assertEquals(
             mapOf(
                 "mapping" to mapOf<String, String>(),
-                "coord" to mapOf(
-                    "name" to "cartesian",
-                    "xlim" to listOf(null, null),
-                    "flip" to false,
-                    "ylim" to listOf(null, null),
-                ),
                 "data" to dataset.toMap(),
                 "kind" to "plot",
                 "scales" to listOf(

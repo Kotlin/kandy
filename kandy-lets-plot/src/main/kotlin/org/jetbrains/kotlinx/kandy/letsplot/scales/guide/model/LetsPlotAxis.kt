@@ -70,7 +70,7 @@ public data class Axis<DomainType> @PublishedApi internal constructor(
     }
 }
 
-public var <T: Comparable<T>> Axis<T>.limits: ClosedRange<T>?
+public var <T : Comparable<T>> Axis<T>.limits: ClosedRange<T>?
     // TODO(https://github.com/Kotlin/kandy/issues/412)
     get() = null
     set(value) {

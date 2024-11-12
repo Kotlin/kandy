@@ -4,16 +4,15 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
+import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.letsplot.feature.*
-import org.jetbrains.kotlinx.kandy.ir.Plot
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 import org.jetbrains.kotlinx.kandy.letsplot.style.Theme
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
-import org.jetbrains.kotlinx.kandy.letsplot.feature.ExternalLetsPlotFeature
-import org.jetbrains.kotlinx.kandy.letsplot.internal.X
-import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.letsPlot.coord.coordCartesian
 import org.jetbrains.letsPlot.coord.coordFixed
 import org.jetbrains.letsPlot.coord.coordFlip
@@ -84,13 +83,21 @@ internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
 }
 
 
-internal fun Coordinates.wrap(plot: Plot): OptionsMap {
+internal fun Coordinates.wrap(plot: Plot): OptionsMap? {
     val axes = plot.axes()
     val xLimits = axes[X]?.limits()
     val yLimits = axes[Y]?.limits()
 
-    return when(this) {
-        is CartesianCoordinates -> coordCartesian(xlim = xLimits, ylim = yLimits, flip = false)
+    // If user doesn't adjust axes limits && coordinates, use Lets-Plot default (null)
+    if (this is DefaultCoordinates &&
+        (xLimits == null || (xLimits.first == null && xLimits.second == null)) &&
+        (yLimits == null || (yLimits.first == null && yLimits.second == null))
+    ) {
+        return null
+    }
+
+    return when (this) {
+        is DefaultCoordinates, CartesianCoordinates -> coordCartesian(xlim = xLimits, ylim = yLimits, flip = false)
         is CartesianFixedCoordinates -> coordFixed(ratio = ratio, xlim = xLimits, ylim = yLimits, flip = false)
         is CartesianFlippedCoordinates -> coordFlip(xlim = xLimits, ylim = yLimits)
         is CartesianFlippedFixedCoordinates -> coordFixed(ratio = ratio, xlim = xLimits, ylim = yLimits, flip = true)
@@ -115,7 +122,7 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>, plot: Plot) {
         }
 
         Coordinates.FEATURE_NAME -> {
-            featureBuffer.add((this as Coordinates).wrap(plot))
+            (this as Coordinates).wrap(plot)?.let { featureBuffer.add(it) }
         }
 
         Layout.NAME -> {

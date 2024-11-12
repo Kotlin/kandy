@@ -5,8 +5,9 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.letsPlot.intern.FeatureList
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Coordinates
+import org.jetbrains.kotlinx.kandy.letsplot.feature.DefaultCoordinates
+import org.jetbrains.letsPlot.intern.FeatureList
 import org.jetbrains.letsPlot.letsPlot
 
 public fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
@@ -17,7 +18,7 @@ public fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
         val featuresWithCoord = if (features.contains(Coordinates.FEATURE_NAME)) {
             features
         } else {
-            features + (Coordinates.FEATURE_NAME to Coordinates.cartesian())
+            features + (Coordinates.FEATURE_NAME to DefaultCoordinates)
         }
         featuresWithCoord.forEach { it.value.wrap(this, this@toLetsPlot) }
     }

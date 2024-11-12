@@ -7,22 +7,16 @@ package org.jetbrains.kotlinx.kandy.letsplot.translator
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedData
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
+import org.jetbrains.kotlinx.kandy.ir.Plot
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
+import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Axis
 import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.letsplot.util.SimpleValueWrapper
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.color.StandardColor
-import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.kotlinx.kandy.ir.scale.Scale
-import org.jetbrains.kotlinx.kandy.ir.aes.Aes
-import org.jetbrains.kotlinx.kandy.ir.scale.PositionalScale
-import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
-import org.jetbrains.kotlinx.kandy.letsplot.internal.X
-import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
-import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Axis
-import org.jetbrains.letsPlot.scale.xlim
-import org.jetbrains.letsPlot.scale.ylim
 
 internal fun TableData.dataFrame(): DataFrame<*> {
     return when (this) {

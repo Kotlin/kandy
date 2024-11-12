@@ -4,10 +4,10 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
-import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.kotlinx.kandy.ir.Plot
+import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 import org.jetbrains.letsPlot.intern.FeatureList
 
 internal interface ExternalLetsPlotFeature : PlotFeature {
-    public fun wrap(plot: Plot): FeatureList
+    fun wrap(plot: Plot): FeatureList
 }

@@ -1,4 +1,5 @@
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.PlotBuilder
@@ -9,9 +10,10 @@ import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
 /**
  * Represents different types of coordinate systems for plotting data.
  */
-public sealed interface Coordinates: PlotFeature {
+public sealed interface Coordinates : PlotFeature {
     override val featureName: FeatureName
         get() = FEATURE_NAME
+
     public companion object {
         internal val FEATURE_NAME: FeatureName = FeatureName("COORDINATES")
 
@@ -76,12 +78,12 @@ public sealed interface Coordinates: PlotFeature {
  *
  * The `coordinates` property allows the customization of the plot's coordinate system,
  * which defines how data points are mapped onto the plot's axes.
- * By default, this property is set to a Cartesian coordinate system.
+ * By default, TODO
  *
  * Examples:
  * ```kotlin
  * plot {
- *    // Using the default Cartesian coordinate system (default)
+ *    // Using the default Cartesian coordinate system
  *    coordinates = Coordinates.cartesian()
  *
  *    // Using a Cartesian coordinate system with a fixed aspect ratio
@@ -99,8 +101,9 @@ public var PlotBuilder.coordinates: Coordinates
         plotFeatures[Coordinates.FEATURE_NAME] = value
     }
 
-internal data object CartesianCoordinates: Coordinates
-internal data class CartesianFixedCoordinates(val ratio:Double): Coordinates
-internal data object CartesianFlippedCoordinates: Coordinates
-internal data class CartesianFlippedFixedCoordinates(val ratio:Double): Coordinates
-internal interface CustomCoordinates: Coordinates, ExternalLetsPlotFeature
+internal data object DefaultCoordinates : Coordinates
+internal data object CartesianCoordinates : Coordinates
+internal data class CartesianFixedCoordinates(val ratio: Double) : Coordinates
+internal data object CartesianFlippedCoordinates : Coordinates
+internal data class CartesianFlippedFixedCoordinates(val ratio: Double) : Coordinates
+internal interface CustomCoordinates : Coordinates, ExternalLetsPlotFeature
