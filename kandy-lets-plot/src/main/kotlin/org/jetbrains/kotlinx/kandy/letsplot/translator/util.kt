@@ -7,8 +7,12 @@ package org.jetbrains.kotlinx.kandy.letsplot.translator
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.GroupedData
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
+import org.jetbrains.kotlinx.kandy.ir.Plot
+import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.kotlinx.kandy.letsplot.data.GeoSpatialData
+import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Axis
 import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.letsplot.util.SimpleValueWrapper
@@ -62,4 +66,37 @@ internal fun Pair<Any?, Any?>.computeRange(): Pair<Double, Double>? = when {
     second == null && first is Double -> (first as Double).let { it to it + 7.0 }
     first == null && second is Double -> (second as Double).let { (it - 7.0).coerceAtLeast(0.2) to it }
     else -> first as Double to second as Double
+}
+
+internal fun Plot.axes(): Map<Aes, Axis<*>> {
+    return buildMap {
+        layers.forEach { layer ->
+            layer.mappings.forEach { (aes, mapping) ->
+                (mapping.parameters as? LetsPlotPositionalMappingParameters<*>)?.axis?.let {
+                    put(aes, it)
+                }
+            }
+        }
+        layers.forEach { layer ->
+            layer.freeScales.forEach { (aes, freeScale) ->
+                (freeScale.parameters as? LetsPlotPositionalMappingParameters<*>)?.axis?.let {
+                    put(aes, it)
+                }
+            }
+        }
+        globalMappings.forEach { (aes, mapping) ->
+            (mapping.parameters as? LetsPlotPositionalMappingParameters<*>)?.axis?.let {
+                put(aes, it)
+            }
+        }
+        freeScales.forEach { (aes, freeScale) ->
+            (freeScale.parameters as? LetsPlotPositionalMappingParameters<*>)?.axis?.let {
+                put(aes, it)
+            }
+        }
+    }
+}
+
+internal fun Axis<*>.limits(): Pair<Number?, Number?> {
+    return (min as Number?) to (max as Number?)
 }

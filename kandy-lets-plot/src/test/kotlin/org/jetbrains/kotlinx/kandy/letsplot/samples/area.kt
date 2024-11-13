@@ -10,6 +10,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.hLine
 import org.jetbrains.kotlinx.kandy.letsplot.layers.line
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
 import org.jetbrains.kotlinx.kandy.letsplot.scales.Transformation
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.limits
 import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
 import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.letsplot.y
@@ -133,7 +134,7 @@ class Area : SampleHelper("area") {
             }
 
             x(month)
-            y { limits = 3.0..8.0 }
+            y { axis.limits = 3.0..8.0 }
             line {
                 y(waterLvl)
             }
@@ -171,7 +172,7 @@ class Area : SampleHelper("area") {
             }
 
             x("month")
-            y { limits = 3.0..8.0 }
+            y { axis.limits = 3.0..8.0 }
             line {
                 y("waterLvl")
             }

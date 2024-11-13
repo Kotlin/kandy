@@ -46,7 +46,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.HLineBuilder
  *         alpha = 0.5
  *
  *         // Even though hLine does not have an "x" attribute, you can still adjust the X-axis limits if needed
- *         x.limits = 0.0..100.0
+ *         x.axis.limits = 0.0..100.0
  *     }
  * }
  * ```

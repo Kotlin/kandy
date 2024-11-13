@@ -50,7 +50,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.BoxesBuilder
  *         yMax(listOf(50, 55, 40, 48))
  *
  *         // Adjust the Y-axis
- *         y.limits = 0.0..60.0
+ *         y.axis.limits = 0.0..60.0
  *
  *         // Non-positional settings
  *         fatten = 0.8

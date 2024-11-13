@@ -8,7 +8,6 @@ package org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model
 import org.jetbrains.kotlinx.kandy.dsl.internal.BindingHandler
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.bindings.PositionalMappingParametersContinuous
-import org.jetbrains.kotlinx.kandy.ir.scale.PositionalContinuousScale
 import org.jetbrains.kotlinx.kandy.ir.scale.PositionalScale
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParametersContinuous
 
@@ -21,15 +20,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingPa
 public open class AxisParameters internal constructor(
     private val mappingParameters: LetsPlotPositionalMappingParametersContinuous<Any?>,
 ) : PositionalMappingParametersContinuous<Any?> by mappingParameters {
-    public var limits: ClosedRange<*>? = null
-        set(value) {
-            mappingParameters.scale = PositionalContinuousScale(
-                value?.start,
-                value?.endInclusive,
-                null, null
-            )
-            field = value
-        }
     public val axis: Axis<Any?>
         get() = mappingParameters.axis
 

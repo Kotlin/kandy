@@ -1,18 +1,19 @@
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.PlotBuilder
 import org.jetbrains.kotlinx.kandy.dsl.internal.plotFeatures
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.kandy.letsplot.translator.ExternalLetsPlotFeature
 
 /**
  * Represents different types of coordinate systems for plotting data.
  */
-public sealed interface Coordinates: PlotFeature {
+public sealed interface Coordinates : PlotFeature {
     override val featureName: FeatureName
         get() = FEATURE_NAME
+
     public companion object {
         internal val FEATURE_NAME: FeatureName = FeatureName("COORDINATES")
 
@@ -51,6 +52,24 @@ public sealed interface Coordinates: PlotFeature {
          * @return a `Coordinates` instance with swapped axes.
          */
         public fun cartesianFlipped(): Coordinates = CartesianFlippedCoordinates
+
+        /**
+         * Returns a `Coordinates` instance representing a Cartesian coordinate system with swapped axes and a fixed aspect ratio.
+         *
+         * This coordinate system flips the orientation of the axes, so the x-axis is oriented vertically,
+         * and the y-axis is oriented horizontally, while maintaining a consistent proportional relationship
+         * between these axes, controlled by the `ratio` parameter.
+         * The `ratio` specifies how many units on the new y-axis (originally the x-axis) correspond to a single unit
+         * on the new x-axis (originally the y-axis). When `ratio` is set to 1.0 (default), one unit on the new x-axis
+         * is equivalent to one unit on the new y-axis, resulting in equal scaling for both axes.
+         * A `ratio` greater than 1.0 will make units on the new y-axis proportionally longer than those on the new x-axis,
+         * whereas a `ratio` less than 1.0 will make units on the new x-axis proportionally longer.
+         *
+         * @param ratio the aspect ratio between the swapped X and Y axes, where a value of 1.0 (default)
+         * results in equal scaling for both axes after flipping.
+         * @return a `Coordinates` instance configured as a Cartesian coordinate system with swapped axes and a fixed aspect ratio.
+         */
+        public fun cartesianFlippedFixed(ratio: Double = 1.0): Coordinates = CartesianFlippedFixedCoordinates(ratio)
     }
 }
 
@@ -59,12 +78,13 @@ public sealed interface Coordinates: PlotFeature {
  *
  * The `coordinates` property allows the customization of the plot's coordinate system,
  * which defines how data points are mapped onto the plot's axes.
- * By default, this property is set to a Cartesian coordinate system.
+ * If the coordinate system is not explicitly specified,
+ * it is automatically determined based on the data provided.
  *
  * Examples:
  * ```kotlin
  * plot {
- *    // Using the default Cartesian coordinate system (default)
+ *    // Using the default Cartesian coordinate system
  *    coordinates = Coordinates.cartesian()
  *
  *    // Using a Cartesian coordinate system with a fixed aspect ratio
@@ -75,14 +95,16 @@ public sealed interface Coordinates: PlotFeature {
  * }
  * ```
  */
-public var PlotBuilder.coordinates: Coordinates
+public var PlotBuilder.coordinates: Coordinates?
     // TODO(https://github.com/Kotlin/kandy/issues/412)
-    get() = Coordinates.cartesian()
+    get() = null
     set(value) {
-        plotFeatures[Coordinates.FEATURE_NAME] = value
+        value?.let { plotFeatures[Coordinates.FEATURE_NAME] = it }
     }
 
-internal data object CartesianCoordinates: Coordinates
-internal data class CartesianFixedCoordinates(val ratio:Double): Coordinates
-internal data object CartesianFlippedCoordinates: Coordinates
-internal interface CustomCoordinates: Coordinates, ExternalLetsPlotFeature
+internal data object DefaultCoordinates : Coordinates
+internal data object CartesianCoordinates : Coordinates
+internal data class CartesianFixedCoordinates(val ratio: Double) : Coordinates
+internal data object CartesianFlippedCoordinates : Coordinates
+internal data class CartesianFlippedFixedCoordinates(val ratio: Double) : Coordinates
+internal interface CustomCoordinates : Coordinates, ExternalLetsPlotFeature
