@@ -79,7 +79,7 @@ public sealed interface Coordinates : PlotFeature {
  * The `coordinates` property allows the customization of the plot's coordinate system,
  * which defines how data points are mapped onto the plot's axes.
  * If the coordinate system is not explicitly specified,
- * it is automatically determined based on the data provided.
+ * it is automatically determined based on the data provided and layers used.
  *
  * Examples:
  * ```kotlin
