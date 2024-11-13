@@ -4,6 +4,7 @@ import org.jetbrains.kotlinx.dataframe.*
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.getColumns
 import org.jetbrains.kotlinx.dataframe.api.groupBy
+import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
 
@@ -40,10 +41,36 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
     public fun <C> columns(vararg columns: String): List<AnyCol> = dataFrame.getColumns(*columns)
 
     /**
+     * Creates and initializes a new layer creator scope with the given dataframe as a dataset.
+     *
+     * @param dataFrame The DataFrame to be used as a dataset within the scope.
+     * @param block layer creator scope with a new dataset.
+     */
+    public inline fun <T> withData(
+        dataFrame: DataFrame<T>,
+        block: DataFrameScope<T>.() -> Unit
+    ) {
+        DataFrameScope(dataFrame, this, addDataset(NamedData(dataFrame), null)).apply(block)
+    }
+
+    /**
+     * Creates and initializes a new layer creator scope with the given map as a dataset.
+     *
+     * @param map The map to be used as a dataset within the scope.
+     * @param block layer creator scope with a new dataset.
+     */
+    public inline fun withData(
+        map: Map<String, List<*>>,
+        block: DataFrameScope<*>.() -> Unit
+    ) {
+        withData(map.toDataFrame(), block)
+    }
+
+    /**
      * Creates and initializes a new context with the dataframe grouped by the specified column names.
      *
      * @param columns the column names to group the dataframe by.
-     * @param block a lambda with receiver block that configures the new grouped context.
+     * @param block layer creator scope with a new dataset.
      */
     public inline fun groupBy(
         columns: Iterable<String>,
@@ -61,7 +88,7 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
      * Creates and initializes a new context with the dataframe grouped by the specified column names.
      *
      * @param columns the column names to group the dataframe by.
-     * @param block a lambda with receiver block that configures the new grouped context.
+     * @param block layer creator scope with a new dataset.
      */
     public inline fun groupBy(
         vararg columns: String,
@@ -72,7 +99,7 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
      * Creates and initializes a new context with the dataframe grouped by the given column references.
      *
      * @param columnReferences references to the columns to group by.
-     * @param block a lambda with receiver block that configures the new grouped context.
+     * @param block layer creator scope with a new dataset.
      */
     public inline fun groupBy(
         vararg columnReferences: ColumnReference<*>,
@@ -83,7 +110,7 @@ public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
      * Creates and initializes a new context with the dataframe grouped by the given column references.
      *
      * @param columnReferences a list of references to the columns to group by.
-     * @param block a lambda with receiver block that configures the new grouped context.
+     * @param block layer creator scope with a new dataset.
      */
     public inline fun groupBy(
         columnReferences: List<ColumnReference<*>>,
