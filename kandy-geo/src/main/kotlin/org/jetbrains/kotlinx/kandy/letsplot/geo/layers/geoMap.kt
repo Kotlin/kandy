@@ -7,8 +7,11 @@ import org.jetbrains.kotlinx.dataframe.api.Infer
 import org.jetbrains.kotlinx.dataframe.api.forEach
 import org.jetbrains.kotlinx.dataframe.impl.asList
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
+import org.jetbrains.kotlinx.kandy.letsplot.feature.Coordinates
+import org.jetbrains.kotlinx.kandy.letsplot.feature.coordinates
 import org.jetbrains.kotlinx.kandy.letsplot.geo.dsl.GeoDataScope
 import org.jetbrains.kotlinx.kandy.letsplot.geo.dsl.geometry
+import org.jetbrains.kotlinx.kandy.letsplot.geo.mercator
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PolygonBuilder
 import org.jetbrains.kotlinx.kandy.letsplot.layers.polygon
 import org.locationtech.jts.geom.Geometry
@@ -19,45 +22,40 @@ import kotlin.reflect.typeOf
 
 // TODO add ColumnAccessor & String api
 
-public inline fun GeoDataScope.geoPolygon(
+public inline fun GeoDataScope.geoMap(
     block: PolygonBuilder.() -> Unit = {}
 ) {
-    geometry().forEach {
-        if (it !is Polygonal) {
-            error("Not a polygon geometry: $it")
-        }
-    }
-    (this as LayerCreatorScope).polygon {
-        x.constant(null)
-        y.constant(null)
-        block()
-    }
+    (this as LayerCreatorScope).plotBuilder.coordinates = Coordinates.mercator()
+    geoPolygon(block)
 }
 
-public fun LayerCreatorScope.geoPolygon(
+public fun LayerCreatorScope.geoMap(
     geometry: DataColumn<Geometry>,
     block: PolygonBuilder.() -> Unit = {}
 ) {
-    geoLayer(geometry, { geoPolygon(it) }, block)
+    plotBuilder.coordinates = Coordinates.mercator()
+    geoPolygon(geometry, block)
 }
 
-public fun LayerCreatorScope.geoPolygon(
+public fun LayerCreatorScope.geoMap(
     geometry: Iterable<Geometry>,
     block: PolygonBuilder.() -> Unit = {}
 ) {
-    geoPolygon(DataColumn.createValueColumn("geometry", geometry.asList(), typeOf<Geometry>(), Infer.Type), block)
-}
+    plotBuilder.coordinates = Coordinates.mercator()
+    geoPolygon(geometry, block)}
 
-public fun LayerCreatorScope.geoPolygon(
+public fun LayerCreatorScope.geoMap(
     polygon: Polygon,
     block: PolygonBuilder.() -> Unit = {}
 ) {
-    geoPolygon(listOf(polygon), block)
+    plotBuilder.coordinates = Coordinates.mercator()
+    geoPolygon(polygon, block)
 }
 
-public fun LayerCreatorScope.geoPolygon(
+public fun LayerCreatorScope.geoMap(
     multiPolygon: MultiPolygon,
     block: PolygonBuilder.() -> Unit = {}
 ) {
-    geoPolygon(listOf(multiPolygon), block)
+    plotBuilder.coordinates = Coordinates.mercator()
+    geoPolygon(multiPolygon, block)
 }

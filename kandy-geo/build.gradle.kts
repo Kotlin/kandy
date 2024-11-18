@@ -25,7 +25,8 @@ dependencies {
     api(project(":kandy-lets-plot"))
     implementation(libs.lets.plot)
     implementation(libs.lets.plot.geotools)
-    implementation("org.jetbrains.kotlinx:dataframe-geo:0.15.0-dev-4398")
+    implementation(libs.kotlinx.dataframe)
+    implementation("org.jetbrains.kotlinx:dataframe-geo:0.15.0-dev-5004")
 
     implementation(libs.geotools.main) { excludeJaiCore() }
     implementation(libs.geotools.shapefile) { excludeJaiCore() }
@@ -51,3 +52,8 @@ tasks.test {
 kotlin {
     jvmToolchain(11)
 }
+
+tasks.processJupyterApiResources {
+    libraryProducers = listOf("org.jetbrains.kotlinx.kandy.letsplot.geo.jupyter.Integration")
+}
+

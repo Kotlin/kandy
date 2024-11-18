@@ -1,4 +1,4 @@
-package org.jetbrains.kotlinx.kandy.letsplot.geo
+package org.jetbrains.kotlinx.kandy.letsplot.geo.dsl
 
 import org.geotools.geojson.geom.GeometryJSON
 import org.jetbrains.kotlinx.dataframe.DataFrame
@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.dataframe.geo.geometry
 import org.jetbrains.kotlinx.kandy.letsplot.data.GeoSpatialData
 import org.jetbrains.letsPlot.spatial.SpatialDataset
 
-internal class GeoData(private val geoDataFrame: GeoDataFrame<*>) : GeoSpatialData {
+internal class GeoData(val geoDataFrame: GeoDataFrame<*>) : GeoSpatialData {
     override val dataFrame: DataFrame<*> = geoDataFrame.df
 
     override fun toSpatialDataset(): SpatialDataset {
