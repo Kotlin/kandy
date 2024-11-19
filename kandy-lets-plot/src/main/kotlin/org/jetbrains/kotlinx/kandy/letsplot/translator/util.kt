@@ -95,6 +95,10 @@ internal fun Plot.axes(): Map<Aes, Axis<*>> {
     }
 }
 
-internal fun Axis<*>.limits(): Pair<Number?, Number?> {
+internal fun Axis<*>.limits(): Pair<Number?, Number?>? {
+    // Return null if both values are null for better handling in LP
+    if (min == null && max == null) {
+        return null
+    }
     return (min as Number?) to (max as Number?)
 }
