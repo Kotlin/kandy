@@ -83,13 +83,13 @@ internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
 }
 
 
-internal fun Coordinates.wrap(plot: Plot): OptionsMap? {
+internal fun CoordinatesTransformation.wrap(plot: Plot): OptionsMap? {
     val axes = plot.axes()
     val xLimits = axes[X]?.limits()
     val yLimits = axes[Y]?.limits()
 
     // If user doesn't adjust axes limits && coordinates, use Lets-Plot default (null)
-    if (this is DefaultCoordinates &&
+    if (this is DefaultCoordinatesTransformation &&
         (xLimits == null || (xLimits.first == null && xLimits.second == null)) &&
         (yLimits == null || (yLimits.first == null && yLimits.second == null))
     ) {
@@ -97,11 +97,11 @@ internal fun Coordinates.wrap(plot: Plot): OptionsMap? {
     }
 
     return when (this) {
-        is DefaultCoordinates, CartesianCoordinates -> coordCartesian(xlim = xLimits, ylim = yLimits, flip = false)
-        is CartesianFixedCoordinates -> coordFixed(ratio = ratio, xlim = xLimits, ylim = yLimits, flip = false)
-        is CartesianFlippedCoordinates -> coordFlip(xlim = xLimits, ylim = yLimits)
-        is CartesianFlippedFixedCoordinates -> coordFixed(ratio = ratio, xlim = xLimits, ylim = yLimits, flip = true)
-        is CustomCoordinates -> error("unreachable")
+        is DefaultCoordinatesTransformation, CartesianCoordinatesTransformation -> coordCartesian(xlim = xLimits, ylim = yLimits, flip = false)
+        is CartesianFixedCoordinatesTransformation -> coordFixed(ratio = ratio, xlim = xLimits, ylim = yLimits, flip = false)
+        is CartesianFlippedCoordinatesTransformation -> coordFlip(xlim = xLimits, ylim = yLimits)
+        is CartesianFlippedFixedCoordinatesTransformation -> coordFixed(ratio = ratio, xlim = xLimits, ylim = yLimits, flip = true)
+        is CustomCoordinatesTransformation -> error("unreachable")
     }
 }
 
@@ -121,8 +121,8 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>, plot: Plot) {
             featureBuffer.add((this as FacetWrapFeature).wrap())
         }
 
-        Coordinates.FEATURE_NAME -> {
-            (this as Coordinates).wrap(plot)?.let { featureBuffer.add(it) }
+        CoordinatesTransformation.FEATURE_NAME -> {
+            (this as CoordinatesTransformation).wrap(plot)?.let { featureBuffer.add(it) }
         }
 
         Layout.NAME -> {

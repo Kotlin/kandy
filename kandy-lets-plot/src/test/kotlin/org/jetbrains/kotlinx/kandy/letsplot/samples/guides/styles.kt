@@ -547,7 +547,7 @@ class Styles : SampleHelper("layout", "guides") {
                         y(count)
                         fillColor(fl)
                     }
-                    coordinates = Coordinates.cartesianFlipped()
+                    coordinatesTransformation = CoordinatesTransformation.cartesianFlipped()
                     layout {
                         title = "Default"
                     }
@@ -558,7 +558,7 @@ class Styles : SampleHelper("layout", "guides") {
                         y(count)
                         fillColor(fl)
                     }
-                    coordinates = Coordinates.cartesianFlipped()
+                    coordinatesTransformation = CoordinatesTransformation.cartesianFlipped()
                     layout {
                         title = "Plot 1"
                         style {
@@ -575,7 +575,7 @@ class Styles : SampleHelper("layout", "guides") {
                         y(count)
                         fillColor(fl)
                     }
-                    coordinates = Coordinates.cartesianFlipped()
+                    coordinatesTransformation = CoordinatesTransformation.cartesianFlipped()
                     layout {
                         title = "Plot 2"
                         style {
@@ -593,7 +593,7 @@ class Styles : SampleHelper("layout", "guides") {
                         y(count)
                         fillColor(fl)
                     }
-                    coordinates = Coordinates.cartesianFlipped()
+                    coordinatesTransformation = CoordinatesTransformation.cartesianFlipped()
                     layout {
                         title = "Plot 3"
                         style {
@@ -620,7 +620,7 @@ class Styles : SampleHelper("layout", "guides") {
                         y(count)
                         fillColor(fl)
                     }
-                    coordinates = Coordinates.cartesianFlipped()
+                    coordinatesTransformation = CoordinatesTransformation.cartesianFlipped()
                     layout {
                         title = "Plot 4"
                         style {
@@ -637,7 +637,7 @@ class Styles : SampleHelper("layout", "guides") {
                         y(count)
                         fillColor(fl)
                     }
-                    coordinates = Coordinates.cartesianFlipped()
+                    coordinatesTransformation = CoordinatesTransformation.cartesianFlipped()
                     layout {
                         title = "Plot 5"
                         style {

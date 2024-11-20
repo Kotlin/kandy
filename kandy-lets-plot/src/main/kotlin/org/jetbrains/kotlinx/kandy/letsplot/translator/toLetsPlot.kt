@@ -5,8 +5,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.kotlinx.kandy.letsplot.feature.Coordinates
-import org.jetbrains.kotlinx.kandy.letsplot.feature.DefaultCoordinates
+import org.jetbrains.kotlinx.kandy.letsplot.feature.CoordinatesTransformation
+import org.jetbrains.kotlinx.kandy.letsplot.feature.DefaultCoordinatesTransformation
 import org.jetbrains.letsPlot.intern.FeatureList
 import org.jetbrains.letsPlot.letsPlot
 
@@ -15,10 +15,10 @@ public fun Plot.toLetsPlot(): org.jetbrains.letsPlot.intern.Plot {
     val featureBuffer = buildList {
         layers.forEach { it.wrap(this, datasets, globalMappings, globalSettings) }
         freeScales.forEach { it.value.wrap(this) }
-        val featuresWithCoord = if (features.contains(Coordinates.FEATURE_NAME)) {
+        val featuresWithCoord = if (features.contains(CoordinatesTransformation.FEATURE_NAME)) {
             features
         } else {
-            features + (Coordinates.FEATURE_NAME to DefaultCoordinates)
+            features + (CoordinatesTransformation.FEATURE_NAME to DefaultCoordinatesTransformation)
         }
         featuresWithCoord.forEach { it.value.wrap(this, this@toLetsPlot) }
     }
