@@ -13,7 +13,7 @@ internal class GeoDataBuilder(
 ) : DatasetBuilderImpl(null) {
     constructor(geodf: GeoDataFrame<*>) : this(GeoData(geodf))
 
-    private val crs = namedData.geoDataFrame.crs
+    val crs = namedData.geoDataFrame.crs
     override val baseDataFrame: DataFrame<*> = namedData.dataFrame
 
     override fun build(): TableData {

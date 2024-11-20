@@ -28,8 +28,9 @@ internal fun <T> LayerCreatorScope.geoLayer(
     val geometryColumn = geometry named "geometry"
     val geoDataFrame = if (columnRowsCount != datasetBuilderRowsCount) {
         // override dataset if datasetBuilder size doesn't match
-        dataFrameOf(geometryColumn).toGeo()
+        dataFrameOf(geometryColumn).toGeo(null)
     } else {
+        // TODO improve logic if the other geometry column with the same size is used
         // add geometry column otherwise
         (datasetBuilder as DatasetBuilderImpl).baseDataFrame.add(geometryColumn).toGeo()
     }

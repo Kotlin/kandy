@@ -54,6 +54,6 @@ kotlin {
 }
 
 tasks.processJupyterApiResources {
-    libraryProducers = listOf("org.jetbrains.kotlinx.kandy.letsplot.geo.jupyter.Integration")
+    libraryProducers = listOf("org.jetbrains.kotlinx.kandy.letsplot.geo.jupyter.IntegrationGeo")
 }
 

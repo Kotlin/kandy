@@ -25,6 +25,7 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.kandy.letsplot.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.export.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.feature.*")
+        import("org.jetbrains.kotlinx.kandy.letsplot.feature.Coordinates")
         import("org.jetbrains.kotlinx.kandy.letsplot.layers.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.multiplot.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.*")
