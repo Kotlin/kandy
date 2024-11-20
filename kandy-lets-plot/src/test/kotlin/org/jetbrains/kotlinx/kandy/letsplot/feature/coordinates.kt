@@ -23,13 +23,14 @@ class CoordinatesTest {
     private val layerBuilder = mockk<LayerBuilderImpl> {
         every { toLayer() } returns mockLayer
     }
+
     @Test
     fun `test coordinates cartesian`() {
         val plot = plot {
             createLayer(layerBuilder) {}
-            coordinates = Coordinates.cartesian()
+            coordinatesTransformation = CoordinatesTransformation.cartesian()
         }
-        assertEquals(CartesianCoordinates, plot.features[Coordinates.FEATURE_NAME])
+        assertEquals(CartesianCoordinatesTransformation, plot.features[CoordinatesTransformation.FEATURE_NAME])
     }
 
     @Test
@@ -37,17 +38,17 @@ class CoordinatesTest {
         val ratio = 0.8
         val plot = plot {
             createLayer(layerBuilder) {}
-            coordinates = Coordinates.cartesianFixed(ratio)
+            coordinatesTransformation = CoordinatesTransformation.cartesianFixed(ratio)
         }
-        assertEquals(CartesianFixedCoordinates(ratio), plot.features[Coordinates.FEATURE_NAME])
+        assertEquals(CartesianFixedCoordinatesTransformation(ratio), plot.features[CoordinatesTransformation.FEATURE_NAME])
     }
 
     @Test
     fun `test coordinates cartesian flipped`() {
         val plot = plot {
             createLayer(layerBuilder) {}
-            coordinates = Coordinates.cartesianFlipped()
+            coordinatesTransformation = CoordinatesTransformation.cartesianFlipped()
         }
-        assertEquals(CartesianFlippedCoordinates, plot.features[Coordinates.FEATURE_NAME])
+        assertEquals(CartesianFlippedCoordinatesTransformation, plot.features[CoordinatesTransformation.FEATURE_NAME])
     }
 }

@@ -3,7 +3,6 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.*
-import org.jetbrains.kotlinx.kandy.letsplot.layers.boxes
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.statistics.kandy.layers.boxplot
 import org.jetbrains.kotlinx.statistics.kandy.statplots.boxplot
@@ -109,7 +108,7 @@ class Boxplot : SampleHelper("boxplot") {
         ).gather(*countries).into("country", "lifeExp")
 
         lifeExpectancyData.boxplot("country", "lifeExp").configure {
-            coordinates = Coordinates.cartesianFlipped()
+            coordinatesTransformation = CoordinatesTransformation.cartesianFlipped()
         }
             // SampleEnd
             .saveSample()

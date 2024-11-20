@@ -75,7 +75,7 @@ val lifeExpectancyData = dataFrameOf(
 ).gather(*countries).into("country", "lifeExp")
 
 lifeExpectancyData.boxplot("country", "lifeExp").configure {
-    coordinates = Coordinates.cartesianFlipped()
+    coordinatesTransformation = CoordinatesTransformation.cartesianFlipped()
 }
 ```
 
