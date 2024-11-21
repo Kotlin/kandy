@@ -90,8 +90,8 @@ internal fun CoordinatesTransformation.wrap(plot: Plot): OptionsMap? {
 
     // If user doesn't adjust axes limits && coordinates, use Lets-Plot default (null)
     if (this is DefaultCoordinatesTransformation &&
-        (xLimits == null || (xLimits.first == null && xLimits.second == null)) &&
-        (yLimits == null || (yLimits.first == null && yLimits.second == null))
+        (xLimits == null || (xLimits.bothNull())) &&
+        (yLimits == null || (yLimits.bothNull()))
     ) {
         return null
     }
