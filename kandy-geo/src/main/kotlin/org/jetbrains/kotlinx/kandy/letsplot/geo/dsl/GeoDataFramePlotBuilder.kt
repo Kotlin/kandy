@@ -12,5 +12,5 @@ public class GeoDataFramePlotBuilder<T : WithGeometry> @PublishedApi internal co
     @PublishedApi
     internal val geodf: GeoDataFrame<T>,
 ) : MultiLayerPlotBuilderImpl(), ColumnsContainer<T> by geodf.df, GeoDataScope {
-    internal override val datasetBuilders: MutableList<DatasetBuilder> = mutableListOf(GeoDataBuilder(geodf))
+    override val datasetBuilders: MutableList<DatasetBuilder> = mutableListOf(GeoDataBuilder(geodf))
 }

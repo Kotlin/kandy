@@ -10,8 +10,8 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 
 public class GeoDataFrameScope<T : WithGeometry>(
     geoDataFrame: GeoDataFrame<T>,
-    internal override val plotBuilder: MultiLayerPlotBuilder,
-    internal override val datasetIndex: Int,
+    override val plotBuilder: MultiLayerPlotBuilder,
+    override val datasetIndex: Int,
 ) : LayerCreatorScope(), GeoDataScope, ColumnsContainer<T> by geoDataFrame.df {
-    internal override val layersInheritMappings: Boolean = false
+    override val layersInheritMappings: Boolean = false
 }

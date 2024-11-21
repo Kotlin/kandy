@@ -5,12 +5,13 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.remove
 import org.jetbrains.kotlinx.dataframe.api.toMap
 import org.jetbrains.kotlinx.dataframe.geo.GeoDataFrame
+import org.jetbrains.kotlinx.dataframe.geo.WithGeometry
 import org.jetbrains.kotlinx.dataframe.geo.geometry
 import org.jetbrains.kotlinx.kandy.letsplot.data.GeoSpatialData
 import org.jetbrains.letsPlot.spatial.SpatialDataset
 
 internal class GeoData(val geoDataFrame: GeoDataFrame<*>) : GeoSpatialData {
-    override val dataFrame: DataFrame<*> = geoDataFrame.df
+    override val dataFrame: DataFrame<WithGeometry> = geoDataFrame.df
 
     override fun toSpatialDataset(): SpatialDataset {
         with(geoDataFrame) {

@@ -3,8 +3,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.geo
 
 import org.jetbrains.kotlinx.kandy.ir.Plot
-import org.jetbrains.kotlinx.kandy.letsplot.feature.Coordinates
-import org.jetbrains.kotlinx.kandy.letsplot.feature.CustomCoordinates
+import org.jetbrains.kotlinx.kandy.letsplot.feature.CoordinatesTransformation
+import org.jetbrains.kotlinx.kandy.letsplot.feature.CustomCoordinatesTransformation
 import org.jetbrains.kotlinx.kandy.letsplot.internal.X
 import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.translator.axes
@@ -12,7 +12,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.translator.limits
 import org.jetbrains.letsPlot.coord.coordMap
 import org.jetbrains.letsPlot.intern.FeatureList
 
-internal class MercatorCoordinates : CustomCoordinates {
+internal class MercatorCoordinatesTransformation : CustomCoordinatesTransformation {
     override fun wrap(plot: Plot): FeatureList {
         val axes = plot.axes()
         val xLimits = axes[X]?.limits()
@@ -22,7 +22,7 @@ internal class MercatorCoordinates : CustomCoordinates {
     }
 }
 
-internal class MercatorFlippedCoordinates : CustomCoordinates {
+internal class MercatorFlippedCoordinates : CustomCoordinatesTransformation {
     override fun wrap(plot: Plot): FeatureList {
         val axes = plot.axes()
         val xLimits = axes[X]?.limits()
@@ -32,5 +32,8 @@ internal class MercatorFlippedCoordinates : CustomCoordinates {
     }
 }
 
-public fun Coordinates.Companion.mercator(): Coordinates = MercatorCoordinates()
-public fun Coordinates.Companion.mercatorFlipped(): Coordinates = MercatorFlippedCoordinates()
+public fun CoordinatesTransformation.Companion.mercator(): CoordinatesTransformation =
+    MercatorCoordinatesTransformation()
+
+public fun CoordinatesTransformation.Companion.mercatorFlipped(): CoordinatesTransformation =
+    MercatorFlippedCoordinates()

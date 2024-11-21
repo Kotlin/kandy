@@ -8,7 +8,7 @@ import org.locationtech.jts.geom.MultiPolygon
 import org.locationtech.jts.operation.union.CascadedPolygonUnion
 
 
-public fun DataColumn<Geometry>.mergePolygons(): MultiPolygon  {
+public fun DataColumn<Geometry>.mergePolygons(): MultiPolygon {
     val geometryFactory = GeometryFactory()
     val cleanedPolygons = map { geometry ->
         val cleanedGeometry = geometry.buffer(0.0)
