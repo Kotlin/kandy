@@ -60,6 +60,9 @@ internal fun wrapValue(value: Any?): Any? {
 
 internal fun ClosedRange<*>?.wrap() = this?.let { (it.start as Number) to (it.endInclusive as Number) }
 internal fun Pair<*, *>?.wrap() = this?.let { (it.first as? Number) to (it.second as? Number) }
+internal fun Pair<Any?, Any?>.bothNull(): Boolean {
+    return first == null && second == null
+}
 
 internal fun Pair<Any?, Any?>.computeRange(): Pair<Double, Double>? = when {
     first == null && second == null -> null
@@ -76,8 +79,6 @@ internal fun Plot.axes(): Map<Aes, Axis<*>> {
                     put(aes, it)
                 }
             }
-        }
-        layers.forEach { layer ->
             layer.freeScales.forEach { (aes, freeScale) ->
                 (freeScale.parameters as? LetsPlotPositionalMappingParameters<*>)?.axis?.let {
                     put(aes, it)
