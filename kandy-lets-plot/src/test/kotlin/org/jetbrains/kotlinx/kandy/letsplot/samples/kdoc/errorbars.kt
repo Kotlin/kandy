@@ -14,7 +14,7 @@ class ErrorBarsTest : KandyLetsPlotJupyterTest() {
                 yMax(listOf(75.0, 88.0, 60.0, 68.0))
 
                 // Adjust the Y-axis
-                y.limits = 0.0..100.0
+                y.axis.limits = 0.0..100.0
 
                 // Non-positional settings
                 alpha = 0.8
