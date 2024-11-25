@@ -5,7 +5,6 @@ import org.jetbrains.kotlinx.dataframe.api.Infer
 import org.jetbrains.kotlinx.dataframe.api.map
 import org.jetbrains.kotlinx.dataframe.impl.asList
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
-import org.jetbrains.kotlinx.kandy.letsplot.geo.dsl.GeoData
 import org.jetbrains.kotlinx.kandy.letsplot.geo.dsl.GeoDataScope
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.RectanglesBuilder
 import org.jetbrains.kotlinx.kandy.letsplot.layers.rectangles

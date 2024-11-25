@@ -14,7 +14,7 @@ import kotlin.test.assertEquals
 
 class CoordinatesTest {
     private val geom = mockk<Geom>()
-    private  val mockLayer = Layer(
+    private val mockLayer = Layer(
         datasetIndex = 0, geom = geom,
         mappings = mapOf(Aes("a") to mockk<Mapping>()),
         settings = mapOf(Aes("a") to mockk<Setting>()),
