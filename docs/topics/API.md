@@ -18,6 +18,7 @@
 [tooltips](Tooltips-API.md)
 ## Data manipulation
 [groupBy](GroupBy-API.md)
+[withData](WithData-API.md)
 ### Statistics
 [statBin](StatBin-API.md)
 [statBoxplot](StatBoxplot-API.md)
