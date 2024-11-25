@@ -27,6 +27,7 @@ import org.jetbrains.kotlinx.statistics.plotting.bin.statBin
 import org.jetbrains.kotlinx.statistics.stats.mean
 import kotlin.test.Test
 import kotlin.test.assertNotNull
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.limits
 
 class StatisticsGuide : SampleHelper("stat", "guides") {
 
@@ -149,7 +150,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
                     scale = continuous(Color.GREEN..Color.RED)
                 }
             }
-            x.limits = -3.5..3.5
+            x.axis.limits = -3.5..3.5
         }
         // SampleEnd
         // .saveSample()
@@ -195,7 +196,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             x(sample)
         }.configure {
             // StatBin + Bars + Plot contexts
-            x.limits = -3.5..3.5
+            x.axis.limits = -3.5..3.5
             y(Stat.density)
             borderLine.color = Color.BLACK
             layout.title = "Configured histogram"

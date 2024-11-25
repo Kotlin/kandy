@@ -32,6 +32,7 @@ internal class Integration : JupyterIntegration() {
         import("org.jetbrains.kotlinx.kandy.letsplot.scales.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.scales.guide.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.AxisPosition")
+        import("org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.limits")
         import("org.jetbrains.kotlinx.kandy.letsplot.style.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.tooltips.*")
         import("org.jetbrains.kotlinx.kandy.letsplot.settings.*")

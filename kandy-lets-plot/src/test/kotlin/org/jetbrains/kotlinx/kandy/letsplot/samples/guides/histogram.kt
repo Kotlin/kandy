@@ -13,6 +13,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.feature.position
 import org.jetbrains.kotlinx.kandy.letsplot.layers.area
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.limits
 import org.jetbrains.kotlinx.kandy.letsplot.layers.bars
 import org.jetbrains.kotlinx.kandy.letsplot.layers.vLine
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotGrid
@@ -219,7 +220,7 @@ class Histogram : SampleHelper("stat", "guides") {
         }.configure {
             // Bars + StatBin + PlotBuilder
             // Can't add a new layer
-            x.limits = 100..900
+            x.axis.limits = 100..900
             // Can add bar mapping, include on `Stat.*` columns
             fillColor(Stat.count) { scale = continuous(Color.GREEN..Color.RED) }
             // Can configure general plot adjustments

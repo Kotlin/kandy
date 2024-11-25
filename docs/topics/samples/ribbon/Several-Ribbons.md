@@ -38,7 +38,7 @@ dataset.groupBy("currency").plot {
     ribbon {
         x("time")
         y {
-            limits = 170..400
+            axis.limits = 170..400
             axis.name = "price, tokens"
         }
         yMin("min")
@@ -74,7 +74,7 @@ dataset.plot {
         ribbon {
             x("time")
             y {
-                limits = 170..400
+                axis.limits = 170..400
                 axis.name = "price, tokens"
             }
             yMin("min")

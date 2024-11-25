@@ -4,15 +4,17 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
+import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.feature.PlotFeature
-import org.jetbrains.kotlinx.kandy.letsplot.feature.CoordFlip
-import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
-import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
-import org.jetbrains.kotlinx.kandy.letsplot.feature.Reversed
+import org.jetbrains.kotlinx.kandy.letsplot.feature.*
+import org.jetbrains.kotlinx.kandy.letsplot.internal.X
+import org.jetbrains.kotlinx.kandy.letsplot.internal.Y
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetGridFeature
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.facet.feature.FacetWrapFeature
 import org.jetbrains.kotlinx.kandy.letsplot.style.Theme
 import org.jetbrains.kotlinx.kandy.letsplot.tooltips.feature.LayerTooltips
+import org.jetbrains.letsPlot.coord.coordCartesian
+import org.jetbrains.letsPlot.coord.coordFixed
 import org.jetbrains.letsPlot.coord.coordFlip
 import org.jetbrains.letsPlot.facet.facetGrid
 import org.jetbrains.letsPlot.facet.facetWrap
@@ -80,9 +82,32 @@ internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
     }
 }
 
-internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
+
+internal fun CoordinatesTransformation.wrap(plot: Plot): OptionsMap? {
+    val axes = plot.axes()
+    val xLimits = axes[X]?.limits()
+    val yLimits = axes[Y]?.limits()
+
+    // If user doesn't adjust axes limits && coordinates, use Lets-Plot default (null)
+    if (this is DefaultCoordinatesTransformation &&
+        (xLimits == null || (xLimits.bothNull())) &&
+        (yLimits == null || (yLimits.bothNull()))
+    ) {
+        return null
+    }
+
+    return when (this) {
+        is DefaultCoordinatesTransformation, CartesianCoordinatesTransformation -> coordCartesian(xlim = xLimits, ylim = yLimits, flip = false)
+        is CartesianFixedCoordinatesTransformation -> coordFixed(ratio = ratio, xlim = xLimits, ylim = yLimits, flip = false)
+        is CartesianFlippedCoordinatesTransformation -> coordFlip(xlim = xLimits, ylim = yLimits)
+        is CartesianFlippedFixedCoordinatesTransformation -> coordFixed(ratio = ratio, xlim = xLimits, ylim = yLimits, flip = true)
+        is CustomCoordinatesTransformation -> error("unreachable")
+    }
+}
+
+internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>, plot: Plot) {
     if (this is ExternalLetsPlotFeature) {
-        featureBuffer += wrap()
+        featureBuffer += wrap(plot)
         return
     }
 
@@ -96,8 +121,8 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>) {
             featureBuffer.add((this as FacetWrapFeature).wrap())
         }
 
-        CoordFlip.FEATURE_NAME -> {
-            featureBuffer.add(coordFlip())
+        CoordinatesTransformation.FEATURE_NAME -> {
+            (this as CoordinatesTransformation).wrap(plot)?.let { featureBuffer.add(it) }
         }
 
         Layout.NAME -> {

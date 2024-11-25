@@ -442,7 +442,7 @@ That means you can configure boxes settings, mappings using `StatCandlestick` da
 df.candlestick("x", "open", "high", "low", "close").configure {
     // Boxes + StatCandlestick + PlotBuilder
     // Can't add a new layer
-    y.limits = 3.0..17.0
+    y.axis.limits = 3.0..17.0
     increase {
         borderLine.color = Color.BLUE
     }

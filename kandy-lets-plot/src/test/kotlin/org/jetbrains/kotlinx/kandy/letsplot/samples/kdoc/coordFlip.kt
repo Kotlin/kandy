@@ -11,7 +11,7 @@ class CoordFlipTest : KandyLetsPlotJupyterTest() {
                     x(listOf("a", "b", "c"))
                     y(listOf(4, 3, 5))
                 }
-                coordFlip()
+                coordinatesTransformation = CoordinatesTransformation.cartesianFlipped()
             }
         """.trimIndent()
 

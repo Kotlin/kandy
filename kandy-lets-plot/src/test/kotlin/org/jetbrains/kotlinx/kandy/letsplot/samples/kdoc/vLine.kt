@@ -24,7 +24,7 @@ class VLineTest : KandyLetsPlotJupyterTest() {
                 alpha = 0.7
 
                 // Although vLine does not have a "y" attribute, you can adjust the Y-axis limits if needed
-                y.limits = 0.0..30.0
+                y.axis.limits = 0.0..30.0
             }
         }
         """.trimIndent()

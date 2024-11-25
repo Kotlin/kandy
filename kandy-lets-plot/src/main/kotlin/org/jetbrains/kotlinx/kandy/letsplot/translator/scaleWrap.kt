@@ -50,7 +50,7 @@ internal fun Mapping.wrapScale(domainType: KType, groupKeys: List<String>?): org
         aes, domainType,
         (parameters as? LetsPlotPositionalMappingParameters<*>)?.axis
             ?: (parameters as? LetsPlotNonPositionalMappingParameters<*, *>)?.legend,
-        groupKeys?.contains(columnID) == true
+        groupKeys?.contains(columnID) == true,
     )
 }
 
@@ -70,6 +70,7 @@ internal fun Scale.wrap(
                 null
             }
             val axis = scaleParameters as? Axis<*>?
+
 
             val name = axis?.name
             val breaks = axis?.breaks
@@ -224,9 +225,9 @@ internal fun Scale.wrap(
                 }
 
                 is PositionalDefaultScale<*> -> if (domainType.isCategoricalType() || isGroupKey) {
-                    PositionalCategoricalScale<String>(null).wrap(aes, domainType, scaleParameters, isGroupKey)
+                    return PositionalCategoricalScale<String>(null).wrap(aes, domainType, scaleParameters, isGroupKey)
                 } else {
-                    PositionalContinuousScale<Double>(null, null, null, null).wrap(
+                    return PositionalContinuousScale<Double>(null, null, null, null).wrap(
                         aes,
                         domainType,
                         scaleParameters,
@@ -279,20 +280,20 @@ internal fun Scale.wrap(
                     this is NonPositionalDefaultCategoricalScale<*, *> ||
                     domainType.isCategoricalType() || aes in discreteAes || isGroupKey
                 ) {
-                    NonPositionalCategoricalScale<String, String>(null, null).wrap(
+                    return NonPositionalCategoricalScale<String, String>(null, null).wrap(
                         aes,
                         domainType,
                         scaleParameters,
-                        isGroupKey
+                        isGroupKey,
                     )
                 } else {
-                    NonPositionalContinuousScale<Double, Double>(
+                    return NonPositionalContinuousScale<Double, Double>(
                         null, null, null, null, null, null
                     ).wrap(
                         aes,
                         domainType,
                         scaleParameters,
-                        isGroupKey
+                        isGroupKey,
                     )
                 }
 
@@ -795,7 +796,6 @@ internal fun Scale.wrap(
 
         else -> error("Unexpected scale: ${this::class}")
     }
-
 }
 
 internal val categoricalTypes = listOf(typeOf<String>(), typeOf<Boolean>(), typeOf<Char>())
