@@ -4,6 +4,7 @@ import org.jetbrains.kotlinx.dataframe.ColumnsContainer
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 
 /**
  * Represents a plot builder data scope with grouped dataset
@@ -11,6 +12,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
  *
  * @param T The type of the DataFrame.
  */
+@PlotDslMarker
 public class DataFrameScope<T> @PublishedApi internal constructor(
     dataFrame: DataFrame<T>,
     override val plotBuilder: MultiLayerPlotBuilder,

@@ -7,6 +7,7 @@ import org.jetbrains.kotlinx.dataframe.api.groupBy
 import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
+import org.jetbrains.kotlinx.kandy.dsl.internal.PlotDslMarker
 
 /**
  * Represents a standard plotting context initialized with a [DataFrame] as its primary dataset.
@@ -18,6 +19,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
  *
  * @param T the type of the DataFrame.
  */
+@PlotDslMarker
 public class DataFramePlotBuilder<T> @PublishedApi internal constructor(
     @PublishedApi
     internal val dataFrame: DataFrame<T>,
