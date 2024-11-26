@@ -45,6 +45,7 @@ A class that represents plotting coordinates system transformation.
 
 ```kotlin
 plot {
+    ...
     // Using the default Cartesian coordinate system transformation
     coordinatesTransformation = CoordinatesTransformation.cartesian()
     // Using a Cartesian coordinate system with a fixed aspect ratio transformation
