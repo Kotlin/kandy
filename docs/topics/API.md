@@ -58,5 +58,5 @@
 [save](Save-API.md)
 [toBufferedImage](ToBufferedImage-API.md)
 ## Other
-[coordFlip](Coordinates-API.md)
+[coordinatesTransformation](CoordinatesTransformation-API.md)
 [reversed](Reversed-API.md)
