@@ -44,6 +44,7 @@
 [pie](Pie-API.md)
 [pointRanges](PointRanges-API.md)
 [points](Points-API.md)
+[polygon](Polygon-API.md)
 [raster](Raster-API.md)
 [rectangles](Rectangles-API.md)
 [ribbon](Ribbon-API.md)
