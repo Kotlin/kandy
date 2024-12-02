@@ -17,6 +17,7 @@
 [layout](Layout-API.md)
 [tooltips](Tooltips-API.md)
 ## Data manipulation
+[withData](WithData-API.md)
 [groupBy](GroupBy-API.md)
 ### Statistics
 [statBin](StatBin-API.md)

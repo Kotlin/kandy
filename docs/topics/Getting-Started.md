@@ -161,6 +161,7 @@ providing a quick reference to assist you in building your visualizations.
 <list>
 <li>Data Manipulation
 <list>
+<li><a href="WithData-API.md">groupBy</a></li>
 <li><a href="GroupBy-API.md">groupBy</a></li>
 <li><a href="StatBin-API.md">statBin</a></li>
 <li><a href="StatDensity-API.md">statDensity</a></li>
