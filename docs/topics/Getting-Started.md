@@ -190,6 +190,7 @@ providing a quick reference to assist you in building your visualizations.
 <li><a href="Path-API.md">path</a></li>
 <li><a href="Pie-API.md">pie</a></li>
 <li><a href="PointRanges-API.md">pointRanges</a></li>
+<li><a href="Polygon-API.md">pointRanges</a></li>
 <li><a href="Raster-API.md">raster</a></li>
 <li><a href="Rectangles-API.md">rectangles</a></li>
 <li><a href="Ribbon-API.md">ribbon</a></li>
