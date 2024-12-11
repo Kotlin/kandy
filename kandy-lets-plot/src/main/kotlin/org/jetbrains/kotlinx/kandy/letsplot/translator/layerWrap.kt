@@ -21,9 +21,10 @@ internal fun Layer.wrap(
     globalMappings: Map<Aes, Mapping>,
     globalSettings: Map<Aes, Setting>,
 ) {
-    val dataset = if (datasetIndex == 0) {
+    val dataset = if (datasetIndex == 0) { // plot main dataset
         val dataset = datasets[datasetIndex]
-        // can't provide geodata as main dataset
+        // can't provide geodata as the main Lets-plot plot dataset,
+        // provide it in layer explicitly
         if (dataset is GeoSpatialData) {
             dataset
         } else {
@@ -44,6 +45,7 @@ internal fun Layer.wrap(
     } else {
         settings
     }
+    // Lets-Plot layer geo arguments
     val map = if (dataset is GeoSpatialData) {
         dataset.toSpatialDataset()
     } else null
@@ -53,8 +55,12 @@ internal fun Layer.wrap(
             "provided"
         } else null
     }
-    featureBuffer.add(LayerWrapper(
-        this, addGroups, dataset?.wrap(), mappings, settings, groupKeys, map, null, crsProvided))
+
+    featureBuffer.add(
+        LayerWrapper(
+            this, addGroups, dataset?.wrap(), mappings, settings, groupKeys, map, null, crsProvided
+        )
+    )
     freeScales.forEach { (_, freeScale) -> freeScale.wrap(featureBuffer) }
     val df = (datasets[datasetIndex]).dataFrame()
     mappings.forEach { (_, mapping) ->

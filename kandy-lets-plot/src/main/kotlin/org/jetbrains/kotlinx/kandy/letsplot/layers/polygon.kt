@@ -41,11 +41,14 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PolygonBuilder
  *         // Non-positional settings
  *         alpha = 0.8
  *
+ *         // Non-positional mapping
+ *         fillColor("group") {
+ *         //      Inside this block, we would define how "group" is mapped to filling color,
+ *         //      e.g., providing a color categorical scale.
+ *         }
+ *
  *         // BorderLine settings
  *         borderLine.width = .5
- *
- *         // Non-positional mapping
- *         fillColor = Color.BLUE
  *     }
  * }
  * ```

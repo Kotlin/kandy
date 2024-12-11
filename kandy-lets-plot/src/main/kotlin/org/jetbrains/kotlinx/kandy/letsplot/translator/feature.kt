@@ -97,10 +97,27 @@ internal fun CoordinatesTransformation.wrap(plot: Plot): OptionsMap? {
     }
 
     return when (this) {
-        is DefaultCoordinatesTransformation, CartesianCoordinatesTransformation -> coordCartesian(xlim = xLimits, ylim = yLimits, flip = false)
-        is CartesianFixedCoordinatesTransformation -> coordFixed(ratio = ratio, xlim = xLimits, ylim = yLimits, flip = false)
+        is DefaultCoordinatesTransformation, CartesianCoordinatesTransformation -> coordCartesian(
+            xlim = xLimits,
+            ylim = yLimits,
+            flip = false
+        )
+
+        is CartesianFixedCoordinatesTransformation -> coordFixed(
+            ratio = ratio,
+            xlim = xLimits,
+            ylim = yLimits,
+            flip = false
+        )
+
         is CartesianFlippedCoordinatesTransformation -> coordFlip(xlim = xLimits, ylim = yLimits)
-        is CartesianFlippedFixedCoordinatesTransformation -> coordFixed(ratio = ratio, xlim = xLimits, ylim = yLimits, flip = true)
+        is CartesianFlippedFixedCoordinatesTransformation -> coordFixed(
+            ratio = ratio,
+            xlim = xLimits,
+            ylim = yLimits,
+            flip = true
+        )
+
         is CustomCoordinatesTransformation -> error("unreachable")
     }
 }

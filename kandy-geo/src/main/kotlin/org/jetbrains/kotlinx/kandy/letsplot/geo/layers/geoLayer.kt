@@ -15,6 +15,9 @@ import org.jetbrains.kotlinx.kandy.letsplot.geo.dsl.geometry
 import org.jetbrains.kotlinx.kandy.letsplot.geo.dsl.withData
 import org.locationtech.jts.geom.Geometry
 
+/**
+ * Util function for creating geo layers.
+ */
 @PublishedApi
 internal fun <T> LayerCreatorScope.geoLayer(
     geometry: DataColumn<Geometry>,

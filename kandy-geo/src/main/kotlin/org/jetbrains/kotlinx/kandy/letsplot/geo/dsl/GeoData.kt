@@ -13,10 +13,14 @@ import org.jetbrains.letsPlot.spatial.SpatialDataset
 internal class GeoData(val geoDataFrame: GeoDataFrame<*>) : GeoSpatialData {
     override val dataFrame: DataFrame<WithGeometry> = geoDataFrame.df
 
+    companion object {
+        // TODO lets-plot default, encoding precision customization
+        const val DEFAULT_PRECISION = 10
+    }
+
     override fun toSpatialDataset(): SpatialDataset {
         with(geoDataFrame) {
-            // TODO encoding precision
-            val geojson = GeometryJSON(10)
+            val geojson = GeometryJSON(DEFAULT_PRECISION)
             return SpatialDataset.withGEOJSON(
                 df.remove { geometry }.toMap(),
                 df.geometry.toList().map { geojson.toString(it) },

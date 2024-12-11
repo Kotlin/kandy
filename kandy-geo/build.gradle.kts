@@ -18,8 +18,6 @@ repositories {
 // jai core dependency should be excluded from geotools dependencies and added separately
 fun ExternalModuleDependency.excludeJaiCore() = exclude("javax.media", "jai_core")
 
-
-
 dependencies {
     api(project(":kandy-api"))
     api(project(":kandy-lets-plot"))
@@ -39,6 +37,7 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 
+// add friend modules to access internal properties
 tasks.withType<KotlinCompile>().configureEach {
     val friendModules = listOf(project(":kandy-api"), project(":kandy-lets-plot"))
     val jarTasks = friendModules.map { it.tasks.getByName("jar") as Jar }
@@ -56,4 +55,3 @@ kotlin {
 tasks.processJupyterApiResources {
     libraryProducers = listOf("org.jetbrains.kotlinx.kandy.letsplot.geo.jupyter.IntegrationGeo")
 }
-

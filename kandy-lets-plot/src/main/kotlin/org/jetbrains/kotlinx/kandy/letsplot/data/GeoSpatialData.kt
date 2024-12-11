@@ -4,7 +4,14 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 import org.jetbrains.letsPlot.spatial.SpatialDataset
 
-public interface GeoSpatialData: TableData {
+/**
+ * Represents geospatial data wrapper.
+ *
+ * This interface extends the `TableData` interface, providing specific capabilities for handling geospatial data.
+ *
+ * @property dataFrame The data frame containing the geospatial data.
+ */
+public interface GeoSpatialData : TableData {
     public val dataFrame: DataFrame<*>
     public fun toSpatialDataset(): SpatialDataset
 }
