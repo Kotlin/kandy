@@ -34,7 +34,7 @@ internal fun <T> LayerCreatorScope.geoLayer(
         // override dataset if datasetBuilder size doesn't match
         dataFrameOf(geometryColumn).toGeo(null)
     } else {
-        // TODO improve logic if the other geometry column with the same size is used
+        // TODO(https://github.com/Kotlin/kandy/issues/456)
         // add geometry column otherwise
         (datasetBuilder as DatasetBuilderImpl).baseDataFrame.add(geometryColumn).toGeo()
     }

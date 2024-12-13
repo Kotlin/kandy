@@ -21,7 +21,6 @@ import org.locationtech.jts.geom.MultiPolygon
 import org.locationtech.jts.geom.Polygon
 import kotlin.reflect.typeOf
 
-// TODO add ColumnAccessor & String api
 
 @PublishedApi
 internal fun CoordinateReferenceSystem.isWGS84(): Boolean {
@@ -75,7 +74,7 @@ public inline fun GeoDataScope.geoMap(
     if (crs == null || crs.isWGS84() == true) {
         (this as LayerCreatorScope).plotBuilder.coordinatesTransformation = CoordinatesTransformation.mercator()
     } else {
-        //TODO handling other CRS
+        // other CRSs are not supported yet in Lets-Plot
     }
     geoPolygon(block)
 }

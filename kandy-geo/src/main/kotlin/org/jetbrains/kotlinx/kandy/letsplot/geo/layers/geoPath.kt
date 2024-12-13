@@ -61,11 +61,7 @@ import kotlin.reflect.typeOf
 public inline fun GeoDataScope.geoPath(
     block: PathBuilder.() -> Unit = {}
 ) {
-    geometry().forEach {
-        if (it !is Lineal) {
-            error("Not a path geometry: $it")
-        }
-    }
+    geometry().forEach { check(it is Lineal) { "Not a path geometry: $it" } }
     (this as LayerCreatorScope).path {
         x.constant(null)
         y.constant(null)
@@ -73,7 +69,6 @@ public inline fun GeoDataScope.geoPath(
     }
 }
 
-// TODO add ColumnAccessor & String api
 /**
  * Adds a new `path` layer to the plot.
  *

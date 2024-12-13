@@ -9,7 +9,8 @@ import org.jetbrains.letsPlot.spatial.SpatialDataset
  *
  * This interface extends the `TableData` interface, providing specific capabilities for handling geospatial data.
  *
- * @property dataFrame The data frame containing the geospatial data.
+ * @property dataFrame The [DataFrame] containing the geospatial data.
+ * @property toSpatialDataset converts dataset to Lets-Plot [SpatialDataset].
  */
 public interface GeoSpatialData : TableData {
     public val dataFrame: DataFrame<*>
