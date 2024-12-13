@@ -33,7 +33,6 @@ import org.jetbrains.kotlinx.statistics.binning.BinsAlign
 import org.jetbrains.kotlinx.statistics.binning.BinsOption
 import org.jetbrains.kotlinx.statistics.kandy.layers.histogram
 import org.jetbrains.kotlinx.statistics.kandy.stattransform.statBin
-import org.jetbrains.letsPlot.core.spec.back.transform.bistro.util.tooltips
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 

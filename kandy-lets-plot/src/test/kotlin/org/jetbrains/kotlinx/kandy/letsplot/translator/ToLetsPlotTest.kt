@@ -68,9 +68,9 @@ class ToLetsPlotTest {
                         ),
                         "sampling" to "none",
                         "stat" to "identity",
-                        //     "data" to mapOf<String, Any>(),
                         "shape" to 21.0,
                         "position" to "identity",
+                        "inherit_aes" to false,
                         "geom" to "point",
                         "fill" to "#ee6666"
                     )
@@ -159,34 +159,11 @@ class ToLetsPlotTest {
                         ),
                         "sampling" to "none",
                         "stat" to "identity",
-                        //      "data" to mapOf<String, Any>(),
                         "alpha" to 0.8,
                         "width" to 0.5,
                         "position" to "stack",
+                        "inherit_aes" to false,
                         "geom" to "bar",
-                        /*"data_meta" to mapOf<String, Any>(
-                            "mapping_annotations" to
-                                    listOf(
-                                        mapOf(
-                                            "aes" to "y",
-                                            "annotation" to "as_discrete",
-                                            "parameters" to mapOf<String, Any?>(
-                                                "label" to "svalue",
-                                                "order_by" to null,
-                                                "order" to null
-                                            )
-                                        ),
-                                        mapOf(
-                                            "aes" to "fill",
-                                            "annotation" to "as_discrete",
-                                            "parameters" to mapOf<String, Any?>(
-                                                "label" to "clM",
-                                                "order_by" to null,
-                                                "order" to null
-                                            )
-                                        )
-                                    )
-                        )*/
                     ),
                     mapOf(
                         "mapping" to mapOf(
@@ -195,25 +172,11 @@ class ToLetsPlotTest {
                         ),
                         "sampling" to "none",
                         "stat" to "identity",
-                        //  "data" to mapOf<String, Any>(),
                         "size" to 2.2,
                         "linetype" to "dotted",
                         "position" to "identity",
+                        "inherit_aes" to false,
                         "geom" to "line",
-                        /*"data_meta" to mapOf<String, Any>(
-                            "mapping_annotations" to
-                                    listOf(
-                                        mapOf(
-                                            "aes" to "y",
-                                            "annotation" to "as_discrete",
-                                            "parameters" to mapOf<String, Any?>(
-                                                "label" to "svalue",
-                                                "order_by" to null,
-                                                "order" to null
-                                            )
-                                        )
-                                    )
-                        )*/
                     ),
                 ),
                 "facet" to mapOf<String, Any>(

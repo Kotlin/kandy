@@ -11,116 +11,121 @@ text {
    text-rendering: optimizeLegibility;
 }
 #xXxprefixXx0 .plot-title {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 16.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 16.0px;
+
 }
 #xXxprefixXx0 .plot-subtitle {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 15.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 15.0px;
+
 }
 #xXxprefixXx0 .plot-caption {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
+}
+#xXxprefixXx0 .hyperlink-element {
+fill: #118ed8;
+font-weight: normal;
+   font-style: normal;
 }
 #xXxprefixXx0 .legend-title {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 15.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 15.0px;
+
 }
 #xXxprefixXx0 .legend-item {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx0 .axis-title-x {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 15.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 15.0px;
+
 }
 #xXxprefixXx0 .axis-text-x {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx2 .axis-tooltip-text-x {
-   fill: #303030;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #303030;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx0 .axis-title-y {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 15.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 15.0px;
+
 }
 #xXxprefixXx0 .axis-text-y {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx2 .axis-tooltip-text-y {
-   fill: #303030;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #303030;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx0 .facet-strip-text-x {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx0 .facet-strip-text-y {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx2 .tooltip-text {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx2 .tooltip-title {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: bold;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: bold;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx2 .tooltip-label {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: bold;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: bold;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 
   </style>
@@ -131,48 +136,48 @@ text {
       <g>
         <g transform="translate(29.941816366404606 0.0 ) ">
           <g>
-            <line x1="23.379188357649383" y1="0.0" x2="23.379188357649383" y2="411.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="23.24370629149174" y1="0.0" x2="23.24370629149174" y2="411.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="140.2751301458963" y1="0.0" x2="140.2751301458963" y2="411.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="139.46223774895043" y1="0.0" x2="139.46223774895043" y2="411.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="257.17107193414324" y1="0.0" x2="257.17107193414324" y2="411.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="255.68076920640914" y1="0.0" x2="255.68076920640914" y2="411.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="374.06701372239013" y1="0.0" x2="374.06701372239013" y2="411.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="371.8993006638678" y1="0.0" x2="371.8993006638678" y2="411.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="490.962955510637" y1="0.0" x2="490.962955510637" y2="411.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="488.1178321213265" y1="0.0" x2="488.1178321213265" y2="411.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
           </g>
         </g>
         <g transform="translate(29.941816366404606 0.0 ) ">
           <g>
-            <line x1="0.0" y1="393.1304347826087" x2="514.3421438682865" y2="393.1304347826087" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="0.0" y1="393.1304347826087" x2="511.3615384128183" y2="393.1304347826087" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="0.0" y1="357.39130434782606" x2="514.3421438682865" y2="357.39130434782606" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="0.0" y1="357.39130434782606" x2="511.3615384128183" y2="357.39130434782606" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="0.0" y1="321.65217391304344" x2="514.3421438682865" y2="321.65217391304344" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="0.0" y1="321.65217391304344" x2="511.3615384128183" y2="321.65217391304344" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="0.0" y1="285.9130434782609" x2="514.3421438682865" y2="285.9130434782609" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="0.0" y1="285.9130434782609" x2="511.3615384128183" y2="285.9130434782609" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="0.0" y1="250.17391304347825" x2="514.3421438682865" y2="250.17391304347825" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="0.0" y1="250.17391304347825" x2="511.3615384128183" y2="250.17391304347825" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="0.0" y1="214.43478260869563" x2="514.3421438682865" y2="214.43478260869563" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="0.0" y1="214.43478260869563" x2="511.3615384128183" y2="214.43478260869563" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="0.0" y1="178.695652173913" x2="514.3421438682865" y2="178.695652173913" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="0.0" y1="178.695652173913" x2="511.3615384128183" y2="178.695652173913" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="0.0" y1="142.95652173913038" x2="514.3421438682865" y2="142.95652173913038" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="0.0" y1="142.95652173913038" x2="511.3615384128183" y2="142.95652173913038" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="0.0" y1="107.21739130434787" x2="514.3421438682865" y2="107.21739130434787" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="0.0" y1="107.21739130434787" x2="511.3615384128183" y2="107.21739130434787" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="0.0" y1="71.47826086956525" x2="514.3421438682865" y2="71.47826086956525" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="0.0" y1="71.47826086956525" x2="511.3615384128183" y2="71.47826086956525" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="0.0" y1="35.73913043478262" x2="514.3421438682865" y2="35.73913043478262" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="0.0" y1="35.73913043478262" x2="511.3615384128183" y2="35.73913043478262" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
-            <line x1="0.0" y1="0.0" x2="514.3421438682865" y2="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+            <line x1="0.0" y1="0.0" x2="511.3615384128183" y2="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
             </line>
           </g>
         </g>
         <g transform="translate(29.941816366404606 411.0 ) ">
-          <g transform="translate(23.379188357649383 0.0 ) ">
+          <g transform="translate(23.24370629149174 0.0 ) ">
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 7.0 ) ">
@@ -181,7 +186,7 @@ text {
               </text>
             </g>
           </g>
-          <g transform="translate(140.2751301458963 0.0 ) ">
+          <g transform="translate(139.46223774895043 0.0 ) ">
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 7.0 ) ">
@@ -190,7 +195,7 @@ text {
               </text>
             </g>
           </g>
-          <g transform="translate(257.17107193414324 0.0 ) ">
+          <g transform="translate(255.68076920640914 0.0 ) ">
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 7.0 ) ">
@@ -199,7 +204,7 @@ text {
               </text>
             </g>
           </g>
-          <g transform="translate(374.06701372239013 0.0 ) ">
+          <g transform="translate(371.8993006638678 0.0 ) ">
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 7.0 ) ">
@@ -208,7 +213,7 @@ text {
               </text>
             </g>
           </g>
-          <g transform="translate(490.962955510637 0.0 ) ">
+          <g transform="translate(488.1178321213265 0.0 ) ">
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 7.0 ) ">
@@ -217,7 +222,7 @@ text {
               </text>
             </g>
           </g>
-          <line x1="0.0" y1="0.0" x2="514.3421438682865" y2="0.0" stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0">
+          <line x1="0.0" y1="0.0" x2="511.3615384128183" y2="0.0" stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0">
           </line>
         </g>
         <g transform="translate(29.941816366404606 0.0 ) ">
@@ -307,32 +312,32 @@ text {
           </g>
         </g>
       </g>
-      <g clip-path="url(#xXxprefixXx1)" clip-bounds-jfx="[rect (29.941816366404606, 0.0), (514.3421438682865, 411.0)]">
+      <g clip-path="url(#xXxprefixXx1)" clip-bounds-jfx="[rect (29.941816366404606, 0.0), (511.3615384128183, 411.0)]">
         <g transform="translate(29.941816366404606 0.0 ) ">
           <g>
             <g>
               <g>
-                <path d="M23.379188357649383 117.93913043478256 L23.379188357649383 117.93913043478256 L140.2751301458963 166.18695652173915 L257.17107193414324 280.5521739130435 L374.06701372239013 191.20434782608697 L490.962955510637 21.443478260869597 L490.962955510637 71.47826086956525 L374.06701372239013 218.0086956521739 L257.17107193414324 353.8173913043478 L140.2751301458963 312.7173913043478 L23.379188357649383 160.82608695652175 Z" fill="rgb(228,26,28)" stroke-width="1.0" fill-opacity="0.6">
+                <path d="M23.24370629149174 117.93913043478256 L23.24370629149174 117.93913043478256 L139.46223774895043 166.18695652173915 L255.68076920640914 280.5521739130435 L371.8993006638678 191.20434782608697 L488.1178321213265 21.443478260869597 L488.1178321213265 71.47826086956525 L371.8993006638678 218.0086956521739 L255.68076920640914 353.8173913043478 L139.46223774895043 312.7173913043478 L23.24370629149174 160.82608695652175 Z" fill="rgb(228,26,28)" stroke-width="1.0" fill-opacity="0.6">
                 </path>
               </g>
               <g>
-                <path d="M23.379188357649383 339.52173913043475 L23.379188357649383 339.52173913043475 L140.2751301458963 296.6347826086956 L257.17107193414324 180.48260869565217 L374.06701372239013 139.38260869565215 L490.962955510637 123.29999999999995 L490.962955510637 214.43478260869563 L374.06701372239013 178.695652173913 L257.17107193414324 257.32173913043476 L140.2751301458963 348.45652173913044 L23.379188357649383 393.1304347826087 Z" fill="rgb(55,126,184)" stroke-width="1.0" fill-opacity="0.6">
+                <path d="M23.24370629149174 339.52173913043475 L23.24370629149174 339.52173913043475 L139.46223774895043 296.6347826086956 L255.68076920640914 180.48260869565217 L371.8993006638678 139.38260869565215 L488.1178321213265 123.29999999999995 L488.1178321213265 214.43478260869563 L371.8993006638678 178.695652173913 L255.68076920640914 257.32173913043476 L139.46223774895043 348.45652173913044 L23.24370629149174 393.1304347826087 Z" fill="rgb(55,126,184)" stroke-width="1.0" fill-opacity="0.6">
                 </path>
               </g>
               <g>
-                <path d="M23.379188357649383 117.93913043478256 L23.379188357649383 117.93913043478256 L140.2751301458963 166.18695652173915 L257.17107193414324 280.5521739130435 L374.06701372239013 191.20434782608697 L490.962955510637 21.443478260869597 " fill="none" stroke-width="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0">
+                <path d="M23.24370629149174 117.93913043478256 L23.24370629149174 117.93913043478256 L139.46223774895043 166.18695652173915 L255.68076920640914 280.5521739130435 L371.8993006638678 191.20434782608697 L488.1178321213265 21.443478260869597 " fill="none" stroke-width="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0">
                 </path>
               </g>
               <g>
-                <path d="M23.379188357649383 339.52173913043475 L23.379188357649383 339.52173913043475 L140.2751301458963 296.6347826086956 L257.17107193414324 180.48260869565217 L374.06701372239013 139.38260869565215 L490.962955510637 123.29999999999995 " fill="none" stroke-width="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0">
+                <path d="M23.24370629149174 339.52173913043475 L23.24370629149174 339.52173913043475 L139.46223774895043 296.6347826086956 L255.68076920640914 180.48260869565217 L371.8993006638678 139.38260869565215 L488.1178321213265 123.29999999999995 " fill="none" stroke-width="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0">
                 </path>
               </g>
               <g>
-                <path d="M23.379188357649383 160.82608695652175 L23.379188357649383 160.82608695652175 L140.2751301458963 312.7173913043478 L257.17107193414324 353.8173913043478 L374.06701372239013 218.0086956521739 L490.962955510637 71.47826086956525 " fill="none" stroke-width="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0">
+                <path d="M23.24370629149174 160.82608695652175 L23.24370629149174 160.82608695652175 L139.46223774895043 312.7173913043478 L255.68076920640914 353.8173913043478 L371.8993006638678 218.0086956521739 L488.1178321213265 71.47826086956525 " fill="none" stroke-width="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0">
                 </path>
               </g>
               <g>
-                <path d="M23.379188357649383 393.1304347826087 L23.379188357649383 393.1304347826087 L140.2751301458963 348.45652173913044 L257.17107193414324 257.32173913043476 L374.06701372239013 178.695652173913 L490.962955510637 214.43478260869563 " fill="none" stroke-width="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0">
+                <path d="M23.24370629149174 393.1304347826087 L23.24370629149174 393.1304347826087 L139.46223774895043 348.45652173913044 L255.68076920640914 257.32173913043476 L371.8993006638678 178.695652173913 L488.1178321213265 214.43478260869563 " fill="none" stroke-width="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0">
                 </path>
               </g>
             </g>
@@ -340,7 +345,7 @@ text {
         </g>
         <defs>
           <clipPath id="xXxprefixXx1">
-            <rect x="29.941816366404606" y="0.0" width="514.3421438682865" height="411.0">
+            <rect x="29.941816366404606" y="0.0" width="511.3615384128183" height="411.0">
             </rect>
           </clipPath>
         </defs>
@@ -353,15 +358,15 @@ text {
         <tspan>price, tokens</tspan>
       </text>
     </g>
-    <g transform="translate(316.61288830054787 463.0 ) ">
+    <g transform="translate(315.12258557281376 463.0 ) ">
       <text class="axis-title-x" y="0.0" text-anchor="middle">
         <tspan>time</tspan>
       </text>
     </g>
-    <g transform="translate(580.2839602346911 160.41666666666669 ) ">
-      <rect x="5.0" y="5.0" height="93.16666666666666" width="114.71603976530888" stroke="rgb(187,187,187)" stroke-opacity="1.0" stroke-width="0.0" fill="rgb(25,25,28)" fill-opacity="1.0">
+    <g transform="translate(582.3033547792229 165.41666666666669 ) ">
+      <rect x="0.0" y="0.0" height="93.16666666666666" width="122.69664522077709" stroke="rgb(187,187,187)" stroke-opacity="1.0" stroke-width="0.0" fill="rgb(25,25,28)" fill-opacity="1.0">
       </rect>
-      <g transform="translate(10.0 10.0 ) ">
+      <g transform="translate(5.0 5.0 ) ">
         <g transform="translate(0.0 12.0 ) ">
           <text class="legend-title" y="0.0">
             <tspan>currency</tspan>
@@ -370,16 +375,12 @@ text {
         <g transform="translate(0.0 22.5 ) ">
           <g transform="">
             <g>
-              <rect x="0.0" y="0.0" height="23.0" width="23.0" stroke-width="0.0" fill="rgb(25,25,28)" fill-opacity="1.0">
-              </rect>
               <g transform="translate(1.0 1.0 ) ">
                 <g>
                   <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" fill="rgb(228,26,28)" fill-opacity="1.0" stroke-width="1.5">
                   </rect>
                 </g>
               </g>
-              <rect x="0.0" y="0.0" height="23.0" width="23.0" stroke="rgb(25,25,28)" stroke-opacity="1.0" stroke-width="1.0" fill-opacity="0.0">
-              </rect>
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
@@ -392,16 +393,12 @@ text {
           </g>
           <g transform="translate(0.0 30.333333333333332 ) ">
             <g>
-              <rect x="0.0" y="0.0" height="23.0" width="23.0" stroke-width="0.0" fill="rgb(25,25,28)" fill-opacity="1.0">
-              </rect>
               <g transform="translate(1.0 1.0 ) ">
                 <g>
                   <rect x="0.0" y="0.0" height="21.0" width="21.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" fill="rgb(55,126,184)" fill-opacity="1.0" stroke-width="1.5">
                   </rect>
                 </g>
               </g>
-              <rect x="0.0" y="0.0" height="23.0" width="23.0" stroke="rgb(25,25,28)" stroke-opacity="1.0" stroke-width="1.0" fill-opacity="0.0">
-              </rect>
             </g>
             <g transform="translate(26.9903027277341 16.05 ) ">
               <text class="legend-item" y="0.0">
@@ -415,7 +412,7 @@ text {
         </g>
       </g>
     </g>
-    <path fill="rgb(0,0,0)" fill-opacity="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" stroke-width="0.0" d="M0.0 0.0 L0.0 470.0 L705.0 470.0 L705.0 0.0 Z">
+    <path fill="rgb(0,0,0)" fill-opacity="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" stroke-width="0.0" d="M0.0 0.0 L0.0 470.0 L705.0 470.0 L705.0 0.0 Z" pointer-events="none">
     </path>
   </g>
   <g id="xXxprefixXx2">
