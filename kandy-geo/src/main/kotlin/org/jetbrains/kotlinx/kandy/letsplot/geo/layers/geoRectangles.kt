@@ -67,7 +67,6 @@ public fun GeoDataScope.geoRectangles(
     }
 }
 
-// TODO add ColumnAccessor & String api
 @JvmName("geoRectanglesGeometry")
 /**
  * Adds a new `rectangles` layer to the plot.

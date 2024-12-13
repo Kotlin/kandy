@@ -60,11 +60,7 @@ import kotlin.reflect.typeOf
 public inline fun GeoDataScope.geoPolygon(
     block: PolygonBuilder.() -> Unit = {}
 ) {
-    geometry().forEach {
-        if (it !is Polygonal) {
-            error("Not a polygon geometry: $it")
-        }
-    }
+    geometry().forEach { check(it is Polygonal) { "Not a polygon geometry: $it" } }
     (this as LayerCreatorScope).polygon {
         x.constant(null)
         y.constant(null)
@@ -72,7 +68,6 @@ public inline fun GeoDataScope.geoPolygon(
     }
 }
 
-// TODO add ColumnAccessor & String api
 /**
  * Adds a new `polygon` layer to the plot.
  *

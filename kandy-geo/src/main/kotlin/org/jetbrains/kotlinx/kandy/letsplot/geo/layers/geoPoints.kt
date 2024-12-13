@@ -62,11 +62,7 @@ import kotlin.reflect.typeOf
 public inline fun GeoDataScope.geoPoints(
     block: PointsBuilder.() -> Unit = {}
 ) {
-    geometry().forEach {
-        if (it !is Puntal) {
-            error("Not a points geometry: $it")
-        }
-    }
+    geometry().forEach { check(it is Puntal) { "Not a points geometry: $it" } }
     (this as LayerCreatorScope).points {
         x.constant(null)
         y.constant(null)
@@ -74,7 +70,6 @@ public inline fun GeoDataScope.geoPoints(
     }
 }
 
-// TODO add ColumnAccessor & String api
 /**
  * Adds a new `points` layer to the plot.
  *

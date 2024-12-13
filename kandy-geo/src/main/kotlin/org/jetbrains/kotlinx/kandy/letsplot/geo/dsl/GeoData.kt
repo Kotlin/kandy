@@ -14,7 +14,7 @@ internal class GeoData(val geoDataFrame: GeoDataFrame<*>) : GeoSpatialData {
     override val dataFrame: DataFrame<WithGeometry> = geoDataFrame.df
 
     companion object {
-        // TODO lets-plot default, encoding precision customization
+        // TODO(https://github.com/Kotlin/kandy/issues/454)
         const val DEFAULT_PRECISION = 10
     }
 
