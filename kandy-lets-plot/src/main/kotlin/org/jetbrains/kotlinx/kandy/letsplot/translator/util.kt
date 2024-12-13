@@ -10,6 +10,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
+import org.jetbrains.kotlinx.kandy.letsplot.data.GeoSpatialData
 import org.jetbrains.kotlinx.kandy.letsplot.internal.LetsPlotPositionalMappingParameters
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.Axis
 import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
@@ -22,6 +23,7 @@ internal fun TableData.dataFrame(): DataFrame<*> {
     return when (this) {
         is NamedData -> dataFrame
         is GroupedData -> dataFrame
+        is GeoSpatialData -> dataFrame
         else -> error("Unexpected data format: ${this::class}")
     }
 }

@@ -46,7 +46,8 @@ public sealed interface CoordinatesTransformation : PlotFeature {
          * results in equal scaling for both axes.
          * @return a `Coordinates` instance configured as a Cartesian coordinate system with a fixed aspect ratio.
          */
-        public fun cartesianFixed(ratio: Double = 1.0): CoordinatesTransformation = CartesianFixedCoordinatesTransformation(ratio)
+        public fun cartesianFixed(ratio: Double = 1.0): CoordinatesTransformation =
+            CartesianFixedCoordinatesTransformation(ratio)
 
         /**
          * Returns a `CoordinatesTransformation` instance representing a Cartesian coordinate system with
@@ -76,7 +77,8 @@ public sealed interface CoordinatesTransformation : PlotFeature {
          * results in equal scaling for both axes after flipping.
          * @return a `Coordinates` instance configured as a Cartesian coordinate system with swapped axes and a fixed aspect ratio.
          */
-        public fun cartesianFlippedFixed(ratio: Double = 1.0): CoordinatesTransformation = CartesianFlippedFixedCoordinatesTransformation(ratio)
+        public fun cartesianFlippedFixed(ratio: Double = 1.0): CoordinatesTransformation =
+            CartesianFlippedFixedCoordinatesTransformation(ratio)
     }
 }
 

@@ -19,3 +19,4 @@ include("kandy-util")
 
 include("examples:idea-examples:lets-plot-simple")
 include("examples:idea-examples:echarts-simple")
+include("kandy-geo")

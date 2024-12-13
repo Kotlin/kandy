@@ -21,7 +21,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.geom.POLYGON
  *
  * @param parent the parent [LayerCreatorScope] for the layer.
  */
-@Suppress("INVISIBLE_MEMBER")
+@Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
 public open class PolygonBuilder @PublishedApi internal constructor(
     parent: LayerCreatorScope,
     datasetIndex: Int = parent.datasetIndex

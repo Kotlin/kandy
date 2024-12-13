@@ -24,9 +24,9 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class GroupByPlotBuilderTest {
-    private val a = DataColumn.create("a", listOf(1, 4))
-    private val b = DataColumn.create("b", listOf(2, 5))
-    private val c = DataColumn.create("c", listOf(3, 6))
+    private val a = DataColumn.createByType("a", listOf(1, 4))
+    private val b = DataColumn.createByType("b", listOf(2, 5))
+    private val c = DataColumn.createByType("c", listOf(3, 6))
     private val dataFrame = dataFrameOf(a, b, c)
 
     @Test
