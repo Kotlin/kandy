@@ -54,6 +54,7 @@ internal class LayerWrapperTest {
                 "stat" to "identity",
                 "color" to "#ee6666",
                 "position" to "identity",
+                "inherit_aes" to false,
                 "geom" to "point"
             ),
             wrappedLayer.toSpec()
@@ -123,6 +124,7 @@ internal class LayerWrapperTest {
                     "fill" to "BAFGA",
                 ),
                 "sampling" to "none",
+                "inherit_aes" to false,
                 "stat" to "identity",
                 "data" to dataset.map {
                     it.key to it.value.map { it.toDouble() }
@@ -135,20 +137,19 @@ internal class LayerWrapperTest {
                     // "kind" to "pos"
                 ),
                 "geom" to "bar",
-                /*"data_meta" to mapOf<String, Any>(
-                    "mapping_annotations" to
+                "data_meta" to mapOf<String, Any>(
+                    "series_annotations" to
                         listOf(
                             mapOf(
-                                "aes" to "fill",
-                                "annotation" to "as_discrete",
-                                "parameters" to mapOf<String, Any?>(
-                                    "label" to "BAFGA",
-                                    "order_by" to null,
-                                    "order" to null
-                                )
+                                "type" to "float",
+                                "column" to "TIME_T"
+                            ),
+                            mapOf(
+                                "type" to "float",
+                                "column" to "VAL_V"
                             )
                         )
-                )*/
+                )
             ),
             wrappedLayer.toSpec()
         )
@@ -192,6 +193,20 @@ internal class LayerWrapperTest {
                 "position" to "identity",
                 "geom" to "bar",
                 "sampling" to "none",
+                "inherit_aes" to false,
+                "data_meta" to mapOf<String, Any>(
+                    "series_annotations" to
+                            listOf(
+                                mapOf(
+                                    "type" to "int",
+                                    "column" to "v1"
+                                ),
+                                mapOf(
+                                    "type" to "int",
+                                    "column" to "v2"
+                                )
+                            )
+                )
             ),
             wrappedLayer.toSpec()
         )

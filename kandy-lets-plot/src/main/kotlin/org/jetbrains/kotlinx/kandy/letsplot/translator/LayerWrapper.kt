@@ -43,6 +43,7 @@ internal class LayerWrapper internal constructor(
         tooltips = (layer.features[LayerTooltips.FEATURE_NAME] as? LayerTooltips)?.wrap(),
         position = (layer.features[Position.FEATURE_NAME] as? Position)?.wrap() ?: positionIdentity,
         showLegend = true,
+        inheritAes = false,
         orientation = (layer.features[Reversed.FEATURE_NAME] as? Reversed)?.wrap(),
         sampling = samplingNone
     ), WithSpatialParameters {
