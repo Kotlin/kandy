@@ -16,123 +16,128 @@ text {
    text-rendering: optimizeLegibility;
 }
 #xXxprefixXx1 .plot-title {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 16.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 16.0px;
+
 }
 #xXxprefixXx1 .plot-subtitle {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 15.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 15.0px;
+
 }
 #xXxprefixXx1 .plot-caption {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
+}
+#xXxprefixXx1 .hyperlink-element {
+fill: #118ed8;
+font-weight: normal;
+   font-style: normal;
 }
 #xXxprefixXx1 .legend-title {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 15.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 15.0px;
+
 }
 #xXxprefixXx1 .legend-item {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx1 .axis-title-x {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 15.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 15.0px;
+
 }
 #xXxprefixXx1 .axis-text-x {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx3 .axis-tooltip-text-x {
-   fill: #303030;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #303030;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx1 .axis-title-y {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 15.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 15.0px;
+
 }
 #xXxprefixXx1 .axis-text-y {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx3 .axis-tooltip-text-y {
-   fill: #303030;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #303030;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx1 .facet-strip-text-x {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx1 .facet-strip-text-y {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx3 .tooltip-text {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx3 .tooltip-title {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: bold;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: bold;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx3 .tooltip-label {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: bold;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: bold;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 
     </style>
     <g id="xXxprefixXx1">
-      <path fill-rule="evenodd" fill="rgb(25,25,28)" fill-opacity="1.0" d="M22.23985506828936 0.0 L22.23985506828936 235.0 L328.26014493171067 235.0 L328.26014493171067 0.0 Z">
+      <path fill-rule="evenodd" fill="rgb(25,25,28)" fill-opacity="1.0" d="M24.73985506828936 0.0 L24.73985506828936 235.0 L325.76014493171067 235.0 L325.76014493171067 0.0 Z">
       </path>
-      <g transform="translate(51.73985506828936 26.5 ) ">
+      <g transform="translate(54.23985506828936 26.5 ) ">
         <g>
           <g transform="translate(13.980605455468202 0.0 ) ">
             <g>
@@ -286,25 +291,25 @@ text {
         <g>
         </g>
       </g>
-      <g transform="translate(65.72046052375757 16.8 ) ">
+      <g transform="translate(68.22046052375757 16.8 ) ">
         <text class="plot-title" y="0.0">
           <tspan>`statCount2D()` + `tile()` layer</tspan>
         </text>
       </g>
-      <g transform="translate(38.23985506828936 70.85809328483518 ) rotate(-90.0 ) ">
+      <g transform="translate(40.73985506828936 70.85809328483518 ) rotate(-90.0 ) ">
         <text class="axis-title-y" y="0.0" text-anchor="middle">
           <tspan>y</tspan>
         </text>
       </g>
-      <g transform="translate(162.26454590839884 228.0 ) ">
+      <g transform="translate(164.76454590839884 228.0 ) ">
         <text class="axis-title-x" y="0.0" text-anchor="middle">
           <tspan>x</tspan>
         </text>
       </g>
-      <g transform="translate(265.30863129304015 20.0 ) ">
-        <rect x="5.0" y="5.0" height="147.5" width="52.951513638670505" stroke="rgb(187,187,187)" stroke-opacity="1.0" stroke-width="0.0" fill="rgb(25,25,28)" fill-opacity="1.0">
+      <g transform="translate(272.80863129304015 -2.891906715164815 ) ">
+        <rect x="0.0" y="0.0" height="147.5" width="52.951513638670505" stroke="rgb(187,187,187)" stroke-opacity="1.0" stroke-width="0.0" fill="rgb(25,25,28)" fill-opacity="1.0">
         </rect>
-        <g transform="translate(10.0 10.0 ) ">
+        <g transform="translate(5.0 5.0 ) ">
           <g transform="translate(0.0 12.0 ) ">
             <text class="legend-title" y="0.0">
               <tspan>count</tspan>
@@ -401,7 +406,7 @@ text {
           </g>
         </g>
       </g>
-      <path fill="rgb(0,0,0)" fill-opacity="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" stroke-width="0.0" d="M22.23985506828936 0.0 L22.23985506828936 235.0 L328.26014493171067 235.0 L328.26014493171067 0.0 Z">
+      <path fill="rgb(0,0,0)" fill-opacity="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" stroke-width="0.0" d="M24.73985506828936 0.0 L24.73985506828936 235.0 L325.76014493171067 235.0 L325.76014493171067 0.0 Z" pointer-events="none">
       </path>
     </g>
     <g id="xXxprefixXx3">
@@ -420,123 +425,128 @@ text {
    text-rendering: optimizeLegibility;
 }
 #xXxprefixXx4 .plot-title {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 16.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 16.0px;
+
 }
 #xXxprefixXx4 .plot-subtitle {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 15.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 15.0px;
+
 }
 #xXxprefixXx4 .plot-caption {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
+}
+#xXxprefixXx4 .hyperlink-element {
+fill: #118ed8;
+font-weight: normal;
+   font-style: normal;
 }
 #xXxprefixXx4 .legend-title {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 15.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 15.0px;
+
 }
 #xXxprefixXx4 .legend-item {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx4 .axis-title-x {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 15.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 15.0px;
+
 }
 #xXxprefixXx4 .axis-text-x {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx6 .axis-tooltip-text-x {
-   fill: #303030;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #303030;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx4 .axis-title-y {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 15.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 15.0px;
+
 }
 #xXxprefixXx4 .axis-text-y {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx6 .axis-tooltip-text-y {
-   fill: #303030;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #303030;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx4 .facet-strip-text-x {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx4 .facet-strip-text-y {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx6 .tooltip-text {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: normal;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: normal;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx6 .tooltip-title {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: bold;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: bold;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 #xXxprefixXx6 .tooltip-label {
-   fill: #bbbbbb;
-   font-family: Lucida Grande, sans-serif;
-   font-size: 13.0px;
-   font-weight: bold;
-   font-style: normal;   
+fill: #bbbbbb;
+font-weight: bold;
+   font-style: normal;font-family: Lucida Grande, sans-serif;
+font-size: 13.0px;
+
 }
 
     </style>
     <g id="xXxprefixXx4">
-      <path fill-rule="evenodd" fill="rgb(25,25,28)" fill-opacity="1.0" d="M22.23985506828936 0.0 L22.23985506828936 235.0 L328.26014493171067 235.0 L328.26014493171067 0.0 Z">
+      <path fill-rule="evenodd" fill="rgb(25,25,28)" fill-opacity="1.0" d="M24.73985506828936 0.0 L24.73985506828936 235.0 L325.76014493171067 235.0 L325.76014493171067 0.0 Z">
       </path>
-      <g transform="translate(51.73985506828936 26.5 ) ">
+      <g transform="translate(54.23985506828936 26.5 ) ">
         <g>
           <g transform="translate(13.980605455468202 0.0 ) ">
             <g>
@@ -690,25 +700,25 @@ text {
         <g>
         </g>
       </g>
-      <g transform="translate(65.72046052375757 16.8 ) ">
+      <g transform="translate(68.22046052375757 16.8 ) ">
         <text class="plot-title" y="0.0">
           <tspan>`heatmap()` layer</tspan>
         </text>
       </g>
-      <g transform="translate(38.23985506828936 70.85809328483518 ) rotate(-90.0 ) ">
+      <g transform="translate(40.73985506828936 70.85809328483518 ) rotate(-90.0 ) ">
         <text class="axis-title-y" y="0.0" text-anchor="middle">
           <tspan>drv</tspan>
         </text>
       </g>
-      <g transform="translate(162.26454590839884 228.0 ) ">
+      <g transform="translate(164.76454590839884 228.0 ) ">
         <text class="axis-title-x" y="0.0" text-anchor="middle">
           <tspan>class</tspan>
         </text>
       </g>
-      <g transform="translate(265.30863129304015 20.0 ) ">
-        <rect x="5.0" y="5.0" height="147.5" width="52.951513638670505" stroke="rgb(187,187,187)" stroke-opacity="1.0" stroke-width="0.0" fill="rgb(25,25,28)" fill-opacity="1.0">
+      <g transform="translate(272.80863129304015 -2.891906715164815 ) ">
+        <rect x="0.0" y="0.0" height="147.5" width="52.951513638670505" stroke="rgb(187,187,187)" stroke-opacity="1.0" stroke-width="0.0" fill="rgb(25,25,28)" fill-opacity="1.0">
         </rect>
-        <g transform="translate(10.0 10.0 ) ">
+        <g transform="translate(5.0 5.0 ) ">
           <g transform="translate(0.0 12.0 ) ">
             <text class="legend-title" y="0.0">
               <tspan>count</tspan>
@@ -805,7 +815,7 @@ text {
           </g>
         </g>
       </g>
-      <path fill="rgb(0,0,0)" fill-opacity="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" stroke-width="0.0" d="M22.23985506828936 0.0 L22.23985506828936 235.0 L328.26014493171067 235.0 L328.26014493171067 0.0 Z">
+      <path fill="rgb(0,0,0)" fill-opacity="0.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" stroke-width="0.0" d="M24.73985506828936 0.0 L24.73985506828936 235.0 L325.76014493171067 235.0 L325.76014493171067 0.0 Z" pointer-events="none">
       </path>
     </g>
     <g id="xXxprefixXx6">

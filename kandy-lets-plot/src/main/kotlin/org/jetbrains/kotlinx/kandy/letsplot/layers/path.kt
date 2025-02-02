@@ -41,10 +41,10 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PathBuilder
  *         width = 2.0 // Sets the width of the path
  *
  *         // Non-positional mapping
- *         // color("type") {
+ *         color("type") {
  *         //      Inside this block, we would define how "type" is mapped to color,
  *         //      e.g., providing a color scale if "type" is a categorical variable
- *         // }
+ *         }
  *
  *         // Here, we specify the line type and alpha if needed
  *         type = LineType.DOTDASH // Example setting, if your DSL allows direct assignments like this

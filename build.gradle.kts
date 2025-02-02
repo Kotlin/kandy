@@ -37,6 +37,7 @@ val published = listOf(
     "kandy-api",
     "kandy-echarts",
     "kandy-lets-plot",
+    "kandy-geo",
     "kandy-util"
 )
 

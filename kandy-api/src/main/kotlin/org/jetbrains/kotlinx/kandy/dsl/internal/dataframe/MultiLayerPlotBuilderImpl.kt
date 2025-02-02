@@ -6,6 +6,7 @@ import org.jetbrains.kotlinx.kandy.dsl.internal.MultiLayerPlotBuilder
 import org.jetbrains.kotlinx.kandy.ir.data.TableData
 
 public abstract class MultiLayerPlotBuilderImpl : MultiLayerPlotBuilder() {
+    @PublishedApi
     override fun addDataset(dataset: TableData, initialBuilder: DatasetBuilder?): Int {
         datasetBuilders.add(DatasetBuilderImpl(dataset, initialBuilder as DatasetBuilderImpl?))
         return datasetBuilders.lastIndex

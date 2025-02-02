@@ -17,6 +17,7 @@
 [layout](Layout-API.md)
 [tooltips](Tooltips-API.md)
 ## Data manipulation
+[withData](WithData-API.md)
 [groupBy](GroupBy-API.md)
 ### Statistics
 [statBin](StatBin-API.md)
@@ -44,6 +45,7 @@
 [pie](Pie-API.md)
 [pointRanges](PointRanges-API.md)
 [points](Points-API.md)
+[polygon](Polygon-API.md)
 [raster](Raster-API.md)
 [rectangles](Rectangles-API.md)
 [ribbon](Ribbon-API.md)
@@ -58,5 +60,5 @@
 [save](Save-API.md)
 [toBufferedImage](ToBufferedImage-API.md)
 ## Other
-[coordFlip](CoordFlip-API.md)
+[coordinatesTransformation](CoordinatesTransformation-API.md)
 [reversed](Reversed-API.md)

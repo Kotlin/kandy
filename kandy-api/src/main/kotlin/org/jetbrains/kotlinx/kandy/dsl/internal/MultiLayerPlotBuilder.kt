@@ -55,7 +55,7 @@ public abstract class MultiLayerPlotBuilder internal constructor() : LayerCreato
      *
      * @return new dataset builder index in [datasetBuilders].
      */
+    @PublishedApi
     internal abstract fun addDataset(dataset: TableData, initialBuilder: DatasetBuilder? = null): Int
     internal abstract fun addEmptyDataset(): Int
-
 }

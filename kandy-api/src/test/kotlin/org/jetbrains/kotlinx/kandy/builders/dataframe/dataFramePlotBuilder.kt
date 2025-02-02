@@ -55,8 +55,8 @@ class DataFramePlotBuilderTest {
 
     @Test
     fun `test get columns with selector`() {
-        val nameColumn: DataColumn<String> = DataColumn.create("name", listOf("Alice", "Bob", "Charlie"))
-        val ageColumn: DataColumn<Int> = DataColumn.create("age", listOf(15, 20, 100))
+        val nameColumn: DataColumn<String> = DataColumn.createByType("name", listOf("Alice", "Bob", "Charlie"))
+        val ageColumn: DataColumn<Int> = DataColumn.createByType("age", listOf(15, 20, 100))
 
         val dataFrame = dataFrameOf(nameColumn, ageColumn)
 

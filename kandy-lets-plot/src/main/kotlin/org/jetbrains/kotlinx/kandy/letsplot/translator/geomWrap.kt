@@ -22,6 +22,7 @@ internal fun Geom.wrap(): GeomOptions {
             LINE -> org.jetbrains.letsPlot.Geom.line()
             PATH -> org.jetbrains.letsPlot.Geom.path()
             PIE -> org.jetbrains.letsPlot.Geom.pie()
+            POLYGON -> org.jetbrains.letsPlot.Geom.polygon()
             LINE_RANGE -> org.jetbrains.letsPlot.Geom.linerange()
             POINT -> org.jetbrains.letsPlot.Geom.point()
             POINT_RANGE -> org.jetbrains.letsPlot.Geom.pointrange()

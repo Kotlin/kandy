@@ -44,7 +44,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.CrossBarsBuilder
  *    }
  *    yMax.constant(100.0)
  *    // Even though the error bars have no "y" attribute, we can adjust the Y-axis
- *    y.limits = 0.0 .. 110.0
+ *    y.axis.limits = 0.0 .. 110.0
  *
  *    // Non-positional settings
  *    alpha = 0.9

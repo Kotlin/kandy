@@ -13,7 +13,7 @@ internal fun <T, R> GroupBy<T, R>.concatFixed(): DataFrame<R> {
     return mapToFrames {
         val rowsCount = group.rowsCount()
         val keyColumns = keyNames.filter { it !in group.columnNames() }.map { keyName ->
-            DataColumn.create(keyName, List(rowsCount) { key[keyName] }, Infer.Type)
+            DataColumn.createByType(keyName, List(rowsCount) { key[keyName] }, Infer.Type)
         }
         group.addAll(keyColumns)
     }.concat()

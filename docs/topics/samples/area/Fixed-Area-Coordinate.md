@@ -42,7 +42,7 @@ plot(reservoirDf) {
     }
 
     x(month)
-    y { limits = 3.0..8.0 }
+    y { axis.limits = 3.0..8.0 }
     line {
         y(waterLvl)
     }
@@ -79,7 +79,7 @@ plot(reservoirDf) {
     }
 
     x("month")
-    y { limits = 3.0..8.0 }
+    y { axis.limits = 3.0..8.0 }
     line {
         y("waterLvl")
     }

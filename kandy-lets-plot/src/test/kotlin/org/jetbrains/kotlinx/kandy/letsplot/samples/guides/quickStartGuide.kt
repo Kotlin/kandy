@@ -18,6 +18,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.scales.*
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.limits
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.letsplot.style.LayoutParameters
 import org.jetbrains.kotlinx.kandy.letsplot.style.Style
@@ -32,7 +33,6 @@ import org.jetbrains.kotlinx.statistics.binning.BinsAlign
 import org.jetbrains.kotlinx.statistics.binning.BinsOption
 import org.jetbrains.kotlinx.statistics.kandy.layers.histogram
 import org.jetbrains.kotlinx.statistics.kandy.stattransform.statBin
-import org.jetbrains.letsPlot.core.spec.back.transform.bistro.util.tooltips
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 
@@ -310,8 +310,8 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
                 color(flowOn)
             }
             // Alternate brief notation if we want to set the axis limits (continuous scale)
-            x.limits = 0..80
-            y.limits = 0.0..1.0
+            x.axis.limits = 0..80
+            y.axis.limits = 0.0..1.0
         }
             // SampleEnd
             .saveSample()
@@ -347,7 +347,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
             y {
                 axis.name = "weight"
-                limits = 0.0..5.0
+                axis.limits = 0.0..5.0
             }
         }
             // SampleEnd

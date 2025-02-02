@@ -224,7 +224,7 @@ plot {
             scale = continuous(Color.GREEN..Color.RED)
         }
     }
-    x.limits = -3.5..3.5
+    x.axis.limits = -3.5..3.5
 }
 ```
 
@@ -289,7 +289,7 @@ df.histogram(BinsOption.byNumber(14), BinsAlign.boundary(0.0)) {
     x(sample)
 }.configure {
     // StatBin + Bars + Plot contexts
-    x.limits = -3.5..3.5
+    x.axis.limits = -3.5..3.5
     y(Stat.density)
     borderLine.color = Color.BLACK
     layout.title = "Configured histogram"

@@ -16,6 +16,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.y
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import org.jetbrains.kotlinx.statistics.kandy.layers.candlestick
+import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model.limits
 import org.jetbrains.kotlinx.statistics.kandy.statplots.candlestick
 import org.jetbrains.kotlinx.statistics.kandy.statplots.configure
 import org.jetbrains.kotlinx.statistics.kandy.stattransform.statCandlestick
@@ -265,7 +266,7 @@ class Candlestick : SampleHelper("stat", "guides") {
         df.candlestick("x", "open", "high", "low", "close").configure {
             // Boxes + StatCandlestick + PlotBuilder
             // Can't add a new layer
-            y.limits = 3.0..17.0
+            y.axis.limits = 3.0..17.0
             increase {
                 borderLine.color = Color.BLUE
             }
