@@ -71,11 +71,13 @@ dependencies {
 
 ```groovy
 repositories {
-   maven "https://packages.jetbrains.team/maven/p/kds/kotlin-ds-maven"
+   maven {
+      url 'https://packages.jetbrains.team/maven/p/kds/kotlin-ds-maven'
+   }
 }
 
 dependencies {
-   implementation "org.jetbrains.kotlinx:kotlin-statistics-jvm:0.1.0"
+   implementation 'org.jetbrains.kotlinx:kotlin-statistics-jvm:%kandy_stat_latest_version%'
 }
 ```
 

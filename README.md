@@ -251,6 +251,31 @@ repositories {
 }
 ```
 
+### Statistics
+
+`kandy-statistics` is an experimental module of Kandy that provides statistical plotting extensions 
+(e.g., histograms, boxplots, etc.).
+For more details, see the [Statistics Guide](https://kotlin.github.io/kandy/statistics-guide.html).
+
+The source code is currently in a private repository, 
+and the artifact is not available on Maven Central (this is subject to change).
+
+In Jupyter notebooks, it is included by default when using `%use kandy`.\
+To add the dependency in Gradle:
+
+
+```gradle
+repositories {
+   maven("https://packages.jetbrains.team/maven/p/kds/kotlin-ds-maven")
+}
+
+dependencies {
+   implementation("org.jetbrains.kotlinx:kotlin-statistics-jvm:$statistics_version")
+}
+```
+
+Statistics module is licensed under the [Apache 2.0 License](LICENSE).
+
 ## Contributing
 
 Read the [Contributing Guidelines](CONTRIBUTING.md).

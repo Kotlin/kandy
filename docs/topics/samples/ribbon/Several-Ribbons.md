@@ -37,9 +37,9 @@ val dataset = dataFrameOf(
 dataset.groupBy("currency").plot {
     ribbon {
         x("time")
-        y {
-            axis.limits = 170..400
-            axis.name = "price, tokens"
+        y.axis {
+            limits = 170..400
+            name = "price, tokens"
         }
         yMin("min")
         yMax("max")

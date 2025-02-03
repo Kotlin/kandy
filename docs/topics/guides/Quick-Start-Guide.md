@@ -436,9 +436,9 @@ plot(
         alpha = 0.2
         borderLine.color = Color.hex(0x9A2A2A)
     }
-    y {
-        axis.name = "weight"
-        axis.limits = 0.0..5.0
+    y.axis {
+        name = "weight"
+        limits = 0.0..5.0
     }
 }
 ```
