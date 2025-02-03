@@ -26,7 +26,7 @@ class LegendAndAxis : SampleHelper("layout", "guides") {
     private val hwy = column<Int>("hwy")
     private val manufacturer = column<String>("manufacturer")
     private val cty = column<Int>("cty")
-    private val drv = column<String>("drv")
+    private val drv = column<Char>("drv")
 
     @Test
     fun guideLegendAxisReadData() {
@@ -181,7 +181,7 @@ class LegendAndAxis : SampleHelper("layout", "guides") {
                 symbol(drv) {
                     legend {
                         name = "Drive-train"
-                        breaksLabeled("f" to "front", "r" to "rear", "4" to "4X4")
+                        breaksLabeled('f' to "front", 'r' to "rear", '4' to "4X4")
                     }
                 }
             }
