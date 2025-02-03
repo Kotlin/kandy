@@ -5,7 +5,7 @@ plugins {
     with(libs.plugins) {
         alias(kotlin.jvm)
         alias(kotlin.jupyter.api)
-        alias(korro)
+        //alias(korro)
     }
 }
 

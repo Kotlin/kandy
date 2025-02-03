@@ -190,7 +190,7 @@ mpgDf.plot {
         symbol(drv) {
             legend {
                 name = "Drive-train"
-                breaksLabeled("f" to "front", "r" to "rear", "4" to "4X4")
+                breaksLabeled('f' to "front", 'r' to "rear", '4' to "4X4")
             }
         }
     }
