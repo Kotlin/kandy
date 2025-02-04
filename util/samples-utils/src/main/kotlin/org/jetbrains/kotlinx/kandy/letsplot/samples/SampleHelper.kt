@@ -17,11 +17,11 @@ import org.junit.Rule
 import org.junit.rules.TestName
 import java.io.File
 
-abstract class SampleHelper(sampleName: String, folder: String = "samples") {
+public abstract class SampleHelper(sampleName: String, folder: String = "samples") {
 
     @JvmField
     @Rule
-    val testName: TestName = TestName()
+    public val testName: TestName = TestName()
 
     private val pathToImageFolder = "../docs/images/$folder/$sampleName"
 
@@ -36,14 +36,14 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
     private val previewSize = ggsize(defaultWidth, defaultHeight)
     private val fixedWidth = 705
 
-    fun Plot.saveSample(savePreview: Boolean = false) {
+    public fun Plot.saveSample(savePreview: Boolean = false) {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name, savePreview)
         this.changeThemeToDarkMode()
         saveAsSVG("${name}_dark", savePreview)
     }
 
-    fun PlotGrid.saveSample(savePreview: Boolean = false, scaling: Boolean = true) {
+    public fun PlotGrid.saveSample(savePreview: Boolean = false, scaling: Boolean = true) {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name, savePreview, scaling)
         plots.forEach {
@@ -53,7 +53,7 @@ abstract class SampleHelper(sampleName: String, folder: String = "samples") {
         saveAsSVG("${name}_dark", savePreview, scaling)
     }
 
-    fun PlotBunch.saveSample() {
+    public fun PlotBunch.saveSample() {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name)
         this.items.forEach {
