@@ -1,3 +1,4 @@
+@file:Suppress("INVISIBLE_REFERENCE")
 package org.jetbrains.kotlinx.kandy.letsplot.samples
 
 import org.jetbrains.kotlinx.kandy.ir.Plot

@@ -1,3 +1,5 @@
+import com.google.devtools.ksp.gradle.KspTaskJvm
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.BaseKotlinCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -5,7 +7,7 @@ plugins {
     with(libs.plugins) {
         alias(kotlin.jvm)
         alias(kotlin.jupyter.api)
-        //alias(korro)
+        alias(korro)
     }
 }
 
@@ -34,6 +36,7 @@ dependencies {
 
     implementation(libs.jai.core)
 
+    testImplementation(project(":samples-utils"))
     testImplementation(kotlin("test"))
 }
 
@@ -46,10 +49,14 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 tasks.test {
-    useJUnitPlatform()
+    dependsOn("jar")
+    jvmArgs("-Xmx4G")
 }
-kotlin {
-    jvmToolchain(11)
+
+tasks.withType<KspTaskJvm> {
+    if (name == "kspTestKotlin") {
+        dependsOn("jar")
+    }
 }
 
 tasks.processJupyterApiResources {
