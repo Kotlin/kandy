@@ -5,17 +5,7 @@ package org.jetbrains.kotlinx.kandy.geo.samples.guides
 import org.geotools.referencing.CRS
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.DataRow
-import org.jetbrains.kotlinx.dataframe.api.column
-import org.jetbrains.kotlinx.dataframe.api.filter
-import org.jetbrains.kotlinx.dataframe.api.innerJoin
-import org.jetbrains.kotlinx.dataframe.api.convert
-import org.jetbrains.kotlinx.dataframe.api.map
-import org.jetbrains.kotlinx.dataframe.api.sortByDesc
-import org.jetbrains.kotlinx.dataframe.api.take
-import org.jetbrains.kotlinx.dataframe.api.update
-import org.jetbrains.kotlinx.dataframe.api.where
-import org.jetbrains.kotlinx.dataframe.api.with
-import org.jetbrains.kotlinx.dataframe.api.single
+import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.geo.GeoDataFrame
 import org.jetbrains.kotlinx.dataframe.geo.bounds
 import org.jetbrains.kotlinx.dataframe.geo.geometry
@@ -48,21 +38,17 @@ import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.letsplot.y
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
-import org.locationtech.jts.geom.Coordinate
-import org.locationtech.jts.geom.Envelope
-import org.locationtech.jts.geom.Geometry
-import org.locationtech.jts.geom.GeometryFactory
-import org.locationtech.jts.geom.LineString
-import org.locationtech.jts.geom.MultiPolygon
-import org.locationtech.jts.geom.Point
-import org.locationtech.jts.geom.Polygon
+import org.junit.AfterClass
+import org.junit.FixMethodOrder
+import org.junit.runners.MethodSorters
+import org.locationtech.jts.geom.*
+import java.io.File
 import kotlin.math.*
 import kotlin.reflect.typeOf
-import kotlin.sequences.single
 import kotlin.test.*
-import kotlin.text.single
 
-class NotebookTests : SampleHelper("geoGuide", "guides") {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+class GeoGuide : SampleHelper("geoGuide", "guides") {
 
     private val usaStates =
         GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
@@ -93,7 +79,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     private val usa48 = usaStates.modify {
         filter {
             name !in listOf("Alaska", "Hawaii", "Puerto Rico")
-        }
+        } as DataFrame<Nothing>
     }
 
     private val usaAdjusted = usaStates.modify {
@@ -112,7 +98,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
         DataFrame.readCSV("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
 
     private val usaStatesWithElectionResults = usaAdjusted.modify {
-        innerJoin(usa2024electionResults) { name }
+        innerJoin(usa2024electionResults) { name } as DataFrame<Nothing>
     }
 
     private val conusAlbersCrs = CRS.decode("EPSG:5070", true)
@@ -171,7 +157,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_0c0ac2b2() {
+    fun usaStatesReadGeoJson() {
         // SampleStart
         val usaStates =
             GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
@@ -180,7 +166,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_83464e3f() {
+    fun usaStatesAccessDataFrame() {
         val usaStatesDf =
             // SampleStart
             usaStates.df
@@ -189,7 +175,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_fc63b59a() {
+    fun usaStatesCheckGeometryType() {
         val geometryType =
             // SampleStart
             usaStates.df.geometry.type()
@@ -198,7 +184,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_388c463e() {
+    fun usaStatesDistinctGeometryTypes() {
         val distinctTypes =
             // SampleStart
             usaStates.df.geometry.map { it::class }.distinct()
@@ -207,7 +193,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_01c97026() {
+    fun usaStatesGetCrs() {
         val crs =
             // SampleStart
             usaStates.crs
@@ -216,7 +202,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_4329905c() {
+    fun worldCitiesReadShapefile() {
         // SampleStart
         val worldCities =
             GeoDataFrame.readShapefile("https://github.com/AndreiKingsley/datasets/raw/refs/heads/main/ne_10m_populated_places_simple/ne_10m_populated_places_simple.shp")
@@ -225,7 +211,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_bdb8c73d() {
+    fun worldCitiesAccessDataFrame() {
         val worldCitiesDf =
             // SampleStart
             worldCities.df
@@ -234,7 +220,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_5767c6f6() {
+    fun worldCitiesCheckGeometryType() {
         val geometryType =
             // SampleStart
             worldCities.df.geometry.type()
@@ -243,7 +229,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_bfcea27a() {
+    fun worldCitiesGetCrs() {
         val crs =
             // SampleStart
             worldCities.crs
@@ -252,7 +238,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_99650ca2() {
+    fun usaStatesPlotGeoPolygon() {
         // SampleStart
         usaStates.plot {
             // `geoPolygon` uses polygons and multipolygons
@@ -264,7 +250,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_0e6526e4() {
+    fun usaStatesGeoPolygonPlotCustomized() {
         // SampleStart
         usaStates.plot {
             geoPolygon {
@@ -280,7 +266,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun usaStatesWithMercatorTransformation() {
+    fun usaStatesPlotWithMercator() {
         // SampleStart
         usaStates.plot {
             geoPolygon()
@@ -291,7 +277,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_5d1706f5() {
+    fun usaStatesPlotGeoMap() {
         // SampleStart
         // You can see that this plot is identical
         // with the previous one.
@@ -303,7 +289,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_c07a359d() {
+    fun usaStatesPlotWithAxisLimits() {
         // SampleStart
         usaStates.plot {
             geoMap()
@@ -315,7 +301,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_c7fd7069() {
+    fun usaStatesPlotWithWorldCities() {
         // SampleStart
         usaStates.plot {
             // `geoMap` takes polygons from `geometry`
@@ -339,9 +325,9 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     // TODO need korro import support
     // manual adding for now
     @Test
-    fun testCase_49189967() {
+    fun usaStatesMergeIntoSinglePolygon() {
         // SampleStart
-        //     import org . jetbrains . kotlinx . kandy . letsplot . geo . util . mergePolygons
+        // import org.jetbrains.kotlinx.kandy.letsplot.geo.util.mergePolygons
 
         // experimental function that merges a collection of polygons and
         // multipolygons into a single multipolygon
@@ -351,7 +337,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_6b6c85c0() {
+    fun usaStatesPlotMergedPolygon() {
         // SampleStart
         plot {
             // `geoPolygon` and `geoMap` can accept a single `Polygon` / `MultiPolygon`
@@ -362,7 +348,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_87042fe4() {
+    fun worldCitiesFilterByUsaBounds() {
         // SampleStart
         val usaCities = worldCities.modify {
             // filter the DataFrame to include only points inside the `usaPolygon`
@@ -385,7 +371,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_bc30d96e() {
+    fun usaStatesPlotWithTopCities() {
         // SampleStart
         usaStates.plot {
             geoMap()
@@ -405,12 +391,13 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
         get() = "name"<String>()
 
     @Test
-    fun testCase_3bc837a1() {
+    fun usaStatesFilterContiguous() {
         // SampleStart
         val usa48 = usaStates.modify {
             filter {
                 name !in listOf("Alaska", "Hawaii", "Puerto Rico")
-            }
+            }//SampleEnd
+                    as DataFrame<Nothing>//SampleStart
         }
 
         usa48.plot { geoMap() }
@@ -419,7 +406,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_47b47644() {
+    fun usaStatesAdjusted() {
         // SampleStart
         val usaAdjusted = usaStates.modify {
             // custom extensions for `Geometry` based on JTS API;
@@ -440,7 +427,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_2b31bb9a() {
+    fun usaStatesPlotWithCentroids() {
         // SampleStart
         usa48.plot {
             geoMap()
@@ -456,7 +443,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_71a35421() {
+    fun electionResultsLoadData() {
         // SampleStart
         val usa2024electionResults =
             DataFrame.readCSV("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
@@ -466,10 +453,11 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_fb104863() {
+    fun electionResultsJoinWithStates() {
         // SampleStart
         val usaStatesWithElectionResults = usaAdjusted.modify {
-            innerJoin(usa2024electionResults) { name }
+            innerJoin(usa2024electionResults) { name }//SampleEnd
+                    as DataFrame<Nothing>//SampleStart
         }
 
         usaStatesWithElectionResults.df
@@ -477,7 +465,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_949e5086() {
+    fun electionResultsPlotByParty() {
         // SampleStart
         usaStatesWithElectionResults.plot {
             geoMap {
@@ -497,12 +485,12 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
                 }
             }
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
     @Test
-    fun testCase_42b9affd() {
+    fun usaStatesTransformToAlbers() {
         // SampleStart
         val conusAlbersCrs = CRS.decode("EPSG:5070", true)
         val usaAlbers = usa48.applyCrs(conusAlbersCrs)
@@ -512,7 +500,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_f05aadc2() {
+    fun usaStatesPlotWithAlbersCrs() {
         // SampleStart
         usaAlbers.plot {
             // polygons will work exactly the same -
@@ -520,17 +508,17 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
             // for GeoDF with unsupported crs
             geoMap()
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
     // TODO need korro import support
     // manual adding for now
     @Test
-    fun testCase_2ff23ffc() {
+    fun greatCircleCalculationFunction() {
         // SampleStart
-       /* import org . locationtech . jts . geom . *
-                import kotlin . math . **/
+        /* import org . locationtech . jts . geom . *
+           import kotlin . math . **/
 
         fun greatCircleLineString(start: Point, end: Point, n: Int = 100): LineString {
             val factory = GeometryFactory()
@@ -575,14 +563,14 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_2d8f87bc() {
+    fun cityGeometryExtractionFunction() {
         // SampleStart
         fun takeCity(name: String) = usaCities.df.filter { it.name == name }.single().geometry
         // SampleEnd
     }
 
     @Test
-    fun testCase_51470893() {
+    fun citiesExtractNewYorkLosAngeles() {
         // SampleStart
         val newYork = takeCity("New York")
         val losAngeles = takeCity("Los Angeles")
@@ -590,14 +578,14 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_d4788fe1() {
+    fun greatCircleNYToLA() {
         // SampleStart
         val curveNY_LA = greatCircleLineString(newYork, losAngeles)
         // SampleEnd
     }
 
     @Test
-    fun testCase_143262fc() {
+    fun usaStatesPlotWithGreatCircle() {
         // SampleStart
         usa48.plot {
             geoMap { alpha = 0.5 }
@@ -607,12 +595,12 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
                 color = Color.RED
             }
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
     @Test
-    fun testCase_27d7a586() {
+    fun usaStatesCalculateBounds() {
         // SampleStart
         // The `.bounds()` function calculates the minimum bounding box
         // of all geometries in the `geometry` column of a `GeoDataFrame`,
@@ -625,7 +613,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_6b6ed9ad() {
+    fun usaStatesPlotWithBounds() {
         // SampleStart
         usa48.plot {
             geoMap()
@@ -637,42 +625,42 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
                 }
             }
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
     @Test
-    fun testCase_90fc4240() {
+    fun usaStatesPlotWithDefaultBounds() {
         // SampleStart
         usa48.plot {
             geoMap()
             geoRectangles()
         }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
     @Test
-    fun testCase_8b9a7c16() {
+    fun writeGeoJson1usaCitiesExportToGeoJson() {
         // SampleStart
         usaCities.writeGeoJson("usa_cities.geojson")
         // SampleEnd
     }
 
     @Test
-    fun testCase_e2a8f29f() {
+    fun writeGeoJson2usaCitiesPlotFromGeoJson() {
         // SampleStart
         GeoDataFrame.readGeoJson("usa_cities.geojson").plot { geoPoints() }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
     @Test
-    fun testCase_1a942ecf() {
+    fun writeShapefile1usaStatesExportToShapefile() {
         // SampleStart
-// All geometries should be the same type - Shapefile restriction,
-// but we have `Polygon` and `MultiPolygon`.
-// Cast them all into multipolygons
+        // All geometries should be the same type - Shapefile restriction,
+        // but we have `Polygon` and `MultiPolygon`.
+        // Cast them all into multipolygons
         usa48.modify {
             convert { geometry }.with {
                 when (it) {
@@ -682,7 +670,7 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
                     else -> error("not a polygonal")
                 }
             } //SampleEnd
-         as DataFrame<Nothing>//SampleStart
+                    as DataFrame<Nothing>//SampleStart
         }
             // All files comprising the Shapefile will be saved to
             // a directory named "usa_48" and will have the same base name.
@@ -691,12 +679,19 @@ class NotebookTests : SampleHelper("geoGuide", "guides") {
     }
 
     @Test
-    fun testCase_5adebe2e() {
+    fun writeShapefile2usaStatesPlotFromShapefile() {
         // SampleStart
         GeoDataFrame.readShapefile("usa_48/usa_48.shp").plot { geoMap() }
-        // SampleEnd
+            // SampleEnd
             .saveSample()
     }
 
-
+    companion object {
+        @AfterClass
+        @JvmStatic
+        fun cleanup() {
+            File("usa_48").deleteRecursively()
+            File("usa_cities.geojson").delete()
+        }
+    }
 }
