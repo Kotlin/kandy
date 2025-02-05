@@ -50,7 +50,7 @@ tasks.withType<KotlinCompile>().configureEach {
 
 tasks.test {
     dependsOn("jar")
-    jvmArgs("-Xmx4G")
+    jvmArgs("-Xmx8G")
 }
 
 tasks.withType<KspTaskJvm> {
@@ -61,4 +61,30 @@ tasks.withType<KspTaskJvm> {
 
 tasks.processJupyterApiResources {
     libraryProducers = listOf("org.jetbrains.kotlinx.kandy.letsplot.geo.jupyter.IntegrationGeo")
+}
+
+korro {
+    docs = fileTree(rootProject.rootDir) {
+       // include("docs/topics/samples//*.md")
+        include("docs/topics/guides/Geo-Plotting-Guide.md")
+    }
+
+    samples = fileTree(project.projectDir) {
+       // include("src/test/kotlin/org/jetbrains/kotlinx/kandy/geo/samples/*.kt")
+        include("src/test/kotlin/org/jetbrains/kotlinx/kandy/geo/samples/guides/*.kt")
+    }
+
+    groupSamples {
+        beforeSample.set("<tab title=\"NAME\">\n")
+        afterSample.set("\n</tab>")
+
+        funSuffix("_dataframe") {
+            replaceText("NAME", "Dataframe")
+        }
+        funSuffix("_collections") {
+            replaceText("NAME", "Collections")
+        }
+        beforeGroup.set("<tabs>\n")
+        afterGroup.set("</tabs>")
+    }
 }

@@ -61,18 +61,18 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     private val usaPolygon: MultiPolygon = usaStates.df.geometry.mergePolygons()
 
     private val usaCities = worldCities.modify {
-        // filter the DataFrame to include only points inside the `usaPolygon`
+        // Filter the DataFrame to include only points inside the `usaPolygon`
         filter {
             // `usaPolygon.contains(geometry)` checks if the `geometry` (a Point)
             // from the current row of `worldCities` is within the `usaPolygon`
             usaPolygon.contains(geometry)
         }
-            // take 30 most populous cities -
-            // sort the remaining rows by population size in descending order
+            // Take 30 most populous cities:
+            // Sort the remaining rows by population size in descending order
             .sortByDesc {
                 pop_min
             }
-            // and select the top 30 rows
+            // And select the top 30 rows.
             .take(30) as DataFrame<Nothing>
     }
 
@@ -83,12 +83,12 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     }
 
     private val usaAdjusted = usaStates.modify {
-        // custom extensions for `Geometry` based on JTS API;
-        // scale and move Alaska
+        // Custom extensions for `Geometry` based on JTS API
+        // Scale and move Alaska
         update { geometry }.where { name == "Alaska" }.with {
             it.scaleAroundCenter(0.5).translate(40.0, -40.0)
         }
-            // move Hawaii and Puerto Rico
+            // Move Hawaii and Puerto Rico
             .update { geometry }.where { name == "Hawaii" }.with { it.translate(65.0, 0.0) }
             .update { geometry }.where { name == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }
                 as DataFrame<Nothing>
@@ -152,7 +152,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     private val curveNY_LA = greatCircleLineString(newYork, losAngeles)
 
     private val usa48Bounds: Envelope = usa48.bounds().also {
-        // JTS API for in-place envelope expansion
+        // Use JTS API for in-place envelope expansion:
         it.expandBy(1.0)
     }
 
@@ -187,7 +187,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     fun usaStatesDistinctGeometryTypes() {
         val distinctTypes =
             // SampleStart
-            usaStates.df.geometry.map { it::class }.distinct()
+            usaStates.df.geometry.map { it::class }.distinct().toList()
         // SampleEnd
         assertEquals(setOf(Polygon::class, MultiPolygon::class), distinctTypes.toSet())
     }
@@ -228,6 +228,8 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
         assertEquals(typeOf<Point>(), geometryType)
     }
 
+    // todo korro bug
+    // Manual adding for now.
     @Test
     fun worldCitiesGetCrs() {
         val crs =
@@ -242,7 +244,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
         // SampleStart
         usaStates.plot {
             // `geoPolygon` uses polygons and multipolygons
-            // from `geometry` column of `usaStates` inner DataFrame.
+            // from the `geometry` column of `usaStates` inner DataFrame
             geoPolygon()
         }
             // SampleEnd
@@ -254,7 +256,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
         // SampleStart
         usaStates.plot {
             geoPolygon {
-                fillColor(name) { legend.type = LegendType.None } // hide legend
+                fillColor(name) { legend.type = LegendType.None } // Hide legend
                 borderLine {
                     width = 0.1
                     color = Color.BLACK
@@ -279,8 +281,8 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     @Test
     fun usaStatesPlotGeoMap() {
         // SampleStart
-        // You can see that this plot is identical
-        // with the previous one.
+        // This plot is identical
+        // to the previous one.
         usaStates.plot {
             geoMap()
         }
@@ -304,14 +306,14 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     fun usaStatesPlotWithWorldCities() {
         // SampleStart
         usaStates.plot {
-            // `geoMap` takes polygons from `geometry`
+            // `geoMap` takes polygons from the `geometry`
             // column of `usaStates` inner DataFrame
             geoMap()
             // Add a new dataset using the `worldCities` GeoDataFrame.
             // Layers created within this scope will use it as their base dataset
-            // instead of the initial one.
+            // instead of the initial one
             withData(worldCities) {
-                // `geoPoints` takes points from the ` geometry `
+                // `geoPoints` takes points from the `geometry`
                 // column of `worldCities` inner DataFrame
                 geoPoints() {
                     size = 1.5
@@ -322,14 +324,15 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             .saveSample()
     }
 
-    // TODO need korro import support
-    // manual adding for now
+    // TODO Need Korro import support.
+    // Manual adding for now.
     @Test
     fun usaStatesMergeIntoSinglePolygon() {
         // SampleStart
+        // import mergePolygons utility
         // import org.jetbrains.kotlinx.kandy.letsplot.geo.util.mergePolygons
 
-        // experimental function that merges a collection of polygons and
+        // Experimental function that merges a collection of polygons and
         // multipolygons into a single multipolygon
         val usaPolygon: MultiPolygon = usaStates.df.geometry.mergePolygons()
         // SampleEnd
@@ -340,7 +343,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     fun usaStatesPlotMergedPolygon() {
         // SampleStart
         plot {
-            // `geoPolygon` and `geoMap` can accept a single `Polygon` / `MultiPolygon`
+            // `geoPolygon` and `geoMap` can accept a single `Polygon` or `MultiPolygon`
             geoMap(usaPolygon)
         }
             // SampleEnd
@@ -351,18 +354,18 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     fun worldCitiesFilterByUsaBounds() {
         // SampleStart
         val usaCities = worldCities.modify {
-            // filter the DataFrame to include only points inside the `usaPolygon`
+            // Filter the DataFrame to include only points inside the `usaPolygon`
             filter {
                 // `usaPolygon.contains(geometry)` checks if the `geometry` (a Point)
                 // from the current row of `worldCities` is within the `usaPolygon`
                 usaPolygon.contains(geometry)
             }
-                // take 30 most populous cities -
-                // sort the remaining rows by population size in descending order
+                // Take 30 most populous cities.
+                // Sort the remaining rows by population size in descending order
                 .sortByDesc {
                     pop_min
                 }
-                // and select the top 30 rows
+                // Select the top 30 rows.
                 .take(30) //SampleEnd
                     // SampleStart
                     as DataFrame<Nothing>  // SampleEnd
@@ -409,12 +412,12 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     fun usaStatesAdjusted() {
         // SampleStart
         val usaAdjusted = usaStates.modify {
-            // custom extensions for `Geometry` based on JTS API;
-            // scale and move Alaska
+            // Custom extensions for `Geometry` based on JTS API.
+            // Scale and move Alaska:
             update { geometry }.where { name == "Alaska" }.with {
                 it.scaleAroundCenter(0.5).translate(40.0, -40.0)
             }
-                // move Hawaii and Puerto Rico
+                // Move Hawaii and Puerto Rico:
                 .update { geometry }.where { name == "Hawaii" }.with { it.translate(65.0, 0.0) }
                 .update { geometry }.where { name == "Puerto Rico" }.with { it.translate(-10.0, 5.0) } // SampleEnd
                     // SampleStart
@@ -503,22 +506,23 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     fun usaStatesPlotWithAlbersCrs() {
         // SampleStart
         usaAlbers.plot {
-            // polygons will work exactly the same -
-            // no special coorinates transformation is applied
-            // for GeoDF with unsupported crs
+            // Polygons will work exactly the same -
+            // no special coordinates transformation is applied
+            // for GeoDF with unsupported CRS
             geoMap()
         }
             // SampleEnd
             .saveSample()
     }
 
-    // TODO need korro import support
-    // manual adding for now
+    // TODO Need Korro import support.
+    // Manual adding for now.
     @Test
     fun greatCircleCalculationFunction() {
         // SampleStart
-        /* import org . locationtech . jts . geom . *
-           import kotlin . math . **/
+        /* import required packages
+           import org.locationtech.jts.geom.*
+           import kotlin.math.* */
 
         fun greatCircleLineString(start: Point, end: Point, n: Int = 100): LineString {
             val factory = GeometryFactory()
@@ -602,11 +606,11 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     @Test
     fun usaStatesCalculateBounds() {
         // SampleStart
-        // The `.bounds()` function calculates the minimum bounding box
+        // `.bounds()` function calculates the minimum bounding box
         // of all geometries in the `geometry` column of a `GeoDataFrame`,
-        // returning it as an `Envelope`.
+        // returning it as an `Envelope`
         val usa48Bounds: Envelope = usa48.bounds().also {
-            // JTS API for in-place envelope expansion
+            // Use JTS API for in-place envelope expansion
             it.expandBy(1.0)
         }
         // SampleEnd
@@ -658,22 +662,22 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     @Test
     fun writeShapefile1usaStatesExportToShapefile() {
         // SampleStart
-        // All geometries should be the same type - Shapefile restriction,
-        // but we have `Polygon` and `MultiPolygon`.
-        // Cast them all into multipolygons
+        // All geometries should be the same type (Shapefile restriction),
+        // but we have both `Polygon` and `MultiPolygon`.
+        // Cast them all into MultiPolygons
         usa48.modify {
             convert { geometry }.with {
                 when (it) {
-                    // Casts `Polygon` to a `MultiPolygon` with a single entity
+                    // Cast `Polygon` to `MultiPolygon` with a single entity
                     is Polygon -> it.toMultiPolygon()
                     is MultiPolygon -> it
-                    else -> error("not a polygonal")
+                    else -> error("not a polygonal geometry")
                 }
             } //SampleEnd
                     as DataFrame<Nothing>//SampleStart
         }
             // All files comprising the Shapefile will be saved to
-            // a directory named "usa_48" and will have the same base name.
+            // a directory named "usa_48" and will have the same base name
             .writeShapefile("usa_48")
         // SampleEnd
     }

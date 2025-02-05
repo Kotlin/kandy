@@ -1215,7 +1215,8 @@ expanding its applicability across various data structures:
 <!---FUN experimentalStatisticsStatBinOnIterableData-->
 
 ```kotlin
-plotGrid(listOf(
+plotGrid(
+    listOf(
     plot {
         statBin(observation) {
             points {
