@@ -1,4 +1,4 @@
-# Geo plotting
+# Geo Plotting
 
 Kandy-Geo adds extensions which allow plotting a `GeoDataFrame` — a [DataFrame](https://github.com/Kotlin/dataframe)
 -based structure for geospatial
