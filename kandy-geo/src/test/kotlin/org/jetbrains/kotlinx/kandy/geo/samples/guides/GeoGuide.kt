@@ -366,9 +366,8 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
                     pop_min
                 }
                 // Select the top 30 rows.
-                .take(30) //SampleEnd
-                    // SampleStart
-                    as DataFrame<Nothing>  // SampleEnd
+                .take(30)//SampleEnd
+                    as DataFrame<Nothing>// SampleStart
         }
         // SampleEnd
     }
@@ -419,9 +418,8 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             }
                 // Move Hawaii and Puerto Rico:
                 .update { geometry }.where { name == "Hawaii" }.with { it.translate(65.0, 0.0) }
-                .update { geometry }.where { name == "Puerto Rico" }.with { it.translate(-10.0, 5.0) } // SampleEnd
-                    // SampleStart
-                    as DataFrame<Nothing> // SampleEnd
+                .update { geometry }.where { name == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }// SampleEnd
+                    as DataFrame<Nothing>// SampleStart
         }
 
         usaAdjusted.plot { geoMap() }

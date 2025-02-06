@@ -1,5 +1,4 @@
 import com.google.devtools.ksp.gradle.KspTaskJvm
-import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.BaseKotlinCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -65,12 +64,12 @@ tasks.processJupyterApiResources {
 
 korro {
     docs = fileTree(rootProject.rootDir) {
-       // include("docs/topics/samples//*.md")
+        include("docs/topics/samples/geo/*.md")
         include("docs/topics/guides/Geo-Plotting-Guide.md")
     }
 
     samples = fileTree(project.projectDir) {
-       // include("src/test/kotlin/org/jetbrains/kotlinx/kandy/geo/samples/*.kt")
+        include("src/test/kotlin/org/jetbrains/kotlinx/kandy/geo/samples/gallery/*.kt")
         include("src/test/kotlin/org/jetbrains/kotlinx/kandy/geo/samples/guides/*.kt")
     }
 

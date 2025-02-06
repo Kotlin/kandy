@@ -465,8 +465,8 @@ val usaCities = worldCities.modify {
             pop_min
         }
         // Select the top 30 rows.
-        .take(30) 
-            as DataFrame<Nothing>
+        .take(30)
+}
 ```
 
 <!---END-->
@@ -535,8 +535,10 @@ val usaAdjusted = usaStates.modify {
     }
         // Move Hawaii and Puerto Rico:
         .update { geometry }.where { name == "Hawaii" }.with { it.translate(65.0, 0.0) }
-        .update { geometry }.where { name == "Puerto Rico" }.with { it.translate(-10.0, 5.0) } 
-            as DataFrame<Nothing>
+        .update { geometry }.where { name == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }
+}
+
+usaAdjusted.plot { geoMap() }
 ```
 
 <!---END-->
