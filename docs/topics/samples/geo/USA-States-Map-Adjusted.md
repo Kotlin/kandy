@@ -1,16 +1,16 @@
 # USA States Map Adjusted
 
 <web-summary>
-Discover 'Simple Area' in Kotlin using Kandy, a clear and straightforward example of area plotting.
-This example visualizes cost data over several years, demonstrating the effectiveness of area charts in data representation.
+Discover map adjustments in Kotlin using Kandy, a clear and straightforward example of geographical data manipulation.
+This example demonstrates how to reposition states like Alaska and Hawaii for better map visualization and readability.
 </web-summary>
 
 <card-summary>
-'Simple Area' in Kotlin with Kandy: An elegant demonstration of area plots, showcasing yearly cost trends in a visually intuitive manner.
+USA states map adjustment in Kotlin with Kandy: An elegant demonstration of geometric transformations for improved map layout.
 </card-summary>
 
 <link-summary>
-Explore the 'Simple Area' example using Kotlin and Kandy, a perfect illustration of how area charts can be used to depict trends over time.
+Explore the USA states map adjustment example using Kotlin and Kandy, showing how to enhance map readability through state repositioning.
 </link-summary>
 
 

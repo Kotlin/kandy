@@ -1,16 +1,16 @@
 # German States Map With Categories
 
 <web-summary>
-Discover 'Simple Area' in Kotlin using Kandy, a clear and straightforward example of area plotting.
-This example visualizes cost data over several years, demonstrating the effectiveness of area charts in data representation.
+Discover categorical mapping in Kotlin using Kandy, a clear and straightforward example of geographical data visualization.
+This example shows how to create a German states map with categorical data, demonstrating effective use of colors for data representation.
 </web-summary>
 
 <card-summary>
-'Simple Area' in Kotlin with Kandy: An elegant demonstration of area plots, showcasing yearly cost trends in a visually intuitive manner.
+German states categorical mapping in Kotlin with Kandy: An elegant demonstration of geographical visualization with color-coded categories.
 </card-summary>
 
 <link-summary>
-Explore the 'Simple Area' example using Kotlin and Kandy, a perfect illustration of how area charts can be used to depict trends over time.
+Explore the German states categorical mapping example using Kotlin and Kandy, showing how to visualize geographical data with categories.
 </link-summary>
 
 
@@ -50,7 +50,7 @@ germanStates.plot {
 
 <!---END-->
 
-![germany_map_categories](preview_germany_map_categories.svg) { border-effect="rounded" }
+![germany_map_categories](germany_map_categories.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">

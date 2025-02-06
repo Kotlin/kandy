@@ -683,6 +683,61 @@
             </li>
         </list>
     </chapter>
+
+    <chapter title="Geo" id="examples-geo" collapsible="true" default-state="expanded">
+        <list id="list-of-geo-examples" type="none" columns="3">
+            <li>
+                <a href="Simple-USA-States-Polygons-(GeoJSON).md">
+                    <img src="usa_simple_poly_json.svg" alt="Simple USA States Polygons (GeoJSON)" border-effect="line"/>
+                    Simple USA States Polygons (GeoJSON)
+                </a>
+            </li>
+
+            <li>
+                <a href="German-States-Map-With-Simple-Settings-(Shapefile).md">
+                    <img src="germany_map_settings_shapefile.svg" alt="German States Map With Simple Settings (Shapefile)" border-effect="line"/>
+                    German States Map With Simple Settings (Shapefile)
+                </a>
+            </li>
+
+            <li>
+                <a href="German-States-Map-With-Categories.md">
+                    <img src="preview_germany_map_categories.svg" alt="German States Map With Categories" border-effect="line"/>
+                    German States Map With Categories
+                </a>
+            </li>
+
+            <li>
+                <a href="USA-States-Map-Adjusted.md">
+                    <img src="usa_adjusted.svg" alt="USA States Map Adjusted" border-effect="line"/>
+                    USA States Map Adjusted
+                </a>
+            </li>
+
+            <li>
+                <a href="USA-States-Election-Results-Map-(Joined-Datasets).md">
+                    <img src="preview_usa_election_results_joined.svg" alt="USA States Election Results Map (Joined-Datasets)" border-effect="line"/>
+                    USA States Election Results Map (Joined-Datasets)
+                </a>
+            </li>
+
+            <li>
+                <a href="USA-States-Map-With-CONUS-Albers-Projection.md">
+                    <img src="usa_conus_albers.svg" alt="USA States Map With CONUS Albers Projection" border-effect="line"/>
+                    USA States Map With CONUS Albers Projection
+                </a>
+            </li>
+
+            <li>
+                <a href="USA-States-Map-With-City-Points-(Two-Geo-Datasets).md">
+                    <img src="usa_with_cities.svg" alt="USA States Map With City Points (Two Geo Datasets)" border-effect="line"/>
+                    USA States Map With City Points (Two Geo Datasets)
+                </a>
+            </li>
+
+        </list>
+    </chapter>
+
     <chapter title="Layout" id="examples-layout" collapsible="true" default-state="expanded">
         <list id="list-of-layout-examples" type="none" columns="3">
             <li>

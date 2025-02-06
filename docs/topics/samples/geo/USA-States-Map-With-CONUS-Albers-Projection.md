@@ -1,16 +1,16 @@
 # USA States Map With CONUS Albers Projection
 
 <web-summary>
-Discover 'Simple Area' in Kotlin using Kandy, a clear and straightforward example of area plotting.
-This example visualizes cost data over several years, demonstrating the effectiveness of area charts in data representation.
+Discover CONUS Albers projection in Kotlin using Kandy, a clear and straightforward example of map projection application.
+This example demonstrates how to create an optimized view of continental US states using the CONUS Albers projection.
 </web-summary>
 
 <card-summary>
-'Simple Area' in Kotlin with Kandy: An elegant demonstration of area plots, showcasing yearly cost trends in a visually intuitive manner.
+Continental US mapping in Kotlin with Kandy: An elegant demonstration of the CONUS Albers projection for optimized state visualization.
 </card-summary>
 
 <link-summary>
-Explore the 'Simple Area' example using Kotlin and Kandy, a perfect illustration of how area charts can be used to depict trends over time.
+Explore the CONUS Albers projection example using Kotlin and Kandy, showing how to create an accurate continental US states map.
 </link-summary>
 
 

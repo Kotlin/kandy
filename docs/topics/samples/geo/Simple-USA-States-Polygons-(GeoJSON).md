@@ -1,16 +1,16 @@
 # Simple USA States Polygons (GeoJSON)
 
 <web-summary>
-Discover 'Simple Area' in Kotlin using Kandy, a clear and straightforward example of area plotting.
-This example visualizes cost data over several years, demonstrating the effectiveness of area charts in data representation.
+Discover USA states mapping in Kotlin using Kandy, a clear and straightforward example of geographical visualization.
+This example demonstrates how to create a basic map using GeoJSON data, showing the simplicity of polygon-based geographical representation.
 </web-summary>
 
 <card-summary>
-'Simple Area' in Kotlin with Kandy: An elegant demonstration of area plots, showcasing yearly cost trends in a visually intuitive manner.
+USA states mapping in Kotlin with Kandy: An elegant demonstration of geographical visualization using GeoJSON data and polygon plotting.
 </card-summary>
 
 <link-summary>
-Explore the 'Simple Area' example using Kotlin and Kandy, a perfect illustration of how area charts can be used to depict trends over time.
+Explore the USA states mapping example using Kotlin and Kandy, showing how to create a clean geographical visualization with GeoJSON data.
 </link-summary>
 
 

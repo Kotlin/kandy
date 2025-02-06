@@ -1,16 +1,16 @@
 # USA States Map With City Points (Two Geo Datasets)
 
 <web-summary>
-Discover 'Simple Area' in Kotlin using Kandy, a clear and straightforward example of area plotting.
-This example visualizes cost data over several years, demonstrating the effectiveness of area charts in data representation.
+Discover multi-layer mapping in Kotlin using Kandy, a comprehensive example of combining different geographical datasets.
+This example demonstrates how to overlay city points on state boundaries, with point sizes reflecting population data.
 </web-summary>
 
 <card-summary>
-'Simple Area' in Kotlin with Kandy: An elegant demonstration of area plots, showcasing yearly cost trends in a visually intuitive manner.
+USA states and cities mapping in Kotlin with Kandy: An elegant demonstration of combining state polygons with population-based city points.
 </card-summary>
 
 <link-summary>
-Explore the 'Simple Area' example using Kotlin and Kandy, a perfect illustration of how area charts can be used to depict trends over time.
+Explore the USA states and cities example using Kotlin and Kandy, showing how to create rich visualizations with multiple geo datasets.
 </link-summary>
 
 

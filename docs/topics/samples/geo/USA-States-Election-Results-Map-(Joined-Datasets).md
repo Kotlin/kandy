@@ -1,16 +1,16 @@
 # USA States Election Results Map (Joined Datasets)
 
 <web-summary>
-Discover 'Simple Area' in Kotlin using Kandy, a clear and straightforward example of area plotting.
-This example visualizes cost data over several years, demonstrating the effectiveness of area charts in data representation.
+Discover election results visualization in Kotlin using Kandy, a comprehensive example of geographical data analysis.
+This example demonstrates joining electoral and geographical datasets to create an informative color-coded states map.
 </web-summary>
 
 <card-summary>
-'Simple Area' in Kotlin with Kandy: An elegant demonstration of area plots, showcasing yearly cost trends in a visually intuitive manner.
+USA election results mapping in Kotlin with Kandy: An elegant demonstration of data joining and visualization using color-coded states.
 </card-summary>
 
 <link-summary>
-Explore the 'Simple Area' example using Kotlin and Kandy, a perfect illustration of how area charts can be used to depict trends over time.
+Explore the USA election results mapping example using Kotlin and Kandy, showing how to combine and visualize electoral data geographically.
 </link-summary>
 
 
@@ -65,7 +65,7 @@ usaStatesWithElectionResults.plot {
 
 <!---END-->
 
-![usa_election_results_joined](preview_usa_election_results_joined.svg) { border-effect="rounded" }
+![usa_election_results_joined](usa_election_results_joined.svg) { border-effect="rounded" }
 
 <seealso style="cards">
        <category ref="example-ktnb">
