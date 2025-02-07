@@ -25,8 +25,6 @@ val name by column<String>()
 val geometry by column<Geometry>()
 
 val usaAdjusted = usaStates.modify {
-    // custom extensions for `Geometry` based on JTS API;
-    // scale and move Alaska
     update(geometry).where { name() == "Alaska" }.with {
         it.scaleAroundCenter(0.5).translate(40.0, -40.0)
     }
