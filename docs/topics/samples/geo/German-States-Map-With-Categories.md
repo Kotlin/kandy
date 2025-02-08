@@ -52,9 +52,10 @@ germanStates.plot {
 
 ![germany_map_categories](germany_map_categories.svg) { border-effect="rounded" }
 
+
 <seealso style="cards">
        <category ref="example-ktnb">
-           <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/area/simple_area.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
-           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/LmZB0wrcS6YNG09OENeQsH" summary="Experiment with this example on Datalore">Datalore Notebook</a>
+           <a href="https://github.com/Kotlin/kandy/blob/main/examples/notebooks/lets-plot/samples/geo/germany_map_categories.ipynb" summary="View the notebook on our GitHub repository">GitHub Notebook</a>
+           <a href="https://datalore.jetbrains.com/report/static/KQKedA4jDrKu63O53gEN0z/BX8rB1BZTaM1eP8iGh3x5c" summary="Experiment with this example on Datalore">Datalore Notebook</a>
        </category>
 </seealso>
