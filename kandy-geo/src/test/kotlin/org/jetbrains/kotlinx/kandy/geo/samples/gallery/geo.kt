@@ -189,8 +189,9 @@ class Geo : SampleHelper("geo") {
             GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
 
         val usaAlbers = usaStates
-            .modify { filter { "name"<String>() !in listOf("Alaska", "Hawaii", "Puerto Rico") }//SampleEnd
-                    as DataFrame<Nothing>// SampleStart
+            .modify {
+                filter { "name"<String>() !in listOf("Alaska", "Hawaii", "Puerto Rico") }//SampleEnd
+                        as DataFrame<Nothing>// SampleStart
             }
             .applyCrs(CRS.decode("EPSG:5070", true))
 
@@ -213,10 +214,11 @@ class Geo : SampleHelper("geo") {
             GeoDataFrame.readGeoJson("https://github.com/AndreiKingsley/datasets/raw/refs/heads/main/USA_cities.json")
         val pop_min by column<Int>()
 
-        usaStates.modify { filter { name() !in listOf("Alaska", "Hawaii", "Puerto Rico") }//SampleEnd
-                as DataFrame<Nothing> // SampleStart
+        usaStates.modify {
+            filter { name() !in listOf("Alaska", "Hawaii", "Puerto Rico") }//SampleEnd
+                    as DataFrame<Nothing> // SampleStart
         }.plot {
-            geoMap() {
+            geoMap {
                 fillColor = Color.hex("#E4F1FE")
                 alpha = 0.7
                 borderLine.color = Color.hex("#2A5D78")

@@ -23,7 +23,8 @@ val usaStates =
     GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
 
 val usaAlbers = usaStates
-    .modify { filter { "name"<String>() !in listOf("Alaska", "Hawaii", "Puerto Rico") }
+    .modify {
+        filter { "name"<String>() !in listOf("Alaska", "Hawaii", "Puerto Rico") }
     }
     .applyCrs(CRS.decode("EPSG:5070", true))
 

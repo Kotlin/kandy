@@ -18,6 +18,20 @@ import org.junit.Rule
 import org.junit.rules.TestName
 import java.io.File
 
+/**
+ * Abstract class for saving plots samples.
+ *
+ * This class is designed to facilitate saving visual outputs such as `Plot`, `PlotGrid`, and `PlotBunch`
+ * in SVG format with support for theming adjustments, including light and dark themes.
+ * Additionally, it provides default configurations for plot scaling and preview sizes.
+ *
+ * @constructor Initializes the sample helper with a specific sample name and an optional folder name
+ * to define the output directory for saving generated visualizations.
+ * The output directory is created if it doesn't already exist.
+ *
+ * @param sampleName The name of the sample for which visualizations are being generated.
+ * @param folder The folder name to store the generated visualization files. Default is "samples".
+ */
 public abstract class SampleHelper(sampleName: String, folder: String = "samples") {
 
     @JvmField
@@ -37,6 +51,16 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
     private val previewSize = ggsize(defaultWidth, defaultHeight)
     private val fixedWidth = 705
 
+    /**
+     * Saves the current [Plot] as an SVG file in both default and dark mode themes.
+     *
+     * The method generates two SVG files:
+     * 1. A default theme SVG file.
+     * 2. A dark mode theme SVG file by altering the plot's theme.
+     *
+     * @param savePreview Boolean flag that indicates whether to also generate and save preview versions
+     * of the SVG files. When `true`, additional preview files are created with "preview_" prefixed to the file name.
+     */
     public fun Plot.saveSample(savePreview: Boolean = false) {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name, savePreview)
@@ -44,6 +68,18 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
         saveAsSVG("${name}_dark", savePreview)
     }
 
+    /**
+     * Saves the current [PlotGrid] as SVG files in both default and dark mode themes.
+     *
+     * The method generates two SVG files for the plot grid:
+     * 1. A default theme SVG file.
+     * 2. A dark mode theme SVG file by altering the plots' themes.
+     *
+     * @param savePreview Boolean flag that indicates whether to also generate and save preview versions
+     * of the SVG files. When `true`, additional preview files are created with "preview_" prefixed to the file name.
+     * @param scaling Boolean flag that determines whether the SVG output should scale to an appropriate size.
+     * If `true`, the method scales the output appropriately; otherwise, it does not.
+     */
     public fun PlotGrid.saveSample(savePreview: Boolean = false, scaling: Boolean = true) {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name, savePreview, scaling)
@@ -54,6 +90,18 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
         saveAsSVG("${name}_dark", savePreview, scaling)
     }
 
+    /**
+     * Saves the current [PlotBunch] as SVG files in both default and dark mode themes.
+     *
+     * The method generates two SVG files for the plot grid:
+     * 1. A default theme SVG file.
+     * 2. A dark mode theme SVG file by altering the plots' themes.
+     *
+     * @param savePreview Boolean flag that indicates whether to also generate and save preview versions
+     * of the SVG files. When `true`, additional preview files are created with "preview_" prefixed to the file name.
+     * @param scaling Boolean flag that determines whether the SVG output should scale to an appropriate size.
+     * If `true`, the method scales the output appropriately; otherwise, it does not.
+     */
     public fun PlotBunch.saveSample() {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name)

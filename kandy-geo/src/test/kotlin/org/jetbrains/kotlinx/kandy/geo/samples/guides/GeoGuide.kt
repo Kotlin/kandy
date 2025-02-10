@@ -315,7 +315,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             withData(worldCities) {
                 // `geoPoints` takes points from the `geometry`
                 // column of `worldCities` inner DataFrame
-                geoPoints() {
+                geoPoints {
                     size = 1.5
                 }
             }

@@ -27,9 +27,10 @@ val usaCities =
     GeoDataFrame.readGeoJson("https://github.com/AndreiKingsley/datasets/raw/refs/heads/main/USA_cities.json")
 val pop_min by column<Int>()
 
-usaStates.modify { filter { name() !in listOf("Alaska", "Hawaii", "Puerto Rico") }
+usaStates.modify {
+    filter { name() !in listOf("Alaska", "Hawaii", "Puerto Rico") }
 }.plot {
-    geoMap() {
+    geoMap {
         fillColor = Color.hex("#E4F1FE")
         alpha = 0.7
         borderLine.color = Color.hex("#2A5D78")
