@@ -11,7 +11,7 @@ automatically mapped to Kandy layers.
 <tabs>
 <tab title="Notebooks">
 
-To integrate Kandy-Geo and Dataframe-Geo into an interactive notebook, use the following commands:
+To integrate Kandy-Geo and DataFrame-Geo into an interactive notebook, use the following commands:
 
 <tabs>
 <tab title="Latest versions">

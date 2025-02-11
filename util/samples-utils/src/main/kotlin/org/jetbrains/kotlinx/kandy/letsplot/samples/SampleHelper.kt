@@ -1,4 +1,4 @@
-@file:Suppress("INVISIBLE_REFERENCE")
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.letsplot.samples
 
 import org.jetbrains.kotlinx.kandy.ir.Plot

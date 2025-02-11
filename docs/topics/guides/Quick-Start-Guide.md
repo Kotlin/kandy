@@ -28,7 +28,7 @@ a comprehensive resource for creating effective charts and plots.
 <tabs>
 <tab title="Notebooks">
 
-To integrate Kandy and Dataframe into an interactive notebook, use the following commands:
+To integrate Kandy and DataFrame into an interactive notebook, use the following commands:
 
 <tabs>
 <tab title="Latest versions">
