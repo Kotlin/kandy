@@ -1,3 +1,4 @@
+import com.google.devtools.ksp.gradle.KspTaskJvm
 import org.jetbrains.kotlin.gradle.tasks.BaseKotlinCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -5,7 +6,7 @@ plugins {
     with(libs.plugins) {
         alias(kotlin.jvm)
         alias(kotlin.jupyter.api)
-        //alias(korro)
+        alias(korro)
     }
 }
 
@@ -34,6 +35,7 @@ dependencies {
 
     implementation(libs.jai.core)
 
+    testImplementation(project(":samples-utils"))
     testImplementation(kotlin("test"))
 }
 
@@ -46,12 +48,42 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 tasks.test {
-    useJUnitPlatform()
+    dependsOn("jar")
+    jvmArgs("-Xmx8G")
 }
-kotlin {
-    jvmToolchain(11)
+
+tasks.withType<KspTaskJvm> {
+    if (name == "kspTestKotlin") {
+        dependsOn("jar")
+    }
 }
 
 tasks.processJupyterApiResources {
     libraryProducers = listOf("org.jetbrains.kotlinx.kandy.letsplot.geo.jupyter.IntegrationGeo")
+}
+
+korro {
+    docs = fileTree(rootProject.rootDir) {
+        include("docs/topics/samples/geo/*.md")
+        include("docs/topics/guides/Geo-Plotting-Guide.md")
+    }
+
+    samples = fileTree(project.projectDir) {
+        include("src/test/kotlin/org/jetbrains/kotlinx/kandy/geo/samples/gallery/*.kt")
+        include("src/test/kotlin/org/jetbrains/kotlinx/kandy/geo/samples/guides/*.kt")
+    }
+
+    groupSamples {
+        beforeSample.set("<tab title=\"NAME\">\n")
+        afterSample.set("\n</tab>")
+
+        funSuffix("_dataframe") {
+            replaceText("NAME", "Dataframe")
+        }
+        funSuffix("_collections") {
+            replaceText("NAME", "Collections")
+        }
+        beforeGroup.set("<tabs>\n")
+        afterGroup.set("</tabs>")
+    }
 }
