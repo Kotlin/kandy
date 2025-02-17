@@ -13,8 +13,6 @@ class LayoutTest : KandyLetsPlotJupyterTest() {
                         layout {
                             title = "Main Title"
                             subtitle = "Subtitle"
-                            xAxisLabel = "X-Axis"
-                            yAxisLabel = "Y-Axis"
                             style(Style.Grey)
                         }
                     }

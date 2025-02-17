@@ -169,9 +169,9 @@ class LabelFormat : SampleHelper("layout", "guides") {
                 x.constant(LocalDate(2001, 1, 1).atStartOfDayIn(TimeZone.UTC).toEpochMilliseconds())
                 y.constant(unemploymentMean + 0.5)
             }
+            y.axis.name = "unemployment rate"
             layout {
                 title = "The US Unemployment Rates 2000-2016."
-                yAxisLabel = "unemployment rate"
                 size = 900 to 400
             }
         }
