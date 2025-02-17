@@ -1,5 +1,23 @@
 # Geo Plotting
 
+<web-summary>
+Discover the power of geospatial visualization with Kandy-Geo.
+This guide is designed for both newcomers and experienced users, offering clear and concise instructions
+on working with geospatial datasets. From reading GeoJSON and Shapefiles to creating detailed maps with
+polygons, points, and paths, this guide ensures a seamless start with Kandy-Geo.
+</web-summary>
+
+<card-summary>
+This guide covers everything you need to know, from handling geospatial data to advanced map plotting techniques,
+helping you unlock the full potential of Kandy-Geo.
+</card-summary>
+
+<link-summary>
+Explore geospatial visualization in Kotlin with the Kandy-Geo Guide,
+your go-to resource for mapping, coordinate transformations, and rich geographic plots.
+</link-summary>
+
+
 Kandy-Geo adds extensions which allow plotting a `GeoDataFrame` — a [DataFrame](https://github.com/Kotlin/dataframe)
 -based structure for geospatial
 datasets. [All the plotting principles and features](https://kotlin.github.io/kandy/quick-start-guide.html) here are the
