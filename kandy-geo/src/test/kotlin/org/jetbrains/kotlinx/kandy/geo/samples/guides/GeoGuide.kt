@@ -171,6 +171,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             // SampleStart
             usaStates.df
         // SampleEnd
+                .saveTable()
         assertNotNull(usaStatesDf)
     }
 

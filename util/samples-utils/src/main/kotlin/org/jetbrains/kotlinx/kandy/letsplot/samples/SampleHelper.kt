@@ -1,6 +1,8 @@
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package org.jetbrains.kotlinx.kandy.letsplot.samples
 
+import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.io.toStandaloneHTML
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
@@ -40,10 +42,13 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
 
     private val pathToImageFolder = "../docs/images/$folder/$sampleName"
 
+    private val pathToResourceFolder = "../docs/resources"
+
     private val darkColor = Color.hex("#19191c")
 
     init {
         File(pathToImageFolder).mkdirs()
+        File(pathToResourceFolder).mkdirs()
     }
 
     private val defaultWidth = 600
@@ -109,6 +114,15 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
             it.plot.changeThemeToDarkMode()
         }
         saveAsSVG("${name}_dark")
+    }
+
+    /**
+     * Saves the current [DataFrame] as HTML.
+     */
+    public fun DataFrame<*>.saveTable() {
+        val name = testName.methodName.replace("_dataframe", "")
+        val html = this.toStandaloneHTML(configuration = SamplesDisplayConfiguration, getFooter = WritersideFooter) + WritersideStyle
+        html.writeHTML(File(pathToResourceFolder, "$name.html"))
     }
 
     private fun Plot.changeThemeToDarkMode() {
