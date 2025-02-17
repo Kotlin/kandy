@@ -48,6 +48,7 @@
             <toc-element topic="Title-Subtitle-Caption-Guide.md"/>
             <toc-element topic="Tooltips-Guide.md"/>
         </toc-element>
+        <toc-element topic="Geo-Plotting-Guide.md"/>
         <toc-element toc-title="Other features">
             <toc-element topic="Export-to-File-Guide.md"/>
             <toc-element topic="Kotlin-Notebook-Features-Guide.md"/>
@@ -233,6 +234,15 @@
         <toc-element topic="Heatmap.md">
             <toc-element topic="Heatmap-Simple.md"/>
             <toc-element topic="Heatmap-Settings.md"/>
+        </toc-element>
+        <toc-element topic="Geo.md">
+            <toc-element topic="Simple-USA-States-Polygons-(GeoJSON).md"/>
+            <toc-element topic="German-States-Map-With-Simple-Settings-(Shapefile).md"/>
+            <toc-element topic="German-States-Map-With-Categories.md"/>
+            <toc-element topic="USA-States-Map-Adjusted.md"/>
+            <toc-element topic="USA-States-Election-Results-Map-(Joined-Datasets).md"/>
+            <toc-element topic="USA-States-Map-With-CONUS-Albers-Projection.md"/>
+            <toc-element topic="USA-States-Map-With-City-Points-(Two-Geo-Datasets).md"/>
         </toc-element>
         <toc-element topic="Layout.md">
             <toc-element topic="Base-Layout-Settings.md"/>

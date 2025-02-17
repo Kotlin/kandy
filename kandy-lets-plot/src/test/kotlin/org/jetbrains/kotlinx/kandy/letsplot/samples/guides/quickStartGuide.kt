@@ -881,7 +881,8 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
     @Test
     fun experimentalStatisticsStatBinOnIterableData() {
         // SampleStart
-        plotGrid(listOf(
+        plotGrid(
+            listOf(
             plot {
                 statBin(observation) {
                     points {
