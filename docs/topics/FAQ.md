@@ -45,12 +45,7 @@ See an [example](https://kotlin.github.io/kandy/quick-start-guide.html#export).
 
 
 ## Is there geo tools/geo visualization support?
- * At the moment, no. We’re currently looking into adding support for 
-[GeoTools](https://www.geotools.org/) using 
-[lets-plot-geo](https://github.com/JetBrains/lets-plot-kotlin/blob/master/docs/geotools.md). 
-If you need this support, please follow the [corresponding issue](https://github.com/Kotlin/kandy/issues/280) 
-for updates and cast your vote there as well. 
-It would also be appreciated if you could describe your case and current toolset.
+ * Yes! See [Geo Plotting Guide](Geo-Plotting-Guide.md).
 
 
 ## Does Kandy support 3D plotting?
