@@ -74,11 +74,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 color = Color.GREY
                 alpha = .4
             }
-            layout {
-                size = 600 to 200
-                xAxisLabel = "x"
-                yAxisLabel = "y"
-            }
+            layout.size = 600 to 200
         }
         // SampleEnd
 //            .saveSample()
@@ -93,10 +89,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
             histogram(xs) {
                 fillColor = Color.named("dark_magenta")
             }
-            layout {
-                size = 600 to 200
-                xAxisLabel = "x"
-            }
+            layout.size = 600 to 200
         }
         // SampleEnd
 //            .saveSample()
@@ -112,10 +105,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                     x { scale = scaleX }
                     fillColor = Color.named("dark_magenta")
                 }
-                layout {
-                    size = 600 to 200
-                    xAxisLabel = "x"
-                }
+                layout.size = 600 to 200
             }, 0, 0)
             add(plot {
                 points {
@@ -124,11 +114,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                     color = Color.GREY
                     alpha = .4
                 }
-                layout {
-                    size = 600 to 200
-                    xAxisLabel = "x"
-                    yAxisLabel = "y"
-                }
+                layout.size = 600 to 200
             }, 0, 200)
         }
         // SampleEnd
@@ -167,7 +153,6 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 }
                 layout {
                     size = 600 to 200
-                    xAxisLabel = "x"
                     style(upperStyle)
                 }
             }, 0, 0)
@@ -180,8 +165,6 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 }
                 layout {
                     size = 600 to 200
-                    xAxisLabel = "x"
-                    yAxisLabel = "y"
                     style(lowerStyle)
                 }
             }, 0, 200)
@@ -201,7 +184,6 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 }
                 layout {
                     size = 600 to 200
-                    xAxisLabel = "x"
                     style(upperStyle)
                 }
             }, 0, 0, 600, 100)
@@ -214,8 +196,6 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                 }
                 layout {
                     size = 600 to 200
-                    xAxisLabel = "x"
-                    yAxisLabel = "y"
                     style(lowerStyle)
                 }
             }, 0, 100, 600, 300)

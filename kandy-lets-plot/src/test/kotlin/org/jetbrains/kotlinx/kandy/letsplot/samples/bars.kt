@@ -12,6 +12,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.barsH
 import org.jetbrains.kotlinx.kandy.letsplot.scales.Transformation
 import org.jetbrains.kotlinx.kandy.letsplot.scales.categoricalColorHue
 import org.jetbrains.kotlinx.kandy.letsplot.x
+import org.jetbrains.kotlinx.kandy.letsplot.y
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import org.jetbrains.kotlinx.statistics.kandy.layers.histogram
@@ -68,11 +69,6 @@ class Bars : SampleHelper("bars") {
         val sugar by columnOf(65, 58, 53, 35, 40, 45, 50)
 
         plot {
-            layout {
-                title = "Sugar content"
-                xAxisLabel = "Candy Name"
-                yAxisLabel = "Sugar Content (g per 100g)"
-            }
             bars {
                 x(candy)
                 y(sugar) { scale = continuous(0..100) }
@@ -83,6 +79,11 @@ class Bars : SampleHelper("bars") {
                     width = 1.3
                 }
             }
+
+            x.axis.name = "Candy Name"
+            y.axis.name = "Sugar Content (g per 100g)"
+
+            layout.title = "Sugar content"
         }
             // SampleEnd
             .saveSample()
@@ -98,11 +99,6 @@ class Bars : SampleHelper("bars") {
         val sugar = listOf(65, 58, 53, 35, 40, 45, 50)
 
         plot {
-            layout {
-                title = "Sugar content"
-                xAxisLabel = "Candy Name"
-                yAxisLabel = "Sugar Content (g per 100g)"
-            }
             bars {
                 x(candy)
                 y(sugar) { scale = continuous(0..100) }
@@ -113,6 +109,11 @@ class Bars : SampleHelper("bars") {
                     width = 1.3
                 }
             }
+
+            x.axis.name = "Candy Name"
+            y.axis.name = "Sugar Content (g per 100g)"
+
+            layout.title = "Sugar content"
         }
         // SampleEnd
     }

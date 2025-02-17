@@ -185,6 +185,8 @@ class LegendAndAxis : SampleHelper("layout", "guides") {
                     }
                 }
             }
+            x.axis.name = "Engine displacement (L)"
+            y.axis.name = "Highway MPG"
             layout {
                 size = 700 to 350
                 style {
@@ -195,8 +197,6 @@ class LegendAndAxis : SampleHelper("layout", "guides") {
                         direction = LegendDirection.HORIZONTAL
                     }
                 }
-                xAxisLabel = "Engine displacement (L)"
-                yAxisLabel = "Highway MPG"
             }
         }
             // SampleEnd

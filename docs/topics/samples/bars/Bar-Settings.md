@@ -29,11 +29,6 @@ val candy by columnOf(
 val sugar by columnOf(65, 58, 53, 35, 40, 45, 50)
 
 plot {
-    layout {
-        title = "Sugar content"
-        xAxisLabel = "Candy Name"
-        yAxisLabel = "Sugar Content (g per 100g)"
-    }
     bars {
         x(candy)
         y(sugar) { scale = continuous(0..100) }
@@ -44,6 +39,11 @@ plot {
             width = 1.3
         }
     }
+
+    x.axis.name = "Candy Name"
+    y.axis.name = "Sugar Content (g per 100g)"
+
+    layout.title = "Sugar content"
 }
 ```
 
@@ -58,11 +58,6 @@ val candy = listOf(
 val sugar = listOf(65, 58, 53, 35, 40, 45, 50)
 
 plot {
-    layout {
-        title = "Sugar content"
-        xAxisLabel = "Candy Name"
-        yAxisLabel = "Sugar Content (g per 100g)"
-    }
     bars {
         x(candy)
         y(sugar) { scale = continuous(0..100) }
@@ -73,6 +68,11 @@ plot {
             width = 1.3
         }
     }
+
+    x.axis.name = "Candy Name"
+    y.axis.name = "Sugar Content (g per 100g)"
+
+    layout.title = "Sugar content"
 }
 ```
 
