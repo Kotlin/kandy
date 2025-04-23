@@ -32,7 +32,7 @@ import java.io.File
  * The output directory is created if it doesn't already exist.
  *
  * @param sampleName The name of the sample for which visualizations are being generated.
- * @param folder The folder name to store the generated visualization files. Default is "samples".
+ * @param folder The folder name to store the generated visualization files. The default is "samples".
  */
 public abstract class SampleHelper(sampleName: String, folder: String = "samples") {
 
