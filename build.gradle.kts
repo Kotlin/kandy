@@ -39,7 +39,7 @@ val published = listOf(
     "kandy-lets-plot",
     "kandy-geo",
     "kandy-util",
-    "samples-utils"
+    "kandy-samples-utils"
 )
 
 configure(subprojects.filter { it.name in published }) {
