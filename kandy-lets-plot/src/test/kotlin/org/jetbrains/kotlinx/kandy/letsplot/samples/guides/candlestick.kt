@@ -12,7 +12,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.errorBars
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
-import org.jetbrains.kotlinx.kandy.letsplot.y
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import org.jetbrains.kotlinx.statistics.kandy.layers.candlestick
@@ -89,7 +88,7 @@ class Candlestick : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -126,7 +125,7 @@ class Candlestick : SampleHelper("stat", "guides") {
         }
         statCandlestickBoxesPlot
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
 
@@ -140,7 +139,7 @@ class Candlestick : SampleHelper("stat", "guides") {
         }
         candlestickPlot
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -180,7 +179,7 @@ class Candlestick : SampleHelper("stat", "guides") {
         // SampleStart
         plotGrid(listOf(statCandlestickBoxesPlot, candlestickPlot))
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -200,7 +199,7 @@ class Candlestick : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -221,7 +220,7 @@ class Candlestick : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -230,7 +229,7 @@ class Candlestick : SampleHelper("stat", "guides") {
         candlestick(xList, openList, highList, lowList, closeList)
             // SampleEnd
             .toPlot()
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -281,6 +280,6 @@ class Candlestick : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

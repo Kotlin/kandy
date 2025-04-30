@@ -6,9 +6,7 @@ import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.barsH
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
-import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.util.color.Color
-import org.jetbrains.kotlinx.kandy.util.context.invoke
 import org.jetbrains.kotlinx.statistics.kandy.layers.countPlot
 import org.jetbrains.kotlinx.statistics.kandy.stattransform.statCount
 import kotlin.test.Test
@@ -36,7 +34,7 @@ class CountPlot : SampleHelper("countPlot") {
             countPlot("categories")
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -87,7 +85,7 @@ class CountPlot : SampleHelper("countPlot") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -153,7 +151,7 @@ class CountPlot : SampleHelper("countPlot") {
             countPlot("year")
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -235,7 +233,7 @@ class CountPlot : SampleHelper("countPlot") {
             layout.title = "Distribution of transport used by students"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

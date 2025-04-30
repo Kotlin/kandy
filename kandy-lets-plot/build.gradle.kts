@@ -25,7 +25,7 @@ dependencies {
     testImplementation(libs.kotlin.test)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.statistics)
-    testImplementation(project(":samples-utils"))
+    testImplementation(project(":kandy-samples-utils"))
 }
 
 tasks.test {

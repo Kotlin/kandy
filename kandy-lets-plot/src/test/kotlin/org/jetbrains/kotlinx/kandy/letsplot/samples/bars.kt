@@ -38,7 +38,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -85,7 +85,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -139,7 +139,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -184,7 +184,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -205,7 +205,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -251,7 +251,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -303,7 +303,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -364,7 +364,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -414,7 +414,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -439,7 +439,7 @@ class Bars : SampleHelper("bars") {
             histogram(sample)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

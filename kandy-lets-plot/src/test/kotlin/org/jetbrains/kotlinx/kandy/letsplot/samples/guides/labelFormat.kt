@@ -60,7 +60,7 @@ class LabelFormat : SampleHelper("layout", "guides") {
             layout.size = 900 to 400
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -79,7 +79,7 @@ class LabelFormat : SampleHelper("layout", "guides") {
             layout.size = 900 to 400
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -98,7 +98,7 @@ class LabelFormat : SampleHelper("layout", "guides") {
             layout.size = 900 to 400
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -120,7 +120,7 @@ class LabelFormat : SampleHelper("layout", "guides") {
             layout.size = 900 to 400
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -141,7 +141,7 @@ class LabelFormat : SampleHelper("layout", "guides") {
             layout.size = 900 to 400
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -176,6 +176,6 @@ class LabelFormat : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

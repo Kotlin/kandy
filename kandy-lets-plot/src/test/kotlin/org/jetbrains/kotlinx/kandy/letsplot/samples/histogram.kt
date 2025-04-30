@@ -6,7 +6,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.bars
 import org.jetbrains.kotlinx.kandy.letsplot.layers.line
 import org.jetbrains.kotlinx.kandy.letsplot.settings.LineType
-import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import org.jetbrains.kotlinx.statistics.binning.BinsOption
@@ -29,7 +28,7 @@ class Histogram : SampleHelper("histogram") {
             histogram("sample")
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -77,7 +76,7 @@ class Histogram : SampleHelper("histogram") {
             layout.title = "Flight length experiment"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -130,7 +129,7 @@ class Histogram : SampleHelper("histogram") {
             histogram("sample")
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -179,7 +178,7 @@ class Histogram : SampleHelper("histogram") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

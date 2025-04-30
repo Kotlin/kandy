@@ -13,7 +13,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.scales.BrewerPalette
 import org.jetbrains.kotlinx.kandy.letsplot.scales.continuousColorBrewer
-import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.statistics.kandy.layers.heatmap
 import org.jetbrains.kotlinx.statistics.kandy.statplots.configure
@@ -77,7 +76,7 @@ class Heatmap : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -95,7 +94,7 @@ class Heatmap : SampleHelper("stat", "guides") {
         }
         statCount2DAndTilePlot
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -107,7 +106,7 @@ class Heatmap : SampleHelper("stat", "guides") {
         }
         heatmapLayerPlot
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -124,7 +123,7 @@ class Heatmap : SampleHelper("stat", "guides") {
         // SampleStart
         plotGrid(listOf(statCount2DAndTilePlot, heatmapLayerPlot))
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -142,7 +141,7 @@ class Heatmap : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -152,7 +151,7 @@ class Heatmap : SampleHelper("stat", "guides") {
             heatmap(`class`, drv, hwy)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -164,7 +163,7 @@ class Heatmap : SampleHelper("stat", "guides") {
         )
             // SampleEnd
             .toPlot()
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -173,7 +172,7 @@ class Heatmap : SampleHelper("stat", "guides") {
         df.heatmap("class", "drv")
             // SampleEnd
             .toPlot()
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -189,7 +188,7 @@ class Heatmap : SampleHelper("stat", "guides") {
         }
             // SampleEnd
             .toPlot()
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -217,6 +216,6 @@ class Heatmap : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

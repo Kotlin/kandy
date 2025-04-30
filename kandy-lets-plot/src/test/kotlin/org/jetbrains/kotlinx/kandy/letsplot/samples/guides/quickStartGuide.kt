@@ -148,7 +148,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -175,7 +175,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
 
@@ -218,7 +218,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -252,7 +252,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -275,7 +275,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -296,7 +296,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -314,7 +314,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             y.axis.limits = 0.0..1.0
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -351,7 +351,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -399,7 +399,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -424,7 +424,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         }
         mpgInfoPlot
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -442,7 +442,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         }
         mpgCountPlot
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -471,7 +471,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -496,7 +496,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -514,7 +514,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -531,7 +531,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -558,7 +558,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         }
         meanCylPlot
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -576,7 +576,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -593,7 +593,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -626,7 +626,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         // SampleStart
         plotGrid(listOf(mpgInfoPlot, mpgCountPlot, meanCylPlot), nCol = 2)
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -663,7 +663,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             add(mpgInfoPlot, 0, 200, 700, 300)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -689,7 +689,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             facetGridX(drv, scalesSharing = ScalesSharing.FREE_X)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -715,7 +715,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             facetGridY(cyl, format = "d")
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -741,7 +741,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             facetGrid(drv, cyl, yFormat = "d")
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -770,7 +770,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -818,7 +818,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -831,7 +831,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         }
         histPlot
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -850,7 +850,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
 
         plotGrid(listOf(histPlot, binBarPlot), 2)
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -875,7 +875,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -896,7 +896,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         ), 2)
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -918,7 +918,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             layout.title = "PLOT TITLE"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -932,7 +932,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             layout.style(Style.Classic)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -985,7 +985,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             ), 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -1009,7 +1009,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
 
         plotWithStyle(simpleCustomStyle)
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -1020,7 +1020,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         }
         plotWithStyle(blankAxesStyle)
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -1037,7 +1037,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -1054,7 +1054,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -1071,7 +1071,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -1093,7 +1093,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -1110,7 +1110,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -1127,7 +1127,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -1144,7 +1144,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -1166,7 +1166,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -1193,7 +1193,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -1213,6 +1213,6 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         }
         plotForExport
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

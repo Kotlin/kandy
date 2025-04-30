@@ -18,7 +18,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.*
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.plotGrid
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
-import org.jetbrains.kotlinx.kandy.letsplot.x
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.statistics.kandy.layers.boxplot
 import org.jetbrains.kotlinx.statistics.kandy.statplots.boxplot
@@ -364,7 +363,7 @@ class Boxplot : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -382,7 +381,7 @@ class Boxplot : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -392,7 +391,7 @@ class Boxplot : SampleHelper("stat", "guides") {
             boxplot(`class`, hwy)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -410,7 +409,7 @@ class Boxplot : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -419,7 +418,7 @@ class Boxplot : SampleHelper("stat", "guides") {
         groupedDF.boxplot("class", "hwy")
             // SampleEnd
             .toPlot()
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -441,7 +440,7 @@ class Boxplot : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -453,6 +452,6 @@ class Boxplot : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

@@ -44,7 +44,7 @@ class Points : SampleHelper("points") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -100,7 +100,7 @@ class Points : SampleHelper("points") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -159,7 +159,7 @@ class Points : SampleHelper("points") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -210,7 +210,7 @@ class Points : SampleHelper("points") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -249,7 +249,7 @@ class Points : SampleHelper("points") {
             layout.title = "Penalty Shot Outcomes Analysis"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -305,7 +305,7 @@ class Points : SampleHelper("points") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -391,7 +391,7 @@ class Points : SampleHelper("points") {
             layout.title = "May GitHub contributions"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -460,7 +460,7 @@ class Points : SampleHelper("points") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -504,7 +504,7 @@ class Points : SampleHelper("points") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -548,7 +548,7 @@ class Points : SampleHelper("points") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -566,6 +566,6 @@ class Points : SampleHelper("points") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

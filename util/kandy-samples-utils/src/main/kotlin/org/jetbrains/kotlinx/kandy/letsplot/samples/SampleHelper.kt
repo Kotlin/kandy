@@ -1,7 +1,9 @@
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.letsplot.samples
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.io.toStandaloneHTML
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
@@ -21,28 +23,37 @@ import org.junit.rules.TestName
 import java.io.File
 
 /**
- * Abstract class for saving plots samples.
+ * Base test class with methods configured for saving plots and dataframes samples.
+ * Allows saving samples through tests running.
  *
- * This class is designed to facilitate saving visual outputs such as `Plot`, `PlotGrid`, and `PlotBunch`
- * in SVG format with support for theming adjustments, including light and dark themes.
- * Additionally, it provides default configurations for plot scaling and preview sizes.
+ * This class is designed to facilitate saving visual outputs such as [Plot], [PlotGrid], and [PlotBunch],
+ * as well as dataframe-like structures [DataFrame] and [GroupBy].
  *
- * @constructor Initializes the sample helper with a specific sample name and an optional folder name
- * to define the output directory for saving generated visualizations.
- * The output directory is created if it doesn't already exist.
+ * It provides methods for saving plots as SVG files and for saving dataframes as HTML files for Writerside docs.
+ * These methods provide default configurations for plot scaling and preview sizes, as well as
+ * duplicating images for dark themes.
  *
- * @param sampleName The name of the sample for which visualizations are being generated.
- * @param folder The folder name to store the generated visualization files. The default is "samples".
+ * Replace IDS inside the XML (SVG/HTML) with the static ones, allowing to track changes after test rerun.
+ *
+ * @param sampleName      Identifier of the sample used to name output folders.
+ * @param subFolder       Subdirectory under the root folders where sample files are placed. Defaults to `"samples"`.
+ * @param imagesFolder    Base directory for Writerside images in the docs. Defaults to `"../docs/images"`.
+ * @param resourcesFolder Base directory for Writerside resources in the docs. Defaults to `"../docs/resources"`.
  */
-public abstract class SampleHelper(sampleName: String, folder: String = "samples") {
+public abstract class SampleHelper(
+    sampleName: String,
+    subFolder: String = "samples",
+    imagesFolder: String = "../docs/images",
+    resourcesFolder: String = "../docs/resources"
+) {
 
     @JvmField
     @Rule
     public val testName: TestName = TestName()
 
-    private val pathToImageFolder = "../docs/images/$folder/$sampleName"
+    private val pathToImageFolder = "$imagesFolder/$subFolder/$sampleName"
 
-    private val pathToResourceFolder = "../docs/resources"
+    private val pathToResourceFolder = "$resourcesFolder/$subFolder/$sampleName"
 
     private val darkColor = Color.hex("#19191c")
 
@@ -66,7 +77,7 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
      * @param savePreview Boolean flag that indicates whether to also generate and save preview versions
      * of the SVG files. When `true`, additional preview files are created with "preview_" prefixed to the file name.
      */
-    public fun Plot.saveSample(savePreview: Boolean = false) {
+    public fun Plot.savePlotSVGSample(savePreview: Boolean = false) {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name, savePreview)
         this.changeThemeToDarkMode()
@@ -85,7 +96,7 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
      * @param scaling Boolean flag that determines whether the SVG output should scale to an appropriate size.
      * If `true`, the method scales the output appropriately; otherwise, it does not.
      */
-    public fun PlotGrid.saveSample(savePreview: Boolean = false, scaling: Boolean = true) {
+    public fun PlotGrid.savePlotSVGSample(savePreview: Boolean = false, scaling: Boolean = true) {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name, savePreview, scaling)
         plots.forEach {
@@ -107,7 +118,7 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
      * @param scaling Boolean flag that determines whether the SVG output should scale to an appropriate size.
      * If `true`, the method scales the output appropriately; otherwise, it does not.
      */
-    public fun PlotBunch.saveSample() {
+    public fun PlotBunch.savePlotSVGSample() {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name)
         this.items.forEach {
@@ -117,13 +128,22 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
     }
 
     /**
-     * Saves the current [DataFrame] as HTML.
+     * Saves this [DataFrame] as HTML.
      */
-    public fun DataFrame<*>.saveTable() {
+    public fun DataFrame<*>.saveDfHtmlSample() {
         val name = testName.methodName.replace("_dataframe", "")
-        val html = this.toStandaloneHTML(configuration = SamplesDisplayConfiguration, getFooter = WritersideFooter) + WritersideStyle
-        html.writeHTML(File(pathToResourceFolder, "$name.html"))
+        val dfHtml = this.toStandaloneHTML(
+            configuration = SamplesDisplayConfiguration,
+            getFooter = WritersideFooter
+        ) + WritersideStyle
+        val htmlWithStaticIDs = replaceIdsWithStatic(dfHtml.toString())
+        File(pathToResourceFolder, "$name.html").writeText(htmlWithStaticIDs)
     }
+
+    /**
+     * Saves this [GroupBy] as HTML.
+     */
+    public fun GroupBy<*, *>.saveDfHtmlSample(): Unit = toDataFrame().saveDfHtmlSample()
 
     private fun Plot.changeThemeToDarkMode() {
         val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
@@ -187,7 +207,7 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
     }
 
     private fun Figure.toSVG(): String {
-        return replaceIdsWithConstant(PlotSvgExport.buildSvgImageFromRawSpecs(this.toSpec()))
+        return replaceIdsWithStatic(PlotSvgExport.buildSvgImageFromRawSpecs(this.toSpec()))
     }
 
     private fun Plot.saveAsSVG(name: String, savePreview: Boolean = false) {
@@ -211,12 +231,14 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
         File(pathToImageFolder, "$name.svg").writeText(wrap().toSVG())
     }
 
-    private fun replaceIdsWithConstant(svgString: String): String {
+    private val idPrefix = "_sample_helper_static_id_prefix_"
+
+    private fun replaceIdsWithStatic(xmlString: String): String {
         val regex = Regex("""(id\s*=\s*["'])([^"']*)["']""")
         var count = 0
-        var result = svgString
-        regex.findAll(svgString).forEach {
-            result = result.replace(it.groupValues[2], "xXxprefixXx${count++}")
+        var result = xmlString
+        regex.findAll(xmlString).forEach {
+            result = result.replace(it.groupValues[2], "$idPrefix${count++}")
         }
         return result
     }

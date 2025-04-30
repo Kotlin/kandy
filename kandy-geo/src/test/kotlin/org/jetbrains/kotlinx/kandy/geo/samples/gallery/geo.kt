@@ -35,20 +35,20 @@ class Geo : SampleHelper("geo") {
     fun usa_simple_poly_json() {
         // SampleStart
         val usaStates =
-            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
+            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA.json")
 
         usaStates.plot {
             geoPolygon()
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
     fun germany_map_settings_shapefile() {
         // SampleStart
         val worldStates =
-            GeoDataFrame.readShapefile("https://github.com/AndreiKingsley/datasets/raw/refs/heads/main/ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp")
+            GeoDataFrame.readShapefile("https://github.com/AndrewKis/datasets/raw/refs/heads/main/ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp")
 
         val germanStates = worldStates.modify {
             filter { "admin"<String>() == "Germany" }//SampleEnd
@@ -70,14 +70,14 @@ class Geo : SampleHelper("geo") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
     fun germany_map_categories() {
         // SampleStart
         val worldStates =
-            GeoDataFrame.readShapefile("https://github.com/AndreiKingsley/datasets/raw/refs/heads/main/ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp")
+            GeoDataFrame.readShapefile("https://github.com/AndrewKis/datasets/raw/refs/heads/main/ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp")
 
         val germanStates = worldStates.modify {
             filter { "admin"<String>() == "Germany" }//SampleEnd
@@ -105,14 +105,14 @@ class Geo : SampleHelper("geo") {
             }
         }
             // SampleEnd
-            .saveSample(savePreview = true)
+            .savePlotSVGSample(savePreview = true)
     }
 
     @Test
     fun usa_adjusted() {
         // SampleStart
         val usaStates =
-            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
+            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA.json")
         val name by column<String>()
         val geometry by column<Geometry>()
 
@@ -130,14 +130,14 @@ class Geo : SampleHelper("geo") {
             geoMap()
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
     fun usa_election_results_joined() {
         // SampleStart
         val usaStates =
-            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
+            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA.json")
         val name by column<String>()
         val geometry by column<Geometry>()
 
@@ -152,7 +152,7 @@ class Geo : SampleHelper("geo") {
         }
 
         val usa2024electionResults =
-            DataFrame.readCSV("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
+            DataFrame.readCSV("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA_2024_elections_results_by_state.csv")
         val winner by column<String>()
 
         val usaStatesWithElectionResults = usaAdjusted.modify {
@@ -179,14 +179,14 @@ class Geo : SampleHelper("geo") {
             }
         }
             // SampleEnd
-            .saveSample(savePreview = true)
+            .savePlotSVGSample(savePreview = true)
     }
 
     @Test
     fun usa_conus_albers() {
         // SampleStart
         val usaStates =
-            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
+            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA.json")
 
         val usaAlbers = usaStates
             .modify {
@@ -200,18 +200,18 @@ class Geo : SampleHelper("geo") {
             layout.title = "US With CONUS Albers Projection"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
     fun usa_with_cities() {
         // SampleStart
         val usaStates =
-            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
+            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA.json")
         val name by column<String>()
 
         val usaCities =
-            GeoDataFrame.readGeoJson("https://github.com/AndreiKingsley/datasets/raw/refs/heads/main/USA_cities.json")
+            GeoDataFrame.readGeoJson("https://github.com/AndrewKis/datasets/raw/refs/heads/main/USA_cities.json")
         val pop_min by column<Int>()
 
         usaStates.modify {
@@ -241,6 +241,6 @@ class Geo : SampleHelper("geo") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

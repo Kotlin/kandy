@@ -187,7 +187,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
             }, 0, 200)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

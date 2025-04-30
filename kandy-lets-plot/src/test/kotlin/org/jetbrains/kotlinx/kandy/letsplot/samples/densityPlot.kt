@@ -5,8 +5,6 @@ import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.io.readCSV
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
-import org.jetbrains.kotlinx.kandy.letsplot.x
-import org.jetbrains.kotlinx.kandy.letsplot.y
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import org.jetbrains.kotlinx.statistics.kandy.layers.densityPlot
@@ -33,7 +31,7 @@ class DensityPlot : SampleHelper("densityPlot") {
             // SampleStart
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -83,7 +81,7 @@ class DensityPlot : SampleHelper("densityPlot") {
             layout.title = "Flight length experiment"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -165,7 +163,7 @@ class DensityPlot : SampleHelper("densityPlot") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -243,7 +241,7 @@ class DensityPlot : SampleHelper("densityPlot") {
             layout.title = "Titanic passengers age distribution"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
 }

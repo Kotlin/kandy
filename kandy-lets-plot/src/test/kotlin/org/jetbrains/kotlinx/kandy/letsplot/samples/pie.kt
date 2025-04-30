@@ -28,7 +28,7 @@ class Pie : SampleHelper("pie") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -73,7 +73,7 @@ class Pie : SampleHelper("pie") {
             layout.style(Style.Void)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -121,7 +121,7 @@ class Pie : SampleHelper("pie") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -164,7 +164,7 @@ class Pie : SampleHelper("pie") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -211,7 +211,7 @@ class Pie : SampleHelper("pie") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -259,7 +259,7 @@ class Pie : SampleHelper("pie") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

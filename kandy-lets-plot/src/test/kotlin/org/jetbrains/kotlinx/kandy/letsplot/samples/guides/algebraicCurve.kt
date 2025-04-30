@@ -109,7 +109,7 @@ class AlgebraicCurve : SampleHelper("geoms", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
 

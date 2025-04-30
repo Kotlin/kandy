@@ -73,9 +73,11 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
         get() = get("revenue") as DataColumn<Double>
     val ColumnsContainer<CompaniesDfSchema>.netIncome
         get() = get("netIncome") as DataColumn<Double>
+
     @get:JvmName("ROA2")
     val ColumnsContainer<CompaniesDfSchema>.ROA
         get() = get("ROA") as DataColumn<Double>
+
     @get:JvmName("ROE2")
     val ColumnsContainer<CompaniesDfSchema>.ROE
         get() = get("ROE") as DataColumn<Double>
@@ -85,6 +87,7 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
         get() = get("assets") as DataColumn<Double>
     val ColumnsContainer<CompaniesDfSchema>.equity
         get() = get("equity") as DataColumn<Double>
+
     @get:JvmName("percentageDebtToEquity2")
     val ColumnsContainer<CompaniesDfSchema>.percentageDebtToEquity
         get() = get("percentageDebtToEquity") as DataColumn<Double>
@@ -107,7 +110,6 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
     private val dataFrame =
         DataFrame.read(dataset)
             .renameToCamelCase().rename("rOA(%)", "rOE(%)").into("ROA", "ROE") as DataFrame<DataFrameSchema>
-
 
 
     private val companiesDf =
@@ -177,14 +179,16 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
         // SampleStart
         dataFrame.head()
             // SampleEnd
-            .saveTable()
+            .saveDfHtmlSample()
     }
 
     @Test
     fun notebook_test_top_12_german_companies_4() {
         // SampleStart
-        // import kotlinx.datetime.format.Padding
-        // import kotlinx.datetime.format.char
+        /*
+        import kotlinx.datetime.format.Padding
+        import kotlinx.datetime.format.char
+         */
 
         // Define a custom date format without zero-padding for the month,
         // separating month/day/year with slashes
@@ -196,17 +200,20 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
             year()
         }
 
+        /*
         // Enum of Business Sectors
-        /*    enum class BusinessSector(val simpleName: String) {
-                AUTOMOTIVE("Automotive"),
-                BANKING("Banking"),
-                INDUSTRIAL_TECH("Industrial"),
-                INSURANCE_FINANCE("Insurance"),
-                TELECOMMUNICATIONS("Telecom"),
-                IT_SOFTWARE("IT"),
-                PHARMA_CHEMICAL("Pharma"),
-                OTHER("Other")
-            }*/
+        enum class BusinessSector(val simpleName: String) {
+            AUTOMOTIVE("Automotive"),
+            BANKING("Banking"),
+            INDUSTRIAL_TECH("Industrial"),
+            INSURANCE_FINANCE("Insurance"),
+            TELECOMMUNICATIONS("Telecom"),
+            IT_SOFTWARE("IT"),
+            PHARMA_CHEMICAL("Pharma"),
+            OTHER("Other")
+        }
+
+         */
 
         // Create a new DataFrame by converting the "period" column to LocalDate using the custom format
         // and converting "percentageDebtToEquity" column to Double,
@@ -245,7 +252,7 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
             financeColumns.max() into "max"
         }
             // SampleEnd
-            .saveTable()
+            .saveDfHtmlSample()
     }
 
     @Test
@@ -262,7 +269,7 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
             financeColumns.max() into "max"
         }
             // SampleEnd
-            .saveTable()
+            .saveDfHtmlSample()
     }
 
     @Test
@@ -277,7 +284,7 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
             ROE.mean() into "Avg ROE"
         }.sortBy { sector }
             // SampleEnd
-            .saveTable()
+            .saveDfHtmlSample()
     }
 
     @Test
@@ -357,7 +364,7 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -406,7 +413,7 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -422,7 +429,7 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
 
         roeAndRoaDf
             // SampleEnd
-            .saveTable()
+            .saveDfHtmlSample()
     }
 
     @Test
@@ -454,7 +461,7 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -486,6 +493,6 @@ class TopGermanCompanies : SampleHelper("top_12_german_companies", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

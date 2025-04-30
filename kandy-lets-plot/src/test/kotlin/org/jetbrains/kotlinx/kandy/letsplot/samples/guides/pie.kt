@@ -74,7 +74,7 @@ class Pie : SampleHelper("geoms", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -96,7 +96,7 @@ class Pie : SampleHelper("geoms", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -140,7 +140,7 @@ class Pie : SampleHelper("geoms", "guides") {
             layout.style(Style.Void)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -192,6 +192,6 @@ class Pie : SampleHelper("geoms", "guides") {
             )
         )
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

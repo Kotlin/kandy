@@ -29,7 +29,7 @@ class JitterPoints : SampleHelper("geoms", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

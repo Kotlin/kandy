@@ -55,7 +55,7 @@ class Heatmap : SampleHelper("heatmap") {
             heatmap("days", "drinks")
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -122,7 +122,7 @@ class Heatmap : SampleHelper("heatmap") {
             y.axis.breaks(df["pclass"].distinct().toList(), format = "d")
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
 }

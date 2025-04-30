@@ -53,6 +53,6 @@ class ExportToFile : SampleHelper("other", "guides") {
 
         myPlot
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

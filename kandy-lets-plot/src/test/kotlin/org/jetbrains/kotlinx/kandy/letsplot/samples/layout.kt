@@ -27,7 +27,7 @@ class Layout : SampleHelper("layout") {
             }
         }
             // SampleEnd
-            .saveSample(true)
+            .savePlotSVGSample(true)
     }
 
     @Test
@@ -46,7 +46,7 @@ class Layout : SampleHelper("layout") {
             }
         }
             // SampleEnd
-            .saveSample(true)
+            .savePlotSVGSample(true)
     }
 
     @Test
@@ -83,7 +83,7 @@ class Layout : SampleHelper("layout") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
 }

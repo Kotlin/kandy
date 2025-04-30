@@ -133,7 +133,7 @@ class Styles : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
 
     }
 
@@ -173,7 +173,7 @@ class Styles : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -214,7 +214,7 @@ class Styles : SampleHelper("layout", "guides") {
             facetGridX(year)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -256,7 +256,7 @@ class Styles : SampleHelper("layout", "guides") {
             fit = true
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -323,7 +323,7 @@ class Styles : SampleHelper("layout", "guides") {
             fit = true
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -337,7 +337,7 @@ class Styles : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -357,7 +357,7 @@ class Styles : SampleHelper("layout", "guides") {
             nCol = 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -373,7 +373,7 @@ class Styles : SampleHelper("layout", "guides") {
             nCol = 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -389,7 +389,7 @@ class Styles : SampleHelper("layout", "guides") {
             nCol = 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -405,7 +405,7 @@ class Styles : SampleHelper("layout", "guides") {
             nCol = 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -421,7 +421,7 @@ class Styles : SampleHelper("layout", "guides") {
             nCol = 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -439,7 +439,7 @@ class Styles : SampleHelper("layout", "guides") {
             nCol = 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -455,7 +455,7 @@ class Styles : SampleHelper("layout", "guides") {
             nCol = 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -490,7 +490,7 @@ class Styles : SampleHelper("layout", "guides") {
             nCol = 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -514,7 +514,7 @@ class Styles : SampleHelper("layout", "guides") {
             nCol = 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -533,7 +533,7 @@ class Styles : SampleHelper("layout", "guides") {
             nCol = 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -657,7 +657,7 @@ class Styles : SampleHelper("layout", "guides") {
             nCol = 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 
     @Test
@@ -697,6 +697,6 @@ class Styles : SampleHelper("layout", "guides") {
             nCol = 2
         )
             // SampleEnd
-            .saveSample(scaling = false)
+            .savePlotSVGSample(scaling = false)
     }
 }

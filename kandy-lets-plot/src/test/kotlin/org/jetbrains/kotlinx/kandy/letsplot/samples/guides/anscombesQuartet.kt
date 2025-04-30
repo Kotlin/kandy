@@ -73,6 +73,6 @@ class AnscombesQuartet : SampleHelper("multiplot", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

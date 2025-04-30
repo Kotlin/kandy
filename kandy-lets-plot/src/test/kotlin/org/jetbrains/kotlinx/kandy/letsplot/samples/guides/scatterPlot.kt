@@ -66,7 +66,7 @@ class Scatter : SampleHelper("geoms", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -85,7 +85,7 @@ class Scatter : SampleHelper("geoms", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -106,7 +106,7 @@ class Scatter : SampleHelper("geoms", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -138,7 +138,7 @@ class Scatter : SampleHelper("geoms", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
