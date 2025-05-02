@@ -167,7 +167,7 @@ def _process_cells_for_md(
                 # Add intermediate folder with the file name for table resources
                 folder_name = os.path.splitext(os.path.basename(md_filename))[0]
                 md_file.write(
-                    f'<inline-frame src="./resources/{folder_name}/{function_name}.html" width="100%" height="500px"></inline-frame>\n\n')
+                    f'<inline-frame src="./resources/{function_name}.html" width="100%" height="500px"></inline-frame>\n\n')
             elif output_type == 'plot':
                 md_file.write(f'![{function_name}]({function_name}.svg)\n\n')
             elif output_type == 'generic' and output_content:
