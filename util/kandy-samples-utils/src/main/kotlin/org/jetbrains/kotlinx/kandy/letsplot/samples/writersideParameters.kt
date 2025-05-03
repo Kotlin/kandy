@@ -73,15 +73,6 @@ observer.observe(document.querySelector('.dataframe'), {
     characterData: true
 });
 
-
-window.addEventListener('message', (event) => {
-    if (event.data && event.data.type === 'setTheme') {
-        document.documentElement.setAttribute('theme', event.data.theme);
-   
-        event.source.postMessage({ type: 'themeSet', theme: event.data.theme }, '*');
-    }
-}, false);
-
     """.trimIndent()
 )
 
