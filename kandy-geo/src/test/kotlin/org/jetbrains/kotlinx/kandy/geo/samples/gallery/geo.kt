@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.dataframe.geo.io.readGeoJson
 import org.jetbrains.kotlinx.dataframe.geo.io.readShapefile
 import org.jetbrains.kotlinx.dataframe.geo.jts.scaleAroundCenter
 import org.jetbrains.kotlinx.dataframe.geo.jts.translate
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
@@ -152,7 +152,7 @@ class Geo : SampleHelper("geo") {
         }
 
         val usa2024electionResults =
-            DataFrame.readCSV("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA_2024_elections_results_by_state.csv")
+            DataFrame.readCsv("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA_2024_elections_results_by_state.csv")
         val winner by column<String>()
 
         val usaStatesWithElectionResults = usaAdjusted.modify {

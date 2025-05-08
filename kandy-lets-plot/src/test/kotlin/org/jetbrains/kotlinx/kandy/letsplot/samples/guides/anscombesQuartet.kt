@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.dataframe.api.ParserOptions
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.describe
 import org.jetbrains.kotlinx.dataframe.api.head
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.layers.abLine
@@ -18,7 +18,7 @@ import kotlin.test.Test
 class AnscombesQuartet : SampleHelper("multiplot", "guides") {
 
     private val df =
-        DataFrame.readCSV(
+        DataFrame.readCsv(
             "https://gist.githubusercontent.com/ericbusboom/b2ac1d366c005cd2ed8c/raw/c92c66e43d144fa9c29dbd602d5af6988e8db533/anscombes.csv",
             parserOptions = ParserOptions(locale = Locale.ENGLISH)
         )
@@ -29,7 +29,7 @@ class AnscombesQuartet : SampleHelper("multiplot", "guides") {
     fun guideAnscombesQuartetReadData() {
         // SampleStart
         val df =
-            DataFrame.readCSV(
+            DataFrame.readCsv(
                 "https://gist.githubusercontent.com/ericbusboom/b2ac1d366c005cd2ed8c/raw/c92c66e43d144fa9c29dbd602d5af6988e8db533/anscombes.csv",
                 parserOptions = ParserOptions(locale = Locale.ENGLISH)
             )

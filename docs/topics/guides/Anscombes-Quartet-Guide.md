@@ -22,7 +22,7 @@ This guide offers a clear pathway to visualize and understand this classic examp
 
 ```kotlin
 val df =
-    DataFrame.readCSV(
+    DataFrame.readCsv(
         "https://gist.githubusercontent.com/ericbusboom/b2ac1d366c005cd2ed8c/raw/c92c66e43d144fa9c29dbd602d5af6988e8db533/anscombes.csv",
         parserOptions = ParserOptions(locale = Locale.ENGLISH)
     )

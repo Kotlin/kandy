@@ -515,7 +515,7 @@ as you can utilize auto-generated property columns without manually creating col
 ```kotlin
 // Reading a CSV file into a DataFrame
 val mpgDF =
-    DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+    DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 // Display the first five rows of the DataFrame
 mpgDF.head()
 ```

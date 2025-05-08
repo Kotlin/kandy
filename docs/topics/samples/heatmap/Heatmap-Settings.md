@@ -20,7 +20,7 @@ Explore the 'Heatmap Settings' example using Kotlin and Kandy to understand the 
 <!---FUN heatmap_settings-->
 
 ```kotlin
-val df = DataFrame.readCSV(
+val df = DataFrame.readCsv(
     fileOrUrl = "https://raw.githubusercontent.com/Kotlin/dataframe/master/examples/idea-examples/titanic/src/main/resources/titanic.csv",
     delimiter = ';', parserOptions = ParserOptions(locale = java.util.Locale.FRENCH)
 )

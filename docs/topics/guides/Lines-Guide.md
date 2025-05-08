@@ -19,7 +19,7 @@ This guide offers insights into creating impactful line charts, showcasing data 
 
 ```kotlin
 val mpgDf =
-    DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+    DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 mpgDf.head()
 ```
 

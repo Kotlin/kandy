@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.head
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
@@ -21,7 +21,7 @@ import kotlin.test.Test
 class LegendAndAxis : SampleHelper("layout", "guides") {
 
     private val mpgDf =
-        DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+        DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
     private val displ = column<Double>("displ")
     private val hwy = column<Int>("hwy")
     private val manufacturer = column<String>("manufacturer")
@@ -32,7 +32,7 @@ class LegendAndAxis : SampleHelper("layout", "guides") {
     fun guideLegendAxisReadData() {
         // SampleStart
         val mpgDf =
-            DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+            DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
         mpgDf.head()
         // SampleEnd
     }

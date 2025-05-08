@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.count
 import org.jetbrains.kotlinx.dataframe.api.groupBy
 import org.jetbrains.kotlinx.dataframe.api.head
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.*
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
@@ -25,7 +25,7 @@ import kotlin.test.assertNotNull
 class Styles : SampleHelper("layout", "guides") {
 
     private val df =
-        DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+        DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 
     private val year = column<Int>("year")
     private val cty = column<Int>("cty")
@@ -102,7 +102,7 @@ class Styles : SampleHelper("layout", "guides") {
     fun guideStylesReadData() {
         // SampleStart
         val df =
-            DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+            DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
         df.head(3)
         // SampleEnd
     }

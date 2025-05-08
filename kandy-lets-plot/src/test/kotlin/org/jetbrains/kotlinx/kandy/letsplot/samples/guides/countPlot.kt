@@ -5,7 +5,7 @@ import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.groupBy
 import org.jetbrains.kotlinx.dataframe.api.head
 import org.jetbrains.kotlinx.dataframe.get
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.plot
@@ -30,7 +30,7 @@ import kotlin.test.Test
 class CountPlot : SampleHelper("stat", "guides") {
 
     private val mpgDF =
-        DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+        DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
     private val `class` = column<String>("class")
     private val drv = column<String>("drv")
     private val hwy = column<Int>("hwy")
@@ -41,7 +41,7 @@ class CountPlot : SampleHelper("stat", "guides") {
         // SampleStart
         // Use "mpg" dataset
         val mpgDF =
-            DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+            DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
         mpgDF.head(5)
         // SampleEnd
     }

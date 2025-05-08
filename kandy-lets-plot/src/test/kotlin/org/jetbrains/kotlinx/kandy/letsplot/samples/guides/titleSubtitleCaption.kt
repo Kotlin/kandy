@@ -3,7 +3,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.head
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
@@ -18,7 +18,7 @@ import kotlin.test.Test
 class TitleSubtitleCaption : SampleHelper("layout", "guides") {
 
     private val mpgDf =
-        DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+        DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 
     private val displ = column<Double>("displ")
     private val drv = column<String>("drv")
@@ -29,7 +29,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
     fun guideTitleReadData() {
         // SampleStart
         val mpgDf =
-            DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+            DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
         mpgDf.head()
         // SampleEnd
     }

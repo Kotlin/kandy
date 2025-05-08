@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.column
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
 import org.jetbrains.kotlinx.kandy.letsplot.feature.position
@@ -13,7 +13,7 @@ import kotlin.test.Test
 class JitterPoints : SampleHelper("geoms", "guides") {
 
     private val mpgDf =
-        DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+        DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 
     private val drv = column<String>("drv")
     private val hwy = column<Int>("hwy")

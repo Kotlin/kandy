@@ -207,7 +207,7 @@ Let's apply the format string to the date `Aug 6, 2019` and the time `4:46:35`:
 
 ```kotlin
 // The US Unemployment Rates 2000-2016
-val economics = DataFrame.readCSV(
+val economics = DataFrame.readCsv(
     "https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/economics.csv",
     parserOptions = ParserOptions(Locale.ENGLISH)
 ).filter { "date"<LocalDate>() >= LocalDate(2001, 1, 1) }

@@ -516,7 +516,7 @@ of old ones.
 ```kotlin
 // Use "mpg" dataset
 val mpgDF =
-    DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+    DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 mpgDF.head()
 ```
 

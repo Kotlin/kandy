@@ -4,7 +4,7 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.ParserOptions
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.head
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.invoke
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
@@ -19,7 +19,7 @@ import kotlin.test.Test
 
 class Facets : SampleHelper("multiplot", "guides") {
 
-    private val dataset = DataFrame.readCSV(
+    private val dataset = DataFrame.readCsv(
         "https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg2.csv",
         parserOptions = ParserOptions(Locale.ENGLISH)
     )
@@ -31,7 +31,7 @@ class Facets : SampleHelper("multiplot", "guides") {
     @Test
     fun guideFacetsReadDataFrame() {
         // SampleStart
-        val dataset = DataFrame.readCSV(
+        val dataset = DataFrame.readCsv(
             "https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg2.csv",
             parserOptions = ParserOptions(Locale.ENGLISH)
         )

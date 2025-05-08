@@ -74,7 +74,7 @@ They can be simply `Iterable` (`List`, `Set`, etc.) or a reference to a column i
 ```kotlin
 // Use "mpg" dataset
 val mpgDF =
-    DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+    DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 mpgDF.head(5)
 ```
 
