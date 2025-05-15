@@ -40,8 +40,10 @@ test running.
 5. Require additional Writerside HTML with custom JS.
    See docs/cfg/buildprofiles.xml, docs/cfg/include_in_head.html, docs/cfg/static/custom.js.
 
-6. Don't work on preview! Deploy Writerside locally, using http-server; build WS web archive, 
-unzip and run in command in folder:
+6. Don't work on preview! Deploy Writerside locally, using http-server:
+* Build WS web archive
+![ws_web_archive.png](ws_web_archive.png)
+* Unzip and run in command in the folder:
     ```bash
     http-server
     ```
@@ -49,3 +51,4 @@ unzip and run in command in folder:
    ```bash
    python -m http.server  
    ```
+   (the second one is preferable — it doesn't cache data, need only any python env).

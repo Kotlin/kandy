@@ -34,44 +34,47 @@ internal val WritersideStyle = DataFrameHtmlData(
         """.trimIndent(),
     script = """
         function sendHeight() {
-    const table = document.querySelector('table.dataframe');
-    if (!table) return;
+            const table = document.querySelector('table.dataframe');
+            if (!table) return;
+        
+            let height = 0;
+            
+            const thead = table.querySelector('thead');
+            if (thead) height += thead.offsetHeight;
+            
+            const rows = table.querySelectorAll(':scope > tbody > tr');
+            rows.forEach(row => {
+                height += row.offsetHeight;
+            });
+            
+            height += getVerticalMargins(table) + 10;
+        
+            window.parent.postMessage({ type: 'iframeHeight', height: Math.ceil(height) }, '*');
+        }
+        
+        function getVerticalMargins(element) {
+            const style = getComputedStyle(element);
+            return parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+        }
+        
+        function repeatHeightCalculation(maxRetries = 10, interval = 100) {
+            let retries = 0;
+            const intervalId = setInterval(() => {
+                sendHeight();
+                retries++;
+                if (retries >= maxRetries) clearInterval(intervalId);
+            }, interval);
+        }
+        
+        window.addEventListener('load', repeatHeightCalculation);
+        
+        const observer = new MutationObserver(() => repeatHeightCalculation(5, 50));
+        observer.observe(document.querySelector('.dataframe'), {
+            childList: true,
+            subtree: true,
+            characterData: true,
+        });
 
-    const thead = table.querySelector('thead');
-    const tbody = table.querySelector('tbody');
-    if (!thead || !tbody || tbody.children.length === 0) return;
-
-    let height = thead.offsetHeight;
-    const rows = tbody.querySelectorAll('tr');
-    for (let i = 0; i < Math.min(rows.length, 5); i++) {
-        height += rows[i].offsetHeight;
-    }
-
-    const margin = parseFloat(getComputedStyle(table).marginTop) +
-                   parseFloat(getComputedStyle(table).marginBottom);
-
-    const totalHeight = Math.ceil(height + margin + 10);
-
-    window.parent.postMessage({ type: 'iframeHeight', height: totalHeight }, '*');
-}
-
-function repeatHeightCalculation(maxRetries = 10, interval = 100) {
-    let retries = 0;
-    const intervalId = setInterval(() => {
-        sendHeight();
-        retries++;
-        if (retries >= maxRetries) clearInterval(intervalId);
-    }, interval);
-}
-
-window.addEventListener('load', repeatHeightCalculation);
-
-const observer = new MutationObserver(sendHeight);
-observer.observe(document.querySelector('.dataframe'), {
-    childList: true,
-    subtree: true,
-    characterData: true
-});
 
     """.trimIndent()
 )
