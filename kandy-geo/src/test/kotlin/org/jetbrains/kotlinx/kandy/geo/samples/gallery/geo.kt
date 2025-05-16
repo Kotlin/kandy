@@ -112,17 +112,16 @@ class Geo : SampleHelper("geo") {
     fun usa_adjusted() {
         // SampleStart
         val usaStates =
-            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA.json")
-        val name by column<String>()
+            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
         val geometry by column<Geometry>()
 
         val usaAdjusted = usaStates.modify {
-            update(geometry).where { name() == "Alaska" }.with {
+            update { geometry }.where { "name"<String>() == "Alaska" }.with {
                 it.scaleAroundCenter(0.5).translate(40.0, -40.0)
             }
                 // move Hawaii and Puerto Rico
-                .update(geometry).where { name() == "Hawaii" }.with { it.translate(65.0, 0.0) }
-                .update(geometry).where { name() == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }// SampleEnd
+                .update { geometry }.where { "name"<String>() == "Hawaii" }.with { it.translate(65.0, 0.0) }
+                .update { geometry }.where { "name"<String>() == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }// SampleEnd
                     as DataFrame<Nothing> // SampleStart
         }
 
@@ -137,26 +136,26 @@ class Geo : SampleHelper("geo") {
     fun usa_election_results_joined() {
         // SampleStart
         val usaStates =
-            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA.json")
+            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
         val name by column<String>()
         val geometry by column<Geometry>()
 
         val usaAdjusted = usaStates.modify {
-            update(geometry).where { name() == "Alaska" }.with {
+            update { geometry }.where { "name"<String>() == "Alaska" }.with {
                 it.scaleAroundCenter(0.5).translate(40.0, -40.0)
             }
                 // move Hawaii and Puerto Rico
-                .update(geometry).where { name() == "Hawaii" }.with { it.translate(65.0, 0.0) }
-                .update(geometry).where { name() == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }// SampleEnd
+                .update { geometry }.where { "name"<String>() == "Hawaii" }.with { it.translate(65.0, 0.0) }
+                .update { geometry }.where { "name"<String>() == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }// SampleEnd
                     as DataFrame<Nothing> // SampleStart
         }
 
         val usa2024electionResults =
-            DataFrame.readCsv("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA_2024_elections_results_by_state.csv")
+            DataFrame.readCsv("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
         val winner by column<String>()
 
         val usaStatesWithElectionResults = usaAdjusted.modify {
-            innerJoin(usa2024electionResults) { name }//SampleEnd
+            innerJoin(usa2024electionResults) { name } //SampleEnd
                     as DataFrame<Nothing> // SampleStart
         }
 
@@ -207,15 +206,15 @@ class Geo : SampleHelper("geo") {
     fun usa_with_cities() {
         // SampleStart
         val usaStates =
-            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA.json")
+            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
         val name by column<String>()
 
         val usaCities =
-            GeoDataFrame.readGeoJson("https://github.com/AndrewKis/datasets/raw/refs/heads/main/USA_cities.json")
+            GeoDataFrame.readGeoJson("https://github.com/AndreiKingsley/datasets/raw/refs/heads/main/USA_cities.json")
         val pop_min by column<Int>()
 
         usaStates.modify {
-            filter { name() !in listOf("Alaska", "Hawaii", "Puerto Rico") }//SampleEnd
+            filter { "name"<String>() !in listOf("Alaska", "Hawaii", "Puerto Rico") }//SampleEnd
                     as DataFrame<Nothing> // SampleStart
         }.plot {
             geoMap {

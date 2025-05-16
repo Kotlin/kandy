@@ -222,7 +222,7 @@ class DensityPlot : SampleHelper("densityPlot") {
             fileOrUrl = "https://raw.githubusercontent.com/Kotlin/dataframe/master/examples/idea-examples/titanic/src/main/resources/titanic.csv",
             delimiter = ';', parserOptions = ParserOptions(locale = java.util.Locale.FRENCH)
         )
-        val ages = df["age"].dropNulls().cast<Double>()
+        val ages = df.get { "age"() }.dropNulls().cast<Double>()
 
         plot {
             histogram(ages) {

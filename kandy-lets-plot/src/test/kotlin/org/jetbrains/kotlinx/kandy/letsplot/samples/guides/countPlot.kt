@@ -4,6 +4,7 @@ import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.groupBy
 import org.jetbrains.kotlinx.dataframe.api.head
+import org.jetbrains.kotlinx.dataframe.api.select
 import org.jetbrains.kotlinx.dataframe.get
 import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.categorical
@@ -34,7 +35,7 @@ class CountPlot : SampleHelper("stat", "guides") {
     private val `class` = column<String>("class")
     private val drv = column<String>("drv")
     private val hwy = column<Int>("hwy")
-    private val df = mpgDF[`class`, drv, hwy]
+    private val df = mpgDF.select { `class` and drv and hwy }
 
     @Test
     fun guideCountReadAutoDf() {
@@ -66,7 +67,7 @@ class CountPlot : SampleHelper("stat", "guides") {
     fun guideCountStatCountPointsPlot() {
         // SampleStart
         plot {
-            statCount(df["class"]) {
+            statCount(df.get { "class"<String>() }) {
                 // New `StatCount` dataset here
                 points {
                     // Use `Stat.*` columns for mappings
@@ -102,7 +103,7 @@ class CountPlot : SampleHelper("stat", "guides") {
     fun guideCountSimplePlot() {
         // SampleStart
         val countPlt = plot {
-            countPlot(df["class"])
+            countPlot(df.get { "class"<String>() })
             layout.title = "`countPlot()` layer"
         }
         countPlt
@@ -122,7 +123,7 @@ class CountPlot : SampleHelper("stat", "guides") {
             layout.title = "`statCount()` + `bars()` layer"
         }
         val countPlt = plot {
-            countPlot(df["class"])
+            countPlot(df.get { "class"<String>() })
             layout.title = "`countPlot()` layer"
         }
         // SampleStart
@@ -186,8 +187,8 @@ class CountPlot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideCountPlotWithWeight() {
-        val `class` = df[`class`]
-        val hwy = df[hwy]
+        val `class` = df.get { `class` }
+        val hwy = df.get { hwy }
         // SampleStart
         df.countPlot {
             x(`class`)
@@ -200,7 +201,7 @@ class CountPlot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideCountConfigurePlot() {
-        val `class` = df[`class`]
+        val `class` = df.get { `class` }
         // SampleStart
         df.countPlot {
             x(`class`)
@@ -235,7 +236,7 @@ class CountPlot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideCountGroupedStatCount() {
-        val `class` = df[`class`]
+        val `class` = df.get { `class` }
         // SampleStart
         groupedDF.statCount { x(`class`) }
         // SampleEnd
@@ -311,7 +312,7 @@ class CountPlot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideCountConfigureSimpleGroupedCountPlot() {
-        val `class` = df[`class`]
+        val `class` = df.get { `class` }
         // SampleStart
         groupedDF.countPlot { x(`class`) }.configure {
             alpha = 0.6

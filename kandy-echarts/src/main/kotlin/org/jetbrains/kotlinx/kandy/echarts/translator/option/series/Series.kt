@@ -1,19 +1,16 @@
-/*
-* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
-*/
-
 package org.jetbrains.kotlinx.kandy.echarts.translator.option.series
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.marks.EchartsMarkArea
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.marks.EchartsMarkLine
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.marks.EchartsMarkPoint
-import org.jetbrains.kotlinx.kandy.echarts.translator.serializers.SeriesSerializer
 
-@Serializable(with = SeriesSerializer::class)
+@OptIn(ExperimentalSerializationApi::class)
+@Serializable
 internal sealed class Series {
-    abstract val type: String
+    //    abstract val type: String
     abstract val id: String?
     abstract val name: String?
     abstract val colorBy: String? // TODO (need groupBy)
@@ -27,7 +24,7 @@ internal sealed class Series {
     abstract val dimensions: List<Dimension>?
     abstract val encode: Encode?
     abstract val dataGroupId: String?
-    abstract val data: List<List<String>>? // TODO!!! Data
+    abstract val data: List<Any?>? // TODO!!! Data
     abstract val markPoint: EchartsMarkPoint?
     abstract val markLine: EchartsMarkLine?
     abstract val markArea: EchartsMarkArea?

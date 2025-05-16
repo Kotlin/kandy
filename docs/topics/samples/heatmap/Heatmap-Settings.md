@@ -36,7 +36,7 @@ df.plot {
             legend.name = "number of\n passangers"
         }
     }
-    y.axis.breaks(df["pclass"].distinct().toList(), format = "d")
+    y.axis.breaks(df.get { "pclass" }.distinct().toList(), format = "d")
 }
 ```
 

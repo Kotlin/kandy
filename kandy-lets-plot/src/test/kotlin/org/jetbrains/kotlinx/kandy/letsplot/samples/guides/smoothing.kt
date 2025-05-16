@@ -249,8 +249,8 @@ class Smoothing : SampleHelper("stat", "guides") {
 
     @Test
     fun guideSmoothGroupedDFStatSmooth() {
-        val time = valuesDF[time]
-        val value = valuesDF[value]
+        val time = valuesDF.get { time }
+        val value = valuesDF.get { value }
         // SampleStart
         groupedDF.statSmooth { x(time); y(value) }
         // SampleEnd

@@ -26,6 +26,8 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.statistics)
     testImplementation(project(":kandy-samples-utils"))
+    testImplementation(libs.kotlinx.dataframe.jupyter)
+    testImplementation(project(":samples-utils"))
 }
 
 tasks.test {

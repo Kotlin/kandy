@@ -51,9 +51,9 @@ import kotlin.test.*
 class GeoGuide : SampleHelper("geoGuide", "guides") {
 
     private val usaStates =
-        GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA.json")
+        GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
     private val worldCities =
-        GeoDataFrame.readShapefile("https://github.com/AndrewKis/datasets/raw/refs/heads/main/ne_10m_populated_places_simple/ne_10m_populated_places_simple.shp")
+        GeoDataFrame.readShapefile("https://github.com/AndreiKingsley/datasets/raw/refs/heads/main/ne_10m_populated_places_simple/ne_10m_populated_places_simple.shp")
 
     private val name by column<String>()
     private val winner by column<String>()
@@ -95,7 +95,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     }
 
     private val usa2024electionResults =
-        DataFrame.readCsv("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA_2024_elections_results_by_state.csv")
+        DataFrame.readCsv("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
 
     private val usaStatesWithElectionResults = usaAdjusted.modify {
         innerJoin(usa2024electionResults) { name } as DataFrame<Nothing>
@@ -448,7 +448,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     fun electionResultsLoadData() {
         // SampleStart
         val usa2024electionResults =
-            DataFrame.readCsv("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA_2024_elections_results_by_state.csv")
+            DataFrame.readCsv("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
 
         usa2024electionResults
         // SampleEnd

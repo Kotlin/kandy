@@ -7,6 +7,7 @@ import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.groupBy
 import org.jetbrains.kotlinx.dataframe.api.head
+import org.jetbrains.kotlinx.dataframe.api.select
 import org.jetbrains.kotlinx.dataframe.get
 import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.continuous
@@ -260,8 +261,8 @@ class Boxplot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideBoxplotSimpleBoxplotWithWhisker() {
-        val rate = df[rate]
-        val cond = df[cond]
+        val rate = df.get { rate }
+        val cond = df.get { cond }
         // SampleStart
         df.boxplot(whiskerIQRRatio = 2.0) {
             x(cond)
@@ -274,8 +275,8 @@ class Boxplot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideBoxplotConfiguredBoxplot() {
-        val rate = df[rate]
-        val cond = df[cond]
+        val rate = df.get { rate }
+        val cond = df.get { cond }
         // SampleStart
         df.boxplot {
             x(cond)
@@ -308,7 +309,7 @@ class Boxplot : SampleHelper("stat", "guides") {
     private val `class` = column<String>("class")
     private val hwy = column<Int>("hwy")
     private val drv = column<String>("drv")
-    private val mpgShortDF = mpgDF[`class`, hwy, drv]
+    private val mpgShortDF = mpgDF.select { `class` and hwy and drv }
     private val groupedDF = mpgShortDF.groupBy { drv }
 
 
@@ -343,8 +344,8 @@ class Boxplot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideBoxplotGroupedStatBoxplot() {
-        val `class` = mpgDF[`class`]
-        val hwy = mpgDF[hwy]
+        val `class` = mpgDF.get { `class` }
+        val hwy = mpgDF.get { hwy }
         // SampleStart
         groupedDF.statBoxplot { x(`class`); y(hwy) }
         // SampleEnd
@@ -423,8 +424,8 @@ class Boxplot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideBoxplotConfigureGroupedBoxplot() {
-        val `class` = mpgDF[`class`]
-        val hwy = mpgDF[hwy]
+        val `class` = mpgDF.get { `class` }
+        val hwy = mpgDF.get { hwy }
         // SampleStart
         groupedDF.boxplot {
             x(`class`)

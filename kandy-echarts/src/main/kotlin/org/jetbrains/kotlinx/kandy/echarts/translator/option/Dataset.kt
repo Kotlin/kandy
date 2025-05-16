@@ -1,15 +1,14 @@
-/*
-* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
-*/
-
 package org.jetbrains.kotlinx.kandy.echarts.translator.option
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.Element
+import org.jetbrains.kotlinx.kandy.echarts.translator.serializers.DataElementListSerializer
 
 @Serializable
 internal data class Dataset(
     val id: String? = null,
-    val source: List<List<String?>>? = null, // TODO
+    @Serializable(with = DataElementListSerializer::class)
+    val source: List<List<Element?>>? = null,
     val sourceHeader: Boolean? = null, // number?
 //    val transform: Transform? = null,
     val fromDatasetIndex: Int? = null,

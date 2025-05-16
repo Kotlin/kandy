@@ -17,6 +17,8 @@ import org.jetbrains.kotlinx.kandy.util.color.Color
 
 internal fun Map<Aes, Setting>.getItemStyle(): ItemStyle? {
     val color = this.getNPSValue<Color>(COLOR)?.toEchartsColor()
+    val downColor = this.getNPSValue<Color>(DOWN_COLOR)?.toEchartsColor()
+    val downBorderColor = this.getNPSValue<Color>(DOWN_BORDER_COLOR)?.toEchartsColor()
     val borderColor = this.getNPSValue<Color>(BORDER_COLOR)?.toEchartsColor()
     val borderWidth = this.getNPSValue<Double>(BORDER_WIDTH)
     val borderType = this.getNPSValue<LineType>(BORDER_TYPE)?.value
@@ -24,7 +26,9 @@ internal fun Map<Aes, Setting>.getItemStyle(): ItemStyle? {
     val opacity = this.getNPSValue<Double>(ALPHA)
     return ItemStyle(
         color,
+        downColor,
         borderColor,
+        downBorderColor,
         borderWidth,
         borderType,
         borderRadius,
@@ -35,7 +39,9 @@ internal fun Map<Aes, Setting>.getItemStyle(): ItemStyle? {
 @Serializable
 internal data class ItemStyle(
     val color: EchartsColor? = null,
+    val color0: EchartsColor? = null,
     val borderColor: EchartsColor? = null,
+    val borderColor0: EchartsColor? = null,
     val borderWidth: Double? = null,
     val borderType: StringNumberArray? = null,
     val borderRadius: Double? = null,

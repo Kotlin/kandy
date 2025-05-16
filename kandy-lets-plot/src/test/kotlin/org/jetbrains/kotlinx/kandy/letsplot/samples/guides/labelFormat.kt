@@ -147,7 +147,7 @@ class LabelFormat : SampleHelper("layout", "guides") {
     @Test
     fun guideLabelMeanMarkLine() {
         // SampleStart
-        val unemploymentMean = economics[uempmed].mean()
+        val unemploymentMean = economics.get { uempmed }.mean()
 
 
         economics.plot {

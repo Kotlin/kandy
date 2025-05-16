@@ -69,7 +69,7 @@ public enum class AnimationType(public val type: String) {
 }
 
 /**
- * Animation settings for [Pie][org.jetbrains.kotlinx.kandy.echarts.layers.context.PieContext] plot.
+ * Animation settings for [Pie][org.jetbrains.kotlinx.kandy.echarts.layers.context.PieHandler] plot.
  *
  * @property enable responsible for enabling animation. By default `true`.
  * @property type initial [animation type][AnimationType]. By default `expansion`.
@@ -82,7 +82,7 @@ public enum class AnimationType(public val type: String) {
  *
  * @see AnimationType
  * @see AnimationEasing
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.PieContext
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.PieHandler
  */
 public class AnimationPie(
     public var enable: Boolean? = null,
@@ -107,7 +107,7 @@ public class AnimationPie(
 
 /**
  * Animation settings for [Boxplot][org.jetbrains.kotlinx.kandy.echarts.layers.context.BoxplotContext]
- * and [Candlestick][org.jetbrains.kotlinx.kandy.echarts.layers.context.CandlestickContext].
+ * and [Candlestick][org.jetbrains.kotlinx.kandy.echarts.layers.context.CandlestickHandler].
  *
  * @property duration Duration of the first animation. By default `1000`.
  * @property easing [easing effect][AnimationEasing] used for the first animation. By default `cubicOut`.
@@ -115,7 +115,7 @@ public class AnimationPie(
  *
  * @see AnimationEasing
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.BoxplotContext
- * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.CandlestickContext
+ * @see org.jetbrains.kotlinx.kandy.echarts.layers.context.CandlestickHandler
  */
 public class AnimationBoxplotCandlestick(
     public var duration: Int? = null,

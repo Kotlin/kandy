@@ -1,17 +1,18 @@
-/*
-* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
-*/
-
 package org.jetbrains.kotlinx.kandy.echarts.translator.option.series
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.kandy.echarts.features.StackFeature
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationLayerFeature
+import org.jetbrains.kotlinx.kandy.echarts.settings.Percentage
+import org.jetbrains.kotlinx.kandy.echarts.settings.SizeUnit
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.marks.*
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.Element
+import org.jetbrains.kotlinx.kandy.echarts.translator.serializers.DataElementListSerializer
 import org.jetbrains.kotlinx.kandy.ir.Layer
 
-internal fun Layer.toBarSeries(name: String?, encode: Encode?): BarSeries {
+internal fun Layer.toBarSeries(name: String?, encode: Encode?, data: List<List<Element?>>?): BarSeries {
     val stack = (features[StackFeature.FEATURE_NAME] as? StackFeature)?.name
     val animation = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
     val backgroundStyle = settings.getBackgroundStyle()
@@ -25,6 +26,7 @@ internal fun Layer.toBarSeries(name: String?, encode: Encode?): BarSeries {
         label = features.getLabel(),
         itemStyle = settings.getItemStyle(),
         encode = encode,
+        data = data,
         markPoint = features.getEchartsMarkPoint(),
         markLine = features.getEchartsMarkLine(),
         markArea = features.getEchartsMarkArea(),
@@ -37,8 +39,8 @@ internal fun Layer.toBarSeries(name: String?, encode: Encode?): BarSeries {
 }
 
 @Serializable
+@SerialName("bar")
 internal class BarSeries(
-    override val type: String = "bar",
     override val id: String? = null,
     override val name: String? = null,
     override val colorBy: String? = null,
@@ -63,13 +65,13 @@ internal class BarSeries(
     val stackStrategy: String? = null,
     val sampling: String? = null,
     val cursor: String? = null,
-    val barWidth: String? = null,
-    val barMaxWidth: String? = null,
-    val barMinWidth: String? = null,
-    val barMinHeight: String? = null,
-    val barMinAngle: String? = null,
-    val barGap: String? = null,
-    val barCategoryGap: String? = null,
+    val barWidth: SizeUnit? = null,
+    val barMaxWidth: SizeUnit? = null,
+    val barMinWidth: SizeUnit? = null,
+    val barMinHeight: Int? = null,
+    val barMinAngle: Int? = null,
+    val barGap: Percentage? = null,
+    val barCategoryGap: Percentage? = null,
     val large: Boolean? = null,
     val largeThreshold: Int? = null,
     val progressive: Int? = null,
@@ -80,7 +82,8 @@ internal class BarSeries(
     val seriesLayoutBy: String? = null,
     val datasetIndex: Int? = null,
     override val dataGroupId: String? = null,
-    override val data: List<List<String>>? = null,
+    @Serializable(with = DataElementListSerializer::class)
+    override val data: List<List<Element?>>? = null,
     val clip: Boolean? = null,
     override val markPoint: EchartsMarkPoint? = null,
     override val markLine: EchartsMarkLine? = null,

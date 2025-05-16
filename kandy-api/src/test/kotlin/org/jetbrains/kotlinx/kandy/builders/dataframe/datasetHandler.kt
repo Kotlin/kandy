@@ -20,7 +20,7 @@ class DatasetBuilderTest {
     private val cond = listOf(true, false, false, true, true).toColumn("cond")
     private val dataFrame: AnyFrame = dataFrameOf(numbers, type, cond)
 
-    private val groupedDf: GroupBy<Any?, Any?> = dataFrameOf(numbers, type, cond).groupBy(type)
+    private val groupedDf: GroupBy<Any?, Any?> = dataFrameOf(numbers, type, cond).groupBy { type }
     private lateinit var internalNumbers: AnyCol
     private lateinit var internalType: AnyCol
     private lateinit var internalCond: AnyCol
@@ -178,7 +178,7 @@ class DatasetBuilderTest {
         assertEquals(dataFrameOf(internalType), handlerWithGrouped.buffer)
         assertEquals(type.name(), colTypeIDAfterAdd)
 
-        val expectedDf = dataFrameOf(internalType).groupBy(type)
+        val expectedDf = dataFrameOf(internalType).groupBy { type }
         val actualDf: TableData = handlerWithGrouped.build()
         assertIs<GroupedData>(actualDf)
         assertEquals(expectedDf.keys.columnNames(), actualDf.groupBy.keys.columnNames())
@@ -199,7 +199,7 @@ class DatasetBuilderTest {
         handlerWithGrouped.addColumn(internalType)
         handlerWithGrouped.addColumn(internalNumbers)
         val colNumbersIDAfterRepeatAdd = handlerWithGrouped.addColumn(internalNumbers)
-        val expectedDf = dataFrameOf(type, numbers).groupBy(type)
+        val expectedDf = dataFrameOf(type, numbers).groupBy { type }
 
         assertEquals(dataFrameOf(internalType, internalNumbers), handlerWithGrouped.buffer)
         assertEquals(numbers.name(), colNumbersIDAfterRepeatAdd)

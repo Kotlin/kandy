@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_VARIABLE")
+
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
 import org.jetbrains.kotlinx.dataframe.api.column

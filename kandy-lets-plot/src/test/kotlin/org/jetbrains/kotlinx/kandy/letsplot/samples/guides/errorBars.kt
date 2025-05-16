@@ -43,11 +43,11 @@ class ErrorBars : SampleHelper("geoms", "guides") {
         val len_max by columnOf(15.63, 24.9, 27.11, 10.72, 19.28, 28.93)
         val dataset = dataFrameOf(supp, dose, length, len_min, len_max)
         // SampleEnd
-        assertNotNull(dataset[supp])
-        assertNotNull(dataset[dose])
-        assertNotNull(dataset[length])
-        assertNotNull(dataset[len_min])
-        assertNotNull(dataset[len_max])
+        assertNotNull(dataset.get { supp })
+        assertNotNull(dataset.get { dose })
+        assertNotNull(dataset.get { length })
+        assertNotNull(dataset.get { len_min })
+        assertNotNull(dataset.get { len_max })
     }
 
     @Test

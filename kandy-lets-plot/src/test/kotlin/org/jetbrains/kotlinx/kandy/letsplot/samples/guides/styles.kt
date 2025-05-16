@@ -181,7 +181,7 @@ class Styles : SampleHelper("layout", "guides") {
         // SampleStart
         val fPlotDf = df.groupBy { fl and year }.count()
         // SampleEnd
-        assertNotNull(fPlotDf[count])
+        assertNotNull(fPlotDf.get { count })
     }
 
     @Test
