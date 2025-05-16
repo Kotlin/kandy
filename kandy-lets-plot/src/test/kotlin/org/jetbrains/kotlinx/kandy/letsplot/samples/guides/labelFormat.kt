@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.dataframe.api.ParserOptions
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.filter
 import org.jetbrains.kotlinx.dataframe.api.head
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.hLine
@@ -28,7 +28,7 @@ import kotlin.test.Test
 
 class LabelFormat : SampleHelper("layout", "guides") {
 
-    private val economics = DataFrame.readCSV(
+    private val economics = DataFrame.readCsv(
         "https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/economics.csv",
         parserOptions = ParserOptions(Locale.ENGLISH)
     ).filter { "date"<LocalDate>() >= LocalDate(2001, 1, 1) }
@@ -40,7 +40,7 @@ class LabelFormat : SampleHelper("layout", "guides") {
     fun guideLabelReadData() {
         // SampleStart
         // The US Unemployment Rates 2000-2016
-        val economics = DataFrame.readCSV(
+        val economics = DataFrame.readCsv(
             "https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/economics.csv",
             parserOptions = ParserOptions(Locale.ENGLISH)
         ).filter { "date"<LocalDate>() >= LocalDate(2001, 1, 1) }
@@ -147,7 +147,7 @@ class LabelFormat : SampleHelper("layout", "guides") {
     @Test
     fun guideLabelMeanMarkLine() {
         // SampleStart
-        val unemploymentMean = economics[uempmed].mean()
+        val unemploymentMean = economics.get { uempmed }.mean()
 
 
         economics.plot {

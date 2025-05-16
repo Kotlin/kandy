@@ -158,8 +158,8 @@ class Histogram : SampleHelper("stat", "guides") {
 
     @Test
     fun guideHistogramSmoothLineWithPoints() {
-        val depth = df[depth]
-        val coeff = df[coeff]
+        val depth = df.get { depth }
+        val coeff = df.get { coeff }
         // SampleStart
         df.plot {
             // Count sample mean
@@ -199,8 +199,8 @@ class Histogram : SampleHelper("stat", "guides") {
 
     @Test
     fun guideHistogramHistWithWeight() {
-        val depth = df[depth]
-        val coeff = df[coeff]
+        val depth = df.get { depth }
+        val coeff = df.get { coeff }
         // SampleStart
         df.histogram(binsOption = BinsOption.byNumber(10)) {
             x(depth)
@@ -213,7 +213,7 @@ class Histogram : SampleHelper("stat", "guides") {
 
     @Test
     fun guideHistogramConfiguredHistPlot() {
-        val depth = df[depth]
+        val depth = df.get { depth }
         // SampleStart
         df.histogram(binsOption = BinsOption.byNumber(15)) {
             x(depth)
@@ -275,7 +275,7 @@ class Histogram : SampleHelper("stat", "guides") {
 
     @Test
     fun guideHistogramGroupedStatBin() {
-        val range = rangesDF[range]
+        val range = rangesDF.get { range }
         // SampleStart
         groupedRangesDF.statBin { x(range) }
         // SampleEnd
@@ -353,7 +353,7 @@ class Histogram : SampleHelper("stat", "guides") {
 
     @Test
     fun guideHistogramConfiguredGrSimpleHist() {
-        val range = rangesDF[range]
+        val range = rangesDF.get { range }
         // SampleStart
         groupedRangesDF.histogram(binsAlign = BinsAlign.center(500.0)) { x(range) }.configure {
             alpha = 0.6

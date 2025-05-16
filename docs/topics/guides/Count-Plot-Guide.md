@@ -69,7 +69,7 @@ They can be simply `Iterable` (`List`, `Set`, etc.) or a reference to a column i
 ```kotlin
 // Use "mpg" dataset
 val mpgDF =
-    DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+    DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 mpgDF.head(5)
 ```
 
@@ -252,7 +252,7 @@ They are all contained in the `Stat` group and can be called inside the new cont
 
 ```kotlin
 plot {
-    statCount(df["class"]) {
+    statCount(df.get { "class"<String>() }) {
         // New `StatCount` dataset here
         points {
             // Use `Stat.*` columns for mappings
@@ -301,7 +301,7 @@ But we can do it even faster with `countPlot(statCountArgs)` method:
 
 ```kotlin
 val countPlt = plot {
-    countPlot(df["class"])
+    countPlot(df.get { "class"<String>() })
     layout.title = "`countPlot()` layer"
 }
 countPlt

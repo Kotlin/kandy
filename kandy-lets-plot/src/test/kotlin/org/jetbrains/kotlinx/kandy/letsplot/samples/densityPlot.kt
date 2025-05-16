@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.x
@@ -220,11 +220,11 @@ class DensityPlot : SampleHelper("densityPlot") {
     @Test
     fun densityPlot_with_histogram() {
         // SampleStart
-        val df = DataFrame.readCSV(
+        val df = DataFrame.readCsv(
             fileOrUrl = "https://raw.githubusercontent.com/Kotlin/dataframe/master/examples/idea-examples/titanic/src/main/resources/titanic.csv",
             delimiter = ';', parserOptions = ParserOptions(locale = java.util.Locale.FRENCH)
         )
-        val ages = df["age"].dropNulls().cast<Double>()
+        val ages = df.get { "age"() }.dropNulls().cast<Double>()
 
         plot {
             histogram(ages) {

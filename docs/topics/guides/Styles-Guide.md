@@ -23,7 +23,7 @@ Discover how to select and apply styles for more engaging and informative charts
 
 ```kotlin
 val df =
-    DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+    DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 df.head(3)
 ```
 

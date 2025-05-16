@@ -593,7 +593,7 @@ with the results of the 2024 US presidential election:
 
 ```kotlin
 val usa2024electionResults =
-    DataFrame.readCSV("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
+    DataFrame.readCsv("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
 
 usa2024electionResults
 ```

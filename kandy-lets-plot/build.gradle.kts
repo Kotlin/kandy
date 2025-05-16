@@ -25,6 +25,7 @@ dependencies {
     testImplementation(libs.kotlin.test)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.statistics)
+    testImplementation(libs.kotlinx.dataframe.jupyter)
     testImplementation(project(":samples-utils"))
 }
 

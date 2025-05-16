@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
 import org.jetbrains.kotlinx.kandy.letsplot.layers.points
@@ -24,7 +24,7 @@ import kotlin.test.assertNotNull
 class Tooltips : SampleHelper("layout", "guides") {
 
     private val mpgDf =
-        DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+        DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 
     private val manufacturer = column<String>("manufacturer")
     private val model = column<String>("model")
@@ -40,7 +40,7 @@ class Tooltips : SampleHelper("layout", "guides") {
     fun guideTooltipReadAutoDf() {
         // SampleStart
         val mpgDf =
-            DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+            DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
         mpgDf.head()
         // SampleEnd
     }
@@ -141,7 +141,7 @@ class Tooltips : SampleHelper("layout", "guides") {
         // SampleEnd
     }
 
-    private val irisDf = DataFrame.readCSV(
+    private val irisDf = DataFrame.readCsv(
         "https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/iris.csv",
         parserOptions = ParserOptions(Locale.ENGLISH)
     )
@@ -152,7 +152,7 @@ class Tooltips : SampleHelper("layout", "guides") {
     @Test
     fun guideTooltipReadIrisDf() {
         // SampleStart
-        val irisDf = DataFrame.readCSV(
+        val irisDf = DataFrame.readCsv(
             "https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/iris.csv",
             parserOptions = ParserOptions(Locale.ENGLISH)
         )

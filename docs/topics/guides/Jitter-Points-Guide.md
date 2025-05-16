@@ -18,7 +18,7 @@ a Kotlin-based solution for enhancing data visualization clarity and detail.
 <!---IMPORT org.jetbrains.kotlinx.kandy.letsplot.samples.guides.JitterPoints-->
 
 ```kotlin
-val mpgDf = DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+val mpgDf = DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 mpgDf.head()
 ```
 

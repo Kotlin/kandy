@@ -50,9 +50,9 @@ class Scatter : SampleHelper("geoms", "guides") {
         val xvar = "xvar"<Int>()
         val yvar = "yvar"<Double>()
         // SampleEnd
-        assertNotNull(dataset[cond])
-        assertNotNull(dataset[xvar])
-        assertNotNull(dataset[yvar])
+        assertNotNull(dataset.get { cond })
+        assertNotNull(dataset.get { xvar })
+        assertNotNull(dataset.get { yvar })
     }
 
     @Test
@@ -117,8 +117,8 @@ class Scatter : SampleHelper("geoms", "guides") {
             (it.toDouble() / 5).toInt() * 5
         }
         // SampleEnd
-        assertEquals(typeOf<Int>(), datasetOverlapping[xvar].type())
-        assertEquals(typeOf<Int>(), datasetOverlapping[yvar].type())
+        assertEquals(typeOf<Int>(), datasetOverlapping.get { xvar }.type())
+        assertEquals(typeOf<Int>(), datasetOverlapping.get { yvar }.type())
     }
 
     @Test
