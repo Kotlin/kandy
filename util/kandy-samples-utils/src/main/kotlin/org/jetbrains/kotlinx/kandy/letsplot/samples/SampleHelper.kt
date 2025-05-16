@@ -4,7 +4,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
-import org.jetbrains.kotlinx.dataframe.io.toStandaloneHTML
+import org.jetbrains.kotlinx.dataframe.io.toStandaloneHtml
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
@@ -132,7 +132,7 @@ public abstract class SampleHelper(
      */
     public fun DataFrame<*>.saveDfHtmlSample() {
         val name = testName.methodName.replace("_dataframe", "")
-        val dfHtml = this.toStandaloneHTML(
+        val dfHtml = this.toStandaloneHtml(
             configuration = SamplesDisplayConfiguration,
             getFooter = WritersideFooter
         ) + WritersideStyle
