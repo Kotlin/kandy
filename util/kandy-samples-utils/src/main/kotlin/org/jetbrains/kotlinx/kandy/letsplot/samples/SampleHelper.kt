@@ -3,6 +3,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.FormattedFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.io.toStandaloneHtml
 import org.jetbrains.kotlinx.kandy.ir.Plot
@@ -125,6 +126,20 @@ public abstract class SampleHelper(
             it.plot.changeThemeToDarkMode()
         }
         saveAsSVG("${name}_dark")
+    }
+
+    /**
+     * Saves this [FormattedFrame] as HTML.
+     */
+    public fun FormattedFrame<*>.saveDfHtmlSample() {
+        val name = testName.methodName.replace("_dataframe", "")
+        val dfHtml = df.toStandaloneHtml(
+            configuration = getDisplayConfiguration(SamplesDisplayConfiguration),
+            getFooter = WritersideFooter
+        ) + WritersideStyle
+        // TODO fix static ids
+        val htmlWithStaticIDs = dfHtml.toString() // replaceIdsWithStatic(dfHtml.toString())
+        File(pathToResourceFolder, "$name.html").writeText(htmlWithStaticIDs)
     }
 
     /**
