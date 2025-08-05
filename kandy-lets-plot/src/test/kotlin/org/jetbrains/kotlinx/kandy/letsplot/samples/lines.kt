@@ -499,19 +499,17 @@ class Lines : SampleHelper("line") {
         val temp = listOf(-45.5, -44.4, -40.0, -43.2, -41.5, -35.5, -39.9)
 
         plot {
+            path {
+                y(dist,"Performance Measure")
+                x(temp, "Temperature (°C)")
+                color = Color.BLUE
+                type = LineType.LONGDASH
+            }
+
             layout {
                 title = "Performance Dependency on Temperature"
                 subtitle = "Analysis of Material Performance Decline at Extremely Low Temperatures"
-                yAxisLabel = "Performance Measure"
                 size = 600 to 550
-            }
-            path {
-                y(dist)
-                x(temp) {
-                    axis.name = "Temperature (°C)"
-                }
-                color = Color.BLUE
-                type = LineType.LONGDASH
             }
         }
             // SampleEnd

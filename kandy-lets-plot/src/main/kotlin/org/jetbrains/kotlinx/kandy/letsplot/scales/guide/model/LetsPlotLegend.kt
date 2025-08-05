@@ -50,9 +50,14 @@ public data class Legend<DomainType, out RangeType> @PublishedApi internal const
      *
      * @param breaks list of breaks.
      * @param labels list of corresponding labels.
+     * @throws IllegalArgumentException if the size of breaks and labels do not match.
      */
     public fun breaksLabeled(breaks: List<DomainType>, labels: List<String>) {
-        // TODO(https://github.com/Kotlin/kandy/issues/416)
+        if (breaks.size != labels.size) {
+            throw IllegalArgumentException(
+                "The number of breaks (${breaks.size}) must match the number of labels (${labels.size})."
+            )
+        }
         this.breaks = breaks
         this.labels = labels
     }

@@ -69,7 +69,6 @@ class Area : SampleHelper("area") {
         val load = column<Int>("load")
 
         loadServer.plot {
-            layout.title = "Daily Server Load Dynamics"
             area {
                 x(time) { axis.name = "Time" }
                 y(load) {
@@ -84,6 +83,8 @@ class Area : SampleHelper("area") {
                 fillColor = Color.RED
                 alpha = 0.7
             }
+
+            layout.title = "Daily Server Load Dynamics"
         }
             // SampleEnd
             .saveSample()
@@ -96,7 +97,6 @@ class Area : SampleHelper("area") {
         val load = listOf(10, 5, 15, 50, 75, 60, 80, 40)
 
         plot {
-            layout.title = "Daily Server Load Dynamics"
             area {
                 x(time) { axis.name = "Time" }
                 y(load) { axis.name = "Load (%)" }
@@ -108,6 +108,8 @@ class Area : SampleHelper("area") {
                 fillColor = Color.RED
                 alpha = 0.7
             }
+
+            layout.title = "Daily Server Load Dynamics"
         }
         // SampleEnd
     }
@@ -126,15 +128,13 @@ class Area : SampleHelper("area") {
         val reservoirDf = dataFrameOf(month, waterLvl)
 
         plot(reservoirDf) {
-            layout {
-                title = "Water Level"
-                subtitle = "Annual Water Level Fluctuations in Reservoir"
-                yAxisLabel = "Month"
-                xAxisLabel = "Water Level (meters)"
+            x(month) {
+                axis.name = "Month"
             }
-
-            x(month)
-            y { axis.limits = 3.0..8.0 }
+            y.axis {
+                name = "Water Level (meters)"
+                limits = 3.0..8.0
+            }
             line {
                 y(waterLvl)
             }
@@ -143,6 +143,11 @@ class Area : SampleHelper("area") {
                 borderLine.type = LineType.DOTTED
                 alpha = 0.5
                 fillColor = Color.RED
+            }
+
+            layout {
+                title = "Water Level"
+                subtitle = "Annual Water Level Fluctuations in Reservoir"
             }
         }
             // SampleEnd
@@ -164,15 +169,13 @@ class Area : SampleHelper("area") {
         )
 
         plot(reservoirDf) {
-            layout {
-                title = "Water Level"
-                subtitle = "Annual Water Level Fluctuations in Reservoir"
-                yAxisLabel = "Month"
-                xAxisLabel = "Water Level (meters)"
+            x("month") {
+                axis.name = "Month"
             }
-
-            x("month")
-            y { axis.limits = 3.0..8.0 }
+            y.axis {
+                name = "Water Level (meters)"
+                limits = 3.0..8.0
+            }
             line {
                 y("waterLvl")
             }
@@ -181,6 +184,11 @@ class Area : SampleHelper("area") {
                 borderLine.type = LineType.DOTTED
                 alpha = 0.5
                 fillColor = Color.RED
+            }
+
+            layout {
+                title = "Water Level"
+                subtitle = "Annual Water Level Fluctuations in Reservoir"
             }
         }
         // SampleEnd

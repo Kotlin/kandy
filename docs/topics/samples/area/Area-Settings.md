@@ -30,7 +30,6 @@ val time = column<String>("time")
 val load = column<Int>("load")
 
 loadServer.plot {
-    layout.title = "Daily Server Load Dynamics"
     area {
         x(time) { axis.name = "Time" }
         y(load) {
@@ -45,6 +44,8 @@ loadServer.plot {
         fillColor = Color.RED
         alpha = 0.7
     }
+
+    layout.title = "Daily Server Load Dynamics"
 }
 ```
 
@@ -56,7 +57,6 @@ val time = listOf("00:00", "03:00", "06:00", "09:00", "12:00", "15:00", "18:00",
 val load = listOf(10, 5, 15, 50, 75, 60, 80, 40)
 
 plot {
-    layout.title = "Daily Server Load Dynamics"
     area {
         x(time) { axis.name = "Time" }
         y(load) { axis.name = "Load (%)" }
@@ -68,6 +68,8 @@ plot {
         fillColor = Color.RED
         alpha = 0.7
     }
+
+    layout.title = "Daily Server Load Dynamics"
 }
 ```
 

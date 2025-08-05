@@ -65,7 +65,7 @@ internal fun Theme.wrap(): OptionsMap {
 
 internal fun Layout.wrap(featureBuffer: MutableList<Feature>) {
     val labs = labs(
-        title, subtitle, caption, xAxisLabel, yAxisLabel
+        title, subtitle, caption
     )
     featureBuffer.addAll(labs.elements)
     size?.let {

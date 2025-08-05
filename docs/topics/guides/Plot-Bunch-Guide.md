@@ -50,11 +50,7 @@ plot {
         color = Color.GREY
         alpha = .4
     }
-    layout {
-        size = 600 to 200
-        xAxisLabel = "x"
-        yAxisLabel = "y"
-    }
+    layout.size = 600 to 200
 }
 ```
 
@@ -69,10 +65,7 @@ plot {
     histogram(xs) {
         fillColor = Color.named("dark_magenta")
     }
-    layout {
-        size = 600 to 200
-        xAxisLabel = "x"
-    }
+    layout.size = 600 to 200
 }
 ```
 
@@ -92,10 +85,7 @@ plotBunch {
             x { scale = scaleX }
             fillColor = Color.named("dark_magenta")
         }
-        layout {
-            size = 600 to 200
-            xAxisLabel = "x"
-        }
+        layout.size = 600 to 200
     }, 0, 0)
     add(plot {
         points {
@@ -104,11 +94,7 @@ plotBunch {
             color = Color.GREY
             alpha = .4
         }
-        layout {
-            size = 600 to 200
-            xAxisLabel = "x"
-            yAxisLabel = "y"
-        }
+        layout.size = 600 to 200
     }, 0, 200)
 }
 ```
@@ -151,7 +137,6 @@ plotBunch {
         }
         layout {
             size = 600 to 200
-            xAxisLabel = "x"
             style(upperStyle)
         }
     }, 0, 0)
@@ -164,8 +149,6 @@ plotBunch {
         }
         layout {
             size = 600 to 200
-            xAxisLabel = "x"
-            yAxisLabel = "y"
             style(lowerStyle)
         }
     }, 0, 200)
@@ -193,7 +176,6 @@ plotBunch {
         }
         layout {
             size = 600 to 200
-            xAxisLabel = "x"
             style(upperStyle)
         }
     }, 0, 0, 600, 100)
@@ -206,8 +188,6 @@ plotBunch {
         }
         layout {
             size = 600 to 200
-            xAxisLabel = "x"
-            yAxisLabel = "y"
             style(lowerStyle)
         }
     }, 0, 100, 600, 300)

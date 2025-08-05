@@ -27,8 +27,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.style.Theme
  *     layout {
  *         title = "Main Title"
  *         subtitle = "Subtitle"
- *         xAxisLabel = "X-Axis"
- *         yAxisLabel = "Y-Axis"
  *         style(Style.Grey)
  *     }
  * }
@@ -60,8 +58,6 @@ public val PlotBuilder.layout: Layout
  * @property title the main title of the plot.
  * @property subtitle the subtitle displayed below the main title.
  * @property caption additional text displayed at the bottom of the plot.
- * @property xAxisLabel label for the X-Axis.
- * @property yAxisLabel label for the Y-Axis.
  * @property theme the theme of the plot.
  * @property size the dimensions (width x height) of the plot in pixels.
  */
@@ -69,9 +65,6 @@ public data class Layout(
     var title: String? = null,
     var subtitle: String? = null,
     var caption: String? = null,
-    // TODO(https://github.com/Kotlin/kandy/issues/411)
-    var xAxisLabel: String? = null,
-    var yAxisLabel: String? = null,
     var theme: Theme? = null,
     var size: Pair<Int, Int>? = null
 ) : PlotFeature {

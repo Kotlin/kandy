@@ -12,6 +12,7 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.*
 import org.jetbrains.kotlinx.kandy.letsplot.samples.SampleHelper
 import org.jetbrains.kotlinx.kandy.letsplot.settings.Symbol
 import org.jetbrains.kotlinx.kandy.letsplot.x
+import org.jetbrains.kotlinx.kandy.letsplot.y
 import org.jetbrains.kotlinx.kandy.util.color.Color
 import org.jetbrains.kotlinx.kandy.util.context.invoke
 import kotlin.test.Test
@@ -190,11 +191,12 @@ class ErrorBars : SampleHelper("geoms", "guides") {
                 position = posD
             }
 
+            x.axis.name = "Dose (mg)"
+            y.axis.name = "Tooth length (mm)"
+
             layout {
                 title = "The Effect of Vitamin C on Tooth Growth in Guinea Pigs"
                 size = 700 to 400
-                xAxisLabel = "Dose (mg)"
-                yAxisLabel = "Tooth length (mm)"
 
                 style {
                     legend {
@@ -234,11 +236,11 @@ class ErrorBars : SampleHelper("geoms", "guides") {
                 }
             }
 
+            x.axis.name = "Dose (mg)"
+            y.axis.name = "Tooth length (mm)"
 
             layout {
                 size = 700 to 400
-                xAxisLabel = "Dose (mg)"
-                yAxisLabel = "Tooth length (mm)"
 
                 style {
                     legend {
@@ -268,11 +270,10 @@ class ErrorBars : SampleHelper("geoms", "guides") {
                 position = Position.dodge(0.95)
             }
 
-            layout {
-                size = 700 to 400
-                xAxisLabel = "Dose (mg)"
-                yAxisLabel = "Tooth length (mm)"
-            }
+            x.axis.name = "Dose (mg)"
+            y.axis.name = "Tooth length (mm)"
+
+            layout.size = 700 to 400
         }
             // SampleEnd
             .saveSample()
@@ -299,11 +300,10 @@ class ErrorBars : SampleHelper("geoms", "guides") {
                 position = posD
             }
 
-            layout {
-                size = 700 to 400
-                xAxisLabel = "Dose (mg)"
-                yAxisLabel = "Tooth length (mm)"
-            }
+            x.axis.name = "Dose (mg)"
+            y.axis.name = "Tooth length (mm)"
+
+            layout.size = 700 to 400
         }
             // SampleEnd
             .saveSample()
@@ -331,11 +331,10 @@ class ErrorBars : SampleHelper("geoms", "guides") {
                 position = posD
             }
 
-            layout {
-                size = 700 to 400
-                xAxisLabel = "Dose (mg)"
-                yAxisLabel = "Tooth length (mm)"
-            }
+            x.axis.name = "Dose (mg)"
+            y.axis.name = "Tooth length (mm)"
+
+            layout.size = 700 to 400
         }
             // SampleEnd
             .saveSample()
@@ -370,11 +369,10 @@ class ErrorBars : SampleHelper("geoms", "guides") {
                 position = posD
             }
 
-            layout {
-                size = 700 to 400
-                xAxisLabel = "Dose (mg)"
-                yAxisLabel = "Tooth length (mm)"
-            }
+            x.axis.name = "Dose (mg)"
+            y.axis.name = "Tooth length (mm)"
+
+            layout.size = 700 to 400
         }
             // SampleEnd
             .saveSample()

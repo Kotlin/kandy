@@ -34,15 +34,13 @@ val waterLvl by columnOf(4.5, 4.7, 5.0, 5.5, 6.0, 6.5, 6.7, 6.2, 5.8, 5.3, 4.8, 
 val reservoirDf = dataFrameOf(month, waterLvl)
 
 plot(reservoirDf) {
-    layout {
-        title = "Water Level"
-        subtitle = "Annual Water Level Fluctuations in Reservoir"
-        yAxisLabel = "Month"
-        xAxisLabel = "Water Level (meters)"
+    x(month) {
+        axis.name = "Month"
     }
-
-    x(month)
-    y { axis.limits = 3.0..8.0 }
+    y.axis {
+        name = "Water Level (meters)"
+        limits = 3.0..8.0
+    }
     line {
         y(waterLvl)
     }
@@ -51,6 +49,11 @@ plot(reservoirDf) {
         borderLine.type = LineType.DOTTED
         alpha = 0.5
         fillColor = Color.RED
+    }
+
+    layout {
+        title = "Water Level"
+        subtitle = "Annual Water Level Fluctuations in Reservoir"
     }
 }
 ```
@@ -71,15 +74,13 @@ val reservoirDf = mapOf(
 )
 
 plot(reservoirDf) {
-    layout {
-        title = "Water Level"
-        subtitle = "Annual Water Level Fluctuations in Reservoir"
-        yAxisLabel = "Month"
-        xAxisLabel = "Water Level (meters)"
+    x("month") {
+        axis.name = "Month"
     }
-
-    x("month")
-    y { axis.limits = 3.0..8.0 }
+    y.axis {
+        name = "Water Level (meters)"
+        limits = 3.0..8.0
+    }
     line {
         y("waterLvl")
     }
@@ -88,6 +89,11 @@ plot(reservoirDf) {
         borderLine.type = LineType.DOTTED
         alpha = 0.5
         fillColor = Color.RED
+    }
+
+    layout {
+        title = "Water Level"
+        subtitle = "Annual Water Level Fluctuations in Reservoir"
     }
 }
 ```

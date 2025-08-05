@@ -187,11 +187,12 @@ plot(dataset) {
         position = posD
     }
 
+    x.axis.name = "Dose (mg)"
+    y.axis.name = "Tooth length (mm)"
+
     layout {
         title = "The Effect of Vitamin C on Tooth Growth in Guinea Pigs"
         size = 700 to 400
-        xAxisLabel = "Dose (mg)"
-        yAxisLabel = "Tooth length (mm)"
 
         style {
             legend {
@@ -235,11 +236,11 @@ plot(dataset) {
         }
     }
 
+    x.axis.name = "Dose (mg)"
+    y.axis.name = "Tooth length (mm)"
 
     layout {
         size = 700 to 400
-        xAxisLabel = "Dose (mg)"
-        yAxisLabel = "Tooth length (mm)"
 
         style {
             legend {
@@ -273,11 +274,10 @@ plot(dataset) {
         position = Position.dodge(0.95)
     }
 
-    layout {
-        size = 700 to 400
-        xAxisLabel = "Dose (mg)"
-        yAxisLabel = "Tooth length (mm)"
-    }
+    x.axis.name = "Dose (mg)"
+    y.axis.name = "Tooth length (mm)"
+
+    layout.size = 700 to 400
 }
 ```
 
@@ -308,11 +308,10 @@ plot(dataset) {
         position = posD
     }
 
-    layout {
-        size = 700 to 400
-        xAxisLabel = "Dose (mg)"
-        yAxisLabel = "Tooth length (mm)"
-    }
+    x.axis.name = "Dose (mg)"
+    y.axis.name = "Tooth length (mm)"
+
+    layout.size = 700 to 400
 }
 ```
 
@@ -344,11 +343,10 @@ plot(dataset) {
         position = posD
     }
 
-    layout {
-        size = 700 to 400
-        xAxisLabel = "Dose (mg)"
-        yAxisLabel = "Tooth length (mm)"
-    }
+    x.axis.name = "Dose (mg)"
+    y.axis.name = "Tooth length (mm)"
+
+    layout.size = 700 to 400
 }
 ```
 
@@ -385,11 +383,10 @@ plot(dataset) {
         position = posD
     }
 
-    layout {
-        size = 700 to 400
-        xAxisLabel = "Dose (mg)"
-        yAxisLabel = "Tooth length (mm)"
-    }
+    x.axis.name = "Dose (mg)"
+    y.axis.name = "Tooth length (mm)"
+
+    layout.size = 700 to 400
 }
 ```
 
