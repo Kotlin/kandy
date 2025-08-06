@@ -262,9 +262,9 @@ val segments = plot(generateArchimedeanDataMap(n = 50)) {
     }
 }
 plotBunch {
-    add(linePlot, 0, 0, 350, 300)
-    add(pathPlot, 350, 0, 350, 300)
-    add(segments, 0, 300, 700, 300)
+    add(linePlot, 0.0, 0.0, 0.5, 0.5)
+    add(pathPlot, 0.5, 0.0, 0.5, 0.5)
+    add(segments, 0.5, 0.5, 0.5, 0.5)
 }
 ```
 

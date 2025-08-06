@@ -96,7 +96,7 @@ plotBunch {
             size = 600 to 200
             xAxisLabel = "x"
         }
-    }, 0, 0)
+    }, 0.0, 0.0, 1.0, 1.0)
     add(plot {
         points {
             x(xs) { scale = scaleX }
@@ -109,7 +109,7 @@ plotBunch {
             xAxisLabel = "x"
             yAxisLabel = "y"
         }
-    }, 0, 200)
+    }, 0.5, 0.5, 0.5, 0.5)
 }
 ```
 
@@ -154,7 +154,7 @@ plotBunch {
             xAxisLabel = "x"
             style(upperStyle)
         }
-    }, 0, 0)
+    }, 0.0, 0.0, 1.0, 1.0)
     add(plot {
         points {
             x(xs) { scale = scaleX }
@@ -168,7 +168,7 @@ plotBunch {
             yAxisLabel = "y"
             style(lowerStyle)
         }
-    }, 0, 200)
+    }, 0.5, 0.5, 0.5, 0.5)
 }
 ```
 
@@ -196,7 +196,7 @@ plotBunch {
             xAxisLabel = "x"
             style(upperStyle)
         }
-    }, 0, 0, 600, 100)
+    },0.0, 0.5, 0.5, 0.5)
     add(plot {
         points {
             x(xs) { scale = scaleX }
@@ -210,7 +210,7 @@ plotBunch {
             yAxisLabel = "y"
             style(lowerStyle)
         }
-    }, 0, 100, 600, 300)
+    },0.5, 0.5, 0.5, 0.5)
 }
 ```
 

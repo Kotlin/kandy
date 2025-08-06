@@ -940,9 +940,9 @@ This is ideal for tailored data presentations. Example:
 
 ```kotlin
 plotBunch {
-    add(mpgCountPlot, 0, 0, 400, 200)
-    add(meanCylPlot, 400, 0, 300, 200)
-    add(mpgInfoPlot, 0, 200, 700, 300)
+    add(mpgCountPlot, 0.0, 0.0, 0.7, 0.4)
+    add(meanCylPlot, 0.7, 0.0, 0.3, 0.4)
+    add(mpgInfoPlot, 0.0, 0.4, 1.0, 0.6)
 }
 ```
 

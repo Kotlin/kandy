@@ -352,7 +352,7 @@ economics.plot {
 <!---FUN guideLabelMeanMarkLine-->
 
 ```kotlin
-val unemploymentMean = economics[uempmed].mean()
+val unemploymentMean = economics.get { uempmed }.mean()
 
 
 economics.plot {

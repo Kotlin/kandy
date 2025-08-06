@@ -25,12 +25,12 @@ val name by column<String>()
 val geometry by column<Geometry>()
 
 val usaAdjusted = usaStates.modify {
-    update(geometry).where { name() == "Alaska" }.with {
+    update { geometry }.where { "name"<String>() == "Alaska" }.with {
         it.scaleAroundCenter(0.5).translate(40.0, -40.0)
     }
         // move Hawaii and Puerto Rico
-        .update(geometry).where { name() == "Hawaii" }.with { it.translate(65.0, 0.0) }
-        .update(geometry).where { name() == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }
+        .update { geometry }.where { "name"<String>() == "Hawaii" }.with { it.translate(65.0, 0.0) }
+        .update { geometry }.where { "name"<String>() == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }
 }
 
 val usa2024electionResults =
@@ -38,7 +38,7 @@ val usa2024electionResults =
 val winner by column<String>()
 
 val usaStatesWithElectionResults = usaAdjusted.modify {
-    innerJoin(usa2024electionResults) { name }
+    innerJoin(usa2024electionResults) { name } 
 }
 
 usaStatesWithElectionResults.plot {
