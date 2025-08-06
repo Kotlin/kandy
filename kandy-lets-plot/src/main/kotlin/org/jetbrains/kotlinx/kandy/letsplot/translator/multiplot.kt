@@ -6,14 +6,14 @@ package org.jetbrains.kotlinx.kandy.letsplot.translator
 
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotBunch
 import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
-import org.jetbrains.letsPlot.GGBunch
+import org.jetbrains.letsPlot.ggbunch
 import org.jetbrains.letsPlot.gggrid
 import org.jetbrains.letsPlot.intern.figure.SubPlotsFigure
 
-public fun PlotBunch.wrap(): GGBunch {
-    return GGBunch().apply {
-        items.forEach { addPlot(it.plot.toLetsPlot(), it.x, it.y, it.width, it.height) }
-    }
+public fun PlotBunch.wrap(): SubPlotsFigure {
+    val plots = items.map { it.plot.toLetsPlot() }
+    val regions = items.map { listOf(it.x,  it.y,  it.width, it.height) }
+    return ggbunch(plots, regions)
 }
 
 public fun PlotGrid.wrap(): SubPlotsFigure {

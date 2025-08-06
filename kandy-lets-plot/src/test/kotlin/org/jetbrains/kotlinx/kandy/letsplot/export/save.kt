@@ -21,9 +21,9 @@ class SaveTests {
         plot { points { x(listOf(1.5, 0.7, 2.1)); y(listOf(0.3, 0.15, 0.53)); color(listOf("1", "2", "3")) } }
     private val gridPlot: PlotGrid = plotGrid(listOf(plot, barsPlot, pointsPlot))
     private val bunchPlot: PlotBunch = plotBunch {
-        add(plot, 0, 0, 400, 200)
-        add(barsPlot, 400, 0, 300, 200)
-        add(pointsPlot, 0, 200, 700, 300)
+        add(plot, 0.0, 0.0, 1.0, 1.0)
+        add(barsPlot, 0.0, 0.0, 1.0, 1.0)
+        add(pointsPlot, 0.0, 0.0, 1.0, 1.0)
     }
 
     private fun cleanTestImages() {

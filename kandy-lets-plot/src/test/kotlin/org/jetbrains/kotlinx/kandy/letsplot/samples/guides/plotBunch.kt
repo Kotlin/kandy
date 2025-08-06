@@ -116,7 +116,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                     size = 600 to 200
                     xAxisLabel = "x"
                 }
-            }, 0, 0)
+            }, 0.0, 0.0, 1.0, 1.0)
             add(plot {
                 points {
                     x(xs) { scale = scaleX }
@@ -129,7 +129,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                     xAxisLabel = "x"
                     yAxisLabel = "y"
                 }
-            }, 0, 200)
+            }, 0.5, 0.5, 0.5, 0.5)
         }
         // SampleEnd
 //            .saveSample()
@@ -170,7 +170,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                     xAxisLabel = "x"
                     style(upperStyle)
                 }
-            }, 0, 0)
+            }, 0.0, 0.0, 1.0, 1.0)
             add(plot {
                 points {
                     x(xs) { scale = scaleX }
@@ -184,7 +184,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                     yAxisLabel = "y"
                     style(lowerStyle)
                 }
-            }, 0, 200)
+            }, 0.5, 0.5, 0.5, 0.5)
         }
             // SampleEnd
             .saveSample()
@@ -204,7 +204,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                     xAxisLabel = "x"
                     style(upperStyle)
                 }
-            }, 0, 0, 600, 100)
+            },0.0, 0.5, 0.5, 0.5)
             add(plot {
                 points {
                     x(xs) { scale = scaleX }
@@ -218,7 +218,7 @@ class PlotBunch : SampleHelper("multiplot", "guides") {
                     yAxisLabel = "y"
                     style(lowerStyle)
                 }
-            }, 0, 100, 600, 300)
+            },0.5, 0.5, 0.5, 0.5)
         }
         // SampleEnd
 //            .saveSample()

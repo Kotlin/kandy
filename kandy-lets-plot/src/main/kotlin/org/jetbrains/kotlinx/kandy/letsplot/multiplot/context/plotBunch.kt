@@ -17,7 +17,7 @@ public class PlotBunchBuffer {
     /**
      *
      */
-    public fun add(plot: Plot, x: Int, y: Int, width: Int? = null, height: Int? = null) {
-        items.add(PlotBunch.Item(plot, x, y, width, height))
+    public fun add(plot: Plot, x: Double, y: Double, width: Double, height: Double, dx: Int = 0, dy: Int = 0) {
+        items.add(PlotBunch.Item(plot, x, y, width, height, dx, dy))
     }
 }
