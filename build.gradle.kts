@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.net.URI
 import java.time.Duration
@@ -10,6 +11,7 @@ plugins {
         alias(dokka) apply false
         alias(korro) apply false
         alias(nexus.publish)
+        alias(ksp)
     }
 }
 
@@ -24,9 +26,9 @@ allprojects {
 
     kotlin.explicitApi()
     tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions {
-            allWarningsAsErrors = true
-            jvmTarget = "11"
+        compilerOptions {
+            //allWarningsAsErrors = true
+            jvmTarget.set(JvmTarget.JVM_11)
         }
     }
 

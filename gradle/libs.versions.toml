@@ -1,10 +1,11 @@
 [versions]
 # plugins version
-kotlin = "1.9.23"
+kotlin = "2.2.20-Beta2"
 dokka = "2.0.0"
 korro = "0.1.6"
 nexus = "2.0.0"
-jupyterApi = "0.12.0-418"
+jupyterApi = "0.15.0-584"
+ksp = "2.2.20-Beta2-2.0.2"
 
 # libraries version
 dataframe = "1.0.0-dev-7089"
@@ -49,6 +50,7 @@ mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-jupyter-api = { id = "org.jetbrains.kotlin.jupyter.api", version.ref = "jupyterApi" }
 nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexus" }

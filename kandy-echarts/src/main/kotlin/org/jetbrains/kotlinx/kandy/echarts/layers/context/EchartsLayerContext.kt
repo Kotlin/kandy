@@ -1,7 +1,7 @@
 /*
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
-
+@file:Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl
@@ -13,7 +13,6 @@ import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationPie
 import org.jetbrains.kotlinx.kandy.echarts.layers.aes.NAME
 import org.jetbrains.kotlinx.kandy.ir.aes.Aes
 
-@Suppress("INVISIBLE_MEMBER")
 public sealed class EchartsLayerBuilder(parent: LayerCreatorScope) : LayerBuilderImpl(parent) {
 
     override val requiredAes: Set<Aes> = setOf()

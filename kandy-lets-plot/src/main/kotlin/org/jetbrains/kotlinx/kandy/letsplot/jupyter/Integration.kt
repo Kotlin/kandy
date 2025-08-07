@@ -4,7 +4,6 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.jupyter
 
-import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.declare
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.kandy.ir.Plot
@@ -15,7 +14,6 @@ import org.jetbrains.kotlinx.kandy.letsplot.translator.wrap
 import org.jetbrains.kotlinx.kandy.letsplot.util.NotebookRenderingContext
 import org.jetbrains.kotlinx.kandy.letsplot.util.figureToMimeResult
 
-@JupyterLibrary
 internal class Integration : JupyterIntegration() {
 
     private val config = JupyterConfig()

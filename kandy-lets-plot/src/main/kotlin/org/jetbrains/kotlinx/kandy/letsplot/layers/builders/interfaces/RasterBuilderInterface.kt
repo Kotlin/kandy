@@ -1,3 +1,4 @@
+@file:Suppress("INVISIBLE_REFERENCE")
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces
 
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes.WithAlpha
