@@ -27,8 +27,11 @@ allprojects {
     kotlin.explicitApi()
     tasks.withType<KotlinCompile>().configureEach {
         compilerOptions {
-            //allWarningsAsErrors = true
+            freeCompilerArgs.addAll("-Xdont-warn-on-error-suppression", "-Xconsistent-data-class-copy-visibility")
+            allWarningsAsErrors = true
             jvmTarget.set(JvmTarget.JVM_11)
+            // enables support for kotlin.time.Instant as kotlinx.datetime.Instant was deprecated
+            optIn.add("kotlin.time.ExperimentalTime")
         }
     }
 
