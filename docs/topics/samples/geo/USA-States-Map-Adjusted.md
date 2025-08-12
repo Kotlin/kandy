@@ -21,16 +21,15 @@ Explore the USA states map adjustment example using Kotlin and Kandy, showing ho
 ```kotlin
 val usaStates =
     GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
-val name by column<String>()
 val geometry by column<Geometry>()
 
 val usaAdjusted = usaStates.modify {
-    update(geometry).where { name() == "Alaska" }.with {
+    update { geometry }.where { "name"<String>() == "Alaska" }.with {
         it.scaleAroundCenter(0.5).translate(40.0, -40.0)
     }
         // move Hawaii and Puerto Rico
-        .update(geometry).where { name() == "Hawaii" }.with { it.translate(65.0, 0.0) }
-        .update(geometry).where { name() == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }
+        .update { geometry }.where { "name"<String>() == "Hawaii" }.with { it.translate(65.0, 0.0) }
+        .update { geometry }.where { "name"<String>() == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }
 }
 
 usaAdjusted.plot {

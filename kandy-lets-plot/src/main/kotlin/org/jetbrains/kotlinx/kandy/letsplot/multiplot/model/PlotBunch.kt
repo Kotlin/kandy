@@ -11,9 +11,11 @@ public data class PlotBunch(
 ) {
     public class Item(
         public val plot: Plot,
-        public val x: Int,
-        public val y: Int,
-        public val width: Int?,
-        public val height: Int?
+        public val x: Double,
+        public val y: Double,
+        public val width: Double,
+        public val height: Double,
+        public val dx: Int,
+        public val dy: Int,
     )
 }

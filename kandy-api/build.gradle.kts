@@ -10,3 +10,7 @@ dependencies {
     testImplementation(libs.kotlin.test)
     testImplementation(libs.mockk)
 }
+
+tasks.processJupyterApiResources {
+    libraryProducers = listOf("org.jetbrains.kotlinx.kandy.Integration")
+}

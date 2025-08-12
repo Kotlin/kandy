@@ -34,9 +34,9 @@ class SVGTest {
     fun `export plot bunch as SVG`() {
         val plot: Plot = plot { line { x(listOf(1, 2, 3)); y(listOf(0.3, 0.15, 0.53)) } }
         val bunch = plotBunch {
-            add(plot, 0, 0)
-            add(plot, 400, 600)
-            add(plot, 800, 600)
+            add(plot, 0.0, 0.0, 1.0, 1.0)
+            add(plot, 0.0, 0.0, 1.0, 1.0)
+            add(plot, 0.0, 0.0, 1.0, 1.0)
         }
 
         val svgString = bunch.toSVG()

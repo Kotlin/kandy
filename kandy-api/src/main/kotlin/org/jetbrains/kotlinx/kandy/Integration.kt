@@ -4,10 +4,8 @@
 
 package org.jetbrains.kotlinx.kandy
 
-import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 
-@JupyterLibrary
 internal class Integration : JupyterIntegration() {
 
     override fun Builder.onLoaded() {

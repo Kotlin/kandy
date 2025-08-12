@@ -1,5 +1,4 @@
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
-
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes
 
 import org.jetbrains.kotlinx.kandy.letsplot.internal.SPACER_WIDTH
