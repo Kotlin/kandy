@@ -259,52 +259,61 @@ public abstract class SampleHelper(
         return result
     }
 
-    private val idPrefixDf = "df_"  // keep the df_ prefix so JS concatenation continues to work
+    public companion object {
+        private const val DF_PREFIX = "df_"
+    }
 
+    /** Makes all DataFrame ids stable across runs. */
     private fun replaceIdsWithStaticDataFrame(html: String): String {
-        // 1) Find element ids of form id="df_<number>" and build a mapping <oldNumber> -> <newNumber>
-        val idAttr = Regex("""\bid\s*=\s*(['"])df_(-?\d+)\1""")
-        val numMap = linkedMapOf<String, String>()  // preserves order
-        var counter = 0
+        // DOM: id="df_<num>"
+        val domIdRe = Regex("""\bid\s*=\s*(['"])$DF_PREFIX(-?\d+)\1""")
+        // JS object fields: id: <num>, frameId: <num>, rootId: <num>
+        val jsFieldRe = Regex("""\b(id|frameId|rootId)(\s*:\s*)(-?\d+)""")
+        // Calls like DataFrame.renderTable(<num>)
+        val renderRe = Regex("""(renderTable\()\s*(-?\d+)(\))""")
+        // (optional) url(#df_<num>) / href="#df_<num>" if встречаются
+        val urlRe  = Regex("""(url\(#$DF_PREFIX)(-?\d+)(\))""")
+        val hrefRe = Regex("""(\bhref\s*=\s*['"]#$DF_PREFIX)(-?\d+)(['"])""")
 
-        // Rewrite id="df_<num>" -> id="df_<counter>"
-        var out = idAttr.replace(html) { m ->
-            val quote = m.groupValues[1]
-            val oldNum = m.groupValues[2]
-            val newNum = numMap.getOrPut(oldNum) { (counter++).toString() }
-            """id=$quote$idPrefixDf$newNum$quote"""
+        // 1) Collect all ids in deterministic order of appearance
+        val seen = LinkedHashSet<String>()
+        domIdRe.findAll(html).forEach { seen += it.groupValues[2] }
+        jsFieldRe.findAll(html).forEach { seen += it.groupValues[3] }
+
+        if (seen.isEmpty()) return html
+
+        // 2) Build stable mapping: keep 0 -> 0, others -> 1,2,3...
+        val map = LinkedHashMap<String, String>()
+        var next = 0
+        if ("0" in seen) { map["0"] = "0"; next = 1 }
+        for (old in seen) if (old !in map) map[old] = (next++).toString()
+
+        // 3) Apply replacements
+
+        // id="df_<num>"
+        var out = domIdRe.replace(html) { m ->
+            val q = m.groupValues[1]
+            val old = m.groupValues[2]
+            """id=$q$DF_PREFIX${map[old] ?: old}$q"""
         }
 
-        if (numMap.isEmpty()) return out
+        // id:/frameId:/rootId:
+        out = jsFieldRe.replace(out) { m ->
+            val key = m.groupValues[1]
+            val sep = m.groupValues[2]
+            val old = m.groupValues[3]
+            "$key$sep${map[old] ?: old}"
+        }
 
-        // Build alternation for fast regex replacements
-        val alt = numMap.keys.joinToString("|") { Regex.escape(it) }
+        // DataFrame.renderTable(<num>)
+        out = renderRe.replace(out) { m ->
+            val old = m.groupValues[2]
+            m.groupValues[1] + (map[old] ?: old) + m.groupValues[3]
+        }
 
-        // 2a) Update JS literals like getElementById("df_<num>")
-        out = Regex("""(getElementById\s*\(\s*['"]df_)($alt)(['"]\s*\))""")
-            .replace(out) { mm -> mm.groupValues[1] + numMap[mm.groupValues[2]] + mm.groupValues[3] }
-
-        // 2b) Update numeric fields in the embedded JS objects: id:, rootId:, frameId:
-        out = Regex("""\b(id|rootId|frameId)\s*:\s*(-?\d+)""")
-            .replace(out) { mm ->
-                val oldNum = mm.groupValues[2]
-                val newNum = numMap[oldNum] ?: oldNum
-                "${mm.groupValues[1]}: $newNum"
-            }
-
-        // 2c) Update render call: DataFrame.renderTable(<num>)
-        out = Regex("""(renderTable\()\s*(-?\d+)(\))""")
-            .replace(out) { mm ->
-                val oldNum = mm.groupValues[2]
-                val newNum = numMap[oldNum] ?: oldNum
-                mm.groupValues[1] + newNum + mm.groupValues[3]
-            }
-
-        // 2d) (optional) Update CSS/URL references like url(#df_<num>) or href="#df_<num>"
-        out = Regex("""(url\(#df_)($alt)(\))""")
-            .replace(out) { mm -> mm.groupValues[1] + numMap[mm.groupValues[2]] + mm.groupValues[3] }
-        out = Regex("""(\bhref\s*=\s*['"]#df_)($alt)(['"])""")
-            .replace(out) { mm -> mm.groupValues[1] + numMap[mm.groupValues[2]] + mm.groupValues[3] }
+        // url(#df_<num>) / href="#df_<num>"
+        out = urlRe.replace(out) { m -> m.groupValues[1] + (map[m.groupValues[2]] ?: m.groupValues[2]) + m.groupValues[3] }
+        out = hrefRe.replace(out) { m -> m.groupValues[1] + (map[m.groupValues[2]] ?: m.groupValues[2]) + m.groupValues[3] }
 
         return out
     }
