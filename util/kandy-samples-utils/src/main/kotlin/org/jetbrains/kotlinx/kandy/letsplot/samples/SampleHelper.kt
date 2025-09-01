@@ -259,63 +259,46 @@ public abstract class SampleHelper(
         return result
     }
 
-    public companion object {
+    internal companion object {
         private const val DF_PREFIX = "df_"
     }
 
-    /** Makes all DataFrame ids stable across runs. */
     private fun replaceIdsWithStaticDataFrame(html: String): String {
-        // DOM: id="df_<num>"
-        val domIdRe = Regex("""\bid\s*=\s*(['"])$DF_PREFIX(-?\d+)\1""")
-        // JS object fields: id: <num>, frameId: <num>, rootId: <num>
-        val jsFieldRe = Regex("""\b(id|frameId|rootId)(\s*:\s*)(-?\d+)""")
-        // Calls like DataFrame.renderTable(<num>)
-        val renderRe = Regex("""(renderTable\()\s*(-?\d+)(\))""")
-        // (optional) url(#df_<num>) / href="#df_<num>" if встречаются
-        val urlRe  = Regex("""(url\(#$DF_PREFIX)(-?\d+)(\))""")
-        val hrefRe = Regex("""(\bhref\s*=\s*['"]#$DF_PREFIX)(-?\d+)(['"])""")
+        // id="df_-1493172219"
+        val domIdRe   = Regex("""\bid\s*=\s*(['"])$DF_PREFIX(-?\d+)\1""")
+        // id: -1493172219, rootId: -1493172219, frameId: 2113929224, ...
+        val jsFieldRe = Regex("""\b(id|frameId|rootId)\s*:\s*(-?\d+)""")
+        // DataFrame.renderTable(-1493172219)
+        val renderRe  = Regex("""(renderTable\()\s*(-?\d+)(\))""")
+        // url(#df_-149...), href="#df_-149..."
+        val urlRe     = Regex("""(url\(#$DF_PREFIX)(-?\d+)(\))""")
+        val hrefRe    = Regex("""(\bhref\s*=\s*['"]#$DF_PREFIX)(-?\d+)(['"])""")
 
-        // 1) Collect all ids in deterministic order of appearance
-        val seen = LinkedHashSet<String>()
+        val seen = linkedSetOf<String>()
         domIdRe.findAll(html).forEach { seen += it.groupValues[2] }
         jsFieldRe.findAll(html).forEach { seen += it.groupValues[3] }
-
         if (seen.isEmpty()) return html
 
-        // 2) Build stable mapping: keep 0 -> 0, others -> 1,2,3...
-        val map = LinkedHashMap<String, String>()
+        val map = linkedMapOf<String, String>()
         var next = 0
         if ("0" in seen) { map["0"] = "0"; next = 1 }
         for (old in seen) if (old !in map) map[old] = (next++).toString()
 
-        // 3) Apply replacements
-
-        // id="df_<num>"
         var out = domIdRe.replace(html) { m ->
-            val q = m.groupValues[1]
-            val old = m.groupValues[2]
+            val q = m.groupValues[1]; val old = m.groupValues[2]
             """id=$q$DF_PREFIX${map[old] ?: old}$q"""
         }
-
-        // id:/frameId:/rootId:
         out = jsFieldRe.replace(out) { m ->
-            val key = m.groupValues[1]
-            val sep = m.groupValues[2]
-            val old = m.groupValues[3]
+            val key = m.groupValues[1]; val sep = m.groupValues[2]; val old = m.groupValues[3]
             "$key$sep${map[old] ?: old}"
         }
-
-        // DataFrame.renderTable(<num>)
         out = renderRe.replace(out) { m ->
-            val old = m.groupValues[2]
-            m.groupValues[1] + (map[old] ?: old) + m.groupValues[3]
+            val old = m.groupValues[2]; m.groupValues[1] + (map[old] ?: old) + m.groupValues[3]
         }
-
-        // url(#df_<num>) / href="#df_<num>"
-        out = urlRe.replace(out) { m -> m.groupValues[1] + (map[m.groupValues[2]] ?: m.groupValues[2]) + m.groupValues[3] }
+        out = urlRe.replace(out)  { m -> m.groupValues[1] + (map[m.groupValues[2]] ?: m.groupValues[2]) + m.groupValues[3] }
         out = hrefRe.replace(out) { m -> m.groupValues[1] + (map[m.groupValues[2]] ?: m.groupValues[2]) + m.groupValues[3] }
-
         return out
     }
+
 
 }
