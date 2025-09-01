@@ -263,42 +263,47 @@ public abstract class SampleHelper(
         private const val DF_PREFIX = "df_"
     }
 
+    /** Make all df ids stable (handles negative numbers). */
     private fun replaceIdsWithStaticDataFrame(html: String): String {
-        // id="df_-1493172219"
+        // DOM ids: id="df_-2046820349"
         val domIdRe   = Regex("""\bid\s*=\s*(['"])$DF_PREFIX(-?\d+)\1""")
-        // id: -1493172219, rootId: -1493172219, frameId: 2113929224, ...
-        val jsFieldRe = Regex("""\b(id|frameId|rootId)\s*:\s*(-?\d+)""")
-        // DataFrame.renderTable(-1493172219)
+        // JS fields: id: -2046820349, rootId: -2046820349, frameId: 123
+        val jsFieldRe = Regex("""\b(id|rootId|frameId)\s*:\s*(-?\d+)""")
+        // Calls: DataFrame.renderTable(-2046820349)
         val renderRe  = Regex("""(renderTable\()\s*(-?\d+)(\))""")
-        // url(#df_-149...), href="#df_-149..."
+        // (optional) url(#df_-N) / href="#df_-N"
         val urlRe     = Regex("""(url\(#$DF_PREFIX)(-?\d+)(\))""")
         val hrefRe    = Regex("""(\bhref\s*=\s*['"]#$DF_PREFIX)(-?\d+)(['"])""")
 
+        // 1) Collect all numbers in appearance order
         val seen = linkedSetOf<String>()
         domIdRe.findAll(html).forEach { seen += it.groupValues[2] }
-        jsFieldRe.findAll(html).forEach { seen += it.groupValues[3] }
+        jsFieldRe.findAll(html).forEach { seen += it.groupValues[2] }
         if (seen.isEmpty()) return html
 
+        // 2) Stable mapping: keep "0" if it appears; others → 1,2,3...
         val map = linkedMapOf<String, String>()
         var next = 0
         if ("0" in seen) { map["0"] = "0"; next = 1 }
         for (old in seen) if (old !in map) map[old] = (next++).toString()
 
+        // 3) Apply replacements
         var out = domIdRe.replace(html) { m ->
             val q = m.groupValues[1]; val old = m.groupValues[2]
             """id=$q$DF_PREFIX${map[old] ?: old}$q"""
         }
         out = jsFieldRe.replace(out) { m ->
-            val key = m.groupValues[1]; val sep = m.groupValues[2]; val old = m.groupValues[3]
-            "$key$sep${map[old] ?: old}"
+            val key = m.groupValues[1]; val old = m.groupValues[2]
+            "$key: ${map[old] ?: old}"
         }
         out = renderRe.replace(out) { m ->
-            val old = m.groupValues[2]; m.groupValues[1] + (map[old] ?: old) + m.groupValues[3]
+            val old = m.groupValues[2]
+            m.groupValues[1] + (map[old] ?: old) + m.groupValues[3]
         }
         out = urlRe.replace(out)  { m -> m.groupValues[1] + (map[m.groupValues[2]] ?: m.groupValues[2]) + m.groupValues[3] }
         out = hrefRe.replace(out) { m -> m.groupValues[1] + (map[m.groupValues[2]] ?: m.groupValues[2]) + m.groupValues[3] }
+
         return out
     }
-
 
 }
