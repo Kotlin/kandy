@@ -263,45 +263,57 @@ public abstract class SampleHelper(
         private const val DF_PREFIX = "df_"
     }
 
-    /** Make all df ids stable (handles negative numbers). */
-    private fun replaceIdsWithStaticDataFrame(html: String): String {
-        // DOM ids: id="df_-2046820349"
-        val domIdRe   = Regex("""\bid\s*=\s*(['"])$DF_PREFIX(-?\d+)\1""")
-        // JS fields: id: -2046820349, rootId: -2046820349, frameId: 123
-        val jsFieldRe = Regex("""\b(id|rootId|frameId)\s*:\s*(-?\d+)""")
-        // Calls: DataFrame.renderTable(-2046820349)
-        val renderRe  = Regex("""(renderTable\()\s*(-?\d+)(\))""")
-        // (optional) url(#df_-N) / href="#df_-N"
-        val urlRe     = Regex("""(url\(#$DF_PREFIX)(-?\d+)(\))""")
-        val hrefRe    = Regex("""(\bhref\s*=\s*['"]#$DF_PREFIX)(-?\d+)(['"])""")
+    internal fun replaceIdsWithStaticDataFrame(html: String): String {
+        // normalize all minus signs to ASCII '-'
+        fun normNum(s: String) = s.replace(Regex("[\u2212\\p{Pd}]"), "-")
 
-        // 1) Collect all numbers in appearance order
+        val dash = "[-\u2212\\p{Pd}]?"                 // any minus sign (or absence)
+        val esc  = Regex.escape(DF_PREFIX)
+
+        // The number is always in the LAST group
+        val domIdRe   = Regex("""\bid\s*=\s*(['"])$esc($dash\d+)\1""")
+        val jsFieldRe = Regex("""\b(id|rootId|frameId)\s*:\s*($dash\d+)\b""")
+
+        // keep what is to the left of the number and the closing parenthesis
+        val renderRe  = Regex("""\b((?:DataFrame\.)?renderTable\()\s*($dash\d+)\s*(\))""")
+
+        val urlRe     = Regex("""\burl\(#$esc($dash\d+)\)""")
+        val hrefRe    = Regex("""\bhref\s*=\s*(['"])#$esc($dash\d+)\1""")
+
+        // 1) collect all ids in order of appearance
         val seen = linkedSetOf<String>()
-        domIdRe.findAll(html).forEach { seen += it.groupValues[2] }
-        jsFieldRe.findAll(html).forEach { seen += it.groupValues[2] }
+        listOf(domIdRe, jsFieldRe, renderRe, urlRe, hrefRe).forEach { re ->
+            re.findAll(html).forEach { seen += normNum(it.groupValues.last()) }
+        }
         if (seen.isEmpty()) return html
 
-        // 2) Stable mapping: keep "0" if it appears; others → 1,2,3...
+        // 2) map to stable non-negative numbers: 0,1,2...
         val map = linkedMapOf<String, String>()
         var next = 0
         if ("0" in seen) { map["0"] = "0"; next = 1 }
         for (old in seen) if (old !in map) map[old] = (next++).toString()
 
-        // 3) Apply replacements
+        fun remap(old: String) = map[normNum(old)] ?: old
+
+        // 3) replacements
         var out = domIdRe.replace(html) { m ->
-            val q = m.groupValues[1]; val old = m.groupValues[2]
-            """id=$q$DF_PREFIX${map[old] ?: old}$q"""
+            val q   = m.groupValues[1]
+            val num = remap(m.groupValues.last())
+            """id=$q$DF_PREFIX$num$q"""
         }
         out = jsFieldRe.replace(out) { m ->
-            val key = m.groupValues[1]; val old = m.groupValues[2]
-            "$key: ${map[old] ?: old}"
+            val key = m.groupValues[1]
+            val num = remap(m.groupValues.last())
+            "$key: $num"
         }
         out = renderRe.replace(out) { m ->
-            val old = m.groupValues[2]
-            m.groupValues[1] + (map[old] ?: old) + m.groupValues[3]
+            val front = m.groupValues[1]
+            val num   = remap(m.groupValues[2])
+            val back  = m.groupValues[3]
+            front + num + back
         }
-        out = urlRe.replace(out)  { m -> m.groupValues[1] + (map[m.groupValues[2]] ?: m.groupValues[2]) + m.groupValues[3] }
-        out = hrefRe.replace(out) { m -> m.groupValues[1] + (map[m.groupValues[2]] ?: m.groupValues[2]) + m.groupValues[3] }
+        out = urlRe.replace(out)  { m -> "url(#$DF_PREFIX${remap(m.groupValues.last())})" }
+        out = hrefRe.replace(out) { m -> """href=${m.groupValues[1]}#$DF_PREFIX${remap(m.groupValues.last())}${m.groupValues[1]}""" }
 
         return out
     }

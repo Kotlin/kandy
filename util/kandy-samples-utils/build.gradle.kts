@@ -15,6 +15,8 @@ dependencies {
     implementation(libs.lets.plot)
     implementation(libs.lets.plot.image)
     implementation(libs.lets.plot.awt)
+
+    testImplementation(libs.kotlin.test)
 }
 
 // add friend modules to access internal properties
