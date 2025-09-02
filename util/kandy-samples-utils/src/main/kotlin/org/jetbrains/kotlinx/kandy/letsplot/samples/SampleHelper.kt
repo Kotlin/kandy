@@ -138,7 +138,7 @@ public abstract class SampleHelper(
             getFooter = WritersideFooter
         ) + WritersideStyle
         // TODO fix static ids
-        val htmlWithStaticIDs = dfHtml.toString() // replaceIdsWithStatic(dfHtml.toString())
+        val htmlWithStaticIDs = replaceIdsWithStaticDataFrame(dfHtml.toString()) // replaceIdsWithStatic(dfHtml.toString())
         File(pathToResourceFolder, "$name.html").writeText(htmlWithStaticIDs)
     }
 
