@@ -1,16 +1,15 @@
-/*
-* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
-*/
-
 package org.jetbrains.kotlinx.kandy.echarts.translator.option.series
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationLayerFeature
+import org.jetbrains.kotlinx.kandy.echarts.settings.SizeUnit
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.*
 import org.jetbrains.kotlinx.kandy.echarts.translator.option.series.settings.marks.*
+import org.jetbrains.kotlinx.kandy.echarts.translator.option.util.Element
 import org.jetbrains.kotlinx.kandy.ir.Layer
 
-internal fun Layer.toPieSeries(name: String?, encode: Encode?): PieSeries {
+internal fun Layer.toPieSeries(name: String?, encode: Encode?, data: List<Map<String, Element?>>?): PieSeries {
     val animation = (features[AnimationLayerFeature.FEATURE_NAME] as? AnimationLayerFeature)
 
     return PieSeries(
@@ -18,6 +17,7 @@ internal fun Layer.toPieSeries(name: String?, encode: Encode?): PieSeries {
         label = features.getLabel(),
         itemStyle = settings.getItemStyle(),
         encode = encode,
+        data = data,
         markPoint = features.getEchartsMarkPoint(),
         markLine = features.getEchartsMarkLine(),
         markArea = features.getEchartsMarkArea(),
@@ -31,8 +31,8 @@ internal fun Layer.toPieSeries(name: String?, encode: Encode?): PieSeries {
 }
 
 @Serializable
+@SerialName("pie")
 internal class PieSeries(
-    override val type: String = "pie",
     override val id: String? = null,
     override val name: String? = null,
     override val colorBy: String? = null,
@@ -53,12 +53,12 @@ internal class PieSeries(
     val cursor: String? = null,
     override val zlevel: Int? = null,
     override val z: Int? = null,
-    val left: String? = null,
-    val top: String? = null,
-    val right: String? = null,
-    val bottom: String? = null,
-    val width: String? = null,
-    val height: String? = null,
+    val left: SizeUnit? = null,
+    val top: SizeUnit? = null,
+    val right: SizeUnit? = null,
+    val bottom: SizeUnit? = null,
+    val width: SizeUnit? = null,
+    val height: SizeUnit? = null,
     val showEmptyCircle: Boolean? = null,
     val emtyCircleStyle: EmptyCircleStyle? = null,
     val label: Label? = null,
@@ -68,14 +68,14 @@ internal class PieSeries(
     override val emphasis: Emphasis? = null,
     override val blur: Blur? = null,
     override val select: Select? = null,
-    val center: Pair<String, String>? = null,
-    val radius: Pair<String, String>? = null,
+    val center: List<SizeUnit>? = null,
+    val radius: List<SizeUnit>? = null,
     val seriesLayoutBy: String? = null,
     val datasetIndex: Int? = null,
     override val dimensions: List<Dimension>? = null,
     override val encode: Encode? = null,
     override val dataGroupId: String? = null,
-    override val data: List<List<String>>? = null,
+    override val data: List<Map<String, Element?>>? = null,
     override val markPoint: EchartsMarkPoint? = null,
     override val markLine: EchartsMarkLine? = null,
     override val markArea: EchartsMarkArea? = null,

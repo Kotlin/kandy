@@ -201,10 +201,12 @@ public class Symbol private constructor(
             Symbol("path://$path", width, height, rotate)
     }
 
-    internal fun getSize(): Measurement? =
+    internal fun getSize(): List<Int>? = // TODO(!!!, change to list<number>)
         when {
-            width != null && height != null -> pairOf(width, height)
-            size != null -> singleOf(size)
+            width != null && height != null -> listOf(width.toInt(), height.toInt())
+//                pairOf(width, height)
+            size != null -> listOf(size.toInt())
+            //singleOf(size)
             else -> null
         }
 }

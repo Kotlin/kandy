@@ -166,8 +166,8 @@ public inline fun LayerCreatorScope.bars(block: BarHandler.() -> Unit) {
     createLayer(BarHandler(this), block)
 }
 
-public inline fun LayerCreatorScope.pie(block: PieContext.() -> Unit) {
-    createLayer(PieContext(this), block)
+public inline fun LayerCreatorScope.pie(block: PieHandler.() -> Unit) {
+    createLayer(PieHandler(this), block)
 }
 
 /**
@@ -202,8 +202,8 @@ public inline fun LayerCreatorScope.points(block: PointHandler.() -> Unit) {
     createLayer(PointHandler(this), block)
 }
 
-public inline fun LayerCreatorScope.candlestick(block: CandlestickContext.() -> Unit) {
-    createLayer(CandlestickContext(this), block)
+public inline fun LayerCreatorScope.candlestick(block: CandlestickHandler.() -> Unit) {
+    createLayer(CandlestickHandler(this), block)
 }
 
 public inline fun LayerCreatorScope.boxplot(block: BoxplotContext.() -> Unit) {

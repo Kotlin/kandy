@@ -1,19 +1,47 @@
-/*
-* Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
-*/
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 
 package org.jetbrains.kotlinx.kandy.echarts.layers.context
 
+import org.jetbrains.kotlinx.dataframe.DataColumn
+import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerCreatorScope
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationEasing
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationPie
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.AnimationType
 import org.jetbrains.kotlinx.kandy.echarts.layers.PIE
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.PIE_DATA_NAME
+import org.jetbrains.kotlinx.kandy.echarts.layers.aes.PIE_DATA_VALUES
+import org.jetbrains.kotlinx.kandy.echarts.scale.nonPosMappingCat
 import org.jetbrains.kotlinx.kandy.ir.geom.Geom
 
-public class PieContext(parent: LayerCreatorScope) : EchartsLayerBuilder(parent) {
+public class PieHandler(parent: LayerCreatorScope) : EchartsLayerBuilder(parent) {
     override val geom: Geom
         get() = PIE
+
+    public fun <K, V> data(name: ColumnReference<K>, values: ColumnReference<V>) {
+        bindingHandler.nonPosMappingCat<K, Any?>(PIE_DATA_NAME, name)
+        bindingHandler.nonPosMappingCat<V, Any?>(PIE_DATA_VALUES, values)
+    }
+
+    public fun <K, V> data(data: Map<K, V>) {
+        bindingHandler.nonPosMappingCat<K, Any?>(PIE_DATA_NAME, data.keys)
+        bindingHandler.nonPosMappingCat<V, Any?>(PIE_DATA_VALUES, data.values)
+    }
+
+    public fun data(name: String, values: String) {
+        bindingHandler.nonPosMappingCat<Any?>(PIE_DATA_NAME, name)
+        bindingHandler.nonPosMappingCat<Any?>(PIE_DATA_VALUES, values)
+    }
+
+    public fun <K, V> data(name: Iterable<K>, values: Iterable<V>) {
+        bindingHandler.nonPosMappingCat<K, Any?>(PIE_DATA_NAME, name)
+        bindingHandler.nonPosMappingCat<V, Any?>(PIE_DATA_VALUES, values)
+    }
+
+    public fun <K, V> data(name: DataColumn<K>, values: DataColumn<V>) {
+        bindingHandler.nonPosMappingCat<K, Any?>(PIE_DATA_NAME, name)
+        bindingHandler.nonPosMappingCat<V, Any?>(PIE_DATA_VALUES, values)
+    }
 
     /**
      * Animation options settings for [pie][org.jetbrains.kotlinx.kandy.echarts.layers.pie].

@@ -9,6 +9,7 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.aes.y
 import org.jetbrains.kotlinx.kandy.echarts.layers.area
 import org.jetbrains.kotlinx.kandy.echarts.layers.bars
 import org.jetbrains.kotlinx.kandy.echarts.layers.line
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -46,15 +47,15 @@ class NullableDataTest {
                     ],
                     [
                         "first",
-                        "1"
+                        1
                     ],
                     [
                         "second",
-                        "2"
+                        2
                     ],
                     [
                         null,
-                        "3"
+                        3
                     ],
                     [
                         "fourth",
@@ -62,7 +63,7 @@ class NullableDataTest {
                     ],
                     [
                         "fifth",
-                        "5"
+                        5
                     ]
                 ]
             },
@@ -73,7 +74,9 @@ class NullableDataTest {
                     "showSymbol": false,
                     "encode": {
                         "x": "days",
-                        "y": "nums"
+                        "y": [
+                            "nums"
+                        ]
                     }
                 }
             ]
@@ -107,15 +110,15 @@ class NullableDataTest {
                         ],
                         [
                             "first",
-                            "1"
+                            1
                         ],
                         [
                             "second",
-                            "2"
+                            2
                         ],
                         [
                             null,
-                            "3"
+                            3
                         ],
                         [
                             "fourth",
@@ -123,7 +126,7 @@ class NullableDataTest {
                         ],
                         [
                             "fifth",
-                            "5"
+                            5
                         ]
                     ]
                 },
@@ -135,7 +138,9 @@ class NullableDataTest {
                         "areaStyle": {},
                         "encode": {
                             "x": "days",
-                            "y": "nums"
+                            "y": [
+                                "nums"
+                            ]
                         }
                     }
                 ]
@@ -171,23 +176,23 @@ class NullableDataTest {
                         ],
                         [
                             "first",
-                            "1"
+                            1
                         ],
                         [
                             "second",
-                            "2"
+                            2
                         ],
                         [
                             null,
-                            "3"
+                            3
                         ],
                         [
                             "fourth",
-                            "4"
+                            4
                         ],
                         [
                             "fifth",
-                            "5"
+                            5
                         ]
                     ]
                 },
@@ -197,7 +202,9 @@ class NullableDataTest {
                         "name": "days nums",
                         "encode": {
                             "x": "days",
-                            "y": "nums"
+                            "y": [
+                                "nums"
+                            ]
                         }
                     }
                 ]
@@ -212,22 +219,6 @@ class NullableDataTest {
             bars {}
         }
 
-        println("!!!!!")
-        println(actual)
-
         assertEquals(expected, actual.toJson())
     }
-
-//    @Test
-//    fun `points with nulls`() {
-//        val option = plot(data) {
-//            x(nums2)
-//            y(nums)
-//            points {
-//                size(sizes)
-//            }
-//        }.toJson()
-//
-//        println(option)
-//    }
 }

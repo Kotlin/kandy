@@ -230,11 +230,11 @@ public fun PointHandler.label(block: LabelContext.() -> Unit) {
  * ```
  *
  * @see pie
- * @see PieContext
+ * @see PieHandler
  * @see LabelContext
  * @see LabelPosition
  */
-public fun PieContext.label(block: LabelContext.() -> Unit) {
+public fun PieHandler.label(block: LabelContext.() -> Unit) {
     val label = LabelContext().apply(block).toLabelFeature()
     if (label != null) layerFeatures[LabelFeature.FEATURE_NAME] = label
 }
