@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.*
 import org.jetbrains.kotlinx.kandy.ir.scale.Scale
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Position
@@ -68,7 +68,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
 
     // Auto Dataset
     private val mpgDF =
-        DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+        DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 
     private val manufacturer = column<String>("manufacturer")
     private val model = column<String>("model")
@@ -658,9 +658,9 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
         }
         // SampleStart
         plotBunch {
-            add(mpgCountPlot, 0, 0, 400, 200)
-            add(meanCylPlot, 400, 0, 300, 200)
-            add(mpgInfoPlot, 0, 200, 700, 300)
+            add(mpgCountPlot, 0.0, 0.0, 0.7, 0.4)
+            add(meanCylPlot, 0.7, 0.0, 0.3, 0.4)
+            add(mpgInfoPlot, 0.0, 0.4, 1.0, 0.6)
         }
             // SampleEnd
             .saveSample()

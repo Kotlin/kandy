@@ -98,8 +98,8 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
         // SampleStart
         val df = dataFrameOf("sample" to sample, "weights" to weights)
         // SampleEnd
-        assertNotNull(df["sample"])
-        assertNotNull(df["weights"])
+        assertNotNull(df.get { "sample"() })
+        assertNotNull(df.get { "weights"() })
     }
 
     @Test

@@ -39,7 +39,7 @@ weeklyTemp.plot {
         color = Color.BLUE
     }
     line {
-        y.constant(weeklyTemp[DayTemperature::temp].mean())
+        y.constant(weeklyTemp.get { "temp"<Int>() }.mean())
         color = Color.GREEN
         type = LineType.DOTTED
         width = 2.5

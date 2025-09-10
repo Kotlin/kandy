@@ -64,6 +64,6 @@ internal fun Layer.wrap(
     freeScales.forEach { (_, freeScale) -> freeScale.wrap(featureBuffer) }
     val df = (datasets[datasetIndex]).dataFrame()
     mappings.forEach { (_, mapping) ->
-        mapping.wrapScale(df[mapping.columnID].type(), groupKeys)?.let { featureBuffer.add(it) }
+        mapping.wrapScale(df.get { mapping.columnID() }.type(), groupKeys)?.let { featureBuffer.add(it) }
     }
 }

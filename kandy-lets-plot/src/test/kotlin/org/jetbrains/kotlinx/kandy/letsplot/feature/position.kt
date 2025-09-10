@@ -21,7 +21,7 @@ class PositionTests {
         "StoreB", "StoreC", "StoreC", "StoreC"
     ) named "store"
 
-    private val groupedData = dataFrameOf(product, sales, store).groupBy(store)
+    private val groupedData = dataFrameOf(product, sales, store).groupBy { store }
 
     @Test
     fun `default position for bar test`() {
