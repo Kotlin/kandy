@@ -2,6 +2,7 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
+@file:Suppress("INVISIBLE_REFERENCE")
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.interfaces
 
 import org.jetbrains.kotlinx.kandy.dsl.internal.LayerBuilderImpl

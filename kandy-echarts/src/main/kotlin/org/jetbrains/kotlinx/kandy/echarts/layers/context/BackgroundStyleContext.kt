@@ -55,7 +55,7 @@ import kotlin.reflect.KProperty
  *
  * @see org.jetbrains.kotlinx.kandy.echarts.layers.bars
  */
-public inline fun BarHandler.background(crossinline block: BackgroundStyleBuilder.() -> Unit) {
+public fun BarHandler.background(block: BackgroundStyleBuilder.() -> Unit) {
     BackgroundStyleBuilder(bindingHandler).apply(block)
 }
 

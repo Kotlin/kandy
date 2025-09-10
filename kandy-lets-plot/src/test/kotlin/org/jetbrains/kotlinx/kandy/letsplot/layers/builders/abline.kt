@@ -1,3 +1,4 @@
+@file:Suppress("INVISIBLE_REFERENCE")
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders
 
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
