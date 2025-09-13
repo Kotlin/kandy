@@ -2,7 +2,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.y
@@ -103,7 +103,7 @@ class Heatmap : SampleHelper("heatmap") {
     @Test
     fun heatmap_settings() {
         // SampleStart
-        val df = DataFrame.readCSV(
+        val df = DataFrame.readCsv(
             fileOrUrl = "https://raw.githubusercontent.com/Kotlin/dataframe/master/examples/idea-examples/titanic/src/main/resources/titanic.csv",
             delimiter = ';', parserOptions = ParserOptions(locale = java.util.Locale.FRENCH)
         )
@@ -119,7 +119,7 @@ class Heatmap : SampleHelper("heatmap") {
                     legend.name = "number of\n passangers"
                 }
             }
-            y.axis.breaks(df["pclass"].distinct().toList(), format = "d")
+            y.axis.breaks(df.get { "pclass"() }.distinct().toList(), format = "d")
         }
             // SampleEnd
             .saveSample()

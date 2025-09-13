@@ -49,7 +49,7 @@ Set the list of variables to place them in a multiline tooltip with the default 
 
 ```kotlin
 val mpgDf =
-    DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+    DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 mpgDf.head()
 ```
 
@@ -252,7 +252,7 @@ Move the tooltips to the top right corner:
 <!---FUN guideTooltipReadIrisDf-->
 
 ```kotlin
-val irisDf = DataFrame.readCSV(
+val irisDf = DataFrame.readCsv(
     "https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/iris.csv",
     parserOptions = ParserOptions(Locale.ENGLISH)
 )

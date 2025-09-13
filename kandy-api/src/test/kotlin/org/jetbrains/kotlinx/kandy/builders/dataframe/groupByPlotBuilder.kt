@@ -39,8 +39,8 @@ class GroupByPlotBuilderTest {
     @Test
     fun `test get`() {
         val builder = GroupByPlotBuilder(dataFrame.groupBy("a"))
-        assertEquals(a, builder[a])
-        assertEquals(a, builder.getColumn(a))
+        assertEquals(a, builder.get { a })
+        assertEquals(a, builder.getColumn { a })
         assertEquals(a, builder["a"])
         assertEquals(a, builder.getColumn("a"))
         assertEquals(b, builder["b"])
@@ -75,7 +75,7 @@ class GroupByPlotBuilderTest {
         val builder = GroupByPlotBuilder(dataFrame.groupBy("c"))
         assertEquals(b, builder.getColumnOrNull(1))
         assertEquals(a, builder.getColumnOrNull("a"))
-        assertEquals(c, builder.getColumnOrNull(c))
+        assertEquals(c, builder.getColumnOrNull { c })
         assertEquals(b, builder.getColumnOrNull { b })
     }
 

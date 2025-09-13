@@ -10,7 +10,7 @@ import org.jetbrains.kotlinx.dataframe.geo.io.readGeoJson
 import org.jetbrains.kotlinx.dataframe.geo.io.readShapefile
 import org.jetbrains.kotlinx.dataframe.geo.jts.scaleAroundCenter
 import org.jetbrains.kotlinx.dataframe.geo.jts.translate
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
@@ -113,16 +113,15 @@ class Geo : SampleHelper("geo") {
         // SampleStart
         val usaStates =
             GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
-        val name by column<String>()
         val geometry by column<Geometry>()
 
         val usaAdjusted = usaStates.modify {
-            update(geometry).where { name() == "Alaska" }.with {
+            update { geometry }.where { "name"<String>() == "Alaska" }.with {
                 it.scaleAroundCenter(0.5).translate(40.0, -40.0)
             }
                 // move Hawaii and Puerto Rico
-                .update(geometry).where { name() == "Hawaii" }.with { it.translate(65.0, 0.0) }
-                .update(geometry).where { name() == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }// SampleEnd
+                .update { geometry }.where { "name"<String>() == "Hawaii" }.with { it.translate(65.0, 0.0) }
+                .update { geometry }.where { "name"<String>() == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }// SampleEnd
                     as DataFrame<Nothing> // SampleStart
         }
 
@@ -142,21 +141,21 @@ class Geo : SampleHelper("geo") {
         val geometry by column<Geometry>()
 
         val usaAdjusted = usaStates.modify {
-            update(geometry).where { name() == "Alaska" }.with {
+            update { geometry }.where { "name"<String>() == "Alaska" }.with {
                 it.scaleAroundCenter(0.5).translate(40.0, -40.0)
             }
                 // move Hawaii and Puerto Rico
-                .update(geometry).where { name() == "Hawaii" }.with { it.translate(65.0, 0.0) }
-                .update(geometry).where { name() == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }// SampleEnd
+                .update { geometry }.where { "name"<String>() == "Hawaii" }.with { it.translate(65.0, 0.0) }
+                .update { geometry }.where { "name"<String>() == "Puerto Rico" }.with { it.translate(-10.0, 5.0) }// SampleEnd
                     as DataFrame<Nothing> // SampleStart
         }
 
         val usa2024electionResults =
-            DataFrame.readCSV("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
+            DataFrame.readCsv("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
         val winner by column<String>()
 
         val usaStatesWithElectionResults = usaAdjusted.modify {
-            innerJoin(usa2024electionResults) { name }//SampleEnd
+            innerJoin(usa2024electionResults) { name } //SampleEnd
                     as DataFrame<Nothing> // SampleStart
         }
 
@@ -215,7 +214,7 @@ class Geo : SampleHelper("geo") {
         val pop_min by column<Int>()
 
         usaStates.modify {
-            filter { name() !in listOf("Alaska", "Hawaii", "Puerto Rico") }//SampleEnd
+            filter { "name"<String>() !in listOf("Alaska", "Hawaii", "Puerto Rico") }//SampleEnd
                     as DataFrame<Nothing> // SampleStart
         }.plot {
             geoMap {

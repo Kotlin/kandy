@@ -20,11 +20,11 @@ Dive into 'Density Plot With Histogram' using Kotlin and Kandy, showing multiple
 <!---FUN densityPlot_with_histogram-->
 
 ```kotlin
-val df = DataFrame.readCSV(
+val df = DataFrame.readCsv(
     fileOrUrl = "https://raw.githubusercontent.com/Kotlin/dataframe/master/examples/idea-examples/titanic/src/main/resources/titanic.csv",
     delimiter = ';', parserOptions = ParserOptions(locale = java.util.Locale.FRENCH)
 )
-val ages = df["age"].dropNulls().cast<Double>()
+val ages = df.get { "age"() }.dropNulls().cast<Double>()
 
 plot {
     histogram(ages) {

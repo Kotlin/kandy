@@ -1,14 +1,12 @@
 package org.jetbrains.kotlinx.kandy.echarts.jupyter
 
 import org.jetbrains.kotlinx.jupyter.api.HTML
-import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
 import org.jetbrains.kotlinx.kandy.echarts.features.animation.PlotChangeAnimation
 import org.jetbrains.kotlinx.kandy.echarts.io.EchartsConfig
 import org.jetbrains.kotlinx.kandy.ir.Plot
 
-@JupyterLibrary
 internal class Integration : JupyterIntegration() {
     override fun Builder.onLoaded() {
         resources {

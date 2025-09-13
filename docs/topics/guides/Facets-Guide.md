@@ -39,7 +39,7 @@ To learn more about formatting templates, see:
 <!---FUN guideFacetsReadDataFrame-->
 
 ```kotlin
-val dataset = DataFrame.readCSV(
+val dataset = DataFrame.readCsv(
     "https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg2.csv",
     parserOptions = ParserOptions(Locale.ENGLISH)
 )

@@ -162,8 +162,8 @@ class DensityPlot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideDensityVLinePlot() {
-        val depth = df[depth]
-        val coeff = df[coeff]
+        val depth = df.get { depth }
+        val coeff = df.get { coeff }
         // SampleStart
         df.plot {
             densityPlot(depth, coeff, n = 700, adjust = 0.8, bandWidth = BandWidth.value(17.0))
@@ -202,8 +202,8 @@ class DensityPlot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideDensitySimpleDensityPlotWithWeight() {
-        val depth = df[depth]
-        val coeff = df[coeff]
+        val depth = df.get { depth }
+        val coeff = df.get { coeff }
         // SampleStart
         df.densityPlot(adjust = 0.5) {
             x(depth)
@@ -216,7 +216,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideDensityConfigureDensityPlot() {
-        val depth = df[depth]
+        val depth = df.get { depth }
         // SampleStart
         df.densityPlot {
             x(depth)
@@ -277,7 +277,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideDensityGroupedStatDensity() {
-        val range = rangesDF[range]
+        val range = rangesDF.get { range }
         // SampleStart
         groupedRangesDF.statDensity { x(range) }
         // SampleEnd
@@ -367,7 +367,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
 
     @Test
     fun guideDensityConfigureSimpleGroupedDensityPlot() {
-        val range = rangesDF[range]
+        val range = rangesDF.get { range }
         // SampleStart
         groupedRangesDF.densityPlot(n = 750, trim = true, adjust = 0.75) { x(range) }.configure {
             alpha = 0.6

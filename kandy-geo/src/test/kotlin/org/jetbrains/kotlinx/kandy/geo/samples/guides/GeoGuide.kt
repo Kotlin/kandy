@@ -16,7 +16,7 @@ import org.jetbrains.kotlinx.dataframe.geo.io.writeShapefile
 import org.jetbrains.kotlinx.dataframe.geo.jts.scaleAroundCenter
 import org.jetbrains.kotlinx.dataframe.geo.jts.toMultiPolygon
 import org.jetbrains.kotlinx.dataframe.geo.jts.translate
-import org.jetbrains.kotlinx.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.kandy.dsl.categorical
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.feature.CoordinatesTransformation
@@ -95,7 +95,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     }
 
     private val usa2024electionResults =
-        DataFrame.readCSV("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
+        DataFrame.readCsv("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
 
     private val usaStatesWithElectionResults = usaAdjusted.modify {
         innerJoin(usa2024electionResults) { name } as DataFrame<Nothing>
@@ -447,7 +447,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     fun electionResultsLoadData() {
         // SampleStart
         val usa2024electionResults =
-            DataFrame.readCSV("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
+            DataFrame.readCsv("https://gist.githubusercontent.com/AndreiKingsley/348687222aecc4f0eb39e3d81acd515b/raw/a9914352dbdfb426f9146dda633ee382d936b000/usa_2024_election_states.csv")
 
         usa2024electionResults
         // SampleEnd

@@ -33,8 +33,8 @@ class ExportToFile : SampleHelper("other", "guides") {
             "cond" to List(n / 2) { "A" } + List(n / 2) { "B" }
         )
         // SampleEnd
-        assertNotNull(dataset[rating])
-        assertNotNull(dataset[cond])
+        assertNotNull(dataset.get { rating })
+        assertNotNull(dataset.get { cond })
     }
 
     @Test

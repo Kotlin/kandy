@@ -515,7 +515,7 @@ as you can utilize auto-generated property columns without manually creating col
 ```kotlin
 // Reading a CSV file into a DataFrame
 val mpgDF =
-    DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+    DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 // Display the first five rows of the DataFrame
 mpgDF.head()
 ```
@@ -940,9 +940,9 @@ This is ideal for tailored data presentations. Example:
 
 ```kotlin
 plotBunch {
-    add(mpgCountPlot, 0, 0, 400, 200)
-    add(meanCylPlot, 400, 0, 300, 200)
-    add(mpgInfoPlot, 0, 200, 700, 300)
+    add(mpgCountPlot, 0.0, 0.0, 0.7, 0.4)
+    add(meanCylPlot, 0.7, 0.0, 0.3, 0.4)
+    add(mpgInfoPlot, 0.0, 0.4, 1.0, 0.6)
 }
 ```
 

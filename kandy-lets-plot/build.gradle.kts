@@ -25,6 +25,7 @@ dependencies {
     testImplementation(libs.kotlin.test)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.statistics)
+    testImplementation(libs.kotlinx.dataframe.jupyter)
     testImplementation(project(":samples-utils"))
 }
 
@@ -40,14 +41,17 @@ tasks.withType<KspTaskJvm> {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions {
+    compilerOptions {
         val friendModule = project(":kandy-api")
         val jarTask = friendModule.tasks.getByName("jar") as Jar
         val jarPath = jarTask.archiveFile.get().asFile.absolutePath
-        freeCompilerArgs += "-Xfriend-paths=$jarPath"
+        freeCompilerArgs.add("-Xfriend-paths=$jarPath")
     }
 }
 
+tasks.processJupyterApiResources {
+    libraryProducers = listOf("org.jetbrains.kotlinx.kandy.letsplot.jupyter.Integration")
+}
 
 korro {
     docs = fileTree(rootProject.rootDir) {

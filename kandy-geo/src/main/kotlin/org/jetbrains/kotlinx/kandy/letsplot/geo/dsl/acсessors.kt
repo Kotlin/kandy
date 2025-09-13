@@ -12,7 +12,7 @@ import org.locationtech.jts.geom.Geometry
 internal fun GeoDataScope.geometry(): DataColumn<Geometry> {
     with((this as LayerCreatorScope).datasetBuilder as GeoDataBuilder) {
         takeColumn("geometry")
-        return buffer[column<Geometry>("geometry")]
+        return buffer.get { column<Geometry>("geometry") }
     }
 }
 

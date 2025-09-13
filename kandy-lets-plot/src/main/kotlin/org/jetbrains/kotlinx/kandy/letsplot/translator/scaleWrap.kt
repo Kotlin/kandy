@@ -2,11 +2,10 @@
 * Copyright 2020-2023 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
 */
 
-@file:Suppress("UNCHECKED_CAST")
+@file:Suppress("UNCHECKED_CAST", "DEPRECATION")
 
 package org.jetbrains.kotlinx.kandy.letsplot.translator
 
-import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
@@ -28,12 +27,14 @@ import org.jetbrains.letsPlot.intern.Options
 import org.jetbrains.letsPlot.scale.*
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
+import kotlin.time.Instant
+import kotlinx.datetime.Instant as DeprecatedInstant
 
 private typealias Aesthetic = org.jetbrains.kotlinx.kandy.ir.aes.Aes
 
 internal val dateTimeTypes = setOf(
-    typeOf<Instant>(), typeOf<LocalDateTime>(), typeOf<LocalDate>(),
-    typeOf<Instant?>(), typeOf<LocalDateTime?>(), typeOf<LocalDate?>()
+    typeOf<Instant>(), typeOf<DeprecatedInstant>(), typeOf<LocalDateTime>(), typeOf<LocalDate>(),
+    typeOf<Instant?>(), typeOf<DeprecatedInstant?>(), typeOf<LocalDateTime?>(), typeOf<LocalDate?>()
 )
 
 internal val discreteAes = setOf(

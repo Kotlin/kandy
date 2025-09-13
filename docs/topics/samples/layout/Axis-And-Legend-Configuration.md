@@ -19,7 +19,7 @@ Dive into 'Axis And Legend Configuration' using Kotlin and Kandy, full and detai
 
 ```kotlin
 val df =
-    DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+    DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 
 df.plot {
     points {

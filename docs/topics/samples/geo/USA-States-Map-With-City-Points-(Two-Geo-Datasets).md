@@ -28,7 +28,7 @@ val usaCities =
 val pop_min by column<Int>()
 
 usaStates.modify {
-    filter { name() !in listOf("Alaska", "Hawaii", "Puerto Rico") }
+    filter { "name"<String>() !in listOf("Alaska", "Hawaii", "Puerto Rico") }
 }.plot {
     geoMap {
         fillColor = Color.hex("#E4F1FE")

@@ -243,11 +243,11 @@ class Candlestick : SampleHelper("stat", "guides") {
 
     @Test
     fun guideCandlestickSimpleCandlestickPlotOnDfWithSelectors() {
-        val x = df[x]
-        val open = df[open]
-        val high = df[high]
-        val low = df[low]
-        val close = df[close]
+        val x = df.get { x }
+        val open = df.get { open }
+        val high = df.get { high }
+        val low = df.get { low }
+        val close = df.get { close }
         // SampleStart
         df.candlestick {
             x(x)

@@ -1,3 +1,4 @@
+@file:Suppress("INVISIBLE_REFERENCE")
 package org.jetbrains.kotlinx.kandy.letsplot.layers.builders.aes
 
 import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.subcontext.BorderLine

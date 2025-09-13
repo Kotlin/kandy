@@ -22,7 +22,7 @@ and learn how to add descriptive elements to your charts for better clarity and 
 
 ```kotlin
 val mpgDf =
-    DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
+    DataFrame.readCsv("https://raw.githubusercontent.com/JetBrains/lets-plot-kotlin/master/docs/examples/data/mpg.csv")
 mpgDf.head()
 ```
 
