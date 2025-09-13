@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model
 
+import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
 // TODO(https://github.com/Kotlin/kandy/issues/410)
@@ -37,6 +38,17 @@ public data class Axis<DomainType> @PublishedApi internal constructor(
      */
     public fun breaks(breaks: List<DomainType>? = null, format: String? = null) {
         this.breaks = breaks
+        this.format = format
+    }
+
+    /**
+     * Sets axis breaks with formatting.
+     *
+     * @param breaks data column of breaks.
+     * @param format format string.
+     */
+    public fun breaks(breaks: DataColumn<DomainType>, format: String? = null){
+        this.breaks = breaks.toList()
         this.format = format
     }
 

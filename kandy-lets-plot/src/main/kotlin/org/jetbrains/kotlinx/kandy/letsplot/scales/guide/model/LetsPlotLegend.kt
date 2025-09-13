@@ -4,6 +4,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.scales.guide.model
 
+import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.kandy.letsplot.scales.guide.LegendType
 import org.jetbrains.kotlinx.kandy.util.context.SelfInvocationContext
 
@@ -32,6 +33,17 @@ public data class Legend<DomainType, out RangeType> @PublishedApi internal const
      */
     public fun breaks(breaks: List<DomainType>? = null, format: String? = null) {
         this.breaks = breaks
+        this.format = format
+    }
+
+    /**
+     * Sets legend breaks with formatting.
+     *
+     * @param breaks data column of breaks.
+     * @param format format string.
+     */
+    public fun breaks(breaks: DataColumn<DomainType>, format: String? = null){
+        this.breaks = breaks.toList()
         this.format = format
     }
 
