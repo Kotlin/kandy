@@ -7,6 +7,7 @@ package org.jetbrains.kotlinx.kandy.dsl.internal.dataframe
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
+import org.jetbrains.kotlinx.dataframe.api.addAll
 import org.jetbrains.kotlinx.dataframe.columns.ColumnAccessor
 import org.jetbrains.kotlinx.dataframe.columns.ColumnReference
 import org.jetbrains.kotlinx.kandy.dsl.internal.DatasetBuilder
@@ -60,7 +61,7 @@ internal abstract class DatasetBuilderImpl(
                 addColumn(column.rename(column.name() + "*"))
             }
         } else {
-            buffer = buffer.add(column)
+            buffer = buffer.addAll(column)
             column.name()
         }
     }
