@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
+import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.kandy.dsl.continuous
 import org.jetbrains.kotlinx.kandy.dsl.invoke
 import org.jetbrains.kotlinx.kandy.dsl.plot
@@ -90,6 +91,7 @@ class AlgebraicCurve : SampleHelper("geoms", "guides") {
     @Test
     fun guideAlgebraicCurvePlot() {
         // SampleStart
+        dataset.toDataFrame().saveDfHtmlSample()
         plot(dataset) {
             raster {
                 x("x"<Double>())
