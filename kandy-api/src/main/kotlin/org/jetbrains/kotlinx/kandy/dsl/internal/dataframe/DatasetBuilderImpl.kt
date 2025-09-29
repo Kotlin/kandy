@@ -53,6 +53,7 @@ internal abstract class DatasetBuilderImpl(
         }
     }
 
+    @Suppress("DEPRECATION")
     fun addColumn(column: DataColumn<*>): String {
         return if (buffer.containsColumn(column.name())) {
             if (buffer[column.name()] == column) {
@@ -61,7 +62,7 @@ internal abstract class DatasetBuilderImpl(
                 addColumn(column.rename(column.name() + "*"))
             }
         } else {
-            buffer = buffer.addAll(column)
+            buffer = buffer.add(column)
             column.name()
         }
     }

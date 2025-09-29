@@ -4,7 +4,7 @@ package org.jetbrains.kotlinx.kandy.dsl.internal
  * An abstract class that represents a scope for creating plot layers.
  * Provides a default dataset for new layers created in it.
  */
-public abstract class LayerCreatorScope {
+public abstract class  LayerCreatorScope {
 
     /**
      * Parent [PlotBuilder].
