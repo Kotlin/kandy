@@ -4,7 +4,6 @@ package org.jetbrains.kotlinx.kandy.letsplot.geo.layers
 
 import org.jetbrains.kotlinx.dataframe.DataColumn
 import org.jetbrains.kotlinx.dataframe.api.add
-import org.jetbrains.kotlinx.dataframe.api.addAll
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.named
 import org.jetbrains.kotlinx.dataframe.geo.toGeo
@@ -37,7 +36,7 @@ internal fun <T> LayerCreatorScope.geoLayer(
     } else {
         // TODO(https://github.com/Kotlin/kandy/issues/456)
         // add geometry column otherwise
-        (datasetBuilder as DatasetBuilderImpl).baseDataFrame.addAll(geometryColumn).toGeo()
+        (datasetBuilder as DatasetBuilderImpl).baseDataFrame.add(geometryColumn).toGeo()
     }
     plotBuilder.withData(geoDataFrame) {
         layerFun(builder)

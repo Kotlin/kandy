@@ -3,7 +3,6 @@ package org.jetbrains.kotlinx.kandy.echarts.jupyter
 import org.jetbrains.kotlinx.jupyter.testkit.JupyterReplTestCase
 import org.junit.Rule
 import org.junit.rules.TestName
-import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
@@ -17,7 +16,6 @@ class MonoIntegrationTest : JupyterReplTestCase() {
 
     private val classLoader = (this::class as Any).javaClass.classLoader
 
-    @Ignore
     @Test
     fun `echarts plot should render normally`() {
         val plotHtml = execHtml(
