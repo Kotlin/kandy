@@ -24,7 +24,10 @@ dependencies {
 
     testImplementation(libs.kotlin.test)
     testImplementation(libs.mockk)
-    testImplementation(libs.kotlinx.statistics)
+    testImplementation(libs.kotlinx.statistics) {
+        exclude("org.jetbrains.kotlinx", "kandy")
+        exclude("org.jetbrains.kotlinx", "dataframe")
+    }
     testImplementation(project(":kandy-samples-utils"))
     testImplementation(libs.kotlinx.dataframe.jupyter)
 }

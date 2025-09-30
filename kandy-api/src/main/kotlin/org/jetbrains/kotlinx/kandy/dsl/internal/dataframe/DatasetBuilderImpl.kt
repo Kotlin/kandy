@@ -60,7 +60,7 @@ internal abstract class DatasetBuilderImpl(
                 addColumn(column.rename(column.name() + "*"))
             }
         } else {
-            buffer = buffer.add(column)
+            buffer = buffer.addAll(column)
             column.name()
         }
     }

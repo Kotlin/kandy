@@ -4,6 +4,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.geo.dsl
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.add
+import org.jetbrains.kotlinx.dataframe.api.addAll
 import org.jetbrains.kotlinx.dataframe.geo.GeoDataFrame
 import org.jetbrains.kotlinx.dataframe.geo.WithGeometry
 import org.jetbrains.kotlinx.dataframe.geo.geometry
@@ -21,7 +22,7 @@ internal class GeoDataBuilder(
     @Suppress("UNCHECKED_CAST")
     override fun build(): TableData {
         if (!buffer.containsColumn("geometry")) {
-            buffer = buffer.add(baseDataFrame.geometry)
+            buffer = buffer.addAll(baseDataFrame.geometry)
         }
         return GeoData(GeoDataFrame(buffer as DataFrame<WithGeometry>, crs))
     }
