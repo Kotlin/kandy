@@ -91,7 +91,6 @@ class AlgebraicCurve : SampleHelper("geoms", "guides") {
     @Test
     fun guideAlgebraicCurvePlot() {
         // SampleStart
-        dataset.toDataFrame().saveDfHtmlSample()
         plot(dataset) {
             raster {
                 x("x"<Double>())
