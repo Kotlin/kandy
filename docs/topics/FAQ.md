@@ -22,7 +22,7 @@ Kotlin Slack channel.
 ## Does Kandy support Compose Multiplatform?
  * We’re looking into it, but currently Kandy’s only target is JVM. 
 If you need Compose Multiplatform support, please follow the
-[corresponding issue](https://github.com/Kotlin/kandy/issues/27) for updates and cast your vote there as well. 
+[corresponding issue](https://github.com/Kotlin/kandy/issues/270) for updates and cast your vote there as well.
 We’d also appreciate it if you could describe your case and current toolset.
 
 
