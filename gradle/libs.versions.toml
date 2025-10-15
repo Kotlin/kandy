@@ -32,6 +32,8 @@ kotlinx-statistics = { group = "org.jetbrains.kotlinx", name = "kotlin-statistic
 lets-plot = { group = "org.jetbrains.lets-plot", name = "lets-plot-kotlin-jvm", version.ref = "letsPlot" }
 lets-plot-image = { group = "org.jetbrains.lets-plot", name = "lets-plot-image-export", version.ref = "letsPlotImage" }
 lets-plot-awt = { group = "org.jetbrains.lets-plot", name = "platf-awt", version.ref = "letsPlotImage" }
+lets-plot-canvas = { group = "org.jetbrains.lets-plot", name = "canvas", version.ref = "letsPlotImage" }
+lets-plot-raster = { group = "org.jetbrains.lets-plot", name = "plot-raster", version.ref = "letsPlotImage" }
 lets-plot-geotools = { group = "org.jetbrains.lets-plot", name = "lets-plot-kotlin-geotools", version.ref = "letsPlot" }
 #Geootools
 jai-core = { module = "javax.media:jai-core", version.ref = "jai-core" }
