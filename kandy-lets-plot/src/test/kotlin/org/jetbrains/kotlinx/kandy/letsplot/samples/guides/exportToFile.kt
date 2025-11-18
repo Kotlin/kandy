@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.kandy.dsl.plot
@@ -13,7 +14,7 @@ class ExportToFile : SampleHelper("other", "guides") {
 
     private val rand = java.util.Random(42)
     private val n = 500
-    private val dataset = dataFrameOf(
+    private val dataset: AnyFrame = dataFrameOf(
         "rating" to List(n / 2) { rand.nextGaussian() } + List(n / 2) { rand.nextGaussian() * 1.5 + 1.5 },
         "cond" to List(n / 2) { "A" } + List(n / 2) { "B" }
     )

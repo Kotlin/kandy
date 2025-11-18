@@ -2,7 +2,9 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
 import org.apache.commons.math3.distribution.NormalDistribution
 import org.apache.commons.math3.distribution.UniformRealDistribution
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.groupBy
@@ -35,7 +37,7 @@ class Boxplot : SampleHelper("stat", "guides") {
     private val rateA = NormalDistribution(37.8, 4.3).sample(5000).toList()
     private val rateB = UniformRealDistribution(20.0, 50.0).sample(1000).toList()
     private val rateC = (rateA + rateB).filter { it >= 36.0 }
-    val df = dataFrameOf(
+    val df: AnyFrame = dataFrameOf(
         "rate" to rateA + rateB + rateC,
         "cond" to List(rateA.size) { "A" } + List(rateB.size) { "B" } + List(rateC.size) { "C" }
     )
@@ -309,8 +311,8 @@ class Boxplot : SampleHelper("stat", "guides") {
     private val `class` = column<String>("class")
     private val hwy = column<Int>("hwy")
     private val drv = column<String>("drv")
-    private val mpgShortDF = mpgDF.select { `class` and hwy and drv }
-    private val groupedDF = mpgShortDF.groupBy { drv }
+    private val mpgShortDF: AnyFrame = mpgDF.select { `class` and hwy and drv }
+    private val groupedDF: GroupBy<*, *> = mpgShortDF.groupBy { drv }
 
 
     @Test

@@ -30,12 +30,12 @@ internal object MeasurementSerializer : KSerializer<Measurement> {
 
             is Measurement.Pair<*> -> encoder.encodeSerializableValue(
                 Measurement.Pair.serializer(SizeUnit.serializer()),
-                value as Measurement.Pair<SizeUnit>
+                value
             )
 
             is Measurement.Rectangle<*> -> encoder.encodeSerializableValue(
                 Measurement.Rectangle.serializer(SizeUnit.serializer()),
-                value as Measurement.Rectangle<SizeUnit>
+                value
             )
         }
     }

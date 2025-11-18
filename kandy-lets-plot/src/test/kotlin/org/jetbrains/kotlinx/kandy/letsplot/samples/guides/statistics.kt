@@ -36,20 +36,20 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
 
     private val statBinData = statBin(sample, null, BinsOption.byNumber(20), BinsAlign.center(0.0))
 
-    private val df = dataFrameOf("sample" to sample, "weigths" to weights)
+    private val df: AnyFrame = dataFrameOf("sample" to sample, "weigths" to weights)
 
     private val sampleA = NormalDistribution(1.5, 1.0).sample(1000).toList()
     private val sampleB = NormalDistribution(4.0, 2.0).sample(1000).toList()
 
     // Gather them into `DataFrame` with "A" and "B" keys in the "category" column
-    private val dfAB = dataFrameOf(
+    private val dfAB: AnyFrame = dataFrameOf(
         "sample" to sampleA + sampleB,
         "type" to List(1000) { "A" } + List(1000) { "B" }
     )
 
     private val type = column<String>("type")
 
-    private val gbAB = dfAB.groupBy { type }
+    private val gbAB: GroupBy<*, *> = dfAB.groupBy { type }
 
 
     @Test

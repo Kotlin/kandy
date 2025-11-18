@@ -1,9 +1,10 @@
 package org.jetbrains.kotlinx.kandy.letsplot.dsl
 
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 
-internal val dataset = dataFrameOf(
+internal val dataset: AnyFrame = dataFrameOf(
     "time" to listOf(1, 2),
     "type" to listOf("a", "b")
 )

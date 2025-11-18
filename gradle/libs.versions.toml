@@ -1,6 +1,6 @@
 [versions]
 # plugins version
-kotlin = "2.2.21"
+kotlin = "2.3.0-RC"
 dokka = "2.0.0"
 korro = "0.1.6"
 nexus = "2.0.0"
@@ -52,6 +52,7 @@ mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-dataframe = { id = "org.jetbrains.kotlin.plugin.dataframe", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-jupyter-api = { id = "org.jetbrains.kotlin.jupyter.api", version.ref = "jupyterApi" }
