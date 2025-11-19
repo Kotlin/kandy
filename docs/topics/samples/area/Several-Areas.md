@@ -92,6 +92,39 @@ plot(dataset) {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "year" to columnOf("2016", "2017", "2018", "2019", "2020", "2021"),
+    "Apple" to columnOf(700, 800, 750, 900, 850, 950),
+    "Google" to columnOf(1000, 950, 1200, 1150, 1250, 1300),
+    "Microsoft" to columnOf(600, 700, 650, 700, 750, 800),
+    "Meta" to columnOf(1100, 1200, 1150, 1300, 1250, 1350),
+    "Amazon" to columnOf(300, 400, 350, 450, 500, 600)
+).gather { Apple and Google and Microsoft and Meta and Amazon }.into("company", "users")
+
+dataset.groupBy { company }.plot {
+    layout.title = "User Growth Dynamics"
+    area {
+        x(year)
+        y(users)
+        fillColor(company) {
+            scale = categorical(
+                "Apple" to Color.hex("#FF45ED"),
+                "Google" to Color.hex("#3DEA62"),
+                "Microsoft" to Color.BLACK,
+                "Meta" to Color.hex("#FDB60D"),
+                "Amazon" to Color.hex("#087CFA")
+            )
+        }
+        borderLine.color(company)
+        alpha = 0.3
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

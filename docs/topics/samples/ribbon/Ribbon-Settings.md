@@ -73,6 +73,36 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val df = dataFrameOf(
+    "year" to columnOf("2019", "2020", "2021", "2022", "2023"),
+    "minCost" to columnOf(56.5, 59.9, 60.8, 78.9, 75.5),
+    "maxCost" to columnOf(58.1, 69.3, 66.4, 108.3, 92.2)
+)
+
+df.plot {
+    ribbon {
+        x(year)
+        y {
+            axis.name = "cost"
+            scale = continuous(55.0..110.0)
+        }
+        yMin(minCost)
+        yMax(maxCost)
+        fillColor = Color.hex(0x3f21e6)
+        alpha = 0.65
+        borderLine {
+            color = Color.RED
+            width = 0.8
+            type = LineType.DASHED
+        }
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

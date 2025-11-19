@@ -66,6 +66,30 @@ dataset.plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "cities" to columnOf("London", "Paris", "Berlin", "Madrid", "Rome", "Amsterdam", "Prague"),
+    "airPollution" to columnOf(70, 65, 50, 60, 55, 45, 53),
+    "numberOfCars" to columnOf(3000, 2800, 1800, 2500, 2100, 1300, 2000)
+)
+
+dataset.plot {
+    layout.title = "Air Pollution and Vehicle Count Analysis"
+    bars {
+        x(cities) { axis.name = "City" }
+        y(numberOfCars) { axis.name = "Number of cars (thousands)" }
+        fillColor(airPollution) {
+            legend.name = "Air Pollution\n Level (AQI)"
+            scale = continuous(Color.GREEN..Color.RED)
+        }
+        alpha = 0.8
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

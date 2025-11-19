@@ -74,6 +74,32 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val classesDF = dataFrameOf(
+    "classes" to columnOf(
+        "First", "Second", "Third", "Third", "Second",
+        "Third", "First", "Second", "Third", "First",
+        "Third", "Second", "Third", "First", "Second",
+        "Third", "First", "Third", "Second", "Third",
+        "First", "Second", "Third", "First", "Third",
+        "Second", "Third", "First", "Second", "Third",
+        "First", "Third", "Second", "Third", "First",
+        "Second", "Third", "First", "Second", "Third"
+    )
+)
+
+classesDF.plot {
+    countPlot(classes) {
+        alpha = 0.8
+        fillColor(Stat.x) { legend.type = LegendType.None }
+        x.axis.name = "class"
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

@@ -84,6 +84,40 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val cities = listOf("Yerevan", "Berlin", "Amsterdam", "Paphos")
+val types = listOf("A", "B", "C")
+val random = kotlin.random.Random(42)
+val year22 = List(4) { types.random(random) }
+val year23 = List(4) { types.random(random) }
+val year24 = List(4) { types.random(random) }
+
+val dataset = dataFrameOf(
+    "city" to cities,
+    "2022" to year22,
+    "2023" to year23,
+    "2024" to year24
+).gather { `2022` and `2023` and `2024` }.into("year", "value")
+
+plot(dataset) {
+    tiles {
+        x(city)
+        y(year) {
+            scale = categorical()
+            axis.breaks(format = "d")
+        }
+        width = 0.5
+        height = 0.9
+        fillColor(value) {
+            legend.breaks(types)
+        }
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

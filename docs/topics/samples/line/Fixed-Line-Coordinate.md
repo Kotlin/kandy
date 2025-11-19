@@ -69,6 +69,37 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+data class DayTemperature(val day: String, val temp: Int)
+
+val weeklyTemp = listOf(
+    DayTemperature("Mon", 10),
+    DayTemperature("Tue", 6),
+    DayTemperature("Wed", 5),
+    DayTemperature("Thu", 7),
+    DayTemperature("Fri", 7),
+    DayTemperature("Sat", 11),
+    DayTemperature("Sun", 9)
+).toDataFrame()
+
+weeklyTemp.plot {
+    x(day)
+    line {
+        y(temp)
+        color = Color.BLUE
+    }
+    line {
+        y.constant(weeklyTemp.temp.mean())
+        color = Color.GREEN
+        type = LineType.DOTTED
+        width = 2.5
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

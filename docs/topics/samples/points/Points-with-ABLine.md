@@ -78,6 +78,38 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "xValues" to columnOf(
+        7.13, 9.30, 7.84, 7.08, 5.51,
+        8.40, 5.69, 11.59, 12.53, 4.98,
+        10.29, 6.88, 7.38, 12.03, 0.92
+    ),
+    "yValues" to columnOf(
+        7.05, 8.23, 6.74, 7.95, 5.38,
+        7.47, 4.88, 9.17, 9.30, 6.17,
+        6.58, 5.87, 6.45, 10.53, 3.13
+    )
+)
+
+dataset.plot {
+    points {
+        x(xValues)
+        y(yValues)
+        size = 7.0
+        color = Color.LIGHT_BLUE
+    }
+    abLine {
+        slope.constant(0.5)
+        intercept.constant(3)
+        color = Color.RED
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

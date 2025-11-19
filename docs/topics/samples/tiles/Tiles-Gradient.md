@@ -74,6 +74,44 @@ dataset.plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "x" to columnOf(
+        1.0, 2.0, 3.0, 4.0, 5.0,
+        1.0, 2.0, 3.0, 4.0, 5.0,
+        1.0, 2.0, 3.0, 4.0, 5.0
+    ),
+    "y" to columnOf(
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        2.0, 2.0, 2.0, 2.0, 2.0,
+        3.0, 3.0, 3.0, 3.0, 3.0
+    ),
+    "value" to columnOf(
+        6, 7, 8, 4, 2,
+        7, 5, 6, 4, 3,
+        8, 6, 5, 8, 4
+    )
+)
+val xCol = column<Double>("x")
+val yCol = column<Double>("y")
+
+dataset.plot {
+    tiles {
+        x(xCol) { axis.name = "x" }
+        y(yCol) { axis.name = "y" }
+        fillColor(value) {
+            legend.type = LegendType.None
+            scale = continuous(Color.hex("#E1F5FE")..Color.hex("#01579B"))
+        }
+        borderLine.width = 0.25
+    }
+    layout.style(Style.Void)
+}
+```
+
 </tab></tabs>
 <!---END-->
 

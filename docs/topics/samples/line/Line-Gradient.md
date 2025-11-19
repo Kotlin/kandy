@@ -79,6 +79,35 @@ monthTemp.plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val monthTemp = dataFrameOf("month", "temp")(
+    "January", -5,
+    "February", -3,
+    "March", 2,
+    "April", 10,
+    "May", 16,
+    "June", 20,
+    "July", 22,
+    "August", 21,
+    "September", 15,
+    "October", 9,
+    "November", 3,
+    "December", -2
+)
+
+monthTemp.plot {
+    line {
+        x(month)
+        y(temp) { scale = continuous(-10..25) }
+        color(temp) { scale = continuous(Color.BLUE..Color.RED) }
+        width = 3.0
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

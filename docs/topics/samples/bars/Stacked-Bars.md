@@ -79,6 +79,34 @@ dataset.plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "day" to columnOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
+    "coffee" to columnOf(0.81, 0.78, 0.72, 0.65, 0.73, 0.49, 0.38),
+    "tea" to columnOf(0.12, 0.16, 0.21, 0.26, 0.24, 0.22, 0.30),
+    "soda" to columnOf(0.07, 0.06, 0.07, 0.09, 0.03, 0.29, 0.32),
+).gather { coffee and tea and soda }.into("drink", "amount")
+
+dataset.groupBy { drink }.plot {
+    layout.title = "Weekly Beverage Consumption Trends"
+    bars {
+        x(day)
+        y(amount)
+        fillColor(drink) {
+            scale = categorical(
+                "coffee" to Color.hex("#6F4E37"),
+                "tea" to Color.hex("#C2D4AB"),
+                "soda" to Color.hex("#B5651D")
+            )
+        }
+        position = Position.stack()
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

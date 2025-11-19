@@ -48,6 +48,23 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val df = dataFrameOf(
+    "value" to columnOf(15, 22, 40, 7, 31),
+    "type" to columnOf("A", "B", "C", "A", "D")
+)
+
+df.plot {
+    pie {
+        slice(value)
+        fillColor(type)
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

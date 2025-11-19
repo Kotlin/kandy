@@ -59,6 +59,25 @@ dataset.plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val random = java.util.Random(42)
+
+val sampleA = List(1000) { random.nextGaussian() * 0.7 + 2.0 }
+val sampleB = List(1000) { random.nextGaussian() * 1.4 + 3.5 }
+
+val df = dataFrameOf(
+    "sample" to sampleA + sampleB,
+    "group" to sampleA.map { "A" } + sampleB.map { "B" }
+)
+
+df.groupBy { group }.plot {
+    histogram(sample)
+}
+```
+
 </tab></tabs>
 <!---END-->
 

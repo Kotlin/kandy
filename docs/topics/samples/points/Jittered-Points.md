@@ -61,6 +61,29 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val random = kotlin.random.Random(42)
+val dataset = dataFrameOf(
+    "type" to (List(50) { "a" } + List(50) { "b" }).toColumn(),
+    "value" to (
+        List(50) { kotlin.random.Random.nextDouble(0.1, 0.6) } +
+        List(50) { random.nextDouble(-0.5, 0.4) }
+    ).toColumn()
+)
+
+dataset.plot {
+    points {
+        x(type)
+        y(value)
+        position = Position.jitter(width = 0.1, height = 0.1)
+        color = Color.hex("#05C3DE")
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

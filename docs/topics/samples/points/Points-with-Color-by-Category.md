@@ -99,6 +99,44 @@ plot(dataset) {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "xShot" to columnOf(
+        4.02, 5.24, 4.41, 3.99, 3.10, 4.73, 3.20, 6.53, 7.05, 2.81,
+        5.80, 3.87, 4.16, 6.78, 0.52, 0.64, 0.15, 6.09, 5.70, 6.37
+    ),
+    "yShot" to columnOf(
+        2.39, 1.95, 1.13, 1.90, 0.29, 1.56, 0.35, 2.30, 1.27, 1.01,
+        0.65, 1.89, 1.11, 1.39, 0.05, 1.51, 1.49, 1.51, 2.30, 1.66
+    ),
+    "outcome" to columnOf(
+        false, true, false, true, true, true, true, true, true, false,
+        true, true, false, false, true, false, false, true, true, false
+    )
+)
+
+dataset.plot {
+    points {
+        x(xShot) { axis.name = "Horizontal Position (meters)" }
+        y(yShot) { axis.name = "Vertical Position (meters)" }
+        size = 8.5
+        color(outcome) {
+            scale = categorical(
+                true to Color.GREEN, false to Color.RED
+            )
+            legend {
+                name = "Outcome"
+                breaksLabeled(true to "Goal", false to "Miss")
+            }
+        }
+    }
+    layout.title = "Penalty Shot Outcomes Analysis"
+}
+```
+
 </tab></tabs>
 <!---END-->
 

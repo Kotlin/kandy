@@ -46,6 +46,20 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val random = java.util.Random(42)
+val dataframe = dataFrameOf(
+    "sample" to List(1000) { random.nextGaussian() }
+)
+
+dataframe.plot {
+    histogram(sample)
+}
+```
+
 </tab></tabs>
 <!---END-->
 

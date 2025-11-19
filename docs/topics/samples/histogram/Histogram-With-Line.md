@@ -72,6 +72,34 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val random = java.util.Random(42)
+
+val sampleDf = dataFrameOf(
+    "sample" to List(1000) { random.nextGaussian() }
+)
+
+sampleDf.plot {
+    statBin(sample, binsOption = BinsOption.byNumber(15)) {
+        bars {
+            alpha = 0.9
+            x(Stat.x)
+            y(Stat.count)
+        }
+        line {
+            x(Stat.x)
+            y(Stat.count)
+            color = Color.RED
+            width = 1.5
+            type = LineType.LONGDASH
+        }
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

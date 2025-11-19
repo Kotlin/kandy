@@ -61,6 +61,38 @@ class Tiles : SampleHelper("tiles") {
     }
 
     @Test
+    fun tiles_settings_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "store" to columnOf("A", "B", "C", "A", "B", "C", "A", "B", "C"),
+            "time" to columnOf(
+                "morning", "morning", "morning",
+                "afternoon", "afternoon", "afternoon",
+                "evening", "evening", "evening"
+            ),
+            "money" to columnOf(75, 64, 59, 82, 88, 91, 69, 77, 73)
+        )
+
+        dataset.plot {
+            tiles {
+                x(store)
+                y(time)
+                height = 0.7
+                borderLine {
+                    width = 0.8
+                    color = Color.BLACK
+                }
+                fillColor(money) {
+                    scale = continuous(Color.RED..Color.GREEN)
+                }
+                alpha = 0.5
+            }
+        }
+            // SampleEnd
+            .saveSample()
+    }
+
+    @Test
     fun tiles_settings_collections() {
         // SampleStart
         val store = listOf("A", "B", "C", "A", "B", "C", "A", "B", "C")
@@ -138,6 +170,43 @@ class Tiles : SampleHelper("tiles") {
     }
 
     @Test
+    fun tiles_gradient_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "xCol" to columnOf(
+                1.0, 2.0, 3.0, 4.0, 5.0,
+                1.0, 2.0, 3.0, 4.0, 5.0,
+                1.0, 2.0, 3.0, 4.0, 5.0
+            ),
+            "yCol" to columnOf(
+                1.0, 1.0, 1.0, 1.0, 1.0,
+                2.0, 2.0, 2.0, 2.0, 2.0,
+                3.0, 3.0, 3.0, 3.0, 3.0
+            ),
+            "value" to columnOf(
+                6, 7, 8, 4, 2,
+                7, 5, 6, 4, 3,
+                8, 6, 5, 8, 4
+            )
+        )
+
+        dataset.plot {
+            tiles {
+                x(xCol) { axis.name = "x" }
+                y(yCol) { axis.name = "y" }
+                fillColor(value) {
+                    legend.type = LegendType.None
+                    scale = continuous(Color.hex("#E1F5FE")..Color.hex("#01579B"))
+                }
+                borderLine.width = 0.25
+            }
+            layout.style(Style.Void)
+        }
+            // SampleEnd
+            .saveSample()
+    }
+
+    @Test
     fun tiles_gradient_collections() {
         // SampleStart
         val cities = listOf("Yerevan", "Berlin", "Amsterdam", "Paphos")
@@ -198,6 +267,41 @@ class Tiles : SampleHelper("tiles") {
         }
             // SampleEnd
             .savePlotSVGSample()
+    }
+
+    @Test
+    fun tiles_color_categories_dataframeCompilerPlugin() {
+        // SampleStart
+        val cities = listOf("Yerevan", "Berlin", "Amsterdam", "Paphos")
+        val types = listOf("A", "B", "C")
+        val random = kotlin.random.Random(42)
+        val year22 = List(4) { types.random(random) }
+        val year23 = List(4) { types.random(random) }
+        val year24 = List(4) { types.random(random) }
+
+        val dataset = dataFrameOf(
+            "city" to cities,
+            "2022" to year22,
+            "2023" to year23,
+            "2024" to year24
+        ).gather { `2022` and `2023` and `2024` }.into("year", "value")
+
+        plot(dataset) {
+            tiles {
+                x(city)
+                y(year) {
+                    scale = categorical()
+                    axis.breaks(format = "d")
+                }
+                width = 0.5
+                height = 0.9
+                fillColor(value) {
+                    legend.breaks(types)
+                }
+            }
+        }
+            // SampleEnd
+            .saveSample()
     }
 
     @Test

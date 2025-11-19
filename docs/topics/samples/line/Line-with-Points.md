@@ -60,6 +60,30 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val df = dataFrameOf(
+    "area" to columnOf(30, 40, 50, 60, 70, 80, 90),
+    "price" to columnOf(60000, 80000, 75000, 90000, 85000, 95000, 90000)
+)
+
+df.plot {
+    x(price)
+    y(area)
+    line {
+        color = Color.BLUE
+        type = LineType.LONGDASH
+    }
+    points {
+        size = 3.5
+        symbol = Symbol.CIRCLE_OPEN
+        color = Color.BLUE
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

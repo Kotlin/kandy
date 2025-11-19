@@ -66,6 +66,32 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val df = dataFrameOf(
+    "continent" to columnOf(
+        "EU", "AF", "SA", "OC", "EU", "AF", "SA", "AF", "AS", "SA",
+        "OC", "OC", "SA", "NA", "AF", "NA", "EU", "AF", "OC", "SA",
+        "AF", "SA", "OC", "EU", "AF"
+    )
+)
+
+df.plot {
+    statCount(continent) {
+        pie {
+            slice(Stat.count)
+            fillColor(Stat.x named "continent")
+            size = 25.0
+        }
+    }
+    layout {
+        style(Style.Void)
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

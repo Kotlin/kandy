@@ -53,6 +53,24 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val df = dataFrameOf(
+    "platform" to columnOf("Linux", "MacOS", "Windows"),
+    "count" to columnOf(30, 239, 566)
+)
+
+df.plot {
+    pie {
+        slice(count)
+        fillColor(platform)
+    }
+    layout { style(Style.Void) }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

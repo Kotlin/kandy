@@ -42,6 +42,25 @@ class Bars : SampleHelper("bars") {
     }
 
     @Test
+    fun simple_bar_plot_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "city" to columnOf("London", "Paris", "Berlin", "Madrid", "Rome"),
+            "perc" to columnOf(45, 50, 60, 40, 30)
+        )
+
+        dataset.plot {
+            layout.title = "Public Transport Usage in European Cities"
+            bars {
+                x(city) { axis.name = "City" }
+                y(perc) { axis.name = "Public Transport Usage (%)" }
+            }
+        }
+            // SampleEnd
+            .saveSample()
+    }
+
+    @Test
     fun simple_bar_plot_collections() {
         // SampleStart
         val city = listOf("London", "Paris", "Berlin", "Madrid", "Rome")
@@ -86,6 +105,38 @@ class Bars : SampleHelper("bars") {
         }
             // SampleEnd
             .savePlotSVGSample()
+    }
+
+    @Test
+    fun bar_settings_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "candy" to columnOf(
+                "Honey Stars", "Fairy Tale Caramels", " ChocoDream", "Fruity Clouds",
+                "Minty Spheres", "Sour Strips", "Vanilla Bars"
+            ),
+            "sugar" to columnOf(65, 58, 53, 35, 40, 45, 50)
+        )
+
+        dataset.plot {
+            layout {
+                title = "Sugar content"
+                xAxisLabel = "Candy Name"
+                yAxisLabel = "Sugar Content (g per 100g)"
+            }
+            bars {
+                x(candy)
+                y(sugar) { scale = continuous(0..100) }
+                fillColor = Color.ORANGE
+                alpha = 0.85
+                borderLine {
+                    color = Color.GREY
+                    width = 1.3
+                }
+            }
+        }
+            // SampleEnd
+            .saveSample()
     }
 
     @Test
@@ -140,6 +191,31 @@ class Bars : SampleHelper("bars") {
         }
             // SampleEnd
             .savePlotSVGSample()
+    }
+
+    @Test
+    fun bar_gradient_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "cities" to columnOf("London", "Paris", "Berlin", "Madrid", "Rome", "Amsterdam", "Prague"),
+            "airPollution" to columnOf(70, 65, 50, 60, 55, 45, 53),
+            "numberOfCars" to columnOf(3000, 2800, 1800, 2500, 2100, 1300, 2000)
+        )
+
+        dataset.plot {
+            layout.title = "Air Pollution and Vehicle Count Analysis"
+            bars {
+                x(cities) { axis.name = "City" }
+                y(numberOfCars) { axis.name = "Number of cars (thousands)" }
+                fillColor(airPollution) {
+                    legend.name = "Air Pollution\n Level (AQI)"
+                    scale = continuous(Color.GREEN..Color.RED)
+                }
+                alpha = 0.8
+            }
+        }
+            // SampleEnd
+            .saveSample()
     }
 
     @Test
@@ -209,6 +285,27 @@ class Bars : SampleHelper("bars") {
     }
 
     @Test
+    fun bar_with_reversed_axis_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "task" to columnOf("a", "b", "c", "d", "e"),
+            "time" to columnOf(30, 25, 20, 35, 28)
+        )
+
+        dataset.plot {
+            bars {
+                x(task)
+                y(time) {
+                    scale = continuous(transform = Transformation.REVERSE)
+                }
+                fillColor = Color.hex("#07C3F2")
+            }
+        }
+            // SampleEnd
+            .saveSample()
+    }
+
+    @Test
     fun bar_with_reversed_axis_collections() {
         // SampleStart
         val dataset = mapOf(
@@ -252,6 +349,32 @@ class Bars : SampleHelper("bars") {
         }
             // SampleEnd
             .savePlotSVGSample()
+    }
+
+    @Test
+    fun horizontal_bars_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "actors" to columnOf(
+                "John Doe", "Emma Stone", "Ryan Gosling", "Natalie Portman",
+                "Brad Pitt", "Marilyn Monroe", "Leonardo DiCaprio"
+            ),
+            "screenTime" to columnOf(90, 75, 60, 85, 50, 40, 95)
+        )
+
+        dataset.plot {
+            layout.title = "Screen Time of Hollywood Actors"
+            barsH {
+                y(actors) { axis.name = "Actors" }
+                x(screenTime) { axis.name = "minutes" }
+                alpha = 0.75
+                fillColor(actors) {
+                    scale = categoricalColorHue()
+                }
+            }
+        }
+            // SampleEnd
+            .saveSample()
     }
 
     @Test
@@ -304,6 +427,34 @@ class Bars : SampleHelper("bars") {
         }
             // SampleEnd
             .savePlotSVGSample()
+    }
+
+    @Test
+    fun grouped_bars_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "day" to columnOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
+            "coffee" to columnOf(0.81, 0.78, 0.72, 0.65, 0.73, 0.49, 0.38),
+            "tea" to columnOf(0.12, 0.16, 0.21, 0.26, 0.24, 0.22, 0.30),
+            "soda" to columnOf(0.07, 0.06, 0.07, 0.09, 0.03, 0.29, 0.32),
+        ).gather { coffee and tea and soda }.into("drink", "amount")
+
+        dataset.groupBy { drink }.plot {
+            layout.title = "Weekly Beverage Consumption Trends"
+            bars {
+                x(day)
+                y(amount)
+                fillColor(drink) {
+                    scale = categorical(
+                        "coffee" to Color.hex("#6F4E37"),
+                        "tea" to Color.hex("#C2D4AB"),
+                        "soda" to Color.hex("#B5651D")
+                    )
+                }
+            }
+        }
+            // SampleEnd
+            .saveSample()
     }
 
     @Test
@@ -365,6 +516,35 @@ class Bars : SampleHelper("bars") {
         }
             // SampleEnd
             .savePlotSVGSample()
+    }
+
+    @Test
+    fun stacked_bars_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "day" to columnOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
+            "coffee" to columnOf(0.81, 0.78, 0.72, 0.65, 0.73, 0.49, 0.38),
+            "tea" to columnOf(0.12, 0.16, 0.21, 0.26, 0.24, 0.22, 0.30),
+            "soda" to columnOf(0.07, 0.06, 0.07, 0.09, 0.03, 0.29, 0.32),
+        ).gather { coffee and tea and soda }.into("drink", "amount")
+
+        dataset.groupBy { drink }.plot {
+            layout.title = "Weekly Beverage Consumption Trends"
+            bars {
+                x(day)
+                y(amount)
+                fillColor(drink) {
+                    scale = categorical(
+                        "coffee" to Color.hex("#6F4E37"),
+                        "tea" to Color.hex("#C2D4AB"),
+                        "soda" to Color.hex("#B5651D")
+                    )
+                }
+                position = Position.stack()
+            }
+        }
+            // SampleEnd
+            .saveSample()
     }
 
     @Test

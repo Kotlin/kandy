@@ -46,6 +46,24 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val random = java.util.Random(42)
+
+val dataframe = dataFrameOf(
+    "sample" to List(1000) { random.nextGaussian() }
+)
+
+dataframe.plot {
+    densityPlot(sample) {
+        x(Stat.x.map { it.toFloat() })
+        y(Stat.density.map { it.toFloat() })
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

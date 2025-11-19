@@ -2,6 +2,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
 import org.apache.commons.math3.distribution.NormalDistribution
 import org.apache.commons.math3.distribution.UniformRealDistribution
+import org.jetbrains.kotlinx.dataframe.AnyFrame
+import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.groupBy
@@ -34,7 +36,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
 
     private val depthList = NormalDistribution(500.0, 100.0).sample(1000).toList()
     private val coeffList = UniformRealDistribution(0.0, 1.0).sample(1000).toList()
-    val df = dataFrameOf(
+    val df: AnyFrame = dataFrameOf(
         "depth" to depthList,
         "coeff" to coeffList
     )
@@ -241,13 +243,13 @@ class DensityPlot : SampleHelper("stat", "guides") {
     private val rangesB = NormalDistribution(400.0, 80.0).sample(5000).toList()
 
     // Gather them into `DataFrame` with "A" and "B" keys in the "category" column
-    private val rangesDF = dataFrameOf(
+    private val rangesDF: AnyFrame = dataFrameOf(
         "range" to rangesA + rangesB,
         "category" to List(5000) { "A" } + List(5000) { "B" }
     )
     private val range = column<Double>("range")
     private val category = column<String>("category")
-    private val groupedRangesDF = rangesDF.groupBy { category }
+    private val groupedRangesDF: GroupBy<Any, Any> = rangesDF.groupBy { category }
 
     @Test
     fun guideDensityGenerateGroupedData() {

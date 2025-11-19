@@ -61,6 +61,29 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val df = dataFrameOf(
+    "Day of the Week" to columnOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
+    "Star Rating (Reversed)" to columnOf(4, 2, 1, 2, 3, 4, 1)
+)
+
+df.plot {
+    layout.title = "Weekly Star Ratings"
+    layout.subtitle = "A reversed perspective"
+    area {
+        x(`Day of the Week`)
+        y(`Star Rating (Reversed)`) {
+            scale = continuous(0..5, transform = Transformation.REVERSE)
+        }
+        fillColor = Color.hex("#FCF84A")
+        alpha = 0.75
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

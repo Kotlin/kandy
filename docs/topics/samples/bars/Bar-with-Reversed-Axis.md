@@ -59,6 +59,26 @@ dataset.plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "task" to columnOf("a", "b", "c", "d", "e"),
+    "time" to columnOf(30, 25, 20, 35, 28)
+)
+
+dataset.plot {
+    bars {
+        x(task)
+        y(time) {
+            scale = continuous(transform = Transformation.REVERSE)
+        }
+        fillColor = Color.hex("#07C3F2")
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

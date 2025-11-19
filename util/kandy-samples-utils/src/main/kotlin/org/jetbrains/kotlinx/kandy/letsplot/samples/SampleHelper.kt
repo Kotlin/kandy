@@ -80,7 +80,9 @@ public abstract class SampleHelper(
      * of the SVG files. When `true`, additional preview files are created with "preview_" prefixed to the file name.
      */
     public fun Plot.savePlotSVGSample(savePreview: Boolean = false) {
-        val name = testName.methodName.replace("_dataframe", "")
+        val name = testName.methodName
+            .replace("_dataframeCompilerPlugin", "")
+            .replace("_dataframe", "")
         saveAsSVG(name, savePreview)
         this.changeThemeToDarkMode()
         saveAsSVG("${name}_dark", savePreview)

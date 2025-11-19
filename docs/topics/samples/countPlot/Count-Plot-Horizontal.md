@@ -97,6 +97,45 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val transportsDF = dataFrameOf(
+    "transports" to listOf(
+        "metro", "bicycle", "car", "bus", "bus", "bicycle", "bicycle",
+        "bus", "bus", "bus", "bus", "bus", "bus", "bus", "bicycle", "bicycle",
+        "bus", "bicycle", "bus", "car", "metro", "bus", "metro", "metro",
+        "bus", "bus", "bus", "metro", "bicycle", "metro", "bus", "metro",
+        "bicycle", "metro", "bicycle", "bicycle", "bus", "bicycle", "metro",
+        "bicycle", "metro", "bicycle", "bus", "bicycle", "bus", "bicycle",
+        "bicycle", "bicycle", "bus", "bicycle", "metro", "bus", "bicycle",
+        "bus", "bus", "bus", "bus", "bus", "bus", "metro", "metro", "bicycle",
+        "metro", "bus", "bus", "metro", "metro", "bicycle", "bus", "metro",
+        "metro", "bicycle", "bus", "bus", "bicycle", "car", "bus", "bicycle",
+        "bus", "metro", "bus", "metro", "bicycle", "metro", "bicycle", "bicycle"
+    )
+)
+
+transportsDF.plot {
+    statCount(transports) {
+        val transport = Stat.x named "transport"
+        barsH {
+            x(Stat.count)
+            y(transport)
+            fillColor(transport) {
+                scale = categorical(
+                    "bus" to Color.hex("#FFD700"),
+                    "car" to Color.hex("#FF6347"),
+                    "bicycle" to Color.hex("#32CD32"),
+                    "metro" to Color.hex("#4169E1")
+                )
+            }
+        }
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

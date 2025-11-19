@@ -64,6 +64,27 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val df = dataFrameOf(
+    "range" to columnOf("0-10m", "10-20m", "20-40m", "40-100m", "100-250m", ">250m"),
+    "share" to columnOf(0.42, 0.23, 0.15, 0.11, 0.06, 0.03),
+    "explode" to columnOf(0.20, 0.0, 0.04, 0.08, 0.12, 0.16)
+)
+
+df.plot {
+    pie {
+        slice(share)
+        fillColor(range) { scale = continuous(Color.RED..Color.LIGHT_GREEN) }
+        explode(explode)
+        size = 25.0
+    }
+    layout { style(Style.Void) }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

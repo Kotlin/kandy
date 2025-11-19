@@ -84,6 +84,42 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val experimentalData = dataFrameOf(
+    "length" to listOf(
+        5.92, 6.44, 5.87, 4.99, 5.23,
+        5.67, 4.89, 5.34, 5.78, 5.12,
+        5.56, 5.23, 5.78, 6.01, 5.56,
+        5.67, 5.89, 5.45, 6.12, 5.78,
+        6.34, 5.67, 6.45, 5.34, 5.89,
+        6.01, 5.78, 5.23, 5.67, 6.12,
+        6.23, 5.45, 5.56, 5.67, 5.78,
+        5.56, 6.23, 5.78, 6.34, 6.12,
+        5.89, 6.45, 5.78, 6.34, 5.67,
+        6.56, 5.45, 5.78, 5.89, 6.12,
+        4.67, 4.79, 5.14, 5.28, 5.22,
+    )
+)
+
+experimentalData.plot {
+    densityPlot(length, adjust = 0.8) {
+        x(Stat.x.map { it.toFloat() })
+        y(Stat.density.map { it.toFloat() })
+        alpha = 0.5
+        fillColor = Color.RED
+        borderLine {
+            color = Color.GREEN
+            width = 0.5
+        }
+        x.axis.name = "length"
+    }
+    layout.title = "Flight length experiment"
+}
+```
+
 </tab></tabs>
 <!---END-->
 

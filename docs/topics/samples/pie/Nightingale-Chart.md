@@ -62,6 +62,28 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val df = dataFrameOf(
+    "month" to columnOf("Jan", "Feb", "Mar", "May", "Apr"),
+    "amount" to columnOf(34.4, 25.1, 33.6, 20.0, 15.9)
+)
+
+df.plot {
+    pie {
+        slice(amount)
+        fillColor(month)
+        size(amount) {
+            scale = continuous(10.0..25.0)
+            legend.type = LegendType.None
+        }
+    }
+    layout { style(Style.Void) }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

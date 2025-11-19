@@ -44,6 +44,24 @@ class Lines : SampleHelper("line") {
     }
 
     @Test
+    fun simple_line_dataframeCompilerPlugin() {
+        // SampleStart
+        val df = dataFrameOf(
+            "years" to columnOf("2018", "2019", "2020", "2021", "2022"),
+            "cost" to columnOf(62.7, 64.7, 72.1, 73.7, 68.5)
+        )
+
+        df.plot {
+            line {
+                x(years)
+                y(cost)
+            }
+        }
+            // SampleEnd
+            .saveSample()
+    }
+
+    @Test
     fun simple_line_collections() {
         // SampleStart
         val years = listOf("2018", "2019", "2020", "2021", "2022")
@@ -85,6 +103,38 @@ class Lines : SampleHelper("line") {
         }
             // SampleEnd
             .savePlotSVGSample()
+    }
+
+    @Test
+    fun simple_line_settings_dataframeCompilerPlugin() {
+        // SampleStart
+        val museumVisitors = dataFrameOf(
+            "date" to columnOf(
+                LocalDate(2023, 1, 1).toString(),
+                LocalDate(2023, 1, 15).toString(),
+                LocalDate(2023, 2, 1).toString(),
+                LocalDate(2023, 2, 15).toString(),
+                LocalDate(2023, 3, 1).toString(),
+                LocalDate(2023, 3, 15).toString(),
+                LocalDate(2023, 4, 1).toString(),
+                LocalDate(2023, 4, 15).toString(),
+                LocalDate(2023, 5, 1).toString(),
+                LocalDate(2023, 5, 15).toString()
+            ),
+            "visitors" to columnOf(120, 95, 110, 123, 130, 140, 150, 160, 175, 180)
+        )
+
+        museumVisitors.plot {
+            line {
+                x(date)
+                y(visitors)
+                type = LineType.DASHED
+                color = Color.PURPLE
+                width = 2.5
+            }
+        }
+            // SampleEnd
+            .saveSample()
     }
 
     @Test
@@ -140,6 +190,31 @@ class Lines : SampleHelper("line") {
     }
 
     @Test
+    fun line_with_points_dataframeCompilerPlugin() {
+        // SampleStart
+        val df = dataFrameOf(
+            "area" to columnOf(30, 40, 50, 60, 70, 80, 90),
+            "price" to columnOf(60000, 80000, 75000, 90000, 85000, 95000, 90000)
+        )
+
+        df.plot {
+            x(price)
+            y(area)
+            line {
+                color = Color.BLUE
+                type = LineType.LONGDASH
+            }
+            points {
+                size = 3.5
+                symbol = Symbol.CIRCLE_OPEN
+                color = Color.BLUE
+            }
+        }
+            // SampleEnd
+            .saveSample()
+    }
+
+    @Test
     fun line_with_points_collections() {
         // SampleStart
         val area by columnOf(30, 40, 50, 60, 70, 80, 90)
@@ -191,6 +266,38 @@ class Lines : SampleHelper("line") {
         }
             // SampleEnd
             .savePlotSVGSample()
+    }
+
+    @Test
+    fun line_fixed_coord_dataframeCompilerPlugin() {
+        // SampleStart
+        data class DayTemperature(val day: String, val temp: Int)
+
+        val weeklyTemp = listOf(
+            DayTemperature("Mon", 10),
+            DayTemperature("Tue", 6),
+            DayTemperature("Wed", 5),
+            DayTemperature("Thu", 7),
+            DayTemperature("Fri", 7),
+            DayTemperature("Sat", 11),
+            DayTemperature("Sun", 9)
+        ).toDataFrame()
+
+        weeklyTemp.plot {
+            x(day)
+            line {
+                y(temp)
+                color = Color.BLUE
+            }
+            line {
+                y.constant(weeklyTemp.temp.mean())
+                color = Color.GREEN
+                type = LineType.DOTTED
+                width = 2.5
+            }
+        }
+            // SampleEnd
+            .saveSample()
     }
 
     @Test
@@ -250,6 +357,36 @@ class Lines : SampleHelper("line") {
     }
 
     @Test
+    fun line_color_gradient_dataframeCompilerPlugin() {
+        // SampleStart
+        val monthTemp = dataFrameOf("month", "temp")(
+            "January", -5,
+            "February", -3,
+            "March", 2,
+            "April", 10,
+            "May", 16,
+            "June", 20,
+            "July", 22,
+            "August", 21,
+            "September", 15,
+            "October", 9,
+            "November", 3,
+            "December", -2
+        )
+
+        monthTemp.plot {
+            line {
+                x(month)
+                y(temp) { scale = continuous(-10..25) }
+                color(temp) { scale = continuous(Color.BLUE..Color.RED) }
+                width = 3.0
+            }
+        }
+            // SampleEnd
+            .saveSample()
+    }
+
+    @Test
     fun line_color_gradient_collections() {
         // SampleStart
         val monthTemp = mapOf(
@@ -302,6 +439,30 @@ class Lines : SampleHelper("line") {
     }
 
     @Test
+    fun line_reversed_axis_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "product" to ('A'..'F').map { it.toString() }.toColumn(),
+            "rating" to columnOf(10, 7, 3, 5, 2, 1)
+        )
+
+        plot(dataset) {
+            line {
+                x(rating) {
+                    scale = continuous(min = 0, max = 12)
+                }
+                y(product) {
+                    scale = continuous(transform = Transformation.REVERSE)
+                }
+                color = Color.RED
+                alpha = 0.85
+            }
+        }
+            // SampleEnd
+            .saveSample()
+    }
+
+    @Test
     fun line_reversed_axis_collections() {
         // SampleStart
         val product = ('A'..'F')
@@ -345,6 +506,31 @@ class Lines : SampleHelper("line") {
         }
             // SampleEnd
             .savePlotSVGSample()
+    }
+
+    @Test
+    fun several_lines_dataframeCompilerPlugin() {
+        // SampleStart
+        val months = listOf(1, 2, 3, 4, 5)
+        val salesProducts = listOf(200.0, 220.0, 180.0, 240.0, 210.0)
+        val salesClothes = listOf(150.0, 130.0, 160.0, 140.0, 170.0)
+        val salesElectronics = listOf(300.0, 320.0, 310.0, 330.0, 340.0)
+
+        val dataset = dataFrameOf(
+            "month" to months + months + months,
+            "sales" to salesProducts + salesClothes + salesElectronics,
+            "category" to List(5) { "Products" } + List(5) { "Clothes" } + List(5) { "Electronics" }
+        )
+
+        dataset.groupBy { category }.plot {
+            line {
+                x(month)
+                y(sales)
+                color(category)
+            }
+        }
+            // SampleEnd
+            .saveSample()
     }
 
     @Test
@@ -446,6 +632,52 @@ class Lines : SampleHelper("line") {
     }
 
     @Test
+    fun line_mark_dataframeCompilerPlugin() {
+        // SampleStart
+        val months = listOf(
+            "January", "February",
+            "March", "April", "May",
+            "June", "July", "August",
+            "September", "October", "November",
+            "December"
+        )
+        val tempBerlin =
+            listOf(-0.5, 0.0, 4.8, 9.0, 14.3, 17.5, 19.2, 18.9, 14.5, 9.7, 4.7, 1.0)
+        val tempMadrid =
+            listOf(6.3, 7.9, 11.2, 12.9, 16.7, 21.1, 24.7, 24.2, 20.3, 15.4, 9.9, 6.6)
+
+        val df = dataFrameOf(
+            "month" to months + months,
+            "temperature" to tempBerlin + tempMadrid,
+            "city" to List(12) { "Berlin" } + List(12) { "Madrid" }
+        )
+
+        df.plot {
+            line {
+                x(month)
+                y(temperature)
+                color(city) { scale = categorical("Berlin" to Color.PURPLE, "Madrid" to Color.ORANGE) }
+                width = 1.5
+            }
+            hLine {
+                yIntercept.constant(tempBerlin.average())
+                color = Color.PURPLE
+                alpha = 0.9
+                type = LineType.DASHED
+            }
+            hLine {
+                yIntercept.constant(tempMadrid.average())
+                color = Color.ORANGE
+                alpha = 0.9
+                type = LineType.DASHED
+            }
+            layout.size = 1000 to 450
+        }
+            // SampleEnd
+            .saveSample(true)
+    }
+
+    @Test
     fun line_mark_collections() {
         // SampleStart
         val months = listOf(
@@ -517,7 +749,7 @@ class Lines : SampleHelper("line") {
             // SampleEnd
             .apply {
                 val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
-                (this.features as MutableMap)[FeatureName("layout")] = layout?.copy(size = null) ?: Layout(size = null)
+                (this.features)[FeatureName("layout")] = layout?.copy(size = null) ?: Layout(size = null)
             }
             .savePlotSVGSample()
     }

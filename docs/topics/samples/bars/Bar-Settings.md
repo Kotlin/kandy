@@ -76,6 +76,37 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "candy" to columnOf(
+        "Honey Stars", "Fairy Tale Caramels", " ChocoDream", "Fruity Clouds",
+        "Minty Spheres", "Sour Strips", "Vanilla Bars"
+    ),
+    "sugar" to columnOf(65, 58, 53, 35, 40, 45, 50)
+)
+
+dataset.plot {
+    layout {
+        title = "Sugar content"
+        xAxisLabel = "Candy Name"
+        yAxisLabel = "Sugar Content (g per 100g)"
+    }
+    bars {
+        x(candy)
+        y(sugar) { scale = continuous(0..100) }
+        fillColor = Color.ORANGE
+        alpha = 0.85
+        borderLine {
+            color = Color.GREY
+            width = 1.3
+        }
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 
