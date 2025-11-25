@@ -24,7 +24,7 @@ internal abstract class DatasetBuilderImpl(
     private val referredColumns: MutableMap<String, String> = mutableMapOf()
 
     @PublishedApi
-    internal var buffer: DataFrame<*> = initialBuilder?.buffer?.copy() ?: DataFrame.Empty
+    internal var buffer: DataFrame<*> = initialBuilder?.buffer ?: DataFrame.Empty
 
     override fun rowsCount(): Int = if (baseDataFrame.isEmpty()) {
         buffer.rowsCount()
