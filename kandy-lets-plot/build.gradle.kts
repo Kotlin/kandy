@@ -21,6 +21,8 @@ dependencies {
     implementation(libs.lets.plot)
     implementation(libs.lets.plot.image)
     implementation(libs.lets.plot.awt)
+    implementation(libs.lets.plot.canvas)
+    implementation(libs.lets.plot.raster)
 
     testImplementation(libs.kotlin.test)
     testImplementation(libs.mockk)
