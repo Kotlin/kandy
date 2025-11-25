@@ -56,7 +56,7 @@ class QuickStart : SampleHelper("", "") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

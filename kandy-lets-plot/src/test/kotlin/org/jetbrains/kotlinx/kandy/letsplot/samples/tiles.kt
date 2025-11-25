@@ -25,7 +25,7 @@ class Tiles : SampleHelper("tiles") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -57,7 +57,7 @@ class Tiles : SampleHelper("tiles") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -104,7 +104,7 @@ class Tiles : SampleHelper("tiles") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -134,7 +134,7 @@ class Tiles : SampleHelper("tiles") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -197,7 +197,7 @@ class Tiles : SampleHelper("tiles") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -242,7 +242,7 @@ class Tiles : SampleHelper("tiles") {
             heatmap(cols, rows)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -292,6 +292,6 @@ class Tiles : SampleHelper("tiles") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

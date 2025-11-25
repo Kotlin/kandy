@@ -7,7 +7,7 @@
         <!--For users contribute-->
         <enable-browser-edits>true</enable-browser-edits>
         <browser-edits-url>https://github.com/Kotlin/kandy/edit/main/docs/</browser-edits-url>
-
+        <include-in-head>include-head.html</include-in-head>
         <web-root>https://kotlin.github.io/kandy/</web-root>
         <feedback-widget>false</feedback-widget>
         <webmaster>webmaster@jetbrains.com</webmaster>

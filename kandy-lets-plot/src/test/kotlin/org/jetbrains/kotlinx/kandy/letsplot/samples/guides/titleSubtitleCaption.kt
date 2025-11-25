@@ -45,7 +45,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -60,7 +60,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             layout.title = "The plot title using 'layout.title'"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -77,7 +77,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -95,7 +95,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -114,7 +114,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -138,7 +138,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -178,7 +178,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -210,7 +210,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -236,7 +236,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -252,7 +252,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -271,7 +271,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -287,7 +287,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -306,7 +306,7 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -330,6 +330,6 @@ class TitleSubtitleCaption : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

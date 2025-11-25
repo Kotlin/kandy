@@ -50,7 +50,7 @@ class LegendAndAxis : SampleHelper("layout", "guides") {
             layout.size = 600 to 250
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -71,7 +71,7 @@ class LegendAndAxis : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -92,7 +92,7 @@ class LegendAndAxis : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -117,7 +117,7 @@ class LegendAndAxis : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -134,7 +134,7 @@ class LegendAndAxis : SampleHelper("layout", "guides") {
             layout.size = 700 to 350
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -160,7 +160,7 @@ class LegendAndAxis : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -200,6 +200,6 @@ class LegendAndAxis : SampleHelper("layout", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

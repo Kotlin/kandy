@@ -75,7 +75,7 @@ class Lines : SampleHelper("geoms", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -107,7 +107,7 @@ class Lines : SampleHelper("geoms", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -120,7 +120,7 @@ class Lines : SampleHelper("geoms", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -133,7 +133,7 @@ class Lines : SampleHelper("geoms", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     private fun generateArchimedeanDataMap(n: Int = 25, k: Double = 1.0, a: Double = 1.0): Map<String, List<Double>> {
@@ -197,6 +197,6 @@ class Lines : SampleHelper("geoms", "guides") {
             add(segments, 0.5, 0.5, 0.5, 0.5)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

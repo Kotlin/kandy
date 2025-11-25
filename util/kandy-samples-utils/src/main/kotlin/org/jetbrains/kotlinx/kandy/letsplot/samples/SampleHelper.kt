@@ -1,6 +1,11 @@
 @file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package org.jetbrains.kotlinx.kandy.letsplot.samples
 
+import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.FormattedFrame
+import org.jetbrains.kotlinx.dataframe.api.GroupBy
+import org.jetbrains.kotlinx.dataframe.io.toStandaloneHtml
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
 import org.jetbrains.kotlinx.kandy.letsplot.feature.Layout
@@ -19,31 +24,43 @@ import org.junit.rules.TestName
 import java.io.File
 
 /**
- * Abstract class for saving plots samples.
+ * Base test class with methods configured for saving plots and dataframes samples.
+ * Allows saving samples through tests running.
  *
- * This class is designed to facilitate saving visual outputs such as `Plot`, `PlotGrid`, and `PlotBunch`
- * in SVG format with support for theming adjustments, including light and dark themes.
- * Additionally, it provides default configurations for plot scaling and preview sizes.
+ * This class is designed to facilitate saving visual outputs such as [Plot], [PlotGrid], and [PlotBunch],
+ * as well as dataframe-like structures [DataFrame] and [GroupBy].
  *
- * @constructor Initializes the sample helper with a specific sample name and an optional folder name
- * to define the output directory for saving generated visualizations.
- * The output directory is created if it doesn't already exist.
+ * It provides methods for saving plots as SVG files and for saving dataframes as HTML files for Writerside docs.
+ * These methods provide default configurations for plot scaling and preview sizes, as well as
+ * duplicating images for dark themes.
  *
- * @param sampleName The name of the sample for which visualizations are being generated.
- * @param folder The folder name to store the generated visualization files. Default is "samples".
+ * Replace IDS inside the XML (SVG/HTML) with the static ones, allowing to track changes after test rerun.
+ *
+ * @param sampleName      Identifier of the sample used to name output folders.
+ * @param subFolder       Subdirectory under the root folders where sample files are placed. Defaults to `"samples"`.
+ * @param imagesFolder    Base directory for Writerside images in the docs. Defaults to `"../docs/images"`.
+ * @param resourcesFolder Base directory for Writerside resources in the docs. Defaults to `"../docs/resources"`.
  */
-public abstract class SampleHelper(sampleName: String, folder: String = "samples") {
+public abstract class SampleHelper(
+    sampleName: String,
+    subFolder: String = "samples",
+    imagesFolder: String = "../docs/images",
+    resourcesFolder: String = "../docs/resources"
+) {
 
     @JvmField
     @Rule
     public val testName: TestName = TestName()
 
-    private val pathToImageFolder = "../docs/images/$folder/$sampleName"
+    private val pathToImageFolder = "$imagesFolder/$subFolder/$sampleName"
+
+    private val pathToResourceFolder = "$resourcesFolder/$subFolder/$sampleName"
 
     private val darkColor = Color.hex("#19191c")
 
     init {
         File(pathToImageFolder).mkdirs()
+        File(pathToResourceFolder).mkdirs()
     }
 
     private val defaultWidth = 600
@@ -61,7 +78,7 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
      * @param savePreview Boolean flag that indicates whether to also generate and save preview versions
      * of the SVG files. When `true`, additional preview files are created with "preview_" prefixed to the file name.
      */
-    public fun Plot.saveSample(savePreview: Boolean = false) {
+    public fun Plot.savePlotSVGSample(savePreview: Boolean = false) {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name, savePreview)
         this.changeThemeToDarkMode()
@@ -80,7 +97,7 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
      * @param scaling Boolean flag that determines whether the SVG output should scale to an appropriate size.
      * If `true`, the method scales the output appropriately; otherwise, it does not.
      */
-    public fun PlotGrid.saveSample(savePreview: Boolean = false, scaling: Boolean = true) {
+    public fun PlotGrid.savePlotSVGSample(savePreview: Boolean = false, scaling: Boolean = true) {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name, savePreview, scaling)
         plots.forEach {
@@ -102,7 +119,7 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
      * @param scaling Boolean flag that determines whether the SVG output should scale to an appropriate size.
      * If `true`, the method scales the output appropriately; otherwise, it does not.
      */
-    public fun PlotBunch.saveSample() {
+    public fun PlotBunch.savePlotSVGSample() {
         val name = testName.methodName.replace("_dataframe", "")
         saveAsSVG(name)
         this.items.forEach {
@@ -110,6 +127,39 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
         }
         saveAsSVG("${name}_dark")
     }
+
+    /**
+     * Saves this [FormattedFrame] as HTML.
+     */
+    public fun FormattedFrame<*>.saveDfHtmlSample() {
+        val name = testName.methodName.replace("_dataframe", "")
+        val dfHtml = df.toStandaloneHtml(
+            configuration = getDisplayConfiguration(SamplesDisplayConfiguration),
+            getFooter = WritersideFooter
+        ) + WritersideStyle
+        // TODO fix static ids
+        val htmlWithStaticIDs = replaceIdsWithStaticDataFrame(dfHtml.toString()) // replaceIdsWithStatic(dfHtml.toString())
+        File(pathToResourceFolder, "$name.html").writeText(htmlWithStaticIDs)
+    }
+
+    /**
+     * Saves this [DataFrame] as HTML.
+     */
+    public fun DataFrame<*>.saveDfHtmlSample() {
+        val name = testName.methodName.replace("_dataframe", "")
+        val dfHtml = this.toStandaloneHtml(
+            configuration = SamplesDisplayConfiguration,
+            getFooter = WritersideFooter
+        ) + WritersideStyle
+        // TODO fix static ids
+        val htmlWithStaticIDs = replaceIdsWithStaticDataFrame(dfHtml.toString()) // replaceIdsWithStatic(dfHtml.toString())
+        File(pathToResourceFolder, "$name.html").writeText(htmlWithStaticIDs)
+    }
+
+    /**
+     * Saves this [GroupBy] as HTML.
+     */
+    public fun GroupBy<*, *>.saveDfHtmlSample(): Unit = toDataFrame().saveDfHtmlSample()
 
     private fun Plot.changeThemeToDarkMode() {
         val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
@@ -173,7 +223,7 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
     }
 
     private fun Figure.toSVG(): String {
-        return replaceIdsWithConstant(PlotSvgExport.buildSvgImageFromRawSpecs(this.toSpec()))
+        return replaceIdsWithStatic(PlotSvgExport.buildSvgImageFromRawSpecs(this.toSpec()))
     }
 
     private fun Plot.saveAsSVG(name: String, savePreview: Boolean = false) {
@@ -197,13 +247,75 @@ public abstract class SampleHelper(sampleName: String, folder: String = "samples
         File(pathToImageFolder, "$name.svg").writeText(wrap().toSVG())
     }
 
-    private fun replaceIdsWithConstant(svgString: String): String {
+    private val idPrefix = "_sample_helper_static_id_prefix_"
+
+    private fun replaceIdsWithStatic(xmlString: String): String {
         val regex = Regex("""(id\s*=\s*["'])([^"']*)["']""")
         var count = 0
-        var result = svgString
-        regex.findAll(svgString).forEach {
-            result = result.replace(it.groupValues[2], "xXxprefixXx${count++}")
+        var result = xmlString
+        regex.findAll(xmlString).forEach {
+            result = result.replace(it.groupValues[2], "$idPrefix${count++}")
         }
         return result
     }
+
+    internal companion object {
+        private const val DF_PREFIX = "df_"
+    }
+
+    internal fun replaceIdsWithStaticDataFrame(html: String): String {
+        // normalize all minus signs to ASCII '-'
+        fun normNum(s: String) = s.replace(Regex("[\u2212\\p{Pd}]"), "-")
+
+        val dash = "[-\u2212\\p{Pd}]?"                 // any minus sign (or absence)
+        val esc  = Regex.escape(DF_PREFIX)
+
+        // The number is always in the LAST group
+        val domIdRe   = Regex("""\bid\s*=\s*(['"])$esc($dash\d+)\1""")
+        val jsFieldRe = Regex("""\b(id|rootId|frameId)\s*:\s*($dash\d+)\b""")
+
+        // keep what is to the left of the number and the closing parenthesis
+        val renderRe  = Regex("""\b((?:DataFrame\.)?renderTable\()\s*($dash\d+)\s*(\))""")
+
+        val urlRe     = Regex("""\burl\(#$esc($dash\d+)\)""")
+        val hrefRe    = Regex("""\bhref\s*=\s*(['"])#$esc($dash\d+)\1""")
+
+        // 1) collect all ids in order of appearance
+        val seen = linkedSetOf<String>()
+        listOf(domIdRe, jsFieldRe, renderRe, urlRe, hrefRe).forEach { re ->
+            re.findAll(html).forEach { seen += normNum(it.groupValues.last()) }
+        }
+        if (seen.isEmpty()) return html
+
+        // 2) map to stable non-negative numbers: 0,1,2...
+        val map = linkedMapOf<String, String>()
+        var next = 0
+        if ("0" in seen) { map["0"] = "0"; next = 1 }
+        for (old in seen) if (old !in map) map[old] = (next++).toString()
+
+        fun remap(old: String) = map[normNum(old)] ?: old
+
+        // 3) replacements
+        var out = domIdRe.replace(html) { m ->
+            val q   = m.groupValues[1]
+            val num = remap(m.groupValues.last())
+            """id=$q$DF_PREFIX$num$q"""
+        }
+        out = jsFieldRe.replace(out) { m ->
+            val key = m.groupValues[1]
+            val num = remap(m.groupValues.last())
+            "$key: $num"
+        }
+        out = renderRe.replace(out) { m ->
+            val front = m.groupValues[1]
+            val num   = remap(m.groupValues[2])
+            val back  = m.groupValues[3]
+            front + num + back
+        }
+        out = urlRe.replace(out)  { m -> "url(#$DF_PREFIX${remap(m.groupValues.last())})" }
+        out = hrefRe.replace(out) { m -> """href=${m.groupValues[1]}#$DF_PREFIX${remap(m.groupValues.last())}${m.groupValues[1]}""" }
+
+        return out
+    }
+
 }

@@ -79,7 +79,7 @@ class CountPlot : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -96,7 +96,7 @@ class CountPlot : SampleHelper("stat", "guides") {
         }
         statCountAndBarsPlt
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -108,7 +108,7 @@ class CountPlot : SampleHelper("stat", "guides") {
         }
         countPlt
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -129,7 +129,7 @@ class CountPlot : SampleHelper("stat", "guides") {
         // SampleStart
         plotGrid(listOf(statCountAndBarsPlt, countPlt))
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -145,7 +145,7 @@ class CountPlot : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -164,7 +164,7 @@ class CountPlot : SampleHelper("stat", "guides") {
             x.axis.name = "Car class"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -173,7 +173,7 @@ class CountPlot : SampleHelper("stat", "guides") {
         countPlot(listOf("A", "A", "A", "B", "B", "C", "B", "B"))
             // SampleEnd
             .toPlot()
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -182,7 +182,7 @@ class CountPlot : SampleHelper("stat", "guides") {
         df.countPlot("class")
             // SampleEnd
             .toPlot()
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -196,7 +196,7 @@ class CountPlot : SampleHelper("stat", "guides") {
         }
             // SampleEnd
             .toPlot()
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -218,7 +218,7 @@ class CountPlot : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     // Grouped data
@@ -254,7 +254,7 @@ class CountPlot : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -270,7 +270,7 @@ class CountPlot : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -280,7 +280,7 @@ class CountPlot : SampleHelper("stat", "guides") {
             countPlot("class")
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -298,7 +298,7 @@ class CountPlot : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -307,7 +307,7 @@ class CountPlot : SampleHelper("stat", "guides") {
         groupedDF.countPlot("class")
             // SampleEnd
             .toPlot()
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -322,7 +322,7 @@ class CountPlot : SampleHelper("stat", "guides") {
             fillColor("drv") { scale = categoricalColorBrewer(BrewerPalette.Qualitative.Dark2) }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -334,6 +334,6 @@ class CountPlot : SampleHelper("stat", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

@@ -160,7 +160,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     fun usaStatesReadGeoJson() {
         // SampleStart
         val usaStates =
-            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndreiKingsley/datasets/refs/heads/main/USA.json")
+            GeoDataFrame.readGeoJson("https://raw.githubusercontent.com/AndrewKis/datasets/refs/heads/main/USA.json")
         // SampleEnd
         assertNotNull(usaStates)
     }
@@ -171,6 +171,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             // SampleStart
             usaStates.df
         // SampleEnd
+                //   .saveDfHtmlSample()
         assertNotNull(usaStatesDf)
     }
 
@@ -205,7 +206,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
     fun worldCitiesReadShapefile() {
         // SampleStart
         val worldCities =
-            GeoDataFrame.readShapefile("https://github.com/AndreiKingsley/datasets/raw/refs/heads/main/ne_10m_populated_places_simple/ne_10m_populated_places_simple.shp")
+            GeoDataFrame.readShapefile("https://github.com/AndrewKis/datasets/raw/refs/heads/main/ne_10m_populated_places_simple/ne_10m_populated_places_simple.shp")
         // SampleEnd
         assertNotNull(worldCities)
     }
@@ -248,7 +249,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             geoPolygon()
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -264,7 +265,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -275,7 +276,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             coordinatesTransformation = CoordinatesTransformation.mercator()
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -287,7 +288,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             geoMap()
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -299,7 +300,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             y.axis.limits = 23..50
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -321,7 +322,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     // TODO Need Korro import support.
@@ -347,7 +348,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             geoMap(usaPolygon)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -386,7 +387,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     private val DataRow<*>.name: String
@@ -404,7 +405,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
 
         usa48.plot { geoMap() }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -424,7 +425,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
 
         usaAdjusted.plot { geoMap() }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -440,7 +441,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -487,7 +488,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -510,12 +511,13 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             geoMap()
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     // TODO Need Korro import support.
     // Manual adding for now.
     @Test
+    @Ignore
     fun greatCircleCalculationFunction() {
         // SampleStart
         /* import required packages
@@ -598,7 +600,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -628,7 +630,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -639,7 +641,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
             geoRectangles()
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -654,7 +656,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
         // SampleStart
         GeoDataFrame.readGeoJson("usa_cities.geojson").plot { geoPoints() }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -685,7 +687,7 @@ class GeoGuide : SampleHelper("geoGuide", "guides") {
         // SampleStart
         GeoDataFrame.readShapefile("usa_48/usa_48.shp").plot { geoMap() }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     companion object {

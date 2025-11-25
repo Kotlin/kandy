@@ -56,7 +56,7 @@ class SeriesHack : SampleHelper("other", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -70,7 +70,7 @@ class SeriesHack : SampleHelper("other", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -107,7 +107,7 @@ class SeriesHack : SampleHelper("other", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     private val gatheredDF = df.gather("ysA", "ysB", "ysC")
@@ -143,6 +143,6 @@ class SeriesHack : SampleHelper("other", "guides") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 }

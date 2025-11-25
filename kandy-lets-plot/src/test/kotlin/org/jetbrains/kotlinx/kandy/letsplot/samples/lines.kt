@@ -40,7 +40,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -84,7 +84,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -136,7 +136,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -190,7 +190,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -246,7 +246,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -298,7 +298,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -344,7 +344,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -394,7 +394,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -442,7 +442,7 @@ class Lines : SampleHelper("line") {
             layout.size = 1000 to 450
         }
             // SampleEnd
-            .saveSample(true)
+            .savePlotSVGSample(true)
     }
 
     @Test
@@ -519,7 +519,7 @@ class Lines : SampleHelper("line") {
                 val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
                 (this.features as MutableMap)[FeatureName("layout")] = layout?.copy(size = null) ?: Layout(size = null)
             }
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -561,7 +561,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -580,7 +580,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -603,7 +603,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -651,6 +651,6 @@ class Lines : SampleHelper("line") {
         }
         plotGrid(listOf(linePlot, pathPlot))
             // SampleEnd
-            .saveSample(true)
+            .savePlotSVGSample(true)
     }
 }

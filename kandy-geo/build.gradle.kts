@@ -35,7 +35,7 @@ dependencies {
 
     implementation(libs.jai.core)
 
-    testImplementation(project(":samples-utils"))
+    testImplementation(project(":kandy-samples-utils"))
     testImplementation(kotlin("test"))
 }
 
