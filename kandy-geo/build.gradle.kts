@@ -25,7 +25,9 @@ dependencies {
     implementation(libs.lets.plot)
     implementation(libs.lets.plot.geotools)
     implementation(libs.kotlinx.dataframe)
-    implementation(libs.kotlinx.dataframe.geo)
+    implementation(libs.kotlinx.dataframe.geo) {
+        exclude("org.geotools")
+    }
 
     implementation(libs.geotools.main) { excludeJaiCore() }
     implementation(libs.geotools.shapefile) { excludeJaiCore() }
