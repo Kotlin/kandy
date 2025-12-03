@@ -5,6 +5,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.FormattedFrame
 import org.jetbrains.kotlinx.dataframe.api.GroupBy
+import org.jetbrains.kotlinx.dataframe.io.DataFrameHtmlData
 import org.jetbrains.kotlinx.dataframe.io.toStandaloneHtml
 import org.jetbrains.kotlinx.kandy.ir.Plot
 import org.jetbrains.kotlinx.kandy.ir.feature.FeatureName
@@ -160,6 +161,17 @@ public abstract class SampleHelper(
      * Saves this [GroupBy] as HTML.
      */
     public fun GroupBy<*, *>.saveDfHtmlSample(): Unit = toDataFrame().saveDfHtmlSample()
+
+    /**
+     * Saves this [DataFrameHtmlData] as HTML.
+     */
+    public fun DataFrameHtmlData.saveDfHtmlSample() {
+        val name = testName.methodName.replace("_dataframe", "")
+        val dfHtml = this + WritersideStyle
+        // TODO fix static ids
+        val htmlWithStaticIDs = replaceIdsWithStaticDataFrame(dfHtml.toString()) // replaceIdsWithStatic(dfHtml.toString())
+        File(pathToResourceFolder, "$name.html").writeText(htmlWithStaticIDs)
+    }
 
     private fun Plot.changeThemeToDarkMode() {
         val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
