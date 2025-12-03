@@ -8,11 +8,11 @@ jupyterApi = "0.16.0-736"
 ksp = "2.2.21-2.0.4"
 
 # libraries version
-dataframe = "1.0.0-dev-9010"
+dataframe = "1.0.0-Beta4"
 serialization = "1.9.0"
 datetime = "0.7.1-0.6.x-compat"
 html = "0.11.0"
-statistics = "0.5.1-dev-1"
+statistics = "0.5.1-dev-4"
 letsPlot = "4.11.2"
 letsPlotImage = "4.7.3"
 mockk = "1.13.10"
