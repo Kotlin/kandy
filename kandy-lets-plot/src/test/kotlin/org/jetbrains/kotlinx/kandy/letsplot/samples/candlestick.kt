@@ -47,7 +47,7 @@ class Candlestick : SampleHelper("candlestick") {
             candlestick(month, open, high, low, close)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -124,7 +124,7 @@ class Candlestick : SampleHelper("candlestick") {
             x.axis.name = "Date"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -218,7 +218,7 @@ class Candlestick : SampleHelper("candlestick") {
             layout.size = 750 to 400
         }
             // SampleEnd
-            .saveSample(savePreview = true)
+            .savePlotSVGSample(savePreview = true)
     }
 
     @Test

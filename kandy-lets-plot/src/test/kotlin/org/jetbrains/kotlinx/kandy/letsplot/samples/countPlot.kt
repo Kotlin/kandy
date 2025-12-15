@@ -58,7 +58,7 @@ class CountPlot : SampleHelper("countPlot") {
             countPlot(categories)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -136,7 +136,7 @@ class CountPlot : SampleHelper("countPlot") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -241,7 +241,7 @@ class CountPlot : SampleHelper("countPlot") {
             countPlot(year)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -365,7 +365,7 @@ class CountPlot : SampleHelper("countPlot") {
             layout.title = "Distribution of transport used by students"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

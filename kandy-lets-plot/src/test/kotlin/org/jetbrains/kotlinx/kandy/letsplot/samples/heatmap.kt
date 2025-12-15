@@ -100,7 +100,7 @@ class Heatmap : SampleHelper("heatmap") {
             heatmap(days, drinks)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

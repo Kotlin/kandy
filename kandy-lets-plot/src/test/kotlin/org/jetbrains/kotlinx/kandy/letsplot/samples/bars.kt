@@ -57,7 +57,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -136,7 +136,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -215,7 +215,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -302,7 +302,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -374,7 +374,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -454,7 +454,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -544,7 +544,7 @@ class Bars : SampleHelper("bars") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

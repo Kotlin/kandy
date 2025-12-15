@@ -58,7 +58,7 @@ class Area : SampleHelper("area") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -133,7 +133,7 @@ class Area : SampleHelper("area") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -231,7 +231,7 @@ class Area : SampleHelper("area") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -314,7 +314,7 @@ class Area : SampleHelper("area") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -404,7 +404,7 @@ class Area : SampleHelper("area") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -561,7 +561,7 @@ class Area : SampleHelper("area") {
             layout.size = 1000 to 450
         }
             // SampleEnd
-            .saveSample(true)
+            .savePlotSVGSample(true)
     }
 
     @Test

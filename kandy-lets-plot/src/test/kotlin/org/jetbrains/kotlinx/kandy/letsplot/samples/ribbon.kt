@@ -57,7 +57,7 @@ class Ribbon : SampleHelper("ribbon") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -135,7 +135,7 @@ class Ribbon : SampleHelper("ribbon") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

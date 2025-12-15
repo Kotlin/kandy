@@ -50,7 +50,7 @@ class DensityPlot : SampleHelper("densityPlot") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -137,7 +137,7 @@ class DensityPlot : SampleHelper("densityPlot") {
             layout.title = "Flight length experiment"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -269,7 +269,7 @@ class DensityPlot : SampleHelper("densityPlot") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

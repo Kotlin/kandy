@@ -89,7 +89,7 @@ class Tiles : SampleHelper("tiles") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -203,7 +203,7 @@ class Tiles : SampleHelper("tiles") {
             layout.style(Style.Void)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -301,7 +301,7 @@ class Tiles : SampleHelper("tiles") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

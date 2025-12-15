@@ -58,7 +58,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -134,7 +134,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -211,7 +211,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -297,7 +297,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -383,7 +383,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -459,7 +459,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -530,7 +530,7 @@ class Lines : SampleHelper("line") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -674,7 +674,7 @@ class Lines : SampleHelper("line") {
             layout.size = 1000 to 450
         }
             // SampleEnd
-            .saveSample(true)
+            .savePlotSVGSample(true)
     }
 
     @Test

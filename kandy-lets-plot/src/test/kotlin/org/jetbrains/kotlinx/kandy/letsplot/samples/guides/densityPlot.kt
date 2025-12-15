@@ -91,7 +91,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
             }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -109,7 +109,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
         }
         statDensityAndAreaPlot
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -122,7 +122,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
         }
         densityLayerPlot
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -143,7 +143,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
         // SampleStart
         plotGrid(listOf(statDensityAndAreaPlot, densityLayerPlot))
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -159,7 +159,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
             }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -181,7 +181,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
             x.axis.name = "depth, m"
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -190,7 +190,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
         densityPlot(depthList, kernel = Kernel.COSINE)
             // SampleEnd
             .toPlot()
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -199,7 +199,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
         df.densityPlot("depth")
             // SampleEnd
             .toPlot()
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -213,7 +213,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
         }
             // SampleEnd
             .toPlot()
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -235,7 +235,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
             }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     // Grouped data
@@ -297,7 +297,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
             }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -313,7 +313,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
             }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -323,7 +323,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
             densityPlot(range)
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -340,7 +340,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
             }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -355,7 +355,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
             }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -364,7 +364,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
         groupedRangesDF.densityPlot("range", bandWidth = BandWidth.value(10.0))
             // SampleEnd
             .toPlot()
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -378,7 +378,7 @@ class DensityPlot : SampleHelper("stat", "guides") {
             fillColor("category") { scale = categoricalColorBrewer(BrewerPalette.Qualitative.Dark2) }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -390,6 +390,6 @@ class DensityPlot : SampleHelper("stat", "guides") {
             }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 }

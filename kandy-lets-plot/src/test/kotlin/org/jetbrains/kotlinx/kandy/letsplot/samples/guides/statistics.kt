@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
 import org.apache.commons.math3.distribution.NormalDistribution
 import org.apache.commons.math3.distribution.UniformRealDistribution
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.get
 import org.jetbrains.kotlinx.kandy.dsl.categorical
@@ -90,7 +91,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             layout.title = "Our awesome histogram!"
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -122,7 +123,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -133,7 +134,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             histogram(sample)
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -153,7 +154,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             x.axis.limits = -3.5..3.5
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -162,7 +163,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
         histogram(sample)
             // SampleEnd
             .toPlot()
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -171,7 +172,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
         df.histogram("sample", binsOption = BinsOption.byNumber(10))
             // SampleEnd
             .toPlot()
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -185,7 +186,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
         }
             // SampleEnd
             .toPlot()
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -202,7 +203,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             layout.title = "Configured histogram"
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -243,7 +244,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -254,7 +255,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             histogram(sample)
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -270,7 +271,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -279,7 +280,7 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
         gbAB.histogram("sample")
             // SampleEnd
             .toPlot()
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 
     @Test
@@ -299,6 +300,6 @@ class StatisticsGuide : SampleHelper("stat", "guides") {
             }
         }
         // SampleEnd
-        // .saveSample()
+        // .savePlotSVGSample()
     }
 }

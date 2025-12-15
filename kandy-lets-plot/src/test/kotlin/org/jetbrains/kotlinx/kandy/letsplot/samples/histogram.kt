@@ -43,7 +43,7 @@ class Histogram : SampleHelper("histogram") {
             histogram(sample)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -126,7 +126,7 @@ class Histogram : SampleHelper("histogram") {
             layout.title = "Flight length experiment"
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -199,7 +199,7 @@ class Histogram : SampleHelper("histogram") {
             histogram(sample)
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -277,7 +277,7 @@ class Histogram : SampleHelper("histogram") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test

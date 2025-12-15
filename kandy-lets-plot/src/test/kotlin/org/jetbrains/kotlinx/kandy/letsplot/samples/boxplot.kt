@@ -81,7 +81,7 @@ class Boxplot : SampleHelper("boxplot") {
             }
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
@@ -202,7 +202,7 @@ class Boxplot : SampleHelper("boxplot") {
             coordinatesTransformation = CoordinatesTransformation.cartesianFlipped()
         }
             // SampleEnd
-            .saveSample()
+            .savePlotSVGSample()
     }
 
     @Test
