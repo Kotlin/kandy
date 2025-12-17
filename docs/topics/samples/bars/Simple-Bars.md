@@ -53,6 +53,24 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "city" to columnOf("London", "Paris", "Berlin", "Madrid", "Rome"),
+    "perc" to columnOf(45, 50, 60, 40, 30)
+)
+
+dataset.plot {
+    layout.title = "Public Transport Usage in European Cities"
+    bars {
+        x(city) { axis.name = "City" }
+        y(perc) { axis.name = "Public Transport Usage (%)" }
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

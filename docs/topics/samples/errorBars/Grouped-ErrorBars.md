@@ -65,6 +65,27 @@ dataset.plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "time" to (1..5).toList().let { (it + it).toColumn() },
+    "min" to (listOf(2.0, 3.4, 3.5, 5.5, 2.5) + listOf(1.0, 2.0, 3.0, 4.0, 3.7)).toColumn(),
+    "max" to (listOf(3.0, 5.2, 5.0, 5.8, 3.4) + listOf(5.0, 4.0, 3.5, 5.0, 4.2)).toColumn(),
+    "category" to (List(5) { "a" } + List(5) { "b" }).toColumn()
+)
+
+dataset.groupBy { category }.plot {
+    errorBars {
+        x(time) { axis.breaks((1..5).toList(), format = "d") }
+        yMin(min)
+        yMax(max)
+        borderLine.color(category)
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

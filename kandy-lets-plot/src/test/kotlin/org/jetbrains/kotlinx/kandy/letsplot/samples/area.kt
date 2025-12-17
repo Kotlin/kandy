@@ -44,6 +44,24 @@ class Area : SampleHelper("area") {
     }
 
     @Test
+    fun simple_area_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataframe = dataFrameOf(
+            "years" to columnOf("2017", "2018", "2019", "2020", "2021", "2022", "2023"),
+            "cost" to columnOf(56.1, 22.7, 34.7, 82.1, 53.7, 68.5, 39.9)
+        )
+
+        dataframe.plot {
+            area {
+                x(years)
+                y(cost)
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
     fun simple_area_collections() {
         // SampleStart
         val years = listOf("2017", "2018", "2019", "2020", "2021", "2022", "2023")
@@ -67,6 +85,35 @@ class Area : SampleHelper("area") {
         )
         val time = column<String>("time")
         val load = column<Int>("load")
+
+        loadServer.plot {
+            layout.title = "Daily Server Load Dynamics"
+            area {
+                x(time) { axis.name = "Time" }
+                y(load) {
+                    axis.name = "Load (%)"
+                    scale = continuous(0..100)
+                }
+                borderLine {
+                    color = Color.ORANGE
+                    type = LineType.DASHED
+                    width = 2.5
+                }
+                fillColor = Color.RED
+                alpha = 0.7
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
+    fun area_settings_dataframeCompilerPlugin() {
+        // SampleStart
+        val loadServer = dataFrameOf(
+            "time" to columnOf("00:00", "03:00", "06:00", "09:00", "12:00", "15:00", "18:00", "21:00"),
+            "load" to columnOf(10, 5, 15, 50, 75, 60, 80, 40)
+        )
 
         loadServer.plot {
             layout.title = "Daily Server Load Dynamics"
@@ -124,6 +171,44 @@ class Area : SampleHelper("area") {
         )
         val waterLvl by columnOf(4.5, 4.7, 5.0, 5.5, 6.0, 6.5, 6.7, 6.2, 5.8, 5.3, 4.8, 4.6)
         val reservoirDf = dataFrameOf(month, waterLvl)
+
+        plot(reservoirDf) {
+            layout {
+                title = "Water Level"
+                subtitle = "Annual Water Level Fluctuations in Reservoir"
+                yAxisLabel = "Month"
+                xAxisLabel = "Water Level (meters)"
+            }
+
+            x(month)
+            y { axis.limits = 3.0..8.0 }
+            line {
+                y(waterLvl)
+            }
+            area {
+                y.constant(5.0)
+                borderLine.type = LineType.DOTTED
+                alpha = 0.5
+                fillColor = Color.RED
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
+    fun area_fixed_dataframeCompilerPlugin() {
+        // SampleStart
+        val reservoirDf = dataFrameOf(
+            "month" to columnOf(
+                "January", "February",
+                "March", "April", "May",
+                "June", "July", "August",
+                "September", "October", "November",
+                "December"
+            ),
+            "waterLvl" to columnOf(4.5, 4.7, 5.0, 5.5, 6.0, 6.5, 6.7, 6.2, 5.8, 5.3, 4.8, 4.6)
+        )
 
         plot(reservoirDf) {
             layout {
@@ -209,6 +294,30 @@ class Area : SampleHelper("area") {
     }
 
     @Test
+    fun area_with_reversed_axis_dataframeCompilerPlugin() {
+        // SampleStart
+        val df = dataFrameOf(
+            "Day of the Week" to columnOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
+            "Star Rating (Reversed)" to columnOf(4, 2, 1, 2, 3, 4, 1)
+        )
+
+        df.plot {
+            layout.title = "Weekly Star Ratings"
+            layout.subtitle = "A reversed perspective"
+            area {
+                x(`Day of the Week`)
+                y(`Star Rating (Reversed)`) {
+                    scale = continuous(0..5, transform = Transformation.REVERSE)
+                }
+                fillColor = Color.hex("#FCF84A")
+                alpha = 0.75
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
     fun area_with_reversed_axis_collections() {
         // SampleStart
         val week = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
@@ -257,6 +366,40 @@ class Area : SampleHelper("area") {
                     )
                 }
                 borderLine.color("company")
+                alpha = 0.3
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
+    fun several_areas_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "year" to columnOf("2016", "2017", "2018", "2019", "2020", "2021"),
+            "Apple" to columnOf(700, 800, 750, 900, 850, 950),
+            "Google" to columnOf(1000, 950, 1200, 1150, 1250, 1300),
+            "Microsoft" to columnOf(600, 700, 650, 700, 750, 800),
+            "Meta" to columnOf(1100, 1200, 1150, 1300, 1250, 1350),
+            "Amazon" to columnOf(300, 400, 350, 450, 500, 600)
+        ).gather { Apple and Google and Microsoft and Meta and Amazon }.into("company", "users")
+
+        dataset.groupBy { company }.plot {
+            layout.title = "User Growth Dynamics"
+            area {
+                x(year)
+                y(users)
+                fillColor(company) {
+                    scale = categorical(
+                        "Apple" to Color.hex("#FF45ED"),
+                        "Google" to Color.hex("#3DEA62"),
+                        "Microsoft" to Color.BLACK,
+                        "Meta" to Color.hex("#FDB60D"),
+                        "Amazon" to Color.hex("#087CFA")
+                    )
+                }
+                borderLine.color(company)
                 alpha = 0.3
             }
         }
@@ -349,6 +492,55 @@ class Area : SampleHelper("area") {
                 x("month")
                 y("temperature")
                 fillColor("city") {
+                    scale = categorical("Berlin" to Color.hex("#07C3F2"), "Madrid" to Color.hex("#FDB60D"))
+                }
+                alpha = 0.5
+                borderLine.width = 1.5
+            }
+            hLine {
+                yIntercept.constant(tempBerlin.average())
+                color = Color.BLACK
+                width = 2.0
+                type = LineType.DASHED
+            }
+            hLine {
+                yIntercept.constant(tempMadrid.average())
+                color = Color.RED
+                width = 2.0
+                type = LineType.DASHED
+            }
+            layout.size = 1000 to 450
+        }
+            // SampleEnd
+            .savePlotSVGSample(true)
+    }
+
+    @Test
+    fun area_with_mark_line_dataframeCompilerPlugin() {
+        // SampleStart
+        val months = listOf(
+            "January", "February",
+            "March", "April", "May",
+            "June", "July", "August",
+            "September", "October", "November",
+            "December"
+        )
+        val tempBerlin =
+            listOf(-0.5, 0.0, 4.8, 9.0, 14.3, 17.5, 19.2, 18.9, 14.5, 9.7, 4.7, 1.0)
+        val tempMadrid =
+            listOf(6.3, 7.9, 11.2, 12.9, 16.7, 21.1, 24.7, 24.2, 20.3, 15.4, 9.9, 6.6)
+
+        val df = dataFrameOf(
+            "month" to months + months,
+            "temperature" to tempBerlin + tempMadrid,
+            "city" to List(12) { "Berlin" } + List(12) { "Madrid" }
+        )
+
+        df.plot {
+            area {
+                x(month)
+                y(temperature)
+                fillColor(city) {
                     scale = categorical("Berlin" to Color.hex("#07C3F2"), "Madrid" to Color.hex("#FDB60D"))
                 }
                 alpha = 0.5

@@ -55,6 +55,26 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "years" to columnOf("2018", "2019", "2020", "2021", "2022"),
+    "max" to columnOf(68.9, 71.3, 78.9, 76.5, 72.1)
+)
+
+plot(dataset) {
+    errorBars {
+        x(years)
+        yMin.constant(20.0)
+        yMax(max)
+        width = 0.5
+        borderLine.width = 1.3
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

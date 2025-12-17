@@ -71,6 +71,33 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "xs" to columnOf(
+        5.93, 9.15, 3.76, 5.04, 2.23,
+        7.47, 2.59, 11.67, 7.90, 3.71,
+        0.03, 2.73, 4.61, 5.44, 1.76,
+        14.46, 1.89
+    ),
+    "ys" to columnOf(
+        14.66, 13.80, 5.37, 6.40, 6.86,
+        2.98, 6.69, 5.48, 3.67, 12.36,
+        0.01, 14.47, 14.56, 9.19, 12.86,
+        5.37, 0.90
+    )
+)
+
+dataset.plot {
+    points {
+        x(xs)
+        y(ys)
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

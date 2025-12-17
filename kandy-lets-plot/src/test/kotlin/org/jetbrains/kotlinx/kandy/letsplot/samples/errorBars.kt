@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples
 
+import org.jetbrains.kotlinx.dataframe.api.add
 import org.jetbrains.kotlinx.dataframe.api.columnOf
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.groupBy
@@ -37,6 +38,26 @@ class ErrorBars : SampleHelper("errorBars") {
     }
 
     @Test
+    fun simple_error_bar_plot_dataframeCompilerPlugin() {
+        // SampleStart
+        val df = dataFrameOf(
+            "years" to columnOf("2018", "2019", "2020", "2021", "2022"),
+            "costMin" to columnOf(62.7, 64.7, 72.1, 73.7, 68.5),
+            "costMax" to columnOf(68.9, 71.3, 78.9, 76.5, 72.1)
+        )
+
+        df.plot {
+            errorBars {
+                x(years)
+                yMin(costMin)
+                yMax(costMax)
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
     fun simple_error_bar_plot_collections() {
         // SampleStart
         val years = listOf("2018", "2019", "2020", "2021", "2022")
@@ -60,6 +81,31 @@ class ErrorBars : SampleHelper("errorBars") {
         val costMin by columnOf(62.7, 64.7, 72.1, 73.7, 68.5)
         val costMax by columnOf(68.9, 71.3, 78.9, 76.5, 72.1)
         val dataset = dataFrameOf(years, costMin, costMax)
+
+        dataset.plot {
+            errorBars {
+                x(years)
+                yMin(costMin)
+                yMax(costMax)
+                width = 1.1
+                borderLine {
+                    width = 1.5
+                    color = Color.RED
+                }
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
+    fun error_bars_settings_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "years" to columnOf("2018", "2019", "2020", "2021", "2022"),
+            "costMin" to columnOf(62.7, 64.7, 72.1, 73.7, 68.5),
+            "costMax" to columnOf(68.9, 71.3, 78.9, 76.5, 72.1)
+        )
 
         dataset.plot {
             errorBars {
@@ -130,6 +176,30 @@ class ErrorBars : SampleHelper("errorBars") {
     }
 
     @Test
+    fun error_bars_with_line_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "years" to columnOf("2018", "2019", "2020", "2021", "2022"),
+            "costMin" to columnOf(62.7, 64.7, 72.1, 73.7, 68.5),
+            "costMax" to columnOf(68.9, 71.3, 78.9, 76.5, 72.1),
+        ).add("mid") {
+            (costMin + costMax) / 2
+        }
+        dataset.plot {
+            x(years)
+            y(mid)
+            line { color = Color.BLUE }
+            errorBars {
+                yMin(costMin)
+                yMax(costMax)
+                borderLine.type = LineType.LONGDASH
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
     fun error_bars_with_line_collections() {
         // SampleStart
         val years = listOf("2018", "2019", "2020", "2021", "2022")
@@ -165,6 +235,27 @@ class ErrorBars : SampleHelper("errorBars") {
                 x("years")
                 yMin.constant(20.0)
                 yMax("max")
+                width = 0.5
+                borderLine.width = 1.3
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
+    fun fixed_error_bars_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "years" to columnOf("2018", "2019", "2020", "2021", "2022"),
+            "max" to columnOf(68.9, 71.3, 78.9, 76.5, 72.1)
+        )
+
+        plot(dataset) {
+            errorBars {
+                x(years)
+                yMin.constant(20.0)
+                yMax(max)
                 width = 0.5
                 borderLine.width = 1.3
             }
@@ -234,6 +325,28 @@ class ErrorBars : SampleHelper("errorBars") {
                 yMin("min")
                 yMax("max")
                 borderLine.color("category")
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
+    fun grouped_error_bars_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "time" to (1..5).toList().let { (it + it).toColumn() },
+            "min" to (listOf(2.0, 3.4, 3.5, 5.5, 2.5) + listOf(1.0, 2.0, 3.0, 4.0, 3.7)).toColumn(),
+            "max" to (listOf(3.0, 5.2, 5.0, 5.8, 3.4) + listOf(5.0, 4.0, 3.5, 5.0, 4.2)).toColumn(),
+            "category" to (List(5) { "a" } + List(5) { "b" }).toColumn()
+        )
+
+        dataset.groupBy { category }.plot {
+            errorBars {
+                x(time) { axis.breaks((1..5).toList(), format = "d") }
+                yMin(min)
+                yMax(max)
+                borderLine.color(category)
             }
         }
             // SampleEnd

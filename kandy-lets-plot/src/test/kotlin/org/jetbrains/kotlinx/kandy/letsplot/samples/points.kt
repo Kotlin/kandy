@@ -48,6 +48,34 @@ class Points : SampleHelper("points") {
     }
 
     @Test
+    fun basic_points_plot_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "xs" to columnOf(
+                5.93, 9.15, 3.76, 5.04, 2.23,
+                7.47, 2.59, 11.67, 7.90, 3.71,
+                0.03, 2.73, 4.61, 5.44, 1.76,
+                14.46, 1.89
+            ),
+            "ys" to columnOf(
+                14.66, 13.80, 5.37, 6.40, 6.86,
+                2.98, 6.69, 5.48, 3.67, 12.36,
+                0.01, 14.47, 14.56, 9.19, 12.86,
+                5.37, 0.90
+            )
+        )
+
+        dataset.plot {
+            points {
+                x(xs)
+                y(ys)
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
     fun basic_points_plot_collections() {
         // SampleStart
         val xs = listOf(
@@ -104,6 +132,37 @@ class Points : SampleHelper("points") {
     }
 
     @Test
+    fun points_settings_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "xs" to columnOf(
+                5.93, 9.15, 3.76, 5.04, 2.23,
+                7.47, 2.59, 11.67, 7.90, 3.71,
+                0.03, 2.73, 4.61, 5.44, 1.76,
+                14.46, 1.89
+            ),
+            "ys" to columnOf(
+                14.66, 13.80, 5.37, 6.40, 6.86,
+                2.98, 6.69, 5.48, 3.67, 12.36,
+                0.01, 14.47, 14.56, 9.19, 12.86,
+                5.37, 0.90
+            )
+        )
+
+        dataset.plot {
+            points {
+                x(xs)
+                y(ys)
+                size = 10.0
+                color = Color.BLUE
+                symbol = Symbol.DIAMOND
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
     fun points_settings_collections() {
         // SampleStart
         val xs = listOf(
@@ -146,6 +205,39 @@ class Points : SampleHelper("points") {
         )
 
         plot {
+            points {
+                x(xValues)
+                y(yValues)
+                size = 7.0
+                color = Color.LIGHT_BLUE
+            }
+            abLine {
+                slope.constant(0.5)
+                intercept.constant(3)
+                color = Color.RED
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
+    fun points_with_abLine_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "xValues" to columnOf(
+                7.13, 9.30, 7.84, 7.08, 5.51,
+                8.40, 5.69, 11.59, 12.53, 4.98,
+                10.29, 6.88, 7.38, 12.03, 0.92
+            ),
+            "yValues" to columnOf(
+                7.05, 8.23, 6.74, 7.95, 5.38,
+                7.47, 4.88, 9.17, 9.30, 6.17,
+                6.58, 5.87, 6.45, 10.53, 3.13
+            )
+        )
+
+        dataset.plot {
             points {
                 x(xValues)
                 y(yValues)
@@ -253,6 +345,45 @@ class Points : SampleHelper("points") {
     }
 
     @Test
+    fun points_with_color_by_category_dataframeCompilerPlugin() {
+        // SampleStart
+        val dataset = dataFrameOf(
+            "xShot" to columnOf(
+                4.02, 5.24, 4.41, 3.99, 3.10, 4.73, 3.20, 6.53, 7.05, 2.81,
+                5.80, 3.87, 4.16, 6.78, 0.52, 0.64, 0.15, 6.09, 5.70, 6.37
+            ),
+            "yShot" to columnOf(
+                2.39, 1.95, 1.13, 1.90, 0.29, 1.56, 0.35, 2.30, 1.27, 1.01,
+                0.65, 1.89, 1.11, 1.39, 0.05, 1.51, 1.49, 1.51, 2.30, 1.66
+            ),
+            "outcome" to columnOf(
+                false, true, false, true, true, true, true, true, true, false,
+                true, true, false, false, true, false, false, true, true, false
+            )
+        )
+
+        dataset.plot {
+            points {
+                x(xShot) { axis.name = "Horizontal Position (meters)" }
+                y(yShot) { axis.name = "Vertical Position (meters)" }
+                size = 8.5
+                color(outcome) {
+                    scale = categorical(
+                        true to Color.GREEN, false to Color.RED
+                    )
+                    legend {
+                        name = "Outcome"
+                        breaksLabeled(true to "Goal", false to "Miss")
+                    }
+                }
+            }
+            layout.title = "Penalty Shot Outcomes Analysis"
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
     fun points_with_color_by_category_collections() {
         // SampleStart
         val xShot = listOf(
@@ -330,7 +461,7 @@ class Points : SampleHelper("points") {
             }
         }
         // SampleEnd
-        //    .saveSample()
+        //    .savePlotSVGSample()
     }
 
     @Test
@@ -350,6 +481,29 @@ class Points : SampleHelper("points") {
             }
         }
         // SampleEnd
+    }
+
+    @Test
+    fun jittered_points_dataframeCompilerPlugin() {
+        // SampleStart
+        val random = kotlin.random.Random(42)
+        val dataset = dataFrameOf(
+            "type" to (List(50) { "a" } + List(50) { "b" }).toColumn(),
+            "value" to (List(50) { kotlin.random.Random.nextDouble(0.1, 0.6) } +
+                            List(50) { random.nextDouble(-0.5, 0.4) }
+            ).toColumn()
+        )
+
+        dataset.plot {
+            points {
+                x(type)
+                y(value)
+                color(type)
+                position = Position.jitter()
+            }
+        }
+            // SampleEnd
+            //.savePlotSVGSample()
     }
 
     @Test

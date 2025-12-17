@@ -69,6 +69,32 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val years = listOf("2018", "2019", "2020", "2021", "2022")
+val costMin = listOf(62.7, 64.7, 72.1, 73.7, 68.5)
+val costMax = listOf(68.9, 71.3, 78.9, 76.5, 72.1)
+val mid = costMin.zip(costMax).map { (a, b) -> (a + b) / 2.0 }
+val dataset = dataFrameOf(
+    years.toColumn("years"),
+    costMin.toColumn("min"),
+    costMax.toColumn("max"),
+    mid.toColumn("mid")
+)
+dataset.plot {
+    x(years)
+    y(mid)
+    line { color = Color.BLUE }
+    errorBars {
+        yMin("min")
+        yMax("max")
+        borderLine.type = LineType.LONGDASH
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

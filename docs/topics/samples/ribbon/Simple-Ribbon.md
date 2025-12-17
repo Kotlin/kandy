@@ -51,6 +51,25 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val df = dataFrameOf(
+    "xs" to columnOf(1.0, 2.0, 3.0, 4.0, 5.0, 6.0),
+    "mins" to columnOf(0.2, 0.9, 0.55, 1.32, 2.2, 1.5),
+    "maxs" to columnOf(0.7, 1.4, 1.1, 2.1, 2.6, 2.2)
+)
+
+df.plot {
+    ribbon {
+        x(xs)
+        yMin(mins)
+        yMax(maxs)
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

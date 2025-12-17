@@ -68,6 +68,31 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "actors" to columnOf(
+        "John Doe", "Emma Stone", "Ryan Gosling", "Natalie Portman",
+        "Brad Pitt", "Marilyn Monroe", "Leonardo DiCaprio"
+    ),
+    "screenTime" to columnOf(90, 75, 60, 85, 50, 40, 95)
+)
+
+dataset.plot {
+    layout.title = "Screen Time of Hollywood Actors"
+    barsH {
+        y(actors) { axis.name = "Actors" }
+        x(screenTime) { axis.name = "minutes" }
+        alpha = 0.75
+        fillColor(actors) {
+            scale = categoricalColorHue()
+        }
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

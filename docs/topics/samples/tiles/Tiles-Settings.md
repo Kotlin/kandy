@@ -77,6 +77,37 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "store" to columnOf("A", "B", "C", "A", "B", "C", "A", "B", "C"),
+    "time" to columnOf(
+        "morning", "morning", "morning",
+        "afternoon", "afternoon", "afternoon",
+        "evening", "evening", "evening"
+    ),
+    "money" to columnOf(75, 64, 59, 82, 88, 91, 69, 77, 73)
+)
+
+dataset.plot {
+    tiles {
+        x(store)
+        y(time)
+        height = 0.7
+        borderLine {
+            width = 0.8
+            color = Color.BLACK
+        }
+        fillColor(money) {
+            scale = continuous(Color.RED..Color.GREEN)
+        }
+        alpha = 0.5
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

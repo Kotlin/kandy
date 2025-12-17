@@ -92,6 +92,43 @@ plot(reservoirDf) {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val reservoirDf = dataFrameOf(
+    "month" to columnOf(
+        "January", "February",
+        "March", "April", "May",
+        "June", "July", "August",
+        "September", "October", "November",
+        "December"
+    ),
+    "waterLvl" to columnOf(4.5, 4.7, 5.0, 5.5, 6.0, 6.5, 6.7, 6.2, 5.8, 5.3, 4.8, 4.6)
+)
+
+plot(reservoirDf) {
+    layout {
+        title = "Water Level"
+        subtitle = "Annual Water Level Fluctuations in Reservoir"
+        yAxisLabel = "Month"
+        xAxisLabel = "Water Level (meters)"
+    }
+
+    x(month)
+    y { axis.limits = 3.0..8.0 }
+    line {
+        y(waterLvl)
+    }
+    area {
+        y.constant(5.0)
+        borderLine.type = LineType.DOTTED
+        alpha = 0.5
+        fillColor = Color.RED
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

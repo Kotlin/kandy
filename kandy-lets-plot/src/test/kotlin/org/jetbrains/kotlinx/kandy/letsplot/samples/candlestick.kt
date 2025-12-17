@@ -33,6 +33,24 @@ class Candlestick : SampleHelper("candlestick") {
     }
 
     @Test
+    fun candlestick_simple_dataframeCompilerPlugin() {
+        // SampleStart
+        val df = dataFrameOf(
+            "month" to columnOf("Jan", "Feb", "Mar", "Apr", "May"),
+            "open" to columnOf(14.2, 6.7, 8.8, 11.2, 4.0),
+            "high" to columnOf(15.5, 9.6, 10.7, 11.7, 9.9),
+            "low" to columnOf(7.5, 6.1, 8.5, 5.4, 4.0),
+            "close" to columnOf(8.0, 8.6, 10.7, 6.5, 9.8)
+        )
+
+        df.plot {
+            candlestick(month, open, high, low, close)
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
     fun candlestick_simple_collections() {
         // SampleStart
         val month = listOf("Jan", "Feb", "Mar", "Apr", "May")
@@ -60,6 +78,37 @@ class Candlestick : SampleHelper("candlestick") {
 
         df.plot {
             candlestick("date", "open", "high", "low", "close") {
+                increase {
+                    fillColor = Color.hex("#00fefe")
+                    alpha = 0.9
+                }
+                decrease {
+                    fillColor = Color.hex("#ea2211")
+                    alpha = 0.5
+                }
+                borderLine.color = Color.GREY
+                width = 0.7
+            }
+            y.axis.name = "Price, €"
+            x.axis.name = "Date"
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
+    fun candlestick_settings_dsl_dataframeCompilerPlugin() {
+        // SampleStart
+        val df = dataFrameOf(
+            "date" to (1..10).map { LocalDate(2022, 1, it) }.toColumn(),
+            "open" to columnOf(10.0, 15.0, 12.0, 18.0, 14.0, 16.0, 20.0, 22.0, 19.0, 25.0),
+            "high" to columnOf(18.0, 17.0, 20.0, 22.0, 18.0, 22.0, 25.0, 24.0, 27.0, 28.0),
+            "low" to columnOf(8.0, 10.0, 9.0, 11.0, 12.0, 15.0, 18.0, 17.0, 18.0, 22.0),
+            "close" to columnOf(15.0, 12.0, 18.0, 14.0, 16.0, 20.0, 22.0, 19.0, 25.0, 23.0)
+        )
+
+        df.plot {
+            candlestick(date, open, high, low, close) {
                 increase {
                     fillColor = Color.hex("#00fefe")
                     alpha = 0.9
@@ -119,6 +168,39 @@ class Candlestick : SampleHelper("candlestick") {
 
         df.plot {
             candlestick("year", "open", "high", "low", "close") {
+                alpha(Stat.isIncreased) {
+                    scale = categorical(true to 1.0, false to 0.05)
+                    legend {
+                        name = ""
+                        breaksLabeled(true to "increase", false to "decrease")
+                    }
+                }
+                fillColor = Color.GREY
+                borderLine.color = Color.GREY
+            }
+            x.axis {
+                name = "Year"
+                breaks(format = "d")
+            }
+            layout.size = 750 to 400
+        }
+            // SampleEnd
+            .savePlotSVGSample(savePreview = true)
+    }
+
+    @Test
+    fun candlestick_settings_stat_api_dataframeCompilerPlugin() {
+        // SampleStart
+        val df = dataFrameOf(
+            "year" to columnOf("2018", "2019", "2020", "2021", "2022", "2023"),
+            "open" to columnOf(10.0, 15.0, 12.0, 18.0, 14.0, 16.0),
+            "high" to columnOf(18.0, 17.0, 20.0, 22.0, 18.0, 22.0),
+            "low" to columnOf(8.0, 10.0, 9.0, 11.0, 12.0, 15.0),
+            "close" to columnOf(15.0, 12.0, 18.0, 14.0, 16.0, 20.0)
+        )
+
+        df.plot {
+            candlestick(year, open, high, low, close) {
                 alpha(Stat.isIncreased) {
                     scale = categorical(true to 1.0, false to 0.05)
                     legend {

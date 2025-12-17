@@ -97,6 +97,44 @@ dataset.plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val categories = listOf(
+    "easy", "medium", "hard", "medium", "easy",
+    "hard", "hard", "easy", "easy", "hard", "medium",
+    "hard", "easy", "easy", "easy", "medium",
+    "hard", "hard", "hard", "medium", "easy",
+    "hard", "medium", "hard", "hard", "hard",
+    "medium", "medium", "easy", "medium", "hard",
+    "hard", "easy", "hard", "medium", "medium",
+    "hard", "hard", "hard", "easy", "hard",
+    "hard", "easy", "medium", "medium", "hard",
+    "medium", "medium", "easy", "hard", "medium",
+    "hard", "medium", "easy", "easy",
+)
+
+val years = listOf(
+    "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022",
+    "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022",
+    "2022", "2022", "2022", "2022", "2022", "2022", "2022", "2022",
+    "2022", "2022", "2023", "2023", "2023", "2023", "2023", "2023",
+    "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023",
+    "2023", "2023", "2023", "2023", "2023", "2023", "2023", "2023",
+    "2023", "2023", "2023", "2023", "2023", "2023", "2023"
+)
+
+val df = dataFrameOf(
+    "category" to categories,
+    "year" to years
+)
+
+df.groupBy { category }.plot {
+    countPlot(year)
+}
+```
+
 </tab></tabs>
 <!---END-->
 

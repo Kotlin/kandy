@@ -82,6 +82,38 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val df = dataFrameOf(
+    "year" to columnOf("2018", "2019", "2020", "2021", "2022", "2023"),
+    "open" to columnOf(10.0, 15.0, 12.0, 18.0, 14.0, 16.0),
+    "high" to columnOf(18.0, 17.0, 20.0, 22.0, 18.0, 22.0),
+    "low" to columnOf(8.0, 10.0, 9.0, 11.0, 12.0, 15.0),
+    "close" to columnOf(15.0, 12.0, 18.0, 14.0, 16.0, 20.0)
+)
+
+df.plot {
+    candlestick(year, open, high, low, close) {
+        alpha(Stat.isIncreased) {
+            scale = categorical(true to 1.0, false to 0.05)
+            legend {
+                name = ""
+                breaksLabeled(true to "increase", false to "decrease")
+            }
+        }
+        fillColor = Color.GREY
+        borderLine.color = Color.GREY
+    }
+    x.axis {
+        name = "Year"
+        breaks(format = "d")
+    }
+    layout.size = 750 to 400
+}
+```
+
 </tab></tabs>
 <!---END-->
 

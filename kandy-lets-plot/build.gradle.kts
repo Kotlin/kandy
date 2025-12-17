@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     with(libs.plugins) {
         alias(kotlin.jvm)
+        alias(kotlin.dataframe)
         alias(kotlin.jupyter.api)
         alias(korro)
     }
@@ -96,6 +97,9 @@ korro {
         }
         funSuffix("_collections") {
             replaceText("NAME", "Collections")
+        }
+        funSuffix("_dataframeCompilerPlugin") {
+            replaceText("NAME", "DataFrame (With compiler plugin)")
         }
         beforeGroup.set("<tabs>\n")
         afterGroup.set("</tabs>")

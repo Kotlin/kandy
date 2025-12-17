@@ -35,7 +35,7 @@ class CountPlot : SampleHelper("stat", "guides") {
     private val `class` = column<String>("class")
     private val drv = column<String>("drv")
     private val hwy = column<Int>("hwy")
-    private val df = mpgDF.select { `class` and drv and hwy }
+    private val df: DataFrame<*> = mpgDF.select { `class` and drv and hwy }
 
     @Test
     fun guideCountReadAutoDf() {
@@ -222,7 +222,7 @@ class CountPlot : SampleHelper("stat", "guides") {
     }
 
     // Grouped data
-    private val groupedDF = df.groupBy { drv }
+    private val groupedDF: org.jetbrains.kotlinx.dataframe.api.GroupBy<*, *> = df.groupBy { drv }
 
     @Test
     @Suppress("UNUSED_EXPRESSION")

@@ -73,6 +73,37 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val museumVisitors = dataFrameOf(
+    "date" to columnOf(
+        LocalDate(2023, 1, 1).toString(),
+        LocalDate(2023, 1, 15).toString(),
+        LocalDate(2023, 2, 1).toString(),
+        LocalDate(2023, 2, 15).toString(),
+        LocalDate(2023, 3, 1).toString(),
+        LocalDate(2023, 3, 15).toString(),
+        LocalDate(2023, 4, 1).toString(),
+        LocalDate(2023, 4, 15).toString(),
+        LocalDate(2023, 5, 1).toString(),
+        LocalDate(2023, 5, 15).toString()
+    ),
+    "visitors" to columnOf(120, 95, 110, 123, 130, 140, 150, 160, 175, 180)
+)
+
+museumVisitors.plot {
+    line {
+        x(date)
+        y(visitors)
+        type = LineType.DASHED
+        color = Color.PURPLE
+        width = 2.5
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

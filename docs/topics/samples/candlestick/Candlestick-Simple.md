@@ -51,6 +51,23 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val df = dataFrameOf(
+    "month" to columnOf("Jan", "Feb", "Mar", "Apr", "May"),
+    "open" to columnOf(14.2, 6.7, 8.8, 11.2, 4.0),
+    "high" to columnOf(15.5, 9.6, 10.7, 11.7, 9.9),
+    "low" to columnOf(7.5, 6.1, 8.5, 5.4, 4.0),
+    "close" to columnOf(8.0, 8.6, 10.7, 6.5, 9.8)
+)
+
+df.plot {
+    candlestick(month, open, high, low, close)
+}
+```
+
 </tab></tabs>
 <!---END-->
 

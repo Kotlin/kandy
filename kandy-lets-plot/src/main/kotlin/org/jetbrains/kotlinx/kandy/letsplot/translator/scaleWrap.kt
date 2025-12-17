@@ -302,7 +302,7 @@ internal fun Scale.wrap(
                     when (aes) {
                         SIZE -> if (rangeValues != null) {
                             scaleSizeManual(
-                                values = rangeValues!!.map { it as Number },
+                                values = rangeValues.map { it as Number },
                                 limits = domainCategories?.wrap(),
                                 name = name,
                                 breaks = breaks?.wrap(),
@@ -339,7 +339,7 @@ internal fun Scale.wrap(
                             } else {
                                 scaleColorManual(
                                     limits = domainCategories?.wrap(),
-                                    values = rangeValues!!.map { (it as Color).wrap() },
+                                    values = rangeValues.map { (it as Color).wrap() },
                                     name = name,
                                     breaks = breaks?.wrap(),
                                     labels = labels,
@@ -364,7 +364,7 @@ internal fun Scale.wrap(
                             } else {
                                 scaleFillManual(
                                     limits = domainCategories?.wrap(),
-                                    values = rangeValues!!.map { (it as Color).wrap() },
+                                    values = rangeValues.map { (it as Color).wrap() },
                                     name = name,
                                     breaks = breaks?.wrap(),
                                     labels = labels,
@@ -378,7 +378,7 @@ internal fun Scale.wrap(
                         ALPHA -> if (rangeValues != null) {
                             scaleAlphaManual(
                                 limits = domainCategories?.wrap(),
-                                values = rangeValues!!.map { it as Double },
+                                values = rangeValues.map { it as Double },
                                 name = name,
                                 breaks = breaks?.wrap(),
                                 labels = labels,
@@ -402,7 +402,7 @@ internal fun Scale.wrap(
                         LINE_TYPE -> if (rangeValues != null) {
                             scaleLinetypeManual(
                                 limits = domainCategories?.wrap(),
-                                values = rangeValues!!.map { (it as LineType).codeNumber },
+                                values = rangeValues.map { (it as LineType).codeNumber },
                                 name = name,
                                 breaks = breaks?.wrap(),
                                 labels = labels,
@@ -436,7 +436,7 @@ internal fun Scale.wrap(
                         } else {
                             scaleShapeManual(
                                 limits = domainCategories?.wrap(),
-                                values = rangeValues!!.map { (it as Symbol).shape },
+                                values = rangeValues.map { (it as Symbol).shape },
 
                                 name = name,
                                 breaks = breaks?.wrap(),
@@ -788,10 +788,8 @@ internal fun Scale.wrap(
                         else -> error("Unexpected aes: $aes")
                     }
 
-                    else -> error("Unexpected scale: ${this::class}")
                 }
 
-                else -> error("Unexpected scale: ${this::class}")
             }
         }
 

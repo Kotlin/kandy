@@ -32,6 +32,24 @@ class Pie : SampleHelper("pie") {
     }
 
     @Test
+    fun pie_base_dataframeCompilerPlugin() {
+        // SampleStart
+        val df = dataFrameOf(
+            "value" to columnOf(15, 22, 40, 7, 31),
+            "type" to columnOf("A", "B", "C", "A", "D")
+        )
+
+        df.plot {
+            pie {
+                slice(value)
+                fillColor(type)
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
     fun pie_base_collections() {
         // SampleStart
         val value = listOf(15, 22, 40, 7, 31)
@@ -52,6 +70,37 @@ class Pie : SampleHelper("pie") {
         val language by columnOf("Kotlin", "Java", "C++", "JavaScript", "C#", "Other")
         val users by columnOf(563, 481, 202, 406, 150, 312)
         val usersLanguages = dataFrameOf(language, users)
+
+        usersLanguages.plot {
+            pie {
+                slice(users)
+                fillColor(language) {
+                    scale = categorical(
+                        "Kotlin" to Color.hex("#1E88E5"),
+                        "Java" to Color.hex("#D32F2F"),
+                        "C++" to Color.hex("#7B1FA2"),
+                        "JavaScript" to Color.hex("#FBC02D"),
+                        "C#" to Color.hex("#388E3C"),
+                        "Other" to Color.hex("#757575")
+                    )
+                }
+                size = 33.0
+                hole = 0.8
+                alpha = 0.8
+            }
+            layout.style(Style.Void)
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
+    fun pie_settings_dataframeCompilerPlugin() {
+        // SampleStart
+        val usersLanguages = dataFrameOf(
+            "language" to columnOf("Kotlin", "Java", "C++", "JavaScript", "C#", "Other"),
+            "users" to columnOf(563, 481, 202, 406, 150, 312)
+        )
 
         usersLanguages.plot {
             pie {
@@ -125,6 +174,25 @@ class Pie : SampleHelper("pie") {
     }
 
     @Test
+    fun pie_with_void_dataframeCompilerPlugin() {
+        // SampleStart
+        val df = dataFrameOf(
+            "platform" to columnOf("Linux", "MacOS", "Windows"),
+            "count" to columnOf(30, 239, 566)
+        )
+
+        df.plot {
+            pie {
+                slice(count)
+                fillColor(platform)
+            }
+            layout { style(Style.Void) }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
     fun pie_with_void_collections() {
         // SampleStart
         val platform = listOf("Linux", "MacOS", "Windows")
@@ -162,6 +230,28 @@ class Pie : SampleHelper("pie") {
             layout {
                 style(Style.Void)
             }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
+    fun pie_explode_dataframeCompilerPlugin() {
+        // SampleStart
+        val df = dataFrameOf(
+            "range" to columnOf("0-10m", "10-20m", "20-40m", "40-100m", "100-250m", ">250m"),
+            "share" to columnOf(0.42, 0.23, 0.15, 0.11, 0.06, 0.03),
+            "explode" to columnOf(0.20, 0.0, 0.04, 0.08, 0.12, 0.16)
+        )
+
+        df.plot {
+            pie {
+                slice(share)
+                fillColor(range) { scale = continuous(Color.RED..Color.LIGHT_GREEN) }
+                explode(explode)
+                size = 25.0
+            }
+            layout { style(Style.Void) }
         }
             // SampleEnd
             .savePlotSVGSample()
@@ -215,6 +305,29 @@ class Pie : SampleHelper("pie") {
     }
 
     @Test
+    fun nightingale_chart_dataframeCompilerPlugin() {
+        // SampleStart
+        val df = dataFrameOf(
+            "month" to columnOf("Jan", "Feb", "Mar", "May", "Apr"),
+            "amount" to columnOf(34.4, 25.1, 33.6, 20.0, 15.9)
+        )
+
+        df.plot {
+            pie {
+                slice(amount)
+                fillColor(month)
+                size(amount) {
+                    scale = continuous(10.0..25.0)
+                    legend.type = LegendType.None
+                }
+            }
+            layout { style(Style.Void) }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
     fun nightingale_chart_collections() {
         // SampleStart
         val month = listOf("Jan", "Feb", "Mar", "May", "Apr")
@@ -245,6 +358,33 @@ class Pie : SampleHelper("pie") {
             "AF", "SA", "OC", "EU", "AF"
         )
         val df = dataFrameOf(continent)
+
+        df.plot {
+            statCount(continent) {
+                pie {
+                    slice(Stat.count)
+                    fillColor(Stat.x named "continent")
+                    size = 25.0
+                }
+            }
+            layout {
+                style(Style.Void)
+            }
+        }
+            // SampleEnd
+            .savePlotSVGSample()
+    }
+
+    @Test
+    fun pie_with_count_dataframeCompilerPlugin() {
+        // SampleStart
+        val df = dataFrameOf(
+            "continent" to columnOf(
+                "EU", "AF", "SA", "OC", "EU", "AF", "SA", "AF", "AS", "SA",
+                "OC", "OC", "SA", "NA", "AF", "NA", "EU", "AF", "OC", "SA",
+                "AF", "SA", "OC", "EU", "AF"
+            )
+        )
 
         df.plot {
             statCount(continent) {

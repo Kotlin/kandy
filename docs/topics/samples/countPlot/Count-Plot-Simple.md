@@ -62,6 +62,29 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataframe = dataFrameOf(
+    "categories" to columnOf(
+        "A", "B", "C", "C", "B",
+        "A", "C", "B", "A", "B",
+        "C", "A", "B", "A", "A",
+        "C", "A", "A", "B", "C",
+        "C", "A", "A", "C", "B",
+        "C", "C", "A", "A", "A",
+        "B", "C", "B", "A", "B",
+        "C", "A", "A", "B", "A",
+        "C", "A", "C", "A", "C"
+    )
+)
+
+dataframe.plot {
+    countPlot(categories)
+}
+```
+
 </tab></tabs>
 <!---END-->
 

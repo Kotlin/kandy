@@ -49,6 +49,23 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataframe = dataFrameOf(
+    "years" to columnOf("2017", "2018", "2019", "2020", "2021", "2022", "2023"),
+    "cost" to columnOf(56.1, 22.7, 34.7, 82.1, 53.7, 68.5, 39.9)
+)
+
+dataframe.plot {
+    area {
+        x(years)
+        y(cost)
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

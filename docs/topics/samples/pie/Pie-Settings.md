@@ -75,6 +75,36 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val usersLanguages = dataFrameOf(
+    "language" to columnOf("Kotlin", "Java", "C++", "JavaScript", "C#", "Other"),
+    "users" to columnOf(563, 481, 202, 406, 150, 312)
+)
+
+usersLanguages.plot {
+    pie {
+        slice(users)
+        fillColor(language) {
+            scale = categorical(
+                "Kotlin" to Color.hex("#1E88E5"),
+                "Java" to Color.hex("#D32F2F"),
+                "C++" to Color.hex("#7B1FA2"),
+                "JavaScript" to Color.hex("#FBC02D"),
+                "C#" to Color.hex("#388E3C"),
+                "Other" to Color.hex("#757575")
+            )
+        }
+        size = 33.0
+        hole = 0.8
+        alpha = 0.8
+    }
+    layout.style(Style.Void)
+}
+```
+
 </tab></tabs>
 <!---END-->
 

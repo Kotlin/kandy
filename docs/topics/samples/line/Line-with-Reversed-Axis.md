@@ -58,6 +58,29 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val dataset = dataFrameOf(
+    "product" to ('A'..'F').map { it.toString() }.toColumn(),
+    "rating" to columnOf(10, 7, 3, 5, 2, 1)
+)
+
+plot(dataset) {
+    line {
+        x(rating) {
+            scale = continuous(min = 0, max = 12)
+        }
+        y(product) {
+            scale = continuous(transform = Transformation.REVERSE)
+        }
+        color = Color.RED
+        alpha = 0.85
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 

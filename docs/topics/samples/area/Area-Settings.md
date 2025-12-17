@@ -71,6 +71,34 @@ plot {
 }
 ```
 
+</tab>
+<tab title="DataFrame (With compiler plugin)">
+
+```kotlin
+val loadServer = dataFrameOf(
+    "time" to columnOf("00:00", "03:00", "06:00", "09:00", "12:00", "15:00", "18:00", "21:00"),
+    "load" to columnOf(10, 5, 15, 50, 75, 60, 80, 40)
+)
+
+loadServer.plot {
+    layout.title = "Daily Server Load Dynamics"
+    area {
+        x(time) { axis.name = "Time" }
+        y(load) {
+            axis.name = "Load (%)"
+            scale = continuous(0..100)
+        }
+        borderLine {
+            color = Color.ORANGE
+            type = LineType.DASHED
+            width = 2.5
+        }
+        fillColor = Color.RED
+        alpha = 0.7
+    }
+}
+```
+
 </tab></tabs>
 <!---END-->
 
