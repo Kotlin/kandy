@@ -4,7 +4,7 @@
 
 <instance-profile id="kd"
                   name="kandy"
-                  start-page="Welcome.topic" is-library="true" status="eap">
+                  start-page="Welcome.topic" is-library="true">
 
     <toc-element topic="Welcome.topic"/>
     <toc-element topic="Quickstart.md"/>
