@@ -55,7 +55,7 @@ To integrate Kandy and DataFrame into an interactive notebook, use the following
 // Adds the dataframe library with a specific version
 %use dataframe(%dataframe_latest_version%)
 // Adds the kandy library with a specific version
-%use kandy(%kandy_latest_version%)
+%use kandy(%kandy_latest_version%, %kandy_latest_version%)
 ```
 
 </tab>
