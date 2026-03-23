@@ -13,117 +13,134 @@ text {
 #_sample_helper_static_id_prefix_0 .plot-title {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 16.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .plot-subtitle {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 15.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .plot-caption {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .hyperlink-element {
 fill: #118ed8;
 font-weight: normal;
-   font-style: normal;
+font-style: normal;
+
 }
 #_sample_helper_static_id_prefix_0 .legend-title {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 15.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .legend-item {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .axis-title-x {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 15.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .axis-text-x {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_2 .axis-tooltip-text-x {
 fill: #303030;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .axis-title-y {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 15.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .axis-text-y {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_2 .axis-tooltip-text-y {
 fill: #303030;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .facet-strip-text-x {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .facet-strip-text-y {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_2 .tooltip-text {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_2 .tooltip-title {
 fill: #bbbbbb;
 font-weight: bold;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_2 .tooltip-label {
 fill: #bbbbbb;
 font-weight: bold;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
@@ -195,7 +212,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>1</tspan>
               </text>
             </g>
@@ -204,7 +221,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>1.5</tspan>
               </text>
             </g>
@@ -213,7 +230,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>2</tspan>
               </text>
             </g>
@@ -222,7 +239,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>2.5</tspan>
               </text>
             </g>
@@ -231,7 +248,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>3</tspan>
               </text>
             </g>
@@ -240,7 +257,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>3.5</tspan>
               </text>
             </g>
@@ -249,7 +266,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>4</tspan>
               </text>
             </g>
@@ -258,7 +275,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>4.5</tspan>
               </text>
             </g>
@@ -267,7 +284,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>5</tspan>
               </text>
             </g>
@@ -276,7 +293,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>5.5</tspan>
               </text>
             </g>
@@ -285,7 +302,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>6</tspan>
               </text>
             </g>
@@ -294,7 +311,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>6.5</tspan>
               </text>
             </g>
@@ -305,84 +322,84 @@ font-size: 13.0px;
         <g transform="translate(25.941816366404606 0.0 ) ">
           <g transform="translate(0.0 404.72727272727275 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>90</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 369.8760480026303 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>100</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 335.0248232779878 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>110</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 300.1735985533454 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>120</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 265.32237382870295 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>130</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 230.4711491040605 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>140</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 195.61992437941808 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>150</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 160.76869965477556 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>160</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 125.91747493013315 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>170</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 91.06625020549075 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>180</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 56.215025480848226 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>190</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 21.36380075620582 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>200</tspan>
               </text>
             </g>
@@ -419,12 +436,12 @@ font-size: 13.0px;
       </g>
     </g>
     <g transform="translate(15.0 218.0 ) rotate(-90.0 ) ">
-      <text class="axis-title-y" y="0.0" text-anchor="middle">
+      <text style="font-size:15.0px;" y="0.0" class="axis-title-y" text-anchor="middle">
         <tspan>value</tspan>
       </text>
     </g>
     <g transform="translate(372.9709081832023 464.0 ) ">
-      <text class="axis-title-x" y="0.0" text-anchor="middle">
+      <text style="font-size:15.0px;" y="0.0" class="axis-title-x" text-anchor="middle">
         <tspan>timeG</tspan>
       </text>
     </g>

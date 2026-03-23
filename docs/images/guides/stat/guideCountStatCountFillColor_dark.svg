@@ -13,117 +13,134 @@ text {
 #_sample_helper_static_id_prefix_0 .plot-title {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 16.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .plot-subtitle {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 15.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .plot-caption {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .hyperlink-element {
 fill: #118ed8;
 font-weight: normal;
-   font-style: normal;
+font-style: normal;
+
 }
 #_sample_helper_static_id_prefix_0 .legend-title {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 15.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .legend-item {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .axis-title-x {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 15.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .axis-text-x {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_2 .axis-tooltip-text-x {
 fill: #303030;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .axis-title-y {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 15.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .axis-text-y {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_2 .axis-tooltip-text-y {
 fill: #303030;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .facet-strip-text-x {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_0 .facet-strip-text-y {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_2 .tooltip-text {
 fill: #bbbbbb;
 font-weight: normal;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_2 .tooltip-title {
 fill: #bbbbbb;
 font-weight: bold;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
 #_sample_helper_static_id_prefix_2 .tooltip-label {
 fill: #bbbbbb;
 font-weight: bold;
-   font-style: normal;font-family: sans-serif;
+font-style: normal;
+font-family: sans-serif;
 font-size: 13.0px;
 
 }
@@ -175,7 +192,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>compact</tspan>
               </text>
             </g>
@@ -184,7 +201,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>midsize</tspan>
               </text>
             </g>
@@ -193,7 +210,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>suv</tspan>
               </text>
             </g>
@@ -202,7 +219,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>2seater</tspan>
               </text>
             </g>
@@ -211,7 +228,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>minivan</tspan>
               </text>
             </g>
@@ -220,7 +237,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>pickup</tspan>
               </text>
             </g>
@@ -229,7 +246,7 @@ font-size: 13.0px;
             <line stroke-width="1.0" stroke="rgb(187,187,187)" stroke-opacity="1.0" x2="0.0" y2="4.0">
             </line>
             <g transform="translate(0.0 6.0 ) ">
-              <text class="axis-text-x" text-anchor="middle" dy="0.7em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-x" text-anchor="middle" dy="0.7em">
                 <tspan>subcompact</tspan>
               </text>
             </g>
@@ -240,49 +257,49 @@ font-size: 13.0px;
         <g transform="translate(17.961210910936405 0.0 ) ">
           <g transform="translate(0.0 424.0 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>0</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 358.86943164362515 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>10</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 293.73886328725035 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>20</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 228.60829493087556 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>30</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 163.4777265745007 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>40</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 98.34715821812591 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>50</tspan>
               </text>
             </g>
           </g>
           <g transform="translate(0.0 33.21658986175112 ) ">
             <g transform="translate(-2.0 0.0 ) ">
-              <text class="axis-text-y" text-anchor="end" dy="0.35em" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="axis-text-y" text-anchor="end" dy="0.35em">
                 <tspan>60</tspan>
               </text>
             </g>
@@ -303,7 +320,7 @@ font-size: 13.0px;
               </rect>
               <rect x="182.9578090398445" y="20.190476190476147" height="403.80952380952385" width="74.84637642539099" stroke="rgb(0,0,0)" stroke-opacity="1.0" fill="rgb(238,102,102)" fill-opacity="1.0" stroke-width="1.6500000000000001">
               </rect>
-              <rect x="99.79516856718791" y="156.96466973886328" height="267.0353302611367" width="74.84637642539096" stroke="rgb(0,0,0)" stroke-opacity="1.0" fill="rgb(188,133,106)" fill-opacity="1.0" stroke-width="1.6500000000000001">
+              <rect x="99.79516856718791" y="156.96466973886328" height="267.0353302611367" width="74.84637642539093" stroke="rgb(0,0,0)" stroke-opacity="1.0" fill="rgb(188,133,106)" fill-opacity="1.0" stroke-width="1.6500000000000001">
               </rect>
               <rect x="16.632528094531324" y="117.88632872503837" height="306.11367127496163" width="74.84637642539093" stroke="rgb(0,0,0)" stroke-opacity="1.0" fill="rgb(203,125,105)" fill-opacity="1.0" stroke-width="1.6500000000000001">
               </rect>
@@ -321,12 +338,12 @@ font-size: 13.0px;
       </g>
     </g>
     <g transform="translate(15.0 218.0 ) rotate(-90.0 ) ">
-      <text class="axis-title-y" y="0.0" text-anchor="middle">
+      <text style="font-size:15.0px;" y="0.0" class="axis-title-y" text-anchor="middle">
         <tspan>count</tspan>
       </text>
     </g>
     <g transform="translate(342.504848636133 464.0 ) ">
-      <text class="axis-title-x" y="0.0" text-anchor="middle">
+      <text style="font-size:15.0px;" y="0.0" class="axis-title-x" text-anchor="middle">
         <tspan>class</tspan>
       </text>
     </g>
@@ -335,7 +352,7 @@ font-size: 13.0px;
       </rect>
       <g transform="translate(5.0 5.0 ) ">
         <g transform="translate(0.0 12.0 ) ">
-          <text class="legend-title" y="0.0">
+          <text style="font-size:15.0px;" y="0.0" class="legend-title">
             <tspan>count</tspan>
           </text>
         </g>
@@ -386,7 +403,7 @@ font-size: 13.0px;
             <line x1="19.0" y1="103.26315789473684" x2="23.0" y2="103.26315789473684" stroke-width="1.0" stroke="rgb(25,25,28)" stroke-opacity="1.0">
             </line>
             <g transform="translate(26.9903027277341 107.81315789473683 ) ">
-              <text class="legend-item" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="legend-item">
                 <tspan>10</tspan>
               </text>
             </g>
@@ -395,7 +412,7 @@ font-size: 13.0px;
             <line x1="19.0" y1="83.78947368421052" x2="23.0" y2="83.78947368421052" stroke-width="1.0" stroke="rgb(25,25,28)" stroke-opacity="1.0">
             </line>
             <g transform="translate(26.9903027277341 88.33947368421052 ) ">
-              <text class="legend-item" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="legend-item">
                 <tspan>20</tspan>
               </text>
             </g>
@@ -404,7 +421,7 @@ font-size: 13.0px;
             <line x1="19.0" y1="64.31578947368419" x2="23.0" y2="64.31578947368419" stroke-width="1.0" stroke="rgb(25,25,28)" stroke-opacity="1.0">
             </line>
             <g transform="translate(26.9903027277341 68.86578947368419 ) ">
-              <text class="legend-item" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="legend-item">
                 <tspan>30</tspan>
               </text>
             </g>
@@ -413,7 +430,7 @@ font-size: 13.0px;
             <line x1="19.0" y1="44.84210526315789" x2="23.0" y2="44.84210526315789" stroke-width="1.0" stroke="rgb(25,25,28)" stroke-opacity="1.0">
             </line>
             <g transform="translate(26.9903027277341 49.39210526315789 ) ">
-              <text class="legend-item" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="legend-item">
                 <tspan>40</tspan>
               </text>
             </g>
@@ -422,7 +439,7 @@ font-size: 13.0px;
             <line x1="19.0" y1="25.368421052631575" x2="23.0" y2="25.368421052631575" stroke-width="1.0" stroke="rgb(25,25,28)" stroke-opacity="1.0">
             </line>
             <g transform="translate(26.9903027277341 29.918421052631572 ) ">
-              <text class="legend-item" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="legend-item">
                 <tspan>50</tspan>
               </text>
             </g>
@@ -431,7 +448,7 @@ font-size: 13.0px;
             <line x1="19.0" y1="5.894736842105246" x2="23.0" y2="5.894736842105246" stroke-width="1.0" stroke="rgb(25,25,28)" stroke-opacity="1.0">
             </line>
             <g transform="translate(26.9903027277341 10.444736842105245 ) ">
-              <text class="legend-item" y="0.0">
+              <text style="font-size:13.0px;" y="0.0" class="legend-item">
                 <tspan>60</tspan>
               </text>
             </g>
