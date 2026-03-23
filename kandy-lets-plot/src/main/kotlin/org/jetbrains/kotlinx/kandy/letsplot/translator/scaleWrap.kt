@@ -498,7 +498,7 @@ internal fun Scale.wrap(
                             org.jetbrains.letsPlot.intern.Scale(
                                 aesthetic = Aes.COLOR,
                                 name = name,
-                                breaks = breaks?.map { it.toString() },
+                                breaks = breaks?.map { it as Number },
                                 labels = labels,
                                 limits = limits,
                                 naValue = naValue,
@@ -538,7 +538,7 @@ internal fun Scale.wrap(
                             org.jetbrains.letsPlot.intern.Scale(
                                 aesthetic = Aes.FILL,
                                 name = name,
-                                breaks = breaks?.map { it.toString() },
+                                breaks = breaks?.map { it as Number },
                                 labels = labels,
                                 limits = limits,
                                 naValue = naValue,
