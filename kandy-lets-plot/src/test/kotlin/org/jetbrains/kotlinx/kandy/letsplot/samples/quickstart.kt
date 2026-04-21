@@ -17,8 +17,7 @@ class QuickStart : SampleHelper("", "") {
 
     @Test
     fun quickstart_sample_dataframe() {
-        val time = column<Int>("time")
-        val temperature = column<Double>("temperature")
+
         val humidity = column<Double>("humidity")
         // SampleStart
         val weatherData = dataFrameOf(

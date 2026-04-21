@@ -47,9 +47,6 @@ class Scatter : SampleHelper("geoms", "guides") {
             "xvar" to List(n) { i: Int -> i },
             "yvar" to List(n) { i: Int -> i + rand.nextGaussian() * 3 }
         )
-        val cond = "cond"<String>()
-        val xvar = "xvar"<Int>()
-        val yvar = "yvar"<Double>()
         // SampleEnd
         assertNotNull(dataset.get { cond })
         assertNotNull(dataset.get { xvar })

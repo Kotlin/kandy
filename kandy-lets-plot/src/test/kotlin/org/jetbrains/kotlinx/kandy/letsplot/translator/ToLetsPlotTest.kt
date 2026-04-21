@@ -88,7 +88,7 @@ class ToLetsPlotTest {
             "clM" to listOf<Int>(),
             "clX" to listOf<String>(),
         )
-        val clM = column<Int>("clM")
+
         val plot = dataset.plot {
             x(column<Double>("time")) {
                 scale = continuous(limits = -12.0..4.4)
