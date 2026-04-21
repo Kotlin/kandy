@@ -117,7 +117,7 @@ internal fun CustomStyle.wrap(): theme {
 
     when (this@wrap.legend.direction) {
         LegendDirection.HORIZONTAL -> buffer = buffer.legendDirectionHorizontal()
-        LegendDirection.VERTICAL -> buffer = buffer.legendDirectionHorizontal()
+        LegendDirection.VERTICAL -> buffer = buffer.legendDirectionVertical()
         null -> {}
     }
 
