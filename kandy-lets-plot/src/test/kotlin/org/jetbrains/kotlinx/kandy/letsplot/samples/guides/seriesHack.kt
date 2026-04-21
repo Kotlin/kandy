@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.kandy.dsl.plot
 import org.jetbrains.kotlinx.kandy.letsplot.layers.bars
@@ -16,7 +17,7 @@ class SeriesHack : SampleHelper("other", "guides") {
     private val ysA = listOf(1.0, 2.5, 3.0, 3.5, 5.0)
     private val ysB = listOf(0.5, 1.5, 3.0, 1.5, 0.0)
     private val ysC = listOf(3.0, 5.0, 2.0, 3.0, 5.0)
-    private val df = dataFrameOf(
+    private val df: AnyFrame = dataFrameOf(
         "xs" to xs,
         "ysA" to ysA,
         "ysB" to ysB,
@@ -110,7 +111,7 @@ class SeriesHack : SampleHelper("other", "guides") {
             .savePlotSVGSample()
     }
 
-    private val gatheredDF = df.gather("ysA", "ysB", "ysC")
+    private val gatheredDF: AnyFrame = df.gather("ysA", "ysB", "ysC")
         .mapKeys { it.drop(2) }
         .into(keyColumn = "group", valueColumn = "ys")
 

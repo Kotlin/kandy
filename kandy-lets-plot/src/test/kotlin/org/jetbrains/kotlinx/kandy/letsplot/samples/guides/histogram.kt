@@ -2,6 +2,8 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
 import org.apache.commons.math3.distribution.NormalDistribution
 import org.apache.commons.math3.distribution.UniformRealDistribution
+import org.jetbrains.kotlinx.dataframe.AnyFrame
+import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.groupBy
@@ -37,7 +39,7 @@ class Histogram : SampleHelper("stat", "guides") {
 
     private val depthList = NormalDistribution(500.0, 100.0).sample(1000).toList()
     private val coeffList = UniformRealDistribution(0.0, 1.0).sample(1000).toList()
-    private val df = dataFrameOf(
+    private val df: AnyFrame = dataFrameOf(
         "depth" to depthList,
         "coeff" to coeffList
     )
@@ -238,14 +240,14 @@ class Histogram : SampleHelper("stat", "guides") {
     private val rangesA = NormalDistribution(500.0, 100.0).sample(5000).toList()
     private val rangesB = NormalDistribution(400.0, 80.0).sample(5000).toList()
 
-    private val rangesDF = dataFrameOf(
+    private val rangesDF: AnyFrame = dataFrameOf(
         "range" to rangesA + rangesB,
         "category" to List(5000) { "A" } + List(5000) { "B" }
     )
     private val range = column<Double>("range")
     private val category = column<Double>("category")
 
-    private val groupedRangesDF = rangesDF.groupBy { category }
+    private val groupedRangesDF: GroupBy<*, *> = rangesDF.groupBy { category }
 
     @Test
     fun guideHistogramGenerateGropedData() {

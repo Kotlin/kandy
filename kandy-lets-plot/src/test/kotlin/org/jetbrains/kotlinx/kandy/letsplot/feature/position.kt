@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.feature
 
+import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.columnOf
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.groupBy
@@ -21,7 +22,7 @@ class PositionTests {
         "StoreB", "StoreC", "StoreC", "StoreC"
     ) named "store"
 
-    private val groupedData = dataFrameOf(product, sales, store).groupBy { store }
+    private val groupedData: GroupBy<*, *> = dataFrameOf(product, sales, store).groupBy { store }
 
     @Test
     fun `default position for bar test`() {

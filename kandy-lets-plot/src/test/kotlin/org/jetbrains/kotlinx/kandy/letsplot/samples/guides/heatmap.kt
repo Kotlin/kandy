@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.head
@@ -29,7 +30,7 @@ class Heatmap : SampleHelper("stat", "guides") {
     private val `class` = column<String>("class")
     private val drv = column<String>("drv")
     private val hwy = column<Int>("hwy")
-    private val df = mpgDF.select { `class` and drv and hwy }
+    private val df: AnyFrame = mpgDF.select { `class` and drv and hwy }
 
     @Test
     fun guideHeatmapReadAutoDf() {

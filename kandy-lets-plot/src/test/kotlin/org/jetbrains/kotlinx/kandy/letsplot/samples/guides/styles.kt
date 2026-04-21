@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.count
@@ -33,9 +34,9 @@ class Styles : SampleHelper("layout", "guides") {
     private val fl = column<String>("fl")
     private val count = column<Int>("count")
 
-    private val bPlotDf = df.groupBy { fl }.count()
+    private val bPlotDf: AnyFrame = df.groupBy { fl }.count()
 
-    private val fPlotDf = df.groupBy { fl and year }.count()
+    private val fPlotDf: AnyFrame = df.groupBy { fl and year }.count()
 
     private val eLine = LayoutParameters.line(color = Color.RED, width = 4.0)
     private val eLine2 = LayoutParameters.line(color = Color.hex("#fcae91"), width = 1.0)

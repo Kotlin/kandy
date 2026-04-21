@@ -5,6 +5,7 @@
 package org.jetbrains.kotlinx.kandy.letsplot.dsl
 
 
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.kandy.dsl.internal.dataframe.NamedData
 import org.jetbrains.kotlinx.kandy.dsl.plot
@@ -26,7 +27,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class PositionTest {
-    private val dataFrame = dataFrameOf(
+    private val dataFrame: AnyFrame = dataFrameOf(
         "x" to listOf(1, 2, 3),
         "y" to listOf(0.1, 0.2, 3.0)
     )

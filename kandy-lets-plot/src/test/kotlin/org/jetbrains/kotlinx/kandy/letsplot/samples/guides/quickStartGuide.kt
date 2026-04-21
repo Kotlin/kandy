@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.io.readCsv
@@ -96,7 +97,7 @@ class QuickStartGuide : SampleHelper("quickStartGuide", "guides") {
     private val random = kotlin.random.Random(42)
 
     private val observation = List(1000) { random.nextDouble() }
-    private val observationDataset = dataFrameOf(
+    private val observationDataset: AnyFrame = dataFrameOf(
         "observations" to observation
     )
     private val obs = column<Double>("observations")

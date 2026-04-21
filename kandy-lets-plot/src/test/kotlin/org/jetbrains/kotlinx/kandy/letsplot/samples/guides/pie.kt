@@ -2,6 +2,7 @@
 
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.kandy.dsl.continuous
@@ -19,12 +20,12 @@ import kotlin.test.assertNotNull
 
 class Pie : SampleHelper("geoms", "guides") {
 
-    private val dataset = dataFrameOf(
+    private val dataset: AnyFrame = dataFrameOf(
         "name" to listOf("a", "b", "c", "d", "b"),
         "value" to listOf(40, 90, 10, 50, 20)
     )
 
-    private val length = dataFrameOf(
+    private val length: AnyFrame = dataFrameOf(
         "name" to listOf(
             "20-50 km",
             "50-75 km",
@@ -40,7 +41,7 @@ class Pie : SampleHelper("geoms", "guides") {
         "explode" to listOf(.0, .0, .0, .1, .1, .2, .3, .4, .6)
     )
 
-    private val calories = dataFrameOf(
+    private val calories: AnyFrame = dataFrameOf(
         "slice" to listOf(35, 25, 25, 15),
         "label" to listOf("Apples", "Bananas", "Cherries", "Dates"),
         "explode" to listOf(.1, .0, .0, .0)

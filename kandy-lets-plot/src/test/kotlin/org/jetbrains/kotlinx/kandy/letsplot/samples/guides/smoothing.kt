@@ -1,6 +1,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
 import org.apache.commons.math3.distribution.NormalDistribution
+import org.jetbrains.kotlinx.dataframe.AnyFrame
+import org.jetbrains.kotlinx.dataframe.api.GroupBy
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.groupBy
@@ -31,7 +33,7 @@ class Smoothing : SampleHelper("stat", "guides") {
     private val indices = (xs.indices).shuffled(Random(42)).take(xs.size * 1 / 3).sorted()
     private val newXs = indices.map { xs[it] }
     private val newYs = indices.map { ys[it] }
-    private val df = dataFrameOf(
+    private val df: AnyFrame = dataFrameOf(
         "speed" to newXs,
         "efficiency" to newYs
     )
@@ -189,7 +191,7 @@ class Smoothing : SampleHelper("stat", "guides") {
     private val xsB = xsA
     private val ysB = indicesAB.map { valuesB[it] }
 
-    private val valuesDF = dataFrameOf(
+    private val valuesDF: AnyFrame = dataFrameOf(
         "time" to xsA + xsB,
         "value" to ysA + ysB,
         "category" to List(xsA.size) { "A" } + List(xsB.size) { "B" }
@@ -199,7 +201,7 @@ class Smoothing : SampleHelper("stat", "guides") {
     private val value = column<Double>("value")
     private val category = column<String>("category")
 
-    private val groupedDF = valuesDF.groupBy { category }
+    private val groupedDF: GroupBy<*, *> = valuesDF.groupBy { category }
 
     @Test
     fun guideSmoothGroupedData() {

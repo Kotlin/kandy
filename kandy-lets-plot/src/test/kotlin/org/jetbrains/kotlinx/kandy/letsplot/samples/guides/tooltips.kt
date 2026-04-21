@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.io.readCsv
@@ -324,7 +325,7 @@ class Tooltips : SampleHelper("layout", "guides") {
         // SampleEnd
     }
 
-    private val dataset = dataFrameOf("x" to listOf(0.0, 1.0), "y" to listOf(0.0, 1.0))
+    private val dataset: AnyFrame = dataFrameOf("x" to listOf(0.0, 1.0), "y" to listOf(0.0, 1.0))
 
 
     @Test

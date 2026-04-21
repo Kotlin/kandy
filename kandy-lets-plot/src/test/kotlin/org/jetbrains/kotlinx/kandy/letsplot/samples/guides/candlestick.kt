@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.head
@@ -29,7 +30,7 @@ class Candlestick : SampleHelper("stat", "guides") {
     private val lowList = listOf(7.5, 6.1, 8.5, 5.4, 4.0)
     private val closeList = listOf(8.0, 8.6, 10.7, 6.5, 9.8)
 
-    private val df = dataFrameOf(
+    private val df: AnyFrame = dataFrameOf(
         "x" to xList,
         "open" to openList,
         "high" to highList,

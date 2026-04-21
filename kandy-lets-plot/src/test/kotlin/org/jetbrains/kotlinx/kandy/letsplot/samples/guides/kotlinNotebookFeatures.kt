@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.api.column
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.kandy.dsl.plot
@@ -16,7 +17,7 @@ class KotlinNotebookFeatures : SampleHelper("other", "guides") {
 
     private val rand = Random(42)
 
-    private val simpleData = dataFrameOf(
+    private val simpleData: AnyFrame = dataFrameOf(
         "time" to (1..10).toList(),
         "value" to List(10) { rand.nextDouble(0.0, 1.0) },
         "type" to (List(5) { "a" } + List(5) { "b" }).shuffled(rand),

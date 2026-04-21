@@ -1,5 +1,6 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.guides
 
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.api.convert
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.with
@@ -21,7 +22,7 @@ class Scatter : SampleHelper("geoms", "guides") {
 
     private val rand = java.util.Random(123)
     private val n = 20
-    private val dataset = dataFrameOf(
+    private val dataset: AnyFrame = dataFrameOf(
         "cond" to List(n / 2) { "A" } + List(n / 2) { "B" },
         "xvar" to List(n) { i: Int -> i },
         "yvar" to List(n) { i: Int -> i + rand.nextGaussian() * 3 }
@@ -30,7 +31,7 @@ class Scatter : SampleHelper("geoms", "guides") {
     private val xvar = "xvar"<Int>()
     private val yvar = "yvar"<Double>()
 
-    private val datasetOverlapping = dataset.convert { xvar and yvar }.with {
+    private val datasetOverlapping: AnyFrame = dataset.convert { xvar and yvar }.with {
         (it.toDouble() / 5).toInt() * 5
     }
 
