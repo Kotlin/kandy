@@ -19,6 +19,7 @@ import org.jetbrains.letsPlot.coord.coordFlip
 import org.jetbrains.letsPlot.facet.facetGrid
 import org.jetbrains.letsPlot.facet.facetWrap
 import org.jetbrains.letsPlot.ggsize
+import org.jetbrains.letsPlot.interact.ggtb
 import org.jetbrains.letsPlot.intern.Feature
 import org.jetbrains.letsPlot.intern.OptionsMap
 import org.jetbrains.letsPlot.intern.layer.PosOptions
@@ -144,6 +145,10 @@ internal fun PlotFeature.wrap(featureBuffer: MutableList<Feature>, plot: Plot) {
 
         Layout.NAME -> {
             (this as Layout).wrap(featureBuffer)
+        }
+
+        Toolbar.FEATURE_NAME -> {
+            featureBuffer.add(ggtb())
         }
 
         else -> error("Unexpected feature: $featureName")
