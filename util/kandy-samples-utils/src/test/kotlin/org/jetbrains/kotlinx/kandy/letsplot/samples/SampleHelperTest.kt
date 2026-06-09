@@ -95,11 +95,4 @@ class SampleHelperTest: SampleHelper("name") {
         assertTrue(out.contains("rootId: 0"))
         assertTrue(out.contains("renderTable(0)"))
     }
-
-    @Test
-    fun testKekius() {
-        val df = dataFrameOf("a" to listOf(1, 2, 3)).format("a").with { background(red) }
-
-        df.saveDfHtmlSample()
-    }
 }
