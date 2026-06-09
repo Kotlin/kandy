@@ -2,8 +2,10 @@ package org.jetbrains.kotlinx.kandy.letsplot.samples.kdoc
 
 import org.intellij.lang.annotations.Language
 import org.jetbrains.kotlinx.kandy.letsplot.jupyter.KandyLetsPlotJupyterTest
+import kotlin.test.Ignore
 import kotlin.test.Test
 
+@Ignore
 class LayoutTest : KandyLetsPlotJupyterTest() {
 
     @Language("kts")

@@ -1,6 +1,6 @@
 [versions]
 # plugins version
-kotlin = "2.3.20"
+kotlin = "2.4.0"
 dokka = "2.0.0"
 korro = "0.1.7"
 nexus = "2.0.0"
@@ -12,7 +12,7 @@ dataframe = "1.0.0-Beta5"
 serialization = "1.9.0"
 datetime = "0.7.1-0.6.x-compat"
 html = "0.11.0"
-statistics = "0.8.4-dev-96"
+statistics = "0.8.5-dev-98"
 letsPlot = "4.12.1"
 letsPlotImage = "4.8.2"
 mockk = "1.13.10"

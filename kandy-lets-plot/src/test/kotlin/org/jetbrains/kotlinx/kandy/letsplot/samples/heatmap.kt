@@ -149,7 +149,7 @@ class Heatmap : SampleHelper("heatmap") {
     fun heatmap_settings() {
         // SampleStart
         val df = DataFrame.readCsv(
-            fileOrUrl = "https://raw.githubusercontent.com/Kotlin/dataframe/master/examples/idea-examples/titanic/src/main/resources/titanic.csv",
+            fileOrUrl = "https://raw.githubusercontent.com/Kotlin/dataframe/refs/heads/master/examples/projects/titanic/src/resources/titanic.csv",
             delimiter = ';', parserOptions = ParserOptions(locale = java.util.Locale.FRENCH)
         )
 

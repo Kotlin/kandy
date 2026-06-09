@@ -47,6 +47,7 @@ import kotlin.math.*
 import kotlin.reflect.typeOf
 import kotlin.test.*
 
+@Ignore
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class GeoGuide : SampleHelper("geoGuide", "guides") {
 

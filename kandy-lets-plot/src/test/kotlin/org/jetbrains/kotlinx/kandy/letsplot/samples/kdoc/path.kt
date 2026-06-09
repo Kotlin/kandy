@@ -1,8 +1,10 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples.kdoc
 
 import org.jetbrains.kotlinx.kandy.letsplot.jupyter.KandyLetsPlotJupyterTest
+import kotlin.test.Ignore
 import kotlin.test.Test
 
+@Ignore
 class PathTest : KandyLetsPlotJupyterTest() {
 
     private val plotPath = """

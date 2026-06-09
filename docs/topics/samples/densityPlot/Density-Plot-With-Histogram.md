@@ -21,7 +21,7 @@ Dive into 'Density Plot With Histogram' using Kotlin and Kandy, showing multiple
 
 ```kotlin
 val df = DataFrame.readCsv(
-    fileOrUrl = "https://raw.githubusercontent.com/Kotlin/dataframe/master/examples/idea-examples/titanic/src/main/resources/titanic.csv",
+    fileOrUrl = "https://raw.githubusercontent.com/Kotlin/dataframe/refs/heads/master/examples/projects/titanic/src/resources/titanic.csv",
     delimiter = ';', parserOptions = ParserOptions(locale = java.util.Locale.FRENCH)
 )
 val ages = df.get { "age"() }.dropNulls().cast<Double>()

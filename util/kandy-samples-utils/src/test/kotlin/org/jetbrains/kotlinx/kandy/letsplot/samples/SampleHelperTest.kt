@@ -1,5 +1,8 @@
 package org.jetbrains.kotlinx.kandy.letsplot.samples
 
+import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
+import org.jetbrains.kotlinx.dataframe.api.format
+import org.jetbrains.kotlinx.dataframe.api.with
 import org.junit.Test
 import kotlin.test.assertTrue
 import kotlin.test.assertFalse
@@ -91,5 +94,12 @@ class SampleHelperTest: SampleHelper("name") {
         assertTrue(out.contains("id: 0"))
         assertTrue(out.contains("rootId: 0"))
         assertTrue(out.contains("renderTable(0)"))
+    }
+
+    @Test
+    fun testKekius() {
+        val df = dataFrameOf("a" to listOf(1, 2, 3)).format("a").with { background(red) }
+
+        df.saveDfHtmlSample()
     }
 }
