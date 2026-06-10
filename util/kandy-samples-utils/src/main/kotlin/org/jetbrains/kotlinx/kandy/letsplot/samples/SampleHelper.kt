@@ -136,7 +136,8 @@ public abstract class SampleHelper(
      */
     public fun FormattedFrame<*>.saveDfHtmlSample() {
         val name = testName.methodName.replace("_dataframe", "")
-        val dfHtml = df.toStandaloneHtml(
+        this.toStandaloneHtml()
+        val dfHtml = this.toStandaloneHtml(
             configuration = getDisplayConfiguration(SamplesDisplayConfiguration),
             getFooter = WritersideFooter
         ) + WritersideStyle
