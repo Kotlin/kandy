@@ -93,7 +93,7 @@ korro {
         afterSample.set("\n</tab>")
 
         funSuffix("_dataframe") {
-            replaceText("NAME", "Dataframe")
+            replaceText("NAME", "DataFrame")
         }
         funSuffix("_collections") {
             replaceText("NAME", "Collections")
