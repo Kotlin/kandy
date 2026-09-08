@@ -25,10 +25,21 @@ dependencies {
     implementation(libs.lets.plot)
     implementation(libs.lets.plot.geotools)
     implementation(libs.kotlinx.dataframe)
-    implementation(libs.kotlinx.dataframe.geo) {
+
+    // `api` scope for everything a caller of our public API has to resolve (#1920).
+    // Beyond the usual signature types, our `public inline fun`s inline calls to `geometry()` and `crs()`,
+    // so JTS and the GeoTools interfaces are part of the effective ABI as well:
+    //  - dataframe-geo supplies `GeoDataFrame` / `WithGeometry` (GeoDataFrame<T>.plot, withData)
+    //  - jts-core supplies `Geometry`, `Puntal`, `Polygonal`, `Lineal`, `MultiPolygon`
+    //    (mergePolygons, and the geometry checks inlined into geoPoints/geoPolygon/geoPath)
+    //  - gt-api supplies `CoordinateReferenceSystem` (crs(), inlined into geoMap)
+    api(libs.kotlinx.dataframe.geo) {
         exclude("org.geotools")
     }
+    api(libs.jts.core)
+    api(libs.geotools.api) { excludeJaiCore() }
 
+    // used internally only; `implementation` still puts them on the consumer's runtime classpath
     implementation(libs.geotools.main) { excludeJaiCore() }
     implementation(libs.geotools.shapefile) { excludeJaiCore() }
     implementation(libs.geotools.geojson) { excludeJaiCore() }

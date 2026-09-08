@@ -17,8 +17,9 @@ statistics = "0.8.5"
 letsPlot = "4.12.1"
 letsPlotImage = "4.8.2"
 mockk = "1.13.10"
-geotools = "33.2"
+geotools = "33.5" # keep in sync with dataframe-geo; 34.x+ is not compatible with Java 11
 jai-core = "1.1.3"
+jts = "1.20.0"
 
 [libraries]
 # Kotlinx libraries
@@ -39,11 +40,14 @@ lets-plot-geotools = { group = "org.jetbrains.lets-plot", name = "lets-plot-kotl
 #Geootools
 jai-core = { module = "javax.media:jai-core", version.ref = "jai-core" }
 
+geotools-api = { module = "org.geotools:gt-api", version.ref = "geotools" }
 geotools-main = { module = "org.geotools:gt-main", version.ref = "geotools" }
 geotools-shapefile = { module = "org.geotools:gt-shapefile", version.ref = "geotools" }
 geotools-geojson = { module = "org.geotools:gt-geojson", version.ref = "geotools" }
 geotools-referencing = { module = "org.geotools:gt-referencing", version.ref = "geotools" }
 geotools-epsg-hsql = { module = "org.geotools:gt-epsg-hsql", version.ref = "geotools" }
+
+jts-core = { module = "org.locationtech.jts:jts-core", version.ref = "jts" }
 
 # Testing
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
