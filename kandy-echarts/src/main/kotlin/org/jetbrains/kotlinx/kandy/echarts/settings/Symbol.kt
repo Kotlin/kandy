@@ -64,12 +64,12 @@ public class Symbol private constructor(
         public val CIRCLE: Symbol = Symbol("circle")
 
         /**
-         * Returns an [CIRCLE] with the given [size] and [rotate].
+         * Returns a [CIRCLE] with the given [size] and [rotate].
          */
         public fun circle(size: Double, rotate: Int? = null): Symbol = Symbol("circle", size, rotate)
 
         /**
-         * Returns an [CIRCLE] with the given [width], [height] and [rotate].
+         * Returns a [CIRCLE] with the given [width], [height] and [rotate].
          */
         public fun circle(width: Double, height: Double, rotate: Int? = null): Symbol =
             Symbol("circle", width, height, rotate)
@@ -77,12 +77,12 @@ public class Symbol private constructor(
         public val TRIANGLE: Symbol = Symbol("triangle")
 
         /**
-         * Returns an [TRIANGLE] with the given [size] and [rotate].
+         * Returns a [TRIANGLE] with the given [size] and [rotate].
          */
         public fun triangle(size: Double, rotate: Int? = null): Symbol = Symbol("triangle", size, rotate)
 
         /**
-         * Returns an [TRIANGLE] with the given [width], [height] and [rotate].
+         * Returns a [TRIANGLE] with the given [width], [height] and [rotate].
          */
         public fun triangle(width: Double, height: Double, rotate: Int? = null): Symbol =
             Symbol("triangle", width, height, rotate)
@@ -90,12 +90,12 @@ public class Symbol private constructor(
         public val RECT: Symbol = Symbol("rect")
 
         /**
-         * Returns an [RECT] with the given [size] and [rotate].
+         * Returns a [RECT] with the given [size] and [rotate].
          */
         public fun rect(size: Double, rotate: Int? = null): Symbol = Symbol("rect", size, rotate)
 
         /**
-         * Returns an [RECT] with the given [width], [height] and [rotate].
+         * Returns a [RECT] with the given [width], [height] and [rotate].
          */
         public fun rect(width: Double, height: Double, rotate: Int? = null): Symbol =
             Symbol("rect", width, height, rotate)
@@ -103,12 +103,12 @@ public class Symbol private constructor(
         public val DIAMOND: Symbol = Symbol("diamond")
 
         /**
-         * Returns an [DIAMOND] with the given [size] and [rotate].
+         * Returns a [DIAMOND] with the given [size] and [rotate].
          */
         public fun diamond(size: Double, rotate: Int? = null): Symbol = Symbol("diamond", size, rotate)
 
         /**
-         * Returns an [DIAMOND] with the given [width], [height] and [rotate].
+         * Returns a [DIAMOND] with the given [width], [height] and [rotate].
          */
         public fun diamond(width: Double, height: Double, rotate: Int? = null): Symbol =
             Symbol("diamond", width, height, rotate)
@@ -116,12 +116,12 @@ public class Symbol private constructor(
         public val ROUND_RECT: Symbol = Symbol("roundRect")
 
         /**
-         * Returns an [ROUND_RECT] with the given [size] and [rotate].
+         * Returns a [ROUND_RECT] with the given [size] and [rotate].
          */
         public fun roundRect(size: Double, rotate: Int? = null): Symbol = Symbol("roundRect", size, rotate)
 
         /**
-         * Returns an [ROUND_RECT] with the given [width], [height] and [rotate].
+         * Returns a [ROUND_RECT] with the given [width], [height] and [rotate].
          */
         public fun roundRect(width: Double, height: Double, rotate: Int? = null): Symbol =
             Symbol("roundRect", width, height, rotate)
@@ -129,12 +129,12 @@ public class Symbol private constructor(
         public val PIN: Symbol = Symbol("pin")
 
         /**
-         * Returns an [PIN] with the given [size] and [rotate].
+         * Returns a [PIN] with the given [size] and [rotate].
          */
         public fun pin(size: Double, rotate: Int? = null): Symbol = Symbol("pin", size, rotate)
 
         /**
-         * Returns an [PIN] with the given [width], [height] and [rotate].
+         * Returns a [PIN] with the given [width], [height] and [rotate].
          */
         public fun pin(width: Double, height: Double, rotate: Int? = null): Symbol =
             Symbol("pin", width, height, rotate)
@@ -159,7 +159,7 @@ public class Symbol private constructor(
             Symbol("image://$url", size, rotate)
 
         /**
-         * Returns icon by [url] with the given [width], [height]] and [rotate].
+         * Returns icon by [url] with the given [width], [height] and [rotate].
          */
         public fun fromUrl(url: String, width: Double? = null, height: Double? = null, rotate: Int? = null): Symbol =
             Symbol("image://$url", width, height, rotate)
@@ -171,7 +171,7 @@ public class Symbol private constructor(
             fromUrl(url.path, size, rotate)
 
         /**
-         * Returns icon by [url] with the given [width], [height]] and [rotate].
+         * Returns icon by [url] with the given [width], [height] and [rotate].
          */
         public fun fromUrl(url: URL, width: Double? = null, height: Double? = null, rotate: Int? = null): Symbol =
             fromUrl(url.path, width, height, rotate)
@@ -183,7 +183,7 @@ public class Symbol private constructor(
             fromUrl(url.path, size, rotate)
 
         /**
-         * Returns icon by [url] with the given [width], [height]] and [rotate].
+         * Returns icon by [url] with the given [width], [height] and [rotate].
          */
         public fun fromUrl(url: URI, width: Double? = null, height: Double? = null, rotate: Int? = null): Symbol =
             fromUrl(url.path, width, height, rotate)
@@ -195,7 +195,7 @@ public class Symbol private constructor(
             Symbol("path://$path", size, rotate)
 
         /**
-         * Returns icon from [path] with the given [width], [height]] and [rotate].
+         * Returns icon from [path] with the given [width], [height] and [rotate].
          */
         public fun fromPath(path: String, width: Double? = null, height: Double? = null, rotate: Int? = null): Symbol =
             Symbol("path://$path", width, height, rotate)
