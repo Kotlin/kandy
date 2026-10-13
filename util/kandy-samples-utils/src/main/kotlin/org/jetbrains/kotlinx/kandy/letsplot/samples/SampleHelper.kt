@@ -83,11 +83,12 @@ public abstract class SampleHelper(
      * @param savePreview Boolean flag that indicates whether to also generate and save preview versions
      * of the SVG files. When `true`, additional preview files are created with "preview_" prefixed to the file name.
      */
-    public open fun Plot.savePlotSVGSample(savePreview: Boolean = false) {
+    protected fun Plot.savePlotSVGSample(savePreview: Boolean = false) {
         val name = sampleFileName()
         saveAsSVG(name, savePreview)
         this.changeThemeToDarkMode()
         saveAsSVG("${name}_dark", savePreview)
+        onPlotSampleSaved(name)
     }
 
     /**
@@ -102,7 +103,7 @@ public abstract class SampleHelper(
      * @param scaling Boolean flag that determines whether the SVG output should scale to an appropriate size.
      * If `true`, the method scales the output appropriately; otherwise, it does not.
      */
-    public open fun PlotGrid.savePlotSVGSample(savePreview: Boolean = false, scaling: Boolean = true) {
+    protected fun PlotGrid.savePlotSVGSample(savePreview: Boolean = false, scaling: Boolean = true) {
         val name = sampleFileName()
         saveAsSVG(name, savePreview, scaling)
         plots.forEach {
@@ -110,6 +111,7 @@ public abstract class SampleHelper(
             it.changeThemeToDarkMode()
         }
         saveAsSVG("${name}_dark", savePreview, scaling)
+        onPlotSampleSaved(name)
     }
 
     /**
@@ -124,19 +126,20 @@ public abstract class SampleHelper(
      * @param scaling Boolean flag that determines whether the SVG output should scale to an appropriate size.
      * If `true`, the method scales the output appropriately; otherwise, it does not.
      */
-    public open fun PlotBunch.savePlotSVGSample() {
+    protected fun PlotBunch.savePlotSVGSample() {
         val name = sampleFileName()
         saveAsSVG(name)
         this.items.forEach {
             it.plot.changeThemeToDarkMode()
         }
         saveAsSVG("${name}_dark")
+        onPlotSampleSaved(name)
     }
 
     /**
      * Saves this [FormattedFrame] as HTML.
      */
-    public open fun FormattedFrame<*>.saveDfHtmlSample() {
+    protected fun FormattedFrame<*>.saveDfHtmlSample() {
         val name = sampleFileName()
         this.toStandaloneHtml()
         val dfHtml = this.toStandaloneHtml(
@@ -146,12 +149,13 @@ public abstract class SampleHelper(
         // TODO fix static ids
         val htmlWithStaticIDs = replaceIdsWithStaticDataFrame(dfHtml.toString()) // replaceIdsWithStatic(dfHtml.toString())
         File(pathToResourceFolder, "$name.html").writeText(htmlWithStaticIDs)
+        onDfHtmlSampleSaved(name)
     }
 
     /**
      * Saves this [DataFrame] as HTML.
      */
-    public open fun DataFrame<*>.saveDfHtmlSample() {
+    protected fun DataFrame<*>.saveDfHtmlSample() {
         val name = sampleFileName()
         val dfHtml = this.toStandaloneHtml(
             configuration = SamplesDisplayConfiguration,
@@ -160,23 +164,42 @@ public abstract class SampleHelper(
         // TODO fix static ids
         val htmlWithStaticIDs = replaceIdsWithStaticDataFrame(dfHtml.toString()) // replaceIdsWithStatic(dfHtml.toString())
         File(pathToResourceFolder, "$name.html").writeText(htmlWithStaticIDs)
+        onDfHtmlSampleSaved(name)
     }
 
     /**
      * Saves this [GroupBy] as HTML.
      */
-    public open fun GroupBy<*, *>.saveDfHtmlSample(): Unit = toDataFrame().saveDfHtmlSample()
+    protected fun GroupBy<*, *>.saveDfHtmlSample(): Unit = toDataFrame().saveDfHtmlSample()
 
     /**
      * Saves this [DataFrameHtmlData] as HTML.
      */
-    public open fun DataFrameHtmlData.saveDfHtmlSample() {
+    protected fun DataFrameHtmlData.saveDfHtmlSample() {
         val name = sampleFileName()
         val dfHtml = this + WritersideStyle
         // TODO fix static ids
         val htmlWithStaticIDs = replaceIdsWithStaticDataFrame(dfHtml.toString()) // replaceIdsWithStatic(dfHtml.toString())
         File(pathToResourceFolder, "$name.html").writeText(htmlWithStaticIDs)
+        onDfHtmlSampleSaved(name)
     }
+
+    /**
+     * Called after a dataframe sample is saved as `$name.html` by any of the `saveDfHtmlSample` methods.
+     * Override it to do something with the saved sample, e.g. reference it in the docs.
+     *
+     * @param name The sample file name (without extension), see [sampleFileName].
+     */
+    protected open fun onDfHtmlSampleSaved(name: String) {}
+
+    /**
+     * Called after a plot sample is saved as `$name.svg` (and `${name}_dark.svg`)
+     * by any of the `savePlotSVGSample` methods.
+     * Override it to do something with the saved sample, e.g. reference it in the docs.
+     *
+     * @param name The sample file name (without extension and `_dark` suffix), see [sampleFileName].
+     */
+    protected open fun onPlotSampleSaved(name: String) {}
 
     public open fun sampleFileName(): String =
         namePartsToRemove.fold(testName.methodName) { name, part -> name.replace(part, "") }
