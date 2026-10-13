@@ -41,12 +41,16 @@ import java.io.File
  * @param subFolder       Subdirectory under the root folders where sample files are placed. Defaults to `"samples"`.
  * @param imagesFolder    Base directory for Writerside images in the docs. Defaults to `"../docs/images"`.
  * @param resourcesFolder Base directory for Writerside resources in the docs. Defaults to `"../docs/resources"`.
+ * @param namePartsToRemove Substrings removed from the test method name to get the sample file name.
+ * Applied in the given order, so longer ones should go first.
+ * Defaults to `["_dataframeCompilerPlugin", "_dataframe"]`.
  */
 public abstract class SampleHelper(
     sampleName: String,
     subFolder: String = "samples",
     imagesFolder: String = "../docs/images",
-    resourcesFolder: String = "../docs/resources"
+    resourcesFolder: String = "../docs/resources",
+    private val namePartsToRemove: List<String> = listOf("_dataframeCompilerPlugin", "_dataframe"),
 ) {
 
     @JvmField
@@ -80,9 +84,7 @@ public abstract class SampleHelper(
      * of the SVG files. When `true`, additional preview files are created with "preview_" prefixed to the file name.
      */
     public fun Plot.savePlotSVGSample(savePreview: Boolean = false) {
-        val name = testName.methodName
-            .replace("_dataframeCompilerPlugin", "")
-            .replace("_dataframe", "")
+        val name = sampleFileName()
         saveAsSVG(name, savePreview)
         this.changeThemeToDarkMode()
         saveAsSVG("${name}_dark", savePreview)
@@ -101,7 +103,7 @@ public abstract class SampleHelper(
      * If `true`, the method scales the output appropriately; otherwise, it does not.
      */
     public fun PlotGrid.savePlotSVGSample(savePreview: Boolean = false, scaling: Boolean = true) {
-        val name = testName.methodName.replace("_dataframe", "")
+        val name = sampleFileName()
         saveAsSVG(name, savePreview, scaling)
         plots.forEach {
             it ?: return
@@ -123,7 +125,7 @@ public abstract class SampleHelper(
      * If `true`, the method scales the output appropriately; otherwise, it does not.
      */
     public fun PlotBunch.savePlotSVGSample() {
-        val name = testName.methodName.replace("_dataframe", "")
+        val name = sampleFileName()
         saveAsSVG(name)
         this.items.forEach {
             it.plot.changeThemeToDarkMode()
@@ -135,7 +137,7 @@ public abstract class SampleHelper(
      * Saves this [FormattedFrame] as HTML.
      */
     public fun FormattedFrame<*>.saveDfHtmlSample() {
-        val name = testName.methodName.replace("_dataframe", "")
+        val name = sampleFileName()
         this.toStandaloneHtml()
         val dfHtml = this.toStandaloneHtml(
             configuration = getDisplayConfiguration(SamplesDisplayConfiguration),
@@ -150,7 +152,7 @@ public abstract class SampleHelper(
      * Saves this [DataFrame] as HTML.
      */
     public fun DataFrame<*>.saveDfHtmlSample() {
-        val name = testName.methodName.replace("_dataframe", "")
+        val name = sampleFileName()
         val dfHtml = this.toStandaloneHtml(
             configuration = SamplesDisplayConfiguration,
             getFooter = WritersideFooter
@@ -169,12 +171,15 @@ public abstract class SampleHelper(
      * Saves this [DataFrameHtmlData] as HTML.
      */
     public fun DataFrameHtmlData.saveDfHtmlSample() {
-        val name = testName.methodName.replace("_dataframe", "")
+        val name = sampleFileName()
         val dfHtml = this + WritersideStyle
         // TODO fix static ids
         val htmlWithStaticIDs = replaceIdsWithStaticDataFrame(dfHtml.toString()) // replaceIdsWithStatic(dfHtml.toString())
         File(pathToResourceFolder, "$name.html").writeText(htmlWithStaticIDs)
     }
+
+    internal fun sampleFileName(): String =
+        namePartsToRemove.fold(testName.methodName) { name, part -> name.replace(part, "") }
 
     private fun Plot.changeThemeToDarkMode() {
         val layout = (this.features as MutableMap)[FeatureName("layout")] as? Layout
