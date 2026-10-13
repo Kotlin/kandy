@@ -83,7 +83,7 @@ public abstract class SampleHelper(
      * @param savePreview Boolean flag that indicates whether to also generate and save preview versions
      * of the SVG files. When `true`, additional preview files are created with "preview_" prefixed to the file name.
      */
-    public fun Plot.savePlotSVGSample(savePreview: Boolean = false) {
+    protected fun Plot.savePlotSVGSample(savePreview: Boolean = false) {
         val name = sampleFileName()
         saveAsSVG(name, savePreview)
         this.changeThemeToDarkMode()
@@ -102,7 +102,7 @@ public abstract class SampleHelper(
      * @param scaling Boolean flag that determines whether the SVG output should scale to an appropriate size.
      * If `true`, the method scales the output appropriately; otherwise, it does not.
      */
-    public fun PlotGrid.savePlotSVGSample(savePreview: Boolean = false, scaling: Boolean = true) {
+    protected fun PlotGrid.savePlotSVGSample(savePreview: Boolean = false, scaling: Boolean = true) {
         val name = sampleFileName()
         saveAsSVG(name, savePreview, scaling)
         plots.forEach {
@@ -124,7 +124,7 @@ public abstract class SampleHelper(
      * @param scaling Boolean flag that determines whether the SVG output should scale to an appropriate size.
      * If `true`, the method scales the output appropriately; otherwise, it does not.
      */
-    public fun PlotBunch.savePlotSVGSample() {
+    protected fun PlotBunch.savePlotSVGSample() {
         val name = sampleFileName()
         saveAsSVG(name)
         this.items.forEach {
@@ -136,7 +136,7 @@ public abstract class SampleHelper(
     /**
      * Saves this [FormattedFrame] as HTML.
      */
-    public fun FormattedFrame<*>.saveDfHtmlSample() {
+    protected fun FormattedFrame<*>.saveDfHtmlSample() {
         val name = sampleFileName()
         this.toStandaloneHtml()
         val dfHtml = this.toStandaloneHtml(
@@ -151,7 +151,7 @@ public abstract class SampleHelper(
     /**
      * Saves this [DataFrame] as HTML.
      */
-    public fun DataFrame<*>.saveDfHtmlSample() {
+    protected fun DataFrame<*>.saveDfHtmlSample() {
         val name = sampleFileName()
         val dfHtml = this.toStandaloneHtml(
             configuration = SamplesDisplayConfiguration,
@@ -165,12 +165,12 @@ public abstract class SampleHelper(
     /**
      * Saves this [GroupBy] as HTML.
      */
-    public fun GroupBy<*, *>.saveDfHtmlSample(): Unit = toDataFrame().saveDfHtmlSample()
+    protected fun GroupBy<*, *>.saveDfHtmlSample(): Unit = toDataFrame().saveDfHtmlSample()
 
     /**
      * Saves this [DataFrameHtmlData] as HTML.
      */
-    public fun DataFrameHtmlData.saveDfHtmlSample() {
+    protected fun DataFrameHtmlData.saveDfHtmlSample() {
         val name = sampleFileName()
         val dfHtml = this + WritersideStyle
         // TODO fix static ids
