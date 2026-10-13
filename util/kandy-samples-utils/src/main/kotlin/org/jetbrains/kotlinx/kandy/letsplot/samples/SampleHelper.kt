@@ -178,7 +178,7 @@ public abstract class SampleHelper(
         File(pathToResourceFolder, "$name.html").writeText(htmlWithStaticIDs)
     }
 
-    internal fun sampleFileName(): String =
+    protected fun sampleFileName(): String =
         namePartsToRemove.fold(testName.methodName) { name, part -> name.replace(part, "") }
 
     private fun Plot.changeThemeToDarkMode() {
