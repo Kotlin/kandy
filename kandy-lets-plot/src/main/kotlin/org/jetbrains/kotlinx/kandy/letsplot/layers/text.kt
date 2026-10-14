@@ -50,6 +50,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.TextBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Text Examples](https://kotlin.github.io/kandy/text-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.text(block: TextBuilder.() -> Unit) {
     createLayer(TextBuilder(this), block)

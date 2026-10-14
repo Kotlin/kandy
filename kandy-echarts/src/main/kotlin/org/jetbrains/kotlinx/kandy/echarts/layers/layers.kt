@@ -35,6 +35,11 @@ import org.jetbrains.kotlinx.kandy.echarts.layers.context.*
  * }
  * ```
  *
+ * ## Website Examples
+ *
+ * - [Layout Examples](https://kotlin.github.io/kandy/layout.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ *
  * @see EChartsLayout
  */
 public inline fun MultiLayerPlotBuilder.layout(block: EChartsLayout.() -> Unit) {
@@ -82,6 +87,11 @@ public inline fun MultiLayerPlotBuilder.layout(block: EChartsLayout.() -> Unit) 
  *    shadowBlur = 10
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Line Examples](https://kotlin.github.io/kandy/line.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  *
  * @see LineHandler
  */
@@ -134,6 +144,11 @@ public inline fun LayerCreatorScope.line(block: LineHandler.() -> Unit) {
  * }
  * ```
  *
+ * ## Website Examples
+ *
+ * - [Area Examples](https://kotlin.github.io/kandy/area.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ *
  * @see AreaHandler
  */
 public inline fun LayerCreatorScope.area(block: AreaHandler.() -> Unit) {
@@ -160,12 +175,25 @@ public inline fun LayerCreatorScope.area(block: AreaHandler.() -> Unit) {
  * }
  * ```
  *
+ * ## Website Examples
+ *
+ * - [Bar Examples](https://kotlin.github.io/kandy/bars.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ *
  * @see BarHandler
  */
 public inline fun LayerCreatorScope.bars(block: BarHandler.() -> Unit) {
     createLayer(BarHandler(this), block)
 }
 
+/**
+ * Adds a new [pie] layer.
+ *
+ * ## Website Examples
+ *
+ * - [Pie Examples](https://kotlin.github.io/kandy/pie.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ */
 public inline fun LayerCreatorScope.pie(block: PieHandler.() -> Unit) {
     createLayer(PieHandler(this), block)
 }
@@ -196,16 +224,37 @@ public inline fun LayerCreatorScope.pie(block: PieHandler.() -> Unit) {
  * }
  * ```
  *
+ * ## Website Examples
+ *
+ * - [Points Examples](https://kotlin.github.io/kandy/points.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ *
  * @see PointHandler
  */
 public inline fun LayerCreatorScope.points(block: PointHandler.() -> Unit) {
     createLayer(PointHandler(this), block)
 }
 
+/**
+ * Adds a new [candlestick] layer.
+ *
+ * ## Website Examples
+ *
+ * - [Candlestick Examples](https://kotlin.github.io/kandy/candlestick.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ */
 public inline fun LayerCreatorScope.candlestick(block: CandlestickHandler.() -> Unit) {
     createLayer(CandlestickHandler(this), block)
 }
 
+/**
+ * Adds a new [boxplot] layer.
+ *
+ * ## Website Examples
+ *
+ * - [Boxplot Examples](https://kotlin.github.io/kandy/boxplot.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ */
 public inline fun LayerCreatorScope.boxplot(block: BoxplotContext.() -> Unit) {
     createLayer(BoxplotContext(this), block)
 }

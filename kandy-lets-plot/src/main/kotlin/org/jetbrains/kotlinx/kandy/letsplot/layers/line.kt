@@ -51,6 +51,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.LineBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Line Examples](https://kotlin.github.io/kandy/line.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.line(block: LineBuilder.() -> Unit) {
     createLayer(LineBuilder(this), block)

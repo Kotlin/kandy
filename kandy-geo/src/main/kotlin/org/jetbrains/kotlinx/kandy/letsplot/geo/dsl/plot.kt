@@ -19,6 +19,11 @@ import org.jetbrains.kotlinx.kandy.ir.Plot
  * }
  * ```
  *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ *
  * @receiver plot dataset.
  * @param T the type of the [GeoDataFrame].
  */

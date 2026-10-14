@@ -58,6 +58,11 @@ import kotlin.reflect.typeOf
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun GeoDataScope.geoPoints(
     block: PointsBuilder.() -> Unit = {}
@@ -109,6 +114,11 @@ public inline fun GeoDataScope.geoPoints(
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoPoints(
     geometry: DataColumn<Geometry>,
@@ -156,6 +166,11 @@ public fun LayerCreatorScope.geoPoints(
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoPoints(
     geometry: Iterable<Geometry>,
@@ -197,6 +212,11 @@ public fun LayerCreatorScope.geoPoints(
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoPoints(
     points: Point,
@@ -238,6 +258,11 @@ public fun LayerCreatorScope.geoPoints(
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoPoints(
     multiPoints: MultiPoint,

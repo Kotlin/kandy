@@ -69,6 +69,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PieBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Pie Examples](https://kotlin.github.io/kandy/pie.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.pie(block: PieBuilder.() -> Unit) {
     createLayer(PieBuilder(this), block)

@@ -54,6 +54,11 @@ import kotlin.reflect.typeOf
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun GeoDataScope.geoRectangles(
     block: RectanglesBuilder.() -> Unit = {}
@@ -107,6 +112,11 @@ public fun GeoDataScope.geoRectangles(
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoRectangles(
     geometry: DataColumn<Geometry>,
@@ -155,6 +165,11 @@ public fun LayerCreatorScope.geoRectangles(
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoRectangles(
     geometry: DataColumn<Envelope>,
@@ -203,6 +218,11 @@ public fun LayerCreatorScope.geoRectangles(
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 @JvmName("geoRectanglesGeometry")
 public fun LayerCreatorScope.geoRectangles(
@@ -251,6 +271,11 @@ public fun LayerCreatorScope.geoRectangles(
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 @JvmName("geoRectanglesEnvelope")
 public fun LayerCreatorScope.geoRectangles(
@@ -294,6 +319,11 @@ public fun LayerCreatorScope.geoRectangles(
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoRectangles(
     envelope: Envelope,
@@ -336,6 +366,11 @@ public fun LayerCreatorScope.geoRectangles(
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoRectangles(
     polygon: Polygon,
@@ -378,6 +413,11 @@ public fun LayerCreatorScope.geoRectangles(
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoRectangles(
     multiPolygon: MultiPolygon,

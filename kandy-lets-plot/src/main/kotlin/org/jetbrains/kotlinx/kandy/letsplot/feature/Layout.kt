@@ -33,6 +33,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.style.Theme
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Layout Examples](https://kotlin.github.io/kandy/layout.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun PlotBuilder.layout(block: Layout.() -> Unit) {
     if (plotFeatures[Layout.NAME] == null) {

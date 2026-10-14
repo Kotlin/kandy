@@ -50,6 +50,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.HLineBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [HLine Examples](https://kotlin.github.io/kandy/hline-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.hLine(block: HLineBuilder.() -> Unit) {
     createLayer(HLineBuilder(this), block)

@@ -57,6 +57,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.ErrorBarsBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Error Bars Examples](https://kotlin.github.io/kandy/error-bars.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.errorBars(block: ErrorBarsBuilder.() -> Unit) {
     createLayer(ErrorBarsBuilder(this).apply {

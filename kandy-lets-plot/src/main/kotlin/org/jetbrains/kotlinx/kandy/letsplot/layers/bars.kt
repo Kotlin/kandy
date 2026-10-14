@@ -56,6 +56,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.BarsBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Bar Examples](https://kotlin.github.io/kandy/bars.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.bars(block: BarsBuilder.() -> Unit) {
     createLayer(BarsBuilder(this).apply {

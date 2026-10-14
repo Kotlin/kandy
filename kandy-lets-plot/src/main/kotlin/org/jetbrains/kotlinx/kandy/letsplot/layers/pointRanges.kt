@@ -76,6 +76,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PointRangesBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [PointRanges Examples](https://kotlin.github.io/kandy/pointranges-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.pointRanges(block: PointRangesBuilder.() -> Unit) {
     createLayer(PointRangesBuilder(this).apply {

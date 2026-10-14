@@ -17,6 +17,10 @@ import org.jetbrains.kotlinx.kandy.ir.Plot
  * Creates a [DataFramePlotBuilder] plotting context, in which you can configure a plot.
  * Possible configuration parameters depend on the engine.
  *
+ * ## Website Examples
+ *
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ *
  * @param dataset plot dataset.
  */
 public inline fun plot(dataset: Map<String, List<*>> = mapOf(), block: DataFramePlotBuilder<*>.() -> Unit): Plot {
@@ -28,6 +32,10 @@ public inline fun plot(dataset: Map<String, List<*>> = mapOf(), block: DataFrame
  *
  * Creates a [DataFramePlotBuilder] plotting context, in which you can configure a plot.
  * Possible configuration parameters depend on the engine.
+ *
+ * ## Website Examples
+ *
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  *
  * @receiver plot dataset.
  */
@@ -42,6 +50,10 @@ public inline fun Map<String, List<*>>.plot(block: DataFramePlotBuilder<*>.() ->
  * Creates a [DataFramePlotBuilder] plotting context, in which you can configure a plot.
  * Possible configuration parameters depend on the engine.
  *
+ * ## Website Examples
+ *
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ *
  * @receiver plot dataset.
  */
 public inline fun <T> DataFrame<T>.plot(block: DataFramePlotBuilder<T>.() -> Unit): Plot {
@@ -53,6 +65,10 @@ public inline fun <T> DataFrame<T>.plot(block: DataFramePlotBuilder<T>.() -> Uni
  *
  * Creates a [DataFramePlotBuilder] plotting context, in which you can configure a plot.
  * Possible configuration parameters depend on the engine.
+ *
+ * ## Website Examples
+ *
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  *
  * @param dataframe plot dataset.
  */
@@ -67,6 +83,10 @@ public inline fun <T> plot(dataframe: DataFrame<T>, block: DataFramePlotBuilder<
  * Creates a [GroupByPlotBuilder] plotting context, in which you can configure a plot.
  * Possible configuration parameters depend on the engine.
  *
+ * ## Website Examples
+ *
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ *
  * @receiver plot dataset.
  */
 public inline fun <T, G> GroupBy<T, G>.plot(block: GroupByPlotBuilder<T, G>.() -> Unit): Plot {
@@ -78,6 +98,10 @@ public inline fun <T, G> GroupBy<T, G>.plot(block: GroupByPlotBuilder<T, G>.() -
  *
  * Creates a [GroupByPlotBuilder] plotting context, in which you can configure a plot.
  * Possible configuration parameters depend on the engine.
+ *
+ * ## Website Examples
+ *
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  *
  * @param groupedDataframe plot dataset.
  */

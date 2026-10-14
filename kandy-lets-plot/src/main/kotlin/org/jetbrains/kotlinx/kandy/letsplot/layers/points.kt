@@ -54,6 +54,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PointsBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Points Examples](https://kotlin.github.io/kandy/points.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.points(block: PointsBuilder.() -> Unit) {
     createLayer(PointsBuilder(this), block)

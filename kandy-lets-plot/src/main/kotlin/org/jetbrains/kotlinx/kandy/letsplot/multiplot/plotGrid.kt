@@ -10,6 +10,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.multiplot.model.PlotGrid
 /**
  *  Combines several plots on one figure, organized in a regular grid.
 
+ * ## Website Examples
+ *
+ * - [PlotGrid Examples](https://kotlin.github.io/kandy/plotgrid-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ *
  *  @param plots Collection of plots.
  *          Use Null-value to fill in empty cells in the grid.
  *  @param nCol Number of columns in grid.
