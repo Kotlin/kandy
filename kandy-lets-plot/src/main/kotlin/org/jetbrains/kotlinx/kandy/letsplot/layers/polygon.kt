@@ -52,6 +52,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PolygonBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Polygon Examples](https://kotlin.github.io/kandy/polygon-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.polygon(block: PolygonBuilder.() -> Unit) {
     createLayer(PolygonBuilder(this), block)

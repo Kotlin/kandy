@@ -61,6 +61,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.RibbonBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Ribbon Examples](https://kotlin.github.io/kandy/ribbon.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.ribbon(block: RibbonBuilder.() -> Unit) {
     createLayer(RibbonBuilder(this), block)

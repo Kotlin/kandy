@@ -59,6 +59,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.TilesBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Tiles Examples](https://kotlin.github.io/kandy/tiles.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.tiles(block: TilesBuilder.() -> Unit) {
     createLayer(TilesBuilder(this), block)

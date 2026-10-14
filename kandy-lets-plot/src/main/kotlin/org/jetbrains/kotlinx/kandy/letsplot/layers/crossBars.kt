@@ -56,6 +56,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.CrossBarsBuilder
  *    width("capacity")
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [CrossBars Examples](https://kotlin.github.io/kandy/crossbars-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.crossBars(block: CrossBarsBuilder.() -> Unit) {
     createLayer(CrossBarsBuilder(this).apply {

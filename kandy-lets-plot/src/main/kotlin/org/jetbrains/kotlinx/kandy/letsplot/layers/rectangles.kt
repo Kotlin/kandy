@@ -61,6 +61,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.RectanglesBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Rectangles Examples](https://kotlin.github.io/kandy/rectangles-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.rectangles(block: RectanglesBuilder.() -> Unit) {
     createLayer(RectanglesBuilder(this), block)

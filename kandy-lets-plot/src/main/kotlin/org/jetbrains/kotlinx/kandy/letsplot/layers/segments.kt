@@ -56,6 +56,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.SegmentsBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Segments Examples](https://kotlin.github.io/kandy/segments-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.segments(block: SegmentsBuilder.() -> Unit) {
     createLayer(SegmentsBuilder(this), block)

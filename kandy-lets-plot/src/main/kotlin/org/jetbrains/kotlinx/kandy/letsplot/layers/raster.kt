@@ -58,6 +58,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.RasterBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Raster Examples](https://kotlin.github.io/kandy/raster-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.raster(block: RasterBuilder.() -> Unit) {
     createLayer(RasterBuilder(this), block)

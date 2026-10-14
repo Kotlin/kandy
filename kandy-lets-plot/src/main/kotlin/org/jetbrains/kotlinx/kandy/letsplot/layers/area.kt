@@ -56,6 +56,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.AreaBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Area Examples](https://kotlin.github.io/kandy/area.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.area(block: AreaBuilder.() -> Unit) {
     createLayer(AreaBuilder(this), block)

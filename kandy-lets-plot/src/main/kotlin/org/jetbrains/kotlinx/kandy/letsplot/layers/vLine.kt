@@ -50,6 +50,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.VLineBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [VLine Examples](https://kotlin.github.io/kandy/vline-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.vLine(block: VLineBuilder.() -> Unit) {
     createLayer(VLineBuilder(this), block)

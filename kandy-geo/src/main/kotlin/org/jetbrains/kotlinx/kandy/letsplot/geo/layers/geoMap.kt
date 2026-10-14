@@ -66,6 +66,11 @@ internal fun CoordinateReferenceSystem.isWGS84(): Boolean {
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun GeoDataScope.geoMap(
     block: PolygonBuilder.() -> Unit = {}
@@ -117,6 +122,11 @@ public inline fun GeoDataScope.geoMap(
  * }
  * ```
  *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ *
  * @param geometry [DataColumn] of geometries to be plotted.
  */
 public fun LayerCreatorScope.geoMap(
@@ -165,6 +175,11 @@ public fun LayerCreatorScope.geoMap(
  * }
  * ```
  *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ *
  * @param geometry [Iterable] of geometries to be plotted.
  */
 public fun LayerCreatorScope.geoMap(
@@ -209,6 +224,11 @@ public fun LayerCreatorScope.geoMap(
  * }
  * ```
  *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
+ *
  * @param polygon [Polygon] to be plotted.
  */
 public fun LayerCreatorScope.geoMap(
@@ -252,6 +272,11 @@ public fun LayerCreatorScope.geoMap(
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  *
  * @param multiPolygon [MultiPolygon] to be plotted.
  */

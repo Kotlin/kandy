@@ -52,6 +52,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.PathBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Path Examples](https://kotlin.github.io/kandy/path-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.path(block: PathBuilder.() -> Unit) {
     createLayer(PathBuilder(this), block)

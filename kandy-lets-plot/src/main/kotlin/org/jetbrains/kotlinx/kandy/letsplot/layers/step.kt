@@ -46,6 +46,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.StepBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Step Examples](https://kotlin.github.io/kandy/step-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.step(block: StepBuilder.() -> Unit) {
     createLayer(StepBuilder(this), block)

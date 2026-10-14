@@ -49,6 +49,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.LineRangesBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [LineRanges Examples](https://kotlin.github.io/kandy/lineranges-api.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.lineRanges(block: LineRangesBuilder.() -> Unit) {
     createLayer(LineRangesBuilder(this).apply {

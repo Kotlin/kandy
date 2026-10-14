@@ -64,6 +64,11 @@ import org.jetbrains.kotlinx.kandy.letsplot.layers.builders.BoxesBuilder
  *     }
  * }
  * ```
+ *
+ * ## Website Examples
+ *
+ * - [Boxplot Examples](https://kotlin.github.io/kandy/boxplot.html)
+ * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun LayerCreatorScope.boxes(block: BoxesBuilder.() -> Unit) {
     createLayer(BoxesBuilder(this).apply {
