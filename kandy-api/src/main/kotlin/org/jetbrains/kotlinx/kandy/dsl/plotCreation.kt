@@ -84,7 +84,7 @@ public inline fun <T> plot(dataframe: DataFrame<T>, block: DataFramePlotBuilder<
  * Possible configuration parameters depend on the engine.
  *
  * ## Website Examples
- *
+ * - [Grouping Guide](https://kotlin.github.io/kandy/quick-start-guide.html#grouping)
  * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  *
  * @receiver plot dataset.
@@ -100,7 +100,7 @@ public inline fun <T, G> GroupBy<T, G>.plot(block: GroupByPlotBuilder<T, G>.() -
  * Possible configuration parameters depend on the engine.
  *
  * ## Website Examples
- *
+ * - [Grouping Guide](https://kotlin.github.io/kandy/quick-start-guide.html#grouping)
  * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  *
  * @param groupedDataframe plot dataset.
