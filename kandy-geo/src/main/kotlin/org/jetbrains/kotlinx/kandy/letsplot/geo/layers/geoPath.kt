@@ -61,6 +61,7 @@ import kotlin.reflect.typeOf
  * ## Website Examples
  *
  * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Geo Guide](https://kotlin.github.io/kandy/geo-plotting-guide.html)
  * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public inline fun GeoDataScope.geoPath(
@@ -116,6 +117,7 @@ public inline fun GeoDataScope.geoPath(
  * ## Website Examples
  *
  * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Geo Guide](https://kotlin.github.io/kandy/geo-plotting-guide.html)
  * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoPath(
@@ -167,6 +169,7 @@ public fun LayerCreatorScope.geoPath(
  * ## Website Examples
  *
  * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Geo Guide](https://kotlin.github.io/kandy/geo-plotting-guide.html)
  * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoPath(
@@ -212,6 +215,7 @@ public fun LayerCreatorScope.geoPath(
  * ## Website Examples
  *
  * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Geo Guide](https://kotlin.github.io/kandy/geo-plotting-guide.html)
  * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoPath(
@@ -257,6 +261,7 @@ public fun LayerCreatorScope.geoPath(
  * ## Website Examples
  *
  * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Geo Guide](https://kotlin.github.io/kandy/geo-plotting-guide.html)
  * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  */
 public fun LayerCreatorScope.geoPath(
