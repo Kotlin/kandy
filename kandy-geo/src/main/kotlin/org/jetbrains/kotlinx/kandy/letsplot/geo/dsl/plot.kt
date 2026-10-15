@@ -22,6 +22,7 @@ import org.jetbrains.kotlinx.kandy.ir.Plot
  * ## Website Examples
  *
  * - [Geo Examples](https://kotlin.github.io/kandy/geo.html)
+ * - [Geo Guide](https://kotlin.github.io/kandy/geo-plotting-guide.html)
  * - [Kandy Gallery](https://kotlin.github.io/kandy/examples.html)
  *
  * @receiver plot dataset.
